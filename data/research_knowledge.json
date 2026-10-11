@@ -7503,6 +7503,62 @@
       "status": "candidate",
       "stored_path": "originals/c2/c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0/dcd-c23995056728875c-Campaigners call for moratorium on data centers in Scotland over .html",
       "title": "Campaigners call for moratorium on data centers in Scotland over climate and power fears"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+      "coverage": {
+        "characters_read": 8168,
+        "characters_total": 8168,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+      "id": "doc-bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+      "library_path": "library/by-node/root/2025_DCD_Rowan secures $975 million financing for Maryland data__bac35a1d1045bc44.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "root",
+        "site:grid",
+        "site:land"
+      ],
+      "question_ids": [
+        "OBJ-grid-supply",
+        "OBJ-land-definition",
+        "OBJ-land-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-d125fb5710614be5b35e054323c993c7",
+      "report_sha256": "9430b0f698cc6491c133d57122642417136261aaf0e4ccef39cb51a5dd8f8ac2",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+        "url": "https://www.datacenterdynamics.com/en/news/rowan-secures-975-million-financing-for-maryland-data-center-campus/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/rowan-secures-975-million-financing-for-maryland-data-center-campus/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/ba/bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a/dcd-bac35a1d1045bc44-Rowan secures -975 million financing for Maryland data center cam.html",
+      "title": "Rowan secures $975 million financing for Maryland data center campus"
     }
   ],
   "evidence": [
@@ -55329,6 +55385,87 @@
           }
         },
         "batch_id": "d5be5c16a9558ec3f553b8b7770089c10e2cce5cddbd82eb19d88c001287989e"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ed0060cad90b99a8c770d347c3c06373811b0e857697d49e5bae6e9657170a49",
+      "document_id": "doc-bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+      "id": "rev-d125fb5710614be5b35e054323c993c7:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Data center capacity is expected to grow by more than 20% annually over the next decade",
+      "reading_revision_id": "rev-d125fb5710614be5b35e054323c993c7",
+      "source_sha256": "bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:07:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。连续原文引文与完整相邻发言支持明确归因的预测，对当前M15-Q01比较容量增长情景的外部预期有实质但局部的贡献。仅采用为待验证的情景参考，不据此确定投运路径、调整概率或关闭问题。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M15-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.876,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c1893f2e73cc214c6fab631800975a8712cbea7279866fba6a295d46ff782533",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 45457,
+            "output_tokens": 1248,
+            "reasoning_output_tokens": 227
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.895,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "08007c1b19e6294c2e9c1dd7f20b23691665e620ca45ed2aaa2a8059a09fcc04",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 46067,
+              "output_tokens": 440,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "5bafb2bcf4cbb1392379cae5d79380b6ef97912a623cd8e1709e6d9a7a3eefc3"
       }
     }
   ],
@@ -107001,6 +107138,104 @@
         "request_sha256": "4d0eed195861be373d98770277a5b0aa78b6ecab779bad1e9fa15ed58c622ad5"
       },
       "object_mapping_check": "独立核对对象合同与原文：该声明属于星座能源自身核电运营指标的比较口径说明，合同中actor:constellation-energy的名称、主体类型与之相符。未涉及一座AI数据中心的内部电力系统、电力配额或并网权利，不映射root、system:power、site:grid或核电部件；不继承文档标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a",
+      "evidence_ids": [
+        "rev-d125fb5710614be5b35e054323c993c7:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:67ea317c72e66085d3499c7a",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M15-Q01"
+      ],
+      "reading_revision_id": "rev-d125fb5710614be5b35e054323c993c7",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年1月19日的报道中，引述Rowan Digital Infrastructure首席执行官Charley Daitch的预测：未来十年数据中心容量预计每年增长超过20%。这是开发商负责人在来源时点的行业增长预测；报道未明确该预测的地域、容量口径或项目阶段，不能视为已实现增长、投运IT容量增长或当前预测准确性的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:07:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。连续原文引文与完整相邻发言支持明确归因的预测，对当前M15-Q01比较容量增长情景的外部预期有实质但局部的贡献。仅采用为待验证的情景参考，不据此确定投运路径、调整概率或关闭问题。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M15-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.876,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c1893f2e73cc214c6fab631800975a8712cbea7279866fba6a295d46ff782533",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 45457,
+            "output_tokens": 1248,
+            "reasoning_output_tokens": 227
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.895,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "08007c1b19e6294c2e9c1dd7f20b23691665e620ca45ed2aaa2a8059a09fcc04",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 46067,
+              "output_tokens": 440,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "5bafb2bcf4cbb1392379cae5d79380b6ef97912a623cd8e1709e6d9a7a3eefc3"
+      },
+      "source_candidate_ids": [
+        "rev-d125fb5710614be5b35e054323c993c7:chunk:0:claim:7"
+      ],
+      "limitations": "未提供预测基期、容量定义、地域、负载构成、年度路径、模型、情景概率或推导方法，也未区分规划、在建与已投运容量。来源为新闻对CEO发言的引述，未供应Rowan一手公告或预测报告。2025年1月的预测不能自动作为2026年第四季度的新证据；网页推荐内容中的2026年日期不更新本条来源时间。",
+      "conflict_check": "BIS Research的legacy记录预测2023–2030年容量需求年增19%–22%，另列更乐观情景；其时间、地域、需求口径及负载范围与本条未对齐，不能认定真实冲突、同一预测或独立相互验证。已采用的SemiAnalysis美国2026年交付预测、DCD转述Newmark的需求压力及IEA情景不确定性说明均讨论不同范围或指标，与本条可以并存。Rowan项目规划容量和土地交易记录不检验行业年增长预测。所供记录未见相同主张的规范记录；检查限于所供材料，不覆盖外部反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "M15-Q01仍需2026–2030三情景投运GW路径、当前概率权重、本季度同口径证据、反证及可复查更新规则。本条只贡献一个开发商的增长预期，不能判断权重应向哪个投运情景移动。需取得预测的一手来源、容量定义、地域和基期，并核对后续修订及同口径实际投运数据。问题保持开放，不汇总GW、不更新模型输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5bafb2bcf4cbb1392379cae5d79380b6ef97912a623cd8e1709e6d9a7a3eefc3",
+        "source_report_sha256": "9430b0f698cc6491c133d57122642417136261aaf0e4ccef39cb51a5dd8f8ac2",
+        "request_sha256": "961d8d28fa68d35c010ac4e0fa6b677d4aa6d759b0173cd2e5bcd235c8a92afb"
+      },
+      "object_mapping_check": "独立复核后采用空对象范围。本条实际对象是地域及容量口径未披露的行业增长预测；合同中的root限定为一座AI数据中心，不能覆盖行业总量。Rowan未列为允许的actor对象，预测也未指认具体系统、链、部件或场址权利。不继承Reader的root标签，不从相邻融资、土地或合同电网容量追加映射。所选证据统一采用此主张级空对象范围，保留M15-Q01的有效问题关系。"
     }
   ],
   "answers": [],
