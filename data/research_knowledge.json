@@ -58351,6 +58351,95 @@
         },
         "batch_id": "4f0d6cf444a724ae77632a869bb64ca1541797127b38883aced6ec2b694e27c3"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "83374b3bdf88e25a38de45e5a27470977da1ae0aaee89c37961cb1994cd2389f",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:6:ev:0",
+      "locator": "page:32/chunk:31",
+      "object_ids": [
+        "part:optics"
+      ],
+      "page_index": 31,
+      "question_ids": [
+        "OBJ-optics-alternatives",
+        "OBJ-optics-interfaces",
+        "OBJ-optics-performance"
+      ],
+      "quote": "Photonic interconnects, which replace electrical\n                  signalling with lower-energy optical links, target similar bottlenecks at the chip-to-chip and\n                  rack-to-rack levels.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:35:25+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分 6。连续原文引文和完整硬件架构段落支持限定的作者陈述，与当前替代方案、接口及性能工作单有实质但局部的关系：分别补充电信号与光链路的路线差异、目标连接层级和定性能耗方向。所供材料未触发敏感、真实冲突、替换或其他 A 类条件，可作 B 类局部采用。",
+        "workorder_ids": [
+          "Q-OBJ-optics-alternatives",
+          "Q-OBJ-optics-interfaces",
+          "Q-OBJ-optics-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.791,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dddeb182eb2179f6cc8b0f3b6f84bb57c76a535e1afa34dff68da41ab55695a1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65119,
+            "output_tokens": 1274,
+            "reasoning_output_tokens": 223
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.075,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "91aaf543e289cd7edfd875fe3ea5145198e14dea6cc97c730904be3a9cd608e0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65747,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 188
+            }
+          }
+        },
+        "batch_id": "1f9f66d7bd6adb5160dbc1c1b7eded4bf167ff93f1a919bb62f348f249369eae"
+      }
     }
   ],
   "statements": [
@@ -113142,6 +113231,110 @@
         "request_sha256": "1b4c19592344b5f49f9d60193b3d8b9d0fa17dae8b174166217dd7f2b9754f1a"
       },
       "object_mapping_check": "独立依据对象契约核对：原文明示Submer，匹配actor:submer；浸没技术匹配水与散热系统下机房与机柜链的part:immersion；直接芯片液冷这一对照路线匹配芯片级chain:thermal/4，但未明确冷板，不映射part:coldplate。自有数据中心建设及AI云服务计划直接涉及整座AI数据中心范围，支持root，映射保留计划阶段。没有具体计算、网络、控制软件、土地或供电资产证据，不因AI云字样扩展至这些对象；不沿用多家主体标签。所选证据统一使用上述主张级审核范围，原候选和证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:6:ev:0"
+      ],
+      "id": "adoption:review:9a45770eea85f088fb80fdbe",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:optics"
+      ],
+      "question_ids": [
+        "OBJ-optics-alternatives",
+        "OBJ-optics-interfaces",
+        "OBJ-optics-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》的新兴硬件架构讨论中称，光子互连以其所述的较低能耗光链路替代电信号，针对芯片间和机架间的数据移动瓶颈。这是来源对技术路线、连接层级及能耗方向的定性说明，未获当前独立实测验证；所供原文未确立发表时间、具体地域或具名产品与项目交付阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:35:25+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分 6。连续原文引文和完整硬件架构段落支持限定的作者陈述，与当前替代方案、接口及性能工作单有实质但局部的关系：分别补充电信号与光链路的路线差异、目标连接层级和定性能耗方向。所供材料未触发敏感、真实冲突、替换或其他 A 类条件，可作 B 类局部采用。",
+        "workorder_ids": [
+          "Q-OBJ-optics-alternatives",
+          "Q-OBJ-optics-interfaces",
+          "Q-OBJ-optics-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.791,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dddeb182eb2179f6cc8b0f3b6f84bb57c76a535e1afa34dff68da41ab55695a1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65119,
+            "output_tokens": 1274,
+            "reasoning_output_tokens": 223
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.075,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "91aaf543e289cd7edfd875fe3ea5145198e14dea6cc97c730904be3a9cd608e0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65747,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 188
+            }
+          }
+        },
+        "batch_id": "1f9f66d7bd6adb5160dbc1c1b7eded4bf167ff93f1a919bb62f348f249369eae"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:6"
+      ],
+      "limitations": "未提供器件型号、接口协议、速率、距离、功耗数值或单位、测量方法和运行工况，不能确定互换条件、量化节能幅度、可靠性或失效机制。芯片间和机架间是目标连接层级，不证明两个层级均已部署。邻文明确指出整体设备群的效率影响仍不确定。全文覆盖限于原生文本，图像未视觉复核，不能宣称完整文档审阅已完成。",
+      "conflict_check": "现有采用陈述中的两层 CPO 网络功耗模型、SoIC 光引擎带宽密度比较及 ELS 功耗分解具有各自对象和条件，不能核验本项泛化的能耗方向。既有耦合、热环境和维护约束与光链路可能降低能耗可以并存，未形成同口径真实冲突。所供旧事实、合同和项目匹配记录为空，未发现可指定的重复规范记录；检查限于所供材料。",
+      "gap_dependency_check": "OBJ-optics-alternatives 获得光链路替代电信号的定性线索，仍缺同口径性能、成本及约束比较；OBJ-optics-interfaces 获得目标连接层级，仍缺输入输出规格、上下游依赖和互换条件；OBJ-optics-performance 获得待验证的能耗方向，仍缺测试方法、工况、可靠性及失效证据。本项不回答或关闭任何问题，不更新模型参数、账本采用值或覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1f9f66d7bd6adb5160dbc1c1b7eded4bf167ff93f1a919bb62f348f249369eae",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "035f52b0ce6b96b095e580f306a8c4889e2dce96bb8f6ec06b0cf6e3ea1bec75"
+      },
+      "object_mapping_check": "独立依据原文的光子互连与相邻 CPO 语境，映射到网络链下的部件 part:optics（光模块，CPO 为新兴子条目）。本项范围是光学互连技术，不涉及具名交换机、计算器件或供电设备；电信号未被限定为 DAC/AEC，故不增映射高速铜缆。芯片间与机架间仅界定连接层级，不据此扩展到计算、内存或整机柜对象。所选证据统一使用此主张级对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
