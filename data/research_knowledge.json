@@ -58821,6 +58821,89 @@
         },
         "batch_id": "95b5cdeb59f573fac0480f0cd7df370cf6abdc6aa84fede384865708a6276e50"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f2f05b62c324ef08df682c3dfb13de36146a998a45110bbbcf101debb5efefba",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:37:claim:2:ev:0",
+      "locator": "page:38/chunk:37",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 37,
+      "question_ids": [],
+      "quote": "the IEA\n                   conducted a geospatial analysis of 21 such AI-focused large data centres. These data\n                   centres range 600 MW to 5 GW in nameplate capacity and are each estimated to\n                   consume as much electricity as 600 000 to 5 million households once complete.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:17:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原重要性6。连续原文引文直接支持样本数量、铭牌容量范围和建成后的耗电估计，相邻正文充分建立美国、AI训练与运行用途及建设阶段语境。对当前M02-Q05提供大型AI项目达到GW级铭牌规模的实质性样本证据，符合B类有界部分采用条件。未发现敏感、真实冲突、拟替换或其他A类条件；仅贡献局部证据，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.636,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e2872d9c169a761ad95255d152ab3c07692e68f52e448e7143a8c3aca55616cc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 60367,
+            "output_tokens": 1480,
+            "reasoning_output_tokens": 261
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.97,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "74535eaee0db32d5e3cd8f528c461fccb3eb83abfcd0eb018a57a5bbb3a06909",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 61177,
+              "output_tokens": 432,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "cc24e87bf08a0f8861227d1b586061d57f4946f9ba7db6b5c1ce31c0a2cdb0cd"
+      }
     }
   ],
   "statements": [
@@ -114114,6 +114197,106 @@
         "request_sha256": "f770e7596c4cd023d416413553cfff52a416e59bdcd368b77685c2c20f42b3aa"
       },
       "object_mapping_check": "完整原文将该担保明确置于Solaris Power Solutions向Hatchbo提供数据中心发电设备的租赁协议中，实际范围匹配system:power下的“发电与储能”链。仅映射chain:power/3，不由商业条款扩展为数据中心整体结论；未确认本交易的具体机组类型、天然气管道接入或并网权利，故不映射相应部件及场址权利。Solaris、Hatchbo及未具名母公司均无允许的准确主体ID。所选证据采用此同一审核对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:37:claim:2:ev:0"
+      ],
+      "id": "adoption:review:bdbe77a2eb9b7ae5ba75b205",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q05"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第38页称，其对美国21座用于训练和运行AI模型的大型AI数据中心进行了地理空间分析；这些项目的铭牌容量范围为600 MW至5 GW。IEA并估计，每座项目建成后的耗电量相当于60万至500万户家庭的用电量。相邻正文和图注将样本置于已公告、建设中的项目语境。这是IEA报告的样本容量范围及建成后耗电估计，不表示全部容量已投运，也不构成对项目当前状态或关键IT容量的独立认证；所供原文未建立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:17:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原重要性6。连续原文引文直接支持样本数量、铭牌容量范围和建成后的耗电估计，相邻正文充分建立美国、AI训练与运行用途及建设阶段语境。对当前M02-Q05提供大型AI项目达到GW级铭牌规模的实质性样本证据，符合B类有界部分采用条件。未发现敏感、真实冲突、拟替换或其他A类条件；仅贡献局部证据，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.636,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e2872d9c169a761ad95255d152ab3c07692e68f52e448e7143a8c3aca55616cc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 60367,
+            "output_tokens": 1480,
+            "reasoning_output_tokens": 261
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.97,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "74535eaee0db32d5e3cd8f528c461fccb3eb83abfcd0eb018a57a5bbb3a06909",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 61177,
+              "output_tokens": 432,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "cc24e87bf08a0f8861227d1b586061d57f4946f9ba7db6b5c1ce31c0a2cdb0cd"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:37:claim:2"
+      ],
+      "limitations": "所供段落未列出21座项目的逐项身份、容量、阶段、样本选择方法或统计截止日期，也未给出容量频数分布及可比历史样本。铭牌容量未进一步明确为设施总容量或关键IT容量，不能计入L8+投运IT容量。家庭用电类比未说明家庭地域、比较时段、户均用电基准或计算方法，不能据此换算TWh或利用率。全文覆盖仅为PDF原生文本，未进行视觉复核；不能宣称完整核验了图表和图像内容。",
+      "conflict_check": "已采用的Fluidstack法国拟建1GW、Lake Mariner场址容量及扩展潜力、巴西Omnia容量预期、沙特Khazna容量上限和其他建筑规模案例具有不同地域、项目边界或阶段，不构成本条同口径冲突。既有美国“2025年首个正式1GW项目”属于预测，且“正式”标准未明；本报告发表时间未建立，不能据此判为真实矛盾或以本条替换该预测。美国个案与21座样本可能重叠，但缺项目名单，不能认定规范重复或独立样本。legacy中的RAND记录涉及区域太阳能、储能铭牌容量预测，非数据中心项目容量，与本条不构成同范围反证。未发现可确认的规范重复或真实冲突；检查限于所供记录，不是全面外部反证搜索。",
+      "gap_dependency_check": "M02-Q05获得美国21座大型AI项目的铭牌容量范围，支持存在600 MW至5 GW规模项目这一局部判断。范围上下限不能说明分布形状、GW级项目占比，亦不能证明单项目规模从100MW向GW级园区化的跨期变化。仍需逐项目清单、容量定义、园区与单建筑边界、统计时间、分阶段记录、同口径历史样本、去重及反证，才能形成可复查的规模分布推导。不汇总GW、不指定漏斗等级、不更新模型值或研究骨架，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "cc24e87bf08a0f8861227d1b586061d57f4946f9ba7db6b5c1ce31c0a2cdb0cd",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "078d70d97d954f78b9ed2c2f21954cf3a94bae5d16c0b5696c20710d00e0ae53"
+      },
+      "object_mapping_check": "独立依据原文选择root：契约名称为“一座 AI 数据中心”，本条明确讨论大型AI数据中心整体项目的铭牌规模及建成后耗电估计，范围相符。MW和家庭用电类比未披露具体供电配置、并网权利或IT设备，不能据此映射电力系统、site:grid、IT系统或部件。IEA没有允许的主体ID，样本项目参与方未具名，不借用其他主体标签。所选证据统一采用此主张范围，不继承Reader标签。"
     }
   ],
   "answers": [],
