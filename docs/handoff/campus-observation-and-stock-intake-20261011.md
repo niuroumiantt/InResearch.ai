@@ -18,11 +18,23 @@
 
 171项来源未接通、17模型输入未验证、154用途待审、25当前支持SHA缺口/原37条历史输入字节身份问题，不能改状态掩盖。新水电协议仅有夹具闭环，未新增真实水电观测，不是存量全量采用回执。
 
-Spark接收台账实查：8882份supplied_research、8709份有source_provenance、仅14份有research_requests数组；不是全部44775唯一原件/几百GB盘点，也不证明14份绑定当前有效。**当前定向适配器仍要求模型参数需求绑定，因此多数既有资料仍被这一耦合挡住。** 原`research_sources.receive`不允许改已有来源凭据，新sidecar会因SHA变化冲突；不要直接改SQLite或伪造供应方请求绕过。
+Spark接收台账实查：8882份supplied_research、8709份有source_provenance、仅14份有research_requests数组；不是全部44775唯一原件/几百GB盘点，也不证明14份绑定当前有效。**对象先入库后续已实现独立通道，见下节；这组目录计数仍只代表当时检查范围，不代表全库存量。** 原`research_sources.receive`不允许改已有来源凭据，新sidecar会因SHA变化冲突；不要直接改SQLite或伪造供应方请求绕过。
 
-## 下一步
+## 对象先入库后续实现（2026-10-11）
 
-1. 将已登记物理对象的观测采用与模型问题关联拆开：独立对象绑定冻结site_id、字段、范围、确切原文页/来源；保持C3、原件/引用核验、身份不可迁移、CAS及追加历史。无模型需求的对象观测不能声称支持/验证模型或闭题。旧任务绑定通道与综合答案验收保持；先更新唯一规范与验收映射，再改实现。
+分支 `codex/object-first-observation-intake-20261011` 已实现 `object_excerpt`：冻结既有唯一园区/字段/范围，`target_ids=[]` 可通过原件SHA/逐页引文/C3/CAS正式追加；日报已核身份也不等待研究关联。模型通道和完整答案门槛保持。原先“只保存交接”描述失效。首页最近补充按正式写入时间排列，信息有效时间仍单列；当前状态按有效时点选择，历史补录不改成今日事件。
+
+真实首批：4份存量原件、3园区（Hamina两条、Prineville一条、Luleå一条）、4条notes历史观测，逐条公开来源复核并在Spark核SHA/原文定位后实际apply，重放无写。旧基线与全部旧观测保持，无新增容量/用水用电量，无新增站点或模型输入验证。审计见 `docs/reviews/2026-10-11/research-remediation/object-first-stock-batch.json`；源码审计不冒充公网回执。
+
+员工任务入口 `docs/guides/fetchdata/README.md`：一个fetchdata四队目录，原件原格式+JSONL候选，离线校验脚本不能冒充生产接收器；四队未接通状态保持。旧bootstrap收为转向，不恢复退役采集器。
+
+本次维护暂缓原唯一发布协调器，新批 admission 前已完成PR721的published/website-proof；任务结束必须删除本任务拥有的stop-coordinator并恢复原LaunchAgent，不建第二发布器。发布运行证明保存在m5 `~/.local/state/inresearch.ai/object-first-intake-20261011/acceptance.json`，以该实际回执为准；没有该回执不报本次已上线。
+
+一次自动审批拒绝私有完整原文送外部模型的独立复核调用，该调用未执行；已改为本会话核公开报道、Spark就地核原件/有界公开引文，完成四条真实审核。不得换脚本绕过拒绝，私有正文与原件保持Spark。
+
+## 后续扩批
+
+1. 已实现并验收对象独立采用；扩批继续遵循：独立对象绑定冻结site_id、字段、范围、确切原文页/来源；保持C3、原件/引用核验、身份不可迁移、CAS及追加历史。无模型需求的对象观测不能声称支持/验证模型或闭题。旧任务绑定通道与综合答案验收保持；先更新唯一规范与验收映射，再改实现。
 2. 原文在Spark内提取/审核，只回传有界结构结果、哈希和回执。自动审批曾拒绝输出16000字符私有原件到会话，未执行；不得变换方式导出。目录元数据可用于选择小批，但标题/主题匹配不能直接当语义支持。
 3. 用存量完成真实多条对象观测审核、采用和精确上线，再推进171来源能力/154用途关联与17输入验证。仅补关联、排任务或通过测试不算研究完成。
 
@@ -30,4 +42,4 @@ Spark接收台账实查：8882份supplied_research、8709份有source_provenance
 
 - 现行：`framework/CURRENT.md`、`current_state.json`、`verification_contract.json`；实际源码：`workflow/targeted_research.py`、`workflow/project_review.py`、`knowledge/site_timeline.py`、`site_metrics.py`、`site_register.py`、`scripts/ci_scope.py`。
 - 持久验收：m5 `~/.local/state/inresearch.ai/campus-excerpts-geography-20261011/acceptance.json`及同目录日志/公网截图。历史自动审核拒绝扩大所有正式答案闭题已收窄解决，不重试全局放宽。
-- 后续分支 `codex/object-first-observation-intake-20261011` 目前只保存交接，不表示上述下一步已实现。主工作区仍有其它工作，不reset/stash/切换它。
+- 对象先入库分支已有代码/真实采用，最终部署按上述实际回执核对。主工作区仍有其它工作，不reset/stash/切换它。

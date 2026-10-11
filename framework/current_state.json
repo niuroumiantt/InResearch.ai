@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.94",
+  "version": "2026.10.11.95",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -1667,12 +1667,23 @@
         "src/inresearch/knowledge/site_quantity.py",
         "src/inresearch/workflow/project_review_reader.py",
         "tests/unit/test_project_review_reader.py",
-        "src/inresearch/workflow/targeted_research.py"
+        "src/inresearch/workflow/targeted_research.py",
+        "docs/guides/fetchdata/fetchstat-statistics.md",
+        "docs/guides/fetchdata/fetchfilings-company-disclosures.md",
+        "docs/guides/fetchdata/README.md",
+        "docs/guides/fetchdata/delivery-contract.md",
+        "docs/guides/fetchdata/fetchquotes-market-prices.md",
+        "docs/guides/fetchdata/implementation-and-acceptance.md",
+        "docs/guides/fetchdata/fetchreports-research-publications.md",
+        "docs/guides/fetchdata/examples/README.md",
+        "docs/guides/fetchdata/examples/make_sample.py",
+        "scripts/validate_collector_handoff.py",
+        "tests/unit/test_collector_handoff.py"
       ],
       "supersedes": [
         "acquisition-daily-20261006"
       ],
-      "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。",
+      "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-11四队员工任务包：一个fetchdata内核、四队独立运行；原件原格式/JSONL候选/离线验包与生产接收分开；旧全信息目标前置限制移除，模型派工约束保持，未宣称四队接通。",
       "implementation_revision": "2026.10.11.94",
       "change_reason": "用户明确采用：园区信息先按唯一物理对象审核入库，研究用途另关联；存量和日报均可无研究目标追加，保留原件/C3/历史/冲突，首页区分补录与有效时间。"
     },
