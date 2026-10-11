@@ -51597,6 +51597,89 @@
         },
         "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a1437b0365d78bb742be0eb3d5c65353cc610eb57c4e80ab5523cbaa267468e5",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:18:claim:1:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [],
+      "page_index": 18,
+      "question_ids": [
+        "NODE-activity-V1-chain"
+      ],
+      "quote": "In 2025, normally\n                  cash-rich AI companies issued around USD 200 billion in debt, and they are set to become\n                  among the largest issuers of corporate debt going forward (Bloomberg, 2025).",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T09:58:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。债务发行规模及未来发行趋势实质贡献于当前M11-Q07的融资结构维度。连续原文完整支持该主张，第18—19页有关经营现金流、资本开支和债务市场的上下文充分。仅作限定归因的部分采用，不作为模型输入或问题完成依据；未发现敏感、真实冲突、替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.563,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "72793ec81cdcb4637a680d8f6907e97f34e72ad6a0160170d7f56928b5311421",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 51491,
+            "output_tokens": 1046,
+            "reasoning_output_tokens": 98
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.812,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bf4608a95a8510f2f8a6fa2fe9742135b64c420f2ef1cfcfefeab680d0aba5cb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52029,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 184
+            }
+          }
+        },
+        "batch_id": "9f4bdb0c6c4dcb04ba9dc29ff020f64cfcdc686d5c9a420561780e5bc0505380"
+      }
     }
   ],
   "statements": [
@@ -99747,6 +99830,104 @@
         "request_sha256": "70531a4ff71c9209b7a62ed058a6770778687af264526db321b07a991f0f0980"
       },
       "object_mapping_check": "原文明确描述行间或机柜内CDU，以及接收其排热的现有机房空气处理设备，分别对应冷水与CDU链下的part:cdu和机房与机柜链下的part:room-cooling。液体回路未确立为冷冻水管路，芯片也未限定GPU；不映射part:chilled-water-loop、part:gpu、冷水机组或室外排热设备。所选证据统一使用上述CDU与机房风冷接口范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:18:claim:1:ev:0"
+      ],
+      "id": "adoption:review:07aa1af4d776fae3bbdcbc36",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M11-Q07"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署在《Key Questions on Energy and AI》（发表时间未由所供原生文本确定）中援引Bloomberg（2025）称，通常现金充裕的AI公司在2025年发行了约2000亿美元债务，并预计这些公司未来将成为最大的公司债务发行主体之一。这是IEA转述的规模陈述及前瞻判断，未经本次独立核验；未来发行地位仍属预测。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T09:58:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。债务发行规模及未来发行趋势实质贡献于当前M11-Q07的融资结构维度。连续原文完整支持该主张，第18—19页有关经营现金流、资本开支和债务市场的上下文充分。仅作限定归因的部分采用，不作为模型输入或问题完成依据；未发现敏感、真实冲突、替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.563,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "72793ec81cdcb4637a680d8f6907e97f34e72ad6a0160170d7f56928b5311421",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 51491,
+            "output_tokens": 1046,
+            "reasoning_output_tokens": 98
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.812,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bf4608a95a8510f2f8a6fa2fe9742135b64c420f2ef1cfcfefeab680d0aba5cb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52029,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 184
+            }
+          }
+        },
+        "batch_id": "9f4bdb0c6c4dcb04ba9dc29ff020f64cfcdc686d5c9a420561780e5bc0505380"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:18:claim:1"
+      ],
+      "limitations": "未披露公司样本、地域、统计截止日、债务工具分类、总额或净额口径及具体资金用途；不能将全部债务发行额认定为公司债券发行额或数据中心项目融资。未提供期限、利率、利差、信用支持、债股比例或资本成本。Bloomberg原始材料未随包提供，2025是引用年份及统计年度，不能据此确定IEA报告发表日期。阅读覆盖原生文本，未完成图像审阅，不能宣称全文视觉核验完成。",
+      "conflict_check": "所供已采用陈述分别讨论信用评级关联、私人资本风险承接、表外杠杆、Neocloud信用脆弱性、计量建议及STACK、Fluidstack、AirTrunk的具体融资，均不提供同口径的2025年AI公司债务发行汇总或相反数值。企业增发债务与风险向私人资本转移可以并存，未发现真实冲突或规范重复。相关legacy筛选记录为空；检查限于所供材料，不等于外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "仅补充M11-Q07的债务融资规模及趋势线索，不能回答或关闭融资结构与资本成本问题。仍需Bloomberg原始统计、明确样本和地域口径、发行人一手融资披露、债股及工具结构、资金用途、定价与信用支持条款，并核对反证。不得由该汇总额推导项目资本成本、WACC或建设投入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9f4bdb0c6c4dcb04ba9dc29ff020f64cfcdc686d5c9a420561780e5bc0505380",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "0a36dcd3ebdbf576df7476cbd5185a5d35bc3d175dd2086846711cbdb671b985"
+      },
+      "object_mapping_check": "主张涉及未逐一识别的AI公司群体的债务发行规模及未来融资趋势。root定义为一座AI数据中心，与公司群体汇总口径不一致；邻近图表的具名公司不能自动视为该债务统计的样本。不继承Reader的root标签，也不添加设施、IT或设备映射。对象为空不影响M11-Q07的有效关联；所选证据统一采用此主张范围。"
     }
   ],
   "answers": [],
