@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2626。
+在册文件：2627。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 227 |
+| 配套说明 | 228 |
 | 测试 | 216 |
 
 ## 在册记录集合
@@ -47,7 +47,7 @@
 | `data/datacenter_model.json` | benchmark_series | 43 |
 | `data/event_cards.json` | records | 42 |
 | `data/facts.json` | records | 7849 |
-| `data/object_observations.json` | records | 455 |
+| `data/object_observations.json` | records | 515 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -2715,6 +2715,7 @@
 | [docs/handoff/stock-eia-commercial-20261012.md](handoff/stock-eia-commercial-20261012.md) | 配套说明 |
 | [docs/handoff/stock-eia-expansion-20261012.md](handoff/stock-eia-expansion-20261012.md) | 配套说明 |
 | [docs/handoff/stock-expansion-20261011.md](handoff/stock-expansion-20261011.md) | 配套说明 |
+| [docs/handoff/stock-network-bulk-20261012.md](handoff/stock-network-bulk-20261012.md) | 配套说明 |
 | [docs/handoff/stock-pdf-expansion-20261011.md](handoff/stock-pdf-expansion-20261011.md) | 配套说明 |
 | [docs/handoff/stock-sn5600-20261012.md](handoff/stock-sn5600-20261012.md) | 配套说明 |
 | [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
