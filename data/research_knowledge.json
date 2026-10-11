@@ -5866,6 +5866,59 @@
       "status": "candidate",
       "stored_path": "originals/08/08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee/dcd-08fa1dd62d46c8c9-Blue Owl-backed Stack buys land in Culpeper County- Virginia.html",
       "title": "Blue Owl-backed Stack buys land in Culpeper County, Virginia"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "coverage": {
+        "characters_read": 12793,
+        "characters_total": 12793,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "library_path": "library/by-node/root/2026_Gallup_Americans Oppose AI Data Centers in Their Area__5646afb2dd45a9d3.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "root",
+        "site:grid",
+        "site:land",
+        "site:water-rights"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "report_sha256": "60ea963f02ac3d3227aa51be06a138ad6d46664c57c94d451e56b3c6a5bb2321",
+      "source_provenance": {
+        "batch": "us-datacenter-power-20261009-v3",
+        "input_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+        "role": "downloaded_original",
+        "sidecar_sha256": "2f5df074d2368e7602e491855da59af9523e9f9976a5ed924733f2402a7b5ea6",
+        "source_id": "gallup",
+        "url": "https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/56/5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c/gallup.html",
+      "title": "Americans Oppose AI Data Centers in Their Area"
     }
   ],
   "evidence": [
@@ -46045,6 +46098,412 @@
           }
         },
         "batch_id": "730f14f67de558f54efb93b589fc66fe84b5f036223867713acd0c0dffabcd88"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e870f264c68ee879e1c40bd0118ec9be7e270d345639f962deba5adf0924079f",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "id": "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "WASHINGTON, D.C. — Seven in 10 Americans oppose constructing data centers for artificial intelligence in their local area, including nearly half, 48%, who are strongly opposed. Barely a quarter favor these projects, with 7% strongly in favor.",
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "source_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。量化当地建设反对态度，对当前M05-Q04的社会阻力部分有实质性贡献；两条连续原文引句及全文方法语境充分，无敏感、真实冲突或替换条件，符合B类部分采用条件。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e870f264c68ee879e1c40bd0118ec9be7e270d345639f962deba5adf0924079f",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "id": "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:1:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "In the same March survey, 53% of Americans say they oppose building a nuclear energy plant in their area, far less than the 71% opposed to data center construction.",
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "source_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。量化当地建设反对态度，对当前M05-Q04的社会阻力部分有实质性贡献；两条连续原文引句及全文方法语境充分，无敏感、真实冲突或替换条件，符合B类部分采用条件。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e870f264c68ee879e1c40bd0118ec9be7e270d345639f962deba5adf0924079f",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "id": "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The centers cover large areas of land, require extensive amounts of electricity to operate and need substantial water to cool the equipment, raising concerns about their impact on the environment and local electric bills.",
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "source_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。环境与当地电费担忧实质关联当前M05-Q04的社会阻力机制及M04-Q04的居民成本担忧部分。连续引文和前后调查语境充分，无A类条件，可按B类采用限定归因的局部描述。",
+        "workorder_ids": [
+          "Q-M04-Q04",
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e870f264c68ee879e1c40bd0118ec9be7e270d345639f962deba5adf0924079f",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "id": "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Forty-six percent say they worry a great deal and 24% a fair amount, largely mirroring the degrees of opposition to data center construction.",
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "source_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。环境担忧比例对当前M05-Q04的社会反对动因有实质性局部贡献；连续引文及相邻问题说明、全文方法提供充分上下文，无A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e870f264c68ee879e1c40bd0118ec9be7e270d345639f962deba5adf0924079f",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "id": "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Half of opponents mention data centers’ excessive use of resources, including 18% each mentioning their use of water and energy. Sixteen percent mention a related environmental concern of pollution, including noise pollution and air and water pollution.",
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "source_sha256": "5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。用水、能源和噪声等反对理由与当前M05-Q04的社区阻力研究具有实质性局部关系。连续原文引句、4月设问及全文方法语境充分，无敏感、真实冲突或替换条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
       }
     }
   ],
@@ -89637,6 +90096,401 @@
         "request_sha256": "8e5d2452d78f965d5dcc6986515487f84ff0e9a4aba1c953ee7b2706910cc21a"
       },
       "object_mapping_check": "独立复核后保留空对象列表。允许对象中没有Wells Fargo主体；root指一座AI数据中心，而本项未确立AI用途或单座设施边界。退出办公及数据中心场所也未描述设施系统、土地权利或建筑部件的具体范围，不能继承整篇报道的Digital Realty、设施、土建或许可标签。空映射不影响其对企业地域布局及需求问题的有限贡献。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "evidence_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:1:ev:0",
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:1:ev:1"
+      ],
+      "id": "adoption:review:0ebeb5be2a14f173a2d823f0",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q04"
+      ],
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "status": "adopted",
+      "text": "Gallup在页面标注2026年5月13日的文章中报告，其2026年3月2日至18日美国成年人电话调查显示，71%反对在当地建设AI数据中心，其中48%强烈反对；约四分之一支持，其中7%强烈支持。这是Gallup报告的公众态度结果，未经本次独立复算，不构成对具体项目当前状态的认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。量化当地建设反对态度，对当前M05-Q04的社会阻力部分有实质性贡献；两条连续原文引句及全文方法语境充分，无敏感、真实冲突或替换条件，符合B类部分采用条件。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      },
+      "source_candidate_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:1"
+      ],
+      "limitations": "调查覆盖美国50州及华盛顿特区的1,000名18岁及以上成年人；Gallup报告全国成年人全样本的95%置信水平抽样误差为±4个百分点。全国态度不能直接代表特定项目周边居民，强烈反对不等于实际参与抗议、诉讼或造成项目延期取消。支持比例仅按原文保留为约四分之一。",
+      "conflict_check": "既有SCCS及APRS陈述记录苏格兰组织诉求，与美国全国公众调查的地域、主体和方法不同，不构成重复或真实冲突。既有早期管线取消原因判断也未否认公众反对态度。legacy匹配记录为空；不覆盖既有结论。",
+      "gap_dependency_check": "仅为M05-Q04提供反对态度强度的部分证据，未提供项目名称、反对行动、审批及建设时间线或延期取消结果。仍需项目级一手记录、因果关系和反证；问题保持开放，不推算许可或施工时长。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0",
+        "source_report_sha256": "60ea963f02ac3d3227aa51be06a138ad6d46664c57c94d451e56b3c6a5bb2321",
+        "request_sha256": "294e901e671c726b4dcd49200450b1dc49571bd07f1ce95e8fd62bbb55f24357"
+      },
+      "object_mapping_check": "实际范围是美国成年人对假设性当地建设的全国态度，不是对象契约中root所指的一座AI数据中心。未确立具体场址、许可、并网权利或设施资产，故所有所选证据统一采用空对象范围，保留M05-Q04关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "evidence_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:654cd876266b6637fd958f3d",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q04",
+        "M05-Q04"
+      ],
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "status": "adopted",
+      "text": "Gallup在页面标注2026年5月13日的文章中，对美国当地AI数据中心建设争议作背景描述：这些中心占用大面积土地，运行需要大量电力，设备冷却需要大量水，由此引发对环境影响和当地电费的担忧。这是Gallup的定性描述，不是对特定项目资源消耗、电费影响或当前许可条件的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。环境与当地电费担忧实质关联当前M05-Q04的社会阻力机制及M04-Q04的居民成本担忧部分。连续引文和前后调查语境充分，无A类条件，可按B类采用限定归因的局部描述。",
+        "workorder_ids": [
+          "Q-M04-Q04",
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      },
+      "source_candidate_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:2"
+      ],
+      "limitations": "未给出土地面积、功率、电量、用水量、冷却技术或适用工况，不能将定性用语转成模型参数或认定所有冷却方案均具有相同用水需求。担忧不证明实际居民电价上涨、成本转嫁、污染或项目延期。没有水权、取水许可、土地交易、区划或并网协议资料。",
+      "conflict_check": "IEA既有陈述约束负荷增长与电价的简单因果推断，与公众担忧可以并存；哥伦布居民账单预测及马萨诸塞州保护机制涉及不同地域和性质，不验证也不反驳本项。土地及并网前置条件记录不是同一主张。legacy匹配记录为空，未发现重复或真实冲突。",
+      "gap_dependency_check": "对M04-Q04仅贡献电费担忧线索，仍缺PPA价格序列、居民分摊和实际政治反应；对M05-Q04仅贡献反对机制，仍缺具体延期取消案例及因果记录。一般土地占用和冷却用水描述不足以实质满足OBJ-land-interfaces或OBJ-water-interfaces的权利、接口和互换条件要求，故不选择这两个问题ID。工单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0",
+        "source_report_sha256": "60ea963f02ac3d3227aa51be06a138ad6d46664c57c94d451e56b3c6a5bb2321",
+        "request_sha256": "294e901e671c726b4dcd49200450b1dc49571bd07f1ce95e8fd62bbb55f24357"
+      },
+      "object_mapping_check": "该项是全国建设争议中的一般资源描述，未建立单设施范围。site:land是土地价格、租金及区划权利，site:water-rights是水权与取水许可，site:grid是电力配额与并网，均不能由占地、用水、用电的一般描述推出。原文也未确定具体水与散热或供电系统边界，故不继承Reader基础设施标签，统一采用空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "evidence_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:3d257adfd365beb1078fa5ee",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q04"
+      ],
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "status": "adopted",
+      "text": "Gallup在页面标注2026年5月13日的文章中报告，2026年3月2日至18日美国成年人电话调查中，46%对AI数据中心的环境影响表示非常担忧，24%表示相当担忧。这是Gallup报告的态度比例，未经本次独立复算，不是实测环境影响或具体项目受阻的证明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。环境担忧比例对当前M05-Q04的社会反对动因有实质性局部贡献；连续引文及相邻问题说明、全文方法提供充分上下文，无A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      },
+      "source_candidate_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:3"
+      ],
+      "limitations": "全国成年人电话调查样本为1,000人，Gallup报告全样本95%置信水平抽样误差为±4个百分点。调查衡量主观担忧，未识别具体环境影响或项目，也不能仅凭担忧与反对程度相近建立个体关联或因果关系。",
+      "conflict_check": "既有苏格兰组织环境诉求与本项美国全国态度调查相容，主体及地域不同，非重复。现有电价和管线阶段陈述未提出相反的环境担忧比例；legacy匹配记录为空。未发现真实冲突，不替换既有结论。",
+      "gap_dependency_check": "为M05-Q04提供潜在反对动因的部分支持，仍需具体社区行动、项目环境资料、审批或司法记录以及延期取消时间线和反证。该项不证明实际环境损害或建设延误，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0",
+        "source_report_sha256": "60ea963f02ac3d3227aa51be06a138ad6d46664c57c94d451e56b3c6a5bb2321",
+        "request_sha256": "294e901e671c726b4dcd49200450b1dc49571bd07f1ce95e8fd62bbb55f24357"
+      },
+      "object_mapping_check": "实际对象是美国成年人的环境担忧态度，契约没有相应公众或调查对象。root为单座AI数据中心，site:permits为具体开发许可；环境担忧本身不能建立这些范围，故使用空对象列表。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5646afb2dd45a9d313cd4afcdc7bfc7c0915593bffe190ccaf587381ecb4f15c",
+      "evidence_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:f9659c86baccca2d43e86878",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q04"
+      ],
+      "reading_revision_id": "rev-0e49d833f15b4f108827833b83ffafec",
+      "status": "adopted",
+      "text": "Gallup在页面标注2026年5月13日的文章中报告，其2026年4月1日至15日Gallup Panel开放式网络调查中，反对当地数据中心建设的美国成年人有一半提及资源过度使用，其中用水和能源使用各被18%提及；16%提及污染，包括噪声、空气和水污染。这些是Gallup报告的反对理由比例，未经本次独立复算，不是实际资源消耗或污染量。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:31:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。用水、能源和噪声等反对理由与当前M05-Q04的社区阻力研究具有实质性局部关系。连续原文引句、4月设问及全文方法语境充分，无敏感、真实冲突或替换条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.442,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1074e951fde0c80ce11b8add36a6ad53854c0048a87c8d8fbe2084fae63386f2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69693,
+            "output_tokens": 4495,
+            "reasoning_output_tokens": 460
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.837,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "732768b07151095dbe2cdc826dfca615768c2c8d798a6069424e040b8095a5f3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67088,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0"
+      },
+      "source_candidate_ids": [
+        "rev-0e49d833f15b4f108827833b83ffafec:chunk:0:claim:5"
+      ],
+      "limitations": "比例分母是4月调查中的反对者，不是全体美国成年人，也不是3月电话调查中的反对者。方法段列反对者样本为1,561人，95%置信水平抽样误差为±3个百分点。所供文本未给编码细则或类别重叠情况，不能把用水、能源和污染比例相加或解释为互斥原因；也不能由理由推定实际危害。",
+      "conflict_check": "既有苏格兰倡议陈述记录组织诉求，本项记录美国调查反对者的理由分布，范围不同，非重复。IEA电价分析不否认公众资源担忧；早期管线取消判断也未证明这些理由造成取消。legacy匹配记录为空，未发现真实冲突，不覆盖既有结论。",
+      "gap_dependency_check": "仅为M05-Q04提供反对理由的部分支持，未建立具体社区、项目、抗议或诉讼行动与延期取消结果的联系。仍需项目级一手材料、时间线、资源及噪声资料、因果证据和反例；问题保持开放，不赋值消耗、污染或建设时间参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "de481cc320154472265b126fdd9d83fb9a107a203f1cfe1f26431d99220cf7d0",
+        "source_report_sha256": "60ea963f02ac3d3227aa51be06a138ad6d46664c57c94d451e56b3c6a5bb2321",
+        "request_sha256": "294e901e671c726b4dcd49200450b1dc49571bd07f1ce95e8fd62bbb55f24357"
+      },
+      "object_mapping_check": "实际范围是美国调查反对者的主观理由分布。提及水和能源不等于水权、取水许可、电力配额或并网协议，也未建立具体供电、冷却或排放设施范围。root所指单座AI数据中心同样未被确立，故所选证据统一采用空对象列表，保留有效问题关系。"
     }
   ],
   "answers": [],
