@@ -184,7 +184,10 @@ class IndustryTests(unittest.TestCase):
                 for path, status in [('/api/industry?c=microsoft', 200), ('/api/industry?site=us-tx-abilene', 200),
                                      ('/industry.html?c=meta', 200), ('/project.html?site=us-tx-abilene', 200),
                                      ('/api/industry?stage=fake', 400), ('/api/industry?c=nobody', 404),
-                                     ('/api/industry?c=meta&c=microsoft', 400), ('/data/projects.json', 302)]:
+                                     ('/api/industry?c=meta&c=microsoft', 400), ('/data/projects.json', 302),
+                                     ('/api/observations?limit=2',200),('/api/observations?limit=101',400),
+                                     ('/api/observations?limit=1&limit=2',400),('/api/observations?include=private',400),
+                                     ('/data/object_observations.json',302)]:
                     con = http.client.HTTPConnection(*server.server_address, timeout=4)
                     con.request('GET', path); response = con.getresponse(); response.read(); con.close()
                     self.assertEqual(response.status, status, path)

@@ -128,6 +128,24 @@ class FetchspecReceiveTests(unittest.TestCase):
             receive(self.repo, self.package, self.data)
         self.assertFalse((self.data / 'originals').exists())
 
+    def test_discovery_v2_needs_no_target_registry_and_preserves_first_receipt(self):
+        import sqlite3
+        manifest = json.loads((self.package / 'manifest.json').read_text())
+        manifest.update(contract_version='2.0', target_ids=[])
+        manifest['items'][0]['source']['language'] = 'en'
+        manifest['items'][0]['target_ids'] = []
+        (self.package / 'manifest.json').write_text(json.dumps(manifest))
+        first = receive(self.repo, self.package, self.data)
+        self.assertEqual(first['research_context']['target_ids'], [])
+        self.assertEqual(first['research_context']['part_ids'], [])
+        with sqlite3.connect(self.data/'acquisition/catalog.sqlite') as db:
+            stamp = db.execute('SELECT received_at FROM product_documents').fetchone()[0]
+        manifest['delivery_id'] = 'discovery-again'
+        (self.package / 'manifest.json').write_text(json.dumps(manifest))
+        receive(self.repo, self.package, self.data)
+        with sqlite3.connect(self.data/'acquisition/catalog.sqlite') as db:
+            self.assertEqual(db.execute('SELECT received_at FROM product_documents').fetchone()[0], stamp)
+
     def test_restricted_attachment_is_rejected_before_archiving(self):
         self.item['access_scope']['state'] = 'restricted'
         manifest = json.loads((self.package / 'manifest.json').read_text())

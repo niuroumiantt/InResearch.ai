@@ -107,6 +107,20 @@ const {mkdirSync}=require('node:fs');
   assert.equal(await page.getByRole('link',{name:'未精选的线索',exact:true}).count(),1,'homepage defaults to all daily news');
   for(const id of ['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba'])assert.equal(await page.locator('#company-chips [data-company="'+id+'"]').count(),1,'explicit company shortcut '+id);
   assert.equal(await page.locator('#daily-pulse').count(),1);assert.ok(overviewRequests>0,'homepage uses bounded industry projection');
+  const publicObservations=await (await page.request.get(base+'/api/observations?limit=100')).json();
+  const publicHome=await (await page.request.get(base+'/api/industry?overview=1')).json();
+  assert.equal(publicObservations.audience,'public');
+  assert.equal(publicObservations.total,publicHome.research_updates.total);
+  for(const row of publicHome.research_updates.changes){
+   assert.deepEqual(publicObservations.records.find(r=>r.id===row.id),row,'homepage and API use identical publication fields');
+   assert.deepEqual(Object.keys(row.source).sort(),['published_at','url']);
+   for(const hidden of ['review','proposal_sha256','claim_sha256'])assert.equal(hidden in row,false);
+  }
+  if(publicObservations.total){
+   const card=page.locator('#object-changes details').first();await card.locator('summary').click();
+   await page.waitForFunction(()=>document.querySelector('#object-changes details')?.dataset.loaded==='1');
+   assert.ok(await card.locator('.timeline li').count()>0,'reader expands source-backed object records through public API');
+  }
   assert.equal(await page.getByRole('link',{name:'危险链接',exact:true}).count(),0);
   await page.waitForFunction(()=>document.querySelectorAll('#world-map .site-point').length>20);
   assert.ok((await page.locator('#market-band').textContent()).includes('预测'));
@@ -244,7 +258,7 @@ const {mkdirSync}=require('node:fs');
   await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:{...homeProjection,tracking:{...homeProjection.tracking,changes:[]}}}));
   await page.goto(base+'/');await page.locator('#project-changes .empty').waitFor();
   assert.match(await page.locator('#project-changes').innerText(),/暂无有独立来源的项目观测动态/);
-  assert.equal(await page.locator('.project-change').count(),0,'empty source history never invents a change');
+  assert.equal(await page.locator('#project-changes .project-change').count(),0,'empty source history never invents a change');
   await page.unroute(/\/api\/industry(?:\?.*)?$/);
   const rangeRow=homeProjection.rows.find(p=>p.capacity_known&&p.coordinates);
   for(const stage of Object.keys(homeProjection.stages))homeProjection.totals[stage]-=rangeRow.capacity[stage];
@@ -259,13 +273,13 @@ const {mkdirSync}=require('node:fs');
    source_versions:[{published_at:'2026-10',first_received_at:'2097-01-01T00:00:00Z'}],sources:[{url:'https://example.com/range-source'}]
   }]};
   await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:homeProjection}));
-  await page.goto(base+'/');await page.locator('.project-change').waitFor();
+  await page.goto(base+'/');await page.locator('#project-changes .project-change').waitFor();
   assert.match(await page.locator('#daily-freshness').innerText(),/最近补充.*历史补录不代表今日发生/);
-  assert.match(await page.locator('.project-change summary').innerText(),/2027[\s\S]*有依据的区间项目[\s\S]*预测[\s\S]*1–2 GW/);
-  await page.locator('.project-change summary').click();
-  assert.match(await page.locator('.project-change').innerText(),/来源发表 2026-10/);
-  assert.match(await page.locator('.project-change').innerText(),/分期 two/);
-  assert.equal(await page.locator('.project-change a[href="https://example.com/range-source"]').count(),1);
+  assert.match(await page.locator('#project-changes .project-change summary').innerText(),/2027[\s\S]*有依据的区间项目[\s\S]*预测[\s\S]*1–2 GW/);
+  await page.locator('#project-changes .project-change summary').click();
+  assert.match(await page.locator('#project-changes .project-change').innerText(),/来源发表 2026-10/);
+  assert.match(await page.locator('#project-changes .project-change').innerText(),/分期 two/);
+  assert.equal(await page.locator('#project-changes .project-change a[href="https://example.com/range-source"]').count(),1);
   assert.doesNotMatch(await page.locator('main').innerText(),/2099|2098|2097|777|888|999|站点复核待更新/);
   assert.match(await page.locator('#basis').innerText(),/另有 1 项容量以区间披露/);
   assert.equal(await page.locator('.range-point rect').count(),1,'range has its own fixed marker, not an area based on a midpoint');

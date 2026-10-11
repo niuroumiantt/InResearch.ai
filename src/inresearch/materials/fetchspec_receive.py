@@ -117,9 +117,9 @@ def _load_package(package: Path, max_items: int = 10000, max_bytes: int = 20 * 1
         raise PackageError("manifest_contract_invalid_or_files_absent")
     if manifest["contract_version"] == "2.0":
         target_ids = manifest.get("target_ids")
-        if (not isinstance(target_ids, list) or not target_ids or len(target_ids) > 500
-                or len(set(target_ids)) != len(target_ids)
-                or any(not isinstance(value, str) or not value or len(value) > 200 for value in target_ids)):
+        if (not isinstance(target_ids, list) or len(target_ids) > 500
+                or any(not isinstance(value, str) or not value or len(value) > 200 for value in target_ids)
+                or len(set(target_ids)) != len(target_ids)):
             raise PackageError("generated_target_ids_invalid")
     entries = {}
     for line in sums_path.read_text(encoding="ascii").splitlines():
@@ -144,7 +144,8 @@ def _load_package(package: Path, max_items: int = 10000, max_bytes: int = 20 * 1
             raise PackageError("source_language_or_access_scope_invalid")
         if manifest["contract_version"] == "2.0":
             item_targets = item.get("target_ids")
-            if (not isinstance(item_targets, list) or not item_targets
+            if (not isinstance(item_targets, list)
+                    or any(not isinstance(value, str) or not value for value in item_targets)
                     or len(set(item_targets)) != len(item_targets)
                     or any(value not in manifest["target_ids"] for value in item_targets)):
                 raise PackageError("item_generated_target_ids_invalid")
@@ -265,8 +266,7 @@ def _archive_acquisition(package: Path, manifest: dict, data_root: Path, context
                         format=excluded.format,language=excluded.language,object_ids_json=excluded.object_ids_json,
                         task_id=excluded.task_id,source_url=excluded.source_url,
                         original_filename=excluded.original_filename,version_relation_json=excluded.version_relation_json,
-                        title=excluded.title,
-                        received_at=excluded.received_at''',
+                        title=excluded.title''',
                         (item["sha256"], item["source_item_id"], manifest.get("company_id", ""), categories[0],
                          json.dumps(categories, ensure_ascii=False), fmt,
                          item["source"].get("language", "en_or_unmarked"), question_id or "",
@@ -323,7 +323,7 @@ def _materialized_in(data_root: Path, manifest: dict, reader_hashes=()) -> bool:
 def _receive(root: Path, package_path: Path, data_root: Path, reader_sha256=()):
     package, manifest = _load_package(package_path)
     target_ids, part_ids = [], []
-    if manifest["contract_version"] == "2.0":
+    if manifest["contract_version"] == "2.0" and manifest["target_ids"]:
         try:
             target_document = json.loads((root / "framework/tco_targets.json").read_text())
         except (OSError, json.JSONDecodeError):

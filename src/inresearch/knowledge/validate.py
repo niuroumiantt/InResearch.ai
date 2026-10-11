@@ -80,6 +80,11 @@ def check_unique(records, key, table):
 def main():
     strict = "--strict" in sys.argv
 
+    from inresearch.knowledge import object_observations
+    try:
+        object_observations.check(object_observations.load(ROOT), ROOT)
+    except (ValueError, TypeError, KeyError) as exc:
+        err(f"object_observations: {exc}")
     projects = load("projects")
     companies = load("companies")
     prices = load("prices")

@@ -38,6 +38,8 @@ COMMANDS = {
     'coverage': 'inresearch.knowledge.coverage', 'reading-queue': 'inresearch.workflow.reading_queue', 'workorders': 'inresearch.workflow.workorders',
     'submissions': 'inresearch.workflow.submissions', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.project_capacity_map',
     'daily-receive': 'inresearch.materials.daily_bundle',
+    'object-extract': 'inresearch.workflow.stock_objects',
+    'object-review': 'inresearch.workflow.object_review',
     'project-review': 'inresearch.workflow.project_review',
     'targeted-research': 'inresearch.workflow.targeted_research',
     'research-review': 'inresearch.workflow.research_review',
