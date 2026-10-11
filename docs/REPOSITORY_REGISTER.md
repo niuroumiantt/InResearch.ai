@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2593。
+在册文件：2594。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 198 |
+| 配套说明 | 199 |
 | 测试 | 206 |
 
 ## 在册记录集合
@@ -2650,6 +2650,7 @@
 | [docs/handoff/research-architecture-reassessment-20261010.md](handoff/research-architecture-reassessment-20261010.md) | 配套说明 |
 | [docs/handoff/research-flow-recovery-20261009.md](handoff/research-flow-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/research-pr-backlog-20261009.md](handoff/research-pr-backlog-20261009.md) | 配套说明 |
+| [docs/handoff/research-remediation-r3-r4-20261011.md](handoff/research-remediation-r3-r4-20261011.md) | 配套说明 |
 | [docs/handoff/research-throughput-20261008.md](handoff/research-throughput-20261008.md) | 配套说明 |
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |

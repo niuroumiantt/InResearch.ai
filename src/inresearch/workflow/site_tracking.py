@@ -80,6 +80,7 @@ class SiteTracking:
             input_sha256 TEXT NOT NULL, state TEXT NOT NULL, attempted_at TEXT NOT NULL,
             retry_after REAL NOT NULL, attempts INTEGER NOT NULL, error TEXT,
             summary TEXT NOT NULL, catch_up_from TEXT)''')
+        self.db.execute('CREATE INDEX IF NOT EXISTS site_tracking_recent_runs ON site_tracking_runs(cadence,attempted_at DESC)')
         self.db.execute('''CREATE TABLE IF NOT EXISTS site_tracking_attempts(
             id INTEGER PRIMARY KEY, run_id TEXT NOT NULL, attempted_at TEXT NOT NULL,
             state TEXT NOT NULL, error TEXT, summary TEXT NOT NULL)''')
@@ -264,7 +265,9 @@ class SiteTracking:
                     issues.append('daily:'+key+':received_document_archive_unavailable')
                     continue
                 urls = bound_urls(event, snapshot['accepted'])
-                events.append({'key': 'daily:'+key, 'version': digest(event),
+                support = sorted(({k: ref[k] for k in ('sha256', 'archive', 'locator')}
+                                  for ref in refs), key=encoded)
+                events.append({'key': 'daily:'+key, 'version': digest([event, support]),
                     'site_id': event.get('matched_site_id'),
                     'identity_verified': event.get('identity_review') == 'resolved',
                     'target_ids': sorted({r['target_id'] for r in event.get('demand_matches', [])}),
@@ -470,8 +473,8 @@ def status(connection):
     return {'timezone': 'Asia/Shanghai',
             'periods': [dict(r) for r in connection.execute('SELECT * FROM site_tracking_periods ORDER BY cadence')],
             'task_states': {r[0]: r[1] for r in connection.execute('SELECT state,count(*) FROM site_tracking_tasks GROUP BY state')},
-            'latest_runs': [dict(r) for r in connection.execute('''SELECT * FROM site_tracking_runs r
-                WHERE rowid=(SELECT rowid FROM site_tracking_runs WHERE cadence=r.cadence
-                             ORDER BY attempted_at DESC,rowid DESC LIMIT 1) ORDER BY cadence''')],
+            'latest_runs': [dict(r) for cadence in sorted(CADENCES)
+                for r in connection.execute('''SELECT * FROM site_tracking_runs WHERE cadence=?
+                    ORDER BY attempted_at DESC,rowid DESC LIMIT 1''', (cadence,))],
             'collection_completed': None, 'adopted_updates': None, 'published_updates': None,
             'scope': 'planning watermarks only; source collection, Reader/C3 and project publication require separate execution receipts'}

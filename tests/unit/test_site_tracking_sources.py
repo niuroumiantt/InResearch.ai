@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 import os
 import sys
@@ -248,6 +249,52 @@ class SiteTrackingSourceTests(unittest.TestCase):
         self.assertTrue(run.called)
         self.assertNotIn('daily', self.periods())
         self.assertIn('monthly', self.periods())
+
+
+    def test_daily_multi_document_budget_restart_preserves_each_support_identity(self):
+        self.delivered_daily()
+        path = self.data/'acquisition/daily-events.json'
+        ledger = json.loads(path.read_text())
+        event = next(iter(ledger['records'].values()))
+        first_sha = event['document_refs'][0]['sha256']
+        # A second byte-archived document is explicitly received for this same
+        # event. The event already lists both sources before the first scan.
+        body = b'<html><title>Second received daily HTML</title></html>'
+        second_sha = hashlib.sha256(body).hexdigest()
+        catalog = Collector(self.data)
+        try:
+            ident = catalog.item('fetchreports', second_sha, 'document', '', 'Second daily HTML', {})
+            self.assertEqual(catalog.archive(ident, body, '.html', {}), second_sha)
+        finally:
+            catalog.close()
+        event['document_refs'].append(dict(event['document_refs'][0], sha256=second_sha))
+        ledger['parses'][second_sha] = {'event_ids': [event['id']]}
+        path.write_text(json.dumps(ledger))
+        receipt_path = next((self.data/'material-reviews/daily-deliveries').glob('*.json'))
+        receipt = json.loads(receipt_path.read_text())
+        receipt['documents'].append({'sha256': second_sha, 'title': 'Second daily HTML',
+                                     'event_ids': [event['id']]})
+        receipt_path.write_text(json.dumps(receipt))
+        at = self.at('2026-10-11T00:00:00Z')
+        with patch.object(site_tracking, 'MAX_ARCHIVE_CHECKS', 1):
+            self.planner.tick(self.root, at)
+            first = self.triggers('daily')
+            self.assertEqual(len(first), 1)
+            self.assertEqual({r['sha256'] for r in first[0]['evidence']}, {first_sha})
+            self.assertNotIn('daily', self.periods())
+            # A fresh planner must reuse the actual persisted first SHA proof.
+            self.planner = SiteTracking(self.store.db, self.data)
+            self.planner.tick(self.root, at+timedelta(minutes=6))
+            self.assertEqual(self.planner.archive_checks, 1)
+        self.assertEqual(self.periods()['daily'], '2026-10-11')
+        after = self.triggers('daily')
+        self.assertEqual(len(after), 2, 'Completing support B must create an auditable new source version')
+        self.assertIn(first[0], after, 'The earlier partial-support trigger must remain intact')
+        self.assertEqual({r['task_id'] for r in after}, {first[0]['task_id']})
+        self.assertEqual(len({r['source_version'] for r in after}), 2)
+        self.assertTrue(any({e['sha256'] for e in r['evidence']} == {first_sha, second_sha}
+                            for r in after))
+        self.assertEqual(self.store.db.execute('SELECT count(*) FROM site_tracking_archives').fetchone()[0], 2)
 
 
 if __name__ == '__main__':
