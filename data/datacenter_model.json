@@ -2474,5 +2474,311 @@
     "calibration": "摩根士丹利《AI 指南》2026-09；高盛《Sizing the AI Economy》2026-09-24；SemiAnalysis《China Datacenter Model》2026-09-25。原件不入库，见 docs/reviews/2026-09-28/model/PROPOSAL.md 与 docs/research/2026-09-27/datacenter-profit/",
     "prices": "data/prices.json（页面按 series_id 取最新时点）"
   },
-  "model_note": "正算：等待期与建设期后逐年计费（负载爬坡与利用率爬坡分开：前者进电费与需量，后者进收入）、IT 按更新周期重置、电价与运营涨幅、期末退役；全部现金流按折现率折现，平准化为年成本，再除以容量、IT 电量或付费 GPU 小时。稳态账本取第 3 年起的一个完整年：直线折旧、税后 NOPAT，ROIC 分母按口径取总资本开支或平均年资本开支；资本回收按资本成本率年化后加运营支出得到每有效设备小时全成本。反算：目标 ROIC → 需要的 NOPAT → EBIT → 收入，再折成单价、利用率或造价上限。持有方式：自建自持、BOT（业主持地与壳，机电由合作方按服务合同回收）、租带电壳、托管。能耗配额 > 0 时可建容量取 min(IT 容量, 配额)。不含融资结构对 ROIC 的影响；杠杆只进 IRR。"
+  "model_note": "正算：等待期与建设期后逐年计费（负载爬坡与利用率爬坡分开：前者进电费与需量，后者进收入）、IT 按更新周期重置、电价与运营涨幅、期末退役；全部现金流按折现率折现，平准化为年成本，再除以容量、IT 电量或付费 GPU 小时。稳态账本取第 3 年起的一个完整年：直线折旧、税后 NOPAT，ROIC 分母按口径取总资本开支或平均年资本开支；资本回收按资本成本率年化后加运营支出得到每有效设备小时全成本。反算：目标 ROIC → 需要的 NOPAT → EBIT → 收入，再折成单价、利用率或造价上限。持有方式：自建自持、BOT（业主持地与壳，机电由合作方按服务合同回收）、租带电壳、托管。能耗配额 > 0 时可建容量取 min(IT 容量, 配额)。不含融资结构对 ROIC 的影响；杠杆只进 IRR。",
+  "input_governance": {
+    "energy_quota_mw": {
+      "value_kind": "project_authority",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "buildable_capacity",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "authority",
+        "period",
+        "capacity_basis"
+      ],
+      "priority": 1,
+      "request_key": "energy_quota_mw"
+    },
+    "gate_wait_years": {
+      "value_kind": "project_schedule",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "lead_time",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "gate_type",
+        "period",
+        "milestone_start",
+        "milestone_end"
+      ],
+      "priority": 1,
+      "request_key": "gate_wait_years"
+    },
+    "tokens_per_gpu_sec": {
+      "value_kind": "workload_measurement",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "model_revenue",
+        "model_margin"
+      ],
+      "scope_fields": [
+        "workload",
+        "hardware",
+        "configuration",
+        "precision",
+        "context_length",
+        "concurrency",
+        "latency_slo",
+        "period"
+      ],
+      "priority": 1,
+      "request_key": "tokens_per_gpu_sec"
+    },
+    "monetized_share": {
+      "value_kind": "scenario_assumption",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "model_revenue",
+        "model_margin"
+      ],
+      "scope_fields": [
+        "entity",
+        "workload",
+        "period",
+        "denominator"
+      ],
+      "priority": 1,
+      "request_key": "monetized_share"
+    },
+    "water_price": {
+      "value_kind": "tariff_observation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "scope_fields": [
+        "region",
+        "customer_class",
+        "period",
+        "currency",
+        "tax",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "water_price"
+    },
+    "software_per_mw": {
+      "value_kind": "cost_observation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "scope_fields": [
+        "entity",
+        "product",
+        "configuration",
+        "period",
+        "currency",
+        "tax",
+        "capacity_basis",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "software_per_mw"
+    },
+    "insurance_pct": {
+      "value_kind": "cost_observation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "scope_fields": [
+        "region",
+        "entity",
+        "period",
+        "currency",
+        "insured_basis",
+        "coverage",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "insurance_pct"
+    },
+    "bandwidth_per_mw": {
+      "value_kind": "cost_observation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "scope_fields": [
+        "region",
+        "entity",
+        "period",
+        "currency",
+        "capacity_basis",
+        "service_level",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "bandwidth_per_mw"
+    },
+    "other_opex_per_mw": {
+      "value_kind": "cost_observation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "scope_fields": [
+        "entity",
+        "region",
+        "period",
+        "currency",
+        "capacity_basis",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "other_opex_per_mw"
+    },
+    "redundancy": {
+      "value_kind": "engineering_estimate",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "facility_capex",
+        "operating_cost"
+      ],
+      "scope_fields": [
+        "project",
+        "design",
+        "configuration",
+        "region",
+        "period",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "redundancy"
+    },
+    "soft_cost_pct": {
+      "value_kind": "engineering_estimate",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "facility_capex",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "period",
+        "currency",
+        "denominator",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "soft_cost_pct"
+    },
+    "contingency_pct": {
+      "value_kind": "engineering_estimate",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "facility_capex",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "period",
+        "estimate_stage",
+        "denominator",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "contingency_pct"
+    },
+    "refresh_cost_factor": {
+      "value_kind": "lifecycle_estimate",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "refresh_cost",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "hardware",
+        "configuration",
+        "period",
+        "replacement_period",
+        "capacity_basis",
+        "currency",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "refresh_cost_factor"
+    },
+    "decommission_pct": {
+      "value_kind": "lifecycle_estimate",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "period",
+        "currency",
+        "denominator",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "decommission_pct"
+    },
+    "residual_share": {
+      "value_kind": "scenario_assumption",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "landlord_return"
+      ],
+      "scope_fields": [
+        "asset",
+        "region",
+        "period",
+        "horizon",
+        "ownership",
+        "denominator"
+      ],
+      "priority": 2,
+      "request_key": "residual_share"
+    },
+    "renewal_probability": {
+      "value_kind": "scenario_assumption",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "landlord_option_return"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "period",
+        "option_holder",
+        "exercise_conditions"
+      ],
+      "priority": 2,
+      "request_key": "renewal_probability"
+    },
+    "bot_service_rate": {
+      "value_kind": "contract_derivation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "bot_service_cost",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "project",
+        "contract",
+        "region",
+        "period",
+        "currency",
+        "payment_schedule",
+        "ownership",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "bot_service_rate"
+    }
+  },
+  "input_governance_note": "17项为当前未验证输入；不覆盖全部预设不确定性。正数配额是情景上限，零是未知/未设上限，均不证明取得许可；计算结果属于带假设的情景。"
 }

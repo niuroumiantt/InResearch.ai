@@ -44526,6 +44526,89 @@
         },
         "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4862402768852e94866cbc44b0d2bf2a0205d40da15d5085f410b3ed4548a801",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:7:claim:3:ev:0",
+      "locator": "page:8/chunk:7",
+      "object_ids": [],
+      "page_index": 7,
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "quote": "This surge in data center electricity\ndemand, however, should be understood in the context of the much larger electricity demand\nthat is expected to occur over the next few decades from a combination of electric vehicle\nadoption, onshoring of manufacturing, hydrogen utilization, and the electrification of industry\nand buildings.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:09:37+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。其他行业的用电需求是评估2030年数据中心可获得电力供给时需要考虑的负荷边界，因此与当前M04-Q05工单存在实质但局部的关系。连续原文及相邻美国地域、预测方法和数据局限上下文足够支持限定归属的长期展望。无敏感内容、真实冲突、替换提议或其他A类条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-M04-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 30.012,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f07e1d256b7b9618fa354908c17fbbdcc629570559a3a8132b38c184d3c757f7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 46544,
+            "output_tokens": 1092,
+            "reasoning_output_tokens": 224
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.055,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "af3cc1aa46983c0fdb1dbca73e14f0f7cd27145f7925ef1424688550cd574632",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 47002,
+              "output_tokens": 421,
+              "reasoning_output_tokens": 172
+            }
+          }
+        },
+        "batch_id": "4ad0728bfef75e7919615d6912ad5d1b1cf353bb81bec166066f29d5c010a4fe"
+      }
     }
   ],
   "statements": [
@@ -86697,6 +86780,104 @@
         "request_sha256": "b1ac858d9db654bdc70754181688d561cb66eec6c379e1126db9ab2e7dafa7db"
       },
       "object_mapping_check": "正文直接点名CoolIT，且产品处于2MW-ready CDUs语境，支持CoolIT actor与冷水与CDU链下的part:cdu。邻接的Switch混合系统属于另一候选，不扩大本条对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:7:claim:3:ev:0"
+      ],
+      "id": "adoption:review:8c8df3039e5153ad3692f5c9",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q05"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者在美国用电需求的讨论中预期，未来几十年，电动车普及、制造业回流、氢能利用以及工业和建筑电气化将共同带来更大规模的用电需求；作者认为，应在这一背景下理解数据中心用电需求的激增。这是作者的长期展望，不是已发生的需求增长或当前独立核证结果；所供原生文本未确立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:09:37+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。其他行业的用电需求是评估2030年数据中心可获得电力供给时需要考虑的负荷边界，因此与当前M04-Q05工单存在实质但局部的关系。连续原文及相邻美国地域、预测方法和数据局限上下文足够支持限定归属的长期展望。无敏感内容、真实冲突、替换提议或其他A类条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-M04-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 30.012,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f07e1d256b7b9618fa354908c17fbbdcc629570559a3a8132b38c184d3c757f7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 46544,
+            "output_tokens": 1092,
+            "reasoning_output_tokens": 224
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.055,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "af3cc1aa46983c0fdb1dbca73e14f0f7cd27145f7925ef1424688550cd574632",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 47002,
+              "output_tokens": 421,
+              "reasoning_output_tokens": 172
+            }
+          }
+        },
+        "batch_id": "4ad0728bfef75e7919615d6912ad5d1b1cf353bb81bec166066f29d5c010a4fe"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:7:claim:3"
+      ],
+      "limitations": "原文没有量化各驱动的用电增量、年度路径、区域分布或2030年需求，也没有证明它们实际挤占了数据中心供电。该展望不能转化为2030年可支撑的GW、AI需求转换系数或项目容量。阅读覆盖限于PDF原生文本，未审阅图像，不能声称完成整份文档的视觉核查。",
+      "conflict_check": "既有采用陈述分别涉及美国数据中心2028年年用电量预测和PJM容量拍卖、季节能力及制度约束，与本项跨行业长期需求展望不重复，也未显示真实冲突。所供legacy筛选记录为空，仅能说明筛选范围内未见相关记录，不能代表完成外部反证检索。本次不覆盖既有结论。",
+      "gap_dependency_check": "M04-Q05仍需2030年分情景供给、其他负荷的同地域同年度预测、可靠性及输配电可送达性约束，以及可获电力转换为数据中心容量的可复查推导。本项仅补充其他负荷需求的研究线索，不回答或关闭问题，不更新骨架、既有结论或模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4ad0728bfef75e7919615d6912ad5d1b1cf353bb81bec166066f29d5c010a4fe",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "60a3c4fde52af3b7b411ee13ecc14293f4bad85680fca80ad84675abb280cf4a"
+      },
+      "object_mapping_check": "本项讨论美国全国未来几十年的跨行业用电需求背景。root指一座AI数据中心，system:power及其链条指该设施的电力系统，site:grid指电力配额与并网权利；原文没有涉及具体设施、配额、并网协议或部件。保留空对象列表及M04-Q05问题匹配，不继承文档或Reader标签。"
     }
   ],
   "answers": [],

@@ -470,6 +470,18 @@ def sensitivity(a, spec=None):
     return rows
 
 
+def readiness(a, spec=None):
+    """Calculation inputs are scenarios, never evidence of a project approval."""
+    spec = spec or {}
+    governance = spec.get('input_governance', {})
+    evidence = spec.get('evidence', {})
+    unverified = sorted(k for k in governance if evidence.get(k, {}).get('status') not in ('sourced', 'input'))
+    return {'status': 'scenario_only', 'project_feasibility': 'not_verified',
+            'capacity_basis': 'scenario_limit_not_approval' if a.get('energy_quota_mw', 0) > 0 else 'unknown_or_unset',
+            'unverified_inputs': unverified,
+            'scope': 'Global source registration does not validate preset overrides or project/workload applicability.'}
+
+
 def run(a, spec=None):
     return dict(inputs=a, ledgers=ledgers(a, spec), lifecycle=lifecycle(a, spec), inverse=inverse(a, spec),
-                grid=grid(a, spec), sensitivity=sensitivity(a, spec))
+                grid=grid(a, spec), sensitivity=sensitivity(a, spec), readiness=readiness(a, spec))

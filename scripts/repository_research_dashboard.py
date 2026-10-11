@@ -80,9 +80,13 @@ def build(root, table):
     html+='<p><a href="/bom.html">爆炸图 →</a> · <a href="/node.html">研究节点 →</a> · <a href="/ledger.html">账本与情景 →</a></p></section>'
     html+=section('demand','03 · 目标合同驱动供料，运行回执单独对账','目标是待满足的需求；两个 repo 接入不表示六类来源已经齐备')
     html+=table(['供应能力','接入','目标','缺','已交付','有来源登记','含假设'],[[p['team'],'已接入' if p['connected'] else '未接入',p['targets'],p['statuses'].get('needed',0),p['statuses'].get('delivered',0),p['statuses'].get('sourced',0),p['statuses'].get('assumed',0)] for p in health['providers']])
-    html+=f'<div class="audit-callout">{health["questions"]["targets_without_exact_question"]} 条目标尚无同节点、同变量类的精确问题映射。自动映射仅提供检索入口；是否回答了问题仍由原文与研究审核判断。人工细化任务必须绑定目标行，不能产生第二套独立采集轴。</div>'
+    html+=f'<div class="audit-callout">{health["questions"]["targets_without_exact_question"]} 条目标尚无已审核的研究用途。question_ids 为支持或线索用途，可跨变量类；同格候选只供检索，不是语义证明。人工细化任务必须绑定目标行，不能产生第二套独立采集轴。</div>'
     html+='<details><summary>供料合同：要什么、交什么、不能据此推断什么</summary>'+table(['合同','最小交付内容','能力边界'],[[k,'、'.join(v['fields']),v['acceptance']+' 不证明：'+v['does_not_prove']] for k,v in target_doc['request_contract']['profiles'].items()])+'</details>'
-    html+='<p>原厂额定功率与现场实耗分开；inews 负责发现与事件指针；统计、财报、报价、运行实证由相应来源能力承担。先补关键输入的来源与负责人，不为“六队”数量创建空 repo。<a href="/supply.html#targets">查看和细化目标 →</a></p></section>'
+    html+='<p>原厂额定功率与现场实耗分开；inews 负责发现与事件指针；统计、财报、报价、运行实证由相应来源能力承担。先补关键输入的来源与负责人，不为“六队”数量创建空 repo。<a href="/supply.html#targets">查看和细化目标 →</a></p>'
+    requirements=[(t,r) for t in targets for r in t['request'].get('requirements',[])]
+    html+='<h3>参数级需求与来源责任</h3><p>父目标保持稳定；混合需求必须选参数后再派工。以下是已审核的任务定义，所有输入仍待证据验证。</p>'
+    html+=table(['父目标 / 参数','来源责任 / 执行机','交付要求','适用范围','验收'],[[t['id']+' / '+r['model_input'],r['source_team']+' / '+r['host']+' / '+r['team_state'],r['deliverable'],'、'.join(r['scope_fields']),r['acceptance']] for t,r in requirements])
+    html+='</section>'
     html+=section('gates','04 · 每道门只授予本阶段资格','来源归档、可用数据、研究采用、可公开发布分别验收')
     html+=table(['门槛','硬要求','补充或拒绝','通过后'],[
         ['来源与传输','来源/权限、清单全集、路径、大小、SHA 与目标归属','坏包拒绝接收；上游原件保留。已合格但不可解析的资料归档并标缺口','可追溯原件或事件线索'],

@@ -1,0 +1,498 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-11",
+  "status": "adopted_for_demand_definition_not_evidence_adoption",
+  "authority": "细化现行目标；不增设采集任务轴，不修改正式证据或模型值。",
+  "requirements": [
+    {
+      "model_input": "energy_quota_mw",
+      "source_team": "fetchstat",
+      "decision_owner": "research",
+      "value_kind": "project_authority",
+      "question_ids": [
+        "M05-Q06",
+        "M04-Q05"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "authority",
+        "period",
+        "capacity_basis"
+      ],
+      "deliverable": "审批原文及批准容量、单位、有效期和适用分期",
+      "acceptance": "项目用能/接入/IT容量分开；未取得批准值交缺口，零不表示获准无限容量。",
+      "affected_outputs": [
+        "buildable_capacity",
+        "lifecycle_cashflow"
+      ],
+      "priority": 1,
+      "mechanism": "pdf_free",
+      "profile": "observation"
+    },
+    {
+      "model_input": "gate_wait_years",
+      "source_team": "fetchstat",
+      "decision_owner": "research",
+      "value_kind": "project_schedule",
+      "question_ids": [
+        "M04-Q07"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "gate_type",
+        "period",
+        "milestone_start",
+        "milestone_end"
+      ],
+      "deliverable": "负荷接入或芯片交付里程碑、计划/实际日期及状态",
+      "acceptance": "负荷接入与发电并网分开；排队、审批、施工与爬坡不互代；区域均值不能代替单项目等待。",
+      "affected_outputs": [
+        "lead_time",
+        "lifecycle_cashflow"
+      ],
+      "priority": 1,
+      "mechanism": "pdf_free",
+      "profile": "observation"
+    },
+    {
+      "model_input": "tokens_per_gpu_sec",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "workload_measurement",
+      "question_ids": [
+        "M12-Q07",
+        "M12-Q02"
+      ],
+      "scope_fields": [
+        "workload",
+        "hardware",
+        "configuration",
+        "precision",
+        "context_length",
+        "concurrency",
+        "latency_slo",
+        "period"
+      ],
+      "deliverable": "原始基准结果、吞吐定义、系统GPU数、输入/输出token、软件版本与时延",
+      "acceptance": "系统吞吐与单GPU归一化分开；研报反推保留校准身份，不当实测。",
+      "affected_outputs": [
+        "model_revenue",
+        "model_margin"
+      ],
+      "priority": 1,
+      "mechanism": "api",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "monetized_share",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "scenario_assumption",
+      "question_ids": [
+        "M12-Q05",
+        "NODE-demand-D3-conversion"
+      ],
+      "scope_fields": [
+        "entity",
+        "workload",
+        "period",
+        "denominator"
+      ],
+      "deliverable": "付费推理占比的分母、观测口径或明确标记的情景区间",
+      "acceptance": "硬件利用率、GPU付费小时与收费推理占比不得互换；无可比观测保留假设。",
+      "affected_outputs": [
+        "model_revenue",
+        "model_margin"
+      ],
+      "priority": 1,
+      "mechanism": "pdf_free",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "water_price",
+      "source_team": "fetchstat",
+      "decision_owner": "research",
+      "value_kind": "tariff_observation",
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "scope_fields": [
+        "region",
+        "customer_class",
+        "period",
+        "currency",
+        "tax",
+        "boundary"
+      ],
+      "deliverable": "官方工业水费率、阶梯、污水及固定费边界",
+      "acceptance": "生效日与采样日分开；未含费用显式登记。",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "priority": 2,
+      "mechanism": "table",
+      "profile": "observation"
+    },
+    {
+      "model_input": "software_per_mw",
+      "source_team": "fetchquotes",
+      "decision_owner": "research",
+      "value_kind": "cost_observation",
+      "question_ids": [
+        "M10-Q05"
+      ],
+      "scope_fields": [
+        "entity",
+        "product",
+        "configuration",
+        "period",
+        "currency",
+        "tax",
+        "capacity_basis",
+        "boundary"
+      ],
+      "deliverable": "软件/DCIM订阅原价、许可计量与换算分母",
+      "acceptance": "按GPU/机柜/站点计费不得直接当每MW；AI软件与设施DCIM分项，避免与其他运营费重复。",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "priority": 2,
+      "mechanism": "js_page",
+      "profile": "observation"
+    },
+    {
+      "model_input": "insurance_pct",
+      "source_team": "fetchquotes",
+      "decision_owner": "research",
+      "value_kind": "cost_observation",
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "scope_fields": [
+        "region",
+        "entity",
+        "period",
+        "currency",
+        "insured_basis",
+        "coverage",
+        "boundary"
+      ],
+      "deliverable": "险种、保额、保费或明确标记的报价缺口",
+      "acceptance": "财产险、营业中断、责任险分别登记；保费率与总投资率不混用。",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "priority": 2,
+      "mechanism": "js_page",
+      "profile": "observation"
+    },
+    {
+      "model_input": "bandwidth_per_mw",
+      "source_team": "fetchquotes",
+      "decision_owner": "research",
+      "value_kind": "cost_observation",
+      "question_ids": [
+        "M10-Q05"
+      ],
+      "scope_fields": [
+        "region",
+        "entity",
+        "period",
+        "currency",
+        "capacity_basis",
+        "service_level",
+        "boundary"
+      ],
+      "deliverable": "带宽容量、承诺用量、线路/流量费与每MW推导",
+      "acceptance": "内外网络、带宽与流量、安装和经常性费用分开。",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "priority": 2,
+      "mechanism": "js_page",
+      "profile": "observation"
+    },
+    {
+      "model_input": "other_opex_per_mw",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "cost_observation",
+      "question_ids": [
+        "M10-Q05"
+      ],
+      "scope_fields": [
+        "entity",
+        "region",
+        "period",
+        "currency",
+        "capacity_basis",
+        "boundary"
+      ],
+      "deliverable": "运营费用原披露、分项及实际在运营容量分母",
+      "acceptance": "全公司OPEX不直接除以规划MW；与水/软件/保险/带宽/人工明确排除和分摊。",
+      "affected_outputs": [
+        "operating_cost"
+      ],
+      "priority": 2,
+      "mechanism": "edgar",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "redundancy",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "engineering_estimate",
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "scope_fields": [
+        "project",
+        "design",
+        "configuration",
+        "region",
+        "period",
+        "boundary"
+      ],
+      "deliverable": "N/N+1/2N设计边界及同口径成本比较",
+      "acceptance": "用户选择冗余等级与电气/机械成本系数分开；Tier名不能直接证明固定造价倍率。",
+      "affected_outputs": [
+        "facility_capex",
+        "operating_cost"
+      ],
+      "priority": 2,
+      "mechanism": "pdf_free",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "soft_cost_pct",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "engineering_estimate",
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "period",
+        "currency",
+        "denominator",
+        "boundary"
+      ],
+      "deliverable": "设计、许可、管理等分项及是否已计入总包价",
+      "acceptance": "含价范围、分母和专业费列明；保留区间，不把总包利润计两次。",
+      "affected_outputs": [
+        "facility_capex",
+        "lifecycle_cashflow"
+      ],
+      "priority": 2,
+      "mechanism": "pdf_free",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "contingency_pct",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "engineering_estimate",
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "period",
+        "estimate_stage",
+        "denominator",
+        "boundary"
+      ],
+      "deliverable": "预算阶段、风险范围、暂列金及情景区间",
+      "acceptance": "预算准备金与实际超支分开；不得与已含暂列金重复。",
+      "affected_outputs": [
+        "facility_capex",
+        "lifecycle_cashflow"
+      ],
+      "priority": 2,
+      "mechanism": "pdf_free",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "refresh_cost_factor",
+      "source_team": "fetchquotes",
+      "decision_owner": "research",
+      "value_kind": "lifecycle_estimate",
+      "question_ids": [
+        "M15-Q07"
+      ],
+      "scope_fields": [
+        "hardware",
+        "configuration",
+        "period",
+        "replacement_period",
+        "capacity_basis",
+        "currency",
+        "boundary"
+      ],
+      "deliverable": "同等IT功率或同等工作负载的代际购置价、配套和更新边界",
+      "acceptance": "原厂规格只提供配置分母；不同代际/性能/功率口径不能直接作替换比例。",
+      "affected_outputs": [
+        "refresh_cost",
+        "lifecycle_cashflow"
+      ],
+      "priority": 2,
+      "mechanism": "js_page",
+      "profile": "observation"
+    },
+    {
+      "model_input": "decommission_pct",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "lifecycle_estimate",
+      "question_ids": [
+        "M15-Q07"
+      ],
+      "scope_fields": [
+        "project",
+        "region",
+        "period",
+        "currency",
+        "denominator",
+        "boundary"
+      ],
+      "deliverable": "拆除、处置、复原及残值抵扣的案例与估算",
+      "acceptance": "退役费用与二手残值分开；区间与算法保留。",
+      "affected_outputs": [
+        "lifecycle_cashflow"
+      ],
+      "priority": 2,
+      "mechanism": "pdf_free",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "residual_share",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "scenario_assumption",
+      "question_ids": [
+        "M15-Q07",
+        "M11-Q11"
+      ],
+      "scope_fields": [
+        "asset",
+        "region",
+        "period",
+        "horizon",
+        "ownership",
+        "denominator"
+      ],
+      "deliverable": "期末产权、处置/二手案例、净残值与情景假设",
+      "acceptance": "土地、壳层、IT残值不混合；期末残值与现价不是同一事实。",
+      "affected_outputs": [
+        "landlord_return"
+      ],
+      "priority": 2,
+      "mechanism": "pdf_free",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "renewal_probability",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "scenario_assumption",
+      "question_ids": [
+        "M11-Q11"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "period",
+        "option_holder",
+        "exercise_conditions"
+      ],
+      "deliverable": "合同续约权、次数、租期、价格机制及可得的历史队列",
+      "acceptance": "合同赋权不证明行权概率；概率由研究端保留情景或另有同口径队列验证。",
+      "affected_outputs": [
+        "landlord_option_return"
+      ],
+      "priority": 2,
+      "mechanism": "edgar",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "bot_service_rate",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "contract_derivation",
+      "question_ids": [
+        "M11-Q07",
+        "M11-Q11"
+      ],
+      "scope_fields": [
+        "project",
+        "contract",
+        "region",
+        "period",
+        "currency",
+        "payment_schedule",
+        "ownership",
+        "boundary"
+      ],
+      "deliverable": "BOT资产出资、服务费、合同期、税费、残值与现金流条款",
+      "acceptance": "不得把服务费率直接当融资利率；研究端保存可复算现金流反推及不确定性。",
+      "affected_outputs": [
+        "bot_service_cost",
+        "lifecycle_cashflow"
+      ],
+      "priority": 2,
+      "mechanism": "edgar",
+      "profile": "research_material"
+    }
+  ],
+  "question_link_rules": {
+    "spec": {
+      "suffixes": [
+        "definition",
+        "interfaces",
+        "performance"
+      ],
+      "relation": "supports",
+      "reason": "型号、配置和原厂接口/参数为对象定义与性能问题提供限定条件的材料。"
+    },
+    "operation": {
+      "suffixes": [
+        "performance"
+      ],
+      "relation": "supports",
+      "reason": "原厂额定与测试条件支持性能问题；不证明现场PUE、实耗或利用率。"
+    },
+    "price": {
+      "suffixes": [
+        "alternatives",
+        "supply"
+      ],
+      "relation": "supports",
+      "reason": "同口径价格支持替代比较及成本/供应分解。"
+    },
+    "lead_time": {
+      "suffixes": [
+        "supply"
+      ],
+      "relation": "supports",
+      "reason": "交付起止点、订单和产能支持供应问题中的交期，变量类允许不同。"
+    },
+    "news": {
+      "suffixes": [
+        "supply"
+      ],
+      "relation": "lead_for",
+      "reason": "事件只提供供应与交付研究线索，不能独立成为回答。"
+    }
+  },
+  "unregistered_question_policy": {
+    "owner": "research",
+    "disposition": "question_not_registered",
+    "next_action": "按实际对象和所需结论补问题或登记目录用途；不得自动造模板问题、挂祖先或闭题。"
+  },
+  "candidate_question_policy": "同节点/变量类仅为候选检索，不授权派工中的问题绑定。"
+}

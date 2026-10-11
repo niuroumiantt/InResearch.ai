@@ -89,6 +89,31 @@ class PublicReaderHTTPTests(unittest.TestCase):
             for path in ('/api/add-price', '/api/supply', '/api/run', '/api/users', '/api/assign'):
                 self.assertEqual(self.request('POST', path, b'{}')[0], 401, path)
 
+    def test_published_datacenter_research_has_precise_read_only_routes(self):
+        pages = ('/research/data-centers-2026.html', '/research/data-centers-2026-us.html', '/research/data-centers-2026-sea.html', '/research/data-centers-2026-cn.html', '/research/data-centers-2026-projects.html',)
+        datasets = ('/research/data-centers-2026-project-ledger.json', '/research/data-centers-2026-chart-data.json')
+        with patch.object(auth, 'session_user', return_value=None):
+            for path in pages + datasets:
+                self.assertTrue(public.allowed(path), path)
+                status, headers, body = self.request('GET', path)
+                self.assertEqual(status, 200, path)
+                self.assertIn('application/json' if path.endswith('.json') else 'text/html', headers.get('Content-Type', ''))
+                if path.endswith('.json'):
+                    self.assertIsInstance(json.loads(body), dict)
+                status, _, body = self.request('HEAD', path)
+                self.assertEqual((status, body), (200, b''), path)
+            for path in ('/docs/research/2026-10-11/data-centers/article.md', '/docs/research/2026-10-11/data-centers/delivery-status.json', '/research/private-study.html', '/data/projects.json'):
+                self.assertFalse(public.allowed(path), path)
+                status, headers, _ = self.request('GET', path)
+                self.assertEqual((status, headers.get('Location')), (302, '/login'), path)
+            status, headers, _ = self.request('POST', datasets[0], b'{}')
+            self.assertEqual((status, headers.get('Location')), (302, '/login'))
+            ledger = json.loads(self.request('GET', datasets[0])[2])
+            self.assertEqual(ledger['record_counts'], {'us': 47, 'sea': 69, 'cn': 52, 'total': 168})
+            self.assertEqual(len({r['id'] for r in ledger['records']}), 168)
+            self.assertFalse(ledger['aggregation_allowed'])
+            self.assertFalse(ledger['formal_database_ingested'])
+
     def test_member_sees_the_whole_model(self):
         with patch.object(auth, 'session_user', return_value='m'), patch.object(auth, 'user_role', return_value='member'):
             status, _, body = self.request('GET', '/api/whoami')

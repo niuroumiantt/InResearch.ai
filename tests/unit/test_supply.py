@@ -79,10 +79,10 @@ class SupplyTests(unittest.TestCase):
 
     def request(self, **changes):
         value = dict(action='create', operation_id=str(uuid.uuid4()), expected_revision=0,
-                     target_id='F.cost.energy.price.power_price.state_industrial',
-                     question_id='', title='工业电价原件', scope='美国州级工业电价与统计期',
-                     acceptance='原文、定位与口径', provider_id='fetchstat',
-                     execution_mode='continuous', execution_host='aws')
+                     target_id='P.gpu.spec',
+                     question_id='', title='GPU官方规格原件', scope='指定型号、配置与版本',
+                     acceptance='原文、定位与口径', provider_id='fetchspec',
+                     execution_mode='continuous', execution_host='macmini')
         value.update(changes)
         return value
 
@@ -100,7 +100,7 @@ class SupplyTests(unittest.TestCase):
         supply.mutate(self.root, req, 'admin')
         self.assertTrue(supply.mutate(self.root, req, 'admin')['replayed'])
         self.assertEqual(len(supply.snapshot(self.root)['tasks']), 1)
-        self.assertEqual(supply.snapshot(self.root)['tasks'][0]['execution_host'], 'aws')
+        self.assertEqual(supply.snapshot(self.root)['tasks'][0]['execution_host'], 'macmini')
         with self.assertRaises(supply.Conflict):
             supply.mutate(self.root, self.request(), 'admin')
         with self.assertRaises(supply.Conflict):
@@ -183,7 +183,7 @@ class SupplyTests(unittest.TestCase):
 
     def test_new_demand_requires_target_and_provider_host_follows_target(self):
         for change in ({'question_id': 'M01-Q01'}, {'target_id': ''}, {'target_id': 'unknown'}, {'provider_id': 'inews'},
-                       {'execution_host': 'macmini'}):
+                       {'execution_host': 'aws'}):
             with self.assertRaises(ValueError):
                 supply.mutate(self.root, self.request(**change), 'admin')
         self.assertEqual(supply.read(self.root)['revision'], 0)

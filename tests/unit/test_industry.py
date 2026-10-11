@@ -58,13 +58,24 @@ class IndustryTests(unittest.TestCase):
     def test_capacity_audit_is_global_and_discloses_unknown_scope(self):
         audit = industry.snapshot(ROOT)['capacity_audit']
         self.assertEqual(audit, industry.snapshot(ROOT, {'c': 'meta'})['capacity_audit'])
-        self.assertEqual((audit['known'], audit['unknown'], audit['unlocated']), (40, 83, 20))
+        self.assertEqual((audit['known'], audit['unknown'], audit['unlocated']), (38, 85, 20))
         self.assertEqual((audit['duplicates_excluded'], audit['portfolios_excluded']), (1, 2))
         self.assertEqual((audit['oldest_verified'], audit['latest_verified']), ('2026-07-23', '2026-10-07'))
         self.assertIn('不能用 95 GW', audit['comparability'])
         self.assertIn('推导余额', audit['unresolved'])
         self.assertIn('集群', audit['coverage'])
         self.assertNotIn('gap_gw', audit)
+
+    def test_reviewed_power_designs_do_not_count_as_operating_it(self):
+        for site_id in ('us-nv-tahoe-reno', 'us-va-dulles-digital'):
+            detail = industry.snapshot(ROOT, {'site': site_id})['detail']
+            self.assertFalse(detail['capacity_known'], site_id)
+            self.assertEqual(detail['capacity'], {'operating': 0, 'construction': 0, 'planning': 0})
+        audit = json.loads((ROOT/'docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json').read_text())
+        self.assertEqual([r['previous_record']['capacity_it_mw'] for r in audit['records']], [650, 1000])
+        self.assertTrue(all(r['current_record']['capacity_it_mw'] is None for r in audit['records']))
+        source_dates = {s['url']: s['date'] for r in audit['records'] for s in r['current_record']['sources']}
+        self.assertEqual(source_dates['https://www.prnewswire.com/news-releases/switch-tahoe-reno-now-open-largest-most-advanced-data-center-campus-in-the-world-300407648.html'], '2017-02-15')
 
     def test_invalid_filters_and_unknown_objects_fail_explicitly(self):
         for args in ({'stage': 'fake'}, {'scope': 'all-ai'}, {'region': 'unknown'}, {'private': 'yes'}):

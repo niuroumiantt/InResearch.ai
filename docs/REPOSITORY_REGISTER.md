@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.76。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.78。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2544。
+在册文件：2558。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 407 |
-| 运行代码 | 372 |
+| 历史快照 | 411 |
+| 运行代码 | 379 |
 | 现行规范 | 16 |
-| 项目配置 | 777 |
+| 项目配置 | 779 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 196 |
-| 测试 | 195 |
+| 测试 | 196 |
 
 ## 在册记录集合
 
@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 66 |
-| `data/research_knowledge.json` | evidence | 454 |
-| `data/research_knowledge.json` | statements | 414 |
+| `data/research_knowledge.json` | evidence | 455 |
+| `data/research_knowledge.json` | statements | 415 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1526,6 +1526,7 @@
 | `docs/research/2026-10-08/solidigm/scene-photo-sources.json` | items | 2 |
 | `docs/research/2026-10-08/solidigm/sources.json` | items | 103 |
 | `docs/research/2026-10-11/data-centers/delivery-status.json` | limits | 4 |
+| `docs/research/2026-10-11/data-centers/project-ledger.json` | records | 168 |
 | `docs/research/2026-10-11/data-centers/sources.json` | records | 312 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
@@ -1738,6 +1739,8 @@
 | `docs/reviews/2026-10-10/project-audit/source-scan.json` | unreferenced_from_core | 41 |
 | `docs/reviews/2026-10-10/project-audit/source-scan.json` | limits | 3 |
 | `docs/reviews/2026-10-10/project-audit/spark-measurements.json` | acquisition_tables | 5 |
+| `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | scope_notes | 6 |
+| `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | records | 2 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -1754,12 +1757,13 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 45 |
-| `framework/interface_manifest.json` | public_pages | 27 |
+| `framework/interface_manifest.json` | static_pages | 50 |
+| `framework/interface_manifest.json` | public_pages | 32 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
+| `framework/research_demand_review.json` | requirements | 17 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
 | `framework/research_graph.json` | objects | 354 |
 | `framework/research_graph.json` | relations | 373 |
@@ -2874,6 +2878,7 @@
 | `docs/research/2026-10-11/data-centers/figures/figure-11.svg` | 项目配置 |
 | `docs/research/2026-10-11/data-centers/full.html` | 运行代码 |
 | `docs/research/2026-10-11/data-centers/lite.html` | 运行代码 |
+| `docs/research/2026-10-11/data-centers/project-ledger.json` | 项目配置 |
 | `docs/research/2026-10-11/data-centers/research.txt` | 项目配置 |
 | `docs/research/2026-10-11/data-centers/sources.json` | 项目配置 |
 | `docs/research/2026-10-11/data-centers/wechat.html` | 运行代码 |
@@ -3207,6 +3212,10 @@
 | `docs/reviews/2026-10-10/project-audit/source_scan.py` | 历史快照 |
 | `docs/reviews/2026-10-10/project-audit/spark-measurements.json` | 历史快照 |
 | `docs/reviews/2026-10-10/project-audit/website-measurements.json` | 历史快照 |
+| [docs/reviews/2026-10-11/datacenter-research/ARCHITECTURE.md](reviews/2026-10-11/datacenter-research/ARCHITECTURE.md) | 历史快照 |
+| [docs/reviews/2026-10-11/datacenter-research/DATABASE.md](reviews/2026-10-11/datacenter-research/DATABASE.md) | 历史快照 |
+| `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | 历史快照 |
+| `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -3250,6 +3259,7 @@
 | [framework/modules/M15_情景与监测.md](../framework/modules/M15_情景与监测.md) | 配套说明 |
 | `framework/part_fetch.json` | 项目配置 |
 | `framework/repository_manifest.json` | 生成物 |
+| `framework/research_demand_review.json` | 项目配置 |
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
 | `framework/site_rights.json` | 项目配置 |
@@ -3664,6 +3674,7 @@
 | `src/inresearch/knowledge/nodes.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/research_gaps.py` | 运行代码 |
 | `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
 | `src/inresearch/knowledge/skeleton.py` | 运行代码 |
 | `src/inresearch/knowledge/target_request_contract.py` | 运行代码 |
@@ -3912,6 +3923,7 @@
 | `tests/unit/test_repository_projection.py` | 测试 |
 | `tests/unit/test_repository_research_dashboard.py` | 测试 |
 | `tests/unit/test_research.py` | 测试 |
+| `tests/unit/test_research_demands.py` | 测试 |
 | `tests/unit/test_research_flow_recovery.py` | 测试 |
 | `tests/unit/test_research_local_acceptance.py` | 测试 |
 | `tests/unit/test_research_match.py` | 测试 |
@@ -4340,6 +4352,7 @@
 | `web/components/compute-catalog.js` | 运行代码 |
 | `web/components/datacenter-model.js` | 运行代码 |
 | `web/components/datacenter-news.js` | 运行代码 |
+| `web/components/datacenter-research-ledger.js` | 运行代码 |
 | `web/components/industry.js` | 运行代码 |
 | `web/components/markdown-inline.js` | 运行代码 |
 | `web/components/model-assets.js` | 运行代码 |
@@ -4419,6 +4432,11 @@
 | `web/pages/rack-exploded.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
+| `web/pages/research/data-centers-2026-cn.html` | 运行代码 |
+| `web/pages/research/data-centers-2026-projects.html` | 运行代码 |
+| `web/pages/research/data-centers-2026-sea.html` | 运行代码 |
+| `web/pages/research/data-centers-2026-us.html` | 运行代码 |
+| `web/pages/research/data-centers-2026.html` | 运行代码 |
 | `web/pages/server-plan.html` | 运行代码 |
 | `web/pages/storage-atlas.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |

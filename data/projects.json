@@ -1669,9 +1669,9 @@
       ],
       "tenant": [],
       "status": "L8",
-      "capacity_it_mw": 650,
+      "capacity_it_mw": null,
       "type": "colo-wholesale",
-      "notes": "运营中并持续扩建。当前设计规模 7.2M sqft / 650MW（TAHOE RENO 1 约 130MW 已运营），Switch 官网远期愿景 17.4M sqft / 2GW+，媒体亦有 850MW 口径；650 为规划总功率非 IT 口径。紧邻 Tesla Gigafactory，2000 英亩，100% 可再生能源。｜容量考古(2026-08-15)：Switch 官方口径：Citadel 园区全建成规划 720万平方英尺 / 650MW 电力容量。官宣园区目标，非全部投运（L2）：已投运 TAHOE RENO 1 为 130 万平方英尺 / 130MW，其余为规划容量。650MW 为公司披露的园区供电容量，未区分 IT 口径，记 facility",
+      "notes": "运营中并持续扩建。当前设计规模 7.2M sqft / 650MW（TAHOE RENO 1 约 130MW 已运营），Switch 官网远期愿景 17.4M sqft / 2GW+，媒体亦有 850MW 口径；650 为规划总功率非 IT 口径。紧邻 Tesla Gigafactory，2000 英亩，100% 可再生能源。｜容量考古(2026-08-15)：Switch 官方口径：Citadel 园区全建成规划 720万平方英尺 / 650MW 电力容量。官宣园区目标，非全部投运（L2）：已投运 TAHOE RENO 1 为 130 万平方英尺 / 130MW，其余为规划容量。650MW 为公司披露的园区供电容量，未区分 IT 口径，记 facility｜容量纠错(2026-10-11，仅复核容量出处，不重验既有最高阶段)：2017-02-15开园稿650 MW为全园区设计power上限，130 MW为首栋设计power上限，原文未明确IT或当前实测设施功率。撤回IT与设施单值650，保留原功率声明和完整旧记录于docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json；不以130推已安装IT。此前notes所称130MW已运营不证明全部设计功率已部署。",
       "verified_date": "2026-08-15",
       "sources": [
         {
@@ -1684,7 +1684,7 @@
           "url": "https://www.prnewswire.com/news-releases/switch-tahoe-reno-now-open-largest-most-advanced-data-center-campus-in-the-world-300407648.html",
           "grade": "company",
           "note": "开园通稿：7.2M sqft / 650MW 设计",
-          "date": "2026"
+          "date": "2017-02-15"
         },
         {
           "url": "https://www.switch.com/switch-tahoe-reno-data-center-now-open/",
@@ -1694,7 +1694,7 @@
         }
       ],
       "aliases": [],
-      "capacity_facility_mw": 650,
+      "capacity_facility_mw": null,
       "status_history": [],
       "disputed": false
     },
@@ -1710,22 +1710,22 @@
       ],
       "tenant": [],
       "status": "L8",
-      "capacity_it_mw": 1000,
+      "capacity_it_mw": null,
       "type": "colo-wholesale",
-      "notes": "433 英亩（购自 MWAA，$236.5M），规划 14 栋 / 11.7M sqft / 最高 1GW（规划总功率非 IT），6 座变电站；首栋 2023 年交付，部分楼与 Blackstone 合资开发。号称全球最大多租户园区之一。",
+      "notes": "433 英亩（购自 MWAA，$236.5M），规划 14 栋 / 11.7M sqft / 最高 1GW（规划总功率非 IT），6 座变电站；首栋 2023 年交付，部分楼与 Blackstone 合资开发。号称全球最大多租户园区之一。｜容量纠错(2026-10-11，仅复核容量出处，不重验既有最高阶段)：已登记DCD原文为2020-08-04、DCF原文为2018-09-19，两篇均未支持该园区1GW；DCF的370/63/390MW属于其他Ashburn园区。撤回IT单值1000，设施容量继续未知，不把旧1GW无依据迁移为设施值。完整旧记录与更正依据保留于docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json；园区运营阶段与规划分期须另核。",
       "verified_date": "2026-08-15",
       "sources": [
         {
           "url": "https://www.datacenterdynamics.com/en/news/digital-realty-submits-plans-large-dulles-data-center-campus/",
           "grade": "media",
           "note": "DCD：规划与用地细节",
-          "date": "2026"
+          "date": "2020-08-04"
         },
         {
           "url": "https://www.datacenterfrontier.com/cloud/article/11429999/dulles-land-buy-gives-digital-realty-runway-for-data-center-expansion",
           "grade": "media",
-          "note": "DCF：园区扩展与 1GW 口径",
-          "date": "2026"
+          "note": "DCF：Dulles购地与扩展；文中MW属于其他Ashburn园区，未支持Dulles 1GW",
+          "date": "2018-09-19"
         }
       ],
       "aliases": [],

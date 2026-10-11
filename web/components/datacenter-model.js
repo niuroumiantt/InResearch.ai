@@ -160,7 +160,10 @@
       rows.push({key:d.key,label:d.label,delta:d.delta==null?null:d.delta,delta_abs:d.delta_abs==null?null:d.delta_abs,roic_lo:(cl.roic||0)-(baseC.roic||0),roic_hi:(ch.roic||0)-(baseC.roic||0),kw_lo:ll.per_kw_month-baseL.per_kw_month,kw_hi:lh.per_kw_month-baseL.per_kw_month});}
     return rows;
   }
-  const run=(a,spec)=>({inputs:a,ledgers:ledgers(a,spec),lifecycle:lifecycle(a,spec),inverse:inverse(a,spec),grid:grid(a,spec),sensitivity:sensitivity(a,spec)});
+  function readiness(a,spec={}){
+    return {status:'scenario_only',project_feasibility:'not_verified',capacity_basis:a.energy_quota_mw>0?'scenario_limit_not_approval':'unknown_or_unset',unverified_inputs:Object.keys(spec.input_governance||{}).filter(k=>!['sourced','input'].includes(spec.evidence?.[k]?.status)).sort(),scope:'Global source registration does not validate preset overrides or project/workload applicability.'};
+  }
+  const run=(a,spec)=>({inputs:a,ledgers:ledgers(a,spec),lifecycle:lifecycle(a,spec),inverse:inverse(a,spec),grid:grid(a,spec),sensitivity:sensitivity(a,spec),readiness:readiness(a,spec)});
   const ENGINE={HOURS,CATS,compute,ledgers,lifecycle,inverse,grid,sensitivity,run,withPreset,applyTable,capex,crf,irr,effectiveMw};
   if(typeof module!=='undefined'&&module.exports){module.exports=ENGINE;return;}
   window.InresearchModel=ENGINE;
@@ -193,9 +196,10 @@
   function renderRegion(){
     const r=region(),g=gaps(),host=byId('region-card');host.replaceChildren();
     const gate=values.gate==='chip'?'芯片门槛':'电力门槛';
+    host.append(make('p','readiness-note',`情景计算：项目可行性尚未核验。${readiness(values,spec).unverified_inputs.length} 项需求的定义不等于已取得证据；地区预设也不能直接视为现场数据。`));
     host.append(make('b','',r.label||values.site),make('span','',`${gate} · 门槛等待 ${values.gate_wait_years} 年 · 审批 ${values.permit_months} 个月 · 建设 ${values.construction_years} 年`),
-      make('span','',values.energy_quota_mw>0?`能耗配额 ${values.energy_quota_mw} MW`:'无能耗配额'),make('span','',`电价 $${num(values.power_price,4)}/kWh · 需量 $${num(values.demand_rate,1)}/kW·月 · 土地 ${num(values.land_per_mw,2)} $M/MW`),
-      make('span',g.size?'gap-count':'', g.size?`缺 ${g.size} 项：${[...g].map(k=>spec.inputs[k]?spec.inputs[k].label:k).join('、')}`:'该地区每个数都有登记来源'));
+      make('span','',values.energy_quota_mw>0?`情景容量上限 ${values.energy_quota_mw} MW（不是批准值）`:'批准容量未知／未设置；计算不施加此上限'),make('span','',`电价 $${num(values.power_price,4)}/kWh · 需量 $${num(values.demand_rate,1)}/kW·月 · 土地 ${num(values.land_per_mw,2)} $M/MW`),
+      make('span',g.size?'gap-count':'', g.size?`缺 ${g.size} 项：${[...g].map(k=>spec.inputs[k]?spec.inputs[k].label:k).join('、')}`:'表内来源登记齐全；地区与预设适用性仍须核验'));
     host.title=r.source||'';
   }
   function renderInputs(){
