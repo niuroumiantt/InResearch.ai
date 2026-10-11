@@ -57319,6 +57319,87 @@
         },
         "batch_id": "56bbacb5078a4ca94b9234a250fbfc4854640e2e3d0b197727bd874c879a94ae"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0c52db60897bba0c1e3cbda176f2926d72023f3a9635dc8f865e02f0bbc0f659",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:24:claim:4:ev:0",
+      "locator": "page:25/chunk:24",
+      "object_ids": [],
+      "page_index": 24,
+      "question_ids": [],
+      "quote": "Inputs to the IEA’s model come from IT sector projections for the manufacturing and\n                  shipment of these servers historically and over the next five years.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:15:15+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。输入来源与五年预测期限对当前M01-Q02比较指定机构的估算基础具有实质但局部的贡献。连续原文及周围模型说明充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。仅采用有归属的方法陈述，不更新数值或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.775,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7cc464d386b6c4659dae7859e9acc5880176ccbf1bd0e1f51232ea91bfbcd7c3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59941,
+            "output_tokens": 1208,
+            "reasoning_output_tokens": 258
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.843,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "375df128445261b323c47c4276224cee8901324c043462aa91769250a4143445",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60482,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "b969bff91573f7f838e27aada79d07b6d797de6b0525a63d38b6073cf470f972"
+      }
     }
   ],
   "statements": [
@@ -111001,6 +111082,104 @@
         "request_sha256": "640b3b805861d398697efd5f0cf38f36f878950136a8c2ec42b6a494c8ee1062"
       },
       "object_mapping_check": "独立核对原文后，主张明确属于CoreWeave公司层面的合同收入积压预测，支持映射无父节点、kind为actor的actor:coreweave。未界定一座AI数据中心或其设施、计算系统、GPU、服务器及建筑的具体收入范围，故不映射root或其下属系统、链和部件。所有选定证据统一采用这一主张级主体范围，不继承Reader或文档级标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:24:claim:4:ev:0"
+      ],
+      "id": "adoption:review:784e41a96d36d4513a9ef599",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》中说明，其数据中心需求模型的输入来自IT行业关于服务器历史制造与出货以及未来五年的预测。这是IEA对自身模型输入来源和预测期限的说明，不构成对输入准确性、未来出货兑现或当前模型版本的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:15:15+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。输入来源与五年预测期限对当前M01-Q02比较指定机构的估算基础具有实质但局部的贡献。连续原文及周围模型说明充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。仅采用有归属的方法陈述，不更新数值或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.775,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7cc464d386b6c4659dae7859e9acc5880176ccbf1bd0e1f51232ea91bfbcd7c3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59941,
+            "output_tokens": 1208,
+            "reasoning_output_tokens": 258
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.843,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "375df128445261b323c47c4276224cee8901324c043462aa91769250a4143445",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60482,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "b969bff91573f7f838e27aada79d07b6d797de6b0525a63d38b6073cf470f972"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:24:claim:4"
+      ],
+      "limitations": "所供原生文本未确立报告发表日期，来源时间未知；“未来五年”保留为报告中的相对期限，不能自行指定起止年份。引文未提供制造与出货数值、具体行业预测版本、历史数据的观测或估计属性、地域分解、退役规则及出货到在用容量和用电量的转换参数。服务器范围包含不同类别，不能限定为AI服务器；制造和出货不等于项目已投运。阅读覆盖为PDF原生文本，未完成图像审阅。",
+      "conflict_check": "已采用adoption:review:a055d49329a63f53ae6dc59a说明IEA采用设备出货、项目跟踪和预期效率改善，本项与其相容，并补充IT行业输入来源及未来五年期限，非同一规范陈述。LBNL的设备分类、在用量估算及预测限制属于另一来源，未提出相反的IEA输入说明；其他已采用IEA情景边界陈述也无直接冲突。所供legacy匹配记录为空，检查不构成穷尽外部反证搜索；不替换既有结论。",
+      "gap_dependency_check": "M01-Q02仍需取得IEA、JLL、C&W、麦肯锡和高盛各自的原始预测与版本，核对地域、年份、设备与负载范围、容量和能源定义、情景、输入来源及转换规则，并形成可复查调和推导和反证。本项只补充IEA输入来源与期限，不证明机构差异由此造成，不回答或关闭问题，不换算或汇总GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b969bff91573f7f838e27aada79d07b6d797de6b0525a63d38b6073cf470f972",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "8a3337a199401a79a63a83ecde4f29d99874b0d63b332bc3f551ec23928be55e"
+      },
+      "object_mapping_check": "独立复核后，实际范围是数据中心总体需求研究模型的输入来源与期限。合同中的root指一座AI数据中心；part:server专指加速器服务器，而本段服务器范围未限定为该类别，也未建立设施下system:it或计算链的具体资产范围。研究模型不属于DCIM/BMS，IEA和行业预测来源也无对应允许主体ID。因此不继承Reader的root、part:server标签，所选证据统一采用空对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
