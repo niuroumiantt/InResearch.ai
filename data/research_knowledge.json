@@ -59266,6 +59266,89 @@
         },
         "batch_id": "0ab0043b392c7f4228bb30e867c6db192f6d78ab5a89f3e438fba509d05cf8eb"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "fcaa34db30747be5f2a622e4191bff4d8b246c7e644bfe055ca1dc40af214b3b",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:43:claim:1:ev:0",
+      "locator": "page:44/chunk:43",
+      "object_ids": [
+        "system:power"
+      ],
+      "page_index": 43,
+      "question_ids": [],
+      "quote": "They are not necessarily relevant for all data centres, many of\n                  which will continue to use more traditional architectures or adopt hybrid approaches, with\n                  some computing space dedicated to AI-optimised infrastructure and some occupied by more\n                  traditional computing infrastructure. Even for AI-optimised infrastructure, transitional\n                  architectures centred around the delivery of 400-volt AC power will continue to be used.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:40:15+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续引文及充分上下文直接限定当前M09-Q04所问新架构对传统链的替代范围，提供架构并存的反向证据，具有实质性部分贡献。未发现敏感内容、真实冲突、拟替换既有结论或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.505,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "39ad65f607a793284d35c01acc780f5cc7aec9af89586fa776615e4a0252c51a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 47501,
+            "output_tokens": 1180,
+            "reasoning_output_tokens": 175
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.743,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6c8da5ac212612d63254e166d83d4743089c4e35faa69a081d3d0686cf636197",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 48097,
+              "output_tokens": 480,
+              "reasoning_output_tokens": 160
+            }
+          }
+        },
+        "batch_id": "3aad5c10d7c9dbb66b28c9a411f720b0b12bbc40c71fdae0dcdc1ddbbb8d7871"
+      }
     }
   ],
   "statements": [
@@ -114958,6 +115041,106 @@
         "request_sha256": "255456f34f9bd206f0c9847747d9f2b3d979af3f37b8fb7ce28e1e5db553b754"
       },
       "object_mapping_check": "独立核对对象契约：原生正文明确主体为AirTrunk，项目为马来西亚柔佛州Iskandar Puteri拟建的JHB3、JHB4，支持actor:airtrunk；再生水用于冷却系统，支持root下的水与散热系统system:thermal。不继承候选的system:facility标签，其土地建筑、消防安防范围不对应本项用水方案。未披露具体供水处理设备、冷却配置或水权与取水许可，不进一步映射部件、冷却子链或场址权利。该范围统一适用于所选证据。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:43:claim:1:ev:0"
+      ],
+      "id": "adoption:review:430a330da7952daa82e70ff1",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power"
+      ],
+      "question_ids": [
+        "M09-Q04"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第44页指出，本节所述挑战与创新针对下一代AI优化数据中心，不一定适用于所有数据中心；许多数据中心仍将采用传统架构或混合方式，将部分计算空间用于AI优化基础设施、部分用于传统计算基础设施。IEA并预计，即使AI优化基础设施也将继续使用以400伏交流供电为中心的过渡架构。这是来源对适用范围及未来架构并存的判断，所供原文未确立发布日期、地域或具体项目，不构成当前部署状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:40:15+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续引文及充分上下文直接限定当前M09-Q04所问新架构对传统链的替代范围，提供架构并存的反向证据，具有实质性部分贡献。未发现敏感内容、真实冲突、拟替换既有结论或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.505,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "39ad65f607a793284d35c01acc780f5cc7aec9af89586fa776615e4a0252c51a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 47501,
+            "output_tokens": 1180,
+            "reasoning_output_tokens": 175
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.743,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6c8da5ac212612d63254e166d83d4743089c4e35faa69a081d3d0686cf636197",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 48097,
+              "output_tokens": 480,
+              "reasoning_output_tokens": 160
+            }
+          }
+        },
+        "batch_id": "3aad5c10d7c9dbb66b28c9a411f720b0b12bbc40c71fdae0dcdc1ddbbb8d7871"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:43:claim:1"
+      ],
+      "limitations": "原文是“不一定适用于所有数据中心”，不能改写为绝对不适用。未给400伏交流过渡架构的持续期限、供电层级、部署比例、设备型号或量产时间，也不能推广为所有地区的统一标准。整份PDF仅完成原生文本读取，未完成视觉审阅；本项不使用未审阅图像或封存摘要补出数值。",
+      "conflict_check": "已采用的IEA提高电压至800伏及AC转DC陈述是可应对部分挑战的技术路径，并未声称全面替代，与本项传统、混合及过渡架构并存的判断相容。固态变压器商业化早期判断、DCD存量改造条件及Eaton与Infineon未来平台探索记录也未否定该范围限制。所供已采用陈述中没有完整重复；legacy匹配记录为空。未发现真实冲突，检查限于供应材料，不代表外部穷尽反证搜索，也不修订既有结论。",
+      "gap_dependency_check": "M09-Q04获得新架构适用范围及不能推定全面替代的直接线索，但仍缺800V HVDC与固态变压器的一手量产时间表、交付和实际部署记录、传统链各设备保留或替代边界，以及可复查的同条件比较。400伏交流继续使用的预期不能推导具体持续年份或替代比例；问题保持开放，不更新模型参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3aad5c10d7c9dbb66b28c9a411f720b0b12bbc40c71fdae0dcdc1ddbbb8d7871",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "16ef2ebf80fd848236233c16de3a51fd449fa139cef765bddddaa9c4a1e74063"
+      },
+      "object_mapping_check": "独立按原文的400伏交流供电及供电架构过渡范围，映射到root下涵盖变电、UPS、配电及机柜供电等链的system:power。原文未定位具体供电链、设备或并网权利，因此不细分部件。混合计算空间用于解释适用范围，未形成IT设备性能或配置主张，不继承Reader的system:it标签。所选证据统一使用上述主张级对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
