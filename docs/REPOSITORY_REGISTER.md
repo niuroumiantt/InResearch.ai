@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2595。
+在册文件：2597。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,14 +15,14 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 433 |
+| 历史快照 | 434 |
 | 运行代码 | 361 |
 | 现行规范 | 15 |
 | 项目配置 | 776 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 214 |
+| 配套说明 | 215 |
 | 测试 | 214 |
 
 ## 在册记录集合
@@ -47,7 +47,7 @@
 | `data/datacenter_model.json` | benchmark_series | 43 |
 | `data/event_cards.json` | records | 42 |
 | `data/facts.json` | records | 7849 |
-| `data/object_observations.json` | records | 170 |
+| `data/object_observations.json` | records | 184 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -1762,6 +1762,7 @@
 | `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | boundaries | 4 |
 | `docs/reviews/2026-10-11/stock-expansion/batch.json` | sources | 17 |
 | `docs/reviews/2026-10-11/stock-expansion/batch.json` | held | 3 |
+| `docs/reviews/2026-10-11/stock-pdf-expansion/batch.json` | sources | 3 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -2679,6 +2680,7 @@
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/stock-expansion-20261011.md](handoff/stock-expansion-20261011.md) | 配套说明 |
+| [docs/handoff/stock-pdf-expansion-20261011.md](handoff/stock-pdf-expansion-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/technical-atlas-20261010.md](handoff/technical-atlas-20261010.md) | 配套说明 |
@@ -3278,6 +3280,7 @@
 | [docs/reviews/2026-10-11/research-remediation/stock-excerpts-and-campus-register.md](reviews/2026-10-11/research-remediation/stock-excerpts-and-campus-register.md) | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | 历史快照 |
 | `docs/reviews/2026-10-11/stock-expansion/batch.json` | 历史快照 |
+| `docs/reviews/2026-10-11/stock-pdf-expansion/batch.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
