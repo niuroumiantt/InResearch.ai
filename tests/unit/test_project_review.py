@@ -74,6 +74,33 @@ class ProjectReviewTests(unittest.TestCase):
             self.assertEqual(project_review.apply(self.root,self.data,p)['state'],'already_applied')
         self.assertEqual((self.root/'data/projects.json').read_bytes(),before)
 
+    def test_received_daily_event_updates_registered_site_without_research_demand(self):
+        p = self.observation_proposal()
+        p['target_ids'] = []
+        p['object_binding'] = {'version': 1, 'site_id': p['project']['site_id'],
+                               'fields': p['fields'], 'scope': p['observation']['scope']}
+        (self.root/'framework/tco_targets.json').unlink()
+        project_review.apply(self.root, self.data, p)
+        record = json.loads((self.root/'data/projects.json').read_text())['records'][0]
+        observation = record['observations'][0]
+        self.assertEqual(observation['adoption']['source_kind'], 'daily_event')
+        self.assertEqual(observation['adoption']['target_ids'], [])
+        self.assertEqual(observation['fields']['tenant'], ['new-user'])
+
+    def test_daily_queue_accepts_verified_existing_identity_without_model_targets(self):
+        p = self.observation_proposal()
+        event = dict(self.event, id=self.event['id']+'-new-observation', demand_matches=[], identity_review='resolved',
+                     matched_site_id=p['project']['site_id'], structured_evidence_status='quotes_verified')
+        with patch.object(project_review, 'read_events', return_value=[event]):
+            row = project_review.queue(self.data, self.root)['records'][0]
+            self.assertEqual(row['state'], 'ready_for_review')
+            self.assertEqual(row['target_ids'], [])
+            self.assertEqual(row['site_id'], p['project']['site_id'])
+        event['matched_site_id'] = 'another-campus'
+        event['editorial_event'] = {}
+        with patch.object(project_review, 'read_events', return_value=[event]):
+            self.assertNotEqual(project_review.queue(self.data, self.root)['records'][0]['state'], 'ready_for_review')
+
     def test_native_publication_format_is_parsed_but_false_dates_and_self_receipts_are_rejected(self):
         p=self.observation_proposal()
         event,sha=self.replace_native_text('Updated Oct. 5, 2026. Phase 1 delivers 60 MW of IT load.')

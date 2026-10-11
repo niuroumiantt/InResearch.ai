@@ -97,7 +97,7 @@ class TargetedResearchTests(unittest.TestCase):
         ev['context_sha256'] = '0'*64
         self.assertFalse(registry.supported_adoption(knowledge['statements'][0], knowledge))
 
-    def test_local_energy_interval_passes_existing_site_writer_and_keeps_partial_label(self):
+    def energy_proposal(self):
         from inresearch.workflow import project_review
         project = {'site_id': 'campus', 'name': 'Campus', 'country': 'US', 'region': 'north-america',
                    'location': 'One fixed plot', 'status': 'L8', 'verified_date': '2026-10-10',
@@ -118,12 +118,84 @@ class TargetedResearchTests(unittest.TestCase):
                 'delegation': {'delegate': 'fixture reviewer', 'granted_by': 'fixture owner', 'granted_at': '2026-10-11',
                     'reference': 'test-only delegation', 'scope': 'new_or_supplemental_research'}})
         proposal['assertions'][0].update(metric='electricity_consumption_mwh', quantity=metric)
+        return proposal
+
+    def test_local_energy_interval_passes_existing_site_writer_and_keeps_partial_label(self):
+        from inresearch.workflow import project_review
+        proposal = self.energy_proposal()
+        metric = proposal['project']['electricity_consumption_mwh']
         project_review.apply(self.data, self.data, proposal)
         record = json.loads((self.data/'data/projects.json').read_text())['records'][0]
         self.assertEqual(record['observations'][0]['fields']['electricity_consumption_mwh'], metric)
         public = site_timeline.public_timeline(record)[0]
         self.assertEqual(public['source_reading'][0]['mode'], 'targeted')
         self.assertFalse(public['source_reading'][0]['complete'])
+
+    def object_proposal(self):
+        p = self.energy_proposal()
+        self.source.pop('research_requests')
+        # No target catalogue is required to adopt an object observation.
+        (self.data/'framework/tco_targets.json').unlink()
+        binding = {'version': 1, 'site_id': 'campus', 'fields': p['fields'], 'scope': 'whole_site'}
+        context = excerpts.prepare(self.data, self.data, self.selection, 'campus', object_binding=binding)
+        p.update(source_kind='object_excerpt', target_ids=[], object_binding=binding,
+                 source_version=context['source_version'])
+        return p
+
+    def test_object_observation_adopts_without_demand_and_replays_without_overwrite(self):
+        from inresearch.workflow import project_review
+        p = self.object_proposal()
+        project_review.apply(self.data, self.data, p)
+        before = (self.data/'data/projects.json').read_bytes()
+        record = json.loads(before)['records'][0]
+        observation = record['observations'][0]
+        self.assertEqual(observation['adoption']['target_ids'], [])
+        self.assertEqual(observation['adoption']['object_binding'], p['object_binding'])
+        self.assertEqual(record.get('electricity_consumption_mwh'), None)
+        self.assertEqual(project_review.apply(self.data, self.data, p)['state'], 'already_applied')
+        self.assertEqual((self.data/'data/projects.json').read_bytes(), before)
+        self.assertFalse(observation['adoption']['document_refs'][0]['coverage']['complete'])
+
+    def test_object_binding_cannot_change_site_fields_scope_or_claim_model_support(self):
+        from inresearch.workflow import project_review
+        p = self.object_proposal()
+        before = (self.data/'data/projects.json').read_bytes()
+        for key in ('site_id', 'fields', 'scope', 'target_ids', 'quote', 'missing'):
+            bad = copy.deepcopy(p)
+            if key == 'site_id': bad['object_binding']['site_id'] = 'other'
+            if key == 'fields': bad['object_binding']['fields'] = ['notes']
+            if key == 'scope': bad['object_binding']['scope'] = 'phase:one'
+            if key == 'target_ids': bad['target_ids'] = ['site-grid']
+            if key == 'quote': bad['assertions'][0]['quote'] = 'used 100 GWh'
+            if key == 'missing': bad.pop('object_binding')
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                project_review.apply(self.data, self.data, bad)
+        self.assertEqual((self.data/'data/projects.json').read_bytes(), before)
+
+    def test_strict_history_rejects_foreign_object_binding_or_empty_targets_without_binding(self):
+        from inresearch.workflow import project_review
+        p = self.object_proposal()
+        project_review.apply(self.data, self.data, p)
+        record = json.loads((self.data/'data/projects.json').read_text())['records'][0]
+        site_timeline.check_history(record)
+        for key in ('site_id', 'fields', 'scope', 'missing'):
+            bad = copy.deepcopy(record)
+            binding = bad['observations'][0]['adoption']['object_binding']
+            if key == 'site_id': binding[key] = 'other'
+            if key == 'fields': binding[key] = ['notes']
+            if key == 'scope': binding[key] = 'phase:one'
+            if key == 'missing': bad['observations'][0]['adoption'].pop('object_binding')
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                site_timeline.check_history(bad)
+
+    def test_city_cluster_is_preserved_but_cannot_be_adopted_as_one_physical_campus(self):
+        p = self.object_proposal()
+        path = self.data/'data/projects.json'
+        records = json.loads(path.read_text())
+        records['records'][0]['identity_scope'] = 'cluster'
+        path.write_text(json.dumps(records))
+        with self.assertRaisesRegex(ValueError, 'unique_physical_site'):
+            excerpts.resolve(self.data, self.data, p)
 
 
 class CampusRegisterTests(unittest.TestCase):

@@ -260,6 +260,7 @@ const {mkdirSync}=require('node:fs');
   }]};
   await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:homeProjection}));
   await page.goto(base+'/');await page.locator('.project-change').waitFor();
+  assert.match(await page.locator('#daily-freshness').innerText(),/最近补充.*历史补录不代表今日发生/);
   assert.match(await page.locator('.project-change summary').innerText(),/2027[\s\S]*有依据的区间项目[\s\S]*预测[\s\S]*1–2 GW/);
   await page.locator('.project-change summary').click();
   assert.match(await page.locator('.project-change').innerText(),/来源发表 2026-10/);

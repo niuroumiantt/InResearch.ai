@@ -3488,7 +3488,235 @@
       "aliases": [],
       "capacity_facility_mw": null,
       "status_history": [],
-      "disputed": false
+      "disputed": false,
+      "observations": [
+        {
+          "effective_at": "2019-05-28",
+          "kind": "reported",
+          "scope": "whole_site",
+          "basis": "报道时点的园区计划或状态；披露日仅作为该报道观察时点，不推定真实竣工日。Google、Hamina及Summa旧造纸厂共同确定既有Google Hamina园区，不按城市单独归并。",
+          "schema_version": 2,
+          "id": "3a7fa1cb816c5ae7-e8513b0498dd2949",
+          "recorded_at": "2026-10-11T08:59:33.942915+00:00",
+          "reviewed_at": "2026-10-11T08:59:33.898772+00:00",
+          "source_versions": [
+            {
+              "source_sha256": "4b4497846120ed7fe3c74bf35de67e42f417d66d31a583221707a4284b8ccaea",
+              "published_at": "2019-05-28",
+              "published_at_precision": "day",
+              "published_at_provenance": "reviewed_native_publication_quote",
+              "first_received_at": "2026-10-09T11:00:13.582195+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt",
+              "publication_evidence": {
+                "kind": "original_quote",
+                "locator": "excerpt:page:1",
+                "quote": "May 28, 2019",
+                "basis": "所选原生页的文章发布日期"
+              },
+              "publication_date_parser": "native-date-v1"
+            }
+          ],
+          "fields": {
+            "notes": "2019-05-28 报道：Google计划投资6亿欧元，在Hamina建设第二座数据中心；该条为当时的扩建计划，不证明实际建成或投运。"
+          },
+          "adoption": {
+            "source_kind": "object_excerpt",
+            "source_id": "excerpt:3a7fa1cb816c5ae72b8f73f047678e87c6c0067fc234a172b321e477b1bd8dc5",
+            "review_id": "3a7fa1cb816c5ae7-e8513b0498dd2949",
+            "source_version": "3a7fa1cb816c5ae72b8f73f047678e87c6c0067fc234a172b321e477b1bd8dc5",
+            "review": {
+              "by": "Codex（本会话公开来源复核）",
+              "at": "2026-10-11T08:59:33.898772+00:00",
+              "score": 8,
+              "tier": "A",
+              "authority": "delegated_reviewer",
+              "decision": "adopted",
+              "rationale": "本会话逐条独立阅读对应公开报道，核对公司/园区/地理及未来时态；在Spark复核同一原件字节、页和公开引文，不以提取模型判断代替审核。旧基线/容量/状态不改，只追加明确时点历史记录。",
+              "delegation": {
+                "delegate": "Codex（本会话公开来源复核）",
+                "granted_by": "niuroumiantt",
+                "granted_at": "2026-10-11",
+                "reference": "用户本会话明确要求：先把存量资料里有来源的信息按唯一园区提取、审核并上线，缺失的后补，冲突的标注保留。",
+                "scope": "new_or_supplemental_research"
+              }
+            },
+            "target_ids": [],
+            "assertions": [
+              {
+                "source_sha256": "4b4497846120ed7fe3c74bf35de67e42f417d66d31a583221707a4284b8ccaea",
+                "locator": "excerpt:page:1",
+                "quote": "Google will invest €600 million ($670m) to build a second data center in Hamina, Finland."
+              }
+            ],
+            "document_refs": [
+              {
+                "source_sha256": "4b4497846120ed7fe3c74bf35de67e42f417d66d31a583221707a4284b8ccaea",
+                "source_url": "https://www.datacenterdynamics.com/en/news/google-invest-670m-to-build-second-facility-hamina-finland-/",
+                "source_provenance": {
+                  "batch": "dcd-20261009-1855-increment",
+                  "input_sha256": "4b4497846120ed7fe3c74bf35de67e42f417d66d31a583221707a4284b8ccaea",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "4b4497846120ed7fe3c74bf35de67e42f417d66d31a583221707a4284b8ccaea",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "2d24bc7c6873e3d5deeb0f6513dc53e7216991fb61b9196968d106925d4f3f4e",
+                  "source_id": "dcd-4b4497846120ed7fe3c74bf35de67e42f417d66d31a583221707a4284b8ccaea",
+                  "url": "https://www.datacenterdynamics.com/en/news/google-invest-670m-to-build-second-facility-hamina-finland-/",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [],
+                "coverage": {
+                  "mode": "targeted",
+                  "complete": false,
+                  "pages_total": 1,
+                  "pages_read": 1,
+                  "reviewed_spans": [
+                    {
+                      "page_index": 0,
+                      "locator": "excerpt:page:1",
+                      "text_sha256": "c800875cec5bf3eb69a004846d1de69897e5487200769e52f9b3883f3985cd81",
+                      "characters": 4779
+                    }
+                  ]
+                }
+              }
+            ],
+            "fields": [
+              "notes"
+            ],
+            "scope": "唯一园区历史披露；不计模型验证或IT容量",
+            "object_binding": {
+              "version": 1,
+              "site_id": "fi-kym-hamina",
+              "fields": [
+                "notes"
+              ],
+              "scope": "whole_site"
+            }
+          },
+          "sources": [
+            {
+              "url": "https://www.datacenterdynamics.com/en/news/google-invest-670m-to-build-second-facility-hamina-finland-/",
+              "date": "2019-05-28",
+              "grade": "media",
+              "note": "公开原报道与存量原件逐字定位一致；历史补录"
+            }
+          ]
+        },
+        {
+          "effective_at": "2024-05-21",
+          "kind": "reported",
+          "scope": "whole_site",
+          "basis": "报道时点的园区计划或状态；披露日仅作为该报道观察时点，不推定真实竣工日。Google Hamina、2009年购入的Summa旧址和当地供热网络共同定位既有园区；不是芬兰公司层面的汇总。",
+          "schema_version": 2,
+          "id": "c1e447e599bae783-761c5d8179596a38",
+          "recorded_at": "2026-10-11T08:59:34.087383+00:00",
+          "reviewed_at": "2026-10-11T08:59:34.062029+00:00",
+          "source_versions": [
+            {
+              "source_sha256": "07aa7c6be07848ed3c717666cc057a4ba2766de07e56ee039719414b83f41bb2",
+              "published_at": "2024-05-21",
+              "published_at_precision": "day",
+              "published_at_provenance": "reviewed_native_publication_quote",
+              "first_received_at": "2026-10-09T11:00:13.776375+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt",
+              "publication_evidence": {
+                "kind": "original_quote",
+                "locator": "excerpt:page:1",
+                "quote": "May 21, 2024",
+                "basis": "所选原生页的文章发布日期"
+              },
+              "publication_date_parser": "native-date-v1"
+            }
+          ],
+          "fields": {
+            "notes": "2024-05-21 报道：Hamina余热回收系统当时计划于2025年投运，预计满足当地供热网络80%的需求；本条不证明实际投运。"
+          },
+          "adoption": {
+            "source_kind": "object_excerpt",
+            "source_id": "excerpt:c1e447e599bae78380ff878099cc8241b44287c7d49facf42bfa7a26808659cd",
+            "review_id": "c1e447e599bae783-761c5d8179596a38",
+            "source_version": "c1e447e599bae78380ff878099cc8241b44287c7d49facf42bfa7a26808659cd",
+            "review": {
+              "by": "Codex（本会话公开来源复核）",
+              "at": "2026-10-11T08:59:34.062029+00:00",
+              "score": 8,
+              "tier": "A",
+              "authority": "delegated_reviewer",
+              "decision": "adopted",
+              "rationale": "本会话逐条独立阅读对应公开报道，核对公司/园区/地理及未来时态；在Spark复核同一原件字节、页和公开引文，不以提取模型判断代替审核。旧基线/容量/状态不改，只追加明确时点历史记录。",
+              "delegation": {
+                "delegate": "Codex（本会话公开来源复核）",
+                "granted_by": "niuroumiantt",
+                "granted_at": "2026-10-11",
+                "reference": "用户本会话明确要求：先把存量资料里有来源的信息按唯一园区提取、审核并上线，缺失的后补，冲突的标注保留。",
+                "scope": "new_or_supplemental_research"
+              }
+            },
+            "target_ids": [],
+            "assertions": [
+              {
+                "source_sha256": "07aa7c6be07848ed3c717666cc057a4ba2766de07e56ee039719414b83f41bb2",
+                "locator": "excerpt:page:1",
+                "quote": "will provide 80 percent of the network’s requirements when the heat recovery system comes into operation next year"
+              }
+            ],
+            "document_refs": [
+              {
+                "source_sha256": "07aa7c6be07848ed3c717666cc057a4ba2766de07e56ee039719414b83f41bb2",
+                "source_url": "https://www.datacenterdynamics.com/en/news/google-launches-heat-recovery-project-at-data-center-in-hamina-finland/",
+                "source_provenance": {
+                  "batch": "dcd-20261009-1855-increment",
+                  "input_sha256": "07aa7c6be07848ed3c717666cc057a4ba2766de07e56ee039719414b83f41bb2",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "07aa7c6be07848ed3c717666cc057a4ba2766de07e56ee039719414b83f41bb2",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "2d24bc7c6873e3d5deeb0f6513dc53e7216991fb61b9196968d106925d4f3f4e",
+                  "source_id": "dcd-07aa7c6be07848ed3c717666cc057a4ba2766de07e56ee039719414b83f41bb2",
+                  "url": "https://www.datacenterdynamics.com/en/news/google-launches-heat-recovery-project-at-data-center-in-hamina-finland/",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [],
+                "coverage": {
+                  "mode": "targeted",
+                  "complete": false,
+                  "pages_total": 1,
+                  "pages_read": 1,
+                  "reviewed_spans": [
+                    {
+                      "page_index": 0,
+                      "locator": "excerpt:page:1",
+                      "text_sha256": "03f557e98c8b579db9001896e1d41a3e0c72d61d3be71d11635d7716fb8f0830",
+                      "characters": 5752
+                    }
+                  ]
+                }
+              }
+            ],
+            "fields": [
+              "notes"
+            ],
+            "scope": "唯一园区历史披露；不计模型验证或IT容量",
+            "object_binding": {
+              "version": 1,
+              "site_id": "fi-kym-hamina",
+              "fields": [
+                "notes"
+              ],
+              "scope": "whole_site"
+            }
+          },
+          "sources": [
+            {
+              "url": "https://www.datacenterdynamics.com/en/news/google-launches-heat-recovery-project-at-data-center-in-hamina-finland/",
+              "date": "2024-05-21",
+              "grade": "media",
+              "note": "公开原报道与存量原件逐字定位一致；历史补录"
+            }
+          ]
+        }
+      ]
     },
     {
       "site_id": "ie-d-dublin",
@@ -3744,7 +3972,127 @@
       "status_history": [],
       "disputed": false,
       "province": "Oregon",
-      "city": "Prineville"
+      "city": "Prineville",
+      "observations": [
+        {
+          "effective_at": "2021-03-18",
+          "kind": "reported",
+          "scope": "whole_site",
+          "basis": "报道时点的园区计划或状态；披露日仅作为该报道观察时点，不推定真实竣工日。Facebook/Meta与Prineville既有自建园区、明确第10及11栋扩建对应，未把别的俄勒冈园区并入。",
+          "schema_version": 2,
+          "id": "e01212c9106c4e44-463af8e522bd9bbd",
+          "recorded_at": "2026-10-11T08:59:34.193332+00:00",
+          "reviewed_at": "2026-10-11T08:59:34.166786+00:00",
+          "source_versions": [
+            {
+              "source_sha256": "96ac1b2ca07f729798e0f3bd873256754a788c247df91219bf9713fa6a7aca45",
+              "published_at": "2021-03-18",
+              "published_at_precision": "day",
+              "published_at_provenance": "reviewed_native_publication_quote",
+              "first_received_at": "2026-10-09T11:00:07.693392+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt",
+              "publication_evidence": {
+                "kind": "original_quote",
+                "locator": "excerpt:page:1",
+                "quote": "March 18, 2021",
+                "basis": "所选原生页的文章发布日期"
+              },
+              "publication_date_parser": "native-date-v1"
+            }
+          ],
+          "fields": {
+            "notes": "2021-03-18 报道：Facebook计划在Prineville园区新增两栋各45万平方英尺的数据中心，预计2023年完成；不据此认定实际竣工或投运。"
+          },
+          "adoption": {
+            "source_kind": "object_excerpt",
+            "source_id": "excerpt:e01212c9106c4e442d3459232e8b9804ddbff460375be8bb8727ff10db40bf8b",
+            "review_id": "e01212c9106c4e44-463af8e522bd9bbd",
+            "source_version": "e01212c9106c4e442d3459232e8b9804ddbff460375be8bb8727ff10db40bf8b",
+            "review": {
+              "by": "Codex（本会话公开来源复核）",
+              "at": "2026-10-11T08:59:34.166786+00:00",
+              "score": 8,
+              "tier": "A",
+              "authority": "delegated_reviewer",
+              "decision": "adopted",
+              "rationale": "本会话逐条独立阅读对应公开报道，核对公司/园区/地理及未来时态；在Spark复核同一原件字节、页和公开引文，不以提取模型判断代替审核。旧基线/容量/状态不改，只追加明确时点历史记录。",
+              "delegation": {
+                "delegate": "Codex（本会话公开来源复核）",
+                "granted_by": "niuroumiantt",
+                "granted_at": "2026-10-11",
+                "reference": "用户本会话明确要求：先把存量资料里有来源的信息按唯一园区提取、审核并上线，缺失的后补，冲突的标注保留。",
+                "scope": "new_or_supplemental_research"
+              }
+            },
+            "target_ids": [],
+            "assertions": [
+              {
+                "source_sha256": "96ac1b2ca07f729798e0f3bd873256754a788c247df91219bf9713fa6a7aca45",
+                "locator": "excerpt:page:1",
+                "quote": "two new buildings of 450,000 sq ft (41,800 sq m) each"
+              },
+              {
+                "source_sha256": "96ac1b2ca07f729798e0f3bd873256754a788c247df91219bf9713fa6a7aca45",
+                "locator": "excerpt:page:1",
+                "quote": "Development is due to finish in 2023."
+              }
+            ],
+            "document_refs": [
+              {
+                "source_sha256": "96ac1b2ca07f729798e0f3bd873256754a788c247df91219bf9713fa6a7aca45",
+                "source_url": "https://www.datacenterdynamics.com/en/news/facebook-announces-10th-and-11th-data-centers-prineville-campus-oregon-amid-renewable-energy-fight/",
+                "source_provenance": {
+                  "batch": "dcd-20261009-1855-increment",
+                  "input_sha256": "96ac1b2ca07f729798e0f3bd873256754a788c247df91219bf9713fa6a7aca45",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "96ac1b2ca07f729798e0f3bd873256754a788c247df91219bf9713fa6a7aca45",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "2bda959dda5bc7405e26da5988225e8130d67650c2126017c71ccf7b4c5a3b4a",
+                  "source_id": "dcd-96ac1b2ca07f729798e0f3bd873256754a788c247df91219bf9713fa6a7aca45",
+                  "url": "https://www.datacenterdynamics.com/en/news/facebook-announces-10th-and-11th-data-centers-prineville-campus-oregon-amid-renewable-energy-fight/",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [],
+                "coverage": {
+                  "mode": "targeted",
+                  "complete": false,
+                  "pages_total": 1,
+                  "pages_read": 1,
+                  "reviewed_spans": [
+                    {
+                      "page_index": 0,
+                      "locator": "excerpt:page:1",
+                      "text_sha256": "ee00c77a3866e2e230afe354c81f428aaca688f9fea7e17bc5f0da5cd42435e5",
+                      "characters": 8617
+                    }
+                  ]
+                }
+              }
+            ],
+            "fields": [
+              "notes"
+            ],
+            "scope": "唯一园区历史披露；不计模型验证或IT容量",
+            "object_binding": {
+              "version": 1,
+              "site_id": "us-or-prineville",
+              "fields": [
+                "notes"
+              ],
+              "scope": "whole_site"
+            }
+          },
+          "sources": [
+            {
+              "url": "https://www.datacenterdynamics.com/en/news/facebook-announces-10th-and-11th-data-centers-prineville-campus-oregon-amid-renewable-energy-fight/",
+              "date": "2021-03-18",
+              "grade": "media",
+              "note": "公开原报道与存量原件逐字定位一致；历史补录"
+            }
+          ]
+        }
+      ]
     },
     {
       "site_id": "us-ia-altoona",
@@ -4369,7 +4717,122 @@
       "aliases": [],
       "capacity_facility_mw": null,
       "status_history": [],
-      "disputed": false
+      "disputed": false,
+      "observations": [
+        {
+          "effective_at": "2012-10-29",
+          "kind": "reported",
+          "scope": "whole_site",
+          "basis": "报道时点的园区计划或状态；披露日仅作为该报道观察时点，不推定真实竣工日。Facebook、Lulea以及其美国以外首个数据中心共同对应既有Meta Luleå园区；不以全市投资效应代替园区数据。",
+          "schema_version": 2,
+          "id": "c2a7de3f4ddafb7c-d949349238ed6684",
+          "recorded_at": "2026-10-11T08:59:34.300974+00:00",
+          "reviewed_at": "2026-10-11T08:59:34.272932+00:00",
+          "source_versions": [
+            {
+              "source_sha256": "f1677e4543d98fc631cc920f4e5c4546ffe833e42a5be3f31be59e7f4223fd27",
+              "published_at": "2012-10-29",
+              "published_at_precision": "day",
+              "published_at_provenance": "reviewed_native_publication_quote",
+              "first_received_at": "2026-10-09T11:00:16.253455+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt",
+              "publication_evidence": {
+                "kind": "original_quote",
+                "locator": "excerpt:page:1",
+                "quote": "October 29, 2012",
+                "basis": "所选原生页的文章发布日期"
+              },
+              "publication_date_parser": "native-date-v1"
+            }
+          ],
+          "fields": {
+            "notes": "截至2012-10-29报道，Facebook在Luleå的数据中心已建设约一年，尚未开放运营；仅为该历史时点的记录，不改变现有投运状态。"
+          },
+          "adoption": {
+            "source_kind": "object_excerpt",
+            "source_id": "excerpt:c2a7de3f4ddafb7c95de6feb446f83c75b91383e22eaef697a3cbfa687919567",
+            "review_id": "c2a7de3f4ddafb7c-d949349238ed6684",
+            "source_version": "c2a7de3f4ddafb7c95de6feb446f83c75b91383e22eaef697a3cbfa687919567",
+            "review": {
+              "by": "Codex（本会话公开来源复核）",
+              "at": "2026-10-11T08:59:34.272932+00:00",
+              "score": 8,
+              "tier": "A",
+              "authority": "delegated_reviewer",
+              "decision": "adopted",
+              "rationale": "本会话逐条独立阅读对应公开报道，核对公司/园区/地理及未来时态；在Spark复核同一原件字节、页和公开引文，不以提取模型判断代替审核。旧基线/容量/状态不改，只追加明确时点历史记录。",
+              "delegation": {
+                "delegate": "Codex（本会话公开来源复核）",
+                "granted_by": "niuroumiantt",
+                "granted_at": "2026-10-11",
+                "reference": "用户本会话明确要求：先把存量资料里有来源的信息按唯一园区提取、审核并上线，缺失的后补，冲突的标注保留。",
+                "scope": "new_or_supplemental_research"
+              }
+            },
+            "target_ids": [],
+            "assertions": [
+              {
+                "source_sha256": "f1677e4543d98fc631cc920f4e5c4546ffe833e42a5be3f31be59e7f4223fd27",
+                "locator": "excerpt:page:1",
+                "quote": "After a year of construction, Facebook's Arctic Circle data center has yet to open"
+              }
+            ],
+            "document_refs": [
+              {
+                "source_sha256": "f1677e4543d98fc631cc920f4e5c4546ffe833e42a5be3f31be59e7f4223fd27",
+                "source_url": "https://www.datacenterdynamics.com/en/news/hosting-facebook-has-brought-talent-and-investment-to-lulea/",
+                "source_provenance": {
+                  "batch": "dcd-20261009-1855-increment",
+                  "input_sha256": "f1677e4543d98fc631cc920f4e5c4546ffe833e42a5be3f31be59e7f4223fd27",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "f1677e4543d98fc631cc920f4e5c4546ffe833e42a5be3f31be59e7f4223fd27",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "2d24bc7c6873e3d5deeb0f6513dc53e7216991fb61b9196968d106925d4f3f4e",
+                  "source_id": "dcd-f1677e4543d98fc631cc920f4e5c4546ffe833e42a5be3f31be59e7f4223fd27",
+                  "url": "https://www.datacenterdynamics.com/en/news/hosting-facebook-has-brought-talent-and-investment-to-lulea/",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [],
+                "coverage": {
+                  "mode": "targeted",
+                  "complete": false,
+                  "pages_total": 1,
+                  "pages_read": 1,
+                  "reviewed_spans": [
+                    {
+                      "page_index": 0,
+                      "locator": "excerpt:page:1",
+                      "text_sha256": "0b4aab60eddacf6092fab0e1525245852096f6175b5e84bf794b1df13f3aca7a",
+                      "characters": 3970
+                    }
+                  ]
+                }
+              }
+            ],
+            "fields": [
+              "notes"
+            ],
+            "scope": "唯一园区历史披露；不计模型验证或IT容量",
+            "object_binding": {
+              "version": 1,
+              "site_id": "se-bd-lulea",
+              "fields": [
+                "notes"
+              ],
+              "scope": "whole_site"
+            }
+          },
+          "sources": [
+            {
+              "url": "https://www.datacenterdynamics.com/en/news/hosting-facebook-has-brought-talent-and-investment-to-lulea/",
+              "date": "2012-10-29",
+              "grade": "media",
+              "note": "公开原报道与存量原件逐字定位一致；历史补录"
+            }
+          ]
+        }
+      ]
     },
     {
       "site_id": "ie-mh-clonee",

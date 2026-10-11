@@ -35,6 +35,24 @@ def native_capacity_observation(ident, **fields):
 
 
 class IndustryTests(unittest.TestCase):
+    def test_recently_added_history_is_visible_without_changing_effective_time(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root/'data').mkdir()
+            for name in ('companies', 'prices'):
+                (root/'data'/f'{name}.json').write_text('{"records": []}')
+            old = native_capacity_observation('recent-event', notes='recent event')
+            old['recorded_at'] = '2026-10-11T20:00:00+08:00'
+            recovered = native_capacity_observation('recovered-history', notes='historical report')
+            recovered.update(effective_at='2012-10-29', recorded_at='2026-10-11T13:00:00Z')
+            row = {'site_id': 'campus', 'name': 'Campus', 'country': 'US', 'region': 'north-america',
+                   'status': 'L8', 'observations': [old, recovered]}
+            (root/'data/projects.json').write_text(json.dumps({'records': [row]}))
+            changes = industry.snapshot(root, {'overview': '1'})['tracking']['changes']
+            self.assertEqual([r['id'] for r in changes], ['recovered-history', 'recent-event'])
+            self.assertEqual(changes[0]['effective_at'], '2012-10-29')
+            self.assertEqual(industry.project(row)['notes'], 'recent event')
+
     def test_phases_override_headline_and_facility_never_enters_total(self):
         p = industry.project({'site_id': 'site-one', 'status': 'L8', 'capacity_it_mw': 300,
                               'capacity_facility_mw': 900, 'capacity_it_mw_by_status': {'L8': 100, 'L6': 200}})

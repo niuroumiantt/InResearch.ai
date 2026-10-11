@@ -18,7 +18,7 @@ from inresearch.workflow.research_match import pages as native_pages
 MAX_CONTEXT = 200_000
 
 
-def prepare(root, data, selection, site_id):
+def prepare(root, data, selection, site_id, *, object_binding=None):
     root, data = Path(root), Path(data)
     if (not isinstance(selection, list) or not 1 <= len(selection) <= 8
             or any(not isinstance(r, dict) or set(r) != {'sha256', 'pages'} for r in selection)):
@@ -26,6 +26,12 @@ def prepare(root, data, selection, site_id):
     projects = read_json(root/'data/projects.json')['records']
     if not any(p['site_id'] == site_id and not p.get('duplicate_of') and 'portfolio' not in site_id for p in projects):
         raise ValueError('targeted_review_requires_registered_physical_site')
+    if object_binding is not None:
+        from inresearch.knowledge.site_timeline import check_object_binding
+        check_object_binding(object_binding, site_id=site_id)
+        project = next(p for p in projects if p['site_id'] == site_id)
+        if project.get('identity_scope') in ('cluster', 'portfolio'):
+            raise ValueError('object_excerpt_requires_unique_physical_site')
     texts, page_map, first, refs, urls, requests, seen = {}, {}, {}, [], [], [], set()
     for selected in sorted(selection, key=lambda r: str(r['sha256'])):
         sha, requested = selected['sha256'], selected['pages']
@@ -46,9 +52,13 @@ def prepare(root, data, selection, site_id):
         if h.hexdigest() != sha:
             raise ValueError('targeted_original_hash_changed')
         source = supplied_sources(data, sha).get(sha)
-        if not source or not source.get('source_url') or not source.get('research_requests'):
+        if not source or not source.get('source_url') or not isinstance(source.get('source_provenance'), dict):
+            raise ValueError('received_source_provenance_required')
+        if object_binding is None and not source.get('research_requests'):
             raise ValueError('received_source_and_current_demand_binding_required')
-        bound = resolve_requests(source['research_requests'], root)
+        # A received source can describe a site without having been commissioned
+        # for a model. Do not invent or rewrite the supplier's original request.
+        bound = resolve_requests(source['research_requests'], root) if object_binding is None else []
         requests.extend(bound)
         # Native text preserves page context, including neighbouring qualifications
         # selected by the reviewer. Nothing is silently truncated to fit a prompt.
@@ -71,20 +81,31 @@ def prepare(root, data, selection, site_id):
                                   'pages_read': len(selected_pages), 'reviewed_spans': spans}})
         urls.append(source['source_url'])
         first[sha] = _first_received(data, sha)
-    version = digest({'version': 1, 'site_id': site_id, 'sources': refs})
-    return {'source_id': 'excerpt:'+version, 'source_version': version, 'document_refs': refs,
+    seal = {'version': 1, 'site_id': site_id, 'sources': refs}
+    if object_binding is not None:
+        seal['object_binding'] = object_binding
+    version = digest(seal)
+    context = {'source_id': 'excerpt:'+version, 'source_version': version, 'document_refs': refs,
             'urls': sorted(set(urls)), 'source_texts': texts, 'source_pages': page_map,
             'first_received': first, 'publication_metadata': {}, 'matched_site_id': site_id,
             'bound_target_ids': sorted({r['target_id'] for r in requests}),
             'binding_origin': 'reviewed_native_pages_current_demand_not_full_reading'}
+    if object_binding is not None:
+        context.update(object_binding=object_binding, binding_origin='reviewed_physical_object_not_model_demand')
+    return context
 
 
 def resolve(root, data, proposal):
-    context = prepare(root, data, proposal.get('targeted_sources'), proposal['project']['site_id'])
+    binding = proposal.get('object_binding') if proposal.get('source_kind') == 'object_excerpt' else None
+    if proposal.get('source_kind') == 'object_excerpt' and binding is None:
+        raise ValueError('object_binding_required')
+    context = prepare(root, data, proposal.get('targeted_sources'), proposal['project']['site_id'], object_binding=binding)
     if context['source_version'] != proposal.get('source_version'):
         raise ValueError('targeted_source_or_binding_changed_since_review')
     targets = proposal.get('target_ids')
-    if not isinstance(targets, list) or not targets or not set(targets) <= set(context['bound_target_ids']):
+    if binding is not None and targets != []:
+        raise ValueError('object_excerpt_does_not_claim_model_support')
+    if binding is None and (not isinstance(targets, list) or not targets or not set(targets) <= set(context['bound_target_ids'])):
         raise ValueError('targeted_review_outside_bound_demand')
     if not proposal.get('assertions'):
         raise ValueError('targeted_source_assertions_required')
@@ -104,10 +125,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--selection', required=True, type=Path, help='JSON [{sha256,pages:[1,...]}]')
     ap.add_argument('--site', required=True)
+    ap.add_argument('--fields', nargs='+', help='Object-first observation fields; no model demand prerequisite')
+    ap.add_argument('--scope', default='whole_site', help='whole_site or phase:<id>')
     ap.add_argument('--data', type=Path, default=data_root())
     ap.add_argument('--output', required=True, type=Path, help='Private local review context; never commit source text')
     args = ap.parse_args(argv)
-    context = prepare(project_root(), args.data, read_json(args.selection), args.site)
+    binding = {'version': 1, 'site_id': args.site, 'fields': sorted(args.fields), 'scope': args.scope} if args.fields else None
+    context = prepare(project_root(), args.data, read_json(args.selection), args.site, object_binding=binding)
     from inresearch.storage.files import write_json
     write_json(args.output, context)
     print(json.dumps({'source_id': context['source_id'], 'sources': len(context['document_refs']),
