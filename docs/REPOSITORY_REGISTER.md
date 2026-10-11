@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2520。
+在册文件：2544。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,13 +16,13 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 407 |
-| 运行代码 | 369 |
+| 运行代码 | 372 |
 | 现行规范 | 16 |
-| 项目配置 | 761 |
+| 项目配置 | 777 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 191 |
+| 配套说明 | 196 |
 | 测试 | 195 |
 
 ## 在册记录集合
@@ -1525,6 +1525,8 @@
 | `docs/research/2026-10-08/solidigm/revision-06-qa-summary.json` | html_sizes | 2 |
 | `docs/research/2026-10-08/solidigm/scene-photo-sources.json` | items | 2 |
 | `docs/research/2026-10-08/solidigm/sources.json` | items | 103 |
+| `docs/research/2026-10-11/data-centers/delivery-status.json` | limits | 4 |
+| `docs/research/2026-10-11/data-centers/sources.json` | records | 312 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -2851,6 +2853,30 @@
 | `docs/research/2026-10-08/solidigm/sources.json` | 项目配置 |
 | [docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 配套说明 |
 | [docs/research/2026-10-09/us-datacenter-power/README.md](research/2026-10-09/us-datacenter-power/README.md) | 配套说明 |
+| [docs/research/2026-10-11/data-centers/README.md](research/2026-10-11/data-centers/README.md) | 配套说明 |
+| [docs/research/2026-10-11/data-centers/appendices/china.md](research/2026-10-11/data-centers/appendices/china.md) | 配套说明 |
+| [docs/research/2026-10-11/data-centers/appendices/southeast-asia.md](research/2026-10-11/data-centers/appendices/southeast-asia.md) | 配套说明 |
+| [docs/research/2026-10-11/data-centers/appendices/us.md](research/2026-10-11/data-centers/appendices/us.md) | 配套说明 |
+| [docs/research/2026-10-11/data-centers/article.md](research/2026-10-11/data-centers/article.md) | 配套说明 |
+| `docs/research/2026-10-11/data-centers/chart-data.json` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/delivery-status.json` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/cover.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-01.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-02.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-03.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-04.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-05.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-06.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-07.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-08.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-09.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-10.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/figures/figure-11.svg` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/full.html` | 运行代码 |
+| `docs/research/2026-10-11/data-centers/lite.html` | 运行代码 |
+| `docs/research/2026-10-11/data-centers/research.txt` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/sources.json` | 项目配置 |
+| `docs/research/2026-10-11/data-centers/wechat.html` | 运行代码 |
 | [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
 | `docs/research/datacenter-economics/model.py` | 运行代码 |
 | `docs/research/datacenter-economics/results.json` | 项目配置 |

@@ -1,0 +1,115 @@
+{
+  "cutoff": "2026-10-11",
+  "global_installed_model": {
+    "source": "IEA Key Questions on Energy and AI 2026 table A.2",
+    "year": 2025,
+    "unit": "GW",
+    "global": {
+      "it": 82,
+      "facility_total": 114
+    },
+    "regions": [
+      {
+        "name": "美国",
+        "it": 39,
+        "facility_total": 52
+      },
+      {
+        "name": "中国含香港",
+        "it": 19,
+        "facility_total": 28
+      },
+      {
+        "name": "其他地区",
+        "it": 24,
+        "facility_total": 34,
+        "derived": "全球减美国与中国"
+      }
+    ]
+  },
+  "cw_h1_2026_pipeline": {
+    "unit": "GW",
+    "scope": "三大区域跟踪样本；覆盖、定义与原始精度有差异，不与IEA相加",
+    "rows": [
+      {
+        "region": "美洲",
+        "operational": 50.3,
+        "construction": 37.7,
+        "planned": 285
+      },
+      {
+        "region": "亚太",
+        "operational": 15.135,
+        "construction": 4.764,
+        "planned": 21.691
+      },
+      {
+        "region": "EMEA",
+        "operational_lower_bound": 12.1,
+        "construction": 3.8,
+        "planned": 14.5
+      }
+    ],
+    "aggregate_rounded": {
+      "operational_approx": 77.5,
+      "construction_approx": 46.3,
+      "planned_approx": 321.2
+    }
+  },
+  "sea_six_markets": {
+    "source": "C&W APAC H1 2026 interactive capacity map",
+    "unit": "MW",
+    "rows": [
+      {
+        "country": "马来西亚",
+        "operational": 1318,
+        "construction": 1039,
+        "planned": 4399
+      },
+      {
+        "country": "新加坡",
+        "operational": 1068,
+        "construction": 25,
+        "planned": 207
+      },
+      {
+        "country": "印度尼西亚",
+        "operational": 468,
+        "construction": 434,
+        "planned": 1523
+      },
+      {
+        "country": "泰国",
+        "operational": 139,
+        "construction": 859,
+        "planned": 1227
+      },
+      {
+        "country": "菲律宾",
+        "operational": 107,
+        "construction": 5,
+        "planned": 102
+      },
+      {
+        "country": "越南",
+        "operational": 73,
+        "construction": 19,
+        "planned": 100
+      }
+    ],
+    "total": {
+      "operational": 3173,
+      "construction": 2381,
+      "planned": 7558
+    },
+    "scope": "六国市场跟踪，不是全东南亚普查"
+  },
+  "project_record_counts": {
+    "us": 47,
+    "southeast_asia": 69,
+    "china_mainland": 51,
+    "hong_kong": 1,
+    "total": 168,
+    "note": "园区、分期与部分设施记录，不是唯一数据中心栋数。"
+  }
+}

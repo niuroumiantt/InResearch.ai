@@ -1,0 +1,2715 @@
+## 数字口径与资料来源
+
+资料截止日为2026年10月11日。年度存量采用2025年数据，市场管线主要采用2026年上半年快照，具体项目以最近可核验公告为准；不同日期没有被重写成同一天。IT设备功率、IT设计承载容量、设施输入、并网能力、发电容量及年度耗电分别记录。机构原文未界定角度的数字保留原始名称，不估算缺失值。
+
+| 地域与来源 | 时间和范围 | 已安装或运营 | 在建／规划或宣布 |
+|---|---|---|---|
+| 全球，IEA | 2025年年度在役设备模型 | IT 82GW；设施总容量114GW | 该表不提供项目管线 |
+| 美国，IEA | 2025年年度设备模型 | IT 39GW；设施52GW | 不与项目市场统计混算 |
+| 全球三大区域，Cushman & Wakefield | 2026H1区域跟踪报告，合计取一位小数 | 运营约77.5GW，样本与原始精度有差异 | 在建约46.3GW；规划约321.2GW |
+| 美国八个主要市场，CBRE | 2026H1批发托管市场 | 10.903GW | 在建7.4811GW |
+| 东南亚六国，Cushman & Wakefield | 2026H1六个市场 | 3.173GW | 在建2.381GW；规划7.558GW |
+| 中国含香港，IEA | 2025年年度设备模型 | IT 19GW；设施28GW | 该表不提供项目管线 |
+| 中国，Rystad | 2026年4月研究，IT／设施边界未完全说明 | 2025年底估计32GW | 2026年底40GW为预测；宣布管线28GW，预计2030年前上线 |
+
+表内是不同问题的答案，不能跨行相加。中国商业市场的Cushman & Wakefield样本、各企业组合、地方聚合与全国模型另见中国附录。
+
+主要宏观来源：
+
+- [IEA《Key Questions on Energy and AI》，2026年4月](https://www.iea.org/reports/key-questions-on-energy-and-ai)。容量表见PDF附表A.2、印刷页109；设备和总容量定义及方法见相关附录。
+- [IEA报告PDF](https://iea.blob.core.windows.net/assets/3179f7f8-01f6-4dd6-bffa-c9f7b73f1dc9/KeyQuestionsonEnergyandAI.pdf)。
+- [Cushman & Wakefield美洲H1 2026](https://www.cushmanwakefield.com/en/insights/americas-data-center-update)、[亚太H1 2026](https://www.cushmanwakefield.com/en/singapore/insights/apac-data-centre-update)、[EMEA H1 2026](https://www.cushmanwakefield.com/en/insights/emea-data-centre-update)。
+- [Cushman & Wakefield亚太市场容量地图](https://view.ceros.com/cushmanwakefield-apac/apac-data-centres-group-interactive-map-2)。东南亚六国及中国商业市场容量保留市场跟踪范围。
+- [CBRE North America Data Center Trends H1 2026](https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026)。
+- [JLL North America Year-End 2025](https://www.jll.com/en-us/newsroom/jll-north-america-data-center-report-year-end-2025)。地域为北美，不能直接标成美国全国。
+- [Wood Mackenzie关于2026Q1美国宣布管线的研究](https://www.woodmac.com/ja/press-releases/us-data-centre-developers-shift-focus-to-existing-pipelines-as-new-capacity-additions-slow-in-q1-2026/)。宣布331GW，不等于331GW已进入施工。
+- [Rystad中国容量研究，2026年4月29日](https://www.rystadenergy.com/news/chinas-data-center-capacity-doubling-of-power)。
+- [工信部2026年9月23日材料](https://wap.miit.gov.cn/jgsj/jns/nyjy/art/2026/art_911d6306df9e4644a55fffa4a4851eaa.html)、[国家数据局标准机架监测方法](https://www.nda.gov.cn/sjj/ywpd/szkjyjcss/0608/ff808081-96b465bf-0197-4f0dae39-0700.pdf)。
+- [国家发改委关于八枢纽与十集群的说明](https://www.ndrc.gov.cn/xxgk/jd/jd/202202/t20220217_1315795_ext.html)。
+- 地图底图采用[Natural Earth GeoJSON](https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson)，按经纬度近似投影绘制；项目点示意城市或区域，不提供机房级坐标。
+
+逐项目的位置、容量角度、开发与施工、运营、实名客户、分期状态和来源日期，保存在三份配套台账中。未公开的地址或客户明确留空；公司办公地址、签约地址与推测客户不作为项目事实。附录保留不同来源冲突及早期时间表，不把交付目标自动升级为投产。
+
+## 三个区域的项目附录
+
+- [美国：47条项目及设施记录](https://chatgpt.com/space/page_533930fbd5d48191a2011f50dac719fe)
+- [东南亚：69条项目及设施记录，另有缅甸与东帝汶线索](https://chatgpt.com/space/page_8276f7f729e88191aed4d3fa34df7452)
+- [中国：52条记录，其中内地51条、香港1条](https://chatgpt.com/space/page_8ec31189e8388191b28d57c14a217adc)
+
+本文及附录记录公开研究证据和作者分析。研究覆盖、资料阅读、正式采用和网站发布分别计量。
+
+====================
+
+# 美国数据中心容量与项目证据台账 2026年10月
+
+研究截止日：2026年10月11日。本页为长文的美国研究底稿，包含4组宏观证据、47条主要园区或项目记录，以及8段可用于正文的案例。部分记录涵盖同一开发体系下的多个未拆分园区，因此47条不是47栋建筑或美国设施总数。
+
+## 如何阅读这些GW
+
+IT容量指服务器与网络设备可使用的关键负荷；设施输入还包括冷却、照明、配电损耗等；电厂装机、储能功率、采购合同与并网许可则是供电条件。园区全建规模、已签租约、变电站通电、机房Ready for Service和服务器实际运行也是不同阶段。本台账保留原始口径，不用通用PUE强行换算，不把目标交付日期视为已经完成。
+
+## 美国宏观容量证据
+
+| 证据与日期 | 已有或在用 | 在建或开发 | 适用边界 |
+| --- | ---: | ---: | --- |
+| CBRE 2026H1；2026年8月27日发布 | 10.903GW供给库存 | 7.4811GW在建 | 美国八大主要批发及托管市场，覆盖有限 |
+| JLL 2025年末；2026年2月17日发布 | 39GW active capacity | 35GW construction pipeline | 扩大覆盖后的北美，含自建hyperscale及加拿大 |
+| Wood Mackenzie 2026Q2报告；2026年7月30日发布 | 不据本报告判定全国既有容量 | 331GW累计已披露项目管线，约四成积极开发 | 广义项目披露，包含不同成熟阶段；不是331GW纯在建或确定新增 |
+| S&P Global 451 Research；2026年8月7日回顾2025 | 64.4GW获供电力规模 | 2030年183GW为预测 | 设施电力口径，不能与IT库存直接比较 |
+
+没有一项上述公开数字，同时给出截至2026年10月11日全美国、同一IT口径、互斥的已投运／在建／未开工三栏。长文宜以各自范围回答，不能把这几行相加或画成同一堆叠柱。
+
+CBRE的八大主要市场为Atlanta、Chicago、Dallas–Fort Worth、Hillsboro、New York Tri-State、Northern Virginia、Phoenix与Silicon Valley。Northern Virginia仍是最大库存市场：4.4965GW已有、2.4202GW在建。Atlanta在建达到2.882GW，首次超过Northern Virginia。这个比较描述批发主要市场，不涵盖全部新兴AI县域项目。
+
+Wood Mackenzie还记录得州规划近100GW，以及大型用电负荷195GW已签施工或供电协议、107GW处于深入讨论。后两项是公用事业大型负荷视角，不能假定全是数据中心，也不与331GW项目管线相加。积极开发不等于已开工。此前季度数据已因披露滞后修订，不宜用旧发布数拼接增长曲线。
+
+### 宏观来源
+
+1. [CBRE North America Data Center Trends H1 2026](https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026)，2026年8月27日。
+
+2. [JLL North America Data Center Report Year End 2025 新闻稿](https://www.jll.com/en-us/newsroom/jll-north-america-data-center-report-year-end-2025)，页头2026年2月17日；正文dateline存在2025误植，数据对象为2025年末。
+
+3. [Wood Mackenzie US Data Centre Developers Shift Focus to Existing Pipelines](https://www.woodmac.com/ja/press-releases/us-data-centre-developers-shift-focus-to-existing-pipelines-as-new-capacity-additions-slow-in-q1-2026/)，2026年7月30日。
+
+4. [S&P Global Data centers AI boom spurs new natural gas power plans in the US Southeast](https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/080726-data-centers-ai-boom-spurs-new-natural-gas-power-plans-in-the-us-southeast)，2026年8月7日。
+
+5. [S&P Global旧版供电口径说明](https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/101425-data-center-grid-power-demand-to-rise-22-in-2025-nearly-triple-by-2030)，2025年10月14日，旧方法说明含冷却等设施负荷及crypto，旧预测数已被后续更新，不作为当前数字。
+
+## 主要项目台账
+
+地点精度按门牌、街道、园区、城市、县注明；未公开的地址不推断。建设主体、设施运营主体、算力承租方和最终使用者分别记录。租户匿名时保持匿名。每条证据日期只代表相应公告或快照，项目可能仍在后续分期。
+
+### Stargate与OpenAI工程体系
+
+#### 1 Stargate Abilene
+
+**地点**：美国 得州 Taylor County Abilene Lancium Clean Campus；园区级。
+
+**容量与口径**：1.2 GW 园区总电力设计值，非已投运 IT 值。
+
+**建设与分期状态**：首期2025-09已运行；Oracle披露截至2026-09交付总容量75%，其余随后季度交付；未给该比例对应的IT MW。
+
+**建设开发主体**：Crusoe；Lancium供地及能源；Blue Owl与Primary Digital Infrastructure参与园区融资。**设施或算力运营主体**：Oracle OCI。**已披露使用主体**：OpenAI。
+
+**重复与边界**：Stargate总承诺的子项目；75%不得与1.2GW直接拼成确定IT容量。
+
+**证据日期**：2025-09-30；2026-09更新。[来源1](https://www.crusoe.ai/resources/newsroom/crusoe-announces-flagship-abilene-data-center-is-live)；[来源2](https://www.oracle.com/data-centers/)
+
+#### 2 Crusoe Microsoft Abilene
+
+**地点**：美国 得州 Taylor County Abilene；毗邻Stargate Abilene的独立园区。
+
+**容量与口径**：0.672 GW critical IT（2×336 MW）；0.9 GW为专用电厂/园区供电。
+
+**建设与分期状态**：2026-03-27宣布开发；首栋目标2027年中通电，不能列作既有。
+
+**建设开发主体**：Crusoe。**设施或算力运营主体**：Crusoe提供基础设施；Microsoft为承租方。**已披露使用主体**：Microsoft；下游模型客户未逐站披露。
+
+**重复与边界**：与Stargate Abilene邻接但使用方不同；2.1GW是两园区总电力投影，不另立可加总项目。
+
+**证据日期**：2026-03-27。[来源1](https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure)
+
+#### 3 Stargate Frontier
+
+**地点**：美国 得州 Shackelford County；县级，Vantage官网未公布门牌。
+
+**容量与口径**：1.4 GW GPU compute园区规划；10栋。
+
+**建设与分期状态**：在建；2025公告首交付目标2H26，Oracle最新页面改为1H27客户交付。
+
+**建设开发主体**：Vantage Data Centers。**设施或算力运营主体**：Vantage设施；Oracle OCI算力。**已披露使用主体**：OpenAI。
+
+**重复与边界**：Oracle/OpenAI 4.5GW扩建及Stargate总承诺子项。
+
+**证据日期**：2025-08-19；2026-09施工图及时间更新。[来源1](https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/)；[来源2](https://www.oracle.com/data-centers/)
+
+#### 4 Stargate Lighthouse
+
+**地点**：美国 威斯康星州 Port Washington Ozaukee County；城市级。
+
+**容量与口径**：0.902GW园区数据中心容量、4栋；WEC预计至2030年1.3GW电力需求，两个角度均保留。
+
+**建设与分期状态**：2025-12开始建设；Oracle客户交付目标2H27，Vantage园区完成目标2028。
+
+**建设开发主体**：Vantage Data Centers。**设施或算力运营主体**：Vantage设施；Oracle OCI算力。**已披露使用主体**：OpenAI。
+
+**重复与边界**：Oracle/OpenAI扩建子项；0.902GW不得再与WEC1.3GW负荷相加。
+
+**证据日期**：运营商网页2026-10-11查阅；Oracle2026-08施工图。[来源1](https://vantage-dc.com/data-center-locations/north-america/port-washington-wisconsin)；[来源2](https://www.oracle.com/data-centers/)；[来源3](https://s22.q4cdn.com/994559668/files/doc_presentations/2026/Feb/06/02-2026-February-Final.pdf)
+
+#### 5 Stargate Project Jupiter
+
+**地点**：美国 新墨西哥州 Doña Ana County Santa Teresa；园区级。
+
+**容量与口径**：Oracle披露配套Bloom燃料电池最高2.45 GW；此为装机发电，不等于IT容量；园区IT总量本页不代填。
+
+**建设与分期状态**：数据中心在建；配套微网仍涉及许可；Oracle网站目标1H27客户交付，未来日期有执行风险。
+
+**建设开发主体**：STACK Infrastructure与BorderPlex Digital Assets；微网为邻接独立项目。**设施或算力运营主体**：Oracle为数据中心租户/运营商；微网运营主体另列。**已披露使用主体**：OpenAI（Stargate站点）。
+
+**重复与边界**：Bloom整体2.8GW供应框架与本项目2.45GW不能叠加；电厂和机房须分开。
+
+**证据日期**：2026-04-27；2026-09-14。[来源1](https://www.oracle.com/news/announcement/oracle-borderplex-and-bloom-energy-to-power-project-jupiter-with-fuel-cell-technology-2026-04-27/)；[来源2](https://www.oracle.com/news/announcement/project-jupiter-statement-on-construction-permitting-2026-09-14/)
+
+#### 6 Stargate The Barn
+
+**地点**：美国 密歇根州 Washtenaw County Saline Township；250英亩园区级。
+
+**容量与口径**：1 GW数据中心园区；原始公告为超过1GW，2026开工公告以1GW描述。
+
+**建设与分期状态**：2026-06-01庆祝开工；Oracle目标2H27客户交付。
+
+**建设开发主体**：Related Digital；Blackstone融资；Walbridge承建。**设施或算力运营主体**：Oracle OCI。**已披露使用主体**：OpenAI。
+
+**重复与边界**：2025-10宣布后加入Oracle/OpenAI扩建，不能把原7GW与新增单站简单累加。
+
+**证据日期**：2026-06-01。[来源1](https://openai.com/index/stargate-michigan-data-center/)；[来源2](https://www.related.com/press-releases/2026-06-01/related-digital-blackstone-oracle-openai-walbridge-and-governor-whitmer)
+
+#### 7 Stargate Milam County
+
+**地点**：美国 得州 Milam County；县级，近Burlington为地方记录称谓。
+
+**容量与口径**：1.2 GW数据中心规划；官网未明确全部为IT还是设施输入。
+
+**建设与分期状态**：2026-01-09明确由SB Energy建设运营；未见本次证据确认全园区已交付。
+
+**建设开发主体**：SB Energy；OpenAI与SoftBank投资SB Energy。**设施或算力运营主体**：SB Energy。**已披露使用主体**：OpenAI。
+
+**重复与边界**：与Lordstown合计1.5GW是2025承诺；本项1.2GW已包括其中。
+
+**证据日期**：2026-01-09。[来源1](https://openai.com/index/stargate-sb-energy-partnership/)
+
+#### 8 Stargate Lordstown
+
+**地点**：美国 俄亥俄州 Trumbull County Lordstown；原汽车厂区域，城市级。
+
+**容量与口径**：官方单站MW未单独披露；不将1.5−1.2=0.3GW推算列为公司事实。
+
+**建设与分期状态**：2025-09-23官方已开工；原称2026运行，未用过期目标认定当前投运。
+
+**建设开发主体**：SoftBank与OpenAI。**设施或算力运营主体**：SoftBank相关主体；单站运营法人与完整分工未披露。**已披露使用主体**：OpenAI。
+
+**重复与边界**：与Milam为同一1.5GW两站承诺。
+
+**证据日期**：2025-09-23。[来源1](https://openai.com/index/five-new-stargate-sites/)
+
+#### 9 OpenAI Project Camellia
+
+**地点**：美国 佐治亚州 Effingham County Savannah Gateway Industrial Hub；工业园级。
+
+**容量与口径**：3.2 GW Georgia Power合同供电；IT设计值未披露。
+
+**建设与分期状态**：开发早期，设计、融资、运营模式尚待完成；供电拟2028–2032分期。
+
+**建设开发主体**：OpenAI设计开发；具体承建与融资伙伴尚未确定。**设施或算力运营主体**：尚待确定。**已披露使用主体**：OpenAI。
+
+**重复与边界**：勿将电力合同额写为已投运算力。
+
+**证据日期**：2026-07-22。[来源1](https://openai.com/index/building-ai-infrastructure-with-the-effingham-county-community/)
+
+### 平台自建AI设施
+
+#### 10 Meta Hyperion
+
+**地点**：美国 路易斯安那州 Richland Parish；近Holly Ridge/Rayville，堂区级。
+
+**容量与口径**：5GW compute capacity为2026扩展后的远期目标；Entergy规划5.2GW新增燃气发电配套，尚待监管批准。
+
+**建设与分期状态**：2024-12开工；2026-07公告扩建，仍跨多年建设；5GW非既有。
+
+**建设开发主体**：Meta与Blue Owl管理基金合资（20%/80%）；Meta管理建设。**设施或算力运营主体**：Meta管理设施并租用全部园区。**已披露使用主体**：Meta。
+
+**重复与边界**：Entergy5.2GW新燃气发电为能源配套，不追加到5GW机房容量。
+
+**证据日期**：2025-10-21；2026-07-13。[来源1](https://about.fb.com/news/2026/07/teachers-local-businesses-win-as-meta-expands-louisiana-data-center/)；[来源2](https://about.fb.com/news/2025/10/meta-blue-owl-capital-develop-hyperion-data-center/)；[来源3](https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/080726-data-centers-ai-boom-spurs-new-natural-gas-power-plans-in-the-us-southeast)
+
+#### 11 Meta Prometheus
+
+**地点**：美国 俄亥俄州 New Albany International Business Park；城市/园区级。
+
+**容量与口径**：1 GW AI集群目标，横跨多栋数据中心。
+
+**建设与分期状态**：2025-09工程公告称下一代集群，2026-01确认所在地；本轮未用第三方估计把1GW全列投运。
+
+**建设开发主体**：Meta；具体建筑承包分包未在所引公告列全。**设施或算力运营主体**：Meta。**已披露使用主体**：Meta。
+
+**重复与边界**：6.6GW核能协议涵盖现有/未来电源及多个地点，不是Prometheus容量。
+
+**证据日期**：2025-09-29；2026-01-09。[来源1](https://engineering.fb.com/2025/09/29/data-infrastructure/metas-infrastructure-evolution-and-the-advent-of-ai/)；[来源2](https://about.fb.com/news/2026/01/meta-nuclear-energy-projects-power-american-ai-leadership/)
+
+#### 12 AWS Project Rainier Indiana
+
+**地点**：美国 印第安纳州 St Joseph County New Carlisle；园区级；Rainier另跨多站。
+
+**容量与口径**：官方可确认训练集群已运行；2026可持续性材料称Indiana园区2.2GW，但非全园区已投运证明。
+
+**建设与分期状态**：2025-10-29 Rainier训练集群正式运行；保留集群与园区建设分期区别。
+
+**建设开发主体**：Amazon AWS。**设施或算力运营主体**：AWS。**已披露使用主体**：Anthropic训练与部署Claude。
+
+**重复与边界**：Rainier跨站算力不得全部定位New Carlisle；后续北Indiana2.4GW扩建不贸然加总。
+
+**证据日期**：2025-10-29；2026-06-12。[来源1](https://www.aboutamazon.com/news/aws/aws-project-rainier-ai-trainium-chips-compute-cluster)；[来源2](https://preview.prod.sustainability.aboutamazon.com/stories/inside-amazons-approach-to-data-center-sustainability)
+
+#### 13 Microsoft Fairwater
+
+**地点**：美国 威斯康星州 Racine County Mount Pleasant；315英亩园区级。
+
+**容量与口径**：微软所引公告不披露可核验GW；3栋、约120万平方英尺。
+
+**建设与分期状态**：2026-06-23宣布首个设施完成建设，Fairwater fully operational。
+
+**建设开发主体**：Microsoft；承建方未在本次核心公告逐一披露。**设施或算力运营主体**：Microsoft Azure。**已披露使用主体**：Microsoft；OpenAI2026社区公告将Mount Pleasant纳入其AI园区合作，具体全部下游租用量未披露。
+
+**重复与边界**：WEC I-94 corridor2.6GW负荷预测跨园区，不能填作Fairwater单站IT。
+
+**证据日期**：2026-06-23。[来源1](https://news.microsoft.com/source/2026/06/23/microsoft-completes-construction-on-first-datacenter-facility-in-mount-pleasant-wisconsin/)；[来源2](https://openai.com/index/stargate-community/)
+
+#### 14 SpaceXAI Colossus I
+
+**地点**：美国 田纳西州 Memphis South Memphis Lowry Road；公开街道级。
+
+**容量与口径**：官方本页不公布已投运IT MW；不以GPU数量反推确定MW。
+
+**建设与分期状态**：已运行的Grok训练设施；2024启用后持续扩建。
+
+**建设开发主体**：xAI/SpaceXAI。**设施或算力运营主体**：SpaceXAI。**已披露使用主体**：SpaceXAI Grok。
+
+**重复与边界**：公司Memphis地区近2GW扩张目标不能拆成三个各2GW项目。
+
+**证据日期**：官方运营信息页2026-10-11查阅；SpaceX2026-06招股资料。[来源1](https://x.ai/memphis/info)；[来源2](https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf)
+
+#### 15 SpaceXAI Colossus II Whitehaven
+
+**地点**：美国 田纳西州 Memphis Whitehaven Tulane Road；公开街道级。
+
+**容量与口径**：单站IT MW未在所引一手资料披露。
+
+**建设与分期状态**：SpaceX招股材料确认Colossus II场址；对岸Southaven能源基地正在供电和扩建。
+
+**建设开发主体**：xAI/SpaceXAI。**设施或算力运营主体**：SpaceXAI。**已披露使用主体**：SpaceXAI Grok。
+
+**重复与边界**：1.2GW永久燃气电厂位于Mississippi，并非该Tennessee机房IT。
+
+**证据日期**：2026-06-05；2026-07-30。[来源1](https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf)；[来源2](https://x.ai/memphis/updates)
+
+#### 16 SpaceXAI MACROHARDRR
+
+**地点**：美国 密西西比州 DeSoto County Southaven 2400 Stateline Road；公开门牌级；电厂另在2875 Stanton Road。
+
+**容量与口径**：单站IT MW未公开；Southaven永久电厂1.2GW装机不作机房容量。
+
+**建设与分期状态**：2026-01官方投资公告原拟2026-02运行；后续资料不足以认定全部规划投运。
+
+**建设开发主体**：xAI/SpaceXAI；电厂相关实体MZX Tech。**设施或算力运营主体**：SpaceXAI。**已披露使用主体**：SpaceXAI。
+
+**重复与边界**：与SpaceXAI Colossus II Whitehaven为跨州AI系统相关场址；临时及永久电源不得重算IT。
+
+**证据日期**：2026-01-08；城市2026-01-07；能源更新2026-07-30。[来源1](https://mississippi.org/news/tech-leader-xai-investing-more-than-20-billion-in-southaven/)；[来源2](https://www.southaven.org/Blog.aspx?IID=227)；[来源3](https://mississippitoday.org/2025/12/31/elon-musk-mississippi-data-center-southaven-memphis/)；[来源4](https://x.ai/memphis/updates)
+
+### Google与AWS区域扩张
+
+#### 17 Google Project Tembo
+
+**地点**：美国 怀俄明州 Laramie County Cheyenne以南Switchgrass Industrial Park；园区级。
+
+**容量与口径**：旧版项目1.8GW电力需求；Black Hills新版2.7GW resource mix包括reserve margin，非2.7GW IT。
+
+**建设与分期状态**：2026-09-30签供电协议；2027年底开始供能、2030达峰值负荷为计划。
+
+**建设开发主体**：Google；Tallgrass负责Cheyenne Power Hub；此前Crusoe退出/暂停。**设施或算力运营主体**：Google；电力由Black Hills及第三方资源。**已披露使用主体**：Google。
+
+**重复与边界**：曾称Project Jade的同一开发不得各算一次；10GW旧扩展潜力不作确定建设。
+
+**证据日期**：2026-10-06。[来源1](https://ir.blackhillscorp.com/news-releases/news-release-details/black-hills-corp-executes-definitive-agreements-serve-googles)；[来源2](https://www.laramiecountywy.gov/Public-Notices/Project-Tembo-Data-Center)
+
+#### 18 Google Armstrong County
+
+**地点**：美国 得州 Armstrong County；县级。
+
+**容量与口径**：单站MW未披露；400亿美元为全得州投资。
+
+**建设与分期状态**：2025-11-14宣布新园区；Google地点页列为开发中，未确认全站投运。
+
+**建设开发主体**：Google。**设施或算力运营主体**：Google。**已披露使用主体**：Google/Google Cloud；终端模型客户未逐站披露。
+
+**重复与边界**：不得将全州投资按每园区重复计。
+
+**证据日期**：2025-11-14；地点页2026-10-11查阅。[来源1](https://blog.google/company-news/inside-google/company-announcements/google-american-innovation-texas/)；[来源2](https://datacenters.google/locations/texas/)
+
+#### 19 Google Haskell County两处园区
+
+**地点**：美国 得州 Haskell County；县级，两站未分别披露门牌。
+
+**容量与口径**：两站各自MW未披露。
+
+**建设与分期状态**：2025-11-14宣布；其中一站与Intersect/TPG Rise Climate太阳能及储能配套共址。
+
+**建设开发主体**：Google；部分能源园区由Intersect伙伴体系。**设施或算力运营主体**：Google。**已披露使用主体**：Google/Google Cloud；终端客户未逐站披露。
+
+**重复与边界**：本记录包含两站，不将其误作一栋已投运机房；太阳能MW不作IT。
+
+**证据日期**：2025-11-14。[来源1](https://datacenters.google/google-commits-to-increasing-energy-abundance-and-reliability-for-texans/)；[来源2](https://datacenters.google/google-advances-water-security-in-texas/)
+
+#### 20 Google Wilbarger County
+
+**地点**：美国 得州 Wilbarger County；县级。
+
+**容量与口径**：单站IT MW未披露。
+
+**建设与分期状态**：2026-02-24官方明确数据中心在建；不能由清洁能源采购规模推算IT。
+
+**建设开发主体**：Google。**设施或算力运营主体**：Google。**已披露使用主体**：Google/Google Cloud。
+
+**重复与边界**：属于Texas全州投资体系。
+
+**证据日期**：2026-02-24。[来源1](https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/data-center-wilbarger-county/)
+
+#### 21 AWS Madison County两工业园
+
+**地点**：美国 密西西比州 Madison County Canton及Ridgeland区域；县/工业园级。
+
+**容量与口径**：两园区IT MW未公开。
+
+**建设与分期状态**：2024公告100亿美元并开工；2026-03追加110亿美元Madison County投资，施工分期持续。
+
+**建设开发主体**：Amazon AWS；Madison County经济发展机构支持。**设施或算力运营主体**：AWS。**已披露使用主体**：AWS；具体客户未逐站披露。
+
+**重复与边界**：初始100亿、追加110亿与全州250亿总额存在包含关系。
+
+**证据日期**：2024-01；2026-03-30。[来源1](https://www.aboutamazon.com/news/aws/aws-10-billion-investment-mississippi)；[来源2](https://www.aboutamazon.com/news/company-news/amazon-25-billion-mississippi-data-centers)
+
+#### 22 AWS Warren County
+
+**地点**：美国 密西西比州 Warren County；县级。
+
+**容量与口径**：单站IT MW未公开。
+
+**建设与分期状态**：2025-11-20宣布至少30亿美元新园区，未以计划交付认定已运营。
+
+**建设开发主体**：Amazon AWS。**设施或算力运营主体**：AWS。**已披露使用主体**：AWS；具体客户未披露。
+
+**重复与边界**：全州250亿美元投资组成部分。
+
+**证据日期**：2025-11-20。[来源1](https://www.aboutamazon.com/news/company-news/amazon-3-billion-mississippi-data-center-investment)
+
+#### 23 AWS Hinds County Delphi改造
+
+**地点**：美国 密西西比州 Hinds County原Delphi工厂；厂区级。
+
+**容量与口径**：IT MW未公开。
+
+**建设与分期状态**：2026-03-30宣布10亿美元旧工业设施改造。
+
+**建设开发主体**：Amazon AWS。**设施或算力运营主体**：AWS。**已披露使用主体**：AWS；具体客户未披露。
+
+**重复与边界**：全州250亿美元总额子项。
+
+**证据日期**：2026-03-30。[来源1](https://www.aboutamazon.com/news/company-news/amazon-25-billion-mississippi-data-centers)
+
+#### 24 AWS Salem Township Susquehanna
+
+**地点**：美国 宾夕法尼亚州 Luzerne County Salem Township Berwick；Susquehanna核电站相邻园区。
+
+**容量与口径**：0.960GW远期园区电力消费规划，2024-08获开发里程碑；2025-06新Talen协议最高1.920GW front-of-the-meter供电，可服务该园区及Pennsylvania其他地点，不是单站IT。
+
+**建设与分期状态**：AWS2024收购已有园区后继续建设；2026地方/官方社区信息仍记录施工。
+
+**建设开发主体**：原Talen/Cumulus；现AWS扩建。**设施或算力运营主体**：AWS。**已披露使用主体**：AWS；具体客户未披露。
+
+**重复与边界**：960MW原园区设计与1920MW核电采购不能相加；本表不据此确定既有IT。
+
+**证据日期**：2024-08-26；2025-06-09；2026-06官方社区更新。[来源1](https://www.amazoninnovationinpa.com/salem-township-innovation-campus/)；[来源2](https://dced.pa.gov/newsroom/governor-josh-shapiro-announces-amazon-plans-to-invest-20-billion-in-pennsylvania-for-ai-infrastructure-in-largest-capital-investment-in-commonwealth-history/)；[来源3](https://ir.talenenergy.com/news-releases/news-release-details/talen-energy-announces-receipt-escrowed-funds-cumulus-data)；[来源4](https://www.sec.gov/Archives/edgar/data/1622536/000162828025038626/tln-20250630.htm)
+
+### 专业算力云与设施租赁
+
+#### 25 Hut 8 River Bend
+
+**地点**：美国 路易斯安那州 West Feliciana Parish；592英亩园区级。
+
+**容量与口径**：0.245 GW签约IT；0.330GW电网容量，PUE1.35；后续最多1000MW扩建优先报价权为条件性。
+
+**建设与分期状态**：在建；首交付/调试目标Q2 2027；截至2026-10媒体仍记录施工。
+
+**建设开发主体**：Hut 8。**设施或算力运营主体**：Hut 8设施；Fluidstack为租户及算力运营。**已披露使用主体**：Anthropic；Google为租金/融资信用支持而非已确认最终用户。
+
+**重复与边界**：245MW与330MW是同一期IT/设施两个口径。
+
+**证据日期**：2025-12-17；SEC同日。[来源1](https://www.hut8.com/news-insights/press-releases/hut-8-signs-15-year-245-mw-ai-data-center-lease-at-river-bend-campus-with-total-contract-value)；[来源2](https://www.sec.gov/Archives/edgar/data/1964789/000110465925122052/hut-20251217xex99d2.htm)
+
+#### 26 Applied Digital Polaris Forge 1
+
+**地点**：美国 北达科他州 Ellendale；城市/园区级。
+
+**容量与口径**：0.250 GW IT已Ready for Service；全园区0.400GW IT已签约；余0.150GW待交付。
+
+**建设与分期状态**：2026-10-01第二栋第二批75MW交付；2026-10-02正式公告；第三栋仍建设。
+
+**建设开发主体**：Applied Digital。**设施或算力运营主体**：Applied Digital设施。**已披露使用主体**：CoreWeave；最终下游模型客户未逐站披露。
+
+**重复与边界**：与旧180MW Ellendale比特币设施须区分；250MW取代旧175MW状态。
+
+**证据日期**：2026-10-02；2026-10-07财报。[来源1](https://ir.applieddigital.com/news-events/press-releases/detail/161/applied-digital-brings-an-additional-75-mw-of-ai)；[来源2](https://www.sec.gov/Archives/edgar/data/1144879/000114487926000057/apldq127earningsrelease.htm)
+
+#### 27 Applied Digital Polaris Forge 2
+
+**地点**：美国 北达科他州 Harwood；城市级。
+
+**容量与口径**：0.300 GW IT在建园区；2026年4月披露0.200GW已签约。
+
+**建设与分期状态**：在建，交付目标2H26–1H27；2026-10财报仍称预计年底首交付。
+
+**建设开发主体**：Applied Digital。**设施或算力运营主体**：Applied Digital设施。**已披露使用主体**：美国投资级hyperscaler，名称未公开。
+
+**重复与边界**：签约量可能后续增加；不用匿名客户推断具体云厂。
+
+**证据日期**：2026-04-23；2026-10-07。[来源1](https://ir.applieddigital.com/sec-filings/all-sec-filings/content/0001144879-26-000036/apld_invxinvestorpresent.htm)；[来源2](https://www.sec.gov/Archives/edgar/data/1144879/000114487926000057/apldq127earningsrelease.htm)
+
+#### 28 Applied Digital Delta Forge 1
+
+**地点**：美国 路易斯安那州 Alexandria为2026投资演示标示；城市级。
+
+**容量与口径**：0.300 GW签约IT；0.430GW设施电力。
+
+**建设与分期状态**：2026-01-22开工；交付目标1H27–1H28。
+
+**建设开发主体**：Applied Digital。**设施或算力运营主体**：Applied Digital设施。**已披露使用主体**：美国高投资级hyperscaler，名称未公开。
+
+**重复与边界**：430MW utility与300MW IT不能相加。
+
+**证据日期**：2026-01-22；2026-04-23。[来源1](https://ir.applieddigital.com/news-events/press-releases/detail/144/applied-digital-breaks-ground-on-delta-forge-1-a-430-mw-ai)；[来源2](https://ir.applieddigital.com/sec-filings/all-sec-filings/content/0001144879-26-000036/apld_invxinvestorpresent.htm)
+
+#### 29 IREN Childress Horizons 1至4
+
+**地点**：美国 得州 Childress；城市级。
+
+**容量与口径**：Horizon1已交付0.050GW IT；四期合计0.200GW IT合同；整个Childress750MW为电力/含原挖矿园区。
+
+**建设与分期状态**：2026-08-13 Horizon1获微软接受；Horizons2–4目标2026年内交付。
+
+**建设开发主体**：IREN。**设施或算力运营主体**：IREN AI Cloud。**已披露使用主体**：Microsoft；最终具体模型客户未披露。
+
+**重复与边界**：不与Crusoe Lancium Childress Crusoe/Lancium Childress混同；750MW不得当750MW AI IT。
+
+**证据日期**：2026-08-13。[来源1](https://www.globenewswire.com/news-release/2026/08/13/3344413/0/en/iren-delivers-horizon-1-to-microsoft-and-achieves-nvidia-exemplar-cloud-status-on-gb300-nvl72.html)
+
+#### 30 IREN Sweetwater Hub
+
+**地点**：美国 得州 Sweetwater；Sweetwater1与Sweetwater2，城市级。
+
+**容量与口径**：2GW电网接入框架：1.4GW+0.6GW；非2GW已安装AI IT。
+
+**建设与分期状态**：2026-05披露Sweetwater1变电站已通电；2026-09-08有条件纳入ERCOT Batch Zero Base Load；楼宇IT待分期。
+
+**建设开发主体**：IREN。**设施或算力运营主体**：IREN。**已披露使用主体**：具体园区最终客户未披露。
+
+**重复与边界**：变电站通电与机房Ready for Service是不同阶段。
+
+**证据日期**：2026-05-07；2026-09-08。[来源1](https://iren.gcs-web.com/news-releases/news-release-details/iren-business-update-and-q3-fy26-results)；[来源2](https://www.globenewswire.com/news-release/2026/09/08/3357498/0/en/iren-s-2gw-sweetwater-hub-included-as-base-load-in-ercot-batch-zero.html)
+
+#### 31 TeraWulf Lake Mariner
+
+**地点**：美国 纽约州 Niagara County Somerset；原电厂园区级。
+
+**容量与口径**：2026-02公告39MW IT在线；Core42 60MW与Fluidstack380MW IT合同；750MW为gross园区扩展目标，非既有IT。
+
+**建设与分期状态**：多期扩建；2026-08披露CB3/4/5按客户改装需求调整收入开始时间，不能沿用最初交付目标。
+
+**建设开发主体**：TeraWulf。**设施或算力运营主体**：TeraWulf设施。**已披露使用主体**：Core42及Fluidstack；Google为Fluidstack合同信用支持。
+
+**重复与边界**：原比特币245MW与AI IT混合园区不能统称全AI；2026-02在线值只代表当时快照。
+
+**证据日期**：2026-02-26；2026-08-05。[来源1](https://investors.terawulf.com/news-events/press-releases/detail/132/terawulf-reports-fourth-quarter-and-full-year-2025-results)；[来源2](https://investors.terawulf.com/sec-filings/all-sec-filings/content/0001083301-26-000162/terawulfq22026investorpr.htm)
+
+#### 32 TeraWulf Fluidstack Abernathy
+
+**地点**：美国 得州 Abernathy；城市/园区级。
+
+**容量与口径**：0.168 GW critical IT规划/合同。
+
+**建设与分期状态**：2025-10设合资；2026-02披露在建，目标2H26；尚不据目标判定全投运。
+
+**建设开发主体**：TeraWulf与Fluidstack合资。**设施或算力运营主体**：TeraWulf设施；Fluidstack租用。**已披露使用主体**：Fluidstack；Google信用支持，最终模型客户未披露。
+
+**重复与边界**：公司522MW合同为多站汇总及持股口径，不与单站再次叠加。
+
+**证据日期**：2026-02-26。[来源1](https://investors.terawulf.com/news-events/press-releases/detail/132/terawulf-reports-fourth-quarter-and-full-year-2025-results)
+
+#### 33 CoreWeave Lancaster
+
+**地点**：美国 宾夕法尼亚州 Lancaster；原RR Donnelley印刷厂区域，城市级。
+
+**容量与口径**：初期0.100GW，扩展潜力0.300GW；公告未明确IT/设施。
+
+**建设与分期状态**：2025-07宣布设备投资及开发；不将潜力全量列既有。
+
+**建设开发主体**：Chirisa Technology Parks与Machine Investment Group联合开发；CoreWeave租赁并装备。**设施或算力运营主体**：CoreWeave。**已披露使用主体**：CoreWeave；下游客户未逐站披露。
+
+**重复与边界**：100MW一期包括在300MW潜力内。
+
+**证据日期**：2025-07-15。[来源1](https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx)
+
+### 园区开发商与供电驱动项目
+
+#### 34 CyrusOne Freestone
+
+**地点**：美国 得州 Freestone County Freestone Energy Center邻接园区；县/电厂级。
+
+**容量与口径**：0.380GW供电协议；IT值未单独披露。
+
+**建设与分期状态**：2026-02-09宣布连接新数据中心，已签电力协议，不等于投运。
+
+**建设开发主体**：CyrusOne；Calpine/Constellation供电。**设施或算力运营主体**：CyrusOne。**已披露使用主体**：客户未披露。
+
+**重复与边界**：与CyrusOne Thad Hill是不同园区；电源供电MW非IT。
+
+**证据日期**：2026-02-09。[来源1](https://www.cyrusone.com/resources/press-releases/constellation-and-cyrusone-announce-agreement-to-support-new-data-center-facility-at-freestone-energy-center-in-texas)
+
+#### 35 CyrusOne Thad Hill
+
+**地点**：美国 得州 Bosque County Thad Hill Energy Center邻接园区；县/电厂级。
+
+**容量与口径**：0.400GW供电协议，分190MW和新增210MW。
+
+**建设与分期状态**：2025-11-03第二阶段协议；建设/交付分期，未据协议判定既有。
+
+**建设开发主体**：CyrusOne；Calpine powered land。**设施或算力运营主体**：CyrusOne。**已披露使用主体**：客户未披露。
+
+**重复与边界**：第二阶段210MW已计入400MW；非额外400MW。
+
+**证据日期**：2025-11-03。[来源1](https://www.cyrusone.com/resources/press-releases/calpine-and-cyrusone-announce-phase-2-of-powered-land-agreement-to-support-hyperscale-data-center-at-thad-hill-energy-center-in-texas)
+
+#### 36 CyrusOne Eolian Fort Worth
+
+**地点**：美国 得州 Fort Worth市中心西北约7英里 Chisholm Grid区域；园区级。
+
+**容量与口径**：0.200GW园区；非该处100MW电池储能功率。
+
+**建设与分期状态**：2026-01-13宣布利用现有高压基础设施加速开发；具体投运容量未披露。
+
+**建设开发主体**：CyrusOne与Eolian。**设施或算力运营主体**：CyrusOne。**已披露使用主体**：客户未披露。
+
+**重复与边界**：既有BESS属于电源设施，不能计为机房。
+
+**证据日期**：2026-01-13。[来源1](https://www.cyrusone.com/resources/press-releases/cyrusone-and-eolian-partner-to-enable-rapid-deployment-of-200-megawatt-data-center-campus-in-fort-worth-texas)
+
+#### 37 T5 Grayslake Chicago IV
+
+**地点**：美国 伊利诺伊州 Lake County Grayslake；Cornerstone商务园 Peterson Road附近，园区级。
+
+**容量与口径**：扩展后全园区最高1.2GW IT，1.6GW已落实公用电力；原0.480GW方案被扩展，不能两者相加。
+
+**建设与分期状态**：园区已获村镇土地用途与分区批准；官方2026-06 FAQ及网站记录诉讼存在；一期3栋各60MW目标2027Q4，未视为已投运。
+
+**建设开发主体**：T5 Data Centers。**设施或算力运营主体**：T5。**已披露使用主体**：客户未披露。
+
+**重复与边界**：0.480GW旧方案包括在扩展后1.2GW内；1.6GW电力与1.2GW IT不相加。
+
+**证据日期**：2025-02-10容量扩展；2026-06地方政府更新。[来源1](https://www.datacenterdynamics.com/en/news/t5-plans-five-gigawatt-scale-data-center-campuses-announces-chicago-campus/)；[来源2](https://t5datacenters.com/resources/t5-data-centers-expands-chicago-footprint-with-acquisition-of-fifth-data-center-chi-v/)；[来源3](https://villageofgrayslake.com/881/Approved-T5-Data-Center-Campus-Informati)
+
+#### 38 Tract Buckeye Technology Park
+
+**地点**：美国 亚利桑那州 Maricopa County Buckeye；大型土地园区级。
+
+**容量与口径**：最多1.8GW电力基础设施潜力；不等于获批/已建IT。
+
+**建设与分期状态**：2024-08-28土地收购后电力及园区规划；官网项目目录仍为1.8GW。
+
+**建设开发主体**：Tract（土地与主规划基础设施）。**设施或算力运营主体**：未来园区各数据中心运营商未披露。**已披露使用主体**：最终用户未披露。
+
+**重复与边界**：土地园区潜力与未来入驻商园区规划存在重叠，不能再全量加总。
+
+**证据日期**：2024-08-28；项目目录2026-10-11查阅。[来源1](https://www.tract.com/news/tract-closes-acquisition-of-2069-acres-in-buckeye-arizona/)；[来源2](https://www.tract.com/projects/)
+
+#### 39 Fermi America Project Matador
+
+**地点**：美国 得州 Carson County Amarillo以外 Texas Tech University System租地；县/园区级。
+
+**容量与口径**：17GW私人电网远期发电目标；包含约11GW燃气、4.4GW核能及其他；IT机房容量未公开。
+
+**建设与分期状态**：2026-02获6GW燃气许可；2026-03宣布增加申请及17GW扩版；远期核能仍在规划/许可。
+
+**建设开发主体**：Fermi America；TTU System供地；Hyundai E&C等能源工程合作。**设施或算力运营主体**：未来数据中心租户尚未披露。**已披露使用主体**：未披露。
+
+**重复与边界**：17GW完全不可当作已部署17GW AI IT；旧11GW被扩版包含。
+
+**证据日期**：2026-03-13。[来源1](https://fermiamerica.com/worlds-largest-private-grid-fermi-america-to-file-additional-5gw-clean-air-permit-for-project-matador-with-the-texas-commission-on-environmental-quality-tceq-upsizing-campus-proje/)
+
+#### 40 Vantage Reno NV1
+
+**地点**：美国 内华达州 Storey County Sparks 1121 USA Parkway；公开门牌级。
+
+**容量与口径**：0.224GW critical IT园区全建目标；4栋。
+
+**建设与分期状态**：官网will be home，不能将设计总值判为全投运；分栋现有交付量未列。
+
+**建设开发主体**：Vantage Data Centers。**设施或算力运营主体**：Vantage。**已披露使用主体**：客户未披露。
+
+**重复与边界**：同一园区不同栋不能另加园区总值。
+
+**证据日期**：官网2026-10-11查阅。[来源1](https://vantage-dc.com/data-center-locations/north-america/reno-nevada/)；[来源2](https://vantage-dc.com/company/contact-us/)
+
+#### 41 QTS Atlanta 1
+
+**地点**：美国 佐治亚州 Atlanta 1033/1025 Jefferson St NW、953/1103 Herndon St NW；4楼公开门牌。
+
+**容量与口径**：0.278GW+ critical campus capacity；全园区容量，非证实全部已交付。
+
+**建设与分期状态**：运营园区与未来建筑/变电站扩展并存，官网不拆既有MW。
+
+**建设开发主体**：QTS；Blackstone持有平台。**设施或算力运营主体**：QTS。**已披露使用主体**：客户未披露。
+
+**重复与边界**：旧Atlanta Metro及Atlanta1–4楼别名为同一园区。
+
+**证据日期**：官网2026-10-11查阅。[来源1](https://q.com/data-centers/atlanta-1/)
+
+#### 42 QTS Richmond 1
+
+**地点**：美国 弗吉尼亚州 Henrico County Sandston 6000 Technology Boulevard；公开门牌级。
+
+**容量与口径**：0.238GW critical campus capacity；6栋master plan。
+
+**建设与分期状态**：运营园区持续扩展，官网不拆已交付与待建MW。
+
+**建设开发主体**：QTS；Blackstone持有平台。**设施或算力运营主体**：QTS。**已披露使用主体**：客户未披露。
+
+**重复与边界**：不与Richmond3另园区混同。
+
+**证据日期**：官网2026-10-11查阅。[来源1](https://q.com/data-centers/richmond-1/)；[来源2](https://qtsdatacenters.com/wp-content/uploads/2024/07/QTS_Facility_Sheet_RIC1-DC1-DC2-DC3.pdf)
+
+#### 43 Crusoe Lancium Childress
+
+**地点**：美国 得州 Childress County 270英亩Lancium土地；县/园区级。
+
+**容量与口径**：1GW grid-connected园区规划；公告未明示净IT。
+
+**建设与分期状态**：2026-07-15宣布，原预计Q3 2026开工；尚不以时间目标认定已动工。
+
+**建设开发主体**：Crusoe；Lancium供地及开发管理能源。**设施或算力运营主体**：Crusoe基础设施；具体租户运营分工未披露。**已披露使用主体**：领先hyperscale科技公司，名称未公开。
+
+**重复与边界**：与IREN Childress Horizons 1至4 IREN Childress完全不同项目。
+
+**证据日期**：2026-07-15。[来源1](https://www.crusoe.ai/resources/newsroom/crusoe-and-lancium-announce-1-gigawatt-ai-data-center-campus-in-childress-texas)
+
+#### 44 Vantage Phoenix AZ1
+
+**地点**：美国 亚利桑那州 Goodyear 45 S Bullard Avenue；公开门牌级。
+
+**容量与口径**：0.176GW园区IT全量；已投运分栋MW本台账不推断。
+
+**建设与分期状态**：现有园区与扩建空间并存；全量设计值不作既有证明。
+
+**建设开发主体**：Vantage Data Centers。**设施或算力运营主体**：Vantage。**已披露使用主体**：客户未披露。
+
+**重复与边界**：与Phoenix市场汇总存在包含关系。
+
+**证据日期**：官网2026-10-11查阅。[来源1](https://vantage-dc.com/data-center-locations/north-america/phoenix-arizona/)；[来源2](https://vantage-dc.com/company/contact-us/)；[来源3](https://vantage-dc.com/fr/data-center-locations/north-america/phoenix-arizona/)
+
+#### 45 Vantage Fredericksburg VA4
+
+**地点**：美国 弗吉尼亚州 Stafford County Fredericksburg地区 225 Centreport Parkway；公开门牌级。
+
+**容量与口径**：0.192GW critical IT全园区设计容量，3栋两层建筑。
+
+**建设与分期状态**：2025-11-06已举行动工仪式；首栋计划2027年末开启，未算既有。
+
+**建设开发主体**：Vantage Data Centers；总包DPR Construction。**设施或算力运营主体**：Vantage。**已披露使用主体**：客户未披露。
+
+**重复与边界**：不能当作Virginia州全量。
+
+**证据日期**：2025-11-06；官网2026-10-11查阅。[来源1](https://vantage-dc.com/news/vantage-data-centers-invests-2b-in-fredericksburg-virginia-region-to-deliver-fourth-campus-in-the-commonwealth/)；[来源2](https://vantage-dc.com/data-center-locations/north-america/fredericksburg-va)
+
+#### 46 Switch Tahoe Reno Citadel
+
+**地点**：美国 内华达州 Storey County Tahoe Reno Industrial Center；工业园级。
+
+**容量与口径**：原设计最多0.650GW园区电力；当前官网称multi-gigawatt expansion但未给精确当前IT。
+
+**建设与分期状态**：2017启用首栋，之后多年扩建；650MW不等于首栋已交付量。
+
+**建设开发主体**：Switch。**设施或算力运营主体**：Switch。**已披露使用主体**：多租户；终端云/电商客户未逐站实名披露。
+
+**重复与边界**：Citadel/Tahoe Reno为同一园区；旧规划数不表示2026全投运。
+
+**证据日期**：2017-02首期公告；官网2026-10-11查阅。[来源1](https://www.switch.com/switch-tahoe-reno-data-center-now-open/)；[来源2](https://www.switch.com/tahoe-reno/)
+
+#### 47 Google Pine Island Project Skyway
+
+**地点**：美国 明尼苏达州 Pine Island；城市级。
+
+**容量与口径**：单站IT MW未披露；1.9GW为新增电力组合含风太阳能长时储能。
+
+**建设与分期状态**：2026-02-24宣布；2026-04-15 Xcel提交服务及并网协议，规划阶段。
+
+**建设开发主体**：Google；Xcel配套能源。**设施或算力运营主体**：Google。**已披露使用主体**：Google。
+
+**重复与边界**：1.9GW能源组合不得当作机房IT。
+
+**证据日期**：2026-02-24；2026-04-15。[来源1](https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/data-center-pine-island/)；[来源2](https://pineislandmn.gov/index.asp?DE=3F9BAF37-F932-4AB5-90FB-BC7DB52B4E57&SEC=C3D5713E-C854-48A5-84BE-9308E2B3851E)
+
+## 正文案例素材
+
+以下段落便于按长文格式改写，正文不嵌URL，来源可从前述项目台账集中归入文章末尾。
+
+### 案例1
+
+Abilene把新一轮数据中心建设的分工展示得很清楚。Lancium提供土地与能源条件，Crusoe开发机房，Blue Owl与Primary Digital Infrastructure参与融资，Oracle运营云基础设施，OpenAI使用算力。首期在2025年9月运行；Oracle截至2026年9月称园区总容量已交付75%。这里公布的1.2GW是全园区电力设计规模，不能把75%乘上1.2GW便称为已投运IT容量。邻近的Crusoe微软园区是另一项工程：两栋各336MW critical IT，共672MW IT，对应900MW专用供电，预计2027年中开始通电。
+
+### 案例2
+
+Stargate正在把传统的大都市数据中心布局推向新的县域和小城。Vantage在得州Shackelford County建设Frontier，规划1.4GW GPU compute；在威斯康星Port Washington建设Lighthouse，官网列出902MW园区容量；Related Digital在密歇根Saline Township建设约1GW的The Barn，由Blackstone融资、Walbridge承建。Oracle最新施工页面分别把客户交付目标列在2027年上半年、下半年和下半年。新墨西哥Santa Teresa的Jupiter则由STACK与BorderPlex开发，配套燃料电池最高2.45GW，这个数字属于发电装机。几座园区都服务Oracle与OpenAI，容量口径却需要逐站分开。
+
+### 案例3
+
+Meta在路易斯安那Richland Parish建设的Hyperion，是从云园区走向巨型AI集群的典型。2026年7月，Meta把远期compute capacity目标扩大到5GW；项目仍需多年建设。资产层面，Meta与Blue Owl管理基金的合资分别持有20%和80%，Meta管理建设与设施，并租用整个园区。俄亥俄New Albany的Prometheus则以1GW AI集群为目标。核电采购协议和Entergy为Hyperion提出的新燃气电厂，帮助解释这些园区为何能够扩张，但那些电源MW不能再次加进机房容量。
+
+### 案例4
+
+已经运行的AI设施也不一定公开足够的MW数据。微软2026年6月宣布威斯康星Mount Pleasant的Fairwater完成首个设施建设并全面运行：315英亩、三栋建筑、约120万平方英尺，是可以核验的规模指标；公告没有给出可用于台账的IT GW。AWS的Project Rainier在2025年10月开始运行，直接服务Anthropic的Claude训练与部署，但Rainier跨多个地点。AWS材料中的Indiana园区2.2GW，也不能证明全部园区已交付，或把跨站集群都放在New Carlisle一个地点。
+
+### 案例5
+
+River Bend展示了建设者、云运营者、模型使用者和信用支持方如何分离。Hut 8在路易斯安那West Feliciana Parish开发设施，Fluidstack签下15年租约并运营算力，Anthropic使用容量，Google提供信用支持。首期是245MW签约IT，对应330MW电网容量，预计2027年第二季度首次交付。245MW和330MW是同一期的两种口径；Google在融资链条中的作用，也不能被写成Google就是这座机房的已披露最终使用者。
+
+### 案例6
+
+北达科他Ellendale与得州Childress提供了较清楚的分期交付证据。Applied Digital在2026年10月2日确认Polaris Forge 1又交付75MW，使Ready for Service的IT容量达到250MW；全园区400MW已签约，剩余150MW仍待交付，客户为CoreWeave。IREN则在2026年8月确认Childress的Horizon 1获微软接受，交付50MW IT，四期合同合计200MW IT。园区原有电力规模和比特币设施，不能直接算成已经部署的AI负荷。
+
+### 案例7
+
+Memphis与相邻的Southaven形成了跨州AI基础设施带。SpaceXAI的Colossus I位于Memphis的Lowry Road，Colossus II位于Whitehaven的Tulane Road，Southaven的MACROHARDRR是另一处设施，用户均为公司自身。官方资料能够确认这些场址及Grok计算体系，但没有为每一站提供可核验的已投运IT MW。Southaven的永久燃气电厂装机目标1.2GW属于供电基础设施，也不能直接填进Colossus II或第三站的机房容量栏。
+
+### 案例8
+
+供电条件正在重塑项目地图，同时也让GW新闻更容易被误读。Google在得州Armstrong、Haskell和Wilbarger等县扩展，在怀俄明Cheyenne以南推进Tembo，后者原电力需求约1.8GW，而Black Hills最新2.7GW资源组合包含备用裕量。得州Amarillo附近的Fermi Project Matador更宣布17GW私人电网远期目标，其中包括燃气与核能；这不是17GW已部署IT。在这些案例里，电厂、并网容量、园区潜力和最终服务器负荷，是四个需要分别追踪的量。
+
+## sources.json研究索引
+
+以下JSON保留宏观口径与项目来源映射，便于后续更新。项目序号与前述台账一致。
+
+```json
+{
+  "as_of": "2026-10-11",
+  "region": "United States",
+  "project_record_count": 47,
+  "macro": [
+    {
+      "id": "CBRE_H1_2026",
+      "scope": "美国八大主要批发及托管市场；非美国全国、非全部自建hyperscale",
+      "as_of": "2026H1",
+      "release": "2026-08-27",
+      "existing_gw": 10.903,
+      "construction_gw": 7.4811,
+      "nv_existing_gw": 4.4965,
+      "nv_construction_gw": 2.4202,
+      "atlanta_construction_gw": 2.882,
+      "url": "https://www.cbre.com/insights/books/north-america-data-center-trends-h1-2026"
+    },
+    {
+      "id": "JLL_YE_2025",
+      "scope": "扩展后的北美覆盖，约半租赁半hyperscaler自有；含加拿大",
+      "as_of": "2025年末",
+      "release": "2026-02-17",
+      "active_gw": 39,
+      "construction_gw": 35,
+      "texas_construction_gw": 6.5,
+      "url": "https://www.jll.com/en-us/newsroom/jll-north-america-data-center-report-year-end-2025"
+    },
+    {
+      "id": "WoodMac_Q2_2026",
+      "scope": "美国累计已披露数据中心项目管线；非确定获批、非纯在建、非纯未建增量；新闻稿未逐项目明确统一IT/设施口径",
+      "as_of": "2026Q2报告，涵盖Q1新增",
+      "release": "2026-07-30",
+      "disclosed_pipeline_gw": 331,
+      "active_development_share": "约40%",
+      "texas_planned_gw": "近100",
+      "utility_large_load_signed_gw": 195,
+      "utility_advanced_discussion_gw": 107,
+      "url": "https://www.woodmac.com/ja/press-releases/us-data-centre-developers-shift-focus-to-existing-pipelines-as-new-capacity-additions-slow-in-q1-2026/"
+    },
+    {
+      "id": "SP_451_2025",
+      "scope": "美国数据中心获供电力规模；设施电力口径，非IT负荷与非全年平均实际耗电",
+      "as_of": "2025",
+      "release": "2026-08-07",
+      "power_supplied_gw": 64.4,
+      "forecast_2030_gw": 183,
+      "url": "https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/080726-data-centers-ai-boom-spurs-new-natural-gas-power-plans-in-the-us-southeast"
+    }
+  ],
+  "project_sources": [
+    {
+      "number": 1,
+      "id": "US01",
+      "name": "Stargate Abilene",
+      "evidence_date": "2025-09-30；2026-09更新",
+      "urls": [
+        "https://www.crusoe.ai/resources/newsroom/crusoe-announces-flagship-abilene-data-center-is-live",
+        "https://www.oracle.com/data-centers/"
+      ]
+    },
+    {
+      "number": 2,
+      "id": "US02",
+      "name": "Crusoe Microsoft Abilene",
+      "evidence_date": "2026-03-27",
+      "urls": [
+        "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure"
+      ]
+    },
+    {
+      "number": 3,
+      "id": "US03",
+      "name": "Stargate Frontier",
+      "evidence_date": "2025-08-19；2026-09施工图及时间更新",
+      "urls": [
+        "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/",
+        "https://www.oracle.com/data-centers/"
+      ]
+    },
+    {
+      "number": 4,
+      "id": "US04",
+      "name": "Stargate Lighthouse",
+      "evidence_date": "运营商网页2026-10-11查阅；Oracle2026-08施工图",
+      "urls": [
+        "https://vantage-dc.com/data-center-locations/north-america/port-washington-wisconsin",
+        "https://www.oracle.com/data-centers/",
+        "https://s22.q4cdn.com/994559668/files/doc_presentations/2026/Feb/06/02-2026-February-Final.pdf"
+      ]
+    },
+    {
+      "number": 5,
+      "id": "US05",
+      "name": "Stargate Project Jupiter",
+      "evidence_date": "2026-04-27；2026-09-14",
+      "urls": [
+        "https://www.oracle.com/news/announcement/oracle-borderplex-and-bloom-energy-to-power-project-jupiter-with-fuel-cell-technology-2026-04-27/",
+        "https://www.oracle.com/news/announcement/project-jupiter-statement-on-construction-permitting-2026-09-14/"
+      ]
+    },
+    {
+      "number": 6,
+      "id": "US06",
+      "name": "Stargate The Barn",
+      "evidence_date": "2026-06-01",
+      "urls": [
+        "https://openai.com/index/stargate-michigan-data-center/",
+        "https://www.related.com/press-releases/2026-06-01/related-digital-blackstone-oracle-openai-walbridge-and-governor-whitmer"
+      ]
+    },
+    {
+      "number": 7,
+      "id": "US07",
+      "name": "Stargate Milam County",
+      "evidence_date": "2026-01-09",
+      "urls": [
+        "https://openai.com/index/stargate-sb-energy-partnership/"
+      ]
+    },
+    {
+      "number": 8,
+      "id": "US08",
+      "name": "Stargate Lordstown",
+      "evidence_date": "2025-09-23",
+      "urls": [
+        "https://openai.com/index/five-new-stargate-sites/"
+      ]
+    },
+    {
+      "number": 9,
+      "id": "US09",
+      "name": "OpenAI Project Camellia",
+      "evidence_date": "2026-07-22",
+      "urls": [
+        "https://openai.com/index/building-ai-infrastructure-with-the-effingham-county-community/"
+      ]
+    },
+    {
+      "number": 10,
+      "id": "US10",
+      "name": "Meta Hyperion",
+      "evidence_date": "2025-10-21；2026-07-13",
+      "urls": [
+        "https://about.fb.com/news/2026/07/teachers-local-businesses-win-as-meta-expands-louisiana-data-center/",
+        "https://about.fb.com/news/2025/10/meta-blue-owl-capital-develop-hyperion-data-center/",
+        "https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/080726-data-centers-ai-boom-spurs-new-natural-gas-power-plans-in-the-us-southeast"
+      ]
+    },
+    {
+      "number": 11,
+      "id": "US11",
+      "name": "Meta Prometheus",
+      "evidence_date": "2025-09-29；2026-01-09",
+      "urls": [
+        "https://engineering.fb.com/2025/09/29/data-infrastructure/metas-infrastructure-evolution-and-the-advent-of-ai/",
+        "https://about.fb.com/news/2026/01/meta-nuclear-energy-projects-power-american-ai-leadership/"
+      ]
+    },
+    {
+      "number": 12,
+      "id": "US12",
+      "name": "AWS Project Rainier Indiana",
+      "evidence_date": "2025-10-29；2026-06-12",
+      "urls": [
+        "https://www.aboutamazon.com/news/aws/aws-project-rainier-ai-trainium-chips-compute-cluster",
+        "https://preview.prod.sustainability.aboutamazon.com/stories/inside-amazons-approach-to-data-center-sustainability"
+      ]
+    },
+    {
+      "number": 13,
+      "id": "US13",
+      "name": "Microsoft Fairwater",
+      "evidence_date": "2026-06-23",
+      "urls": [
+        "https://news.microsoft.com/source/2026/06/23/microsoft-completes-construction-on-first-datacenter-facility-in-mount-pleasant-wisconsin/",
+        "https://openai.com/index/stargate-community/"
+      ]
+    },
+    {
+      "number": 14,
+      "id": "US14",
+      "name": "SpaceXAI Colossus I",
+      "evidence_date": "官方运营信息页2026-10-11查阅；SpaceX2026-06招股资料",
+      "urls": [
+        "https://x.ai/memphis/info",
+        "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf"
+      ]
+    },
+    {
+      "number": 15,
+      "id": "US15",
+      "name": "SpaceXAI Colossus II Whitehaven",
+      "evidence_date": "2026-06-05；2026-07-30",
+      "urls": [
+        "https://content.spacex.com/cms-assets/FINAL_Documents%20and%20Updates/SpaceX%20-%20EU%20Prospectus%20%28Approved%20by%20Bafin%29%20-%20June%205%2C%202026.pdf",
+        "https://x.ai/memphis/updates"
+      ]
+    },
+    {
+      "number": 16,
+      "id": "US16",
+      "name": "SpaceXAI MACROHARDRR",
+      "evidence_date": "2026-01-08；城市2026-01-07；能源更新2026-07-30",
+      "urls": [
+        "https://mississippi.org/news/tech-leader-xai-investing-more-than-20-billion-in-southaven/",
+        "https://www.southaven.org/Blog.aspx?IID=227",
+        "https://mississippitoday.org/2025/12/31/elon-musk-mississippi-data-center-southaven-memphis/",
+        "https://x.ai/memphis/updates"
+      ]
+    },
+    {
+      "number": 17,
+      "id": "US17",
+      "name": "Google Project Tembo",
+      "evidence_date": "2026-10-06",
+      "urls": [
+        "https://ir.blackhillscorp.com/news-releases/news-release-details/black-hills-corp-executes-definitive-agreements-serve-googles",
+        "https://www.laramiecountywy.gov/Public-Notices/Project-Tembo-Data-Center"
+      ]
+    },
+    {
+      "number": 18,
+      "id": "US18",
+      "name": "Google Armstrong County",
+      "evidence_date": "2025-11-14；地点页2026-10-11查阅",
+      "urls": [
+        "https://blog.google/company-news/inside-google/company-announcements/google-american-innovation-texas/",
+        "https://datacenters.google/locations/texas/"
+      ]
+    },
+    {
+      "number": 19,
+      "id": "US19",
+      "name": "Google Haskell County两处园区",
+      "evidence_date": "2025-11-14",
+      "urls": [
+        "https://datacenters.google/google-commits-to-increasing-energy-abundance-and-reliability-for-texans/",
+        "https://datacenters.google/google-advances-water-security-in-texas/"
+      ]
+    },
+    {
+      "number": 20,
+      "id": "US20",
+      "name": "Google Wilbarger County",
+      "evidence_date": "2026-02-24",
+      "urls": [
+        "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/data-center-wilbarger-county/"
+      ]
+    },
+    {
+      "number": 21,
+      "id": "US21",
+      "name": "AWS Madison County两工业园",
+      "evidence_date": "2024-01；2026-03-30",
+      "urls": [
+        "https://www.aboutamazon.com/news/aws/aws-10-billion-investment-mississippi",
+        "https://www.aboutamazon.com/news/company-news/amazon-25-billion-mississippi-data-centers"
+      ]
+    },
+    {
+      "number": 22,
+      "id": "US22",
+      "name": "AWS Warren County",
+      "evidence_date": "2025-11-20",
+      "urls": [
+        "https://www.aboutamazon.com/news/company-news/amazon-3-billion-mississippi-data-center-investment"
+      ]
+    },
+    {
+      "number": 23,
+      "id": "US23",
+      "name": "AWS Hinds County Delphi改造",
+      "evidence_date": "2026-03-30",
+      "urls": [
+        "https://www.aboutamazon.com/news/company-news/amazon-25-billion-mississippi-data-centers"
+      ]
+    },
+    {
+      "number": 24,
+      "id": "US24",
+      "name": "AWS Salem Township Susquehanna",
+      "evidence_date": "2024-08-26；2025-06-09；2026-06官方社区更新",
+      "urls": [
+        "https://www.amazoninnovationinpa.com/salem-township-innovation-campus/",
+        "https://dced.pa.gov/newsroom/governor-josh-shapiro-announces-amazon-plans-to-invest-20-billion-in-pennsylvania-for-ai-infrastructure-in-largest-capital-investment-in-commonwealth-history/",
+        "https://ir.talenenergy.com/news-releases/news-release-details/talen-energy-announces-receipt-escrowed-funds-cumulus-data",
+        "https://www.sec.gov/Archives/edgar/data/1622536/000162828025038626/tln-20250630.htm"
+      ]
+    },
+    {
+      "number": 25,
+      "id": "US25",
+      "name": "Hut 8 River Bend",
+      "evidence_date": "2025-12-17；SEC同日",
+      "urls": [
+        "https://www.hut8.com/news-insights/press-releases/hut-8-signs-15-year-245-mw-ai-data-center-lease-at-river-bend-campus-with-total-contract-value",
+        "https://www.sec.gov/Archives/edgar/data/1964789/000110465925122052/hut-20251217xex99d2.htm"
+      ]
+    },
+    {
+      "number": 26,
+      "id": "US26",
+      "name": "Applied Digital Polaris Forge 1",
+      "evidence_date": "2026-10-02；2026-10-07财报",
+      "urls": [
+        "https://ir.applieddigital.com/news-events/press-releases/detail/161/applied-digital-brings-an-additional-75-mw-of-ai",
+        "https://www.sec.gov/Archives/edgar/data/1144879/000114487926000057/apldq127earningsrelease.htm"
+      ]
+    },
+    {
+      "number": 27,
+      "id": "US27",
+      "name": "Applied Digital Polaris Forge 2",
+      "evidence_date": "2026-04-23；2026-10-07",
+      "urls": [
+        "https://ir.applieddigital.com/sec-filings/all-sec-filings/content/0001144879-26-000036/apld_invxinvestorpresent.htm",
+        "https://www.sec.gov/Archives/edgar/data/1144879/000114487926000057/apldq127earningsrelease.htm"
+      ]
+    },
+    {
+      "number": 28,
+      "id": "US28",
+      "name": "Applied Digital Delta Forge 1",
+      "evidence_date": "2026-01-22；2026-04-23",
+      "urls": [
+        "https://ir.applieddigital.com/news-events/press-releases/detail/144/applied-digital-breaks-ground-on-delta-forge-1-a-430-mw-ai",
+        "https://ir.applieddigital.com/sec-filings/all-sec-filings/content/0001144879-26-000036/apld_invxinvestorpresent.htm"
+      ]
+    },
+    {
+      "number": 29,
+      "id": "US29",
+      "name": "IREN Childress Horizons 1至4",
+      "evidence_date": "2026-08-13",
+      "urls": [
+        "https://www.globenewswire.com/news-release/2026/08/13/3344413/0/en/iren-delivers-horizon-1-to-microsoft-and-achieves-nvidia-exemplar-cloud-status-on-gb300-nvl72.html"
+      ]
+    },
+    {
+      "number": 30,
+      "id": "US30",
+      "name": "IREN Sweetwater Hub",
+      "evidence_date": "2026-05-07；2026-09-08",
+      "urls": [
+        "https://iren.gcs-web.com/news-releases/news-release-details/iren-business-update-and-q3-fy26-results",
+        "https://www.globenewswire.com/news-release/2026/09/08/3357498/0/en/iren-s-2gw-sweetwater-hub-included-as-base-load-in-ercot-batch-zero.html"
+      ]
+    },
+    {
+      "number": 31,
+      "id": "US31",
+      "name": "TeraWulf Lake Mariner",
+      "evidence_date": "2026-02-26；2026-08-05",
+      "urls": [
+        "https://investors.terawulf.com/news-events/press-releases/detail/132/terawulf-reports-fourth-quarter-and-full-year-2025-results",
+        "https://investors.terawulf.com/sec-filings/all-sec-filings/content/0001083301-26-000162/terawulfq22026investorpr.htm"
+      ]
+    },
+    {
+      "number": 32,
+      "id": "US32",
+      "name": "TeraWulf Fluidstack Abernathy",
+      "evidence_date": "2026-02-26",
+      "urls": [
+        "https://investors.terawulf.com/news-events/press-releases/detail/132/terawulf-reports-fourth-quarter-and-full-year-2025-results"
+      ]
+    },
+    {
+      "number": 33,
+      "id": "US33",
+      "name": "CoreWeave Lancaster",
+      "evidence_date": "2025-07-15",
+      "urls": [
+        "https://investors.coreweave.com/news/news-details/2025/CoreWeave-Announces-Multi-Billion-Dollar-Commitment-to-AI-Infrastructure-in-Pennsylvania/default.aspx"
+      ]
+    },
+    {
+      "number": 34,
+      "id": "US34",
+      "name": "CyrusOne Freestone",
+      "evidence_date": "2026-02-09",
+      "urls": [
+        "https://www.cyrusone.com/resources/press-releases/constellation-and-cyrusone-announce-agreement-to-support-new-data-center-facility-at-freestone-energy-center-in-texas"
+      ]
+    },
+    {
+      "number": 35,
+      "id": "US35",
+      "name": "CyrusOne Thad Hill",
+      "evidence_date": "2025-11-03",
+      "urls": [
+        "https://www.cyrusone.com/resources/press-releases/calpine-and-cyrusone-announce-phase-2-of-powered-land-agreement-to-support-hyperscale-data-center-at-thad-hill-energy-center-in-texas"
+      ]
+    },
+    {
+      "number": 36,
+      "id": "US36",
+      "name": "CyrusOne Eolian Fort Worth",
+      "evidence_date": "2026-01-13",
+      "urls": [
+        "https://www.cyrusone.com/resources/press-releases/cyrusone-and-eolian-partner-to-enable-rapid-deployment-of-200-megawatt-data-center-campus-in-fort-worth-texas"
+      ]
+    },
+    {
+      "number": 37,
+      "id": "US37",
+      "name": "T5 Grayslake Chicago IV",
+      "evidence_date": "2025-02-10容量扩展；2026-06地方政府更新",
+      "urls": [
+        "https://www.datacenterdynamics.com/en/news/t5-plans-five-gigawatt-scale-data-center-campuses-announces-chicago-campus/",
+        "https://t5datacenters.com/resources/t5-data-centers-expands-chicago-footprint-with-acquisition-of-fifth-data-center-chi-v/",
+        "https://villageofgrayslake.com/881/Approved-T5-Data-Center-Campus-Informati"
+      ]
+    },
+    {
+      "number": 38,
+      "id": "US38",
+      "name": "Tract Buckeye Technology Park",
+      "evidence_date": "2024-08-28；项目目录2026-10-11查阅",
+      "urls": [
+        "https://www.tract.com/news/tract-closes-acquisition-of-2069-acres-in-buckeye-arizona/",
+        "https://www.tract.com/projects/"
+      ]
+    },
+    {
+      "number": 39,
+      "id": "US39",
+      "name": "Fermi America Project Matador",
+      "evidence_date": "2026-03-13",
+      "urls": [
+        "https://fermiamerica.com/worlds-largest-private-grid-fermi-america-to-file-additional-5gw-clean-air-permit-for-project-matador-with-the-texas-commission-on-environmental-quality-tceq-upsizing-campus-proje/"
+      ]
+    },
+    {
+      "number": 40,
+      "id": "US40",
+      "name": "Vantage Reno NV1",
+      "evidence_date": "官网2026-10-11查阅",
+      "urls": [
+        "https://vantage-dc.com/data-center-locations/north-america/reno-nevada/",
+        "https://vantage-dc.com/company/contact-us/"
+      ]
+    },
+    {
+      "number": 41,
+      "id": "US41",
+      "name": "QTS Atlanta 1",
+      "evidence_date": "官网2026-10-11查阅",
+      "urls": [
+        "https://q.com/data-centers/atlanta-1/"
+      ]
+    },
+    {
+      "number": 42,
+      "id": "US42",
+      "name": "QTS Richmond 1",
+      "evidence_date": "官网2026-10-11查阅",
+      "urls": [
+        "https://q.com/data-centers/richmond-1/",
+        "https://qtsdatacenters.com/wp-content/uploads/2024/07/QTS_Facility_Sheet_RIC1-DC1-DC2-DC3.pdf"
+      ]
+    },
+    {
+      "number": 43,
+      "id": "US43",
+      "name": "Crusoe Lancium Childress",
+      "evidence_date": "2026-07-15",
+      "urls": [
+        "https://www.crusoe.ai/resources/newsroom/crusoe-and-lancium-announce-1-gigawatt-ai-data-center-campus-in-childress-texas"
+      ]
+    },
+    {
+      "number": 44,
+      "id": "US44",
+      "name": "Vantage Phoenix AZ1",
+      "evidence_date": "官网2026-10-11查阅",
+      "urls": [
+        "https://vantage-dc.com/data-center-locations/north-america/phoenix-arizona/",
+        "https://vantage-dc.com/company/contact-us/",
+        "https://vantage-dc.com/fr/data-center-locations/north-america/phoenix-arizona/"
+      ]
+    },
+    {
+      "number": 45,
+      "id": "US45",
+      "name": "Vantage Fredericksburg VA4",
+      "evidence_date": "2025-11-06；官网2026-10-11查阅",
+      "urls": [
+        "https://vantage-dc.com/news/vantage-data-centers-invests-2b-in-fredericksburg-virginia-region-to-deliver-fourth-campus-in-the-commonwealth/",
+        "https://vantage-dc.com/data-center-locations/north-america/fredericksburg-va"
+      ]
+    },
+    {
+      "number": 46,
+      "id": "US46",
+      "name": "Switch Tahoe Reno Citadel",
+      "evidence_date": "2017-02首期公告；官网2026-10-11查阅",
+      "urls": [
+        "https://www.switch.com/switch-tahoe-reno-data-center-now-open/",
+        "https://www.switch.com/tahoe-reno/"
+      ]
+    },
+    {
+      "number": 47,
+      "id": "US47",
+      "name": "Google Pine Island Project Skyway",
+      "evidence_date": "2026-02-24；2026-04-15",
+      "urls": [
+        "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/data-center-pine-island/",
+        "https://pineislandmn.gov/index.asp?DE=3F9BAF37-F932-4AB5-90FB-BC7DB52B4E57&SEC=C3D5713E-C854-48A5-84BE-9308E2B3851E"
+      ]
+    }
+  ]
+}
+```
+
+
+====================
+
+# 东南亚六大市场容量和其他国家项目补充
+
+截至 2026 年 10 月 11 日。东南亚六国数据中心容量与公开项目台账。国家总表采用 Cushman & Wakefield 2026 年上半年同一统计快照，项目记录补充截至本页日期的公司、政府和法定披露。台账共 **69 条项目、园区或云区域记录**：六大市场 66 条，其他东南亚国家代表项目 3 条；另附缅甸及东帝汶的证据线索。其中部分条目合并同一运营商的相邻站点，不能解读为 69 栋机房。
+
+本台账同时记录 IT 计算容量与基础设施能力。只要公开披露了 IT load、设施总输入、电网接入、变电能力或发电能力中的任意一项，项目都会保留，并按原始口径标注；不能把不同口径混合求和。缺少 IT 数值的项目仍列入地点和主体清单。
+
+六国被 C&W 追踪的运营容量合计 **3.173 GW**，在建 **2.381 GW**，规划 **7.558 GW**。在建与规划相加为 **9.939 GW**，约为运营容量的 **3.13 倍**。这是一组统一市场口径的阶段比较；规划不代表必然落地，运营容量也不等于当下服务器实际耗电。
+
+## 六国统一容量快照
+
+| 国家 | 已运营 GW | 在建 GW | 规划 GW | 在建与规划 GW |
+| --- | ---: | ---: | ---: | ---: |
+| 新加坡 | 1.068 | 0.025 | 0.207 | 0.232 |
+| 马来西亚 | 1.318 | 1.039 | 4.399 | 5.438 |
+| 印尼 | 0.468 | 0.434 | 1.523 | 1.957 |
+| 泰国 | 0.139 | 0.859 | 1.227 | 2.086 |
+| 越南 | 0.073 | 0.019 | 0.100 | 0.119 |
+| 菲律宾 | 0.107 | 0.005 | 0.102 | 0.107 |
+| 六国合计 | **3.173** | **2.381** | **7.558** | **9.939** |
+
+统计期为 H1 2026，容量采用 C&W 市场监测口径，原始单位 MW，本页除以 1,000 转为 GW。六国合计是对上述国别数求和；报道中的东南亚在建 2,382 MW 比六国表相加多 1 MW，本页保留可复算的 2,381 MW，不把微小差额推定为具体项目。来源：[C&W 官方国别交互地图](https://view.ceros.com/cushmanwakefield-apac/apac-data-centres-group-interactive-map-2)、[H1 2026 官方说明](https://www.cushmanwakefield.com/en/singapore/news/2026/08/apac-dc-h1-2026)。
+
+柔佛在 H1 2026 的 IT 运营容量为 **1.110 GW**，另有 **0.602 GW** 在建及 **2.486 GW** 规划；国家与城市不能重复汇总。新加坡政府 2026 年 2 月另披露超过 70 个云、企业和托管中心，合计容量超过 **1.4 GW**，答复没有明确区分 IT 与设施电力，不能直接与 C&W 的 1.068 GW 做增量计算。来源：[柔佛数据](https://www.edgeprop.my/content/1917257/johor-leads-apac-data-centre-boom-malaysia-tops-construction-%E2%80%94-cw)、[新加坡 MDDI 国会答复](https://www.mddi.gov.sg/newsroom/mddi-s-response-to-pq-on-data-on-total-number-and-load-capacity-of-data-centres-in-singapore/)。
+
+## 2026 年下半年影响项目状态的变化
+
+新加坡在 2026 年 8 月 21 日的第二轮 DC-CFA 中，暂分配 **200 MW** 新容量，Digital Realty、Equinix、Keppel Data Centres、STTGDC 各 **50 MW**。这是审批与规划事件，晚于 H1 2026 快照，应另列，不能机械追加到上半年规划表，更不能称已部署。来源：[EDB 官方公告](https://www.edb.gov.sg/en/about-edb/media-releases-publications/four-data-centre-proposals-selected-as-part-of-second-data-centre.html)。
+
+泰国于 2026 年 9 月重整数据中心监管。法律解读提及约 49 个在建项目及 117 个待批项目暂停，10 月 1 日又推进独立建筑类别和五档分级；政府资料没有逐项目名单。因此，本台账保留此前可核实的施工状态，并标明新监管下的项目级进度不确定，不能断言下列每个中心均已停工，也不能用早期目标日期证明已经交付。来源：[泰国政府](https://www.thaigov.go.th/en/news/168500)、[NO&T 法律解读](https://www.nagashima.com/en/publications/publication20260911-1/)、[10 月政策进展](https://www.nationthailand.com/news/policy/40071762)。
+
+## 容量与角色口径
+
+**IT load** 是机柜、服务器等计算设备可承载功率；**设施输入或电网供电** 还包括冷却和其他辅助系统，不能直接当作 IT load；**电源 MW 与 MVA** 属于发电或供电设备能力，另行记录。**RFS** 指已经具备对客户服务条件的机房容量；它不等于实际部署的服务器负荷。**园区远期容量** 包含已交付与未来分期，不能与各期再相加。**带电土地** 表示土地和电力资源已取得或锁定，不等于建筑已开工。
+
+建设主体、运营主体、使用主体分别记录。电信互联伙伴、电力供应商、GPU 技术供应商及融资银行不自动成为机房租户。云区域或 Availability Zone 是云服务地理与容灾单元，不等于一栋独立数据中心；没有公开 MW 的云区域保留空项，不按投资额或机架数换算。地址来自运营商、政府或认证机构时直接注明；只有目录地址时标明目录来源，未公开街址的项目保留城市或工业园级地点。
+
+## 新加坡 项目台账
+
+### Nxera DC Tuas
+
+**地点：**Tuas；公告未披露街道门牌。
+
+**建设主体：**Singtel Nxera。**运营主体：**Nxera。**使用主体：**终端客户未披露；开业前 90% 以上容量已签约。
+
+**容量：**58 MW IT。
+
+**阶段与日期：**2026-02-09 开业。
+
+资料：[Singtel 开业公告](https://www.singtel.com/about-us/media-centre/news-releases/nxera-opens-data-centre)、[IT 口径](https://www.nxera-dc.com/our-reach/singapore-dc-tuas)。
+
+### AirTrunk SGP1
+
+**地点：**Loyang，22 Loyang Drive，508972。
+
+**建设主体：**AirTrunk。**运营主体：**AirTrunk。**使用主体：**StarHub 公开在园区提供数据中心服务；其他用户未披露。
+
+**容量：**78 MW 以上园区 capacity，项目页未再细分 IT 与设施输入。
+
+**阶段与日期：**2020-12-09 开业，运营。
+
+资料：[园区](https://airtrunk.com/location/sgp1-singapore/)、[NetLink Trust 地址](https://www.netlinktrust.com/images/pdf/List%20of%20Data%20Centres%20PDF%20Sep%202025.pdf)、[StarHub 合作](https://corporate.starhub.com/about-us/newsroom/2019/october/starhub-airtrunk-world-class-data-centre-sg.html)。
+
+### AirTrunk SGP2
+
+**地点：**Loyang；门牌未披露。
+
+**建设主体：**AirTrunk。**运营主体：**AirTrunk 拟运营。**使用主体：**未披露；批准联盟关联不代表客户已占满园区。
+
+**容量：**70 MW 以上完整设计容量，分期交付未披露。
+
+**阶段与日期：**2025-08 绿贷用于开发，2026-03 银行仍写将建设；列开发阶段，未確認开业。
+
+资料：[融资公告](https://airtrunk.com/zh-hans/airtrunk-secures-landmark-s2-25-billion-green-loan-advancing-singapores-role-as-asias-green-finance-hub/)、[2026 银行案例](https://www.sc.com/en/news/corporate-investment-banking/landmark-green-loan-for-airtrunk-sgp2-data-centre/)。
+
+### DayOne SG1
+
+**地点：**Jurong East，21 Jalan Buroh。
+
+**建设主体：**DayOne。**运营主体：**DayOne 拟运营。**使用主体：**未披露。
+
+**容量：**批准 20 MW；2026-09-20 SEC 仍归 secured powered land，相应 IT 储备。
+
+**阶段与日期：**2025-07 破土；当前官网目标 2027 RFS，公司严格阶段口径仍未列 construction。
+
+资料：[当前园区页](https://dayonedc.com/market/singapore)、[SEC 阶段口径](https://www.sec.gov/Archives/edgar/data/2118192/000119312526414188/d223752df1.htm)。
+
+### Equinix SG6
+
+**地点：**Jalan Tukang；门牌未披露。
+
+**建设主体：**Equinix。**运营主体：**Equinix 拟运营。**使用主体：**未披露。
+
+**容量：**完工目标 20 MW；本期建设 MW 未另披露。
+
+**阶段与日期：**2024-11-19 宣布，目标 Q1 2027；开发中，未投运。
+
+资料：[官方公告](https://newsroom.equinix.com/2024-11-19-Equinix-Fosters-AI-Development-by-Building-a-High-Performance-and-Sustainable-Data-Center-in-Singapore)。
+
+### STT Singapore 6
+
+**地点：**Loyang，1 Loyang Close，506755。
+
+**建设主体：**STTGDC。**运营主体：**STTGDC。**使用主体：**未披露。
+
+**容量：**40 MW IT。
+
+**阶段与日期：**2021-07-06 开业，运营。
+
+资料：[官方开业](https://www.sttgdc.com/sg-en/newsroom/st-telemedia-global-data-centres-launches-its-hyperscale-loyang-facility)。
+
+### Google Singapore campus
+
+**地点：**Jurong West；公开目录地址 2 Jurong West Street 23，项目街址为目录来源。
+
+**建设主体：**Google。**运营主体：**Google。**使用主体：**Google 自用。
+
+**容量：**MW 未披露；官方确认 2024 完成第四座设施，不能把第三方 220 MW 估计当官方披露。
+
+**阶段与日期：**2013 起运营；2024 新设施完成。
+
+资料：[Google 官方园区](https://datacenters.google/locations/singapore/)、[公开地址目录](https://www.datacenters.com/google-singapore)。
+
+## 马来西亚 项目台账
+
+### AirTrunk JHB1
+
+**地点：**Iskandar Puteri，SiLC 工业区；街道门牌未确定。
+
+**建设主体：**AirTrunk Malaysia；承建 Leightons Malaysia。**运营主体：**AirTrunk。**使用主体：**终端客户未披露。
+
+**容量：**园区 150 MW 以上 IT；初始交付 50 MW 以上。
+
+**阶段与日期：**2024-07 开业；2026 IFC 称已有签约园区，后续扩建与运营混合，最新分期交付量未披露。
+
+资料：[AirTrunk](https://airtrunk.com/airtrunk-jhb1100mw-expansion-underway/)、[IFC](https://disclosures.ifc.org/project-detail/ESRS/52336/airtrunk-johor)。
+
+### AirTrunk JHB2
+
+**地点：**Iskandar Puteri，与 JHB1 相邻的 SiLC 工业区。
+
+**建设主体：**AirTrunk；承建 Leightons Malaysia。**运营主体：**AirTrunk。**使用主体：**未披露。
+
+**容量：**园区 270 MW 以上 IT；本期在建 IT MW 未单独披露。
+
+**阶段与日期：**2025-02 宣布；2026 IFC 确认施工管理，归分期在建，未确认投运。
+
+资料：[公司公告](https://airtrunk.com/airtrunk-scales-up-in-malaysia-with-announcement-of-second-malaysia-hyperscale-data-centre-jhb2/)、[IFC](https://disclosures.ifc.org/project-detail/ESRS/52336/airtrunk-johor)。
+
+### AirTrunk JHB3
+
+**地点：**Johor，Iskandar Puteri，靠近 JHB1 和 JHB2；门牌未披露。
+
+**建设主体：**AirTrunk。**运营主体：**AirTrunk 拟运营。**使用主体：**未披露。
+
+**容量：**138 MW 以上 IT 全园区。
+
+**阶段与日期：**2026-04-30 宣布规划。
+
+资料：[园区](https://airtrunk.com/location/jhb3-johor-bahru/)、[宣布](https://airtrunk.com/airtrunk-doubles-down-in-malaysia-with-two-new-hyperscale-campuses-in-johor-bahru/)。
+
+### AirTrunk JHB4
+
+**地点：**Johor，Iskandar Puteri，靠近 JHB1 和 JHB2；门牌未披露。
+
+**建设主体：**AirTrunk。**运营主体：**AirTrunk 拟运营。**使用主体：**未披露。
+
+**容量：**142 MW 以上 IT 全园区；与 JHB3 合计 280 MW 以上。
+
+**阶段与日期：**2026-04-30 宣布规划。
+
+资料：[园区](https://airtrunk.com/location/jhb4-johor-bahru/)、[宣布](https://airtrunk.com/airtrunk-doubles-down-in-malaysia-with-two-new-hyperscale-campuses-in-johor-bahru/)。
+
+### Vantage JHB1 原 Yondr Johor
+
+**地点：**Kulai，Sedenak Tech Park，约 72.5 acres。
+
+**建设主体：**初始开发 Yondr；2025-11-24 售予 Vantage。**运营主体：**Vantage Data Centers。**使用主体：**未披露。
+
+**容量：**完整园区 300 MW 以上 IT；首栋目标 98 MW；2025-06 首批交付 25 MW IT，后续容量不能全作已投运。
+
+**阶段与日期：**运营与扩建混合；2025-11 交易完成。
+
+资料：[首次交付](https://www.yondrgroup.com/newsroom/press-release/yondr-group-achieves-first-completion-milestone-six-months-ahead-of-schedule-at-98mw-johor-data-center/)、[交易完成](https://www.yondrgroup.com/newsroom/press-release/yondr-group-completes-sale-of-johor-campus-to-vantage-data-centers/)。
+
+### PDG JH1
+
+**地点：**Kulai，Sedenak Tech Park。
+
+**建设主体：**Princeton Digital Group。**运营主体：**PDG。**使用主体：**未披露。
+
+**容量：**当前官网 200 MW 全园区，旧公告 150 MW；最新完整 RFS 分期 MW 未披露。
+
+**阶段与日期：**2024-07 一期交付；运营与扩建混合。
+
+资料：[当前园区](https://princetondg.com/where-we-operate/)、[一期交付](https://princetondg.com/press-releases/princeton-digital-group-delivers-phase-one-of-its-150mw-ai-ready-jh1-campus-in-sedenak-tech-park-johor/)。
+
+### PDG JH2
+
+**地点：**Johor，Eco Business Park，Mukim Senai，距 JH1 约 16 km。
+
+**建设主体：**Princeton Digital Group。**运营主体：**PDG 拟运营。**使用主体：**未披露。
+
+**容量：**官网规划 300 MW，5 栋楼。
+
+**阶段与日期：**规划。
+
+资料：[官方园区表](https://princetondg.com/where-we-operate/)。
+
+### DayOne NTP 与 KTP
+
+**地点：**Iskandar Puteri，Nusajaya Tech Park；Johor Bahru，Kempas Tech Park。
+
+**建设主体：**DayOne。**运营主体：**DayOne。**使用主体：**F-1 记载柔佛 10 家客户，姓名未披露。
+
+**容量：**2026-09-20：789 MW IT Ready For Service、616 MW IT 在建、208 MW IT 对应 secured powered land；三类互斥，Bookings 不另加。
+
+**阶段与日期：**NTP 2023 投运，KTP 2025 投运；采用最新 SEC 资产阶段口径。RFS 是机房可服务容量，不是实际服务器用电。
+
+资料：[SEC F-1 第 103 页](https://www.sec.gov/Archives/edgar/data/2118192/000119312526414188/d223752df1.htm)。
+
+### DayOne Greater Kuala Lumpur
+
+**地点：**大吉隆坡；本表未逐园公开门牌。
+
+**建设主体：**DayOne。**运营主体：**DayOne 拟运营。**使用主体：**未披露。
+
+**容量：**2026-09-20：RFS 为 0，IT 在建 128 MW，secured powered land 对应 IT 1,320 MW；土地容量不是建筑投运。
+
+**阶段与日期：**在建加土地储备；不得把 1.320 GW 列为已开工机房。
+
+资料：[SEC F-1 第 103 页](https://www.sec.gov/Archives/edgar/data/2118192/000119312526414188/d223752df1.htm)。
+
+### Bridge Data Centres MY06
+
+**地点：**Kulai／Sedenak，Sedenak Tech Park。
+
+**建设主体：**Bridge Data Centres。**运营主体：**Bridge Data Centres。**使用主体：**首期锚定客户 ByteDance；其他用户未披露。
+
+**容量：**当前官网完整园区 508 MW IT、15 栋；2022 旧园区设计 110 MW；最新已交付分期量未披露。
+
+**阶段与日期：**2022-10-20 首期开业；运营与扩建混合。
+
+资料：[当前官网](https://www.bridgedatacentres.com/locations/malaysia/)、[MIDA 开业与客户](https://www.mida.gov.my/media-release/bridge-data-centres-and-bytedance-celebrate-grand-opening-of-the-first-phase-hyperscale-data-centre-my06-in-johor-malaysia/)。
+
+### Bridge Data Centres MY07
+
+**地点：**Johor，Ulu Tiram；门牌未披露。
+
+**建设主体：**Bridge Data Centres。**运营主体：**Bridge Data Centres。**使用主体：**未披露。
+
+**容量：**当前官网全园区 374 MW IT、8 栋；旧公告 200 MW 以上。最新全园 RFS MW 未披露。
+
+**阶段与日期：**2026-05 已披露现场液冷部署，分期运营与开发混合。
+
+资料：[当前容量](https://www.bridgedatacentres.com/locations/malaysia/)、[2026 液冷部署](https://www.bridgedatacentres.com/advancing-ai-infrastructure-with-liquid-cooling-in-malaysia/)。
+
+### STT Johor
+
+**地点：**Iskandar Puteri，Nusa Cemerlang Industrial Park。
+
+**建设主体：**STTGDC。**运营主体：**STTGDC。**使用主体：**未披露。
+
+**容量：**2026-08 最新全园区规划 166 MW IT，取代旧 120 MW；一期 16 MW IT。
+
+**阶段与日期：**2025-02 开工；最新一期 factsheet 目标 Q2 2027，未确认投运。
+
+资料：[最新融资与容量](https://www.sttgdc.com/my-en/newsroom/stt-gdc-deepens-malaysia-commitment-up-to-usd-1.37-billion-green-financing-stt-johor-campus)、[一期资料](https://assets.sttelemediagdc.com/sttgdc/global_en/public/2025-12/STT_Johor_1_Factsheet_v20251201.pdf)。
+
+### TM Nxera Johor
+
+**地点：**Iskandar Puteri，EduCity 周边；门牌未披露。
+
+**建设主体：**Telekom Malaysia 与 Singtel Nxera 合资。**运营主体：**TM Nxera。**使用主体：**未披露。
+
+**容量：**初始官方一期 64 MW，IT 远期 200 MW；2026-01 TNB 供电合同 280 MW 是设施供电，不能替代 IT 数。
+
+**阶段与日期：**2026-04 封顶，目标 H2 2026 商运；未确认截至 10-11 投运。
+
+资料：[初始规划](https://www.tm.com.my/news/tm_singtel_nxera_develop_next_gen_data_centres)、[供电合同](https://tm.com.my/news/tm_nxera_green_data_centre_campus)、[封顶](https://www.tm.com.my/news/nxera_topping_out_ceremony)。
+
+### NTT Johor campus
+
+**地点：**Gelang Patah，Johor Bahru；约 68.5 acres。
+
+**建设主体：**NTT DATA Global Data Centers。**运营主体：**NTT DATA 拟运营。**使用主体：**未披露。
+
+**容量：**完整园区 290 MW IT，6 栋。
+
+**阶段与日期：**2024-12-05 宣布拟购地；列土地与规划，未确认开工或开业。
+
+资料：[官方宣布](https://services.global.ntt/en-us/newsroom/ntt-data-announces-land-acquisition-for-new-data-center-in-malaysia)。
+
+### Google Elmina
+
+**地点：**Selangor，大吉隆坡，Elmina Business Park。
+
+**建设主体：**Google；地产与土地合作 Sime Darby Property。**运营主体：**Google。**使用主体：**Google 自用。
+
+**容量：**MW 未披露；20 亿美元包括数据中心及云区域投资，不能由金额换算 GW。
+
+**阶段与日期：**2024-10-01 破土，在建。
+
+资料：[Google 破土](https://blog.google/intl/en-my/company-news/inside-google/2024_10_google-breaks-ground-on-us2-billion/)、[地产方施工公告](https://www.simedarbyproperty.com/sites/default/files/2024-10/20241002%20-%20For%20Immediate%20Release-%20Google%E2%80%99s%20Hyperscale%20Data%20Centre%20at%20Elmina%20Business%20Park%20Breaks%20Ground.pdf)。
+
+### Equinix JH1
+
+**地点：**Iskandar Puteri，No.2 and 6，Jalan Teknologi Perintis 1/3，Taman Teknologi Nusajaya。
+
+**建设主体：**Equinix。**运营主体：**Equinix。**使用主体：**未披露。
+
+**容量：**首期 500 cabinets；MW 未披露。
+
+**阶段与日期：**2024-05 开业。
+
+资料：[官方地址](https://www.equinix.com/es/es/data-centers/asia-pacific-colocation/malaysia-colocation/johor-data-center/jh1)、[开业](https://newsroom.equinix.com/2024-05-27-Equinixs-Dual-Metro-Data-Centers-Propel-Malaysias-Digital-Economy-Ambition-to-New-Heights)。
+
+### Equinix KL1
+
+**地点：**Cyberjaya，2 Jalan Cyber Point 4，Cyber 8，63000，Selangor。
+
+**建设主体：**Equinix。**运营主体：**Equinix。**使用主体：**未披露。
+
+**容量：**首期 450 cabinets，完整 900；MW 未披露。
+
+**阶段与日期：**2024 开业。
+
+资料：[官方地址](https://www.equinix.com/data-centers/asia-pacific-colocation/malaysia-colocation/kuala-lumpur-data-centers/kl1)、[开业](https://newsroom.equinix.com/2024-05-27-Equinixs-Dual-Metro-Data-Centers-Propel-Malaysias-Digital-Economy-Ambition-to-New-Heights)。
+
+## 印尼 项目台账
+
+### DCI H1 Campus
+
+**地点：**大雅加达 Bekasi／Cibitung，Jalan Jawa，Blok GG5-1，MM2100 Industrial Area，Cikarang Barat，17520。
+
+**建设主体：**PT DCI Indonesia Tbk。**运营主体：**DCI。**使用主体：**6 家全球云商及 80 多家电信商等，实名租户未逐一披露。
+
+**容量：**当前 75 MW IT，5 栋 live；远期可至 300 MW；JK6 36 MW 已包含在现总量，不能重复加。
+
+**阶段与日期：**已运营；JK6 2025-06-03 开幕。
+
+资料：[官方容量](https://dci-indonesia.com/data-centers)、[运营商地址](https://www.peeringdb.com/fac/8167)。
+
+### DCI H2 Campus
+
+**地点：**西爪哇 Karawang，Pertiwi Lestari Industrial Estate；门牌未披露。
+
+**建设主体：**DCI 与 Salim Group 的 PT Datacenter Indonesia Sukses Makmur 合作。**运营主体：**DCI。**使用主体：**未披露。
+
+**容量：**当前 30 MW IT，2 栋 live；远期至少 600 MW IT；园内 30 MW 太阳能另属发电容量。
+
+**阶段与日期：**已运营；2023 旧开业容量 27 MW 已更新。
+
+资料：[当前官网](https://dci-indonesia.com/data-centers)、[合作建设](https://dci-indonesia.com/news/dci-indonesia-and-salim-group-inaugurate-second-data-center-in-karawang-pioneering-the-first-solar-powered-data-center-in-indonesia)。
+
+### DCI H5 Data Center Park
+
+**地点：**廖内群岛 Bintan 岛；700 ha 园区，门牌未披露。
+
+**建设主体：**DCI Platform，其他合作主体未确认。**运营主体：**DCI 拟运营。**使用主体：**未披露。
+
+**容量：**远期 1,000 MW IT 全园区设计。
+
+**阶段与日期：**官网 Planned，非已投运或已开工 1 GW。
+
+资料：[官方项目目录](https://dci-indonesia.com/data-centers)。
+
+### PDG JC1 与 JC2
+
+**地点：**Bekasi／Cibitung，MM2100；JC1 Jl. Sumbawa No.1，Mekarwangi；JC2 Jalan Sumba，Blok A-B，Kav. B12-1，Cikarang Barat。
+
+**建设主体：**Princeton Digital Group。**运营主体：**PDG。**使用主体：**未披露。
+
+**容量：**两站合计 26 MW，JC2 22 MW；所阅原文 capacity，IT 与设施口径未进一步标明。
+
+**阶段与日期：**运营；JC2 2023-09-25 投运。
+
+资料：[官网](https://princetondg.com/where-we-operate/)、[JC2 投运](https://princetondg.com/press-releases/princeton-digital-group-launches-its-22mw-hyperscale-data-center-in-greater-jakarta-2/)、[JC1 地址](https://www.peeringdb.com/fac/9016)、[JC2 地址](https://www.peeringdb.com/fac/14211)。
+
+### PDG JC3
+
+**地点：**Bekasi Regency，Kota Deltamas／Central Cikarang，Greenland International Industrial Center GIIC。
+
+**建设主体：**PDG。**运营主体：**PDG 拟运营。**使用主体：**未披露。
+
+**容量：**全园区 120 MW 开发商披露 capacity；两栋分期，施工期 MW 未独立披露。
+
+**阶段与日期：**2025-11-19 开工；2026-05 融资；首期目标 Q4 2026，未确认截至 10-11 已投运。
+
+资料：[开工](https://princetondg.com/press-releases/princeton-digital-group-breaks-ground-on-milestone-usd-1-billion-120-mw-greater-jakarta-campus/)、[融资](https://princetondg.com/press-releases/pdg-raising-usd-856-million-debt-for-its-hyperscale-data-center-expansion-in-indonesia/)。
+
+### PDG JC4
+
+**地点：**Bekasi Regency，GIIC，距 JC3 约 1.7 km。
+
+**建设主体：**PDG。**运营主体：**PDG 拟运营。**使用主体：**未披露。
+
+**容量：**远期 240 MW 开发商 capacity，4 栋各 60 MW；不是已部署全量。
+
+**阶段与日期：**2026-04-30 宣布土地电力落实且建设已经开始；分期在建，本期施工 MW 未单列。
+
+资料：[官方公告](https://princetondg.com/press-releases/pdg-acquires-240-mw-of-powered-land-in-jakarta-advancing-its-rapid-expansion-across-asia/)。
+
+### Digital Edge EDGE2
+
+**地点：**South Jakarta，Jl. Kuningan Mulia，12980。
+
+**建设主体：**PT Ekagrata Data Gemilang；Digital Edge 与 Indonet。**运营主体：**Digital Edge Indonesia。**使用主体：**未披露。
+
+**容量：**23 MW IT；约 3,400 racks。
+
+**阶段与日期：**2024-02-28 投运。
+
+资料：[官方投运](https://id.digitaledgedc.com/news/edge2-23-mw-data-center-facility-in-the-heart-of-jakarta-is-ready-for-service)、[运营商地址](https://www.peeringdb.com/fac/15081)。
+
+### Digital Edge CGK Campus
+
+**地点：**Bekasi／Cikarang，GIIC Industrial Estate。
+
+**建设主体：**Digital Edge Indonesia；Indonet 网络合作，Stonepeak 支持。**运营主体：**Digital Edge。**使用主体：**未披露。
+
+**容量：**全园区 500 MW IT，可扩至 1 GW；首期三栋，不能把全园区远期容量记入当期建设。
+
+**阶段与日期：**首期开发中；第一栋目标 Q4 2026，其后二栋 Q1 和 Q2 2027；2026-03 获绿贷。
+
+资料：[官方项目公告](https://id.digitaledgedc.com/news/digital-edge-4-5b-cgk-500mw-ai-ready-hyperscale-campus-indonesia)、[绿贷](https://id.digitaledgedc.com/news/digital-edge-secures-us665m-green-loan)。
+
+### BDx CGK4 与 AI Campus 2
+
+**地点：**西爪哇 Purwakarta，Jatiluhur；门牌未披露。
+
+**建设主体：**BDx Indonesia，为 BDx、Indosat Ooredoo Hutchison、Lintasarta 合作体系。**运营主体：**BDx Indonesia。**使用主体：**原有 AI 生态涉及 Indosat 与 Lintasarta；扩建终端租户未披露；NVIDIA 为技术合作方。
+
+**容量：**新阶段 640 MW IT 分期设计；845 MVA 是 PLN 供电，不能与 IT 相加；首栋 120 MW。
+
+**阶段与日期：**旧阶段 2024 开业；2026-09-22 新扩建开工，首栋目标 2027 年初。官网 Operational 不能解释成 640 MW 全量运营。
+
+资料：[设施页](https://www.bdxworld.com/locations/cgk4/)、[官方新闻索引](https://www.bdxworld.com/news/)、[开工交叉核实](https://www.datacenterdynamics.com/en/news/bdx-breaks-ground-on-ai-campus-2-in-jatiluhur-indonesia/)。
+
+### DayOne Batam Nongsa
+
+**地点：**廖内群岛 Batam，Nongsa Digital Park；街址未披露。
+
+**建设主体：**DayOne。**运营主体：**DayOne。**使用主体：**客户未披露。
+
+**容量：**2026-09-20：72 MW IT RFS、240 MW IT 在建、120 MW IT 对应 secured powered land；RFS 非实际服务器负荷。
+
+**阶段与日期：**部分运营与扩建；分期状态以最新 SEC 披露为准。
+
+资料：[SEC F-1 第 103 页](https://www.sec.gov/Archives/edgar/data/2118192/000119312526414188/d223752df1.htm)。
+
+### AWS Jakarta Region
+
+**地点：**Jakarta 区域；物理楼宇街址未披露。
+
+**建设主体：**Amazon Web Services，建设与租赁拆分未公开。**运营主体：**AWS。**使用主体：**AWS 云用户；单楼租户未披露。
+
+**容量：**3 Availability Zones，MW 未披露。
+
+**阶段与日期：**2021-12-13 云区域上线。
+
+资料：[AWS 官方](https://aws.amazon.com/blogs/aws/now-open-aws-asia-pacific-jakarta-region/)。
+
+### Microsoft Indonesia Central
+
+**地点：**Indonesia Central；机房具体城市地块与街址未披露。
+
+**建设主体：**Microsoft，建设与第三方租赁拆分未公开。**运营主体：**Microsoft Azure。**使用主体：**Azure 云用户，单楼租户未披露。
+
+**容量：**MW 未披露；不得从投资额换算 GW。
+
+**阶段与日期：**2025-04-15 GA，2025-05-27 正式发布，2025-11 继续扩充 AI 云服务。
+
+资料：[Microsoft 发布](https://news.microsoft.com/id-id/2025/05/27/microsoft-opens-indonesia-central/)、[服务扩充](https://news.microsoft.com/source/asia/2025/11/25/microsoft-expands-ai-infrastructure-and-cloud-services-in-indonesia-empowering-more-organizations-to-innovate-locally/)。
+
+## 泰国 项目台账
+
+### STT Bangkok 1
+
+**地点：**Bangkok，Hua Mak／Bang Kapi，1 Soi Ramkhamhaeng 28，10240。
+
+**建设主体：**Frasers Property 与 STTGDC 合资。**运营主体：**STTGDC Thailand。**使用主体：**未披露。
+
+**容量：**最新 2025-10 factsheet 23 MW IT，取代早期 20 至 22 MW。
+
+**阶段与日期：**2021-09 起运营。
+
+资料：[当前官网](https://www.sttelemediagdc.com/th-en/locations/bangkok)、[官方 factsheet](https://assets.sttelemediagdc.com/sttgdc/global_en/public/2025-11/STT_Bangkok_1_Fact_Sheet_20251022_0.pdf)。
+
+### STT Bangkok 2
+
+**地点：**Bangkok，Hua Mak，1 Soi Ramkhamhaeng 28，10240，与 Bangkok 1 同园区。
+
+**建设主体：**Frasers Property 与 STTGDC 合资。**运营主体：**STTGDC Thailand 拟运营。**使用主体：**未披露。
+
+**容量：**24 MW IT 设计。
+
+**阶段与日期：**2025-03-03 宣布施工，目标 Q4 2026；当前官网 under development；9 月监管重整后逐项目进度未确认。
+
+资料：[施工公告](https://www.sttgdc.com/newsroom/stt-gdc-thailand-commences-construction-stt-bangkok-2)、[factsheet](https://assets.sttelemediagdc.com/sttgdc/global_en/public/2025-11/STT_Bangkok_2_Fact_Sheet_20251022.pdf)。
+
+### STT Bangkok 3
+
+**地点：**Bangkok，Pathumwan，One Bangkok，CUP Building 3 至 4 FL，183 Wireless Road，Lumpini 10330。
+
+**建设主体：**Frasers Property 与 STTGDC 合作。**运营主体：**STTGDC Thailand。**使用主体：**未披露。
+
+**容量：**2 MW IT。
+
+**阶段与日期：**2024-06 官方确认运营。
+
+资料：[运营状态](https://www.sttgdc.com/th-en/newsroom/2024-frost-sullivan-DC-Colocation-Services-Thailand)、[factsheet 地址](https://assets.sttelemediagdc.com/sttgdc/global_en/public/2025-11/STT_Bangkok_3_Factsheet_Oct_2025.pdf)。
+
+### DayOne Chonburi Tech Park
+
+**地点：**Chonburi，Amata City Chonburi Industrial Estate；门牌未披露。
+
+**建设主体：**DayOne；AMATA 土地与工业园基础设施合作。**运营主体：**DayOne。**使用主体：**未披露。
+
+**容量：**当前园区页 300 MW campus 未细分口径；2025 开工 180 MW 是 grid；最新 SEC 大曼谷合计 RFS 73／在建 47／带电土地 94 MW IT。地理聚合与园区规模不可相加。
+
+**阶段与日期：**2025-03-17 初始开工；部分已 RFS。2026-09-20 SEC 为最新资产阶段；1 GW power platform 属更长期电力目标。
+
+资料：[当前园区](https://dayonedc.com/market/greater-bangkok)、[开工](https://dayonedc.com/news/dayone-breaks-ground-on-hyperscale-data-center-in-chonburi-pioneering-thailands-digital-future/dayone_pr_breaks-ground-in-chonburi)、[SEC](https://www.sec.gov/Archives/edgar/data/2118192/000119312526414188/d223752df1.htm)。
+
+### GSA01 Next01
+
+**地点：**Samut Prakan，Bang Phli，Thepharak Road。
+
+**建设主体：**GSA Data Center 01 Co；Gulf、AIS、Singtel 合资。**运营主体：**GSA。**使用主体：**未披露。
+
+**容量：**25.6 MW service capacity，法定披露未明确 IT 或设施输入。
+
+**阶段与日期：**2025 Q2 商运。
+
+资料：[Gulf 法定披露](https://market.sec.or.th/public/idisc/Download?FILEID=dat/news/202601/2023NWS090120261743000170E.pdf)、[EPI 地址](https://www.epi-certification.com/sites/details/1609)、[ADB 融资](https://www.adb.org/news/adb-gsa-sign-deal-open-green-data-center-thailand)。
+
+### GSA02
+
+**地点：**Chonburi，EEC；具体门牌未披露。
+
+**建设主体：**GSA，Gulf／AIS／Singtel 合资体系。**运营主体：**GSA 拟运营。**使用主体：**约 60% 容量已有协议或确定意向，实名未披露。
+
+**容量：**38.1 MW service capacity；2026 AGM 写 38.0 MW 为近似数，口径未再定义 IT。
+
+**阶段与日期：**2026-01 在建，目标 Q1 2027 商运；9 月后项目级复工进度未确认。
+
+资料：[法定披露](https://market.sec.or.th/public/idisc/Download?FILEID=dat/news/202601/2023NWS090120261743000170E.pdf)、[2026 AGM](https://investor.gulf.co.th/storage/document/shareholder-meetings/agm2026/gulf-agm2026-minutes-en.pdf)。
+
+### Gulf Edge Data Center 01 原 GSA03
+
+**地点：**Rayong，EEC；门牌未披露。
+
+**建设主体：**2026-01 重整：Gulf Edge DC 70%，AIS DC Venture 30%；本项目不再沿用 Singtel 股东描述。**运营主体：**Gulf Edge Data Center。**使用主体：**用户意向及协议谈判中，实名未披露。
+
+**容量：**一期 100 MW service capacity；口径未明确 IT 与设施。
+
+**阶段与日期：**2026-01 under development，目标 2027 商运；9 月后逐项目进度未确认。
+
+资料：[股权与状态](https://market.sec.or.th/public/idisc/Download?FILEID=dat/news/202601/2023NWS090120261743000170E.pdf)、[名称与一期容量](https://investor.gulf.co.th/storage/document/shareholder-meetings/agm2026/gulf-agm2026-minutes-en.pdf)。
+
+### Google Thailand data centre
+
+**地点：**数据中心 Chonburi；云区域 Bangkok；街址未披露。
+
+**建设主体：**Google。**运营主体：**Google。**使用主体：**Google Cloud、Search、Maps、Workspace 等自用服务。
+
+**容量：**MW 未披露；10 亿美元计划不能换算 IT MW。
+
+**阶段与日期：**2024-09 公布，2026-09 仍有计划推进会面；未确认全设施投运。
+
+资料：[Google 原文](https://blog.google/intl/th-th/company-news/technology/2024_09_ai-samart-thailand/)、[2026 会面](https://www.nationthailand.com/business/investment/40071418)。
+
+### AWS Thailand Region
+
+**地点：**Thailand；物理楼宇地址未披露。
+
+**建设主体：**Amazon Web Services，实体机房建设与租赁拆分未公开。**运营主体：**AWS。**使用主体：**AWS 云用户；单楼租户未披露。
+
+**容量：**3 Availability Zones，MW 未披露；AZ 不是建筑栋数。
+
+**阶段与日期：**2025-01-07 云区域上线。
+
+资料：[Amazon 官方](https://press.aboutamazon.com/2025/1/aws-launches-infrastructure-region-in-thailand)。
+
+## 越南 项目台账
+
+### Viettel Hoa Lac 3
+
+**地点：**河内 Hoa Lac Hi-Tech Park，Thach That，Thang Long Boulevard Km 29（园区级地址）。
+
+**建设主体：**Viettel Group。**运营主体：**Viettel IDC。**使用主体：**客户名单未披露。
+
+**容量：**30 MW 总电力设计容量，IT MW 未披露；2,400 racks。
+
+**阶段与日期：**2024-04-10 投运。
+
+资料：[Viettel 开业公告](https://viettelamerica.com/2024/04/10/viettel-launches-vietnams-largest-green-data-center-ready-for-ai-development/)、[越南政府电力口径](https://baochinhphu.vn/viettel-khai-truong-trung-tam-du-lieu-co-cong-suat-tieu-thu-dien-30mw-102240410151008376.htm)。
+
+### Viettel Tan Phu Trung
+
+**地点：**胡志明市 Cu Chi，Tan Phu Trung Industrial Park（园区级地址）。
+
+**建设主体：**Viettel Group；承建 Vinaconex。**运营主体：**Viettel／Viettel IDC。**使用主体：**未披露。
+
+**容量：**远期设计 140 MW 总电力；约 10,000 racks；本期实际 IT 与在建 MW 未披露。
+
+**阶段与日期：**2025-04-23 开工，分期建设；140 MW 不能全部归入 IT 在建量。
+
+资料：[越南政府开工公告](https://tphcm.baochinhphu.vn/viettel-khoi-cong-trung-tam-du-lieu-nghien-cuu-phat-trien-cong-nghe-cao-quy-mo-sieu-lon-tai-tphcm-101250423174919218.htm)、[Vinaconex 承建说明](https://vinaconex.com.vn/public/en/tin-tuc/vinaconex-dong-hanh-cung-viettel-tai-du-an-trung-tam-du-lieu-lon-nhat-viet-nam.html)。
+
+### STT VNG Ho Chi Minh City 1
+
+**地点：**胡志明市 Tan Thuan；Lot S.38b-39-40，Road No.18，Tan Thuan Export Processing Zone（运营商地址；VNG联系人页另写 Road 19）。
+
+**建设主体：**VNG／STTGDC 合资。**运营主体：**STTGDC Vietnam／VNG Data Center JSC。**使用主体：**具体客户未披露；VNGGames、VNG Cloud 为直接互联对象。
+
+**容量：**官网当前明确 11.2 MW IT load；2024 旧公告为 9.6 MW 电力，按新产品页记录，不能叠加。
+
+**阶段与日期：**已运营；现有业务不受 2026-08 VTH 地块股权出售影响。
+
+资料：[运营商当前 IT 容量](https://www.sttgdc.com/vn-en/locations/ho-chi-minh-city)、[运营商地址](https://www.sttgdc.com/vn-en/contact)、[VTH 地块退出公告](https://www.sttgdc.com/vn-en/newsroom/stt-gdc-confirms-proposed-sale-of-interest-vth)。
+
+### FPT Fornix HCM02
+
+**地点：**胡志明市 Saigon Hi-Tech Park，Tang Nhon Phu，Lot T2-5，D1 Road。
+
+**建设主体：**FPT Corporation／FPT Telecom。**运营主体：**FPT Telecom／FTI。**使用主体：**具体客户未披露；提供 Fornix Private Cloud 与托管服务。
+
+**容量：**3,600 racks、约 10,000 m²；未找到可核实 MW，不能由 racks 自行换算。
+
+**阶段与日期：**2025-08-20 正式投运。
+
+资料：[FPT 投运公告](https://fpt.com/en/news/fpt-inaugurates-vietnams-largest-data-center-empowering-national-digital-sovereignty-and-paving-the-way-for-the-ai-era)、[EPI 认证地址](https://www.epi-certification.com/sites/map/Vietnam/0/)。
+
+### CMC Tan Thuan
+
+**地点：**胡志明市第七郡 Tan Thuan Export Processing Zone，CMC Creative Space（园区级地址）。
+
+**建设主体：**CMC Corporation／CMC Telecom。**运营主体：**CMC Telecom。**使用主体：**未披露。
+
+**容量：**公司披露 12 MW 总容量／供电；未明确可与国家 IT 统计直接对应的口径；1,200 racks。
+
+**阶段与日期：**2022 年投运，2022-06 取得建成设施 Tier III 认证。
+
+资料：[CMC 官方容量与认证](https://www.cmc.com.vn/insight-detail/uptime-institutes-expert-cmcs-dc-is-the-most-modern-dc-in-vietnam-today-202206086681.html)、[CMC 开业与地址](https://cmctelecom.vn/bai-viet/tan-thuan-data-center-bespoke-dc-for-you-2/)。
+
+### CMC Hyperscale SHTP
+
+**地点：**胡志明市 Tang Nhon Phu，Saigon Hi-Tech Park，Lot T4-3，D2 Road。
+
+**建设主体：**CMC Corporation／CMC Telecom；Samsung C&T 为战略合作方。**运营主体：**拟由 CMC 运营。**使用主体：**未披露。
+
+**容量：**初始设计 30 MW，可扩至 120 MW；官方简称容量未一致区分 IT／设施，暂保留原口径。
+
+**阶段与日期：**2025 年投资获批；2026-03 设计咨询招标，归入获批规划；未用预定开工日推定已开工。
+
+资料：[CMC 官方容量说明](https://cmctelecom.vn/bai-viet/cmc-ky-ket-hop-tac-chien-luoc-voi-samsung-ct-ta%CC%A3i-die%CC%83n-dan-kinh-te-vie%CC%A3t-nam-han-quoc/)、[公司设计招标新闻稿及具体地块](https://www.datacenterdynamics.com/en/product-news/cmc-opens-design-consulting-tender-for-hyperscale-data-center-project-in-ho-chi-minh-city/)。
+
+### Evolution VN01 EcoDC E4
+
+**地点：**河内 Thach That，Hoa Lac Hi-Tech Park，EcoDC E4。
+
+**建设主体：**HITC 与 Evolution Data Centres。**运营主体：**HITC／Evolution 合作。**使用主体：**未披露；CMC、FPT、VNPT、Viettel、VNIX 是连接方。
+
+**容量：**4.75 MW IT；约 750 racks。
+
+**阶段与日期：**官网明确 In Operation，2026 当前产品页。
+
+资料：[Evolution 市场页](https://evolutiondatacentres.com/markets/)。
+
+### Evolution VN02
+
+**地点：**胡志明市 Tang Nhon Phu，Saigon Hi-Tech Park，Lot T8（49,554.7 m²）。
+
+**建设主体：**Evolution DC VN HCMC；Hathor、Frontier、Evolution 投资联合体；HITC 合作。**运营主体：**拟由 Evolution DC VN HCMC 运营。**使用主体：**未披露。
+
+**容量：**52 MW IT 园区设计；5,020 racks；本期建设 MW 未披露。
+
+**阶段与日期：**2026-03-30 注册许可，2026-08-25 交地；规划／设计建设准备，目标一期 Q4 2027 RFS。
+
+资料：[SHTP 政府交地公告](https://shtp.hochiminhcity.gov.vn/ban-giao-dat-tren-thuc-dia-tai-lo-t8-khu-cong-nghe-cao-phuong-tang-nhon-phu-thanh-pho-ho-chi-minh-cho-cong-ty-co-phan-evolution-dc-vn-hcmc-987.htm)、[Evolution 当前产品页](https://evolutiondatacentres.com/markets/)。
+
+### StarMason SHTP
+
+**地点：**胡志明市 Saigon Hi-Tech Park，Lot T9，约 4.46 ha。
+
+**建设主体：**StarMason JSC；Sembcorp Development 持股 49%，合作方 BB Holdings。**运营主体：**拟由 StarMason 运营。**使用主体：**未披露。
+
+**容量：**获批设计 60 MW IT，可拓至 90 MW；60 与 90 为包含关系。
+
+**阶段与日期：**2026-03-27 宣布投资获批；2026-08 政府规划地块确认；分期规划，未据此视为全量在建。
+
+资料：[SHTP 政府容量与地块](https://shtp.hochiminhcity.gov.vn/shtp-pmu-khu-cong-nghe-cao-tphcm-san-sang-quy-dat-dich-vu-quy-mo-lon-don-bo-ba-du-an-ha-tang-cong-nghe-va-y-sinh-gan-115-ty-usd-1000.htm)、[Sembcorp 官方持股与远期容量](https://www.sembcorp.com/media/kygln1ez/sembcorp-development-secures-investment-approval-to-develop-proposed-dc-campus-in-hcmc.pdf)。
+
+### AIC KBC SGI HCM Campus
+
+**地点：**胡志明市 Cu Chi，Tan Phu Trung Industrial Park，Lot B2-1。
+
+**建设主体：**Accelerated Infrastructure Capital 与 Kinh Bac City Development 合资；VietinBank 参与合作／融资。**运营主体：**最终运营法人未披露。**使用主体：**具体客户未披露；目标主权 AI 与国内外 HPC。
+
+**容量：**2025 MoU 园区 200 MW，口径未明；2026 一期 AI factory 至多 50 MW IT／GPU 负荷；两数不得相加。
+
+**阶段与日期：**2026-03-11 MoU 与投资注册递交，预定 4 月开工不能代替开工证据，归规划。
+
+资料：[KBC 2026 官方公告](https://kinhbaccity.vn/en/press-release-11-03-2026.htm)、[Vietnam News 一期 IT GPU 口径](https://vietnamnews.vn/economy/1767236/hcm-city-attracts-over-2-billion-investment-for-ai-data-centre.html)。
+
+### G42 FPT Viet Thai sovereign AI infrastructure
+
+**地点：**越南，拟建 3 座数据中心；各城市及地址未披露。
+
+**建设主体：**G42 与 FPT Corporation、Viet Thai Group 联合体。**运营主体：**最终运营法人未披露。**使用主体：**计划服务政府与私人部门，具体客户未披露。
+
+**容量：**MW 未披露；框架消费／投资承诺最多 10 亿美元，不能换算 GW。
+
+**阶段与日期：**2026-02-09 框架协议，审批、负荷分配与选址建设准备阶段。
+
+资料：[阿布扎比政府公告](https://www.mediaoffice.abudhabi/en/technology/g42-signs-us1bn-agreement-with-vietnamese-consortium-to-deploy-national-ai-and-cloud-infrastructure-across-vietnam/)、[FPT 官方公告](https://fpt.com/en/news/fpt-partners-strategically-to-develop-data-infrastructure-in-ho-chi-minh-city)。
+
+## 菲律宾 项目台账
+
+### VITRO Santa Rosa
+
+**地点：**Laguna，Santa Rosa，Barangay Pulong Santa Cruz；VITRO Santa Rosa Compound。
+
+**建设主体：**VITRO Inc／ePLDT／PLDT Group；承建 MDBI（Bouygues）与 Makati Development Corporation。**运营主体：**VITRO。**使用主体：**Toyota Motor Philippines（公开托管客户），其他客户未披露。
+
+**容量：**50 MW 设施电力；产品册与承建方明确 36 MW IT 设计；2024 初始 IT 10 MW，后续分期激活，不把 36 MW 全量当实际负荷。
+
+**阶段与日期：**2025-04-23 正式开业；持续扩容。
+
+资料：[菲律宾政府开业与电力口径](https://pia.gov.ph/news/newly-launched-hyperscale-data-center-in-laguna-to-usher-regional-development-pbbm/)、[VITRO 产品册 IT 口径](https://vitrodc.com/wp-content/uploads/2024/02/VITRO-BROCHURE-7232025.pdf)、[公开 Toyota 用户](https://vitrodc.com/toyota-motor-philippines-strengthens-digital-infrastructure-in-vitro-santa-rosa/)。
+
+### STT Fairview campus
+
+**地点：**Metro Manila，Quezon City，Regalado Avenue，Fairview 1118。
+
+**建设主体：**STTGDC Philippines（Globe、Ayala、STTGDC 合作）；一期承建 Leighton Asia 与 First Balfour。**运营主体：**STTGDC Philippines。**使用主体：**终端客户未披露；Globe、Radius、Source Telecoms 为连接伙伴。
+
+**容量：**一期楼 28 MW IT；2 至 4 号楼各 32 MW IT；园区最终 124 MW IT；不能将 124 全量记为已运营。
+
+**阶段与日期：**一期于 2025 至 2026 转入运营；2026-04 来源称已有 several MW 在服务；其他楼归开发规划，项目级在建分期未披露。
+
+资料：[运营商一期与各楼容量](https://www.sttgdc.com/ph-en/locations/manila)、[2026-04 运营进展](https://mb.com.ph/2026/04/20/new-globe-data-centers-to-run-entirely-on-renewable-energy)、[承建方](https://www.leightonasia.com/en/projects/current/phase-1-of-stt-fairview-1)。
+
+### Digital Edge NARRA1
+
+**地点：**Laguna，Biñan，Lot 3 Block 4 Phase 4，East Science Avenue，Laguna Technopark 4024；官方产品册坐标 14.2734，121.0660。
+
+**建设主体：**Digital Edge 与 Threadborne Group 合作。**运营主体：**Digital Edge Philippines。**使用主体：**Rizal Commercial Banking Corporation（RCBC）公开客户。
+
+**容量：**10 MW IT；2,200 cabinets。
+
+**阶段与日期：**2023-03 开业；2025-12 RCBC 客户合作。
+
+资料：[Digital Edge 官方容量与投运](https://www.digitaledgedc.com/resources/newsroom/digital-edges-manila-data-center-wins-prestigious-regional-award-for-energy-efficiency-innovation/)、[认证机构地址](https://www.epi-certification.com/sites/details/1388)、[官方客户公告](https://www.digitaledgedc.com/resources/newsroom/rcbc-partners-with-digital-edges-narra1/)。
+
+### A FLOW ML1
+
+**地点：**Laguna，Biñan，Mamplasan／Laguna Technopark（园区级地址）。
+
+**建设主体：**FLOW Digital Infrastructure（PAG）与 AyalaLand Logistics Holdings 合资 A-FLOW。**运营主体：**A-FLOW。**使用主体：**具体客户未披露；电信连接方不是终端用户。
+
+**容量：**一期 6 MW IT；三栋完整园区 36 MW IT，其余 30 MW 为规划。
+
+**阶段与日期：**2025-11-28 一期正式投运；后续园区开发规划。
+
+资料：[FLOW 官方投运公告](https://www.flowdigital.com/en/resources/newsroom/a-flow-launches-ml1-philippines%E2%80%99-next-generation-data-center-support-digital-growth-sea)、[ALLHC 法定文件位置](https://www.ayalalandlogistics.com/wp-content/uploads/2023/04/ALLHC-SEC-Form-17-A-2022.pdf)。
+
+### YCO Malvar 1 and 2
+
+**地点：**Batangas，Malvar，Light Industry and Science Park IV；Campus One Lot 1 Block 1 North Site。
+
+**建设主体：**YCO Global Cloud Centers Holdings；Campus One 承建 DMCI。**运营主体：**YCO Cloud。**使用主体：**未披露。
+
+**容量：**一期 Malvar One 12 MW IT；IFC 2026 文件两个 Malvar 站点共 50 MW（总量口径未细分 IT），公司另有 75 MW utility power、30 MW energized，三者不可相加。
+
+**阶段与日期：**2024-11 一期通电；2026-07 IFC 称两个 Malvar site 已建成，未逐一披露全部机电 IT 交付量。
+
+资料：[YCO 当前已通电与供电口径](https://www.ycocloud.com/blog-post/yco-cloud-offers-the-first-true-build-to-suit-bts-hyperscale-data-center-capability-in-the-philippines)、[IFC 2026 审查](https://disclosures.ifc.org/project-detail/ESRS/52756/yco-catalyst)、[EPI 地址](https://www.epi-certification.com/sites/details/1869)。
+
+### YCO Bataan BTS
+
+**地点：**Bataan，Metro Manila 以北约 120 km 工业园；具体园区与街址未披露。
+
+**建设主体：**YCO Global Cloud Centers Holdings。**运营主体：**YCO Cloud 拟运营。**使用主体：**单一租户，名称未披露。
+
+**容量：**MW 未披露；不将 Malvar 合计 50 MW 转移到 Bataan。
+
+**阶段与日期：**IFC 2026-07 更新列规划；关联供电、水厂及污水设施准备建设。
+
+资料：[IFC 官方项目披露](https://disclosures.ifc.org/project-detail/ESRS/52756/yco-catalyst)。
+
+### Evolution PH01
+
+**地点：**Cavite，General Trias，Gateway Business Park，约 40,000 m²。
+
+**建设主体：**Evolution Data Centres 与 Megawide Construction Corp 合作。**运营主体：**拟由 Evolution 运营。**使用主体：**未披露；Citicore Renewable Energy 是电力伙伴。
+
+**容量：**完整园区 100 MW 以上 IT（官网新上限；旧新闻 69 MW 已滞后）。
+
+**阶段与日期：**当前官网目标 Q3 2027 RFS；开发规划，未披露本期实际在建 MW。
+
+资料：[Evolution 最新产品页](https://evolutiondatacentres.com/markets/)。
+
+### Beeinfotech The HIVE
+
+**地点：**Metro Manila，Pasig，88 Bridgetowne East，Barangay Rosario 1609。
+
+**建设主体：**Bee Information Technology Philippines；ZTE 设计交付合作。**运营主体：**Beeinfotech PH。**使用主体：**未披露。
+
+**容量：**官网 20 MW 以上，未注明 IT 或设施；3,600 racks 以上；不能按 IT 口径汇总。
+
+**阶段与日期：**2025-03-18 正式开业；已运营。
+
+资料：[Beeinfotech 官网地址与容量](https://www.beeinfotech.ph/)、[官方设计交付说明](https://www.beeinfotech.ph/post/beeinfotech-ph-hive-hybrid-data-center-launched-to-drive-ph-s-digital-leap)、[PNA 正式开业日期](https://www.pna.gov.ph/index.php/articles/1246288)。
+
+### Digital Halo MNL1
+
+**地点：**Rizal，Cainta；Don Celso Tuason Avenue（地址来自公开 DC 目录，运营商／银行仅确认 Cainta）。
+
+**建设主体：**Digital Halo（ARCH Capital、Partners Group 支持）。**运营主体：**Digital Halo。**使用主体：**未披露；RCBC 为融资方，不据此认定为该楼用户。
+
+**容量：**一期 6.5 MW IT；远期三栋园区 70 MW，口径未明确。
+
+**阶段与日期：**2025-06 媒体报道开业；2026-01 银行仍称融资支持一期建设开发，保留运营加开发混合状态，交付 MW 未单独确认。
+
+资料：[RCBC 官方融资与一期容量](https://www.rcbc.com/rcbc-data-center-deal-digital-growth)、[ARCH 官方园区规划](https://archcapital.net/news/arch-capital-launches-asias-latest-multi-billion-dollar-digital-infrastructure-platform/)、[公开地址目录](https://www.datacentermap.com/philippines/manila/mnl1/)。
+
+### VITRO General Trias proposed campus
+
+**地点：**Cavite，General Trias；截至 2026-10 新闻未披露街址。
+
+**建设主体：**VITRO／ePLDT／PLDT Group。**运营主体：**VITRO 拟运营。**使用主体：**未披露。
+
+**容量：**规划 100 MW，报道未清楚区分 IT 与设施；约 400 亿菲律宾比索预算；与公司长期 500 MW 目标不能相加。
+
+**阶段与日期：**2026-10-07 最新报道仍称 planning；保留规划，未用 2026 预定开工推定已开工。
+
+资料：[2026-10-07 最新报道](https://www.philstar.com/business/2026/10/07/2561367/pldt-defers-vitro-listing)。
+
+## 退出项目与没有公开容量的主要主体
+
+STTGDC 于 2026 年 8 月 21 日披露，拟将 VTH Software Development JSC 的股权出售给 VNG，因为其持有的胡志明市特定未来数据中心地块未达到投资和商业要求。现有 STT VNG 业务继续运营。旧公告所称 Ho Chi Minh City 2 的 60 MW 开发设想不应不加区别地沿用为当前 STTGDC 管线；交易公告也未证明所有 VNG 自有发展计划取消。来源：[STTGDC 官方声明](https://www.sttgdc.com/vn-en/newsroom/stt-gdc-confirms-proposed-sale-of-interest-vth)。
+
+AWS Malaysia Region 于 2024 年 8 月 21 日上线；Microsoft Malaysia West 位于大吉隆坡，于 2025 年 5 月 28 日宣布普遍可用；Microsoft 另在 2025 年 11 月公布柔佛 Southeast Asia 3 的未来区域计划。这些是不能忽略的使用与运营主体，但楼宇地址、建设与租赁拆分及 MW 未公开，不加入可量化项目容量。来源：[AWS](https://press.aboutamazon.com/2024/8/aws-launches-infrastructure-region-in-malaysia)、[Microsoft Malaysia West](https://news.microsoft.com/source/asia/features/microsoft-announces-its-first-cloud-region-in-malaysia-empowering-more-malaysian-organizations-to-accelerate-ai-innovation/)、[Microsoft 柔佛计划](https://news.microsoft.com/source/asia/features/microsoft-to-expand-cloud-region-in-johor-bahru-empowering-southeast-asias-ai-transformation/)。
+
+Meta 新加坡 Tanjong Kling 数据中心为 11 层建筑，本文不以建筑楼层或投资金额估算 IT 容量。Google Elmina 的 300 MW、Google Singapore 的 220 MW 等第三方目录数字，没有在本台账中作为运营商披露值使用。来源：[Meta 设计说明](https://datacenters.atmeta.com/2019/01/rethinking-data-center-design-for-singapore/)。
+
+## 地理聚集与地图标注
+
+新加坡的主要节点为 Tuas、Jurong、Loyang。柔佛的两条走廊为 Sedenak 与 Kulai，以及 Iskandar Puteri 与 Nusajaya、Gelang Patah；大吉隆坡包括 Cyberjaya 与 Elmina。印尼国内需求走廊由 Jakarta 向 Bekasi、Cibitung、Cikarang、Karawang 延伸，区域外溢节点包括 Batam 与 Bintan。泰国由 Bangkok 向 Samut Prakan、Chonburi、Rayong 的 EEC 展开。越南集中 Hanoi 的 Hoa Lac 与 Ho Chi Minh City 的 Tan Thuan、Cu Chi、Saigon Hi-Tech Park。菲律宾集中 Metro Manila、Laguna 的 Biñan 与 Santa Rosa、Batangas 的 Malvar、Cavite 的 General Trias，并向 Bataan 延伸。
+
+地图可以按上述城市及工业园做聚集区示意。没有经运营商、政府或认证机构确认坐标的项目，不应把城市中心坐标伪装成建筑入口。NARRA1 官方产品册提供 14.2734，121.0660，可单独标为已披露位置；其他城市点需在图例中写明近似示意。来源：[NARRA1 官方产品册](https://www.digitaledgedc.com/wp-content/uploads/2022/04/Specsheet-NARRA1_EN.pdf)。
+
+## 其他东南亚国家项目补充
+
+六国主表只覆盖新加坡、马来西亚、印尼、泰国、越南和菲律宾，并非全东南亚设施普查。本节补入柬埔寨、文莱和老挝的 3 条代表记录，台账完整条目增至 **69 条**；缅甸和东帝汶另附证据线索。以下容量不与六国 H1 2026 合计混加，缺少 MW 不表示当地没有数据中心。
+
+### 柬埔寨 ByteDC Phnom Penh
+
+**地点：**Land No. 356, Street R-4, Sangkat Srah Chork, Khan Daun Penh, Phnom Penh, Cambodia；Phnom Penh City Centre、Global Tech Exchange 开发内。地址由运营商公开。
+
+**建设主体：**柬埔寨与新加坡联合投资设立，具体投资人及承建商在本次核实来源中未实名。**运营主体：**ByteDC Solutions Co., Ltd.。**使用主体：**银行、企业及政府机构等客户类别已披露，实名终端托管客户未披露。
+
+**容量：**Knight Frank 2024 年 12 月报告记录该设施 **3 MW**、约 1,000 个 IT 机架，原项目简介未单独再界定 IT 与设施总输入；报告整体市场方法以 IT power 为基础。当前运营商官网明确备用发电设备为 **3 台 2,500 kVA，N+1**，属于冗余设备配置，不能把 7,500 kVA 换成实际 IT 负荷，也不能与 3 MW 相加。
+
+**阶段与日期：**2023 年正式开放；截至本次核查，运营商仍提供托管及本地云服务。Knight Frank 对柬埔寨市场的 **约 7 MW 已运营容量** 是 2024 年 12 月历史估计，不能视为 2026 年当前值或插入六国 H1 表。
+
+资料：[ByteDC 官方设施与地址](https://www.bytedc.com/about-us)、[官方运营支持](https://support.bytedc.com/)、[Knight Frank 柬埔寨报告，2024 年 12 月](https://content.knightfrank.com/research/2946/documents/en/data-centres-the-cambodia-report-december-2024-11773.pdf)。
+
+### 文莱 UNN planned AI capable Data Centre
+
+**地点：**文莱；新 AI 数据中心的建筑地块与街址未在公告披露。2026 年 9 月的签约活动位于 Tungku Submarine Cable Landing Station，但签约地址不能直接当作新项目地址。
+
+**建设与运营主体：**Unified National Networks Sdn Bhd（UNN）；具体承建商未披露。**使用主体：**Vobile Inc.／阜博集团为实名签约客户，用于 DreamMaker 等 AI 内容制作与版权保护服务；NVIDIA 是 GPU 技术生态，不能据此称其为租户。
+
+**容量：**UNN 于 2026-09-03 公告，Vobile 将使用 **至多 25 MW**。Vobile 于 9 月另披露 **25 MW 为未来扩张预留**。这是同一项目的首批客户分配与后续预留，原文未明确 IT 与设施电力，亦未披露完整园区总容量；不能把预留称为已部署或把 50 MW 推定为整个园区规模。
+
+**阶段与日期：**规划与商业协议阶段，UNN 目标 2028 年投运；截至本次证据未确认新 AI 园区建筑施工。UNN 现有 Tungku Prefab Data Centre 已于 2025 年提供 7.5 kW 高密度机架托管服务，是既有运营资产，不与新规划混为一座已经投运的 AI 园区。
+
+资料：[UNN 签约与 2028 时间表](https://unn.com.bn/unn-and-vobile-inc-sign-major-deal-in-ai-infrastructure-development)、[Vobile 首批 25 MW 与额外预留](https://vobile.com/news_detail?id=187&lang=en-us)、[既有 Tungku 托管服务](https://unn.com.bn/secure-reliable-and-future-ready-unn-expands-colocation-hosting-services)。
+
+### 老挝 Vientiane green AI infrastructure feasibility project
+
+**地点：**万象首都区域；具体工业园、地块、门牌未披露。
+
+**发起与建设筹备主体：**老挝技术与通信部下属 National Data Center 与 Silicon Tech Park (Lao) Sole Co., Ltd.。**拟运营主体：**尚未披露最终运营安排。**使用主体：**未披露。
+
+**容量：**未披露 IT MW、设施输入或供电 MW。公开可量化范围为拟研究的 AI Special Economic Zone **超过 150 公顷**，土地面积不能换算为机房功率。
+
+**阶段与日期：**2025-05-30 签署可行性研究 MoU，国家通讯社 KPL 于 2025-06-03 报道；包括绿色电力支持的 AI Innovation Center 试点与 AI 特区研究。这是讨论、可研阶段，未据此确认开工或投运。
+
+资料：[KPL 国家通讯社公告](https://kpl.gov.la/En/Detail.aspx?id=91710)。
+
+## 缅甸和东帝汶证据线索
+
+**缅甸：**政府的 e-Government Integrated Data Center 招标于 2022-12-09 公布，范围包括 **Nay Pyi Taw 主中心与 Thanlyin City 容灾中心**，主管为交通与通信部及其 Information Technology and Cyber Security Department，并披露韩国 EXIM/EDCF 贷款约 9,377.9 万美元。公告没有 MW；本次未核实截至 2026-10-11 的建筑交付与实际托管状态，因此作为历史规划线索保留，不加入运营或在建容量。公告中的 S12 Exchange Building 联系地址是招标办公地址，不等于设施入口。资料：[缅甸政府原始招标](https://myanmar.gov.mm/news-media/news/latest-news/-/asset_publisher/idasset354/content/ifb-for-e-government-integrated-data-center-e-gidc-establishment-project)。
+
+**东帝汶：**TIC TIMOR 政府机构于 2025-03-12 披露，已有 **80 个机构托管在 Electronic Government Data Center**，同时正在识别适合新数据中心建设的位置。它证明存在运营中的政府托管设施和升级讨论；未披露 IT MW、设施输入与具体机房街址，不能把政府机构数量换算成容量。报道的 Caicoli 为会议地点，不能当作机房定位。资料：[TIC TIMOR 官方服务协调公告](https://tic.gov.tl/en/tic/shownotisia/133/)。
+
+
+====================
+
+# 中国数据中心容量口径与项目台账 2026年10月
+
+证据检索截止2026年10月11日。本附页记录52项项目或园区：内地51项、香港1项。它是公开证据台账，不是中国所有数据中心的完整普查；“未披露”表示所列材料没有提供足以核实的数字或主体，不表示项目没有容量或客户。每项保留公开位置、建设与运营主体、使用主体、原文单位和最后证据日期。旧资料中预计于2026年交付的项目，未获得投产证明时仍保留计划状态。
+
+## 全国容量与规划总量
+
+| 数据 | 原文数字与时间 | 应如何引用 |
+| --- | --- | --- |
+| IEA跨区域可比较的在役设备容量 | 2025年中国IT容量19 GW，包含基础设施的总容量28 GW | IEA的China包括中国内地与香港；这是在役设备模型，不是园区最大设计容量。见附录A表A.2印刷109页、方法104—105页、区域定义121页。[IEA 2026报告](https://iea.blob.core.windows.net/assets/3179f7f8-01f6-4dd6-bffa-c9f7b73f1dc9/KeyQuestionsonEnergyandAI.pdf) |
+| Rystad产业容量估计 | 2025年底已安装32 GW；预测2026年底40 GW | 与IEA统计方法不同，新闻稿没有完整交代IT与设施输入的边界，作为独立估计保留，不平均成一个“准确数”。[Rystad 2026-04-29](https://www.rystadenergy.com/news/chinas-data-center-capacity-doubling-of-power) |
+| Rystad已宣布新项目管线 | 28 GW预计2030年前陆续上线，2030总量预计约60 GW | 28 GW是已宣布项目，不能全部称为在建；40 GW是2026年底预测，不是10月已经核实的投运值。[同一原始报告](https://www.rystadenergy.com/news/chinas-data-center-capacity-doubling-of-power) |
+| 工信部公开全国算力设施数据 | 2025年底在用设施超过1373万标准机架，智算159万PFLOPS（FP16），42个万卡级集群 | 包括智算、通算、超算及多个行业；机架和FPLOPS保留原单位，不直接折GW。[工信部 2026-09-23](https://wap.miit.gov.cn/jgsj/jns/nyjy/art/2026/art_911d6306df9e4644a55fffa4a4851eaa.html) |
+| 国家能源局用电统计，经工信部公开 | 2025年算力设施1700亿kWh，即170 TWh，占全社会用电1.6% | 这是全年电量，不是已安装功率，不能标为170 GW。[工信部原文](https://wap.miit.gov.cn/jgsj/jns/nyjy/art/2026/art_911d6306df9e4644a55fffa4a4851eaa.html) |
+| 三大电信运营商对外服务机架 | 2025年底93.8万个，同比增长10.8万个 | 是运营商对外服务子集，不是全国全部机架；原文未给GW。[工信部2025通信业统计公报](https://www.miit.gov.cn/jgsj/yxj/xxfb/art/2026/art_bea806f4dd20457cb0158795cc210aa7.html) |
+
+国家数据局2025年监测指标说明，将标准机架按2.5 kW归一化；物理机架可以是6 kW、12 kW、45 kW或更高功率。企业也可能另用5 kW标准机柜，因此必须核对每份报告的定义。标准机架的归一化容量既不等于已安装服务器的实际功率，也不等于上架率或耗电量。[国家数据局监测指标说明，2025年6月，第7—8页](https://www.nda.gov.cn/sjj/ywpd/szkjyjcss/0608/ff808081-96b465bf-0197-4f0dae39-0700.pdf)
+
+## 主要第三方平台的容量证据
+
+这里同时保留IT容量、企业披露的MW规模、机柜、面积。口径不明确的MW照录；不估算缺失容量，不把投运、签约和实际利用量混为一列，也不将公司总量和后文项目分期再次相加。
+
+| 主体 | 投运或可服务资源 | 在建、规划和利用情况 | 口径与证据 |
+| --- | --- | --- | --- |
+| 秦淮数据中国业务 | 860 MW投运规模，截至2026第三季度 | 660 MW在建；规划IT总容量超过8 GW；上架率超过90% | 原文对8 GW显式写IT，860／660写“规模”，据此保留原文。8 GW未说明是否包含既有及在建，不计算“净新增”。[官网](https://www.chindatagroup.com/about_us.html) |
+| 世纪互联 VNET | 批发业务投运1007 MW；零售业务50081机柜，截至2026-06-30 | 批发在建585 MW，实际利用744 MW，已签约970 MW；零售利用32314柜 | 批发与零售是不同口径；全球新增土地资源含478 MW境外部分，不全部计入内地。[2026-08-18财报](https://ir.vnet.com/news-releases/news-release-details/vnet-reports-unaudited-second-quarter-2026-financial-results) |
+| 润泽科技 | 已交付投运750 MW，截至2026-06-30 | 全球九园区合计规划约6 GW；国内七园区规划5.4 GW，香港与印尼巴淡岛另列 | 廊坊、平湖、佛山、惠州运营；MW为公司交付规模，不是实时电表负荷。巴淡岛不算中国；香港单列。[2026半年报](https://static.cninfo.com.cn/finalpage/2026-08-28/1225521959.PDF)、[2025年报](https://static.cninfo.com.cn/finalpage/2026-04-10/1225090842.PDF) |
+| 数据港 | 36座投运数据中心，401 MW；80200个5 kW标准机柜，截至2026-06-30 | 主要是定制建设及托管模式；没有把客户服务器产权等同于基础设施所有权 | 公司的5 kW标准机柜与国家2.5 kW标准机架不同。[2026半年报](https://static.cninfo.com.cn/finalpage/2026-08-22/1225491195.PDF)、[公司公告](https://www.athub.com/index/Lists/show/catid/22/id/1335.html) |
+| 万国数据 GDS | 投运面积684977㎡，利用面积542236㎡，截至2026-06-30 | 在建面积170355㎡；投运面积利用率79.2% | 最新统一报表主要以㎡披露，不按“每㎡多少kW”假设折算GW；境外DayOne为权益投资，与中国业务不能重复计入。[2026-08-13财报SEC原件](https://www.sec.gov/Archives/edgar/data/1526125/000110465926095498/tm2621440d1_ex99-1.htm) |
+| 光环新网 | 约9.2万个机柜，截至2026-06-30 | 半年新增约1万个，天津宝坻持续交付和扩建 | 原文机柜单位保留，未把不同机柜功率统一折GW。[2026半年报](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548677&stockid=300383) |
+
+东阳光牵头对秦淮数据中国区业务的280亿元收购于2026年1月完成交割；东南亚Bridge Data Centres不应因此自动列为东阳光旗下中国业务。三大电信运营商、阿里、腾讯、华为、字节跳动、快手和苹果在下表分别体现为基础设施持有或运营者、云技术品牌、租户或自用主体。公开材料没有点名客户时，保留“未披露”。[秦淮交割公告](https://www.chindatagroup.com/media/news/523.html)
+
+## 从枢纽看项目在哪里
+
+全国八个枢纽是京津冀、长三角、粤港澳、成渝、内蒙古、贵州、甘肃、宁夏。十个国家数据中心集群是张家口、长三角一体化示范区、芜湖、韶关、天府、重庆、和林格尔、贵安、庆阳、中卫；乌兰察布是内蒙古重要算力城市，但不能凭简称把它替换为十个集群中的“和林格尔”。[国家发改委2022-02-17解读](https://www.ndrc.gov.cn/xxgk/jd/jd/202202/t20220217_1315795_ext.html)
+
+```mermaid
+flowchart LR
+A["需求和网络枢纽"] --> B["京津冀：怀来 张北 廊坊"]
+A --> C["长三角：上海 南通 仪征 平湖 芜湖"]
+A --> D["粤港澳：韶关 清远 惠州 佛山 香港"]
+E["电力和冷却资源"] --> F["内蒙古：和林格尔 乌兰察布"]
+E --> G["甘肃与宁夏：庆阳 中卫 兰州"]
+E --> H["西南：贵安 天府 重庆"]
+B --- F
+C --- G
+D --- H
+```
+
+这张图表达选址逻辑和本附页地理覆盖，不表示所有业务都跨区域搬迁，也不表示各连线已经是专属算力线路。公网时延、绿电接入、数据合规、上架需求及液冷配置共同决定项目落地。
+
+## 可核查的地方集群进度
+
+| 地方 | 最后公开进度 | 可以说什么 |
+| --- | --- | --- |
+| 乌兰察布 | 2026-08报道累计建成65万个、投运43万个标准机架，运营算力17.2万P；世纪互联一期二期交付、三期在建 | 建成与投运不同；配套绿电MW与数据中心IT MW不同。[政府转载新华网](https://www.saihan.gov.cn/zwdt/zwyw/202608/t20260824_2031078.html) |
+| 庆阳 | 2026-03报道建成及在建22个中心、36万标准机架，智算14.2万P | 36万是建成与在建合计，不能全算已部署。[工信部](https://www.miit.gov.cn/ztzl/rdzt/xxgyhqk/tjyd/tssj/art/2026/art_35ad8e1e70d046159a5e96792fabef85.html) |
+| 中卫 | 2025年底装机23万标准机架、13万P算力；中国移动园区另有332 MW明确IT容量 | 集群总量和单家公司是包含关系，不能相加。[中卫2026-02公报](https://www.nxzw.gov.cn/zwgk/bmxxgkml/syjshdsjfzj/fdzdgknr_50309/bmxx_50339/202602/t20260204_5159120.html) |
+| 贵安 | 2025-01报道23个大型中心，规划106.25万标准机架，算力49 EFLOPS | 规划机架与运营算力分别保留。[国家数据局](https://www.nda.gov.cn/sjj/swdt/dfdt/0109/20250109125528459938497_pc.html) |
+| 芜湖 | 2026-07全市22.47万标准机架、6.4万P；9月经开区城东在建IT780 MW、在谈储备IT1.7 GW | 全市与经开区不同地域，在建与在谈不同阶段；780 MW是多项目合计。[芜湖2026-08](https://whsggj.wuhu.gov.cn/xwzx/szyw/8952719.html)、[经开区2026-09-30](https://weda.wuhu.gov.cn/xwzx/wdxw/18552951.html) |
+
+## 项目台账的阅读规则
+
+每项的“建设”包括开发投资主体和已披露承建方；“运营”指基础设施或云服务的实际经营主体；“使用”指客户、自用业务或明确合作角色。已运营资产的最终租户通常保密，不以行业传闻补名。地址以公开园区、乡镇或批文地块为止，公司总部和联系办公室不充作机房地址。一个项目内可以同时有已运营、在建和规划期。
+
+## 环首都与华北
+
+### 01 秦淮太行山能源信息技术产业基地
+
+位置：山西省大同市灵丘县。建设：秦淮数据。运营：秦淮数据。使用：具体租户未公开。
+
+容量与阶段：已投运超过300 MW IT（2025-01）；全园十三期最终超过500 MW IT；截至2025上半年1—9期投运。后续期数预计交付时间不能视作实际投运。
+
+最后证据：2025-01-13容量公告；官网后续简介载有2025上半年分期。[来源1](https://www.chindatagroup.com/media/news/471.html)、[来源2](https://www.chindatagroup.com/media/news/531.html)。
+
+### 02 秦淮桑园云计算基地
+
+位置：河北省张家口市怀来县桑园镇。建设：秦淮数据。运营：秦淮数据。使用：美团为公开的SST供电商业化合作方；不据此推断全园唯一租户。
+
+容量与阶段：园区已运营；2026年固态变压器SST直流供电系统投运。该公告没有披露园区总MW。
+
+最后证据：2026-07-02。[来源1](https://www.chindatagroup.com/media/news/532.html)。
+
+### 03 世纪互联怀来国家算力枢纽示范基地
+
+位置：河北省张家口市怀来县。建设：世纪互联 VNET。运营：世纪互联。使用：终端云客户未具名。
+
+容量与阶段：全园规划IT负荷超过500 MW、建筑面积约71万㎡。规划总量不等于本期投运量。
+
+最后证据：2025年北京市数据局转载项目材料；精确分期投运量未核实。[来源1](https://data.beijing.gov.cn/xydt/ljhd/539d09a2139740c598c3c50429128791.htm)。
+
+### 04 大位科技张北榕泰云计算一期
+
+位置：河北省张家口市张北县。建设：张北榕泰云计算有限公司，大位科技子公司。运营：张北榕泰／大位科技。使用：具体租户未公开。
+
+容量与阶段：一期60 MW，分别于2025-09-30和2025-10-30完成交付；截至2026-06-30上架率59.35%。交付功率与实际负荷分开记录。
+
+最后证据：2026半年报，2026-06-30状态。[来源1](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12510567&stockid=600589)。
+
+### 05 阿里张北中都草原数据中心二期
+
+位置：河北省张家口市张北县中都草原园区。建设：阿里巴巴；中建大成为承建方。运营：阿里云。使用：阿里云业务。
+
+容量与阶段：承建方公告披露交付项目IT负荷37 MW、3000机柜；51 MVA是配电容量，不计作另51 MW IT。
+
+最后证据：承建方交付公告未显示明确日期；2026-10-11核查，未确认后续扩建。[来源1](https://www.zhong-da.com.cn/newsitem/278568651)。
+
+### 06 润泽廊坊国际信息云聚核港
+
+位置：河北省廊坊市开发区。建设：润泽科技及项目公司。运营：润泽；IDC业务与电信运营商合作，AIDC业务自持运营。使用：具体终端客户未具名。
+
+容量与阶段：已有园区运营；新单体200 MW智算中心列入2026年交付计划。9月大会展示200 MW技术成果，不能单凭获奖认定200 MW全部上架。
+
+最后证据：2026半年报；2026-09-12大会材料。[来源1](https://static.cninfo.com.cn/finalpage/2026-08-28/1225521959.PDF)、[来源2](https://www.hebtv.com/0/0rmhlm/sydw/sx/rh/12501127.shtml)。
+
+### 07 光环新网天津宝坻数据中心
+
+位置：天津市宝坻区。建设：光环新网天津项目公司。运营：光环新网。使用：具体租户未公开。
+
+容量与阶段：一期于2025年全部投运，二期于2026上半年交付，三期在建。本期核实材料未给独立MW，不按公司总机架反推。
+
+最后证据：2026半年报，2026-06-30。[来源1](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12548677&stockid=300383)。
+
+### 08 中国移动北京国际信息港六号地项目
+
+位置：北京市昌平区中关村国家工程技术创新基地西南部，北六环与八达岭高速交叉口C18地块六号地。建设：中国移动。运营：中国移动，拟建项目。使用：未披露。
+
+容量与阶段：公开设计招标阶段，建筑面积约99270㎡；未披露IT MW。设计采购不能当作已投运。
+
+最后证据：2026-07-03公共资源交易公告。[来源1](https://ggzyfw.beijing.gov.cn/jyxxzbgg/20260703/5609367.html)。
+
+## 内蒙古
+
+### 09 世纪互联乌兰察布云智算基地
+
+位置：内蒙古乌兰察布市察哈尔高新技术开发区巴音产业园。建设：世纪互联 VNET。运营：世纪互联。使用：具体云客户未具名。
+
+容量与阶段：一期、二期已交付，三期在建；当地报道现有IT负荷1.3 GW、全园规划3 GW、远期目标10 GW。1.3 GW是项目资源口径，不能全部标为投运，远期10 GW不能当作已开工。
+
+最后证据：2026-08-24新华网报道、地方政府转载。[来源1](https://www.saihan.gov.cn/zwdt/zwyw/202608/t20260824_2031078.html)、[来源2](https://www.odcc.org.cn/news/p-1932682835250749442.html)。
+
+### 10 优刻得乌兰察布数据中心
+
+位置：内蒙古乌兰察布市集宁区。建设：优刻得 UCloud。运营：优刻得。使用：云服务客户未逐户披露。
+
+容量与阶段：全园规划约12000个不同功率机柜；A、B、C和G1F已运营，D楼建设中。D楼主体2026-06-16封顶，不按全园机柜数折GW。
+
+最后证据：2026半年报，2026-06-30；封顶公告2026-06。[来源1](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12518379&stockid=688158)、[来源2](https://www.ucloud.cn/yun/fwqtg/wulanchabufuwuqituoguan.html)。
+
+### 11 快手智能云乌兰察布数据中心二阶段
+
+位置：内蒙古乌兰察布市。建设：快手；中建五局承建。运营：快手自用体系，具体运维法人未披露。使用：快手业务。
+
+容量与阶段：F1C1、F1C2建设交付，面积约8.5万㎡；没有可核实IT MW。
+
+最后证据：2026-05-28中国建筑交付公告。[来源1](https://www.cscec.com/xwzx_new/zqydt_new/202605/3945283.html)。
+
+### 12 中金数据乌兰察布零碳算力基地
+
+位置：内蒙古乌兰察布市察哈尔高新技术开发区。建设：中金数据。运营：中金数据。使用：具体租户未公开。
+
+容量与阶段：一期2025-07投产，全园规划2.5万个机柜。配套风电及光伏合计300 MW、储能45 MW是能源系统功率，不能写成数据中心IT 345 MW。
+
+最后证据：2026-08-24报道；2026-09国家数据局考察。[来源1](https://www.saihan.gov.cn/zwdt/zwyw/202608/t20260824_2031078.html)、[来源2](https://www.nda.gov.cn/sjj/jgsz/jld/llh/llhldhd/0905/20260905165400677414218_pc.html)。
+
+### 13 中国移动呼和浩特数据中心B25及B27
+
+位置：内蒙古呼和浩特市和林格尔新区。建设：中国移动；中建三局联合体EPC。运营：中国移动。使用：未披露。
+
+容量与阶段：新增两栋机房楼IT总功率120 MW；2026年EPC中标，不认定为已投运。原有园区与此次120 MW增建不能混记。
+
+最后证据：2026-03-24中国建筑中标公告。[来源1](https://www.cscec.com.cn/xwzx_new/zqydt_new/202603/3935588.html)。
+
+### 14 中国电信云计算内蒙古信息园
+
+位置：内蒙古呼和浩特市和林格尔盛乐现代服务业集聚区。建设：中国电信。运营：中国电信内蒙古相关运营体系。使用：天翼云及托管客户，逐户未披露。
+
+容量与阶段：全园长期规划42栋数据机楼、超过10万机架；A5机房已投运。A5事实最后证据为2023年，未核实全部长期规划的最新交付。
+
+最后证据：2023年内蒙古通信管理局公告；截至本次核查未获得全园最新MW。[来源1](https://nmca.miit.gov.cn/xwdt/xydt/art/2023/art_43220fa312d441d398521cb245578cca.html)、[来源2](https://www.odcc.org.cn/auth/v-1175967176265715714.html)。
+
+### 15 东阳光秦淮乌兰察布零碳智算园区
+
+位置：内蒙古乌兰察布市察右中旗等合作布局，最终场址以项目批文为准。建设：东阳光集团、秦淮数据。运营：秦淮数据，拟。使用：未披露。
+
+容量与阶段：2025年合作框架提出GW级零碳智算园区，未公布准确IT GW。GW级不是可直接录为1.000 GW的数值。
+
+最后证据：2025-12-03签约；官网公告。[来源1](https://www.chindatagroup.com/media/news/509.html)。
+
+## 甘肃与宁夏
+
+### 16 秦淮庆阳零碳数据中心产业基地
+
+位置：甘肃省庆阳市西峰区东数西算产业园。建设：秦淮数据。运营：秦淮数据。使用：未披露。
+
+容量与阶段：公开规划150 MW IT，2023年开工、一期封顶；2026年地方规划继续列入推进项目。未找到整期150 MW全部正式投运的证据。
+
+最后证据：2023年公司公告；2026年庆阳十五五规划。[来源1](https://www.chindatagroup.com/media/news/384.html)、[来源2](https://www.chindatagroup.com/media/news/349.html)、[来源3](https://zgqingyang.gov.cn/gkpowereasy/zfxxgkpowereasy/zfxxgkmlpowereasy/ghxxpowereasy/wnghpowereasy/sww20262030powereasy/ghgy2powereasy/content_28565)。
+
+### 17 中国能建庆阳源网荷储智慧零碳产业园
+
+位置：甘肃省庆阳市西峰区东数西算产业园。建设：中国能建中电工程；广东院EPC。运营：中国能建中电工程相关项目公司。使用：具体租户未公开。
+
+容量与阶段：A1已运营，A2于2026-05-29正式投产；A4计划2026年底、A3计划2027年6月投运。没有将各栋统一转成MW的充分披露。
+
+最后证据：2026-06-01中国能建中电工程公告。[来源1](https://www.cpecc.ceec.net.cn/art/2026/6/1/art_29053_2523291.html)。
+
+### 18 中国移动庆阳数据中心
+
+位置：甘肃省庆阳市东数西算产业园。建设：中国移动。运营：中国移动甘肃体系。使用：中国移动业务；亿算智能、燧原科技是公开国产智算集群合作方。
+
+容量与阶段：N01、N02已有运营，2026年继续新增楼栋。万卡集群与18 kW高密机柜是设备配置，不等于全园GW。
+
+最后证据：2026-05-09国家数据局材料；2026-03数字中国项目介绍。[来源1](https://www.nda.gov.cn/sjj/swdt/mtsy/0509/20260509164956094706003_pc.html)、[来源2](https://www.digitalchina.gov.cn/2026/fhdt/zbsh/qy/202603/t20260318_5297383.htm)。
+
+### 19 中国电信庆阳一体化算力中心园区
+
+位置：甘肃省庆阳市西峰区温泉镇八里庙村数字产业科研示范区。建设：中国电信庆阳分公司。运营：中国电信。使用：具体终端客户未公开。
+
+容量与阶段：全园规划22500个6 kW机架，即54000个2.5 kW标准机架；这是设计归一化，不代表已运行负荷。二期2026年EPC招标。既有庆阳智算服务与新园区分期不做无依据合并。
+
+最后证据：2026-03-17住建局二期招标；建设规划材料。[来源1](https://zhujianju.zgqingyang.gov.cn/zwgk/zfxxgkml/zbtb31zjj2/content_28542)、[来源2](https://www.gsxf.gov.cn/xxgk/zcwjk/zcwj2/zfwj/qzfwj/content_18215)、[来源3](https://zrzy.zgqingyang.gov.cn/xwzx/gggs/content_300651)。
+
+### 20 西北零碳智慧云智算中心一期
+
+位置：甘肃省庆阳市西峰区温泉镇东数西算园区。建设：超算数字科技甘肃有限公司，BOO模式。运营：超算数字科技甘肃有限公司。使用：未披露。
+
+容量与阶段：2026-02-28开工；设计6600个12 kW机架、7416台GPU服务器、35300 PFLOPS。保留设计单位，不充作已投运GW。
+
+最后证据：2026-02庆阳发改委及市政府公告。[来源1](https://fgw.zgqingyang.gov.cn/xwzx/gzdt/content_344421)、[来源2](https://zgqingyang.gov.cn/zw/bmdt/content_344437)。
+
+### 21 秦淮中卫三座零碳超大规模智算园区
+
+位置：宁夏中卫市，三个园区具体街址未公开。建设：秦淮数据。运营：秦淮数据，拟。使用：未披露。
+
+容量与阶段：合作框架规划总IT容量1.2 GW、投资240亿元；未将框架协议提升为全部开工或已投运。
+
+最后证据：2025-08-19签约公告。[来源1](https://www.chindatagroup.com/media/news/484.html)。
+
+### 22 中国移动中卫数据中心
+
+位置：宁夏中卫市西部云基地。建设：中国移动宁夏。运营：中国移动宁夏。使用：中国移动及托管业务，具体租户未逐户披露。
+
+容量与阶段：截至2026年6月已建成12栋机房，IT总功率332 MW。B区202 MW是332 MW的一部分，不能再加一次。
+
+最后证据：2026-06-26国家能源局西北监管局。[来源1](https://xbj.nea.gov.cn/dtyw/hyxx/202606/t20260626_303639.html)。
+
+### 23 中国电信中卫一体化算力枢纽三期C1
+
+位置：宁夏中卫市电信园区。建设：中国电信宁夏。运营：中国电信。使用：未披露。
+
+容量与阶段：C1机房楼及发电机平台取得2026年规划许可；MW未披露。许可说明项目阶段，不能把已有电信园区的运营状态套给C1。
+
+最后证据：2026-01-08中卫自然资源局规划许可。[来源1](https://www.nxzw.gov.cn/zwgk/bmxxgkml/szrzyj/fdzdgknr_49539/zsydys_zrzyj/202601/t20260108_5129735.html)。
+
+### 24 AWS中国宁夏区域中卫数据中心
+
+位置：宁夏中卫市西部云基地；具体数据机房地址未公开。建设：物理机房开发法人未完整披露，不能推断AWS拥有全部资产。运营：宁夏西云数据科技有限公司 NWCD。使用：AWS中国宁夏区域云服务客户。
+
+容量与阶段：宁夏区域2017年开服，三可用区；MW未公开。AWS是技术及服务品牌，西云数据是本地运营主体。公开办公联系地址不替代数据中心地址。
+
+最后证据：AWS区域服务页面2026-02更新；区域开服公告2017年。[来源1](https://www.amazonaws.cn/about-aws/regional-product-services/)、[来源2](https://aws.amazon.com/cn/blogs/china/now-open-aws-china-ningxia-region/)。
+
+### 25 润泽兰州国际信息港
+
+位置：甘肃省兰州市兰州新区。建设：润泽及兰州项目公司。运营：润泽，拟／分期。使用：未披露。
+
+容量与阶段：属于国内七园区规划布局。2020年奠基可核实，2026半年报未将兰州列入四个运营园区；独立MW和已投运阶段未充分披露。
+
+最后证据：公司历史页面；2026半年报。[来源1](https://www.rangeidc.com/history/)、[来源2](https://static.cninfo.com.cn/finalpage/2026-08-28/1225521959.PDF)。
+
+## 长三角
+
+### 26 润泽平湖国际信息港
+
+位置：浙江省嘉兴市平湖市新埭镇张江长三角科技城。建设：浙江泽悦，润泽体系。运营：润泽。使用：未具名的头部云／智算客户。
+
+容量与阶段：已有运营；2025年公司交付单栋100 MW智算中心，平湖持续分期扩建。公司750 MW合计不能全分配给平湖。
+
+最后证据：2025年公司投资者活动材料；2026半年报。[来源1](https://news.10jqka.com.cn/20250901/c670800708.shtml)、[来源2](https://static.cninfo.com.cn/finalpage/2026-08-28/1225521959.PDF)。
+
+### 27 万国国金数据中心
+
+位置：江苏省苏州市昆山市花桥镇远创路558号。建设：万国数据及国金项目公司；资产为南方万国数据中心REIT基础设施。运营：万国数据 GDS。使用：具体租户未公开。
+
+容量与阶段：既有运营资产，4192个物理机柜。公开REIT材料提供可核查地址，不能按机柜数默认折算MW。
+
+最后证据：2025-07 REIT招募说明书；2025-08苏州政府材料。[来源1](https://pdf.dfcfw.com/pdf/H2_AN202507221713603631_1.pdf)、[来源2](https://www.suzhou.gov.cn/szsrmzf/qxkx/202508/4acfc7a7ed2a417fb1c678ed5123dcd2.shtml)。
+
+### 28 阿里云南通云计算数据中心扩建
+
+位置：江苏省南通市综合保税区。建设：阿里巴巴；中建五局承建。运营：阿里云。使用：阿里云及其客户。
+
+容量与阶段：2026年新建机房交付，建筑面积超过7万㎡；未披露可核查独立IT MW。全园规模和本次交付面积不能互换。
+
+最后证据：2026-09中国建筑交付公告。[来源1](https://www.cscec.com/xwzx_new/zqydt_new/202609/3958452.html)。
+
+### 29 优刻得上海青浦数据中心
+
+位置：上海市青浦区。建设：优刻得 UCloud。运营：优刻得。使用：UCloud云服务客户。
+
+容量与阶段：一期三栋机房，前两栋约2000个物理机柜已运营，第三栋建设中；各机柜功率并不统一。
+
+最后证据：2025年报，2026-04披露。[来源1](https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12074825)。
+
+### 30 腾讯仪征数据中心
+
+位置：江苏省扬州市仪征市大数据产业园。建设：腾讯。运营：腾讯。使用：腾讯云、腾讯混元大模型。
+
+容量与阶段：2024年1—4号楼投运；3—4号AI机房披露6100 PFLOPS。2026年全产业园算力总量不能全部归腾讯；未披露IT MW。
+
+最后证据：2024-08-29及2026-05-21江苏省委网地方报道。[来源1](https://www.zgjssw.gov.cn/shixianchuanzhen/yangzhou/202408/t20240829_8384996.shtml)、[来源2](https://www.zgjssw.gov.cn/shixianchuanzhen/yangzhou/202605/t20260521_8574161.shtml)。
+
+### 31 中国电信江北仪征数据中心
+
+位置：江苏省扬州市仪征市大数据产业园。建设：中国电信。运营：中国电信江苏。使用：字节跳动、腾讯为地方报道披露的客户。
+
+容量与阶段：园区已有运营；远期规划3.2万机柜。没有把整个仪征产业园算力或32千规划机柜写成该园已投运GW。
+
+最后证据：2026-05-21地方报道。[来源1](https://www.zgjssw.gov.cn/shixianchuanzhen/yangzhou/202605/t20260521_8574161.shtml)。
+
+### 32 华为芜湖云数据中心及3D数据中心
+
+位置：安徽省芜湖市三山园区。建设：华为。运营：华为云。使用：华为云及云客户。
+
+容量与阶段：2026-09-16华为正式发布芜湖3D数据中心实例，按楼层分置供电、IT、冷却。建筑新方案不等于新公布可统计GW；未披露整园MW。
+
+最后证据：2026-09-16华为公告；2026-06住建公示。[来源1](https://www.huawei.com/cn/news/2026/9/aidc-data-center)、[来源2](https://zjw.wuhu.gov.cn/openness/public/6596411/41214256.html)。
+
+### 33 抖音芜湖长三角算力中心一期
+
+位置：安徽省芜湖市经济技术开发区城东片区。建设：抖音／字节跳动项目体系，具体开发法人待批文核实。运营：抖音／字节跳动体系，拟。使用：抖音及相关业务，具体客户未披露。
+
+容量与阶段：2026-09在建。城东片区抖音一期、电信等在建项目合计780 MW IT，该聚合数不能全部赋给抖音。
+
+最后证据：2026-09-30芜湖经开区公告。[来源1](https://weda.wuhu.gov.cn/xwzx/wdxw/18552951.html)。
+
+### 34 中国电信芜湖经开区算力中心集群
+
+位置：安徽省芜湖市经济技术开发区城东片区。建设：中国电信。运营：中国电信，拟／分期。使用：未披露。
+
+容量与阶段：2026-09-30新签百亿固定资产投资项目，布局400余亩；城东片区既有在建电信等项目计入780 MW IT聚合。新签约投资额不能直接换算MW或判定已开工。
+
+最后证据：2026-09-30芜湖经开区公告。[来源1](https://weda.wuhu.gov.cn/xwzx/wdxw/18552951.html)。
+
+### 35 商汤临港人工智能计算中心
+
+位置：上海市临港新片区。建设：商汤科技。运营：商汤科技。使用：商汤日日新；上海人工智能实验室风乌项目为公开合作方。
+
+容量与阶段：已运营；政府材料披露约4.6万张加速卡。卡数和算力均不直接转为IT GW。
+
+最后证据：2025年浦东政府材料及2025-04临港公告。[来源1](https://www.pudong.gov.cn/zwgk/qt-kjw/2025/141/341030.html)、[来源2](https://www.lingang.gov.cn/html/website/lg/index/news/Mediafocus/1911602380692058114.html)。
+
+## 粤港澳与华中
+
+### 36 润泽佛山国际信息港
+
+位置：广东省佛山市高明区。建设：广东润惠，润泽体系。运营：润泽。使用：具体客户未具名。
+
+容量与阶段：一期已运营；二期B1规划112.5 MW IT，2500个45 kW机柜，目标2028-06-30交付。二期整体能评规划与B1具体项目区分。
+
+最后证据：2026半年报；2026年公司再融资问询回复。[来源1](https://static.cninfo.com.cn/finalpage/2026-08-28/1225521959.PDF)、[来源2](https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12412633&stockid=300442)。
+
+### 37 润泽惠州国际信息港
+
+位置：广东省惠州市惠东县白花镇谟岭产业园。建设：惠州润信，润泽体系。运营：润泽。使用：腾讯为地方政府披露客户；不推断全部机房都由腾讯使用。
+
+容量与阶段：一期已运营，二期及后续楼栋持续规划建设。单园全部投运MW未核实；公司整体750 MW不能全部归惠州。
+
+最后证据：2026半年报；惠州政府客户材料；2026-09行业协会园区资料。[来源1](https://static.cninfo.com.cn/finalpage/2026-08-28/1225521959.PDF)、[来源2](https://jhj.huizhou.gov.cn/zwgk/gzdt/content/post_5680550.html)、[来源3](https://www.gdssmpa.com/web/diyizixun/xingyedongtai/2026-09-30/29423.html)。
+
+### 38 秦淮东阳光韶关绿色智算中心
+
+位置：广东省韶关市曲江经济开发区。建设：东阳光集团、秦淮数据。运营：秦淮数据，拟。使用：未披露。
+
+容量与阶段：首期规划150 MW IT；合作签约和规划状态，尚无所选材料证明150 MW全部投运。
+
+最后证据：公司当前项目简介，2026-10-11核查；页面标2025-11但存在后续更新。[来源1](https://www.chindatagroup.com/media/news/531.html)。
+
+### 39 中国移动粤港澳韶关数据中心
+
+位置：广东省韶关市浈江区数据中心集群。建设：中国移动广东。运营：中国移动广东。使用：中国移动及托管客户。
+
+容量与阶段：一期2025-06-11投产，1.6万个标准机架；全园两期规划3.2万个标准机架。二期预计2026投运不作实际完成证明。
+
+最后证据：2025-06-13韶关政府投产公告。[来源1](https://www.sg.gov.cn/zfxxgkml/content/post_2751499.html)。
+
+### 40 中国电信韶关数据中心一期及二期
+
+位置：广东省韶关市数据中心集群。建设：中国电信广东。运营：中国电信广东。使用：具体客户未公开。
+
+容量与阶段：一期已运营，二期2026-02-24开工；二期投资5.97亿元，未披露可核查IT MW。韶塘新增项目另有后续公告，不将其混为一期投运容量。
+
+最后证据：2026-02开工公告；2026-08、09韶关政府材料。[来源1](https://www.sg.gov.cn/smsg/sgqmshggn/content/post_2820139.html)、[来源2](https://www.sg.gov.cn/smsg/sgqmshggn/content/post_2883361.html)。
+
+### 41 中国联通韶关智算中心
+
+位置：广东省韶关市浈江区数据中心集群。建设：中国联通。运营：中国联通。使用：具体客户未公开。
+
+容量与阶段：一期已运营；2万PFLOPS为2026年底智算目标，保留预测状态。未披露整园IT MW。
+
+最后证据：2026-08-21韶关政府产业材料。[来源1](https://www.sg.gov.cn/zsyz/tzhj/zdcy/content/post_2874722.html)。
+
+### 42 腾讯清远清新云计算数据中心
+
+位置：广东省清远市清新区太平镇花清工业园。建设：腾讯及清远项目公司。运营：腾讯。使用：腾讯全业务数据与腾讯云。
+
+容量与阶段：2020年一期开服；6、7号楼截至2025-12正式运营，服务器有序上架。没有用30万服务器的远期计划代替当前IT功率。
+
+最后证据：2025-12-08清新政府；腾讯云旧项目介绍补充位置。[来源1](https://www.qingxin.gov.cn/zwgk/xxgk/zfxxgkml/qt/xzdt/content/post_2090519.html)、[来源2](https://cloud.tencent.com/developer/news/570956)。
+
+### 43 东阳光秦淮宜都零碳智算产研基地
+
+位置：湖北省宜昌市宜都市高坝洲镇青林寺村。建设：东阳光集团、秦淮数据。运营：秦淮数据，拟。使用：产研及客户生态用途，具体租户未公开。
+
+容量与阶段：2026-04-03开工，IT规划7.5 MW。产研示范项目与其他GW级产业合作项目不合并。
+
+最后证据：2026-04公司开工公告。[来源1](https://www.chindatagroup.com/media/news/529.html)。
+
+## 西南与海南
+
+### 44 润泽重庆西南国际信息港
+
+位置：重庆市九龙坡区陶家镇。建设：重庆润泽智惠及润泽体系；中建八局承建。运营：润泽，拟／分期。使用：未披露。
+
+容量与阶段：全园规划约3.2万物理机柜；一期2023年开工，2026-04仍有一期楼栋建设，二期2025-08开工。未来交付计划不当作实际已投运。
+
+最后证据：2026-04-13九龙坡政府；2023年重庆政府开工资料。[来源1](https://cqjlp.gov.cn/zwxx/qxdt/202604/t20260413_15606753_wap.html)、[来源2](https://www.cq.gov.cn/zwgk/zfxxgkzl/fdzdgknr/zdxm/dtxx/202312/t20231219_12721459.html)。
+
+### 45 中国联通西南数据中心
+
+位置：重庆市两江国际云计算产业园。建设：中国联通。运营：重庆联通。使用：158家客户，未逐户具名。
+
+容量与阶段：截至2025-12投产5栋IDC机楼、7687机架。5600G是网络出口带宽，不是供电容量。
+
+最后证据：2025-12-02重庆通信管理局。[来源1](https://cqca.miit.gov.cn/xwdt/xydt/art/2025/art_f3e9d1a5c8ab483ead8565ca8c62ffe7.html)。
+
+### 46 中国电信天府云计算中心新建项目
+
+位置：四川省成都市天府新区兴隆湖南侧。建设：中国电信四川。运营：中国电信四川，拟。使用：AI训练及大模型开发客户，未具名。
+
+容量与阶段：2026-05-13启动建设，预计2027竣工；设计3600 PFLOPS、建筑面积约2.8万㎡，未披露IT MW。与已有天府云计算设施区分。
+
+最后证据：2026-05-19中国电信公告；2026-05-17人民邮电报转载。[来源1](https://www.chinatelecom.com.cn/ct/news/gdxw/166788.html)、[来源2](https://finance.sina.com.cn/roll/2026-05-17/doc-inhyeetv3847816.shtml)。
+
+### 47 腾讯贵安七星数据中心
+
+位置：贵州省贵安新区电子信息产业园七星洞库。建设：腾讯项目体系。运营：腾讯。使用：腾讯及腾讯云。
+
+容量与阶段：既有运营；历史全园规划30万台服务器，当前IT MW未公开，未把历史服务器规划作为当前全部部署。
+
+最后证据：2026-09-01国家网信办贵安报道；2018腾讯介绍。[来源1](https://www.cac.gov.cn/2026-09/01/c_1790012378081831.htm)、[来源2](https://developer.cloud.tencent.com/article/1142352)。
+
+### 48 华为贵安云数据中心及云上屯
+
+位置：贵州省贵安新区七星湖。建设：华为。运营：华为云。使用：华为云、昇腾云服务。
+
+容量与阶段：既有运营；历史最终服务器规划不等于当前IT MW。2025年论坛在云上屯举办，2026年贵安报道继续确认园区运营。
+
+最后证据：2026-09-01国家网信办；2025-07华为公告。[来源1](https://www.cac.gov.cn/2026-09/01/c_1790012378081831.htm)、[来源2](https://digitalpower.huawei.com/cn/news/data-center-facility/ecosystem-forum-2025)、[来源3](https://digitalpower.huawei.com/cn/news/data-center-facility/363)。
+
+### 49 苹果iCloud贵安数据中心
+
+位置：贵州省贵安新区电子信息产业园。建设：苹果、云上贵州合作体系；具体资产法人待项目批文补全。运营：云上贵州与苹果合作的iCloud中国内地运营体系。使用：中国内地iCloud用户。
+
+容量与阶段：既有运营，公开报道于2021年启用；没有公开可核实的本园IT MW。运营方与苹果技术品牌分别列出。
+
+最后证据：2022-07贵安数据中心报道；2026-09贵安综述。[来源1](https://www.ncsti.gov.cn/kjdt/ztbd/dsxs/zxjz/202207/t20220728_90964.html)、[来源2](https://www.cac.gov.cn/2026-09/01/c_1790012378081831.htm)。
+
+### 50 中国建设银行贵安数据中心一期
+
+位置：贵州省贵安新区。建设：中国建设银行；中建四局承建。运营：建设银行体系，拟。使用：建设银行自用。
+
+容量与阶段：2025-01-21开工；设计8748个机柜、约10万台服务器。未取得本次核查截至日的正式投产证明，保留建设状态。
+
+最后证据：2025-01中国建筑开工公告。[来源1](https://www.cscec.com/xwzx_new/zqydt_new/202501/3852431.html)。
+
+### 51 润泽海南自贸港国际信息港
+
+位置：海南省儋州市白马井镇。建设：海南润泽及润泽体系。运营：润泽，拟。使用：未披露。
+
+容量与阶段：项目建设及园区落地公开报道可查。公司2026半年报尚未把海南列入四个运营园区；单园IT MW及最新交付量未充分披露。
+
+最后证据：2025-09海南政府；2025-12儋州政府；2026半年报。[来源1](https://en.hainan.gov.cn/hainan/sxian/202509/ef18087d8edf40b29a79eca144aa2cf5.shtml)、[来源2](https://www.danzhou.gov.cn/danzhou/ywdt/jrdz/202512/t20251218_3991415.html)、[来源3](https://static.cninfo.com.cn/finalpage/2026-08-28/1225521959.PDF)。
+
+## 香港单列
+
+### 52 润泽香港沙岭数据园区
+
+位置：香港新界北区沙岭，丈量约份第89约地段第953号。建设：香港润江智算科技有限公司；最终控股润泽智算科技集团，另有森谷工香港参与。运营：润泽集团；中电为电力配套方。使用：具体租户未披露。
+
+容量与阶段：2026-03-28动工；2026-09政府将首阶段目标提前至2027年，2030年前后预计18万PFLOPS。没有把算力转成GW；也不按2026半年报旧2028目标覆盖9月更新。
+
+最后证据：2026-03-02地块招标结果；2026-09-23政府演辞。[来源1](https://www.itib.gov.hk/zh-cn/speeches/2026/pr_20260302b.html)、[来源2](https://www.itib.gov.hk/zh-cn/speeches/2026/pr_20260923a.html)。
+
+## 为什么本台账不能直接加总为全国GW
+
+全国在役设备模型、公司可交付容量和土地／能评／机房最大设计负荷回答不同问题。任何“已部署GW”合计，都需要先确定IT或设施输入、存量时点、地域边界及实际部署状态。设施MW、IT MW、机柜、卡数、FPLOPS、㎡、MVA、储能MWh和年用电TWh分别保留。
+
+目前没有在本次公开核查中找到全国统一、逐项目去重、以GW披露并拆开在建与规划的官方清单。因此可采用IEA的19 GW IT／28 GW设施总量作为中国（含香港）2025年的跨区域比较；中国近期企业与项目更新作为单独样本，Rystad的28 GW已宣布管线作为独立研究估计。不能将秦淮超过8 GW、润泽国内5.4 GW、世纪互联乌兰察布3 GW及地方集群规划直接求和，既有项目、后续分期和公司资源库可能重叠。
+
+本附页共52项记录，最后一项是“52 润泽香港沙岭数据园区”。已保存文本还需在最终发布环境检查图表、表格宽度和来源链接的渲染。
+
