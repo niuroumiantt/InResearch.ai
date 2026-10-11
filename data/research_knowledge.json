@@ -6278,6 +6278,119 @@
       "status": "candidate",
       "stored_path": "originals/5a/5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083/mlperf-h100-readme.html",
       "title": "MLPerf Inference v5.0：NVIDIA DGX H100（8×H100-SXM-80GB，TensorRT）"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "coverage": {
+        "characters_read": 28624,
+        "characters_total": 28624,
+        "chunks_read": 6,
+        "chunks_total": 6,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "library_path": "library/by-node/root/未知_Samaritan Research（正文另称 E_AI data centers documentation – Methodology__5a5b048c02747898.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:anthropic",
+        "actor:crusoe",
+        "actor:meta",
+        "actor:openai",
+        "actor:xai",
+        "part:backup-power",
+        "part:chiller",
+        "part:cpu",
+        "part:gas-turbine",
+        "part:gpu",
+        "part:rack-system",
+        "part:server",
+        "part:shell",
+        "root",
+        "site:grid",
+        "site:land",
+        "site:permits"
+      ],
+      "question_ids": [
+        "M04-Q07",
+        "M05-Q06",
+        "OBJ-backup-power-alternatives",
+        "OBJ-backup-power-definition",
+        "OBJ-backup-power-interfaces",
+        "OBJ-backup-power-performance",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+      "research_requests": [
+        {
+          "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M05-Q06",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+          "scope_values": {
+            "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+            "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+            "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+            "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        },
+        {
+          "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M04-Q07",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+          "scope_values": {
+            "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+            "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+            "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+            "period": "2025至2026；历史预测与实际里程碑逐项核验",
+            "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-samaritan-data-center-methodology",
+        "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/5a/5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2/samaritan-data-center-methodology.html",
+      "title": "AI data centers documentation – Methodology"
     }
   ],
   "evidence": [
@@ -48327,6 +48440,175 @@
           }
         },
         "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:5:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "root",
+        "part:shell"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q07"
+      ],
+      "quote": "In this timelapse of the OpenAI-Oracle Stargate facility in Abilene, Texas, we can identify the approximate time when land clearing begins, new buildings and facilities start construction, and building roofs are completed. Source: Sentinel-2 via Copernicus.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文与原生上下文支持有限的作者方法陈述，与当前M10-Q03核验建设起点及中间里程碑存在实质关系，符合B类部分证据采用条件。未发现敏感材料、真实冲突或替换请求等A条件。采用仅补充核验方法，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:6:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Satellite imagery lets us identify the type of cooling, the number of cooling units, and (if applicable) the number of fans on each unit. Later we will discuss how we plug this data into our cooling model to estimate the IT power capacity of data centers.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及充分上下文支持作者方法陈述，对当前OBJ-heat-reject-performance的性能估算方法与适用限制有实质但有限的贡献，符合B类部分采用条件。未发现A条件。OBJ-heat-reject-interfaces要求设备接口与互换条件；本段仅描述模型输入，不足以构成该问题的实质接口证据，因此不选该问题。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
       }
     }
   ],
@@ -93777,6 +94059,255 @@
           "rationale": "TensorRT/CUDA 等字段部分支持请求中的配置范围，但本项没有 tokens/s/GPU 数值或推导，也未核实其他验收工况；不能认证、替换当前吞吐参数或关闭问题。",
           "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
           "status": "partial_support"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:5:ev:0"
+      ],
+      "id": "adoption:review:dded3f2e72a0aa22b198ff54",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "part:shell"
+      ],
+      "question_ids": [
+        "M10-Q03"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "所供署名为Samaritan Research、页尾另称Epoch的《AI data centers documentation – Methodology》作者称，可通过美国Texas州Abilene的OpenAI-Oracle Stargate设施延时影像，识别清地开始、新建筑及设施开始施工、建筑屋顶完成的大致时间；影像来源标为Sentinel-2 via Copernicus。这是作者描述的施工里程碑识别方法，尚未经本次独立核实，所选证据未给出具体日期或实际通电节点。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文与原生上下文支持有限的作者方法陈述，与当前M10-Q03核验建设起点及中间里程碑存在实质关系，符合B类部分证据采用条件。未发现敏感材料、真实冲突或替换请求等A条件。采用仅补充核验方法，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:5"
+      ],
+      "limitations": "来源发布日期未知。证据仅描述影像判读能力，没有影像日期序列、识别误差、分期边界或实际通电记录，不能计算实际建设周期、判断周期走势或推导负荷接入排队等待。",
+      "conflict_check": "当前已采用的SB Energy俄亥俄项目和Empyrion台湾TW1开工陈述涉及其他项目，不与Abilene的影像识别方法冲突，也不构成重复。所供legacy英国IT容量记录属于不同地域、指标与口径；项目及合同匹配记录为空。未发现同范围反证，检查仅限所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "M10-Q03仍需同一场址、同一分期的可定位开工日期与实际通电日期、一手记录、明确周期定义、可比较样本及反证。影像中清地、开工和屋顶完成均不能替代通电或接入批准节点。M04-Q07的原候选标签不予沿用；两个定量请求均未由本证据满足。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "32fae866c503099059691fbfe91f1d26c1a6f67775a44e4ec7d681b6fb5e5524"
+      },
+      "object_mapping_check": "独立复核表明，主张涉及具名数据中心的整体建设时间线，符合root范围；清地、建筑施工及屋顶完成明确落在part:shell所含场坪、建筑与屋面范围。OpenAI-Oracle仅用于标识示例，未证明主体责任或经营行为，故不映射主体；未涉及用地权利、许可或并网协议，不映射site节点。所选证据统一使用这一主张范围。",
+      "quantitative_checks": {
+        "basis_check": "依据是作者对Sentinel-2 via Copernicus延时影像用途的描述；未提供可独立复查的影像序列与里程碑判读记录。",
+        "comparability_check": "尚无统一分期、里程碑定义、判读精度和实际通电终点，不能与其他项目工期直接比较或建立周期走势。",
+        "derivation_check": "不适用数值推导：证据没有可计算的起止日期；不得把清地或屋顶完成推导为实际通电，也不得计算接入等待年限。",
+        "scope_check": "范围为美国Texas州Abilene的OpenAI-Oracle Stargate设施施工影像判读；未明确原园区具体建筑或分期，也未测量供电、负荷接入或运行状态。",
+        "time_check": "来源发布日期及影像观测日期未知；大致时间未展开为可复核日期，批次创建时间不能作为来源发布时间或施工时间。",
+        "units_check": "不适用数值单位核验：所选证据没有日期、持续时间或容量数值，不能生成years、MW或GW参数。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张是施工里程碑识别方法，不是原园区获批用能、接入容量或IT容量证据；未提供ERCOT或输电商批准原件及MW值，不能核验或替换energy_quota_mw。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "施工影像识别与负荷接入申请、审批或排队等待属于不同阶段；证据没有同分期申请起点及实际批准终点，不能以建设里程碑替代gate_wait_years。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:6:ev:0"
+      ],
+      "id": "adoption:review:b1c7d9f12eef77c1c22cbe63",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-performance"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "所供署名为Samaritan Research、页尾另称Epoch的《AI data centers documentation – Methodology》作者称，卫星影像可用于识别冷却类型、冷却机组数量及适用时的单机风扇数量，并将这些信息输入其冷却模型以估算数据中心IT功率容量。这是作者的影像识别与模型估算方法，尚未经本次独立核实；所选证据未提供具体机型、工况、模型结果或Abilene的IT容量值。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及充分上下文支持作者方法陈述，对当前OBJ-heat-reject-performance的性能估算方法与适用限制有实质但有限的贡献，符合B类部分采用条件。未发现A条件。OBJ-heat-reject-interfaces要求设备接口与互换条件；本段仅描述模型输入，不足以构成该问题的实质接口证据，因此不选该问题。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:6"
+      ],
+      "limitations": "来源发布日期未知。本段提供估算输入的识别方法，没有设备实测性能、可靠性试验、失效机制或物理接口规格。影像可见特征与实际冷却能力之间需要模型及工况依据，不能把估算视为设备额定性能或当前实际IT负载。",
+      "conflict_check": "当前已采用声明均为其他项目的开工时间，与冷却识别和容量估算方法无冲突或重复。所供legacy英国IT容量估算是地域总量，不是对本方法的验证或反证；没有匹配的合同或项目记录。封存摘要的缺值表述与原生全文的详细模型讨论存在概括范围差异，已按原文限定本段，不构成对现有采用结论的替换。",
+      "gap_dependency_check": "OBJ-heat-reject-performance仍需明确冷却类型及型号、模型适用范围、校准与独立验证、设计和实际工况、误差，以及可靠性与失效资料。物理接口、流量、温度、压力及互换限制仍缺失。通用IT容量估算方法不能满足原园区用能批准或负荷接入等待要求，所有相关问题与参数保持未核验状态。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "32fae866c503099059691fbfe91f1d26c1a6f67775a44e4ec7d681b6fb5e5524"
+      },
+      "object_mapping_check": "引文泛指不同冷却类型及机组，并未限定冷水机组或冷却塔；独立映射到涵盖排热、冷水等链条的system:thermal最符合实际范围。邻近冷水机组示例不足以把通用主张全部限定为part:chiller。IT功率是估算输出，不证明计算设备配置或整个数据中心运行状态，故不追加IT部件或root范围。所选证据统一采用该范围。",
+      "quantitative_checks": {
+        "basis_check": "依据为作者对影像观测输入及自身冷却模型用途的说明，保持author_claim身份；本段不是设备性能观测值或可复核数值计算。全文的模型介绍不等于本项目的独立测量或批准依据。",
+        "comparability_check": "类型识别、影像可见性与工况影响适用范围，不能把此方法直接作为跨设备通用性能值；IT容量估算与获批用能、设施容量及排队等待不具可替代性。",
+        "derivation_check": "不适用数值复算：所选证据缺少机组计数、单机容量、工况及转换假设，没有提出B类数值观测或计算，因此不触发该类独立第二次复算要求。",
+        "scope_check": "主张是数据中心冷却设备影像特征识别及IT功率估算方法，没有限定某台设备、具体项目分期、软件版本或工作负载，也没有直接测量实际IT功率。",
+        "time_check": "来源发布时间及影像有效时间未知；没有某一日期已安装、运行或获准容量的证明，不能以当前批次日期补足。",
+        "units_check": "机组数量与单机风扇数量属于计数输入，但所选证据未给数值；IT功率容量未给单位或结果。不得从本段生成MW值，也不得混同冷却容量、设施功率与接入配额。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "证据描述通用IT容量估算方法，而请求验收要求区分原园区获批用能、接入与IT容量。没有项目容量结果或批准原件；即使得到IT估算，也不能据此核验energy_quota_mw。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "冷却设备识别和功率估算不涉及负荷接入申请、审批或排队起止时间；未提供所需同项目同分期原件，不能支持gate_wait_years取值。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
         }
       ]
     }
