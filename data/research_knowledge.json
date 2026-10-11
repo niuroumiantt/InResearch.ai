@@ -7205,6 +7205,64 @@
       "status": "candidate",
       "stored_path": "originals/f2/f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0/dcd-f2804604ae3661a9-Grid connection requests for data centers in Italy top 95GW.html",
       "title": "Grid connection requests for data centers in Italy top 95GW"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "coverage": {
+        "characters_read": 13940,
+        "characters_total": 13940,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "id": "doc-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "library_path": "library/by-node/part-ups-battery/2022_DatacenterDynamics（DCD）；Z_The powerful benefits of nickel-zinc batteries for data__efccec9815c18d24.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:power/4",
+        "part:backup-power",
+        "part:bess",
+        "part:ups-battery"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-interfaces",
+        "OBJ-bess-alternatives",
+        "OBJ-bess-definition",
+        "OBJ-bess-performance"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-89d8e98643794331b938819d87ba8ce5",
+      "report_sha256": "1a6bd2a06ba10521f9941ea3e8c0a5300cb7221dc696a6d2f289f023c61f48e9",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+        "url": "https://www.datacenterdynamics.com/en/marketwatch/the-powerful-benefits-of-nickel-zinc-batteries-for-data-centers/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/marketwatch/the-powerful-benefits-of-nickel-zinc-batteries-for-data-centers/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/ef/efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829/dcd-efccec9815c18d24-The powerful benefits of nickel-zinc batteries for data centers.html",
+      "title": "The powerful benefits of nickel-zinc batteries for data centers"
     }
   ],
   "evidence": [
@@ -53947,6 +54005,259 @@
           }
         },
         "batch_id": "96e3acfe0908cfe1f0a8f4bf2ea13f2f7a1eeb6c667f68c257fdcdb82996b571"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "91d0bf06abaf5e74f10cb1cbf1975e7839121da5ae451a34f5fb6866166449d3",
+      "document_id": "doc-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "id": "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:7:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "part:bess",
+        "part:ups",
+        "part:ups-battery"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-bess-performance"
+      ],
+      "quote": "The battery cabinet's intelligent charging system utilizes the existing lead-acid charging profile to fully charge the nickel-zinc battery, giving them backwards/forwards compatibility with systems originally designed for lead-acid solutions.",
+      "reading_revision_id": "rev-89d8e98643794331b938819d87ba8ce5",
+      "source_sha256": "efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T11:04:19+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。完整连续引文与相邻BC Series、既有UPS及化学体系充电曲线语境，支持限定后的来源陈述。该机制实质贡献当前接口工单中的互换依赖条件，可局部采用；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 117.209,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7a3506f5bf935f6a18c1b62f927c49976a7914a28d50533332b0a586c4578b4e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 58572,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 810
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.623,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0cbd0ea86f89a87c1632c9521eee808493338aa55d677aba2ab3dcdcee50a3d9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 57122,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "91d0bf06abaf5e74f10cb1cbf1975e7839121da5ae451a34f5fb6866166449d3",
+      "document_id": "doc-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "id": "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:8:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "part:ups-battery"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Put together, these environmentally friendly characteristics give nickel-zinc batteries the highest score for sustainability: 9.4 out of 10. That’s why sustainable data center Wyoming Hyperscale White Box chose ZincFive’s nickel-zinc batteries",
+      "reading_revision_id": "rev-89d8e98643794331b938819d87ba8ce5",
+      "source_sha256": "efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T11:04:19+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。正文中的具体评分和具名UPS选型归因，为当前替代方案工单提供环境评价维度与选型线索，具有局部实质贡献。连续引文片段及完整原生句提供足够语境；以赞助来源主张限定后可采用，缺失方法仍作为研究缺口保留。无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 117.209,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7a3506f5bf935f6a18c1b62f927c49976a7914a28d50533332b0a586c4578b4e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 58572,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 810
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.623,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0cbd0ea86f89a87c1632c9521eee808493338aa55d677aba2ab3dcdcee50a3d9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 57122,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "91d0bf06abaf5e74f10cb1cbf1975e7839121da5ae451a34f5fb6866166449d3",
+      "document_id": "doc-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "id": "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:8:ev:1",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "part:ups-battery"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "for its UPS needs.",
+      "reading_revision_id": "rev-89d8e98643794331b938819d87ba8ce5",
+      "source_sha256": "efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T11:04:19+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。正文中的具体评分和具名UPS选型归因，为当前替代方案工单提供环境评价维度与选型线索，具有局部实质贡献。连续引文片段及完整原生句提供足够语境；以赞助来源主张限定后可采用，缺失方法仍作为研究缺口保留。无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 117.209,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7a3506f5bf935f6a18c1b62f927c49976a7914a28d50533332b0a586c4578b4e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 58572,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 810
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.623,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0cbd0ea86f89a87c1632c9521eee808493338aa55d677aba2ab3dcdcee50a3d9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 57122,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb"
       }
     }
   ],
@@ -104418,6 +104729,209 @@
         "request_sha256": "42b2f44b5e2ec4718289ec5520ab10c9b65d6f28cda699b65a16e53f2442f761"
       },
       "object_mapping_check": "独立依据主张选择GPU加速器及其所属计算系统：原文同时讨论GPU芯片额定功率和单机架内计算芯片的集聚。未确认NVL72类整机柜系统、机柜结构或具体供电设备，故不映射part:rack-system、part:rack-frame或电力链；冷却仅属周边上下文，不加入本主张范围。所选证据统一采用上述主张级对象范围，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "evidence_ids": [
+        "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:7:ev:0"
+      ],
+      "id": "adoption:review:9959fdd73f789b99bfde95f8",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:bess",
+        "part:ups",
+        "part:ups-battery"
+      ],
+      "question_ids": [
+        "OBJ-bess-interfaces"
+      ],
+      "reading_revision_id": "rev-89d8e98643794331b938819d87ba8ce5",
+      "status": "adopted",
+      "text": "DCD在原生页标注2022年10月3日、署名DatacenterDynamics的ZincFive赞助文章中称，ZincFive BC Series UPS电池柜通过其智能充电系统，利用既有铅酸充电曲线为镍锌电池充满电，从而与原为铅酸方案设计的系统实现前向及后向兼容。此处保留为来源对该系列UPS储能电池柜充电兼容机制的陈述，未独立验证具体UPS型号的兼容性或当前运行状态；原文未限定地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T11:04:19+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。完整连续引文与相邻BC Series、既有UPS及化学体系充电曲线语境，支持限定后的来源陈述。该机制实质贡献当前接口工单中的互换依赖条件，可局部采用；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 117.209,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7a3506f5bf935f6a18c1b62f927c49976a7914a28d50533332b0a586c4578b4e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 58572,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 810
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.623,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0cbd0ea86f89a87c1632c9521eee808493338aa55d677aba2ab3dcdcee50a3d9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 57122,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb"
+      },
+      "source_candidate_ids": [
+        "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:7"
+      ],
+      "limitations": "未提供具体柜型、UPS兼容清单、充电电压与电流、控制协议、温度条件、充电时间、保护配置或测试结果。不能推导所有镍锌电池或通用BESS均可直接替换铅酸方案，也不能确认具体项目已完成改造或投运。",
+      "conflict_check": "现有IEA电池储能定义、BESS响应与逆变器限流陈述，以及其他主体的采购、融资和组合系统计划，均未否定该充电兼容机制，也未覆盖同一产品主张。所供legacy匹配记录为空，未发现真实冲突或可认定重复的canonical记录；检查限于本包，不构成外部兼容性核验，不替换既有结论。",
+      "gap_dependency_check": "仅为OBJ-bess-interfaces提供UPS用途下的充电曲线适配机制。仍需型号级接口规格、兼容矩阵、保护与控制依赖、环境条件和充电测试；问题保持开放，不修改研究骨架或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb",
+        "source_report_sha256": "1a6bd2a06ba10521f9941ea3e8c0a5300cb7221dc696a6d2f289f023c61f48e9",
+        "request_sha256": "a7dced55cb73294f3ca8b084359e7de764b3520aa5e7731e2e2f7c45870b8752"
+      },
+      "object_mapping_check": "独立依据原生正文确定范围：电池柜被明确称为BESS，对应发电与储能链下part:bess；其与既有UPS充电系统的适配涉及UPS链下part:ups和part:ups-battery。映射限于该UPS储能配置，不代表通用BESS适配。智能充电措辞未建立DCIM/BMS范围，不映射控制与软件；ZincFive无允许的主体ID。所选证据统一使用此声明级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-efccec9815c18d244d5b40c445989edfa1b515940d9f2acafbc120d6b5918829",
+      "evidence_ids": [
+        "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:8:ev:0",
+        "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:8:ev:1"
+      ],
+      "id": "adoption:review:f95617a982d4ba13b0af5ec3",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ups-battery"
+      ],
+      "question_ids": [
+        "OBJ-bess-alternatives"
+      ],
+      "reading_revision_id": "rev-89d8e98643794331b938819d87ba8ce5",
+      "status": "adopted",
+      "text": "DCD在2022年10月3日署名DatacenterDynamics的ZincFive赞助文章中称，镍锌电池的可持续性评分最高，为9.4/10，并将Wyoming Hyperscale White Box为UPS选择ZincFive镍锌电池归因于上述环保特性。这是来源的评分及选型归因陈述，未独立核验评分或采购、交付和投运状态；文中未给出该选择的事件日期或具体场址。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T11:04:19+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。正文中的具体评分和具名UPS选型归因，为当前替代方案工单提供环境评价维度与选型线索，具有局部实质贡献。连续引文片段及完整原生句提供足够语境；以赞助来源主张限定后可采用，缺失方法仍作为研究缺口保留。无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 117.209,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7a3506f5bf935f6a18c1b62f927c49976a7914a28d50533332b0a586c4578b4e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 58572,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 810
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.623,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0cbd0ea86f89a87c1632c9521eee808493338aa55d677aba2ab3dcdcee50a3d9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 57122,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb"
+      },
+      "source_candidate_ids": [
+        "rev-89d8e98643794331b938819d87ba8ce5:chunk:1:claim:8"
+      ],
+      "limitations": "未提供9.4/10的评分算法、权重、比较产品、功能单位、运行工况或不确定性。相邻正文提及Boundless Impact Research and Analytics的Climate Impact Profile，但该报告原件及评分推导未随包提供。不能据此认定同口径环境优势、客户唯一选型原因或通用BESS的优劣。",
+      "conflict_check": "现有采用陈述涉及BESS定义、响应机制及其他主体的供应和交易，没有同口径可持续性评分或该客户选型的相反结论。所供legacy匹配记录为空，未发现真实冲突或同一主张的canonical记录；未开展外部反证及客户采购核查，不覆盖既有结论。",
+      "gap_dependency_check": "仅贡献OBJ-bess-alternatives中的UPS电池环境评价及选型线索。仍需原始评价报告、同功能单位与生命周期边界、评分方法、成本和约束比较，以及客户一手选型文件；问题保持开放，不将9.4/10作为模型参数或独立认证。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb",
+        "source_report_sha256": "1a6bd2a06ba10521f9941ea3e8c0a5300cb7221dc696a6d2f289f023c61f48e9",
+        "request_sha256": "a7dced55cb73294f3ca8b084359e7de764b3520aa5e7731e2e2f7c45870b8752"
+      },
+      "object_mapping_check": "独立按主张用途复核：评分与选择均处于数据中心UPS备用电池比较语境，直接对应电力系统UPS链下part:ups-battery。此项未讨论完整BESS配置或UPS整流、逆变设备，不增加part:bess或part:ups；环保特性不建立消防设备映射。ZincFive及Wyoming Hyperscale White Box均无允许的主体ID。两条证据统一采用该范围，原标签不变。"
     }
   ],
   "answers": [],
