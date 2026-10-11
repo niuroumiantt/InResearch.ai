@@ -55467,6 +55467,90 @@
         },
         "batch_id": "5bafb2bcf4cbb1392379cae5d79380b6ef97912a623cd8e1709e6d9a7a3eefc3"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4628e95c60a55936397c6d3a16be2896017dbc0779f73de8f04feb0e1d73934c",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:16:claim:2:ev:0",
+      "locator": "page:17/chunk:16",
+      "object_ids": [],
+      "page_index": 16,
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "quote": "Data on the planned\n                  global project pipeline for data centres as of the beginning of 2026 imply that, if all projects\n                  are realised, installed capacity from the sector would at least double in the coming years\n                  (Figure 1.1).",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:19:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文引文与相邻图注、来源说明及预测不确定性讨论充分，对当前M01-Q03的规划漏斗规模研究和M15-Q02的快照研究提供带时点、范围及条件的相对规模信号，具有实质但局部的贡献。按IEA作者预测作B类部分采用；未发现敏感、真实冲突、拟替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "df55cf54ece9574714d3ea5dcd65939badf45cb5bc0ffae63eb3bd691140c8a7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65550,
+            "output_tokens": 1477,
+            "reasoning_output_tokens": 302
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.087,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c083f01d495a969e383d21a9207bc8375c7d0624164aeac756aa865207f65ebf",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66318,
+              "output_tokens": 513,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "5b3ab26dadd395992268c37f0eef2a6abd2e29d1a5db1d78da733fdb24d5c647"
+      }
     }
   ],
   "statements": [
@@ -107236,6 +107320,106 @@
         "request_sha256": "961d8d28fa68d35c010ac4e0fa6b677d4aa6d759b0173cd2e5bcd235c8a92afb"
       },
       "object_mapping_check": "独立复核后采用空对象范围。本条实际对象是地域及容量口径未披露的行业增长预测；合同中的root限定为一座AI数据中心，不能覆盖行业总量。Rowan未列为允许的actor对象，预测也未指认具体系统、链、部件或场址权利。不继承Reader的root标签，不从相邻融资、土地或合同电网容量追加映射。所选证据统一采用此主张级空对象范围，保留M15-Q01的有效问题关系。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:16:claim:2:ev:0"
+      ],
+      "id": "adoption:review:21cc116562ddea4b59facf28",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q03",
+        "M15-Q02"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》中，根据截至2026年初的全球数据中心规划项目管线推断：若所有项目均实现，数据中心行业装机容量将在未来几年至少翻倍。图1.1注释限定该项目管线仅涵盖商业数据中心，包括超大规模和托管数据中心，管线资料来源标为OMDIA（2025）。这是IEA附带全部项目实现条件的预测，未给出具体兑现年份，不构成对项目当前投运状态、实际容量或预测准确性的独立认证。报告发表日期未在所供原生文本中确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:19:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文引文与相邻图注、来源说明及预测不确定性讨论充分，对当前M01-Q03的规划漏斗规模研究和M15-Q02的快照研究提供带时点、范围及条件的相对规模信号，具有实质但局部的贡献。按IEA作者预测作B类部分采用；未发现敏感、真实冲突、拟替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "df55cf54ece9574714d3ea5dcd65939badf45cb5bc0ffae63eb3bd691140c8a7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65550,
+            "output_tokens": 1477,
+            "reasoning_output_tokens": 302
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.087,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c083f01d495a969e383d21a9207bc8375c7d0624164aeac756aa865207f65ebf",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66318,
+              "output_tokens": 513,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "5b3ab26dadd395992268c37f0eef2a6abd2e29d1a5db1d78da733fdb24d5c647"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:16:claim:2"
+      ],
+      "limitations": "未提供可复查的绝对容量数值、逐项目清单、规划阶段定义、分期兑现时间或历史转化率。图轴标为GW，但不能依据刻度推定柱状数值，也不能将装机容量直接等同关键IT容量或L8+投运容量。商业项目管线不能外推为全部类型数据中心的完整规划清单。全文阅读覆盖仅限PDF原生文字，未完成图像及矢量内容的视觉审阅；2026年初是管线快照时点，OMDIA（2025）是资料引用年份，两者均不能确立报告发表日期。",
+      "conflict_check": "已采用adoption:review:9e4d5598cc20c245ef4fb3d6称并非所有项目都会落地，与本条全部实现的条件性预测相容；本条新增快照时点及至少翻倍的相对规模判断，不是该记录的重复。格洛可和SemiAnalysis已采用陈述要求区分规划与实际交付，本条保留该边界。CBRE美国主要市场2024—2025年在建存量下降与全球规划管线的条件性未来规模在地域、阶段和时间上不同，未形成同口径真实冲突。所供legacy匹配记录为空，检查限于审计包，不代表完成外部反证检索；不替换既有结论。",
+      "gap_dependency_check": "M01-Q03仍需L1–L5及L6–L7的适用定义、同口径绝对容量、项目去重规则和历史队列，才能计算漏斗总量及历史转化率。M15-Q02仍需九级容量快照、可比历史基线和逐级转化记录。全部项目实现是预测前提，不能作为100%历史转化率，也不能据此指定项目等级、汇总GW或更新模型值。须补核OMDIA原始管线及容量口径；两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5b3ab26dadd395992268c37f0eef2a6abd2e29d1a5db1d78da733fdb24d5c647",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "027b188f953d19e70baa0e1338f0cabe7cc6cde3822018de7aebaa197c322744"
+      },
+      "object_mapping_check": "独立复核后，本条范围是全球商业数据中心规划管线与行业装机容量，未限定为AI专用数据中心。合同root名称为一座AI数据中心，原文未建立该范围，不能仅凭报告主题继承root。装机容量及图轴GW也不足以识别内部IT系统、电力系统、并网权利或具体部件；IEA与OMDIA没有允许的主体ID。采用空对象映射并保留有效问题关联，所选证据统一采用此主张范围，原始候选及证据标签保持不变。"
     }
   ],
   "answers": [],
