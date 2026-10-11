@@ -5,13 +5,15 @@
     python3 manage.py map 15        # Top 15
 
 零 Python 依赖；PDF 由本机 Chrome 无头渲染（没有 Chrome 时只出 HTML）。
-口径纪律：组合型记录（portfolio）不参与单园区排名；容量 = 各状态合计并按状态着色
+口径纪律：复用行业当前有效投影；组合、重复、非活跃与含区间的记录不参与单园区排名。
+可排名容量 = 单值分期合计并按状态着色
 （运营 L8+ / 在建 L6-7 / 规划 L1-5）；用电量为满载推算（公式见图注），非实测。
 """
 
 from inresearch.paths import project_root
 from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import atomic_write
+from inresearch.knowledge import industry
 import json
 import subprocess
 import sys
@@ -35,24 +37,42 @@ def xy(lon, lat):
 
 
 def cap_total(p):
-    c = p.get("capacity_it_mw") or 0
-    return c + sum((p.get("capacity_it_mw_by_status") or {}).values())
+    """Current rankable IT MW, or None when no full single-value ranking exists."""
+    view = industry.project(p)
+    return None if _exclusion(view) else view['total_mw']
 
 
 def cap_by_bucket(p):
-    """返回 (L8+, L6-7, L1-5) 三档容量。"""
-    op = bu = pl = 0
-    if p.get("capacity_it_mw"):
-        lv = int(p["status"][1])
-        if lv >= 8: op += p["capacity_it_mw"]
-        elif lv >= 6: bu += p["capacity_it_mw"]
-        else: pl += p["capacity_it_mw"]
-    for k, v in (p.get("capacity_it_mw_by_status") or {}).items():
-        lv = int(k[1])
-        if lv >= 8: op += v
-        elif lv >= 6: bu += v
-        else: pl += v
-    return op, bu, pl
+    """可排名记录的 (L8+, L6-7, L1-5)，不可排名返回 None。参数为原记录。"""
+    view = industry.project(p)
+    return None if _exclusion(view) else tuple(view['capacity'][stage] for stage in industry.STAGES)
+
+
+def _exclusion(view):
+    # Reasons are mutually exclusive for the map's explanatory counts.
+    if view['portfolio']: return 'portfolio'
+    if view.get('duplicate_of'): return 'duplicate'
+    if view['lifecycle'] != 'active': return 'inactive'
+    # Mixed exact/range phases cannot be ranked by their exact subtotal either.
+    if view['capacity_ranged']: return 'range'
+    if not view['capacity_known']: return 'unknown'
+    if view['total_mw'] <= 0: return 'nonpositive'
+    return None
+
+
+def ranking(projects, n=10):
+    """Project once through the shared capacity contract; never rank partial totals."""
+    sites = []
+    excluded = dict.fromkeys(('portfolio', 'duplicate', 'inactive', 'range', 'unknown', 'nonpositive'), 0)
+    for raw in projects:
+        view = industry.project(raw)
+        reason = _exclusion(view)
+        if reason:
+            excluded[reason] += 1
+        else:
+            sites.append(view)
+    sites.sort(key=lambda p: (-p['total_mw'], p['site_id']))
+    return {'rows': sites[:n], 'eligible': len(sites), 'excluded': excluded}
 
 
 def world_paths():
@@ -76,20 +96,20 @@ def world_paths():
 def main():
     n = int(sys.argv[1]) if len(sys.argv) > 1 and sys.argv[1].isdigit() else 10
     today = date.today().isoformat()
-    projects = json.loads((ROOT / "data" / "projects.json").read_text(encoding="utf-8"))["records"]
-    sites = [p for p in projects if "portfolio" not in p["site_id"] and cap_total(p) > 0]
-    top = sorted(sites, key=cap_total, reverse=True)[:n]
+    projects = json.loads(workspace_path("data/projects.json", ROOT).read_text(encoding="utf-8"))["records"]
+    ranked = ranking(projects, n)
+    top, excluded = ranked['rows'], ranked['excluded']
 
     COLORS = {"op": "#16a34a", "bu": "#d97706", "pl": "#9ca3af"}
     dots, rows = [], []
     for i, p in enumerate(top, 1):
-        total = cap_total(p)
-        op, bu, pl = cap_by_bucket(p)
+        total = p['total_mw']
+        op, bu, pl = (p['capacity'][stage] for stage in industry.STAGES)
         color = COLORS["op"] if op >= max(bu, pl) else (COLORS["bu"] if bu >= pl else COLORS["pl"])
         twh = total * 1.2 * 0.9 * 8760 / 1e6
         rows.append((i, p, total, op, bu, pl, twh, color))
         if p.get("coordinates"):
-            lat, lon = map(float, p["coordinates"].split(","))
+            lat, lon = p["coordinates"]
             x, y = xy(lon, lat)
             r = max(7, min(20, (total / 5000) ** 0.5 * 20))
             dots.append(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{color}" fill-opacity=".75" stroke="#fff" stroke-width="1.5"/>'
@@ -123,13 +143,15 @@ def main():
   .legend i {{ display:inline-block; width:10px; height:10px; border-radius:50%; vertical-align:-1px; margin:0 3px 0 10px; }}
 </style></head><body>
 <h1>全球最大数据中心园区 Top {n} — 布局与用电量</h1>
-<div class="sub">inresearch.ai 按需输出 ｜ 数据快照 {today} ｜ 范围：项目库单一物理园区（组合型记录不参与排名）｜ 容量口径：IT 负载 MW（各状态合计）</div>
+<div class="sub">inresearch.ai 按需输出 ｜ 数据快照 {today} ｜ 范围：项目库当前活跃、非重复、单值容量园区 ｜ 容量口径：IT 负载 MW（各状态合计，含已标记估算）</div>
 <svg viewBox="0 0 {W} {H:.0f}" xmlns="http://www.w3.org/2000/svg">{land}{"".join(dots)}</svg>
 <div class="legend">主导状态：<i style="background:{COLORS['op']}"></i>运营 (L8+)<i style="background:{COLORS['bu']}"></i>在建 (L6–7)<i style="background:{COLORS['pl']}"></i>规划 (L1–5)　·　圆面积 ∝ 容量</div>
 <table><tr><th></th><th>园区</th><th class="num">合计容量 (MW)</th><th class="num">运营 / 在建 / 规划 (MW)</th><th class="num">满载年耗电估算 (TWh)</th></tr>{table}</table>
 <div class="note">⚖ 口径提醒：容量为各状态合计——多数园区大部分容量仍在建/规划中，<b>不得解读为已投运规模</b>；
 用电量为满载推算：IT 容量 × PUE 1.2 × 利用率 90% × 8760h（S5 级推算，非实测/非公司披露）；
-排名基于本项目库（{len(sites)} 个有容量记录的园区，核验日期见各记录），不代表全球普查。
+排名基于本项目库（{ranked['eligible']} 个可排名园区，核验日期见各记录），不代表全球普查。
+排除：组合 {excluded['portfolio']}、重复 {excluded['duplicate']}、非活跃 {excluded['inactive']}、含区间 {excluded['range']}、未知 {excluded['unknown']}、非正容量 {excluded['nonpositive']}；
+含区间园区的单值部分也不冒充完整容量参与排名；未知容量不等于零。
 生成：src/inresearch/delivery/project_capacity_map.py ｜ 数据：data/projects.json ｜ © inresearch.ai</div>
 </body></html>"""
 

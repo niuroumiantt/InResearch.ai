@@ -49,6 +49,39 @@ class SiteTrackingSourceTests(unittest.TestCase):
         bundle_tests.DailyBundleTests().bundle(folder, True)
         return daily_bundle.receive(folder, self.data, project_root())
 
+    def test_verified_arrival_marker_cannot_authorize_daily_scan_or_support_membership(self):
+        from inresearch.workflow.daily_dispatch import receipt_documents
+        folder=self.data.parent/'bundle';folder.mkdir()
+        bundle_tests.DailyBundleTests().bundle(folder,True)
+        original=daily_bundle.ingest
+        def incomplete(*args,**kwargs):
+            original(*args,**kwargs)
+            raise ValueError('index_failed_after_event_write')
+        with patch.object(daily_bundle,'ingest',side_effect=incomplete):
+            with self.assertRaisesRegex(ValueError,'index_failed_after_event_write'):
+                daily_bundle.receive(folder,self.data,project_root())
+        marker_path=next((self.data/'material-reviews/daily-deliveries').glob('*.json'))
+        marker=json.loads(marker_path.read_text())
+        daily=json.loads((self.data/'acquisition/daily-events.json').read_text())
+        # Even claimed exact event membership cannot make a pending marker a
+        # completed receiver receipt; its delivery status is decisive.
+        marker['documents']=[{'sha256':r['sha256'],'event_ids':list(daily['records'])}
+                             for r in marker['members'] if r['role']=='html']
+        marker_path.write_text(json.dumps(marker))
+        self.assertEqual(receipt_documents(self.data),{})
+        snapshot=self.planner._snapshot(self.root,'daily')
+        self.assertEqual(snapshot['accepted'],{})
+        self.assertEqual(snapshot['receipt_events'],{})
+        at=self.at('2026-10-11T00:00:00Z')
+        self.planner.tick(self.root,at)
+        self.assertEqual(self.triggers('daily'),[])
+        self.assertNotIn('daily',self.periods())
+        indexed=daily_bundle.receive(folder,self.data,project_root())
+        self.assertEqual(indexed['first_received_at'],marker['first_received_at'])
+        self.planner.tick(self.root,at+timedelta(minutes=6))
+        self.assertEqual(len(self.triggers('daily')),1)
+        self.assertIn('daily',self.periods())
+
     def test_news_metadata_bytes_trigger_once_across_days_and_never_claim_original_collection(self):
         self.news()
         at = self.at('2026-10-11T00:00:00Z')
@@ -123,6 +156,110 @@ class SiteTrackingSourceTests(unittest.TestCase):
         self.assertEqual(len(self.triggers('daily')), 1)
         run = next(r for r in self.planner.status()['latest_runs'] if r['cadence'] == 'daily')
         self.assertEqual(run['state'], 'partial')
+
+    def second_daily_reference(self, receipt_member=True, archive=True):
+        path = self.data/'acquisition/daily-events.json'
+        ledger = json.loads(path.read_text())
+        event = next(iter(ledger['records'].values()))
+        body = b'<html><title>Second explicitly referenced HTML</title></html>'
+        sha = hashlib.sha256(body).hexdigest()
+        if archive:
+            catalog = Collector(self.data)
+            try:
+                ident = catalog.item('fetchreports', sha, 'document', '', 'Second HTML', {})
+                catalog.archive(ident, body, '.html', {})
+            finally:
+                catalog.close()
+        event['document_refs'].append(dict(event['document_refs'][0], sha256=sha))
+        path.write_text(json.dumps(ledger))
+        receipt_path = next((self.data/'material-reviews/daily-deliveries').glob('*.json'))
+        receipt = json.loads(receipt_path.read_text())
+        receipt['documents'].append({'sha256': sha, 'title': 'Second HTML',
+                                     'event_ids': [event['id']] if receipt_member else []})
+        receipt_path.write_text(json.dumps(receipt))
+        return sha, body, receipt_path, event['id']
+
+    def test_one_available_reference_does_not_hide_missing_catalog_and_catalog_arrival_retries(self):
+        self.delivered_daily()
+        sha, body, _, _ = self.second_daily_reference(archive=False)
+        at = self.at('2026-10-11T00:00:00Z')
+        self.planner.tick(self.root, at)
+        self.assertEqual(len(self.triggers('daily')), 1)
+        self.assertNotIn('daily', self.periods())
+        run = next(r for r in self.planner.status()['latest_runs'] if r['cadence']=='daily')
+        self.assertEqual(run['state'], 'partial')
+        self.assertIn(sha+':catalog_archive_unavailable', run['error'])
+        # No hot-loop rescanning while the named catalog gap is unchanged.
+        with patch.object(self.planner, '_snapshot', side_effect=AssertionError('early rescan')):
+            self.planner.tick(self.root, at+timedelta(seconds=10))
+        catalog = Collector(self.data)
+        try:
+            ident = catalog.item('fetchreports', sha, 'document', '', 'Second HTML', {})
+            catalog.archive(ident, body, '.html', {})
+        finally:
+            catalog.close()
+        # Only catalog changed; neither daily ledger nor receipt is touched.
+        self.planner = SiteTracking(self.store.db, self.data)
+        self.planner.tick(self.root, at+timedelta(seconds=30))
+        self.assertEqual(self.periods()['daily'], '2026-10-11')
+        self.assertEqual(len(self.triggers('daily')), 2)
+        self.assertTrue(any(sha in {e['sha256'] for e in r['evidence']} for r in self.triggers('daily')))
+
+    def test_legacy_planned_watermark_is_rechecked_under_reference_completeness_contract(self):
+        self.delivered_daily()
+        sha, _, _, _ = self.second_daily_reference(archive=False)
+        at = self.at('2026-10-11T00:00:00Z')
+        snapshot = self.planner._snapshot(self.root, 'daily')
+        snapshot.pop('reference_scan_version')
+        legacy_sha = site_tracking.digest(snapshot)
+        # An old successful watermark could have silently skipped source B.
+        with self.store.db:
+            self.store.db.execute('INSERT INTO site_tracking_periods VALUES(?,?,?,?)',
+                ('daily', '2026-10-11', legacy_sha, at.isoformat()))
+            self.store.db.execute('INSERT INTO site_tracking_checks VALUES(?,?,?,?,?)',
+                ('daily', '2026-10-11', 'legacy-signature', 'planned', 0))
+        self.planner.tick(self.root, at+timedelta(seconds=30))
+        run = next(r for r in self.planner.status()['latest_runs'] if r['cadence']=='daily')
+        self.assertEqual(run['state'], 'partial')
+        self.assertIn(sha+':catalog_archive_unavailable', run['error'])
+        self.assertNotEqual(run['input_sha256'], legacy_sha)
+        # Keep the historical scan proof; do not overwrite it as newly complete.
+        self.assertEqual(self.store.db.execute(
+            "SELECT input_sha256 FROM site_tracking_periods WHERE cadence='daily'").fetchone()[0], legacy_sha)
+        self.assertEqual(self.store.db.execute(
+            "SELECT state FROM site_tracking_checks WHERE cadence='daily'").fetchone()[0], 'partial')
+
+    def test_one_available_reference_keeps_receipt_membership_gap_retryable(self):
+        self.delivered_daily()
+        sha, _, receipt_path, event_id = self.second_daily_reference(receipt_member=False)
+        at = self.at('2026-10-11T00:00:00Z')
+        self.planner.tick(self.root, at)
+        self.assertEqual(len(self.triggers('daily')), 1)
+        self.assertNotIn('daily', self.periods())
+        run = next(r for r in self.planner.status()['latest_runs'] if r['cadence']=='daily')
+        self.assertIn(sha+':receipt_event_membership_missing', run['error'])
+        self.assertEqual(self.planner.archive_checks, 1, 'An unreceived reference must not be hashed')
+        receipt = json.loads(receipt_path.read_text())
+        next(d for d in receipt['documents'] if d['sha256']==sha)['event_ids']=[event_id]
+        receipt_path.write_text(json.dumps(receipt))
+        self.planner = SiteTracking(self.store.db, self.data)
+        self.planner.tick(self.root, at+timedelta(minutes=6))
+        self.assertEqual(self.periods()['daily'], '2026-10-11')
+        self.assertEqual(self.planner.archive_checks, 1)
+        self.assertEqual(len(self.triggers('daily')), 2)
+
+    def test_reference_without_any_receiver_receipt_keeps_scan_partial(self):
+        self.delivered_daily()
+        sha, _, receipt_path, _ = self.second_daily_reference()
+        receipt = json.loads(receipt_path.read_text())
+        receipt['documents']=[d for d in receipt['documents'] if d['sha256']!=sha]
+        receipt_path.write_text(json.dumps(receipt))
+        self.planner.tick(self.root, self.at('2026-10-11T00:00:00Z'))
+        self.assertNotIn('daily', self.periods())
+        run = next(r for r in self.planner.status()['latest_runs'] if r['cadence']=='daily')
+        self.assertIn(sha+':receiver_receipt_missing', run['error'])
+        self.assertEqual(self.planner.archive_checks, 1)
+        self.assertEqual(len(self.triggers('daily')), 1)
 
     def test_archive_failure_keeps_bytes_and_failure_attempt_after_same_period_recovery(self):
         self.news()

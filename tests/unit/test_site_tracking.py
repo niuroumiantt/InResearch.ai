@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 from inresearch.workflow.research_review import ReviewStore
 from inresearch.workflow.site_tracking import SiteTracking
+from tests.unit import test_site_timeline as timeline_tests
 
 
 class SiteTrackingTests(unittest.TestCase):
@@ -46,6 +47,33 @@ class SiteTrackingTests(unittest.TestCase):
 
     def write_projects(self, rows):
         self.projects_path.write_text(json.dumps({'records': rows}, sort_keys=True))
+
+    def test_weekly_native_ranges_are_present_and_nullable_it_bundle_members_are_valid(self):
+        quantity={'value_range':[80,120],'unit':'MW','basis':'explicit source range'}
+        for fields in ({'capacity_it_mw':quantity,'capacity_it_mw_by_status':{},'capacity_assessment':None},
+                       {'capacity_it_mw':None,'capacity_it_mw_by_status':{'L8':quantity,'L7':20},'capacity_assessment':None},
+                       {'capacity_facility_mw':quantity}):
+            with self.subTest(fields=fields):
+                observation=timeline_tests.SiteTimelineTests().native(**copy.deepcopy(fields))
+                site=dict(self.site,lifecycle='active',observations=[observation])
+                self.write_projects([site])
+                plans,issues=self.planner._plans(self.planner._snapshot(self.root,'weekly'),'weekly','2026-10-11')
+                self.assertEqual(issues,[])
+                self.assertEqual(plans,[])
+        self.write_projects([dict(self.site,lifecycle='active')])
+        plans,issues=self.planner._plans(self.planner._snapshot(self.root,'weekly'),'weekly','2026-10-11')
+        self.assertEqual(plans,[])  # Scalar headline needs no phase/assessment placeholder.
+
+    def test_weekly_legacy_unknown_capacity_and_other_missing_fields_stay_missing(self):
+        site=dict(self.site,lifecycle='active',capacity_it_mw=None,capacity_it_mw_by_status={},
+                  capacity_assessment=None,capacity_facility_mw=None,tenant=[])
+        self.write_projects([site])
+        plans,issues=self.planner._plans(self.planner._snapshot(self.root,'weekly'),'weekly','2026-10-11')
+        self.assertEqual(issues,[])
+        self.assertEqual(len(plans),1)
+        reasons=plans[0]['reasons']
+        for field in ('capacity_it_mw','capacity_it_mw_by_status','capacity_assessment','capacity_facility_mw','tenant'):
+            self.assertIn('missing:'+field,reasons)
 
     def at(self, text):
         return datetime.fromisoformat(text.replace('Z', '+00:00'))

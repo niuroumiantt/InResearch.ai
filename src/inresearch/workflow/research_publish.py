@@ -465,6 +465,7 @@ with urllib.request.urlopen(URL,timeout=30) as response:
 
     def accept_website(self, directory, journal):
         bid = journal['batch_id']
+        expected=journal['statement_ids']
         aws=self.config.get('aws','aws'); container=self.config.get('container','inresearch-host-inresearch-1')
         deployment = None
         if self.publication_mode == 'local_acceptance':
@@ -476,7 +477,9 @@ with urllib.request.urlopen(URL,timeout=30) as response:
             image=run(['ssh',aws,shlex.join(['docker','inspect','--format','{{.Config.Image}}',container])]).stdout.strip()
         # Mint an ephemeral signed session for the existing deployment
         # administrator inside the container. Neither session nor key
-        # leaves the host; accounts and auth policy are unchanged.
+        # leaves the host; accounts and auth policy are unchanged. Select the
+        # exact batch support closure before stdout crosses SSH; the complete
+        # authenticated knowledge response remains inside the container.
         script='''import sys,os,json,urllib.request
 sys.path.insert(0,"/app/src")
 from inresearch.interfaces import auth
@@ -484,13 +487,24 @@ username=os.environ.get("HUB_ADMIN_USERNAME","admin")
 if auth.load_users().get(username,{}).get("role")!="admin":raise ValueError("existing_deployment_admin_required")
 if not auth.SECRET_FILE.exists():raise ValueError("existing_session_key_required")
 cookie=auth.make_cookie(username).split(";",1)[0]
-request=urllib.request.Request(URL,headers={"Cookie":cookie})
+request=urllib.request.Request(url,headers={"Cookie":cookie})
 with urllib.request.urlopen(request,timeout=30) as response:
- print(response.read().decode())
-'''.replace('URL',repr(self.config.get('website','https://inresearch.ai')+'/api/research-adopted?node=root'))
+ knowledge=json.loads(response.read().decode())["knowledge"]
+rows={s["id"]:s for s in knowledge["statements"]}
+evidence={e["id"]:e for e in knowledge["evidence"]}
+documents={d["id"]:d for d in knowledge["documents"]}
+statements=[rows[sid] for sid in expected if sid in rows]
+evidence_ids=dict.fromkeys(eid for s in statements for eid in s["evidence_ids"])
+support=[evidence[eid] for eid in evidence_ids if eid in evidence]
+document_ids=dict.fromkeys(e["document_id"] for e in support)
+closure={"statements":statements,"evidence":support,
+         "documents":[documents[did] for did in document_ids if did in documents]}
+print(json.dumps({"knowledge":closure},ensure_ascii=False,separators=(",",":")))
+'''
+        url=self.config.get('website','https://inresearch.ai')+'/api/research-adopted?node=root'
+        script='expected='+repr(expected)+'\nurl='+repr(url)+'\n'+script
         acceptance=json.loads(run(['ssh',aws,shlex.join(['docker','exec','-i',container,'python3','-'])],input=script).stdout)
         rows={s['id']:s for s in acceptance['knowledge']['statements']}
-        expected=journal['statement_ids']
         if not all(i in rows for i in expected):return False
         evidence={e['id']:e for e in acceptance['knowledge']['evidence']}
         docs={d['id']:d for d in acceptance['knowledge']['documents']}

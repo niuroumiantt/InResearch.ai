@@ -4,6 +4,7 @@ import io
 import hashlib
 import json
 import shutil
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -12,13 +13,28 @@ from unittest.mock import Mock, patch
 
 from inresearch.materials.artifacts import atomic_json, digest_file
 from inresearch.knowledge import registry
+from inresearch.interfaces import auth
 from inresearch.workflow import research_review as review
 from inresearch.workflow import research_publish as publication
 from test_research_review import fixture, audit
 import test_research_local_acceptance as local_tests
 
 
-def website_fixture_run(body, *, observed=None, tag_image=None, ancestry=0, health=None, calls=None):
+def execute_website_script(script, body, *, admin=True, secret_exists=True):
+    """Run the shipped container script with an in-memory HTTP transport."""
+    output=io.StringIO()
+    with patch.object(auth,'load_users',return_value={'admin':{'role':'admin' if admin else 'reader'}}), \
+            patch.object(auth,'SECRET_FILE',SimpleNamespace(exists=lambda:secret_exists)), \
+            patch.object(auth,'make_cookie',return_value='hub_session=private-fixture-session; Secure'), \
+            patch.dict('os.environ',{'HUB_ADMIN_USERNAME':'admin'}), \
+            patch('sys.path',sys.path.copy()), \
+            patch('urllib.request.urlopen',return_value=io.BytesIO(json.dumps(body).encode())) as request, \
+            contextlib.redirect_stdout(output):
+        exec(compile(script,'<container-website-acceptance>','exec'),{})
+    return output.getvalue(),request
+
+
+def website_fixture_run(body, *, observed=None, tag_image=None, ancestry=0, health=None, calls=None, captures=None):
     observed=observed or {'image':'sha256:'+'b'*64,'tag':'inresearch-app:'+'f'*40,
                          'status':'running','health':'healthy'}
     health=health or {'status':200,'ok':True}
@@ -36,7 +52,9 @@ def website_fixture_run(body, *, observed=None, tag_image=None, ancestry=0, heal
         if kwargs.get('input') and '/healthz' in kwargs['input']:
             return SimpleNamespace(stdout=json.dumps(health),returncode=0)
         if kwargs.get('input'):
-            return SimpleNamespace(stdout=json.dumps(body),returncode=0)
+            output,request=execute_website_script(kwargs['input'],body)
+            if captures is not None:captures.append({'script':kwargs['input'],'stdout':output,'request':request})
+            return SimpleNamespace(stdout=output,returncode=0)
         raise AssertionError('unexpected website command '+repr(argv))
     return run
 
@@ -330,15 +348,20 @@ class GroupPublisherTests(unittest.TestCase):
             self.assertEqual(proof['website_statement_ids'],member['statement_ids'])
         store.db.close()
 
-    def test_group_website_uses_exact_member_ids_and_real_existing_published_command(self):
+    def website_member(self):
         member=self.journal['members'][0]
         bundle=json.loads((self.directory/'members'/member['batch_id']/member['attempt']/'bundle.json').read_text())
         sid=member['statement_ids'][0];ev=bundle['packet']['items'][0]['evidence'][0]
         doc=bundle['packet']['document']
         body={'knowledge':{'statements':[{'id':sid,'text':bundle['reviews'][0]['text'],
             'review':{'decision':'adopted'},'evidence_ids':[ev['id']]}], 'evidence':[ev],'documents':[doc]}}
-        run=website_fixture_run(body)
         item={**member,'worktree':self.journal['worktree'],'merge_commit':'d'*40,'publication_group':{'group_id':'e'*64,'commit':'a'*40}}
+        return self.directory/'members'/member['batch_id'],item,body
+
+    def test_group_website_uses_exact_member_ids_and_real_existing_published_command(self):
+        folder,item,body=self.website_member()
+        member=self.journal['members'][0]
+        run=website_fixture_run(body)
         with patch.object(publication,'run',side_effect=run), \
                 patch.object(publication.registry,'adopted_for_node',return_value=body):
             self.assertTrue(self.publisher.accept_website(self.directory/'members'/member['batch_id'],item))
@@ -376,6 +399,87 @@ class GroupPublisherTests(unittest.TestCase):
         legacy_proof=json.loads((self.directory/'members'/member['batch_id']/'website-proof.json').read_text())
         self.assertEqual(legacy_proof['website_image'],'legacy:image')
         self.assertNotIn('website_image_digest',legacy_proof)
+
+    def test_container_returns_only_exact_statement_support_closure(self):
+        folder,item,body=self.website_member()
+        wanted=copy.deepcopy(body['knowledge'])
+        second=copy.deepcopy(wanted['evidence'][0]);second.update(id='second-support',document_id='second-document')
+        document=copy.deepcopy(wanted['documents'][0]);document['id']='second-document'
+        wanted['evidence'].append(second);wanted['documents'].append(document)
+        # Preserve full statements, including their duplicate references, but
+        # transfer each referenced evidence/document record only once.
+        wanted['statements'][0]['evidence_ids'] += ['second-support',wanted['evidence'][0]['id']]
+        body={'knowledge':copy.deepcopy(wanted),'unrelated_runtime':'private-fixture-runtime'}
+        body['knowledge']['statements'].append({'id':'unrelated-statement','evidence_ids':['unrelated-evidence'],
+                                                'text':'private-unrelated-material'*4096})
+        body['knowledge']['evidence'].append({'id':'unrelated-evidence','document_id':'unrelated-document',
+                                             'quote':'private-unrelated-evidence'})
+        body['knowledge']['documents'].append({'id':'unrelated-document','private':'unrelated-source'})
+        body['knowledge']['answers']=[{'private':'unrelated-answer'}]
+        captures=[]
+        with patch.object(publication,'run',side_effect=website_fixture_run(body,captures=captures)), \
+                patch.object(publication.registry,'adopted_for_node',return_value=body):
+            self.assertTrue(self.publisher.accept_website(folder,item))
+        self.assertEqual(len(captures),1)
+        transfer=captures[0]
+        self.assertEqual(json.loads(transfer['stdout']),{'knowledge':wanted})
+        self.assertLess(len(transfer['stdout']),len(json.dumps(body))//10)
+        self.assertNotIn('unrelated',transfer['stdout'])
+        self.assertNotIn('private-fixture-session',transfer['stdout'])
+        request=transfer['request'].call_args
+        self.assertEqual(request.kwargs,{'timeout':30})
+        self.assertEqual(request.args[0].full_url,'https://inresearch.ai/api/research-adopted?node=root')
+        proof=json.loads((folder/'website-proof.json').read_text())
+        self.assertEqual(proof['canonical_public_closure_sha256'],hashlib.sha256(publication.encoded(wanted).encode()).hexdigest())
+        self.publisher.remote.assert_called_once()
+        for fault,message in (({'admin':False},'existing_deployment_admin_required'),
+                              ({'secret_exists':False},'existing_session_key_required')):
+            with self.subTest(auth=fault),self.assertRaisesRegex(ValueError,message):
+                execute_website_script(transfer['script'],body,**fault)
+
+    def test_projected_missing_statements_evidence_or_documents_never_ack(self):
+        folder,item,original=self.website_member()
+        for mode in ('local_acceptance','ci'):
+            self.publisher.publication_mode=mode
+            for kind in ('statements','evidence','documents'):
+                with self.subTest(mode=mode,missing=kind):
+                    body=copy.deepcopy(original);body['knowledge'][kind]=[]
+                    calls=[];captures=[]
+                    with patch.object(publication,'run',side_effect=website_fixture_run(body,calls=calls,captures=captures)), \
+                            patch.object(publication.registry,'adopted_for_node',return_value=original):
+                        if kind=='statements':
+                            self.assertFalse(self.publisher.accept_website(folder,item))
+                        elif mode=='local_acceptance':
+                            with self.assertRaisesRegex(ValueError,'website_canonical_support_mismatch'):
+                                self.publisher.accept_website(folder,item)
+                        else:
+                            with self.assertRaises(KeyError):self.publisher.accept_website(folder,item)
+                    self.assertEqual(len(captures),1)
+                    self.assertFalse(any(c[0]=='scp' for c in calls))
+                    self.assertFalse((folder/'website-proof.json').exists())
+                    self.publisher.remote.assert_not_called()
+
+    def test_projected_rows_still_require_reviewed_text_adoption_quote_and_complete_coverage(self):
+        folder,item,original=self.website_member()
+        for mode in ('local_acceptance','ci'):
+            self.publisher.publication_mode=mode
+            for fault in ('text','decision','quote','coverage'):
+                with self.subTest(mode=mode,fault=fault):
+                    body=copy.deepcopy(original)
+                    if fault=='text':body['knowledge']['statements'][0]['text']='unreviewed text'
+                    elif fault=='decision':body['knowledge']['statements'][0]['review']['decision']='candidate'
+                    elif fault=='quote':body['knowledge']['evidence'][0]['quote']=''
+                    else:body['knowledge']['documents'][0]['coverage']['complete']=False
+                    calls=[]
+                    # Let the exact canonical comparison pass, so these test
+                    # the independent immutable-review and support gates.
+                    with patch.object(publication,'run',side_effect=website_fixture_run(body,calls=calls)), \
+                            patch.object(publication.registry,'adopted_for_node',return_value=body):
+                        reason='website_adoption_mismatch' if fault in ('text','decision') else 'website_support_closure_missing'
+                        with self.assertRaisesRegex(ValueError,reason):self.publisher.accept_website(folder,item)
+                    self.assertFalse(any(c[0]=='scp' for c in calls))
+                    self.assertFalse((folder/'website-proof.json').exists())
+                    self.publisher.remote.assert_not_called()
 
 
 class GroupCollectionWaitTests(unittest.TestCase):

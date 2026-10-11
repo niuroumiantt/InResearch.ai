@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 from inresearch.materials import daily_bundle, daily_events, daily_sources
 from inresearch.paths import project_root
 
@@ -49,6 +50,116 @@ class DailyBundleTests(unittest.TestCase):
             self.assertEqual(source['source_sha256'],hashlib.sha256((folder/'sources.json').read_bytes()).hexdigest())
             self.assertEqual(len(list((data/'acquisition/blobs').rglob('*.json'))),1)
         self.assertEqual(before,(root/'data/projects.json').read_bytes())
+
+    def test_replay_preserves_verified_first_arrival_and_advances_index_time(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder=Path(tmp)/'bundle';folder.mkdir();self.bundle(folder)
+            data=Path(tmp)/'data';root=project_root()
+            times=['2026-10-11T01:00:00+00:00', '2026-10-11T01:00:05+00:00',
+                   '2026-10-11T02:00:00+00:00', '2026-10-11T02:00:07+00:00']
+            with patch.object(daily_bundle, 'now', side_effect=times):
+                first=daily_bundle.receive(folder,data,root)
+                replay=daily_bundle.receive(folder,data,root)
+            self.assertEqual(first['received_at'], times[0])
+            self.assertEqual(first['first_received_at'], times[0])
+            self.assertEqual(first['last_indexed_at'], times[1])
+            self.assertEqual(first['reindex_count'], 0)
+            self.assertEqual(replay['received_at'], times[0])
+            self.assertEqual(replay['first_received_at'], times[0])
+            self.assertEqual(replay['received_at_basis'], 'first_verified_bundle_receipt')
+            self.assertEqual(replay['last_indexed_at'], times[3])
+            self.assertEqual(replay['reindex_count'], 1)
+            self.assertEqual(replay['reindex_count_basis'], 'complete_since_first_index')
+            self.assertEqual(first['documents'], replay['documents'])
+            self.assertEqual(replay['formal_capacity_updates'], 0)
+            from inresearch.workflow.daily_dispatch import receipt_documents, news_records
+            self.assertEqual(set(receipt_documents(data).values()), {times[0]})
+            self.assertTrue(news_records(data))
+
+    def test_legacy_replay_keeps_last_recorded_time_without_inventing_first_receipt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder=Path(tmp)/'bundle';folder.mkdir();self.bundle(folder)
+            data=Path(tmp)/'data';root=project_root()
+            indexed=daily_bundle.receive(folder,data,root)
+            path=Path(indexed['receipt']);legacy=json.loads(path.read_text())
+            for key in ('receipt_timing_version','first_received_at','received_at_basis',
+                        'last_indexed_at','reindex_count','reindex_count_basis'):
+                legacy.pop(key)
+            legacy['received_at']='2026-10-10T20:00:00+00:00'
+            path.write_text(json.dumps(legacy))
+            migrated=daily_bundle.receive(folder,data,root)
+            again=daily_bundle.receive(folder,data,root)
+            for row in (migrated, again):
+                self.assertEqual(row['received_at'], legacy['received_at'])
+                self.assertEqual(row['legacy_received_at'], legacy['received_at'])
+                self.assertIsNone(row['first_received_at'])
+                self.assertEqual(row['received_at_basis'], 'legacy_last_recorded_index')
+                self.assertEqual(row['reindex_count_basis'], 'since_timestamp_tracking')
+            self.assertEqual(migrated['reindex_count'], 1)
+            self.assertEqual(again['reindex_count'], 2)
+            from inresearch.workflow.daily_dispatch import receipt_documents, news_records
+            self.assertEqual(set(receipt_documents(data).values()), {legacy['received_at']})
+            self.assertTrue(news_records(data))
+
+    def test_failed_first_index_keeps_verified_arrival_without_authorizing_delivery(self):
+        from inresearch.workflow.daily_dispatch import receipt_documents, news_records
+        with tempfile.TemporaryDirectory() as tmp:
+            folder=Path(tmp)/'bundle';folder.mkdir();manifest=self.bundle(folder,True)
+            data=Path(tmp)/'data';root=project_root()
+            original=daily_bundle.ingest
+            def partially_index(*args,**kwargs):
+                original(*args,**kwargs)
+                raise ValueError('index_failed_after_event_write')
+            arrival='2026-10-11T01:00:00+00:00'
+            with patch.object(daily_bundle,'now',return_value=arrival), \
+                    patch.object(daily_bundle,'ingest',side_effect=partially_index):
+                with self.assertRaisesRegex(ValueError,'index_failed_after_event_write'):
+                    daily_bundle.receive(folder,data,root)
+            path=next((data/'material-reviews/daily-deliveries').glob('*.json'))
+            marker=json.loads(path.read_text())
+            self.assertEqual(marker['status'],'verified_arrival_pending_index')
+            self.assertEqual(marker['first_received_at'],arrival)
+            self.assertIsNone(marker['last_indexed_at'])
+            self.assertEqual(marker['members'],[{k:r[k] for k in ('sha256','role','path')} for r in manifest['files']])
+            self.assertTrue(daily_events.projection(data)['records'])
+            self.assertEqual(receipt_documents(data),{})
+            self.assertEqual(news_records(data),[])
+            with patch.object(daily_bundle,'now',side_effect=['2026-10-11T02:00:00+00:00','2026-10-11T02:00:05+00:00']):
+                indexed=daily_bundle.receive(folder,data,root)
+            self.assertEqual(indexed['status'],'indexed_candidate')
+            self.assertEqual(indexed['first_received_at'],arrival)
+            self.assertEqual(indexed['received_at'],arrival)
+            self.assertEqual(indexed['last_indexed_at'],'2026-10-11T02:00:05+00:00')
+            self.assertEqual(indexed['reindex_count'],0)
+            self.assertEqual(indexed['members'],marker['members'])
+            self.assertEqual(set(receipt_documents(data).values()),{arrival})
+            self.assertTrue(news_records(data))
+
+    def test_changed_arrival_marker_identity_fails_before_archive_or_index(self):
+        import copy
+        with tempfile.TemporaryDirectory() as tmp:
+            folder=Path(tmp)/'bundle';folder.mkdir();self.bundle(folder)
+            data=Path(tmp)/'data';root=project_root()
+            with patch.object(daily_bundle,'ingest',side_effect=ValueError('first_index_failed')):
+                with self.assertRaisesRegex(ValueError,'first_index_failed'):daily_bundle.receive(folder,data,root)
+            path=next((data/'material-reviews/daily-deliveries').glob('*.json'))
+            original=json.loads(path.read_text())
+            for field in ('bundle','producer','report','source','member','time','status'):
+                marker=copy.deepcopy(original)
+                if field=='bundle':marker['bundle_id']='f'*64
+                elif field=='producer':marker['producer']='other'
+                elif field=='report':marker['report_date']='2020-01-01'
+                elif field=='source':marker['source_sha256']='f'*64
+                elif field=='member':marker['members'][0]['sha256']='f'*64
+                elif field=='time':marker['first_received_at']=marker['received_at']='not-a-time'
+                else:marker['status']='supplier_claimed_complete'
+                path.write_text(json.dumps(marker));before=path.read_bytes()
+                with self.subTest(field=field),patch.object(daily_bundle,'Collector') as collector, \
+                        patch.object(daily_bundle,'ingest') as ingest:
+                    with self.assertRaisesRegex(ValueError,'daily_.*identity_changed'):
+                        daily_bundle.receive(folder,data,root)
+                    collector.assert_not_called();ingest.assert_not_called()
+                self.assertEqual(path.read_bytes(),before)
 
     def test_failed_hash_and_path_escape_never_open_reader_input(self):
         with tempfile.TemporaryDirectory() as tmp:

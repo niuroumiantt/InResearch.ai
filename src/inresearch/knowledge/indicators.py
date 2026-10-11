@@ -11,6 +11,7 @@
 from inresearch.paths import project_root
 from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import locked, write_json
+from inresearch.knowledge import industry
 import json
 from datetime import date
 from pathlib import Path
@@ -23,18 +24,29 @@ def load(name, root):
 
 
 def cap_buckets(p):
-    op = bu = pl = 0
-    def put(lvl, v):
-        nonlocal op, bu, pl
-        n = int(lvl[1])
-        if n >= 8: op += v
-        elif n >= 6: bu += v
-        else: pl += v
-    if p.get("capacity_it_mw"):
-        put(p["status"], p["capacity_it_mw"])
-    for k, v in (p.get("capacity_it_mw_by_status") or {}).items():
-        put(k, v)
-    return op, bu, pl
+    """Current active unique single-value phase subtotal, not complete site capacity.
+
+    Ranges have no representative scalar. Use capacity_summary for coverage.
+    """
+    total = industry.totals([industry.project(p)])
+    return tuple(total[stage] for stage in industry.STAGES)
+
+
+def capacity_summary(projects):
+    """Use the same current-time, phase, lifecycle and identity policy as industry."""
+    views = [industry.project(p) for p in projects]
+    total = industry.totals(views)
+    active = industry.totals([p for p in views if not p['portfolio'] and not p.get('duplicate_of')
+                              and p['lifecycle'] == 'active'])
+    coverage = {'value_scope': '当前活跃去重站点的单值分期小计（含已标记估算）；区间与未知不按零计完整容量',
+                'active_sites': active['sites'], 'ranged_sites': active['ranged_sites'],
+                'unknown_sites': active['unknown'],
+                'has_unquantified_sites': bool(active['ranged_sites'] or active['unknown']),
+                'inactive_sites_excluded': total['inactive_sites'],
+                'duplicates_excluded': sum(bool(p.get('duplicate_of')) and not p['portfolio'] for p in views),
+                'portfolios_excluded': total['portfolios_excluded'],
+                'estimated_operating_mw': total['estimated']['operating']}
+    return {'totals': total, 'coverage': coverage}
 
 
 def latest_price(prices, series):
@@ -49,15 +61,20 @@ def refresh(root=ROOT):
 
 def _refresh(root):
     today = date.today().isoformat()
-    projects = [p for p in load("projects", root) if "portfolio" not in p["site_id"]]
+    projects = load("projects", root)
     prices = load("prices", root)
     contracts = load("contracts", root)
 
-    op = sum(cap_buckets(p)[0] for p in projects)
+    capacity = capacity_summary(projects)
+    op = capacity['totals']['operating']
+    coverage = capacity['coverage']
     computed = {}
 
     # M01 全球投运容量（项目库 L8+ 聚合，GW）
-    computed["global_operational_gw"] = (round(op / 1000, 2), today, "projects 表 L8+ 聚合（库内口径，非全球普查）")
+    computed["global_operational_gw"] = (round(op / 1000, 2), today,
+        'projects 当前活跃去重 L8+ 单值小计（含已标记估算，非全球普查）；'
+        f"活跃站点中含区间 {coverage['ranged_sites']}、未知 {coverage['unknown_sites']}，均不按零计完整容量；"
+        f"排除非活跃 {coverage['inactive_sites_excluded']}、重复 {coverage['duplicates_excluded']}、组合 {coverage['portfolios_excluded']}")
     # 价格序列直通指标
     for ind_id, series in [
         ("transformer_lead_time", "transformer-lead-time"),
@@ -94,6 +111,8 @@ def _refresh(root):
             v, asof, note = computed[ind["id"]]
             ind["value"], ind["as_of"] = v, asof
             ind["auto_note"] = note
+            if ind['id'] == 'global_operational_gw':
+                ind['auto_coverage'] = coverage
             n += 1
     doc["updated"] = today
     write_json(p, doc)

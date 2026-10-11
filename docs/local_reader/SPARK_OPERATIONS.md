@@ -117,6 +117,10 @@ ssh spark@100.100.1.2 'cd /home/spark/.local/share/inresearch.ai/raw-materials &
 
 ## 首次安装与真模型 smoke
 
+持续站点研究的正式载体仍是 Git `data/projects.json`。采集/日报接收记录、Reader catalog 与 C3 审计留在原有私有数据根；上线观测时核对有效、披露、首次接收、审核、写入五个字段的实际来源。已封存材料可通过 `workflow.project_review_reader.prepare` 只读生成当前需求上下文，再由具名复核形成 `project-review apply` 提案；原件/页块/报告与当前需求均重验，不重新运行 Reader 或直接改 SQLite 状态。提案采用后保留独立合并与网站读者投影回执。
+
+发布器网站验收在 AWS 容器内读取既有受保护 API，只返回本批预期陈述及其全部引用证据/文档闭包；不将无关完整私有研究库导出到本机。现行 canonical/bundle/引文/完整覆盖校验和逐批 published ACK 保持。SSH 超时先分别测远端启动、HTTP 与必要闭包传输，不凭 healthy 认定业务已验收；唯一发布所有者自然重试，不能启动第二个发布器或手填 published。
+
 先确保规范源码已落在 `~/code/inresearch.ai`；Python 3.9+，Linux 用户 systemd。PDF 工具需要 Poppler 的 `pdftotext/pdfinfo/pdfimages/pdftoppm`。推理默认配置见 `deploy/models.json`，`research_default` 为 M4 上的 Claude CLI（Sonnet 5）；此配置不表示 Spark 服务改用 CLI，Spark reader 由本机 `reader.env` 选用本地模型。恢复 Spark 部署时，用 `INRESEARCH_MODEL_CONFIG` 指向本机 JSON，将 `research_default` 设为 `spark` 并核对地址；型号、路由、预算及能力按 [08 模型执行](../../framework/08_model_execution.md)。实际响应必须匹配所选型号，失败不换模型兜底。
 
 ```bash

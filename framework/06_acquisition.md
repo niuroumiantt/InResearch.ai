@@ -300,6 +300,7 @@ acquisition.summary → reader 发布 → /api/news 输出限定公开字段，�
 - `research-match --input <原件或目录> --data-root <Reader数据根>` 按 SHA 接收用户交付的 PDF/HTML/文本原件到已有 acquisition 台账和永久 blob；相同字节幂等。PDF 按页提取、HTML 不执行脚本。原件、引文与索引不进 Git；收件箱的接收服务在原件校验后做同样索引，失败与归档分别记录，不假装匹配成功。
 - 已归档材料可用 `research-match --source-sidecar <清单>` 只读预检来源元数据；显式 `--apply-sources` 才补空 URL 与 SHA 绑定来源身份。清单含 batch、items；每项 source_id、input_path、sha256、url、role。`downloaded_original` 的 original_sha256 必须等于输入/归档字节 SHA；`decoded_archived_tool_response` 另有 response_path/response_sha256、original_bytes_sha256 必须为 null、derivation，不能冒充下载原件。路径拒绝逃逸/符号链接，输入、响应与既有 blob 哈希均核对，整批冲突或未接收材料不写库。已知 URL/来源绑定不覆盖，重投幂等并保留实际 metadata 字节回执；来源清单原字节和回执长期归档。URL 是提交方元数据，不证明已从原站取得相同字节。
 - 补源不重新提取、匹配、排队或改变 Reader/C3/正式数据。普通重索引保留既有来源。Reader 发布按 content SHA 连接已收到且可回查清单 SHA 的来源绑定；仅对应材料的投影缓存失效，封存报告与其余材料缓存不改。网站候选接收与资料基座保留 URL、提交方身份、角色及原件/响应 SHA；工具响应载体依 API role 显示“工具响应正文”，原站字节 SHA 继续未知。新核验请求同样传递来源身份；旧封存请求不追补新字段，原件/报告/主张仍严格复验，不因补源触发重审或重写旧审计。补源本地通过与真实 Spark 接收、网站发布分别计量。
+- 已完成的封存全文可经 `workflow.project_review_reader` 只读复用：核对当前阅读 revision/report SHA、原件与逐页提取 SHA、已接收来源元数据及当前参数定义；把当前任务书与旧封存配方分别登记。提案按真实页号引用原文，既有报告未回答新需求时必须实际复核原文，不能只用摘要当证据。该入口不重复提取/模型阅读，不伪造日报事件，也不改 Reader 队列；审核通过后仍经同一 `project-review apply` 的 C3、物理身份、单位范围、并发基线和追加观测写入。未封存、缺页、来源或参数绑定失效的材料保留并明确缺口，不伪造完成。
 - 定向原件可在同一来源清单项附 `research_requests`：target_version、target_id、requirement_id、现行参数定义的 requirement_sha256、经审核的 question_id、完整 scope_values 和 purpose；可另附供应台账 demand_id，仅作引用，不证明已派工。拒绝过时版本/定义、错误父子、未审核问题、缺范围、重复绑定与提交方自定来源队。原件 SHA、来源清单 SHA 和参数定义分别校验；来源队/机制从当前需求解析，渠道未接通的状态保留，人工提供原件不等于该采集队已连接。
 - 初次定向材料用 `research-match --input <原件> --defer-reader` 先归档与索引，再预检/接收同 SHA 来源与需求清单，最后以普通 `--input` 显式进入既有 Reader。明确且可回查的需求绑定也可安排未命中关键词的原件；不伪造主题命中、不改原字节。新阅读将参数任务书与范围冻结进 context/recipe 身份；原件绑定进入新候选和 C3 包，但只表示请求研究，不证明原文支持或允许采用。普通重索引不覆盖绑定，清单/元数据失配或当前定义变化拒绝入队；旧封存阅读不自动改写或重读。
 - 页内主题候选带目标 ID、节点、变量类、原主责队、模型输入、页码和短引文。它只用于深读排队，不证明该引文回答需求或支持一个数值。只有命中目标或角度的用户原件进入既有 Reader 接收口，新建阅读版本按现行需求安排优先级（见 04），不覆盖历史配方、不重复调用模型；未命中原件仍永久归档。完整索引在 Spark，网站仅投影最近 500 份、每份最多 32 条匹配与 8 个项目观察，并明确截断；日报事件最多投影 1000 个。
@@ -325,6 +326,7 @@ acquisition.summary → reader 发布 → /api/news 输出限定公开字段，�
 
 - 选题前读取现行 inews 目标及回流缺口，保存响应；研究端重新按当前需求计算关联，保留冻结清单 SHA。无法取得最新需求时说明时间与失败，不臆造匹配。
 - 经 inews 的 scripts/deliver-daily-research.py 交付正文 HTML、sources.json、research-events.json、研究详情 HTML、需求快照、验收与实际取得的源文本/附件。派生 HTML 只归档，不重复登记正文或增加全文完成数。发送器生成逐文件字节/SHA 清单，完整落地后由 manage.py daily-receive 复核、归档、索引并返回回执；公众号实粘与研究接收分别计量。
+- 完整核包后先持久化 `verified_arrival_pending_index`，保存本包成员 SHA/角色/路径及首次核包时间；索引失败也保留这个已知到达记录。只有全部索引完成才成为 `indexed_candidate`，待索引标记不能授权事件交付或正式采用。重投保留首次时间，只更新最后索引时间与次数；历史首次时间不可恢复时留 null，不用最近重放冒充。正式观测的首接收按精确 SHA 比较实际归档、Reader 与完整接收回执，取 UTC 最早有记录时点。
 - 原始链接优先官方原文，媒体或已取得本地原件也可登记；未知保留 null、来源标识与待补项。缺 URL 不删除材料，不冒充已取得可回查原文。URL 按明确引用编号/已绑定节序号对应，不因同日、相似标题或列表位置猜配。旧来源、原始字节与解释版本保留。
 - 接收器检查路径、大小、SHA、JSON 形状、HTML 身份、节序号、单位/范围/性质与证据位置。逐字引文与数值在引文中的出现另记机械核验，不证明语义、分期或事实正确。侧车可晚于 HTML，仍须绑定同一字节身份。文件或引用异常不虚报接收、全文或采用。
 - acquisition/catalog.sqlite 登记原件及来源附件，daily-events.json 登记正文、版本、引用与现行需求候选。回执在 material-reviews/daily-deliveries；发送端回执在 ~/.local/state/inews.today/research-deliveries。仅发往既有 Spark 主机；HTTP feed 仍只给事件卡，不扩大匿名正文接口或让 Spark 爬源站。

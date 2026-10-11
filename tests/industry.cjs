@@ -86,18 +86,20 @@ const {mkdirSync}=require('node:fs');
   assert.ok((await page.locator('#market-band').innerText()).includes('2025 估算'));
   await page.locator('#world-map .news-ring').first().waitFor();
   assert.equal(await page.locator('#pipeline-summary, #trends-section').count(),0);
-  assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
+  assert.equal(await page.locator('[data-news-count]').innerText(),'当前筛选 · 报道 3 条');
   await page.getByRole('link',{name:'查看全部项目新闻线索 →'}).click();
   await page.locator('#pipeline-rows summary').first().waitFor();
   assert.equal(await page.locator('#project-list').isVisible(),false);
   await page.goto(base+'/');await page.locator('#company-chips [data-company="microsoft"]').waitFor();
   const before=await page.locator('#stats').innerText(),homeURL=page.url(),pointCount=await page.locator('.site-point').count();
   const baseline=await (await page.request.get(base+'/api/industry')).json();
-  assert.ok(await page.getByRole('heading',{name:'同一地点，持续追踪',exact:true}).isVisible());
-  assert.equal(await page.locator('.tracking-metrics>div').count(),4);
-  const trackingRefresh=page.waitForResponse(r=>r.url().includes('/api/industry?')&&r.status()===200);
-  await page.getByRole('button',{name:'刷新状态',exact:true}).click();await trackingRefresh;
-  assert.equal((await (await page.request.get(base+'/api/industry')).json()).tracking.observations,baseline.tracking.observations);
+  assert.ok(await page.getByRole('heading',{name:'最近项目动态',exact:true}).isVisible());
+  assert.equal(await page.locator('.tracking-metrics, #tracking-overview, #daily-metrics, #refresh-tracking').count(),0);
+  assert.doesNotMatch(await page.locator('main').innerText(),/今日接收|采用更新|站点复核待更新|查看核验进展|新闻接收|运行同步/);
+  const realChanges=page.locator('#project-changes .project-change');
+  assert.equal(await realChanges.count(),baseline.tracking.changes.filter(item=>item.sources?.some(s=>s.url)).length);
+  assert.match(await realChanges.filter({hasText:'2026-07-28'}).innerText(),/估算[\s\S]*421 MW/);
+  assert.match(await realChanges.filter({hasText:'2026-11-01'}).innerText(),/预测[\s\S]*843 MW/);
   for(const selector of ['#company-chips [data-company="microsoft"]','#leaders [data-company="meta"]']){
    const id=await page.locator(selector).getAttribute('data-company');
    await page.locator(selector).click();
@@ -105,7 +107,7 @@ const {mkdirSync}=require('node:fs');
    assert.equal(await page.locator('.site-point').count(),pointCount);
    const expected=baseline.rows.filter(p=>!p.portfolio&&p.coordinates&&[...p.developer,...p.tenant].includes(id)).map(p=>p.site_id).sort();
    assert.deepEqual(await page.locator('.site-point.highlighted').evaluateAll(es=>es.map(e=>e.dataset.id).sort()),expected);
-   assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
+   assert.equal(await page.locator('[data-news-count]').innerText(),'当前筛选 · 报道 3 条');
   }
   await page.locator('#company-chips [data-company=""]').click();assert.equal(await page.locator('.site-point.dimmed').count(),0);
   await page.locator('#filters select[name=c]').selectOption('microsoft');
@@ -158,9 +160,9 @@ const {mkdirSync}=require('node:fs');
   assert.equal(new URL(page.url()).pathname,'/project.html');
   await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
   await page.locator('#news-selection').selectOption('all');await page.getByRole('link',{name:'未精选的线索',exact:true}).waitFor();
-  assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
+  assert.equal(await page.locator('[data-news-count]').innerText(),'当前筛选 · 报道 3 条');
   await page.locator('#news-selection').selectOption('selected');
-  await page.waitForFunction(()=>document.querySelector('[data-news-count]').textContent.includes('精选 2 条'));
+  await page.waitForFunction(()=>document.querySelector('[data-news-count]').textContent.includes('精选报道 2 条'));
   for(const mode of ['dark','light']){
    await page.locator('#ui-appearance').selectOption(mode);
    assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),mode==='dark'?'rgb(27, 28, 25)':'rgb(250, 249, 246)');
@@ -184,6 +186,40 @@ const {mkdirSync}=require('node:fs');
   assert.equal(await linked.locator('a[href*="fi-salo-atnorth-fin05"]').count(),1);
   assert.ok((await page.locator('#pipeline-rows').innerText()).includes('当前筛选 1 条关联项目'));
 
+  // Reader history exposes the stated interval and source date, with no inferred midpoint or private workflow clocks.
+  const homeProjection=await (await page.request.get(base+'/api/industry?overview=1')).json();
+  await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:{...homeProjection,tracking:{...homeProjection.tracking,changes:[]}}}));
+  await page.goto(base+'/');await page.locator('#project-changes .empty').waitFor();
+  assert.match(await page.locator('#project-changes').innerText(),/暂无有独立来源的项目观测动态/);
+  assert.equal(await page.locator('.project-change').count(),0,'empty source history never invents a change');
+  await page.unroute(/\/api\/industry(?:\?.*)?$/);
+  const rangeRow=homeProjection.rows.find(p=>p.capacity_known&&p.coordinates);
+  for(const stage of Object.keys(homeProjection.stages))homeProjection.totals[stage]-=rangeRow.capacity[stage];
+  const nativeRange={value_range:[1,2],unit:'GW',assumptions:['来源规划区间']};
+  Object.assign(rangeRow,{capacity:{operating:0,construction:0,planning:0},total_mw:0,capacity_known:false,capacity_ranged:true,
+   quantity_fields:{capacity_it_mw:nativeRange},capacity_ranges:[{field:'capacity_it_mw',stage:'construction',level:'L6',...nativeRange}]});
+  homeProjection.totals.ranged_sites=1;
+  homeProjection.tracking={observations:777,review_overdue_sites:888,conflicting_sites:999,changes:[{
+   id:'reader-interval',site_id:rangeRow.site_id,name:'有依据的区间项目',kind:'forecast',scope:'phase:two',effective_at:'2027',
+   recorded_at:'2099-01-01T00:00:00Z',reviewed_at:'2098-01-01T00:00:00Z',basis:'来源说明规划区间，尚未实现',assumptions:['不得取区间中点'],
+   fields:{capacity_it_mw:nativeRange,capacity_it_mw_by_status:{},capacity_assessment:null},
+   source_versions:[{published_at:'2026-10',first_received_at:'2097-01-01T00:00:00Z'}],sources:[{url:'https://example.com/range-source'}]
+  }]};
+  await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:homeProjection}));
+  await page.goto(base+'/');await page.locator('.project-change').waitFor();
+  assert.match(await page.locator('.project-change summary').innerText(),/2027[\s\S]*有依据的区间项目[\s\S]*预测[\s\S]*1–2 GW/);
+  await page.locator('.project-change summary').click();
+  assert.match(await page.locator('.project-change').innerText(),/来源发表 2026-10/);
+  assert.match(await page.locator('.project-change').innerText(),/分期 two/);
+  assert.equal(await page.locator('.project-change a[href="https://example.com/range-source"]').count(),1);
+  assert.doesNotMatch(await page.locator('main').innerText(),/2099|2098|2097|777|888|999|站点复核待更新/);
+  assert.match(await page.locator('#basis').innerText(),/另有 1 项容量以区间披露/);
+  assert.equal(await page.locator('.range-point rect').count(),1,'range has its own fixed marker, not an area based on a midpoint');
+  await page.locator('.range-point').press('Enter');
+  assert.match(await page.locator('#map-popup').innerText(),/1–2 GW/);
+  assert.doesNotMatch(await page.locator('#map-popup').innerText(),/未披露|1,500|1.5 GW/);
+  await page.unroute(/\/api\/industry(?:\?.*)?$/);
+
   // Raw daily events remain visible without a headline feed; original dates, bases and locations stay separate.
   await page.unroute(/\/api\/news(?:\?.*)?$/);
   const rawPayload={reader:{status:'idle',stale:false,received_at:'2026-10-11T03:00:00Z'},feed:null,pipeline:{available:true,progress:{leads:3,linked:0}},raw_atlas:{research_total:3,daily:{today:'2026-10-11',published_events:0,received_events:1,capacity_observations:2,located_events:1,research_published_records:2},latest_published_at:null,latest_received_at:'2026-10-11T00:15:00Z',records:[
@@ -200,12 +236,10 @@ const {mkdirSync}=require('node:fs');
   assert.match(await page.locator('.dc-news').innerText(),/1,000 MW（1 GW） · IT 报道值/);
   assert.match(await page.locator('.dc-news').innerText(),/75 MW · 设施 \/ 电网口径/);
   assert.match(await page.locator('.dc-news').innerText(),/日报 2026-10-10 · 原文时间待补充/);
-  assert.match(await page.locator('#daily-metrics').innerText(),/今日接收\s*1/);
-  assert.match(await page.locator('#daily-freshness').innerText(),/最新发表 时间未提供/);
-  assert.match(await page.locator('#daily-freshness').innerText(),/新闻接收 [^·]*08:15/,'event receipt uses its own Beijing time');
-  assert.match(await page.locator('#daily-freshness').innerText(),/运行同步 [^·]*11:00/,'runtime transport sync remains separate');
-  await page.evaluate(payload=>window.dispatchEvent(new CustomEvent('inresearch:news-data',{detail:{...payload,raw_atlas:{...payload.raw_atlas,latest_received_at:null}}})),rawPayload);
-  assert.match(await page.locator('#daily-freshness').innerText(),/新闻接收 时间未提供 · 运行同步 [^·]*11:00/,'unknown event receipt must not fall back to snapshot sync');
+  assert.doesNotMatch(await page.locator('main').innerText(),/今日接收|今日新闻|采用更新|站点复核待更新|查看核验进展|新闻接收|运行同步|已接收日报事件/);
+  assert.match(await page.locator('#news-daily-summary').innerText(),/发表日期以各篇来源为准/);
+  await page.evaluate(payload=>window.dispatchEvent(new CustomEvent('inresearch:news-data',{detail:{...payload,raw_atlas:{...payload.raw_atlas,latest_published_at:'2026-10-09T23:15:00Z'}}})),rawPayload);
+  assert.match(await page.locator('#news-daily-summary').innerText(),/最近报道发表 2026\/10\/10/,'publisher date uses Beijing time, never receipt or runtime sync');
   assert.match(await page.locator('#research-summary').innerText(),/3 条文章提取记录/);
   if(process.env.UI_QA_DIR){
    await page.setViewportSize({width:1440,height:900});await page.evaluate(()=>scrollTo(0,0));
@@ -240,16 +274,33 @@ const {mkdirSync}=require('node:fs');
    await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
    await page.waitForFunction(()=>document.querySelector('.dc-news-meta').textContent || document.querySelector('.dc-news-list').textContent);
    assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
+   if(!payload.feed)assert.match(await page.locator('.dc-news-meta').innerText(),/暂无可显示的近期报道/);
+   else assert.match(await page.locator('.dc-news-list').innerText(),/当前范围暂无已整理的中文新闻/);
+   assert.doesNotMatch(await page.locator('main').innerText(),/尚未连接阅读服务|等待新闻同步|查看核验进展/);
   }
   await page.unroute(/\/api\/news(?:\?.*)?$/);
   await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({status:503,body:'unavailable'}));
-  await page.goto(base+'/');await page.getByText('新闻暂时无法同步，请稍后重试。',{exact:true}).waitFor();
+  await page.goto(base+'/');await page.getByText('近期报道暂不可用，请稍后重试。',{exact:true}).waitFor();
   assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
   await page.goto(base+'/project.html?site=us-tx-abilene');
   await page.locator('#capacity-estimate').waitFor();
   assert.match(await page.locator('#capacity-estimate').innerText(),/运营约 421/);
-  assert.match(await page.locator('#capacity-estimate').innerText(),/建设中约 422/);
-  assert.match(await page.locator('#capacity-estimate').innerText(),/有效时点：待补/);
+  assert.match(await page.locator('#capacity-estimate').innerText(),/建设中约 0/);
+  assert.match(await page.locator('#capacity-estimate').innerText(),/有效时点：2026-07-28/);
+  assert.doesNotMatch(await page.locator('#capacity-estimate').innerText(),/422|843/);
+  const actualTimeline=page.locator('#site-observation-timeline .timeline li');
+  assert.equal(await actualTimeline.count(),2,'current estimate and future forecast keep separate observations');
+  assert.match(await actualTimeline.filter({hasText:'2026-07-28'}).innerText(),/估算[\s\S]*IT容量：421 MW/);
+  assert.match(await actualTimeline.filter({hasText:'2026-11-01'}).innerText(),/预测[\s\S]*IT容量：843 MW/);
+  assert.match(await actualTimeline.first().innerText(),/来源发表 2026-10-05/);
+  assert.doesNotMatch(await page.locator('#site-observation-timeline').innerText(),/首次接收|审核时点|05:12:03/);
+  if(process.env.UI_QA_DIR){
+   for(const [width,height] of [[1440,900],[390,844]]){
+    await page.setViewportSize({width,height});
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'real timeline no overflow '+width);
+    await page.screenshot({path:process.env.UI_QA_DIR+`/abilene-${width}x${height}.png`,fullPage:true});
+   }
+  }
   await page.goto(base+'/project.html?site=fi-salo-atnorth-fin05');
   await page.getByRole('button',{name:'重试新闻同步',exact:true}).waitFor();
   assert.equal(await page.locator('#project-dossier tbody tr').count(),12,'all project angles are visible, including unknown roles');

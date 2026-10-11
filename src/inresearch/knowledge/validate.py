@@ -104,12 +104,7 @@ def main():
     for r in projects:
         from inresearch.knowledge import site_timeline
         try:
-            seen_observations = set()
-            for observation in r.get('observations', []):
-                site_timeline.check(observation)
-                if observation['id'] in seen_observations:
-                    raise ValueError('duplicate_site_observation_id')
-                seen_observations.add(observation['id'])
+            site_timeline.check_history(r)
         except (ValueError, TypeError, KeyError) as exc:
             err(f"projects[{r.get('site_id')}]: invalid observation: {exc}")
         sid = r.get("site_id", "?")

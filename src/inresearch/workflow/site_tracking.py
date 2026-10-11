@@ -27,6 +27,7 @@ IDENTITY_FIELDS = {'site_id', 'country', 'location', 'region', 'coordinates', 'a
 TERMINAL = ('completed', 'cancelled', 'superseded')
 MAX_ARCHIVE_CHECKS = 128
 MAX_ARCHIVE_BYTES = 16*1024*1024
+DAILY_REFERENCE_SCAN_VERSION = 1
 
 
 class ArchiveBudget(ValueError):
@@ -115,7 +116,7 @@ class SiteTracking:
                 result.append([str(path), s.st_ino, s.st_size, s.st_mtime_ns, s.st_mode])
             except FileNotFoundError:
                 result.append([str(path), None])
-        return digest(result)
+        return digest([DAILY_REFERENCE_SCAN_VERSION, result]) if cadence == 'daily' else digest(result)
 
     def _snapshot(self, root, cadence):
         root = Path(root)
@@ -123,6 +124,8 @@ class SiteTracking:
         targets = read(root/'framework/tco_targets.json')
         result = {'projects': projects, 'targets': targets}
         if cadence == 'daily':
+            # Invalidate a successful scan from before per-reference gap checks.
+            result['reference_scan_version'] = DAILY_REFERENCE_SCAN_VERSION
             result['pipeline'] = read(self.data/'acquisition/project-pipeline.json', {'version': 1, 'records': {}})
             result['daily'] = read(self.data/'acquisition/daily-events.json', {'version': 2, 'records': {}, 'parses': {}})
             result['accepted'] = receipt_documents(self.data)
@@ -250,17 +253,24 @@ class SiteTracking:
                 if key not in active or not project_event(event):
                     continue
                 refs = []
-                for document in event.get('document_refs', []):
+                for index, document in enumerate(event.get('document_refs', [])):
                     sha = document.get('sha256')
-                    if sha not in snapshot['accepted'] or key not in snapshot['receipt_events'].get(sha, []):
+                    reference = 'daily:'+key+':reference:'+str(index)+':'+str(sha)+':'
+                    if sha not in snapshot['accepted']:
+                        issues.append(reference+'receiver_receipt_missing')
+                        continue
+                    if key not in snapshot['receipt_events'].get(sha, []):
+                        issues.append(reference+'receipt_event_membership_missing')
                         continue
                     candidates = archives.get(sha, [])
-                    if candidates:
-                        try:
-                            refs.append({**self._archive(candidates[0]), 'role': 'daily_html',
-                                         'locator': document.get('section')})
-                        except ArchiveBudget:
-                            issues.append('archive_check_budget_pending')
+                    if not candidates:
+                        issues.append(reference+'catalog_archive_unavailable')
+                        continue
+                    try:
+                        refs.append({**self._archive(candidates[0]), 'role': 'daily_html',
+                                     'locator': document.get('section')})
+                    except ArchiveBudget:
+                        issues.append(reference+'archive_check_budget_pending')
                 if not refs:
                     issues.append('daily:'+key+':received_document_archive_unavailable')
                     continue
@@ -323,8 +333,15 @@ class SiteTracking:
                 view = site_timeline.current(site, today)
                 scope = {k: site.get(k) for k in ('site_id', 'country', 'location', 'region')}
                 if cadence == 'weekly':
-                    missing = {f for f in REQUIRED if view.get(f) in (None, '', [], {})}
-                    if view.get('capacity_it_mw') is None and not view.get('capacity_it_mw_by_status'):
+                    quantities = view.get('quantity_fields') or {}
+                    def present(field):
+                        # Native ranges intentionally project to scalar None (or
+                        # empty scalar parts). Their bounds still supply a value.
+                        return quantities.get(field, view.get(field)) not in (None, '', [], {})
+                    missing = {f for f in REQUIRED if not present(f)}
+                    # Empty phase parts and nullable assessment are valid when
+                    # either an IT headline or explicit phase quantities exist.
+                    if not present('capacity_it_mw') and not present('capacity_it_mw_by_status'):
                         missing |= CAPACITY
                     overdue = set(view['tracking']['review_due_fields'])
                     conflict = {f for c in view['tracking']['conflicts'] for f in
