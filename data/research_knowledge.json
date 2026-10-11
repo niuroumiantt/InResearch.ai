@@ -51182,6 +51182,93 @@
         },
         "batch_id": "6e534e8ef19978b761cbfd7f81fe6ccfdf9062c9234c66e604833376c342e1e9"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "12b400ea769bc186502ed964007181f40ead37736ff610e6a08c65f238f9c0dc",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:16:claim:7:ev:0",
+      "locator": "page:17/chunk:16",
+      "object_ids": [
+        "part:server",
+        "part:gpu"
+      ],
+      "page_index": 16,
+      "question_ids": [
+        "OBJ-gpu-definition",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "quote": "Within the AI accelerated category, servers are split into three\ngroups based on the number of GPUs shipped with the servers (either 2, 4, or 8).",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T09:57:54+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性 5，评分 5。按随整机出货的 GPU 数量分组，实质贡献于当前 AI 服务器定义、组成与边界工单；连续原文及完整服务器分类上下文足以支持限定的作者方法陈述。未发现敏感、真实冲突、替换或其他 A 条件，符合 B 级部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-server-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.678,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c846d400ed0551aed19621be06be92cef4c74edbac833b4e3b319280ba1d10c8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66848,
+            "output_tokens": 1103,
+            "reasoning_output_tokens": 145
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.445,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "411cbb86a4644f72cb8e97eefc0e846c0e633e44654c9d1f510a03d941162d7f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67399,
+              "output_tokens": 403,
+              "reasoning_output_tokens": 149
+            }
+          }
+        },
+        "batch_id": "25a58c4c4972affa45a3c74c11f8fa30ed468b03b642cae804b080da0e71f15f"
+      }
     }
   ],
   "statements": [
@@ -98923,6 +99010,107 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:16:claim:7:ev:0"
+      ],
+      "id": "adoption:review:e67067298ada178bbf76c4b4",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "OBJ-server-definition"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者在“Server Types”节说明，在该报告的美国数据中心能耗模型中，AI accelerated 服务器按随整机出货的 GPU 数量分为每台 2、4 或 8 个 GPU 三组。这是作者采用的服务器分组口径，不构成当前独立认证的市场配置全集或通用产品标准。报告具体发表日期未建立；本项属于设备分类与能耗建模方法，未指向具体项目或建设阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T09:57:54+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性 5，评分 5。按随整机出货的 GPU 数量分组，实质贡献于当前 AI 服务器定义、组成与边界工单；连续原文及完整服务器分类上下文足以支持限定的作者方法陈述。未发现敏感、真实冲突、替换或其他 A 条件，符合 B 级部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-server-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.678,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c846d400ed0551aed19621be06be92cef4c74edbac833b4e3b319280ba1d10c8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66848,
+            "output_tokens": 1103,
+            "reasoning_output_tokens": 145
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.445,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "411cbb86a4644f72cb8e97eefc0e846c0e633e44654c9d1f510a03d941162d7f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67399,
+              "output_tokens": 403,
+              "reasoning_output_tokens": 149
+            }
+          }
+        },
+        "batch_id": "25a58c4c4972affa45a3c74c11f8fa30ed468b03b642cae804b080da0e71f15f"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:16:claim:7"
+      ],
+      "limitations": "该分组不能说明所有 AI 服务器均只采用这三种配置，也不能作为 GPU 产品分类。未提供具体 GPU 型号、完整整机构成、接口规范或其他加速器配置的分组规则。相邻原文另行讨论较大规模整机柜配置，其部署状态和功率预期均受来源时点限制，不能改写为当前事实。全文阅读覆盖原生文字，未完成图像视觉审阅。",
+      "conflict_check": "已采用的同文模型更新说明未包含此分组，非重复。既有 DGX H100 八 GPU 配置及 MLPerf 记录属于特定系统配置和运行样例，与本项方法口径相容，但不独立验证三组是否穷尽市场。训练故障、软件配置与性能记录未提出同口径反证。所供 legacy 匹配记录为空，不能据此声称完成全面外部反证搜索；本项不替换既有结论。",
+      "gap_dependency_check": "OBJ-server-definition 仅获得一种按整机 GPU 数量划分的组成与分类口径，仍需型号明确的完整构成、整机与整柜边界、其他加速器配置及排除对象证据。局部陈述由原生文字直接支持，不依赖未审阅图表；不能据此回答或关闭整个问题，也不修改研究骨架或模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "25a58c4c4972affa45a3c74c11f8fa30ed468b03b642cae804b080da0e71f15f",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "dfc0721c26252995753d6159b7426954dd33660fb8aa33d475c94589d4ba1790"
+      },
+      "object_mapping_check": "独立按对象合同核对：被分类对象是计算链下的 AI 加速器服务器整机，对应 part:server；分类依据明确为随整机出货的 GPU 加速器数量，对应同链下 part:gpu。GPU 映射仅表示整机组成中的数量关系，不表示 GPU 产品分类或独立性能。未将相邻整机柜讨论并入本项，也不扩展为整座数据中心、网络、供电或控制系统范围。"
     }
   ],
   "answers": [],
