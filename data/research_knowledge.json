@@ -53237,6 +53237,87 @@
         },
         "batch_id": "f1ca3b9d650461eb227d12de49d7edb21bfc46bb7fc0feca48358b63277632bc"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "997c4a815471f63c08877db0719d98d3acab730237908ac83bb94424ccd3a41c",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:33:claim:7:ev:0",
+      "locator": "page:34/chunk:33",
+      "object_ids": [],
+      "page_index": 33,
+      "question_ids": [],
+      "quote": "The analysis reveals that, at the global level, over half of all data centres in the pipeline are\n                  situated in existing clusters, including around 65% of the data centres under construction\n                  and nearly 55% of those announced but not yet under construction.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:08:20+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续完整原句直接支持候选，相邻正文充分说明全球范围、项目阶段、管线筛选和集群定义。对当前M05-Q01的在建与规划项目空间分布研究有实质但有限的贡献，符合B类归因部分采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.5,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "742147706cff4d438365c4b7db80470eaf3d851ef9a7d16e18bbb8fd60735174",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66289,
+            "output_tokens": 1222,
+            "reasoning_output_tokens": 112
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.136,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "becd5afc439b153bc3f0a7b95e82a3be83aaebbd1bfe89f8a1f7b54e640517e9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66990,
+              "output_tokens": 432,
+              "reasoning_output_tokens": 138
+            }
+          }
+        },
+        "batch_id": "0c03fd15d378a2b58317ac7fee9ac0a281f3befb8640815c34f3b8052ff2023c"
+      }
     }
   ],
   "statements": [
@@ -103000,6 +103081,104 @@
         "request_sha256": "483f0dce9c4f19dae8a614614e86a8950bdbda60917070748d85f9a53ac5a993"
       },
       "object_mapping_check": "独立依据主张选择电力系统及其变电链条：原文直接讨论该数据中心场址的高压变电站工程。system:facility限定土地建筑与消防安防，不能由配套基础设施泛称继承该标签。未披露大型变压器、高压开关站或GIS配置，故不下沉到部件；也未提供电力配额、并网协议或排队证据，不映射site:grid。正文未建立AI负载范围，不追加root或IT对象。所选证据统一采用上述主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:33:claim:7:ev:0"
+      ],
+      "id": "adoption:review:22354dcc47f1127d9148b2a2",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第3.1节的分析中称，全球项目管线中超过一半的数据中心位于既有集群，其中在建数据中心约65%，已宣布但尚未开工的数据中心近55%。这些比例按所引句子的“数据中心”表述保留，不能直接认作容量占比。管线包括在建及已宣布但尚未开工项目，公告项目不一定开工或完成。这是IEA基于项目数据库作出的分析，报告发表时间及该段统计基准日未由所供原生文本确立，不构成对当前项目状态或空间分布的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:08:20+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续完整原句直接支持候选，相邻正文充分说明全球范围、项目阶段、管线筛选和集群定义。对当前M05-Q01的在建与规划项目空间分布研究有实质但有限的贡献，符合B类归因部分采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.5,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "742147706cff4d438365c4b7db80470eaf3d851ef9a7d16e18bbb8fd60735174",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66289,
+            "output_tokens": 1222,
+            "reasoning_output_tokens": 112
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.136,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "becd5afc439b153bc3f0a7b95e82a3be83aaebbd1bfe89f8a1f7b54e640517e9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66990,
+              "output_tokens": 432,
+              "reasoning_output_tokens": 138
+            }
+          }
+        },
+        "batch_id": "0c03fd15d378a2b58317ac7fee9ac0a281f3befb8640815c34f3b8052ff2023c"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:33:claim:7"
+      ],
+      "limitations": "未提供底层项目清单、项目数量分母、各区域容量或增长时间序列；所引句子未明确这些百分比是否经过容量加权。集群口径为100km邻域内合计设计容量至少500MW的设施集合，相邻图注说明使用DBSCAN，不能将其理解为单项目规模或投运IT容量。底层数据库未在本包中独立核验；PDF仅完成原生文字覆盖，未进行图像审阅，不能从图形推定额外数值。",
+      "conflict_check": "已采用的IEA欧洲管线分散及中东和非洲集聚例外陈述讨论区域差异，与本条全球比例相容，且不属于同范围重复。IEA人口与容量对照及欧盟历史增长判断的指标、地域和时间不同；CBRE美国主要市场在建容量下降也不能反驳全球项目在既有集群中的占比。其他已采用个案没有同口径反证。所供legacy三类登记表均无匹配记录，当前回答为空；未发现规范重复或真实冲突。检查限于所供材料，不代表外部反证已穷尽，不替换既有结论。",
+      "gap_dependency_check": "M05-Q01获得全球在建及公告项目集中于既有集群的局部空间分布线索，仍需明确统计基准日、底层项目清单、数量与容量分母、区域拆分及去重规则。各区域投运、在建、规划容量，以及俄亥俄、印第安纳和中东的崛起速度，仍需同口径容量和历史增长序列。本条不能将项目数量比例换算为容量比例，不能指定漏斗等级、汇总GW或更新模型输入；问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0c03fd15d378a2b58317ac7fee9ac0a281f3befb8640815c34f3b8052ff2023c",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "38e90346fcd1db7be343c4122e70215f793db2f042740edfd4eadc425f4169c7"
+      },
+      "object_mapping_check": "独立依据原文和对象契约保留空映射：本条范围是全球数据中心项目群体在既有集群中的分布，未限定AI用途，也不是root所指的一座AI数据中心。集群定义和建设阶段未建立该设施内部系统、部件、土地权利、并网权利或具名参与方的主张范围；IEA和BNEF没有相应允许主体ID。不继承文档或Reader标签，所选证据统一采用此主张级空对象范围，保留有效的M05-Q01关联。"
     }
   ],
   "answers": [],
