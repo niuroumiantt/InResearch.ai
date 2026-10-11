@@ -81,7 +81,7 @@ def project_fields(fields):
     """Scalar-compatible projection plus the complete native quantity map."""
     result = copy.deepcopy(fields)
     quantities = {}
-    for key in ('capacity_it_mw', 'capacity_facility_mw'):
+    for key in ('capacity_it_mw', 'capacity_facility_mw', 'capacity_planned_it_mw'):
         if key in result:
             quantities[key] = copy.deepcopy(result[key])
             result[key] = scalar_mw(result[key])

@@ -21,7 +21,10 @@ from inresearch.workflow.daily_dispatch import bound_urls, project_event, receip
 BEIJING = timezone(timedelta(hours=8))
 CADENCES = ('daily', 'weekly', 'monthly')
 CAPACITY = {'capacity_it_mw', 'capacity_it_mw_by_status', 'capacity_assessment'}
-REQUIRED = site_timeline.FIELDS - CAPACITY - {'notes'}
+# Accepted optional fields must not silently become missing-data requirements.
+# Refresh them when present; absence of water/energy or additional roles is valid.
+REQUIRED = frozenset(('name', 'developer', 'tenant', 'owner', 'operator', 'builder',
+                      'status', 'lifecycle', 'power_status', 'utility', 'capacity_facility_mw'))
 EVENT_FIELDS = {'status', 'lifecycle', 'power_status'} | CAPACITY
 IDENTITY_FIELDS = {'site_id', 'country', 'location', 'region', 'coordinates', 'aliases', 'duplicate_of', 'sources'}
 TERMINAL = ('completed', 'cancelled', 'superseded')

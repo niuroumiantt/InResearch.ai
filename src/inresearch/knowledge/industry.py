@@ -7,7 +7,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
-from inresearch.knowledge import site_timeline, site_quantity
+from inresearch.knowledge import site_timeline, site_quantity, site_register
 
 STAGES = {'operating': '已投运', 'construction': '建设中', 'planning': '筹备机会'}
 LEVELS = dict(zip(['L'+str(i) for i in range(1, 10)],
@@ -52,6 +52,12 @@ def project(row):
     result = {k: row.get(k) for k in ('site_id', 'name', 'country', 'region', 'location', 'developer', 'tenant',
               'status', 'verified_date', 'duplicate_of', 'deduplication_note', 'type', 'disputed', 'notes', 'power_status', 'utility', 'capacity_facility_mw')}
     result['tracking'] = row['tracking']
+    result['geography'] = site_register.geography(row)
+    result['participants'] = site_register.participants(row)
+    result['capacity_register'] = site_register.capacities(row)
+    from . import site_metrics
+    result['resource_metrics'] = {key: copy.deepcopy(row['quantity_fields'][key])
+                                  for key in site_metrics.FIELDS if key in row.get('quantity_fields', {})}
     result['observations'] = site_timeline.public_timeline(original)
     result['lifecycle'] = row.get('lifecycle', 'active')
     result['relationships'] = {k: row.get(k, []) for k in ('owner', 'operator', 'builder')}

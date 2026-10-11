@@ -252,9 +252,10 @@ def _source_versions(observation, context):
                         or not isinstance(quote, str) or not observation_time.native_date_matches(published, quote)
                         or ''.join(quote.split()) not in ''.join(text.split())):
                     raise ValueError('publication_time_not_supported_by_source_version')
-                if context.get('source_kind') == 'reader_report':
+                if context.get('source_kind') in ('reader_report', 'targeted_excerpt'):
                     import re
-                    location = re.fullmatch(r'reader:page:([1-9]\d*)', proof['locator'])
+                    prefix = 'reader' if context['source_kind'] == 'reader_report' else 'excerpt'
+                    location = re.fullmatch(prefix+r':page:([1-9]\d*)', proof['locator'])
                     pages = context.get('source_pages', {}).get(sha, {})
                     page = pages.get(int(location[1]), pages.get(location[1])) if location else None
                     if not isinstance(page, str) or ''.join(quote.split()) not in ''.join(page.split()):
@@ -284,6 +285,11 @@ def apply(root, data, proposal):
     source_kind = proposal.get('source_kind', 'daily_event')
     if source_kind == 'daily_event':
         context = _daily_context(data, proposal)
+    elif source_kind == 'targeted_excerpt':
+        if not proposal.get('observation'):
+            raise ValueError('targeted_excerpt_requires_site_observation')
+        from inresearch.workflow import targeted_research
+        context = targeted_research.resolve(root, data, proposal)
     elif source_kind == 'reader_report':
         if not isinstance(proposal.get('observation'), dict):
             raise ValueError('reader_report_requires_site_observation')
@@ -343,6 +349,13 @@ def apply(root, data, proposal):
         source = context['source_texts'][sha]
         if ''.join(quote.split()) not in ''.join(source.split()):
             raise ValueError('quote_not_in_archived_original')
+        if assertion.get('metric') is not None:
+            from inresearch.knowledge import site_metrics
+            key = assertion['metric']
+            if key not in site_metrics.FIELDS or not site_metrics.supported(key, assertion.get('quantity'), quote):
+                raise ValueError('resource_metric_not_in_original_quote')
+            if assertion.get('quantity') is None:
+                raise ValueError('resource_metric_assertion_quantity_required')
         if assertion.get('value') is not None or 'value_range' in assertion:
             from inresearch.materials.daily_research import power_quantities
             units = {'MW': 1, 'GW': 1000}
@@ -359,6 +372,13 @@ def apply(root, data, proposal):
         raise ValueError('invalid_observation_metadata')
     withdrawal = observation is not None and (observation.get('revision') or {}).get('action') == 'withdraw'
     changed_fields = set(proposal.get('fields') or []) if observation is not None else set(p)
+    from inresearch.knowledge import site_metrics
+    for key in site_metrics.FIELDS & changed_fields:
+        site_metrics.check(key, p.get(key))
+        if not withdrawal and p.get(key) is not None and not any(
+                a.get('metric') == key and site_metrics.canonical(key, a.get('quantity')) == site_metrics.canonical(key, p[key])
+                for a in checked):
+            raise ValueError('resource_metric_not_supported:' + key)
     parts = (p.get('capacity_it_mw_by_status') or {}) if 'capacity_it_mw_by_status' in changed_fields else {}
     if len(parts) > 1 and observation is None:
         raise ValueError('multiple_phase_aggregation_requires_separate_relation_review')
@@ -379,20 +399,23 @@ def apply(root, data, proposal):
         return False
     if not withdrawal and 'capacity_it_mw' in changed_fields and p.get('capacity_it_mw') is not None and not backed(p['capacity_it_mw'], 'it'):
         raise ValueError('it_capacity_not_supported')
+    if not withdrawal and 'capacity_planned_it_mw' in changed_fields and p.get('capacity_planned_it_mw') is not None and not backed(p['capacity_planned_it_mw'], 'it', 'planned_whole_site'):
+        raise ValueError('planned_it_capacity_not_supported')
     for level, value in ({} if withdrawal else parts).items():
         supported = backed(value, 'it', 'aggregate') if len(parts) == 1 else backed(value, 'it', 'nonoverlapping_phase', level)
         if level not in LEVELS or not supported:
             raise ValueError('capacity_aggregation_not_reviewed')
     if not withdrawal and 'capacity_facility_mw' in changed_fields and p.get('capacity_facility_mw') is not None and not backed(p['capacity_facility_mw'], 'facility'):
         raise ValueError('facility_capacity_not_supported')
-    for k in ('capacity_it_mw', 'capacity_facility_mw'):
+    for k in ('capacity_it_mw', 'capacity_facility_mw', 'capacity_planned_it_mw'):
         if p.get(k) is not None:
             if observation is not None:
                 site_quantity.check(p[k])
             elif not number(p[k]):
                 raise ValueError('invalid_capacity_value')
     companies = {r['company_id'] for r in json.loads((root/'data/companies.json').read_text())['records']} if (root/'data/companies.json').exists() else set()
-    if companies and not {v for k in ('developer','tenant','owner','operator','builder') for v in p.get(k, [])} <= companies:
+    from inresearch.knowledge import site_register
+    if companies and not {v for k in site_register.ACTOR_ROLES for v in p.get(k, [])} <= companies:
         raise ValueError('unknown_project_actor')
     # Phase observations remain separate from the aggregate; parent/child MW never summed.
     p = dict(p, adoption={'source_kind': source_kind, 'source_id': source_id, 'review_id': review_id,
