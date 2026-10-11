@@ -7952,6 +7952,59 @@
       "status": "candidate",
       "stored_path": "originals/8b/8b11c0d6bcaee3cb3311d93ecb6d0f1aeca5dc3c51d0e9205b5bf4e8796be13b/dcd-8b11c0d6bcaee3cb-Can Europe build AI infrastructure without breaking its grid.html",
       "title": "Can Europe build AI infrastructure without breaking its grid?"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+      "coverage": {
+        "characters_read": 6371,
+        "characters_total": 6371,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+      "id": "doc-555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+      "library_path": "library/by-node/actor-airtrunk/2026_DCD_AirTrunk to develop 280MW of data center capacity in Jo__555a7703336d5965.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:airtrunk",
+        "actor:blackstone",
+        "system:facility",
+        "system:it"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-be8f08c847ae4b6b94996bd81a3fbf79",
+      "report_sha256": "90b5e75eeece965da4e36746c8570d602e62b5eb086bc397027a78bd177b822f",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+        "url": "https://www.datacenterdynamics.com/en/news/airtrunk-to-develop-280mw-of-data-center-capacity-in-johor-malaysia/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/airtrunk-to-develop-280mw-of-data-center-capacity-in-johor-malaysia/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/55/555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1/dcd-555a7703336d5965-AirTrunk to develop 280MW of data center capacity in Johor- Malay.html",
+      "title": "AirTrunk to develop 280MW of data center capacity in Johor, Malaysia"
     }
   ],
   "evidence": [
@@ -59128,6 +59181,90 @@
           }
         },
         "batch_id": "6745b39fc967bd08b6c36a77dd629d921a3de0ed9492432c269119cc5e56ce81"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "234961b9b52d3afe3fd41c97bbe32c5d9363b41d20db816a8b2b88d65c106a8f",
+      "document_id": "doc-555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+      "id": "rev-be8f08c847ae4b6b94996bd81a3fbf79:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:airtrunk",
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The sites will use recycled water for their cooling systems.",
+      "reading_revision_id": "rev-be8f08c847ae4b6b94996bd81a3fbf79",
+      "source_sha256": "555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:06:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6，评分6。拟建项目明确的冷却用水来源，对当前M08-Q05提供研究供水选择及潜在约束应对机制的实质性个案线索，但不构成硬约束判断。连续原文引句与完整原生页面提供充分上下文，支持明确归因且保留计划身份的有限采用。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.715,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ea7abf2167c2e11b8ec96b4ee52c7e900c87a4aa34bbe1abd4cc931fe77139ee",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47089,
+            "output_tokens": 1198,
+            "reasoning_output_tokens": 142
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.97,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f82a1f51022d6527146f22ffb4701cc627f3b33fb2f572f141206a54022a11e3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47735,
+              "output_tokens": 449,
+              "reasoning_output_tokens": 131
+            }
+          }
+        },
+        "batch_id": "0ab0043b392c7f4228bb30e867c6db192f6d78ab5a89f3e438fba509d05cf8eb"
       }
     }
   ],
@@ -114720,6 +114857,107 @@
         "request_sha256": "251d9e2c00b36766f0ee98d89c009d5870af37854bf9e3410b8de8903e3eb50e"
       },
       "object_mapping_check": "独立依据原文选择IT设施：该段讨论同步运行的GPU在AI模型训练和使用中引起的IT功率需求波动，以及硬件功率密度增加与波动绝对幅度的关系。主张未限定器件规格、整机柜配置或具体供电设备，不下沉到部件，也不由周边电网、储能或软件缓解讨论增加电力、储能或DCIM/BMS映射。所选证据统一采用此主张级范围，原候选和证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-555a7703336d5965afcd48df2e86723b0dfda173cbb02a27be0281089b6542b1",
+      "evidence_ids": [
+        "rev-be8f08c847ae4b6b94996bd81a3fbf79:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:a1d5ced71a5118c7059ff762",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:airtrunk",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M08-Q05"
+      ],
+      "reading_revision_id": "rev-be8f08c847ae4b6b94996bd81a3fbf79",
+      "status": "adopted",
+      "text": "据Dan Swinhoe于2026年4月30日在DCD发表的报道，AirTrunk计划在马来西亚柔佛州Iskandar Puteri开发的JHB3、JHB4将使用再生水供冷却系统使用。这是报道所述的拟建项目用水方案，未经本次独立验证，不代表项目已投运或再生水供给已落实。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:06:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6，评分6。拟建项目明确的冷却用水来源，对当前M08-Q05提供研究供水选择及潜在约束应对机制的实质性个案线索，但不构成硬约束判断。连续原文引句与完整原生页面提供充分上下文，支持明确归因且保留计划身份的有限采用。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.715,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ea7abf2167c2e11b8ec96b4ee52c7e900c87a4aa34bbe1abd4cc931fe77139ee",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47089,
+            "output_tokens": 1198,
+            "reasoning_output_tokens": 142
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.97,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f82a1f51022d6527146f22ffb4701cc627f3b33fb2f572f141206a54022a11e3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47735,
+              "output_tokens": 449,
+              "reasoning_output_tokens": 131
+            }
+          }
+        },
+        "batch_id": "0ab0043b392c7f4228bb30e867c6db192f6d78ab5a89f3e438fba509d05cf8eb"
+      },
+      "source_candidate_ids": [
+        "rev-be8f08c847ae4b6b94996bd81a3fbf79:chunk:0:claim:2"
+      ],
+      "limitations": "证据为媒体报道，未提供AirTrunk一手公告、供水合同或许可原件。未披露再生水来源、供水主体、水量、水质、供水可靠性、采用比例、冷却配置或实际运行记录；也未说明该方案是否因当地水资源约束而采用。不能推导节水量、WUE或当地水资源压力。",
+      "conflict_check": "已采用的AirTrunk柔佛年度用水估计针对JHB1、JHB2及100%利用率条件，与本项JHB3、JHB4的再生水冷却计划范围不同，不构成重复或真实冲突，不能互相验证。BP Batam海水淡化计划、Hubbard余热制水主张及Lancium闭环冷却声明涉及不同主体、项目和机制，可与本项并存。所供legacy事实为其他主体或行业的PUE/WUE记录，没有同项目同口径结论；合同及项目筛选记录为空。未发现可指认的规范重复或真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "M08-Q05仅获得冷却用水来源选择的部分线索。仍需当地可供水量、季节性压力、取水限制、监管或供水方的选址条件、项目供水合同及反证，才能判断水资源是否成为选址硬约束。计划采用再生水本身不证明当地存在硬约束，也不证明该方案已解除约束。不得据此将柔佛加入硬约束区域清单；问题保持开放，不修改研究骨架或模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0ab0043b392c7f4228bb30e867c6db192f6d78ab5a89f3e438fba509d05cf8eb",
+        "source_report_sha256": "90b5e75eeece965da4e36746c8570d602e62b5eb086bc397027a78bd177b822f",
+        "request_sha256": "255456f34f9bd206f0c9847747d9f2b3d979af3f37b8fb7ce28e1e5db553b754"
+      },
+      "object_mapping_check": "独立核对对象契约：原生正文明确主体为AirTrunk，项目为马来西亚柔佛州Iskandar Puteri拟建的JHB3、JHB4，支持actor:airtrunk；再生水用于冷却系统，支持root下的水与散热系统system:thermal。不继承候选的system:facility标签，其土地建筑、消防安防范围不对应本项用水方案。未披露具体供水处理设备、冷却配置或水权与取水许可，不进一步映射部件、冷却子链或场址权利。该范围统一适用于所选证据。"
     }
   ],
   "answers": [],
