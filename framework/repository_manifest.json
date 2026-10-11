@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.80",
+  "version": "2026.10.11.81",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -601,8 +601,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 276491,
-      "sha256": "a0f7185fbbee49fdf17109feacf2acd39cb07f5403bcf963657f9430c083c096",
+      "bytes": 276710,
+      "sha256": "f90f8a3db3c6036cd91de74b83fc6c2b019903dc171f56169f352aefd754635c",
       "collections": []
     },
     {
@@ -13687,8 +13687,8 @@
     {
       "path": "docs/local_reader/ACQUISITION_OPERATIONS.md",
       "role": "supporting_document",
-      "bytes": 9097,
-      "sha256": "f4800479ef6f158ed344bbc1c237cbf085c5d64d59bccc46a4b2bd0eae508f58",
+      "bytes": 9663,
+      "sha256": "98a08e93697aea2aba63dd2bfadaafb66b7e2cfa87dfb97e5a9ac3c94c21a5b9",
       "collections": []
     },
     {
@@ -13757,8 +13757,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 77925,
-      "sha256": "ff6dbd25c948a0c5f9b1d409e6fe8968add93bca9d0fbf6d18244cfcecb8252b",
+      "bytes": 78810,
+      "sha256": "ae41c46bf72036d40112610548104c7a0fe149962340f2abb5be9a5da26b36a9",
       "collections": []
     },
     {
@@ -18161,8 +18161,8 @@
     {
       "path": "framework/04_reading_scoring_standard.md",
       "role": "normative",
-      "bytes": 29482,
-      "sha256": "3953bf00340bc3be6aad19287b31fe3ec612627d33126963597693a859c9ff06",
+      "bytes": 30119,
+      "sha256": "e4e198a8eb203ab5c92c03a72ddb29b40e052635f43ebd80f587bbe870768c5e",
       "collections": []
     },
     {
@@ -18203,8 +18203,8 @@
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 34147,
-      "sha256": "367ef93f18a969224243de1de6f85df0e03eef602f69b3d28f066f736a607245",
+      "bytes": 34784,
+      "sha256": "328323bca2da90ee15b433696dc391e40d62af32adc22043887a57eae69c4709",
       "collections": []
     },
     {
@@ -18218,7 +18218,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 8216,
-      "sha256": "8099a14104cd01801d34177c0fd1686f1c20c73e1f5244d04dcd2b7bd720602e",
+      "sha256": "4c13f6c44b67086d59d38ae72b63ca21c012bcac1507ed98c8dce5670ca46386",
       "collections": []
     },
     {
@@ -18244,8 +18244,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 227101,
-      "sha256": "6d56c16f10c3f329a22745e8e681c54342013d1b0e6d56da173bac40c59cd495",
+      "bytes": 226614,
+      "sha256": "b5ae663617827d7866bcf60d0c10760a7f85d3bc285de5a4f7904a08458409d1",
       "collections": [
         {
           "name": "policies",
@@ -18603,8 +18603,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 443102,
-      "sha256": "1aab3b902a3d86f0e11efa5d1e2aa3780cde4eaf5afb50cc818dc9b32c3c5c96",
+      "bytes": 446986,
+      "sha256": "788267736cb4fe3af297c0e19a2b13f207f5306c986dc8c58c3b3ed3588a7276",
       "collections": [
         {
           "name": "policies",
@@ -21819,8 +21819,8 @@
     {
       "path": "src/inresearch/interfaces/reader.py",
       "role": "implementation",
-      "bytes": 12405,
-      "sha256": "447ac13d4c0285ce7691ee213b40e927b714f54f59d7a39eb16c5b2ffc80782b",
+      "bytes": 13727,
+      "sha256": "d9890e40475734f268035824fee112e2002e315e9e668a5562c75f81d5d5c7df",
       "collections": []
     },
     {
@@ -22437,6 +22437,13 @@
       "role": "implementation",
       "bytes": 60486,
       "sha256": "58b61e3cc6f84181497202acccfab9fcfce5a63bfba4d9bd055d2f756c92b4aa",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/workflow/reader_priority.py",
+      "role": "implementation",
+      "bytes": 3496,
+      "sha256": "8d1ae2b820516872aade1b726c1d30a8791be2df27e119a5998be7867c4fa9fb",
       "collections": []
     },
     {
@@ -23648,6 +23655,13 @@
       "role": "test",
       "bytes": 5916,
       "sha256": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_reader_priority.py",
+      "role": "test",
+      "bytes": 5415,
+      "sha256": "8256f946a972f63160a560997bf91b8b7f6b95bb946d9b9cac13c18e0688f54f",
       "collections": []
     },
     {
@@ -27418,13 +27432,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 409,
-    "implementation": 372,
+    "implementation": 373,
     "normative": 16,
     "project_config": 762,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 192,
-    "test": 198
+    "test": 199
   }
 }

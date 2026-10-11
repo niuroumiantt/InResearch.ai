@@ -54,3 +54,5 @@ SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不�
 上游发送器产生 research-delivery.json 清单，复制正文/来源/研究字段/派生 HTML/实际证据后投递至 incoming/inews-daily/<清单SHA>/，全部哈希验证后才开放。也可在 Spark 手动执行 `python3 manage.py daily-receive --input <完整清单目录>`，默认使用既有数据根。回执 indexed_candidate 是候选完成，不是正式采用；按 bundle_id、原件/来源/目标表 SHA 追溯，旧来源目录和版本不改动。
 
 补历史链接只用实际对应版本的来源台账与 HTML 配对，不按日期猜关联。派生研究 HTML 只归档，不重复进 Reader。接收后沿用 Reader/publish 调度，核对网页事件、来源与快照时间。残留 .partial 只意味着输入未开放，不能把文件存在当成入库完成。
+
+具名样例登记并核对冻结任务后，若同优先级积压阻碍执行，用 `reader --data-root <数据根> prioritize --doc-id <完整ID> --revision-id <当前版本> --expected-priority <实读旧值> --priority 9 --request-id <唯一请求> --by <操作者> --reason <用户具名任务>` 先加 `--dry-run` 核对，再以同参实际执行。只在旧值低于9时提高；不能用 apply-triage 假造重要性或手改 SQLite。保存原 catalog 一致备份与实际回执，之后由现役 Reader 自然领取；全文/C3/发布仍逐项验收。
