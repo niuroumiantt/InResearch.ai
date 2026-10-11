@@ -5539,6 +5539,93 @@
       "status": "candidate",
       "stored_path": "originals/bb/bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22/dcd-bb5d094349ce7d2a-Anthropic signs -45bn compute capacity agreement with Nscale - re.html",
       "title": "Anthropic signs $45bn compute capacity agreement with Nscale - report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "coverage": {
+        "characters_read": 80993,
+        "characters_total": 80993,
+        "chunks_read": 34,
+        "chunks_total": 34,
+        "complete": true,
+        "pages_read": 34,
+        "pages_total": 34
+      },
+      "doc_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "library_path": "library/by-node/site-permits/2026_SemiAnalysis_What is So Hard About Behind-The-Meter Power For Datace__f15d4297b26d61ef.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:abb",
+        "actor:anthropic",
+        "actor:bloom-energy",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:ge-vernova-siemens-energy-mitsubishi-power",
+        "actor:meta",
+        "actor:mitsubishi-power",
+        "actor:nebius",
+        "actor:openai",
+        "actor:rolls-royce",
+        "actor:siemens-energy",
+        "actor:vantage",
+        "actor:xai",
+        "chain:power/4",
+        "part:bess",
+        "part:fuel-cell",
+        "part:gas-engine",
+        "part:gas-turbine",
+        "part:gpu",
+        "part:transformer",
+        "root",
+        "site:gas-supply",
+        "site:grid",
+        "site:permits",
+        "site:water-rights",
+        "system:facility",
+        "system:it"
+      ],
+      "question_ids": [
+        "OBJ-bess-alternatives",
+        "OBJ-bess-definition",
+        "OBJ-bess-interfaces",
+        "OBJ-bess-performance",
+        "OBJ-fuel-supply-alternatives",
+        "OBJ-fuel-supply-definition",
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance",
+        "OBJ-fuel-supply-supply",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply",
+        "OBJ-prime-power-alternatives",
+        "OBJ-prime-power-definition",
+        "OBJ-prime-power-interfaces",
+        "OBJ-prime-power-performance",
+        "OBJ-prime-power-supply",
+        "OBJ-substation-interfaces",
+        "OBJ-substation-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "report_sha256": "8833d3e19dbf0b6fe850b69cddbc0777a1536948f38d51854add7898053f1750",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/f1/f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83/What is So Hard About Behind-The-Meter Power For Datacenters Part 1.pdf",
+      "title": "What is So Hard About Behind-The-Meter Power For Datacenters? Part 1"
     }
   ],
   "evidence": [
@@ -43408,6 +43495,529 @@
           }
         },
         "batch_id": "2dc8b96242d9f79068573924f21e3dea82e29a634f7746388ea7ce1b780c7bf1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "79a7f4860cdd0c0a053db13e4fd52facd676a03c55d9594ad34abb9d15131fa8",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "id": "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:10:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-supply"
+      ],
+      "quote": "However, the hard part is transportation of that gas. Building pipelines can be simultaneously the hardest and easiest aspect of the BTM datacenter construction process, but like permitting, it depends quite significantly on geography. In addition, one pipeline typically isn’t enough.",
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "source_sha256": "f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。运输与管道建设直接贡献于当前燃料接口和交付工作单；连续原文及相邻合同、计量表和故障保障讨论提供充分语境。未发现敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "79a7f4860cdd0c0a053db13e4fd52facd676a03c55d9594ad34abb9d15131fa8",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "id": "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:11:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "OBJ-fuel-supply-definition",
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance"
+      ],
+      "quote": "A firm contract is tied to a maximum daily quantity, specific receipt and delivery points and, where agreed, minimum delivery pressure; interruptible service can be curtailed when the pipe tightens.",
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "source_sha256": "f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。合同服务类型、交付点和条件性压力要求实质贡献于当前定义、接口与可靠性工作单。连续完整引文和运输上下文充分；无敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-definition",
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "79a7f4860cdd0c0a053db13e4fd52facd676a03c55d9594ad34abb9d15131fa8",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "id": "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:12:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance"
+      ],
+      "quote": "A line on the map is therefore weak, what matters is how much firm gas can physically reach the plant’s meter.",
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "source_sha256": "f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。明确物理交付边界，并区分地图邻近性与实际可达气量，实质贡献于当前接口和性能工作单。连续完整引文及相邻合同、故障保障上下文充分；无A条件，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "257faa4a22f6a68dfbd7134dfcff5c8be80de2bfd57d09187905e82ffbcc5215",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "id": "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:0:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "page_index": 18,
+      "question_ids": [
+        "OBJ-fuel-supply-alternatives",
+        "OBJ-fuel-supply-performance"
+      ],
+      "quote": "system also has to survive a failure. Depending on the site, that can mean independent\nfeeds, redundant internal distribution, stored LNG or dual-fuel capability, plus redundant\nboost compression where inlet pressure requires it.",
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "source_sha256": "f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。措施识别和入口压力条件实质贡献于当前替代方案及失效应对工作单。虽引文始于跨页续句，所供相邻原生页完整补足主语与语境；没有敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-alternatives",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "257faa4a22f6a68dfbd7134dfcff5c8be80de2bfd57d09187905e82ffbcc5215",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "id": "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:1:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "page_index": 18,
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance"
+      ],
+      "quote": "Gas quality matters too: changes in\nmethane number, heating value and Wobbe index can force control changes or derating if\nthey move outside the machine’s fuel envelope.",
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "source_sha256": "f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。明确气质与机组燃料适用范围的匹配条件及超界后果，实质贡献于当前接口和性能工作单。连续完整引文及供气上下文充分；无敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "257faa4a22f6a68dfbd7134dfcff5c8be80de2bfd57d09187905e82ffbcc5215",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "id": "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:2:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "site:gas-supply",
+        "site:permits"
+      ],
+      "page_index": 18,
+      "question_ids": [
+        "OBJ-fuel-supply-supply"
+      ],
+      "quote": "To build a pipeline in Texas, you only have to answer the Texas Railroad Commission,\n    meaning datacenter developers in the state are increasingly just building the pipeline\n    themselves. Federal water-crossing permits and easements still apply, and a purely\n    private lateral gets no condemnation power, so a single holdout forces a reroute.",
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "source_sha256": "f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。开发商自建这一交付角色和许可、地役权、私人支线约束实质贡献于当前供应交付工作单。连续引文保留明确限定，周边案例提供充分语境；所供材料未显示敏感内容、真实冲突或拟替换，符合B档有归因的局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
       }
     }
   ],
@@ -84453,6 +85063,619 @@
         "request_sha256": "24ff90e41fd1f1f53d2fe19e2a460f4426186bcd9a5383334dcb9d302ba09448"
       },
       "object_mapping_check": "原始金额主张明确列名Anthropic与Nscale，分别支持无父节点的actor:anthropic和actor:nscale，并由周边租赁语境支持购买方与提供方角色。选定主张未拆分具体设施、计算系统或硬件资产的交易范围；园区背景不使协议总额自动覆盖root所代表的一座AI数据中心或其下属系统、链和部件。未继承Reader或文档级标签；所有选定证据统一使用这两个主体的主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "evidence_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:10:ev:0"
+      ],
+      "id": "adoption:review:14b7ae38e9287d3726357101",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-supply"
+      ],
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "status": "adopted",
+      "text": "SemiAnalysis《What is So Hard About Behind-The-Meter Power For Datacenters? Part 1》第18页在美国表后数据中心开发讨论中认为，天然气运输是关键难点，管道建设难度显著依赖地理位置，而且通常一条管道不足。发表时间未知；这是作者对开发与供气依赖的定性判断，不构成具体场址供气能力的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。运输与管道建设直接贡献于当前燃料接口和交付工作单；连续原文及相邻合同、计量表和故障保障讨论提供充分语境。未发现敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      },
+      "source_candidate_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:10"
+      ],
+      "limitations": "未指定场址、管道路由、容量、压力、合同保障、建设阶段、交期或成本，也未量化“通常一条管道不足”的适用范围。不能据此规定所有项目的管道数量，或判断某个项目已经落实供气。",
+      "conflict_check": "当前IEA采用陈述指出单管道可能造成共同燃料中断，与本项相容，但不等同于本项运输和地理难度判断。另一IEA陈述讨论缓解措施，没有否定本项。所供legacy中的IREN托管GPU云价格记录不属同口径，未发现完整重复或真实冲突；筛选记录不是穷尽外部反证检索。本项不替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-interfaces中的上游运输依赖，以及OBJ-fuel-supply-supply中的管道交付约束。仍需场址拓扑、可交付气量、合同、许可、交期及成本边界；两个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc",
+        "source_report_sha256": "8833d3e19dbf0b6fe850b69cddbc0777a1536948f38d51854add7898053f1750",
+        "request_sha256": "5ffddecd5bebefbe14b426d99e4e520f9e69bc7a3170e9b8b881f5bac6911929"
+      },
+      "object_mapping_check": "原文实际对象是服务表后数据中心的天然气运输和管道接入，对应root下site_right类型的天然气管道接入对象。未指明具体发电设备或其他系统，故不扩大到燃气轮机、整个电力系统或root；映射独立于Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "evidence_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:11:ev:0"
+      ],
+      "id": "adoption:review:1a6d83c8d25227a9238e7e33",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-definition",
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance"
+      ],
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "status": "adopted",
+      "text": "SemiAnalysis《What is So Hard About Behind-The-Meter Power For Datacenters? Part 1》第18页在美国表后数据中心供气讨论中称，firm运输服务合同关联最大日数量、具体接收点与交付点，并在双方约定时关联最低交付压力；可中断服务在管道供给紧张时可能被削减。发表时间未知；这是作者对合同边界及中断条件的说明，不构成任何具体合同或实际供气的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。合同服务类型、交付点和条件性压力要求实质贡献于当前定义、接口与可靠性工作单。连续完整引文和运输上下文充分；无敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-definition",
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      },
+      "source_candidate_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:11"
+      ],
+      "limitations": "原文未提供具体合同、运营商、数量单位及数值、压力单位及数值、合同期限或中断记录。firm运输服务不能据此解释为气源采购、物理供气及全部故障保障均已落实，也不等于绝对不中断。",
+      "conflict_check": "现有IEA单管道共同中断风险及额外保障措施陈述与合同条件并不冲突；firm合同没有被本项表述为消除物理中断风险。所供legacy未提供同口径合同记录，IREN价格记录不相关。未发现完整重复或真实冲突，检查限于所供材料，不覆盖或替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-definition的服务边界、OBJ-fuel-supply-interfaces的数量和交付接口，以及OBJ-fuel-supply-performance的削减机制。仍缺完整组成边界、合同条款及接口数值、实际工况与中断测量方法；三个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc",
+        "source_report_sha256": "8833d3e19dbf0b6fe850b69cddbc0777a1536948f38d51854add7898053f1750",
+        "request_sha256": "5ffddecd5bebefbe14b426d99e4e520f9e69bc7a3170e9b8b881f5bac6911929"
+      },
+      "object_mapping_check": "合同数量、接收交付点和交付压力直接属于root下site:gas-supply所定义的天然气管道接入容量与供气合同范围。没有具体机型或电网协议证据，不映射发电部件或site:grid；依据原文独立确定。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "evidence_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:12:ev:0"
+      ],
+      "id": "adoption:review:edfaf3802478ae004d544c0f",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance"
+      ],
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "status": "adopted",
+      "text": "SemiAnalysis《What is So Hard About Behind-The-Meter Power For Datacenters? Part 1》第18页在美国表后数据中心供气讨论中认为，地图上存在管道不足以证明可交付供气能力，关键是能够实际抵达电厂计量表的firm天然气数量。发表时间未知；这是作者提出的交付能力判断口径，不构成具体电厂供气能力或可靠性的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。明确物理交付边界，并区分地图邻近性与实际可达气量，实质贡献于当前接口和性能工作单。连续完整引文及相邻合同、故障保障上下文充分；无A条件，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      },
+      "source_candidate_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:17:claim:12"
+      ],
+      "limitations": "未给出电厂、计量表规格、气量单位与数值、计量期间、压力条件、合同、测试方法或可靠性目标。该口径不能直接转化为发电容量，也不能单独证明供气冗余或达到目标可用率。",
+      "conflict_check": "IEA现有陈述讨论单管道共同中断及缓解措施，本项讨论供气能力的判断边界，含义相容且不是完整重复。所供legacy的IREN价格记录不涉及该口径，其余筛选记录为空。未发现真实冲突；检查非穷尽，不替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-interfaces的交付接口定位及OBJ-fuel-supply-performance的能力评价边界。仍需合同与物理容量对应、计量方法、压力和气质工况、故障数据及反证；两个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc",
+        "source_report_sha256": "8833d3e19dbf0b6fe850b69cddbc0777a1536948f38d51854add7898053f1750",
+        "request_sha256": "5ffddecd5bebefbe14b426d99e4e520f9e69bc7a3170e9b8b881f5bac6911929"
+      },
+      "object_mapping_check": "原文对象是管道天然气到电厂计量表的交付能力，属于site:gas-supply的接入容量与合同边界。计量表是燃料交付接口，并未指明可映射的独立设备对象；不因此扩大到燃气轮机、DCIM或整个数据中心。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "evidence_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:0:ev:0"
+      ],
+      "id": "adoption:review:0c421dcf58be3fde1f56e9c4",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-alternatives",
+        "OBJ-fuel-supply-performance"
+      ],
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "status": "adopted",
+      "text": "SemiAnalysis《What is So Hard About Behind-The-Meter Power For Datacenters? Part 1》第18—19页在美国表后数据中心供气讨论中提出，物理燃料系统还须应对故障；因场址而异，可能采用独立供气线路、冗余内部配送、储存LNG或双燃料能力，并在入口压力需要时配置冗余增压压缩。发表时间未知；这些是作者提出的条件性保障措施，不构成具体项目实施效果的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。措施识别和入口压力条件实质贡献于当前替代方案及失效应对工作单。虽引文始于跨页续句，所供相邻原生页完整补足主语与语境；没有敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-alternatives",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      },
+      "source_candidate_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:0"
+      ],
+      "limitations": "未说明独立供气的故障独立性、配送拓扑、LNG储量、第二燃料种类、保障时长、切换条件、压缩配置或测试结果。没有同口径成本、性能和可靠性比较，也没有项目采购、建设或投运证据。",
+      "conflict_check": "现有IEA采用记录adoption:review:3e9caf0c3b696c4b36951113已列双燃料与现场液体燃料储存，但本项新增独立供气、冗余配送、储存LNG及条件性冗余增压压缩，属于部分重叠而非完整重复；两者均保留可能性，未形成冲突。另一IEA记录的单管道共同中断风险与本项相容。所供legacy无同口径反证，检查非穷尽，本项不替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-alternatives的配置候选识别及OBJ-fuel-supply-performance的故障应对机制。仍需故障模式、独立性验证、兼容性、切换与补给条件，以及统一工况下的成本和可靠性数据；不能证明风险已经消除或完成方案排序，两个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc",
+        "source_report_sha256": "8833d3e19dbf0b6fe850b69cddbc0777a1536948f38d51854add7898053f1750",
+        "request_sha256": "5ffddecd5bebefbe14b426d99e4e520f9e69bc7a3170e9b8b881f5bac6911929"
+      },
+      "object_mapping_check": "上下文明确讨论天然气交付系统的故障保障，支持site:gas-supply。LNG不是part:fuel-storage所定义的柴油储运；双燃料未指定轮机或往复式机型，也未明确柴油备用机组，故不增加这些部件映射。选择依据实际对象范围独立确定。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "evidence_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:1:ev:0"
+      ],
+      "id": "adoption:review:8d9f8c9248417e0f8f2e3edd",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:gas-supply"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance"
+      ],
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "status": "adopted",
+      "text": "SemiAnalysis《What is So Hard About Behind-The-Meter Power For Datacenters? Part 1》第19页在美国表后数据中心供气讨论中指出，甲烷值、热值和沃泊指数的变化若使气质超出机组燃料适用范围，可能迫使调整控制或降低出力。发表时间未知；这是作者对燃料兼容条件及性能后果的定性判断，不构成特定机型或项目性能的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。明确气质与机组燃料适用范围的匹配条件及超界后果，实质贡献于当前接口和性能工作单。连续完整引文及供气上下文充分；无敏感内容、真实冲突或拟替换，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      },
+      "source_candidate_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:1"
+      ],
+      "limitations": "未指定机组技术、型号、燃料适用范围、指标单位与阈值、气质变化幅度、控制方式、降额幅度、测试方法或运行阶段。不能认定三项指标可互换，也不能推定任何具体机组已经发生降额。",
+      "conflict_check": "现有IEA采用陈述关注管道共同中断及附加保障，本项关注气质兼容性，是不同失效机制，未形成同工况冲突或完整重复。所供legacy的IREN价格记录不相关，其余筛选记录为空；检查非穷尽，不覆盖或替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-interfaces的燃料兼容限制及OBJ-fuel-supply-performance的降额机制。仍需机型对应的OEM燃料规范、取样测量方法、运行工况、调整或降额记录与反证；两个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc",
+        "source_report_sha256": "8833d3e19dbf0b6fe850b69cddbc0777a1536948f38d51854add7898053f1750",
+        "request_sha256": "5ffddecd5bebefbe14b426d99e4e520f9e69bc7a3170e9b8b881f5bac6911929"
+      },
+      "object_mapping_check": "本项实际讨论供给天然气的质量及其与用气机组的接口，支持site:gas-supply。原文仅称machine，未确定为燃气轮机或燃气往复式机组；control changes也未指向DCIM/BMS，因此不增加设备或控制软件映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83",
+      "evidence_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:2:ev:0"
+      ],
+      "id": "adoption:review:e661e58c720beaaa2191dae4",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:gas-supply",
+        "site:permits"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-supply"
+      ],
+      "reading_revision_id": "rev-a26afce7e3034c2899a11e852e271c15",
+      "status": "adopted",
+      "text": "SemiAnalysis《What is So Hard About Behind-The-Meter Power For Datacenters? Part 1》第19页称，得克萨斯州数据中心开发商越来越多地自行建设管道，并把州层面的对接机构概括为Texas Railroad Commission；作者同时说明，联邦水域穿越许可和地役权仍适用，纯私人支线没有征收权，单一拒绝方可迫使改线。发表时间未知；这是作者对开发主体和建设约束的说明，不构成当前监管规则、具体项目许可或法律权利的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。开发商自建这一交付角色和许可、地役权、私人支线约束实质贡献于当前供应交付工作单。连续引文保留明确限定，周边案例提供充分语境；所供材料未显示敏感内容、真实冲突或拟替换，符合B档有归因的局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.178,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3941ba8bbbb20225920816778187f8abc4194ccc7c6333ba7a3a4c9bed930467",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 40296,
+            "output_tokens": 5158,
+            "reasoning_output_tokens": 476
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "20bfe53a7ce92dd240b5b7b75436cdf1c51d74126e3d20bda5fc489645f7510e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37568,
+              "output_tokens": 435,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      },
+      "source_candidate_ids": [
+        "rev-a26afce7e3034c2899a11e852e271c15:chunk:18:claim:2"
+      ],
+      "limitations": "未给出自行建设趋势的统计口径、适用法律条文、具体支线法律身份、许可清单、地役权协议或实际改线记录。不能把“only”概括解释为仅需一个机构审批，也不能认定所有得州管道都无征收权。相关内容属于开发建设阶段讨论，未证明项目已开工或投运。",
+      "conflict_check": "原文“only”与随后联邦许可和地役权限定之间存在措辞张力，但限定已明确给出，按完整段落理解不构成两套同条件的相反结论。当前IEA采用陈述讨论供气风险，与本项开发路径相容；所供legacy没有得州管道监管或征收权的同口径反证，IREN价格记录不相关。未发现真实冲突或完整重复；检查非穷尽，不替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-supply中的交付主体、审批及路由约束。仍需当前适用法规、项目和管道类型、开发主体职责、许可与地役权状态、交期及生命周期成本分解；本项不能回答完整供应经济性或证明具体项目可交付，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc",
+        "source_report_sha256": "8833d3e19dbf0b6fe850b69cddbc0777a1536948f38d51854add7898053f1750",
+        "request_sha256": "5ffddecd5bebefbe14b426d99e4e520f9e69bc7a3170e9b8b881f5bac6911929"
+      },
+      "object_mapping_check": "得州数据中心管道自建与私人支线路由属于root下site:gas-supply；明确的联邦水域穿越许可及建设监管约束属于root下site:permits。原文未建立取水权，不映射site:water-rights；候选引文未点名具体开发企业，不继承周边案例的actor标签。"
     }
   ],
   "answers": [],
