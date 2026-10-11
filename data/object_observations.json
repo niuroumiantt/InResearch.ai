@@ -23172,6 +23172,496 @@
       "recorded_at": "2026-10-11T21:45:19.048819+00:00",
       "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
       "claim_sha256": "0ce2f07ac1446731707d762ec4289638150fc8cf3240f3815c4d1e258d1ce2ef"
+    },
+    {
+      "metric": "network_switch.mounting",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "19” rack mount",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:09b5e07c7f4397a1972c9b6ec07a17ef",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "19” rack mount",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "708f16dc38cc0e29986ffbdd371f00b5d31eb299720d6386a27bf2e1e5f492fb"
+    },
+    {
+      "metric": "network_switch.weight",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "23.5 kg",
+      "unit": "kg",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:4cbcf1a7bb58436f2336034a62f6c3f9",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "23.5 kg",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "708e61fce502a45a8b9d682ca24ac4e61791e1b3ec7cc3e516bd8654e966e3a7"
+    },
+    {
+      "metric": "network_switch.humidity",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "Operational: 10% to 85% non-condensing\nNon-Operational: 10% to 90% non-condensing",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:f82c355d62f9ccdf38d2bd1d003b4c19",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "Operational: 10% to 85% non-condensing\nNon-Operational: 10% to 90% non-condensing",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "b75a10e20fd7d2c70236004bfeda667c73cdbd637327c8f87bfdf93858762ff8"
+    },
+    {
+      "metric": "network_switch.altitude",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "3050m",
+      "unit": "m",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:5a918018a3e64430afffe91cf09ee354",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "3050m",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "a9c29e57df4d67e57c09a4300e92dee8cb69ed461a4b53222bbee0f736e99dd7"
+    },
+    {
+      "metric": "network_switch.manufacturer_safety_emc_claims",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "CB, cTUVus, CE, CU, S_Mark, FCC, VCCI, ICES, RCM, BSMI, KCC, CCC",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:0136c48c6c50c4a1ac74087b8f5358db",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "CB, cTUVus, CE, CU, S_Mark, FCC, VCCI, ICES, RCM, BSMI, KCC, CCC",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "1e96f156e0bf7f936ec4c918528ac3f3286f4d96583b74a555d569d51fe0c5fe"
+    },
+    {
+      "metric": "network_switch.manufacturer_rohs_claim",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "RoHS compliant",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:de45f357c52d735b43aa489d866add94",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "RoHS compliant",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "8049e8b4948fc81d64c0c3036c5d002bafc3787b3c1ba5fa0746174905d39dc4"
+    },
+    {
+      "metric": "network_switch.management_cpu",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "Intel x86 Xeon, Hexa-core Coffee Lake E-2276ME w/secured-boot",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:9b02d5f9673192e7317b64fe5a0019c3",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "Intel x86 Xeon, Hexa-core Coffee Lake E-2276ME w/secured-boot",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "62060f62e1300d0191ac804199be3e937fad9c266548dcc096f7980883f78ef3"
+    },
+    {
+      "metric": "network_switch.pcie",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "Gen3 x4",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:260c44d891579cb66ef15093d905ebc5",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "Gen3 x4",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "34400b71e75cdbaf5675f4f3a56fe71c2421b565487a846d21ae587a58b59892"
+    },
+    {
+      "metric": "network_switch.switch_asic",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "NVIDIA Spectrum®-4",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:dcb9fd7b168d085a4a50f98c0fafd91c",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "NVIDIA Spectrum®-4",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "112e51b0b0395e9f07bbcf2b4e2f3ec7234b065d526ca8cb988869bce9542281"
+    },
+    {
+      "metric": "network_switch.management_memory",
+      "scope": {
+        "configuration": "SN5600 chassis in Spectrum-4 SN5000 2U manual",
+        "condition": "Exact SN5600 table, not preceding SN5400. Operational/storage humidity and connector port groups retained; certification labels are manufacturer claims."
+      },
+      "value": "32GB RAM DDR4, 160GB SSD",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA SN5600 hardware table. Management CPU/memory/PCIe not accelerator compute or switch fabric bandwidth.",
+      "effective_at": null,
+      "assumptions": [
+        "Source Last updated June 15, 2026 is source page version date, not observation of deployed equipment.",
+        "Manufacturer rated specs and compliance claims not independent operational or certification verification."
+      ],
+      "id": "observation:72a45eb7d2439ee2193d68cf621e13d5",
+      "object_id": "product:8adfe8d4d5caff831f04c2cf34a3809c",
+      "source": {
+        "sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+        "url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+        "locator": "excerpt:page:1",
+        "quote": "32GB RAM DDR4, 160GB SSD",
+        "context_sha256": "abc9158a5c83f72f4a96e4bd699a9e527b3821b74a8f637c7986ebd20a07d2e3",
+        "published_at": "2026-06-15",
+        "first_received_at": "2026-10-01T11:09:08.736678+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA SN5600 source-field review in this session)",
+        "at": "2026-10-11T22:44:11.896396+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten model-specific native cells between SN5600 Specifications and SN5600D Specifications in official archived NVIDIA SN5000 hardware manual. SN5400, SN5600D and SN5610 are excluded. Mounting19inch, weight23.5kg, separate operational/storage humidity, altitude3050m, manufacturer safety/EMC and RoHS claims, Intel management CPU, PCIeGen3x4, Spectrum4 ASIC and32GB DDR4/160GB SSD retained exactly. No certification independent verification or accelerator workload claim. Connector cage information already exists under port_count and was excluded to avoid duplicate semantics. Page Last updated June15 2026 supports source-version disclosure date through publication_quote; effective installation date remains null. All445 old records and143 identities preserved. Ordinary supplemental adoption only, no whole-document or model-validation closure.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA SN5600 source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T22:44:11.896396+00:00",
+      "recorded_at": "2026-10-11T22:44:11.965272+00:00",
+      "proposal_sha256": "562960d29f27e387a6c2d5820ec380715a81a7c7a118e9dbad05081efe098926",
+      "claim_sha256": "983f81cea489fedb38e54c114d1eb775d03e0152a92a4a448155ad0769c512a5"
     }
   ]
 }
