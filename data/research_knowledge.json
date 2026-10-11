@@ -56848,6 +56848,88 @@
         },
         "batch_id": "a0b4c98ca091768408e4f03b3f11d09972b11ca816f3a113719c03f6dc83c3af"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3261cea6da8a34c6f51cdda6284b7601d43eebe1a9f97727304542c4a92879ed",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:14:claim:4:ev:0",
+      "locator": "page:15/chunk:14",
+      "object_ids": [],
+      "page_index": 14,
+      "question_ids": [],
+      "quote": "there are growing concerns over the impact of data centres on the\n                  environment and electricity prices. This has led to increased public scrutiny, and to policy\n                  responses to address these issues.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:55:30+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。环境和电价担忧引发公众审视与政策回应，实质关联当前M04-Q04的社会及政策反应部分，并为M05-Q04的社会阻力研究提供间接线索。连续原文及周边语境充分，无敏感、真实冲突、拟替换或其他A条件，符合B类限定归因的部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04",
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.401,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "daaddfc7eb8561766b1f1bc9bc810f4848ee2d5130caac82f2f6fdf9f4525286",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65761,
+            "output_tokens": 1163,
+            "reasoning_output_tokens": 202
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.141,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6391656c80c4e1170b0bd448c67d42ec043003284defd791b5572fbdded398ed",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66309,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 183
+            }
+          }
+        },
+        "batch_id": "734de3b01539e9e2c8d983d0da847e3faf091f1ac82a38911dcef2bffe5fb6c4"
+      }
     }
   ],
   "statements": [
@@ -110128,6 +110210,106 @@
         "request_sha256": "e8fbd4a376abf0d1299d7bdb46a97568f9355e30cde7865cf4d56909acda0a2c"
       },
       "object_mapping_check": "独立依据原文明示的比较对象映射：Munters受访者讨论冷水机组内置的典型水侧节能器，实际设备范围属于冷水与CDU链下的part:chiller，故选择actor:munters、chain:thermal/2和part:chiller。未描述冷冻水泵管阀配置、冷却塔或CDU，不追加这些部件；该映射来自主张内容而非继承Reader标签。所选证据统一采用上述范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:14:claim:4:ev:0"
+      ],
+      "id": "adoption:review:dd3a8b66a5d3facf5788783d",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q04",
+        "M05-Q04"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》引言中称，对数据中心环境及电价影响的担忧正在增加，并已带来更强的公众审视及针对这些问题的政策回应。这是IEA的一般性描述，未明确具体地域、项目或开发阶段，未经本次独立核验；报告发表时间未确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:55:30+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。环境和电价担忧引发公众审视与政策回应，实质关联当前M04-Q04的社会及政策反应部分，并为M05-Q04的社会阻力研究提供间接线索。连续原文及周边语境充分，无敏感、真实冲突、拟替换或其他A条件，符合B类限定归因的部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04",
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.401,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "daaddfc7eb8561766b1f1bc9bc810f4848ee2d5130caac82f2f6fdf9f4525286",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65761,
+            "output_tokens": 1163,
+            "reasoning_output_tokens": 202
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.141,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6391656c80c4e1170b0bd448c67d42ec043003284defd791b5572fbdded398ed",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66309,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 183
+            }
+          }
+        },
+        "batch_id": "734de3b01539e9e2c8d983d0da847e3faf091f1ac82a38911dcef2bffe5fb6c4"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:14:claim:4"
+      ],
+      "limitations": "本段没有指明公众行动、政策名称、回应日期或具体项目，也没有电价、需量费、涨幅、PPA价格或居民成本分摊数据。担忧与政策回应不能证明实际环境损害、居民成本转嫁或社区反对造成项目延期、取消。原生文本覆盖完整不等于全文图像审阅完成；本次支持限于所供原生页面及封存摘要。",
+      "conflict_check": "已采用的IEA负荷与零售电价弱关系及局部效应限制，讨论实际价格关系，与公众担忧和政策回应可以并存。Gallup美国公众担忧、SCCS苏格兰倡议及马萨诸塞州保护机制属于不同地域、主体和具体主张；本项增加IEA对公众审视与政策回应的一般描述，未发现同一主张的既有规范记录。哥伦布账单预测、PJM容量账单反事实及核电PPA情景也不构成同口径冲突。所供legacy匹配为空，检查不是穷尽性外部反证检索，不覆盖已有结论。",
+      "gap_dependency_check": "对M04-Q04仅支持存在与电价担忧相关的公众和政策反应，仍需PPA价格序列、居民费率与成本分摊资料、具体政治反应的一手记录及因果证据。对M05-Q04仅提供一般社会阻力线索，仍需具体社区、反对理由、项目审批建设时间线、延期或取消结果及反对与结果的可复查关系和反证。两项问题保持开放，不更新价格、时长或容量参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "734de3b01539e9e2c8d983d0da847e3faf091f1ac82a38911dcef2bffe5fb6c4",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "446190b43d4b0b0a0c2da04468166db68109ac92c23b251f5e84bc053f73d563"
+      },
+      "object_mapping_check": "独立审查后采用空对象范围。本项是未指定地域和项目的数据中心公众及政策反应描述；root的名称和类型对应一座AI数据中心，不能承接一般行业主张。原文未确立具体设施系统、土地或水权、并网协议、许可条件或合同中允许的主体；政策回应也不能自动映射site:permits。因此不继承Reader的root标签，所选证据统一采用空的主张级对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
