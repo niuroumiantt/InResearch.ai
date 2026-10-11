@@ -45,4 +45,4 @@
 
 project-ledger.json为168条来源记载，不是去重后的物理园区普查；每条容量角度/阶段保留在原文，未取原件/Reader SHA留null。网站发布与Reader/editorial接收分开；部署版本和生产页面回执仍须实际确认。数据库规模和架构评估见 ../../../reviews/2026-10-11/datacenter-research/。
 
-合并后 verify-data-center-publication 作业读取生产8个具体文件与healthz，日志内输出实际HTTP/SHA回执；检查失败不等于已上线，未验证生产实际交互或公众号交付。
+合并后 verify-data-center-publication 作业读取生产9个具体文件与healthz，日志内输出实际HTTP/SHA回执；检查失败不等于已上线，未验证生产实际交互或公众号交付。

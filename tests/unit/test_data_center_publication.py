@@ -14,10 +14,10 @@ spec.loader.exec_module(verifier)
 
 class Response:
     status = 200
-    headers = {"Content-Type": "text/html"}
-    def __init__(self, body, path):
+    def __init__(self, body, path, content_type=None):
         self.body = body
         self.path = path
+        self.headers = {'Content-Type': content_type or ('application/json' if path == '/healthz' or path.endswith('.json') else 'text/html')}
     def __enter__(self):
         return self
     def __exit__(self, *args):
@@ -39,6 +39,8 @@ class PublicationVerifierTests(unittest.TestCase):
     def test_stale_source_bytes_and_unhealthy_service_never_pass(self):
         body = b'<a id="datacenter-capacity-study" href="/research/data-centers-2026.html">Study</a>'
         self.assertTrue(self.check(body, expected=body)["ok"])
+        with patch.object(verifier.OPENER, "open", return_value=Response(body, "/report.html", "text/plain")):
+            self.assertFalse(verifier.check({"path": "/report.html", "sha256": verifier.sha(body)}, "revision", time.monotonic()+5)["ok"])
         self.assertFalse(self.check(body, expected=body+b"new source")["ok"])
         self.assertFalse(self.check(b'{"ok": false, "service": "inresearch"}', "/healthz")["ok"])
         self.assertTrue(self.check(b'{"ok": true, "service": "inresearch"}', "/healthz")["ok"])

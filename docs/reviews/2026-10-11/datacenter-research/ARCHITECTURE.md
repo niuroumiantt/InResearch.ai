@@ -40,4 +40,4 @@
 
 ## 生产链接核验
 
-新增只读main-push作业，在GitHub执行固定HTTPS生产域名的healthz及8个源码载体字节/报告入口比对，8分钟总期限，失败保留JSON日志和annotation。无服务器写入、无凭据、无localhost回退；不以HTTP源码SHA证明全部服务器Git版本或生产JavaScript渲染，也不代Reader接收。
+新增只读main-push作业，在GitHub执行固定HTTPS生产域名的healthz及9个源码载体（含台账脚本）字节/报告入口比对，8分钟总期限，失败保留JSON日志和annotation。无服务器写入、无凭据、无localhost回退；不以HTTP源码SHA证明全部服务器Git版本或生产JavaScript渲染，也不代Reader接收。

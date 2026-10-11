@@ -2,6 +2,7 @@
 """Read-only verification of this checkout's published research files."""
 import gzip
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -30,6 +31,7 @@ FILES = [
     (f"{DOCS}/chart-data.json",
      "/research/data-centers-2026-chart-data.json"),
     ("web/pages/report.html", "/report.html"),
+    ("web/components/datacenter-research-ledger.js", "/assets/datacenter-research-ledger.js"),
 ]
 
 
@@ -123,7 +125,8 @@ def check(item, commit, deadline):
             if encoding in ("", "identity"):
                 body = raw
             elif encoding == "gzip":
-                body = gzip.decompress(raw)
+                with gzip.GzipFile(fileobj=io.BytesIO(raw)) as encoded:
+                    body = encoded.read(MAX_BYTES + 1)
             else:
                 raise ValueError("unsupported content encoding")
             if len(body) > MAX_BYTES:
@@ -137,6 +140,12 @@ def check(item, commit, deadline):
             )
             if response.status != 200:
                 raise ValueError("HTTP status was not 200")
+            content_type = (response.headers.get("Content-Type") or "").split(";", 1)[0].strip().lower()
+            expected_types = ({"text/html"} if item["path"].endswith(".html") else
+                              {"application/json"} if item["path"].endswith(".json") or item["path"] == "/healthz" else
+                              {"application/javascript", "text/javascript"})
+            if content_type not in expected_types:
+                raise ValueError("unexpected Content-Type for published resource")
             if item.get("sha256") and sha(body) != item["sha256"]:
                 raise ValueError("published bytes differ from checkout")
             if item["path"] == "/healthz":
