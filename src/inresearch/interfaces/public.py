@@ -10,10 +10,16 @@ from inresearch.workflow.product_catalog import COMPANIES
 
 # 目录三项 + 账本，及它们的子页（爆炸图的 3D、芯片级镜头与规格库入口）。
 READER_PAGES = ('/', '/industry.html', '/projects.html', '/project.html', '/market.html', '/index.html', '/node.html', '/ledger.html', '/bom.html', '/bom3d.html', '/rack3d.html', '/server-plan.html', '/campus-plan.html', '/facility-atlas.html', '/power-atlas.html', '/thermal-atlas.html', '/compute-atlas.html', '/control-atlas.html', '/cross-scale-atlas.html', '/network-atlas.html', '/storage-atlas.html', '/memory-atlas.html', '/rack-atlas.html', '/rack-exploded.html', '/chip-atlas.html',
-                '/product-catalog.html', '/compute-catalog.html', '/report.html')
+                '/product-catalog.html', '/compute-catalog.html', '/report.html',
+                '/research/data-centers-2026.html',
+                '/research/data-centers-2026-us.html',
+                '/research/data-centers-2026-sea.html',
+                '/research/data-centers-2026-cn.html',
+                '/research/data-centers-2026-projects.html')
 # 这些页面读的登记与生成物。目标表的行不含来源 URL（来源登记在 part_fetch.json，不公开）。
 READER_DATA = ('/data/dashboard.json', '/data/dashboard_rules.json', '/data/tco_targets.json', '/data/tco_factors.json',
                '/data/datacenter_model.json', '/data/prices.json', '/data/companies.json',
+               '/research/data-centers-2026-project-ledger.json', '/research/data-centers-2026-chart-data.json',
                '/framework/bom.json', '/framework/site_rights.json', '/framework/indicators.json', '/framework/modules.json',
                '/framework/tco_factors.json', '/framework/tco_targets.json')
 # 只读接口。写接口、任务板、供应台账、用户管理不在内。规格库每家登记公司一条（GET 只读；POST 接收端仍要机器凭证）。

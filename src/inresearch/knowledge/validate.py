@@ -116,6 +116,22 @@ def main():
             bad = set(cap_by) - STATUS_LEVELS
             if bad:
                 err(f"projects[{sid}]: by_status 含非法状态 {bad}")
+        assessment = r.get('capacity_assessment')
+        if assessment is not None:
+            valid = isinstance(assessment, dict)
+            if valid:
+                valid = (assessment.get('kind') in ('estimate', 'legacy_estimate')
+                         and assessment.get('status') in ('provisional', 'reviewed')
+                         and isinstance(assessment.get('basis_note'), str)
+                         and bool(assessment['basis_note'].strip())
+                         and days_since(assessment.get('recorded_at')) is not None
+                         and (assessment.get('as_of') is None or days_since(assessment['as_of']) is not None)
+                         and all(isinstance(assessment.get(k), list)
+                                 and all(isinstance(v, str) and v.strip() for v in assessment[k])
+                                 for k in ('assumptions', 'missing_conditions'))
+                         and bool(assessment.get('assumptions') or assessment.get('missing_conditions')))
+            if not valid:
+                err(f"projects[{sid}]: 估算须明确类型、状态、时间、依据及假设/待补条件")
         if not r.get("sources"):
             err(f"projects[{sid}]: 缺 sources")
         for s in r.get("sources", []):
