@@ -44748,6 +44748,93 @@
         },
         "batch_id": "31a484272a70b30d8ca41d8e6628d850c97d4b2f3bda2bc41ed341ac6c1669ec"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bbd9d745d925118b89d304023669f05454f91d57f992311bc13753204060481c",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:18:claim:3:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "actor:alphabet-google",
+        "part:ai-asic"
+      ],
+      "page_index": 18,
+      "question_ids": [],
+      "quote": "certain cases, we are seeing demand for TPU hardware; TPU hardware in other data​\n ​centers as well.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:19:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文引文及相邻问答充分支持限定归因的需求陈述，对当前TPU对外部署需求、云基础设施与硬件产品边界、下游需求传导工单有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A类条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-M06-Q02",
+          "Q-NODE-activity-V2-boundary",
+          "Q-NODE-activity-V2-chain",
+          "Q-NODE-demand-D1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 36.181,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "32c9e8a21355e4f7ff83a8f79e713cda33caba1c4acd296d1bfbc39a110bda3e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68058,
+            "output_tokens": 1453,
+            "reasoning_output_tokens": 267
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.659,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "643705ffe7cef6e240e5ed333b40e8bba8098702b58391fa3f8995a2d35652e7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68819,
+              "output_tokens": 489,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "d886f69d9625c94de45d2b7c9d77db5c2b0830bf3e5f74f7a3926363747add49"
+      }
     }
   ],
   "statements": [
@@ -87117,6 +87204,113 @@
         "request_sha256": "b1b544dc8be07ef3720a5ecf2c2662eea6e9ae70e442a0565c56485318966048"
       },
       "object_mapping_check": "依据原生上下文，该主张描述一个具名AI数据中心项目的整体建设里程碑，与root“一座 AI 数据中心”的范围相符。引文未明确具体建筑部件、供电工程或许可事项，因此不细分映射到设施、土建、电网或设备；该范围来自独立复核，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:18:claim:3:ev:0"
+      ],
+      "id": "adoption:review:46b8a64ae6f90b701e3b55f9",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:alphabet-google",
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "M06-Q02",
+        "NODE-activity-V2-boundary",
+        "NODE-activity-V2-chain",
+        "NODE-demand-D1-boundary"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet及Google首席执行官Sundar Pichai在《Alphabet Q1 2026 Earnings Call》中表示，Google Cloud基础设施需求强劲，并称在某些情况下也看到其他数据中心对TPU硬件的需求。来源确切发表时间未知；这是来源中的管理层定性需求陈述，不构成已完成硬件销售、交付或部署的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:19:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文引文及相邻问答充分支持限定归因的需求陈述，对当前TPU对外部署需求、云基础设施与硬件产品边界、下游需求传导工单有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A类条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-M06-Q02",
+          "Q-NODE-activity-V2-boundary",
+          "Q-NODE-activity-V2-chain",
+          "Q-NODE-demand-D1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 36.181,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "32c9e8a21355e4f7ff83a8f79e713cda33caba1c4acd296d1bfbc39a110bda3e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68058,
+            "output_tokens": 1453,
+            "reasoning_output_tokens": 267
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.659,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "643705ffe7cef6e240e5ed333b40e8bba8098702b58391fa3f8995a2d35652e7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68819,
+              "output_tokens": 489,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "d886f69d9625c94de45d2b7c9d77db5c2b0830bf3e5f74f7a3926363747add49"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:18:claim:3"
+      ],
+      "limitations": "未披露需求方身份、地域、TPU型号、数量、订单金额、需求统计方法或交付时间；“其他数据中心”未明确其所有者、运营方、付款方或硬件资产归属。需求不等于签约、发货、验收或投运，不能据此计算实际部署量、GPU与ASIC份额、负载率或容量。Q1 2026是材料报告期，所供原生页面未建立确切发表日期；URL日期不能替代原文日期证据。阅读覆盖限于PDF原生文本，未进行视觉审阅。",
+      "conflict_check": "已采用的adoption:review:46332a8949f45f839718afbf涉及向特定客户自有数据中心交付TPU的计划及2026—2027年收入预期，adoption:review:9c7509743d274bef28464dba涉及发货节奏与季度收入波动预期。本项补充管理层所见需求，既不证明上述预测已实现，也不是其完整重复。设备交付取证声明与本项兼容。所供legacy谷歌API token记录属于服务使用量，不能作为TPU硬件需求的同口径反证；合同及项目匹配记录为空。未发现规范重复或真实冲突，不替换既有结论；检查限于所供材料，不代表完成外部反证检索。",
+      "gap_dependency_check": "M06-Q02仅获得谷歌TPU对外需求的定性关联线索，仍缺各ASIC阵营实际部署量、下一代规划及GPU与ASIC份额。NODE-activity-V2-boundary和NODE-demand-D1-boundary仅获得Cloud基础设施需求与TPU硬件需求两种表述的局部区分，尚缺完整交易的产品、付款方、资产所有者、运营方、使用方及互斥边界。NODE-activity-V2-chain仅获得下游需求线索，尚缺订单兑现、上游交付、周期、约束传导、反例和领先指标验证。公司及产品材料不自动覆盖整个活动节点；所有问题保持开放，不更新模型输入、容量总量或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d886f69d9625c94de45d2b7c9d77db5c2b0830bf3e5f74f7a3926363747add49",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "6b710a3dcd09a8f3b2a7a92035b34d88a932ada7ba70d87b60f0720847e18108"
+      },
+      "object_mapping_check": "独立核对对象契约：Alphabet及Google、Google Cloud对应actor:alphabet-google（谷歌）；明确讨论的TPU硬件对应计算链下的part:ai-asic（定制AI ASIC）。原文仅涉及谷歌TPU，不支持包含其他自研阵营的组合actor完整范围，因此不继承该Reader标签。未明确服务器、整机柜或某座数据中心的资产范围；Cloud基础设施的泛称不足以建立具体IT系统映射，不添加root、system:compute、system:it、网络或控制系统对象。"
     }
   ],
   "answers": [],
