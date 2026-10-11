@@ -44919,6 +44919,87 @@
         },
         "batch_id": "77599fe7e74e6ebfccc39b497b866c399b1f93eed9be7b33a6cd140db9a9e7ee"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c0a6909f42a2a4799bef0bf6ddd9576ff156d5ec81996be8e2ddac713629e99f",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:3:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [],
+      "page_index": 11,
+      "question_ids": [],
+      "quote": "Seven of eight utility forecasts highlighted AI as a key driver of\ndemand growth (Wilson and Zimmerman 2023).",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:54:53+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。连续原文及相邻预测方法讨论充分，对当前M01-Q04贡献AI被公用事业预测识别为需求增长驱动的定性证据，属于有限部分支持。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级有限采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 29.69,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f839479739d1a72cb004aeb61ba0f3f439190eb70147eaa7b57a2bccc03d9518",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 34714,
+            "output_tokens": 1117,
+            "reasoning_output_tokens": 218
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.858,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7d2f07b92d5f9d905591849e9284f61642ff8284a2d32c27d490045bcf42b329",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 35204,
+              "output_tokens": 516,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "c3bdbf766748eadce246222d2a3136f40e9d900e4ee7e393e0dca120e0b61c69"
+      }
     }
   ],
   "statements": [
@@ -87496,6 +87577,104 @@
         "request_sha256": "bfe60635f415998eade1d9966c31cda0d58514e6da16b4c30d90d0ea4b94f216"
       },
       "object_mapping_check": "独立依据对象契约核对：相邻正文明确该电厂属于拟建数据中心场址的天然气发电计划，实际资产范围匹配system:power下的“发电与储能”链chain:power/3；能源部土地归属匹配site:land。未说明发电设备类型，不能映射燃气轮机或燃气往复式机组；没有储能证据，不映射BESS。所选主张不确认整个数据中心的所有权，故不沿用root标签，也不加入相邻投资方或使用方的主体映射。美国政府和能源部没有允许的主体ID，保留名称而不新增节点。所选证据统一使用此审核后的主张范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:3:ev:0"
+      ],
+      "id": "adoption:review:cdc4672eb9965f1bea942768",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q04"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者在美国数据中心用电需求讨论中援引Wilson和Zimmerman（2023）称，八份公用事业预测中有七份将AI列为电力需求增长的关键驱动因素。这是报告转述的预测判断，不构成对实际AI负载增长、AI与传统负载占比或增速差的独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:54:53+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。连续原文及相邻预测方法讨论充分，对当前M01-Q04贡献AI被公用事业预测识别为需求增长驱动的定性证据，属于有限部分支持。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级有限采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 29.69,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f839479739d1a72cb004aeb61ba0f3f439190eb70147eaa7b57a2bccc03d9518",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 34714,
+            "output_tokens": 1117,
+            "reasoning_output_tokens": 218
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.858,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7d2f07b92d5f9d905591849e9284f61642ff8284a2d32c27d490045bcf42b329",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 35204,
+              "output_tokens": 516,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "c3bdbf766748eadce246222d2a3136f40e9d900e4ee7e393e0dca120e0b61c69"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:3"
+      ],
+      "limitations": "报告发表日期未知；2023是被引文献的引用年份，不能据此确定八份预测的发布日期或预测区间。所供段落未列出预测样本、各自地域、负载定义、数量或增速，也未提供原始公用事业预测供独立复核。七份与八份是预测份数，不能转换为AI负载占比。全文覆盖仅为原生文本，未完成图表视觉审阅。",
+      "conflict_check": "已采用的LBNL模型更新说明涉及AI加速服务器建模，IEA记录涉及AI专用设施容量增长，均与本条的预测驱动因素判断不同，不构成重复或同口径冲突。原文对Georgia Power负载预测的争议及历史预测偏高的提醒限制预测可信度，但不反驳七份预测曾突出AI这一转述。所供legacy匹配记录为空；检查限于所供材料，不覆盖外部全部反证，也不替换既有结论。",
+      "gap_dependency_check": "M01-Q04仍需AI与传统负载的明确分类、同地域同时间同口径的负载或用电序列、统计分母及可复查增速推导；还需原始公用事业预测、样本覆盖与方法说明核查本条转述。此证据只贡献预期增长驱动线索，不确定负载占比、增速差或投运状态，不汇总GW、不更新模型值或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c3bdbf766748eadce246222d2a3136f40e9d900e4ee7e393e0dca120e0b61c69",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "8785034678154cb6687e9fdedfdb300897722b4ee90b46b4c7eff74c8ecbb4fc"
+      },
+      "object_mapping_check": "独立复核后，本条实际范围是公用事业预测对AI需求驱动因素的判断，未描述一座AI数据中心设施、内部系统或部件，也未涉及电力配额、并网协议或排队权利。因此不映射root、system:power或site:grid，不因出现AI或用电需求而增加基础设施标签。空对象列表保留M01-Q04的有效部分关系，所选证据统一采用此主张范围。"
     }
   ],
   "answers": [],
