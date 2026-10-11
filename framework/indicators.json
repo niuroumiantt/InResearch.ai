@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-09-26",
+  "updated": "2026-10-11",
   "note": "监测指标注册表（L4）。value/as_of 由数据更新时填写；threshold 方向见 direction 字段。状态由 src/inresearch/knowledge/validate.py 计算：green/yellow/red/stale/no_data。",
   "indicators": [
     {
@@ -45,13 +45,24 @@
       "direction": "info",
       "yellow": null,
       "red": null,
-      "value": 5.92,
-      "as_of": "2026-09-26",
+      "value": 4.27,
+      "as_of": "2026-10-11",
       "source": "projects 表聚合",
-      "auto_note": "projects 表 L8+ 聚合（库内口径，非全球普查）",
+      "auto_note": "projects 当前活跃去重 L8+ 单值小计（含已标记估算，非全球普查）；活跃站点中含区间 0、未知 85，均不按零计完整容量；排除非活跃 0、重复 1、组合 2",
       "metric_id": "global_operational_gw",
       "node": "root",
-      "variable_class": 1
+      "variable_class": 1,
+      "auto_coverage": {
+        "value_scope": "当前活跃去重站点的单值分期小计（含已标记估算）；区间与未知不按零计完整容量",
+        "active_sites": 123,
+        "ranged_sites": 0,
+        "unknown_sites": 85,
+        "has_unquantified_sites": true,
+        "inactive_sites_excluded": 0,
+        "duplicates_excluded": 1,
+        "portfolios_excluded": 2,
+        "estimated_operating_mw": 421
+      }
     },
     {
       "id": "pipeline_conversion_rate",
@@ -161,7 +172,7 @@
       "red": 50,
       "source": "contracts表 circular_flag 聚合",
       "value": 25.0,
-      "as_of": "2026-09-26",
+      "as_of": "2026-10-11",
       "auto_note": "contracts 表金额加权（样本小，仅示意）",
       "metric_id": "circular_deal_exposure",
       "node": "root",
@@ -178,7 +189,7 @@
       "red": null,
       "source": "财报RPO+contracts表",
       "value": 400,
-      "as_of": "2026-09-26",
+      "as_of": "2026-10-11",
       "auto_note": "contracts 表合计（种子样本）",
       "metric_id": "mega_contract_backlog",
       "node": "root",

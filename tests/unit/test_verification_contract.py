@@ -36,6 +36,20 @@ class VerificationContractTests(unittest.TestCase):
         (self.root / CONTRACT).write_text(json.dumps(self.map))
         return verification_errors(self.state, self.root)
 
+    def test_container_contract_requires_actual_ci_entry_and_function(self):
+        name='tests/container_cache.py';p=self.root/name;p.write_text('def main(): pass\n')
+        self.map['reviewed_files'][name]=hashlib.sha256(p.read_bytes()).hexdigest()
+        self.map['policies'][0]['tests'].append(name+'::main')
+        self.assertTrue(any('not in CI runner' in e for e in self.errors()))
+        workflow=self.root/'.github/workflows/validate.yml';workflow.parent.mkdir(parents=True)
+        workflow.write_text('run: |\n  python3 tests/container_cache.py\n')
+        self.assertEqual([],self.errors())
+        workflow.write_text('# python3 tests/container_cache.py\n')
+        self.assertTrue(any('not in CI runner' in e for e in self.errors()))
+        workflow.write_text('run: |\n  python3 tests/container_cache.py\n');p.write_text('def not_main(): pass\n')
+        self.map['reviewed_files'][name]=hashlib.sha256(p.read_bytes()).hexdigest()
+        self.assertTrue(any('not in CI runner' in e for e in self.errors()))
+
     def test_changed_rule_cannot_be_approved_by_inventory_refresh(self):
         self.assertEqual([], self.errors())
         (self.root / 'framework/current.md').write_text('new rule')

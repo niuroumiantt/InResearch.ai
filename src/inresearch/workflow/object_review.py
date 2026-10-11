@@ -74,8 +74,8 @@ def prepare(root,data,claims):
             else:
                 from inresearch.workflow.research_match import pages
                 native=pages(path);mode='pages'
-            cached[sha]=(native,mode,url,first)
-        native,mode,url,first=cached[sha];loc=evidence['locator']
+            cached[sha]=(native,mode,url,first,path)
+        native,mode,url,first,path=cached[sha];loc=evidence['locator']
         if mode=='json':
             observed=pointer(native,loc)
             # Native scalar extraction cannot silently change the source value.
@@ -83,9 +83,15 @@ def prepare(root,data,claims):
             quoted=str(observed)
             context=json.dumps(native,ensure_ascii=False,sort_keys=True,allow_nan=False)
         else:
-            match=re.fullmatch('excerpt:page:([1-9][0-9]*)',str(loc))
-            if not match or int(match[1])>len(native): raise ValueError('native_page_locator_required')
-            context=native[int(match[1])-1];quoted=evidence.get('quote')
+            frame=re.fullmatch('html:srcdoc:([1-9][0-9]*)',str(loc))
+            if frame:
+                from inresearch.adapters.html_document import srcdoc
+                context=srcdoc(path,int(frame[1]))
+            else:
+                match=re.fullmatch('excerpt:page:([1-9][0-9]*)',str(loc))
+                if not match or int(match[1])>len(native): raise ValueError('native_page_locator_required')
+                context=native[int(match[1])-1]
+            quoted=evidence.get('quote')
             if not isinstance(quoted,str) or not quoted.strip() or ''.join(quoted.split()) not in ''.join(context.split()):
                 raise ValueError('quote_not_in_native_context')
         if len(context)>2_000_000: raise ValueError('source_context_requires_smaller_selection')

@@ -68,6 +68,47 @@ class CiScopeTests(unittest.TestCase):
             'source_versions':[{'source_sha256':'a'*64}], 'adoption':{'review_id':'review:new'}})
         return result
 
+    def object_append_fixture(self):
+        from inresearch.knowledge.object_observations import object_record
+        obj=object_record('product',{'company_id':'micron','model':'TEST-64','version':'unspecified'},'TEST-64')
+        row={'id':'observation:new','object_id':obj['id'],'target_ids':[],
+             'source':{'url':'https://example.test/spec','sha256':'a'*64,
+                       'context_sha256':'b'*64,'locator':'html:srcdoc:1','quote':'64 GB'},
+             'review':{'decision':'adopted'}}
+        return {'version':1,'objects':{obj['id']:obj},'records':[row]}
+
+    def test_object_append_selects_source_review_fetchspec_and_industry(self):
+        self.write(ci.OBJECT_PATH,json.dumps({'version':1,'objects':{},'records':[]}))
+        self.base=self.commit()
+        self.write(ci.OBJECT_PATH,json.dumps(self.object_append_fixture()))
+        plan=self.plan()
+        self.assertEqual((plan['mode'],plan['suites'],plan['storage']),('research',['industry','research'],False))
+        results={k:{'result':v} for k,v in {'scope':'success','validate':'success','browser':'success','storage-container':'skipped'}.items()}
+        self.assertTrue(ci.gate(plan,results));self.assertFalse(ci.gate(dict(plan,suites=['research']),results))
+        self.assertIn('test_object_review.py',ci.RESEARCH_TEST_PATTERNS)
+        self.assertIn('test_fetchspec_receive.py',ci.RESEARCH_TEST_PATTERNS)
+
+    def test_object_edits_revisions_types_ids_and_ambiguous_json_require_full(self):
+        base=self.object_append_fixture();following=copy.deepcopy(base)
+        following['records'].append({**copy.deepcopy(base['records'][0]),'id':'observation:next'})
+        self.assertTrue(ci.object_observations_append_only(json.dumps(base),json.dumps(following)))
+        bad=[]
+        for field,value in [('id','observation:new'),('revision',{'action':'correct'}),('target_ids',['target:x']),('source',{}),('review',{})]:
+            candidate=copy.deepcopy(following);candidate['records'][-1][field]=value;bad.append(candidate)
+        candidate=copy.deepcopy(following);candidate['records'][0]['target_ids']=[1];bad.append(candidate)
+        candidate=copy.deepcopy(following);candidate['records'].reverse();bad.append(candidate)
+        candidate=copy.deepcopy(following);next(iter(candidate['objects'].values()))['name']='renamed';bad.append(candidate)
+        candidate=copy.deepcopy(following);candidate['version']=True;bad.append(candidate)
+        candidate=copy.deepcopy(following);candidate['objects']['unused']=copy.deepcopy(next(iter(candidate['objects'].values())));bad.append(candidate)
+        for candidate in bad:
+            with self.subTest(candidate=candidate):
+                self.assertFalse(ci.object_observations_append_only(json.dumps(base),json.dumps(candidate)))
+        for raw in [json.dumps(following).replace('"version": 1','"version": 1, "version": 1'),json.dumps(following).replace('"version": 1','"version": NaN')]:
+            with self.assertRaises(ValueError):ci.object_observations_append_only(json.dumps(base),raw)
+        self.write(ci.OBJECT_PATH,json.dumps({'version':1,'objects':{},'records':[]}));self.base=self.commit()
+        self.write(ci.OBJECT_PATH,json.dumps(base));self.write('src/new.py','code change')
+        self.assertEqual(self.plan()['mode'],'full')
+
     def test_append_only_site_observations_run_industry_and_source_regression(self):
         self.write(ci.PROJECT_PATH, json.dumps(self.appended_observations()))
         plan = self.plan()
