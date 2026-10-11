@@ -57400,6 +57400,88 @@
         },
         "batch_id": "b969bff91573f7f838e27aada79d07b6d797de6b0525a63d38b6073cf470f972"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "dee966bedb479878db326f1448cf1737a42c823def234260eaaa27d83089c28f",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:27:claim:0:ev:0",
+      "locator": "page:28/chunk:27",
+      "object_ids": [],
+      "page_index": 27,
+      "question_ids": [],
+      "quote": "Software-level advances have\n                  so far yielded some of the largest and fastest reductions in energy per unit of compute, often\n                  without requiring new capital investment.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:51:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及复核评分均为6。软件效率改变单位计算能耗的机制，实质关联当前需求转化工作单；往往无需新增资本投资的判断，实质关联当前生产要素经济性工作单中的成本及技术变化。连续引文和相邻上下文充分，可作为有归属的部分定性证据采用。未发现敏感、真实冲突、拟替换或其他A条件，不回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.549,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a4f48eb6b0ea4a9fda952780ae7b18584f4b7771a906faba3103de0d91e363a1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67524,
+            "output_tokens": 1189,
+            "reasoning_output_tokens": 100
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.752,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b053ae0c2f30f96bfa5e01052029f32c6b33a9f83580bd3b1cfb4d7cc8c806c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68197,
+              "output_tokens": 428,
+              "reasoning_output_tokens": 128
+            }
+          }
+        },
+        "batch_id": "f31ce3d6ff905c59ea4b8b6ace24f5777429bfcfbff62fa262c0ab096d5a5162"
+      }
     }
   ],
   "statements": [
@@ -111180,6 +111262,106 @@
         "request_sha256": "8a3337a199401a79a63a83ecde4f29d99874b0d63b332bc3f551ec23928be55e"
       },
       "object_mapping_check": "独立复核后，实际范围是数据中心总体需求研究模型的输入来源与期限。合同中的root指一座AI数据中心；part:server专指加速器服务器，而本段服务器范围未限定为该类别，也未建立设施下system:it或计算链的具体资产范围。研究模型不属于DCIM/BMS，IEA和行业预测来源也无对应允许主体ID。因此不继承Reader的root、part:server标签，所选证据统一采用空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:27:claim:0:ev:0"
+      ],
+      "id": "adoption:review:4aaed879a6e48ea0f7e98211",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D1-conversion",
+        "NODE-demand-D1-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》（发表日期未知）讨论AI与数据中心用电效率时判断，截至其报告所述时点，软件层面的进步已带来部分最大、最快的单位计算能耗降幅，且往往无需新增资本投资。这是IEA的定性作者判断，不构成对具体降幅、资本支出或当前效率水平的独立认证；原文未限定适用地域或具体项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:51:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及复核评分均为6。软件效率改变单位计算能耗的机制，实质关联当前需求转化工作单；往往无需新增资本投资的判断，实质关联当前生产要素经济性工作单中的成本及技术变化。连续引文和相邻上下文充分，可作为有归属的部分定性证据采用。未发现敏感、真实冲突、拟替换或其他A条件，不回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.549,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a4f48eb6b0ea4a9fda952780ae7b18584f4b7771a906faba3103de0d91e363a1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67524,
+            "output_tokens": 1189,
+            "reasoning_output_tokens": 100
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.752,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b053ae0c2f30f96bfa5e01052029f32c6b33a9f83580bd3b1cfb4d7cc8c806c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68197,
+              "output_tokens": 428,
+              "reasoning_output_tokens": 128
+            }
+          }
+        },
+        "batch_id": "f31ce3d6ff905c59ea4b8b6ace24f5777429bfcfbff62fa262c0ab096d5a5162"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:27:claim:0"
+      ],
+      "limitations": "引文没有定义计算单位、比较基线、降幅、时间区间、软件实施成本或适用工作负载；“部分最大、最快”与“往往”不能改写为所有场景均成立或零成本。“迄今”相对于报告时点，发表日期未建立，不能解释为当前认证。相邻正文指出任务计算强度和采用规模可能增长，并预测即使效率继续改善，AI总用电近期仍将增加；该预测不能视为已实现结果，单位能耗下降也不能推出总用电下降。完整阅读覆盖限于PDF原生文本，未完成图像审阅。",
+      "conflict_check": "已采用adoption:review:6eaa10850d4e36c9452009cd讨论美国历史运行效率与总能耗，本项讨论软件层面的单位计算能耗，时期、地域及指标不同，兼容且非重复。adoption:review:a055d49329a63f53ae6dc59a描述IEA预测方法与预期服务器效率，也不是本项软件效率判断。SemiAnalysis关于终端用户电费、租金及中间商利润的既有观点涉及不同成本机制，未形成直接冲突。所供legacy事实、合同和项目匹配记录均为空；检查仅限所供材料，不代表完成外部反证检索，不覆盖或替换既有结论。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需计算或服务单位、工作负载、软硬件边界、效率系数、实施时滞及可复查测量和反证，才能连接算力与电力需求；本项不验证网络或存储转换。NODE-demand-D1-economics仍需软件实施及运行成本、资本支出对照、采用率、支付意愿、需求弹性和反弹效应数据。仅贡献单位能耗与资本需求的定性机制，不赋值模型参数，两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f31ce3d6ff905c59ea4b8b6ace24f5777429bfcfbff62fa262c0ab096d5a5162",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "c7f6ba2807e78a3b077356ec82e5d6fc27e5a33895b923b3ead2115b7a560f82"
+      },
+      "object_mapping_check": "独立复核后，主张范围是软件与算法效率对单位计算能耗及新增资本需求的总体影响。合同中的system:control及chain:control/1限定DCIM/BMS与固件，本项没有此类资产陈述；root指一座AI数据中心，计算和电力系统也具有设施资产范围，原文未建立该范围或具体部件对象。相邻GPU调度等例子不能自动扩展本项证据的对象范围。因此保留空对象列表及有效问题关联，所选证据统一使用这一审定范围，不继承文档标签。"
     }
   ],
   "answers": [],
