@@ -60142,6 +60142,87 @@
         },
         "batch_id": "b6825f251ae40b8a8f8fc03486f6d3a17a7e66de4cea0cdeb044d010cd4e0375"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "197ef59c269289e8d85ca5d2d9717ab9bf8efe432f9c89f382218ff0d58f9152",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:116:claim:0:ev:0",
+      "locator": "page:117/chunk:116",
+      "object_ids": [],
+      "page_index": 116,
+      "question_ids": [],
+      "quote": "Data and projections\n                  reflect spending over the lifetime of projects and are presented in real terms in year-2024\n                  US dollars converted at market exchange rates unless otherwise stated. Total investment\n                  reported for a year reflects the amount spent in that year.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:24:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6，评分6。年度支出归属、不变价基年及市场汇率口径，对当前经济性工单的资本支出计量和不可直接比较的口径具有实质性局部贡献。连续原文引句与投资定义跨页上下文充分，未识别敏感、真实冲突、替换或其他A类条件，符合B类限定归因采用要求。能源部门统计口径只提供关联证据，不自动覆盖数据中心节点自身，也不构成问题的完整回答。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 32.311,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "81989d1b7f413fe09ee9bd03405b50aeff56245d4d0345baf02b17eacee79567",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 69091,
+            "output_tokens": 1198,
+            "reasoning_output_tokens": 138
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 15.394,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d8491fa7474227c807e1136268e719bb5b15906200d56b9ab5eb6f2a3943827a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69738,
+              "output_tokens": 355,
+              "reasoning_output_tokens": 98
+            }
+          }
+        },
+        "batch_id": "ea6d790b5c9998039ff056cd42c125b200a98d1802c7a6d7965fb50c09428325"
+      }
     }
   ],
   "statements": [
@@ -116545,6 +116626,104 @@
         "request_sha256": "816caa8e0294e7fe109f4e9356dcc1c4568afacafa8e83dbfaf8b68d9c6b8a31"
       },
       "object_mapping_check": "独立依据主张范围映射：规划许可对应site:permits；扩建功能构成与建筑面积对应system:facility及其土地与建筑链chain:facility/1；具名多层数据中心建筑及其面积对应该链下part:shell，映射仅表示建筑方案范围，不认证土建实施或性能。LaSalle、Trilogy无允许的主体ID，不借用KDDI；KDDI并非本项2023年许可取得主体。未建立AI用途、土地权利交易、IT设备或供电配置，不选择root、site:land、system:it或电力对象。所选证据统一采用上述主张级范围，原候选与证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:116:claim:0:ev:0"
+      ],
+      "id": "adoption:review:4c4807b683c675302b1265e1",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》附录B第117页的投资定义续文中说明：投资数据及预测反映项目生命周期内的支出；除另有说明外，以按市场汇率换算的2024年不变价美元呈现；某年报告的投资总额反映该年实际支出的金额。这是该报告的投资统计口径说明，不是具体项目投资额、已实现预测或当前独立认证；所供原文未确立发布日期，也未限定具体地域或项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:24:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6，评分6。年度支出归属、不变价基年及市场汇率口径，对当前经济性工单的资本支出计量和不可直接比较的口径具有实质性局部贡献。连续原文引句与投资定义跨页上下文充分，未识别敏感、真实冲突、替换或其他A类条件，符合B类限定归因采用要求。能源部门统计口径只提供关联证据，不自动覆盖数据中心节点自身，也不构成问题的完整回答。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 32.311,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "81989d1b7f413fe09ee9bd03405b50aeff56245d4d0345baf02b17eacee79567",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 69091,
+            "output_tokens": 1198,
+            "reasoning_output_tokens": 138
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 15.394,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d8491fa7474227c807e1136268e719bb5b15906200d56b9ab5eb6f2a3943827a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69738,
+              "output_tokens": 355,
+              "reasoning_output_tokens": 98
+            }
+          }
+        },
+        "batch_id": "ea6d790b5c9998039ff056cd42c125b200a98d1802c7a6d7965fb50c09428325"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:116:claim:0"
+      ],
+      "limitations": "本项未提供投资金额、价格平减方法、具体汇率及换算时点，也未说明单项数据是否另有口径。2024年是币值基年，不能据此确定发布日期。项目生命周期支出与年度实际支出须同时保留，不能将项目全生命周期预算一次计入某年投资。该口径不能自动套用于数据中心自身资本支出、企业公告、合同承诺或其他报告。全报告仅完成原生文本读取，未完成视觉审阅。",
+      "conflict_check": "既有IEA投资定义陈述采用资本支出及燃料供应投资边界，其limitations提及本页时间与货币口径，但明确指出这些条件未由当时所选引句独立承载。本项以独立连续证据补充该口径，未发现相同已采用主张的规范重复，不替换原记录。既有LCOE、自建每MW成本、设施电费、资产交易和合同风险陈述涉及不同指标与范围，未发现同口径真实冲突。所供legacy匹配为空，检查不是穷尽性外部反证搜索。",
+      "gap_dependency_check": "仅部分支持NODE-activity-V1-economics中投资数据时间、币值与汇率口径的核对。后续比较仍需数据中心自身投资范围、逐年支出、原始金额和币种、价格平减及汇率方法、单项例外说明和反证。不能据此完成收入、运营成本、定价或合同风险计量，也不能认定不同来源投资额已经可比；问题保持开放，不更新模型参数或现有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ea6d790b5c9998039ff056cd42c125b200a98d1802c7a6d7965fb50c09428325",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "772ff90ad7ec8ad6e0b7ad5dc77377574266381d122e84e2193efe8dd67bc12d"
+      },
+      "object_mapping_check": "独立核对对象合同后，本项实际范围是能源部门的一般投资统计时间与货币口径，未确立root所指的一座AI数据中心，也未确立其系统、部件或场址权利。市场汇率与年度支出不构成具体供电或并网对象证据，IEA亦无允许的准确主体ID。因此采用空对象范围，保留有效经济性问题关联；所选证据适用同一审核对象范围，不改动原候选或证据标签。"
     }
   ],
   "answers": [],
