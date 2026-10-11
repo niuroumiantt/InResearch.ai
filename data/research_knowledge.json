@@ -53638,6 +53638,92 @@
         },
         "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "83374b3bdf88e25a38de45e5a27470977da1ae0aaee89c37961cb1994cd2389f",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:4:ev:0",
+      "locator": "page:32/chunk:31",
+      "object_ids": [],
+      "page_index": 31,
+      "question_ids": [
+        "NODE-demand-D3-boundary",
+        "NODE-demand-D3-conversion"
+      ],
+      "quote": "While individual edge\n                  models may be optimised for efficiency, the sheer scale of deployment across vehicles,\n                  factories, logistics networks and consumer devices can drive substantial aggregate electricity\n                  demand, although the potential magnitude remains uncertain.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:08:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文和周边原生文本充分支持限定归属的预测，与当前开放工单存在实质关系：对D4-conversion直接贡献终端部署规模到用电需求的定性机制；对D3-conversion仅贡献边缘推理部署规模与模型效率共同影响用电的局部机制；对边缘经济学仅贡献需求增长与效率改善的关系，不回答完整成本或设施需求。未识别敏感材料、真实冲突、替换要求或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-demand-D4-conversion",
+          "Q-NODE-workload-edge-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.186,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c627c207db60b57616e51bf47bba555b492b0435f6baef573d47f41270d1a535",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59011,
+            "output_tokens": 1242,
+            "reasoning_output_tokens": 158
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.374,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e221c3e48361b40799170cccd57b2379de445d939f0d89c88a45c0eb0cee3cd7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59678,
+              "output_tokens": 680,
+              "reasoning_output_tokens": 410
+            }
+          }
+        },
+        "batch_id": "688a3cc47c77b66dfeab93cf1981ea3249b9509ba161511197bae0ec9335e5f0"
+      }
     }
   ],
   "statements": [
@@ -103805,6 +103891,108 @@
         "request_sha256": "9bb313f3f2a595991d232b1e29a472c44952f83e5bdc9fbc82aceebc152ddca4"
       },
       "object_mapping_check": "原文明确Eaton参与下一代固态变压器探索，支持actor:eaton；其中面向数据中心的变压器平台路线属于system:power下的变电链chain:power/2。合同未提供单独Infineon主体，不继承组合主体标签。未建立大型电力变压器、具体开关柜或并网协议属性；电网现代化及可再生能源用途仅保留在文本中，不扩展为一座AI数据中心的其他资产。所选证据统一使用上述主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:4:ev:0"
+      ],
+      "id": "adoption:review:c4a1e9ed8726b473d7314fad",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D3-conversion",
+        "NODE-demand-D4-conversion",
+        "NODE-workload-edge-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第32页预计，即使单个边缘模型经过效率优化，在车辆、工厂、物流网络和消费设备中的大规模部署仍可能带来显著的总用电需求，但潜在规模尚不确定。周边原文将物理系统与边缘设备中的AI应用界定为把用电需求扩展至数据中心之外的情形。这是IEA的定性预测，不是已实现用电需求的独立验证；报告出版时间、预测实现时间、适用地域及具体部署项目阶段未由所供原文确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:08:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文和周边原生文本充分支持限定归属的预测，与当前开放工单存在实质关系：对D4-conversion直接贡献终端部署规模到用电需求的定性机制；对D3-conversion仅贡献边缘推理部署规模与模型效率共同影响用电的局部机制；对边缘经济学仅贡献需求增长与效率改善的关系，不回答完整成本或设施需求。未识别敏感材料、真实冲突、替换要求或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-demand-D4-conversion",
+          "Q-NODE-workload-edge-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.186,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c627c207db60b57616e51bf47bba555b492b0435f6baef573d47f41270d1a535",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59011,
+            "output_tokens": 1242,
+            "reasoning_output_tokens": 158
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.374,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e221c3e48361b40799170cccd57b2379de445d939f0d89c88a45c0eb0cee3cd7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59678,
+              "output_tokens": 680,
+              "reasoning_output_tokens": 410
+            }
+          }
+        },
+        "batch_id": "688a3cc47c77b66dfeab93cf1981ea3249b9509ba161511197bae0ec9335e5f0"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:4"
+      ],
+      "limitations": "没有部署数量、单设备或单任务能耗、运行时长、工作负载构成、转换系数、时滞或实测验证，也没有单位有效产出成本、采购和交易边界。不能认定规模增长已经抵消效率改善，不能把终端用电计入数据中心用电或换算为数据中心GW、硬件及机房需求。",
+      "conflict_check": "已比对所供采用陈述及相关legacy记录。Google单位提示效率改善和IEA单次查询能耗下降预测讨论单位能耗，与部署规模可能带来较大总需求属于不同分母，不构成真实冲突。简单文本搜索替代情景、智能体持续运行机制及长任务邻近性观点均非本项的规范重复。legacy中的美国数据中心2026年CO2预测及乘用车类比涉及排放和不同地理、设施范围，不提供边缘设备用电反证。未发现可确认重复或真实冲突；反证检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "三个关联问题仅获得定性部分支持，均保持开放。仍需带日期的一手部署与能耗数据、计量边界、工作负载及运行条件、转换系数、时滞和反证；边缘经济学另需有效产出分母及完整成本构成。NODE-demand-D3-boundary不列入本次问题映射：数据中心之外的用电边界不能直接确立D3层的提供、购买及上下层交易范围。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "688a3cc47c77b66dfeab93cf1981ea3249b9509ba161511197bae0ec9335e5f0",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "a6c5f65127f94f007bd1b23ab64f907269bf2cc7d8fd939e39a4d52e312d6591"
+      },
+      "object_mapping_check": "本项实际范围是车辆、工厂、物流网络和消费设备中的边缘AI部署及其总用电，契约没有相应终端、边缘服务或IEA主体对象。root是一座AI数据中心，其电力、计算、网络系统及部件均属于该设施资产；本项未建立这些资产范围。物流网络不是数据中心网络，工业控制也不是DCIM/BMS。故不继承候选或证据的root标签，采用空对象列表并保留有效问题关系；所选证据使用同一空对象范围。"
     }
   ],
   "answers": [],
