@@ -161,3 +161,9 @@ html[data-ui-skin] .industry .badge{color:var(--ui-body);background:var(--ui-sof
 
 /* Immediate homepage hover information; clicking keeps the full source-backed dialog. */
 .industry-home .map-tooltip{position:absolute;z-index:4;max-width:min(280px,calc(100% - 16px));padding:6px 8px;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid #6a929e;border-radius:3px;background:#edf7f7;color:#133540;box-shadow:0 2px 8px #0002;font-size:13px;line-height:1.4}
+
+/* Zoom-only detailed vectors keep boundary width constant in screen pixels. */
+#world-map[data-detail=true] .land{vector-effect:non-scaling-stroke;stroke-width:.8;filter:none}
+.admin1-boundaries{display:none;fill:none;stroke:var(--ui-map-line);stroke-width:.7;vector-effect:non-scaling-stroke;pointer-events:none}
+.show-admin1 .admin1-boundaries{display:inline}
+#map-detail-status{position:absolute;top:8px;left:8px;max-width:calc(100% - 16px);font:13px var(--ui-font);padding:5px 8px;border:1px solid var(--ui-line);background:var(--ui-surface);color:var(--ui-muted);z-index:2}

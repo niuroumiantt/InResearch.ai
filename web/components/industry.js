@@ -10,6 +10,7 @@ const isHome=['/','/index.html'].includes(path);
 const isReader=isHome||isProject||isMarket||isList||isCompany;
 if(isHome)document.body.classList.add('industry-home');
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
+let detailGeo=null,detailRequest=null;
 let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false, mapSignature='';
 const keys=['c','region','stage','relation','scope','role','site','country','province','address'];
 let fontCacheQueued=false,fontCacheStarted=false;
@@ -238,8 +239,8 @@ function renderMap(){
  if(!geo)return;
  hideTooltip();
  if(!svg.querySelector('#map-land-layer')){
-  let land='';for(const f of geo.features){const g=f.geometry;if(!g||!['Polygon','MultiPolygon'].includes(g.type))continue;const polygons=g.type==='Polygon'?[g.coordinates]:g.coordinates;for(const polygon of polygons){let d='';for(const ring of polygon)d+=ring.map(([lo,la],i)=>`${i?'L':'M'}${xy(lo,la).map(n=>n.toFixed(1)).join(',')}`).join('')+'Z';land+=`<path class="land" d="${d}"/>`;}}
-  svg.innerHTML=`<g id="map-land-layer">${land}${atlasBackdrop()}</g><g id="map-news-layer"></g><g id="map-sites-layer"></g><g id="map-raw-layer"></g>`;
+  svg.innerHTML='<g id="map-land-layer"></g><g id="map-news-layer"></g><g id="map-sites-layer"></g><g id="map-raw-layer"></g>';
+  renderLand();
  }
  if(!data)return;
  const stage=params.get('stage'), rows=data.rows.filter(p=>!p.portfolio&&validCoordinates(p.coordinates));
@@ -276,13 +277,42 @@ function renderMap(){
  }
  highlightMap();renderPopup();queueCachedFonts();
 }
+function renderLand(){
+ const source=detailGeo||geo;if(!source)return;
+ const path=(line,closed)=>line.map(([lo,la],i)=>`${i?'L':'M'}${xy(lo,la).map(n=>n.toFixed(detailGeo?3:1)).join(',')}`).join('')+(closed?'Z':'');
+ let land='',boundaries='';
+ for(const f of source.features){
+  const g=f.geometry;if(!g)continue;
+  if(['Polygon','MultiPolygon'].includes(g.type)){
+   const polygons=g.type==='Polygon'?[g.coordinates]:g.coordinates;
+   land+=`<path class="land" fill-rule="evenodd" d="${polygons.map(p=>p.map(r=>path(r,true)).join('')).join('')}"/>`;
+  }else if(f.properties?.layer==='admin1'&&['LineString','MultiLineString'].includes(g.type)){
+   boundaries+=(g.type==='LineString'?[g.coordinates]:g.coordinates).map(r=>path(r,false)).join('');
+  }
+ }
+ svg.querySelector('#map-land-layer').innerHTML=land+(boundaries?`<path class="admin1-boundaries" d="${boundaries}"/>`:'')+atlasBackdrop();
+ svg.dataset.detail=detailGeo?'true':'false';syncMapDetail();
+}
+function syncMapDetail(){
+ svg.classList.toggle('show-admin1',view[2]<=500);
+ if(view[2]>650){if($('map-detail-status'))$('map-detail-status').hidden=true;return;}
+ if(detailGeo||detailRequest)return;
+ const status=$('map-detail-status')||document.createElement('button');
+ if(!status.id){status.id='map-detail-status';status.type='button';status.setAttribute('aria-live','polite');status.onclick=()=>syncMapDetail();svg.parentElement.append(status);}
+ status.hidden=false;status.disabled=true;status.textContent='正在加载精细底图…';
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+ detailRequest=fetch('/assets/world-detail.geo.json',{signal:controller.signal}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(value=>{
+  if(value.type!=='FeatureCollection'||!value.features?.some(f=>f.properties?.layer==='admin1')||!value.features.some(f=>f.properties?.layer==='country'))throw Error();
+  detailGeo=value;status.hidden=true;renderLand();
+ }).catch(()=>{status.textContent='精细底图暂不可用 · 点击重试';status.disabled=false;status.hidden=view[2]>650;}).finally(()=>{clearTimeout(timer);detailRequest=null;});
+}
 function atlasBackdrop(){
  const lines=[];
  for(let lon=-180;lon<=180;lon+=30){const x=xy(lon,0)[0];lines.push(`<path d="M${x} 0V490"/><text x="${x+4}" y="16">${Math.abs(lon)}°${lon<0?'W':lon>0?'E':''}</text>`);}
  for(let lat=-60;lat<=60;lat+=30){const y=xy(0,lat)[1];lines.push(`<path d="M0 ${y}H1000"/><text x="6" y="${y-5}">${Math.abs(lat)}°${lat<0?'S':lat>0?'N':''}</text>`);}
  return `<g class="atlas-grid" aria-hidden="true">${lines.join('')}</g>`;
 }
-const svg=$('world-map');function setView(){hideTooltip();svg.setAttribute('viewBox',view.join(' '));for(const el of svg.querySelectorAll('[data-x]'))el.setAttribute('transform',`translate(${el.dataset.x} ${el.dataset.y}) scale(${view[2]/1000})`);positionPopup();}function zoom(f){const w=Math.max(140,Math.min(1000,view[2]*f)),h=w*.49;view=[view[0]+(view[2]-w)/2,view[1]+(view[3]-h)/2,w,h];setView();}
+const svg=$('world-map');function setView(){hideTooltip();svg.setAttribute('viewBox',view.join(' '));for(const el of svg.querySelectorAll('[data-x]'))el.setAttribute('transform',`translate(${el.dataset.x} ${el.dataset.y}) scale(${view[2]/1000})`);positionPopup();syncMapDetail();}function zoom(f){const w=Math.max(140,Math.min(1000,view[2]*f)),h=w*.49;view=[view[0]+(view[2]-w)/2,view[1]+(view[3]-h)/2,w,h];setView();}
 $('zoom-in').onclick=()=>zoom(.65);$('zoom-out').onclick=()=>zoom(1/.65);$('zoom-reset').onclick=()=>{view=[0,0,1000,490];setView();};
 let drag;svg.addEventListener('pointerdown',e=>{hideTooltip();if(e.target.closest('[data-id],[data-raw-id]'))return;drag={x:e.clientX,y:e.clientY,view:[...view]};svg.setPointerCapture(e.pointerId);});
 svg.addEventListener('pointermove',e=>{if(!drag)return;const k=view[2]/svg.getBoundingClientRect().width;view=[drag.view[0]-(e.clientX-drag.x)*k,drag.view[1]-(e.clientY-drag.y)*k,view[2],view[3]];setView();});
