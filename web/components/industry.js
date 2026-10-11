@@ -94,7 +94,8 @@ function capacityProvenance(p){
  const register=p.capacity_register||{};
  return [['planned','规划'],['operating','投运']].map(([key,label])=>{
   const r=register[key]||{},sources=r.sources||[];
-  return `<div>${label}信息时间：${esc(r.effective_at||'未知')}<br>${sources.slice(0,1).map(s=>sourceLink(s.url,'来源'+(s.date?' · 披露 '+s.date:''))).join('')||'来源待补'}</div>`;
+  const published=[...new Set((r.source_versions||[]).map(s=>s.published_at).filter(Boolean))];
+  return `<div><strong>${label}</strong><br>信息时间：${esc(r.effective_at||'未知')}<br>披露时间：${esc(published.join('、')||'未知')}<br>${sources.map(s=>sourceLink(s.url,s.note||'原始来源')+(s.date?' · 来源标注日期 '+esc(s.date):'')).join('<br>')||'来源待补'}</div>`;
  }).join('');
 }
 function capacityReviewDate(p){
