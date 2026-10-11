@@ -55636,6 +55636,92 @@
         },
         "batch_id": "0c195abe94dc788f7bdc9ef854fc3372fb127f6011cecaf3eabecd11775be9c1"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a1437b0365d78bb742be0eb3d5c65353cc610eb57c4e80ab5523cbaa267468e5",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:18:claim:5:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "actor:samsung",
+        "actor:sk-hynix"
+      ],
+      "page_index": 18,
+      "question_ids": [
+        "NODE-activity-V2-chain"
+      ],
+      "quote": "The continued growth in the market capitalisation of\n                  chip manufacturers highlights the bottlenecks in scaling cutting-edge manufacturing capacity\n                  and the reality that the AI surge is increasingly coming up against physical constraints (see\n                  Section 1.3).",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:40:18+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文及第18—20页上下文支持明确归因的限定陈述。先进制造扩产约束及其市场信号对当前硬件制造约束传导和潜在领先指标研究有实质性局部贡献；仅部分采用，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.828,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "97e7a78c8f50fd797066073bf8076b43579a0baa09f706c24ccab2b61ee3b88b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 62187,
+            "output_tokens": 1425,
+            "reasoning_output_tokens": 311
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.579,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e3475f6de4d56e3e377e249d2a0bda38b13f5ae7c8d4bcc370052c89816b2a2a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 62881,
+              "output_tokens": 594,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "d12048cea146e8100d34218b81e7a0c8cf617863002e41f2d61bf73e4ea98116"
+      }
     }
   ],
   "statements": [
@@ -107605,6 +107691,107 @@
         "request_sha256": "04b7f524c8890c118e0f8307e6aea04481eae843f5e699adf9d077e094519113"
       },
       "object_mapping_check": "独立依据原文范围复核：声明明确涉及BESS开发商的储能项目储备，对应电力系统下“发电与储能”链的part:bess。GridStor没有契约允许的主体ID，不新增主体映射。原文未说明UPS配置、并网权利或具体AI数据中心资产，不继承文档的chain:power/4标签，也不增加site:grid或root。所选证据统一采用此声明级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:18:claim:5:ev:0"
+      ],
+      "id": "adoption:review:eac09c47492d7994bf9e9cd4",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:samsung",
+        "actor:sk-hynix"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-chain"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》（确切发表日期未知）中，将芯片制造商市值持续增长解读为先进制造产能扩张存在瓶颈、AI增长越来越遭遇物理约束的信号。相邻图1.2将后续市场比较期间标为2025年10月至2026年2月。这是来源对历史市场信号与制造约束关系的定性解释，不构成经独立验证的因果关系、领先指标或当前供货状态认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:40:18+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文及第18—20页上下文支持明确归因的限定陈述。先进制造扩产约束及其市场信号对当前硬件制造约束传导和潜在领先指标研究有实质性局部贡献；仅部分采用，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.828,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "97e7a78c8f50fd797066073bf8076b43579a0baa09f706c24ccab2b61ee3b88b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 62187,
+            "output_tokens": 1425,
+            "reasoning_output_tokens": 311
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.579,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e3475f6de4d56e3e377e249d2a0bda38b13f5ae7c8d4bcc370052c89816b2a2a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 62881,
+              "output_tokens": 594,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "d12048cea146e8100d34218b81e7a0c8cf617863002e41f2d61bf73e4ea98116"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:18:claim:5"
+      ],
+      "limitations": "该段未量化制造产能、扩产进度、交付周期或下游交付影响，未提供指标验证方法或反例。图中芯片制造商组为TSMC、Samsung Electronics和SK hynix，组级市场信号不能赋予每家公司；未限定具体芯片产品、国家或项目阶段，不能推定为GPU、HBM或CoWoS专属瓶颈。确切发表时间未建立，图示比较期间不能替代出版日期。覆盖限于PDF原生文本，未进行视觉审阅；本包未提供所指Section 1.3的原生上下文。",
+      "conflict_check": "已采用的adoption:review:2bb3850ec87ba0ef4f980601报告市场分组走势，并保留存储制造产能短缺与股价增长的作者解释；本项补充先进制造扩产瓶颈及AI物理约束的概括性判断，存在重叠但不是完整重复。既有工艺、机柜集成、TPU需求及交付预期记录涉及不同范围，未发现同条件真实冲突。所供legacy匹配记录及当前回答为空；检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "NODE-activity-V2-chain获得制造扩产约束及潜在市场观察信号的定性支持，仍缺产能与订单原始数据、上游约束向集成和分销传导的记录、实际交期、下游需求兑现、反例及领先指标验证。制造商组级材料不能自动覆盖整个硬件制造、集成与分销节点。工作单保持开放，不更新模型输入、容量总量或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d12048cea146e8100d34218b81e7a0c8cf617863002e41f2d61bf73e4ea98116",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "917bad33221daf95eca03807f5af77067e5d0036aa21fcff54d13eaf8dcc9291"
+      },
+      "object_mapping_check": "独立依据第19页图注核对：本项chip manufacturers指TSMC、Samsung Electronics和SK hynix。契约内Samsung Electronics对应actor:samsung、SK hynix对应actor:sk-hynix，均为企业actor且parent为null；契约未提供TSMC对象，不能另造或替代ID。所选对象表示制造商组中可映射的成员，不将组级判断分配为各公司的已验证约束。Reader的root指一座AI数据中心，与企业市值和制造扩产判断的实际范围不符；未明确具体设施、GPU、ASIC、HBM或服务器产品，不增加基础设施或部件映射。所选证据统一使用这一声明级对象范围。"
     }
   ],
   "answers": [],
