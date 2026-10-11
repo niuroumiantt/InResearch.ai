@@ -6733,6 +6733,64 @@
       "status": "candidate",
       "stored_path": "originals/f6/f6e6381feb25e14d8c664adb6489be85fc0b7e92b33f081aa361c5f48918fc35/lancium-locations.html",
       "title": "Lancium Gigawatt AI Data Center Campuses"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "coverage": {
+        "characters_read": 7891,
+        "characters_total": 7891,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "id": "doc-4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "library_path": "library/by-node/root/2026_Data Center Dynamics_Applied Digital adds 75MW of capacity at Ellendale data__4a41d1286c8cd95a.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:anthropic",
+        "actor:applied-digital",
+        "actor:coreweave",
+        "actor:meta",
+        "root",
+        "site:grid",
+        "system:it"
+      ],
+      "question_ids": [
+        "OBJ-grid-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-ebf30deed76f4929bd3b9d7951186537",
+      "report_sha256": "dd96f12cc190a71840719e4a850e25cb1f1811f86f8563e1a4a25c163b3de1d9",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+        "url": "https://www.datacenterdynamics.com/en/news/applied-digital-adds-75mw-of-capacity-at-ellendale-data-center-campus-in-north-dakota/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/applied-digital-adds-75mw-of-capacity-at-ellendale-data-center-campus-in-north-dakota/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/4a/4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24/dcd-4a41d1286c8cd95a-Applied Digital adds 75MW of capacity at Ellendale data center ca.html",
+      "title": "Applied Digital adds 75MW of capacity at Ellendale data center campus in North Dakota"
     }
   ],
   "evidence": [
@@ -50689,6 +50747,174 @@
           }
         },
         "batch_id": "a158d773f91df8b8c9df4b62555efbdf80fa1b800ad19c45799ec042f6ddf1e5"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8f099359dc7447279e047bb4a05a02ab890b0e26bb0d87e1d913ee41134238ff",
+      "document_id": "doc-4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "id": "rev-ebf30deed76f4929bd3b9d7951186537:chunk:0:claim:12:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "actor:applied-digital"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Delta Forge 2 will be located near Brookwood",
+      "reading_revision_id": "rev-ebf30deed76f4929bd3b9d7951186537",
+      "source_sha256": "4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:39:51+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。两条引文各为连续原文片段，完整原生页面明确其同句关系、州名、项目归属及未来语气，周围园区列表提供充分语境。该规划项目的地域线索对当前M05-Q01的区域规划布局研究有实质但有限的贡献。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类归因部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.108,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a8778d01e390d3c61148721040ba5d036ffb8260fe9a4969abb4d5db845f59f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 61210,
+            "output_tokens": 1236,
+            "reasoning_output_tokens": 204
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.054,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "72d4cbe7bf2df6ffa19e1b336fba4d3d19f9a0e52b63f237f8337c224dcdd419",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61832,
+              "output_tokens": 393,
+              "reasoning_output_tokens": 150
+            }
+          }
+        },
+        "batch_id": "29eb5660cb5805f437c04d1d6ded43df9627d5240c64c9426093bb1fb2e30cf9"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8f099359dc7447279e047bb4a05a02ab890b0e26bb0d87e1d913ee41134238ff",
+      "document_id": "doc-4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "id": "rev-ebf30deed76f4929bd3b9d7951186537:chunk:0:claim:12:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "actor:applied-digital"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Alabama.",
+      "reading_revision_id": "rev-ebf30deed76f4929bd3b9d7951186537",
+      "source_sha256": "4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:39:51+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。两条引文各为连续原文片段，完整原生页面明确其同句关系、州名、项目归属及未来语气，周围园区列表提供充分语境。该规划项目的地域线索对当前M05-Q01的区域规划布局研究有实质但有限的贡献。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类归因部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.108,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a8778d01e390d3c61148721040ba5d036ffb8260fe9a4969abb4d5db845f59f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 61210,
+            "output_tokens": 1236,
+            "reasoning_output_tokens": 204
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.054,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "72d4cbe7bf2df6ffa19e1b336fba4d3d19f9a0e52b63f237f8337c224dcdd419",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61832,
+              "output_tokens": 393,
+              "reasoning_output_tokens": 150
+            }
+          }
+        },
+        "batch_id": "29eb5660cb5805f437c04d1d6ded43df9627d5240c64c9426093bb1fb2e30cf9"
       }
     }
   ],
@@ -98081,6 +98307,108 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24",
+      "evidence_ids": [
+        "rev-ebf30deed76f4929bd3b9d7951186537:chunk:0:claim:12:ev:0",
+        "rev-ebf30deed76f4929bd3b9d7951186537:chunk:0:claim:12:ev:1"
+      ],
+      "id": "adoption:review:e880d8c130dd15be5eac2f5c",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root",
+        "actor:applied-digital"
+      ],
+      "question_ids": [
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-ebf30deed76f4929bd3b9d7951186537",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年10月5日的报道中称，Applied Digital的Delta Forge 2计划位于美国阿拉巴马州Brookwood附近。这是来源当时报道的项目选址预测，不构成对项目当前选址落实、建设进度或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:39:51+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。两条引文各为连续原文片段，完整原生页面明确其同句关系、州名、项目归属及未来语气，周围园区列表提供充分语境。该规划项目的地域线索对当前M05-Q01的区域规划布局研究有实质但有限的贡献。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类归因部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.108,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a8778d01e390d3c61148721040ba5d036ffb8260fe9a4969abb4d5db845f59f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 61210,
+            "output_tokens": 1236,
+            "reasoning_output_tokens": 204
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.054,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "72d4cbe7bf2df6ffa19e1b336fba4d3d19f9a0e52b63f237f8337c224dcdd419",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61832,
+              "output_tokens": 393,
+              "reasoning_output_tokens": 150
+            }
+          }
+        },
+        "batch_id": "29eb5660cb5805f437c04d1d6ded43df9627d5240c64c9426093bb1fb2e30cf9"
+      },
+      "source_candidate_ids": [
+        "rev-ebf30deed76f4929bd3b9d7951186537:chunk:0:claim:12"
+      ],
+      "limitations": "报道为二手来源，所链接的项目报道及公司原始披露未在本包中独立核验。本条未提供具体地址、容量、开工或交付日期、许可、融资及并网条件。“附近”不能改写为Brookwood市内；未来选址陈述不能证明已经购地、开工或投运。不能将Ellendale或Delta Forge 1的容量移入本项目，也不能据此量化区域增长速度。",
+      "conflict_check": "所供已采用陈述涉及其他项目、区域统计或布局机制，未包含同范围的Delta Forge 2选址主张，未发现真实冲突或规范重复。legacy中的Google Jackson County和Meta Huntsville均为阿拉巴马州其他主体、其他地点的项目，不能与Brookwood附近的Delta Forge 2合并，也不构成反证。contracts.json和facts.json未供给匹配记录。核查限于所供材料，不代表外部反证已穷尽，不替换既有结论。",
+      "gap_dependency_check": "M05-Q01仅获得阿拉巴马州一个规划项目的地域线索，仍需公司原始公告、项目唯一标识、实际阶段、同口径容量及去重后的区域分阶段清单和历史增长序列。当前工作单的原始来源及反证要求尚未补齐；本条不能回答各区域容量分布，也不能回答俄亥俄、印第安纳或中东的崛起速度。问题保持开放，不指定漏斗等级、不汇总GW、不更新模型输入或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "29eb5660cb5805f437c04d1d6ded43df9627d5240c64c9426093bb1fb2e30cf9",
+        "source_report_sha256": "dd96f12cc190a71840719e4a850e25cb1f1811f86f8563e1a4a25c163b3de1d9",
+        "request_sha256": "d9ad07486a2cc8103209f0587e932ef092745030642605efd63c6a82ac3a89ec"
+      },
+      "object_mapping_check": "独立依据完整正文选择root及actor:applied-digital：Delta Forge 2作为Applied Digital五个AI Factory园区列表中的具名项目，主张范围是一个AI数据中心项目整体的未来地域布局，Applied Digital是正文明确关联的开发主体。Brookwood及Alabama仅为地理范围，未涉及地价、租金、区划或土地权利，故不映射site:land；也未确立内部系统、部件、并网权利或客户范围。两条所选证据统一采用此主张级对象范围，不继承Reader标签。"
     }
   ],
   "answers": [],
