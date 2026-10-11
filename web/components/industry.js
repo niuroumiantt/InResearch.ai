@@ -6,8 +6,8 @@ const safe=v=>{try{const u=new URL(v);return ['http:','https:'].includes(u.proto
 const num=v=>Number(v).toLocaleString('en-US',{maximumFractionDigits:2}), gw=v=>num(v/1000), money=v=>v>=1000?'$'+num(v/1000)+'T':'$'+num(v)+'B';
 const path=location.pathname, isProject=path==='/project.html', isMarket=path==='/market.html', isList=path==='/projects.html', isCompany=path==='/industry.html';
 const isHome=['/','/index.html'].includes(path);
-// This HTML also serves project/market/company aliases; preserve their full fonts.
-if(!isHome)$('home-fonts')?.setAttribute('media','all');
+// These aliases share the reader shell and its optional cached font reuse.
+const isReader=isHome||isProject||isMarket||isList||isCompany;
 if(isHome){document.body.classList.add('industry-home');$('pipeline-summary').remove();$('trends-section').remove();}
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
 let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false, mapSignature='';
@@ -15,7 +15,7 @@ const keys=['c','region','stage','relation','scope','role','site'];
 let fontCacheQueued=false,fontCacheStarted=false;
 function useCachedFonts(){
  const link=$('home-fonts');
- if(!isHome||!link||fontCacheStarted)return;
+ if(!isReader||!link||fontCacheStarted)return;
  if(!link.sheet){
   link.addEventListener('load',useCachedFonts,{once:true});
   link.addEventListener('error',()=>{link.dataset.fonts='fallback';},{once:true});
@@ -39,9 +39,9 @@ function useCachedFonts(){
  })).then(results=>{link.dataset.fonts=results.some(Boolean)?'cached':'fallback';});
 }
 function queueCachedFonts(){
- if(!isHome||fontCacheQueued||!data||!geo||!news&&!newsFailed)return;
+ if(!isReader||fontCacheQueued||!data||(isHome&&(!geo||!news&&!newsFailed)))return;
  fontCacheQueued=true;
- // Map and news are already readable; font reuse remains optional work.
+ // Reader content is already rendered; font reuse remains optional work.
  if(window.requestIdleCallback)requestIdleCallback(useCachedFonts);else setTimeout(useCachedFonts,0);
 }
 function url(page, changes={}) {const q=new URLSearchParams(params);for(const [k,v] of Object.entries(changes))v?q.set(k,v):q.delete(k);return page+(q.size?'?'+q:'');}
@@ -111,7 +111,7 @@ $('filters').addEventListener('change',e=>select({[e.target.name]:e.target.value
 $('stage-filter').onchange=e=>select({stage:e.target.value});
 $('lead-state').onchange=renderPipeline;
 window.addEventListener('inresearch:news-data',e=>{news=e.detail;newsFailed=false;renderPipeline();renderDaily();renderMap();});
-window.addEventListener('inresearch:news-state',e=>{newsFailed=e.detail.status==='failed';renderPipeline();renderDaily();});
+window.addEventListener('inresearch:news-state',e=>{newsFailed=e.detail.status==='failed';renderPipeline();renderDaily();queueCachedFonts();});
 window.addEventListener('inresearch:locate-news',e=>{const row=rawRecords().find(r=>r.id===e.detail.id);if(!validCoordinates(row?.coordinates))return;selectedSite='raw:'+row.id;pinned=false;view=[0,0,1000,490];setView();renderPopup();highlightMap();svg.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
 $('news-selection').onchange=e=>{document.querySelector('[data-datacenter-news]').dataset.newsSelection=e.target.value;window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...selection(),redraw:true}}));};
 function filters(){
@@ -362,7 +362,7 @@ function render(){
  $('detail').hidden=!isProject;$('market-detail').hidden=!isMarket;$('market-band').hidden=isProject;$('pipeline-section').hidden=!(isList||isProject);$('project-list').hidden=!isList||params.get('view')==='pipeline';if($('pipeline-summary'))$('pipeline-summary').hidden=hidden||isList;
  if(isList){$('atlas-layout').hidden=true;$('leaders-section').hidden=true;$('trends-section').hidden=true;$('market-band').hidden=true;}
  document.title=$('page-title').textContent+' · inresearch.ai';
- window.industryFilter=selection();window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:selection()}));
+ window.industryFilter=selection();window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:selection()}));queueCachedFonts();
 }
 let loading=false;
 async function load({quiet=false}={}){

@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.11.90
+> CURRENT · 基准版本 2026.10.11.91
 
 本页只定位当前规则与更新边界。实施细节进入各主题唯一源，发布过程进入 [决策记录](../docs/DECISIONS.md) 或交接；此前长篇阶段记录保留于 [历史快照](../docs/archive/2026-10-10/framework__CURRENT__before_reassessment.md)，不能作为当前执行指令。
 

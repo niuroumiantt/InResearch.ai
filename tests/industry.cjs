@@ -5,61 +5,92 @@ const {mkdirSync}=require('node:fs');
  const browser=await chromium.launch({headless:true,...(process.env.UI_BROWSER_EXECUTABLE?{executablePath:process.env.UI_BROWSER_EXECUTABLE}:{})});
  try{
   const base=process.env.UI_BASE_URL;if(process.env.UI_QA_DIR)mkdirSync(process.env.UI_QA_DIR,{recursive:true});
-  // A fresh real browser cache must show the atlas/news without downloading fonts.
-  const fontErrors=[],fontContext=await browser.newContext({viewport:{width:1440,height:900}});
-  fontContext.on('page',p=>p.on('pageerror',e=>fontErrors.push(e.message)));
-  try{
-   const cold=await fontContext.newPage(),coldFontResponses=[];
-   cold.on('response',r=>{if(/\.woff2(?:\?|$)/.test(r.url()))coldFontResponses.push(r.url());});
-   await cold.addInitScript(()=>{
-    const original=window.fetch.bind(window);window.homeFetches=[];
-    window.fetch=(url,options)=>{window.homeFetches.push({url:String(url),cache:options?.cache,mode:options?.mode,at:performance.now()});return original(url,options);};
-   });
-   await cold.goto(base+'/',{waitUntil:'domcontentloaded'});
-   await cold.locator('#world-map .site-point').first().waitFor();
-   await cold.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168');
-   await cold.waitForFunction(()=>document.getElementById('home-fonts').dataset.fonts==='fallback');
-   assert.equal(await cold.locator('#home-fonts').getAttribute('media'),'not all');
-   assert.deepEqual(coldFontResponses,[],'cold font cache produces no font response or network payload');
-   assert.equal(await cold.evaluate(()=>[...document.fonts].filter(f=>f.status==='loaded').length),0,'cold homepage uses system fallback');
-   const order=await cold.evaluate(()=>window.homeFetches),fontAttempts=order.filter(r=>r.url.includes('.woff2'));
-   assert.ok(fontAttempts.length>0,'font cache reuse was attempted');
-   const publicStarts=['/assets/world.geo.json','/api/industry?','/api/news?'].map(prefix=>order.find(r=>r.url.startsWith(prefix))?.at);
-   assert.ok(publicStarts.every(Number.isFinite),'map and both public projections start');
-   assert.ok(fontAttempts.every(r=>r.cache==='only-if-cached'&&r.mode==='same-origin'&&r.at>=Math.max(...publicStarts)),'cache-only font work follows map/news requests');
-   assert.ok(await cold.evaluate(()=>performance.getEntriesByType('resource').filter(r=>r.name.includes('.woff2')).every(r=>r.transferSize===0)),'cold font transfers stay zero');
-   for(const [width,height] of [[1366,768],[1440,900],[390,844],[320,740]]){
-    await cold.setViewportSize({width,height});
-    for(const mode of ['light','dark']){
-     await cold.locator('#ui-appearance').selectOption(mode);
-     assert.ok(await cold.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'system-font layout '+width+' '+mode);
-     if(width>1000)assert.ok(await cold.locator('#world-map').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),'cold atlas stays completely above fold '+width);
-     if(process.env.UI_QA_DIR)await cold.screenshot({path:process.env.UI_QA_DIR+`/homepage-cold-fonts-${width}-${mode}.png`,fullPage:width<1000});
-    }
+  // Font checks use actual HTTP cache bytes; only the stylesheet-delay case holds a request.
+  const fontErrors=[],readerEntries=[
+   {label:'home',url:'/',ready:'#world-map .site-point'},
+   {label:'index',url:'/index.html',ready:'#world-map .site-point'},
+   {label:'project',url:'/project.html?site=us-tx-abilene',ready:'#site-observation-timeline'},
+   {label:'projects',url:'/projects.html',ready:'#project-rows tbody tr'},
+   {label:'company',url:'/industry.html?c=meta',ready:'#world-map .site-point'},
+   {label:'market',url:'/market.html',ready:'#market-detail table'}
+  ];
+  const newFontContext=async()=>{
+   const context=await browser.newContext({viewport:{width:1440,height:900}});
+   context.on('page',p=>p.on('pageerror',e=>fontErrors.push(e.message)));return context;
+  };
+  const readEntry=async(page,entry)=>{
+   await page.goto(base+entry.url,{waitUntil:'domcontentloaded',timeout:10000});
+   await page.locator(entry.ready).first().waitFor({timeout:10000});
+   if(['home','index'].includes(entry.label))await page.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168',null,{timeout:10000});
+   if(entry.label==='project')assert.match(await page.locator('#capacity-estimate').innerText(),/运营约 421 MW IT[\s\S]*建设中未披露[\s\S]*2026-07-28/);
+   assert.equal(await page.locator('#home-fonts').getAttribute('media'),'not all',entry.label+' keeps full font CSS inactive');
+   assert.equal(await page.locator('#ui-skinbar').count(),1,entry.label+' navigation mounted');
+  };
+  const nativeReaderScreenshots=async(page,entry,state)=>{
+   for(const [width,height] of [[1440,900],[390,844]]){
+    await page.setViewportSize({width,height});
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${entry.label} ${state} ${width} has no page overflow`);
+    await page.screenshot({...(process.env.UI_QA_DIR?{path:process.env.UI_QA_DIR+`/reader-fonts-${entry.label}-${state}-${width}.png`}:{}),timeout:10000});
    }
-   // Prime the real HTTP cache, then prove the original Inter bytes are reused.
-   await cold.evaluate(async()=>{const r=await fetch('/assets/fonts/inter-variable.woff2',{cache:'force-cache'});if(!r.ok)throw Error('Font cache priming failed');await r.arrayBuffer();});
-   const warm=await fontContext.newPage();await warm.goto(base+'/index.html');
-   await warm.waitForFunction(()=>document.getElementById('home-fonts').dataset.fonts==='cached');
-   assert.ok(await warm.evaluate(()=>[...document.fonts].some(f=>f.family==='Inter'&&f.status==='loaded')),'cached original Inter becomes a loaded binary FontFace');
-   const inter=await warm.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.endsWith('/inter-variable.woff2'))?.toJSON());
-   assert.ok(inter&&inter.encodedBodySize>300000&&inter.transferSize===0,'warm Inter is read from the real browser cache without network transfer');
-   assert.equal(await warm.locator('#home-fonts').getAttribute('media'),'not all','warm cache never enables full font CSS');
-  }finally{await fontContext.close();}
-  // A delayed font descriptor stylesheet cannot hold navigation, map or news.
-  const slowContext=await browser.newContext({viewport:{width:1440,height:900}});
-  slowContext.on('page',p=>p.on('pageerror',e=>fontErrors.push(e.message)));
-  const slow=await slowContext.newPage();let releaseStyle;
-  const heldStyle=new Promise(resolve=>{releaseStyle=resolve;});
-  await slow.route('**/assets/fonts/fonts.css',async route=>{await heldStyle;await route.continue();});
+  };
+  const fontContext=await newFontContext();
   try{
-   await slow.goto(base+'/',{waitUntil:'domcontentloaded',timeout:10000});
-   await slow.locator('#world-map .site-point').first().waitFor({timeout:10000});
-   await slow.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168',null,{timeout:10000});
-   assert.equal(await slow.locator('#ui-skinbar').count(),1,'navigation mounts while font CSS is held');
-   assert.equal(await slow.locator('#home-fonts').getAttribute('media'),'not all');
-   assert.ok(await slow.evaluate(()=>performance.getEntriesByType('resource').filter(r=>r.name.includes('.woff2')).every(r=>r.transferSize===0)),'held font CSS produces no font transfers');
-  }finally{releaseStyle();await slowContext.close();}
+   for(const entry of readerEntries){
+    // Every alias starts with a separate empty real browser cache.
+    const context=entry.label==='home'?fontContext:await newFontContext();
+    try{
+     const cold=await context.newPage(),coldFontResponses=[];
+     cold.on('response',r=>{if(/\.woff2(?:\?|$)/.test(r.url()))coldFontResponses.push(r.url());});
+     await cold.addInitScript(()=>{
+      const original=window.fetch.bind(window);window.readerFetches=[];
+      window.fetch=(url,options)=>{window.readerFetches.push({url:String(url),cache:options?.cache,mode:options?.mode,at:performance.now()});return original(url,options);};
+     });
+     await readEntry(cold,entry);
+     await cold.waitForFunction(()=>document.getElementById('home-fonts').dataset.fonts==='fallback');
+     assert.deepEqual(coldFontResponses,[],entry.label+' cold font cache produces no font response or network payload');
+     assert.equal(await cold.evaluate(()=>[...document.fonts].filter(f=>f.status==='loaded').length),0,entry.label+' cold cache uses system fallback');
+     const order=await cold.evaluate(()=>window.readerFetches),fontAttempts=order.filter(r=>r.url.includes('.woff2'));
+     assert.ok(fontAttempts.length>0,entry.label+' attempted font cache reuse');
+     const publicStarts=['/assets/world.geo.json','/api/industry?','/api/news'].map(prefix=>order.find(r=>r.url.startsWith(prefix))?.at);
+     assert.ok(publicStarts.every(Number.isFinite),entry.label+' starts public content requests');
+     assert.ok(fontAttempts.every(r=>r.cache==='only-if-cached'&&r.mode==='same-origin'&&r.at>=Math.max(...publicStarts)),entry.label+' cache-only font work follows public requests');
+     assert.ok(await cold.evaluate(()=>performance.getEntriesByType('resource').filter(r=>r.name.includes('.woff2')).every(r=>r.transferSize===0)),entry.label+' cold font transfers stay zero');
+     await nativeReaderScreenshots(cold,entry,'cold');
+     if(entry.label==='home'){
+      for(const [width,height] of [[1366,768],[1440,900],[390,844],[320,740]]){
+       await cold.setViewportSize({width,height});
+       for(const mode of ['light','dark']){
+        await cold.locator('#ui-appearance').selectOption(mode);
+        assert.ok(await cold.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'system-font layout '+width+' '+mode);
+        if(width>1000)assert.ok(await cold.locator('#world-map').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),'cold atlas stays completely above fold '+width);
+        if(process.env.UI_QA_DIR)await cold.screenshot({path:process.env.UI_QA_DIR+`/homepage-cold-fonts-${width}-${mode}.png`,fullPage:width<1000,timeout:10000});
+       }
+      }
+      // Prime actual original Inter bytes in this one browser cache for the warm matrix.
+      await cold.evaluate(async()=>{const r=await fetch('/assets/fonts/inter-variable.woff2',{cache:'force-cache'});if(!r.ok)throw Error('Font cache priming failed');await r.arrayBuffer();});
+     }
+    }finally{if(context!==fontContext)await context.close();}
+   }
+   for(const entry of readerEntries){
+    const warm=await fontContext.newPage();await readEntry(warm,entry);
+    await warm.waitForFunction(()=>document.getElementById('home-fonts').dataset.fonts==='cached');
+    assert.ok(await warm.evaluate(()=>[...document.fonts].some(f=>f.family==='Inter'&&f.status==='loaded')),entry.label+' reuses an original binary Inter FontFace');
+    const inter=await warm.evaluate(()=>performance.getEntriesByType('resource').find(r=>r.name.endsWith('/inter-variable.woff2'))?.toJSON());
+    assert.ok(inter&&inter.encodedBodySize>300000&&inter.transferSize===0,entry.label+' reads real cached Inter bytes with zero network transfer');
+    await nativeReaderScreenshots(warm,entry,'cached');await warm.close();
+   }
+  }finally{await fontContext.close();}
+  for(const entry of readerEntries){
+   const context=await newFontContext(),slow=await context.newPage();let releaseStyle;
+   const heldStyle=new Promise(resolve=>{releaseStyle=resolve;});
+   await slow.route('**/assets/fonts/fonts.css',async route=>{await heldStyle;await route.continue();});
+   try{
+    await readEntry(slow,entry);
+    assert.equal(await slow.evaluate(()=>document.getElementById('home-fonts').sheet),null,entry.label+' descriptor CSS is still held');
+    assert.ok(await slow.evaluate(()=>performance.getEntriesByType('resource').filter(r=>r.name.includes('.woff2')).every(r=>r.transferSize===0)),entry.label+' held font CSS produces no font transfers');
+    await nativeReaderScreenshots(slow,entry,'held-css');
+   }finally{releaseStyle();await context.close();}
+  }
   assert.deepEqual(fontErrors,[]);
   const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   let overviewRequests=0;page.on('request',r=>{if(r.url().includes('/api/industry?')&&new URL(r.url()).searchParams.get('overview')==='1')overviewRequests++;});
@@ -115,8 +146,9 @@ const {mkdirSync}=require('node:fs');
   const api=await (await page.request.get(base+'/api/industry?c=microsoft&stage=construction')).json();
   await page.locator('#stats a').nth(1).click();
   await page.waitForFunction(()=>document.querySelector('#list-title')?.textContent.startsWith('建设中'));
-  assert.equal(await page.locator('#home-fonts').getAttribute('media'),'all','shared project HTML keeps its original full-font rule');
-  assert.ok(await page.evaluate(async()=>{await document.fonts.ready;const names=[...document.fonts].filter(f=>f.status==='loaded').map(f=>f.family);return names.includes('Inter')&&names.includes('Noto Sans SC');}),'project aliases still load both shared fonts');
+  assert.equal(await page.locator('#home-fonts').getAttribute('media'),'not all','project list shares the reader cache-only font rule');
+  await page.waitForFunction(()=>['cached','fallback'].includes(document.getElementById('home-fonts').dataset.fonts));
+  assert.ok(await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').every(f=>['Inter','Noto Sans SC'].includes(f.family));}),'project aliases reuse only available shared fonts');
   assert.equal(await page.locator('#project-rows tbody tr').count(),api.rows.length);
   const projectLink=page.locator('#project-rows tbody tr td:first-child a').first();
   await projectLink.click();await page.locator('#detail h2').first().waitFor();
