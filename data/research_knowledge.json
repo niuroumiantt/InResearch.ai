@@ -50523,6 +50523,173 @@
         },
         "batch_id": "07121cee048a117d3016aedc345ea3bba26179c990525e0cfcc0d1cca395067d"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "076fa94f9200e76d9187d3d922232d16c3edee852774c1ebe65dd13a7aa01c6c",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:2:claim:9:ev:0",
+      "locator": "page:1/chunk:2",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "strong empirical relationships between these characteristics, based on specifications for hundreds of cooling products.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:36:16+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文片段及其前后文支持作者关于冷却容量模型数据基础的陈述，对当前性能研究工单的估算方法与证据基础有实质但有限的贡献，符合B类部分采用条件。未发现敏感、真实冲突或替换要求，不触发A路由；不回答或关闭研究问题。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.705,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cabe20cec813f98f9a2f013bc87c983589b316778136bedbedec8e2ed03e66d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 39520,
+            "output_tokens": 3091,
+            "reasoning_output_tokens": 223
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.727,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cedd65db10c8df4dc9e67f40ebeac6320e0cf8a97a2866eac19bd2b1446d7f37",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 39811,
+              "output_tokens": 600,
+              "reasoning_output_tokens": 215
+            }
+          }
+        },
+        "batch_id": "a158d773f91df8b8c9df4b62555efbdf80fa1b800ad19c45799ec042f6ddf1e5"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "076fa94f9200e76d9187d3d922232d16c3edee852774c1ebe65dd13a7aa01c6c",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:2:claim:10:ev:0",
+      "locator": "page:1/chunk:2",
+      "object_ids": [
+        "part:chiller",
+        "part:dry-cooler"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The regression model we used to estimate the cooling capacity of an air-cooled chiller based on the number of fans on the chiller. We use a different model for cooling towers.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:36:16+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续完整引文及Cooling model上下文支持作者方法陈述，对当前性能研究工单的容量估算方法和设备类型适用边界有实质贡献，但不足以回答全部验收要求。没有A条件，可作B类部分采用，不关闭问题或修改模型参数。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.705,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cabe20cec813f98f9a2f013bc87c983589b316778136bedbedec8e2ed03e66d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 39520,
+            "output_tokens": 3091,
+            "reasoning_output_tokens": 223
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.727,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cedd65db10c8df4dc9e67f40ebeac6320e0cf8a97a2866eac19bd2b1446d7f37",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 39811,
+              "output_tokens": 600,
+              "reasoning_output_tokens": 215
+            }
+          }
+        },
+        "batch_id": "a158d773f91df8b8c9df4b62555efbdf80fa1b800ad19c45799ec042f6ddf1e5"
+      }
     }
   ],
   "statements": [
@@ -97665,6 +97832,255 @@
         "request_sha256": "6d76371750084ac72950be851c3472d96eda2d1ea8e64dec621fb60315be698e"
       },
       "object_mapping_check": "独立核对对象契约：CoreWeave是原文明示的公告及部署主体，支持actor:coreweave；部署对象明确为GPU加速器，匹配system:compute之下计算链的part:gpu，映射仅表示部件部署范围，不认证数量或性能。DataVita在契约中没有对应主体ID，不借用DataVolt等其他名称。数据中心是部署地点，未描述土地、建筑或消防安防变化，不继承system:facility；也未提出数据中心整体规模变化，不另加root。Nvidia在本项仅为GPU品牌，未被确立为公告或交易当事方，不另加主体映射。全部所选证据统一采用上述主张级对象范围，原候选和证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:2:claim:9:ev:0"
+      ],
+      "id": "adoption:review:9b0b9658436a0bdf50761175",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-performance"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "所供署名为Samaritan Research、页尾另称Epoch的《AI data centers documentation – Methodology》作者称，其冷却容量估算模型使用冷却类型、风扇数量与直径、机组占地等物理特征，并依据数百种冷却产品的规格数据发现这些特征之间的强经验关系。这是作者对其模型数据基础的说明，尚未经本次独立核实；来源发布日期未知，未限定具体项目、地域、设备型号或运行阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:36:16+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文片段及其前后文支持作者关于冷却容量模型数据基础的陈述，对当前性能研究工单的估算方法与证据基础有实质但有限的贡献，符合B类部分采用条件。未发现敏感、真实冲突或替换要求，不触发A路由；不回答或关闭研究问题。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.705,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cabe20cec813f98f9a2f013bc87c983589b316778136bedbedec8e2ed03e66d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 39520,
+            "output_tokens": 3091,
+            "reasoning_output_tokens": 223
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.727,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cedd65db10c8df4dc9e67f40ebeac6320e0cf8a97a2866eac19bd2b1446d7f37",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 39811,
+              "output_tokens": 600,
+              "reasoning_output_tokens": 215
+            }
+          }
+        },
+        "batch_id": "a158d773f91df8b8c9df4b62555efbdf80fa1b800ad19c45799ec042f6ddf1e5"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:2:claim:9"
+      ],
+      "limitations": "所选证据未提供产品清单、确切样本数、规格工况、关系系数、拟合指标或可复核的数据。原生全文承认模型受运行点和设备类型影响；作者所述验证不能视为本次独立验证。产品规格关系不等于设备实测性能、可靠性或失效机制，也不证明当前实际IT负载。",
+      "conflict_check": "现有采用声明adoption:review:b1c7d9f12eef77c1c22cbe63描述影像识别的模型输入，本条补充产品规格数据基础，既不重复该完整主张，也不替换它。所供legacy匹配记录为空，仅能说明本包未提供相关冲突记录，不能视为穷尽外部反证。未发现与当前采用结论的真实冲突。",
+      "gap_dependency_check": "OBJ-heat-reject-performance仍需具体设备与工况、规格数据来源、模型系数与误差、独立验证、可靠性及失效资料。本条只贡献性能估算方法的资料基础。Abilene原园区获批用能额度及同分期负荷接入等待起止原件仍缺失，本条不核验相关参数或更新现有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a158d773f91df8b8c9df4b62555efbdf80fa1b800ad19c45799ec042f6ddf1e5",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "3185d40b6332c586bfc8962aba534b9207effa8bdc0fe503896356f8e8e602b3"
+      },
+      "object_mapping_check": "独立按主张范围映射：引文及上下文泛指不同冷却设备的物理特征与容量模型，跨越排热和冷水链条，适合映射到system:thermal（水与散热）。未限定全部样本为冷水机组，不能继承候选的单一part:chiller标签；也没有IT设备、控制软件或并网权利主张。所选证据统一采用此主张范围，原始标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据是作者对产品规格数据及经验关系的说明，保持author_claim身份；未提供规格原件、观测序列或统计结果，不把作者的“强”判断提升为独立验证事实。",
+        "comparability_check": "缺少运行点、设备类别分布及拟合条件，不能将关系外推为跨设备通用性能参数。冷却容量估算与项目批准用能、接入额度、IT容量及排队等待不具有替代关系。",
+        "derivation_check": "不适用数值复算：本条未提出容量计算或定量观测结果，“数百种”也不是本次复算所得样本量。未提出B类观测或计算，因此该类独立第二次检查要求不适用。",
+        "scope_check": "范围为作者冷却容量估算模型的规格数据基础，没有特定测量系统、项目分期、地域、软件版本或工作负载；不是现场容量观测。",
+        "time_check": "来源发布日期、产品规格有效时间及模型版本时间均未知；全文其他日期和批次日期不能补作本条发布时间或有效时间。",
+        "units_check": "“数百种”仅保留原文概略产品计数精度，不转写为确切样本数。所选证据没有冷却容量数值或单位，不能生成MW、设施功率、IT功率或用能额度。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张为通用冷却模型的规格数据基础，没有Abilene原园区批准原件或容量结果，不能核验获批用能额度；请求阅读不表示该要求已满足。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "冷却产品规格与经验关系不涉及同项目同分期负荷接入申请、批准或排队起止日期，不能核验等待年限。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:2:claim:10:ev:0"
+      ],
+      "id": "adoption:review:5d0d792e2d4b9b88968cc3dc",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:chiller",
+        "part:dry-cooler"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-performance"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "所供署名为Samaritan Research、页尾另称Epoch的《AI data centers documentation – Methodology》作者称，其回归模型根据风冷冷水机组的风扇数量估算冷却容量，冷却塔则使用另一模型。这是作者对其容量估算方法及设备类型区分的说明，尚未经本次独立核实；来源发布日期未知，未限定具体型号、地域、项目分期或运行工况。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:36:16+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续完整引文及Cooling model上下文支持作者方法陈述，对当前性能研究工单的容量估算方法和设备类型适用边界有实质贡献，但不足以回答全部验收要求。没有A条件，可作B类部分采用，不关闭问题或修改模型参数。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.705,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cabe20cec813f98f9a2f013bc87c983589b316778136bedbedec8e2ed03e66d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 39520,
+            "output_tokens": 3091,
+            "reasoning_output_tokens": 223
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.727,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cedd65db10c8df4dc9e67f40ebeac6320e0cf8a97a2866eac19bd2b1446d7f37",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 39811,
+              "output_tokens": 600,
+              "reasoning_output_tokens": 215
+            }
+          }
+        },
+        "batch_id": "a158d773f91df8b8c9df4b62555efbdf80fa1b800ad19c45799ec042f6ddf1e5"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:2:claim:10"
+      ],
+      "limitations": "所选证据未给出回归方程、系数、适用型号、容量单位、运行点或误差。原生全文说明冷却模型存在工况不确定性，并举出误识别设备类型导致错误估算的例子；本条不能证明风扇数量单独决定容量，也不构成设备实测性能、可靠性或失效试验。",
+      "conflict_check": "现有采用声明adoption:review:b1c7d9f12eef77c1c22cbe63泛述影像识别与模型输入，本条新增风冷冷水机组回归及冷却塔另用模型的区分，不构成完整重复或替换。原文关于设备误识别的局限与本条相容，属于适用边界而非相反结论。所供legacy匹配记录为空，未发现本包内真实冲突，但未进行外部穷尽反证检索。",
+      "gap_dependency_check": "OBJ-heat-reject-performance仍需回归参数、样本与型号范围、设计和实际工况、独立校准与验证、可靠性及失效机制证据。设备类型正确识别是应用模型的前提。本条没有Abilene容量结果、批准用能原件或接入等待里程碑，不能填补两项项目参数要求。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a158d773f91df8b8c9df4b62555efbdf80fa1b800ad19c45799ec042f6ddf1e5",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "3185d40b6332c586bfc8962aba534b9207effa8bdc0fe503896356f8e8e602b3"
+      },
+      "object_mapping_check": "独立按两句实际对象映射：风冷冷水机组属于冷水与CDU链下的part:chiller；冷却塔属于排热链下的part:dry-cooler，其名称明确包含冷却塔。两者均为主张明确讨论的对象，因此所选证据统一采用这两个部件范围。风扇是冷却机组特征，不能映射为服务器风扇；不继承其他文档级标签，原始标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据是作者对自身回归模型和设备分类方法的说明，保持author_claim身份。没有提供回归结果、设备观测值或可执行模型，不将其改称已验证性能事实。",
+        "comparability_check": "原文明确两类设备使用不同模型，不能互换或外推为通用每风扇容量；还需运行点与型号范围才能比较。方法描述不能替代Abilene批准用能、IT容量结果或申请排队等待数据。",
+        "derivation_check": "不适用数值复算：所选证据没有风扇数量值、回归系数或容量结果，不能执行独立容量计算。未提出B类数值观测或计算，因此该类独立第二次检查要求不适用。",
+        "scope_check": "范围为风冷冷水机组和冷却塔的模型选择与输入方法，没有具体设备测量、地点、分期、软件版本或工作负载，不能作为项目实测结果。",
+        "time_check": "来源发布日期、模型有效时间和设备规格时间未知；不能以本次审查日期证明模型当前已获验证或某项目已运行。",
+        "units_check": "风扇数量为计数输入，冷却容量为估算输出，但所选证据没有数值或容量单位。不得生成单机MW值，亦不得混同冷却容量、IT功率、设施功率及接入配额。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张为两类冷却设备的容量估算方法，没有原园区获批额度、批准原件或具体IT容量结果。即使获得冷却容量估算，也不能据此认证energy_quota_mw。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "设备容量回归及分类不涉及负荷接入申请、批准或排队起止里程碑，不能用于计算同项目同分期的等待年限。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
