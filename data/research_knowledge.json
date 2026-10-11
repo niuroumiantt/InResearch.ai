@@ -55551,6 +55551,91 @@
         },
         "batch_id": "5b3ab26dadd395992268c37f0eef2a6abd2e29d1a5db1d78da733fdb24d5c647"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "796259ad56738515a9126ecaa8471cb1c06343c3bd45501860b7d46790691490",
+      "document_id": "doc-307bfd42751f7c8162bee3288728c6edcfc84e13fd017c1e61ed3970834c92ec",
+      "id": "rev-ecb5172af47b48ac91488643695ba0b2:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:bess"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-bess-supply"
+      ],
+      "quote": "Headquartered in Portland, Oregon, GridStor is a developer of BESS and an independent power producer. The company’s project pipeline currently exceeds more than 3GW of projects across the western and southern US in late-stage development or under construction.",
+      "reading_revision_id": "rev-ecb5172af47b48ac91488643695ba0b2",
+      "source_sha256": "307bfd42751f7c8162bee3288728c6edcfc84e13fd017c1e61ed3970834c92ec",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:09:44+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文及完整报道语境支持开发商角色、地域、项目储备规模和开发阶段，实质贡献当前BESS供应工单中的供给参与方与项目成熟度线索。证据贡献有限但明确，未发现敏感、真实冲突、拟替换或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a1d70047ca12627337d6a999d5a5b24701897d2e78ea39e8eba53dcfb7472a79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68305,
+            "output_tokens": 1077,
+            "reasoning_output_tokens": 140
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.19,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "790217ac80880d55956d91a3384bd7bbbecc7ba98ea2668425c97fd7cb327e93",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68834,
+              "output_tokens": 430,
+              "reasoning_output_tokens": 142
+            }
+          }
+        },
+        "batch_id": "0c195abe94dc788f7bdc9ef854fc3372fb127f6011cecaf3eabecd11775be9c1"
+      }
     }
   ],
   "statements": [
@@ -107420,6 +107505,106 @@
         "request_sha256": "027b188f953d19e70baa0e1338f0cabe7cc6cde3822018de7aebaa197c322744"
       },
       "object_mapping_check": "独立复核后，本条范围是全球商业数据中心规划管线与行业装机容量，未限定为AI专用数据中心。合同root名称为一座AI数据中心，原文未建立该范围，不能仅凭报告主题继承root。装机容量及图轴GW也不足以识别内部IT系统、电力系统、并网权利或具体部件；IEA与OMDIA没有允许的主体ID。采用空对象映射并保留有效问题关联，所选证据统一采用此主张范围，原始候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-307bfd42751f7c8162bee3288728c6edcfc84e13fd017c1e61ed3970834c92ec",
+      "evidence_ids": [
+        "rev-ecb5172af47b48ac91488643695ba0b2:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:60f2d1b94ad8fd482a7ca059",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:bess"
+      ],
+      "question_ids": [
+        "OBJ-bess-supply"
+      ],
+      "reading_revision_id": "rev-ecb5172af47b48ac91488643695ba0b2",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2025年9月8日的报道中称，GridStor总部位于美国俄勒冈州波特兰，是BESS开发商及独立发电商；报道当时，其美国西部和南部处于后期开发或建设阶段的项目储备超过3GW。该规模是报道中的项目储备口径，不能视为已投运容量；此处未独立核验项目清单或当前状态。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:09:44+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文及完整报道语境支持开发商角色、地域、项目储备规模和开发阶段，实质贡献当前BESS供应工单中的供给参与方与项目成熟度线索。证据贡献有限但明确，未发现敏感、真实冲突、拟替换或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a1d70047ca12627337d6a999d5a5b24701897d2e78ea39e8eba53dcfb7472a79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68305,
+            "output_tokens": 1077,
+            "reasoning_output_tokens": 140
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.19,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "790217ac80880d55956d91a3384bd7bbbecc7ba98ea2668425c97fd7cb327e93",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68834,
+              "output_tokens": 430,
+              "reasoning_output_tokens": 142
+            }
+          }
+        },
+        "batch_id": "0c195abe94dc788f7bdc9ef854fc3372fb127f6011cecaf3eabecd11775be9c1"
+      },
+      "source_candidate_ids": [
+        "rev-ecb5172af47b48ac91488643695ba0b2:chunk:0:claim:6"
+      ],
+      "limitations": "未提供项目清单、具体场址、后期开发与在建规模拆分、储能容量MWh、设备型号、制造商、交付分工、交期或生命周期成本。未说明其中有多少项目面向数据中心，不能将全部储备认定为数据中心专用供给，也不能转为数据中心IT容量或当前可交付能力。",
+      "conflict_check": "现有GridStor融资、税收抵免、收购预期、Goleta融资及俄克拉荷马项目收购陈述与本项兼容，但未完整覆盖超过3GW的区域项目储备及阶段口径，不能认定为重复。其他已采用BESS定义、性能和供给记录没有相反结论。所供legacy燃机订单、各地区数据中心容量及Stargate、Fir Hills项目涉及不同主体、对象或时间，数值和措辞相近不构成同口径冲突或重复。未发现真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "仅为OBJ-bess-supply补充供给方角色、地域及开发阶段线索。仍需逐项目状态、采购与施工职责、交付计划、设备供给和成本边界证据，才能研究制造或交付环节、交期及生命周期成本。该问题保持开放，不修改研究骨架、模型参数或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0c195abe94dc788f7bdc9ef854fc3372fb127f6011cecaf3eabecd11775be9c1",
+        "source_report_sha256": "28a8cab56cf4d6aac51b993baabbb966ffb6ccb4f37f39d0388a1b2c404da980",
+        "request_sha256": "04b7f524c8890c118e0f8307e6aea04481eae843f5e699adf9d077e094519113"
+      },
+      "object_mapping_check": "独立依据原文范围复核：声明明确涉及BESS开发商的储能项目储备，对应电力系统下“发电与储能”链的part:bess。GridStor没有契约允许的主体ID，不新增主体映射。原文未说明UPS配置、并网权利或具体AI数据中心资产，不继承文档的chain:power/4标签，也不增加site:grid或root。所选证据统一采用此声明级对象范围。"
     }
   ],
   "answers": [],
