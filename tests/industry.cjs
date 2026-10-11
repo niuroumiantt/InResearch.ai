@@ -111,8 +111,19 @@ const {mkdirSync}=require('node:fs');
   const publicHome=await (await page.request.get(base+'/api/industry?overview=1')).json();
   assert.equal(publicObservations.audience,'public');
   assert.equal(publicObservations.total,publicHome.research_updates.total);
+  const publishedById=new Map(publicObservations.records.map(row=>[row.id,row]));
+  let nextOffset=publicObservations.next_offset;
+  const visitedOffsets=new Set([0]);
+  while(nextOffset!==null&&publicHome.research_updates.changes.some(row=>!publishedById.has(row.id))){
+   assert.ok(!visitedOffsets.has(nextOffset),'public pagination must advance');visitedOffsets.add(nextOffset);
+   const response=await page.request.get(base+'/api/observations?limit=100&offset='+nextOffset);
+   assert.equal(response.status(),200);
+   const nextPage=await response.json();assert.equal(nextPage.total,publicObservations.total);
+   for(const row of nextPage.records){assert.ok(!publishedById.has(row.id),'public pages do not duplicate observations');publishedById.set(row.id,row);}
+   nextOffset=nextPage.next_offset;
+  }
   for(const row of publicHome.research_updates.changes){
-   assert.deepEqual(publicObservations.records.find(r=>r.id===row.id),row,'homepage and API use identical publication fields');
+   assert.deepEqual(publishedById.get(row.id),row,'homepage and API use identical publication fields across pages');
    assert.deepEqual(Object.keys(row.source).sort(),['published_at','url']);
    for(const hidden of ['review','proposal_sha256','claim_sha256'])assert.equal(hidden in row,false);
   }
