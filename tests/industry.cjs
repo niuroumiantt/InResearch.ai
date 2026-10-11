@@ -117,7 +117,7 @@ const {mkdirSync}=require('node:fs');
    for(const hidden of ['review','proposal_sha256','claim_sha256'])assert.equal(hidden in row,false);
   }
   if(publicObservations.total){
-   const card=page.locator('#object-changes details').first();await card.locator('summary').click();
+   const card=page.locator('#object-changes details[data-object]').first();await card.locator(':scope > summary').click();
    await page.waitForFunction(()=>document.querySelector('#object-changes details')?.dataset.loaded==='1');
    assert.ok(await card.locator('.timeline li').count()>0,'reader expands source-backed object records through public API');
   }
