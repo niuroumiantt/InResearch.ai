@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.91",
+  "version": "2026.10.11.92",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -3539,9 +3539,9 @@
       "id": "geluoke-longform-20261009-editor",
       "topic": "geluoke-longform",
       "scope": "editorial-delivery",
-      "status": "current",
+      "status": "superseded",
       "effective_at": "2026-10-09",
-      "source": "docs/geluoke/专题写作规则.md",
+      "source": "docs/archive/2026-10-11/editorial-ownership-retired.md",
       "supersedes": [
         "geluoke-longform-20261009-match"
       ],
@@ -3622,7 +3622,8 @@
         "docs/reviews/2026-10-09/research-publication/ta14-final-deployment-healthy.json"
       ],
       "implementation_revision": "2.8",
-      "change_reason": "2026-10-10用户日报实际删改补充：讲清楚就停，删外挂式分析，保留具体解释、必要条件和有依据的作者观点；日报唯一规范回链inews.today，采用今日小结。只改写作规范，不改研究框架、已发表稿或运行数据。"
+      "change_reason": "2026-10-10用户日报实际删改补充：讲清楚就停，删外挂式分析，保留具体解释、必要条件和有依据的作者观点；日报唯一规范回链inews.today，采用今日小结。只改写作规范，不改研究框架、已发表稿或运行数据。",
+      "superseded_by": "geluoke-longform-20261011-inews-owned"
     },
     {
       "id": "editorial-intake-20261009",
@@ -3680,9 +3681,9 @@
       "id": "editorial-intake-20261011-user-priority",
       "topic": "editorial-intake",
       "scope": "editorial-research-input",
-      "status": "current",
+      "status": "superseded",
       "effective_at": "2026-10-11",
-      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "source": "docs/archive/2026-10-11/editorial-ownership-retired.md",
       "supersedes": [
         "editorial-intake-20261009"
       ],
@@ -3705,7 +3706,8 @@
         "tests/unit/test_review_preference.py",
         "docs/local_reader/SPARK_OPERATIONS.md"
       ],
-      "implementation_revision": "2026-10-11"
+      "implementation_revision": "2026-10-11",
+      "superseded_by": "editorial-intake-20261011-consumer-only"
     },
     {
       "id": "interface-global-daily-20261011",
@@ -3928,6 +3930,63 @@
       "reason": "用户要求首页整体图景和每日变化，替代隐藏新闻机会汇总及容量观察仅明细可见的限制；正式研究/raw两层、168条公开专题提取可见、重点公司、报道口径与地理粒度、轻量投影和新闻独立展示。正式C3和原件边界保持；生产部署与全球覆盖另验。；2026-10-11公网项目页实测字体切片47.276秒，扩展首页缓存复用例外至同一行业入口的项目、市场、列表和公司视图；其它页面字体规则及全部限期保持。",
       "implementation_revision": "2026.10.11.90",
       "change_reason": "独立有效/披露/首次接收、审核/写入时间；原生区间、精度比较、分期隔离和历史修订，旧基线保留；封存Reader与当前需求复用；首页面向读者，网站仅回传本批完整支持闭包。实际样例/部署分别验收，不冒充六队已接通。"
+    },
+    {
+      "id": "geluoke-longform-20261011-inews-owned",
+      "topic": "geluoke-longform",
+      "scope": "editorial-delivery",
+      "status": "current",
+      "effective_at": "2026-10-11",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "supersedes": [
+        "geluoke-longform-20261009-editor"
+      ],
+      "reason": "用户将文章写作、配图、制作、发布、生产封装和发送统一归inews.today。本仓库退役独立写作规则及43个生产脚本；保留历史文章/图片/来源/回执、研究接收和研究UI技术图册。生产worker须实际切到inews源码后才合并删除，不用URL、源码或测试冒充运行迁移。",
+      "implementations": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "outputs/geluoke-research/README.md",
+        "docs/geluoke/专题反哺规则.md",
+        "docs/handoff/editorial-delivery-20261009.md",
+        "docs/handoff/us-datacenter-power-20261009.md",
+        "tests/unit/test_editorial_ownership.py"
+      ],
+      "implementation_revision": "2026.10.11.92",
+      "change_reason": "2026-10-11 15:09北京时间真实M5发送worker已切到inews76962303，队列/旧回执字节保留、真实watch退出0且无新发送；Spark接收任务未改。限定发送/安装16测试通过，不以inews空步骤失败CI宣称整仓通过；本仓最终head完整CI与新研究采用另验。"
+    },
+    {
+      "id": "editorial-intake-20261011-consumer-only",
+      "topic": "editorial-intake",
+      "scope": "editorial-research-input",
+      "status": "current",
+      "effective_at": "2026-10-11",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "supersedes": [
+        "editorial-intake-20261011-user-priority"
+      ],
+      "reason": "替代混合生产/接收职责：本仓只消费公开专栏feed、已完成文章包和微信日报研究包，不校验生产端版式。保留作者分析身份、SHA/URL/路径校验、重放/旧版/阅读范围与用户优先级；接收、全文阅读、C3及实际网站采用分别验收。",
+      "implementations": [
+        "src/inresearch/adapters/editorial_sync.py",
+        "src/inresearch/interfaces/cli.py",
+        "src/inresearch/workflow/research_match.py",
+        "src/inresearch/delivery/reader_export.py",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/knowledge/material_baseline.py",
+        "deploy/spark-reader/inresearch-editorial.service",
+        "deploy/spark-reader/inresearch-editorial.timer",
+        "tests/unit/test_editorial_sync.py",
+        "src/inresearch/workflow/reader_scope.py",
+        "tests/unit/test_reader_scope_capacity.py",
+        "src/inresearch/workflow/research_review.py",
+        "src/inresearch/workflow/research_publish.py",
+        "tests/unit/test_review_preference.py",
+        "docs/local_reader/SPARK_OPERATIONS.md",
+        "src/inresearch/materials/daily_bundle.py",
+        "tests/unit/test_daily_bundle.py",
+        "tests/unit/test_editorial_ownership.py"
+      ],
+      "implementation_revision": "2026.10.11.92",
+      "change_reason": "2026-10-11 15:09北京时间真实M5发送worker已切到inews76962303，队列/旧回执字节保留、真实watch退出0且无新发送；Spark接收任务未改。限定发送/安装16测试通过，不以inews空步骤失败CI宣称整仓通过；本仓最终head完整CI与新研究采用另验。"
     }
   ],
   "entrypoints": [
