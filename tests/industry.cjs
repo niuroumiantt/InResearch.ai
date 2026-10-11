@@ -5,8 +5,8 @@ const {mkdirSync}=require('node:fs');
  const browser=await chromium.launch({headless:true,...(process.env.UI_BROWSER_EXECUTABLE?{executablePath:process.env.UI_BROWSER_EXECUTABLE}:{})});
  try{
   const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  const base=process.env.UI_BASE_URL;
-  await page.route('**/api/news',r=>r.fulfill({json:{reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[
+  const base=process.env.UI_BASE_URL;if(process.env.UI_QA_DIR)mkdirSync(process.env.UI_QA_DIR,{recursive:true});let overviewRequests=0;page.on('request',r=>{if(r.url().includes('/api/industry?')&&new URL(r.url()).searchParams.get('overview')==='1')overviewRequests++;});
+  await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:{reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[
    {title_zh:'微软项目精选',url:'https://example.com/ms',published_at:Date.now(),editorial_pick:true,object_ids:['actor:microsoft']},
    {title_zh:'Meta 扩建精选',url:'https://example.com/meta',published_at:Date.now(),editorial_pick:true,object_ids:['actor:meta']},
    {title_zh:'未精选的线索',url:'https://example.com/other',published_at:Date.now(),editorial_pick:false},
@@ -16,7 +16,9 @@ const {mkdirSync}=require('node:fs');
   await page.getByRole('heading',{name:'全球数据中心',exact:true}).waitFor();
   assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(250, 249, 246)');
   await page.getByRole('link',{name:'微软项目精选',exact:true}).waitFor();
-  assert.equal(await page.getByRole('link',{name:'未精选的线索',exact:true}).count(),0);
+  assert.equal(await page.getByRole('link',{name:'未精选的线索',exact:true}).count(),1,'homepage defaults to all daily news');
+  for(const id of ['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba'])assert.equal(await page.locator('#company-chips [data-company="'+id+'"]').count(),1,'explicit company shortcut '+id);
+  assert.equal(await page.locator('#daily-pulse').count(),1);assert.ok(overviewRequests>0,'homepage uses bounded industry projection');
   assert.equal(await page.getByRole('link',{name:'危险链接',exact:true}).count(),0);
   await page.waitForFunction(()=>document.querySelectorAll('#world-map .site-point').length>20);
   assert.ok((await page.locator('#market-band').textContent()).includes('预测'));
@@ -27,7 +29,7 @@ const {mkdirSync}=require('node:fs');
   assert.ok((await page.locator('#market-band').innerText()).includes('2025 估算'));
   await page.locator('#world-map .news-ring').first().waitFor();
   assert.equal(await page.locator('#pipeline-summary, #trends-section').count(),0);
-  assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选精选 2 条');
+  assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
   await page.getByRole('link',{name:'查看全部项目新闻线索 →'}).click();
   await page.locator('#pipeline-rows summary').first().waitFor();
   assert.equal(await page.locator('#project-list').isVisible(),false);
@@ -46,7 +48,7 @@ const {mkdirSync}=require('node:fs');
    assert.equal(await page.locator('.site-point').count(),pointCount);
    const expected=baseline.rows.filter(p=>!p.portfolio&&p.coordinates&&[...p.developer,...p.tenant].includes(id)).map(p=>p.site_id).sort();
    assert.deepEqual(await page.locator('.site-point.highlighted').evaluateAll(es=>es.map(e=>e.dataset.id).sort()),expected);
-   assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选精选 2 条');
+   assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
   }
   await page.locator('#company-chips [data-company=""]').click();assert.equal(await page.locator('.site-point.dimmed').count(),0);
   await page.locator('#filters select[name=c]').selectOption('microsoft');
@@ -108,8 +110,8 @@ const {mkdirSync}=require('node:fs');
   await page.setViewportSize({width:390,height:844});
 
   // A curated project link must survive an older publisher's association counter.
-  await page.unroute('**/api/news');
-  await page.route('**/api/news',r=>r.fulfill({json:{pipeline:{available:true,progress:{leads:100,events:100,linked:0,constraints:{}},records:[{
+  await page.unroute(/\/api\/news(?:\?.*)?$/);
+  await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:{pipeline:{available:true,progress:{leads:100,events:100,linked:0,constraints:{}},records:[{
    id:'daily-adopted',title:'已核验的日报项目',origin:'daily_html',report_date:'2026-10-06',state:'linked',
    site_id:'fi-salo-atnorth-fin05',company_ids:['atnorth'],reported_stage:'announced',
    events:[{title:'原文供电口径',url:'https://www.atnorth.com/',reported_capacity:'75 MW'}]
@@ -123,17 +125,61 @@ const {mkdirSync}=require('node:fs');
   assert.equal(await linked.locator('a[href*="fi-salo-atnorth-fin05"]').count(),1);
   assert.ok((await page.locator('#pipeline-rows').innerText()).includes('当前筛选 1 条关联项目'));
 
+  // Raw daily events remain visible without a headline feed; original dates, bases and locations stay separate.
+  await page.unroute(/\/api\/news(?:\?.*)?$/);
+  const rawPayload={reader:{status:'idle',stale:false,received_at:'2026-10-11T03:00:00Z'},feed:null,pipeline:{available:true,progress:{leads:3,linked:0}},raw_atlas:{research_total:3,daily:{today:'2026-10-11',published_events:0,received_events:1,capacity_observations:2,located_events:1,research_published_records:2},latest_published_at:null,latest_received_at:'2026-10-11T03:00:00Z',records:[
+    {id:'raw-megawatt',origin:'daily_html',title:'微软新园区日报线索',url:'https://example.com/raw-mw',report_date:'2026-10-10',published_at:0,company_ids:['microsoft'],coordinates:[35,139],location:'东京',location_precision:'site',capacity_observations:[{quoted_value:'1,000 MW',mw:1000,basis:'it'}],verification_status:'raw'},
+    {id:'raw-no-location',origin:'daily_html',title:'新项目供电消息',url:'https://example.com/raw-grid',published_at:0,company_ids:[],coordinates:null,location_precision:'unknown',capacity_observations:[{quoted_value:'75 MW',mw:75,basis:'facility_or_grid'}],verification_status:'raw'},
+    {id:'research-a',origin:'research_publication',title:'美国资料项目甲',url:'https://example.com/research-a',publication_date:'2026-10-11',published_at:0,company_ids:['bytedance'],country_code:'US',coordinates:[39,-98],location:'美国',location_precision:'country',capacity_text:'计划 2 GW / 设施 3 GW',verification_status:'raw'},
+    {id:'research-b',origin:'research_publication',title:'美国资料项目乙',url:'https://example.com/research-b',publication_date:'2026-10-11',published_at:0,company_ids:['alibaba'],country_code:'US',coordinates:[39,-98],location:'美国',location_precision:'country',capacity_text:'容量未披露',verification_status:'raw'},
+    {id:'research-c',origin:'research_publication',title:'新加坡资料项目',url:'https://example.com/research-c',publication_date:'2026-10-11',published_at:0,company_ids:['alibaba'],country_code:'SG',coordinates:null,location:'新加坡',location_precision:'country',capacity_text:'容量未披露',verification_status:'raw'}
+  ],country_groups:[{country_code:'US',country_name:'美国',coordinates:[39,-98],count:2},{country_code:'SG',country_name:'新加坡',coordinates:null,count:1}]}};
+  await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:rawPayload}));
+  // A stalled member identity endpoint must never block public news.
+  await page.route('**/api/whoami',()=>new Promise(()=>{}));
+  await page.goto(base+'/');await page.getByRole('link',{name:'微软新园区日报线索',exact:true}).waitFor();
+  assert.match(await page.locator('.dc-news').innerText(),/1,000 MW（1 GW） · IT 报道值/);
+  assert.match(await page.locator('.dc-news').innerText(),/75 MW · 设施 \/ 电网口径/);
+  assert.match(await page.locator('.dc-news').innerText(),/日报 2026-10-10 · 原文时间待补充/);
+  assert.match(await page.locator('#daily-metrics').innerText(),/今日接收\s*1/);
+  assert.match(await page.locator('#daily-freshness').innerText(),/最新发表 时间未提供/);
+  assert.match(await page.locator('#research-summary').innerText(),/3 条文章提取记录/);
+  if(process.env.UI_QA_DIR){
+   await page.setViewportSize({width:1440,height:900});await page.evaluate(()=>scrollTo(0,0));
+   await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-1440x900.png'});
+   await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
+  }
+  assert.match(await page.locator('#research-countries').innerText(),/新加坡 1 · 未定位/);
+  assert.equal(await page.locator('.country-point').count(),1,'country research records cluster without fake site positions');
+  assert.equal(await page.locator('.country-point text').textContent(),'2');
+  assert.match(await page.locator('#map-summary').innerText(),/2 条未定位/);
+  const sampleBefore=await page.locator('#stats').innerText();
+  await page.locator('.dc-news-locate').first().click();await page.locator('#map-popup').waitFor();
+  assert.match(await page.locator('#map-popup').innerText(),/报道数字不并入项目 IT 容量/);
+  await page.locator('#close-site').click();
+  await page.locator('.country-point').press('Enter');
+  assert.match(await page.locator('#map-popup').innerText(),/国家级示意，非城市或园区位置/);
+  assert.match(await page.locator('#map-popup').innerText(),/计划 2 GW \/ 设施 3 GW/);
+  await page.locator('#close-site').click();
+  await page.locator('#company-chips [data-company="bytedance"]').click();assert.equal(await page.locator('.country-point.highlighted').count(),1);
+  assert.equal(await page.locator('#stats').innerText(),sampleBefore,'raw capacity does not alter adopted project totals');
+  // News refresh updates overlays while keeping base geography and project DOM nodes.
+  await page.evaluate(()=>{window.oldLand=document.querySelector('#map-land-layer');window.oldProject=document.querySelector('.site-point');window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...window.industryFilter,force:true}}));});
+  await page.waitForFunction(()=>document.querySelector('.dc-news-list').textContent.includes('微软新园区日报线索'));
+  assert.ok(await page.evaluate(()=>window.oldLand===document.querySelector('#map-land-layer')&&window.oldProject===document.querySelector('.site-point')));
+  await page.unroute('**/api/whoami');
+
   // Rendering counts describe only safe, displayed rows in the current API snapshot.
   for(const payload of [{reader:{status:'not_connected'},feed:null},
     {feed:{status:'success',exported_at:new Date().toISOString(),items:[]}}]){
-   await page.unroute('**/api/news');
-   await page.route('**/api/news',r=>r.fulfill({json:payload}));
+   await page.unroute(/\/api\/news(?:\?.*)?$/);
+   await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:payload}));
    await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
    await page.waitForFunction(()=>document.querySelector('.dc-news-meta').textContent || document.querySelector('.dc-news-list').textContent);
    assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
   }
-  await page.unroute('**/api/news');
-  await page.route('**/api/news',r=>r.fulfill({status:503,body:'unavailable'}));
+  await page.unroute(/\/api\/news(?:\?.*)?$/);
+  await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({status:503,body:'unavailable'}));
   await page.goto(base+'/');await page.getByText('新闻暂时无法同步，请稍后重试。',{exact:true}).waitFor();
   assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
   await page.goto(base+'/project.html?site=us-tx-abilene');
@@ -147,21 +193,22 @@ const {mkdirSync}=require('node:fs');
   assert.match(await page.locator('#project-dossier').innerText(),/辖区政府不自动视为地主/);
   assert.match(await page.locator('#project-dossier').innerText(),/IT、设施功率、接电额度、发电 MW/);
   assert.ok((await page.locator('#detail').innerText()).includes('160 MW'));
-  await page.unroute('**/api/news');
-  await page.route('**/api/news',r=>r.fulfill({json:{pipeline:{available:true,records:[{
+  await page.unroute(/\/api\/news(?:\?.*)?$/);
+  await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:{pipeline:{available:true,records:[{
     id:'recovered-fin05',title:'FIN05 restored news',state:'linked',site_id:'fi-salo-atnorth-fin05',company_ids:['atnorth'],events:[]
   }]}}}));
   await page.getByRole('button',{name:'重试新闻同步',exact:true}).click();
   await page.getByText('FIN05 restored news',{exact:false}).waitFor();
   assert.equal(await page.getByRole('button',{name:'重试新闻同步',exact:true}).count(),0);
   assert.ok((await page.locator('#detail').innerText()).includes('160 MW'));
-  await page.unroute('**/api/news'); // screenshots below use real local endpoints only
+  await page.unroute(/\/api\/news(?:\?.*)?$/); // screenshots below use real local endpoints only
   if(process.env.UI_QA_DIR)mkdirSync(process.env.UI_QA_DIR,{recursive:true});
   const measurements=[];
   for(const [width,height] of [[1366,768],[1440,900],[1920,1080],[390,844],[320,740]]){
    await page.setViewportSize({width,height});await page.goto(base+'/');
    await page.locator('#world-map .site-point').first().waitFor();
    await page.evaluate(()=>document.fonts.ready);
+   await page.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168','real article projection fully rendered');
    const layout=await page.evaluate(()=>{
     const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height};};
     const map=rect('#world-map'),matrix=document.querySelector('#world-map').getScreenCTM();
@@ -198,6 +245,9 @@ const {mkdirSync}=require('node:fs');
    assert.equal(await page.locator('#map-popup').isVisible(),false);
    await page.evaluate(()=>scrollTo(0,0));
    if(process.env.UI_QA_DIR)await page.screenshot({path:process.env.UI_QA_DIR+`/homepage-${width}x${height}.png`,fullPage:width<1000});
+  }
+  if(process.env.UI_QA_DIR){
+   await page.setViewportSize({width:1440,height:900});await page.goto(base+'/');await page.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168');await page.locator('.country-point').first().waitFor();await page.evaluate(()=>document.fonts.ready);await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/homepage-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
   }
   if(process.env.UI_QA_DIR)require('node:fs').writeFileSync(process.env.UI_QA_DIR+'/layout.json',JSON.stringify(measurements,null,2));
   await page.setViewportSize({width:1366,height:768});await page.goto(base+'/index.html');

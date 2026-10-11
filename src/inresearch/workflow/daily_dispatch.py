@@ -59,7 +59,8 @@ def news_records(data, events=None):
         authored = event.get('editorial_event') or {}
         # A reported stage is a news observation, not a project-state change.
         stage = authored.get('stage') or event.get('reported_stage') or 'unknown'
-        records.append({'id': event['id'], 'title': event['title'], 'urls': urls,
+        from inresearch.knowledge.raw_atlas import enrichment
+        records.append({**enrichment(event), 'id': event['id'], 'title': event['title'], 'urls': urls,
                         'report_date': max((r.get('report_date') or '' for r in event['document_refs']), default=''),
                         'reported_stage': stage, 'constraints': event.get('constraints', []),
                         'target_ids': sorted({r['target_id'] for r in event.get('demand_matches', [])}),
@@ -131,14 +132,26 @@ def pipeline_records(data):
 
 
 def public_pipeline_records(rows):
-    """Same allowlist for a validated received daily projection."""
-    return [{'id': 'daily-'+r['id'], 'state': 'lead', 'site_id': None, 'company_ids': [],
-             'first_seen': r['accepted_at'], 'last_seen': r['accepted_at'], 'title': r['title'],
-             'reported_stage': r['reported_stage'] if r['reported_stage'] in ('operating','construction','paused','cancelled') else 'reported',
-             'reported_capacity': None, 'match_method': None, 'origin': 'daily_html',
-             'events': [{'title': r['title'], 'url': u, 'published_at': 0, 'event_type': 'project_milestone',
-                         'reported_stage': r['reported_stage'], 'reported_capacity': None,
-                         'matched_site_id': None, 'site_candidates': [], 'capacity_observations': [],
-                         'constraints': r['constraints'], 'target_ids': r['target_ids']} for u in r['urls'][:5]],
-             'report_date': r['report_date'], 'review_note': '日报来源对应已登记；项目身份与容量仍待核验，未计入正式 GW。'}
-            for r in rows[:500] if public_url((r.get('urls') or [None])[0])]
+    """Bounded source observations; exclude original text, file paths and identities."""
+    from inresearch.knowledge.raw_atlas import capacities, countries, short, date_string
+    result=[]
+    for r in rows[:500]:
+        if not isinstance(r,dict): continue
+        urls=[u for u in r.get('urls',[]) if public_url(u)][:5]
+        if not urls: continue
+        company_ids=[c for c in r.get('company_ids',[]) if isinstance(c,str) and re.fullmatch('[A-Za-z0-9][A-Za-z0-9_.-]{0,79}',c)][:30]
+        observed=capacities(r.get('capacity_observations'))
+        reported=' / '.join(c['quoted_value'] for c in observed) or None
+        meta=dict(country_mentions=countries(r.get('country_mentions')),location=short(r.get('location')),
+                  published_date=date_string(r.get('published_date')),event_date=date_string(r.get('event_date')))
+        result.append({'id':'daily-'+short(r.get('id'),160),'state':'lead','site_id':None,'company_ids':company_ids,
+             'first_seen':r.get('accepted_at'),'last_seen':r.get('accepted_at'),'title':short(r.get('title'),400),
+             'reported_stage':r.get('reported_stage') if r.get('reported_stage') in ('operating','construction','paused','cancelled') else 'reported',
+             'reported_capacity':reported,'capacity_observations':observed,'match_method':None,'origin':'daily_html',**meta,
+             'events':[{'title':short(r.get('title'),400),'url':u,'published_at':0,'event_type':'project_milestone',
+                         'reported_stage':short(r.get('reported_stage'),40),'reported_capacity':reported,**meta,
+                         'matched_site_id':r.get('matched_site_id'),'site_candidates':[],'capacity_observations':observed,
+                         'constraints':[c for c in r.get('constraints',[]) if c in ('water','power','permits','land','finance','network')],
+                         'target_ids':r.get('target_ids',[])[:100]} for u in urls],
+             'report_date':date_string(r.get('report_date')),'review_note':'来源已登记；报道数字未计入正式 GW。'})
+    return result

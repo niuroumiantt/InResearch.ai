@@ -56,6 +56,7 @@ class SiteTimelineTests(unittest.TestCase):
         row,_=site_timeline.append(row,self.observation(lifecycle='paused'))
         view=project(row)
         self.assertEqual(view['capacity']['operating'],200)
+        self.assertIn('暂停',view['stage_label'])
         self.assertEqual(totals([view])['operating'],0)
         self.assertEqual(totals([view])['inactive_sites'],1)
 
@@ -77,3 +78,27 @@ class SiteTimelineTests(unittest.TestCase):
         self.assertIn('status',result['tracking']['review_due_fields'])
         self.assertEqual(result['tracking']['fields']['tenant']['effective_at'],'2026-01-01')
         self.assertEqual(row['verified_date'],'2025-01-01')
+
+    def test_news_identity_follows_current_tenant_after_transfer(self):
+        from inresearch.knowledge.news_observations import identity
+        row={'site_id':'us-tx-unique','name':'Unique Abilene Campus','developer':[],
+             'tenant':['old-user'],'location':'Abilene'}
+        row,_=site_timeline.append(row,self.observation())
+        result=identity({'title':'Unique Abilene Campus expands', 'object_ids':['actor:new-user']},[row])
+        self.assertEqual(result['matched_site_id'],'us-tx-unique')
+
+    def test_daily_adoption_metric_counts_time_observations_without_creating_raw_capacity(self):
+        import json,tempfile
+        from pathlib import Path
+        from datetime import datetime,timezone
+        from inresearch.knowledge.raw_atlas import build
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'data').mkdir()
+            row={'site_id':'us-tx-unique','name':'Unique Abilene Campus','tenant':['old-user']}
+            observation=self.observation();observation['adoption']['review']={'at':'2026-10-11T00:00:00Z'}
+            row,_=site_timeline.append(row,observation)
+            (root/'data/projects.json').write_text(json.dumps({'records':[row]}))
+            result=build(root,None,[],now=datetime(2026,10,11,tzinfo=timezone.utc))
+            self.assertEqual(result['daily']['adopted_fields_projects'],1)
+            self.assertEqual(result['daily']['adopted_project_updates'],1)
+            self.assertEqual(result['records'],[])

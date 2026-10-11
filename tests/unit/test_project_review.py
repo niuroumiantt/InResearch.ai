@@ -118,3 +118,16 @@ class ProjectReviewTests(unittest.TestCase):
         self.assertFalse(project_review.quantity_supported(assertion,[421]))
         assertion['derivation'].update(operation='sum',inputs=[211,211]);assertion['value']=422
         self.assertFalse(project_review.quantity_supported(assertion,[211]))
+
+    def test_known_reviewed_site_update_does_not_require_recreating_phase_identity(self):
+        project_review.apply(self.root,self.data,self.proposal)
+        ledger_path=self.data/'acquisition/daily-events.json';ledger=json.loads(ledger_path.read_text())
+        event=ledger['records'][self.event['id']]
+        event.update(identity_review='resolved',matched_site_id='fi-salo-test',structured_evidence_status='quotes_verified')
+        event['editorial_event']['project']={}
+        ledger_path.write_text(json.dumps(ledger))
+        # No current adoption for this changed source, so readiness is recomputed.
+        self.assertEqual(project_review.queue(self.data,self.root)['records'][0]['state'],'ready_for_review')
+        p=copy.deepcopy(self.proposal);p['source_version']=project_review.event_identity(event)
+        p['project']['site_id']='different-land'
+        with self.assertRaisesRegex(ValueError,'site_mismatch'):project_review.apply(self.root,self.data,p)

@@ -31,14 +31,15 @@ def deliveries(root):
     return [{'site_id': p['site_id'], 'name': p['name'],
              'verified_date': a['review']['at'][:10], 'event_id': a['event_id'],
              'review_id': a['review_id'], 'fields': a['fields'], 'scope': a['scope']}
-            for p in rows for a in ([p['adoption']] if p.get('adoption') else []) +
-            [o['adoption'] for o in p.get('observations', [])]]
+            for p in rows for a in site_timeline.adoptions(p)]
 
 
 def queue(data, root):
     adopted = {r['event_id']: r for r in deliveries(root)}
     accepted = receipt_documents(data)
     targets = {r['id'] for r in json.loads((Path(root)/'framework/tco_targets.json').read_text())['targets']}
+    known_sites = {r['site_id'] for r in json.loads((Path(root)/'data/projects.json').read_text())['records']
+                   if not r.get('duplicate_of') and 'portfolio' not in r['site_id']}
     rows = []
     for event in read_events(data):
         authored = event.get('editorial_event') or {}
@@ -47,15 +48,20 @@ def queue(data, root):
         state = 'needs_binding' if any(public_url(u) for s in event.get('sources', []) for u in s.get('urls', [])) else 'needs_source'
         if bound_urls(event, accepted):
             state = 'needs_identity'
-            if all(project.get(k) for k in ('name', 'country', 'city', 'phase')):
+            known_identity = event.get('identity_review') == 'resolved' and event.get('matched_site_id') in known_sites
+            if known_identity or all(project.get(k) for k in ('name', 'country', 'city', 'phase')):
                 state = 'needs_evidence'
                 if event.get('structured_evidence_status') == 'quotes_verified' and goals:
                     state = 'ready_for_review'
         if event['id'] in adopted:
-            state = 'adopted' if adopted[event['id']]['review_id'].startswith(event_identity(event)[:16]) else 'changed_source'
+            if adopted[event['id']]['review_id'].startswith(event_identity(event)[:16]):
+                state = 'adopted'
+            elif state != 'ready_for_review':
+                state = 'changed_source'
         rows.append({'event_id': event['id'], 'title': event['title'], 'state': state,
                      'source_version': event_identity(event), 'target_ids': sorted(set(goals)),
                      'executor': 'Codex research review',
+                     'previous_review_id': adopted.get(event['id'], {}).get('review_id'),
                      'site_id': adopted.get(event['id'], {}).get('site_id')})
     rows.sort(key=lambda r: (r['state'] != 'ready_for_review', r['state'], r['event_id']))
     return {'records': rows, 'counts': dict(Counter(r['state'] for r in rows)),
@@ -150,6 +156,8 @@ def apply(root, data, proposal):
         if not sample.get('by') or sample.get('decision') != 'confirmed':
             raise ValueError('deterministic_sample_review_required')
     p = proposal['project']
+    if event.get('identity_review') == 'resolved' and event.get('matched_site_id') != p.get('site_id'):
+        raise ValueError('reviewed_event_site_mismatch')
     if p.get('disputed') or p.get('sensitive') or proposal.get('replaces_record_ids'):
         raise ValueError('owner_decision_required_for_conflict_or_replacement')
     for key in ('site_id', 'name', 'country', 'location', 'region', 'notes'):

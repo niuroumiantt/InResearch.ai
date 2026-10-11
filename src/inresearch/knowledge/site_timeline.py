@@ -90,6 +90,11 @@ def append(project, observation):
     return result, False
 
 
+def adoptions(project):
+    return ([project['adoption']] if project.get('adoption') else []) + [
+        row['adoption'] for row in project.get('observations', [])]
+
+
 def current(project, today=None):
     """Latest effective observation per field; future forecasts stay separate.
 

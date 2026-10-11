@@ -1,5 +1,7 @@
 """Public industry views. One capacity calculation for maps, cards and drilldowns."""
 import json
+import copy
+from functools import lru_cache
 import math
 from collections import Counter
 from datetime import date
@@ -46,8 +48,9 @@ def project(row):
     result['lifecycle'] = row.get('lifecycle', 'active')
     result['relationships'] = {k: row.get(k, []) for k in ('owner', 'operator', 'builder')}
     # Public project receipt: reviewed scope and quoted claims, never private paths.
-    if row.get('adoption'):
-        a = row['adoption']
+    receipts = site_timeline.adoptions(row)
+    if receipts:
+        a = max(receipts, key=lambda r:(r.get('review') or {}).get('at',''))
         result['adoption'] = {k:a.get(k) for k in ('event_id','fields','scope','target_ids')}
         result['adoption']['assertions'] = [{k:x.get(k) for k in ('quote','url','basis','phase','value','unit','scope')}
                                            for x in a.get('assertions', [])]
@@ -55,6 +58,9 @@ def project(row):
     result['tenant'] = row.get('tenant') or []
     result['portfolio'] = 'portfolio' in row['site_id']
     result['stage_label'] = LEVELS.get(row.get('status'), '阶段待核实')
+    inactive_label = {'paused':'暂停', 'cancelled':'取消', 'closed':'关闭'}.get(result['lifecycle'])
+    if inactive_label:
+        result['stage_label'] += ' · ' + inactive_label + '（不计活跃容量）'
     parts = row.get('capacity_it_mw_by_status') or {}
     # Breakdown is authoritative when supplied; never add a headline total twice.
     parts = {k: v for k, v in parts.items() if bucket(k) and number(v)}
@@ -110,14 +116,21 @@ def market(root):
             'revenue_available': False, 'forecast_note': '2026 年起为机构预测，非已实现收入；原报告为内部登记引用。'}
 
 
+@lru_cache(maxsize=8)
+def _selected_benchmarks(path, signature):
+    records=json.loads(Path(path).read_text())['records']
+    ids=('hsbc2026-global-it-load-2025','hsbc2026-global-it-load-2030e')
+    return [{k:r.get(k) for k in ('fact_id','value','unit','as_of','asserter','caliber','corroboration')} |
+            {'source':r.get('evidence',{}).get('originator'),'locator':r.get('evidence',{}).get('locator')}
+            for ident in ids for r in records if r.get('fact_id')==ident]
+
+
 def benchmarks(root):
     """Explicitly selected, comparable report estimates; never called live operating GW."""
-    ids = ('hsbc2026-global-it-load-2025', 'hsbc2026-global-it-load-2030e')
-    path = Path(root)/'data/facts.json'
-    records = json.loads(path.read_text())['records'] if path.exists() else []
-    return [{k: r.get(k) for k in ('fact_id', 'value', 'unit', 'as_of', 'asserter', 'caliber', 'corroboration')} |
-            {'source': r.get('evidence', {}).get('originator'), 'locator': r.get('evidence', {}).get('locator')}
-            for ident in ids for r in records if r.get('fact_id') == ident]
+    path=Path(root)/'data/facts.json'
+    if not path.exists(): return []
+    stat=path.stat()
+    return copy.deepcopy(_selected_benchmarks(str(path),(stat.st_dev,stat.st_ino,stat.st_size,stat.st_mtime_ns)))
 
 
 def capacity_audit(rows, records):
@@ -136,7 +149,10 @@ def capacity_audit(rows, records):
 
 def snapshot(root, params=None):
     root = Path(root); params = params or {}
-    if set(params) - {'c', 'region', 'stage', 'relation', 'scope', 'role', 'site'}: raise ValueError('unknown filter')
+    if set(params) - {'c', 'region', 'stage', 'relation', 'scope', 'role', 'site', 'overview'}: raise ValueError('unknown filter')
+    if params.get('overview','') not in ('','0','1'): raise ValueError('invalid overview')
+    overview=params.get('overview')=='1'
+    params={k:v for k,v in params.items() if k!='overview'}
     for k, allowed in {'stage': {'', *STAGES, 'unknown'}, 'relation': {'', 'developer', 'tenant'},
                        'scope': {'', 'ai'}, 'role': {'', *ROLE_GROUPS}}.items():
         if params.get(k, '') not in allowed: raise ValueError('invalid '+k)
@@ -185,13 +201,32 @@ def snapshot(root, params=None):
                 'conflicting_sites': sum(bool(p['tracking']['conflicts']) for p in cohort),
                 'review_overdue_sites': sum(bool(p['tracking']['review_due_fields']) for p in cohort),
                 'changes': changes[:20], 'changes_truncated': len(changes)>20}
-    return {'schema_version': 1, 'generated_at': date.today().isoformat(), 'filters': params,
+    audit=capacity_audit(all_rows,all_records)
+    if overview:
+        row_keys=('site_id','name','country','region','location','developer','tenant','status','stage_label',
+                  'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_estimated','capacity_assessment','total_mw','coordinates')
+        rows=[{key:row[key] for key in row_keys if key in row} | {
+               'verification_status':'adopted_fields' if row.get('adoption') else 'registered'} for row in rows]
+        for row in rows:
+            if row.get('adoption'): row['adoption']={key:row['adoption'].get(key) for key in ('event_id','fields','scope')}
+            # Match the upstream public assessment allowlist, with bounded homepage prose.
+            assessment=row.get('capacity_assessment') or {}
+            row['capacity_assessment']={key:(value[:240] if isinstance(value,str) else
+                [text[:160] for text in value[:3] if isinstance(text,str)] if isinstance(value,list) else value)
+                for key,value in assessment.items() if key in
+                ('kind','status','as_of','recorded_at','reviewed_at','basis_note','assumptions','missing_conditions')}
+        company_keys=('company_id','name','name_cn','roles')
+        companies=[{key:c.get(key) for key in company_keys} for c in companies]
+        leaders=[{key:c.get(key) for key in (*company_keys,'totals')} for c in leaders]
+        audit={key:audit[key] for key in ('operating','construction','planning','estimated','estimated_sites','sites','known','unknown','unlocated',
+               'portfolios_excluded','duplicates_excluded','oldest_verified','latest_verified')}
+    return {'overview':overview,'schema_version': 1, 'generated_at': date.today().isoformat(), 'filters': params,
             'coverage': {'label': '已追踪项目 · 非全球普查', 'oldest_verified': dates[0] if dates else None,
                          'latest_verified': dates[-1] if dates else None},
             'totals': totals(cohort), 'rows': rows, 'detail': detail, 'companies': companies,
             'tracking': tracking,
             'leaders': leaders, 'regions': [{'id': r, 'name': REGIONS.get(r, r)} for r in sorted({p['region'] for p in all_rows})],
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
-            'capacity_audit': capacity_audit(all_rows, all_records),
-            'stages': STAGES, 'company': by_id.get(params.get('c')),
+            'capacity_audit': audit,
+            'stages': STAGES, 'company': next((c for c in companies if c['company_id']==params.get('c')),None),
             'basis': '仅汇总已披露 IT 负载 MW；公司视图为相关园区容量，并非持有或租用份额。组合记录不参加容量合计。'}
