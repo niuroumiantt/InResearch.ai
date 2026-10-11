@@ -56669,6 +56669,185 @@
         },
         "batch_id": "3f3ad643d7daa12e00df84ddc8a0952d4685bcac432e312511c98c20ff3027c7"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "68b74856cd835cda2a0896b4c476efe9629efe361974d6905c3831fa0e998ecf",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:14:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-performance"
+      ],
+      "quote": "This allows you to achieve an economizer that can provide 100 percent of the cooling at really elevated ambient air temperatures. If you're trying to cool air at 95 Fahrenheit to 75 Fahrenheit, you can typically do that when the outdoor air temperature is in the low 60s Fahrenheit or below.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:10:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及完整上下文支持有明确空气温度条件的厂商性能主张，对当前替代方案比较及性能适用边界工作单有实质性局部贡献。保留归因、近似温度和验证缺口后符合B类部分采用条件；未发现敏感材料、真实冲突或替换要求，不触发A路由。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3ee3f2dbc5928764491a66e2b22e2d44ca025000bea0ebd355567c22304909b9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47314,
+            "output_tokens": 2341,
+            "reasoning_output_tokens": 257
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3864bce8afec00876a294ec4e11dce9191ee3a8861521773abc2daeb2620a4fc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47343,
+              "output_tokens": 479,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "a0b4c98ca091768408e4f03b3f11d09972b11ca816f3a113719c03f6dc83c3af"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "68b74856cd835cda2a0896b4c476efe9629efe361974d6905c3831fa0e998ecf",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:15:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "actor:munters",
+        "chain:thermal/2",
+        "part:chiller"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-performance"
+      ],
+      "quote": "A typical waterside economizer, that's integral to a chiller, is not able to do that until it's around 40 degrees Fahrenheit or below.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:10:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。完整连续引文及相邻原文足以解析“达到上述效果”的比较对象和空气温度条件，对当前替代方案与性能边界工作单有实质但有限的贡献。以明确归因的比较主张部分采用，符合B类条件；未发现敏感材料、真实冲突或替换要求，不触发A路由。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3ee3f2dbc5928764491a66e2b22e2d44ca025000bea0ebd355567c22304909b9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47314,
+            "output_tokens": 2341,
+            "reasoning_output_tokens": 257
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3864bce8afec00876a294ec4e11dce9191ee3a8861521773abc2daeb2620a4fc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47343,
+              "output_tokens": 479,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "a0b4c98ca091768408e4f03b3f11d09972b11ca816f3a113719c03f6dc83c3af"
+      }
     }
   ],
   "statements": [
@@ -109740,6 +109919,215 @@
         "request_sha256": "c66eea5089e8964a046ab00e4b415e48b1139cb4aa761292db009448f73b2519"
       },
       "object_mapping_check": "独立复核后，本项范围是全球数据中心总体及其中AI导向数据中心的年度用电增长统计，包含传统负载，未描述具体设施或内部系统。合同中的root为一座AI数据中心，system:power为其内部电力系统，site:grid为电力配额与并网权利，均不能直接承载本项全球综合统计。保留空对象列表及有效问题匹配，不继承候选或Reader的root标签；所选证据统一采用此主张范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:14:ev:0"
+      ],
+      "id": "adoption:review:107a5e5028f4a89fe8b8e228",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-performance"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "据DatacenterDynamics于2024年1月22日发表的SyCool赞助文章，Munters受访者Keith Dunnavant称，在将空气从95°F冷却至75°F的条件下，SyCool节能器通常可在室外空气温度为60多°F的低段或更低时提供100%的所需冷量。这是受访者对该方案运行条件的主张，未经本次独立验证；不表示整套系统不耗电，也不适用于未经核验的其他空气温度条件。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:10:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及完整上下文支持有明确空气温度条件的厂商性能主张，对当前替代方案比较及性能适用边界工作单有实质性局部贡献。保留归因、近似温度和验证缺口后符合B类部分采用条件；未发现敏感材料、真实冲突或替换要求，不触发A路由。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3ee3f2dbc5928764491a66e2b22e2d44ca025000bea0ebd355567c22304909b9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47314,
+            "output_tokens": 2341,
+            "reasoning_output_tokens": 257
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3864bce8afec00876a294ec4e11dce9191ee3a8861521773abc2daeb2620a4fc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47343,
+              "output_tokens": 479,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "a0b4c98ca091768408e4f03b3f11d09972b11ca816f3a113719c03f6dc83c3af"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:14"
+      ],
+      "limitations": "来源为赞助文章，受访者来自产品厂商。未指定对应机型、冷量、风量、测试方法、测量误差或独立验证资料；“60多°F的低段”不能改写为精确温度阈值。全文讨论环境干球温度，但所选引文没有完整测试工况。未限定地域、具名项目或建设及投运阶段，不能据此推算年度节能、PUE或WUE。",
+      "conflict_check": "所供当前采用声明涉及分体管路、建筑层数、热虹吸机制及影像容量估算，没有采用本项温度阈值，不构成规范重复。热虹吸无需循环泵与本项节能运行条件相容，均不能推出系统零耗电。所供legacy匹配记录为空，未发现包内真实冲突；这不代表已穷尽外部反证，也不替换任何既有结论。",
+      "gap_dependency_check": "对OBJ-heat-reject-performance仅补充来源声称的运行边界，未提供性能测量方法、可靠性或失效试验；对OBJ-heat-reject-alternatives仅提供比较所需的一侧工况。仍需具体型号、完整工况、性能曲线、独立测试与反证，并核验比较方案的系统边界和成本。两项问题保持开放，不更新模型参数、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a0b4c98ca091768408e4f03b3f11d09972b11ca816f3a113719c03f6dc83c3af",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "e8fbd4a376abf0d1299d7bdb46a97568f9355e30cde7865cf4d56909acda0a2c"
+      },
+      "object_mapping_check": "独立依据全文中的产品与工况确定范围：主张来自Munters受访者，讨论SyCool热虹吸节能器的室外排热能力及空气从95°F降至75°F的机房空气冷却工况，分别对应actor:munters、system:thermal、chain:thermal/1和part:room-cooling。SyCool在本段不是冷水机组，不继承候选的part:chiller标签；制冷剂冷凝器也不足以直接映射为干冷器或冷却塔。所选证据统一采用此主张级范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:15:ev:0"
+      ],
+      "id": "adoption:review:60b64b2c890d450d6b0d8bf7",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "chain:thermal/2",
+        "part:chiller"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-performance"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics在2024年1月22日的SyCool赞助文章中引述Munters的Keith Dunnavant称，相较前述SyCool节能器，冷水机组内置的典型水侧节能器通常要到室外空气温度约40°F或更低，才能仅靠节能器满足前述将空气从95°F冷却至75°F的全部冷量需求。这是受访者的比较主张，未经本次独立验证，不能作为所有冷水机组的通用温度阈值。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:10:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。完整连续引文及相邻原文足以解析“达到上述效果”的比较对象和空气温度条件，对当前替代方案与性能边界工作单有实质但有限的贡献。以明确归因的比较主张部分采用，符合B类条件；未发现敏感材料、真实冲突或替换要求，不触发A路由。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3ee3f2dbc5928764491a66e2b22e2d44ca025000bea0ebd355567c22304909b9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47314,
+            "output_tokens": 2341,
+            "reasoning_output_tokens": 257
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3864bce8afec00876a294ec4e11dce9191ee3a8861521773abc2daeb2620a4fc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47343,
+              "output_tokens": 479,
+              "reasoning_output_tokens": 175
+            }
+          }
+        },
+        "batch_id": "a0b4c98ca091768408e4f03b3f11d09972b11ca816f3a113719c03f6dc83c3af"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:15"
+      ],
+      "limitations": "未指明比较冷水机组的厂商、型号、供回水温度、负荷、风量或测试方法，也未提供同工况性能曲线。约40°F是来源的近似表述，不是经本次测量确认的切换点；“典型”样本范围不明。未限定地域、具名项目或项目阶段，不能外推为所有水侧节能器的性能、年度能耗或成本结论。",
+      "conflict_check": "当前已采用的分体布置、热虹吸机制及容量估算方法声明没有本项水侧节能器温度阈值，未发现重复或相反结论。与本批SyCool较高环境温度阈值的差异是来源明确提出的不同方案比较，不是同一设备同工况的真实冲突。所供legacy匹配记录为空，不能据此声称完成外部反证检索；不覆盖或替换既有能效结论。",
+      "gap_dependency_check": "对OBJ-heat-reject-alternatives贡献比较方案及来源声称的温度差异，但尚未核验双方同冷量、同空气目标和同系统边界；对OBJ-heat-reject-performance贡献待验证的适用边界，未满足测量、可靠性和失效机制验收。仍需具体设备资料、供回水与环境温度口径、测试及反证，不能把两个近似温度换算为已验证的性能或节能优势。两项问题保持开放，不修改模型值或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a0b4c98ca091768408e4f03b3f11d09972b11ca816f3a113719c03f6dc83c3af",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "e8fbd4a376abf0d1299d7bdb46a97568f9355e30cde7865cf4d56909acda0a2c"
+      },
+      "object_mapping_check": "独立依据原文明示的比较对象映射：Munters受访者讨论冷水机组内置的典型水侧节能器，实际设备范围属于冷水与CDU链下的part:chiller，故选择actor:munters、chain:thermal/2和part:chiller。未描述冷冻水泵管阀配置、冷却塔或CDU，不追加这些部件；该映射来自主张内容而非继承Reader标签。所选证据统一采用上述范围，原始标签保持不变。"
     }
   ],
   "answers": [],
