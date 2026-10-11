@@ -58260,6 +58260,97 @@
         },
         "batch_id": "c224fcffa30651ec81468092f4e0de9a4a000eb975c5c5ed050d9dfdcb28859a"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:submer",
+        "part:immersion",
+        "chain:thermal/4",
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-immersion-definition"
+      ],
+      "quote": "Away from direct-to-chip liquid cooling technologies, immersion cooling remains an option being pursued by some in the industry, and vendor Submer, one of the biggest names in the space, is looking to build its own data centers equipped with immersion technology, with the launch of an AI cloud business that is looking to take on the neoclouds.",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:32:45+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续完整原句及液冷技术、供应商服务延伸的周边语境充分，对当前技术边界与替代路线识别、浸没供应商业务范围及建设服务角色研究具有实质性局部贡献。未发现敏感、真实冲突或拟替换条件，符合B类部分采用要求；不以计划证据回答或关闭问题。",
+        "workorder_ids": [
+          "Q-OBJ-immersion-definition",
+          "Q-OBJ-immersion-alternatives",
+          "Q-OBJ-immersion-supply",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.292,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "219098583c68386744ff582d3e966bbc470c97f7a030491a3570d8a696f56098",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 69190,
+            "output_tokens": 1468,
+            "reasoning_output_tokens": 241
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.701,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b6626685114fbab77d3a0620530ab2a59032962f8ceb9e54912cd8b744df2986",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 69990,
+              "output_tokens": 510,
+              "reasoning_output_tokens": 221
+            }
+          }
+        },
+        "batch_id": "4f0d6cf444a724ae77632a869bb64ca1541797127b38883aced6ec2b694e27c3"
+      }
     }
   ],
   "statements": [
@@ -112942,6 +113033,115 @@
         "request_sha256": "2f0851b47187906de8635614e5788e3133be0f6d0ea64fe142780d1b0eb137db"
       },
       "object_mapping_check": "独立审查后采用空对象范围：本项是未指定具体设施的数据中心行业政策风险判断，不能建立root所指一座AI数据中心的范围。合同没有税收激励或公众反对对象；政策、监管激励也未具体指向site:permits所定义的区划、环评、排放或建设许可。未涉及任何设施系统、部件或允许主体，不继承文档或既有陈述标签。所选证据统一采用空的主张级对象范围，保留有效问题关系，原始标签不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:4141c0424fba3d46a3aeacca",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:submer",
+        "part:immersion",
+        "chain:thermal/4",
+        "root"
+      ],
+      "question_ids": [
+        "OBJ-immersion-definition",
+        "OBJ-immersion-alternatives",
+        "OBJ-immersion-supply",
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日的《Chilling out in 2025: A year in data center cooling》中，将浸没式冷却作为区别于直接芯片液冷的另一技术选项，并称冷却供应商Submer正寻求建设采用浸没技术的自有数据中心，推出以与neocloud企业竞争为目标的AI云业务。这是报道时点的作者陈述及业务计划，不证明建设、业务推出或投运已经完成，也不构成当前独立认证；所选引文未确定该计划的地域范围。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:32:45+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续完整原句及液冷技术、供应商服务延伸的周边语境充分，对当前技术边界与替代路线识别、浸没供应商业务范围及建设服务角色研究具有实质性局部贡献。未发现敏感、真实冲突或拟替换条件，符合B类部分采用要求；不以计划证据回答或关闭问题。",
+        "workorder_ids": [
+          "Q-OBJ-immersion-definition",
+          "Q-OBJ-immersion-alternatives",
+          "Q-OBJ-immersion-supply",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.292,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "219098583c68386744ff582d3e966bbc470c97f7a030491a3570d8a696f56098",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 69190,
+            "output_tokens": 1468,
+            "reasoning_output_tokens": 241
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.701,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b6626685114fbab77d3a0620530ab2a59032962f8ceb9e54912cd8b744df2986",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 69990,
+              "output_tokens": 510,
+              "reasoning_output_tokens": 221
+            }
+          }
+        },
+        "batch_id": "4f0d6cf444a724ae77632a869bb64ca1541797127b38883aced6ec2b694e27c3"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:11"
+      ],
+      "limitations": "所选证据没有浸没系统的正式定义、组成、型号、工况或明确排除规则，也没有同口径性能、成本和约束比较。未提供建设地点、容量、进度、实际交付、交期、生命周期成本或一手公告。“自有数据中心”是来源所述计划，不确认现有资产权属；AI云业务目标不确定具体客户、付款方、运营责任或最终使用方。相邻印度合作备忘录不能自动限定本项全部计划的地域，也不能把液冷规划容量认定为浸没部署。",
+      "conflict_check": "已采用的adoption:review:d48a5050a146314eeebfeae0涉及LiquidStack制造及产品路线计划，与Submer建设和云服务计划主体、活动不同，不构成重复或冲突。其他采用声明涉及不同园区、合同或主体。legacy中的Denvr自报PUE及OCP浸没采用比例、预测涉及不同对象、指标和分母，不能验证或否定本项计划；合同和项目匹配记录为空。所供材料未发现规范重复、真实冲突或替换需求，检查不包含穷尽性外部反证检索。",
+      "gap_dependency_check": "OBJ-immersion-definition仅获得作者区分两条技术路线的线索，仍缺正式定义和组成；OBJ-immersion-alternatives仅识别直接芯片液冷这一对照路线，仍缺同口径比较；OBJ-immersion-supply获得供应商向建设与云服务延伸的计划线索，仍缺制造交付分工、交期和成本；NODE-activity-V1-boundary获得计划中的供应商、建设及服务角色线索，仍缺完整交易和一手权责文件。M02-Q04限定主权基金、能源公司、地产转型等新进入者，本文没有建立Submer属于这些类别，也没有实际落地及统计分母，因此不挂接该问题。所有相关工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4f0d6cf444a724ae77632a869bb64ca1541797127b38883aced6ec2b694e27c3",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "1b4c19592344b5f49f9d60193b3d8b9d0fa17dae8b174166217dd7f2b9754f1a"
+      },
+      "object_mapping_check": "独立依据对象契约核对：原文明示Submer，匹配actor:submer；浸没技术匹配水与散热系统下机房与机柜链的part:immersion；直接芯片液冷这一对照路线匹配芯片级chain:thermal/4，但未明确冷板，不映射part:coldplate。自有数据中心建设及AI云服务计划直接涉及整座AI数据中心范围，支持root，映射保留计划阶段。没有具体计算、网络、控制软件、土地或供电资产证据，不因AI云字样扩展至这些对象；不沿用多家主体标签。所选证据统一使用上述主张级审核范围，原候选和证据标签保持不变。"
     }
   ],
   "answers": [],
