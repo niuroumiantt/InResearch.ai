@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.77",
+  "version": "2026.10.11.78",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -3541,9 +3541,9 @@
       "id": "editorial-intake-20261009",
       "topic": "editorial-intake",
       "scope": "editorial-research-input",
-      "status": "current",
+      "status": "superseded",
       "effective_at": "2026-10-09",
-      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "source": "docs/archive/2026-10-11/editorial-delivery-before-user-priority.md",
       "supersedes": [],
       "reason": "User authorized automatic delivery of finished longforms and published datacenter columns; authored analysis remains separate from primary evidence.；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。",
       "implementations": [
@@ -3560,7 +3560,8 @@
         "src/inresearch/workflow/reader_scope.py",
         "tests/unit/test_reader_scope_capacity.py"
       ],
-      "implementation_revision": "2026-10-09"
+      "implementation_revision": "2026-10-09",
+      "superseded_by": "editorial-intake-20261011-user-priority"
     },
     {
       "id": "ci-impact-20261010",
@@ -3587,6 +3588,37 @@
       ],
       "implementation_revision": "2026.10.10.76",
       "change_reason": "2026-10-10 用户授权重新审查并实施 M1–M5：产品完成度与来源边界、目标行派工权威、版本化请求、当前阅读视图、混合假设/登记属性状态、状态板对账与源码命名清理；不放宽 C3、权限或 CI。"
+    },
+    {
+      "id": "editorial-intake-20261011-user-priority",
+      "topic": "editorial-intake",
+      "scope": "editorial-research-input",
+      "status": "current",
+      "effective_at": "2026-10-11",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "supersedes": [
+        "editorial-intake-20261009"
+      ],
+      "reason": "用户决定研究排队、插队或直接上线；点名来源优先审核，并将优先级延伸到新发表任务发现，保留原队列所有者、来源身份与全部验收。",
+      "implementations": [
+        "src/inresearch/adapters/editorial_sync.py",
+        "src/inresearch/interfaces/cli.py",
+        "src/inresearch/workflow/research_match.py",
+        "src/inresearch/delivery/reader_export.py",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/knowledge/material_baseline.py",
+        "scripts/editorial-outbox.py",
+        "deploy/spark-reader/inresearch-editorial.service",
+        "deploy/spark-reader/inresearch-editorial.timer",
+        "tests/unit/test_editorial_sync.py",
+        "src/inresearch/workflow/reader_scope.py",
+        "tests/unit/test_reader_scope_capacity.py",
+        "src/inresearch/workflow/research_review.py",
+        "src/inresearch/workflow/research_publish.py",
+        "tests/unit/test_review_preference.py",
+        "docs/local_reader/SPARK_OPERATIONS.md"
+      ],
+      "implementation_revision": "2026-10-11"
     }
   ],
   "entrypoints": [
