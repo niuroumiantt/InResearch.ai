@@ -102,6 +102,22 @@ class HomepageRawAtlasTests(unittest.TestCase):
         self.assertLess(len(json.dumps(small)),len(json.dumps(full)))
         with self.assertRaises(ValueError):industry.snapshot(ROOT,{'overview':'yes'})
 
+    def test_overview_preserves_upstream_reference_it_and_separate_estimate_totals(self):
+        full=industry.snapshot(ROOT);overview=industry.snapshot(ROOT,{'overview':'1'})
+        row=next(r for r in overview['rows'] if r['site_id']=='us-tx-abilene')
+        self.assertEqual(row['capacity'],{'operating':421,'construction':422,'planning':0})
+        self.assertEqual(row['total_mw'],843)
+        self.assertTrue(row['capacity_known']);self.assertTrue(row['capacity_estimated'])
+        assessment=row['capacity_assessment']
+        self.assertEqual(assessment['kind'],'legacy_estimate')
+        self.assertEqual(assessment['status'],'provisional')
+        self.assertIsNone(assessment['as_of']);self.assertTrue(assessment['missing_conditions'])
+        self.assertNotIn('origin_record_sha256',assessment);self.assertNotIn('source_support',assessment)
+        self.assertEqual(overview['totals']['estimated'],full['totals']['estimated'])
+        self.assertEqual(overview['capacity_audit']['estimated'],full['capacity_audit']['estimated'])
+        self.assertGreaterEqual(overview['totals']['estimated']['operating'],421)
+        self.assertGreaterEqual(overview['totals']['estimated']['construction'],422)
+
     def test_news_public_cache_versions_changes_and_never_reuses_a_failed_rebuild(self):
         registry._NEWS_PUBLIC_CACHE.clear()
         with tempfile.TemporaryDirectory() as tmp:

@@ -204,3 +204,7 @@ Reader 完整候选快照继续保存在私有 `data/research_runtime.json`，�
 `delivery.runtime_summary` 从已校验快照生成私有 `data/raw/research-runtime/research-runtime-control.json`：运行计量、当前接收/匹配信息，以及每份完整阅读的至多六条陈述、三条原文预览。它记录源文件身份、完整 SHA、语义 SHA 和正式研究基线 SHA；是可重建视图，不是第二个正式证据库。缺失、源变化或基线不一致时显示待生成，不能在普通页面请求里回退读取大型候选库。小于等于 8 MiB 的旧快照保留经过原校验的兼容读取。供应、材料流、运维、新闻与回流接口使用该视图；计数、全文覆盖和候选身份保持分开。
 
 完整研究库读取按文件身份及图谱/问题版本缓存同一份规范化结果；重型研究 HTTP 响应与候选接收共用内存互斥，接收前释放缓存。缓存不授予采用，也不替代接收校验。交付预览用一次索引关联代替逐文档遍历全库。首次部署可执行 `manage.py runtime-summary --refresh` 重建，持同一源文件锁，核对原件指针和正式库冲突，不改完整快照、模型值或正式记录。容量上限与实际峰值仍需按运行数据验收，不能以健康路由成功代替业务接口可用。
+
+### 2026-10-11：具名阅读调度
+
+具名阅读顺序可用 `reader prioritize` 显式提高：绑定 doc_id、当前 revision_id、expected_priority、新 priority、唯一 request_id、by 与 reason。dry-run只读；在线 SQLite 事务比较当前版本与旧优先级，只改指定 reading_runs.priority 并同事务写 reader_priority 审计。重复请求幂等，异意图、旧版本、终态或降低优先级拒绝。它不构造 Reader/模型、不取得第二个 worker、不取消在途任务，不改原件、冻结配方、job/预算、模型 importance、C3 或采用；既有四分之一最老任务机会保留。

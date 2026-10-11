@@ -160,6 +160,7 @@ class Handler(SimpleHTTPRequestHandler):
     def _redirect(self, to, extra_headers=()):
         self.send_response(302)
         self.send_header("Location", to)
+        self.send_header("Content-Length", "0")
         for k, v in extra_headers:
             self.send_header(k, v)
         self.end_headers()

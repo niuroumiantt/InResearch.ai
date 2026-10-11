@@ -39,6 +39,12 @@ def main(argv=None):
     retry.add_argument("--revision-id")
     retry.add_argument("--error-code",
                        help="only this block reason; a parser fix retires one class, not all")
+    priority = sub.add_parser('prioritize', help='audit an explicit increase in reading order, never importance or C3')
+    for name in ('doc-id', 'revision-id', 'request-id', 'by', 'reason'):
+        priority.add_argument('--' + name, required=True)
+    priority.add_argument('--expected-priority', type=int, required=True)
+    priority.add_argument('--priority', type=int, required=True)
+    priority.add_argument('--dry-run', action='store_true')
     retry_job = sub.add_parser('retry-job', help='CAS retry one failed read job online; preserve attempts and source artifacts')
     for name in ('doc-id','revision-id','stage','expected-error','expected-recipe','expected-recipe-sha256','request-id','by','reason'):
         retry_job.add_argument('--' + name, required=True)
@@ -80,6 +86,20 @@ def main(argv=None):
             parser.add_argument("--doc-id", action="append",
                                 help="include only this complete document in a scoped candidate export; repeat as needed")
     args = ap.parse_args(argv)
+    if args.command == 'prioritize':
+        from inresearch.workflow.reader_priority import prioritize
+        try:
+            result = prioritize(args.data_root or os.environ.get('READER_DATA_ROOT') or
+                                os.path.expanduser('~/.local/share/inresearch.ai'),
+                                doc_id=args.doc_id, revision_id=args.revision_id,
+                                expected_priority=args.expected_priority, priority=args.priority,
+                                request_id=args.request_id, by=args.by, reason=args.reason,
+                                dry_run=args.dry_run)
+            print(encoded(result))
+            return 0
+        except (OSError, ValueError, sqlite3.Error) as exc:
+            print(encoded({'error': str(exc) if isinstance(exc, ValueError) else type(exc).__name__}), file=sys.stderr)
+            return 1
     if args.command == 'retry-job':
         from inresearch.workflow.reader_retry_job import retry_job
         try:

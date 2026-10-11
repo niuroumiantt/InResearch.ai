@@ -38,7 +38,7 @@ CLI 失败修复：先保留点名批次的失败任务快照和 SQLite 备份�
 
 ## 当前骨架驱动的接收与检索（2026-10-06）
 
-本轮更新的是用途与入口，SHA 原件、catalog、extracted 与 artifacts 不迁移。用户报告/日报先在 incoming 完成逐文件校验，再按 [采集操作指南](ACQUISITION_OPERATIONS.md) 运行 research-match；原件全部进入 acquisition/blobs，供给/页码索引在 acquisition/catalog.sqlite，日报逐事件版本和复核在 acquisition/daily-events.json。未命中也保留原件，只有命中需求/角度/日报事件的材料进入 Reader；不按文件夹数量推断已读。
+本轮更新的是用途与入口，SHA 原件、catalog、extracted 与 artifacts 不迁移。用户报告/日报先在 incoming 完成逐文件校验，再按 [采集操作指南](ACQUISITION_OPERATIONS.md) 运行 research-match；原件全部进入 acquisition/blobs，供给/页码索引在 acquisition/catalog.sqlite，日报逐事件版本和复核在 acquisition/daily-events.json。未命中也保留原件，命中需求/角度/日报事件或具有经校验参数需求绑定的材料进入 Reader；不按文件夹数量推断已读。
 
 现行目标表是唯一需求来源，新阅读冻结命中目标、五类变量、六队、模型输入与目标表 SHA，以三级账和四问的缺口决定优先级及阅读上下文（见 04）。接收候选多节点链接在 library/candidates-by-node/<节点>/variable-N/；新完整报告主链接在 library/by-node/<节点>/，原件仍由 SHA 标识。旧模块视图只保留旧链接，既有配方/报告/停放不会因骨架更新被覆写或全库重读。网页从供应中心的“新闻与报告匹配”进入，按主体、地区、项目、节点及变量需求定位。
 
@@ -506,3 +506,7 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 2026-10-11 公网验收在 157 MB 候选快照下复现 2 GiB 容器 OOM；管理接口不应为读取计数反复载入完整证据库。现行接收会流式保存完整私有快照并生成 `data/raw/research-runtime/research-runtime-control.json`。视图失配时显示待生成，原快照保留。首次上线或视图损坏可在具备足够内存的受控执行环境中运行 `python3 manage.py runtime-summary --refresh`；必须指向真实源码及 `INRESEARCH_READER_SNAPSHOT`/运行根目录，不能用源码目录的样本冒充生产。重建使用同一文件锁并校验候选与正式库身份，输出完整源 SHA、视图字节数与预览数。普通接收随后自动更新，不新增发布服务或队列所有者。
 
 大文件精确重放依赖与原快照 SHA 一致的视图语义摘要；缺失时，逐字节一致的原请求可直接重放重建；其它情况先显式重建，再重试同一请求。接收后的完整 JSON 不被删改或缩减；视图只保留既定每文档六陈述/三原文预览，完整覆盖、来源与候选资料仍在既有快照/Reader 中。真实容量、并发接口、接收重放与容器重启次数单独验收，不用单元测试或 `/healthz` 代替。
+
+### 具名样例的在线阅读顺序（2026-10-11）
+
+具名阅读顺序可用 `reader prioritize` 显式提高：绑定 doc_id、当前 revision_id、expected_priority、新 priority、唯一 request_id、by 与 reason。dry-run只读；在线 SQLite 事务比较当前版本与旧优先级，只改指定 reading_runs.priority 并同事务写 reader_priority 审计。重复请求幂等，异意图、旧版本、终态或降低优先级拒绝。它不构造 Reader/模型、不取得第二个 worker、不取消在途任务，不改原件、冻结配方、job/预算、模型 importance、C3 或采用；既有四分之一最老任务机会保留。 操作命令见采集操作指南；先核当前阅读版本、范围和冻结任务并保存 catalog 一致备份，再 plan/apply，同一请求回放不会再次提高。不得把调度9写成资料重要性9或正式采用。
