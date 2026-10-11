@@ -7674,6 +7674,63 @@
       "status": "candidate",
       "stored_path": "originals/8c/8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60/dcd-8c305e6b0602b060-AI cloud firm partners with CDC for Australian data center capaci.html",
       "title": "AI cloud firm partners with CDC for Australian data center capacity"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "coverage": {
+        "characters_read": 11165,
+        "characters_total": 11165,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "id": "doc-a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "library_path": "library/by-node/root/2026_DCD_CoreWeave surpasses 1GW of data center capacity, pushes__a2b8adcc8280a3fd.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:coreweave",
+        "part:gpu",
+        "part:server",
+        "part:shell",
+        "root",
+        "system:facility"
+      ],
+      "question_ids": [
+        "OBJ-gpu-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-6884ff38f5ab4cbbaa3a456a2aba2a07",
+      "report_sha256": "437cd80b6cdf2816e2a3cbe67c4f36c55a4ce1266b7db2478bc891890a52bc83",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+        "url": "https://www.datacenterdynamics.com/en/news/coreweave-surpasses-1gw-of-data-center-capacity-pushes-more-into-self-builds/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/coreweave-surpasses-1gw-of-data-center-capacity-pushes-more-into-self-builds/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/a2/a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74/dcd-a2b8adcc8280a3fd-CoreWeave surpasses 1GW of data center capacity- pushes more into.html",
+      "title": "CoreWeave surpasses 1GW of data center capacity, pushes more into self builds"
     }
   ],
   "evidence": [
@@ -57178,6 +57235,89 @@
           }
         },
         "batch_id": "83ca51596d30b513faf6dae5e3c2b297b7f825e56465307bd7961f8beb4077d8"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c76b29aac3c9ad82119e301facfd20588fb9ede0566e5d4c05ba7e47dfac4c51",
+      "document_id": "doc-a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "id": "rev-6884ff38f5ab4cbbaa3a456a2aba2a07:chunk:0:claim:15:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coreweave"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "CFO Nitin Agrawal told analysts that of this backlog, 36 percent will be recognized in the next two years, and 75 percent in the next four.",
+      "reading_revision_id": "rev-6884ff38f5ab4cbbaa3a456a2aba2a07",
+      "source_sha256": "a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:47:14+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。合同收入积压转为收入的预计时间，实质关联当前NODE-activity-V3-economics工单中的收入计量与资产变现节奏。连续引文和完整原生页面提供充分语境，可作为明确归因的部分管理层预测按B类采用。对M03-Q01仅有汇总背景价值，不能补充满足门槛的单笔合同清单、期限、金额或交付节奏，因此不挂接该问题。未发现敏感、真实冲突、替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 47.441,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "35e432381f0af78b455d8743a6f4f5baf2630198609318d8e7eae3e5c7aead0a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62850,
+            "output_tokens": 1259,
+            "reasoning_output_tokens": 248
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.977,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ae0354406332501127e27e610d3d1ea4a010121224094699ba28d8aebae92620",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63440,
+              "output_tokens": 556,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "56bbacb5078a4ca94b9234a250fbfc4854640e2e3d0b197727bd874c879a94ae"
       }
     }
   ],
@@ -110761,6 +110901,106 @@
         "request_sha256": "43ba17facf772756e1b3d9e72db61a52930a6160d508b6971af48a9e8be41eca"
       },
       "object_mapping_check": "独立审查后采用空对象范围。本条对象是IEA总体数据中心用电的情景框架；合同root限定为一座AI数据中心，其下系统、链和部件也不能覆盖行业预测框架。能源及IT供应链的概括提及未指认具体设施资产或场址权利，IEA亦无允许的actor对象。不继承Reader或文档标签，不从邻接图表追加设备映射。两条所选证据统一采用此主张级空对象范围，保留M15-Q01的问题关系。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "evidence_ids": [
+        "rev-6884ff38f5ab4cbbaa3a456a2aba2a07:chunk:0:claim:15:ev:0"
+      ],
+      "id": "adoption:review:ca0efa3471b9d371d2d7720b",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:coreweave"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-6884ff38f5ab4cbbaa3a456a2aba2a07",
+      "status": "adopted",
+      "text": "DCD作者Georgia Butler在2026年5月8日的报道中转述，CoreWeave CFO Nitin Agrawal在Q1 FY2026财报电话会上向分析师预计：公司当时的合同收入积压中，36%将在未来两年内确认为收入，75%将在未来四年内确认为收入。这是报道所载的管理层收入确认预测，不构成对实际收入兑现或当前履约状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:47:14+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。合同收入积压转为收入的预计时间，实质关联当前NODE-activity-V3-economics工单中的收入计量与资产变现节奏。连续引文和完整原生页面提供充分语境，可作为明确归因的部分管理层预测按B类采用。对M03-Q01仅有汇总背景价值，不能补充满足门槛的单笔合同清单、期限、金额或交付节奏，因此不挂接该问题。未发现敏感、真实冲突、替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 47.441,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "35e432381f0af78b455d8743a6f4f5baf2630198609318d8e7eae3e5c7aead0a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62850,
+            "output_tokens": 1259,
+            "reasoning_output_tokens": 248
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.977,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ae0354406332501127e27e610d3d1ea4a010121224094699ba28d8aebae92620",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63440,
+              "output_tokens": 556,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "56bbacb5078a4ca94b9234a250fbfc4854640e2e3d0b197727bd874c879a94ae"
+      },
+      "source_candidate_ids": [
+        "rev-6884ff38f5ab4cbbaa3a456a2aba2a07:chunk:0:claim:15"
+      ],
+      "limitations": "来源为媒体转述，未提供财报电话会的一手记录、收入确认政策或预测推导。原文未明确电话会日期及预测期间的精确起止日，不能自行指定日历截止日期。比例属于公司汇总合同收入积压，两个时间窗口不能相加，也不能等同于单笔合同期限、容量交付、现金回款或已实现收入。未按客户、地域、资产或项目阶段拆分。",
+      "conflict_check": "所供已采用陈述涉及Meta取消条款、AI收入风险、GPU云价格竞争、Oracle收入及盈利预测、Alphabet回报与折旧，以及其他主体的容量协议，均未提出同一CoreWeave积压收入确认预测，不构成规范重复或同口径反证。预测收入确认可以与收入、定价和合同风险观点并存。相关legacy筛选记录为空；检查仅限所供材料，不能证明外部不存在反证，不替换既有结论。",
+      "gap_dependency_check": "本条仅补充NODE-activity-V3-economics的预计收入确认节奏，不回答或关闭问题。仍需一手披露、积压口径、确认条件、客户与合同分布、取消和履约风险、实际确认结果，以及对应资本开支和运营成本。M03-Q01仍需逐笔大额合同的主体、金额、期限及容量交付安排；公司汇总确认比例不能代替这些信息。不更新模型参数或汇总GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "56bbacb5078a4ca94b9234a250fbfc4854640e2e3d0b197727bd874c879a94ae",
+        "source_report_sha256": "437cd80b6cdf2816e2a3cbe67c4f36c55a4ce1266b7db2478bc891890a52bc83",
+        "request_sha256": "640b3b805861d398697efd5f0cf38f36f878950136a8c2ec42b6a494c8ee1062"
+      },
+      "object_mapping_check": "独立核对原文后，主张明确属于CoreWeave公司层面的合同收入积压预测，支持映射无父节点、kind为actor的actor:coreweave。未界定一座AI数据中心或其设施、计算系统、GPU、服务器及建筑的具体收入范围，故不映射root或其下属系统、链和部件。所有选定证据统一采用这一主张级主体范围，不继承Reader或文档级标签。"
     }
   ],
   "answers": [],
