@@ -51680,6 +51680,88 @@
         },
         "batch_id": "9f4bdb0c6c4dcb04ba9dc29ff020f64cfcdc686d5c9a420561780e5bc0505380"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "eea4694e03946ae74796111009a6d8106774352b644bbc58bca1c27a09a1aa82",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:19:claim:3:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "Over the past decade, the growth of data centre capacity in the European Union has been\n                  slower than the global average, resulting in a loss of global market share.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T09:59:25+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。连续完整原句直接支持候选，相邻政策、未来目标及项目管线讨论提供充分语境。对当前M01-Q01的区域容量分布和M05-Q01的区域变化研究具有实质但有限的历史贡献，符合B类归因部分采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q01",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.705,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "917e6933588ad5b10c0252c2849e737d0486a4d5a5fd88e77ab45bc7b7d21f8c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69579,
+            "output_tokens": 1114,
+            "reasoning_output_tokens": 108
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.842,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dbb60a4a809964dcc3a4f568453ece807c90a6c48fb22b1b0c9cb1ae38faeeb5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 70176,
+              "output_tokens": 446,
+              "reasoning_output_tokens": 144
+            }
+          }
+        },
+        "batch_id": "6b813115ea900d633b78ff0c7901e4a499f329297bbf220183fd70aff6acac1c"
+      }
     }
   ],
   "statements": [
@@ -99928,6 +100010,106 @@
         "request_sha256": "0a36dcd3ebdbf576df7476cbd5185a5d35bc3d175dd2086846711cbdb671b985"
       },
       "object_mapping_check": "主张涉及未逐一识别的AI公司群体的债务发行规模及未来融资趋势。root定义为一座AI数据中心，与公司群体汇总口径不一致；邻近图表的具名公司不能自动视为该债务统计的样本。不继承Reader的root标签，也不添加设施、IT或设备映射。对象为空不影响M11-Q07的有效关联；所选证据统一采用此主张范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:19:claim:3:ev:0"
+      ],
+      "id": "adoption:review:662625184ac46f95c470d77c",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q01",
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第1.2节称，在报告所述的过去十年，欧盟数据中心容量增长慢于全球平均水平，导致其全球市场份额下降。这是来源作者对历史区域容量变化的定性陈述；报告发表时间及该十年的具体起止日期未由所供原生文本确立，不构成对当前容量或市场份额的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T09:59:25+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。连续完整原句直接支持候选，相邻政策、未来目标及项目管线讨论提供充分语境。对当前M01-Q01的区域容量分布和M05-Q01的区域变化研究具有实质但有限的历史贡献，符合B类归因部分采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q01",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.705,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "917e6933588ad5b10c0252c2849e737d0486a4d5a5fd88e77ab45bc7b7d21f8c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69579,
+            "output_tokens": 1114,
+            "reasoning_output_tokens": 108
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.842,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dbb60a4a809964dcc3a4f568453ece807c90a6c48fb22b1b0c9cb1ae38faeeb5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 70176,
+              "output_tokens": 446,
+              "reasoning_output_tokens": 144
+            }
+          }
+        },
+        "batch_id": "6b813115ea900d633b78ff0c7901e4a499f329297bbf220183fd70aff6acac1c"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:19:claim:3"
+      ],
+      "limitations": "原句未提供容量数值、增长率、份额变化幅度、统计方法或明确基准日，也未说明容量是否为IT容量、是否仅含投运设施及设施类型范围。欧盟不能扩展为整个欧洲，份额下降不能解释为容量绝对下降。全文覆盖仅限PDF原生文字，未完成图像审阅；来源网址仅有供应方元数据绑定，未独立联网核验。",
+      "conflict_check": "已采用的IEA欧洲管线地理分散陈述涉及欧洲范围及未来项目布局，与本条欧盟过去十年的容量增速判断在地域、时间和指标上不同，不构成冲突或重复。IEA人口与容量分布对照、美国主要市场在建统计及其他单项目布局记录也未反驳本条。既有阶段区分结论保持原状。所供legacy三类登记表均无匹配记录，当前回答为空；未发现同范围规范重复记录。检查限于所供材料，不表示外部反证已穷尽，不替换既有结论。",
+      "gap_dependency_check": "M01-Q01仅获得欧盟全球容量份额历史变化的定性线索，仍需统一基准日、L8+状态、IT容量口径、全球GW总量及区域和类型拆分。M05-Q01仅获得欧盟相对增长背景，仍需各区域投运、在建、规划容量清单及增长时间序列；本条没有俄亥俄、印第安纳或中东增长速度的直接证据。需补核底层统计及反证，两项问题保持开放；不汇总GW、不更新模型输入或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6b813115ea900d633b78ff0c7901e4a499f329297bbf220183fd70aff6acac1c",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "f43bace69a6fc4604d552837e4514d90e853c3f34024a45d90c37a5f2c783a43"
+      },
+      "object_mapping_check": "独立依据原文与对象契约保留空映射：主张范围是欧盟数据中心市场整体容量的历史变化，未限定AI用途，也不是root所指的一座AI数据中心。容量一词未确立内部IT系统、电力系统、部件或场址权利范围；欧盟及IEA均无相应允许主体ID。报告的AI主题不改变本条对象范围，不继承Reader的root标签。所选证据统一采用此主张级空对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
