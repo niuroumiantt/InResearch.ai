@@ -5701,6 +5701,62 @@
       "status": "candidate",
       "stored_path": "originals/9b/9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0/dcd-9bafab864fd6addc-Chilling out in 2025- A year in data center cooling.html",
       "title": "Chilling out in 2025: A year in data center cooling"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+      "coverage": {
+        "characters_read": 7921,
+        "characters_total": 7921,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+      "id": "doc-dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+      "library_path": "library/by-node/actor-sb-energy/2026_Data Center Dynamics（DCD）_Nvidia in talks to invest $1.5bn in SB Energy__dccf302fb0e3a342.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:nebius",
+        "actor:openai",
+        "actor:sb-energy",
+        "part:bess",
+        "root"
+      ],
+      "question_ids": [
+        "OBJ-bess-performance"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-8d041fa648814441a3b7199499e48581",
+      "report_sha256": "f9380fbb8568953abc5c2bebbd6cf36677b7c26add5807a5d6aa32f80c4201e1",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+        "url": "https://www.datacenterdynamics.com/en/news/nvidia-in-talks-to-invest-up-to-3bn-in-sb-energy-report/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/nvidia-in-talks-to-invest-up-to-3bn-in-sb-energy-report/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/dc/dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c/dcd-dccf302fb0e3a342-Nvidia in talks to invest -1.5bn in SB Energy.html",
+      "title": "Nvidia in talks to invest $1.5bn in SB Energy"
     }
   ],
   "evidence": [
@@ -44608,6 +44664,89 @@
           }
         },
         "batch_id": "4ad0728bfef75e7919615d6912ad5d1b1cf353bb81bec166066f29d5c010a4fe"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "5eb52f0a03a1ed9af3f06f6f083f5d288c48f863ac00b0153db6b275ca3887d1",
+      "document_id": "doc-dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+      "id": "rev-8d041fa648814441a3b7199499e48581:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Ground was broken on the project in March 2026, according to The Information.",
+      "reading_revision_id": "rev-8d041fa648814441a3b7199499e48581",
+      "source_sha256": "dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:24:01+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，候选与当前开放工单M10-Q03存在实质关系：提供具体项目的报道动工月份，可作为后续核验建设周期的起点线索。连续引文及原生全文上下文足以支持这一有限作者主张，符合B级部分证据采用条件；不构成问题回答或关闭依据。未发现敏感内容、真实冲突或替换请求等A条件。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 31.727,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "140840813d8367474ce587423dff8958e8816dfe4d6675f39f4680a7b28fa9f6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 30067,
+            "output_tokens": 1016,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.339,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c4d2a718b87d5e84e5bd278fe887acc7cec368081c3e3bf3f42d9a81a5aca496",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 30483,
+              "output_tokens": 411,
+              "reasoning_output_tokens": 153
+            }
+          }
+        },
+        "batch_id": "31a484272a70b30d8ca41d8e6628d850c97d4b2f3bda2bc41ed341ac6c1669ec"
       }
     }
   ],
@@ -86878,6 +87017,106 @@
         "request_sha256": "60a3c4fde52af3b7b411ee13ecc14293f4bad85680fca80ad84675abb280cf4a"
       },
       "object_mapping_check": "本项讨论美国全国未来几十年的跨行业用电需求背景。root指一座AI数据中心，system:power及其链条指该设施的电力系统，site:grid指电力配额与并网权利；原文没有涉及具体设施、配额、并网协议或部件。保留空对象列表及M04-Q05问题匹配，不继承文档或Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-dccf302fb0e3a3425abddb789911af1686c0b1f0b3d00084b600edf1446b228c",
+      "evidence_ids": [
+        "rev-8d041fa648814441a3b7199499e48581:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:595213cfe170032f9b899b54",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M10-Q03"
+      ],
+      "reading_revision_id": "rev-8d041fa648814441a3b7199499e48581",
+      "status": "adopted",
+      "text": "DCD于2026年8月17日刊载的报道援引The Information称，SB Energy作为主要开发商、与OpenAI合作的美国俄亥俄州Pike County数据中心项目于2026年3月破土动工。这是来源报道的项目建设起点，尚未经本次审核独立核实。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:24:01+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，候选与当前开放工单M10-Q03存在实质关系：提供具体项目的报道动工月份，可作为后续核验建设周期的起点线索。连续引文及原生全文上下文足以支持这一有限作者主张，符合B级部分证据采用条件；不构成问题回答或关闭依据。未发现敏感内容、真实冲突或替换请求等A条件。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 31.727,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "140840813d8367474ce587423dff8958e8816dfe4d6675f39f4680a7b28fa9f6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 30067,
+            "output_tokens": 1016,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.339,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c4d2a718b87d5e84e5bd278fe887acc7cec368081c3e3bf3f42d9a81a5aca496",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 30483,
+              "output_tokens": 411,
+              "reasoning_output_tokens": 153
+            }
+          }
+        },
+        "batch_id": "31a484272a70b30d8ca41d8e6628d850c97d4b2f3bda2bc41ed341ac6c1669ec"
+      },
+      "source_candidate_ids": [
+        "rev-8d041fa648814441a3b7199499e48581:chunk:0:claim:7"
+      ],
+      "limitations": "动工时间仅精确到月份，未说明对应首期还是整个园区，也未明确破土仪式与实质施工的界限。本文没有实际通电、竣工或投运日期；相邻文字中的2028年首期投运是预测，不能用于计算实际建设周期。未提供The Information原文或项目方一手开工记录。",
+      "conflict_check": "当前采用答案、声明及证据列表为空。所供legacy记录中的AWS密西西比、AWS北卡及中天科技南通项目均为其他项目，其开工记录不与本候选冲突，也不构成重复。未提供该俄亥俄项目的相反记录；此结论仅限所供材料，不能视为完成外部反证检索。",
+      "gap_dependency_check": "M10-Q03要求从开工到通电的实际建设周期走势。本证据仅补充报道中的起点月份；仍需一手开工依据、同一场址及同一阶段的实际通电日期、统一周期口径和可比较项目样本，并核查反证。不得用预测投运年份计算实际工期或判断周期拉长，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "31a484272a70b30d8ca41d8e6628d850c97d4b2f3bda2bc41ed341ac6c1669ec",
+        "source_report_sha256": "f9380fbb8568953abc5c2bebbd6cf36677b7c26add5807a5d6aa32f80c4201e1",
+        "request_sha256": "b1b544dc8be07ef3720a5ecf2c2662eea6e9ae70e442a0565c56485318966048"
+      },
+      "object_mapping_check": "依据原生上下文，该主张描述一个具名AI数据中心项目的整体建设里程碑，与root“一座 AI 数据中心”的范围相符。引文未明确具体建筑部件、供电工程或许可事项，因此不细分映射到设施、土建、电网或设备；该范围来自独立复核，不继承Reader标签。"
     }
   ],
   "answers": [],
