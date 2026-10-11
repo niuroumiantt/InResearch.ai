@@ -25,9 +25,12 @@ def summarize(target_doc, questions, knowledge, model, graph, *,
     critical = []
     for key in sorted(unresolved, key=lambda k: (evidence[k].get('status') != 'needed', k not in drivers, k)):
         row = primary.get(key, {})
+        request = next((r for r in row.get('request', {}).get('requirements', []) if r['model_input'] == key), {})
         critical.append({'key': key, 'label': drivers.get(key, {}).get('label', key),
             'status': evidence[key].get('status'), 'target_id': row.get('id'),
-            'team': row.get('team'), 'team_state': row.get('team_state'),
+            'team': request.get('source_team', row.get('team')), 'team_state': request.get('team_state', row.get('team_state')),
+            'requirement_id': request.get('id'), 'scope_fields': request.get('scope_fields', []),
+            'affected_outputs': request.get('affected_outputs', []), 'priority': request.get('priority'),
             'declared_sensitivity_driver': key in drivers})
     acquisition = acquisition or {}
     provider_rows, differences = [], []
@@ -61,6 +64,6 @@ def summarize(target_doc, questions, knowledge, model, graph, *,
         'graph': {'relations': dict(Counter(row['type'] for row in graph.get('relations', [])))},
         'providers': provider_rows, 'reconciliation': differences,
         'boundaries': ['sourced is a registered source claim, not suitability for every scenario',
-            'question links are same-node/variable retrieval, not semantic proof',
+            'reviewed question links state a support or lead purpose, not answer proof; same-cell candidates are retrieval only',
             'runtime presence does not change Git status or C3 adoption',
             'current news window and cumulative original receipts have different denominators']}

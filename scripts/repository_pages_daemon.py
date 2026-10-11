@@ -22,6 +22,8 @@ SOURCE_FILES = ('scripts/sync_repo_pages.py','scripts/repository_checks.py',
     'src/inresearch/README.md','framework/tco_targets.json',
     'web/assets/material-flow.js','web/assets/material-flow.css',
     'scripts/repository_research_dashboard.py','src/inresearch/knowledge/research_readiness.py',
+    'framework/research_demand_review.json','src/inresearch/knowledge/target_request_contract.py',
+    'src/inresearch/knowledge/research_gaps.py',
     'data/datacenter_model.json','framework/research_graph.json','framework/bom.json',
     'framework/research_questions.json','framework/supply_contract.json',
     'data/research_knowledge.json')

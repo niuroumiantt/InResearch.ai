@@ -7,6 +7,8 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
 (async()=>{const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL||undefined,headless:true});try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'/tco.html');await page.locator('#kpi-lev strong').waitFor();
+ assert.match(await page.locator('#region-card .readiness-note').innerText(),/项目可行性尚未核验/);
+ assert.match(await page.locator('#region-card').innerText(),/批准容量未知/);
  assert.ok(await page.locator('#view-lifecycle.on').isVisible(),'the retired TCO address opens the ledger on the lifecycle view');
  const lev=await page.locator('#kpi-lev strong').textContent();assert.match(lev,/^\$\d+\.\d+[MB]$/);
  assert.equal(await page.locator('#kpi-kw strong').textContent(),'$851','baseline levelised cost per kW·month');
@@ -21,6 +23,9 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  await page.locator('#input-site').selectOption('us_texas');
  assert.equal(await page.locator('#input-power_price').inputValue(),'0.0707');assert.equal(await page.locator('#presets button.active').count(),0);
  assert.ok((await page.locator('#region-card .gap-count').textContent()).startsWith('缺'),'Texas still has author placeholders');
+ await page.locator('#input-energy_quota_mw').fill('500');await page.locator('#input-energy_quota_mw').dispatchEvent('change');
+ assert.match(await page.locator('#region-card').innerText(),/情景容量上限 500 MW（不是批准值）/);
+ await page.locator('#input-energy_quota_mw').fill('0');await page.locator('#input-energy_quota_mw').dispatchEvent('change');
  await page.locator('#input-site').selectOption('malaysia_johor');assert.ok((await page.locator('#model-inputs em.gap').count())>=10,'Johor marks its missing numbers');
  // Chip-gated BOT in Inner Mongolia: shorter lead time, partner-held M&E
  await page.getByRole('button',{name:'AI · 内蒙古 · BOT · 芯片门槛'}).click();

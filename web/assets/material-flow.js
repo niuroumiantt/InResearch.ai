@@ -52,6 +52,13 @@
     live.innerHTML=`<strong>当前研究闭环</strong><p>支持链有效的答案 ${count(q.answered)} / ${count(q.total)} 个问题 · 支持链有效的陈述 ${count(f.supported_statements)} 条 · 模型待验证输入 ${count(r.model?.unresolved)} 个。</p><p>运行快照 ${date(data.received_at)} · ${data.stale?'快照延迟，以下仅为上次收到的观察':'已接收快照'}；正式研究按当前发布版本计算。</p><div class="repo-scroll"><table><thead><tr><th>供应方</th><th>运行见到交付的目标</th><th>运行已见 / Git仍缺</th><th>计量范围</th></tr></thead><tbody>${providers.map(p=>`<tr><td>${esc(p.team)}</td><td>${count(p.runtime_observed_targets)}</td><td>${count(p.runtime_received_git_needed)}</td><td>${p.runtime_scope==='current_news_window'?'新闻当前窗口':'累计原件回执'}</td></tr>`).join('')}</tbody></table></div><p>差异是对账提示，需要核原件、条件和回执。这里不修改目标状态、不产生研究采用；两个供应方的范围不同。</p>`;
    }
   }
+  const gaps=data.research_gaps, previous=document.getElementById('research-gaps');
+  if(previous)previous.remove();
+  if(gaps){
+   const c=gaps.counts||{}, section=document.createElement('section');section.id='research-gaps';section.className='audit-live';
+   section.innerHTML=`<h3>研究依赖与真实缺口</h3><p>${count(c.unconnected_parent_targets)} 个父目标的来源渠道未接通 · ${count(c.by_kind?.model_input)} 个模型输入待验证 · ${count(c.reviewed_purpose_empty)} 个目标的研究用途待审核 · ${count(c.by_kind?.original_identity)} 条事实缺原件哈希。</p><p>原先 ${count(c.same_cell_retrieval_empty)} 个同格空关联仍按检索口径保留；跨变量类的支持用途另经审核。登记需求不算取得证据，线索不算回答。</p><details><summary>查看逐项责任、下一步与验收</summary><div class="repo-scroll"><table><thead><tr><th>对象</th><th>责任</th><th>下一步</th><th>验收或使用边界</th></tr></thead><tbody>${gaps.records.map(r=>`<tr><td>${esc(r.requirement_id||r.target_id||r.fact_id)}</td><td>${esc(r.source_owner)} / ${esc(r.decision_owner)}</td><td>${esc(r.next_action)}</td><td>${esc(r.acceptance||r.use_constraint||r.reasons?.join('、'))}</td></tr>`).join('')}</tbody></table></div></details>`;
+   host.append(section);
+  }
   detail();
  }
  host.addEventListener('click',e=>{const step=e.target.closest('[data-step]');if(step){selected=step.dataset.step;detail();}if(e.target.closest('#material-refresh'))refresh();});

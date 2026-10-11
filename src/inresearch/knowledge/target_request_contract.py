@@ -28,7 +28,18 @@ def target_node(row):
     return 'root'
 
 
-def attach_contracts(targets, questions):
+def attach_contracts(targets, questions, review, providers, mechanisms):
+    definitions = {r['model_input']: r for r in review.get('requirements', [])}
+    if len(definitions) != len(review.get('requirements', [])):
+        raise ValueError('Duplicate parameter demand definition')
+    covered = {key for row in targets for key in row.get('feeds_primary', [])}
+    if set(definitions) - covered:
+        raise ValueError('Parameter demand lacks a primary target')
+    for definition in definitions.values():
+        fields = definition['scope_fields']
+        if not fields or len(fields) != len(set(fields)) or not definition['question_ids']:
+            raise ValueError('Parameter demand requires distinct scope fields and reviewed questions')
+    question_by_id = {q['id']: q for q in questions}
     by_cell = {}
     for question in questions:
         by_cell.setdefault((question.get('node'), question.get('variable_class')), []).append(question['id'])
@@ -37,6 +48,56 @@ def attach_contracts(targets, questions):
                    'vendor_operation' if row['team'] == 'fetchspec' and row['id'].endswith('.operation') else
                    'vendor_spec' if row['team'] == 'fetchspec' else
                    'observation' if row['data_class'] == 'observation' else 'research_material')
-        row['request'] = {'version': 1, 'profile': profile, 'node': target_node(row),
-                          'question_ids': sorted(by_cell.get((target_node(row), row['variable_class']), [])),
-                          'scope_required': True}
+        node = target_node(row)
+        candidates = sorted(by_cell.get((node, row['variable_class']), []))
+        rule = review.get('question_link_rules', {}).get(row['id'].rsplit('.', 1)[-1], {})
+        links = [{'question_id': q['id'], 'relation': rule['relation'], 'reason': rule['reason']}
+                 for q in questions if q.get('node') == node and node != 'root'
+                 and any(q['id'].endswith('-' + suffix) for suffix in rule.get('suffixes', []))]
+        requirements = []
+        for key in row.get('feeds_primary', []):
+            if key not in definitions:
+                continue
+            definition = definitions[key]
+            if any(qid not in question_by_id for qid in definition['question_ids']):
+                raise ValueError(f'{key}: unregistered reviewed question')
+            team = definition['source_team']
+            if team not in providers:
+                raise ValueError(f'{key}: unregistered source team {team}')
+            mechanism = definition['mechanism']
+            if mechanism not in mechanisms or definition['profile'] not in PROFILES:
+                raise ValueError(f'{key}: unregistered mechanism or request profile')
+            requirements.append(dict(definition, id=row['id'] + '::' + key,
+                profile=definition['profile'],
+                required_fields=COMMON + ['requirement_id', 'source_sha256', 'locator', 'scope', 'native_value', 'unit', 'conditions', 'derivation'],
+                host='macmini' if mechanism == 'js_page' else providers[team].get('host_default', 'aws'),
+                mechanism=mechanism,
+                team_state='not_connected' if providers[team].get('connection') == 'not_connected' else 'connected',
+                evidence_status='unverified'))
+            links.extend({'question_id': qid, 'relation': 'supports',
+                          'reason': definition['acceptance'], 'requirement_id': row['id'] + '::' + key}
+                         for qid in definition['question_ids'])
+        row['request'] = {'version': 2, 'profile': profile, 'node': node,
+            'candidate_question_ids': candidates, 'question_ids': sorted({x['question_id'] for x in links}),
+            'question_links': links, 'requirements': requirements,
+            'requirement_required': bool(requirements), 'scope_required': True,
+            'mapping_review': {'owner': 'research', 'review_version': review.get('version'),
+                'reviewed_at': review.get('reviewed_at'),
+                'disposition': 'reviewed_support_links' if links else 'question_not_registered' if not any(q.get('node') == node for q in questions) else 'purpose_review_required',
+                'reason': '支持材料或线索的用途已登记；不表示回答、采用或闭题。' if links else '尚无经审核的用途关联；保留缺口，研究端审定问题和用途后再派工。'}}
+
+
+def resolve_request(target, requirement_id=None):
+    """Resolve dispatch authority, never infer it from same-cell retrieval."""
+    request = target.get('request', {})
+    requirements = request.get('requirements', [])
+    if requirements:
+        selected = next((r for r in requirements if r['id'] == requirement_id), None)
+        if selected is None:
+            raise ValueError('该目标包含参数级需求，请选择现行 requirement_id；不能整包按旧主责队派工')
+        return selected
+    if requirement_id:
+        raise ValueError('参数级需求不属于所选目标行')
+    return {'source_team': target['team'], 'host': target['host'],
+            'team_state': target.get('team_state'), 'question_ids': request.get('question_ids', []),
+            'scope_fields': []}

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.76。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.77。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2520。
+在册文件：2523。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 407 |
-| 运行代码 | 369 |
+| 运行代码 | 370 |
 | 现行规范 | 16 |
-| 项目配置 | 761 |
+| 项目配置 | 762 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 191 |
-| 测试 | 195 |
+| 测试 | 196 |
 
 ## 在册记录集合
 
@@ -1758,6 +1758,7 @@
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
+| `framework/research_demand_review.json` | requirements | 17 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
 | `framework/research_graph.json` | objects | 354 |
 | `framework/research_graph.json` | relations | 373 |
@@ -3224,6 +3225,7 @@
 | [framework/modules/M15_情景与监测.md](../framework/modules/M15_情景与监测.md) | 配套说明 |
 | `framework/part_fetch.json` | 项目配置 |
 | `framework/repository_manifest.json` | 生成物 |
+| `framework/research_demand_review.json` | 项目配置 |
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
 | `framework/site_rights.json` | 项目配置 |
@@ -3638,6 +3640,7 @@
 | `src/inresearch/knowledge/nodes.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/research_gaps.py` | 运行代码 |
 | `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
 | `src/inresearch/knowledge/skeleton.py` | 运行代码 |
 | `src/inresearch/knowledge/target_request_contract.py` | 运行代码 |
@@ -3886,6 +3889,7 @@
 | `tests/unit/test_repository_projection.py` | 测试 |
 | `tests/unit/test_repository_research_dashboard.py` | 测试 |
 | `tests/unit/test_research.py` | 测试 |
+| `tests/unit/test_research_demands.py` | 测试 |
 | `tests/unit/test_research_flow_recovery.py` | 测试 |
 | `tests/unit/test_research_local_acceptance.py` | 测试 |
 | `tests/unit/test_research_match.py` | 测试 |
