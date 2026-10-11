@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2565。
+在册文件：2566。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 196 |
+| 配套说明 | 197 |
 | 测试 | 198 |
 
 ## 在册记录集合
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 67 |
-| `data/research_knowledge.json` | evidence | 459 |
-| `data/research_knowledge.json` | statements | 419 |
+| `data/research_knowledge.json` | documents | 68 |
+| `data/research_knowledge.json` | evidence | 460 |
+| `data/research_knowledge.json` | statements | 420 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1741,7 +1741,7 @@
 | `docs/reviews/2026-10-10/project-audit/spark-measurements.json` | acquisition_tables | 5 |
 | `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | scope_notes | 6 |
 | `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | records | 2 |
-| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 7 |
+| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 8 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -2646,6 +2646,7 @@
 | [docs/handoff/technical-atlas-m4-20261009.md](handoff/technical-atlas-m4-20261009.md) | 配套说明 |
 | [docs/handoff/technical-atlas-standard-20261008.md](handoff/technical-atlas-standard-20261008.md) | 配套说明 |
 | [docs/handoff/us-datacenter-power-20261009.md](handoff/us-datacenter-power-20261009.md) | 配套说明 |
+| [docs/handoff/user-research-priority-20261011.md](handoff/user-research-priority-20261011.md) | 配套说明 |
 | [docs/handoff/worktree-integration-20261006.md](handoff/worktree-integration-20261006.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
