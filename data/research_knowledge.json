@@ -55722,6 +55722,89 @@
         },
         "batch_id": "d12048cea146e8100d34218b81e7a0c8cf617863002e41f2d61bf73e4ea98116"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "da927e1fc4d3b8bb0e6a6b062e3c30841e8633b1b06ac9ce0bd23a30619e674f",
+      "document_id": "doc-b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "id": "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "APAC data center firm Empyrion Digital has successfully closed financing for its 7MW data center in Taipei, Taiwan, with E.Sun Bank.",
+      "reading_revision_id": "rev-6d5ebe55d035475eb15702866b7e8ca2",
+      "source_sha256": "b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:24:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。融资完成事件及银行参与关系实质贡献于当前M11-Q07的融资结构维度，属于部分证据。连续原文引句完整，原生页面提供项目身份、地域和建设阶段语境；未发现敏感、真实研究冲突、替换或其他A类条件，符合B类限定归因采用要求。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 56.004,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "621f86e47d572bedd286e7b11c9154f6e1114790bbf851d27c68599ea1deaef1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 56519,
+            "output_tokens": 1436,
+            "reasoning_output_tokens": 452
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.54,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "09793ea16a7ce976a3f44700d2046d3454dcd485403cd5cfaa03b47e667486eb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 57094,
+              "output_tokens": 494,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "f8921cb6d0b0866a224d24daf8cc65e878da2c76c2953036a39cbcc7caacdb55"
+      }
     }
   ],
   "statements": [
@@ -107792,6 +107875,106 @@
         "request_sha256": "917bad33221daf95eca03807f5af77067e5d0036aa21fcff54d13eaf8dcc9291"
       },
       "object_mapping_check": "独立依据第19页图注核对：本项chip manufacturers指TSMC、Samsung Electronics和SK hynix。契约内Samsung Electronics对应actor:samsung、SK hynix对应actor:sk-hynix，均为企业actor且parent为null；契约未提供TSMC对象，不能另造或替代ID。所选对象表示制造商组中可映射的成员，不将组级判断分配为各公司的已验证约束。Reader的root指一座AI数据中心，与企业市值和制造扩产判断的实际范围不符；未明确具体设施、GPU、ASIC、HBM或服务器产品，不增加基础设施或部件映射。所选证据统一使用这一声明级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "evidence_ids": [
+        "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:0:ev:0"
+      ],
+      "id": "adoption:review:988466783c9044fe58602d9e",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M11-Q07"
+      ],
+      "reading_revision_id": "rev-6d5ebe55d035475eb15702866b7e8ca2",
+      "status": "adopted",
+      "text": "据DCD作者Jemima Davey于2026年8月26日的报道，Empyrion Digital已与玉山银行完成其位于台湾台北内湖的TW1数据中心融资，报道标示该项目规模为7MW。正文语境显示项目当时处于建设阶段。这是来源对融资完成事件及参与方的陈述，未经本次独立核验，不表示资金已全部提款或项目已投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:24:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。融资完成事件及银行参与关系实质贡献于当前M11-Q07的融资结构维度，属于部分证据。连续原文引句完整，原生页面提供项目身份、地域和建设阶段语境；未发现敏感、真实研究冲突、替换或其他A类条件，符合B类限定归因采用要求。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 56.004,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "621f86e47d572bedd286e7b11c9154f6e1114790bbf851d27c68599ea1deaef1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 56519,
+            "output_tokens": 1436,
+            "reasoning_output_tokens": 452
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.54,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "09793ea16a7ce976a3f44700d2046d3454dcd485403cd5cfaa03b47e667486eb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 57094,
+              "output_tokens": 494,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "f8921cb6d0b0866a224d24daf8cc65e878da2c76c2953036a39cbcc7caacdb55"
+      },
+      "source_candidate_ids": [
+        "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:0"
+      ],
+      "limitations": "报道未披露TW1融资金额、工具类型、债股比例、期限、利率、担保、追索权或提款条件，也未明确玉山银行的具体安排、承销或最终贷款持有角色。7MW是项目规模描述，并非融资金额，原文未明确其电力计量边界，不能认定为已投运IT容量。同文AirTrunk TOK1的12亿美元贷款不属于TW1融资。报道发表日期已确定，确切融资完成日期未披露；二手报道不能代替一手融资文件。",
+      "conflict_check": "同文已采用的AirTrunk TOK1贷款陈述涉及日本另一主体和项目，不是本条TW1融资的重复记录，也不能向本条转移金额或银行角色。STACK、Fluidstack融资案例及既有信用关联、风险承接、估值传导观点与本次事件没有可识别的实质冲突。所供legacy匹配记录为空，未找到规范重复或相反证据；检查限于所供材料，不替换既有结论，也不代表完成外部反证检索。",
+      "gap_dependency_check": "仅补充M11-Q07的项目融资事件和参与方线索，不能回答资本成本或关闭问题。仍需一手融资公告或协议、准确交易日期、工具及债股结构、银行角色、信用支持、定价和提款资料，并核对反证；不据此赋值WACC、债务利率或项目融资比例。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f8921cb6d0b0866a224d24daf8cc65e878da2c76c2953036a39cbcc7caacdb55",
+        "source_report_sha256": "8d5866f87ee1f7e0731ecdd888456fa5f8fc39acb572ba44ff74cd901bd4374d",
+        "request_sha256": "b88153141aeabd1eef221e6493efd0f94976c3a89ba08ddc8762c6891c28e721"
+      },
+      "object_mapping_check": "原文及相邻语境明确融资对象是一座可承载AI及HPC负载的TW1数据中心，支持合同中表示单座AI数据中心整体范围的root映射。融资未划分土地建筑、消防、电力、散热或IT资金用途，不映射system:facility或其他系统、链、设备及接入权。Empyrion Digital和玉山银行没有对应允许主体ID；AirTrunk仅属于另一个历史融资段落，不继承其标签。所选证据统一采用此审核后的主张级范围。"
     }
   ],
   "answers": [],
