@@ -1,0 +1,1080 @@
+{
+  "schema": "historical-fact-owner-adoption-proposal-v1",
+  "status": "pending_owner_adoption",
+  "applied": false,
+  "prepared_at": "2026-10-11",
+  "scope": "12 current source-supported fact corrections, preserving the full prior records; six unknown-observation-time facts remain a separate schema-dependent proposal.",
+  "decision_required": {
+    "tier": "A",
+    "authority": "owner",
+    "rule": "framework/01_data_standards.md section 4: 拟改写既有结论，代理可给出建议与证据，采纳由所有者决定。"
+  },
+  "boundary": {
+    "current_support_originals_reverified": 12,
+    "historical_exact_input_bytes_proven": 0,
+    "facts_changed": 0,
+    "provenance_debt_before": 37,
+    "proposed_current_missing_support_hash_after": 25,
+    "historical_identity_not_established_count_after": 37,
+    "source_grade_and_depth_increased": false,
+    "source_report_dates_do_not_replace_existing_as_of": true,
+    "quoted_sources_not_independent_confirmations": true
+  },
+  "records": [
+    {
+      "fact_id": "reit-runze-occupancy-2025",
+      "selected_option": "use_2025q1_table_point",
+      "before_record": {
+        "fact_id": "reit-runze-occupancy-2025",
+        "metric_id": "dc_occupancy_rate",
+        "entity": {
+          "type": "project",
+          "id": "cn-hb-langfang-runze",
+          "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+        },
+        "value": 99.0,
+        "unit": "%",
+        "caliber": {
+          "scope": "单项目",
+          "region": "CN"
+        },
+        "as_of": "2025-03",
+        "evidence": {
+          "local_file": "",
+          "locator": "申万宏源《南方润泽科技数据中心REIT申购价值分析》(2025-07-12) 正文「上架率逾99%，租约长期稳定」段",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "单个成熟 IDC 项目（廊坊润泽）2022-2025Q1 实际上架率，原文「超过99%」取下界。**不是行业均值**——同期廊坊市 IDC 市场整体上架率 81.3%、周边竞品 74%~85%。评估机构预期未来维持 95%~99%（剔除改造影响）。地域=中国河北廊坊。",
+        "bound": "lower",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "bf37878a06d57bb1266bd076c130cb3a6af2d552724472fa1e36f793b2255cf7",
+      "after_record": {
+        "fact_id": "reit-runze-occupancy-2025",
+        "metric_id": "dc_occupancy_rate",
+        "entity": {
+          "type": "project",
+          "id": "cn-hb-langfang-runze",
+          "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+        },
+        "value": 99.0,
+        "unit": "%",
+        "caliber": {
+          "scope": "单项目",
+          "region": "CN"
+        },
+        "as_of": "2025-03",
+        "evidence": {
+          "local_file": "originals/ea/ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e/20250712-申万宏源：南方润泽科技数据中心REIT()申购价值分析(18页).pdf",
+          "locator": "申万宏源《南方润泽科技数据中心REIT（180901）申购价值分析》（封面2025-06-30），PDF物理第13页§4.2及表5（page_index=12）；2025年1-3月总计99.00%",
+          "grade": "S2",
+          "sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "单项目口径：润泽（廊坊）国际信息港A-18数据中心。按申万宏源2025-06-30报告物理第13页表5，2025年1-3月总计年平均上架率为99.00%，为各期间月平均上架率，上架率=月上架总功率/项目IT总功率。历史总计序列为2022年95.90%、2023年99.50%、2024年99.20%、2025Q1 99.00%；不得概括为2022-2025Q1各期均超过99%。同页正文概括“达到超过99%”，与表内2025Q1的99.00%精确值有粒度差异，保留两种原文记录，本选项采用该期表值。同期廊坊市IDC市场81.3%属于区域市场；竞品74%-85%为报告所述2024年口径，不与本项目混作行业均值。未来上架率预测与历史实际分开。地域=中国河北廊坊；as_of沿用2025-03表示2025Q1期间，不改成报告日期。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "after_record_sha256": "7e315106ea533e6e573dd1e274497ec06661cb469874f4bc31f8edd6ab16f26b",
+      "source_sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+      "physical_evidence": [
+        {
+          "physical_page": 13,
+          "page_index": 12,
+          "locator_label": "§4.2 narrative",
+          "quote": "平均上架率稳步上升，达到超过99%的上架率",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 13,
+          "page_index": 12,
+          "locator_label": "表5注2",
+          "quote": "为各期间的月平均上架率，上架率=月上架总功率/项目 IT 总功率",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "langfang-market-occupancy-2025",
+      "selected_option": "qualified_source_identity_only",
+      "before_record": {
+        "fact_id": "langfang-market-occupancy-2025",
+        "metric_id": "dc_occupancy_rate",
+        "entity": {
+          "type": "region",
+          "id": "cn-hb-langfang",
+          "label": "廊坊市IDC市场"
+        },
+        "value": 81.3,
+        "unit": "%",
+        "caliber": {
+          "scope": "区域市场",
+          "region": "CN"
+        },
+        "as_of": "2025-03",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文「25Q1，廊坊市IDC市场整体上架率达到81.3%」",
+          "grade": "S3"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**区域市场口径**，非单项目。与上一条 99% 配对使用：两者差 17.7 个百分点，说明头部项目上架率不能代表区域平均。时点=2025Q1，地域=中国河北廊坊。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "0703643a738677bf871fdbcc1ce3fbb509c009079ea51125f631329da57305df",
+      "after_record": {
+        "fact_id": "langfang-market-occupancy-2025",
+        "metric_id": "dc_occupancy_rate",
+        "entity": {
+          "type": "region",
+          "id": "cn-hb-langfang",
+          "label": "廊坊市IDC市场"
+        },
+        "value": 81.3,
+        "unit": "%",
+        "caliber": {
+          "scope": "区域市场",
+          "region": "CN"
+        },
+        "as_of": "2025-03",
+        "evidence": {
+          "local_file": "originals/ea/ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e/20250712-申万宏源：南方润泽科技数据中心REIT()申购价值分析(18页).pdf",
+          "locator": "申万宏源《南方润泽科技数据中心REIT（180901）申购价值分析》（封面2025-06-30），PDF物理第8页§2.3及第13页§4.2（page_index=7、12）：25Q1廊坊市IDC市场整体上架率81.3%",
+          "grade": "S3",
+          "sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**区域市场口径**，非单项目。与上一条 99% 配对使用：两者差 17.7 个百分点，说明头部项目上架率不能代表区域平均。时点=2025Q1，地域=中国河北廊坊。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "after_record_sha256": "bb966fb2f9c32059f2baa18357bcb894d7aa14f5cae7a962c86f1d5fe7c1233e",
+      "source_sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+      "physical_evidence": [
+        {
+          "physical_page": 8,
+          "page_index": 7,
+          "locator_label": "§2.3",
+          "quote": "25Q1廊坊市IDC市场整体上架率达到81.3%",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 13,
+          "page_index": 12,
+          "locator_label": "§4.2",
+          "quote": "25Q1，廊坊市IDC市场整体上架率达到81.3%",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "runze-colo-price-2025",
+      "selected_option": "retain_normalized_kw_as_derived",
+      "before_record": {
+        "fact_id": "runze-colo-price-2025",
+        "metric_id": "colo_price_per_kw",
+        "entity": {
+          "type": "project",
+          "id": "cn-hb-langfang-runze",
+          "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+        },
+        "value": 1072.0,
+        "unit": "原币/月/计价单位",
+        "caliber": {
+          "pricing_basis": "按功率",
+          "customer_type": "单一大客户长约",
+          "region": "CN",
+          "currency": "人民币"
+        },
+        "as_of": "2025-07",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文「合同期内（20-34年），普通机柜的托管服务费单价为1,072元/月/kW」",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**按功率计价（元/月/kW）而非按机柜计价**，两种口径不可互换。合同期 2020-2034 固定单价、2035 年起预测年增 1%。高功率机柜约 1,149 元/月/kW。单一大客户长约，**不代表零售托管市场价**。地域=中国河北廊坊。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "before_record_sha256": "5fd8b05ceda6527c0b87fccdb4284230fe9184a1b0088883dc9e6e3cdbe25d69",
+      "after_record": {
+        "fact_id": "runze-colo-price-2025",
+        "metric_id": "colo_price_per_kw",
+        "entity": {
+          "type": "project",
+          "id": "cn-hb-langfang-runze",
+          "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+        },
+        "value": 1072.0,
+        "unit": "原币/月/计价单位",
+        "caliber": {
+          "pricing_basis": "按功率",
+          "customer_type": "单一大客户长约",
+          "region": "CN",
+          "currency": "人民币"
+        },
+        "as_of": "2025-07",
+        "evidence": {
+          "local_file": "originals/ea/ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e/20250712-申万宏源：南方润泽科技数据中心REIT()申购价值分析(18页).pdf",
+          "locator": "申万宏源《南方润泽科技数据中心REIT（180901）申购价值分析》（封面2025-06-30），PDF物理第14页§4.3及表6（page_index=13）；7547元/月/个、7.04kW/柜，报告折合约1072元/月/kW；第13页为2035年起按功率计费假设",
+          "grade": "S2",
+          "sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": true,
+        "sensitive": false,
+        "notes": "单一大客户长约、含电托管项目：润泽（廊坊）国际信息港A-18数据中心；不代表零售托管市场价。合同期2020-2034年普通机柜为7.04kW/柜，合同托管服务费7,547元/月/个；报告折合单kW价格约1,072元/月/kW。高功率机柜为16.5kW/柜、18,962元/月/个，报告折合约1,149元/月/kW。原文将2035年起以功率计费及年均增长1.0%作为评估假设，不能倒写成当前合同采用功率计费。地域=中国河北廊坊；原as_of保留，报告封面日期独立记录为2025-06-30。 本选项的pricing_basis=按功率仅表示折合后的比较单位，不表示当前合同实际按功率结算；derived=true明确其计算性质。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3,
+        "derivation": "普通机柜7547元/月/柜 ÷ 7.04kW/柜 = 1072.017045...元/月/kW；按报告列示精度记约1072元/月/kW。"
+      },
+      "after_record_sha256": "8cbc01e60ad54495e97925f547be96c302d3b93e05718f3a54ad9c0209c510da",
+      "source_sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+      "physical_evidence": [
+        {
+          "physical_page": 14,
+          "page_index": 13,
+          "locator_label": "§4.3 ordinary cabinets",
+          "quote": "托管服务费单价为7,547元/月/个，折合单kW价格约为1,072元/月/kW",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 13,
+          "page_index": 12,
+          "locator_label": "§4.2 post-contract assumption",
+          "quote": "假设当前协议到期后，35年开始A-18数据中心将以功率计托管服务费",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "runze-power-cost-share-2024",
+      "selected_option": "qualified_source_identity_only",
+      "before_record": {
+        "fact_id": "runze-power-cost-share-2024",
+        "metric_id": "power_cost_share",
+        "entity": {
+          "type": "project",
+          "id": "cn-hb-langfang-runze",
+          "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+        },
+        "value": 42.75,
+        "unit": "%",
+        "caliber": {
+          "denominator": "营业收入",
+          "region": "CN"
+        },
+        "as_of": "2024-12",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文「22-25Q1电费占营收的比例分别为40.75%/38.93%/42.75%/39.79%」的 2024 年值",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**营收口径的电费占比，不是成本口径**。序列 2022=40.75、2023=38.93、2024=42.75、2025Q1=39.79。受当地电价与上架率共同影响，**不同电价区不可平移**。地域=中国河北廊坊。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "before_record_sha256": "8e9aee33588b15f18ea02d3658936893f681e2196883f7df995968dbf00a085c",
+      "after_record": {
+        "fact_id": "runze-power-cost-share-2024",
+        "metric_id": "power_cost_share",
+        "entity": {
+          "type": "project",
+          "id": "cn-hb-langfang-runze",
+          "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+        },
+        "value": 42.75,
+        "unit": "%",
+        "caliber": {
+          "denominator": "营业收入",
+          "region": "CN"
+        },
+        "as_of": "2024-12",
+        "evidence": {
+          "local_file": "originals/ea/ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e/20250712-申万宏源：南方润泽科技数据中心REIT()申购价值分析(18页).pdf",
+          "locator": "申万宏源《南方润泽科技数据中心REIT（180901）申购价值分析》（封面2025-06-30），PDF物理第12页（page_index=11）：22-25Q1电费占营收40.75%/38.93%/42.75%/39.79%，取2024全年42.75%",
+          "grade": "S2",
+          "sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**营收口径的电费占比，不是成本口径**。序列 2022=40.75、2023=38.93、2024=42.75、2025Q1=39.79。受当地电价与上架率共同影响，**不同电价区不可平移**。地域=中国河北廊坊。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "after_record_sha256": "309ff6131e363ed67c60c9f1bc29e6e458e89cda8fb6058813923f08f985ee42",
+      "source_sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+      "physical_evidence": [
+        {
+          "physical_page": 12,
+          "page_index": 11,
+          "locator_label": "§3 cost discussion",
+          "quote": "22-25Q1电费占营收的比例分别为40.75%/38.93%/42.75%/39.79%",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "runze-reit-price-2025",
+      "selected_option": "correct_expected_fundraising_stage",
+      "before_record": {
+        "fact_id": "runze-reit-price-2025",
+        "metric_id": "reit_issue_price",
+        "entity": {
+          "type": "market",
+          "id": "southern-runze-reit",
+          "label": "南方润泽科技数据中心REIT(180901.SZ)"
+        },
+        "value": 4.5,
+        "unit": "元/份",
+        "caliber": {
+          "stage": "最终定价",
+          "region": "CN"
+        },
+        "as_of": "2025-07",
+        "evidence": {
+          "local_file": "",
+          "locator": "天风证券《周观REITs：南方润泽科技数据中心REIT获超百倍认购》(2025-07-06)「每份定价4.5元，总发行规模10亿份，预计募集资金总额约45亿元」",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**最终定价**，位于询价区间 3.020~4.531 元/份上沿（顶格定价）。对应实募约 45 亿元；申万宏源同期载明**拟募集 37.75 亿元**为定价前口径，**引用募集规模必须标明拟募还是实募**。地域=中国。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "before_record_sha256": "d8ec69b46bdae2b44db699853f5f9b179e6c49d6f1660dfedb2595bff9892c67",
+      "after_record": {
+        "fact_id": "runze-reit-price-2025",
+        "metric_id": "reit_issue_price",
+        "entity": {
+          "type": "market",
+          "id": "southern-runze-reit",
+          "label": "南方润泽科技数据中心REIT(180901.SZ)"
+        },
+        "value": 4.5,
+        "unit": "元/份",
+        "caliber": {
+          "stage": "最终定价",
+          "region": "CN"
+        },
+        "as_of": "2025-07",
+        "evidence": {
+          "local_file": "originals/86/86c07e8c9d708ec942700a7ada4a166aeed37a091170aeb6624210aa58a6727d/20250706-天风证券-周观REITs_南方润泽科技数据中心REIT获超百倍认购_13页_1mb.pdf",
+          "locator": "天风证券《南方润泽科技数据中心REIT获超百倍认购（周观REITs）》（2025-07-06），PDF物理第1页摘要及第3页§1行业动态（page_index=0、2）：每份定价4.5元，预计募集约45亿元",
+          "grade": "S2",
+          "sha256": "86c07e8c9d708ec942700a7ada4a166aeed37a091170aeb6624210aa58a6727d",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "最终询价定价为4.5元/份。天风证券2025-07-06报告转述深交所7月2日晚间公告称询价完成、最终认购倍数167.06倍，7月14日将启动公众发售；总发行规模10亿份、预计募集资金总额约45亿元。此处45亿元仍为该文所述预计募集金额，不是已完成实募回执。申万宏源封面2025-06-30报告的询价区间为3.020-4.531元/份、拟募集37.75亿元，属于定价前口径；4.5元接近但不等于询价上限4.531元，不称严格顶格定价。拟募、预计募集与实际募集须分别标明。地域=中国，as_of保留2025-07。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "after_record_sha256": "f7ef71528df67cf25c0c5bcd1f8d3b4996049bf6fd605edf1d1e6482f402470b",
+      "source_sha256": "86c07e8c9d708ec942700a7ada4a166aeed37a091170aeb6624210aa58a6727d",
+      "physical_evidence": [
+        {
+          "physical_page": 3,
+          "page_index": 2,
+          "locator_label": "§1行业动态",
+          "quote": "每份定价4.5元，总发行规模10亿份，预计募集资金总额约45亿元",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 3,
+          "page_index": 2,
+          "locator_label": "§1行业动态",
+          "quote": "该基金将于7月14日正式启动向公众投资者发售",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "dc-reit-yield-2025",
+      "selected_option": "state_valuation_denominator",
+      "before_record": {
+        "fact_id": "dc-reit-yield-2025",
+        "metric_id": "reit_distribution_yield",
+        "entity": {
+          "type": "market",
+          "id": "cn-dc-reit",
+          "label": "南方润泽科技数据中心REIT(180901.SZ)"
+        },
+        "value": 7.71,
+        "unit": "%",
+        "caliber": {
+          "basis": "发行时预测",
+          "region": "CN"
+        },
+        "as_of": "2025-07",
+        "evidence": {
+          "local_file": "",
+          "locator": "申万宏源同上报告「25/26年预测年化分派率7.71%/6.42%；估值折现率为7.75%」",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**发行时预测值而非实现值**。2025=7.71%、2026=6.42%（逐年下降）。配套估值折现率 7.75%。分派率依赖可供分配金额假设，与上架率、电价、续约率强相关。地域=中国。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "before_record_sha256": "8315a6de7a42d6e17c6f85587aa9a4a203840595e02267d599747c7a82a49429",
+      "after_record": {
+        "fact_id": "dc-reit-yield-2025",
+        "metric_id": "reit_distribution_yield",
+        "entity": {
+          "type": "market",
+          "id": "cn-dc-reit",
+          "label": "南方润泽科技数据中心REIT(180901.SZ)"
+        },
+        "value": 7.71,
+        "unit": "%",
+        "caliber": {
+          "basis": "发行时预测",
+          "region": "CN"
+        },
+        "as_of": "2025-07",
+        "evidence": {
+          "local_file": "originals/ea/ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e/20250712-申万宏源：南方润泽科技数据中心REIT()申购价值分析(18页).pdf",
+          "locator": "申万宏源《南方润泽科技数据中心REIT（180901）申购价值分析》（封面2025-06-30），PDF物理第14页§5.1（page_index=13）：假设100%分配、以评估价值37.25亿元计，25/26年预测年化分派率7.71%/6.42%",
+          "grade": "S2",
+          "sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "2025年预测年化分派率7.71%，2026年6.42%，均不是已实现分派。申万宏源封面2025-06-30报告物理第14页明确假设100%分配、以项目评估价值37.25亿元计；2025年4-12月及2026年可供分配金额为16899万元、22655万元，对应期间预测净现金流分派率5.78%、6.42%，2025年年化后为7.71%。不能把该分派率解释为按最终45亿元预计发行规模计算的投资者收益率。估值折现率7.75%为另一指标。未来结果受上架率、电价、续约等假设影响。原as_of=2025-07保留为历史记录时点，不以封面日期自动改写。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "after_record_sha256": "30fd809a9916bbf0500cb858d9427c458eab716d1bb3c99e56764f0aac2b28ba",
+      "source_sha256": "ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e",
+      "physical_evidence": [
+        {
+          "physical_page": 14,
+          "page_index": 13,
+          "locator_label": "§5.1 valuation/distribution basis",
+          "quote": "假设100%分配，以本项目评估价值37.25亿元计",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 14,
+          "page_index": 13,
+          "locator_label": "§5.1 annualized forecast",
+          "quote": "25/26年年化分派率分别为7.71%/6.42%",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "cn-dc-payback-2025",
+      "selected_option": "restore_published_payback_range",
+      "before_record": {
+        "fact_id": "cn-dc-payback-2025",
+        "metric_id": "dc_payback_years",
+        "entity": {
+          "type": "market",
+          "id": "cn-compute-center",
+          "label": "中国算力中心（行业口径）"
+        },
+        "value": null,
+        "unit": "年",
+        "caliber": {
+          "scope": "项目层",
+          "region": "CN"
+        },
+        "as_of": "2025-08",
+        "evidence": {
+          "local_file": "",
+          "locator": "中国信通院《算力中心创新融资研究报告（2025年）》正文「项目投资回收期在8-10年」段",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**区间值而非点值**。前提是设备寿命 5-50 年、需随技术迭代追加投入。**项目层口径，未说明是否含财务费用、是否税后**。地域=中国，时点=2025-08。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 4
+      },
+      "before_record_sha256": "74424966a5a2a5f8bb257bf9a4c447bf23db984a962dea8bd6aeb7408d9568da",
+      "after_record": {
+        "fact_id": "cn-dc-payback-2025",
+        "metric_id": "dc_payback_years",
+        "entity": {
+          "type": "market",
+          "id": "cn-compute-center",
+          "label": "中国算力中心（行业口径）"
+        },
+        "value": null,
+        "unit": "年",
+        "caliber": {
+          "scope": "项目层",
+          "region": "CN"
+        },
+        "as_of": "2025-08",
+        "evidence": {
+          "local_file": "originals/bb/bbf6336d22dcb3a663811173cdf53d07b4c0e31c1184794d3ce636c1661148a0/8A_2025_算力中心创新融资研究报告_中国信通院.pdf",
+          "locator": "中国信通院《算力中心创新融资研究报告（2025年）》（封面2025-08），PDF物理第9页、印刷第3页（page_index=8）§一（二）：项目投资回收期8-10年",
+          "grade": "S2",
+          "sha256": "bbf6336d22dcb3a663811173cdf53d07b4c0e31c1184794d3ce636c1661148a0",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "原文明示项目投资回收期8-10年，属于算力中心项目层行业描述，不是单点值或某个项目的实测回收记录。报告称收入主要来源于服务器托管，通常机柜需维持较高上架率才能覆盖初期投资和运营成本。原文5-50年指房屋、机电设备、IT设备等不同资产的折旧年限，不是统一设备寿命；需要随技术迭代持续更新投入。未说明回收期是否含财务费用、是否税后，地域按中国报告行业背景保留CN。as_of=2025-08沿用报告年代，不补造具体投资起算或回收日期。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 4,
+        "value_range": [
+          8,
+          10
+        ]
+      },
+      "after_record_sha256": "ae70f25a4be79fda93ee2003ca69a99579cafa08140a7c2dfbc788cb3539ef27",
+      "source_sha256": "bbf6336d22dcb3a663811173cdf53d07b4c0e31c1184794d3ce636c1661148a0",
+      "physical_evidence": [
+        {
+          "physical_page": 9,
+          "page_index": 8,
+          "locator_label": "§一（二），印刷页3",
+          "quote": "项目投资回收期在8-10年",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 9,
+          "page_index": 8,
+          "locator_label": "same section",
+          "quote": "不同资产的折旧年限通常在5-50年之间不等",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "cn-dc-loan-share-2025",
+      "selected_option": "correct_named_financing_cases",
+      "before_record": {
+        "fact_id": "cn-dc-loan-share-2025",
+        "metric_id": "bank_loan_share",
+        "entity": {
+          "type": "market",
+          "id": "cn-compute-center",
+          "label": "中国算力中心（三项目样本）"
+        },
+        "value": 70.0,
+        "unit": "%",
+        "caliber": {
+          "basis": "计划投资",
+          "region": "CN"
+        },
+        "as_of": "2025-08",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文列举：中国移动呼和浩特算力基地（总投资23亿、贷款占比70%）、上海超级智算中心（总投入20亿、自筹6亿+贷款14亿）",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**样本值不是行业均值**——第三个样本北京通州区人工智能智算中心（总投资43亿、自筹22亿、贷款21亿）为 49%。**三例均为「计划投资/拟投入」口径，不是实际放款**。地域=中国，时点=2025-08。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "before_record_sha256": "e1514da853970ac114a5779e609a9acb90fe3a1df18093846cfc968aa27cab5b",
+      "after_record": {
+        "fact_id": "cn-dc-loan-share-2025",
+        "metric_id": "bank_loan_share",
+        "entity": {
+          "type": "market",
+          "id": "cn-compute-center",
+          "label": "中国算力中心融资案例（光环新网呼和浩特、上海超级智算中心）"
+        },
+        "value": 70.0,
+        "unit": "%",
+        "caliber": {
+          "basis": "计划投资",
+          "region": "CN"
+        },
+        "as_of": "2025-08",
+        "evidence": {
+          "local_file": "originals/bb/bbf6336d22dcb3a663811173cdf53d07b4c0e31c1184794d3ce636c1661148a0/8A_2025_算力中心创新融资研究报告_中国信通院.pdf",
+          "locator": "中国信通院《算力中心创新融资研究报告（2025年）》（封面2025-08），PDF物理第10页、印刷第4页（page_index=9）§一（二）：光环新网呼和浩特计划投资23亿元、银行贷款70%；上海拟投入20亿元、贷款14亿元即70%；通州43亿元、贷款21亿元即49%",
+          "grade": "S2",
+          "sha256": "bbf6336d22dcb3a663811173cdf53d07b4c0e31c1184794d3ce636c1661148a0",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "本条70%为中国算力中心融资案例中的计划/拟融资比例，不是行业均值或三项目平均值。报告物理第10页称：根据光环新网2024年12月公告，其呼和浩特算力基地计划总投资23亿元，银行贷款占比70%；上海超级智算中心拟总投入20亿元，企业自筹6亿元、申请银行贷款14亿元，占比70%；北京通州区人工智能智算中心总投资43亿元，自筹22亿元、银行贷款21亿元，占比49%。首例主体是光环新网，不能写成中国移动。原文未提供实际放款完成证明；第三例没有与前两例完全相同的“计划/拟”措辞，按备案/投资安排案例引用。as_of=2025-08保留为本报告年代；首例公告年代2024-12另列，不把三例合成同一实际融资观测时点。",
+        "bound": "point",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "after_record_sha256": "a28bbea7b5e06cfbd77b7eec42a5cc4c618168e3f968d278245398d748335167",
+      "source_sha256": "bbf6336d22dcb3a663811173cdf53d07b4c0e31c1184794d3ce636c1661148a0",
+      "physical_evidence": [
+        {
+          "physical_page": 10,
+          "page_index": 9,
+          "locator_label": "§一（二），印刷页4",
+          "quote": "根据光环新网在2024年12月发布的公告",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 10,
+          "page_index": 9,
+          "locator_label": "呼和浩特算力基地案例",
+          "quote": "其中银行贷款占比70%",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 10,
+          "page_index": 9,
+          "locator_label": "通州案例",
+          "quote": "北京通州区人工智能智算中心项目总投资额43亿，自筹资金22亿，银行贷款21亿，占比49%",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "cn-10k-cluster-mfu-2024",
+      "selected_option": "remove_unstated_cn_scope",
+      "before_record": {
+        "fact_id": "cn-10k-cluster-mfu-2024",
+        "metric_id": "mfu_rate",
+        "entity": {
+          "type": "market",
+          "id": "cn-10k-cluster-mfu-2024",
+          "label": "万卡集群 MFU（模型算力利用率）"
+        },
+        "value": 40.0,
+        "unit": "%",
+        "caliber": {
+          "cluster_scale": "万卡",
+          "region": "CN"
+        },
+        "bound": "upper",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "",
+          "locator": "《从云计算看AI投资的ROI》正文「万卡集群MFU可达40%，GPU数量越少、MFU越高」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**MFU = 模型实际达到的算力 ÷ 硬件理论峰值算力，是「有效算力」的核心指标，与「GPU 利用率」不同**——GPU 利用率高但 MFU 低意味着卡在忙却没干出有效计算。原文「可达40%」为**上界/最好情况**，且明确指出**规模越大 MFU 越低**（GPU 数量越少 MFU 越高），故 40% 是万卡级的乐观值、不可外推到更大集群。未说明模型、并行策略与精度，标 [未核]。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "6e1989eb2d9377820289af4f57bf73500b84173eef08558d9963a926a2934a4b",
+      "after_record": {
+        "fact_id": "cn-10k-cluster-mfu-2024",
+        "metric_id": "mfu_rate",
+        "entity": {
+          "type": "market",
+          "id": "cn-10k-cluster-mfu-2024",
+          "label": "万卡集群 MFU（模型算力利用率）"
+        },
+        "value": 40.0,
+        "unit": "%",
+        "caliber": {
+          "cluster_scale": "万卡",
+          "region": "未披露"
+        },
+        "bound": "upper",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "originals/e6/e6c1de04f402dd727cb58db8a35d503e05d331a058a13440353349045604ea93/从云计算看AI投资的ROI：企业上云具备性价比，云业务具备较高回报率.pdf",
+          "locator": "西南证券《企业上云具备性价比，云业务具备较高回报率（AI专题·从云计算看AI投资的ROI）》（封面2024-10），PDF物理第12页、印刷第11页（page_index=11）§1.3影响因素三：万卡集群MFU可达40%",
+          "grade": "S4",
+          "sha256": "e6c1de04f402dd727cb58db8a35d503e05d331a058a13440353349045604ea93",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "报告正文称“万卡集群MFU可达40%，GPU数量越少、MFU越高”。40%按现有schema对“可达”的约定保留upper编码，但这只表示该句概括，不是中国万卡集群的严格实测上限或所有配置的通用上限。同页同时列Meta Llama-3.1约8K/16K GPU集群MFU 43%/41%，并称字节MegaScale在BF16下可实现50%以上；这些例子不能被40%概括覆盖。原句未明确地域，region拟改为未披露；不能因中国券商或字节例子即归为CN。未为40%句注明具体模型、并行策略与精度；例子细节不自动补入40%句。as_of=2024保留报告年代，匹配报告封面为2024-10。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "after_record_sha256": "0ed82c4398e276a600489d5738c9cc4a306ea799e727b02cb5bd7cc6553da666",
+      "source_sha256": "e6c1de04f402dd727cb58db8a35d503e05d331a058a13440353349045604ea93",
+      "physical_evidence": [
+        {
+          "physical_page": 12,
+          "page_index": 11,
+          "locator_label": "§1.3，影响因素三，印刷页11",
+          "quote": "万卡集群MFU可达40%，GPU数量越少、MFU越高",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 12,
+          "page_index": 11,
+          "locator_label": "Meta Llama-3.1 example",
+          "quote": "在8K张和16K张GPU集群下，MFU分别可达到43%和41%的水平",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 12,
+          "page_index": 11,
+          "locator_label": "ByteDance MegaScale example",
+          "quote": "在BF16精度下，MegaScale方法可实现50％以上的算力利用率",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "h100-listed-range-2024",
+      "selected_option": "restore_published_h100_range",
+      "before_record": {
+        "fact_id": "h100-listed-range-2024",
+        "metric_id": "gpu_hourly_rate_spot",
+        "entity": {
+          "type": "market",
+          "id": "h100-listed-range-2024",
+          "label": "H100 GPU 小时租赁价格"
+        },
+        "value": null,
+        "unit": "$/hr",
+        "caliber": {
+          "price_type": "公开挂牌",
+          "unit": "单卡",
+          "region": "Global"
+        },
+        "bound": "point",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文「根据各厂商官网数据，H100的租赁价格从2$/h~13$/h不等，其中云服务大厂的算力租赁价格较为稳定」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "【单位已规范化：原候选写「美元/小时」，指标声明为 $/hr】**区间跨度 6.5 倍，且原文未说明区间两端各对应什么合约条件**（现货/长约/包年、是否含存储与网络、是否整机 8 卡折算），标 [未核]。数据来源为各厂商官网标价、非成交价。云服务大厂价格较稳定、区间两端多来自中小算力供应商。地域=全球，时点≈2024。",
+        "asserter": "未注明",
+        "node": "part:gpu",
+        "variable_class": 3
+      },
+      "before_record_sha256": "641c0862a0a895f044837f9cb4fd6ecfc2ad677919c9674bb6feb6274ec6c374",
+      "after_record": {
+        "fact_id": "h100-listed-range-2024",
+        "metric_id": "gpu_hourly_rate_spot",
+        "entity": {
+          "type": "market",
+          "id": "h100-listed-range-2024",
+          "label": "H100 GPU 小时租赁价格"
+        },
+        "value": null,
+        "unit": "$/hr",
+        "caliber": {
+          "price_type": "公开挂牌",
+          "unit": "单卡",
+          "region": "Global"
+        },
+        "bound": "point",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "originals/e6/e6c1de04f402dd727cb58db8a35d503e05d331a058a13440353349045604ea93/从云计算看AI投资的ROI：企业上云具备性价比，云业务具备较高回报率.pdf",
+          "locator": "西南证券《企业上云具备性价比，云业务具备较高回报率（AI专题·从云计算看AI投资的ROI）》（封面2024-10），PDF物理第13页、印刷第12页（page_index=12）及物理第30页、印刷第29页（page_index=29）：H100官网租赁挂牌2-13美元/GPU/小时",
+          "grade": "S4",
+          "sha256": "e6c1de04f402dd727cb58db8a35d503e05d331a058a13440353349045604ea93",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "原文直接发布H100云租赁价格2-13美元/单GPU/小时区间，数据来自各云厂商官网挂牌，不是成交价或同质合同的可比极值。物理第13页图示含H100 SXM和H100 PCIe及不同厂商，并标2024-06-16、2024-09-11、2024-10-16价格；物理第30页收益测算表采用2024-09-11价格数据。因此保留as_of=2024，不补造统一观测日。区间两端具体合约、是否现货/长约、存储/网络捆绑等未说明；不能把概括的2-13当精确同配置现货价格范围。原文标题头部厂商10美元/GPU/小时以上、初创企业2-5美元/GPU/小时，图内最高12.25、最低2.24与正文概括区间的舍入粒度不同，均保留不互相替换。地域Global按跨国云厂商样本口径保留，不代表全球市场穷尽调查。",
+        "asserter": "未注明",
+        "node": "part:gpu",
+        "variable_class": 3,
+        "value_range": [
+          2,
+          13
+        ]
+      },
+      "after_record_sha256": "c74221b2af01e88fce68bac745822b26a1da4070f3d28af44e5b621b63c10ce9",
+      "source_sha256": "e6c1de04f402dd727cb58db8a35d503e05d331a058a13440353349045604ea93",
+      "physical_evidence": [
+        {
+          "physical_page": 13,
+          "page_index": 12,
+          "locator_label": "§1.3影响因素四，印刷页12",
+          "quote": "H100云租赁价格从2$~13$/GPU/h不等",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 30,
+          "page_index": 29,
+          "locator_label": "§2.3.2收入端，印刷页29",
+          "quote": "根据各个云厂商官网数据，H100的租赁价格从2$/h~13$/h不等",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "cn-cluster-fault-loc-2024",
+      "selected_option": "restore_hardware_localization_range_without_cn",
+      "before_record": {
+        "fact_id": "cn-cluster-fault-loc-2024",
+        "metric_id": "fault_localization_days",
+        "entity": {
+          "type": "market",
+          "id": "cn-cluster-fault-loc-2024",
+          "label": "超万卡集群硬件故障定位耗时"
+        },
+        "value": null,
+        "unit": "天",
+        "caliber": {
+          "cluster_scale": "超万卡",
+          "scope": "仅定位",
+          "region": "CN"
+        },
+        "bound": "point",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "",
+          "locator": "《面向超万卡集群的新型智算技术白皮书（2024年）》正文「业界典型硬件故障定位需1~2天」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**「定位」耗时不含修复与恢复训练**，是有效算力被吃掉的一部分。为业界经验值、非某集群实测统计。配套定性关系：单集群 AI 加速卡从千级增长到万级，**故障范围扩大超过 10 倍**（定性放大关系，不是故障率数值）。地域=中国，时点=2024。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "23613ebc145ecc270006f334db381dd64f96b71f2d6d1266b04595f542916ea6",
+      "after_record": {
+        "fact_id": "cn-cluster-fault-loc-2024",
+        "metric_id": "fault_localization_days",
+        "entity": {
+          "type": "market",
+          "id": "cn-cluster-fault-loc-2024",
+          "label": "超万卡集群硬件故障定位耗时"
+        },
+        "value": null,
+        "unit": "天",
+        "caliber": {
+          "cluster_scale": "超万卡",
+          "scope": "仅定位",
+          "region": "未披露"
+        },
+        "bound": "point",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "originals/d3/d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00/2024年32页-通信行业：面向超万卡集群的新型智算技术白皮书（2024年）.pdf",
+          "locator": "中国移动/中移智库《面向超万卡集群的新型智算技术白皮书（2024年）》，PDF物理第9页、印刷第6页（page_index=8）§2.4：业界典型硬件故障定位需1-2天；物理第25页§4.4.3为故障范围扩大描述",
+          "grade": "S4",
+          "sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "作者称“业界典型硬件故障定位需1~2天”，为行业经验描述，不是某个已具名集群的实测分布。仅定位，不含修复或恢复训练；同段复杂应用类故障定位可长达数十天，不能并入本条硬件区间。章节语境为超万卡集群运维挑战；原句未明确中国地域，region拟改为未披露。物理第25页另称AI加速卡从千级增长到万级时“故障范围扩大超过10倍”，指影响范围扩展，不是硬件故障率增长10倍。as_of=2024保留白皮书年代。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2,
+        "value_range": [
+          1,
+          2
+        ]
+      },
+      "after_record_sha256": "b74bf6929209c7fd0967005cc976ec955aa4e17cbe4906eb9b661257ccb091f9",
+      "source_sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+      "physical_evidence": [
+        {
+          "physical_page": 9,
+          "page_index": 8,
+          "locator_label": "§2.4，印刷页6",
+          "quote": "业界典型硬件故障定位需1~2天",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 25,
+          "page_index": 24,
+          "locator_label": "§4.4.3，印刷页22",
+          "quote": "相应的故障范围扩大超过10倍",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    },
+    {
+      "fact_id": "cn-checkpoint-req-2024",
+      "selected_option": "narrow_to_future_trillion_parameter_training",
+      "before_record": {
+        "fact_id": "cn-checkpoint-req-2024",
+        "metric_id": "checkpoint_throughput",
+        "entity": {
+          "type": "market",
+          "id": "cn-checkpoint-req-2024",
+          "label": "大模型训练 checkpoint 读写吞吐需求"
+        },
+        "value": 10.0,
+        "unit": "TB/s",
+        "caliber": {
+          "side": "需求门槛",
+          "region": "CN"
+        },
+        "bound": "point",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上白皮书正文「大模型的训练对checkpoint的读写吞吐性能更是要求高达10TB/s，现有智算存储系统…难以提供超万卡集群所需的10TB/S以上的数据吞吐性能」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**需求侧门槛值而非实测供给**——原文明确指出现有智算存储系统达不到。checkpoint 读写是训练中断恢复的开销来源，直接吃掉有效算力。配套目标：存储集群 10TB/s 级聚合吞吐 + 亿级 IOPS + 99.9999% 可靠性，并使智能算力利用率提升 20% 以上（**目标值不是实测**）。地域=中国，时点=2024。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 1
+      },
+      "before_record_sha256": "7ce09545eb88f47427ed3242c900cc5ffba9a5edf4bdb21b8dbcafba337b6e34",
+      "after_record": {
+        "fact_id": "cn-checkpoint-req-2024",
+        "metric_id": "checkpoint_throughput",
+        "entity": {
+          "type": "market",
+          "id": "cn-checkpoint-req-2024",
+          "label": "未来万亿模型训练checkpoint读写吞吐需求"
+        },
+        "value": 10.0,
+        "unit": "TB/s",
+        "caliber": {
+          "side": "需求门槛",
+          "region": "未披露"
+        },
+        "bound": "point",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "originals/d3/d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00/2024年32页-通信行业：面向超万卡集群的新型智算技术白皮书（2024年）.pdf",
+          "locator": "中国移动/中移智库《面向超万卡集群的新型智算技术白皮书（2024年）》，PDF物理第7页、印刷第4页（page_index=6）§2.2：未来万亿模型训练checkpoint读写吞吐高达10TB/s；紧邻10TB/S以上为存储数据吞吐挑战",
+          "grade": "S4",
+          "sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+          "identity_basis": "reverified_support_original",
+          "historical_exact_input_identity": "not_established",
+          "support_reviewed_at": "2026-10-11"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "物理第7页原文限定“未来万亿模型的训练”对checkpoint读写吞吐性能要求高达10TB/s。本条10是作者对该未来训练场景的需求描述，不是所有当前大模型的通用门槛，也不是已实现供给；side=需求门槛保留。紧邻原文“10TB/S以上”描述超万卡集群存储数据吞吐挑战，不能直接替代前句checkpoint需求的边界。原句未明确地域，region拟改为未披露；as_of=2024仅表示白皮书年代，不是未来需求已在2024实现。物理第17页§4.2.2另述10TB/S级聚合吞吐、亿级IOPS、99.9999%可靠性、智能算力利用率提升20%以上，是架构能力/设计描述，没有在本次所核页面给出具名现场测量回执，不能作为实测供给或与前句混算。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 1
+      },
+      "after_record_sha256": "50f224d178736c4f91ff9bb1598bf4d713020bdc77aa2618edab520c73d009d1",
+      "source_sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+      "physical_evidence": [
+        {
+          "physical_page": 7,
+          "page_index": 6,
+          "locator_label": "§2.2，印刷页4",
+          "quote": "未来万亿模型的训练对checkpoint的读写吞吐性能更是要求高达10TB/s",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 7,
+          "page_index": 6,
+          "locator_label": "same section, throughput challenge",
+          "quote": "难以提供超万卡集群所需的10TB/S以上的数据吞吐性能",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        },
+        {
+          "physical_page": 17,
+          "page_index": 16,
+          "locator_label": "§4.2.2，印刷页14；extracted glyph is 1OPS",
+          "quote": "实现存储集群10TB/S级聚合吞吐带宽、亿级1OPS",
+          "quote_normalization": "Whitespace and line breaks normalized only; no change to the quoted words or numbers"
+        }
+      ]
+    }
+  ]
+}

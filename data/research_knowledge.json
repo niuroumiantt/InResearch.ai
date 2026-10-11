@@ -5974,6 +5974,486 @@
       "status": "candidate",
       "stored_path": "originals/30/307bfd42751f7c8162bee3288728c6edcfc84e13fd017c1e61ed3970834c92ec/dcd-307bfd42751f7c81-GridStor secures -50m credit line to help meet data center batter.html",
       "title": "GridStor secures $50m credit line to help meet data center battery storage demand"
+    },
+    {
+      "id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "doc_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "content_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "title": "MLPerf Results Summary",
+      "source_url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/llama2-70b-99.9/Server/performance/run_1/mlperf_log_summary.txt",
+      "stored_path": "originals/fa/fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958/mlperf-h100-server-summary.txt",
+      "size_bytes": 3143,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+      "manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab",
+      "coverage": {
+        "characters_read": 3143,
+        "characters_total": 3143,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "published_date": null,
+      "as_of": null,
+      "read_status": "complete",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "partial_support_only": true,
+      "model_input_verified": false,
+      "source_time_status": "Original TXT has no publication/run date; pinned commit identifies the version, not a date"
+    },
+    {
+      "id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "doc_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "content_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "title": "H100 系统配置：8×H100-SXM-80GB、HBM3 与 TensorRT/CUDA",
+      "source_url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/systems/DGX-H100_H100-SXM-80GBx8_TRT.json",
+      "stored_path": "originals/aa/aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e/mlperf-h100-system.json.txt",
+      "size_bytes": 2049,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "report_sha256": "3fea519a159922d12e40167128cacb73c3c20d632e74829e0d53a16f9a4f7e5d",
+      "manifest_sha256": "0321851d448800ce66cac0d625433f68ed70ae51410c3ca1d91117d985592bcc",
+      "coverage": {
+        "characters_read": 2049,
+        "characters_total": 2049,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "published_date": null,
+      "as_of": null,
+      "read_status": "complete",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "partial_support_only": true,
+      "model_input_verified": false,
+      "source_time_status": "Original TXT has no publication/run date; pinned commit identifies the version, not a date"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "coverage": {
+        "characters_read": 11453,
+        "characters_total": 11453,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "library_path": "library/by-node/root/2023_DCD_Ongoing supply chain disruption continues to take its t__787ecb5b01cf879c.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:power/4",
+        "root"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-chain",
+        "NODE-activity-V2-chain",
+        "NODE-demand-D1-conversion"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "report_sha256": "1f9750d87ea247b7753f7ae691697d1f0ffeff1e6407067198cfa803d42843bd",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+        "url": "https://www.datacenterdynamics.com/en/opinions/ongoing-supply-chain-disruption-continues-to-take-its-toll/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/opinions/ongoing-supply-chain-disruption-continues-to-take-its-toll/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/78/787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32/dcd-787ecb5b01cf879c-Ongoing supply chain disruption continues to take its toll.html",
+      "title": "Ongoing supply chain disruption continues to take its toll"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "coverage": {
+        "characters_read": 3447,
+        "characters_total": 3447,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "library_path": "library/by-node/part-server/2025_MLCommons；提交方 NVIDIA_MLPerf Inference v5.0：NVIDIA DGX H100（8×H100-SXM-80GB，T__5af8f516cd3a175d.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:nvidia",
+        "actor:nvidia-networking",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:server",
+        "part:ssd",
+        "root"
+      ],
+      "question_ids": [
+        "M12-Q07",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile",
+        "OBJ-server-definition",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "report_sha256": "399de74f060d2a09e0064eaf0ad5327722df5c3708c056f31fafd8399911a900",
+      "research_requests": [
+        {
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad",
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "question_id": "M12-Q07",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "scope_values": {
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景"
+          },
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-mlperf-h100-readme.md",
+        "url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/README.md",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/README.md",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/5a/5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083/mlperf-h100-readme.html",
+      "title": "MLPerf Inference v5.0：NVIDIA DGX H100（8×H100-SXM-80GB，TensorRT）"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "coverage": {
+        "characters_read": 28624,
+        "characters_total": 28624,
+        "chunks_read": 6,
+        "chunks_total": 6,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "library_path": "library/by-node/root/未知_Samaritan Research（正文另称 E_AI data centers documentation – Methodology__5a5b048c02747898.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:anthropic",
+        "actor:crusoe",
+        "actor:meta",
+        "actor:openai",
+        "actor:xai",
+        "part:backup-power",
+        "part:chiller",
+        "part:cpu",
+        "part:gas-turbine",
+        "part:gpu",
+        "part:rack-system",
+        "part:server",
+        "part:shell",
+        "root",
+        "site:grid",
+        "site:land",
+        "site:permits"
+      ],
+      "question_ids": [
+        "M04-Q07",
+        "M05-Q06",
+        "OBJ-backup-power-alternatives",
+        "OBJ-backup-power-definition",
+        "OBJ-backup-power-interfaces",
+        "OBJ-backup-power-performance",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+      "research_requests": [
+        {
+          "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M05-Q06",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+          "scope_values": {
+            "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+            "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+            "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+            "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        },
+        {
+          "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M04-Q07",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+          "scope_values": {
+            "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+            "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+            "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+            "period": "2025至2026；历史预测与实际里程碑逐项核验",
+            "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-samaritan-data-center-methodology",
+        "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/5a/5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2/samaritan-data-center-methodology.html",
+      "title": "AI data centers documentation – Methodology"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "coverage": {
+        "characters_read": 13770,
+        "characters_total": 13770,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "library_path": "library/by-node/part-chiller/2024_DatacenterDynamics_A problem shared_ How split system cooling can help tod__485bf4cced62b057.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:chilled-water-loop",
+        "part:chiller",
+        "part:room-cooling",
+        "root",
+        "site:grid",
+        "system:facility"
+      ],
+      "question_ids": [
+        "OBJ-grid-interfaces",
+        "OBJ-grid-supply",
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces",
+        "OBJ-heat-reject-performance",
+        "OBJ-heat-reject-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+        "url": "https://www.datacenterdynamics.com/en/marketwatch/a-problem-shared-how-split-system-cooling-can-help-todays-high-density-data-centers/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/marketwatch/a-problem-shared-how-split-system-cooling-can-help-todays-high-density-data-centers/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/48/485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5/dcd-485bf4cced62b057-A problem shared- How split system cooling can help today-s high-.html",
+      "title": "A problem shared: How split system cooling can help today’s high-density data centers"
     }
   ],
   "evidence": [
@@ -47069,6 +47549,1674 @@
           }
         },
         "batch_id": "0cfeb4154900ee089756ff02b6ec6724d1d0d5b058c06e90cff99abca6fdafc5"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "663dee95a7c5292828488f612633be7daf457899e43f2fe5f68e62cd760490be",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:20:claim:3:ev:0",
+      "locator": "page:21/chunk:20",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "page_index": 20,
+      "question_ids": [],
+      "quote": "the depreciation associated with these investments that is​\n ​hitting both Google Cloud and Google Services.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:34:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为 6，连续原文引文及相邻页问答提供充分语境，且无已识别的 A 类触发条件。该陈述对当前折旧研究有实质但有限的贡献：明确相关投资折旧影响两个业务分部，可帮助界定 M11-Q09 的适用范围及 M11-Q14 的利润影响分析边界；不能回答年限与残值假设或完成量化。",
+        "workorder_ids": [
+          "Q-M11-Q09",
+          "Q-M11-Q14"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 30.744,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6524ab306c9fd9ea0c8a8c0dde3024e42e491dd4f8558eabdab9b9bdfc630db6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29316,
+            "output_tokens": 1187,
+            "reasoning_output_tokens": 311
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.275,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ed03967fe520a661ea2e1d4bc10d4629a64bda070a44b6c58f70ce09a3efdbc5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29781,
+              "output_tokens": 529,
+              "reasoning_output_tokens": 210
+            }
+          }
+        },
+        "batch_id": "c7231cbae0ec7ec7ba1fd00584547204e0d771721bad0454f175f5e48bc88468"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3cab4979e82dee5aafbbade70d721df135fc676aed566e8c0fe2c8d488614d0b",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "id": "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:siemens",
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell",
+        "part:bess"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "In addition, the companies will jointly develop distributed energy systems that combine fuel cells, battery energy storage, microgrid controls, and medium-voltage electrical equipment, encompassing engineering, integration, and delivery.",
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "source_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:54:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及完整页面上下文支持明确归因的开发计划。具体设备组合与工程、集成、交付范围，对当前NODE-activity-V2-boundary的产品及服务边界具有实质性局部贡献；对M04-Q02仅提供后续核查自备电源系统架构的关联线索。未识别敏感材料、真实冲突、拟替换或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q02",
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.957,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "869a82aa80a657e062994c2e43dd04501a38e7febe21150c15f38301ae193c7b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53344,
+            "output_tokens": 1358,
+            "reasoning_output_tokens": 186
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.948,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f2a2bf8f41fef05713b25754d0692947d60883f33aeca5bd4cf3c6e033a8b523",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54088,
+              "output_tokens": 544,
+              "reasoning_output_tokens": 243
+            }
+          }
+        },
+        "batch_id": "ab36c176f5301beac9cb57293136ed79e9f89dad1cd1cbe21509f2ff553bb229"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "da927e1fc4d3b8bb0e6a6b062e3c30841e8633b1b06ac9ce0bd23a30619e674f",
+      "document_id": "doc-b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "id": "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:facility",
+        "chain:facility/1",
+        "part:shell",
+        "system:power",
+        "chain:power/3"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "It will feature integrated photovoltaic walls, providing solar electricity, to reduce energy and water usage.",
+      "reading_revision_id": "rev-6d5ebe55d035475eb15702866b7e8ca2",
+      "source_sha256": "b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T05:39:53+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文及完整页面语境支持具体项目的现场太阳能供电规划，为当前M04-Q02提供可追踪的自备电源候选及技术路径，具有实质性局部贡献。保留规划属性，按B类部分采用，不回答或关闭问题；未识别A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.077,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7bace863146b9efe5ae076704644dd52bf93f47e5810c09a95a8ab3c9dcce678",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 51051,
+            "output_tokens": 3298,
+            "reasoning_output_tokens": 964
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.285,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b8d9062252cec168590b001f8563043275219a24285b5b7efcb15eff4003295c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 50118,
+              "output_tokens": 494,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "da927e1fc4d3b8bb0e6a6b062e3c30841e8633b1b06ac9ce0bd23a30619e674f",
+      "document_id": "doc-b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "id": "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "August 26, 2026 By Jemima Davey , DCD",
+      "reading_revision_id": "rev-6d5ebe55d035475eb15702866b7e8ca2",
+      "source_sha256": "b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T05:39:53+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。两条引文各为连续原文片段，完整页面提供同一项目及时间语境，对当前M10-Q03贡献可核查的建设起点月份，符合B类部分采用要求。未识别敏感材料、真实冲突、拟替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.077,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7bace863146b9efe5ae076704644dd52bf93f47e5810c09a95a8ab3c9dcce678",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 51051,
+            "output_tokens": 3298,
+            "reasoning_output_tokens": 964
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.285,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b8d9062252cec168590b001f8563043275219a24285b5b7efcb15eff4003295c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 50118,
+              "output_tokens": 494,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "da927e1fc4d3b8bb0e6a6b062e3c30841e8633b1b06ac9ce0bd23a30619e674f",
+      "document_id": "doc-b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "id": "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:4:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The Singapore-based data center company commenced construction  [link: commenced construction — https://www.datacenterdynamics.com/en/news/empyrion-digital-breaks-ground-on-first-taiwan-data-center/] on the facility in January this year,",
+      "reading_revision_id": "rev-6d5ebe55d035475eb15702866b7e8ca2",
+      "source_sha256": "b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T05:39:53+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。两条引文各为连续原文片段，完整页面提供同一项目及时间语境，对当前M10-Q03贡献可核查的建设起点月份，符合B类部分采用要求。未识别敏感材料、真实冲突、拟替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.077,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7bace863146b9efe5ae076704644dd52bf93f47e5810c09a95a8ab3c9dcce678",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 51051,
+            "output_tokens": 3298,
+            "reasoning_output_tokens": 964
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.285,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b8d9062252cec168590b001f8563043275219a24285b5b7efcb15eff4003295c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 50118,
+              "output_tokens": 494,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af"
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:summary",
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "chunk_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "page_index": 0,
+      "quote": "SUT name : PySUT\nScenario : Server\nMode     : PerformanceOnly\nCompleted samples per second    : 106.21\nCompleted tokens per second: 31106.28\nResult is : VALID",
+      "locator": "TXT extraction page:1 / MLPerf Results Summary / lines:4-9; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:parameters",
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "chunk_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "page_index": 0,
+      "quote": "target_qps : 107\nttft_latency (ns): 2000000000\ntpot_latency (ns): 200000000\nmax_async_queries : 0\nmin_duration (ms): 3600000",
+      "locator": "TXT extraction page:1 / Test Parameters Used / lines:58-62; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:warning",
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "chunk_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "page_index": 0,
+      "quote": "WARNING: sample_concatenate_permutation was set to true. \nGenerated samples per query might be different as the one in the setting.\nCheck the generated_samples_per_query line in the detailed log for the real\nsamples_per_query value",
+      "locator": "TXT extraction page:1 / Test Parameters warning / lines:77-80; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:accelerators",
+      "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "chunk_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "page_index": 0,
+      "quote": "\"accelerator_memory_capacity\": \"80 GB\",\n    \"accelerator_memory_configuration\": \"HBM3\",\n    \"accelerator_model_name\": \"NVIDIA H100-SXM-80GB\",\n    \"accelerator_on-chip_memories\": \"\",\n    \"accelerators_per_node\": 8",
+      "locator": "TXT extraction page:1 / System JSON accelerator identity/count / lines:6-10; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:nodes",
+      "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "chunk_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "page_index": 0,
+      "quote": "\"number_of_nodes\": 1",
+      "locator": "TXT extraction page:1 / System JSON node count / lines:37-37; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:framework",
+      "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "chunk_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "page_index": 0,
+      "quote": "\"framework\": \"TensorRT 10.8, CUDA 12.8\"",
+      "locator": "TXT extraction page:1 / System JSON framework / lines:17-17; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0e515cb6175f2c0a4a3cee21b7d7bf7642da8352528b375898f0921230d4e18a",
+      "document_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "id": "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:12:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "part:pdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-activity-V2-chain"
+      ],
+      "quote": "Furthermore, two-fifths of the participants encountered similar issues with sourcing power distribution units/components, and an additional third cited difficulties in obtaining switchgear.",
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "source_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:17:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文和完整页面上下文充分支持有明确归因的历史调查陈述；具体设备采购困难比例对当前开关柜瓶颈及硬件交付约束研究有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-M09-Q07",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.501,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "438336aed44976c20caee6ad5beff45eb841fb1cd564181b851d8ba60c91c391",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65407,
+            "output_tokens": 1539,
+            "reasoning_output_tokens": 351
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.768,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c1fd66e6bb9aab6c7ee8c74567409c9cfbc0338ca145617a82e92a5560d03511",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 66186,
+              "output_tokens": 574,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "7677495a0f5c7c949ecd968b10b8e6667fa249a4efc694015d3e48dde10e7e07"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d5eae89b11b2bfdc879df4bb25304c1104efe292da00bfd041898fc8f8d12a64",
+      "document_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "id": "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:server"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M12-Q07",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "quote": "framework  | TensorRT 10.8, CUDA 12.8  |",
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "source_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:21:22+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性5，评分5。软件依赖实质匹配当前服务器接口工单，并为性能工况和 M12-Q07 吞吐样例提供部分配置支持。两条连续原文及完整 Software Details 上下文充分支持字段观察；未发现本项的敏感、真实冲突或替换条件，可按B有限采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M12-Q07",
+          "Q-OBJ-server-interfaces",
+          "Q-OBJ-server-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 121.576,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "af5ece1e5a6d76772956a4c864a9c24c4e9625db9dc5a20c48879b7ec7411d12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59389,
+            "output_tokens": 4613,
+            "reasoning_output_tokens": 1676
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.557,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd39909a46a15dbbbe2529195a35911c0e76a727faaf606b9d4afebd66d3869",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59189,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 187
+            }
+          }
+        },
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d5eae89b11b2bfdc879df4bb25304c1104efe292da00bfd041898fc8f8d12a64",
+      "document_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "id": "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:server"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M12-Q07",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "quote": "operating_system  | Ubuntu 24.04  |\n\nother_software_stack  | TensorRT 10.8, CUDA 12.8, cuDNN 8.9.7, Driver 550.90  |",
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "source_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:21:22+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性5，评分5。软件依赖实质匹配当前服务器接口工单，并为性能工况和 M12-Q07 吞吐样例提供部分配置支持。两条连续原文及完整 Software Details 上下文充分支持字段观察；未发现本项的敏感、真实冲突或替换条件，可按B有限采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M12-Q07",
+          "Q-OBJ-server-interfaces",
+          "Q-OBJ-server-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 121.576,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "af5ece1e5a6d76772956a4c864a9c24c4e9625db9dc5a20c48879b7ec7411d12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59389,
+            "output_tokens": 4613,
+            "reasoning_output_tokens": 1676
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.557,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd39909a46a15dbbbe2529195a35911c0e76a727faaf606b9d4afebd66d3869",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59189,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 187
+            }
+          }
+        },
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:5:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "root",
+        "part:shell"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q07"
+      ],
+      "quote": "In this timelapse of the OpenAI-Oracle Stargate facility in Abilene, Texas, we can identify the approximate time when land clearing begins, new buildings and facilities start construction, and building roofs are completed. Source: Sentinel-2 via Copernicus.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文与原生上下文支持有限的作者方法陈述，与当前M10-Q03核验建设起点及中间里程碑存在实质关系，符合B类部分证据采用条件。未发现敏感材料、真实冲突或替换请求等A条件。采用仅补充核验方法，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:6:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Satellite imagery lets us identify the type of cooling, the number of cooling units, and (if applicable) the number of fans on each unit. Later we will discuss how we plug this data into our cooling model to estimate the IT power capacity of data centers.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及充分上下文支持作者方法陈述，对当前OBJ-heat-reject-performance的性能估算方法与适用限制有实质但有限的贡献，符合B类部分采用条件。未发现A条件。OBJ-heat-reject-interfaces要求设备接口与互换条件；本段仅描述模型输入，不足以构成该问题的实质接口证据，因此不选该问题。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "“Having the heat absorption process decoupled from the heat rejection process is the most space-efficient and practical approach to accommodate rising heat densities. Compared to packaged air-handling units, large ductwork is replaced by relatively small interconnected piping.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续引文和完整原生页面提供充分归因与比较语境，对当前排热替代方案、连接方式及机房空气系统替代方案工作单有实质性局部贡献。保留厂商判断及量化缺口后符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "“In the case of air cooling, it's practically impossible to move all the hot air to package units, and deliver the cooled air back down to the data halls, once you get above a two-story data center,” says Dunnavant.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及相邻分体方案语境充分，对当前空气输送接口、排热方案适用边界和建筑层数约束工作单具有实质性局部贡献。按限定布置的厂商判断部分采用，不形成通用禁限结论；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-room-cooling-interfaces",
+          "Q-NODE-space-building-constraints"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "In the Munters SyCool system, there is a separate indoor evaporator (heat absorber) and an outdoor condenser (heat rejector). A low GWP (Global Warming Potential) refrigerant – a type of working fluid used to transfer energy – flows into the evaporator in a liquid state.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保持原始重要性及评分6。具名产品、连续引文及完整页面语境充分，对当前排热定义和介质接口工作单有直接的组成与功能边界贡献。仅采用有归因的产品描述，不认证性能，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:10:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "As the hot air or liquid from the data center flows through the heat exchangers within the SyCool air-handler (CRAH) or LCEs (Liquid Cooling Evaporators), the liquid refrigerant changes phase to a vapor.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与前后蒸发器、冷凝器及循环描述构成充分上下文，对当前排热接口和CRAH接口工作单提供直接热量传递及相变路径，符合B类部分采用条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "This vapor flows up through pipes (risers), transporting the heat up to the condensers where the heat is rejected into the atmosphere, converting the vapor refrigerant back to a liquid, and allowing gravity to transport the liquid through “downcomer” pipes back to the evaporators to begin the cycle over again.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文、前置制冷剂相变描述及后续运行模式提供充分上下文，对当前排热组成和上下游接口工作单有直接局部贡献，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:12:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal",
+        "chain:thermal/1",
+        "chain:thermal/2",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-definition"
+      ],
+      "quote": "This process of moving heat naturally, by phase change and gravity, is called a thermosyphon. Thermosyphons are an energy-efficient approach to heat exchange, since they require no pumps and offer other benefits compared to more conventional chilled water approaches.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和完整页面明确热虹吸机制，并提供工作制冷剂无泵循环的限定语境，对当前定义与替代方案工作单有实质性局部贡献。按来源机制说明及待验证节能主张部分采用，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
       }
     }
   ],
@@ -91557,6 +93705,1858 @@
         "request_sha256": "5fcea3bf95c133d9c779a045166e3dfd81b4f2ce00fca5df6864838f9edff7f0"
       },
       "object_mapping_check": "声明直接涉及一个BESS项目，映射电力系统“发电与储能”链下的part:bess。GridStor和Black Mountain Energy Storage无允许的主体ID；地域相同不能建立actor:alphabet-google映射，也未提供UPS、并网协议或具体数据中心资产证据。所选证据统一采用该声明级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:20:claim:3:ev:0"
+      ],
+      "id": "adoption:review:ba58e3562fe0d8c4b9adea63",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "question_ids": [
+        "M11-Q09",
+        "M11-Q14"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "据《Alphabet Q1 2026 Earnings Call》，Alphabet 与 Google 高级副总裁兼 CFO Anat Ashkenazi 在解释利润率变化时表示，公司数据中心和服务器资本支出投资相关的折旧同时影响 Google Cloud 和 Google Services。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:34:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为 6，连续原文引文及相邻页问答提供充分语境，且无已识别的 A 类触发条件。该陈述对当前折旧研究有实质但有限的贡献：明确相关投资折旧影响两个业务分部，可帮助界定 M11-Q09 的适用范围及 M11-Q14 的利润影响分析边界；不能回答年限与残值假设或完成量化。",
+        "workorder_ids": [
+          "Q-M11-Q09",
+          "Q-M11-Q14"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 30.744,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6524ab306c9fd9ea0c8a8c0dde3024e42e491dd4f8558eabdab9b9bdfc630db6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29316,
+            "output_tokens": 1187,
+            "reasoning_output_tokens": 311
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.275,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ed03967fe520a661ea2e1d4bc10d4629a64bda070a44b6c58f70ce09a3efdbc5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29781,
+              "output_tokens": 529,
+              "reasoning_output_tokens": 210
+            }
+          }
+        },
+        "batch_id": "c7231cbae0ec7ec7ba1fd00584547204e0d771721bad0454f175f5e48bc88468"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:20:claim:3"
+      ],
+      "limitations": "仅采用管理层关于折旧影响范围的陈述，不构成独立核实。所供原文未确立具体来源日期；不以 URL 日期或文件元数据代替发布日期。未披露适用地域、具体项目及阶段、折旧年限、残值、折旧金额或分部折旧分配比例，也未区分 AI 与其他资产。阅读覆盖为 PDF 原生文本，未进行视觉审阅。",
+      "conflict_check": "所供当前采用陈述为空。相关旧记录仅涉及 Google Cloud 客户 API token 量，与折旧影响范围不构成冲突或重复；所供合同和项目匹配记录为空。未发现真实冲突，也未提出替换现有结论；此检查限于提供的记录，不代表完成外部反证检索。",
+      "gap_dependency_check": "两项问题均应保持开放。M11-Q09 仍需资产类别、适用时点、使用年限及残值的原始披露；M11-Q14 仍需同口径资产与折旧数据、税率、资本分母、容量及时间边界，并提供可复算推导。该陈述不能验证工单列举的公司折旧年限，不能计算每 GW NOPAT、ROIC 或年限延长带来的会计利润。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c7231cbae0ec7ec7ba1fd00584547204e0d771721bad0454f175f5e48bc88468",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "95c190fb51443a47e7cc29ad3847719116c5b2ebc3516b530a019143f159f4f7"
+      },
+      "object_mapping_check": "独立核查后，仅映射契约中名称为谷歌、kind 为 actor、无父级的 actor:alphabet-google。该主张属于 Alphabet/Google 公司业务分部的折旧影响范围；上下文虽提及数据中心和服务器投资，但未限定为一座 AI 数据中心或特定基础设施部件，因此不添加 root、系统或部件映射。此范围统一适用于所选证据，不改变原候选及证据标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "evidence_ids": [
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:25f6236cd0149acbbf2aff95",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:siemens",
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell",
+        "part:bess"
+      ],
+      "question_ids": [
+        "M04-Q02",
+        "NODE-activity-V2-boundary"
+      ],
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年7月10日的报道中称，在Siemens与FuelCell Energy签署非约束性谅解备忘录的合作背景下，双方计划共同开发组合燃料电池、电池储能、微电网控制及中压电气设备的分布式能源系统，工作范围包括工程、集成和交付。报道将数据中心列为合作目标用电方之一，但未确定该系统计划的具体项目或地域。这是来源报道的共同开发计划，不构成实际交付、投运或当前项目状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:54:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及完整页面上下文支持明确归因的开发计划。具体设备组合与工程、集成、交付范围，对当前NODE-activity-V2-boundary的产品及服务边界具有实质性局部贡献；对M04-Q02仅提供后续核查自备电源系统架构的关联线索。未识别敏感材料、真实冲突、拟替换或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q02",
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.957,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "869a82aa80a657e062994c2e43dd04501a38e7febe21150c15f38301ae193c7b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53344,
+            "output_tokens": 1358,
+            "reasoning_output_tokens": 186
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.948,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f2a2bf8f41fef05713b25754d0692947d60883f33aeca5bd4cf3c6e033a8b523",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54088,
+              "output_tokens": 544,
+              "reasoning_output_tokens": 243
+            }
+          }
+        },
+        "batch_id": "ab36c176f5301beac9cb57293136ed79e9f89dad1cd1cbe21509f2ff553bb229"
+      },
+      "source_candidate_ids": [
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:2"
+      ],
+      "limitations": "来源为新闻报道，未提供双方一手备忘录或项目合同。未披露具体项目、容量、设备接口、成本、交付日期、运行数据或表后计量边界；工程、集成和交付是双方合作的总体范围，未逐项划分双方职责，也未明确付款方、资产所有者、运营方和使用方。不能将定性提速降本目标视为已验证的交期或经济性。",
+      "conflict_check": "既有adoption:review:7b3381821fbe39a3bc2893a2及adoption:review:fdcb9aff4a6c9d175d3e3961涉及FuelCell Energy与Fit Energy、SDC及Inuverse的其他安排，与本项Siemens合作计划兼容，不能用于补齐本项项目状态。Alphabet、Dell及CXMT的已采用角色或控制记录涉及不同交易，未构成同口径反证。所供legacy匹配记录为空，未发现本项规范重复或真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "M04-Q02仍需具体项目的一手协议、表后计量拓扑、实际投运及运行记录、可复查经济性推导和反证；分布式能源系统不自动证明表后供电。NODE-activity-V2-boundary仅获得拟提供的设备组合和服务范围，仍缺完整交易各方身份及制造、集成、分销的互斥职责划分。能源设备合作材料不自动覆盖整个活动节点，两项问题均保持开放，不更新模型输入、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ab36c176f5301beac9cb57293136ed79e9f89dad1cd1cbe21509f2ff553bb229",
+        "source_report_sha256": "359e7346910cd28251f7f65c688c81a45a41344aec94d3832b4271f54dddd870",
+        "request_sha256": "aec6b7cc83f0c4b2d0d3f5c6faa76c11ce602d6a9d05ed425e055409c82d2bbe"
+      },
+      "object_mapping_check": "独立依据契约映射：合作主体Siemens对应actor:siemens，不能替换为actor:siemens-energy；契约未提供FuelCell Energy主体ID。拟开发的发电与储能组合对应system:power及其chain:power/3，明确出现的燃料电池和电池储能分别对应part:fuel-cell与part:bess。中压电气设备泛称未确定开关柜或变电、配电用途，不下沉映射；微电网控制未建立DCIM/BMS或固件范围，不映射system:control或part:dcim。Bloom Energy属于其他正文背景，MGX属于推荐链接，均非本项主体。所选证据统一采用上述主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "evidence_ids": [
+        "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:3e4a4f6bed6222185525c26d",
+      "kind": "author_forecast",
+      "object_ids": [
+        "system:facility",
+        "chain:facility/1",
+        "part:shell",
+        "system:power",
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "M04-Q02"
+      ],
+      "reading_revision_id": "rev-6d5ebe55d035475eb15702866b7e8ca2",
+      "status": "adopted",
+      "text": "DCD作者Jemima Davey在2026年8月26日的报道中称，Empyrion Digital位于台湾台北内湖的TW1数据中心计划采用集成光伏墙提供太阳能电力，以减少能源和水的使用。这是来源报道的建设规划及目标，不构成对实际投运、表后供电边界或节能节水效果的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T05:39:53+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文及完整页面语境支持具体项目的现场太阳能供电规划，为当前M04-Q02提供可追踪的自备电源候选及技术路径，具有实质性局部贡献。保留规划属性，按B类部分采用，不回答或关闭问题；未识别A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.077,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7bace863146b9efe5ae076704644dd52bf93f47e5810c09a95a8ab3c9dcce678",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 51051,
+            "output_tokens": 3298,
+            "reasoning_output_tokens": 964
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.285,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b8d9062252cec168590b001f8563043275219a24285b5b7efcb15eff4003295c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 50118,
+              "output_tokens": 494,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af"
+      },
+      "source_candidate_ids": [
+        "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:3"
+      ],
+      "limitations": "报道未提供光伏容量、计量拓扑、实际发电量、投运记录、成本或经济性；未解释减少用水的具体机制，也未量化节约效果。新闻报道不是项目方一手设计或验收材料。",
+      "conflict_check": "既有替代供电探索、Oklo/RPower、燃料电池及Siemens合作陈述涉及不同项目和技术安排，与本项无直接冲突，也未包含同一TW1光伏墙规划的规范记录。当前答案及所供legacy匹配记录为空；未发现重复或真实冲突，检查仅限所供材料，不替换既有结论。",
+      "gap_dependency_check": "M04-Q02仍需项目方一手设计及协议、表后计量边界、实际投运与运行记录，以及包含资本开支、运维、电价和发电假设的可复查经济性推导及反证。本项只提供后续核查入口，问题保持开放，不更新模型输入或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af",
+        "source_report_sha256": "8d5866f87ee1f7e0731ecdd888456fa5f8fc39acb572ba44ff74cd901bd4374d",
+        "request_sha256": "fd442ddec7742655c18b0f31895cfb7f5b6ed06805821d97a1dc3ed98abae1e2"
+      },
+      "object_mapping_check": "独立依据集成光伏墙的建筑与发电双重范围映射：墙体对应设施系统、土地与建筑链及包含外墙的part:shell；太阳能发电对应电系统及发电与储能链。契约没有光伏部件或Empyrion主体ID，不创建节点或借用其他企业。减少用水的目标未建立水处理或冷却设备范围，也未证明并网权利。所选证据统一使用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631",
+      "evidence_ids": [
+        "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:4:ev:0",
+        "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:4:ev:1"
+      ],
+      "id": "adoption:review:493bd173d16b0d182ed97800",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M10-Q03"
+      ],
+      "reading_revision_id": "rev-6d5ebe55d035475eb15702866b7e8ca2",
+      "status": "adopted",
+      "text": "DCD作者Jemima Davey在2026年8月26日的报道中称，新加坡数据中心公司Empyrion Digital于当年1月开始建设台湾台北内湖的TW1数据中心；据报道日期，“当年1月”对应2026年1月。这是来源报道的项目建设起点，尚未经本次独立核实。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T05:39:53+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。两条引文各为连续原文片段，完整页面提供同一项目及时间语境，对当前M10-Q03贡献可核查的建设起点月份，符合B类部分采用要求。未识别敏感材料、真实冲突、拟替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.077,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7bace863146b9efe5ae076704644dd52bf93f47e5810c09a95a8ab3c9dcce678",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 51051,
+            "output_tokens": 3298,
+            "reasoning_output_tokens": 964
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.285,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b8d9062252cec168590b001f8563043275219a24285b5b7efcb15eff4003295c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 50118,
+              "output_tokens": 494,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af"
+      },
+      "source_candidate_ids": [
+        "rev-6d5ebe55d035475eb15702866b7e8ca2:chunk:0:claim:4"
+      ],
+      "limitations": "开工时间仅精确到月份，未提供一手施工记录、具体日期或阶段边界。正文所述Q4 2027准备服务属于预测，不能视为实际通电日期，也不能据此计算实际工期。",
+      "conflict_check": "已采用的SB Energy俄亥俄项目2026年3月动工陈述涉及另一项目，与TW1起点无冲突或重复。其他既有供电和资本陈述没有同一TW1开工记录；当前答案及所供legacy匹配记录为空。未发现同口径反证，检查限于所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "M10-Q03仍需同一场址、同一阶段的一手开工依据和实际通电日期、统一的周期定义、可比较项目样本及反证。本文提供起点月份，不能证明实际建设周期或周期拉长趋势；问题保持开放，不把预测RFS转为实际通电里程碑。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af",
+        "source_report_sha256": "8d5866f87ee1f7e0731ecdd888456fa5f8fc39acb572ba44ff74cd901bd4374d",
+        "request_sha256": "fd442ddec7742655c18b0f31895cfb7f5b6ed06805821d97a1dc3ed98abae1e2"
+      },
+      "object_mapping_check": "主张描述TW1这座拟承载AI/HPC负载的数据中心整体建设里程碑，符合root的单座数据中心范围。原文未将开工限定为土建、供电工程或许可事项，故不继承system:facility标签，也不下沉到具体系统、部件或场址权利。契约没有Empyrion主体ID。两条证据统一使用root范围。"
+    },
+    {
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "evidence_ids": [
+        "specialist:h100-mlperf5-server-20261011:summary",
+        "specialist:h100-mlperf5-server-20261011:parameters",
+        "specialist:h100-mlperf5-server-20261011:warning",
+        "specialist:h100-mlperf5-server-20261011:accelerators",
+        "specialist:h100-mlperf5-server-20261011:nodes",
+        "specialist:h100-mlperf5-server-20261011:framework"
+      ],
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "published_date": null,
+      "partial_support_only": true,
+      "scope": "MLPerf Inference v5.0 closed/NVIDIA/DGX-H100_H100-SXM-80GBx8_TRT/llama2-70b-99.9/Server/performance/run_1; scoped reference only",
+      "limitations": "31,106.28为整个8卡系统吞吐，不能标为单卡实测。；Server场景、多请求系统吞吐不是单用户生成速率；不外推其它模型/精度/序列长度/框架/交互场景。；VALID为保存的运行日志声明；本审核未重新执行协议或审查accuracy/detailed日志。99.9为目录类别，选定PerformanceOnly文件本身不报告实测准确率。；同日志警告sample_concatenate_permutation=true；实际generated_samples_per_query要求看详细日志，不能仅凭samples_per_query=1推出实际样本拼接设置。；可按展示精度显示约3,888.29，审计保留3,888.285；禁止写成精确实测单卡值。；均摊不是线性扩展规律，不推导单卡、16卡或其它批次性能。；max_async_queries=0是测试参数值；选定文件不足以解释其无限制/未设置语义，更不是实测并发为0。；106.21是完成samples/s、107是target_qps；均不能直接填并发人数、最大并发或实际并发。；2秒TTFT与200ms TPOT是测试阈值；不得改称实测均值。min_duration是参数，不补造实际墙钟运行时长。；全链路精度、输入输出长度分布、PP2x4配置与实际并发缺对应原件，不补造运行日期或当前模型适用性。",
+      "conflict_check": "新ID补充断言，与旧候选/statement及旧失败结论并存；不修改、替代或撤回。系统原生观测与÷8算术分摊分别登记，不能合并为单卡实测。Offline及其它硬件/工作负载不相容。",
+      "gap_dependency_check": "M12-Q07和F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec仅部分获支持；精度、上下文/输出分布、实际并发及配置匹配仍欠核实。保留source_team/team_state和evidence_status=unverified，不关闭问题或更改模型值，不伪造B或worker完成。",
+      "source_time_status": "Publication/run date unknown in these TXT originals; receipt/review clocks do not establish benchmark time",
+      "audit_receipt": {
+        "review_reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+        "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+        "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab",
+        "sealed_export_sha256": "c3c8c64cecab6a1e7513a4bab7ec6544ff8c52ea182afcc18f5ac7a1860b3d79",
+        "supporting_documents": [
+          {
+            "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+            "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+            "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+            "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab"
+          },
+          {
+            "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+            "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+            "source_report_sha256": "3fea519a159922d12e40167128cacb73c3c20d632e74829e0d53a16f9a4f7e5d",
+            "source_manifest_sha256": "0321851d448800ce66cac0d625433f68ed70ae51410c3ca1d91117d985592bcc"
+          }
+        ]
+      },
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "quantitative_checks": {
+        "scope_check": "固定commit 0bc17ab3f4b33f730d7869e04cc29cb70835e513及同一DGX-H100_H100-SXM-80GBx8_TRT名称关联run_1与配置，只适用llama2-70b-99.9 Server PerformanceOnly。",
+        "units_check": "31106.28为系统completed tokens/s；106.21为completed samples/s；除以1节点×8GPU后为算术tokens/s/GPU。QPS及max_async_queries均非实测并发。",
+        "time_check": "原文无运行/发布日期；保持null。审核时点2026-10-11T05:12:03.460201+00:00不冒充测试有效时间。",
+        "basis_check": "系统原生运行日志与硬件配置元数据分开；VALID为日志声明，不是本审核重新运行协议/accuracy认证。",
+        "derivation_check": "native observation直接取原文；calculation只执行31106.28/(1*8)=3888.285，不视为单卡独立实测或线性扩展规律。",
+        "comparability_check": "精度、长度分布、实际并发与完整配置欠对应；禁止外推Offline、其它工作负载或当前模型通用GPU速率。"
+      },
+      "parameter_assessments": [
+        {
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "question_id": "M12-Q07",
+          "status": "partial_support",
+          "model_input_verified": false,
+          "rationale": "真实received sidecar请求tokens_per_gpu_sec；此处仅支持限定系统原生吞吐及均摊算术，尚缺全链路精度、长度分布、实际并发/当前模型配置匹配，不能认证模型输入。"
+        }
+      ],
+      "model_input_verified": false,
+      "object_mapping_check": "整机Server吞吐对应root/part:server，H100分母配置对应part:gpu；不扩展为HBM、网络实测或芯片普遍性能。",
+      "id": "adoption:specialist:h100-mlperf5-server-20261011:native-system",
+      "kind": "observation",
+      "text": "固定MLCommons提交中llama2-70b-99.9/Server/PerformanceOnly/run_1日志记录整机Completed tokens per second为31,106.28，并标记Result is VALID。同提交同名DGX H100系统配置列为1节点×8颗H100-SXM-80GB；这是8卡系统观测，不是单卡/单用户速率。",
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "source_candidate_ids": [
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:0",
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:1",
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:2",
+        "rev-695f647746da483bb072512566cf059f:chunk:0:claim:0"
+      ],
+      "source_candidate_relation": "Specialist supplements the actual source candidates using full native text/system identity; previous candidate records/outcomes remain unchanged",
+      "measurement": {
+        "metric": "completed token throughput",
+        "value": 31106.28,
+        "unit": "completed tokens/s/system",
+        "scenario": "Server",
+        "mode": "PerformanceOnly",
+        "system": "DGX-H100_H100-SXM-80GBx8_TRT",
+        "workload_directory": "llama2-70b-99.9",
+        "number_of_nodes": 1,
+        "accelerators_per_node": 8,
+        "accelerators_per_system": 8,
+        "run_date": null,
+        "actual_concurrency": null,
+        "model_input_verified": false
+      },
+      "effective_at": null,
+      "reviewed_at": "2026-10-11T05:12:03.460201+00:00",
+      "recorded_at": "2026-10-11T05:23:02.498123+00:00",
+      "source_versions": [
+        {
+          "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:07.642848+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        },
+        {
+          "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:06.931736+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        }
+      ]
+    },
+    {
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "evidence_ids": [
+        "specialist:h100-mlperf5-server-20261011:summary",
+        "specialist:h100-mlperf5-server-20261011:parameters",
+        "specialist:h100-mlperf5-server-20261011:warning",
+        "specialist:h100-mlperf5-server-20261011:accelerators",
+        "specialist:h100-mlperf5-server-20261011:nodes",
+        "specialist:h100-mlperf5-server-20261011:framework"
+      ],
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "published_date": null,
+      "partial_support_only": true,
+      "scope": "MLPerf Inference v5.0 closed/NVIDIA/DGX-H100_H100-SXM-80GBx8_TRT/llama2-70b-99.9/Server/performance/run_1; scoped reference only",
+      "limitations": "31,106.28为整个8卡系统吞吐，不能标为单卡实测。；Server场景、多请求系统吞吐不是单用户生成速率；不外推其它模型/精度/序列长度/框架/交互场景。；VALID为保存的运行日志声明；本审核未重新执行协议或审查accuracy/detailed日志。99.9为目录类别，选定PerformanceOnly文件本身不报告实测准确率。；同日志警告sample_concatenate_permutation=true；实际generated_samples_per_query要求看详细日志，不能仅凭samples_per_query=1推出实际样本拼接设置。；可按展示精度显示约3,888.29，审计保留3,888.285；禁止写成精确实测单卡值。；均摊不是线性扩展规律，不推导单卡、16卡或其它批次性能。；max_async_queries=0是测试参数值；选定文件不足以解释其无限制/未设置语义，更不是实测并发为0。；106.21是完成samples/s、107是target_qps；均不能直接填并发人数、最大并发或实际并发。；2秒TTFT与200ms TPOT是测试阈值；不得改称实测均值。min_duration是参数，不补造实际墙钟运行时长。；全链路精度、输入输出长度分布、PP2x4配置与实际并发缺对应原件，不补造运行日期或当前模型适用性。",
+      "conflict_check": "新ID补充断言，与旧候选/statement及旧失败结论并存；不修改、替代或撤回。系统原生观测与÷8算术分摊分别登记，不能合并为单卡实测。Offline及其它硬件/工作负载不相容。",
+      "gap_dependency_check": "M12-Q07和F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec仅部分获支持；精度、上下文/输出分布、实际并发及配置匹配仍欠核实。保留source_team/team_state和evidence_status=unverified，不关闭问题或更改模型值，不伪造B或worker完成。",
+      "source_time_status": "Publication/run date unknown in these TXT originals; receipt/review clocks do not establish benchmark time",
+      "audit_receipt": {
+        "review_reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+        "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+        "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab",
+        "sealed_export_sha256": "c3c8c64cecab6a1e7513a4bab7ec6544ff8c52ea182afcc18f5ac7a1860b3d79",
+        "supporting_documents": [
+          {
+            "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+            "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+            "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+            "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab"
+          },
+          {
+            "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+            "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+            "source_report_sha256": "3fea519a159922d12e40167128cacb73c3c20d632e74829e0d53a16f9a4f7e5d",
+            "source_manifest_sha256": "0321851d448800ce66cac0d625433f68ed70ae51410c3ca1d91117d985592bcc"
+          }
+        ]
+      },
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "quantitative_checks": {
+        "scope_check": "固定commit 0bc17ab3f4b33f730d7869e04cc29cb70835e513及同一DGX-H100_H100-SXM-80GBx8_TRT名称关联run_1与配置，只适用llama2-70b-99.9 Server PerformanceOnly。",
+        "units_check": "31106.28为系统completed tokens/s；106.21为completed samples/s；除以1节点×8GPU后为算术tokens/s/GPU。QPS及max_async_queries均非实测并发。",
+        "time_check": "原文无运行/发布日期；保持null。审核时点2026-10-11T05:12:03.460201+00:00不冒充测试有效时间。",
+        "basis_check": "系统原生运行日志与硬件配置元数据分开；VALID为日志声明，不是本审核重新运行协议/accuracy认证。",
+        "derivation_check": "native observation直接取原文；calculation只执行31106.28/(1*8)=3888.285，不视为单卡独立实测或线性扩展规律。",
+        "comparability_check": "精度、长度分布、实际并发与完整配置欠对应；禁止外推Offline、其它工作负载或当前模型通用GPU速率。"
+      },
+      "parameter_assessments": [
+        {
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "question_id": "M12-Q07",
+          "status": "partial_support",
+          "model_input_verified": false,
+          "rationale": "真实received sidecar请求tokens_per_gpu_sec；此处仅支持限定系统原生吞吐及均摊算术，尚缺全链路精度、长度分布、实际并发/当前模型配置匹配，不能认证模型输入。"
+        }
+      ],
+      "model_input_verified": false,
+      "object_mapping_check": "整机Server吞吐对应root/part:server，H100分母配置对应part:gpu；不扩展为HBM、网络实测或芯片普遍性能。",
+      "id": "adoption:specialist:h100-mlperf5-server-20261011:arithmetic-per-gpu",
+      "kind": "calculation",
+      "text": "将上述8卡系统吞吐按登记的8卡均摊，算术结果为3,888.285 completed tokens/s/GPU；这不是一颗H100独立运行的实测吞吐。",
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。本条仅允许算术均摊，不是单卡实测。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "statement_ids": [
+        "adoption:specialist:h100-mlperf5-server-20261011:native-system"
+      ],
+      "source_candidate_ids": [
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:1",
+        "rev-695f647746da483bb072512566cf059f:chunk:0:claim:0"
+      ],
+      "source_candidate_relation": "New specialist arithmetic from the actual two sources, not an invented Reader calculation or replacement of a failed candidate",
+      "calculation": {
+        "expression": "31106.28 / (1 * 8)",
+        "inputs": [
+          {
+            "name": "native_system_throughput",
+            "value": 31106.28,
+            "unit": "completed tokens/s/system",
+            "statement_id": "adoption:specialist:h100-mlperf5-server-20261011:native-system"
+          },
+          {
+            "name": "number_of_nodes",
+            "value": 1,
+            "unit": "node",
+            "evidence_id": "specialist:h100-mlperf5-server-20261011:nodes"
+          },
+          {
+            "name": "accelerators_per_node",
+            "value": 8,
+            "unit": "GPU/node",
+            "evidence_id": "specialist:h100-mlperf5-server-20261011:accelerators"
+          }
+        ],
+        "value": 3888.285,
+        "exact_decimal": "3888.285",
+        "unit": "completed tokens/s/GPU (arithmetic share)",
+        "independent_single_gpu_measurement": false,
+        "model_input_verified": false
+      },
+      "effective_at": null,
+      "reviewed_at": "2026-10-11T05:12:03.460201+00:00",
+      "recorded_at": "2026-10-11T05:23:02.498123+00:00",
+      "source_versions": [
+        {
+          "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:07.642848+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        },
+        {
+          "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:06.931736+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "evidence_ids": [
+        "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:12:ev:0"
+      ],
+      "id": "adoption:review:a03c8d4f642f7a10c948b878",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power",
+        "part:pdu"
+      ],
+      "question_ids": [
+        "M09-Q07",
+        "NODE-activity-V2-chain"
+      ],
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "status": "adopted",
+      "text": "BCS Consultancy的Chris Coward（Business Critical Solutions项目管理总监）在DCD于2023年11月2日发表的《Ongoing supply chain disruption continues to take its toll》中报告，在其介绍的欧洲数据中心专业人士供应链调查中，五分之二的参与者遇到配电单元／组件采购困难，另有三分之一表示难以取得开关设备。原文未指定开关设备的电压等级。这是作者报告的受访者采购经历，不构成对当前设备供应、制造产能或项目交付状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:17:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文和完整页面上下文充分支持有明确归因的历史调查陈述；具体设备采购困难比例对当前开关柜瓶颈及硬件交付约束研究有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-M09-Q07",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.501,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "438336aed44976c20caee6ad5beff45eb841fb1cd564181b851d8ba60c91c391",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65407,
+            "output_tokens": 1539,
+            "reasoning_output_tokens": 351
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.768,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c1fd66e6bb9aab6c7ee8c74567409c9cfbc0338ca145617a82e92a5560d03511",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 66186,
+              "output_tokens": 574,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "7677495a0f5c7c949ecd968b10b8e6667fa249a4efc694015d3e48dde10e7e07"
+      },
+      "source_candidate_ids": [
+        "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:12"
+      ],
+      "limitations": "正文将调查对象描述为3500名欧洲数据中心资深专业人士，但未提供本项有效回答数、各设备问题的统计分母、抽样方法、问卷或原始数据。确切调查日期未建立；相邻冷却设备和UPS段落提及过去一年，本句没有单独明确回顾窗口。未给出国家分布、厂商、设备规格、电压等级、采购数量、交期、产能缺口或困难原因，也未限定AI数据中心。内容属于设备采购环节，未证明具体项目已进入安装、验收或投运阶段。两类比例不能相加或理解为互斥群体。",
+      "conflict_check": "已采用的adoption:review:3b6b0c631d6bce8e2ef102e3涉及Siemens Energy变压器扩产及电网技术业务订单，设备、指标与时点不同，不与本项采购困难比例直接冲突。adoption:review:745696da226b39bf5b38ebf1强调设备发布至实际交付仍需取证，与本项兼容。所供legacy开关设备成本占比、市场规模及预测均有不同分母、地域或时间，不能作为本项受访者采购经历的同口径反证。其他已采用工艺、机柜和TPU声明未覆盖本项；未发现完整重复规范记录。当前回答为空，合同及项目匹配记录为空；检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "M09-Q07获得开关设备采购困难的需求侧症状，但没有变压器证据，也未证明困难由制造产能瓶颈造成；仍需电压与产品分类、厂商产能、订单、交期及反证。NODE-activity-V2-chain获得欧洲电气硬件采购约束线索，仍缺制造、集成与分销关系、交付周期、下游需求兑现、约束传导、反例和经验证的领先指标。设备类别材料不能自动覆盖整个活动节点。两个问题均保持开放，不更新模型输入、容量总量或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7677495a0f5c7c949ecd968b10b8e6667fa249a4efc694015d3e48dde10e7e07",
+        "source_report_sha256": "1f9750d87ea247b7753f7ae691697d1f0ffeff1e6407067198cfa803d42843bd",
+        "request_sha256": "e87c4756eb43c10c2826ab8b3f94b78810081214bd4d2523dab76957894e36f7"
+      },
+      "object_mapping_check": "独立依据对象契约核对：明确出现的power distribution units支持配电链下的part:pdu；配电设备及开关设备共同支持system:power的电气设备范围。components未细分，不另映射母线、电源模块等部件；switchgear未给电压等级，不能选择中压开关柜、低压开关柜或高压开关站，也不能据此确定变电链范围。不继承Reader的root或文档UPS链标签：本项未建立一座AI数据中心或UPS采购的声明范围。所选证据统一使用这一复核后的声明级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "evidence_ids": [
+        "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:0",
+        "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:1"
+      ],
+      "id": "adoption:review:4b31c0f8afb3fa1643a93942",
+      "kind": "observation",
+      "object_ids": [
+        "part:server"
+      ],
+      "question_ids": [
+        "M12-Q07",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "status": "adopted",
+      "text": "MLCommons 固定提交 0bc17ab3f4b33f730d7869e04cc29cb70835e513 中，提交方 NVIDIA 的 MLPerf Inference v5.0 closed、datacenter 类别 DGX H100（8×H100-SXM-80GB、TensorRT）README 在 Software Details 列出：framework 为 TensorRT 10.8、CUDA 12.8；operating_system 为 Ubuntu 24.04；other_software_stack 为 TensorRT 10.8、CUDA 12.8、cuDNN 8.9.7、Driver 550.90。本项为原生配置字段观察，不是当前独立认证的兼容性或运行环境。页首标注 February 2025，具体发布日期、运行日期及测试地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:21:22+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性5，评分5。软件依赖实质匹配当前服务器接口工单，并为性能工况和 M12-Q07 吞吐样例提供部分配置支持。两条连续原文及完整 Software Details 上下文充分支持字段观察；未发现本项的敏感、真实冲突或替换条件，可按B有限采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M12-Q07",
+          "Q-OBJ-server-interfaces",
+          "Q-OBJ-server-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 121.576,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "af5ece1e5a6d76772956a4c864a9c24c4e9625db9dc5a20c48879b7ec7411d12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59389,
+            "output_tokens": 4613,
+            "reasoning_output_tokens": 1676
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.557,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd39909a46a15dbbbe2529195a35911c0e76a727faaf606b9d4afebd66d3869",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59189,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 187
+            }
+          }
+        },
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda"
+      },
+      "source_candidate_ids": [
+        "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8"
+      ],
+      "limitations": "字段列示不证明软件实际安装、成功运行、兼容矩阵或互换限制，也不能确定 PP2x4 配置、全链路精度、输入输出长度分布及实际并发。README 覆盖整机提交，不能仅凭这些字段完成与指定 Server run_1 的逐项配置对应。未提供价格、成本或负载率测量。",
+      "conflict_check": "已采用 framework 记录仅覆盖 TensorRT/CUDA，本项增加操作系统、cuDNN 和 Driver，整体不是重复。现有吞吐及算术均摊结论不与软件字段观察冲突；训练故障及能耗方法记录属于其他工况。所供 legacy 匹配记录为空，检查不代表全面外部反证搜索。未发现所采用字段的直接冲突，不替换现有结论。",
+      "gap_dependency_check": "OBJ-server-interfaces 尚缺接口规范、兼容验证及限制互换的条件；OBJ-server-performance 尚缺版本对应的测试方法和完整运行工况。M12-Q07 及 tokens_per_gpu_sec 需求仅获得软件范围支持，仍需精度、长度分布、实际并发、完整配置对应及成本证据。请求中的条件不能补作源证据，不关闭问题或认证模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda",
+        "source_report_sha256": "399de74f060d2a09e0064eaf0ad5327722df5c3708c056f31fafd8399911a900",
+        "request_sha256": "5114dc602eda80e78d5765f2fc1ad7979998c328a7f4b6ef004f0a03aa208a15"
+      },
+      "object_mapping_check": "独立按对象合同核对：所列运行栈明确属于 DGX H100 加速器服务器整机，映射计算链下 part:server。软件版本不属于 DCIM/BMS 与固件控制链；本项也没有 GPU 独立性能、网络资产或整座数据中心范围，不继承 Reader 的其他标签。",
+      "quantitative_checks": {
+        "basis_check": "保留 observation 类型，依据原生配置表字段；没有重新执行安装、兼容性或基准测试，不将元数据升级为运行事实。",
+        "comparability_check": "版本一致仅提供配置比较线索，不能证明工作负载、精度、并发或性能相同，也不能外推其他模型、Offline 场景或当前模型参数。",
+        "derivation_check": "不适用算术推导：本项仅直接读取版本字段，未计算系统或单GPU吞吐。独立第二核验确认各字段、栏目和整机身份对应。",
+        "scope_check": "观察范围为该固定提交的 NVIDIA DGX H100 8卡整机 README 软件配置字段；不是指定单卡或生产服务的运行测量。",
+        "time_check": "原生页仅标注 February 2025；不能据此确认具体发布日期或运行时间。固定提交标识版本，采集和审核时间不作为测试有效时间。",
+        "units_check": "10.8、12.8、24.04、8.9.7 和 550.90 均为版本标识，不是吞吐、精度、时延或成本数值；物理量单位不适用。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M12-Q07",
+          "rationale": "TensorRT/CUDA 等字段部分支持请求中的配置范围，但本项没有 tokens/s/GPU 数值或推导，也未核实其他验收工况；不能认证、替换当前吞吐参数或关闭问题。",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "status": "partial_support"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:5:ev:0"
+      ],
+      "id": "adoption:review:dded3f2e72a0aa22b198ff54",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "part:shell"
+      ],
+      "question_ids": [
+        "M10-Q03"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "所供署名为Samaritan Research、页尾另称Epoch的《AI data centers documentation – Methodology》作者称，可通过美国Texas州Abilene的OpenAI-Oracle Stargate设施延时影像，识别清地开始、新建筑及设施开始施工、建筑屋顶完成的大致时间；影像来源标为Sentinel-2 via Copernicus。这是作者描述的施工里程碑识别方法，尚未经本次独立核实，所选证据未给出具体日期或实际通电节点。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文与原生上下文支持有限的作者方法陈述，与当前M10-Q03核验建设起点及中间里程碑存在实质关系，符合B类部分证据采用条件。未发现敏感材料、真实冲突或替换请求等A条件。采用仅补充核验方法，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:5"
+      ],
+      "limitations": "来源发布日期未知。证据仅描述影像判读能力，没有影像日期序列、识别误差、分期边界或实际通电记录，不能计算实际建设周期、判断周期走势或推导负荷接入排队等待。",
+      "conflict_check": "当前已采用的SB Energy俄亥俄项目和Empyrion台湾TW1开工陈述涉及其他项目，不与Abilene的影像识别方法冲突，也不构成重复。所供legacy英国IT容量记录属于不同地域、指标与口径；项目及合同匹配记录为空。未发现同范围反证，检查仅限所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "M10-Q03仍需同一场址、同一分期的可定位开工日期与实际通电日期、一手记录、明确周期定义、可比较样本及反证。影像中清地、开工和屋顶完成均不能替代通电或接入批准节点。M04-Q07的原候选标签不予沿用；两个定量请求均未由本证据满足。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "32fae866c503099059691fbfe91f1d26c1a6f67775a44e4ec7d681b6fb5e5524"
+      },
+      "object_mapping_check": "独立复核表明，主张涉及具名数据中心的整体建设时间线，符合root范围；清地、建筑施工及屋顶完成明确落在part:shell所含场坪、建筑与屋面范围。OpenAI-Oracle仅用于标识示例，未证明主体责任或经营行为，故不映射主体；未涉及用地权利、许可或并网协议，不映射site节点。所选证据统一使用这一主张范围。",
+      "quantitative_checks": {
+        "basis_check": "依据是作者对Sentinel-2 via Copernicus延时影像用途的描述；未提供可独立复查的影像序列与里程碑判读记录。",
+        "comparability_check": "尚无统一分期、里程碑定义、判读精度和实际通电终点，不能与其他项目工期直接比较或建立周期走势。",
+        "derivation_check": "不适用数值推导：证据没有可计算的起止日期；不得把清地或屋顶完成推导为实际通电，也不得计算接入等待年限。",
+        "scope_check": "范围为美国Texas州Abilene的OpenAI-Oracle Stargate设施施工影像判读；未明确原园区具体建筑或分期，也未测量供电、负荷接入或运行状态。",
+        "time_check": "来源发布日期及影像观测日期未知；大致时间未展开为可复核日期，批次创建时间不能作为来源发布时间或施工时间。",
+        "units_check": "不适用数值单位核验：所选证据没有日期、持续时间或容量数值，不能生成years、MW或GW参数。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张是施工里程碑识别方法，不是原园区获批用能、接入容量或IT容量证据；未提供ERCOT或输电商批准原件及MW值，不能核验或替换energy_quota_mw。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "施工影像识别与负荷接入申请、审批或排队等待属于不同阶段；证据没有同分期申请起点及实际批准终点，不能以建设里程碑替代gate_wait_years。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:6:ev:0"
+      ],
+      "id": "adoption:review:b1c7d9f12eef77c1c22cbe63",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-performance"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "所供署名为Samaritan Research、页尾另称Epoch的《AI data centers documentation – Methodology》作者称，卫星影像可用于识别冷却类型、冷却机组数量及适用时的单机风扇数量，并将这些信息输入其冷却模型以估算数据中心IT功率容量。这是作者的影像识别与模型估算方法，尚未经本次独立核实；所选证据未提供具体机型、工况、模型结果或Abilene的IT容量值。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:42:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及充分上下文支持作者方法陈述，对当前OBJ-heat-reject-performance的性能估算方法与适用限制有实质但有限的贡献，符合B类部分采用条件。未发现A条件。OBJ-heat-reject-interfaces要求设备接口与互换条件；本段仅描述模型输入，不足以构成该问题的实质接口证据，因此不选该问题。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "612f962f060ed4705a9e5491b8c1a4abdf48595b147a81635b6f7981e88e1081",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 42587,
+            "output_tokens": 3393,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.866,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0bad0b91c0dc3b88df27eedd0c2c3bede9de1b090ea5aa9d6e958a6ddb8fffd8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42733,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 167
+            }
+          }
+        },
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:6"
+      ],
+      "limitations": "来源发布日期未知。本段提供估算输入的识别方法，没有设备实测性能、可靠性试验、失效机制或物理接口规格。影像可见特征与实际冷却能力之间需要模型及工况依据，不能把估算视为设备额定性能或当前实际IT负载。",
+      "conflict_check": "当前已采用声明均为其他项目的开工时间，与冷却识别和容量估算方法无冲突或重复。所供legacy英国IT容量估算是地域总量，不是对本方法的验证或反证；没有匹配的合同或项目记录。封存摘要的缺值表述与原生全文的详细模型讨论存在概括范围差异，已按原文限定本段，不构成对现有采用结论的替换。",
+      "gap_dependency_check": "OBJ-heat-reject-performance仍需明确冷却类型及型号、模型适用范围、校准与独立验证、设计和实际工况、误差，以及可靠性与失效资料。物理接口、流量、温度、压力及互换限制仍缺失。通用IT容量估算方法不能满足原园区用能批准或负荷接入等待要求，所有相关问题与参数保持未核验状态。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "32fae866c503099059691fbfe91f1d26c1a6f67775a44e4ec7d681b6fb5e5524"
+      },
+      "object_mapping_check": "引文泛指不同冷却类型及机组，并未限定冷水机组或冷却塔；独立映射到涵盖排热、冷水等链条的system:thermal最符合实际范围。邻近冷水机组示例不足以把通用主张全部限定为part:chiller。IT功率是估算输出，不证明计算设备配置或整个数据中心运行状态，故不追加IT部件或root范围。所选证据统一采用该范围。",
+      "quantitative_checks": {
+        "basis_check": "依据为作者对影像观测输入及自身冷却模型用途的说明，保持author_claim身份；本段不是设备性能观测值或可复核数值计算。全文的模型介绍不等于本项目的独立测量或批准依据。",
+        "comparability_check": "类型识别、影像可见性与工况影响适用范围，不能把此方法直接作为跨设备通用性能值；IT容量估算与获批用能、设施容量及排队等待不具可替代性。",
+        "derivation_check": "不适用数值复算：所选证据缺少机组计数、单机容量、工况及转换假设，没有提出B类数值观测或计算，因此不触发该类独立第二次复算要求。",
+        "scope_check": "主张是数据中心冷却设备影像特征识别及IT功率估算方法，没有限定某台设备、具体项目分期、软件版本或工作负载，也没有直接测量实际IT功率。",
+        "time_check": "来源发布时间及影像有效时间未知；没有某一日期已安装、运行或获准容量的证明，不能以当前批次日期补足。",
+        "units_check": "机组数量与单机风扇数量属于计数输入，但所选证据未给数值；IT功率容量未给单位或结果。不得从本段生成MW值，也不得混同冷却容量、设施功率与接入配额。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "证据描述通用IT容量估算方法，而请求验收要求区分原园区获批用能、接入与IT容量。没有项目容量结果或批准原件；即使得到IT估算，也不能据此核验energy_quota_mw。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "冷却设备识别和功率估算不涉及负荷接入申请、审批或排队起止时间；未提供所需同项目同分期原件，不能支持gate_wait_years取值。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:83ba3a003319e20821a25347",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-interfaces",
+        "OBJ-room-cooling-alternatives"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "据DatacenterDynamics于2024年1月22日发表的SyCool赞助文章，Munters受访者Keith Dunnavant主张，将吸热与排热分开是适应热密度上升最节省空间且实用的方式；相较整体式空气处理机组，分体方案用较小的互连管路替代大型风管。这是受访者的定性比较，未经本次独立验证，不能视为已证实的最优方案。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续引文和完整原生页面提供充分归因与比较语境，对当前排热替代方案、连接方式及机房空气系统替代方案工作单有实质性局部贡献。保留厂商判断及量化缺口后符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:7"
+      ],
+      "limitations": "未提供同冷量、同建筑布局及同工况下的风管与管路尺寸、占地、成本或性能比较；未明确适用地域，也未对应具体项目及建设或投运阶段。来源为赞助文章，受访者来自产品厂商。",
+      "conflict_check": "已采用陈述涉及供水、建筑规划及光伏墙，未包含本项比较。legacy的风冷机柜功率门槛讨论机柜散热能力，不能与建筑级输热布置比较视为同口径冲突；冷源招标价格、OVH冷却记录及Colossus 2项目也不构成同一比较的认证或反证。未发现规范重复或真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "对三个问题仅贡献风管与管路的定性差异及分体连接路径。仍需同口径设计图、尺寸、冷量、压降、成本及适用条件与反证，才能比较空间效率和替代边界。问题保持开放，不更新模型值、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "Munters是具名受访者所属厂商，匹配actor:munters；吸热与室外排热分离对应水与散热系统及排热链，整体式空气处理机组与风管比较对应机房空气冷却部件。主张未识别冷水机组或冷冻水泵管阀，故不继承part:chiller及冷冻水回路标签；空间效率比较也未直接描述建筑构造，不继承设施标签。不因应用于数据中心而映射AI限定的root。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:0851b66d1b6293961de08462",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-interfaces",
+        "OBJ-heat-reject-alternatives",
+        "OBJ-room-cooling-interfaces",
+        "NODE-space-building-constraints"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics在2024年1月22日的SyCool赞助文章中引述Munters的Keith Dunnavant称，对于需要把全部热空气送往整体式机组、再将冷空气送回数据大厅的空气冷却布置，数据中心超过两层后，这种空气输送方式实际几乎无法实现。这是受访者针对该布置的判断，未经本次独立工程验证，不能作为所有多层数据中心空气冷却的统一限制。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及相邻分体方案语境充分，对当前空气输送接口、排热方案适用边界和建筑层数约束工作单具有实质性局部贡献。按限定布置的厂商判断部分采用，不形成通用禁限结论；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-room-cooling-interfaces",
+          "Q-NODE-space-building-constraints"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:8"
+      ],
+      "limitations": "未给出风量、风管截面、输送距离、静压、层高、设备位置或设计算例，也未提供反例及工程验证。两层是受访者表述的建筑条件，不是法规或已验证技术阈值；未限定地域或具体项目阶段。",
+      "conflict_check": "legacy中的15至25kW、20kW、75kW及60kW相关记录属于机柜功率密度、附加换热设备或产品提议设计，未讨论同一多层建筑空气输送布置，不能判为本项真实冲突。已采用Garland及STACK建筑规划未提供同类冷却设计。未发现重复或真实冲突，检查限于所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "对接口和替代方案问题仅贡献一种空气往返输送布置的适用性警示；对建筑约束问题贡献该节点自身的层数条件，但缺少工程原件和反证，不能满足完整验收。仍需具名设计、风量与压降计算、设备位置及多层实例；四项问题保持开放，不改变骨架或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "独立依据具名Munters受访者、空气冷却与整体式排热机组的输送路径，选择厂商、水与散热系统、排热链及机房空气冷却。原文明示建筑超过两层，直接涉及设施的土地与建筑链，故选择system:facility及chain:facility/1；未说明土建构造或装修，不扩展到part:shell。没有冷水机组证据，不继承part:chiller。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:9:ev:0"
+      ],
+      "id": "adoption:review:5b558b18ddd73aefc101f2c9",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "据DatacenterDynamics于2024年1月22日发表的赞助文章描述，Munters SyCool系统采用分开的室内蒸发器与室外冷凝器，分别承担吸热与排热；文章称其低全球变暖潜势制冷剂以液态进入蒸发器。这是来源对产品组成及介质状态的描述，不构成对当前产品配置或性能的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保持原始重要性及评分6。具名产品、连续引文及完整页面语境充分，对当前排热定义和介质接口工作单有直接的组成与功能边界贡献。仅采用有归因的产品描述，不认证性能，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:9"
+      ],
+      "limitations": "未披露制冷剂型号、GWP数值及评价口径、压力、温度、流量、管径或具体配置版本。未限定地域，也未对应具体项目的安装、验收或投运阶段；室内蒸发器不能直接等同于冷水机组。",
+      "conflict_check": "现有采用记录没有SyCool同一配置的陈述。legacy中的水与乙二醇板式换热器属于其他项目及工况，不能与本项制冷剂接口视为矛盾；OVH共用冷却水系统也是不同方案。未发现规范重复或真实冲突，检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "定义问题获得吸热与排热部件的局部边界，接口问题获得制冷剂输入状态。仍缺完整系统图、产品版本、制冷剂参数、连接规格和工况限制，不能完成对象排除或互换性判断。两项问题保持开放，不更新模型值或骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "Munters为具名产品厂商；室内吸热与室外冷凝排热属于水与散热系统及排热链，制冷剂属于契约明确包含工质的part:coolant。该部件虽位于冷水与CDU链下，其工质名称直接适用，但不据此推定系统采用冷冻水。SyCool分体蒸发器与冷凝器不能自动归为名称限定的冷水机组，不继承part:chiller；室内侧可为空气或液体，不单凭本项选择机房空气设备。所选证据统一采用上述范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:10:ev:0"
+      ],
+      "id": "adoption:review:a2ed34edcba7cd1f6e1a2067",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-interfaces",
+        "OBJ-room-cooling-interfaces"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics在2024年1月22日的赞助文章中描述，Munters SyCool通过其空气处理机组（CRAH）或液冷蒸发器（LCE）内的换热器，接收数据中心热空气或热液体传来的热量，使液态制冷剂汽化。该表述是来源对两类室内换热路径的产品说明，未经本次独立验证，也不证明CRAH与LCE可以直接互换。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与前后蒸发器、冷凝器及循环描述构成充分上下文，对当前排热接口和CRAH接口工作单提供直接热量传递及相变路径，符合B类部分采用条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:10"
+      ],
+      "limitations": "未提供空气或液体侧温度、流量、压力、液体成分、换热能力、连接规格及设备配对要求。原文未证明两类设备共用同一接口或可互换；未限定地域及具体项目阶段。",
+      "conflict_check": "legacy的施耐德60%至90%及JLL 70%液冷分担比例讨论热量分配，不规定SyCool接口；本项也没有新增分担比例，故不构成冲突或重复。传统板式换热器及OVH水系统记录不认证本产品的可互换性。当前采用记录无同项结论；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "两项问题获得热空气或热液体向制冷剂传热的局部接口路径。仍需分别核验CRAH和LCE型号、介质参数、额定工况、接口图、控制配对及互换限制；不能用汽化机制替代工程接口规格。问题保持开放，不更新性能输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "相邻原文确定Munters为SyCool厂商；向排热回路传热属于水与散热系统及排热链，明示CRAH直接匹配part:room-cooling，液态制冷剂汽化匹配part:coolant。契约没有独立LCE部件，其范围保留在散热系统层级，不借用CDU、冷板或冷水机组ID，也不把热液体自动认定为冷冻水。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:f62d86c08d19e6b2ed1c81c6",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "据DatacenterDynamics于2024年1月22日发表的赞助文章对Munters SyCool循环的描述，蒸汽制冷剂沿立管上升，将热量送至冷凝器并排入大气；制冷剂凝结为液体后，靠重力经下降管返回蒸发器。这是来源说明的输热与回流路径，不构成对具体安装或当前运行状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文、前置制冷剂相变描述及后续运行模式提供充分上下文，对当前排热组成和上下游接口工作单有直接局部贡献，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:11"
+      ],
+      "limitations": "未提供冷凝器与蒸发器高差、允许管长、管径、压降、充注量或热负荷范围。后文区分自然冷凝与高温时主动冷凝，本段循环描述不能解释为所有环境温度下均无需压缩机；未限定地域或具体项目阶段。",
+      "conflict_check": "已采用陈述及所供legacy未包含同一SyCool循环的规范记录。Colossus 2的空冷冷凝器建模属于另一项目容量估算，不能证明采用相同热虹吸回路；水与乙二醇换热器记录介质及系统不同。未发现重复或真实冲突，检查限于所供材料，不覆盖旧结论。",
+      "gap_dependency_check": "定义问题获得循环组成与部件角色，接口问题获得流向及重力回流依赖。仍需厂家安装规范、几何高差、管路参数、工况范围及主动冷凝衔接资料，才能判断安装与互换边界。两项问题保持开放，不填能效或容量输入，不改变骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "前后原文确定所述循环属于Munters SyCool，映射具名厂商；向大气排热与蒸汽、液体回路匹配散热系统及排热链，制冷剂流动匹配工质部件。制冷剂立管与下降管不是冷冻水管路，不能继承part:chilled-water-loop；冷凝器也不能凭名称自动归为冷水机组或干冷器部件。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:12:ev:0"
+      ],
+      "id": "adoption:review:2b84beeb258a2ceea784a741",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal",
+        "chain:thermal/1",
+        "chain:thermal/2",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-alternatives"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics在2024年1月22日的SyCool赞助文章中，将依靠相变和重力自然输热的过程称为热虹吸，并称这种方式因无需泵而具有节能优势，可与传统冷冻水方案比较。结合全文，此处无需泵指工作制冷剂的循环，不表示整套冷却系统不耗电或始终无需压缩机；节能优势是来源主张，未经本次独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和完整页面明确热虹吸机制，并提供工作制冷剂无泵循环的限定语境，对当前定义与替代方案工作单有实质性局部贡献。按来源机制说明及待验证节能主张部分采用，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:12"
+      ],
+      "limitations": "未提供同冷量、同气候及同工况的总能耗或成本对比，也没有PUE、WUE或节能幅度。全文说明室外风机及高温时的主动DX冷凝，不能将无循环泵等同于全系统无动力。未限定本项比较的地域或具体项目阶段。",
+      "conflict_check": "legacy的OVH PUE 1.26带有地域及混合冷却水条件，不能用于验证或反驳未量化的SyCool节能比较；传统冷源设备招标记录也未提供同工况能耗。既有风冷门槛及液冷分担比例讨论不同指标，未形成真实冲突。未发现同项规范重复，检查限于所供材料，不替换已有能效结论。",
+      "gap_dependency_check": "定义问题获得热虹吸的相变与重力机制；替代方案问题仅获得循环泵差异及厂商节能主张。仍需匹配负荷、气候、温度设定和系统边界的年度能耗、风机与压缩机耗电及成本比较和反证。两项问题保持开放，不修改PUE、WUE、负载率或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "本项解释热虹吸排热机制并比较传统冷冻水方法，分别匹配水与散热系统、排热链及冷水与CDU链的冷水范围；工作制冷剂由相邻原文明确，匹配part:coolant。比较没有识别特定冷水机组或泵管阀配置，故不继承part:chiller及part:chilled-water-loop。该句是作者的一般机制与比较主张，不将其改为Munters独有技术结论。所选证据统一采用上述主张级范围，原标签保持不变。"
     }
   ],
   "answers": [],

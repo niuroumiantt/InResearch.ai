@@ -6,19 +6,24 @@ facts database. Missing evidence stays queued; a named review is required.
 import argparse
 import hashlib
 import json
+import sqlite3
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from inresearch.paths import project_root
 from inresearch.storage.files import locked, write_json
 from inresearch.workflow.daily_dispatch import read_events, receipt_documents, bound_urls
 from inresearch.knowledge.industry import LEVELS, public_url, number
-from inresearch.knowledge import site_timeline
+from inresearch.knowledge import site_timeline, site_quantity, observation_time
 
 
 def digest(value):
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
                                     separators=(',', ':')).encode()).hexdigest()
+
+
+def now():
+    return datetime.now(timezone.utc).isoformat()
 
 
 def event_identity(event):
@@ -31,7 +36,7 @@ def deliveries(root):
     return [{'site_id': p['site_id'], 'name': p['name'],
              'verified_date': a['review']['at'][:10], 'event_id': a['event_id'],
              'review_id': a['review_id'], 'fields': a['fields'], 'scope': a['scope']}
-            for p in rows for a in site_timeline.adoptions(p)]
+            for p in rows for a in site_timeline.adoptions(p) if a.get('event_id')]
 
 
 def queue(data, root):
@@ -97,6 +102,27 @@ def checked_source(data, sha):
 def quantity_supported(assertion, pairs):
     """Exact, explicitly rounded, or reproducibly derived MW; never fuzzy units."""
     units = {'MW': 1, 'GW': 1000}
+    if 'value_range' in assertion:
+        if 'value' in assertion or not assertion.get('range_basis'):
+            return False
+        try:
+            quantity = {k: assertion[k] for k in ('value_range', 'unit')}
+            quantity['basis'] = assertion['range_basis']
+            wanted_range = site_quantity.bounds_mw(quantity)
+        except (KeyError, TypeError, ValueError):
+            return False
+        method = assertion.get('derivation')
+        if method is None:
+            return wanted_range in site_quantity.literal_ranges_mw(assertion.get('quote', ''))
+        if not isinstance(method, dict) or method.get('operation') != 'scale_range' or not method.get('basis'):
+            return False
+        inputs, factors = method.get('inputs'), method.get('factor_range')
+        if (not isinstance(inputs, list) or len(inputs) != 1 or not number(inputs[0]) or inputs[0] not in pairs
+                or not isinstance(factors, list) or len(factors) != 2 or not all(number(n) and n > 0 for n in factors)
+                or factors[0] > factors[1]):
+            return False
+        expected = tuple(inputs[0] * n for n in factors)
+        return all(number(n) for n in expected) and all(abs(a-b) <= 1e-9*max(1,abs(a),abs(b)) for a,b in zip(wanted_range,expected))
     value, unit = assertion.get('value'), assertion.get('unit')
     if not number(value) or unit not in units:
         return False
@@ -133,13 +159,145 @@ def quantity_supported(assertion, pairs):
     return any(abs(wanted-n) <= 1e-9 * max(1,abs(n)) for n in pairs)
 
 
-def apply(root, data, proposal):
-    root, data = Path(root), Path(data)
+def _catalog_first_received(data, shas):
+    result = {}
+    path = Path(data)/'acquisition/catalog.sqlite'
+    if not path.is_file() or path.is_symlink() or not shas:
+        return result
+    connection = sqlite3.connect(path.resolve().as_uri()+'?mode=ro', uri=True)
+    try:
+        marks = ','.join('?' for _ in shas)
+        rows = connection.execute('SELECT sha256, observed_at FROM observations WHERE sha256 IN ('+marks+')', sorted(shas))
+        for sha, stamp in rows:
+            if observation_time.precision(stamp) != 'timestamp':
+                continue
+            if sha not in result or observation_time.bounds(stamp)[0] < observation_time.bounds(result[sha]['at'])[0]:
+                result[sha] = {'at': stamp, 'provenance': 'local_archive_first_observed_at'}
+    finally:
+        connection.close()
+    return result
+
+
+def _daily_first_received(data, shas):
+    result = _catalog_first_received(data, shas)
+    for path in (Path(data)/'material-reviews/daily-deliveries').glob('*.json'):
+        if path.is_symlink() or path.stat().st_size > 1024*1024:
+            continue
+        try:
+            receipt = json.loads(path.read_text())
+            if (receipt.get('producer') != 'inews_geluoke' or receipt.get('status') != 'indexed_candidate'
+                    or observation_time.precision(receipt.get('first_received_at')) != 'timestamp'):
+                continue
+            stamp = receipt['first_received_at']
+            # Only completed receipts with exact member identity can establish this source's arrival.
+            members = {r.get('sha256') for r in receipt.get('members', [])+receipt.get('documents', []) if isinstance(r, dict)}
+            for sha in shas & members:
+                if sha not in result or observation_time.bounds(stamp)[0] < observation_time.bounds(result[sha]['at'])[0]:
+                    result[sha] = {'at': stamp, 'provenance': 'indexed_bundle_first_verified_arrival'}
+        except (OSError, ValueError, TypeError, AttributeError):
+            continue
+    return result
+
+
+def _daily_context(data, proposal):
     events = {e['id']: e for e in read_events(data)}
     event = events[proposal['event_id']]
-    if proposal.get('source_version') != event_identity(event):
+    accepted = receipt_documents(data)
+    shas = {c['source_sha256'] for c in (event.get('editorial_event') or {}).get('evidence_checks', [])}
+    texts = {}
+    for assertion in proposal.get('assertions') or []:
+        sha = assertion.get('source_sha256')
+        if sha not in shas:
+            raise ValueError('assertion_source_not_in_received_evidence')
+        texts[sha] = checked_source(data, sha)
+    return {'source_id': event['id'], 'source_version': event_identity(event),
+            'document_refs': event['document_refs'], 'urls': bound_urls(event, accepted),
+            'source_texts': texts, 'first_received': _daily_first_received(data, set(texts)),
+            'publication_metadata': {},
+            'matched_site_id': event.get('matched_site_id') if event.get('identity_review') == 'resolved' else None}
+
+
+def _source_versions(observation, context):
+    supplied = observation.get('source_versions', [])
+    if not isinstance(supplied, list):
+        raise ValueError('invalid_observation_source_versions')
+    requested = {}
+    for row in supplied:
+        if not isinstance(row, dict) or set(row) - {'source_sha256', 'published_at', 'publication_evidence'}:
+            raise ValueError('source_times_must_be_derived_from_evidence')
+        sha = row.get('source_sha256')
+        if sha not in context['source_texts'] or sha in requested:
+            raise ValueError('source_time_not_bound_to_assertion')
+        requested[sha] = row
+    result = []
+    for sha, text in sorted(context['source_texts'].items()):
+        item = requested.get(sha, {})
+        metadata = context.get('publication_metadata', {}).get(sha, {})
+        if metadata.get('published_at') is not None and 'published_at' in item and item['published_at'] != metadata['published_at']:
+            raise ValueError('publication_time_disagrees_with_bound_metadata')
+        published = item.get('published_at', metadata.get('published_at'))
+        if published is None and item.get('publication_evidence'):
+            raise ValueError('publication_evidence_without_known_time')
+        publication_origin = 'unknown_not_established_by_native_source'
+        if published is not None:
+            observation_time.precision(published)
+            if metadata.get('published_at') == published and metadata.get('provenance') and not item.get('publication_evidence'):
+                publication_origin = metadata['provenance']
+            else:
+                proof = item.get('publication_evidence') or {}
+                if not isinstance(proof, dict):
+                    raise ValueError('publication_time_not_supported_by_source_version')
+                quote = proof.get('quote')
+                if (proof.get('kind') != 'original_quote' or not proof.get('locator') or not proof.get('basis')
+                        or not isinstance(quote, str) or not observation_time.native_date_matches(published, quote)
+                        or ''.join(quote.split()) not in ''.join(text.split())):
+                    raise ValueError('publication_time_not_supported_by_source_version')
+                if context.get('source_kind') == 'reader_report':
+                    import re
+                    location = re.fullmatch(r'reader:page:([1-9]\d*)', proof['locator'])
+                    pages = context.get('source_pages', {}).get(sha, {})
+                    page = pages.get(int(location[1]), pages.get(location[1])) if location else None
+                    if not isinstance(page, str) or ''.join(quote.split()) not in ''.join(page.split()):
+                        raise ValueError('publication_quote_not_at_sealed_reader_page')
+                publication_origin = 'reviewed_native_publication_quote'
+        received = context.get('first_received', {}).get(sha, {})
+        received_at = received.get('at')
+        if received_at is not None and observation_time.precision(received_at) != 'timestamp':
+            raise ValueError('first_received_timestamp_required')
+        if published is not None and received_at is not None and observation_time.definitely_after(published, received_at):
+            raise ValueError('publication_after_first_receipt')
+        row = {'source_sha256': sha, 'published_at': published,
+                       'published_at_precision': observation_time.precision(published),
+                       'published_at_provenance': publication_origin,
+                       'first_received_at': received_at,
+                       'first_received_at_precision': observation_time.precision(received_at),
+                       'first_received_at_provenance': received.get('provenance') or 'unknown_no_first_receipt_for_this_sha'}
+        if item.get('publication_evidence'):
+            row['publication_evidence'] = item['publication_evidence']
+            row['publication_date_parser'] = 'native-date-v1'
+        result.append(row)
+    return result
+
+
+def apply(root, data, proposal):
+    root, data = Path(root), Path(data)
+    source_kind = proposal.get('source_kind', 'daily_event')
+    if source_kind == 'daily_event':
+        context = _daily_context(data, proposal)
+    elif source_kind == 'reader_report':
+        if not isinstance(proposal.get('observation'), dict):
+            raise ValueError('reader_report_requires_site_observation')
+        from inresearch.workflow.project_review_reader import resolve
+        context = resolve(root, data, proposal)
+    else:
+        raise ValueError('unsupported_project_review_source_kind')
+    context['source_kind'] = source_kind
+    source_id, source_version = context['source_id'], context['source_version']
+    if proposal.get('source_version') != source_version:
         raise ValueError('event_changed_since_review')
     review = proposal.get('review') or {}
+    if not isinstance(review, dict):
+        raise ValueError('named_semantic_review_required')
     score = review.get('score')
     if (review.get('decision') != 'adopted' or not review.get('by') or not review.get('at')
             or type(score) is not int or not 5 <= score <= 10 or not review.get('rationale')):
@@ -150,13 +308,13 @@ def apply(root, data, proposal):
     if review['tier'] == 'A' and review.get('authority') != 'owner' and not (
             review.get('authority') == 'delegated_reviewer' and review.get('delegation')):
         raise ValueError('c3_a_delegation_required')
-    review_id = event_identity(event)[:16]+'-'+digest(proposal)[:16]
-    if review['tier'] == 'B' and int(event_identity(event)[:8], 16) % 10 == 0:
+    review_id = source_version[:16]+'-'+digest(proposal)[:16]
+    if review['tier'] == 'B' and int(source_version[:8], 16) % 10 == 0:
         sample = review.get('sample_review') or {}
         if not sample.get('by') or sample.get('decision') != 'confirmed':
             raise ValueError('deterministic_sample_review_required')
     p = proposal['project']
-    if event.get('identity_review') == 'resolved' and event.get('matched_site_id') != p.get('site_id'):
+    if context.get('matched_site_id') and context['matched_site_id'] != p.get('site_id'):
         raise ValueError('reviewed_event_site_mismatch')
     if p.get('disputed') or p.get('sensitive') or proposal.get('replaces_record_ids'):
         raise ValueError('owner_decision_required_for_conflict_or_replacement')
@@ -165,26 +323,27 @@ def apply(root, data, proposal):
             raise ValueError('project_identity_required:'+key)
     if p.get('status') not in LEVELS or p.get('verified_date') != review['at'][:10]:
         raise ValueError('invalid_project_stage_or_review_date')
-    accepted = receipt_documents(data)
-    urls = set(bound_urls(event, accepted))
+    urls = set(context['urls'])
     if not urls or not p.get('sources') or any(s.get('url') not in urls for s in p['sources']):
         raise ValueError('source_not_bound_to_received_event')
     if not proposal.get('target_ids') or not set(proposal['target_ids']) <= {
             r['id'] for r in json.loads((root/'framework/tco_targets.json').read_text())['targets']}:
         raise ValueError('current_demand_required')
+    if context.get('bound_target_ids') is not None and not set(proposal['target_ids']) <= set(context['bound_target_ids']):
+        raise ValueError('reader_current_demand_binding_required')
     assertions = proposal.get('assertions') or []
     if not assertions:
         raise ValueError('source_assertions_required')
-    archived = {c['source_sha256'] for c in (event.get('editorial_event') or {}).get('evidence_checks', [])}
+    archived = set(context['source_texts'])
     checked = []
     for assertion in assertions:
         sha, quote = assertion.get('source_sha256'), assertion.get('quote')
         if sha not in archived or not assertion.get('locator') or not isinstance(quote, str) or not quote.strip():
             raise ValueError('assertion_source_not_in_received_evidence')
-        source = checked_source(data, sha)
+        source = context['source_texts'][sha]
         if ''.join(quote.split()) not in ''.join(source.split()):
             raise ValueError('quote_not_in_archived_original')
-        if assertion.get('value') is not None:
+        if assertion.get('value') is not None or 'value_range' in assertion:
             from inresearch.materials.daily_research import power_quantities
             units = {'MW': 1, 'GW': 1000}
             pairs = [n * units[u] for n, u in power_quantities(quote)]
@@ -196,36 +355,53 @@ def apply(root, data, proposal):
         if meta.get('kind') not in ('derived', 'estimated', 'forecast') or not meta.get('assumptions'):
             raise ValueError('derived_capacity_requires_estimated_observation')
     observation = proposal.get('observation')
+    if observation is not None and not isinstance(observation, dict):
+        raise ValueError('invalid_observation_metadata')
+    withdrawal = observation is not None and (observation.get('revision') or {}).get('action') == 'withdraw'
     changed_fields = set(proposal.get('fields') or []) if observation is not None else set(p)
     parts = (p.get('capacity_it_mw_by_status') or {}) if 'capacity_it_mw_by_status' in changed_fields else {}
     if len(parts) > 1 and observation is None:
         raise ValueError('multiple_phase_aggregation_requires_separate_relation_review')
     if p.get('capacity_it_mw') is not None and parts:
         raise ValueError('capacity_headline_and_breakdown_overlap')
-    def backed(value, basis, scope=None):
-        return any(a.get('value') == value and a.get('basis') == basis and a.get('unit') == 'MW'
-                   and (scope is None or a.get('scope') == scope) for a in checked)
-    if 'capacity_it_mw' in changed_fields and p.get('capacity_it_mw') is not None and not backed(p['capacity_it_mw'], 'it'):
+    def backed(value, basis, scope=None, phase=None):
+        for assertion in checked:
+            if (assertion.get('basis') != basis or scope is not None and assertion.get('scope') != scope
+                    or phase is not None and assertion.get('phase') != phase):
+                continue
+            try:
+                native = {k: assertion[k] for k in ('value', 'value_range', 'unit') if k in assertion}
+                native['basis'] = assertion.get('range_basis', 'reviewed literal quantity')
+                if site_quantity.canonical(value) == site_quantity.canonical(native):
+                    return True
+            except (ValueError, TypeError):
+                continue
+        return False
+    if not withdrawal and 'capacity_it_mw' in changed_fields and p.get('capacity_it_mw') is not None and not backed(p['capacity_it_mw'], 'it'):
         raise ValueError('it_capacity_not_supported')
-    for level, value in parts.items():
-        supported = backed(value, 'it', 'aggregate') if len(parts) == 1 else any(
-            a.get('value') == value and a.get('basis') == 'it' and a.get('unit') == 'MW'
-            and a.get('scope') == 'nonoverlapping_phase' and a.get('phase') == level for a in checked)
+    for level, value in ({} if withdrawal else parts).items():
+        supported = backed(value, 'it', 'aggregate') if len(parts) == 1 else backed(value, 'it', 'nonoverlapping_phase', level)
         if level not in LEVELS or not supported:
             raise ValueError('capacity_aggregation_not_reviewed')
-    if 'capacity_facility_mw' in changed_fields and p.get('capacity_facility_mw') is not None and not backed(p['capacity_facility_mw'], 'facility'):
+    if not withdrawal and 'capacity_facility_mw' in changed_fields and p.get('capacity_facility_mw') is not None and not backed(p['capacity_facility_mw'], 'facility'):
         raise ValueError('facility_capacity_not_supported')
     for k in ('capacity_it_mw', 'capacity_facility_mw'):
-        if p.get(k) is not None and not number(p[k]): raise ValueError('invalid_capacity_value')
+        if p.get(k) is not None:
+            if observation is not None:
+                site_quantity.check(p[k])
+            elif not number(p[k]):
+                raise ValueError('invalid_capacity_value')
     companies = {r['company_id'] for r in json.loads((root/'data/companies.json').read_text())['records']} if (root/'data/companies.json').exists() else set()
     if companies and not {v for k in ('developer','tenant','owner','operator','builder') for v in p.get(k, [])} <= companies:
         raise ValueError('unknown_project_actor')
     # Phase observations remain separate from the aggregate; parent/child MW never summed.
-    p = dict(p, adoption={'event_id': event['id'], 'review_id': review_id,
-                         'source_version': event_identity(event), 'review': review,
+    p = dict(p, adoption={'source_kind': source_kind, 'source_id': source_id, 'review_id': review_id,
+                         'source_version': source_version, 'review': review,
                          'target_ids': proposal['target_ids'], 'assertions': checked,
-                         'document_refs': event['document_refs'], 'fields': proposal['fields'],
+                         'document_refs': context['document_refs'], 'fields': proposal['fields'],
                          'scope': proposal['scope']})
+    if source_kind == 'daily_event':
+        p['adoption']['event_id'] = source_id
     path = root/'data/projects.json'
     replay = False
     with locked(path):
@@ -236,7 +412,7 @@ def apply(root, data, proposal):
                 raise ValueError('observation_requires_registered_physical_site')
             if old.get('duplicate_of') or 'portfolio' in old['site_id']:
                 raise ValueError('observation_requires_canonical_physical_site')
-            if not isinstance(observation, dict) or set(observation) - {'effective_at', 'kind', 'basis', 'assumptions', 'scope'}:
+            if not isinstance(observation, dict) or set(observation) - {'effective_at', 'valid_until', 'kind', 'basis', 'assumptions', 'scope', 'source_versions', 'revision'}:
                 raise ValueError('invalid_observation_metadata')
             if not changed_fields or changed_fields - site_timeline.FIELDS:
                 raise ValueError('observation_cannot_relocate_or_merge_site')
@@ -245,8 +421,23 @@ def apply(root, data, proposal):
                     raise ValueError('physical_site_identity_changed:' + key)
             if not changed_fields <= p.keys():
                 raise ValueError('observation_field_missing')
-            entry = dict(observation, id=review_id, recorded_at=review['at'],
+            prior = next((r for r in old.get('observations', []) if r['id'] == review_id), None)
+            versions = _source_versions(observation, context)
+            metadata = {k: v for k, v in observation.items() if k != 'source_versions'}
+            entry = dict(metadata, schema_version=2, id=review_id,
+                         recorded_at=prior['recorded_at'] if prior else now(), reviewed_at=review['at'], source_versions=versions,
                          fields={k:p[k] for k in changed_fields}, adoption=p['adoption'], sources=p['sources'])
+            if prior and prior.get('schema_version') != 2:
+                # A protocol upgrade cannot turn an exact historic replay into a new write.
+                legacy = dict(metadata, id=review_id, recorded_at=review['at'], fields=entry['fields'],
+                              adoption={k: v for k, v in p['adoption'].items() if k not in ('source_kind', 'source_id')}, sources=p['sources'])
+                if prior != legacy:
+                    raise ValueError('site_observation_id_conflict')
+                entry = prior
+            elif prior:
+                if [(v['source_sha256'], v['published_at']) for v in versions] != [(v['source_sha256'], v['published_at']) for v in prior['source_versions']]:
+                    raise ValueError('site_observation_id_conflict')
+                entry['source_versions'] = prior['source_versions']
             # Replay precedes the optimistic baseline guard, as with other writes.
             updated, replay = site_timeline.append(old, entry)
             if not replay and proposal.get('baseline_sha256') != digest(old):
@@ -280,8 +471,10 @@ def apply(root, data, proposal):
         if not replay: write_json(path, value)
     # Main commit is recoverable from the project itself if receipt writing fails.
     receipt = {'state': 'already_applied' if replay else 'applied_in_checkout', 'site_id': p['site_id'], 'review_id': review_id,
-               'event_id': event['id'], 'source_version': event_identity(event),
+               'source_kind': source_kind, 'source_id': source_id, 'source_version': source_version,
                'scope': 'Not a deployment receipt; merge, publish and verify the web separately.'}
+    if source_kind == 'daily_event':
+        receipt['event_id'] = source_id
     write_json(data/'material-reviews/project-review/receipts'/(review_id+'.json'), receipt)
     return receipt
 

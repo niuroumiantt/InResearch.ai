@@ -71,7 +71,505 @@
           "若由设施功率换算IT，须补PUE与分期边界"
         ],
         "source_support": "legacy_original_missing"
-      }
+      },
+      "observations": [
+        {
+          "effective_at": "2026-07-28",
+          "kind": "estimated",
+          "basis": "Samaritan Research在其2026年7月28日时间线节点，将OpenAI Stargate Abilene的IT功率容量估算为421 MW；这不是计量电表实测负载。 页Updated为2026-10-05；有效日引用来源时间线，卫星图Jul27与节点Jul28保留一天差异。",
+          "scope": "whole_site",
+          "assumptions": [
+            "按来源的卫星/冷却设备与资料模型估算IT容量，非实测耗电；具体运营时间由外观与建设进度推断。",
+            "建筑5–8于2026-07-28未确认运营；不据843-421推定已核实的422 MW建设中容量。"
+          ],
+          "schema_version": 2,
+          "id": "30103f2fd01b810c-b03dfa2fe924b039",
+          "recorded_at": "2026-10-11T05:24:27.724360+00:00",
+          "reviewed_at": "2026-10-11T05:12:03.460201+00:00",
+          "source_versions": [
+            {
+              "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+              "published_at": null,
+              "published_at_precision": "unknown",
+              "published_at_provenance": "unknown_not_established_by_native_source",
+              "first_received_at": "2026-10-11T02:32:09.197179+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+            },
+            {
+              "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+              "published_at": "2026-10-05",
+              "published_at_precision": "day",
+              "published_at_provenance": "reviewed_native_publication_quote",
+              "first_received_at": "2026-10-11T02:32:08.409992+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt",
+              "publication_evidence": {
+                "kind": "original_quote",
+                "locator": "reader:page:1",
+                "quote": "Updated Oct. 5, 2026",
+                "basis": "该SHA页面明确Updated标记；是来源版本更新日，不冒充首次发表或卫星拍摄日"
+              },
+              "publication_date_parser": "native-date-v1"
+            }
+          ],
+          "fields": {
+            "capacity_it_mw_by_status": {},
+            "capacity_it_mw": 421,
+            "capacity_assessment": null
+          },
+          "adoption": {
+            "source_kind": "reader_report",
+            "source_id": "reader:30103f2fd01b810c2820b0a694653e12b9b3a38cd0081d0074d8f4968e46d412",
+            "review_id": "30103f2fd01b810c-b03dfa2fe924b039",
+            "source_version": "30103f2fd01b810c2820b0a694653e12b9b3a38cd0081d0074d8f4968e46d412",
+            "review": {
+              "tier": "A",
+              "authority": "delegated_reviewer",
+              "by": "Codex /root/r4_inspur_support",
+              "at": "2026-10-11T05:12:03.460201+00:00",
+              "decision": "adopted",
+              "score": 8,
+              "delegation": {
+                "delegate": "Codex /root/r4_inspur_support",
+                "granted_by": "user / repository owner",
+                "granted_at": "2026-10-11",
+                "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+                "scope": "new_or_supplemental_research"
+              },
+              "rationale": "具名独立审核者完整阅读Samaritan两份封存全文；限定采用来源的有效日期、IT模型估算及独立未来预测，不认定实测负载，不采用差额为建设中容量，也不认证批准用能或审批等待。",
+              "replaces_record_ids": [],
+              "relaxes_distribution": false
+            },
+            "target_ids": [
+              "F.cost.depreciation.capex.shell.product"
+            ],
+            "assertions": [
+              {
+                "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                "locator": "reader:page:1",
+                "quote": "Jul 28, 2026\n\nSatellite explorer  [link: Satellite explorer — /data/ai-data-centers/directory/openai-stargate-abilene/satellite-explorer?date=2026-07-28]\n\nBuildings 5-8 are structurally complete and roofed but not yet confirmed operational (fit-out ongoing). The substation looks complete.\n\nCompute\n509k H100-eq\n\nIT Power\n421 MW\n\nCost\n$15.9 B",
+                "value": 421,
+                "unit": "MW",
+                "basis": "it",
+                "scope": "aggregate",
+                "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene"
+              },
+              {
+                "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                "locator": "reader:page:1",
+                "quote": "IT power = capacity per cooling unit x number of cooling units / cooling overhead",
+                "basis": "methodology",
+                "url": "https://samaritan-research.org/data/data-centers-documentation/methodology"
+              }
+            ],
+            "document_refs": [
+              {
+                "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+                "report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+                "source_url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+                "source_provenance": {
+                  "batch": "r3-two-pilots-20261011",
+                  "input_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+                  "source_id": "r3-pilot-samaritan-data-center-methodology",
+                  "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [
+                  {
+                    "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M05-Q06",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+                    "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+                    "scope_values": {
+                      "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+                      "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+                      "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+                      "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "energy_quota_mw",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "项目用能/接入/IT容量分开；未取得批准值交缺口，零不表示获准无限容量。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  },
+                  {
+                    "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M04-Q07",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+                    "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+                    "scope_values": {
+                      "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+                      "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+                      "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+                      "period": "2025至2026；历史预测与实际里程碑逐项核验",
+                      "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "gate_wait_years",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "负荷接入与发电并网分开；排队、审批、施工与爬坡不互代；区域均值不能代替单项目等待。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  }
+                ]
+              },
+              {
+                "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+                "report_sha256": "ac73dfc6028cc0888a0bc00f33fcb8c3e245b5254dcbb7869e2c8acb7e6f12e9",
+                "source_url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+                "source_provenance": {
+                  "batch": "r3-two-pilots-20261011",
+                  "input_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+                  "source_id": "r3-pilot-samaritan-abilene-timeline",
+                  "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [
+                  {
+                    "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M05-Q06",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+                    "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+                    "scope_values": {
+                      "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+                      "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+                      "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+                      "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "energy_quota_mw",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "项目用能/接入/IT容量分开；未取得批准值交缺口，零不表示获准无限容量。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  },
+                  {
+                    "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M04-Q07",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+                    "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+                    "scope_values": {
+                      "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+                      "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+                      "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+                      "period": "2025至2026；历史预测与实际里程碑逐项核验",
+                      "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "gate_wait_years",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "负荷接入与发电并网分开；排队、审批、施工与爬坡不互代；区域均值不能代替单项目等待。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  }
+                ]
+              }
+            ],
+            "fields": [
+              "capacity_it_mw",
+              "capacity_it_mw_by_status",
+              "capacity_assessment"
+            ],
+            "scope": "whole_site"
+          },
+          "sources": [
+            {
+              "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+              "grade": "research",
+              "note": "Samaritan模型估算方法/该版本时间线；非现场电表测量或批准用能原件"
+            },
+            {
+              "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+              "grade": "research",
+              "note": "Samaritan模型估算方法/该版本时间线；非现场电表测量或批准用能原件"
+            }
+          ]
+        },
+        {
+          "effective_at": "2026-11-01",
+          "kind": "forecast",
+          "basis": "Samaritan Research将2026年11月1日的OpenAI Stargate Abilene IT容量预测为843 MW，建立在建筑5–8届时可运营的推断上。 页Updated为2026-10-05；有效日引用来源时间线，卫星图Jul27与节点Jul28保留一天差异。",
+          "scope": "whole_site",
+          "assumptions": [
+            "建设周期类比推断；建筑5–8是否届时运营尚待后续证据。",
+            "未发生即维持预测；到期本身不转换为当前已投运。"
+          ],
+          "schema_version": 2,
+          "id": "30103f2fd01b810c-21d74279e89b111f",
+          "recorded_at": "2026-10-11T05:24:27.996070+00:00",
+          "reviewed_at": "2026-10-11T05:12:03.460201+00:00",
+          "source_versions": [
+            {
+              "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+              "published_at": null,
+              "published_at_precision": "unknown",
+              "published_at_provenance": "unknown_not_established_by_native_source",
+              "first_received_at": "2026-10-11T02:32:09.197179+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+            },
+            {
+              "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+              "published_at": "2026-10-05",
+              "published_at_precision": "day",
+              "published_at_provenance": "reviewed_native_publication_quote",
+              "first_received_at": "2026-10-11T02:32:08.409992+00:00",
+              "first_received_at_precision": "timestamp",
+              "first_received_at_provenance": "acquisition_first_recorded_archive_receipt",
+              "publication_evidence": {
+                "kind": "original_quote",
+                "locator": "reader:page:1",
+                "quote": "Updated Oct. 5, 2026",
+                "basis": "该SHA页面明确Updated标记；是来源版本更新日，不冒充首次发表或卫星拍摄日"
+              },
+              "publication_date_parser": "native-date-v1"
+            }
+          ],
+          "fields": {
+            "capacity_it_mw_by_status": {},
+            "capacity_it_mw": 843,
+            "capacity_assessment": null
+          },
+          "adoption": {
+            "source_kind": "reader_report",
+            "source_id": "reader:30103f2fd01b810c2820b0a694653e12b9b3a38cd0081d0074d8f4968e46d412",
+            "review_id": "30103f2fd01b810c-21d74279e89b111f",
+            "source_version": "30103f2fd01b810c2820b0a694653e12b9b3a38cd0081d0074d8f4968e46d412",
+            "review": {
+              "tier": "A",
+              "authority": "delegated_reviewer",
+              "by": "Codex /root/r4_inspur_support",
+              "at": "2026-10-11T05:12:03.460201+00:00",
+              "decision": "adopted",
+              "score": 8,
+              "delegation": {
+                "delegate": "Codex /root/r4_inspur_support",
+                "granted_by": "user / repository owner",
+                "granted_at": "2026-10-11",
+                "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+                "scope": "new_or_supplemental_research"
+              },
+              "rationale": "具名独立审核者完整阅读Samaritan两份封存全文；限定采用来源的有效日期、IT模型估算及独立未来预测，不认定实测负载，不采用差额为建设中容量，也不认证批准用能或审批等待。",
+              "replaces_record_ids": [],
+              "relaxes_distribution": false
+            },
+            "target_ids": [
+              "F.cost.depreciation.capex.shell.product"
+            ],
+            "assertions": [
+              {
+                "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                "locator": "reader:page:1",
+                "quote": "Nov 1, 2026\n\nProjected\nSatellite explorer  [link: Satellite explorer — /data/ai-data-centers/directory/openai-stargate-abilene/satellite-explorer?date=2026-11-01]\n\nBuildings 5-8 are estimated to be operational. On March 24, Building 8 roughly looked like where Building 3 was in September. Building 3 is estimated to be operational in April, 7 months later. This naively suggests Building 8 will be operational by early November, 7 months after March 24.\n\nCompute\n1,019k H100-eq\n\nIT Power\n843 MW\n\nCost\n$31.9 B",
+                "value": 843,
+                "unit": "MW",
+                "basis": "it",
+                "scope": "aggregate",
+                "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene"
+              },
+              {
+                "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                "locator": "reader:page:1",
+                "quote": "IT power = capacity per cooling unit x number of cooling units / cooling overhead",
+                "basis": "methodology",
+                "url": "https://samaritan-research.org/data/data-centers-documentation/methodology"
+              }
+            ],
+            "document_refs": [
+              {
+                "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+                "report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+                "source_url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+                "source_provenance": {
+                  "batch": "r3-two-pilots-20261011",
+                  "input_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+                  "source_id": "r3-pilot-samaritan-data-center-methodology",
+                  "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [
+                  {
+                    "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M05-Q06",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+                    "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+                    "scope_values": {
+                      "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+                      "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+                      "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+                      "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "energy_quota_mw",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "项目用能/接入/IT容量分开；未取得批准值交缺口，零不表示获准无限容量。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  },
+                  {
+                    "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M04-Q07",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+                    "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+                    "scope_values": {
+                      "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+                      "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+                      "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+                      "period": "2025至2026；历史预测与实际里程碑逐项核验",
+                      "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "gate_wait_years",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "负荷接入与发电并网分开；排队、审批、施工与爬坡不互代；区域均值不能代替单项目等待。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  }
+                ]
+              },
+              {
+                "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+                "report_sha256": "ac73dfc6028cc0888a0bc00f33fcb8c3e245b5254dcbb7869e2c8acb7e6f12e9",
+                "source_url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+                "source_provenance": {
+                  "batch": "r3-two-pilots-20261011",
+                  "input_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                  "method": "supplied_sidecar_sha_binding_v1",
+                  "original_bytes_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+                  "role": "downloaded_original",
+                  "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+                  "source_id": "r3-pilot-samaritan-abilene-timeline",
+                  "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+                  "url_verification": "supplier_metadata_only_no_fetch"
+                },
+                "research_requests": [
+                  {
+                    "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M05-Q06",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+                    "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+                    "scope_values": {
+                      "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+                      "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+                      "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+                      "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "energy_quota_mw",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "项目用能/接入/IT容量分开；未取得批准值交缺口，零不表示获准无限容量。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  },
+                  {
+                    "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+                    "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+                    "question_id": "M04-Q07",
+                    "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+                    "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+                    "scope_values": {
+                      "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+                      "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+                      "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+                      "period": "2025至2026；历史预测与实际里程碑逐项核验",
+                      "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+                      "region": "美国Texas，ERCOT"
+                    },
+                    "target_id": "F.cost.depreciation.capex.shell.product",
+                    "target_version": "2.3.0",
+                    "node": "root",
+                    "model_input": "gate_wait_years",
+                    "source_team": "fetchstat",
+                    "mechanism": "pdf_free",
+                    "team_state": "not_connected",
+                    "acceptance": "负荷接入与发电并网分开；排队、审批、施工与爬坡不互代；区域均值不能代替单项目等待。",
+                    "evidence_status": "unverified",
+                    "relationship": "requested_reading_only"
+                  }
+                ]
+              }
+            ],
+            "fields": [
+              "capacity_it_mw",
+              "capacity_it_mw_by_status",
+              "capacity_assessment"
+            ],
+            "scope": "whole_site"
+          },
+          "sources": [
+            {
+              "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+              "grade": "research",
+              "note": "Samaritan模型估算方法/该版本时间线；非现场电表测量或批准用能原件"
+            },
+            {
+              "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+              "grade": "research",
+              "note": "Samaritan模型估算方法/该版本时间线；非现场电表测量或批准用能原件"
+            }
+          ]
+        }
+      ]
     },
     {
       "site_id": "us-tx-shackelford",

@@ -208,3 +208,11 @@ Reader 完整候选快照继续保存在私有 `data/research_runtime.json`，�
 ### 2026-10-11：具名阅读调度
 
 具名阅读顺序可用 `reader prioritize` 显式提高：绑定 doc_id、当前 revision_id、expected_priority、新 priority、唯一 request_id、by 与 reason。dry-run只读；在线 SQLite 事务比较当前版本与旧优先级，只改指定 reading_runs.priority 并同事务写 reader_priority 审计。重复请求幂等，异意图、旧版本、终态或降低优先级拒绝。它不构造 Reader/模型、不取得第二个 worker、不取消在途任务，不改原件、冻结配方、job/预算、模型 importance、C3 或采用；既有四分之一最老任务机会保留。
+
+定量采用在最终checkout从原侧车复验当前需求定义SHA及完整契约；第二次实际调用按完整冻结样本包核验，异范围/原文/拟采用结果拒绝。历史审计及已应用精确重放保持。
+
+站点观测的时间解析与顺序由 `knowledge.observation_time` 统一，容量标量/区间和单位由 `knowledge.site_quantity` 统一；`site_timeline` 只做不可变历史及当前投影，`project_review` 持有原件/C3/物理身份/基线核验与追加写入。`project_review_reader` 是既有 Reader 的只读适配器，不创建第二个正式库、日报或模型队列。正式写入时间在首次成功时生成，重放保留；接收时间只从实际台账派生，披露时间须有该版本原文定位。strict validate 同时检查单条结构与跨记录修订链，不能让手工 JSON 绕过目标存在、范围、完整字段束和具体所有者决定检查。
+
+### 站点周期调度的运行边界（2026-10-11）
+
+既有 `research_review` worker在原领取循环前调用 `SiteTracking.tick`；它只写同一SQLite中的 `site_tracking_*` 表，不取得第二个worker或发布器，不修改旧审核任务/重要性/次数。周期、输入签名、失败重试和去重均持久化；`research-review status` 输出规划水位与阻塞状态，完成采集/采用/发布计数保持未知，不能用任务规划数代替。坏输入和规划错误隔离于既有研究审核。状态投影按周期有索引查询最新记录；大量失败仅输出计数、摘要SHA及至多8条/每条200字符样例，完整错误保留私有run/attempt台账，避免空闲轮次持续输出全历史缺口。周期和来源语义规则唯一源见06，真实执行链尚未接通的部分明确保留。

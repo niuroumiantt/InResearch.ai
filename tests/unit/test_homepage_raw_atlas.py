@@ -116,21 +116,25 @@ class HomepageRawAtlasTests(unittest.TestCase):
         self.assertLess(len(json.dumps(small)),len(json.dumps(full)))
         with self.assertRaises(ValueError):industry.snapshot(ROOT,{'overview':'yes'})
 
-    def test_overview_preserves_upstream_reference_it_and_separate_estimate_totals(self):
+    def test_overview_uses_current_estimate_and_preserves_upstream_baseline(self):
         full=industry.snapshot(ROOT);overview=industry.snapshot(ROOT,{'overview':'1'})
         row=next(r for r in overview['rows'] if r['site_id']=='us-tx-abilene')
-        self.assertEqual(row['capacity'],{'operating':421,'construction':422,'planning':0})
-        self.assertEqual(row['total_mw'],843)
+        baseline=next(r for r in json.loads((ROOT/'data/projects.json').read_text())['records'] if r['site_id']=='us-tx-abilene')
+        legacy=industry.project({k:v for k,v in baseline.items() if k!='observations'})
+        self.assertEqual(legacy['capacity'],{'operating':421,'construction':422,'planning':0})
+        self.assertEqual(legacy['capacity_assessment']['kind'],'legacy_estimate')
+        self.assertEqual(row['capacity'],{'operating':421,'construction':0,'planning':0})
+        self.assertEqual(row['total_mw'],421)
         self.assertTrue(row['capacity_known']);self.assertTrue(row['capacity_estimated'])
         assessment=row['capacity_assessment']
-        self.assertEqual(assessment['kind'],'legacy_estimate')
-        self.assertEqual(assessment['status'],'provisional')
-        self.assertIsNone(assessment['as_of']);self.assertTrue(assessment['missing_conditions'])
+        self.assertEqual(assessment['kind'],'estimate')
+        self.assertEqual(assessment['as_of'],'2026-07-28')
+        detail=next(r for r in full['rows'] if r['site_id']=='us-tx-abilene')
+        self.assertEqual(detail['tracking']['forecasts'],1)
         self.assertNotIn('origin_record_sha256',assessment);self.assertNotIn('source_support',assessment)
         self.assertEqual(overview['totals']['estimated'],full['totals']['estimated'])
         self.assertEqual(overview['capacity_audit']['estimated'],full['capacity_audit']['estimated'])
         self.assertGreaterEqual(overview['totals']['estimated']['operating'],421)
-        self.assertGreaterEqual(overview['totals']['estimated']['construction'],422)
 
     def test_homepage_news_does_not_require_formal_library_or_backflow_counts(self):
         from inresearch.workflow import news_marks

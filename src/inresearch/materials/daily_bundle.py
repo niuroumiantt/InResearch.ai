@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 from inresearch.adapters.acquisition import Collector, data_root, hash_file, now
 from inresearch.materials import daily_events, daily_sources
@@ -55,7 +56,60 @@ def receive(folder, data, root):
     folder=Path(folder);data=Path(data);root=Path(root)
     manifest,bundle_id,source=verified(folder)
     receipt=data/'material-reviews/daily-deliveries'/(bundle_id+'.json')
+    members=[{k:row[k] for k in ('sha256','role','path')} for row in manifest['files']]
+    source_sha=next(row['sha256'] for row in manifest['files'] if row['role']=='sources')
     with locked(receipt):
+        received_at = now()  # Verified bundle arrival, before indexing work.
+        prior_receipt = json.loads(receipt.read_text()) if receipt.exists() else None
+        if prior_receipt is not None and (not isinstance(prior_receipt, dict)
+                or prior_receipt.get('bundle_id') != bundle_id or prior_receipt.get('producer') != 'inews_geluoke'
+                or prior_receipt.get('status') not in ('indexed_candidate','verified_arrival_pending_index')):
+            raise ValueError('daily_receipt_identity_changed')
+        pending = prior_receipt is not None and prior_receipt['status']=='verified_arrival_pending_index'
+        if pending:
+            try:
+                first=datetime.fromisoformat(prior_receipt['first_received_at'].replace('Z','+00:00'))
+                valid_time=first.tzinfo is not None and first.utcoffset() is not None
+            except (KeyError,TypeError,AttributeError,ValueError):
+                valid_time=False
+            if (not valid_time or prior_receipt.get('schema_version')!=1
+                    or prior_receipt.get('report_date')!=manifest['report_date']
+                    or prior_receipt.get('source_sha256')!=source_sha or prior_receipt.get('members')!=members
+                    or prior_receipt.get('files')!=len(manifest['files'])
+                    or prior_receipt.get('receipt_timing_version')!=1
+                    or prior_receipt.get('received_at')!=prior_receipt.get('first_received_at')
+                    or prior_receipt.get('received_at_basis')!='first_verified_bundle_receipt'
+                    or prior_receipt.get('reindex_count')!=0 or type(prior_receipt.get('reindex_count')) is not int
+                    or prior_receipt.get('reindex_count_basis')!='complete_since_first_index'
+                    or prior_receipt.get('last_indexed_at') is not None):
+                raise ValueError('daily_arrival_marker_identity_changed')
+        if prior_receipt is None:
+            timing = {'receipt_timing_version': 1, 'received_at': received_at,
+                      'first_received_at': received_at,
+                      'received_at_basis': 'first_verified_bundle_receipt',
+                      'reindex_count': 0, 'reindex_count_basis': 'complete_since_first_index'}
+            # This durable arrival marker cannot authorize delivery: consumers
+            # require indexed_candidate, which is written only after all indexes.
+            write_json(receipt,{'schema_version':1,'bundle_id':bundle_id,'producer':'inews_geluoke',
+                'report_date':manifest['report_date'],'source_sha256':source_sha,
+                'files':len(manifest['files']),'members':members,**timing,'last_indexed_at':None,
+                'status':'verified_arrival_pending_index'})
+        elif prior_receipt.get('receipt_timing_version') == 1:
+            timing = {key: prior_receipt[key] for key in ('receipt_timing_version', 'received_at', 'first_received_at',
+                'received_at_basis', 'reindex_count_basis')}
+            if type(prior_receipt.get('reindex_count')) is not int or prior_receipt['reindex_count'] < 0:
+                raise ValueError('daily_receipt_invalid_reindex_count')
+            timing['reindex_count'] = prior_receipt['reindex_count'] + (0 if pending else 1)
+            if 'legacy_received_at' in prior_receipt:
+                timing['legacy_received_at'] = prior_receipt['legacy_received_at']
+        else:
+            # Old receive() rewrote this timestamp on every replay. Preserve
+            # the last recorded value without claiming the first receipt time.
+            timing = {'receipt_timing_version': 1, 'received_at': prior_receipt.get('received_at'),
+                      'first_received_at': None,
+                      'received_at_basis': 'legacy_last_recorded_index',
+                      'legacy_received_at': prior_receipt.get('received_at'),
+                      'reindex_count': 1, 'reindex_count_basis': 'since_timestamp_tracking'}
         # Replay safely reindexes against today's task book without re-reading.
         c=Collector(data)
         try:
@@ -94,11 +148,13 @@ def receive(folder, data, root):
                     event.setdefault('demand_history',[]).append({'targets_sha256':event.get('targets_sha256'),'matches':previous})
                 event.update(demand_matches=matches,targets_sha256=hash_file(root/'framework/tco_targets.json'))
             write_json(ledger_path,ledger)
+        indexed_at = now()
+        timing['last_indexed_at'] = indexed_at
         result={'schema_version':1,'bundle_id':bundle_id,'producer':'inews_geluoke','report_date':manifest['report_date'],
-                'received_at':now(),'status':'indexed_candidate','files':len(manifest['files']),
+                **timing,'status':'indexed_candidate','files':len(manifest['files']),'members':members,
                 'documents':[{'sha256':d['sha256'],'title':d['title'],'event_ids':d['daily_event_ids']} for d in documents],
                 'events':len(event_ids),'events_with_sources':sum(any(s['urls'] for s in ledger['records'][i]['sources']) for i in event_ids),
-                'source_sha256':hash_file(source),'targets_sha256':hash_file(root/'framework/tco_targets.json'),
+                'source_sha256':source_sha,'targets_sha256':hash_file(root/'framework/tco_targets.json'),
                 'structured_research':bool(research),
                 'reading':'existing_reader_queue','formal_capacity_updates':0,
                 'scope':'来源链接和需求匹配已登记；园区身份、逐数字口径及 C3 采用分别核验。'}

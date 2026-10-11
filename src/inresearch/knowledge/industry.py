@@ -7,7 +7,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
-from inresearch.knowledge import site_timeline
+from inresearch.knowledge import site_timeline, site_quantity
 
 STAGES = {'operating': '已投运', 'construction': '建设中', 'planning': '筹备机会'}
 LEVELS = dict(zip(['L'+str(i) for i in range(1, 10)],
@@ -31,6 +31,14 @@ def public_url(value):
 
 def number(value):
     return type(value) in (float, int) and math.isfinite(value) and value >= 0
+
+
+def capacity_scalar(value):
+    # Legacy invalid values stay unknown; reviewed observations validate upstream.
+    try:
+        return site_quantity.scalar_mw(value)
+    except (ValueError, TypeError):
+        return None
 
 
 def bucket(level):
@@ -61,11 +69,24 @@ def project(row):
     inactive_label = {'paused':'暂停', 'cancelled':'取消', 'closed':'关闭'}.get(result['lifecycle'])
     if inactive_label:
         result['stage_label'] += ' · ' + inactive_label + '（不计活跃容量）'
-    parts = row.get('capacity_it_mw_by_status') or {}
-    # Breakdown is authoritative when supplied; never add a headline total twice.
-    parts = {k: v for k, v in parts.items() if bucket(k) and number(v)}
-    if not parts and bucket(row.get('status')) and number(row.get('capacity_it_mw')):
-        parts = {row['status']: row['capacity_it_mw']}
+    quantities = copy.deepcopy(row.get('quantity_fields') or {})
+    result['quantity_fields'] = quantities
+    native_parts = quantities.get('capacity_it_mw_by_status') or row.get('capacity_it_mw_by_status') or {}
+    # Exact phases and source intervals remain separate; a range has no midpoint.
+    parts = {k: capacity_scalar(v) for k, v in native_parts.items()
+             if bucket(k) and capacity_scalar(v) is not None}
+    headline = quantities.get('capacity_it_mw', row.get('capacity_it_mw'))
+    if not native_parts and bucket(row.get('status')) and capacity_scalar(headline) is not None:
+        parts = {row['status']: capacity_scalar(headline)}
+    ranges = []
+    candidates = [('capacity_it_mw_by_status', k, v) for k, v in native_parts.items() if bucket(k)]
+    if not native_parts:
+        candidates.append(('capacity_it_mw', row.get('status'), headline))
+    for field, level, value in candidates:
+        if isinstance(value, dict) and 'value_range' in value:
+            ranges.append({'field': field, 'level': level, 'stage': bucket(level), **copy.deepcopy(value)})
+    result['capacity_ranges'] = ranges
+    result['capacity_ranged'] = bool(ranges)
     result['phases'] = [{'level': k, 'label': LEVELS[k], 'stage': bucket(k), 'mw': v} for k, v in parts.items()]
     result['capacity'] = {s: sum(p['mw'] for p in result['phases'] if p['stage'] == s) for s in STAGES}
     result['capacity_known'] = bool(parts)
@@ -95,7 +116,8 @@ def totals(rows):
             'inactive_sites': len(sites)-len(active),
             'estimated': {s: round(sum(p['capacity'][s] for p in active if p['capacity_estimated']), 6) for s in STAGES},
             'estimated_sites': sum(p['capacity_estimated'] for p in sites),
-            'sites': len(sites), 'unknown': sum(not p['capacity_known'] for p in sites),
+            'sites': len(sites), 'unknown': sum(not p['capacity_known'] and not p.get('capacity_ranged') for p in sites),
+            'ranged_sites': sum(bool(p.get('capacity_ranged')) for p in sites),
             'unlocated': sum(p['coordinates'] is None for p in sites),
             'portfolios_excluded': sum(p['portfolio'] for p in rows)}
 
@@ -182,8 +204,9 @@ def snapshot(root, params=None):
                 and (not params.get('role') or any(set(by_id.get(i, {}).get('roles') or []) & ROLE_GROUPS[params['role']] for i in ids)))
     cohort = [p for p in all_rows if matches(p)]
     stage = params.get('stage')
-    rows = [p for p in cohort if not stage or (not p['capacity_known'] if stage == 'unknown'
-            else p['capacity'][stage] > 0 or not p['capacity_known'] and bucket(p['status']) == stage)]
+    rows = [p for p in cohort if not stage or (not p['capacity_known'] and not p['capacity_ranged'] if stage == 'unknown'
+            else p['capacity'][stage] > 0 or any(r['stage'] == stage for r in p['capacity_ranges'])
+            or not p['capacity_known'] and not p['capacity_ranged'] and bucket(p['status']) == stage)]
     detail = next((p for p in all_records if p['site_id'] == params.get('site')), None)
     if params.get('site') and detail is None: raise LookupError('project not found')
     leaders = []
@@ -204,7 +227,7 @@ def snapshot(root, params=None):
     audit=capacity_audit(all_rows,all_records)
     if overview:
         row_keys=('site_id','name','country','region','location','developer','tenant','status','stage_label',
-                  'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_estimated','capacity_assessment','total_mw','coordinates')
+                  'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_ranged','capacity_ranges','quantity_fields','capacity_estimated','capacity_assessment','total_mw','coordinates')
         rows=[{key:row[key] for key in row_keys if key in row} | {
                'verification_status':'adopted_fields' if row.get('adoption') else 'registered'} for row in rows]
         for row in rows:
@@ -218,7 +241,7 @@ def snapshot(root, params=None):
         company_keys=('company_id','name','name_cn','roles')
         companies=[{key:c.get(key) for key in company_keys} for c in companies]
         leaders=[{key:c.get(key) for key in (*company_keys,'totals')} for c in leaders]
-        audit={key:audit[key] for key in ('operating','construction','planning','estimated','estimated_sites','sites','known','unknown','unlocated',
+        audit={key:audit[key] for key in ('operating','construction','planning','estimated','estimated_sites','sites','known','unknown','ranged_sites','unlocated',
                'portfolios_excluded','duplicates_excluded','oldest_verified','latest_verified')}
     return {'overview':overview,'schema_version': 1, 'generated_at': date.today().isoformat(), 'filters': params,
             'coverage': {'label': '已追踪项目 · 非全球普查', 'oldest_verified': dates[0] if dates else None,
@@ -229,4 +252,4 @@ def snapshot(root, params=None):
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
             'capacity_audit': audit,
             'stages': STAGES, 'company': next((c for c in companies if c['company_id']==params.get('c')),None),
-            'basis': '仅汇总已披露 IT 负载 MW；公司视图为相关园区容量，并非持有或租用份额。组合记录不参加容量合计。'}
+            'basis': '仅汇总已披露 IT 负载的确定值 MW，容量区间单列且不取中点；公司视图为相关园区容量，并非持有或租用份额。组合记录不参加容量合计。'}
