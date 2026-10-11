@@ -11,7 +11,7 @@ from pathlib import Path
 from inresearch.knowledge import registry as research
 from inresearch.knowledge.data_rules import price_errors
 from inresearch.storage.layout import workspace_path
-from inresearch.storage.files import json_transaction, locked, write_json, write_json_streaming
+from inresearch.storage.files import json_transaction, locked, write_json
 
 ASSIGN_STATUSES = {'已派', '进行中', '已交付', '已合并', '已放弃'}
 
@@ -171,6 +171,5 @@ def receive_snapshot(root, payload, destination=None):
                 return {'ok': True, 'received_at': previous['received_at'],
                         'documents': len(snapshot['knowledge']['documents']), 'replayed': True}
             raise Rejected('stale or conflicting snapshot', 409)
-        source_sha = write_json_streaming(destination, snapshot)
-        runtime_summary.write_control(destination, snapshot, source_sha, root=root)
+        runtime_summary.write_snapshot(destination, snapshot, root=root)
     return {'ok': True, 'received_at': snapshot['received_at'], 'documents': len(snapshot['knowledge']['documents'])}

@@ -133,3 +133,74 @@ class RuntimeSummaryTests(unittest.TestCase):
         self.assertEqual(header['received_at'], raw['received_at'])
         self.assertNotIn('knowledge', header)
         self.assertNotIn('reader', header)
+
+    def test_staging_keeps_previous_news_visible_until_complete_pair_is_ready(self):
+        from threading import Event
+        from datetime import timedelta
+        self.payload['reader']['acquisition']['news_feed']={'status':'ok','items':[{'title':'Previous accepted news'}]}
+        self.receive(); old=self.source.read_bytes();old_control=views.control_path(self.source).read_bytes()
+        incoming=json.loads(json.dumps(self.payload));incoming['generated']=(datetime.now(timezone.utc)+timedelta(seconds=1)).isoformat()
+        incoming['reader']['acquisition']['news_feed']['items'][0]['title']='New accepted news'
+        prepared,activate=Event(),Event();original=views.write_control
+        def pause(source,*args,**kwargs):
+            value=original(source,*args,**kwargs)
+            prepared.set()
+            if not activate.wait(10):raise TimeoutError('test activation wait')
+            return value
+        with ThreadPoolExecutor(max_workers=1) as pool, patch.object(views,'write_control',side_effect=pause):
+            future=pool.submit(commands.receive_snapshot,self.root,incoming,self.source)
+            try:
+                self.assertTrue(prepared.wait(10))
+                self.assertEqual(self.source.read_bytes(),old)
+                self.assertEqual(views.control_path(self.source).read_bytes(),old_control)
+                previous=views.load_acquisition(self.root)
+                self.assertEqual(previous['reader']['acquisition']['news_feed']['items'][0]['title'],'Previous accepted news')
+                self.assertEqual(views.read_control(self.source,verify_bytes=True)['source_sha256'],hashlib.sha256(old).hexdigest())
+            finally:activate.set()
+            self.assertTrue(future.result(timeout=10)['ok'])
+        current=views.read_control(self.source,verify_bytes=True)
+        self.assertEqual(current['source_sha256'],hashlib.sha256(self.source.read_bytes()).hexdigest())
+        self.assertEqual(views.load_acquisition(self.root)['reader']['acquisition']['news_feed']['items'][0]['title'],'New accepted news')
+        self.assertNotEqual(self.source.read_bytes(),old)
+
+    def test_failed_staging_preserves_current_pair_and_uncommitted_input(self):
+        from datetime import timedelta
+        self.receive();before=self.source.read_bytes();control=views.control_path(self.source).read_bytes()
+        incoming=dict(self.payload,generated=(datetime.now(timezone.utc)+timedelta(seconds=1)).isoformat())
+        with patch.object(views,'write_control',side_effect=ValueError('view generation failed')):
+            with self.assertRaisesRegex(ValueError,'view generation failed'):
+                commands.receive_snapshot(self.root,incoming,self.source)
+        self.assertEqual(self.source.read_bytes(),before)
+        self.assertEqual(views.control_path(self.source).read_bytes(),control)
+        staged=list(self.source.parent.glob('.research_runtime-stage-*.json'))
+        self.assertEqual(len(staged),1)
+        self.assertEqual(json.loads(staged[0].read_text())['generated'],incoming['generated'])
+        self.assertIsNotNone(views.read_control(self.source,verify_bytes=True))
+
+    def test_reader_cannot_observe_gap_between_source_and_control_activation(self):
+        from threading import Event
+        from datetime import timedelta
+        self.receive()
+        incoming=dict(self.payload,generated=(datetime.now(timezone.utc)+timedelta(seconds=1)).isoformat())
+        half,finish,reading=Event(),Event(),Event();replace=views.os.replace
+        def paused_replace(source,destination):
+            result=replace(source,destination)
+            if Path(destination)==self.source:
+                half.set()
+                if not finish.wait(10):raise TimeoutError('test commit wait')
+            return result
+        def read_pair():
+            reading.set()
+            return views.read_control(self.source,verify_bytes=True)
+        with ThreadPoolExecutor(max_workers=2) as pool,patch.object(views.os,'replace',side_effect=paused_replace):
+            writer=pool.submit(commands.receive_snapshot,self.root,incoming,self.source)
+            try:
+                self.assertTrue(half.wait(10))
+                reader=pool.submit(read_pair)
+                self.assertTrue(reading.wait(10))
+                self.assertFalse(reader.done())
+            finally:finish.set()
+            self.assertTrue(writer.result(timeout=10)['ok'])
+            value=reader.result(timeout=10)
+        self.assertIsNotNone(value)
+        self.assertEqual(value['source_sha256'],hashlib.sha256(self.source.read_bytes()).hexdigest())

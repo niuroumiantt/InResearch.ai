@@ -337,8 +337,15 @@ class ReviewStore:
             report = ReadingArtifacts(self.data).verify_seal(doc)
             source = (supplied_sources(self.data, doc['sha256']).get(doc['sha256'], {})
                       if report.get('explicit_research_requests') else {})
-            quantitative = (quantitative_review.contract(source['research_requests'], root)
-                            if source.get('research_requests') else None)
+            request_error = ''
+            try:
+                quantitative = (quantitative_review.contract(source['research_requests'], root)
+                                if source.get('research_requests') else None)
+            except ValueError as exc:
+                # A stale task definition requires an explicit new binding;
+                # it must not prevent discovery of unrelated sealed sources.
+                quantitative = None
+                request_error = str(exc)
             projected = project_document(doc, [], report, allowed, resolve)
             ready = []
             for c in projected['statements']:
@@ -368,11 +375,14 @@ class ReviewStore:
                     self.disposition(c['id'], doc, 'background', 'original importance <5')
                 elif (c['kind'] not in ('author_claim', 'author_forecast')
                       and not (quantitative and c['kind'] in quantitative_review.KINDS)):
-                    self.disposition(c['id'], doc, 'needs_specialist', 'initial lane covers attributed claims/forecasts')
+                    self.disposition(c['id'], doc, 'needs_specialist',
+                                     'current parameter request invalid: '+request_error if request_error
+                                     else 'initial lane covers attributed claims/forecasts')
                 else:
                     ready.append(c['id'])
-            for offset in range(0, len(ready), batch_size):
-                cohort = ready[offset:offset+batch_size]
+            cohort_size = min(batch_size, 2) if quantitative else batch_size
+            for offset in range(0, len(ready), cohort_size):
+                cohort = ready[offset:offset+cohort_size]
                 bid = sha([doc['revision_id'], doc['report_sha256'], cohort])
                 self.db.execute('INSERT OR IGNORE INTO batches(id,doc_id,revision_id,report_sha,state,candidate_ids,updated,error) '
                                 'VALUES(?,?,?,?,?,?,?,?)', (bid,doc['doc_id'],doc['revision_id'],doc['report_sha256'],
@@ -543,6 +553,9 @@ class ReviewStore:
             if batch.get('_scheduling'):
                 atomic_json(directory/'scheduling.json', batch['_scheduling'])
             packet = self.packet(root,batch)
+            if packet.get('quantitative_support_contract') and len(packet['items']) > 2:
+                self.split(batch)
+                return self.status()
             if not packet['items']:
                 atomic_json(directory/'packet.json',packet)
                 self.complete(batch,'reviewed',unsupported=packet['unsupported'])

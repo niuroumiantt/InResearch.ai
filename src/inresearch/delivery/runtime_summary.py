@@ -10,8 +10,10 @@ import json
 import os
 from pathlib import Path
 import re
+import uuid
 
-from inresearch.storage.files import iter_json_bytes, locked, write_json_streaming
+from inresearch.storage.files import (CommitUncertain, iter_json_bytes, locked,
+                                     sync_directory, write_json_streaming)
 from inresearch.storage.layout import workspace_path
 
 SMALL_SNAPSHOT = 8 * 1024 * 1024
@@ -95,7 +97,37 @@ def write_control(source, snapshot, source_sha256=None, *, root):
     return value
 
 
+def write_snapshot(source, snapshot, *, root):
+    """Prepare the complete next pair before exposing either file.
+
+    The caller holds the source transaction lock. Readers use the short control
+    lock only during the two renames, so slow serialization keeps the previous
+    accepted pair visible. Interrupted staging is retained for diagnosis.
+    """
+    source = Path(source)
+    staged = source.with_name('.'+source.stem+'-stage-'+uuid.uuid4().hex+source.suffix)
+    source_sha = write_json_streaming(staged, snapshot)
+    value = write_control(staged, snapshot, source_sha, root=root)
+    with locked(control_path(source)):
+        try:
+            os.replace(staged, source)
+            os.replace(control_path(staged), control_path(source))
+            sync_directory(source.parent)
+            sync_directory(control_path(source).parent)
+        except OSError as exc:
+            raise CommitUncertain() from exc
+    return value
+
+
 def read_control(source, *, verify_bytes=False):
+    path = control_path(source)
+    if not path.is_file():
+        return None
+    with locked(path):
+        return _read_control(source, verify_bytes=verify_bytes)
+
+
+def _read_control(source, *, verify_bytes=False):
     path = control_path(source)
     if not path.is_file() or path.is_symlink() or path.stat().st_size > MAX_CONTROL:
         return None
