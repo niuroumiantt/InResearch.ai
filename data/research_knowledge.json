@@ -58089,6 +58089,95 @@
         },
         "batch_id": "7d26df2d245938c8c0c105dff952ae8e876287a56017d6c7929813db678bba8c"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:open-compute-project",
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-interfaces",
+        "OBJ-cdu-supply"
+      ],
+      "quote": "Open standards are emerging in liquid cooling, and many vendors are following the blueprint laid out by Google with its Project Deschutes, the in-house CDU design developed by the cloud and search giant. Revealed earlier this year, Google has made the specs of Project Deschutes available to the Open Compute Project (OCP) community.",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:27:30+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文明确描述内部CDU设计规格向OCP社区开放及供应商遵循蓝图，对当前供应工单中的设计协同与价值形成机制有实质部分贡献，对接口工单提供可追踪的规格来源。周边语境充分，未发现敏感、真实冲突或拟替换等A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-interfaces",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.344,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "40ff367268a5a3c78d4299f2cded4955c0f48fc45a0393f387ca65219c9a1929",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 37444,
+            "output_tokens": 1224,
+            "reasoning_output_tokens": 248
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.257,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ebe6402baef512963b0989260216780f67a0c7c486c2fb70219bc6ee8009ce80",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 37995,
+              "output_tokens": 442,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "eefdf90e14d0f2d99e5dc0a13352a986b198eacb0f445c2f39fc900371f3ef0f"
+      }
     }
   ],
   "statements": [
@@ -112567,6 +112656,110 @@
         "request_sha256": "103beacbe78fa21cac3dc009881faa939ff37adeb58e3217525a5fedd4298801"
       },
       "object_mapping_check": "独立核对对象定义后映射至 root（一座 AI 数据中心）：本句讨论超大规模数据中心设施群的整体 PUE，属于设施整体运行效率。原文没有把表现归因于特定散热系统、电力链或设备，也未具名服务商，因此不增加子系统、零部件或主体映射；root 不表示已识别某个具体项目。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:a6459d2236a796bedacf4fe4",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:open-compute-project",
+        "part:cdu"
+      ],
+      "question_ids": [
+        "OBJ-cdu-interfaces",
+        "OBJ-cdu-supply"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日发表的2025年数据中心冷却行业回顾中报道，Google已向Open Compute Project（OCP）社区提供其内部开发的Project Deschutes CDU设计规格，并称许多供应商正在遵循该设计蓝图。这是作者关于设计开放及供应商采用情况的报道，不构成当前独立认证，也不证明产品接口兼容或可互换。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:27:30+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文明确描述内部CDU设计规格向OCP社区开放及供应商遵循蓝图，对当前供应工单中的设计协同与价值形成机制有实质部分贡献，对接口工单提供可追踪的规格来源。周边语境充分，未发现敏感、真实冲突或拟替换等A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-interfaces",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.344,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "40ff367268a5a3c78d4299f2cded4955c0f48fc45a0393f387ca65219c9a1929",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 37444,
+            "output_tokens": 1224,
+            "reasoning_output_tokens": 248
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.257,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ebe6402baef512963b0989260216780f67a0c7c486c2fb70219bc6ee8009ce80",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 37995,
+              "output_tokens": 442,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "eefdf90e14d0f2d99e5dc0a13352a986b198eacb0f445c2f39fc900371f3ef0f"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:8"
+      ],
+      "limitations": "未提供规格正文、版本、接口参数、单位、运行工况、互换条件、许可条款、供应商名单、制造能力、交期或生命周期成本。供应商采用范围未经本文独立验证。原文未限定地域或具体交付项目；设计规格开放不能等同于产品完成部署。文章发布日期明确，但“Revealed earlier this year”与2025年度回顾语境存在时间指代歧义，设计披露及规格开放的具体日期仍未知。",
+      "conflict_check": "已采纳的Schneider/Motivair与CoolIT记录讨论产品推出及能力宣称，另一条记录讨论液对空气CDU排热接口，均未涉及Project Deschutes规格开放或供应商采用情况，不构成重复或真实冲突。所供legacy匹配记录为空，未找到本条的既有canonical记录。检查限于 supplied 材料，不代表完成外部反证检索；保留既有结论。",
+      "gap_dependency_check": "OBJ-cdu-interfaces仅获得可追踪的开放设计规格来源，尚不能回答输入输出、上下游依赖或互换限制，需取得原始规格及版本并核对接口与工况。OBJ-cdu-supply仅获得作者报道的共享设计与供应商采用机制，仍需具名供应商、制造和交付环节、交期及生命周期成本证据。两项问题均保持开放，不修改研究骨架或模型取值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "eefdf90e14d0f2d99e5dc0a13352a986b198eacb0f445c2f39fc900371f3ef0f",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "79ca1f5208a6109e35d6205204fa6e32380aaff35524509a4bbe09e149b5ee7d"
+      },
+      "object_mapping_check": "独立依据正文确定范围：Google是内部设计开发及规格提供方，对应actor:alphabet-google；OCP社区是规格提供对象，对应actor:open-compute-project；Project Deschutes明确为CDU设计，对应system:thermal下冷水与CDU链中的part:cdu。供应商未具名，不映射其他actor；相邻Google液冷部署与TPU内容不属于本条，不扩展至计算设备或整个数据中心。所选证据统一采用上述范围。"
     }
   ],
   "answers": [],
