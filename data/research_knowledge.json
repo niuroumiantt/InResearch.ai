@@ -59046,6 +59046,89 @@
         },
         "batch_id": "2af9f531431595def9f17209d554aa49d89af1844fa76b247cf143a3c6e99f5b"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8b733eb710adeca70e9fd91080e14eed7a2707ec4663c71add7f5f2fd3d9057c",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:40:claim:2:ev:0",
+      "locator": "page:41/chunk:40",
+      "object_ids": [
+        "system:it"
+      ],
+      "page_index": 40,
+      "question_ids": [],
+      "quote": "As the power density of AI hardware increases, the absolute size\n                  of these swings also increases.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:30:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及充分周边语境直接支持有明确归因的定性主张，对当前M06-Q04提供功率密度演进向下游供电要求传导的负载波动机制线索，具有实质性部分贡献。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 45.077,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "250417069349db4e89ccb7dc0e540d91d4a8d5658310f0f9cd45b965000a5a14",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45406,
+            "output_tokens": 1417,
+            "reasoning_output_tokens": 261
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.185,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "994ad27761be5625e760d9ba272dd978199e821bfebe0b4c0179f0c0a302f71a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 46154,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "6745b39fc967bd08b6c36a77dd629d921a3de0ed9492432c269119cc5e56ce81"
+      }
     }
   ],
   "statements": [
@@ -114537,6 +114620,106 @@
         "request_sha256": "028bb4b822f705c6ffe4b0afd5233a0d63462befce44d8879e2464400f9b5112"
       },
       "object_mapping_check": "独立核对对象契约后，本项实际主张范围是未明确电池类别的监管时间线及一般供电方案选择。契约中的part:ups-battery限定为UPS电池（锂电/铅酸），而本句未建立这些类别的适用性；邻近镍锌电池和UPS集成讨论也不能将一般法规要求自动限定为UPS部件或整条UPS链。没有可准确承载该法规范围的对象，故保留空列表；不继承Reader标签，也不增加ABB、电网、IT设施或整座AI数据中心映射。空对象范围不影响其对允许问题的局部贡献，所选证据统一采用此声明级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:40:claim:2:ev:0"
+      ],
+      "id": "adoption:review:cc4aa21375ea449484a16c76",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:it"
+      ],
+      "question_ids": [
+        "M06-Q04"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第41页讨论面向AI模型训练和使用的“AI工厂”时认为，随着AI硬件功率密度增加，同步GPU工作负载引起的IT功率需求波动，其绝对幅度也会增加。来源发表时间未知；该段未限定具体地区、项目或建设及投运阶段。这是IEA的定性分析，不构成当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:30:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及充分周边语境直接支持有明确归因的定性主张，对当前M06-Q04提供功率密度演进向下游供电要求传导的负载波动机制线索，具有实质性部分贡献。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 45.077,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "250417069349db4e89ccb7dc0e540d91d4a8d5658310f0f9cd45b965000a5a14",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45406,
+            "output_tokens": 1417,
+            "reasoning_output_tokens": 261
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.185,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "994ad27761be5625e760d9ba272dd978199e821bfebe0b4c0179f0c0a302f71a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 46154,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "6745b39fc967bd08b6c36a77dd629d921a3de0ed9492432c269119cc5e56ce81"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:40:claim:2"
+      ],
+      "limitations": "所选引文没有密度数值、波动幅度及单位、具体硬件配置、测量方法、样本或定量关系，不能推定波动按密度同比例增长，亦不能将绝对幅度增加解释为相对波动比例增加。周边文字中的时间尺度和潜在电网影响仅用于界定语境，不作为本项新增采用结论。读取覆盖为完整原生文本，未完成全文视觉审查，部分图像页未审查；本项依据所供连续文字及其语境。",
+      "conflict_check": "已采用的adoption:review:1d955f3b2f0e9b9b5b08bde7讨论密度上升的芯片功率与集聚驱动，本项新增波动绝对幅度关系，非完整重复。既有机架功率范围、持续高负载下配电评估、跨专业协调、冷却转换及Helios参考设计记录未提出同工况相反结论；持续高负载也不等于瞬时功率恒定。周边130 kW示例与工作单120 kW的配置和口径尚未一致，不能认定为本主张的真实冲突或据此改写工作单。当前回答为空，所供legacy匹配记录为空；未发现真实冲突，不替换既有结论。检查限于所供材料，不代表完成外部全面反证检索。",
+      "gap_dependency_check": "本项仅为M06-Q04补充密度增加与IT负载波动之间的定性联系，不能量化M08/M09设备需求或成本。仍需核对120 kW与来源130 kW示例的配置和计量边界，审查600 kW及1 MW阶段的直接证据并保留宣布或预测状态，取得各阶段的负载波形、适用工况、缓解策略及反证，以及向供电和冷却系统传导的可复查推导。M06-Q04保持开放，不更新模型输入、GW汇总或研究骨架，不覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6745b39fc967bd08b6c36a77dd629d921a3de0ed9492432c269119cc5e56ce81",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "251d9e2c00b36766f0ee98d89c009d5870af37854bf9e3410b8de8903e3eb50e"
+      },
+      "object_mapping_check": "独立依据原文选择IT设施：该段讨论同步运行的GPU在AI模型训练和使用中引起的IT功率需求波动，以及硬件功率密度增加与波动绝对幅度的关系。主张未限定器件规格、整机柜配置或具体供电设备，不下沉到部件，也不由周边电网、储能或软件缓解讨论增加电力、储能或DCIM/BMS映射。所选证据统一采用此主张级范围，原候选和证据标签保持不变。"
     }
   ],
   "answers": [],
