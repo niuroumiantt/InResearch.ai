@@ -189,6 +189,82 @@ class HomepageRawAtlasTests(unittest.TestCase):
                 self.assertEqual(unknown['reader']['status'],'awaiting_operational_projection')
                 self.assertNotIn('acquisition',unknown['reader'])
 
+    def test_homepage_reuses_unchanged_inputs_but_recomputes_freshness(self):
+        registry._NEWS_PUBLIC_CACHE.clear()
+        self.addCleanup(registry._NEWS_PUBLIC_CACHE.clear)
+        clock=[datetime(2026,10,11,1,0,tzinfo=timezone.utc)]
+        class Clock(datetime):
+            @classmethod
+            def now(cls,tz=None):return clock[0]
+        snapshot={'feed':{'items':[]},'reader':{'status':'idle',
+                  'received_at':clock[0].isoformat(),'stale':False}}
+        with tempfile.TemporaryDirectory() as tmp,patch.object(registry,'datetime',Clock), \
+             patch.object(registry,'build_news',return_value=snapshot) as build, \
+             patch('time.monotonic',return_value=1) as monotonic:
+            first=registry.cached_news(Path(tmp),overview=True)
+            self.assertFalse(first['reader']['stale'])
+            monotonic.return_value=1801
+            clock[0]=datetime(2026,10,11,1,30,tzinfo=timezone.utc)
+            later=registry.cached_news(Path(tmp),overview=True)
+            self.assertTrue(later['reader']['stale'])
+            self.assertEqual(build.call_count,1)
+            self.assertFalse(first['reader']['stale'])
+            (Path(tmp)/'data').mkdir()
+            (Path(tmp)/'data/research_knowledge.json').write_text('{}')
+            registry.cached_news(Path(tmp),overview=True)
+            self.assertEqual(build.call_count,1)  # Full-library adoption is not a homepage input.
+            clock[0]=datetime(2026,10,12,1,30,tzinfo=timezone.utc)
+            registry.cached_news(Path(tmp),overview=True)
+            self.assertEqual(build.call_count,2)  # Beijing day changes require new daily counts.
+
+    def test_busy_full_news_consumer_does_not_block_homepage_and_home_builds_once(self):
+        from concurrent.futures import ThreadPoolExecutor
+        registry._NEWS_PUBLIC_CACHE.clear()
+        self.addCleanup(registry._NEWS_PUBLIC_CACHE.clear)
+        entered,release=threading.Event(),threading.Event()
+        calls=[]
+        def controlled_build(*args,overview=False,**kwargs):
+            calls.append(overview)
+            if not overview:
+                entered.set()
+                if not release.wait(5):raise AssertionError('full consumer did not resume')
+            return {'feed':{'items':['home' if overview else 'full']}}
+        with tempfile.TemporaryDirectory() as tmp,patch.object(registry,'build_news',side_effect=controlled_build), \
+             ThreadPoolExecutor(max_workers=4) as pool:
+            full=pool.submit(registry.cached_news,Path(tmp),overview=False)
+            try:
+                self.assertTrue(entered.wait(3))
+                homes=[pool.submit(registry.cached_news,Path(tmp),overview=True) for _ in range(2)]
+                for home in homes:self.assertEqual(home.result(timeout=2)['feed']['items'],['home'])
+                self.assertFalse(full.done())
+                self.assertEqual(calls.count(True),1)
+            finally:release.set()
+            self.assertEqual(full.result()['feed']['items'],['full'])
+
+    def test_prepared_control_recovery_invalidates_unknown_news_without_source_rewrite(self):
+        from inresearch.delivery import runtime_summary
+        registry._NEWS_PUBLIC_CACHE.clear()
+        self.addCleanup(registry._NEWS_PUBLIC_CACHE.clear)
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp)/'research_runtime.json'
+            snapshot={'graph_version':'old','questions_version':'old','generated':'2026-10-11T01:00:00Z',
+                      'received_at':'2026-10-11T01:00:00Z','knowledge':{},'reader':{'status':'idle',
+                      'acquisition':{'news_feed':{'status':'success','items':[{
+                          'title_zh':'Recovered news','url':'https://example.org/recovered',
+                          'published_at':1791673200000}]}}}}
+            source.write_text(json.dumps(snapshot))
+            runtime_summary.write_control(source,snapshot,root=ROOT)
+            official=runtime_summary.control_path(source);completed=official.read_bytes();official.unlink()
+            with patch.dict('os.environ',{'INRESEARCH_READER_SNAPSHOT':str(source)}):
+                unavailable=registry.cached_news(ROOT,overview=True)
+                self.assertIsNone(unavailable['feed'])
+                identity=runtime_summary.signature(source)
+                runtime_summary.prepared_control_path(source).write_bytes(completed)
+                recovered=registry.cached_news(ROOT,overview=True)
+                self.assertEqual(recovered['feed']['items'][0]['url'],'https://example.org/recovered')
+                self.assertEqual(runtime_summary.signature(source),identity)
+                self.assertTrue(recovered['raw_atlas']['daily']['news_available'])
+
     def test_article_records_remain_complete_when_news_exceeds_homepage_bound(self):
         leads=[{'id':'lead-'+str(i),'events':[{'title':'News '+str(i),'url':'https://example.org/'+str(i),
                 'published_at':1791720000000+i}]} for i in range(500)]

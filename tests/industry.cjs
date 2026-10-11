@@ -122,7 +122,7 @@ const {mkdirSync}=require('node:fs');
 
   // Raw daily events remain visible without a headline feed; original dates, bases and locations stay separate.
   await page.unroute(/\/api\/news(?:\?.*)?$/);
-  const rawPayload={reader:{status:'idle',stale:false,received_at:'2026-10-11T03:00:00Z'},feed:null,pipeline:{available:true,progress:{leads:3,linked:0}},raw_atlas:{research_total:3,daily:{today:'2026-10-11',published_events:0,received_events:1,capacity_observations:2,located_events:1,research_published_records:2},latest_published_at:null,latest_received_at:'2026-10-11T03:00:00Z',records:[
+  const rawPayload={reader:{status:'idle',stale:false,received_at:'2026-10-11T03:00:00Z'},feed:null,pipeline:{available:true,progress:{leads:3,linked:0}},raw_atlas:{research_total:3,daily:{today:'2026-10-11',published_events:0,received_events:1,capacity_observations:2,located_events:1,research_published_records:2},latest_published_at:null,latest_received_at:'2026-10-11T00:15:00Z',records:[
     {id:'raw-megawatt',origin:'daily_html',title:'微软新园区日报线索',url:'https://example.com/raw-mw',report_date:'2026-10-10',published_at:0,company_ids:['microsoft'],coordinates:[35,139],location:'东京',location_precision:'site',capacity_observations:[{quoted_value:'1,000 MW',mw:1000,basis:'it'}],verification_status:'raw'},
     {id:'raw-no-location',origin:'daily_html',title:'新项目供电消息',url:'https://example.com/raw-grid',published_at:0,company_ids:[],coordinates:null,location_precision:'unknown',capacity_observations:[{quoted_value:'75 MW',mw:75,basis:'facility_or_grid'}],verification_status:'raw'},
     {id:'research-a',origin:'research_publication',title:'美国资料项目甲',url:'https://example.com/research-a',publication_date:'2026-10-11',published_at:0,company_ids:['bytedance'],country_code:'US',coordinates:[39,-98],location:'美国',location_precision:'country',capacity_text:'计划 2 GW / 设施 3 GW',verification_status:'raw'},
@@ -138,6 +138,10 @@ const {mkdirSync}=require('node:fs');
   assert.match(await page.locator('.dc-news').innerText(),/日报 2026-10-10 · 原文时间待补充/);
   assert.match(await page.locator('#daily-metrics').innerText(),/今日接收\s*1/);
   assert.match(await page.locator('#daily-freshness').innerText(),/最新发表 时间未提供/);
+  assert.match(await page.locator('#daily-freshness').innerText(),/新闻接收 [^·]*08:15/,'event receipt uses its own Beijing time');
+  assert.match(await page.locator('#daily-freshness').innerText(),/运行同步 [^·]*11:00/,'runtime transport sync remains separate');
+  await page.evaluate(payload=>window.dispatchEvent(new CustomEvent('inresearch:news-data',{detail:{...payload,raw_atlas:{...payload.raw_atlas,latest_received_at:null}}})),rawPayload);
+  assert.match(await page.locator('#daily-freshness').innerText(),/新闻接收 时间未提供 · 运行同步 [^·]*11:00/,'unknown event receipt must not fall back to snapshot sync');
   assert.match(await page.locator('#research-summary').innerText(),/3 条文章提取记录/);
   if(process.env.UI_QA_DIR){
    await page.setViewportSize({width:1440,height:900});await page.evaluate(()=>scrollTo(0,0));

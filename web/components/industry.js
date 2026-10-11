@@ -117,8 +117,8 @@ function renderDaily(){
  const ready=daily?.news_available!==false&&!!(news?.feed&&!['awaiting_sync','not_initialized'].includes(news.feed.status)||news?.pipeline?.available);
  const status=newsFailed?'同步失败，保留上次快照':!news?'正在读取运行投影':!ready?'等待运行投影 · 文章资料仍可见':news?.reader?.stale?'快照延迟':'新闻与日报持续接收';
  const time=value=>{if(value==null||value===0||value==='')return '时间未提供';const d=new Date(value);return Number.isFinite(d.getTime())?new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d):'时间未提供';};
- const published=news?.raw_atlas?.latest_published_at,received=news?.raw_atlas?.latest_received_at||news?.reader?.received_at;
- $('daily-freshness').textContent=`${daily?.today||'北京时间今日'} · ${status} · 最新发表 ${time(published)} · 最近接收 ${time(received)}`;
+ const published=news?.raw_atlas?.latest_published_at,received=news?.raw_atlas?.latest_received_at,synced=news?.reader?.received_at;
+ $('daily-freshness').textContent=`${daily?.today||'北京时间今日'} · ${status} · 最新发表 ${time(published)} · 新闻接收 ${time(received)} · 运行同步 ${time(synced)}`;
  const metrics=[['今日新闻',daily?.published_events],['今日接收',daily?.received_events],['容量观察',daily?.capacity_observations],['有地点消息',daily?.located_events]].map(([label,v])=>[label,ready?v:null]);
  const show=v=>Number.isInteger(v)?num(v):'—',research=news?.raw_atlas?.research_total;
  $('news-daily-summary').innerHTML=`<a class="news-research-count" href="/research/data-centers-2026-projects.html"><strong>${show(research)}</strong><span>条文章项目资料 ↗</span></a><p>今日新闻 ${show(metrics[0][1])} · 今日接收 ${show(metrics[1][1])}</p><p>容量观察 ${show(metrics[2][1])} · 采用更新 ${show(daily?.adopted_project_updates)}</p><small>${esc(status)} · 北京时间</small>`;

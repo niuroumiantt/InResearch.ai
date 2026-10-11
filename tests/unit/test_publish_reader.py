@@ -38,6 +38,28 @@ class PublisherTests(unittest.TestCase):
                     publish_reader.post_snapshot(request)
                 self.assertEqual(opener.return_value.open.call_count,count)
 
+    def test_slow_receipt_uses_one_decreasing_deadline_and_stops_after_budget(self):
+        request=publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot',data=b'fixed-body')
+        response=unittest.mock.MagicMock()
+        response.__enter__.return_value.read.return_value=b'{"ok":true}'
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener, \
+             patch.object(publish_reader.time,'monotonic',side_effect=[0,0,130,131]), \
+             patch.object(publish_reader.time,'sleep'):
+            opener.return_value.open.side_effect=[TimeoutError('slow validated receipt'),response]
+            reply,attempts=publish_reader.post_snapshot(request)
+            self.assertTrue(reply['ok']);self.assertEqual(attempts,2)
+            budgets=[call.kwargs['timeout'] for call in opener.return_value.open.call_args_list]
+            self.assertGreater(budgets[0],120)
+            self.assertEqual(budgets[0]-budgets[1],131)  # Retry never resets the total budget.
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener, \
+             patch.object(publish_reader.time,'monotonic',side_effect=[0,0,241]), \
+             patch.object(publish_reader.time,'sleep') as sleep:
+            opener.return_value.open.side_effect=TimeoutError('budget consumed')
+            with self.assertRaisesRegex(ValueError,'retry budget exhausted'):
+                publish_reader.post_snapshot(request)
+            self.assertEqual(opener.return_value.open.call_count,1)
+            sleep.assert_not_called()
+
     def test_unchanged_poll_skips_export_and_keeps_last_acknowledgement(self):
         with tempfile.TemporaryDirectory() as temp:
             state=Path(temp);token=state/'reader-sync.token';token.write_text('private-test-'*4);token.chmod(0o600)
