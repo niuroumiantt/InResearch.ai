@@ -196,7 +196,7 @@ const {mkdirSync}=require('node:fs');
   const rangeRow=homeProjection.rows.find(p=>p.capacity_known&&p.coordinates);
   for(const stage of Object.keys(homeProjection.stages))homeProjection.totals[stage]-=rangeRow.capacity[stage];
   const nativeRange={value_range:[1,2],unit:'GW',assumptions:['来源规划区间']};
-  Object.assign(rangeRow,{capacity:{operating:0,construction:0,planning:0},total_mw:0,capacity_known:false,capacity_ranged:true,
+  Object.assign(rangeRow,{phases:[],capacity:{operating:0,construction:0,planning:0},total_mw:0,capacity_known:false,capacity_ranged:true,
    quantity_fields:{capacity_it_mw:nativeRange},capacity_ranges:[{field:'capacity_it_mw',stage:'construction',level:'L6',...nativeRange}]});
   homeProjection.totals.ranged_sites=1;
   homeProjection.tracking={observations:777,review_overdue_sites:888,conflicting_sites:999,changes:[{
@@ -218,6 +218,22 @@ const {mkdirSync}=require('node:fs');
   await page.locator('.range-point').press('Enter');
   assert.match(await page.locator('#map-popup').innerText(),/1–2 GW/);
   assert.doesNotMatch(await page.locator('#map-popup').innerText(),/未披露|1,500|1.5 GW/);
+  // Missing stages are unknown; an explicitly supplied zero remains a zero, including estimates.
+  const zeroRow={...structuredClone(baseline.rows.find(p=>p.site_id===rangeRow.site_id)),
+   site_id:'fixture-explicit-zero',name:'显式零容量fixture',adoption:null,observations:[],
+   capacity:{operating:0,construction:0,planning:0},total_mw:0,phases:[{level:'L8',stage:'operating',label:'已投运',mw:0}],capacity_ranges:[],capacity_ranged:false,
+   capacity_known:true,capacity_estimated:true,quantity_fields:{capacity_it_mw:0},
+   capacity_assessment:{kind:'estimate',status:'reviewed',as_of:'2026-07-28'}};
+  homeProjection.rows.push(zeroRow);
+  await page.goto(base+'/projects.html');await page.locator('#project-rows tbody tr').first().waitFor();
+  const rangeCells=page.locator('#project-rows tbody tr').filter({has:page.locator('a[href*="site='+rangeRow.site_id+'"]')}).locator('td.num');
+  assert.deepEqual(await rangeCells.allInnerTexts(),['未披露','1–2 GW','未披露']);
+  const zeroCells=page.locator('#project-rows tbody tr').filter({has:page.locator('a[href*="site=fixture-explicit-zero"]')}).locator('td.num');
+  assert.deepEqual(await zeroCells.allInnerTexts(),['0 MW','未披露','未披露']);
+  homeProjection.detail=zeroRow;
+  await page.goto(base+'/project.html?site=fixture-explicit-zero');await page.locator('#capacity-estimate').waitFor();
+  assert.match(await page.locator('#capacity-estimate').innerText(),/运营约 0 MW IT/);
+  assert.match(await page.locator('#capacity-estimate').innerText(),/建设中未披露[\s\S]*筹备未披露/);
   await page.unroute(/\/api\/industry(?:\?.*)?$/);
 
   // Raw daily events remain visible without a headline feed; original dates, bases and locations stay separate.
@@ -285,7 +301,8 @@ const {mkdirSync}=require('node:fs');
   await page.goto(base+'/project.html?site=us-tx-abilene');
   await page.locator('#capacity-estimate').waitFor();
   assert.match(await page.locator('#capacity-estimate').innerText(),/运营约 421/);
-  assert.match(await page.locator('#capacity-estimate').innerText(),/建设中约 0/);
+  assert.match(await page.locator('#capacity-estimate').innerText(),/建设中未披露[\s\S]*筹备未披露/);
+  assert.doesNotMatch(await page.locator('#capacity-estimate').innerText(),/建设中约 0|筹备约 0/);
   assert.match(await page.locator('#capacity-estimate').innerText(),/有效时点：2026-07-28/);
   assert.doesNotMatch(await page.locator('#capacity-estimate').innerText(),/422|843/);
   const actualTimeline=page.locator('#site-observation-timeline .timeline li');
@@ -294,6 +311,14 @@ const {mkdirSync}=require('node:fs');
   assert.match(await actualTimeline.filter({hasText:'2026-11-01'}).innerText(),/预测[\s\S]*IT容量：843 MW/);
   assert.match(await actualTimeline.first().innerText(),/来源发表 2026-10-05/);
   assert.doesNotMatch(await page.locator('#site-observation-timeline').innerText(),/首次接收|审核时点|05:12:03/);
+  assert.equal(await page.locator('#detail a[href*="undefined"]').count(),0,'reader adoption never invents a daily event ID');
+  const observationLink=page.getByRole('link',{name:'查看观测与来源 →',exact:true});
+  assert.equal(await observationLink.getAttribute('href'),'#site-observation-timeline');
+  await observationLink.click();
+  assert.equal(new URL(page.url()).hash,'#site-observation-timeline');
+  assert.ok(await page.locator('#site-observation-timeline').isVisible());
+  assert.ok(await actualTimeline.locator('a[href^="https://"]').count()>=2,'observation anchor exposes original source links');
+
   if(process.env.UI_QA_DIR){
    for(const [width,height] of [[1440,900],[390,844]]){
     await page.setViewportSize({width,height});
@@ -304,6 +329,9 @@ const {mkdirSync}=require('node:fs');
   await page.goto(base+'/project.html?site=fi-salo-atnorth-fin05');
   await page.getByRole('button',{name:'重试新闻同步',exact:true}).waitFor();
   assert.equal(await page.locator('#project-dossier tbody tr').count(),12,'all project angles are visible, including unknown roles');
+  assert.match(await page.getByRole('link',{name:'查看对应日报事件与原件定位 →',exact:true}).getAttribute('href'),/^\/supply.html\?event=daily-event-[a-f0-9]{64}#matching$/,'daily adoption keeps its real source event link');
+  assert.equal(await page.locator('#detail a[href*="undefined"]').count(),0);
+
   assert.match(await page.locator('#project-dossier').innerText(),/辖区政府不自动视为地主/);
   assert.match(await page.locator('#project-dossier').innerText(),/IT、设施功率、接电额度、发电 MW/);
   assert.ok((await page.locator('#detail').innerText()).includes('160 MW'));
