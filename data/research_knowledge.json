@@ -56930,6 +56930,93 @@
         },
         "batch_id": "734de3b01539e9e2c8d983d0da847e3faf091f1ac82a38911dcef2bffe5fb6c4"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0e515cb6175f2c0a4a3cee21b7d7bf7642da8352528b375898f0921230d4e18a",
+      "document_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "id": "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal",
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-activity-V2-chain"
+      ],
+      "quote": "Among all our participants, the acquisition of cooling units and Uninterruptible Power Supply (UPS) hardware has proven to be the most challenging. Regarding the former, approximately 57 percent of participants acknowledged experiencing difficulties in securing this equipment over the past year, while 50 percent stated the same challenges with UPS acquisitions.",
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "source_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:19:23+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文及完整页面上下文充分支持明确归因的历史调查陈述。具体设备采购困难比例对当前硬件交付约束研究有实质性局部贡献，其中UPS部分也为M09-Q03提供采购约束线索，但没有回答交期与价格。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求；仅部分采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain",
+          "Q-M09-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "137cec4c024496b2c2d44d8b904393a580cc01d80e614a67fd970becb5c12e02",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64391,
+            "output_tokens": 1532,
+            "reasoning_output_tokens": 306
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.054,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fd587f9aaf2fca814add2158107ec0cd311c07132fde04176dbf8ced965dbbbb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65196,
+              "output_tokens": 460,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "63627095cd9c0de347371ec5f6e5ccc1905b236acd9942c20a6242bb3cd44c3a"
+      }
     }
   ],
   "statements": [
@@ -110310,6 +110397,109 @@
         "request_sha256": "446190b43d4b0b0a0c2da04468166db68109ac92c23b251f5e84bc053f73d563"
       },
       "object_mapping_check": "独立审查后采用空对象范围。本项是未指定地域和项目的数据中心公众及政策反应描述；root的名称和类型对应一座AI数据中心，不能承接一般行业主张。原文未确立具体设施系统、土地或水权、并网协议、许可条件或合同中允许的主体；政策回应也不能自动映射site:permits。因此不继承Reader的root标签，所选证据统一采用空的主张级对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "evidence_ids": [
+        "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:b2d785ecb5a388042f57ad32",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal",
+        "part:ups"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-chain",
+        "M09-Q03"
+      ],
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "status": "adopted",
+      "text": "BCS Consultancy的Chris Coward（Business Critical Solutions项目管理总监）在DCD于2023年11月2日发表的《Ongoing supply chain disruption continues to take its toll》中报告，在其介绍的欧洲数据中心专业人士供应链调查中，冷却设备和不间断电源（UPS）硬件是最难采购的设备；约57%的参与者表示过去一年取得冷却设备存在困难，50%表示UPS采购存在同类困难。这是作者报告的受访者历史采购经历，不构成对当前设备供应、交期、价格或项目交付状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:19:23+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文及完整页面上下文充分支持明确归因的历史调查陈述。具体设备采购困难比例对当前硬件交付约束研究有实质性局部贡献，其中UPS部分也为M09-Q03提供采购约束线索，但没有回答交期与价格。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求；仅部分采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain",
+          "Q-M09-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "137cec4c024496b2c2d44d8b904393a580cc01d80e614a67fd970becb5c12e02",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64391,
+            "output_tokens": 1532,
+            "reasoning_output_tokens": 306
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.054,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fd587f9aaf2fca814add2158107ec0cd311c07132fde04176dbf8ced965dbbbb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65196,
+              "output_tokens": 460,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "63627095cd9c0de347371ec5f6e5ccc1905b236acd9942c20a6242bb3cd44c3a"
+      },
+      "source_candidate_ids": [
+        "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:11"
+      ],
+      "limitations": "正文将调查对象描述为3500名欧洲数据中心资深专业人士，但未披露本项有效回答数、各设备问题的统计分母、抽样方法、问卷或原始数据。确切调查日期和“过去一年”的起止日期未建立。未给出国家分布、设备型号、供应商、采购数量、交期、价格或困难原因；未限定AI数据中心，也未说明具体项目的安装、验收或投运状态。两项比例不能相加或解释为互斥群体；采购困难比例不能换算为延迟时长、价格涨幅或制造产能缺口。",
+      "conflict_check": "同源已采用记录adoption:review:a03c8d4f642f7a10c948b878涉及配电设备和开关设备采购困难，本项补充冷却设备与UPS，存在共同调查背景但不构成完整重复。adoption:review:745696da226b39bf5b38ebf1强调设备发布与实际交付之间仍需取证，与本项采购经历兼容。其他所供采用声明涉及制造工艺、机柜集成、TPU需求及市场信号，没有同口径冲突。当前回答为空，所供legacy事实、合同及项目匹配记录为空；未发现规范重复、真实冲突或替换需求。检查限于所供材料，不代表完成外部反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "NODE-activity-V2-chain获得欧洲冷却与UPS硬件采购约束的历史线索，仍缺制造、集成与分销关系、实际交期、下游需求兑现、约束传导、反例及领先指标验证。M09-Q03仅获得UPS采购困难的需求侧症状，仍缺UPS交期与价格，以及Caterpillar、Cummins和康明斯代理链的柴发资料；不能由本项推定品牌供应紧张或困难原因。设备类别材料不能自动覆盖整个活动节点。两个问题均保持开放，不填入或修改模型值，不改变研究骨架或汇总容量。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "63627095cd9c0de347371ec5f6e5ccc1905b236acd9942c20a6242bb3cd44c3a",
+        "source_report_sha256": "1f9750d87ea247b7753f7ae691697d1f0ffeff1e6407067198cfa803d42843bd",
+        "request_sha256": "1da10f592c4bb29a4a68b1ba4bde10b3d2a5d68b2fa77f2df2741192f48e5670"
+      },
+      "object_mapping_check": "独立核对对象契约：泛称cooling units支持system:thermal（水与散热）的冷却设备范围，但未建立冷水机组、CRAH/CRAC、CDU或其他具体冷却类型，不选择具体冷却链或部件。明确的UPS硬件对应part:ups，其parent为chain:power/4，属于system:power下的UPS链；该映射不证明内部构成、配置或电池采购。原文未限定AI数据中心或某座设施，不继承Reader的root标签，也不因父子关系自动增加祖先对象。所选证据统一使用此复核后的声明级对象范围。"
     }
   ],
   "answers": [],
