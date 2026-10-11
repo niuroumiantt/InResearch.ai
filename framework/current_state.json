@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.101",
+  "version": "2026.10.11.102",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -3702,7 +3702,7 @@
       "source": "docs/CI.md",
       "effective_at": "2026-10-10",
       "supersedes": [],
-      "reason": "替代站点项目JSON一律全套：仅既有身份追加v2观测、完整旧值/类型/顺序守恒，固定研究及站点回归、research+industry浏览器；原资料追加路线保留，未知/修订/规则全套。",
+      "reason": "替代站点项目JSON一律全套：仅既有身份追加v2观测、完整旧值/类型/顺序守恒，固定研究及站点回归、research+industry浏览器；原资料追加路线保留，未知/修订/规则全套。；2026-10-11用户授权吞吐优化：四类对象观测完整JSON追加证明、对象/Fetchspec固定回归与industry必跑，旧值/身份/修订/程序规则仍full；大型资产独立Docker缓存，不降低来源/C3/实际部署验收。",
       "implementations": [
         ".github/workflows/validate.yml",
         "scripts/ci_scope.py",
@@ -3715,7 +3715,11 @@
         "tests/unit/test_research_review.py",
         "tests/browser_suites.cjs",
         "src/inresearch/knowledge/deliveries.py",
-        "tests/unit/test_deliveries.py"
+        "tests/unit/test_deliveries.py",
+        "deploy/Dockerfile",
+        "tests/container_cache.py",
+        "src/inresearch/adapters/html_document.py",
+        "src/inresearch/workflow/object_review.py"
       ],
       "implementation_revision": "2026.10.11.93",
       "change_reason": "按用户反馈分列可筛地点、缺失留空、保留原始描述与角色、可点击证据备注；纯追加站点观测按完整JSON比对运行研究和industry验收，修改基线/旧值/规则仍全套。"
@@ -4284,8 +4288,8 @@
         "interface-global-daily-20261011"
       ],
       "reason": "用户明确替代同日长首页：保留全球规模带；研究信息与项目动态合为真实正式补充时间的单行标题播报；科技感世界地图与等高的inews新闻标题栏，保留原文链接；七家主体高亮移至地图底部，其余首页资料/样本统计/筛选/玩家区块退出，其他行业页与详情保持。未精选新闻使用既有标题搜索，不假称逐条故事已公开；信息有效时间不冒充更新时间，未知不补造。",
-      "implementation_revision": "2026.10.11.101",
-      "change_reason": "已采用范围替代；用户查看上线效果后明确恢复地图原有配色和设计：取消深蓝/青色渐变、点阵与发光，复用原始底图/边界/状态点；地理投影与容量保持。桌面等高、移动端/键盘/减少动态、来源安全与公开边界同步验收，生产部署另核回执。 首页index与完整行业模板industry.html分源登记，四个行业子页原功能和公开权限保持；routes与interface_manifest同步。 用户同PR续令：首页hover/focus改即时简约单行tip并移除原生SVG title，点击/Enter保留完整详情浮窗；非首页交互保持，替代原首页hover大框条款。 用户追加放大地图精细矢量与州/省界；同源按需加载固定Natural Earth版本，保持旧地理样本锚点、原配色与现有布局/交互，失败可恢复。 .100公网精细资源传输超时，.101按最大缩放约一像素精度减重，国界独立、州省界按视野分块补充复用，30秒有界等待并保留失败重试。"
+      "implementation_revision": "2026.10.11.102",
+      "change_reason": "已采用范围替代；用户查看上线效果后明确恢复地图原有配色和设计：取消深蓝/青色渐变、点阵与发光，复用原始底图/边界/状态点；地理投影与容量保持。桌面等高、移动端/键盘/减少动态、来源安全与公开边界同步验收，生产部署另核回执。 首页index与完整行业模板industry.html分源登记，四个行业子页原功能和公开权限保持；routes与interface_manifest同步。 用户同PR续令：首页hover/focus改即时简约单行tip并移除原生SVG title，点击/Enter保留完整详情浮窗；非首页交互保持，替代原首页hover大框条款。 用户追加放大地图精细矢量与州/省界；同源按需加载固定Natural Earth版本，保持旧地理样本锚点、原配色与现有布局/交互，失败可恢复。 .100公网精细资源传输超时，.102按最大缩放约一像素精度减重，国界独立、州省界按视野分块补充复用，30秒有界等待并保留失败重试。"
     }
   ],
   "entrypoints": [

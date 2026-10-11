@@ -127,4 +127,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Immutable research and persistent runtime across release replacement
-        run: python3 tests/container_storage.py
+        run: |
+          python3 tests/container_storage.py
+          python3 tests/container_cache.py

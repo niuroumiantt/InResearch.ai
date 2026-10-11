@@ -20,11 +20,13 @@ IMAGES = {'.png', '.jpg', '.jpeg', '.gif', '.webp', '.ico', '.svg'}
 DERIVED = {'framework/repository_manifest.json', 'docs/REPOSITORY_REGISTER.md'}
 RESEARCH_PATH = 'data/research_knowledge.json'
 PROJECT_PATH = 'data/projects.json'
+OBJECT_PATH = 'data/object_observations.json'
 RESEARCH_SUITES = ['research']
 RESEARCH_TEST_PATTERNS = ('test_research*.py', 'test_public_reader.py',
                           'test_publish_reader.py', 'test_verification_contract.py',
                           'test_ci_scope.py', 'test_site_*.py', 'test_project_review.py',
-                          'test_targeted_research.py', 'test_industry.py')
+                          'test_targeted_research.py', 'test_industry.py',
+                          'test_object_review.py', 'test_fetchspec_receive.py')
 # A page absent here needs a full run, even if only its visible text changed.
 PAGES = {'index': 'industry', 'company': 'company_page', 'company-home': 'company_window',
          'company-products': 'company_catalog_map', 'product-catalog': 'product_catalog',
@@ -215,6 +217,54 @@ def project_observations_append_only(before, after):
     return added > 0
 
 
+def object_observations_append_only(before, after):
+    """Prove bounded append-only observations; adoption still requires source/C3."""
+    old, new = map(strict_json, (before, after))
+    if (not isinstance(old, dict) or not isinstance(new, dict)
+            or set(old) != {'version', 'objects', 'records'} or set(new) != set(old)
+            or type(old['version']) is not int or old['version'] != 1
+            or canonical(old['version']) != canonical(new['version'])):
+        return False
+    a, b = old['records'], new['records']
+    previous, following = old['objects'], new['objects']
+    if (not isinstance(a, list) or not isinstance(b, list) or not 1 <= len(b)-len(a) <= 500
+            or not isinstance(previous, dict) or not isinstance(following, dict)
+            or any(k not in following or canonical(v) != canonical(following[k]) for k,v in previous.items())
+            or canonical(a) != canonical(b[:len(a)])):
+        return False
+    identities = {'company': {'company_id'}, 'product': {'company_id','model','version'},
+                  'statistic': {'publisher','series','geography','definition'},
+                  'quote': {'company_id','configuration','market','currency','billing_basis'}}
+    for key, obj in following.items():
+        if (not isinstance(obj, dict) or set(obj) != {'id','type','identity','name'}
+                or obj.get('type') not in identities or not isinstance(obj.get('identity'),dict)
+                or set(obj['identity']) != identities[obj['type']]
+                or any(not isinstance(v,str) or not v.strip() for v in obj['identity'].values())
+                or not isinstance(obj.get('name'),str) or not obj['name'].strip()):
+            return False
+        raw=json.dumps({'type':obj['type'],'identity':obj['identity']},ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
+        if key != obj['id'] or key != obj['type']+':'+hashlib.sha256(raw).hexdigest()[:32]:
+            return False
+    ids=[r.get('id') for r in b if isinstance(r,dict)]
+    if len(ids)!=len(b) or any(not isinstance(i,str) or not i for i in ids) or len(set(ids))!=len(ids):
+        return False
+    added=b[len(a):]
+    if set(following)-set(previous) != {r.get('object_id') for r in added}-set(previous):
+        return False
+    for row in added:
+        source, review = row.get('source'), row.get('review')
+        if (row.get('object_id') not in following or row.get('target_ids') != []
+                or any(k in row for k in ('revision','replaces_record_ids','supersedes','owner_decision','relaxes_distribution'))
+                or row.get('status') in {'withdrawn','superseded','rejected'}
+                or not isinstance(source,dict) or not source.get('quote') or not source.get('locator')
+                or any(not re.fullmatch('[0-9a-f]{64}',str(source.get(k,''))) for k in ('sha256','context_sha256'))
+                or not source.get('url','').startswith('https://')
+                or not isinstance(review,dict) or review.get('decision') != 'adopted'
+                or any(k in review for k in ('supersedes','replaces_record_ids','relaxes_distribution'))):
+            return False
+    return True
+
+
 def research_test_suite(root):
     """Select the fixed research/adoption/HTTP/publication regression surface."""
     import sys
@@ -280,6 +330,12 @@ def select(root, base, head, event='pull_request', force=False):
             if path == PROJECT_PATH:
                 if status != 'M' or not project_observations_append_only(blob(root, base, path), blob(root, head, path)):
                     return full('project identity, baseline, revision or non-additive change: '+path, changes)
+                research = True
+                suites.update([*RESEARCH_SUITES, 'industry'])
+                continue
+            if path == OBJECT_PATH:
+                if status != 'M' or not object_observations_append_only(blob(root, base, path), blob(root, head, path)):
+                    return full('object identity, revision, schema or non-additive change: '+path, changes)
                 research = True
                 suites.update([*RESEARCH_SUITES, 'industry'])
                 continue
@@ -387,7 +443,7 @@ def gate(plan, results):
         return False
     if plan['mode'] == 'research' and (not set(RESEARCH_SUITES) <= set(plan['suites']) or plan['storage']):
         return False
-    if plan['mode'] == 'research' and any(r.get('path') == PROJECT_PATH for r in plan.get('files', [])) and 'industry' not in plan['suites']:
+    if plan['mode'] == 'research' and any(r.get('path') in {PROJECT_PATH, OBJECT_PATH} for r in plan.get('files', [])) and 'industry' not in plan['suites']:
         return False
     return all(results.get(k, {}).get('result') == v for k, v in expected.items())
 

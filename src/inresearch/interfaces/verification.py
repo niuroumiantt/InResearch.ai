@@ -66,6 +66,13 @@ def verification_errors(state, root):
             elif name == 'tests/' + Path(name).stem + '.cjs' and not symbol:
                 if Path(name).stem not in browser_suites:
                     errors.append('verification: browser suite not in default runner ' + name)
+            elif name in {'tests/container_storage.py','tests/container_cache.py'} and symbol == 'main':
+                workflow=root/'.github/workflows/validate.yml'
+                configured=workflow.is_file() and re.search(r'^\s+python3 '+re.escape(name)+r'\s*$',workflow.read_text(),re.M)
+                tree=ast.parse((root/name).read_text())
+                main=any(isinstance(n,ast.FunctionDef) and n.name=='main' for n in tree.body)
+                if not configured or not main:
+                    errors.append('verification: container test not in CI runner ' + reference)
             else:
                 errors.append('verification: test outside configured runners ' + reference)
     return errors

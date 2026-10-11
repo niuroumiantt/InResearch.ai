@@ -1,11 +1,19 @@
+# syntax=docker/dockerfile:1.19.0
 # inresearch.ai —— 零依赖，所以镜像也该是零依赖的。
 # 不装任何 pip 包：本项目是Python 标准库包 + 显式页面与共享组件。
 # 镜像里出现 requirements.txt 或 pip install，说明有人破坏了那条铁律。
 FROM python:3.12-slim
 
 WORKDIR /app
-COPY . /app
 RUN mkdir -p /runtime/data /runtime/reports /runtime/logs
+
+# Large immutable assets stay cached when a research record changes.
+# --link keeps these layers reusable independently of preceding source layers.
+COPY --link web/assets/ /app/web/assets/
+COPY --link docs/design/ /app/docs/design/
+COPY --link docs/inbox/ /app/docs/inbox/
+COPY --link docs/LIBRARY_SCORES.csv /app/docs/LIBRARY_SCORES.csv
+COPY --link --exclude=web/assets --exclude=docs/design --exclude=docs/inbox --exclude=docs/LIBRARY_SCORES.csv . /app/
 
 # 容器内需要绑 0.0.0.0 才能被反代访问；绑非本机地址时 HTTP 入口 **自动强制开启内置
 # 登录认证**（auth.py，2026-08-18 起），失败模式是锁死不是敞开；前置 Caddy 只做 TLS 与分流。
