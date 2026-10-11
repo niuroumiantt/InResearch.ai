@@ -45964,6 +45964,88 @@
         },
         "batch_id": "b0fa223dfaef68fc045028540cf7f895c7a8417aaa1c6c2e43540a1e92d968ad"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d7e46b66de372f358f511e29aaa35f41611831fa93c880d9ca34ce39da058d77",
+      "document_id": "doc-ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:1:claim:2:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Wells Fargo has exited office & data center sites in Des Moines  [link: Des Moines — https://www.datacenterdynamics.com/en/news/wells-fargo-office-and-data-center-sold-in-west-des-moines-iowa/] , Iowa, and Philadelphia  [link: Philadelphia — https://www.datacenterdynamics.com/en/news/wells-fargo-exits-office-and-data-center-in-philadelphia-pennsylvania/] , Pennsylvania within the last 18 months.",
+      "reading_revision_id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8",
+      "source_sha256": "ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:49:17+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分5。具名企业在两个明确地域退出场所，实质关联当前企业地域布局工作单，并为企业需求增长研究提供应纳入比较的场所退出案例；它不是需求下降的直接证据。连续原文及周边语境充分，未识别A类条件，按明确归属作者的有限陈述部分采用。",
+        "workorder_ids": [
+          "Q-M03-Q05",
+          "Q-NODE-workload-enterprise-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.396,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ca2ec2a2d31dfe2d933338d54cec1ee92413c2fc06b04dff08f35184c87d3bbc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53073,
+            "output_tokens": 1194,
+            "reasoning_output_tokens": 284
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.994,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75e7850120905e03eb43acba13717b86d7148ecc249b56438899201237c3d052",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53557,
+              "output_tokens": 639,
+              "reasoning_output_tokens": 328
+            }
+          }
+        },
+        "batch_id": "730f14f67de558f54efb93b589fc66fe84b5f036223867713acd0c0dffabcd88"
+      }
     }
   ],
   "statements": [
@@ -89455,6 +89537,106 @@
         "request_sha256": "c70b7870b74514ec4497438d9841a208d1f9575a5102f3d7c88331db9563f2a9"
       },
       "object_mapping_check": "独立复核后采用空对象范围。本条实际范围是总体数据中心用电预测的方法与不确定性；root限定为一座AI数据中心，不能据总体预测认定单设施范围。能源及IT设备供应链的概括提及也不足以指认root下具体系统、链、部件或场址权利；IEA没有允许的actor对象。不继承文档标签或从邻接图表增加设备映射。所选两条证据统一采用此主张级空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "evidence_ids": [
+        "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:1:claim:2:ev:0"
+      ],
+      "id": "adoption:review:049e85e384d30ffa9a903398",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M03-Q05",
+        "NODE-workload-enterprise-placement"
+      ],
+      "reading_revision_id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2024年9月14日发表的《Digital Realty files to expand planned data center campus in Garland, Texas》中报道称，Wells Fargo在报道所称此前18个月内退出了位于美国爱荷华州Des Moines和宾夕法尼亚州Philadelphia的办公及数据中心场所。这是截至报道时点的作者陈述，未获本次审核独立核实；18个月描述退出活动的时间范围，不是建设周期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:49:17+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分5。具名企业在两个明确地域退出场所，实质关联当前企业地域布局工作单，并为企业需求增长研究提供应纳入比较的场所退出案例；它不是需求下降的直接证据。连续原文及周边语境充分，未识别A类条件，按明确归属作者的有限陈述部分采用。",
+        "workorder_ids": [
+          "Q-M03-Q05",
+          "Q-NODE-workload-enterprise-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.396,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ca2ec2a2d31dfe2d933338d54cec1ee92413c2fc06b04dff08f35184c87d3bbc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53073,
+            "output_tokens": 1194,
+            "reasoning_output_tokens": 284
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.994,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75e7850120905e03eb43acba13717b86d7148ecc249b56438899201237c3d052",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53557,
+              "output_tokens": 639,
+              "reasoning_output_tokens": 328
+            }
+          }
+        },
+        "batch_id": "730f14f67de558f54efb93b589fc66fe84b5f036223867713acd0c0dffabcd88"
+      },
+      "source_candidate_ids": [
+        "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:1:claim:2"
+      ],
+      "limitations": "来源为媒体报道，未提供已核验的客户侧一手资料。未区分办公与数据中心场所各自的退出规模、日期和运行状态，也未披露负载类型、资源用量、利用率、退出原因或后续去向。不能据此认定企业总需求下降、负载迁往Garland、转向租赁或完成云迁移，不能视为2026年的当前状态。",
+      "conflict_check": "所供已采用陈述涉及企业应用案例和电力约束下的条件性扩张预测，与本项不同主体、时间和口径，无实际冲突或相同规范记录。legacy中的Microsoft West Des Moines项目属于微软项目，地域相近不能证明或反驳Wells Fargo退出。所供相关事实及合同筛选记录为空；检查不构成外部全面反证检索，不替换既有结论。",
+      "gap_dependency_check": "M03-Q05仍需企业侧一手资料、可比较的需求增长序列及退出前后资源用量，本项只提供场所退出的比较线索。NODE-workload-enterprise-placement仅获得地域退出案例，仍缺负载去向、调度、利用率、阶段及配置约束证据。两个问题保持开放，不更新建设周期、容量或模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "730f14f67de558f54efb93b589fc66fe84b5f036223867713acd0c0dffabcd88",
+        "source_report_sha256": "c4d3c3ff49efd2dc44df95fb569fc55f967df06af6cd8e485b0cb330082466fd",
+        "request_sha256": "8e5d2452d78f965d5dcc6986515487f84ff0e9a4aba1c953ee7b2706910cc21a"
+      },
+      "object_mapping_check": "独立复核后保留空对象列表。允许对象中没有Wells Fargo主体；root指一座AI数据中心，而本项未确立AI用途或单座设施边界。退出办公及数据中心场所也未描述设施系统、土地权利或建筑部件的具体范围，不能继承整篇报道的Digital Realty、设施、土建或许可标签。空映射不影响其对企业地域布局及需求问题的有限贡献。"
     }
   ],
   "answers": [],
