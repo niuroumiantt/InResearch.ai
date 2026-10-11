@@ -383,6 +383,66 @@
       },
       "name": "SIVACON 8PS LI",
       "id": "product:af67bed784480c26453f62715247a9c2"
+    },
+    "product:32209dd5fd47a2e73928673b43844eab": {
+      "type": "product",
+      "identity": {
+        "company_id": "siemens",
+        "model": "SIVACON S8 DC",
+        "version": "not_disclosed"
+      },
+      "name": "SIVACON S8 DC",
+      "id": "product:32209dd5fd47a2e73928673b43844eab"
+    },
+    "product:a7397c49123c41f69dac3637f32f0250": {
+      "type": "product",
+      "identity": {
+        "company_id": "siemens-energy",
+        "model": "Large Power Transformer",
+        "version": "not_disclosed"
+      },
+      "name": "Large Power Transformer",
+      "id": "product:a7397c49123c41f69dac3637f32f0250"
+    },
+    "product:b67460a518eb854f3b63cb8ad243a7f2": {
+      "type": "product",
+      "identity": {
+        "company_id": "delta-electronics",
+        "model": "ORV3 18 / 33 kW Shelf",
+        "version": "not_disclosed"
+      },
+      "name": "ORV3 18 / 33 kW Shelf",
+      "id": "product:b67460a518eb854f3b63cb8ad243a7f2"
+    },
+    "product:ab8f545cd60a860c77d0437006781fa5": {
+      "type": "product",
+      "identity": {
+        "company_id": "delta-electronics",
+        "model": "GoCool-1500",
+        "version": "not_disclosed"
+      },
+      "name": "GoCool-1500",
+      "id": "product:ab8f545cd60a860c77d0437006781fa5"
+    },
+    "product:4164b6400ecc878d01e3339727ec1512": {
+      "type": "product",
+      "identity": {
+        "company_id": "delta-electronics",
+        "model": "ORV3 5.5 kW PSU",
+        "version": "not_disclosed"
+      },
+      "name": "ORV3 5.5 kW PSU",
+      "id": "product:4164b6400ecc878d01e3339727ec1512"
+    },
+    "product:4b94932b4ef3dbeaca6557070236f24b": {
+      "type": "product",
+      "identity": {
+        "company_id": "delta-electronics",
+        "model": "33 kW BBU Shelf",
+        "version": "not_disclosed"
+      },
+      "name": "33 kW BBU Shelf",
+      "id": "product:4b94932b4ef3dbeaca6557070236f24b"
     }
   },
   "records": [
@@ -8749,6 +8809,1612 @@
       "recorded_at": "2026-10-11T13:25:37.272930+00:00",
       "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
       "claim_sha256": "20150782d0e6d54fac93bfd54fcd5898ebfaaa96f42bc212b545482556770e7e"
+    },
+    {
+      "metric": "busway.rated_current",
+      "scope": {
+        "configuration": "SIVACON 8PS LI",
+        "condition": "Manufacturer LI family range across ratings."
+      },
+      "value": {
+        "value_range": [
+          800,
+          6300
+        ]
+      },
+      "unit": "A",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:790a957541c34e308c8d661300bbd3cd",
+      "object_id": "product:af67bed784480c26453f62715247a9c2",
+      "source": {
+        "sha256": "835f4e363dfc649eecb38e1895f8123b37ee95bdacee70ebe4d55a64e1f8c6e1",
+        "url": "https://www.siemens.com/en-us/products/sivacon/8ps-li-system/",
+        "locator": "excerpt:page:1",
+        "quote": "800 A up to 6,300 A",
+        "context_sha256": "e3a9e715a1d1f7acebd40866d56e8cf26f49c599da52e5f522cad6da6e48e1e4",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.527831+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "34821b51f535f46b7d8c4e9d94aecb4121f7477010af504cdb8ba550104d7ff6"
+    },
+    {
+      "metric": "lv_switchgear.dc_rating",
+      "scope": {
+        "configuration": "SIVACON S8 DC",
+        "condition": "SIVACON S8 direct-current application; native combined rating, not S8plus AC rating."
+      },
+      "value": "DC –1,500 V, 7,000 A",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:f223e2b3a1d746490781d01d1ed4800e",
+      "object_id": "product:32209dd5fd47a2e73928673b43844eab",
+      "source": {
+        "sha256": "c0d6e2a2152655e6b663a94ad95f363bf4993dfedfc55689e96cab94576b349f",
+        "url": "https://www.siemens.com/en-us/products/sivacon/s8/",
+        "locator": "excerpt:page:1",
+        "quote": "DC –1,500 V, 7,000 A",
+        "context_sha256": "bd87a2a6826f3aa7382270ade4385953c56f44a02f6d877249123e7412228935",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.549429+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "42a3bd8254deeea9497dda23e0f2fcc81905af9f56fde5062ebecdf76e6ccbb0"
+    },
+    {
+      "metric": "mv_switchgear.rated_voltage",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "NXAIR17.5kV/40kA family row, not NXAIR50kA or NXAIR M24kV."
+      },
+      "value": "up to 17.5 kV",
+      "unit": "kV",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:f192726903b8c2c43b750a9ba8ae01c1",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "dc1947e0f6e8ccdeb70e798747cae69b491e61bec01e3f7dc4c6bb8a258633ee",
+        "url": "https://www.siemens.com/en-us/products/energy-systems/nxair/",
+        "locator": "excerpt:page:1",
+        "quote": "NXAIR up to 17.5 kV, up to 40 kA, up to 4000 A",
+        "context_sha256": "e4ec2ba9f19a750d9de955c3f590d853da1753124345c783e99b050118d56d10",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.606630+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "1446f411dbe77c8bb78ed087a5476909aea8641f65d35bcbb364962eba1bfa0b"
+    },
+    {
+      "metric": "mv_switchgear.short_circuit_rating",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "Website family short-circuit rating; label does not independently distinguish breaking from withstand."
+      },
+      "value": "up to 40 kA",
+      "unit": "kA",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:5a0168b442a4e87d563039175cd55cf3",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "dc1947e0f6e8ccdeb70e798747cae69b491e61bec01e3f7dc4c6bb8a258633ee",
+        "url": "https://www.siemens.com/en-us/products/energy-systems/nxair/",
+        "locator": "excerpt:page:1",
+        "quote": "NXAIR up to 17.5 kV, up to 40 kA, up to 4000 A",
+        "context_sha256": "e4ec2ba9f19a750d9de955c3f590d853da1753124345c783e99b050118d56d10",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.606630+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "7e7adcac05ec1af840e940314a838cf7dfddd730c7066c0c36e30aa83127d767"
+    },
+    {
+      "metric": "mv_switchgear.rated_current",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "NXAIR17.5kV/40kA family row, maximum rating; not measured load."
+      },
+      "value": "up to 4000 A",
+      "unit": "A",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:97b487e0e9ddc57d35ddaca07c0a0d95",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "dc1947e0f6e8ccdeb70e798747cae69b491e61bec01e3f7dc4c6bb8a258633ee",
+        "url": "https://www.siemens.com/en-us/products/energy-systems/nxair/",
+        "locator": "excerpt:page:1",
+        "quote": "NXAIR up to 17.5 kV, up to 40 kA, up to 4000 A",
+        "context_sha256": "e4ec2ba9f19a750d9de955c3f590d853da1753124345c783e99b050118d56d10",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.606630+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "e9761ddd55896fcbfac205061a47d3d34697c08be86b67dec06ca22a563ec6ec"
+    },
+    {
+      "metric": "transformer.cooling_type",
+      "scope": {
+        "configuration": "Large Power Transformer",
+        "condition": "Siemens Energy Large Power Transformer, cooling methods offered; vendor punctuation ONAF. kept as printed"
+      },
+      "value": "ONAN, ONAF. ODAF, ODWF",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:1feb5ccc724e36ed771ceeb94da69079",
+      "object_id": "product:a7397c49123c41f69dac3637f32f0250",
+      "source": {
+        "sha256": "5e3f65cde9a2d9bc32c296a6174936fb860f7940744e19937df390d1a4069fb6",
+        "url": "https://www.siemens-energy.com/global/en/home/products-services/product/power-transformers.html",
+        "locator": "excerpt:page:1",
+        "quote": "ONAN, ONAF. ODAF, ODWF",
+        "context_sha256": "f94975e41486d5d8c428146476c0d34838f345d93e8859316e106c2132c2bfa3",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:07.219862+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "5cde81c1ab654b69375b551a04741c5445aa49a12b82097539910e18c097f0e5"
+    },
+    {
+      "metric": "transformer.power_rating",
+      "scope": {
+        "configuration": "Large Power Transformer",
+        "condition": "Siemens Energy Large Power Transformer column (largest of the three types on the page), upper bound of the power rating"
+      },
+      "value": "Up to 1,300 MVA",
+      "unit": "MVA",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:40522c50e500397daeb048573a7162b1",
+      "object_id": "product:a7397c49123c41f69dac3637f32f0250",
+      "source": {
+        "sha256": "5e3f65cde9a2d9bc32c296a6174936fb860f7940744e19937df390d1a4069fb6",
+        "url": "https://www.siemens-energy.com/global/en/home/products-services/product/power-transformers.html",
+        "locator": "excerpt:page:1",
+        "quote": "Up to 1,300 MVA",
+        "context_sha256": "f94975e41486d5d8c428146476c0d34838f345d93e8859316e106c2132c2bfa3",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:07.219862+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "86471204b34e7e8694455fce2032585a88f77e33e4f365fcbc27485fcdab111b"
+    },
+    {
+      "metric": "transformer.rated_voltage",
+      "scope": {
+        "configuration": "Large Power Transformer",
+        "condition": "Siemens Energy Large Power Transformer, upper bound of the vendor Voltage range row"
+      },
+      "value": "Up to 1,100 kV",
+      "unit": "kV",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:b1a8239669a2455e79ac7d2885c8699f",
+      "object_id": "product:a7397c49123c41f69dac3637f32f0250",
+      "source": {
+        "sha256": "5e3f65cde9a2d9bc32c296a6174936fb860f7940744e19937df390d1a4069fb6",
+        "url": "https://www.siemens-energy.com/global/en/home/products-services/product/power-transformers.html",
+        "locator": "excerpt:page:1",
+        "quote": "Up to 1,100 kV",
+        "context_sha256": "f94975e41486d5d8c428146476c0d34838f345d93e8859316e106c2132c2bfa3",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:07.219862+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "577c419e058e4f2c0ecb35d2ef4a1e027abc56e01574debd4924da596e43c156"
+    },
+    {
+      "metric": "power_shelf.cooling_method",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "ORV3 18 / 33 kW shelf; merged cell (colspan 3) covering PSU and shelf columns; the shelf source publishes no efficiency or loss figure (see P.psu.operation for PSU efficiency)"
+      },
+      "value": "Cooling by PSU fans",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:dfa8044627225c8884f84d65114d7b6f",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "Cooling by PSU fans",
+        "context_sha256": "7a934b169877a53dcba7af687bc01d68a9ff47c11c48aebca2d8fea3b2c15ea0",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.870667+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "47e654e997cf3823913ea5ea3f0af58f9fec5ad07dbeaca330ca23b8406b9be5"
+    },
+    {
+      "metric": "power_shelf.dimensions",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "ORV3 18 / 33 kW shelf column, H x W x D; mm in parentheses"
+      },
+      "value": "1.89 x 21 x 28.3 inch (48 x 533 x 720 mm)",
+      "unit": "in",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:bd800acaf4103b911f52eee799a6b54a",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "1.89 x 21 x 28.3 inch (48 x 533 x 720 mm)",
+        "context_sha256": "7a934b169877a53dcba7af687bc01d68a9ff47c11c48aebca2d8fea3b2c15ea0",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.870667+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "3c74852d88a89a9be0b8d9239a05f3e86d9b81d31ecb3836d0ffdcb881552990"
+    },
+    {
+      "metric": "power_shelf.input_voltage",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "ORV3 18 / 33 kW shelf column, AC input 200-277 V L-N / 346-480 V L-L, 3W+N+PE, 50/60 Hz"
+      },
+      "value": "AC input: 200 - 277 V L-N 346 - 480 V L-L (3W+N+PE) 50 / 60 Hz",
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:f3c4c25b5b9ec1c8249a27164775eef1",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "AC input: 200 - 277 V L-N 346 - 480 V L-L (3W+N+PE) 50 / 60 Hz",
+        "context_sha256": "7a934b169877a53dcba7af687bc01d68a9ff47c11c48aebca2d8fea3b2c15ea0",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.870667+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "9bba94827cec5368ef9c39840745c7e5f9a860075a07995b6201efeb77214aab"
+    },
+    {
+      "metric": "power_shelf.output_current",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "ORV3 18 / 33 kW shelf column, max. output current for the 18 kW / 33 kW variants"
+      },
+      "value": "360 / 660 A (max.)",
+      "unit": "A",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:47a5292c4eaddccfc1fc72ba92cfa1f4",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "360 / 660 A (max.)",
+        "context_sha256": "7a934b169877a53dcba7af687bc01d68a9ff47c11c48aebca2d8fea3b2c15ea0",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.870667+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "e463cf9b05ab898dd8d808a36901ce123c7720d2d6233833bde53d3ce3083885"
+    },
+    {
+      "metric": "power_shelf.output_voltage",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "ORV3 18 / 33 kW shelf; one merged cell (colspan 3) covering both the PSU and the shelf columns; DC"
+      },
+      "value": "48 / 50 V DC",
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:b18e381413d88bef6c0ec082554c0392",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "48 / 50 V DC",
+        "context_sha256": "7a934b169877a53dcba7af687bc01d68a9ff47c11c48aebca2d8fea3b2c15ea0",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.870667+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "815bb9813f7deaf6bb1f2251e9ea959b3267bd3a186081b95ac6277150df5131"
+    },
+    {
+      "metric": "power_shelf.power_rating",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "ORV3 18 / 33 kW shelf column, max. output power; the 33 kW configuration is the product title, the cell lists both variants"
+      },
+      "value": "18 / 33 kW (max.)",
+      "unit": "kW",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:4fbb82e3aa013e72772ff6145a0fff88",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "18 / 33 kW (max.)",
+        "context_sha256": "7a934b169877a53dcba7af687bc01d68a9ff47c11c48aebca2d8fea3b2c15ea0",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.870667+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "0646e80b7f71d892f09e0d26560fef4bd68c2c0fe7992e2ac5e718bade5edf03"
+    },
+    {
+      "metric": "power_shelf.weight",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "ORV3 18 / 33 kW shelf column, 12 kg without PSUs / 30 kg fully populated; vendor misprints the second lbs as Ibs"
+      },
+      "value": "26.5 lbs (12 kg) without PSUs / 66.16 Ibs (30kg) fully populated",
+      "unit": "lb",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:7177d24a8b4f2e70b55fa4738e5eb9e7",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "26.5 lbs (12 kg) without PSUs / 66.16 Ibs (30kg) fully populated",
+        "context_sha256": "7a934b169877a53dcba7af687bc01d68a9ff47c11c48aebca2d8fea3b2c15ea0",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.870667+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "f07655a64efcd3dbfa94b44c344ccabbab2a596eb3b71a6521b88fb8a3c55245"
+    },
+    {
+      "metric": "cdu.cooling_capacity",
+      "scope": {
+        "configuration": "GoCool-1500",
+        "condition": "GoCool-1500 liquid-to-liquid CDU, nominal rating at 6°C approach (first of four rating rows; 1016 kW at 4°C approach is the lowest)"
+      },
+      "value": "1500 kW @6°C approach, 1500 LPM secondary flow rate, 1300 LPM primary flow rate, 1.0 LPM/kW",
+      "unit": "kW",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:bb6b5cee64ef4d16be95dc56f078d775",
+      "object_id": "product:ab8f545cd60a860c77d0437006781fa5",
+      "source": {
+        "sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+        "url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+        "locator": "html:srcdoc:3",
+        "quote": "1500 kW @6°C approach, 1500 LPM secondary flow rate, 1300 LPM primary flow rate, 1.0 LPM/kW",
+        "context_sha256": "6466c20ece559c6aff475719ce3872def880a756da7781157b8b28d99dcc30a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.904139+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "40d59175ce4b2a7f67934a304d8665d44964134f46823117c3d9049f2dffb996"
+    },
+    {
+      "metric": "cdu.dimensions",
+      "scope": {
+        "configuration": "GoCool-1500",
+        "condition": "GoCool-1500, W x D x H; inches in parentheses"
+      },
+      "value": "1200 x 1200 x 2300 mm (47.2'' x 47.2'' x 90.6'')",
+      "unit": "mm",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:628afd7f2ba4173d759e148e19564948",
+      "object_id": "product:ab8f545cd60a860c77d0437006781fa5",
+      "source": {
+        "sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+        "url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+        "locator": "html:srcdoc:3",
+        "quote": "1200 x 1200 x 2300 mm (47.2'' x 47.2'' x 90.6'')",
+        "context_sha256": "6466c20ece559c6aff475719ce3872def880a756da7781157b8b28d99dcc30a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.904139+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "f039404ca257d2f3cc2db91e02ca47522a201db79feb84a707d9f65b9a797b4b"
+    },
+    {
+      "metric": "cdu.input_voltage",
+      "scope": {
+        "configuration": "GoCool-1500",
+        "condition": "GoCool-1500 nominal power supply voltage, 3P3W+PE, AC"
+      },
+      "value": "380/400/415/480 Vac, 3P3W+PE",
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:d1d5c772d9fe05472017fba22c29afe9",
+      "object_id": "product:ab8f545cd60a860c77d0437006781fa5",
+      "source": {
+        "sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+        "url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+        "locator": "html:srcdoc:3",
+        "quote": "380/400/415/480 Vac, 3P3W+PE",
+        "context_sha256": "6466c20ece559c6aff475719ce3872def880a756da7781157b8b28d99dcc30a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.904139+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "ecb20500542e4791331e31946d7c7b89fac07641fa8f4ffc84e460eb4b459663"
+    },
+    {
+      "metric": "cdu.primary_flow_rate",
+      "scope": {
+        "configuration": "GoCool-1500",
+        "condition": "GoCool-1500 primary side (water) nominal coolant flow rate, 17°C primary inlet"
+      },
+      "value": "1300 LPM, 17°C primary inlet temperature",
+      "unit": "LPM",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:ace4706011ac20d22e22c8beda1f1fb4",
+      "object_id": "product:ab8f545cd60a860c77d0437006781fa5",
+      "source": {
+        "sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+        "url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+        "locator": "html:srcdoc:3",
+        "quote": "1300 LPM, 17°C primary inlet temperature",
+        "context_sha256": "6466c20ece559c6aff475719ce3872def880a756da7781157b8b28d99dcc30a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.904139+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "4dca32fd3a5989e8592cef981da6e03e96dc05aceeb9a079369a77606cc77fcb"
+    },
+    {
+      "metric": "cdu.secondary_flow_rate",
+      "scope": {
+        "configuration": "GoCool-1500",
+        "condition": "GoCool-1500 secondary side (25% PG) nominal flow; matches the 1016 kW at 4°C approach rating row and the 4°C approach temperature row, not the 1500 kW headline (1500 LPM)"
+      },
+      "value": "1524 LPM",
+      "unit": "LPM",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:bbbc1f4531b3563279d4fe9c8454b58f",
+      "object_id": "product:ab8f545cd60a860c77d0437006781fa5",
+      "source": {
+        "sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+        "url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+        "locator": "html:srcdoc:3",
+        "quote": "1524 LPM",
+        "context_sha256": "6466c20ece559c6aff475719ce3872def880a756da7781157b8b28d99dcc30a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.904139+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "d1c4ebf0704540a0e52db38a1f4061f4434beebfe46455f79be119824311271f"
+    },
+    {
+      "metric": "cdu.weight",
+      "scope": {
+        "configuration": "GoCool-1500",
+        "condition": "GoCool-1500 net weight with coolant (row label With coolant); the same cell gives 1600 kg without coolant"
+      },
+      "value": "1900 kg (4188.8 lb); Without coolant: 1600 kg (3527.4 lb)",
+      "unit": "kg",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:d675dc81d5971372aaefd51814b4fe99",
+      "object_id": "product:ab8f545cd60a860c77d0437006781fa5",
+      "source": {
+        "sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+        "url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+        "locator": "html:srcdoc:3",
+        "quote": "1900 kg (4188.8 lb); Without coolant: 1600 kg (3527.4 lb)",
+        "context_sha256": "6466c20ece559c6aff475719ce3872def880a756da7781157b8b28d99dcc30a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.904139+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "a12b173ba1241a9a0c1fc573b6dba77515d67e38f0a542d33df56e8c240b3458"
+    },
+    {
+      "metric": "psu.peak_efficiency",
+      "scope": {
+        "configuration": "ORV3 5.5 kW PSU",
+        "condition": "Manufacturer peak-efficiency claim; distinct from full-load Efficiency row in dedicated table."
+      },
+      "value": "over 97.5%",
+      "unit": "%",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:1e0441796d3d6fe65b6b94ece586223e",
+      "object_id": "product:4164b6400ecc878d01e3339727ec1512",
+      "source": {
+        "sha256": "49ae84e1d9874b7330107be1e133e46e67dc9a78c11de55479b692af9ad9f710",
+        "url": "https://www.deltaww.com/en-US/products/orv3-server-power/orv3-5.5-kw-psu",
+        "locator": "html:srcdoc:1",
+        "quote": "over 97.5% peak efficiency",
+        "context_sha256": "57f19a9b524dbacc3dd1497ee0be3d8bdb1d0dc8671dce5d422bc8f01324725a",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.931375+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "8c85b36af7bb9f4af7f779a9f334dd9831609aa124961c00a979aa65e770ac7f"
+    },
+    {
+      "metric": "psu.dimensions",
+      "scope": {
+        "configuration": "ORV3 5.5 kW PSU",
+        "condition": "ORV3 5.5 kW PSU, H x W x D; mm in parentheses (the 33 kW system page lists the PSU depth as 520 mm, this page 640 mm)",
+        "source_discrepancy": "Dedicated 5.5 kW table lists depth640mm; companion official 3/5.5kW PSU table lists520mm. Source labels do not resolve configuration difference; retain dedicated-table dimensions and unresolved discrepancy, no forced correction."
+      },
+      "value": "1.57 x 2.9 x 25.2 inch (40.0 x 73.5 x 640 mm)",
+      "unit": "in",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:3d67fbf8e85139b461f2b3312afeb0b6",
+      "object_id": "product:4164b6400ecc878d01e3339727ec1512",
+      "source": {
+        "sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "1.57 x 2.9 x 25.2 inch (40.0 x 73.5 x 640 mm)",
+        "context_sha256": "7bb0505eca02cd9dadc6a715ebbb5b70bbc88ba4d36474490ad539248c25264c",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.962617+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "48a027b7b5d59d64b165535cc14dbc87c0e44dd0d7c427542dc992a9cbba26c3"
+    },
+    {
+      "metric": "psu.efficiency",
+      "scope": {
+        "configuration": "ORV3 5.5 kW PSU",
+        "condition": "ORV3 5.5 kW PSU at 100% load; vendor omits the % sign on the value",
+        "notation": "Native row omits the percent sign; Efficiency label and @100% Load retained. Not the separate peak-efficiency claim."
+      },
+      "value": ">97.5 @100% Load",
+      "unit": "%",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:4f73320ee7af18275d8401ee58a4ce27",
+      "object_id": "product:4164b6400ecc878d01e3339727ec1512",
+      "source": {
+        "sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": ">97.5 @100% Load",
+        "context_sha256": "7bb0505eca02cd9dadc6a715ebbb5b70bbc88ba4d36474490ad539248c25264c",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.962617+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "81867e2147451519deb5a4fda784d2be3ebf16c209be4e857a3b6151000614c3"
+    },
+    {
+      "metric": "psu.input_voltage",
+      "scope": {
+        "configuration": "ORV3 5.5 kW PSU",
+        "condition": "ORV3 5.5 kW PSU, AC input range, 50/60 Hz",
+        "range_basis": "Native AC input range, 50/60 Hz."
+      },
+      "value": {
+        "value_range": [
+          180,
+          305
+        ]
+      },
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:9745fd56935bf95d3abbec40cc61e4d9",
+      "object_id": "product:4164b6400ecc878d01e3339727ec1512",
+      "source": {
+        "sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "180 V AC - 305 V AC 50 / 60 Hz",
+        "context_sha256": "7bb0505eca02cd9dadc6a715ebbb5b70bbc88ba4d36474490ad539248c25264c",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.962617+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "54fc4334b39b5b617e12cbf7854c48fa2e3da00278e8da71c1472351287e39ac"
+    },
+    {
+      "metric": "psu.output_voltage",
+      "scope": {
+        "configuration": "ORV3 5.5 kW PSU",
+        "condition": "ORV3 5.5 kW PSU, DC output"
+      },
+      "value": "48 / 50 V DC",
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:2d244753aff91b80761c69b88c9d29d2",
+      "object_id": "product:4164b6400ecc878d01e3339727ec1512",
+      "source": {
+        "sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "48 / 50 V DC",
+        "context_sha256": "7bb0505eca02cd9dadc6a715ebbb5b70bbc88ba4d36474490ad539248c25264c",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.962617+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "24054f75e30dba901383d3de5b6784039e3a36bf6eeef1d70b1ee40dd3dd6d7b"
+    },
+    {
+      "metric": "psu.power_rating",
+      "scope": {
+        "configuration": "ORV3 5.5 kW PSU",
+        "condition": "ORV3 5.5 kW PSU, max. output power"
+      },
+      "value": "5,500 W",
+      "unit": "W",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:6b5a1b9d1082a231fc6671f81fcfe650",
+      "object_id": "product:4164b6400ecc878d01e3339727ec1512",
+      "source": {
+        "sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "5,500 W",
+        "context_sha256": "7bb0505eca02cd9dadc6a715ebbb5b70bbc88ba4d36474490ad539248c25264c",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.962617+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "36f3d83b0e32d26f7654b905e530bac8710f5658b021573d35e8b6aa9bab47b6"
+    },
+    {
+      "metric": "psu.weight",
+      "scope": {
+        "configuration": "ORV3 5.5 kW PSU",
+        "condition": "ORV3 5.5 kW PSU; kg in parentheses"
+      },
+      "value": "9.92 lbs (4.5 kg)",
+      "unit": "lb",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:a7729d983c5477e3e15a6092b76212fe",
+      "object_id": "product:4164b6400ecc878d01e3339727ec1512",
+      "source": {
+        "sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+        "url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+        "locator": "excerpt:page:1",
+        "quote": "9.92 lbs (4.5 kg)",
+        "context_sha256": "7bb0505eca02cd9dadc6a715ebbb5b70bbc88ba4d36474490ad539248c25264c",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.962617+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "5728ac9c1257f47b33f105fe34d95dca8808d3c3638f8d6aad09895380d86b76"
+    },
+    {
+      "metric": "power_shelf.redundant_power_rating",
+      "scope": {
+        "configuration": "ORV3 18 / 33 kW Shelf",
+        "condition": "33kW shelf variant with5+1 redundancy, six5.5kW hot-pluggable PSUs; nonredundant maximum33kW."
+      },
+      "value": "27.5 kW",
+      "unit": "kW",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:9ee1b2973cae6879091eb76e94c0b4c9",
+      "object_id": "product:b67460a518eb854f3b63cb8ad243a7f2",
+      "source": {
+        "sha256": "7b17c093fe299fd864d4080d399d1abed6ee8f6b4ff0d74f1523b78c83bd1593",
+        "url": "https://www.deltaww.com/en-US/products/orv3-server-power/orv3-33kw-power-system",
+        "locator": "html:srcdoc:1",
+        "quote": "maximum 33 kW power output or 27.5 kW with 5+1 redundancy",
+        "context_sha256": "3ce0b664accf00aa658c8095a90993e0a6c911f79a0214480eefc2e0f0c0d816",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:46.985064+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "c0cbf3e3099e3c9abd43337d4aa9085fe592bcf54f9eb59665a64954f156a5df"
+    },
+    {
+      "metric": "bbu.charge_power",
+      "scope": {
+        "configuration": "33 kW BBU Shelf",
+        "condition": "33 kW BBU Shelf, charge power (6 x 5.5 kW modules)",
+        "aggregation": "33kW BBU Shelf (six modules), not the separate 5.5kW module table."
+      },
+      "value": "1650 W",
+      "unit": "W",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:45c1a89a0a86d0fa7e8c328053132897",
+      "object_id": "product:4b94932b4ef3dbeaca6557070236f24b",
+      "source": {
+        "sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+        "url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+        "locator": "html:srcdoc:3",
+        "quote": "1650 W",
+        "context_sha256": "7e53aa81980fddd2c626dc26ec23a8f5581aad1f64c4dda0ce603c8a8103aba2",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:47.012908+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "c40def61b49a91f2a404c90239ea513b33654655ae649569556e6bf7127399c0"
+    },
+    {
+      "metric": "bbu.dimensions",
+      "scope": {
+        "configuration": "33 kW BBU Shelf",
+        "condition": "33 kW BBU Shelf, W x H x D",
+        "aggregation": "33kW BBU Shelf (six modules), not the separate 5.5kW module table."
+      },
+      "value": "537 x 93.6 x 787.5 mm",
+      "unit": "mm",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:27047b3580c41647c90e26b74a040ea4",
+      "object_id": "product:4b94932b4ef3dbeaca6557070236f24b",
+      "source": {
+        "sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+        "url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+        "locator": "html:srcdoc:3",
+        "quote": "537 x 93.6 x 787.5 mm",
+        "context_sha256": "7e53aa81980fddd2c626dc26ec23a8f5581aad1f64c4dda0ce603c8a8103aba2",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:47.012908+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "32d7f276d35d61b73a05c7237356c832050cb85beb5cea420fd07226f17a8019"
+    },
+    {
+      "metric": "bbu.input_voltage",
+      "scope": {
+        "configuration": "33 kW BBU Shelf",
+        "condition": "33 kW BBU Shelf, DC input",
+        "range_basis": "Manufacturer DC input range.",
+        "aggregation": "33kW BBU Shelf (six modules), not the separate 5.5kW module table."
+      },
+      "value": {
+        "value_range": [
+          47.5,
+          53.0
+        ]
+      },
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:da585d44eb342de4c81f86a9a2eacca9",
+      "object_id": "product:4b94932b4ef3dbeaca6557070236f24b",
+      "source": {
+        "sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+        "url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+        "locator": "html:srcdoc:3",
+        "quote": "47.5–53.0 VDC",
+        "context_sha256": "7e53aa81980fddd2c626dc26ec23a8f5581aad1f64c4dda0ce603c8a8103aba2",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:47.012908+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "9a735666f21219335b64fe3a0e4dab7600536ff4fb07b400dcb55c8c3a34a73f"
+    },
+    {
+      "metric": "bbu.operating_temperature",
+      "scope": {
+        "configuration": "33 kW BBU Shelf",
+        "condition": "33 kW BBU Shelf; vendor label misspelt Operation Temputrue",
+        "range_basis": "Manufacturer shelf operating-temperature range.",
+        "aggregation": "33kW BBU Shelf (six modules), not the separate 5.5kW module table."
+      },
+      "value": {
+        "value_range": [
+          0,
+          40
+        ]
+      },
+      "unit": "°C",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:7cb1c3931be511c53a7a5894325bf843",
+      "object_id": "product:4b94932b4ef3dbeaca6557070236f24b",
+      "source": {
+        "sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+        "url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+        "locator": "html:srcdoc:3",
+        "quote": "0 to 40°C",
+        "context_sha256": "7e53aa81980fddd2c626dc26ec23a8f5581aad1f64c4dda0ce603c8a8103aba2",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:47.012908+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "5122d93d1bfd0d2698366a4e2b4d417e8642d8056fc3a9d1004ea55844f8b1f9"
+    },
+    {
+      "metric": "bbu.output_voltage",
+      "scope": {
+        "configuration": "33 kW BBU Shelf",
+        "condition": "33 kW BBU Shelf, DC output",
+        "aggregation": "33kW BBU Shelf (six modules), not the separate 5.5kW module table."
+      },
+      "value": "50 VDC",
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:f21136a5a9fbcb92f8173d012a423fc9",
+      "object_id": "product:4b94932b4ef3dbeaca6557070236f24b",
+      "source": {
+        "sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+        "url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+        "locator": "html:srcdoc:3",
+        "quote": "50 VDC",
+        "context_sha256": "7e53aa81980fddd2c626dc26ec23a8f5581aad1f64c4dda0ce603c8a8103aba2",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:47.012908+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "3e50a3a0c65e5c110d53e95a8e2e22c103cd3ea91e8726d4f1103ff5420e700a"
+    },
+    {
+      "metric": "bbu.power_rating",
+      "scope": {
+        "configuration": "33 kW BBU Shelf",
+        "condition": "33 kW BBU Shelf, discharge power held for 90 s after 6 years (value row under the Discharge Power label; 24 kW for 240 s on the next row)",
+        "aggregation": "33kW BBU Shelf (six modules), not the separate 5.5kW module table."
+      },
+      "value": "33 kW, 90s after 6 years",
+      "unit": "kW",
+      "kind": "reported",
+      "basis": "Archived manufacturer native specification, relevant table column, inline frame or product-family row reviewed. Rated and conditional values are not site measurements. Source discrepancies preserved; unknown effective and disclosure dates remain null.",
+      "effective_at": null,
+      "id": "observation:324f18947df5c513859cf972371ea257",
+      "object_id": "product:4b94932b4ef3dbeaca6557070236f24b",
+      "source": {
+        "sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+        "url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+        "locator": "html:srcdoc:3",
+        "quote": "33 kW, 90s after 6 years",
+        "context_sha256": "7e53aa81980fddd2c626dc26ec23a8f5581aad1f64c4dda0ce603c8a8103aba2",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:37:47.012908+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (archived native HTML table and inline specification review)",
+        "at": "2026-10-11T14:48:43.695887+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed 13 archived originals and SHA identities; 10 have usable native specifications, three Micron No results found shells held without facts. Verified Siemens LI current range, S8 DC native combined rating and NXAIR17.5kV/40kA family row without relabelling short-circuit rating as breaking current. Siemens Energy Large Power Transformer column kept distinct from Medium/HVDC. Delta Google table source URLs confirmed within official manufacturer archived parent iframe metadata; merged cells and PSU/shelf columns reviewed. Shelf18/33 maxima are discrete variants,27.5kW is5+1 redundant configuration. PSU depth640mm discrepancy with companion520mm retained unresolved; peak efficiency separate from full-load row. GoCool1500kW at6C approach and1500LPM secondary distinct from1016kW/4C and1524LPM row. BBU33kW shelf (six modules),1650W charge and33kW discharge90s after6years preserved, not module or4min claim. Four native intervals retained; unknown effective/disclosure dates null, original earliest receipt preserved. Partial evidence review only, not full document completion or model-input validation. Public factual projections and source URLs use existing shared allowlist, excerpts and receipt/review audits remain private. No historical replacement or distribution relaxation.",
+        "delegation": {
+          "delegate": "Codex (archived native HTML table and inline specification review)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized remaining13 originals/28 fields, actual stock expansion, named review/adoption and publication; automation-4 continuation.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T14:48:43.695887+00:00",
+      "recorded_at": "2026-10-11T14:48:43.810494+00:00",
+      "proposal_sha256": "ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974",
+      "claim_sha256": "38a39c50a4d89a9f9715edc51fb9a471f170f5b7c29fdfe66bbd338f874c574f"
     }
   ]
 }
