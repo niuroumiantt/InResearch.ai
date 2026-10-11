@@ -59349,6 +59349,90 @@
         },
         "batch_id": "3aad5c10d7c9dbb66b28c9a411f720b0b12bbc40c71fdae0dcdc1ddbbb8d7871"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c38596fd1086ac9de0b40f9521388c1791747eb08237aa608d43ff155b43c664",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:44:claim:6:ev:0",
+      "locator": "page:45/chunk:44",
+      "object_ids": [
+        "part:bess"
+      ],
+      "page_index": 44,
+      "question_ids": [],
+      "quote": "The shift towards actively managing variable power loads within the data centre through the\n                  deployment of battery storage systems with grid-interactive capabilities could also\n                  contribute to making data centres more grid-interactive and flexible in the future, providing\n                  both stability and flexibility to the network.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:59:41+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续完整原句及相邻章节语境支持明确归因、保留可能性和未来属性的有限陈述。该机制实质贡献当前接口工单的BESS—数据中心可变负载—电网功能关系，并为性能工单提供稳定性与灵活性的预期评价方向。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces",
+          "Q-OBJ-bess-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.329,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d0545306e99ee9b3a2b89e3145a42e561f40f0e623ce2fb5676f1449c1bd8cb2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59730,
+            "output_tokens": 1345,
+            "reasoning_output_tokens": 266
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.553,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59b4d88aadd3e4ff5abe001aa9346726301b8355dc12f6b6e2602853137304a8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60391,
+              "output_tokens": 477,
+              "reasoning_output_tokens": 172
+            }
+          }
+        },
+        "batch_id": "17cfd626aefe5237e6ed70d54c216ed25589986d543b784f41328d309e1f10a2"
+      }
     }
   ],
   "statements": [
@@ -115141,6 +115225,108 @@
         "request_sha256": "16ef2ebf80fd848236233c16de3a51fd449fa139cef765bddddaa9c4a1e74063"
       },
       "object_mapping_check": "独立按原文的400伏交流供电及供电架构过渡范围，映射到root下涵盖变电、UPS、配电及机柜供电等链的system:power。原文未定位具体供电链、设备或并网权利，因此不细分部件。混合计算空间用于解释适用范围，未形成IT设备性能或配置主张，不继承Reader的system:it标签。所选证据统一使用上述主张级对象范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:44:claim:6:ev:0"
+      ],
+      "id": "adoption:review:b6468cc1c0df7abac8921aa0",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:bess"
+      ],
+      "question_ids": [
+        "OBJ-bess-interfaces",
+        "OBJ-bess-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第45页讨论下一代AI优化数据中心电力架构时提出：通过部署具备电网交互能力的电池储能系统，主动管理数据中心内部的可变电力负载，未来可能使数据中心更具电网交互能力与灵活性，为电网提供稳定性和灵活性。这是IEA的定性前瞻判断，未构成已实现性能或当前运行状态的独立认证；报告发表时间未知，原文未指定地域或具体项目。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:59:41+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续完整原句及相邻章节语境支持明确归因、保留可能性和未来属性的有限陈述。该机制实质贡献当前接口工单的BESS—数据中心可变负载—电网功能关系，并为性能工单提供稳定性与灵活性的预期评价方向。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces",
+          "Q-OBJ-bess-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.329,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d0545306e99ee9b3a2b89e3145a42e561f40f0e623ce2fb5676f1449c1bd8cb2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59730,
+            "output_tokens": 1345,
+            "reasoning_output_tokens": 266
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.553,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59b4d88aadd3e4ff5abe001aa9346726301b8355dc12f6b6e2602853137304a8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60391,
+              "output_tokens": 477,
+              "reasoning_output_tokens": 172
+            }
+          }
+        },
+        "batch_id": "17cfd626aefe5237e6ed70d54c216ed25589986d543b784f41328d309e1f10a2"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:44:claim:6"
+      ],
+      "limitations": "未提供BESS型号、电压、功率、储能容量、物理或控制接口规格、响应时间、控制策略、测试方法、运行条件、可靠性统计或失效机制。“具备电网交互能力”是该预测的前提，不能推定所有BESS均具备此能力。相邻章节明确其讨论主要针对下一代AI优化数据中心，不能无条件扩展至全部数据中心。全文阅读覆盖原生文字，未完成图像复核。",
+      "conflict_check": "现有已采用的电池快速响应、频率调节及逆变器限流陈述，与本项未来稳定性和灵活性预测没有相反结论；本项也不否定无功功率和故障电流贡献的限制。ProPetro混合供电配置的公司设计目标、IEA电池储能定义及Siemens组合系统开发计划涉及不同主张，不能据此认定本项预测已实现，也不构成规范重复。所供legacy匹配记录为空。未发现真实冲突；检查限于所供材料，不代表完成外部反证搜索，不替换既有结论。",
+      "gap_dependency_check": "OBJ-bess-interfaces仅获得储能主动管理数据中心可变负载并参与电网交互的功能关系，仍缺电气与控制接口、上下游依赖和互换限制。OBJ-bess-performance仅获得来源提出的预期效益，仍缺测试方法、量化指标、运行工况、可靠性和失效反证。需具体配置的接口文件及运行测试才能进一步回答；两项问题保持开放，不更新模型参数、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17cfd626aefe5237e6ed70d54c216ed25589986d543b784f41328d309e1f10a2",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "bba6adff75526fa2bdb0bb45f612b735fefb1a012cbd2b3ea7136e854fa65267"
+      },
+      "object_mapping_check": "独立依据原文确定范围：明确部署的battery storage systems对应电力系统下“发电与储能”链的储能系统part:bess。电网交互效益未涉及电力配额、并网排队或并网协议，不映射作为场址权利的site:grid；未指定UPS、机柜电池备份或DCIM/BMS，不继承文档的相关标签。数据中心是应用语境，不据此扩展整座设施或其他基础设施范围。所选证据统一采用此声明级对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
