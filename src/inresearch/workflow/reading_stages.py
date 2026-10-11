@@ -338,11 +338,13 @@ class ReadingStages(ReadingArtifacts):
                                       "match": "related_object" if boost else ("lexical" if score else "needs_review")}))
         demands = snapshot.get('research_demands', [])
         focus_nodes = {r['node'] for r in demands}
+        requested_questions = {r['question_id'] for r in snapshot.get('explicit_research_requests', [])}
+        ranked_questions = [(score+60 if row['id'] in requested_questions else score, row) for score,row in ranked_questions]
         if focus_nodes:
             ranked_objects = [(score+30 if row['id'] in focus_nodes else score,row) for score,row in ranked_objects]
             ranked_questions = [(score+30 if any(q.get('node') in focus_nodes and q['id']==row['id'] for q in snapshot['questions']) else score,row) for score,row in ranked_questions]
         result = {"objects": [], "questions": []}
-        current = snapshot.get('reading_contract')=='skeleton-demand-v1'
+        current = snapshot.get('reading_contract') in ('skeleton-demand-v1', 'skeleton-demand-v2')
         budgets = (1400, 1500) if current else (2200, 2500)
         for key, rows, budget in (("objects", ranked_objects, budgets[0]), ("questions", ranked_questions, budgets[1])):
             for _, row in sorted(rows, key=lambda pair: (-pair[0], pair[1]["id"])):
@@ -352,6 +354,8 @@ class ReadingStages(ReadingArtifacts):
             result['reading_contract'] = snapshot['reading_contract']
             result['research_demands'] = []
             for row in demands:
+                if snapshot['reading_contract'] == 'skeleton-demand-v2':
+                    row = {k:v for k,v in row.items() if k != 'requirements'}
                 if len(encoded(result['research_demands']+[row]).encode())<=1500:
                     result['research_demands'].append(row)
             by_id = {q['id']:q for q in snapshot['questions']}
@@ -388,7 +392,8 @@ class ReadingStages(ReadingArtifacts):
         preview = [{"page_index": chunks[n]["page_index"], "text": self._chunk_text(chunks[n])[:1000]} for n in picks]
         context = self._context(doc, doc["original_name"] + " " + encoded(preview))
         result = self.model.generate("triage", {"doc_id": doc["doc_id"], "original_name": doc["original_name"],
-                    "sampling": "bounded preview; not full reading", "preview": preview, "allowed_ids": context})
+                    "sampling": "bounded preview; not full reading", "preview": preview, "allowed_ids": context,
+                    **self._requested_work(doc)})
         cls = result.get("classification")
         if not isinstance(cls, dict):
             raise ModelOutputError()
@@ -422,13 +427,18 @@ class ReadingStages(ReadingArtifacts):
         result = self.model.generate("read", payload)
         return self._save_read_result(doc, index, payload, result)
 
+    def _requested_work(self, doc):
+        frozen = read_json(self.artifact_path(doc, "context.json"))
+        requests = frozen.get("explicit_research_requests", [])
+        return {"research_requests": requests} if requests else {}
+
     def _read_payload(self, doc, index):
         extraction = read_json(self.artifact_path(doc, "extraction.json"))
         chunk = extraction["chunks"][index]
         text = self._chunk_text(chunk)
         context = self._context(doc, text)
         payload = {"doc_id": doc["doc_id"], "page_index": chunk["page_index"], "chunk_index": index,
-                   "chunk_sha256": chunk["sha256"], "text": text, "allowed_ids": context}
+                   "chunk_sha256": chunk["sha256"], "text": text, "allowed_ids": context, **self._requested_work(doc)}
         if extraction.get('scope') == 'pdf_native_text_only':
             payload['reading_scope'] = 'Native PDF text only. Image and vector contents are excluded; use only supplied text as evidence.'
         return payload
@@ -640,6 +650,8 @@ class ReadingStages(ReadingArtifacts):
         if context.get('reading_contract'):
             report.update(reading_contract=context['reading_contract'], research_demands=context['research_demands'],
                           targets_sha256=context['targets_sha256'])
+            if context.get('explicit_research_requests'):
+                report['explicit_research_requests'] = context['explicit_research_requests']
         if gap_pages:
             report["warning"] += " Pages %s could not be read by OCR and are not covered by this report." % ", ".join(map(str, gap_pages))
         if coverage.get('scope') == 'pdf_native_text_only':

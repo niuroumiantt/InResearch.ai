@@ -68,7 +68,8 @@ class DemandBindingTests(unittest.TestCase):
     def test_bad_scope_version_question_definition_and_injected_owner_leave_ledger_unchanged(self):
         bad = [dict(target_version='old'), dict(requirement_sha256='0' * 64),
                dict(question_id='not-reviewed'), dict(scope_values={'project': 'wrong workload'}),
-               dict(provider_id='fetchspec'), dict(scope_values={k: '' for k in self.request['scope_values']})]
+               dict(provider_id='fetchspec'), dict(scope_values={k: '' for k in self.request['scope_values']}),
+               dict(purpose='a' * 12001)]
         before = self.metadata()
         for changes in bad:
             with self.subTest(changes=changes):
@@ -96,7 +97,8 @@ class DemandBindingTests(unittest.TestCase):
         from test_continuous_reader import Model
         from inresearch.workflow.research_review import ReviewStore
         self.receive(); research_match.ingest(self.original, self.data, self.root)
-        reader = Reader(self.data, self.base / 'state', self.root, model=Model(), stable_seconds=0).initialize()
+        model = Model()
+        reader = Reader(self.data, self.base / 'state', self.root, model=model, stable_seconds=0).initialize()
         self.addCleanup(reader.close)
         reader.run(once=True)
         doc = reader.doc('doc-' + self.item['sha256'])
@@ -104,6 +106,13 @@ class DemandBindingTests(unittest.TestCase):
         frozen = context_path.read_bytes()
         context = json.loads(frozen)
         self.assertEqual(context['explicit_research_requests'][0]['requirement_id'], self.request['requirement_id'])
+        for stage, payload in model.calls:
+            if stage in ('triage', 'read'):
+                self.assertEqual(payload['research_requests'], context['explicit_research_requests'])
+                self.assertEqual(payload['allowed_ids']['reading_contract'], 'skeleton-demand-v2')
+                self.assertIn(self.request['question_id'], {q['id'] for q in payload['allowed_ids']['questions']})
+        report = json.loads(reader.artifact_path(doc['doc_id'], 'report.json').read_text())
+        self.assertEqual(report['explicit_research_requests'], context['explicit_research_requests'])
         research_match.ingest(self.original, self.data, self.root); reader.scan()
         self.assertEqual(context_path.read_bytes(), frozen)
         export = reader.export_snapshot()

@@ -421,6 +421,9 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 
 原服务`work`命令可追加`--preferred-sources ~/.config/inresearch.ai/research-preferred-sources.json`。文件只含`{"schema_version":1,"doc_ids":["doc-完整64位小写SHA"]}`；1–1000个唯一已登记ID，至多1MiB、普通非符号链接文件。可登记未完成来源，只有当前完整封存版本取得排序偏好，不从部分块制造全文审核。每轮校验并输出实际文件SHA；缺失/坏文件停止，额外字段（含日报扩展）拒绝。原`--scope`只限制发现，不是已有队列硬过滤；三次偏好领取后一次原队列机会，偏好为空立即原队列，不伪造retry、不改rowid/available/评分/模型。未配置沿用原行为。
 
+2026-10-11 用户决定排队与插队，唯一规则见 [自动交付](EDITORIAL_DELIVERY.md)。发布器私有配置可增加 `preferred_sources`（Spark 上同一来源清单绝对路径）；新发布任务发现调用 `research-review ready --preferred-sources`，只将当前完整封存且 `review_ready` 的批次提前，同通道原序保留。每次 ready 查询重读清单；文件不合法拒绝，不退回普通顺序掩盖错误。已有发布日志仍由原所有者收尾，所有来源/context/C3/CI/实际网站校验不变。未配置保留原行为。
+
+
 首次部署前确认唯一research-review空闲、无in-flight，优雅停止该审核服务，保存原unit/drop-in、scope/私有配置和queue.sqlite一致备份并核SHA；Reader/relay及其独立源码入口保持运行。只修改审核服务参数，保留原角色、两批/十二批/六项和30秒预算，再恢复同一服务；不另启one-off或第二worker。公平元数据仅启用后写入queue.sqlite的`review_scheduling`表，租约同事务提交、跨线程/重启保留。核journal的`preferred_scope_sha256`及attempt的`scheduling.json`、选中doc/batch、原排序机会与ready背压；status的`last_scheduling`仅为上次领取审计。回切只移除参数并恢复原unit，审计和数据保留。
 
 ## 2026-10-08：资料基座直接交付

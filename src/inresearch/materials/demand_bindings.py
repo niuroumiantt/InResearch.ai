@@ -16,6 +16,8 @@ def validate(value):
     """Validate frozen supplier metadata without interpreting a current rule."""
     if not isinstance(value, list) or not 1 <= len(value) <= 32:
         raise ValueError('invalid_research_requests')
+    if len(json.dumps(value, ensure_ascii=False, separators=(',', ':')).encode()) > 12000:
+        raise ValueError('research_requests_context_too_large')
     required = {'target_version', 'target_id', 'requirement_id', 'requirement_sha256',
                 'question_id', 'scope_values', 'purpose'}
     seen = set()
