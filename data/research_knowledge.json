@@ -7781,6 +7781,66 @@
       "status": "candidate",
       "stored_path": "originals/18/189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027/dcd-189c19bae624bb53-PDG closes additional -350m in debt financing- eyes -5bn in fresh.html",
       "title": "PDG closes additional $350m in debt financing, eyes $5bn in fresh investment"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "coverage": {
+        "characters_read": 6869,
+        "characters_total": 6869,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "library_path": "library/by-node/system-power/2026_DCD_Partners Group to invest $1bn in AVK to help scale its__4a8835af9e4803ac.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:atnorth",
+        "actor:rolls-royce",
+        "chain:power/4",
+        "part:gas-engine",
+        "root",
+        "site:grid",
+        "system:power"
+      ],
+      "question_ids": [
+        "M04-Q02",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "report_sha256": "73d573a6b4eafb94eb749fd8262318018b40ce93057dddf45788dd4dd8d3bb52",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+        "url": "https://www.datacenterdynamics.com/en/news/partners-group-to-invest-1bn-in-avk-to-help-scale-its-microgrid-offering-for-data-center-market/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/partners-group-to-invest-1bn-in-avk-to-help-scale-its-microgrid-offering-for-data-center-market/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/4a/4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f/dcd-4a8835af9e4803ac-Partners Group to invest -1bn in AVK to help scale its microgrid .html",
+      "title": "Partners Group to invest $1bn in AVK to help scale its microgrid offering for data center market"
     }
   ],
   "evidence": [
@@ -57694,6 +57754,257 @@
           }
         },
         "batch_id": "3577e96f01611f544c88d948bd76b88466cb70ff244446217bfcdbf865ac0e97"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0fc02e77aa20f54de25788aff8f7e686e250ff8702289116664f63cdddbeaa6d",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "id": "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:rolls-royce",
+        "actor:wartsila",
+        "chain:power/3"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q02"
+      ],
+      "quote": "AVK is a major supplier of generator units for the data center market. It has long-standing supplier relationships with Rolls-Royce Power Systems and Wärtsilä.",
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "source_sha256": "4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:19:08+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续引文及完整页面语境支持明确归因的供应角色线索，对当前硬件制造、集成与分销边界工作单中的产品类别和供应参与方具有实质性局部贡献。该贡献限于能源设备供应实例，不自动覆盖芯片与服务器活动节点。未发现A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.658,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e9b68981c52e15bcb6ff2e1906932fe69ec0abd2e4907824bff2ea34b781a199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57373,
+            "output_tokens": 3059,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.775,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "70c2a5ead22bf17cc51af66a34ddff10ec625dcab6524b3d3f3d1397640f6f5e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56637,
+              "output_tokens": 492,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0fc02e77aa20f54de25788aff8f7e686e250ff8702289116664f63cdddbeaa6d",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "id": "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The firm has invested some $4bn in data centers since 2021",
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "source_sha256": "4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:19:08+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文和相邻收购案例建立金额、时间起点及机构范围，对当前私募资金年度流量工作单提供可追查的累计规模线索，具有局部实质贡献。累计额不能回答年度问题，但不妨碍部分采用。未发现敏感、真实冲突、拟替换或其他A条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.658,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e9b68981c52e15bcb6ff2e1906932fe69ec0abd2e4907824bff2ea34b781a199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57373,
+            "output_tokens": 3059,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.775,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "70c2a5ead22bf17cc51af66a34ddff10ec625dcab6524b3d3f3d1397640f6f5e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56637,
+              "output_tokens": 492,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0fc02e77aa20f54de25788aff8f7e686e250ff8702289116664f63cdddbeaa6d",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "id": "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:10:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:atnorth"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "has previously acquired Nordic data center firm atNorth  [link: atNorth — https://www.datacenterdynamics.com/en/news/partners-group-investors-buys-icelands-atnorth/] (which it has since sold  [link: sold — https://www.datacenterdynamics.com/en/news/atnorth-sold-to-equinix-and-cpp-investments-in-42bn-deal/] )",
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "source_sha256": "4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:19:08+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。引文为原句中的连续片段，完整页面提供主语和收购背景，支持限定归因的进入与退出案例。该案例对当前年度资本流量工作单中的交易追踪、进入与退出区分及去重具有实质性局部贡献。未发现A条件，可按B类部分采用，不回答年度金额问题。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.658,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e9b68981c52e15bcb6ff2e1906932fe69ec0abd2e4907824bff2ea34b781a199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57373,
+            "output_tokens": 3059,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.775,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "70c2a5ead22bf17cc51af66a34ddff10ec625dcab6524b3d3f3d1397640f6f5e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56637,
+              "output_tokens": 492,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23"
       }
     }
   ],
@@ -111773,6 +112084,306 @@
         "request_sha256": "70c6a99f07c13c856bcf40ad2bd242d69eb2b5b560a2f9f4bacedb0308aa5bba"
       },
       "object_mapping_check": "本项范围是已部署AI模型使用阶段的术语定义，没有指定数据中心或设施资产。契约中的root是一座AI数据中心，system:compute及其计算链属于该设施的资产，system:control及其链限定为DCIM/BMS与固件；均不能仅凭推理定义建立映射。契约也没有IEA或通用模型服务对象，故采用空对象列表，保留有效问题关系，不继承文档级标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "evidence_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:c54c7ca9eceb3ddd0d80ea96",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:rolls-royce",
+        "actor:wartsila",
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-boundary"
+      ],
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年8月6日的报道中将英国AVK描述为数据中心市场发电机组的重要供应商，并称其与Rolls-Royce Power Systems和Wärtsilä存在长期供应商关系。这是来源对供应角色及关系的陈述，不构成当前供应关系、订单履约或制造职责的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:19:08+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续引文及完整页面语境支持明确归因的供应角色线索，对当前硬件制造、集成与分销边界工作单中的产品类别和供应参与方具有实质性局部贡献。该贡献限于能源设备供应实例，不自动覆盖芯片与服务器活动节点。未发现A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.658,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e9b68981c52e15bcb6ff2e1906932fe69ec0abd2e4907824bff2ea34b781a199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57373,
+            "output_tokens": 3059,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.775,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "70c2a5ead22bf17cc51af66a34ddff10ec625dcab6524b3d3f3d1397640f6f5e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56637,
+              "output_tokens": 492,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23"
+      },
+      "source_candidate_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:8"
+      ],
+      "limitations": "报道未限定这些供应关系的地域、起止时间、供货方向、产品型号、数量、价格或交期，也未逐项确定制造、集成和分销职责。AVK的英国所在地不能作为全部供应关系的地域范围；相邻微电网项目不能补齐本项供货范围。",
+      "conflict_check": "已采用的Siemens能源系统开发计划涉及另一合作及工程、集成、交付范围，与本项供应关系兼容；Alphabet、Dell、CXMT记录涉及其他主体和交易。所供legacy的Applied Digital潜在电力协议及atNorth FIN05项目不涉及AVK的这两家供应关系。未发现同一主张的canonical重复或真实冲突，不替换既有结论；检查限于所供材料。",
+      "gap_dependency_check": "NODE-activity-V2-boundary仅获得发电机组产品类别及供应参与方线索。仍需一手供货协议、具体交易的付款方、资产所有者、运营方、使用方、制造与集成及分销职责和同口径反证。公司供应关系不能建立完整且互斥的节点边界，问题保持开放，不更新容量、经济性参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23",
+        "source_report_sha256": "73d573a6b4eafb94eb749fd8262318018b40ce93057dddf45788dd4dd8d3bb52",
+        "request_sha256": "b5507d286757242e04d37a89ebc4ea6f15313b78545f143323055a58828f693b"
+      },
+      "object_mapping_check": "独立核对契约：Rolls-Royce Power Systems对应actor:rolls-royce，Wärtsilä对应actor:wartsila；发电机组供应范围对应system:power下的chain:power/3（发电与储能）。契约没有AVK主体ID，保留名称而不新增对象。引文未限定燃料、机型或用途，不映射燃气往复式机组、柴油发电机组或UPS；供应商关系也不建立单座数据中心或并网权利范围。所选证据统一使用该主张级对象范围，不沿用原始root标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "evidence_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:9:ev:0"
+      ],
+      "id": "adoption:review:e70e3cd1873e33b0f6e4365d",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M11-Q04"
+      ],
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年8月6日的报道中称，Partners Group自2021年以来已向数据中心投资约$4bn。该金额是来源陈述的跨年累计投资额，所选原文以“$”标示而未进一步明确币种；不能据此认定任何单年的实际资金流量。这是来源的历史投资陈述，未经本次独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:19:08+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文和相邻收购案例建立金额、时间起点及机构范围，对当前私募资金年度流量工作单提供可追查的累计规模线索，具有局部实质贡献。累计额不能回答年度问题，但不妨碍部分采用。未发现敏感、真实冲突、拟替换或其他A条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.658,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e9b68981c52e15bcb6ff2e1906932fe69ec0abd2e4907824bff2ea34b781a199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57373,
+            "output_tokens": 3059,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.775,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "70c2a5ead22bf17cc51af66a34ddff10ec625dcab6524b3d3f3d1397640f6f5e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56637,
+              "output_tokens": 492,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23"
+      },
+      "source_candidate_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:9"
+      ],
+      "limitations": "未提供一手投资明细、年度拆分、实际支付日期、统计截止日、地域覆盖、股权与债务拆分或累计金额的计算方法。未明确是否包含收购企业价值、融资承诺、追加投资或已退出资产，不能据此计算年度流量、净流量、WACC或目标回报率。",
+      "conflict_check": "已采用的AirTrunk收购及Bloom—Brookfield合作涉及其他投资机构、交易及金额口径，与本项不存在同口径冲突，也不是重复。所供legacy的atNorth FIN05未来投资估算及Applied Digital潜在电力机会均非Partners Group累计投资记录，不能用于验证或反驳$4bn。未发现canonical重复或真实冲突，不覆盖既有结论；检查限于所供材料。",
+      "gap_dependency_check": "M11-Q04仍需一手投资清单、年度支付及交割数据、资金工具与用途、机构和地域覆盖、反证及去重。Partners Group案例仅补充私募机构范围，不代表KKR、Blackstone或主权基金的流量；不能把累计额除以年份推定年度流量，也不能与同文收购案例或拟投AVK金额直接相加。问题保持开放，不更新模型输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23",
+        "source_report_sha256": "73d573a6b4eafb94eb749fd8262318018b40ce93057dddf45788dd4dd8d3bb52",
+        "request_sha256": "b5507d286757242e04d37a89ebc4ea6f15313b78545f143323055a58828f693b"
+      },
+      "object_mapping_check": "本项范围为Partners Group跨年、跨数据中心投资的机构累计金额，契约没有该机构的主体ID。root表示一座AI数据中心，不能承接机构投资组合；金额未分配到具体设施、系统或部件，因此对象列表为空。空对象范围保留有效的M11-Q04匹配，所选证据使用同一范围，原始标签不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "evidence_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:10:ev:0"
+      ],
+      "id": "adoption:review:0b83b0567c39289e5efc028a",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:atnorth"
+      ],
+      "question_ids": [
+        "M11-Q04"
+      ],
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年8月6日的报道中称，Partners Group此前收购过北欧数据中心企业atNorth，并在该报道时已将其出售。这是来源对历史投资进入与退出的陈述，不构成交易交割或当前股权状态的独立认证；所选正文未给出两笔交易的年份或金额。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:19:08+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。引文为原句中的连续片段，完整页面提供主语和收购背景，支持限定归因的进入与退出案例。该案例对当前年度资本流量工作单中的交易追踪、进入与退出区分及去重具有实质性局部贡献。未发现A条件，可按B类部分采用，不回答年度金额问题。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.658,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e9b68981c52e15bcb6ff2e1906932fe69ec0abd2e4907824bff2ea34b781a199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57373,
+            "output_tokens": 3059,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.775,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "70c2a5ead22bf17cc51af66a34ddff10ec625dcab6524b3d3f3d1397640f6f5e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56637,
+              "output_tokens": 492,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23"
+      },
+      "source_candidate_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:10"
+      ],
+      "limitations": "未提供收购及出售公告原件、交易日期、持股比例、交易实体、付款与交割记录、金额或币种，也未明确退出是否覆盖全部权益。“北欧”限定被投企业的描述，不能推定全部交易资产的国家分布。链接目标和URL中的名称或数字不能补齐本项正文缺失的买方、金额或条件。",
+      "conflict_check": "已采用的AirTrunk收购和Brookfield合作属于其他交易，未出现同一Partners Group—atNorth进入与退出关系的canonical记录。legacy的atNorth FIN05记录描述公司于2026年10月披露的筹备项目及预计供电安排，不陈述公司股东结构，与本项历史出售陈述不构成真实冲突；Applied Digital芬兰协议亦非同一交易。未发现规范重复或真实冲突，不替换既有结论；检查限于所供材料。",
+      "gap_dependency_check": "M11-Q04仅获得可继续追查的企业收购与退出案例。仍需一手交易文件、年度付款及交割、投资者出资拆分、资金是否进入企业或付给原股东、退出所得及统计去重，才能区分年度总流入、总流出和净流量。本项可能已包含在同文$4bn累计口径中，不能重复计量；不将FIN05投资估算归于Partners Group，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23",
+        "source_report_sha256": "73d573a6b4eafb94eb749fd8262318018b40ce93057dddf45788dd4dd8d3bb52",
+        "request_sha256": "b5507d286757242e04d37a89ebc4ea6f15313b78545f143323055a58828f693b"
+      },
+      "object_mapping_check": "原文明确涉及北欧数据中心企业atNorth，匹配独立主体actor:atnorth。契约没有Partners Group主体ID。本项是企业投资进入与退出关系，未确定某座数据中心或FIN05项目的资产交易范围，不映射root、土地、电力系统或并网权利。所选证据统一使用该企业层面的对象范围。"
     }
   ],
   "answers": [],
