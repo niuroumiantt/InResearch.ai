@@ -110,7 +110,7 @@ def match_pages(texts, root):
     return matches, proposals
 
 
-def ingest(path, data, root, title=None, daily_sources=None):
+def ingest(path, data, root, title=None, daily_sources=None, *, defer_reader=False):
     path = Path(path)
     if path.is_symlink() or not path.is_file() or path.stat().st_size > 256*1024*1024: raise ValueError('invalid_material')
     sha = hash_file(path)
@@ -149,7 +149,7 @@ def ingest(path, data, root, title=None, daily_sources=None):
         url = existing['url'] if existing else ''
         if existing:
             old = json.loads(existing['metadata'])
-            for key in ('source_url', 'source_provenance', 'source_role', 'editorial_delivery', 'editorial_references'):
+            for key in ('source_url', 'source_provenance', 'source_role', 'editorial_delivery', 'editorial_references', 'research_requests'):
                 if key in old: document[key] = old[key]
         ident = c.item('fetchreports', sha, 'supplied_research', url, title or path.name, document, state='matched_candidate')
         # Original bytes and source receipt are permanent, separate from the index.
@@ -167,7 +167,8 @@ def ingest(path, data, root, title=None, daily_sources=None):
                 if link.resolve()!=blob.resolve():raise ValueError('candidate_view_collision')
             elif link.exists():raise ValueError('candidate_view_collision')
             else:os.symlink(os.path.relpath(blob,folder),link)
-        if matches or proposals or daily:
+        bindings = _verified_requests(data, root, sha, document)
+        if not defer_reader and (matches or proposals or daily or bindings):
             # Only matched user submissions enter the existing Reader intake.
             # SHA identity prevents duplicate model work. Reader freezes demand
             # ownership and priority when creating a new reading revision.
@@ -212,30 +213,53 @@ def projection(data):
             'status': 'candidate_index', 'scope': '全文提取后的页内主题候选；阅读与采用查 Reader/C3 登记，不由此推断。'}
 
 
+def _verified_requests(data, root, sha, metadata):
+    if 'research_requests' not in metadata:
+        return []
+    from inresearch.delivery.reader_export import supplied_sources
+    from inresearch.materials.demand_bindings import resolve, validate
+    expected = validate(metadata['research_requests'])
+    actual = supplied_sources(data, sha).get(sha, {}).get('research_requests')
+    if actual != expected:
+        raise ValueError('research_request_source_binding_unavailable')
+    return resolve(actual, root)
+
+
 def reading_objective(data, root, sha):
     """Freeze current demand ownership for a new reading, not an adoption score."""
     target_path = Path(root)/'framework/tco_targets.json'
     if not target_path.is_file(): return {}
     targets = json.loads(target_path.read_text())['targets']
     catalog = Path(data)/'acquisition/catalog.sqlite'
-    matched = set()
+    matched, source_metadata = set(), {}
     if catalog.is_file():
         db = sqlite3.connect(catalog.resolve().as_uri()+'?mode=ro', uri=True)
         try:
             for (metadata,) in db.execute("SELECT metadata FROM items WHERE source='fetchreports' AND kind='supplied_research' AND source_key=?", (sha,)):
-                matched.update(m['target_id'] for m in json.loads(metadata).get('matches', []))
+                source_metadata = json.loads(metadata)
+                matched.update(m['target_id'] for m in source_metadata.get('matches', []))
         finally: db.close()
+    requested = _verified_requests(data, root, sha, source_metadata)
+    matched.update(r['target_id'] for r in requested)
     selected = []
     for row in targets:
         if row['id'] not in matched: continue
         node = 'part:'+row['part_id'] if row.get('part_id') else 'site:'+row['site_right_id'] if row.get('site_right_id') else 'root'
-        selected.append({'id':row['id'], 'node':node, 'variable_class':row['variable_class'],
-                         'team':row['team'], 'status':row['status'], 'model_inputs':row.get('model_inputs', []),
-                         'feeds_primary':row.get('feeds_primary', [])})
+        item = {'id':row['id'], 'node':node, 'variable_class':row['variable_class'],
+                         'status':row['status'], 'model_inputs':row.get('model_inputs', []),
+                         'feeds_primary':row.get('feeds_primary', []),
+                         'reviewed_question_ids':row['request']['question_ids'],
+                         'requirements':row['request']['requirements']}
+        if item['requirements']:
+            item['dispatch_authority'] = 'requirement_id'
+        else:
+            item['source_team'] = row['team']
+        selected.append(item)
     selected.sort(key=lambda r:(r['status']=='sourced', not bool(r['feeds_primary']), r['id']))
     gaps = [r for r in selected if r['status'] in ('needed','assumed','delivered')]
-    return {'reading_contract':'skeleton-demand-v1', 'targets_sha256':hash_file(target_path),
-            'research_demands':selected, 'demand_priority':8 if any(r['feeds_primary'] for r in gaps) else 7 if gaps else 5,
+    return {'reading_contract':'skeleton-demand-v2', 'targets_sha256':hash_file(target_path),
+            'research_demands':selected, 'explicit_research_requests':requested,
+            'demand_priority':8 if any(r['feeds_primary'] for r in gaps) else 7 if gaps else 5,
             'purpose':'服务三级账、四问、五类变量与六队现行目标；匹配仅安排阅读，不证明证据支持或 C3 采用。'}
 
 
@@ -246,10 +270,13 @@ def main():
     inputs.add_argument('--input', type=Path)
     inputs.add_argument('--source-sidecar', type=Path, help='plan SHA-bound source metadata for already archived research')
     parser.add_argument('--apply-sources', action='store_true', help='apply the preflighted sidecar metadata without reindexing or queueing')
+    parser.add_argument('--defer-reader', action='store_true', help='archive/index input before binding its explicit demand; do not enqueue Reader')
     parser.add_argument('--data-root', type=Path, default=data_root())
     args = parser.parse_args()
     if args.apply_sources and not args.source_sidecar:
         parser.error('--apply-sources requires --source-sidecar')
+    if args.defer_reader and args.source_sidecar:
+        parser.error('--defer-reader applies only to --input')
     if args.source_sidecar:
         from inresearch.workflow.research_sources import receive
         row = receive(args.source_sidecar, args.data_root, apply=args.apply_sources)
@@ -263,7 +290,7 @@ def main():
     results = []
     for path in files:
         try:
-            row = ingest(path, args.data_root, project_root())
+            row = ingest(path, args.data_root, project_root(), defer_reader=args.defer_reader)
             results.append({'file': path.name, 'sha256': row['sha256'], 'matches': len(row['matches']), 'proposals': len(row['proposals'])})
         except (OSError, ValueError, subprocess.SubprocessError) as exc:
             results.append({'file': path.name, 'error': str(exc)})

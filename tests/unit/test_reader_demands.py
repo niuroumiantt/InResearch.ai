@@ -47,13 +47,20 @@ class ReaderDemandTests(unittest.TestCase):
                 doc=dict(r.conn.execute('SELECT * FROM current_readings').fetchone())
                 frozen=r.stages.artifact_path(doc,'context.json').read_bytes()
                 context=json.loads(frozen)
-                self.assertEqual(context['reading_contract'],'skeleton-demand-v1')
+                self.assertEqual(context['reading_contract'],'skeleton-demand-v2')
                 self.assertTrue(context['research_demands'])
                 self.assertGreaterEqual(doc['priority'],7)
                 targets={t['id']:t for t in json.loads((project_root()/'framework/tco_targets.json').read_text())['targets']}
                 for d in context['research_demands']:
-                    self.assertEqual((d['team'],d['variable_class'],d['model_inputs']),
-                                     (targets[d['id']]['team'],targets[d['id']]['variable_class'],targets[d['id']]['model_inputs']))
+                    self.assertEqual((d['variable_class'],d['model_inputs']),
+                                     (targets[d['id']]['variable_class'],targets[d['id']]['model_inputs']))
+                    self.assertEqual(d['reviewed_question_ids'], targets[d['id']]['request']['question_ids'])
+                    self.assertEqual(d['requirements'], targets[d['id']]['request']['requirements'])
+                    if d['requirements']:
+                        self.assertEqual(d['dispatch_authority'], 'requirement_id')
+                        self.assertNotIn('source_team', d)
+                    else:
+                        self.assertEqual(d['source_team'], targets[d['id']]['team'])
                 with patch.object(research_match,'reading_objective',return_value={}):
                     with contextlib.redirect_stdout(io.StringIO()): r.run(once=True)
                 done=r.doc(doc['doc_id'])

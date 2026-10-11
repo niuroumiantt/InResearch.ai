@@ -56,6 +56,10 @@ def project(row):
     result['phases'] = [{'level': k, 'label': LEVELS[k], 'stage': bucket(k), 'mw': v} for k, v in parts.items()]
     result['capacity'] = {s: sum(p['mw'] for p in result['phases'] if p['stage'] == s) for s in STAGES}
     result['capacity_known'] = bool(parts)
+    assessment = row.get('capacity_assessment') or {}
+    result['capacity_assessment'] = {k: assessment.get(k) for k in
+        ('kind', 'status', 'as_of', 'recorded_at', 'reviewed_at', 'basis_note', 'assumptions', 'missing_conditions')}
+    result['capacity_estimated'] = assessment.get('kind') in ('estimate', 'legacy_estimate')
     result['total_mw'] = sum(result['capacity'].values())
     result['coordinates'] = None
     try:
@@ -74,6 +78,8 @@ def project(row):
 def totals(rows):
     sites = [p for p in rows if not p['portfolio'] and not p.get('duplicate_of')]
     return {**{s: round(sum(p['capacity'][s] for p in sites), 6) for s in STAGES},
+            'estimated': {s: round(sum(p['capacity'][s] for p in sites if p['capacity_estimated']), 6) for s in STAGES},
+            'estimated_sites': sum(p['capacity_estimated'] for p in sites),
             'sites': len(sites), 'unknown': sum(not p['capacity_known'] for p in sites),
             'unlocated': sum(p['coordinates'] is None for p in sites),
             'portfolios_excluded': sum(p['portfolio'] for p in rows)}
@@ -113,7 +119,7 @@ def capacity_audit(rows, records):
             'duplicates_excluded': sum(bool(p.get('duplicate_of')) for p in records),
             'oldest_verified': dates[0] if dates else None, 'latest_verified': dates[-1] if dates else None,
             'comparability': '两个集合不是同年、同定义、同覆盖范围。不能用 95 GW 减样本容量推算未追踪容量，也不能据此计算覆盖率；不编造差额。',
-            'definition': '95 GW 原文称 IT 工作量，登记为全部负载的 IT 负载，非 AI 专属、设施总功率或当下已投运普查。报告底层统计边界与去重方法尚未取得。样本按登记 IT MW 与分期汇总：L8–9 投运、L6–7 建设、L1–5 筹备；不叠加总值、设施 MW 或新闻容量。',
+            'definition': '95 GW 原文称 IT 工作量，登记为全部负载的 IT 负载，非 AI 专属、设施总功率或当下已投运普查。报告底层统计边界与去重方法尚未取得。样本含已标记参考估算，estimated 分列其份额，不是全部已实测；按登记 IT MW 与分期汇总：L8–9 投运、L6–7 建设、L1–5 筹备；不叠加总值、设施 MW 或新闻容量。',
             'deduplication': '按已审阅物理身份归一；Frontier 两个 ID 引用同一官方 1.4 GW 公告，保留原记录，合计只取主记录分期。多主体关系不重加全球容量，公司卡不能相加。仅同坐标或同城市不自动合并。',
             'coverage': '样本偏向已登记大型园区与云厂商，含跨园区集群，不能称全球唯一物理园区普查；未知容量不是零，未定位记录仍可计入样本。',
             'unresolved': '既有 IT 字段未全部重新核实铭牌/实际负载定义或当前运营状态，95 GW 仍待交叉验证。阿布扎比既有 4 GW 是 5 GW 园区减单列 1 GW 子项目的推导余额，并非独立披露或已投运容量；仍需核实 IT/设施定义与分期。集群边界及全部潜在重叠未完成逐址核验。'}

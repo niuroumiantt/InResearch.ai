@@ -35,7 +35,9 @@ SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不�
 
 给已经接收的研究材料补来源时，先执行 `python3 manage.py research-match --source-sidecar <完整批次/intake-selection.json> --data-root ~/.local/share/inresearch.ai`。这是只读 plan，不创建接收或 Reader 队列；核对 processed、filled、两个来源角色和原批次 SHA。确认对应原件/工具响应及 blob 字节均通过后，用同一命令加 `--apply-sources` 实际接收，保存其 source-receipts 回执。已知 URL/provenance 冲突、未归档材料、坏输入/响应/hash 或危险路径使整批拒收；不要手改 SQLite 绕过。清单原字节存 material-reviews/source-sidecars/<SHA>.json，未取得原站字节的工具响应载体仍为 null。
 
-实际补源只增加 source_url/source_provenance；既有匹配、Reader/catalog、阅读版本、报告和正式记录不改。重复执行 filled=0/unchanged=N，metadata 的 after SHA 来自真实持久字节。沿用原 publish 服务投影，核对候选 snapshot 文档的 content_sha256、URL/角色/原件与响应 SHA，再核对网站资料来源；无明确 binding 的其他材料 URL 保持原状，缓存不全量失效。仅完成 plan 或 Git 合并不能称生产补源已完成。
+实际补源增加 source_url/source_provenance，以及清单明确提供的 research_requests；既有匹配、Reader/catalog、阅读版本、报告和正式记录不改。重复执行 filled=0/unchanged=N，metadata 的 after SHA 来自真实持久字节。沿用原 publish 服务投影，核对候选 snapshot 文档的 content_sha256、URL/角色/原件与响应 SHA，再核对网站资料来源；无明确 binding 的其他材料 URL 保持原状，缓存不全量失效。仅完成 plan 或 Git 合并不能称生产补源已完成。
+
+定向样例先执行 `research-match --input <原件或目录> --defer-reader --data-root ~/.local/share/inresearch.ai`，避免来源/参数范围尚未绑定时冻结阅读。清单项的 research_requests 按 [06 采集规范](../../framework/06_acquisition.md) 填写，requirement_sha256 来自当前目标表该参数对象的排序紧凑 JSON SHA256（`materials.demand_bindings.requirement_digest`），不自行拼主责队。完成同清单 plan/apply 后，再执行不带 defer-reader 的同一 input 命令；既有 Reader 扫描登记后只向既有 scope 追加具名 doc-ID，保留其他范围。核对 context.json 的 explicit_research_requests、新候选/C3 包中的来源 SHA 与 research_requests；缺证据、未披露、预测与批准原件缺失如实报告。不得另起 Reader/审核/发布所有者或降低 C3 分数以制造采用。
 
 新 review packet 的 document 同样按 SHA 带来源身份；旧封存 packet 保持旧字段并照常核对原件、报告和引文。新包若来源绑定丢失或变化仍拒绝。源码部署不自动重启/重审历史队列；现役worker换代按Spark操作手册安全收尾并备份，Reader和模型relay不因补来源而调整。
 
@@ -52,3 +54,5 @@ SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不�
 上游发送器产生 research-delivery.json 清单，复制正文/来源/研究字段/派生 HTML/实际证据后投递至 incoming/inews-daily/<清单SHA>/，全部哈希验证后才开放。也可在 Spark 手动执行 `python3 manage.py daily-receive --input <完整清单目录>`，默认使用既有数据根。回执 indexed_candidate 是候选完成，不是正式采用；按 bundle_id、原件/来源/目标表 SHA 追溯，旧来源目录和版本不改动。
 
 补历史链接只用实际对应版本的来源台账与 HTML 配对，不按日期猜关联。派生研究 HTML 只归档，不重复进 Reader。接收后沿用 Reader/publish 调度，核对网页事件、来源与快照时间。残留 .partial 只意味着输入未开放，不能把文件存在当成入库完成。
+
+具名样例登记并核对冻结任务后，若同优先级积压阻碍执行，用 `reader --data-root <数据根> prioritize --doc-id <完整ID> --revision-id <当前版本> --expected-priority <实读旧值> --priority 9 --request-id <唯一请求> --by <操作者> --reason <用户具名任务>` 先加 `--dry-run` 核对，再以同参实际执行。只在旧值低于9时提高；不能用 apply-triage 假造重要性或手改 SQLite。保存原 catalog 一致备份与实际回执，之后由现役 Reader 自然领取；全文/C3/发布仍逐项验收。

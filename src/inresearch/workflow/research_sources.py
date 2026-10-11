@@ -36,7 +36,7 @@ def _file(base, relative):
     return path
 
 
-def receive(sidecar, data, *, apply=False):
+def receive(sidecar, data, *, apply=False, root=None):
     """Preflight the whole batch; atomically fill metadata, never overwrite it."""
     sidecar = Path(sidecar)
     if sidecar.is_symlink() or not sidecar.is_file() or sidecar.stat().st_size > 1024 * 1024:
@@ -85,7 +85,12 @@ def receive(sidecar, data, *, apply=False):
                          derivation=row['derivation'])
         else:
             raise ValueError('invalid_source_role')
-        planned.append((sha, validate_provenance(proof, sha, proof['url'])))
+        requests = row.get('research_requests')
+        if 'research_requests' in row:
+            from inresearch.materials.demand_bindings import resolve
+            from inresearch.paths import project_root
+            resolve(requests, root or project_root())
+        planned.append((sha, validate_provenance(proof, sha, proof['url']), requests))
     if sidecar.read_bytes() != body:
         raise ValueError('source_sidecar_changed')
     catalog = Path(data) / 'acquisition/catalog.sqlite'
@@ -97,7 +102,7 @@ def receive(sidecar, data, *, apply=False):
     try:
         db.execute('BEGIN IMMEDIATE' if apply else 'BEGIN')
         updates = []
-        for sha, proof in planned:
+        for sha, proof, requests in planned:
             row = db.execute("SELECT id,url,metadata FROM items WHERE source='fetchreports' AND kind='supplied_research' AND source_key=?", (sha,)).fetchone()
             if row is None:
                 raise ValueError('source_research_not_received')
@@ -114,13 +119,19 @@ def receive(sidecar, data, *, apply=False):
             old = meta.get('source_provenance')
             if old is not None and old != proof:
                 raise ValueError('source_provenance_conflict')
+            if meta.get('research_requests') is not None and meta['research_requests'] != requests:
+                raise ValueError('research_request_binding_conflict')
             changed = not row['url'] or old is None or not meta.get('source_url')
+            changed = changed or (requests is not None and meta.get('research_requests') != requests)
             before_sha = hashlib.sha256(row['metadata'].encode()).hexdigest()
             meta.update(source_url=proof['url'], source_provenance=proof)
+            if requests is not None:
+                meta['research_requests'] = requests
             after = encoded(meta).decode()
             updates.append((proof['url'], after, now(), row['id']))
             results.append({'sha256': sha, 'source_id': proof['source_id'], 'role': proof['role'],
                             'url': proof['url'], 'change': 'filled' if changed else 'unchanged',
+                            'research_requests': len(requests or []),
                             'metadata_before_sha256': before_sha,
                             'metadata_after_sha256': hashlib.sha256(after.encode()).hexdigest() if changed else before_sha})
         if apply:

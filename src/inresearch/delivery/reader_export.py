@@ -91,12 +91,13 @@ def supplied_sources(data, content_sha256=None):
     result, sidecars = {}, {}
     try:
         query = """SELECT source_key,url,json_extract(metadata,'$.sha256'),
-            json_extract(metadata,'$.source_url'),json_extract(metadata,'$.source_provenance')
+            json_extract(metadata,'$.source_url'),json_extract(metadata,'$.source_provenance'),
+            json_extract(metadata,'$.research_requests')
             FROM items WHERE source='fetchreports' AND kind='supplied_research'
             AND json_type(metadata,'$.source_provenance')='object'"""
         rows = db.execute(query + (' AND source_key=?' if content_sha256 else ''),
                           (content_sha256,) if content_sha256 else ())
-        for sha, url, metadata_sha, metadata_url, value in rows:
+        for sha, url, metadata_sha, metadata_url, value, requests in rows:
             try:
                 proof = validate_provenance(json.loads(value), sha, url)
                 if metadata_sha != sha or metadata_url != url:
@@ -117,8 +118,17 @@ def supplied_sources(data, content_sha256=None):
                         continue
                 elif any(supplied.get(k) != proof[k] for k in ('original_bytes_sha256', 'response_sha256', 'derivation')):
                     continue
+                if ('research_requests' in supplied) != (requests is not None):
+                    raise ValueError('research_request_sidecar_mismatch')
                 result[sha] = {'source_url': url, 'source_provenance': proof}
+                if requests is not None:
+                    from inresearch.materials.demand_bindings import validate
+                    requested = validate(json.loads(requests))
+                    if requested != supplied.get('research_requests'):
+                        raise ValueError('research_request_sidecar_mismatch')
+                    result[sha]['research_requests'] = requested
             except (OSError, ValueError, TypeError, KeyError, IntegrityError, UnsafePath):
+                result.pop(sha, None)
                 continue
         editorial_query = """SELECT source_key,metadata FROM items WHERE source='fetchreports'
             AND kind='supplied_research' AND json_extract(metadata,'$.source_role')='authored_analysis'"""

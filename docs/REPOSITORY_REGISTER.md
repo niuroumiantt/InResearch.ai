@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.80。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.84。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2566。
+在册文件：2573。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 413 |
-| 运行代码 | 381 |
+| 历史快照 | 415 |
+| 运行代码 | 383 |
 | 现行规范 | 16 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 197 |
-| 测试 | 198 |
+| 测试 | 201 |
 
 ## 在册记录集合
 
@@ -1742,6 +1742,8 @@
 | `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | scope_notes | 6 |
 | `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | records | 2 |
 | `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 8 |
+| `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | rejected_inferences | 3 |
+| `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | remaining_evidence | 3 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -3221,6 +3223,8 @@
 | `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | 历史快照 |
 | `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | 历史快照 |
 | `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | 历史快照 |
+| [docs/reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md](reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md) | 历史快照 |
+| `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -3694,6 +3698,7 @@
 | `src/inresearch/materials/daily_events.py` | 运行代码 |
 | `src/inresearch/materials/daily_research.py` | 运行代码 |
 | `src/inresearch/materials/daily_sources.py` | 运行代码 |
+| `src/inresearch/materials/demand_bindings.py` | 运行代码 |
 | `src/inresearch/materials/fetchspec_receive.py` | 运行代码 |
 | `src/inresearch/materials/inbox.py` | 运行代码 |
 | `src/inresearch/materials/inventory.py` | 运行代码 |
@@ -3745,6 +3750,7 @@
 | `src/inresearch/workflow/project_pipeline.py` | 运行代码 |
 | `src/inresearch/workflow/project_review.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
+| `src/inresearch/workflow/reader_priority.py` | 运行代码 |
 | `src/inresearch/workflow/reader_retry_job.py` | 运行代码 |
 | `src/inresearch/workflow/reader_scope.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
@@ -3817,6 +3823,7 @@
 | `tests/technical_atlas.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
 | `tests/unit/deep_read_fixtures.py` | 测试 |
+| `tests/unit/test_abilene_capacity.py` | 测试 |
 | `tests/unit/test_acquisition.py` | 测试 |
 | `tests/unit/test_apply_triage.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
@@ -3850,6 +3857,7 @@
 | `tests/unit/test_deep_read.py` | 测试 |
 | `tests/unit/test_deep_read_transactions.py` | 测试 |
 | `tests/unit/test_deliveries.py` | 测试 |
+| `tests/unit/test_demand_bindings.py` | 测试 |
 | `tests/unit/test_display_regressions.py` | 测试 |
 | `tests/unit/test_dropped_claims.py` | 测试 |
 | `tests/unit/test_editorial_sync.py` | 测试 |
@@ -3918,6 +3926,7 @@
 | `tests/unit/test_reader_claim_scope.py` | 测试 |
 | `tests/unit/test_reader_demands.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
+| `tests/unit/test_reader_priority.py` | 测试 |
 | `tests/unit/test_reader_progress.py` | 测试 |
 | `tests/unit/test_reader_retry_job.py` | 测试 |
 | `tests/unit/test_reader_scope_capacity.py` | 测试 |

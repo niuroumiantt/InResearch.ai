@@ -39,15 +39,15 @@
       "power_status": "运营容量已形成；Crusoe 另锁定 4.5GW 天然气供能（规划口径）",
       "utility": "ERCOT",
       "type": "neocloud",
-      "notes": "台账#1：约421MW IT 运营（Epoch 追踪），目标 2026Q4 约843MW（差额422记L6）。不能把园区规划 1.2GW（设施口径）全部视为已运营。",
+      "notes": "动态数据复核(2026-10-11)：421/422MW保留为历史参考估算，出处与有效时点待补，不标成已核实的IT实测。1.2GW为园区规划/接入规模，不代表全部已运营或批准用能原件已验收。Epoch现页发表于2026-04-17、04-23修订，为设施总功率口径；不以4月设施估算直接覆盖10月IT参考值。旧完整记录及说明保留于docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json；既有最高阶段和旧verified_date此次不作新核验。",
       "disputed": false,
       "verified_date": "2026-07-23",
       "sources": [
         {
           "url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
           "grade": "research",
-          "date": "2026-07",
-          "note": "Epoch AI 项目追踪"
+          "date": "2026-04-17",
+          "note": "Epoch项目追踪；2026-04-23修订；脚注3为设施总功率口径，不能证明421/422MW IT拆分"
         },
         {
           "url": "https://www.datacenterfrontier.com/hyperscale/article/55276169/crusoe-adds-45-gw-natural-gas-to-fuel-ai-expands-abilene-data-center-to-12-gw",
@@ -56,7 +56,22 @@
           "note": "供能与园区扩展"
         }
       ],
-      "coordinates": "32.45,-99.73"
+      "coordinates": "32.45,-99.73",
+      "capacity_assessment": {
+        "kind": "legacy_estimate",
+        "status": "provisional",
+        "as_of": null,
+        "recorded_at": "2026-07-23",
+        "reviewed_at": "2026-10-11",
+        "origin_record_sha256": "25a2357d2da085f64e630ad2b25b2dfa2eeb9cbb6ea9f22b2a6d8662e966574f",
+        "basis_note": "保留此前在用421MW运营、422MW建设中作为历史参考估算。7月23日仅为旧登记核验日期，测量/估算有效时点未知；当前Epoch页面为设施功率口径，无法核实旧IT拆分。",
+        "assumptions": [],
+        "missing_conditions": [
+          "原有421/422MW对应原件与有效时点",
+          "若由设施功率换算IT，须补PUE与分期边界"
+        ],
+        "source_support": "legacy_original_missing"
+      }
     },
     {
       "site_id": "us-tx-shackelford",
