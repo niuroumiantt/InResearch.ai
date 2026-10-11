@@ -7084,6 +7084,72 @@
       "status": "candidate",
       "stored_path": "originals/f1/f1e180f0edf679863364b50dd568228124664dfebaf12541855b00589ad21bfd/dcd-f1e180f0edf67986-The powered mill- 10GW of shovel-ready data center sites is hidin.html",
       "title": "The powered mill: 10GW of shovel-ready data center sites is hiding in plain sight"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "coverage": {
+        "characters_read": 7040,
+        "characters_total": 7040,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "library_path": "library/by-node/part-transformer/2026_DCD_Infineon and Eaton partner on silicon-carbide-based sol__7542c4159d95b447.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:corning",
+        "actor:crusoe",
+        "actor:infineon-mps-renesas-adi-ti",
+        "chain:power/4",
+        "part:server",
+        "part:transformer",
+        "root",
+        "site:grid",
+        "site:network-access",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-grid-interfaces",
+        "OBJ-substation-alternatives",
+        "OBJ-substation-definition",
+        "OBJ-substation-interfaces",
+        "OBJ-substation-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8",
+      "report_sha256": "c9fc385c8ba4423de9426dbffa71169daf6a169e0a3743ed4aa4ff94f6d10780",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+        "url": "https://www.datacenterdynamics.com/en/news/infineon-and-eaton-partner-on-silicon-carbide-based-solid-state-transformers-to-support-800vdc-power-architectures/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/infineon-and-eaton-partner-on-silicon-carbide-based-solid-state-transformers-to-support-800vdc-power-architectures/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/75/7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1/dcd-7542c4159d95b447-Infineon and Eaton partner on silicon-carbide-based solid-state t.html",
+      "title": "Infineon and Eaton partner on silicon-carbide-based solid-state transformers to support 800VDC power architectures"
     }
   ],
   "evidence": [
@@ -53317,6 +53383,260 @@
           }
         },
         "batch_id": "0c03fd15d378a2b58317ac7fee9ac0a281f3befb8640815c34f3b8052ff2023c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c45eb050085811d304f314ebbb498c295589ea1b2f20d73adb5d282d5d87d1db",
+      "document_id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:eaton",
+        "chain:power/2"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The use of SiC devices within the MVSST platform will further improve the efficiency of the technology.",
+      "reading_revision_id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8",
+      "source_sha256": "7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:57:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。平台采用SiC的效率预期对当前新架构及替代方案研究有实质性的局部贡献。连续原句与周边平台语境充分，保留预测性质；未发现敏感、真实冲突、拟替换既有结论或其他A条件，符合B局部采用条件。",
+        "workorder_ids": [
+          "Q-M09-Q04",
+          "Q-OBJ-substation-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 125.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94193211ae1d4164d27c1fc80044bce197e3e43b40bdbb4b1770e275ed212aae",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49387,
+            "output_tokens": 4250,
+            "reasoning_output_tokens": 911
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.438,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b12cf8059596055e3baf798f7b04b6cdc9eee5c2c24b71f18f50f65850338008",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48155,
+              "output_tokens": 527,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c45eb050085811d304f314ebbb498c295589ea1b2f20d73adb5d282d5d87d1db",
+      "document_id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Silicon carbide is a synthetically produced crystalline compound of silicon and carbon. The material provides several advantages over conventional silicon for power applications, including better thermal conductivity, higher switching speeds, and lower dissipation, making it particularly suitable for the manufacturing of high-voltage power devices.",
+      "reading_revision_id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8",
+      "source_sha256": "7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:57:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。连续完整段落提供SiC用于新供电架构的材料机制，对当前M09-Q04具有实质性部分贡献。其支持范围止于来源明确归因的材料说明；未发现A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 125.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94193211ae1d4164d27c1fc80044bce197e3e43b40bdbb4b1770e275ed212aae",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49387,
+            "output_tokens": 4250,
+            "reasoning_output_tokens": 911
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.438,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b12cf8059596055e3baf798f7b04b6cdc9eee5c2c24b71f18f50f65850338008",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48155,
+              "output_tokens": 527,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c45eb050085811d304f314ebbb498c295589ea1b2f20d73adb5d282d5d87d1db",
+      "document_id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:eaton",
+        "chain:power/2"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-substation-supply"
+      ],
+      "quote": "The partners said that in the future, the companies will explore next-generation solid-state transformer platforms based on 2.3kV and 3.3kV SiC power modules to support higher system voltages, improving efficiency and reliability in forthcoming AI data centers, grid modernization, and renewable energy applications.",
+      "reading_revision_id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8",
+      "source_sha256": "7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:57:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。明确的下一代平台探索及模块电压等级对当前新架构路线、接口依赖和替代方案问题具有实质性部分贡献。连续原句和上下文充分，保留未来阶段及效率、可靠性预期；未发现A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04",
+          "Q-OBJ-substation-interfaces",
+          "Q-OBJ-substation-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 125.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94193211ae1d4164d27c1fc80044bce197e3e43b40bdbb4b1770e275ed212aae",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49387,
+            "output_tokens": 4250,
+            "reasoning_output_tokens": 911
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.438,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b12cf8059596055e3baf798f7b04b6cdc9eee5c2c24b71f18f50f65850338008",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48155,
+              "output_tokens": 527,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0"
       }
     }
   ],
@@ -103179,6 +103499,312 @@
         "request_sha256": "38e90346fcd1db7be343c4122e70215f793db2f042740edfd4eadc425f4169c7"
       },
       "object_mapping_check": "独立依据原文和对象契约保留空映射：本条范围是全球数据中心项目群体在既有集群中的分布，未限定AI用途，也不是root所指的一座AI数据中心。集群定义和建设阶段未建立该设施内部系统、部件、土地权利、并网权利或具名参与方的主张范围；IEA和BNEF没有相应允许主体ID。不继承文档或Reader标签，所选证据统一采用此主张级空对象范围，保留有效的M05-Q01关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "evidence_ids": [
+        "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:db87f026a69870125de99b89",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:eaton",
+        "chain:power/2"
+      ],
+      "question_ids": [
+        "M09-Q04",
+        "OBJ-substation-alternatives"
+      ],
+      "reading_revision_id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8",
+      "status": "adopted",
+      "text": "Charlotte Trueman在DCD于2026年9月29日发表的报道中预计，Eaton的中压固态变压器MVSST平台采用SiC器件后，技术效率将进一步提高。报道的合作背景是面向800V DC数据中心配电架构的MVSST 2.0平台；该效率改善属于作者预期，未指认部署地区或具体项目，也不构成当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:57:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。平台采用SiC的效率预期对当前新架构及替代方案研究有实质性的局部贡献。连续原句与周边平台语境充分，保留预测性质；未发现敏感、真实冲突、拟替换既有结论或其他A条件，符合B局部采用条件。",
+        "workorder_ids": [
+          "Q-M09-Q04",
+          "Q-OBJ-substation-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 125.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94193211ae1d4164d27c1fc80044bce197e3e43b40bdbb4b1770e275ed212aae",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49387,
+            "output_tokens": 4250,
+            "reasoning_output_tokens": 911
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.438,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b12cf8059596055e3baf798f7b04b6cdc9eee5c2c24b71f18f50f65850338008",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48155,
+              "output_tokens": 527,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0"
+      },
+      "source_candidate_ids": [
+        "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:6"
+      ],
+      "limitations": "未提供改善幅度、效率基线、额定功率、负载率、温度、冷却条件或测试方法；未给量产和交付时间。平台内部的预期改善不能证明其效率超过传统变压器，也不能证明传统设备已被替代。",
+      "conflict_check": "已采用的IEA陈述比较当时固态变压器设计与高效率液体填充变压器的峰值效率及热管理要求；本项预测同一MVSST平台采用SiC后的进一步改善，比较基线、阶段和工况不同，不构成真实冲突。既有800V路径及改造条件也未被否定。所供legacy匹配为空，未发现完整重复；检查限于供应记录，不覆盖外部反证。",
+      "gap_dependency_check": "M09-Q04仅获得效率改善方向，仍缺厂商一手路线图、量产时间、实际部署与传统链替代范围。OBJ-substation-alternatives仅获得固态路线的预期优势线索，仍缺同口径性能、成本及约束比较。两项问题保持开放，不修改既有结论或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0",
+        "source_report_sha256": "c9fc385c8ba4423de9426dbffa71169daf6a169e0a3743ed4aa4ff94f6d10780",
+        "request_sha256": "9bb313f3f2a595991d232b1e29a472c44952f83e5bdc9fbc82aceebc152ddca4"
+      },
+      "object_mapping_check": "上下文明确MVSST为Eaton的中压固态变压器，支持独立主体actor:eaton及system:power下的变电链chain:power/2。合同中的part:transformer专指大型电力变压器，原文未建立这一属性，故不继承该标签。800V DC用途不建立UPS、服务器或并网权利映射；所选证据统一使用上述主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "evidence_ids": [
+        "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:16a16d20c4789541458ff80a",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M09-Q04"
+      ],
+      "reading_revision_id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8",
+      "status": "adopted",
+      "text": "Charlotte Trueman在DCD于2026年9月29日发表的报道中，将SiC描述为人工合成的硅碳晶体化合物，并称其在电力应用中相对传统硅具有更好的导热性、更高的开关速度和更低的耗散，因而适合制造高压功率器件。这是报道在SiC固态变压器合作语境中的材料优势说明，未限定国家、具体项目或部署阶段，不构成器件或整机性能的当前独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:57:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。连续完整段落提供SiC用于新供电架构的材料机制，对当前M09-Q04具有实质性部分贡献。其支持范围止于来源明确归因的材料说明；未发现A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 125.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94193211ae1d4164d27c1fc80044bce197e3e43b40bdbb4b1770e275ed212aae",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49387,
+            "output_tokens": 4250,
+            "reasoning_output_tokens": 911
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.438,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b12cf8059596055e3baf798f7b04b6cdc9eee5c2c24b71f18f50f65850338008",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48155,
+              "output_tokens": 527,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0"
+      },
+      "source_candidate_ids": [
+        "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:7"
+      ],
+      "limitations": "未说明具体器件、材料等级、比较对象、测量方法、温度、电压、频率或负载条件，也未给量化结果。材料层面的优势不能直接推导固态变压器整机效率、可靠性、成本或传统设备替代能力。",
+      "conflict_check": "已采用的IEA固态变压器热管理和峰值效率限制针对整机及另一比较对象，不与SiC相对硅的材料优势构成同口径冲突。既有电力电子功能说明也未完整覆盖本项材料主张。所供legacy匹配为空，未发现真实冲突或规范重复；未完成外部反证搜索。",
+      "gap_dependency_check": "M09-Q04仅获得SiC技术选择的机制线索，量产时间、实际部署、系统边界和传统链替代证据仍缺。未采用OBJ-substation-performance关系，因为没有性能测量方法、可靠性或失效工况；未采用OBJ-substation-alternatives关系，因为SiC与硅的材料比较尚未建立固态与传统变压器的同口径方案比较。相关问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0",
+        "source_report_sha256": "c9fc385c8ba4423de9426dbffa71169daf6a169e0a3743ed4aa4ff94f6d10780",
+        "request_sha256": "9bb313f3f2a595991d232b1e29a472c44952f83e5bdc9fbc82aceebc152ddca4"
+      },
+      "object_mapping_check": "本项实际主张针对SiC材料和一般高压功率器件，合同没有对应材料或通用功率半导体对象。报道语境中的MVSST不能把材料性质直接限定为变电链或大型电力变压器性能，故返回空对象列表；M09-Q04的机制关系仍有效。所选证据统一使用这一空对象范围，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1",
+      "evidence_ids": [
+        "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:9:ev:0"
+      ],
+      "id": "adoption:review:fa1e8eaedaa9c0c579a1f29e",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:eaton",
+        "chain:power/2"
+      ],
+      "question_ids": [
+        "M09-Q04",
+        "OBJ-substation-interfaces",
+        "OBJ-substation-alternatives"
+      ],
+      "reading_revision_id": "rev-4ae28fb85e1c4fdf9829b9e31494adf8",
+      "status": "adopted",
+      "text": "Charlotte Trueman在DCD于2026年9月29日的报道中转述Eaton与Infineon的计划：双方未来将探索基于2.3 kV和3.3 kV SiC功率模块的下一代固态变压器平台，以支持更高系统电压，并期望改善未来AI数据中心、电网现代化及可再生能源应用的效率和可靠性。该表述属于未来探索计划，未给具体项目、部署地域或量产日期，不构成已实现的系统规格或当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:57:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。明确的下一代平台探索及模块电压等级对当前新架构路线、接口依赖和替代方案问题具有实质性部分贡献。连续原句和上下文充分，保留未来阶段及效率、可靠性预期；未发现A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04",
+          "Q-OBJ-substation-interfaces",
+          "Q-OBJ-substation-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 125.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94193211ae1d4164d27c1fc80044bce197e3e43b40bdbb4b1770e275ed212aae",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49387,
+            "output_tokens": 4250,
+            "reasoning_output_tokens": 911
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.438,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b12cf8059596055e3baf798f7b04b6cdc9eee5c2c24b71f18f50f65850338008",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48155,
+              "output_tokens": 527,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0"
+      },
+      "source_candidate_ids": [
+        "rev-4ae28fb85e1c4fdf9829b9e31494adf8:chunk:0:claim:9"
+      ],
+      "limitations": "2.3 kV和3.3 kV限定SiC功率模块，不能改写为平台输入、输出或配电母线电压。未给更高系统电压的具体值、拓扑、绝缘、保护、额定功率、测试工况、成本、可靠性结果或实施时间；探索计划不能证明量产和替代已经发生。",
+      "conflict_check": "既有IEA商业化早期及热管理、峰值效率限制与未来平台探索及改善目标相容。既有800V供电路径和存量改造要求未被本计划取消。没有同型号、同工况的相反实测结果，也未发现完整重复；所供legacy匹配为空，检查不是外部穷尽反证搜索，不修订既有商业化判断。",
+      "gap_dependency_check": "M09-Q04获得具体模块路线及探索阶段线索，但仍缺一手路线图、量产日期、实际部署和传统链替代边界。OBJ-substation-interfaces仅获得模块电压与系统电压目标的依赖线索，缺平台输入输出和互换条件。OBJ-substation-alternatives仅获得固态路线，缺同口径性能、成本及约束比较。各问题保持开放；不使用本项allowed_question_ids之外的OBJ-substation-supply标签。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "71d47920cbc6d9a14902e0622e5a9aedb0c058df3edb43cf82873b60f468aaf0",
+        "source_report_sha256": "c9fc385c8ba4423de9426dbffa71169daf6a169e0a3743ed4aa4ff94f6d10780",
+        "request_sha256": "9bb313f3f2a595991d232b1e29a472c44952f83e5bdc9fbc82aceebc152ddca4"
+      },
+      "object_mapping_check": "原文明确Eaton参与下一代固态变压器探索，支持actor:eaton；其中面向数据中心的变压器平台路线属于system:power下的变电链chain:power/2。合同未提供单独Infineon主体，不继承组合主体标签。未建立大型电力变压器、具体开关柜或并网协议属性；电网现代化及可再生能源用途仅保留在文本中，不扩展为一座AI数据中心的其他资产。所选证据统一使用上述主张级范围。"
     }
   ],
   "answers": [],
