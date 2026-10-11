@@ -599,8 +599,7 @@ class ReviewStore:
             sampling = {'method':'SHA256 first ceil(10%); every scoped observation/calculation',
                         'cohort_ids':[r['id'] for r in eligible],'sample_ids':sample_ids,'checks':[]}
             if sample_ids:
-                sample_packet = {**packet,'items':[x for x in packet['items'] if x['candidate']['id'] in sample_ids],
-                                 'proposed_reviews':[r for r in eligible if r['id'] in sample_ids]}
+                sample_packet = sample_review_packet(packet, eligible, sample_ids)
                 atomic_json(directory/'sampling-request.json',{'system':review_system(packet,sampling=True),'user':encoded(sample_packet)})
                 result = client.generate(review_system(packet,sampling=True),encoded(sample_packet))
                 atomic_json(directory/'sampling-response.json',result)
@@ -775,6 +774,11 @@ def required_sample(packet, eligible):
     return selected
 
 
+def sample_review_packet(packet, reviews, sample_ids):
+    return {**packet, 'items': [x for x in packet['items'] if x['candidate']['id'] in sample_ids],
+            'proposed_reviews': [r for r in reviews if r['id'] in sample_ids]}
+
+
 def match_packet(root, packet):
     objects={o for item in packet['items'] for o in item['candidate'].get('object_ids',[])}
     quantitative = quantitative_review.checked_contract(packet)
@@ -936,6 +940,8 @@ def verify_audit(bundle, directory):
         response2 = read_json(directory/'sampling-response.json')
         sample_packet = json.loads(request2['user'])
         if (request2['system']!=review_system(packet,sampling=True)
+                or (quantitative_review.checked_contract(packet) is not None and
+                    sample_packet != sample_review_packet(packet, bundle['reviews'], sample_ids))
                 or [x['candidate']['id'] for x in sample_packet['items']]!=[
                     x['candidate']['id'] for x in packet['items'] if x['candidate']['id'] in sample_ids]
                 or sample_packet['research_context']!=packet['research_context']
@@ -996,6 +1002,7 @@ def _checked_adoption(root, bundle, audit_directory, knowledge_before):
                for i in expected_ids):
             raise ValueError('adoption_collision_requires_explicit_review')
         return [], [], expected_ids
+    quantitative_review.validate_current(packet, root)
     if sha(current_context(root,packet['research_context']))!=packet['context_sha256']:
         raise ValueError('research_context_changed_revalidation_required')
     eligible = [r for r in reviews if r['decision']=='adopt_B']

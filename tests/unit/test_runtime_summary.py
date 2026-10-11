@@ -94,6 +94,34 @@ class RuntimeSummaryTests(unittest.TestCase):
             registry._snapshot_inputs(self.root)
             self.assertEqual(normalize.call_count, 2)
 
+    def test_symlink_control_remains_unavailable_without_reading_its_target(self):
+        self.receive()
+        path = views.control_path(self.source)
+        actual = path.with_name('external-control.json')
+        path.rename(actual)
+        path.symlink_to(actual)
+        with patch.object(views, 'SMALL_SNAPSHOT', 1), \
+             patch.object(registry, 'read_json', side_effect=AssertionError('giant fallback')):
+            self.assertIsNone(views.read_control(self.source, verify_bytes=True))
+            self.assertEqual(views.load(self.root)['reader']['status'], 'awaiting_operational_projection')
+            self.assertEqual(views.load_acquisition(self.root)['reader']['status'], 'awaiting_operational_projection')
+        self.assertTrue(actual.exists())
+
+    def test_control_becoming_symlink_before_lock_remains_unavailable(self):
+        self.receive()
+        path = views.control_path(self.source)
+        actual = path.with_name('external-control.json')
+        original_locked = views.locked
+
+        def replace_before_lock(target):
+            path.rename(actual)
+            path.symlink_to(actual)
+            return original_locked(target)
+
+        with patch.object(views, 'locked', side_effect=replace_before_lock):
+            self.assertIsNone(views.read_control(self.source))
+        self.assertTrue(actual.exists())
+
     def test_streaming_json_matches_format_hash_and_failure_is_atomic(self):
         normal, streamed = self.base/'normal.json', self.base/'streamed.json'
         value = {'中文': [1, {'data': 'value'}]}

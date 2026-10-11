@@ -121,10 +121,15 @@ def write_snapshot(source, snapshot, *, root):
 
 def read_control(source, *, verify_bytes=False):
     path = control_path(source)
-    if not path.is_file():
+    if not path.is_file() or path.is_symlink():
         return None
-    with locked(path):
-        return _read_control(source, verify_bytes=verify_bytes)
+    try:
+        with locked(path):
+            return _read_control(source, verify_bytes=verify_bytes)
+    except ValueError as exc:
+        if str(exc) != 'refuse_symlink_destination':
+            raise
+        return None
 
 
 def _read_control(source, *, verify_bytes=False):

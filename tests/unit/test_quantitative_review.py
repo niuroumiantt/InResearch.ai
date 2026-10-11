@@ -1,11 +1,13 @@
 """Native benchmark support retains scope and needs an independent check."""
 import copy
+import hashlib
 import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from inresearch.materials.artifacts import atomic_json, digest_file, encoded, read_json
 from inresearch.materials.demand_bindings import requirement_digest
 from inresearch.workflow import quantitative_review as quantitative
 from inresearch.workflow import research_review as review
@@ -28,7 +30,8 @@ def request():
 def scoped():
     packet, row = fixture()
     packet['items'][0]['candidate']['kind'] = 'observation'
-    packet['quantitative_support_contract'] = quantitative.contract([request()], ROOT)
+    packet['document']['research_requests'] = [request()]
+    packet['quantitative_support_contract'] = quantitative.contract(packet['document']['research_requests'], ROOT)
     row['quantitative_checks'] = {k: 'Native benchmark scope retained; unknown conditions remain unknown' for k in quantitative.CHECKS}
     r = packet['quantitative_support_contract']['requests'][0]
     packet['items'][0]['allowed_question_ids'] = [r['question_id']]
@@ -39,6 +42,37 @@ def scoped():
     row['parameter_assessments'] = [dict(requirement_id=r['requirement_id'], question_id=r['question_id'],
         status='usable_reference', rationale='Scoped run only, not a universal production rate', model_input_verified=False)]
     return packet, row
+
+
+def scoped_audit(directory, packet, row):
+    bundle = audit(directory, packet, row)
+    first = read_json(directory/'request.json'); first['system'] = review.review_system(packet)
+    atomic_json(directory/'request.json', first); bundle['request_sha256'] = digest_file(directory/'request.json')
+    second = read_json(directory/'sampling-request.json'); second['system'] = review.review_system(packet, sampling=True)
+    atomic_json(directory/'sampling-request.json', second)
+    return bundle
+
+
+def publication(root):
+    for name in ('research_graph.json', 'research_questions.json', 'tco_targets.json'):
+        atomic_json(root/'framework'/name, read_json(ROOT/'framework'/name))
+    atomic_json(root/'data/research_knowledge.json', {'documents': [], 'evidence': [], 'statements': [], 'answers': []})
+    packet, row = scoped()
+    packet['research_context'] = review.context(root, row['question_ids'])
+    packet['context_sha256'] = review.sha(packet['research_context'])
+    row.update(object_ids=[], object_mapping_check='Native benchmark only; no infrastructure entity certified')
+    directory = root/'audit'; directory.mkdir()
+    return packet, row, scoped_audit(directory, packet, row), directory
+
+
+def change_second_request(directory, bundle, sample_packet):
+    """Keep the second call's own input receipt valid; test cross-call binding."""
+    second = read_json(directory/'sampling-request.json'); second['user'] = encoded(sample_packet)
+    atomic_json(directory/'sampling-request.json', second)
+    response = read_json(directory/'sampling-response.json')
+    response['_model']['input_sha256'] = hashlib.sha256(second['user'].encode()).hexdigest()
+    atomic_json(directory/'sampling-response.json', response)
+    bundle['sampling']['model'] = response['_model']
 
 
 class QuantitativeReviewTests(unittest.TestCase):
@@ -97,24 +131,9 @@ class QuantitativeReviewTests(unittest.TestCase):
             review.validate_reviews(packet, {'reviews':[row]})
 
     def test_publication_keeps_measurement_kind_and_parameter_limitations(self):
-        packet, row = scoped()
-        packet['research_context']['question_ids'] = row['question_ids']
-        packet['context_sha256'] = review.sha(packet['research_context'])
         with tempfile.TemporaryDirectory() as td:
-            root=Path(td); (root/'data').mkdir(); (root/'framework').mkdir(); directory=root/'audit'; directory.mkdir()
-            bundle=audit(directory, packet, row)
-            from inresearch.materials.artifacts import atomic_json, read_json, digest_file
-            first=read_json(directory/'request.json'); first['system']=review.review_system(packet)
-            atomic_json(directory/'request.json', first); bundle['request_sha256']=digest_file(directory/'request.json')
-            second=read_json(directory/'sampling-request.json'); second['system']=review.review_system(packet,sampling=True)
-            atomic_json(directory/'sampling-request.json', second)
-            graph=json.loads((ROOT/'framework/research_graph.json').read_text())
-            atomic_json(root/'framework/research_graph.json', graph)
-            atomic_json(root/'framework/research_questions.json', {'records':[{'id':row['question_ids'][0],
-                'object_ids':['root'], 'acceptance':'Independent validation', 'evidence_requirements':['Native original']}]})
-            atomic_json(root/'data/research_knowledge.json', {'documents':[], 'evidence':[], 'statements':[], 'answers':[]})
-            with patch.object(review, 'context', return_value=packet['research_context']):
-                result=review.promote(root,bundle,directory)
+            root=Path(td); packet,row,bundle,directory=publication(root)
+            result=review.promote(root,bundle,directory)
             value=read_json(root/'data/research_knowledge.json')
             self.assertEqual(result['closed_questions_added'],0)
             self.assertEqual(value['answers'],[])
@@ -123,6 +142,83 @@ class QuantitativeReviewTests(unittest.TestCase):
             self.assertFalse(value['statements'][0]['parameter_assessments'][0]['model_input_verified'])
             self.assertFalse((root/'data/datacenter_model.json').exists())
 
+    def test_final_checkout_rejects_changed_parameter_definition_without_writing(self):
+        for change, error in (('definition', 'research_request_definition_changed'),
+                              ('version', 'research_request_target_version_changed'),
+                              ('target_node', 'quantitative_support_contract_changed')):
+            with self.subTest(change=change), tempfile.TemporaryDirectory() as td:
+                root=Path(td); packet,row,bundle,directory=publication(root)
+                before=(root/'data/research_knowledge.json').read_bytes()
+                targets=read_json(root/'framework/tco_targets.json')
+                source_request=packet['document']['research_requests'][0]
+                target=next(t for t in targets['targets'] if t['id']==source_request['target_id'])
+                requirement=next(r for r in target['request']['requirements']
+                                 if r['id']==source_request['requirement_id'])
+                if change=='definition': requirement['acceptance']+=' New production-only acceptance scope.'
+                elif change=='version': targets['version']+='-new'
+                else: target['part_id']='cpu' if target.get('part_id')!='cpu' else 'gpu'
+                atomic_json(root/'framework/tco_targets.json',targets)
+                # A target-only change does not alter the pre-existing research context seal.
+                self.assertEqual(review.current_context(root,packet['research_context']),packet['research_context'])
+                self.assertTrue(review.verify_audit(bundle,directory))
+                with self.assertRaisesRegex(ValueError,error): review.promote(root,bundle,directory)
+                self.assertEqual((root/'data/research_knowledge.json').read_bytes(),before)
+
+    def test_source_request_and_frozen_quantitative_contract_must_match(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td); packet,row,bundle,directory=publication(root)
+            source=packet['document']['research_requests'][0]
+            source['scope_values']={key:'different system and workload' for key in source['scope_values']}
+            bundle=scoped_audit(directory,packet,row)
+            self.assertTrue(review.verify_audit(bundle,directory))
+            before=(root/'data/research_knowledge.json').read_bytes()
+            with self.assertRaisesRegex(ValueError,'quantitative_support_contract_changed'):
+                review.promote(root,bundle,directory)
+            self.assertEqual((root/'data/research_knowledge.json').read_bytes(),before)
+
+    def test_historical_audit_and_exact_applied_replay_survive_parameter_change(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td); packet,row,bundle,directory=publication(root)
+            self.assertEqual(review.promote(root,bundle,directory)['state'],'applied_in_checkout')
+            before=(root/'data/research_knowledge.json').read_bytes()
+            targets=read_json(root/'framework/tco_targets.json'); targets['version']+='-new'
+            atomic_json(root/'framework/tco_targets.json',targets)
+            self.assertTrue(review.verify_audit(bundle,directory))
+            self.assertEqual(review.promote(root,bundle,directory)['state'],'already_applied')
+            self.assertEqual((root/'data/research_knowledge.json').read_bytes(),before)
+
+    def test_independent_quantitative_call_must_match_complete_frozen_sample(self):
+        for change in ('contract_scope', 'missing_contract', 'native_pages', 'claim',
+                       'evidence', 'proposed_review', 'document', 'extra_field'):
+            with self.subTest(change=change), tempfile.TemporaryDirectory() as td:
+                packet,row=scoped(); packet['native_pages']={'0':'Native benchmark system and workload'}
+                directory=Path(td); bundle=scoped_audit(directory,packet,row)
+                self.assertTrue(review.verify_audit(bundle,directory))
+                sample_packet=json.loads(read_json(directory/'sampling-request.json')['user'])
+                if change=='contract_scope':
+                    source=sample_packet['quantitative_support_contract']['requests'][0]
+                    source['scope_values']={key:'different system, workload and time' for key in source['scope_values']}
+                elif change=='missing_contract': sample_packet.pop('quantitative_support_contract')
+                elif change=='native_pages': sample_packet['native_pages']['0']='Different original context'
+                elif change=='claim': sample_packet['items'][0]['candidate']['text']='Different measurement'
+                elif change=='evidence': sample_packet['items'][0]['evidence'][0]['quote']='Different source support'
+                elif change=='proposed_review':
+                    sample_packet['proposed_reviews'][0]['parameter_assessments'][0]['rationale']='Different support scope'
+                elif change=='document': sample_packet['document']['content_sha256']='0'*64
+                else: sample_packet['extra_field']='Unreviewed replacement context'
+                change_second_request(directory,bundle,sample_packet)
+                with self.assertRaisesRegex(ValueError,'independent_sample_audit_mismatch'):
+                    review.verify_audit(bundle,directory)
+
+    def test_legacy_second_call_keeps_previous_audit_contract(self):
+        packet,row=fixture()
+        with tempfile.TemporaryDirectory() as td:
+            directory=Path(td); bundle=audit(directory,packet,row)
+            # The historical protocol did not require the full sample envelope.
+            sample_packet={'items':packet['items'],'research_context':packet['research_context']}
+            change_second_request(directory,bundle,sample_packet)
+            self.assertTrue(review.verify_audit(bundle,directory))
+
     def test_missing_second_measurement_check_blocks_entire_publication(self):
         packet,row=scoped()
         packet['items'].append(copy.deepcopy(packet['items'][0]))
@@ -130,6 +226,7 @@ class QuantitativeReviewTests(unittest.TestCase):
         row2=copy.deepcopy(row);row2['id']='second-observation'
         with tempfile.TemporaryDirectory() as td:
             root=Path(td);(root/'data').mkdir();directory=root/'audit';directory.mkdir()
+            atomic_json(root/'framework/tco_targets.json',read_json(ROOT/'framework/tco_targets.json'))
             bundle=audit(directory,packet,row)
             bundle['reviews']=[row,row2]
             with patch.object(review,'verify_audit',return_value=True), patch.object(review,'current_context',return_value=packet['research_context']):

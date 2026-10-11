@@ -46,6 +46,17 @@ def checked_contract(packet):
     return value
 
 
+def validate_current(packet, root):
+    """Bind a new adoption to the target checkout's exact source request.
+
+    Historical audit verification deliberately does not call this: a changed
+    target definition invalidates new adoption, not the retained review record.
+    """
+    value = checked_contract(packet)
+    if value is not None and contract(packet['document'].get('research_requests'), root) != value:
+        raise ValueError('quantitative_support_contract_changed_revalidation_required')
+
+
 def validate(packet, row):
     value = checked_contract(packet)
     if value is None:
