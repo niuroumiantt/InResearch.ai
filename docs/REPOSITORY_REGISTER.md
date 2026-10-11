@@ -1,28 +1,28 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.99。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.100。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2598。
+在册文件：2602。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 369 |
+| 静态资源 | 370 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 434 |
-| 运行代码 | 361 |
+| 运行代码 | 362 |
 | 现行规范 | 15 |
 | 项目配置 | 776 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 216 |
+| 配套说明 | 218 |
 | 测试 | 214 |
 
 ## 在册记录集合
@@ -1906,6 +1906,8 @@
 | `research/M13.md` | Finding | 6 |
 | `research/M14.md` | Finding | 11 |
 | `research/M15.md` | Finding | 12 |
+| `web/assets/maps/world-detail.geo.json` | sources | 2 |
+| `web/assets/maps/world-detail.geo.json` | features | 10436 |
 | `web/assets/models/manifest.json` | models | 1 |
 | `web/assets/world.geo.json` | features | 180 |
 | `web/pages/admin/repo-content/infra-daily.json` | reach | 6 |
@@ -2649,6 +2651,7 @@
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
 | [docs/handoff/infra-2026-09-29.md](handoff/infra-2026-09-29.md) | 配套说明 |
 | [docs/handoff/m4-deepread.md](handoff/m4-deepread.md) | 配套说明 |
+| [docs/handoff/map-detail-admin1-20261011.md](handoff/map-detail-admin1-20261011.md) | 配套说明 |
 | [docs/handoff/material-lineage-dashboard-20261008.md](handoff/material-lineage-dashboard-20261008.md) | 配套说明 |
 | [docs/handoff/material-progress-overview-20261006.md](handoff/material-progress-overview-20261006.md) | 配套说明 |
 | [docs/handoff/multi-object-intake-20261011.md](handoff/multi-object-intake-20261011.md) | 配套说明 |
@@ -3613,6 +3616,7 @@
 | [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
 | `scripts/build_bom_classification_poster.py` | 运行代码 |
 | `scripts/build_technical_atlas.py` | 运行代码 |
+| `scripts/build_world_detail.py` | 运行代码 |
 | `scripts/cards_ocr.py` | 运行代码 |
 | `scripts/cards_verify.py` | 运行代码 |
 | `scripts/ci-requirements.txt` | 项目配置 |
@@ -4039,6 +4043,8 @@
 | `web/assets/hdri/lab.exr` | 静态资源 |
 | `web/assets/hdri/studio.exr` | 静态资源 |
 | `web/assets/hdri/warehouse.exr` | 静态资源 |
+| [web/assets/maps/README.md](../web/assets/maps/README.md) | 配套说明 |
+| `web/assets/maps/world-detail.geo.json` | 静态资源 |
 | `web/assets/material-flow.css` | 运行代码 |
 | `web/assets/material-flow.js` | 运行代码 |
 | `web/assets/materials.js` | 运行代码 |
