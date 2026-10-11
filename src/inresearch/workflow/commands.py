@@ -168,8 +168,12 @@ def receive_snapshot(root, payload, destination=None):
                 if control and control.get('curated_sha256') != runtime_summary.digest_file(root/'data/research_knowledge.json'):
                     snapshot['received_at'] = previous['received_at']
                     runtime_summary.write_control(destination, snapshot, root=root)
+                runtime_summary.recover_control(destination)
                 return {'ok': True, 'received_at': previous['received_at'],
                         'documents': len(snapshot['knowledge']['documents']), 'replayed': True}
             raise Rejected('stale or conflicting snapshot', 409)
-        runtime_summary.write_snapshot(destination, snapshot, root=root)
+        try:
+            runtime_summary.install_snapshot(destination, snapshot, root=root)
+        except runtime_summary.SnapshotInstallFailed as exc:
+            raise Rejected(str(exc), 503) from exc
     return {'ok': True, 'received_at': snapshot['received_at'], 'documents': len(snapshot['knowledge']['documents'])}

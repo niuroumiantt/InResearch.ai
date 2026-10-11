@@ -933,32 +933,44 @@ def build_news(root=ROOT, *, company_id=None, limit=80, overview=False):
 
 _NEWS_PUBLIC_CACHE={}
 _NEWS_PUBLIC_LOCK=threading.RLock()
+_NEWS_BUILD_LOCKS={False:threading.RLock(),True:threading.RLock()}
 
 
 def cached_news(root=ROOT, *, company_id=None, limit=80, overview=False):
     """Public-only cache, invalidated immediately by every input file version."""
     import time
-    from inresearch.delivery.runtime_summary import source_path, control_path
+    from inresearch.delivery.runtime_summary import source_path, control_path, prepared_control_path
     from inresearch.workflow.news_marks import marks_path
     from inresearch.knowledge.raw_atlas import local_date
     root=Path(root); source=source_path(root)
-    paths=[source,control_path(source),marks_path(root),root/'data/research_knowledge.json',
-           root/'framework/research_graph.json',root/'framework/research_questions.json',
+    paths=[source,control_path(source),prepared_control_path(source),
            root/'data/projects.json',root/'data/companies.json',root/'web/assets/world.geo.json',
            root/'docs/research/2026-10-11/data-centers/project-ledger.json']
+    if not overview:
+        paths += [marks_path(root),root/'data/research_knowledge.json',
+                  root/'framework/research_graph.json',root/'framework/research_questions.json']
     def version(path):
         try:
             stat=path.stat();return (str(path),stat.st_dev,stat.st_ino,stat.st_size,stat.st_mtime_ns)
         except FileNotFoundError:return (str(path),None)
-    key=(str(root),company_id,limit,overview,local_date(datetime.now(timezone.utc).isoformat()),tuple(version(p) for p in paths))
-    with _NEWS_PUBLIC_LOCK:
-        cached=_NEWS_PUBLIC_CACHE.get(key)
-        if cached and time.monotonic()-cached[0]<30:return copy.deepcopy(cached[1])
+    key=(str(root),company_id,limit,overview,local_date(datetime.now(timezone.utc).isoformat()),date.today().isoformat(),tuple(version(p) for p in paths))
+    # Full research consumers must not hold the homepage's build lock.
+    with _NEWS_BUILD_LOCKS[bool(overview)]:
+        with _NEWS_PUBLIC_LOCK:
+            cached=_NEWS_PUBLIC_CACHE.get(key)
+        if cached and (overview or time.monotonic()-cached[0]<30):
+            result=copy.deepcopy(cached[1])
+            if overview and isinstance(result.get('reader'),dict):
+                result['reader']=_reader_state({'reader':result['reader'],
+                    'received_at':result['reader'].get('received_at')})
+            return result
         result=build_news(root,company_id=company_id,limit=limit,overview=overview)
         # A source rewritten during construction cannot be labelled as its newer version.
         if key[-1]==tuple(version(p) for p in paths):
-            if len(_NEWS_PUBLIC_CACHE)>=8:_NEWS_PUBLIC_CACHE.clear()
-            _NEWS_PUBLIC_CACHE[key]=(time.monotonic(),copy.deepcopy(result))
+            saved=(time.monotonic(),copy.deepcopy(result))
+            with _NEWS_PUBLIC_LOCK:
+                if len(_NEWS_PUBLIC_CACHE)>=8:_NEWS_PUBLIC_CACHE.clear()
+                _NEWS_PUBLIC_CACHE[key]=saved
         return result
 
 

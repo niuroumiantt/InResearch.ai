@@ -505,8 +505,16 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 2026-10-11 公网验收在 157 MB 候选快照下复现 2 GiB 容器 OOM；管理接口不应为读取计数反复载入完整证据库。现行接收会流式保存完整私有快照并生成 `data/raw/research-runtime/research-runtime-control.json`。视图失配时显示待生成，原快照保留。首次上线或视图损坏可在具备足够内存的受控执行环境中运行 `python3 manage.py runtime-summary --refresh`；必须指向真实源码及 `INRESEARCH_READER_SNAPSHOT`/运行根目录，不能用源码目录的样本冒充生产。重建使用同一文件锁并校验候选与正式库身份，输出完整源 SHA、视图字节数与预览数。普通接收随后自动更新，不新增发布服务或队列所有者。
 
+2026-10-11 首页发布验收补充：完整 source 与 control 在同一接收锁下先暂存并完成编码、语义摘要和运行投影，构建期间继续提供上一组有效资料；安装使用正式/准备两个 control 槽。每槽都必须与当前真实 source 的物理签名精确一致，必要时核完整 SHA；准备槽不因日期新而取得权威。source 替换后、正式 control 提升前发生中断时，可由已完成的准备槽恢复；构建失败保留旧组及私有完整stage待定点恢复；source已可见而刷盘未确认保持CommitUncertain，不回滚或自动删除唯一恢复资料。不放宽正式采用、原件身份或重放校验。
+
+唯一既有 `inresearch-reader-publish.service` 的总预算由180秒调整为420秒：实测约128MB快照先触发180秒服务强杀；临时300秒预算后又明确因120秒网络总预算耗尽退出，而接收端仍在落盘与构建control。保留原180秒准备余量，加上240秒网络预算，总预算420秒。HTTPS重试总预算改为240秒，CPUQuota=200%、MemoryMax=4G、TasksMax=64保持。现场仅新增该服务的 `TimeoutStartSec=420` drop-in并daemon-reload，等待既有timer自然下一轮；不运行安装脚本、不手动start/restart、不增加发布器。必须核新调用退出0、`publish-status.json`成功ACK与接收端有效投影，不能只凭源码版本、/healthz或收到新source报成功。
+
 大文件精确重放依赖与原快照 SHA 一致的视图语义摘要；缺失时，逐字节一致的原请求可直接重放重建；其它情况先显式重建，再重试同一请求。接收后的完整 JSON 不被删改或缩减；视图只保留既定每文档六陈述/三原文预览，完整覆盖、来源与候选资料仍在既有快照/Reader 中。真实容量、并发接口、接收重放与容器重启次数单独验收，不用单元测试或 `/healthz` 代替。
 
 ### 具名样例的在线阅读顺序（2026-10-11）
 
 具名阅读顺序可用 `reader prioritize` 显式提高：绑定 doc_id、当前 revision_id、expected_priority、新 priority、唯一 request_id、by 与 reason。dry-run只读；在线 SQLite 事务比较当前版本与旧优先级，只改指定 reading_runs.priority 并同事务写 reader_priority 审计。重复请求幂等，异意图、旧版本、终态或降低优先级拒绝。它不构造 Reader/模型、不取得第二个 worker、不取消在途任务，不改原件、冻结配方、job/预算、模型 importance、C3 或采用；既有四分之一最老任务机会保留。 操作命令见采集操作指南；先核当前阅读版本、范围和冻结任务并保存 catalog 一致备份，再 plan/apply，同一请求回放不会再次提高。不得把调度9写成资料重要性9或正式采用。
+
+### 站点跟踪调度的启用与核验（2026-10-11）
+
+更新源码后在安全边界重载既有 `inresearch-research-review.service`，不另开worker。先对既有catalog、acquisition与review queue做SQLite在线备份；保留在途审核及原件，核新进程版本、唯一锁和原队列继续进展。既有worker每轮调用站点任务规划，`research-review status` 的 `site_tracking` 可读日/周/月水位、任务状态和最新失败。首次扫描/重启重放应核真实接收来源、任务去重与正式projects字节未改；失败不推进成功水位。此状态只表示复核任务形成，未接通的采集、站点C3和项目发布不可报告执行完成。不要手改SQLite状态或刷新verified_date掩盖缺口。

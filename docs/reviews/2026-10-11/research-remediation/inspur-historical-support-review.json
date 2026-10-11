@@ -1,0 +1,1304 @@
+{
+  "schema": "historical-support-original-independent-review-v1",
+  "reviewed_at": "2026-10-11T03:38:23.611533+00:00",
+  "reviewer": {
+    "by": "Codex subagent /root/r4_inspur_support",
+    "role": "independent_source_support_review",
+    "formal_c3_adoption": false,
+    "owner_adjudication_performed": false
+  },
+  "scope": "仅6条既有事实的本次新取得支持原件复核；完整旧记录保留；任何更正均为proposed，不应用。",
+  "facts_snapshot": {
+    "path": "data/facts.json",
+    "file_sha256": "940b6d339a89545512d27e0a73fceb425affa5fe84f0f8866e997cf1a3de7fca",
+    "selected_record_count": 6
+  },
+  "canonicalization": {
+    "name": "python-json-sort-keys-compact-utf8-v1",
+    "rule": "SHA256(JSON object serialized using ensure_ascii=False, sort_keys=True, separators=(comma, colon), allow_nan=False, UTF-8, no trailing newline). Array order and all record values are preserved.",
+    "hash_field": "before_record_sha256"
+  },
+  "source_acquisition": {
+    "logical_original_id": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+    "source_url": "https://www.ieisystem.com/global/file/2024-09-29/17275994573242c975afc9222caae53701923cf3b42c4c87.pdf",
+    "sha256": "fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+    "bytes": 2570111,
+    "retrieved_at": "2026-10-11T03:05:40.506700+00:00",
+    "role": "newly_retrieved_publisher_hosted_support_original",
+    "report_title": "人工智能算力高质量发展评估体系报告",
+    "publishers": [
+      "浪潮电子信息产业股份有限公司",
+      "中国信息通信研究院"
+    ],
+    "report_published_at": "2024-09",
+    "report_pages": 46,
+    "actual_sha256_and_length_verified": true,
+    "historical_exact_input_identity_not_established": true,
+    "formal_adoption": false,
+    "original_in_git": false
+  },
+  "review_method": {
+    "reused_supplied_native_text": true,
+    "visually_inspected_physical_pages": [
+      1,
+      13,
+      19,
+      20,
+      37,
+      39
+    ],
+    "read_neighbor_native_text_physical_pages": [
+      12,
+      38,
+      44,
+      45,
+      46
+    ],
+    "reader_started": false,
+    "model_or_ocr_invoked": false,
+    "external_message_sent": false,
+    "review_is_not_full_reader_completion_or_C3_adoption": true
+  },
+  "boundaries": {
+    "historical_exact_input_identity_not_established": true,
+    "new_support_original_count": 1,
+    "reviewed_fact_count": 6,
+    "historical_exact_input_recovered_fact_count": 0,
+    "provenance_debt_before": 37,
+    "provenance_debt_after": 37,
+    "provenance_debt_closed": 0,
+    "facts_modified": false,
+    "grade_or_depth_upgrade": false,
+    "formal_adoption": false,
+    "no_fabricated_tsinghua_or_GTC_original": true,
+    "CN_Global_or_2024_support_gap_is_not_direct_counterevidence": true,
+    "same_report_new_retrieval_does_not_establish_historical_byte_identity": true,
+    "no_binary_originals_added_to_git": true,
+    "no_commits_or_governance_refresh_performed": true,
+    "strict_less_than_bounds_preserved": [
+      30,
+      50,
+      10
+    ],
+    "GTC_2022_remains_reported_secondary_attribution_not_verified_measurement": true
+  },
+  "c3_boundary": {
+    "rule_source": "framework/01_data_standards.md §4",
+    "replacement_requires": "C3 A, authority=owner, complete before record and explicit replacement chain; ordinary delegated new_or_supplemental_research authority does not authorize rewriting prior conclusions.",
+    "current_review_status": "evidence and proposed limitations only; no owner decision or formal adoption",
+    "hash_binding_limit": "If evidence.sha256 denotes the historical input identity, do not fill it with this new SHA as a historical recovery. Preserve this retrieval as separate, explicitly dated support until exact input identity or an authorized replacement is established."
+  },
+  "records": [
+    {
+      "fact_id": "cn-aidc-gpu-util-2024",
+      "before_record": {
+        "fact_id": "cn-aidc-gpu-util-2024",
+        "metric_id": "gpu_utilization_rate",
+        "entity": {
+          "type": "market",
+          "id": "cn-aidc-gpu-util-2024",
+          "label": "中国智算中心 GPU 平均利用率"
+        },
+        "value": 30.0,
+        "unit": "%",
+        "caliber": {
+          "scope": "行业平均",
+          "region": "CN"
+        },
+        "bound": "upper",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "",
+          "locator": "浪潮信息&中国信通院《2024人工智能算力高质量发展评估体系报告》正文 2.3.1 节「据公开数据统计，传统模式下的智算中心GPU利用率较低，平均数值低于30%」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**这是「利用率」不是「上架率」——两者是两个东西，常被混用。**利用率 = 算力系统实际运行中的平均资源占用（如 IT 负载率、GPU 平均利用率），衡量「卖出去的算力真正在跑多少」；上架率 = 机架空间与电源插座的物理占用，衡量「机柜卖出去多少」。同报告载明 2023 年底全国上架率 66.7%，**两个数不可相互替代、更不可当作同一指标的不同时点值**。原文为「低于30%」，此处取上界 30 作为**上限**而非点值。为**行业平均**口径、传统（非优化）模式，且系「据公开数据统计」的转引、非本报告实测。地域=中国，时点≈2024。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "408adb1bca66c9a2a9b0625f224399e81e9b7b584d0c85a25a1f533b0bb6ff95",
+      "source_support": {
+        "role": "newly_retrieved_publisher_hosted_support_original",
+        "sha256": "fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+        "bytes": 2570111,
+        "url": "https://www.ieisystem.com/global/file/2024-09-29/17275994573242c975afc9222caae53701923cf3b42c4c87.pdf",
+        "retrieved_at": "2026-10-11T03:05:40.506700+00:00",
+        "report_title": "人工智能算力高质量发展评估体系报告",
+        "publishers": [
+          "浪潮电子信息产业股份有限公司",
+          "中国信息通信研究院"
+        ],
+        "report_published_at": "2024-09",
+        "report_date_basis": "PDF physical page 1 cover, visually inspected; month precision only",
+        "physical_page": 20,
+        "page_index": 19,
+        "printed_page": 16,
+        "section": "2.3.1 高算效：设计与运行计算效率“双优”体现",
+        "short_continuous_quote": "平均数值低于 30%",
+        "quote_check": "exact contiguous substring in supplied pdftotext page; complete relevant page visually inspected",
+        "context_pages": [
+          19,
+          39
+        ],
+        "historical_exact_input_identity_not_established": true,
+        "formal_adoption": false,
+        "logical_original_id": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8"
+      },
+      "assessment": {
+        "status": "new_support_original_verified_with_scope_limitations",
+        "historical_exact_input_identity_not_established": true,
+        "numeric_statement_found": true,
+        "supported": [
+          "报告记载传统模式下智算中心GPU平均利用率低于30%；30仅可作为严格小于的上界。",
+          "单位为%，资源利用率属于长期运行维度；不能替代物理上架率。",
+          "报告明确称据公开数据统计，属于转引，非本报告给出的实测样本。"
+        ],
+        "support_insufficiencies_not_direct_counterevidence": [
+          "相应句子未明确统计地域、样本覆盖、样本量、采集窗口或平均方法；不足以直接认证中国全行业平均。",
+          "未明确观测发生于2024年；2024-09只能直接证明报告年代。",
+          "未指出公开数据的原始机构、文献或原件身份。"
+        ],
+        "dimension_checks": {
+          "subject": "传统模式下的智算中心GPU；原文平均数值没有样本定义。",
+          "time": "观测时点未披露；报告发表于2024-09。旧as_of=2024不是由该段直接支持的观测日期。",
+          "unit_and_boundary": "%；严格<30，不是30点值，也不能改为约30。",
+          "scope": "传统模式限制明确；旧行业平均及CN的精确覆盖未由本段证明。",
+          "source_chain": "联合报告 -> 据公开数据统计 -> 未具名原始数据；原始数据未追回。"
+        },
+        "source_grade_before": "S4",
+        "source_grade_after": "S4",
+        "depth_before": "精读",
+        "depth_after": "精读",
+        "grade_or_depth_upgrade": false,
+        "formal_adoption": false,
+        "provenance_debt_closed": 0
+      },
+      "proposed_diff": {
+        "status": "proposed_not_applied",
+        "requires_owner_c3_A_before_any_legacy_conclusion_rewrite": true,
+        "before_record_sha256": "408adb1bca66c9a2a9b0625f224399e81e9b7b584d0c85a25a1f533b0bb6ff95",
+        "after_record": {
+          "fact_id": "cn-aidc-gpu-util-2024",
+          "metric_id": "gpu_utilization_rate",
+          "entity": {
+            "type": "market",
+            "id": "cn-aidc-gpu-util-2024",
+            "label": "传统模式智算中心 GPU 平均利用率（地域未披露）"
+          },
+          "value": 30.0,
+          "unit": "%",
+          "caliber": {
+            "scope": "传统模式智算中心平均（统计样本未披露）",
+            "region": "未披露"
+          },
+          "bound": "upper",
+          "as_of": null,
+          "evidence": {
+            "local_file": "",
+            "locator": "浪潮信息&中国信通院《2024人工智能算力高质量发展评估体系报告》正文 2.3.1 节「据公开数据统计，传统模式下的智算中心GPU利用率较低，平均数值低于30%」",
+            "grade": "S4"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "支持原件复核（2026-10-11）：本次新取得的浪潮信息/中国信通院2024-09报告物理页20（印刷页16）记载传统模式下智算中心GPU平均利用率低于30%，系据公开数据统计的转引，非本报告实测。保留30%为严格小于的上界，不能作点值；与物理上架率不是同一指标。相应段落未披露样本、统计地域、观测窗口或平均方法，因此旧CN、行业平均覆盖和as_of=2024仅由本次原件支持不足，不直接构成反证。本次PDF仅为2026-10-11新取得的支持原件，尚未建立其与历史输入字节的同一性；不提升grade或depth。",
+          "asserter": "未注明",
+          "node": "root",
+          "variable_class": 2
+        },
+        "after_record_sha256": "8cc1c60e1d20f3207f112d51cfc9e8986ab0e074b6818c2caf85e5c8815b8e88",
+        "field_changes": [
+          {
+            "path": "/entity/label",
+            "before": "中国智算中心 GPU 平均利用率",
+            "after": "传统模式智算中心 GPU 平均利用率（地域未披露）",
+            "status": "proposed_not_applied",
+            "reason": "原文未明确该均值样本地域；仅撤回本支持原件未证明的标签精度，不判定旧中国标签为假。"
+          },
+          {
+            "path": "/caliber/region",
+            "before": "CN",
+            "after": "未披露",
+            "status": "proposed_not_applied",
+            "reason": "支持不足不等于旧CN被直接反证；建议保守使用原文已证明的地域精度。"
+          },
+          {
+            "path": "/caliber/scope",
+            "before": "行业平均",
+            "after": "传统模式智算中心平均（统计样本未披露）",
+            "status": "proposed_not_applied",
+            "reason": "保留原文传统模式与平均数值限定，不宣称样本覆盖整个行业。"
+          },
+          {
+            "path": "/as_of",
+            "before": "2024",
+            "after": null,
+            "status": "proposed_not_applied",
+            "reason": "观测时点未披露；JSON null表示明确未知，2024-09只为报告年代。"
+          },
+          {
+            "path": "/notes",
+            "before": "**这是「利用率」不是「上架率」——两者是两个东西，常被混用。**利用率 = 算力系统实际运行中的平均资源占用（如 IT 负载率、GPU 平均利用率），衡量「卖出去的算力真正在跑多少」；上架率 = 机架空间与电源插座的物理占用，衡量「机柜卖出去多少」。同报告载明 2023 年底全国上架率 66.7%，**两个数不可相互替代、更不可当作同一指标的不同时点值**。原文为「低于30%」，此处取上界 30 作为**上限**而非点值。为**行业平均**口径、传统（非优化）模式，且系「据公开数据统计」的转引、非本报告实测。地域=中国，时点≈2024。",
+            "after": "支持原件复核（2026-10-11）：本次新取得的浪潮信息/中国信通院2024-09报告物理页20（印刷页16）记载传统模式下智算中心GPU平均利用率低于30%，系据公开数据统计的转引，非本报告实测。保留30%为严格小于的上界，不能作点值；与物理上架率不是同一指标。相应段落未披露样本、统计地域、观测窗口或平均方法，因此旧CN、行业平均覆盖和as_of=2024仅由本次原件支持不足，不直接构成反证。本次PDF仅为2026-10-11新取得的支持原件，尚未建立其与历史输入字节的同一性；不提升grade或depth。",
+            "status": "proposed_not_applied",
+            "reason": "以原文已支持的范围限定旧解释，并保留支持不足不直接反证、转引、上界及新支持原件身份边界。"
+          }
+        ],
+        "json_patch_format": "RFC 6902 against the single selected fact record; each changed field is guarded by a test operation. Also require before_record_sha256 to match before application.",
+        "record_patch": [
+          {
+            "op": "test",
+            "path": "/entity/label",
+            "value": "中国智算中心 GPU 平均利用率"
+          },
+          {
+            "op": "replace",
+            "path": "/entity/label",
+            "value": "传统模式智算中心 GPU 平均利用率（地域未披露）"
+          },
+          {
+            "op": "test",
+            "path": "/caliber/region",
+            "value": "CN"
+          },
+          {
+            "op": "replace",
+            "path": "/caliber/region",
+            "value": "未披露"
+          },
+          {
+            "op": "test",
+            "path": "/caliber/scope",
+            "value": "行业平均"
+          },
+          {
+            "op": "replace",
+            "path": "/caliber/scope",
+            "value": "传统模式智算中心平均（统计样本未披露）"
+          },
+          {
+            "op": "test",
+            "path": "/as_of",
+            "value": "2024"
+          },
+          {
+            "op": "replace",
+            "path": "/as_of",
+            "value": null
+          },
+          {
+            "op": "test",
+            "path": "/notes",
+            "value": "**这是「利用率」不是「上架率」——两者是两个东西，常被混用。**利用率 = 算力系统实际运行中的平均资源占用（如 IT 负载率、GPU 平均利用率），衡量「卖出去的算力真正在跑多少」；上架率 = 机架空间与电源插座的物理占用，衡量「机柜卖出去多少」。同报告载明 2023 年底全国上架率 66.7%，**两个数不可相互替代、更不可当作同一指标的不同时点值**。原文为「低于30%」，此处取上界 30 作为**上限**而非点值。为**行业平均**口径、传统（非优化）模式，且系「据公开数据统计」的转引、非本报告实测。地域=中国，时点≈2024。"
+          },
+          {
+            "op": "replace",
+            "path": "/notes",
+            "value": "支持原件复核（2026-10-11）：本次新取得的浪潮信息/中国信通院2024-09报告物理页20（印刷页16）记载传统模式下智算中心GPU平均利用率低于30%，系据公开数据统计的转引，非本报告实测。保留30%为严格小于的上界，不能作点值；与物理上架率不是同一指标。相应段落未披露样本、统计地域、观测窗口或平均方法，因此旧CN、行业平均覆盖和as_of=2024仅由本次原件支持不足，不直接构成反证。本次PDF仅为2026-10-11新取得的支持原件，尚未建立其与历史输入字节的同一性；不提升grade或depth。"
+          }
+        ],
+        "patch_dry_run_matches_after_record": true,
+        "patch_applied_to_facts": false,
+        "null_after_semantics": "JSON null in as_of intentionally means observation time not disclosed; it is a concrete proposed after value, not an unresolved placeholder.",
+        "schema_review_required": true,
+        "schema_requirements": [
+          {
+            "requirement": "allow_explicit_unknown_observation_time",
+            "proposed_value": null,
+            "current_schema_conflict": "data/schema/fact.schema.json currently requires as_of to be a date string; main review must decide schema/representation before applying."
+          },
+          {
+            "requirement": "extend_or_review_gpu_utilization_scope_enum",
+            "proposed_value": "传统模式智算中心平均（统计样本未披露）",
+            "current_schema_conflict": "framework/metrics.json gpu_utilization_rate.scope does not yet contain this exact bounded population; no forced mapping to existing categories."
+          }
+        ],
+        "application_eligible": false,
+        "application_gate": "Await main review, owner C3 A for rewriting existing conclusions, and any required schema/enum changes. This file alone grants no adoption or replacement.",
+        "must_preserve": [
+          "value=30.0",
+          "unit=%",
+          "bound=upper，并保留严格<的文字",
+          "evidence.grade=S4",
+          "depth=精读",
+          "asserter=未注明，不能凭报告联合署名补成原始统计者"
+        ],
+        "do_not_bind_new_sha_as_historical_input": true
+      }
+    },
+    {
+      "fact_id": "cn-dc-occupancy-2023",
+      "before_record": {
+        "fact_id": "cn-dc-occupancy-2023",
+        "metric_id": "dc_occupancy_rate",
+        "entity": {
+          "type": "market",
+          "id": "cn-dc-occupancy-2023",
+          "label": "中国在用数据中心上架率"
+        },
+        "value": 66.7,
+        "unit": "%",
+        "caliber": {
+          "scope": "全国",
+          "region": "CN"
+        },
+        "bound": "point",
+        "as_of": "2023-12",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文「据中国信通院统计，2023年底全国在用数据中心上架率为66.7%」",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**物理层口径**：机架空间与电源插座的占用比例，**不反映服务器实际性能与负载**（报告原文即如此批评该指标）。与上一条 GPU 利用率 <30% 是**两个不同层面的指标，不可混用、不可相减**。由中国信通院统计，属一手统计口径。范围=全国在用数据中心（含通用与智算），时点=2023 年底，地域=中国大陆。",
+        "asserter": "中国信通院",
+        "disputed_by": [
+          "kezhi2024-cn-idc-occupancy-2023"
+        ],
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "ef8f5550a47546cffd5d680b98c2a94c5f1ec9f89ed0dcf363213d386876abe7",
+      "source_support": {
+        "role": "newly_retrieved_publisher_hosted_support_original",
+        "sha256": "fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+        "bytes": 2570111,
+        "url": "https://www.ieisystem.com/global/file/2024-09-29/17275994573242c975afc9222caae53701923cf3b42c4c87.pdf",
+        "retrieved_at": "2026-10-11T03:05:40.506700+00:00",
+        "report_title": "人工智能算力高质量发展评估体系报告",
+        "publishers": [
+          "浪潮电子信息产业股份有限公司",
+          "中国信息通信研究院"
+        ],
+        "report_published_at": "2024-09",
+        "report_date_basis": "PDF physical page 1 cover, visually inspected; month precision only",
+        "physical_page": 37,
+        "page_index": 36,
+        "printed_page": 33,
+        "section": "4.1 评估体系构建背景（末段，4.2之前）",
+        "short_continuous_quote": "2023 年底全国在用数据中心上架率为 66.7%",
+        "quote_check": "exact contiguous substring in supplied pdftotext page; complete relevant page visually inspected",
+        "context_pages": [],
+        "historical_exact_input_identity_not_established": true,
+        "formal_adoption": false,
+        "logical_original_id": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8"
+      },
+      "assessment": {
+        "status": "new_support_original_verified_with_scope_limitations",
+        "historical_exact_input_identity_not_established": true,
+        "numeric_statement_found": true,
+        "supported": [
+          "报告明确记载中国信通院统计、2023年底、全国在用数据中心上架率66.7%。",
+          "旧66.7%、point、2023-12、CN和asserter中国信通院与相应段落一致。",
+          "报告明确上架率关注机架空间、电源插座等物理资源占用，不能反映服务器实际性能和负载。"
+        ],
+        "support_insufficiencies_not_direct_counterevidence": [
+          "相应页未提供原始统计表、样本清单、抽样方法或机架分母；不能据此解决已有口径争议。",
+          "报告未在该段逐项列明通用与智算分类；全国在用数据中心这一原文范围应完整保留。",
+          "新取得的同题报告不能证明历史录入时实际使用的文件字节。"
+        ],
+        "dimension_checks": {
+          "subject": "全国在用数据中心；不是仅智算中心。",
+          "time": "2023年底明确；旧2023-12与原文精度相容。",
+          "unit_and_boundary": "%；66.7点值。",
+          "scope": "全国在用数据中心的物理上架率，不是算力资源运行利用率。",
+          "source_chain": "联合报告明确归属中国信通院统计；本次未取得下层原始统计数据表。"
+        },
+        "source_grade_before": "S2",
+        "source_grade_after": "S2",
+        "depth_before": "精读",
+        "depth_after": "精读",
+        "grade_or_depth_upgrade": false,
+        "formal_adoption": false,
+        "provenance_debt_closed": 0
+      },
+      "proposed_diff": {
+        "status": "proposed_not_applied",
+        "requires_owner_c3_A_before_any_legacy_conclusion_rewrite": true,
+        "before_record_sha256": "ef8f5550a47546cffd5d680b98c2a94c5f1ec9f89ed0dcf363213d386876abe7",
+        "after_record": {
+          "fact_id": "cn-dc-occupancy-2023",
+          "metric_id": "dc_occupancy_rate",
+          "entity": {
+            "type": "market",
+            "id": "cn-dc-occupancy-2023",
+            "label": "中国在用数据中心上架率"
+          },
+          "value": 66.7,
+          "unit": "%",
+          "caliber": {
+            "scope": "全国",
+            "region": "CN"
+          },
+          "bound": "point",
+          "as_of": "2023-12",
+          "evidence": {
+            "local_file": "",
+            "locator": "同上报告正文「据中国信通院统计，2023年底全国在用数据中心上架率为66.7%」",
+            "grade": "S2"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "支持原件复核（2026-10-11）：本次新取得报告物理页37（印刷页33）明确记载中国信通院统计的2023年底全国在用数据中心上架率为66.7%，支持现有数值、时点与断言者。报告将上架率限定为机架空间、电源插座等物理资源占用，明确不能反映服务器实际性能和负载；不得替代GPU利用率或与其相减。相应页未附原始统计表和分母，本次不裁决已有口径争议，保留disputed_by。本次PDF仅为新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。",
+          "asserter": "中国信通院",
+          "disputed_by": [
+            "kezhi2024-cn-idc-occupancy-2023"
+          ],
+          "node": "root",
+          "variable_class": 2
+        },
+        "after_record_sha256": "114e292ccdf28bec9f8efb37864180659e440290640a1e490287744196076164",
+        "field_changes": [
+          {
+            "path": "/notes",
+            "before": "**物理层口径**：机架空间与电源插座的占用比例，**不反映服务器实际性能与负载**（报告原文即如此批评该指标）。与上一条 GPU 利用率 <30% 是**两个不同层面的指标，不可混用、不可相减**。由中国信通院统计，属一手统计口径。范围=全国在用数据中心（含通用与智算），时点=2023 年底，地域=中国大陆。",
+            "after": "支持原件复核（2026-10-11）：本次新取得报告物理页37（印刷页33）明确记载中国信通院统计的2023年底全国在用数据中心上架率为66.7%，支持现有数值、时点与断言者。报告将上架率限定为机架空间、电源插座等物理资源占用，明确不能反映服务器实际性能和负载；不得替代GPU利用率或与其相减。相应页未附原始统计表和分母，本次不裁决已有口径争议，保留disputed_by。本次PDF仅为新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。",
+            "status": "proposed_not_applied",
+            "reason": "以原文已支持的范围限定旧解释，并保留支持不足不直接反证、转引、上界及新支持原件身份边界。"
+          }
+        ],
+        "json_patch_format": "RFC 6902 against the single selected fact record; each changed field is guarded by a test operation. Also require before_record_sha256 to match before application.",
+        "record_patch": [
+          {
+            "op": "test",
+            "path": "/notes",
+            "value": "**物理层口径**：机架空间与电源插座的占用比例，**不反映服务器实际性能与负载**（报告原文即如此批评该指标）。与上一条 GPU 利用率 <30% 是**两个不同层面的指标，不可混用、不可相减**。由中国信通院统计，属一手统计口径。范围=全国在用数据中心（含通用与智算），时点=2023 年底，地域=中国大陆。"
+          },
+          {
+            "op": "replace",
+            "path": "/notes",
+            "value": "支持原件复核（2026-10-11）：本次新取得报告物理页37（印刷页33）明确记载中国信通院统计的2023年底全国在用数据中心上架率为66.7%，支持现有数值、时点与断言者。报告将上架率限定为机架空间、电源插座等物理资源占用，明确不能反映服务器实际性能和负载；不得替代GPU利用率或与其相减。相应页未附原始统计表和分母，本次不裁决已有口径争议，保留disputed_by。本次PDF仅为新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。"
+          }
+        ],
+        "patch_dry_run_matches_after_record": true,
+        "patch_applied_to_facts": false,
+        "null_after_semantics": "JSON null in as_of intentionally means observation time not disclosed; it is a concrete proposed after value, not an unresolved placeholder.",
+        "schema_review_required": false,
+        "schema_requirements": [],
+        "application_eligible": false,
+        "application_gate": "Await main review, owner C3 A for rewriting existing conclusions, and any required schema/enum changes. This file alone grants no adoption or replacement.",
+        "must_preserve": [
+          "value=66.7",
+          "unit=%",
+          "bound=point",
+          "as_of=2023-12",
+          "caliber.region=CN",
+          "caliber.scope=全国",
+          "asserter=中国信通院",
+          "disputed_by现有集合",
+          "evidence.grade=S2",
+          "depth=精读"
+        ],
+        "do_not_bind_new_sha_as_historical_input": true
+      }
+    },
+    {
+      "fact_id": "cn-llm-corp-gpu-util-2024",
+      "before_record": {
+        "fact_id": "cn-llm-corp-gpu-util-2024",
+        "metric_id": "gpu_utilization_rate",
+        "entity": {
+          "type": "market",
+          "id": "cn-llm-corp-gpu-util-2024",
+          "label": "大模型企业 GPU 算力利用率"
+        },
+        "value": 50.0,
+        "unit": "%",
+        "caliber": {
+          "scope": "企业自用集群",
+          "region": "CN"
+        },
+        "bound": "upper",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文 1.2 节「据清华大学研究表明…很多大模型企业的GPU算力利用率低于50%」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**取上界 50 作为上限而非点值**（原文「低于50%」）。口径为**大模型企业自用集群**，与「智算中心行业平均 <30%」「Google 云 25%」三者**口径互不相同（企业自用 / 行业平均 / 单一云厂商），不可相互替代或取平均**。归因为算力调度、系统架构、算法优化问题。系转引自清华大学研究、非本报告实测。地域=中国。\n\n**asserter 由「未注明」改为清华大学（2026-09-13）**：locator 原文「据清华大学研究表明」，断言者在原文里点了名，只是留在引号里没进字段。东吴/本报告是转引方，不是断言者。",
+        "asserter": "清华大学",
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "ca4a0e95b52b1111d186e352eda8c73eeb1b43c358b1924d6123d0e9e87945ce",
+      "source_support": {
+        "role": "newly_retrieved_publisher_hosted_support_original",
+        "sha256": "fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+        "bytes": 2570111,
+        "url": "https://www.ieisystem.com/global/file/2024-09-29/17275994573242c975afc9222caae53701923cf3b42c4c87.pdf",
+        "retrieved_at": "2026-10-11T03:05:40.506700+00:00",
+        "report_title": "人工智能算力高质量发展评估体系报告",
+        "publishers": [
+          "浪潮电子信息产业股份有限公司",
+          "中国信息通信研究院"
+        ],
+        "report_published_at": "2024-09",
+        "report_date_basis": "PDF physical page 1 cover, visually inspected; month precision only",
+        "physical_page": 13,
+        "page_index": 12,
+        "printed_page": 9,
+        "section": "1.2.1 挑战一：算力供给不足，供需匹配不平衡",
+        "short_continuous_quote": "很多大模型企业的 GPU 算力利用率低于 50%",
+        "quote_check": "exact contiguous substring in supplied pdftotext page; complete relevant page visually inspected",
+        "context_pages": [
+          12
+        ],
+        "historical_exact_input_identity_not_established": true,
+        "formal_adoption": false,
+        "logical_original_id": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8"
+      },
+      "assessment": {
+        "status": "new_support_original_verified_with_scope_limitations",
+        "historical_exact_input_identity_not_established": true,
+        "numeric_statement_found": true,
+        "supported": [
+          "报告转引清华大学研究，称很多大模型企业处理大量数据时GPU算力利用率低于50%。",
+          "报告将问题归因于算力调度、系统架构、算法优化等；50仅可作为严格小于的上界。",
+          "清华大学是报告指明的被转引研究机构，不是本次已取得的研究原件。"
+        ],
+        "support_insufficiencies_not_direct_counterevidence": [
+          "原文没有企业自用集群这一限定；企业可能使用自建、租用或其他资源，不能推断。",
+          "邻文讨论国内产业，但该研究样本的精确地域未说明；不足以直接认证CN统计范围。",
+          "未给清华研究题名、作者、发表时间、原始文件、样本、测试负载或观测年；2024只能直接证明报告年代。"
+        ],
+        "dimension_checks": {
+          "subject": "很多大模型企业，在处理大量数据的场景；不是全行业平均，也没有自用集群声明。",
+          "time": "清华研究及样本观测时点未披露；联合报告为2024-09。",
+          "unit_and_boundary": "%；严格<50；不是50点值。",
+          "scope": "原文主体与旧大模型企业标签相容，但企业自用集群口径超出该段；国内邻文仅作语境。",
+          "source_chain": "联合报告 -> 清华大学研究（未具名文献） -> 原始测量未取得；不得伪造清华原件SHA。"
+        },
+        "source_grade_before": "S4",
+        "source_grade_after": "S4",
+        "depth_before": "精读",
+        "depth_after": "精读",
+        "grade_or_depth_upgrade": false,
+        "formal_adoption": false,
+        "provenance_debt_closed": 0
+      },
+      "proposed_diff": {
+        "status": "proposed_not_applied",
+        "requires_owner_c3_A_before_any_legacy_conclusion_rewrite": true,
+        "before_record_sha256": "ca4a0e95b52b1111d186e352eda8c73eeb1b43c358b1924d6123d0e9e87945ce",
+        "after_record": {
+          "fact_id": "cn-llm-corp-gpu-util-2024",
+          "metric_id": "gpu_utilization_rate",
+          "entity": {
+            "type": "market",
+            "id": "cn-llm-corp-gpu-util-2024",
+            "label": "大模型企业 GPU 算力利用率"
+          },
+          "value": 50.0,
+          "unit": "%",
+          "caliber": {
+            "scope": "很多大模型企业（是否自用集群未披露）",
+            "region": "未披露"
+          },
+          "bound": "upper",
+          "as_of": null,
+          "evidence": {
+            "local_file": "",
+            "locator": "同上报告正文 1.2 节「据清华大学研究表明…很多大模型企业的GPU算力利用率低于50%」",
+            "grade": "S4"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "支持原件复核（2026-10-11）：新取得报告物理页13（印刷页9）转引清华大学研究，记载很多大模型企业在处理大量数据时GPU算力利用率低于50%，归因于调度、系统架构、算法优化等。保留50%为严格小于的上界，不能作点值或行业平均。原文未说明企业是否使用自用集群，也未提供研究题名、样本、精确地域和观测年；旧企业自用集群、CN及as_of=2024由本次原件支持不足，不直接构成反证。清华大学仅为本报告指明的被转引研究机构，本次未取得其研究原件。新PDF与历史输入字节的同一性未建立；不提升grade或depth。",
+          "asserter": "清华大学",
+          "node": "root",
+          "variable_class": 2
+        },
+        "after_record_sha256": "25e44be6e9f22607a22d23a55078b42ec26072bc4ab1a7935f9b4aba574686d6",
+        "field_changes": [
+          {
+            "path": "/caliber/scope",
+            "before": "企业自用集群",
+            "after": "很多大模型企业（是否自用集群未披露）",
+            "status": "proposed_not_applied",
+            "reason": "原文只称很多大模型企业，未说明资源所有权；本次支持不足不直接反证旧自用标签。"
+          },
+          {
+            "path": "/caliber/region",
+            "before": "CN",
+            "after": "未披露",
+            "status": "proposed_not_applied",
+            "reason": "国内邻文未明确清华研究样本地域，建议保守撤回未被本支持原件证明的精度。"
+          },
+          {
+            "path": "/as_of",
+            "before": "2024",
+            "after": null,
+            "status": "proposed_not_applied",
+            "reason": "研究及样本观测时点未知；JSON null为明确未知，不是待填占位值。"
+          },
+          {
+            "path": "/notes",
+            "before": "**取上界 50 作为上限而非点值**（原文「低于50%」）。口径为**大模型企业自用集群**，与「智算中心行业平均 <30%」「Google 云 25%」三者**口径互不相同（企业自用 / 行业平均 / 单一云厂商），不可相互替代或取平均**。归因为算力调度、系统架构、算法优化问题。系转引自清华大学研究、非本报告实测。地域=中国。\n\n**asserter 由「未注明」改为清华大学（2026-09-13）**：locator 原文「据清华大学研究表明」，断言者在原文里点了名，只是留在引号里没进字段。东吴/本报告是转引方，不是断言者。",
+            "after": "支持原件复核（2026-10-11）：新取得报告物理页13（印刷页9）转引清华大学研究，记载很多大模型企业在处理大量数据时GPU算力利用率低于50%，归因于调度、系统架构、算法优化等。保留50%为严格小于的上界，不能作点值或行业平均。原文未说明企业是否使用自用集群，也未提供研究题名、样本、精确地域和观测年；旧企业自用集群、CN及as_of=2024由本次原件支持不足，不直接构成反证。清华大学仅为本报告指明的被转引研究机构，本次未取得其研究原件。新PDF与历史输入字节的同一性未建立；不提升grade或depth。",
+            "status": "proposed_not_applied",
+            "reason": "以原文已支持的范围限定旧解释，并保留支持不足不直接反证、转引、上界及新支持原件身份边界。"
+          }
+        ],
+        "json_patch_format": "RFC 6902 against the single selected fact record; each changed field is guarded by a test operation. Also require before_record_sha256 to match before application.",
+        "record_patch": [
+          {
+            "op": "test",
+            "path": "/caliber/scope",
+            "value": "企业自用集群"
+          },
+          {
+            "op": "replace",
+            "path": "/caliber/scope",
+            "value": "很多大模型企业（是否自用集群未披露）"
+          },
+          {
+            "op": "test",
+            "path": "/caliber/region",
+            "value": "CN"
+          },
+          {
+            "op": "replace",
+            "path": "/caliber/region",
+            "value": "未披露"
+          },
+          {
+            "op": "test",
+            "path": "/as_of",
+            "value": "2024"
+          },
+          {
+            "op": "replace",
+            "path": "/as_of",
+            "value": null
+          },
+          {
+            "op": "test",
+            "path": "/notes",
+            "value": "**取上界 50 作为上限而非点值**（原文「低于50%」）。口径为**大模型企业自用集群**，与「智算中心行业平均 <30%」「Google 云 25%」三者**口径互不相同（企业自用 / 行业平均 / 单一云厂商），不可相互替代或取平均**。归因为算力调度、系统架构、算法优化问题。系转引自清华大学研究、非本报告实测。地域=中国。\n\n**asserter 由「未注明」改为清华大学（2026-09-13）**：locator 原文「据清华大学研究表明」，断言者在原文里点了名，只是留在引号里没进字段。东吴/本报告是转引方，不是断言者。"
+          },
+          {
+            "op": "replace",
+            "path": "/notes",
+            "value": "支持原件复核（2026-10-11）：新取得报告物理页13（印刷页9）转引清华大学研究，记载很多大模型企业在处理大量数据时GPU算力利用率低于50%，归因于调度、系统架构、算法优化等。保留50%为严格小于的上界，不能作点值或行业平均。原文未说明企业是否使用自用集群，也未提供研究题名、样本、精确地域和观测年；旧企业自用集群、CN及as_of=2024由本次原件支持不足，不直接构成反证。清华大学仅为本报告指明的被转引研究机构，本次未取得其研究原件。新PDF与历史输入字节的同一性未建立；不提升grade或depth。"
+          }
+        ],
+        "patch_dry_run_matches_after_record": true,
+        "patch_applied_to_facts": false,
+        "null_after_semantics": "JSON null in as_of intentionally means observation time not disclosed; it is a concrete proposed after value, not an unresolved placeholder.",
+        "schema_review_required": true,
+        "schema_requirements": [
+          {
+            "requirement": "allow_explicit_unknown_observation_time",
+            "proposed_value": null,
+            "current_schema_conflict": "data/schema/fact.schema.json currently requires as_of to be a date string; main review must decide schema/representation before applying."
+          },
+          {
+            "requirement": "extend_or_review_gpu_utilization_scope_enum",
+            "proposed_value": "很多大模型企业（是否自用集群未披露）",
+            "current_schema_conflict": "framework/metrics.json gpu_utilization_rate.scope does not yet contain this exact bounded population; no forced mapping to existing categories."
+          }
+        ],
+        "application_eligible": false,
+        "application_gate": "Await main review, owner C3 A for rewriting existing conclusions, and any required schema/enum changes. This file alone grants no adoption or replacement.",
+        "must_preserve": [
+          "value=50.0",
+          "unit=%",
+          "bound=upper，并保留严格<的文字",
+          "asserter=清华大学仅按被转引研究机构理解，不称已核原始测量者",
+          "evidence.grade=S4",
+          "depth=精读"
+        ],
+        "do_not_bind_new_sha_as_historical_input": true
+      }
+    },
+    {
+      "fact_id": "google-cloud-gpu-util-2022",
+      "before_record": {
+        "fact_id": "google-cloud-gpu-util-2022",
+        "metric_id": "gpu_utilization_rate",
+        "entity": {
+          "type": "market",
+          "id": "google-cloud-gpu-util-2022",
+          "label": "Google 云平均 GPU 利用率"
+        },
+        "value": 25.0,
+        "unit": "%",
+        "caliber": {
+          "scope": "单一云厂商",
+          "region": "Global"
+        },
+        "bound": "point",
+        "as_of": "2022",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文 2.3.1 节「英伟达GTC 2022公布数据显示Google云平均GPU利用率为25%」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**单一云厂商口径**，非行业平均、非中国数据。转引自英伟达 GTC 2022 公布数据，**时点为 2022 年，已有两年以上时滞**，不宜与 2024 年的中国数字直接并列比较。地域=全球（Google 云）。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 2
+      },
+      "before_record_sha256": "64c72514d666c0d39b638eb8f407e23e097d919472f32c5e468bf0e1724c0d46",
+      "source_support": {
+        "role": "newly_retrieved_publisher_hosted_support_original",
+        "sha256": "fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+        "bytes": 2570111,
+        "url": "https://www.ieisystem.com/global/file/2024-09-29/17275994573242c975afc9222caae53701923cf3b42c4c87.pdf",
+        "retrieved_at": "2026-10-11T03:05:40.506700+00:00",
+        "report_title": "人工智能算力高质量发展评估体系报告",
+        "publishers": [
+          "浪潮电子信息产业股份有限公司",
+          "中国信息通信研究院"
+        ],
+        "report_published_at": "2024-09",
+        "report_date_basis": "PDF physical page 1 cover, visually inspected; month precision only",
+        "physical_page": 20,
+        "page_index": 19,
+        "printed_page": 16,
+        "section": "2.3.1 高算效：设计与运行计算效率“双优”体现",
+        "short_continuous_quote": "Google 云平均 GPU 利用率为 25%",
+        "quote_check": "exact contiguous substring in supplied pdftotext page; complete relevant page visually inspected",
+        "context_pages": [],
+        "historical_exact_input_identity_not_established": true,
+        "formal_adoption": false,
+        "logical_original_id": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8"
+      },
+      "assessment": {
+        "status": "new_support_original_verified_with_scope_limitations",
+        "historical_exact_input_identity_not_established": true,
+        "numeric_statement_found": true,
+        "supported": [
+          "联合报告转引英伟达GTC 2022公布数据，记载Google云平均GPU利用率25%。",
+          "支持报告中单一云厂商的25%点值陈述，不支持行业平均或中国数据。",
+          "GTC 2022是报告给出的披露活动年代，不是由本段证明的测量年代。"
+        ],
+        "support_insufficiencies_not_direct_counterevidence": [
+          "没有GTC原始演讲、幻灯片、讲者、样本范围、负载、统计方法或观测窗口。",
+          "Google云主体不能自动证明该数字覆盖全球全部机群；旧Global覆盖由本段支持不足。",
+          "英伟达/GTC公布者不能自动等同原始测量者，亦不能证明Google已官方披露该数字。"
+        ],
+        "dimension_checks": {
+          "subject": "Google云，单一云厂商；具体产品和机群范围未知。",
+          "time": "2022披露活动年代明确；实测观测时点未知，不能直接称2022实测。",
+          "unit_and_boundary": "%；25点值，未改为边界。",
+          "scope": "单一云厂商支持；全球机群覆盖未说明。",
+          "source_chain": "联合报告 -> 英伟达GTC 2022公布数据 -> 未取得的原始演讲/数据；不是本报告实测。"
+        },
+        "source_grade_before": "S4",
+        "source_grade_after": "S4",
+        "depth_before": "精读",
+        "depth_after": "精读",
+        "grade_or_depth_upgrade": false,
+        "formal_adoption": false,
+        "provenance_debt_closed": 0
+      },
+      "proposed_diff": {
+        "status": "proposed_not_applied",
+        "requires_owner_c3_A_before_any_legacy_conclusion_rewrite": true,
+        "before_record_sha256": "64c72514d666c0d39b638eb8f407e23e097d919472f32c5e468bf0e1724c0d46",
+        "after_record": {
+          "fact_id": "google-cloud-gpu-util-2022",
+          "metric_id": "gpu_utilization_rate",
+          "entity": {
+            "type": "market",
+            "id": "google-cloud-gpu-util-2022",
+            "label": "Google 云平均 GPU 利用率"
+          },
+          "value": 25.0,
+          "unit": "%",
+          "caliber": {
+            "scope": "单一云厂商",
+            "region": "未披露"
+          },
+          "bound": "point",
+          "as_of": null,
+          "evidence": {
+            "local_file": "",
+            "locator": "同上报告正文 2.3.1 节「英伟达GTC 2022公布数据显示Google云平均GPU利用率为25%」",
+            "grade": "S4"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "支持原件复核（2026-10-11）：新取得报告物理页20（印刷页16）转引英伟达GTC 2022公布数据，记载Google云平均GPU利用率为25%。保留25%点值和单一云厂商范围；不可当行业平均、中国数据或本报告实测。2022是该段指明的披露活动年代，样本观测窗口、具体产品与全球机群覆盖均未披露；旧as_of=2022及Global覆盖由本次原件支持不足，不直接构成反证。英伟达/GTC公布者不自动等于测量者，不改asserter为英伟达或Google。本次未取得GTC原始演讲或数据原件，新PDF与历史输入字节的同一性未建立；不提升grade或depth。",
+          "asserter": "未注明",
+          "node": "root",
+          "variable_class": 2
+        },
+        "after_record_sha256": "44afdde73e993a5f5774376953c6a0d40d67b08918275bc7d32ea0afcfdf36d2",
+        "field_changes": [
+          {
+            "path": "/caliber/region",
+            "before": "Global",
+            "after": "未披露",
+            "status": "proposed_not_applied",
+            "reason": "Google云主体不自动证明统计样本覆盖全球，支持不足不直接反证旧Global。"
+          },
+          {
+            "path": "/as_of",
+            "before": "2022",
+            "after": null,
+            "status": "proposed_not_applied",
+            "reason": "GTC2022是披露活动年代，测量观察时点未披露；JSON null为明确未知。"
+          },
+          {
+            "path": "/notes",
+            "before": "**单一云厂商口径**，非行业平均、非中国数据。转引自英伟达 GTC 2022 公布数据，**时点为 2022 年，已有两年以上时滞**，不宜与 2024 年的中国数字直接并列比较。地域=全球（Google 云）。",
+            "after": "支持原件复核（2026-10-11）：新取得报告物理页20（印刷页16）转引英伟达GTC 2022公布数据，记载Google云平均GPU利用率为25%。保留25%点值和单一云厂商范围；不可当行业平均、中国数据或本报告实测。2022是该段指明的披露活动年代，样本观测窗口、具体产品与全球机群覆盖均未披露；旧as_of=2022及Global覆盖由本次原件支持不足，不直接构成反证。英伟达/GTC公布者不自动等于测量者，不改asserter为英伟达或Google。本次未取得GTC原始演讲或数据原件，新PDF与历史输入字节的同一性未建立；不提升grade或depth。",
+            "status": "proposed_not_applied",
+            "reason": "以原文已支持的范围限定旧解释，并保留支持不足不直接反证、转引、上界及新支持原件身份边界。"
+          }
+        ],
+        "json_patch_format": "RFC 6902 against the single selected fact record; each changed field is guarded by a test operation. Also require before_record_sha256 to match before application.",
+        "record_patch": [
+          {
+            "op": "test",
+            "path": "/caliber/region",
+            "value": "Global"
+          },
+          {
+            "op": "replace",
+            "path": "/caliber/region",
+            "value": "未披露"
+          },
+          {
+            "op": "test",
+            "path": "/as_of",
+            "value": "2022"
+          },
+          {
+            "op": "replace",
+            "path": "/as_of",
+            "value": null
+          },
+          {
+            "op": "test",
+            "path": "/notes",
+            "value": "**单一云厂商口径**，非行业平均、非中国数据。转引自英伟达 GTC 2022 公布数据，**时点为 2022 年，已有两年以上时滞**，不宜与 2024 年的中国数字直接并列比较。地域=全球（Google 云）。"
+          },
+          {
+            "op": "replace",
+            "path": "/notes",
+            "value": "支持原件复核（2026-10-11）：新取得报告物理页20（印刷页16）转引英伟达GTC 2022公布数据，记载Google云平均GPU利用率为25%。保留25%点值和单一云厂商范围；不可当行业平均、中国数据或本报告实测。2022是该段指明的披露活动年代，样本观测窗口、具体产品与全球机群覆盖均未披露；旧as_of=2022及Global覆盖由本次原件支持不足，不直接构成反证。英伟达/GTC公布者不自动等于测量者，不改asserter为英伟达或Google。本次未取得GTC原始演讲或数据原件，新PDF与历史输入字节的同一性未建立；不提升grade或depth。"
+          }
+        ],
+        "patch_dry_run_matches_after_record": true,
+        "patch_applied_to_facts": false,
+        "null_after_semantics": "JSON null in as_of intentionally means observation time not disclosed; it is a concrete proposed after value, not an unresolved placeholder.",
+        "schema_review_required": true,
+        "schema_requirements": [
+          {
+            "requirement": "allow_explicit_unknown_observation_time",
+            "proposed_value": null,
+            "current_schema_conflict": "data/schema/fact.schema.json currently requires as_of to be a date string; main review must decide schema/representation before applying."
+          }
+        ],
+        "application_eligible": false,
+        "application_gate": "Await main review, owner C3 A for rewriting existing conclusions, and any required schema/enum changes. This file alone grants no adoption or replacement.",
+        "must_preserve": [
+          "value=25.0",
+          "unit=%",
+          "bound=point",
+          "caliber.scope=单一云厂商",
+          "asserter=未注明",
+          "evidence.grade=S4",
+          "depth=精读",
+          "GTC2022转引性质，不改写为实测"
+        ],
+        "do_not_bind_new_sha_as_historical_input": true
+      }
+    },
+    {
+      "fact_id": "cn-aidc-compute-eff-2023",
+      "before_record": {
+        "fact_id": "cn-aidc-compute-eff-2023",
+        "metric_id": "compute_efficiency",
+        "entity": {
+          "type": "market",
+          "id": "cn-aidc-compute-eff-2023",
+          "label": "中国在用算力中心平均算效"
+        },
+        "value": 11.8,
+        "unit": "GFLOPS/W",
+        "caliber": {
+          "basis": "理论",
+          "precision": "未说明",
+          "region": "CN"
+        },
+        "bound": "point",
+        "as_of": "2023-12",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文 2.3.1 节「2023年年底，全国在用算力中心平均算效为11.8GFLOPS/W」",
+          "grade": "S2"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**理论算效**口径 = 计算系统算力 ÷ 功率（每瓦功率所产生的算力），是**设计维度**指标、不是运行实测。未说明精度口径（FP16/FP32 等），换精度不可比，此点原文未交代。由中国信通院统计。范围=全国在用算力中心，时点=2023 年底，地域=中国大陆。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "before_record_sha256": "29c7289e133d5e6130057be8163e4b926bc1011e6dc5f20f7786d0848c496c76",
+      "source_support": {
+        "role": "newly_retrieved_publisher_hosted_support_original",
+        "sha256": "fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+        "bytes": 2570111,
+        "url": "https://www.ieisystem.com/global/file/2024-09-29/17275994573242c975afc9222caae53701923cf3b42c4c87.pdf",
+        "retrieved_at": "2026-10-11T03:05:40.506700+00:00",
+        "report_title": "人工智能算力高质量发展评估体系报告",
+        "publishers": [
+          "浪潮电子信息产业股份有限公司",
+          "中国信息通信研究院"
+        ],
+        "report_published_at": "2024-09",
+        "report_date_basis": "PDF physical page 1 cover, visually inspected; month precision only",
+        "physical_page": 19,
+        "page_index": 18,
+        "printed_page": 15,
+        "section": "2.3.1 高算效：设计与运行计算效率“双优”体现",
+        "short_continuous_quote": "全国在用算力中心平均算效为 11.8GFLOPS/W",
+        "quote_check": "exact contiguous substring in supplied pdftotext page; complete relevant page visually inspected",
+        "context_pages": [
+          20,
+          38,
+          39
+        ],
+        "historical_exact_input_identity_not_established": true,
+        "formal_adoption": false,
+        "logical_original_id": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8"
+      },
+      "assessment": {
+        "status": "new_support_original_verified_with_scope_limitations",
+        "historical_exact_input_identity_not_established": true,
+        "numeric_statement_found": true,
+        "supported": [
+          "报告明确记载2023年年底全国在用算力中心平均算效11.8GFLOPS/W。",
+          "紧邻定义明确理论算效是设计维度，计算系统算力与功率的比值；支持basis=理论。",
+          "旧数值、GFLOPS/W单位、point、2023-12和CN得到直接支持；原文未披露FP精度。"
+        ],
+        "support_insufficiencies_not_direct_counterevidence": [
+          "本段没有明确由中国信通院统计；联合署名不证明其承担原始数据采集或统计。",
+          "没有样本表、平均方式、各系统精度、功率测量配置或原始统计数据。",
+          "对象是全国在用算力中心，不可依据历史ID中的aidc收窄为仅智算中心。"
+        ],
+        "dimension_checks": {
+          "subject": "全国在用算力中心；旧entity.label准确，不改成仅智算中心。",
+          "time": "2023年年底明确，旧2023-12相容。",
+          "unit_and_boundary": "11.8 GFLOPS/W点值；FP16/FP32/FP64精度未说明。",
+          "scope": "理论算效，设计维度；不是运行实测利用率。物理页38-39进一步给出CE=CP/∑IT定义。",
+          "source_chain": "联合报告直接记载数值；该段未给出具体原始统计者，不凭出版社归属填统计来源。"
+        },
+        "source_grade_before": "S2",
+        "source_grade_after": "S2",
+        "depth_before": "精读",
+        "depth_after": "精读",
+        "grade_or_depth_upgrade": false,
+        "formal_adoption": false,
+        "provenance_debt_closed": 0
+      },
+      "proposed_diff": {
+        "status": "proposed_not_applied",
+        "requires_owner_c3_A_before_any_legacy_conclusion_rewrite": true,
+        "before_record_sha256": "29c7289e133d5e6130057be8163e4b926bc1011e6dc5f20f7786d0848c496c76",
+        "after_record": {
+          "fact_id": "cn-aidc-compute-eff-2023",
+          "metric_id": "compute_efficiency",
+          "entity": {
+            "type": "market",
+            "id": "cn-aidc-compute-eff-2023",
+            "label": "中国在用算力中心平均算效"
+          },
+          "value": 11.8,
+          "unit": "GFLOPS/W",
+          "caliber": {
+            "basis": "理论",
+            "precision": "未说明",
+            "region": "CN"
+          },
+          "bound": "point",
+          "as_of": "2023-12",
+          "evidence": {
+            "local_file": "",
+            "locator": "同上报告正文 2.3.1 节「2023年年底，全国在用算力中心平均算效为11.8GFLOPS/W」",
+            "grade": "S2"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "支持原件复核（2026-10-11）：新取得报告物理页19-20（印刷页15-16）明确记载2023年底全国在用算力中心平均算效11.8GFLOPS/W，并将其置于设计维度的理论算效定义下；支持现有数值、单位、时点、CN和basis=理论。FP精度未说明，不能补成FP16/FP32/FP64，也不能当作运行实测。范围是全国在用算力中心，不限于智算中心。该段未指明原始统计者，故不再仅凭报告联合署名描述为由中国信通院统计；asserter继续未注明。本次PDF仅是新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。",
+          "asserter": "未注明",
+          "node": "root",
+          "variable_class": 3
+        },
+        "after_record_sha256": "b34140870f60be6ef47f3743a578b6df7b80bad855c54a471e63d06a7ce31ba9",
+        "field_changes": [
+          {
+            "path": "/notes",
+            "before": "**理论算效**口径 = 计算系统算力 ÷ 功率（每瓦功率所产生的算力），是**设计维度**指标、不是运行实测。未说明精度口径（FP16/FP32 等），换精度不可比，此点原文未交代。由中国信通院统计。范围=全国在用算力中心，时点=2023 年底，地域=中国大陆。",
+            "after": "支持原件复核（2026-10-11）：新取得报告物理页19-20（印刷页15-16）明确记载2023年底全国在用算力中心平均算效11.8GFLOPS/W，并将其置于设计维度的理论算效定义下；支持现有数值、单位、时点、CN和basis=理论。FP精度未说明，不能补成FP16/FP32/FP64，也不能当作运行实测。范围是全国在用算力中心，不限于智算中心。该段未指明原始统计者，故不再仅凭报告联合署名描述为由中国信通院统计；asserter继续未注明。本次PDF仅是新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。",
+            "status": "proposed_not_applied",
+            "reason": "以原文已支持的范围限定旧解释，并保留支持不足不直接反证、转引、上界及新支持原件身份边界。"
+          }
+        ],
+        "json_patch_format": "RFC 6902 against the single selected fact record; each changed field is guarded by a test operation. Also require before_record_sha256 to match before application.",
+        "record_patch": [
+          {
+            "op": "test",
+            "path": "/notes",
+            "value": "**理论算效**口径 = 计算系统算力 ÷ 功率（每瓦功率所产生的算力），是**设计维度**指标、不是运行实测。未说明精度口径（FP16/FP32 等），换精度不可比，此点原文未交代。由中国信通院统计。范围=全国在用算力中心，时点=2023 年底，地域=中国大陆。"
+          },
+          {
+            "op": "replace",
+            "path": "/notes",
+            "value": "支持原件复核（2026-10-11）：新取得报告物理页19-20（印刷页15-16）明确记载2023年底全国在用算力中心平均算效11.8GFLOPS/W，并将其置于设计维度的理论算效定义下；支持现有数值、单位、时点、CN和basis=理论。FP精度未说明，不能补成FP16/FP32/FP64，也不能当作运行实测。范围是全国在用算力中心，不限于智算中心。该段未指明原始统计者，故不再仅凭报告联合署名描述为由中国信通院统计；asserter继续未注明。本次PDF仅是新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。"
+          }
+        ],
+        "patch_dry_run_matches_after_record": true,
+        "patch_applied_to_facts": false,
+        "null_after_semantics": "JSON null in as_of intentionally means observation time not disclosed; it is a concrete proposed after value, not an unresolved placeholder.",
+        "schema_review_required": false,
+        "schema_requirements": [],
+        "application_eligible": false,
+        "application_gate": "Await main review, owner C3 A for rewriting existing conclusions, and any required schema/enum changes. This file alone grants no adoption or replacement.",
+        "must_preserve": [
+          "value=11.8",
+          "unit=GFLOPS/W",
+          "bound=point",
+          "as_of=2023-12",
+          "caliber.basis=理论",
+          "caliber.precision=未说明",
+          "caliber.region=CN",
+          "asserter=未注明",
+          "entity.label=中国在用算力中心平均算效",
+          "evidence.grade=S2",
+          "depth=精读"
+        ],
+        "do_not_bind_new_sha_as_historical_input": true
+      }
+    },
+    {
+      "fact_id": "cn-realized-ratio-2024",
+      "before_record": {
+        "fact_id": "cn-realized-ratio-2024",
+        "metric_id": "realized_vs_theoretical_ratio",
+        "entity": {
+          "type": "market",
+          "id": "cn-realized-ratio-2024",
+          "label": "算力集群实测性能占理论性能比例"
+        },
+        "value": 10.0,
+        "unit": "%",
+        "caliber": {
+          "region": "CN"
+        },
+        "bound": "upper",
+        "as_of": "2024",
+        "evidence": {
+          "local_file": "",
+          "locator": "同上报告正文 2.3.1 节「算力集群实测性能和理论性能差距过大这一问题逐渐凸显，部分算力实测性能不足10%」",
+          "grade": "S4"
+        },
+        "depth": "精读",
+        "derived": false,
+        "sensitive": false,
+        "notes": "**「部分算力」而非全部，取 10 为上限**（原文「不足10%」）。口径=实测性能 ÷ 理论性能，衡量硬件标称算力有多少能真正兑现，**与 GPU 利用率不是一回事**（后者衡量卡有没有在忙，前者衡量忙的时候效率如何）。地域=中国，时点≈2024。",
+        "asserter": "未注明",
+        "node": "root",
+        "variable_class": 3
+      },
+      "before_record_sha256": "09769c483f9110329753f8902cdb9f74e6c7dd3ac5a293e7e830bf233c53e97b",
+      "source_support": {
+        "role": "newly_retrieved_publisher_hosted_support_original",
+        "sha256": "fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8",
+        "bytes": 2570111,
+        "url": "https://www.ieisystem.com/global/file/2024-09-29/17275994573242c975afc9222caae53701923cf3b42c4c87.pdf",
+        "retrieved_at": "2026-10-11T03:05:40.506700+00:00",
+        "report_title": "人工智能算力高质量发展评估体系报告",
+        "publishers": [
+          "浪潮电子信息产业股份有限公司",
+          "中国信息通信研究院"
+        ],
+        "report_published_at": "2024-09",
+        "report_date_basis": "PDF physical page 1 cover, visually inspected; month precision only",
+        "physical_page": 20,
+        "page_index": 19,
+        "printed_page": 16,
+        "section": "2.3.1 高算效：设计与运行计算效率“双优”体现",
+        "short_continuous_quote": "部分算力实测性能不足 10%",
+        "quote_check": "exact contiguous substring in supplied pdftotext page; complete relevant page visually inspected",
+        "context_pages": [
+          19,
+          39
+        ],
+        "historical_exact_input_identity_not_established": true,
+        "formal_adoption": false,
+        "logical_original_id": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8"
+      },
+      "assessment": {
+        "status": "new_support_original_verified_with_scope_limitations",
+        "historical_exact_input_identity_not_established": true,
+        "numeric_statement_found": true,
+        "supported": [
+          "报告在讨论算力集群实测性能与理论性能差距时，称部分算力实测性能不足10%。",
+          "10仅可保留为严格小于的上界；部分算力的限制必须保留。",
+          "邻句提供实测与理论对比语境，但报告没有在该段写出精确比例公式或统一可比测试规范。"
+        ],
+        "support_insufficiencies_not_direct_counterevidence": [
+          "没有样本、集群型号、测试负载、精度、时间或具体地域；不能推广为全国平均。",
+          "报告年代不能直接证明观测发生于2024年，邻文中国语境不能直接认证该样本为CN。",
+          "现有实测性能/理论性能的比例解释是由邻句语境归纳，不能称报告明列了可复算公式。"
+        ],
+        "dimension_checks": {
+          "subject": "部分算力；不是全部集群或全国平均。",
+          "time": "观测时点未披露；联合报告为2024-09。",
+          "unit_and_boundary": "%；严格<10；邻句支持与理论性能对比，但精确分母/公式未披露。",
+          "scope": "实测性能与理论性能的差距；不能当GPU忙碌率，也不能把不同负载的比例直接比较。",
+          "source_chain": "联合报告作者描述；该段未提供原始测试出处或实测数据表。"
+        },
+        "source_grade_before": "S4",
+        "source_grade_after": "S4",
+        "depth_before": "精读",
+        "depth_after": "精读",
+        "grade_or_depth_upgrade": false,
+        "formal_adoption": false,
+        "provenance_debt_closed": 0
+      },
+      "proposed_diff": {
+        "status": "proposed_not_applied",
+        "requires_owner_c3_A_before_any_legacy_conclusion_rewrite": true,
+        "before_record_sha256": "09769c483f9110329753f8902cdb9f74e6c7dd3ac5a293e7e830bf233c53e97b",
+        "after_record": {
+          "fact_id": "cn-realized-ratio-2024",
+          "metric_id": "realized_vs_theoretical_ratio",
+          "entity": {
+            "type": "market",
+            "id": "cn-realized-ratio-2024",
+            "label": "算力集群实测性能占理论性能比例"
+          },
+          "value": 10.0,
+          "unit": "%",
+          "caliber": {
+            "region": "未披露"
+          },
+          "bound": "upper",
+          "as_of": null,
+          "evidence": {
+            "local_file": "",
+            "locator": "同上报告正文 2.3.1 节「算力集群实测性能和理论性能差距过大这一问题逐渐凸显，部分算力实测性能不足10%」",
+            "grade": "S4"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "支持原件复核（2026-10-11）：新取得报告物理页20（印刷页16）在讨论实测性能和理论性能差距的上下文中称部分算力实测性能不足10%。保留10%为严格小于的上界与部分算力范围；不能作全国平均或GPU利用率。实测/理论比例是由邻句语境解释，该段未列精确公式、负载、精度、样本、观测年或地域，不宣称可跨配置直接比较。旧CN和as_of=2024由本次原件支持不足，不直接构成反证。本次PDF仅为新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。",
+          "asserter": "未注明",
+          "node": "root",
+          "variable_class": 3
+        },
+        "after_record_sha256": "77eb4b6905491b9a4505dfb6784d0a7d7d304f3fa645ec467efd4e4c9a665370",
+        "field_changes": [
+          {
+            "path": "/caliber/region",
+            "before": "CN",
+            "after": "未披露",
+            "status": "proposed_not_applied",
+            "reason": "未说明部分算力测试的地域；支持不足不直接反证旧CN。"
+          },
+          {
+            "path": "/as_of",
+            "before": "2024",
+            "after": null,
+            "status": "proposed_not_applied",
+            "reason": "只知报告2024-09年代，未给观测时点；JSON null表示明确未知。"
+          },
+          {
+            "path": "/notes",
+            "before": "**「部分算力」而非全部，取 10 为上限**（原文「不足10%」）。口径=实测性能 ÷ 理论性能，衡量硬件标称算力有多少能真正兑现，**与 GPU 利用率不是一回事**（后者衡量卡有没有在忙，前者衡量忙的时候效率如何）。地域=中国，时点≈2024。",
+            "after": "支持原件复核（2026-10-11）：新取得报告物理页20（印刷页16）在讨论实测性能和理论性能差距的上下文中称部分算力实测性能不足10%。保留10%为严格小于的上界与部分算力范围；不能作全国平均或GPU利用率。实测/理论比例是由邻句语境解释，该段未列精确公式、负载、精度、样本、观测年或地域，不宣称可跨配置直接比较。旧CN和as_of=2024由本次原件支持不足，不直接构成反证。本次PDF仅为新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。",
+            "status": "proposed_not_applied",
+            "reason": "以原文已支持的范围限定旧解释，并保留支持不足不直接反证、转引、上界及新支持原件身份边界。"
+          }
+        ],
+        "json_patch_format": "RFC 6902 against the single selected fact record; each changed field is guarded by a test operation. Also require before_record_sha256 to match before application.",
+        "record_patch": [
+          {
+            "op": "test",
+            "path": "/caliber/region",
+            "value": "CN"
+          },
+          {
+            "op": "replace",
+            "path": "/caliber/region",
+            "value": "未披露"
+          },
+          {
+            "op": "test",
+            "path": "/as_of",
+            "value": "2024"
+          },
+          {
+            "op": "replace",
+            "path": "/as_of",
+            "value": null
+          },
+          {
+            "op": "test",
+            "path": "/notes",
+            "value": "**「部分算力」而非全部，取 10 为上限**（原文「不足10%」）。口径=实测性能 ÷ 理论性能，衡量硬件标称算力有多少能真正兑现，**与 GPU 利用率不是一回事**（后者衡量卡有没有在忙，前者衡量忙的时候效率如何）。地域=中国，时点≈2024。"
+          },
+          {
+            "op": "replace",
+            "path": "/notes",
+            "value": "支持原件复核（2026-10-11）：新取得报告物理页20（印刷页16）在讨论实测性能和理论性能差距的上下文中称部分算力实测性能不足10%。保留10%为严格小于的上界与部分算力范围；不能作全国平均或GPU利用率。实测/理论比例是由邻句语境解释，该段未列精确公式、负载、精度、样本、观测年或地域，不宣称可跨配置直接比较。旧CN和as_of=2024由本次原件支持不足，不直接构成反证。本次PDF仅为新取得的支持原件，历史输入字节同一性未建立；不提升grade或depth。"
+          }
+        ],
+        "patch_dry_run_matches_after_record": true,
+        "patch_applied_to_facts": false,
+        "null_after_semantics": "JSON null in as_of intentionally means observation time not disclosed; it is a concrete proposed after value, not an unresolved placeholder.",
+        "schema_review_required": true,
+        "schema_requirements": [
+          {
+            "requirement": "allow_explicit_unknown_observation_time",
+            "proposed_value": null,
+            "current_schema_conflict": "data/schema/fact.schema.json currently requires as_of to be a date string; main review must decide schema/representation before applying."
+          }
+        ],
+        "application_eligible": false,
+        "application_gate": "Await main review, owner C3 A for rewriting existing conclusions, and any required schema/enum changes. This file alone grants no adoption or replacement.",
+        "must_preserve": [
+          "value=10.0",
+          "unit=%",
+          "bound=upper，并保留严格<的文字",
+          "部分算力限制",
+          "evidence.grade=S4",
+          "depth=精读",
+          "asserter=未注明"
+        ],
+        "do_not_bind_new_sha_as_historical_input": true
+      }
+    }
+  ],
+  "public_artifact_boundary": {
+    "source_identity_fields": "Only public publisher URL, SHA256, byte count, acquisition time, public report metadata and content-addressed logical identity are published.",
+    "historical_before_exception": "Complete historical before records are preserved verbatim; pre-existing evidence.local_file repository-relative historical paths may remain.",
+    "private_paths_or_full_runtime_receipts_included": false,
+    "logical_original_identity": "sha256:fa2ce6d9382b97169f8251bb486fb02be8889f00cdfcfb70a9723139d015a7a8"
+  }
+}

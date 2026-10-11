@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from inresearch.interfaces import deep_read as CLI
-from inresearch.knowledge import fact_contract as FC, provenance as PROV
+from inresearch.knowledge import fact_contract as FC, provenance as PROV, facts as FACTS
 from inresearch.paths import project_root as _project_root
 
 FC_ROOT = _project_root()
@@ -108,6 +108,110 @@ class ValidatorTests(unittest.TestCase):
         self.assertTrue(any('corroboration' in p for p in problems(fact(corroboration='应该对'))))
         light = fact(); del light['bound']; del light['corroboration']
         self.assertEqual(problems(light), [])
+
+
+class SupportOriginalIdentityTests(unittest.TestCase):
+    """The structural claim is checked; original bytes still need a real receipt."""
+
+    def evidence(self, **changes):
+        result = {
+            'sha256': SHA, 'grade': 'S2', 'locator': '物理第3页，表1',
+            'local_file': f'originals/{SHA[:2]}/{SHA}/报告（2024年）.pdf',
+            'identity_basis': 'reverified_support_original',
+            'historical_exact_input_identity': 'not_established',
+            'support_reviewed_at': '2026-10-11',
+        }
+        result.update(changes)
+        return result
+
+    def test_old_evidence_without_the_new_claim_keeps_its_path_contract(self):
+        for old_path in ('', '../legacy/report.pdf', '/older/library/report.pdf'):
+            old = {'sha256': SHA, 'grade': 'S2', 'locator': 'p.3', 'local_file': old_path}
+            self.assertEqual(problems(fact(evidence=old)), [], old_path)
+
+    def test_safe_unicode_names_and_ordinary_dots_are_not_directory_traversal(self):
+        for filename in ('20250712-申万宏源：REIT()申购价值分析(18页).pdf',
+                         '报价，版本（2024年）_final 2.pdf', 'report..v2.pdf', 'plain.txt'):
+            evidence = self.evidence(local_file=f'originals/{SHA[:2]}/{SHA}/{filename}')
+            self.assertEqual(problems(fact(evidence=evidence)), [], filename)
+        self.assertEqual(problems(fact(evidence=self.evidence(
+            support_reviewed_at='2024-02-29'))), [])
+
+    def test_every_required_field_is_checked_without_relying_on_a_schema_reader(self):
+        for field in ('identity_basis', 'historical_exact_input_identity', 'support_reviewed_at',
+                      'sha256', 'local_file', 'locator'):
+            evidence = self.evidence()
+            del evidence[field]
+            found = problems(fact(evidence=evidence))
+            self.assertTrue(any(field in message for message in found), (field, found))
+
+    def test_isolated_status_or_date_is_rejected_even_when_null_or_empty(self):
+        old = {'sha256': SHA, 'grade': 'S2', 'locator': 'p.3'}
+        for field, value in (('historical_exact_input_identity', 'not_established'),
+                             ('support_reviewed_at', '2026-10-11'),
+                             ('historical_exact_input_identity', None),
+                             ('support_reviewed_at', '')):
+            found = problems(fact(evidence={**old, field: value}))
+            self.assertTrue(any('identity_basis' in message for message in found),
+                            (field, value, found))
+
+    def test_wrong_basis_or_historical_identity_never_claims_exact_input_proof(self):
+        for basis in ('', 'historical_exact_input', None, False, []):
+            found = problems(fact(evidence=self.evidence(identity_basis=basis)))
+            self.assertTrue(any('identity_basis' in message for message in found), basis)
+        for status in ('established', 'verified', '', None, True, []):
+            found = problems(fact(evidence=self.evidence(historical_exact_input_identity=status)))
+            self.assertTrue(any('historical_exact_input_identity' in message for message in found),
+                            status)
+
+    def test_review_date_is_a_real_calendar_day_with_exact_date_precision(self):
+        invalid = ('2025-02-29', '2026-04-31', '2026-13-01', '2026-00-01', '0000-01-01',
+                   '20261011', '2026-1-01', '2026-10-11T12:00:00Z', '2026-10-11\n',
+                   '２０２６-１０-１１', '', None, True, 20261011, [])
+        for value in invalid:
+            found = problems(fact(evidence=self.evidence(support_reviewed_at=value)))
+            self.assertTrue(any('support_reviewed_at' in message for message in found), value)
+
+    def test_originals_path_must_match_the_same_sha_and_its_prefix(self):
+        other_sha = 'b' * 64
+        for path in (f'originals/bb/{SHA}/report.pdf',
+                     f'originals/{SHA[:2]}/{other_sha}/report.pdf'):
+            found = problems(fact(evidence=self.evidence(local_file=path)))
+            self.assertTrue(any('local_file' in message for message in found), path)
+        # str() coercion must not turn a numeric value into a qualified SHA identity.
+        numeric_sha = int('1' * 64)
+        found = problems(fact(evidence=self.evidence(
+            sha256=numeric_sha, local_file=f'originals/11/{numeric_sha}/report.pdf')))
+        self.assertTrue(any('sha256' in message for message in found))
+
+    def test_noncanonical_absolute_nested_or_unsafe_filename_paths_are_rejected(self):
+        prefix = f'originals/{SHA[:2]}/{SHA}/'
+        paths = ('/' + prefix + 'report.pdf', './' + prefix + 'report.pdf',
+                 prefix + '../report.pdf', prefix + './report.pdf',
+                 prefix + '/report.pdf', prefix + 'sub/report.pdf',
+                 prefix + '.', prefix + '..', prefix, prefix + '   ',
+                 prefix + 'report\\other.pdf', prefix + 'report\x00.pdf',
+                 prefix + 'report\n.pdf', prefix + 'report\x85.pdf',
+                 prefix + 'report\ud800.pdf', None, True, [])
+        for value in paths:
+            found = problems(fact(evidence=self.evidence(local_file=value)))
+            self.assertTrue(any('local_file' in message for message in found), repr(value))
+
+    def test_structure_validation_does_not_open_or_stat_an_original(self):
+        with patch('builtins.open', side_effect=AssertionError('unexpected original I/O')), \
+             patch.object(Path, 'exists', side_effect=AssertionError('unexpected original stat')), \
+             patch.object(Path, 'read_bytes', side_effect=AssertionError('unexpected original read')):
+            self.assertEqual(problems(fact(evidence=self.evidence())), [])
+
+    def test_stored_fact_audit_uses_the_same_support_metadata_contract(self):
+        for changes, expected in (({'historical_exact_input_identity': 'established'},
+                                   'historical_exact_input_identity'),
+                                  ({'support_reviewed_at': '2025-02-29'}, 'support_reviewed_at'),
+                                  ({'local_file': 'originals/aa/wrong/report.pdf'}, 'local_file')):
+            FACTS.validate([fact(evidence=self.evidence(**changes))], METRICS)
+            self.assertTrue(any(expected in error for error in FACTS.errors), changes)
+        FACTS.validate([fact(evidence=self.evidence())], METRICS)
+        self.assertEqual(FACTS.errors, [])
 
 
 class TemporalGrammarTests(unittest.TestCase):
@@ -416,7 +520,7 @@ class LiveFactLayerTests(unittest.TestCase):
         seen, failures = set(), {}
         for fact in self.records:
             problems = [p for p in FC.check_fact(fact, self.metrics, seen)
-                        if 'sha256' not in p]
+                        if not p.startswith('evidence.sha256 必须是 64 位十六进制')]
             if problems:
                 failures[fact['fact_id']] = problems
             seen.add(fact['fact_id'])
@@ -447,6 +551,204 @@ class LiveFactLayerTests(unittest.TestCase):
         """A fact's module comes from its metric; an unknown metric has no module."""
         for fact_row in self.records:
             self.assertIn(fact_row['metric_id'], self.metrics, fact_row['fact_id'])
+
+
+class HistoricalSupportAdoptionTests(unittest.TestCase):
+    """Pin the adopted corrections and their retained prior evidence, not a new reading."""
+
+    FACT_IDS = frozenset((
+        'reit-runze-occupancy-2025', 'langfang-market-occupancy-2025',
+        'runze-colo-price-2025', 'runze-power-cost-share-2024',
+        'runze-reit-price-2025', 'dc-reit-yield-2025',
+        'cn-dc-payback-2025', 'cn-dc-loan-share-2025',
+        'cn-10k-cluster-mfu-2024', 'h100-listed-range-2024',
+        'cn-cluster-fault-loc-2024', 'cn-checkpoint-req-2024',
+    ))
+    SOURCE_SHAS = frozenset((
+        'ea16fb001f06445185a61255bdc73b81b42fcad243b676217932108c491ad94e',
+        '86c07e8c9d708ec942700a7ada4a166aeed37a091170aeb6624210aa58a6727d',
+        'bbf6336d22dcb3a663811173cdf53d07b4c0e31c1184794d3ce636c1661148a0',
+        'e6c1de04f402dd727cb58db8a35d503e05d331a058a13440353349045604ea93',
+        'd372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00',
+    ))
+
+    @classmethod
+    def setUpClass(cls):
+        cls.root = L2.root
+        cls.review_dir = cls.root / 'docs/reviews/2026-10-11/research-remediation'
+        cls.proposal = json.loads((cls.review_dir /
+            'historical-fact-adoption-proposal.json').read_text(encoding='utf-8'))
+        cls.receipt = json.loads((cls.review_dir /
+            'historical-fact-owner-adoption-receipt.json').read_text(encoding='utf-8'))
+        cls.adoptions = {r['fact_id']: r for r in cls.receipt['records']}
+        cls.live = {r['fact_id']: r for r in L2.load_facts()['records']}
+        cls.metrics = L2.load_metrics()
+
+    def test_owner_adoption_is_bound_to_the_exact_proposal_and_not_backdated(self):
+        self.assertEqual(set(self.adoptions), self.FACT_IDS)
+        self.assertEqual(self.receipt['records'], self.proposal['records'])
+        self.assertEqual(self.receipt['status'], 'owner_adopted_applied')
+        self.assertTrue(self.receipt['applied'])
+        auth = self.receipt['authorization']
+        self.assertEqual((auth['tier'], auth['authority'], auth['decision']),
+                         ('A', 'owner', 'adopted'))
+        self.assertEqual(auth['owner_answer_verbatim'],
+                         '采用这12条具体更正并继续验收上线（推荐）')
+        self.assertEqual(auth['authorized_on'], '2026-10-11')
+        self.assertEqual(auth['authorization_date_precision'], 'day')
+        self.assertFalse(auth['exact_authorization_timestamp_established'])
+        self.assertFalse(auth['owner_original_reading_claimed'])
+        self.assertEqual(self.receipt['research_review']['by'], 'Codex')
+        self.assertFalse(self.receipt['application']['production_deployment_claimed'])
+        for key in ('adoption_proposal', 'source_review'):
+            bound = self.receipt['bound_inputs'][key]
+            self.assertEqual(hashlib.sha256((self.root / bound['path']).read_bytes()).hexdigest(),
+                             bound['file_sha256'])
+        # Preserve the proposal's actual historical state rather than rewriting approval into it.
+        self.assertEqual(self.proposal['status'], 'pending_owner_adoption')
+        self.assertFalse(self.proposal['applied'])
+        review = json.loads((self.review_dir /
+            'historical-fact-source-review.json').read_text(encoding='utf-8'))
+        self.assertEqual(review['status'], 'proposed')
+        self.assertFalse(review['applied'])
+
+    def test_every_complete_prior_version_is_retained_and_live_equals_adopted_after(self):
+        for fid, adoption in self.adoptions.items():
+            with self.subTest(fact_id=fid):
+                before, after = adoption['before_record'], adoption['after_record']
+                self.assertEqual(PROV.digest(before), adoption['before_record_sha256'])
+                self.assertEqual(PROV.digest(after), adoption['after_record_sha256'])
+                self.assertEqual(self.live[fid], after)
+                self.assertEqual(before['fact_id'], fid)
+                self.assertEqual(after['fact_id'], fid)
+                self.assertNotIn('sha256', before['evidence'])
+                self.assertEqual(FC.check_fact(after, self.metrics, set()), [])
+                for field in ('as_of', 'depth', 'sensitive', 'corroboration', 'asserter'):
+                    self.assertEqual(before.get(field), after.get(field), field)
+                self.assertEqual(before['evidence']['grade'], after['evidence']['grade'])
+
+    def test_current_support_identity_has_exact_sha_relative_location_and_review_date(self):
+        for fid, adoption in self.adoptions.items():
+            with self.subTest(fact_id=fid):
+                evidence = self.live[fid]['evidence']
+                digest = evidence['sha256']
+                self.assertIn(digest, self.SOURCE_SHAS)
+                self.assertEqual(digest, adoption['source_sha256'])
+                self.assertTrue(evidence['local_file'].startswith(
+                    f'originals/{digest[:2]}/{digest}/'))
+                self.assertFalse(Path(evidence['local_file']).is_absolute())
+                self.assertTrue(evidence['locator'].strip())
+                self.assertEqual(evidence['identity_basis'], 'reverified_support_original')
+                self.assertEqual(evidence['historical_exact_input_identity'], 'not_established')
+                self.assertEqual(evidence['support_reviewed_at'], '2026-10-11')
+                self.assertTrue(adoption['physical_evidence'])
+                for quote in adoption['physical_evidence']:
+                    self.assertEqual(quote['physical_page'], quote['page_index'] + 1)
+                    self.assertTrue(quote['quote'].strip())
+                    self.assertTrue(quote['locator_label'].strip())
+
+    def test_published_ranges_change_missing_output_to_an_explicit_interval(self):
+        cases = {
+            'cn-dc-payback-2025': ([8, 10], '8–10'),
+            'h100-listed-range-2024': ([2, 13], '2–13'),
+            'cn-cluster-fault-loc-2024': ([1, 2], '1–2'),
+        }
+        for fid, (expected, display) in cases.items():
+            with self.subTest(fact_id=fid):
+                adoption = self.adoptions[fid]
+                before, after = adoption['before_record'], self.live[fid]
+                self.assertIsNone(after['value'])
+                self.assertEqual(after['value_range'], expected)
+                self.assertNotIn('value_range', before)
+                self.assertIn('未披露（留白）', FACTS.public_view(
+                    before, self.metrics[before['metric_id']], 2026))
+                text = FACTS.public_view(after, self.metrics[after['metric_id']], 2026)
+                self.assertIn(display, text)
+                self.assertNotIn('未披露（留白）', text)
+
+    def test_project_and_technical_claims_keep_their_adopted_boundaries(self):
+        occupancy = self.live['reit-runze-occupancy-2025']
+        self.assertEqual((occupancy['value'], occupancy['bound']), (99.0, 'point'))
+        self.assertIn('2022年95.90%', occupancy['notes'])
+        self.assertIn('2025Q1 99.00%', occupancy['notes'])
+        mfu = self.live['cn-10k-cluster-mfu-2024']
+        self.assertEqual((mfu['value'], mfu['bound'], mfu['caliber']['region']),
+                         (40.0, 'upper', '未披露'))
+        checkpoint = self.live['cn-checkpoint-req-2024']
+        self.assertEqual(checkpoint['value'], 10.0)
+        self.assertEqual(checkpoint['caliber'], {'side': '需求门槛', 'region': '未披露'})
+        self.assertIn('未来万亿模型', checkpoint['entity']['label'])
+        self.assertIn('不是所有当前大模型的通用门槛', checkpoint['notes'])
+        fault = self.live['cn-cluster-fault-loc-2024']
+        self.assertEqual(fault['caliber']['scope'], '仅定位')
+        self.assertEqual(fault['caliber']['region'], '未披露')
+        loan = self.live['cn-dc-loan-share-2025']
+        self.assertEqual(loan['value'], 70.0)
+        self.assertEqual(loan['caliber']['basis'], '计划投资')
+        self.assertIn('光环新网', loan['entity']['label'])
+        self.assertIn('通州', loan['evidence']['locator'])
+        self.assertIn('49%', loan['evidence']['locator'])
+        self.assertNotIn('中国移动', loan['evidence']['locator'])
+
+    def test_normalized_price_and_forecast_financial_basis_are_explicit(self):
+        price = self.live['runze-colo-price-2025']
+        self.assertEqual(price['value'], 1072.0)
+        self.assertEqual(price['caliber']['pricing_basis'], '按功率')
+        self.assertTrue(price['derived'])
+        self.assertEqual(round(7547 / 7.04), price['value'])
+        self.assertIn('7547元/月/柜 ÷ 7.04kW/柜', price['derivation'])
+        self.assertIn('不表示当前合同实际按功率结算', price['notes'])
+        issue = self.live['runze-reit-price-2025']
+        self.assertEqual(issue['value'], 4.5)
+        self.assertIn('不是已完成实募回执', issue['notes'])
+        self.assertIn('不等于询价上限4.531', issue['notes'])
+        distribution = self.live['dc-reit-yield-2025']
+        self.assertEqual(distribution['value'], 7.71)
+        self.assertIn('100%分配', distribution['notes'])
+        self.assertIn('评估价值37.25亿元', distribution['notes'])
+        self.assertIn('均不是已实现分派', distribution['notes'])
+
+    def test_support_hash_debt_and_historical_input_identity_are_separate(self):
+        count = self.receipt['counting']
+        self.assertEqual((count['current_missing_support_sha_before'],
+                          count['current_missing_support_sha_after']), (37, 25))
+        self.assertEqual(count['current_reverified_support_bindings_added'], 12)
+        self.assertEqual(count['historical_exact_input_identity_not_established_after'], 37)
+        self.assertEqual(count['historical_exact_original_input_bytes_proven'], 0)
+        original = set(count['original_37_fact_ids'])
+        remaining = set(count['remaining_25_missing_support_sha_fact_ids'])
+        self.assertEqual(len(original), 37)
+        self.assertEqual(len(remaining), 25)
+        self.assertEqual(original - remaining, self.FACT_IDS)
+        self.assertTrue(remaining.isdisjoint(self.FACT_IDS))
+        self.assertEqual(self.receipt['not_adopted']['fact_count'], 6)
+        other = json.loads((self.root / self.receipt['not_adopted']['path'])
+                           .read_text(encoding='utf-8'))
+        other_ids = {r['fact_id'] for r in other['records']}
+        self.assertEqual(len(other_ids), 6)
+        self.assertTrue(other_ids.isdisjoint(self.FACT_IDS))
+        self.assertTrue(other_ids <= remaining)
+
+    def test_schema_defines_qualified_reverification_without_historical_byte_proof(self):
+        schema = json.loads((self.root / 'data/schema/fact.schema.json')
+                            .read_text(encoding='utf-8'))
+        evidence = schema['properties']['evidence']
+        properties = evidence['properties']
+        self.assertEqual(properties['identity_basis']['enum'], ['reverified_support_original'])
+        self.assertEqual(properties['historical_exact_input_identity']['enum'], ['not_established'])
+        self.assertEqual(properties['support_reviewed_at']['format'], 'date')
+        self.assertEqual(evidence['dependentRequired']['historical_exact_input_identity'],
+                         ['identity_basis'])
+        self.assertEqual(evidence['dependentRequired']['support_reviewed_at'], ['identity_basis'])
+        conditional = evidence['allOf'][0]
+        self.assertEqual(conditional['if']['required'], ['identity_basis'])
+        required = conditional['then']['required']
+        for field in ('sha256', 'local_file', 'locator', 'historical_exact_input_identity',
+                      'support_reviewed_at'):
+            self.assertIn(field, required)
+        pattern = conditional['then']['properties']['local_file']['pattern']
+        for fid in self.FACT_IDS:
+            self.assertRegex(self.live[fid]['evidence']['local_file'], pattern)
 
 
 class MenuTests(unittest.TestCase):
@@ -1140,7 +1442,7 @@ class RangeCaliberTests(unittest.TestCase):
             if not fact.get('bound'):
                 continue
             problems = [p for p in FC.check_fact(fact, metrics, set(), None)
-                        if 'sha256' not in p]
+                        if not p.startswith('evidence.sha256 必须是 64 位十六进制')]
             self.assertEqual(problems, [], fact['fact_id'])
 
 

@@ -1,6 +1,8 @@
 """Fact acceptance rules; no machine paths, model calls or writes."""
 from __future__ import annotations
 import re, math
+import unicodedata
+from datetime import date
 
 
 GRADES = ('S1', 'S2', 'S3', 'S4', 'S5')
@@ -217,6 +219,48 @@ def same_submission(stored: dict | None, incoming: dict) -> bool:
 
 
 
+def _support_identity_problems(evidence: dict) -> list[str]:
+    """Validate qualified support metadata, without accessing an original file."""
+    fields = ('identity_basis', 'historical_exact_input_identity', 'support_reviewed_at')
+    if not any(field in evidence for field in fields):
+        return []  # Existing evidence does not acquire a new provenance claim.
+    if evidence.get('identity_basis') != 'reverified_support_original':
+        return ['evidence.identity_basis 必须为 reverified_support_original；'
+                '历史身份状态或复核日期不能孤立登记']
+
+    bad = []
+    if evidence.get('historical_exact_input_identity') != 'not_established':
+        bad.append('evidence.historical_exact_input_identity 必须为 not_established；'
+                   '当前支持再核验不证明历史原输入字节')
+    reviewed = evidence.get('support_reviewed_at')
+    valid_date = isinstance(reviewed, str) and re.fullmatch(
+        r'[0-9]{4}-[0-9]{2}-[0-9]{2}', reviewed)
+    if valid_date:
+        try:
+            date.fromisoformat(reviewed)
+        except ValueError:
+            valid_date = False
+    if not valid_date:
+        bad.append('evidence.support_reviewed_at 必须是实际合法的 YYYY-MM-DD 日期')
+
+    sha = evidence.get('sha256')
+    if not isinstance(sha, str):
+        bad.append('evidence.sha256 在支持再核验时必须是64位十六进制字符串')
+    path = evidence.get('local_file')
+    parts = path.split('/') if isinstance(path, str) else []
+    safe_name = (len(parts) == 4 and bool(parts[3].strip())
+                 and parts[3] not in {'.', '..'} and '\\' not in parts[3]
+                 and not any(unicodedata.category(char) in {'Cc', 'Cs'}
+                             for char in parts[3]))
+    valid_path = (isinstance(sha, str) and re.fullmatch(r'[0-9a-f]{64}', sha)
+                  and safe_name and parts[:3] == ['originals', sha[:2], sha])
+    if not valid_path:
+        bad.append('evidence.local_file 必须是与 sha256 相符的相对路径 '
+                   'originals/{sha[:2]}/{sha}/{单层安全文件名}；'
+                   '不得含绝对路径、目录跳转、反斜杠或控制字符')
+    return bad
+
+
 def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None) -> list[str]:
     bad = []
     fid = fact.get('fact_id')
@@ -280,6 +324,7 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
         sha = str(ev.get('sha256') or '')
         if not re.fullmatch(r'[0-9a-f]{64}', sha):
             bad.append('evidence.sha256 必须是 64 位十六进制——路径会变，内容不会')
+        bad.extend(_support_identity_problems(ev))
 
     asserter = str(fact.get('asserter') or '').strip()
     if not asserter:

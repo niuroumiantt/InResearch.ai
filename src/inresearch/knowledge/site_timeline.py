@@ -61,7 +61,7 @@ def check(observation):
             _number(value)
     # IT headline and phase breakdown form one bundle: explicit clearing prevents
     # a later headline from accidentally adding to a legacy phase breakdown.
-    if 'capacity_it_mw' in fields or 'capacity_it_mw_by_status' in fields:
+    if {'capacity_it_mw', 'capacity_it_mw_by_status', 'capacity_assessment'} & fields.keys():
         if not {'capacity_it_mw', 'capacity_it_mw_by_status', 'capacity_assessment'} <= fields.keys():
             raise ValueError('site_observation_capacity_bundle_required')
         if fields['capacity_it_mw'] is not None and fields['capacity_it_mw_by_status']:

@@ -47,8 +47,8 @@ def change_marker(data, state, repo):
 
 
 def post_snapshot(request):
-    """Retry short deployment/transport interruptions within one 120-second budget."""
-    deadline = time.monotonic() + 120
+    """Retry short deployment/transport interruptions within one bounded 240-second budget."""
+    deadline = time.monotonic() + 240
     for attempt in range(1, 4):
         try:
             with urllib.request.build_opener(NoRedirect).open(request, timeout=max(.1, deadline - time.monotonic())) as response:

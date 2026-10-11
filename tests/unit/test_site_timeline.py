@@ -44,6 +44,18 @@ class SiteTimelineTests(unittest.TestCase):
         bad=self.observation(location='different block')
         with self.assertRaisesRegex(ValueError,'fields'):site_timeline.append(row,bad)
 
+    def test_assessment_only_update_is_rejected_and_preserves_operating_baseline(self):
+        from inresearch.knowledge.industry import project
+        baseline={'site_id':'fixed-land', 'status':'L8', 'capacity_it_mw':200,
+                  'capacity_it_mw_by_status':{}, 'capacity_assessment':None}
+        before=copy.deepcopy(baseline)
+        observation=self.observation(capacity_assessment={'kind':'estimate'})
+        with self.assertRaisesRegex(ValueError,'capacity_bundle_required'):
+            site_timeline.append(baseline,observation)
+        self.assertEqual(baseline,before)
+        self.assertEqual(site_timeline.current(baseline,'2026-10-11')['capacity_it_mw'],200)
+        self.assertEqual(project(baseline)['capacity']['operating'],200)
+
     def test_source_paths_and_review_private_data_are_not_public(self):
         observation=self.observation();observation['adoption']['private_path']='/secret'
         observation['sources']=[{'url':'https://example.org/original','private_path':'/secret'}]

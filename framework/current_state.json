@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.87",
+  "version": "2026.10.11.89",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -134,14 +134,18 @@
         "src/inresearch/workflow/project_review.py",
         "tests/unit/test_site_timeline.py",
         "tests/unit/test_project_review.py",
-        "src/inresearch/knowledge/news_observations.py"
+        "src/inresearch/knowledge/news_observations.py",
+        "data/schema/fact.schema.json",
+        "src/inresearch/knowledge/fact_contract.py",
+        "tests/unit/test_fact_contract.py",
+        "docs/reviews/2026-10-11/research-remediation/historical-fact-owner-adoption-receipt.json"
       ],
       "supersedes": [
         "data-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。；2026-10-11补充正式/raw两层；多角度完成度与具名采用分开，报道可展示但不自动汇总或按字段数晋级。",
-      "implementation_revision": "2026.10.11.86",
-      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。；2026-10-11公开原文复核撤回Citadel/Dulles无依据IT单值及Citadel未注明角度设施单值，三篇发布日期更正，完整旧记录与来源冲突审计保留；168条专题台账不自动形成正式采用。；用户采用动态对象/观测、合理估算与最新有效时点方向；本批实现Abilene历史估算保留、质量校验与行业展示。逐指标写入和周期跟踪仍待实现，不以规范冒充运行。; User-directed stable physical site identity and append-only time observations, latest effective-date projection, scoped rounding/derivation, actor changes, inactive supply separation and homepage tracking. Old project age requests refresh instead of breaking strict validation. Periodic end-to-end automation remains unverified."
+      "implementation_revision": "2026.10.11.89",
+      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。；2026-10-11公开原文复核撤回Citadel/Dulles无依据IT单值及Citadel未注明角度设施单值，三篇发布日期更正，完整旧记录与来源冲突审计保留；168条专题台账不自动形成正式采用。；用户采用动态对象/观测、合理估算与最新有效时点方向；本批实现Abilene历史估算保留、质量校验与行业展示。站点级追加观测与有效日选择已在后续.86实现；通用跨指标写入/选择与真实周期跟踪仍待验，不以规范冒充运行。; User-directed stable physical site identity and append-only time observations, latest effective-date projection, scoped rounding/derivation, actor changes, inactive supply separation and homepage tracking. Old project age requests refresh instead of breaking strict validation. Periodic end-to-end automation remains unverified.；.87整合复审修正assessment-only更新清空旧IT容量：三字段任一更新均要求原子束，原投运基线保留。；所有者精确采用12份历史事实after：区间、主体、推导与预测边界修正，当前支持再核验身份与历史原输入同一性分开；完整before/after和答复保留，未提升原grade/depth/as_of。"
     },
     {
       "id": "knowledge-legacy",
@@ -359,14 +363,16 @@
         "src/inresearch/delivery/runtime_summary.py",
         "tests/unit/test_runtime_summary.py",
         "src/inresearch/workflow/reader_priority.py",
-        "tests/unit/test_reader_priority.py"
+        "tests/unit/test_reader_priority.py",
+        "src/inresearch/workflow/commands.py",
+        "deploy/spark-reader/inresearch-reader-publish.service"
       ],
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/300秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09公开仓库恢复复审：按精确审核SHA查询全部分页check runs，拒绝PR上一版汇总、异SHA结果和新head未注册/运行中检查，防止推送后过早合并。；2026-10-09显式local固定检查回执/精确同源300秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。",
-      "implementation_revision": "2026.10.11.85",
-      "change_reason": "补充具名原件的在线调度CAS与幂等审计，避免同优先级积压阻碍用户明确任务；仅提高执行顺序，冻结任务、原件、job预算、importance/C3与唯一worker保持。"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/420秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09公开仓库恢复复审：按精确审核SHA查询全部分页check runs，拒绝PR上一版汇总、异SHA结果和新head未注册/运行中检查，防止推送后过早合并。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。",
+      "implementation_revision": "2026.10.11.87",
+      "change_reason": "补充具名原件的在线调度CAS与幂等审计，避免同优先级积压阻碍用户明确任务；仅提高执行顺序，冻结任务、原件、job预算、importance/C3与唯一worker保持。；2026-10-11实际首页发布发现source/control长失配与180秒预算提前杀调用方；先构建完整有效组、双control槽按真实物理身份恢复安装，并将唯一既有publisher总预算420秒覆盖导出与240秒有界网络；不新增队列或放宽采用。"
     },
     {
       "id": "change_management-legacy",
@@ -748,14 +754,12 @@
         "tests/unit/test_ocr_worker_resume.py",
         "src/inresearch/materials/source_provenance.py",
         "src/inresearch/workflow/research_sources.py",
-        "tests/unit/test_research_sources.py",
-        "src/inresearch/workflow/quantitative_review.py",
-        "tests/unit/test_quantitative_review.py"
+        "tests/unit/test_research_sources.py"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。；2026-09-27 ocr-worker 只上传页结果，不再在 Spark 上 retry；OCR 阻塞文档由运行中的 reader 自动重新排队。；2026-09-27 ocr-worker 失败时上传已完成页并写明失败页，重跑跳过 Spark 上同一内容已有的页。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-11定向参数观测/计算保留原类型，经逐项范围/单位/时间/推导检查与全部独立复核追加来源支持；不认证模型输入，不改旧事实。",
+      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。；2026-09-27 ocr-worker 只上传页结果，不再在 Spark 上 retry；OCR 阻塞文档由运行中的 reader 自动重新排队。；2026-09-27 ocr-worker 失败时上传已完成页并写明失败页，重跑跳过 Spark 上同一内容已有的页。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。",
       "implementation_revision": "2026.10.09.15"
     },
     {
@@ -803,7 +807,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-21",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；2026-10-09显式local固定检查回执/精确同源300秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；2026-10-11定向参数观测/计算保留原类型，经逐项范围/单位/时间/推导检查与全部独立复核追加来源支持；不认证模型输入，不改旧事实。；新快照/运行视图准备后短锁激活，慢准备保留旧完整接收；失败与跨rename崩溃边界保留。；合并前复审：新定量采用在最终checkout重验原侧车请求及当前定义SHA，独立调用全样本契约绑定，历史审计/已采用重放兼容；运行视图符号链接拒读保持待重建。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；定向参数观测/计算以当前定义SHA冻结任务、六项定量检查和逐条独立复核追加来源支持，不认证模型输入。最终checkout重验原侧车需求及完整契约；独立第二调用绑定全样本包，历史审计/已采用重放保持。快照交接复用主线#697唯一准备槽实现。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -920,9 +924,12 @@
         "src/inresearch/workflow/reader_priority.py",
         "tests/unit/test_reader_priority.py",
         "src/inresearch/workflow/quantitative_review.py",
-        "tests/unit/test_quantitative_review.py"
+        "tests/unit/test_quantitative_review.py",
+        "src/inresearch/workflow/site_tracking.py",
+        "tests/unit/test_site_tracking.py",
+        "tests/unit/test_site_tracking_sources.py"
       ],
-      "implementation_revision": "2026.10.11.87",
+      "implementation_revision": "2026.10.11.89",
       "change_reason": "补充具名原件的在线调度CAS与幂等审计，避免同优先级积压阻碍用户明确任务；仅提高执行顺序，冻结任务、原件、job预算、importance/C3与唯一worker保持。"
     },
     {
@@ -1630,13 +1637,17 @@
         "src/inresearch/materials/demand_bindings.py",
         "tests/unit/test_demand_bindings.py",
         "src/inresearch/workflow/reader_priority.py",
-        "tests/unit/test_reader_priority.py"
+        "tests/unit/test_reader_priority.py",
+        "src/inresearch/workflow/site_tracking.py",
+        "src/inresearch/workflow/research_review.py",
+        "tests/unit/test_site_tracking.py",
+        "tests/unit/test_site_tracking_sources.py"
       ],
       "supersedes": [
         "acquisition-daily-20261006"
       ],
-      "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。",
-      "implementation_revision": "2026.10.11.85",
+      "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。",
+      "implementation_revision": "2026.10.11.89",
       "change_reason": "补充具名原件的在线调度CAS与幂等审计，避免同优先级积压阻碍用户明确任务；仅提高执行顺序，冻结任务、原件、job预算、importance/C3与唯一worker保持。"
     },
     {
@@ -2092,8 +2103,8 @@
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
-      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；2026-10-11定向参数观测/计算保留原类型，经逐项范围/单位/时间/推导检查与全部独立复核追加来源支持；不认证模型输入，不改旧事实。；合并前复审：新定量采用在最终checkout重验原侧车请求及当前定义SHA，独立调用全样本契约绑定，历史审计/已采用重放兼容；运行视图符号链接拒读保持待重建。",
-      "implementation_revision": "2026.10.11.87",
+      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；定向参数观测/计算以当前定义SHA冻结任务、六项定量检查和逐条独立复核追加来源支持，不认证模型输入。最终checkout重验原侧车需求及完整契约；独立第二调用绑定全样本包，历史审计/已采用重放保持。快照交接复用主线#697唯一准备槽实现。",
+      "implementation_revision": "2026.10.11.89",
       "change_reason": "补充具名原件的在线调度CAS与幂等审计，避免同优先级积压阻碍用户明确任务；仅提高执行顺序，冻结任务、原件、job预算、importance/C3与唯一worker保持。"
     },
     {
@@ -3894,8 +3905,8 @@
         "interface-repository-daily-20261008"
       ],
       "reason": "用户要求首页整体图景和每日变化，替代隐藏新闻机会汇总及容量观察仅明细可见的限制；正式研究/raw两层、168条公开专题提取可见、重点公司、报道口径与地理粒度、轻量投影和新闻独立展示。正式C3和原件边界保持；生产部署与全球覆盖另验。",
-      "implementation_revision": "2026.10.11.85",
-      "change_reason": "2026-10-11 用户授权 R1/R2：在稳定父目标下细化17项参数需求和来源责任，审核支持/线索用途，服务端执行范围/问题/派工校验；缺口只读派生，容量未知与情景边界明确，原件哈希和研究采用不伪造。；2026-10-11用户授权研究直接网站更新：在成果目录内追加容量专题及168条筛选台账，精确公开5HTML/2JSON、共享字体外观与真实权限/浏览器验收，独立于Reader接收和正式事实采用。；新增只读main发布HTTP/SHA回执作业，固定生产域名与8分钟期限，不触碰服务器或扩大凭据。"
+      "implementation_revision": "2026.10.11.87",
+      "change_reason": "2026-10-11 用户授权 R1/R2：在稳定父目标下细化17项参数需求和来源责任，审核支持/线索用途，服务端执行范围/问题/派工校验；缺口只读派生，容量未知与情景边界明确，原件哈希和研究采用不伪造。；2026-10-11用户授权研究直接网站更新：在成果目录内追加容量专题及168条筛选台账，精确公开5HTML/2JSON、共享字体外观与真实权限/浏览器验收，独立于Reader接收和正式事实采用。；新增只读main发布HTTP/SHA回执作业，固定生产域名与8分钟期限，不触碰服务器或扩大凭据。；实机验收后隔离首页与完整研究的构建锁，输入不变复用投影但重算陈旧状态，新闻接收与运行同步分别标注。"
     }
   ],
   "entrypoints": [

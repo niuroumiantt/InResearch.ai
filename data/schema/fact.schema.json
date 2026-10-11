@@ -80,7 +80,7 @@
         },
         "local_file": {
           "type": "string",
-          "description": "库内路径，便于回原文查"
+          "description": "库内相对路径，便于回原文查；重新核验支持原件使用已核验的资料根相对 originals/ 路径，不写私有绝对路径。路径存在与内容 SHA 一致须另有实际核验回执。"
         },
         "locator": {
           "type": "string",
@@ -104,10 +104,69 @@
         "sha256": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$",
-          "description": "原文的内容哈希。**这是出处的身份**——路径会随归档、改名、换机器而变，内容不会。local_file 只是方便打开的线索，对不上时以 sha256 为准。"
+          "description": "所绑定支持原件的内容哈希。**这是当前支持出处的身份**——路径会随归档、改名、换机器而变，内容不会。local_file 只是方便打开的线索，对不上时以 sha256 为准。当前重新核验匹配原件的 SHA 不自动证明它与历史输入/下载字节相同；该情形须同时登记 identity_basis、historical_exact_input_identity 和 support_reviewed_at。"
+        },
+        "identity_basis": {
+          "type": "string",
+          "enum": [
+            "reverified_support_original"
+          ],
+          "description": "reverified_support_original = 对现存原件实际核对内容 SHA、路径、页码和原文语义后，重新绑定当前支持出处；不能仅凭文件名/标题/数字相似填入，不能冒充已证明历史输入的同一字节。涉及既有结论更正仍须具名 C3 A/owner 采用并保留完整 before/after。"
+        },
+        "historical_exact_input_identity": {
+          "type": "string",
+          "enum": [
+            "not_established"
+          ],
+          "description": "not_established = 未建立与原历史输入字节的同一性。当前支持 SHA 已补齐可减少当前缺支持哈希数，但不减少对应历史原输入身份未建立数；不能把当前内容匹配或相同标题视为历史字节证明。"
+        },
+        "support_reviewed_at": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "当前支持原件完成原文复核的实际日期（YYYY-MM-DD），不是原件发表日、事实有效时点 as_of、抓取时间或所有者授权的精确时刻。仅知日期不得补造时分秒；此字段不提升 grade、depth、corroboration 或刷新 as_of。"
         }
       },
-      "description": "出处。sha256 定身份，locator 定位置——两者合起来才能让人翻回去核对那一个数。"
+      "dependentRequired": {
+        "historical_exact_input_identity": [
+          "identity_basis"
+        ],
+        "support_reviewed_at": [
+          "identity_basis"
+        ]
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "identity_basis": {
+                "const": "reverified_support_original"
+              }
+            },
+            "required": [
+              "identity_basis"
+            ]
+          },
+          "then": {
+            "required": [
+              "sha256",
+              "local_file",
+              "locator",
+              "historical_exact_input_identity",
+              "support_reviewed_at"
+            ],
+            "properties": {
+              "local_file": {
+                "pattern": "^originals/[0-9a-f]{2}/[0-9a-f]{64}/[^/]+$"
+              },
+              "locator": {
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ],
+      "description": "出处。sha256 定当前支持原件身份，locator 定位置——两者合起来才能让人翻回去核对那一个数。当前支持再核验与历史原输入字节同一性分别登记、分别计数。"
     },
     "depth": {
       "type": "string",

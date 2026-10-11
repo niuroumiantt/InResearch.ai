@@ -11,10 +11,11 @@ EnvironmentFile=-%h/.config/inresearch.ai/publish.env
 ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py publish --if-changed
 UMask=0077
 Nice=15
-TimeoutStartSec=180
-# Every run before 2026-09-18 burned the full 180 s of CPU and was killed: the
-# export re-read and re-hashed all 32,734 reports each time. The projection cache
-# fixes that; these keep a future regression from spending the machine on it.
+TimeoutStartSec=420
+# Export/preparation precedes a bounded 240 s HTTPS retry budget.
+# A 2026-10-11 128 MB receipt exceeded the old 120 s network budget while
+# the receiver was still constructing its verified view under CPU contention.
+# Retain the former 180 s preparation allowance; resource limits remain below.
 CPUQuota=200%
 MemoryMax=4G
 TasksMax=64
