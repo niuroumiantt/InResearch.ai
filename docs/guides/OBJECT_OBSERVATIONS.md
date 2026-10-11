@@ -27,8 +27,8 @@ flowchart LR
 
 运行数据放在现有资料根，不将原件或SQLite提交到Git。
 
-1. 针对归档JSON制定选择器计划：原件SHA、唯一对象、字段JSON Pointer、口径和已知时间。运行 `python3 manage.py object-extract --plan PLAN.json --data DATA_ROOT --output CANDIDATES.json`。提取使用Python标准库，无模型调用，不产生采用。
-2. 对JSON或已定位的原生HTML/PDF页运行 `python3 manage.py object-review prepare --input CANDIDATES.json --data DATA_ROOT --output PROPOSAL.json`。入口重核真实原件、定位、相关上下文及首次接收记录，冻结审核版本。
+1. 针对归档JSON/XLSX制定选择器计划：原件SHA、唯一对象、字段JSON Pointer、口径和已知时间。运行 `python3 manage.py object-extract --plan PLAN.json --data DATA_ROOT --output CANDIDATES.json`。提取使用Python标准库，无模型调用，不产生采用。
+2. 对JSON、XLSX或已定位的原生HTML/PDF页运行 `python3 manage.py object-review prepare --input CANDIDATES.json --data DATA_ROOT --output PROPOSAL.json`。入口重核真实原件、定位、相关上下文及首次接收记录，冻结审核版本。
 3. 实际审核者检查主体、值、表头/脚注、单位、工况、时间和冲突，填写现行C3记录；允许公开的字段同时明确 `public_fields_reviewed=true`。普通新增批次不重复要求所有者确认；替代旧结论和放宽受限分发仍遵守01。
 4. `python3 manage.py object-review apply --input PROPOSAL.json --data DATA_ROOT` 在锁内复验原件和冻结版本、CAS追加 `data/object_observations.json`。完全相同的提案重放不重复计数、不刷新接收/写入时间。
 5. 通过严格校验、registry、治理与相应测试后按原单一发布队列部署，核正式镜像内数据与公网实际返回。
@@ -49,3 +49,10 @@ Spark归档实际核验13份原件，采用81条：68条产品规格、3条公�
 
 
 归档HTML若将规格内联保存在iframe[srcdoc]，可用`html:srcdoc:N`（从1开始，仅计带srcdoc的iframe）定位相关片段。标准库解析属性转义及内层文本，不执行JavaScript、不访问外部iframe；大小/定位/空白内容拒绝。原始HTML字节SHA和选定文本上下文SHA同时冻结，逐条引文须存在于所选片段。普通正文及PDF继续用原页定位；这不是全文阅读完成，也不授予模型支持。表格列、额定条件、脚注及公开资格仍须具名审核。
+
+
+## 原生表格字段接入
+
+原生XLSX逐条采用：xlsx:sheet:N:cell:C2:context:A1:E3精确定位，冻结表名、原始单元格/类型、日期系统、合并表头与脚注上下文；不执行公式/宏、不访问外链，选中公式缓存或错误值拒绝。提取保留原始值，数字等值复验不改单位或拆分组合型号；具名C3、来源身份、首次接收、CAS、无写重放和公开字段清单保持。此能力不证明三份HBM汇总已核实或采用。
+
+`object-extract` 的 XLSX 计划使用 `fields[].locator`（JSON 仍使用 `pointer`）。例如 `xlsx:sheet:1:cell:C2:context:A1:E3`：工作表按原件次序从1开始，C2为值，A1:E3为本次审核矩形。范围须包含字段、相关表头/单位和脚注；合并表头不得被切断。最多4096格，归档字节20MB、解压总量50MB，超限选择更小资料或保留线索。日期序列号不自动解释为披露/观测时间。固定提取只生成候选，范围、预测假设、来源发行者与唯一对象仍逐条审核；缺少真实出处的二手表不靠文件名补造来源。
