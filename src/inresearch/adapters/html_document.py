@@ -84,3 +84,38 @@ def extract(path: Path, limit: int = 5_000_000):
     truncated = len(text) > limit
     return text[:limit], {"title": " ".join("".join(parser.title).split())[:500],
                           "method": "stdlib_html_semantic_v1", "characters": len(text), "truncated": truncated}
+
+
+def srcdoc(path: Path, index: int, limit: int = 2_000_000):
+    """Read one archived inline iframe, without scripts or external requests.
+
+    The locator is one-based in document order, counting only iframe[srcdoc].
+    Raw source SHA and the selected extracted context are frozen by object_review.
+    """
+    class Frames(HTMLParser):
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.frames = []
+        def handle_starttag(self, tag, attrs):
+            if tag == 'iframe':
+                attrs = dict(attrs)
+                if 'srcdoc' in attrs:
+                    self.frames.append(attrs['srcdoc'] or '')
+        handle_startendtag = handle_starttag
+    if path.suffix.lower() not in {'.html','.htm'}:
+        raise ValueError('html_srcdoc_source_required')
+    raw=path.read_bytes()
+    if len(raw)>20_000_000:
+        raise ValueError('html_srcdoc_source_too_large')
+    frames=Frames();frames.feed(raw.decode('utf-8-sig'))
+    if type(index) is not int or not 1 <= index <= len(frames.frames):
+        raise ValueError('html_srcdoc_locator_required')
+    content=frames.frames[index-1]
+    if len(content)>limit:
+        raise ValueError('html_srcdoc_context_too_large')
+    parser=_Document();parser.feed(content)
+    text=re.sub(r' *\n *','\n',''.join(parser.parts))
+    text=re.sub(r'\n{3,}','\n\n',text).strip()
+    if not text or len(text)>limit:
+        raise ValueError('html_srcdoc_empty_or_truncated')
+    return text

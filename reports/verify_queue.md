@@ -1,11 +1,155 @@
 # 核验队列
 
-生成时间：2026-09-26 ｜ P1（必须处理）23 条 ｜ P2（补强来源）24 条
+生成时间：2026-10-11 ｜ P1（必须处理）71 条 ｜ P2（补强来源）36 条
 
-流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 manage.py validate`
+流程：核对原件、对象与范围 → 新时点追加观测/历史更正单独审阅 → 保留原有效时间与实际复核时间 → `python3 manage.py validate`
 
 ## P1
 
+- [ ] **prices / capex-microsoft-annual@2025-06-30** — 序列最新点已 468 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / cn-dc-power-price-guian@2022-03-13** — 序列最新点已 1673 天（阈值 365，按default频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.thepaper.cn/newsDetail_forward_17067828
+- [ ] **prices / cn-dc-power-price-helinger@2024-12-10** — 序列最新点已 670 天（阈值 365，按default频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://cnews.chinadaily.com.cn/a/202412/10/WS6757aed8a310b59111da7ec1.html
+- [ ] **prices / construction-cost-index-yoy-traditional-global@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-amsterdam@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-atlanta@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-charlotte@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-columbus@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-dublin@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-frankfurt@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.turnerandtownsend.com/news/ai-data-centre-rush-raises-alarm-over-construction-supply-chain/
+- [ ] **prices / construction-cost-per-watt-london@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.turnerandtownsend.com/news/ai-data-centre-rush-raises-alarm-over-construction-supply-chain/
+- [ ] **prices / construction-cost-per-watt-madrid@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-new-jersey@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-osaka@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.turnerandtownsend.com/news/ai-data-centre-rush-raises-alarm-over-construction-supply-chain/
+- [ ] **prices / construction-cost-per-watt-paris@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-phoenix@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-portland@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-silicon-valley@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-singapore@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-tokyo@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-per-watt-zurich@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-premium-liquid-cooled-vs-air-us@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-core-shell-air-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-core-shell-liquid-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-electrical-air-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-electrical-liquid-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-mechanical-air-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-mechanical-liquid-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-other-air-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-share-other-liquid-cooled@2025-11-05** — 序列最新点已 340 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / construction-cost-shell-core-global-jll@2025-12-31** — 序列最新点已 284 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.jll.com/en-us/insights/market-outlook/data-center-outlook
+- [ ] **prices / construction-lead-time-tier3-months@2023-03-29** — 序列最新点已 1292 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://journal.uptimeinstitute.com/data-center-costs-set-to-rise-and-rise/
+- [ ] **prices / dc-staffing-salary-spend-increase-share-uptime@2025-09-30** — 序列最新点已 376 天（阈值 365，按default频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/Staffing%20Survey%203%20pager%20final.pdf?version=3
+- [ ] **prices / gpu-hourly-h100-marketplace-index@2025-12-31** — 序列最新点已 284 天（阈值 150，按quarterly频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.silicondata.com/blog/h100-rental-price-over-time
+- [ ] **prices / improved-sale-price-per-mw-loudoun-retail-2023@2023-03-03** — 序列最新点已 1318 天（阈值 365，按default频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.loudoun.gov/DocumentCenter/View/219238/462-Data-Center-2026-Guidelines-PDF
+- [ ] **prices / industrial-power-price-my-tnb-base-tariff@2025-07-01** — 序列最新点已 467 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.tnb.com.my/assets/newsclip/27122024c.pdf
+- [ ] **prices / pue-alibaba-cloud-selfbuilt-fy25@2025-03-31** — 序列最新点已 559 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.sec.gov/Archives/edgar/data/1577552/000110465925062815/tm2519164d1_ex99-2.pdf
+- [ ] **prices / pue-applied-digital-polaris-forge-design@2025-06-30** — 序列最新点已 468 天（阈值 365，按default频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://ir.applieddigital.com/news-events/press-releases/detail/124/2-7-billion-in-data-center-savings-new-applied-digital
+- [ ] **prices / pue-meta-fleet-annual@2024-12-31** — 序列最新点已 649 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf
+- [ ] **prices / pue-microsoft-fleet-fy25@2025-06-30** — 序列最新点已 468 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://datacenters.microsoft.com/sustainability/efficiency/
+- [ ] **prices / wage-cn-ops-engineer-median-monthly@2025-09-15** — 序列最新点已 391 天（阈值 365，按default频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.modb.pro/db/1972193576935239680
+- [ ] **prices / wage-us-electrician-median@2025-05-31** — 序列最新点已 498 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.bls.gov/ooh/construction-and-extraction/electricians.htm
+- [ ] **prices / wage-us-network-support-specialist-median@2025-05-31** — 序列最新点已 498 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.bls.gov/ooh/computer-and-information-technology/computer-support-specialists.htm
+- [ ] **prices / wage-us-network-systems-admin-median@2025-05-31** — 序列最新点已 498 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.bls.gov/ooh/computer-and-information-technology/network-and-computer-systems-administrators.htm
+- [ ] **prices / wage-us-telecom-equipment-installer-median@2025-05-31** — 序列最新点已 498 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.bls.gov/ooh/installation-maintenance-and-repair/telecommunications-equipment-installers-and-repairers-except-line-installers.htm
+- [ ] **prices / wue-alibaba-cloud-selfbuilt-fy25@2025-03-31** — 序列最新点已 559 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.sec.gov/Archives/edgar/data/1577552/000110465925062815/tm2519164d1_ex99-2.pdf
+- [ ] **prices / wue-meta-fleet-annual@2024-12-31** — 序列最新点已 649 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf
+- [ ] **prices / wue-microsoft-fleet-fy25@2025-06-30** — 序列最新点已 468 天（阈值 455，按annual频率）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://datacenters.microsoft.com/sustainability/efficiency/
 - [ ] **research / M02-F10** — 标记 needs-review（GPU 机架 130kW 但行平均只有 62kW——AI 机…）
       动作：复核证据后改回 current 或修订结论（M02.md）
 - [ ] **research / M06-F1** — 标记 needs-review（GB200/GB300 NVL72 是当前可采购代际，比较单…）
@@ -58,6 +202,33 @@
 - [ ] **contracts / openai-oracle-2025** — media 级来源
       动作：用财报 RPO/监管文件交叉验证金额与期限
       来源：https://www.wsj.com/
+- [ ] **prices / cn-idc-wholesale-movein-to-delivery-ratio-vnet@2025-12-31** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://www.fool.com/earnings/call-transcripts/2026/06/02/vnet-q4-2025-earnings-call-transcript/
+- [ ] **prices / construction-cost-premium-liquid-cooled-vs-air-us@2025-11-05** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://reports.turnerandtownsend.com/data-centre-construction-cost-index-2025/data-centre-cost-trends
+- [ ] **prices / dc-maintenance-share-of-facility-capex-epoch@2026-05-14** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://epoch.ai/data-insights/ai-datacenter-cost-breakdown
+- [ ] **prices / dc-operator-fte-per-mw-dlr@2025-12-31** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://www.sec.gov/Archives/edgar/data/1297996/000110465926015365/dlr-20251231x10k.htm
+- [ ] **prices / dc-operator-ops-fte-per-mw-vnet@2025-12-31** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://www.sec.gov/Archives/edgar/data/1508475/000110465926044361/vnet-20251231x20f.htm
+- [ ] **prices / equinix-senior-notes-wavg-coupon@2026-06-30** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://www.sec.gov/Archives/edgar/data/0001101239/000110123926000147/eqix-20260630.htm
+- [ ] **prices / improved-sale-price-per-mw-loudoun-160mw-hyperscale@2025-12-17** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://www.loudoun.gov/DocumentCenter/View/219238/462-Data-Center-2026-Guidelines-PDF
+- [ ] **prices / neocloud-active-to-contracted-power-coreweave@2026-06-30** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://investors.coreweave.com/news/news-details/2026/CoreWeave-Reports-Strong-Second-Quarter-2026-Results/default.aspx
+- [ ] **prices / shell-lease-rent-per-it-mw-year@2026-08-10** — 序列最新点为 estimate 级（带假设推算）
+      动作：寻找可替代的一手/研究级来源
+      来源：https://www.sec.gov/Archives/edgar/data/1167419/000110465926093406/riot-20260810xex99d1.htm
 - [ ] **prices / transformer-lead-time@2026-06-30** — 序列最新点为 estimate 级（带假设推算）
       动作：寻找可替代的一手/研究级来源
       来源：https://www.woodmac.com/
@@ -78,6 +249,12 @@
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.aboutamazon.eu/news/aws/aws-plans-to-invest-8-8-billion-in-germany-supporting-over-15-200-jobs-annually-in-local-businesses
       来源：https://www.datacenterdynamics.com/en/news/aws-to-invest-944bn-in-frankfurt-cloud-region/
+- [ ] **projects / fi-kajaani-google-otanmaki** — 仅有低级别来源（media）
+      动作：补一手来源（公司披露/监管文件）
+      来源：https://www.helsinkitimes.fi/business/29355-google-ordered-to-halt-data-centre-works-in-finland-over-environmental-concerns.html
+- [ ] **projects / fi-muhos-google-leppiniemi** — 仅有低级别来源（media）
+      动作：补一手来源（公司披露/监管文件）
+      来源：https://www.helsinkitimes.fi/business/29355-google-ordered-to-halt-data-centre-works-in-finland-over-environmental-concerns.html
 - [ ] **projects / ie-dublin-aws** — 仅有低级别来源（media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.irishtimes.com/business/economy/amazon-spends-2bn-building-irish-data-centre-network-1.4474433
@@ -90,6 +267,9 @@
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.datacenterknowledge.com/hyperscalers/amazon-commits-4-4b-in-data-center-investment-in-hyderabad-india
       来源：https://www.cio.com/article/412923/aws-launches-second-region-in-india-with-a-4-4-billion-commitment.html
+- [ ] **projects / jp-chiba-inzai-cloudhq-asahi** — 仅有低级别来源（media）
+      动作：补一手来源（公司披露/监管文件）
+      来源：https://www.mingtiandi.com/real-estate/data-centres/cloudhq-pushes-forward-data-centre-plan-for-tokyo-mall-despite-curbs/
 - [ ] **projects / kr-haenam-firhills** — 仅有低级别来源（media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.computerweekly.com/news/366619270/South-Korea-plots-to-become-home-to-worlds-largest-AI-datacentre

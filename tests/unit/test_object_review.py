@@ -28,6 +28,25 @@ class ObjectReviewTests(unittest.TestCase):
     def proposal(self,claims=None):
         claims=claims or [self.claim];ctx=workflow.prepare(self.root,self.data,claims)
         return {'claims':claims,'source_version':ctx['version'],'baseline_sha256':digest(ledger.load(self.root)),'review':self.review}
+    def test_archived_srcdoc_context_is_frozen_without_network_or_scripts(self):
+        from html import escape
+        from inresearch.adapters.html_document import srcdoc
+        body=('<iframe src="https://external.test/not-fetched"></iframe>'
+              '<script>64 GB fake outside</script><iframe srcdoc="'+escape('<h2>TEST-64</h2><table><tr><td>Density</td><td>64 GB</td></tr></table><script>128 GB</script>',quote=True)+'"></iframe>')
+        raw=body.encode();sha=hashlib.sha256(raw).hexdigest();p=self.data/'acquisition/blobs'/sha[:2]/(sha+'.html');p.parent.mkdir(parents=True);p.write_bytes(raw)
+        self.db.execute('INSERT INTO product_documents VALUES(?,?,?,?)',(sha,'https://www.micron.com/test','html','2026-10-01T00:00:00Z'));self.db.commit()
+        text=srcdoc(p,1);self.assertIn('64 GB',text);self.assertNotIn('128 GB',text)
+        self.claim.update(value='64 GB',evidence={'sha256':sha,'locator':'html:srcdoc:1','quote':'Density | 64 GB'})
+        proposal=self.proposal();workflow.apply(self.root,self.data,proposal)
+        self.assertEqual(ledger.load(self.root)['records'][0]['source']['locator'],'html:srcdoc:1')
+        self.claim['evidence']['quote']='128 GB'
+        with self.assertRaisesRegex(ValueError,'quote_not_in_native'):self.proposal()
+        for index in [0,2,True]:
+            with self.assertRaises(ValueError):srcdoc(p,index)
+        with self.assertRaisesRegex(ValueError,'too_large'):srcdoc(p,1,limit=4)
+        self.claim['evidence'].update(locator='html:srcdoc:2',quote='64 GB')
+        with self.assertRaisesRegex(ValueError,'locator_required'):self.proposal()
+
     def test_target_free_adoption_and_exact_no_write_replay(self):
         p=self.proposal();self.assertEqual(workflow.apply(self.root,self.data,p)['state'],'applied');before=(self.root/ledger.PATH).read_bytes()
         self.assertEqual(workflow.apply(self.root,self.data,p)['state'],'already_applied');self.assertEqual(before,(self.root/ledger.PATH).read_bytes())

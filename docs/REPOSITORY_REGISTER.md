@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2598。
+在册文件：2600。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,8 +22,8 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 216 |
-| 测试 | 214 |
+| 配套说明 | 217 |
+| 测试 | 215 |
 
 ## 在册记录集合
 
@@ -2682,6 +2682,7 @@
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/stock-expansion-20261011.md](handoff/stock-expansion-20261011.md) | 配套说明 |
 | [docs/handoff/stock-pdf-expansion-20261011.md](handoff/stock-pdf-expansion-20261011.md) | 配套说明 |
+| [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/technical-atlas-20261010.md](handoff/technical-atlas-20261010.md) | 配套说明 |
@@ -3813,6 +3814,7 @@
 | `tests/company_page.cjs` | 测试 |
 | `tests/company_window.cjs` | 测试 |
 | `tests/compute_catalog.cjs` | 测试 |
+| `tests/container_cache.py` | 测试 |
 | `tests/container_storage.py` | 测试 |
 | `tests/control_domain.cjs` | 测试 |
 | `tests/cross_scale_atlas.cjs` | 测试 |
