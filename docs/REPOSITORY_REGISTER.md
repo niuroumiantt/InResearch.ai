@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.92。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.93。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2567。
+在册文件：2568。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 428 |
+| 历史快照 | 429 |
 | 运行代码 | 355 |
 | 现行规范 | 15 |
 | 项目配置 | 775 |
@@ -1749,6 +1749,7 @@
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | rejected_inferences | 3 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | remaining_evidence | 3 |
 | `docs/reviews/2026-10-11/research-remediation/additional-primary-support-review.json` | reviews | 3 |
+| `docs/reviews/2026-10-11/research-remediation/explicit-location-backfill.json` | records | 78 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-adoption-proposal.json` | records | 12 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-owner-adoption-receipt.json` | records | 12 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | sources | 5 |
@@ -3246,6 +3247,7 @@
 | [docs/reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md](reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md) | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/additional-primary-support-review.json` | 历史快照 |
+| `docs/reviews/2026-10-11/research-remediation/explicit-location-backfill.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-adoption-proposal.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-owner-adoption-receipt.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | 历史快照 |

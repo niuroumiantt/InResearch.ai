@@ -127,6 +127,33 @@ class TargetedResearchTests(unittest.TestCase):
 
 
 class CampusRegisterTests(unittest.TestCase):
+    def test_structured_geography_filters_do_not_require_a_street_or_capacity(self):
+        from inresearch.paths import project_root
+        root = project_root()
+        view = industry.snapshot(root, {'country': 'CN', 'province': '河北'})
+        self.assertEqual([p['site_id'] for p in view['rows']], ['cn-hebei-zhangjiakou'])
+        p = view['rows'][0]
+        self.assertEqual(p['geography']['regional_address'], '张家口')
+        self.assertEqual(p['geography']['identity_scope'], 'cluster')
+        self.assertIsNone(p['geography']['street_address'])
+        self.assertIn('张家口', view['geographic_filters']['addresses'])
+        self.assertEqual(industry.snapshot(root, {'country': 'IN', 'province': '河北'})['rows'], [])
+        filtered = industry.snapshot(root, {'country': 'IN', 'province': 'Telangana', 'address': 'Hyderabad'})
+        self.assertTrue(filtered['rows'])
+        self.assertTrue(all(p['country'] == 'IN' and p['geography']['province'] == 'Telangana' for p in filtered['rows']))
+
+    def test_geography_backfill_keeps_source_description_identity_and_review_dates(self):
+        from inresearch.paths import project_root
+        root = project_root()
+        audit = json.loads((root/'docs/reviews/2026-10-11/research-remediation/explicit-location-backfill.json').read_text())
+        records = {r['site_id']: r for r in json.loads((root/'data/projects.json').read_text())['records']}
+        for change in audit['records']:
+            current = records[change['site_id']]
+            self.assertEqual(current['location'], change['location_description'])
+            self.assertNotIn('verified_date', change['after'])
+            self.assertTrue(all(current[key] == value for key, value in change['after'].items()))
+            self.assertEqual([s.get('url') for s in current['sources']], change['source_urls'])
+
     def test_missing_address_not_guessed_and_roles_not_inferred(self):
         row = {'site_id': 'physical-campus', 'country': 'US', 'location': 'Texas, Abilene',
                'status': 'L8', 'developer': ['selfbuilder'], 'end_user': ['selfbuilder'],

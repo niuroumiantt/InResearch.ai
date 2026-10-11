@@ -177,7 +177,7 @@ def capacity_audit(rows, records):
 
 def snapshot(root, params=None):
     root = Path(root); params = params or {}
-    if set(params) - {'c', 'region', 'stage', 'relation', 'scope', 'role', 'site', 'overview'}: raise ValueError('unknown filter')
+    if set(params) - {'c', 'region', 'stage', 'relation', 'scope', 'role', 'site', 'overview', 'country', 'province', 'address'}: raise ValueError('unknown filter')
     if params.get('overview','') not in ('','0','1'): raise ValueError('invalid overview')
     overview=params.get('overview')=='1'
     params={k:v for k,v in params.items() if k!='overview'}
@@ -206,6 +206,9 @@ def snapshot(root, params=None):
         ids = {i for relation in relations for i in p[relation]}
         return ((not params.get('c') or params['c'] in ids)
                 and (not params.get('region') or p['region'] == params['region'])
+                and (not params.get('country') or p['country'] == params['country'])
+                and (not params.get('province') or p['geography']['province'] == params['province'])
+                and (not params.get('address') or p['geography']['regional_address'] == params['address'])
                 and (not params.get('scope') or p['ai_tagged'])
                 and (not params.get('role') or any(set(by_id.get(i, {}).get('roles') or []) & ROLE_GROUPS[params['role']] for i in ids)))
     cohort = [p for p in all_rows if matches(p)]
@@ -231,6 +234,14 @@ def snapshot(root, params=None):
                 'review_overdue_sites': sum(bool(p['tracking']['review_due_fields']) for p in cohort),
                 'changes': changes[:20], 'changes_truncated': len(changes)>20}
     audit=capacity_audit(all_rows,all_records)
+    geographic_filters = {} if overview else {
+        'countries': sorted({p['country'] for p in all_rows if p['country']}),
+        'provinces': sorted({p['geography']['province'] for p in all_rows
+                            if p['geography']['province'] and (not params.get('country') or p['country'] == params['country'])}),
+        'addresses': sorted({p['geography']['regional_address'] for p in all_rows
+                            if p['geography']['regional_address']
+                            and (not params.get('country') or p['country'] == params['country'])
+                            and (not params.get('province') or p['geography']['province'] == params['province'])})}
     if overview:
         row_keys=('site_id','name','country','region','location','developer','tenant','status','stage_label',
                   'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_ranged','capacity_ranges','quantity_fields','capacity_estimated','capacity_assessment','total_mw','coordinates')
@@ -253,7 +264,7 @@ def snapshot(root, params=None):
             'coverage': {'label': '已追踪项目 · 非全球普查', 'oldest_verified': dates[0] if dates else None,
                          'latest_verified': dates[-1] if dates else None},
             'totals': totals(cohort), 'rows': rows, 'detail': detail, 'companies': companies,
-            'tracking': tracking,
+            'tracking': tracking, 'geographic_filters': geographic_filters,
             'leaders': leaders, 'regions': [{'id': r, 'name': REGIONS.get(r, r)} for r in sorted({p['region'] for p in all_rows})],
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
             'capacity_audit': audit,

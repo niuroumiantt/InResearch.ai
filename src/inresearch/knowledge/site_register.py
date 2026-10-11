@@ -31,8 +31,10 @@ def _sources(rows):
 
 
 def geography(row):
+    address = ' · '.join(row[key] for key in ('city', 'district', 'street_address') if row.get(key))
     return {'country': row.get('country'), **{
         key: copy.deepcopy(row.get(key)) for key in GEOGRAPHY_FIELDS},
+        'regional_address': address or row.get('location') or '',
         'location_description': row.get('location'),
         'identity': row.get('site_id'),
         'identity_scope': 'portfolio' if 'portfolio' in row.get('site_id', '') else

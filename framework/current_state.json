@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.92",
+  "version": "2026.10.11.93",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -3670,7 +3670,7 @@
       "source": "docs/CI.md",
       "effective_at": "2026-10-10",
       "supersedes": [],
-      "reason": "用户授权在研究资料追加范围替代研究 JSON 一律全套：完整 JSON 旧值/类型/顺序守恒、唯一新增ID、有界资料与结论/替代/规则边界；运行固定研究回归和单个相关浏览器作业，混合影响取并集、未知仍全套，稳定门禁与审核发布标准保持。",
+      "reason": "替代站点项目JSON一律全套：仅既有身份追加v2观测、完整旧值/类型/顺序守恒，固定研究及站点回归、research+industry浏览器；原资料追加路线保留，未知/修订/规则全套。",
       "implementations": [
         ".github/workflows/validate.yml",
         "scripts/ci_scope.py",
@@ -3685,8 +3685,8 @@
         "src/inresearch/knowledge/deliveries.py",
         "tests/unit/test_deliveries.py"
       ],
-      "implementation_revision": "2026.10.10.76",
-      "change_reason": "2026-10-10 用户授权重新审查并实施 M1–M5：产品完成度与来源边界、目标行派工权威、版本化请求、当前阅读视图、混合假设/登记属性状态、状态板对账与源码命名清理；不放宽 C3、权限或 CI。"
+      "implementation_revision": "2026.10.11.93",
+      "change_reason": "按用户反馈分列可筛地点、缺失留空、保留原始描述与角色、可点击证据备注；纯追加站点观测按完整JSON比对运行研究和industry验收，修改基线/旧值/规则仍全套。"
     },
     {
       "id": "editorial-intake-20261011-user-priority",
@@ -3941,8 +3941,8 @@
         "interface-repository-daily-20261008"
       ],
       "reason": "用户要求首页整体图景和每日变化，替代隐藏新闻机会汇总及容量观察仅明细可见的限制；正式研究/raw两层、168条公开专题提取可见、重点公司、报道口径与地理粒度、轻量投影和新闻独立展示。正式C3和原件边界保持；生产部署与全球覆盖另验。；2026-10-11公网项目页实测字体切片47.276秒，扩展首页缓存复用例外至同一行业入口的项目、市场、列表和公司视图；其它页面字体规则及全部限期保持。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。",
-      "implementation_revision": "2026.10.11.92",
-      "change_reason": "独立有效/披露/首次接收、审核/写入时间；原生区间、精度比较、分期隔离和历史修订，旧基线保留；封存Reader与当前需求复用；首页面向读者，网站仅回传本批完整支持闭包。实际样例/部署分别验收，不冒充六队已接通。"
+      "implementation_revision": "2026.10.11.93",
+      "change_reason": "按用户反馈分列可筛地点、缺失留空、保留原始描述与角色、可点击证据备注；纯追加站点观测按完整JSON比对运行研究和industry验收，修改基线/旧值/规则仍全套。"
     },
     {
       "id": "geluoke-longform-20261011-inews-owned",
