@@ -56503,6 +56503,90 @@
         },
         "batch_id": "1c5dfbcbacc44198f9b87ae50db5f63ef7cabe1b9ace055ee157132660864617"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4c772100051525d6b29ab28f796805dcea5cc58d2296946f1294d906cda1ff75",
+      "document_id": "doc-8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "id": "rev-f403da3360bf4ff199d54d9049025f1d:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:nvidia"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Firmus said Nvidia’s DGX Cloud will be among the first customers to benefit from access to Southgate, establishing a DGX Cloud region at Southgate Melbourne.",
+      "reading_revision_id": "rev-f403da3360bf4ff199d54d9049025f1d",
+      "source_sha256": "8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:40:19+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。明确列名的预期客户与Southgate接入关系，实质贡献于当前边界工单中的提供方与客户角色；客户与墨尔本区域部署的联系，也为当前传导工单提供有限的下游需求及部署线索。连续原文及周边建设语境充分，未识别A类条件，可按B类限定归因采用；两项问题均仅获部分支持。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-boundary",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.211,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "41e8378773aa83034f5bb0139d54d047880a1c8e275234dea64282dbd1d2ed1b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46812,
+            "output_tokens": 1326,
+            "reasoning_output_tokens": 295
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ed5d8f7798a99cdb3c64c610fc99c9bc95cca9997961ac9ff0af99c6fd489683",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47421,
+              "output_tokens": 618,
+              "reasoning_output_tokens": 375
+            }
+          }
+        },
+        "batch_id": "de7b63174825e4f7565436eafe741a15e62cda01fbcbd098c9522fa8f26fca35"
+      }
     }
   ],
   "statements": [
@@ -109372,6 +109456,108 @@
         "request_sha256": "d59cb5f64be04caf08d2ecfaf30467d0fe804a7fe5971e34650831868f9a7df2"
       },
       "object_mapping_check": "独立核对对象契约后，本项范围为通用芯片封装制造阶段，契约未提供封装或硅裸片对象。原文未限定GPU、CPU、定制AI ASIC或HBM，不能由相邻AI供应链语境补入这些部件。封装的配电和热管理功能不等于数据中心配电、机柜与板级供电或冷板等散热资产；也不涉及一座具体AI数据中心，因此不映射root或基础设施系统。空对象列表保留有效的问题匹配，所选证据统一采用此主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "evidence_ids": [
+        "rev-f403da3360bf4ff199d54d9049025f1d:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:1b977d1b5452fad29f8d788c",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:nvidia"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-boundary",
+        "NODE-activity-V3-chain"
+      ],
+      "reading_revision_id": "rev-f403da3360bf4ff199d54d9049025f1d",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年10月16日的报道中转述Firmus称，英伟达的DGX Cloud预计将成为首批受益于Southgate接入的客户之一，并将在澳大利亚Southgate Melbourne设立DGX Cloud区域。这是Firmus对未来客户关系与区域部署的声明；报道时周边正文将Southgate Melbourne描述为在建阶段，本条不构成对合同履行、区域上线或当前投运状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:40:19+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。明确列名的预期客户与Southgate接入关系，实质贡献于当前边界工单中的提供方与客户角色；客户与墨尔本区域部署的联系，也为当前传导工单提供有限的下游需求及部署线索。连续原文及周边建设语境充分，未识别A类条件，可按B类限定归因采用；两项问题均仅获部分支持。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-boundary",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.211,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "41e8378773aa83034f5bb0139d54d047880a1c8e275234dea64282dbd1d2ed1b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46812,
+            "output_tokens": 1326,
+            "reasoning_output_tokens": 295
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ed5d8f7798a99cdb3c64c610fc99c9bc95cca9997961ac9ff0af99c6fd489683",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 47421,
+              "output_tokens": 618,
+              "reasoning_output_tokens": 375
+            }
+          }
+        },
+        "batch_id": "de7b63174825e4f7565436eafe741a15e62cda01fbcbd098c9522fa8f26fca35"
+      },
+      "source_candidate_ids": [
+        "rev-f403da3360bf4ff199d54d9049025f1d:chunk:0:claim:7"
+      ],
+      "limitations": "选定引文未提供一手合同、付款安排、资产所有权、运营责任、服务规格、采购规模或DGX Cloud区域上线日期。全文另有项目投资、GPU配置和预计投运安排，但不能自动视为该客户的采购数量或区域交付承诺。客户身份与设立区域的预测不证明需求已转化为实际使用，也不证明需求驱动了建设或消除了交付约束。",
+      "conflict_check": "既有DGX Lepton平台角色预测涉及撮合平台战略，本条涉及DGX Cloud拟成为Southgate客户及设立区域，两者不是同一角色主张，不构成重复或真实冲突。GPU云价格战预测、其他供应商的配置体验、Alphabet供应链评论以及Fluidstack和Anthropic—Nscale交易记录均未验证或否定本项安排。所供legacy匹配记录为空；未发现规范重复或真实冲突，但检查不穷尽外部反证，不替换既有结论。",
+      "gap_dependency_check": "边界问题仍缺一笔完整交易的产品、付款方、资产所有者、运营方、使用方及互斥权责。传导问题仍缺需求承诺如何影响采购和建设的机制、交付周期、关键约束、时间滞后、反例及可验证领先指标。当前工单要求的一手来源与反证仍待补充，应取得Firmus或英伟达原始公告、合同或区域上线记录；本项仅记录二手报道中的归因预测，不回答或关闭问题，不汇总GW或修改模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "de7b63174825e4f7565436eafe741a15e62cda01fbcbd098c9522fa8f26fca35",
+        "source_report_sha256": "6167991983773e77ec2e541ebc3618c3dc6f49d91d086181cf6970f2f72a367a",
+        "request_sha256": "259dc4d5fee8d166855978e1dc0a2113155fe64c642c6c3557529defce94e9bc"
+      },
+      "object_mapping_check": "原文明确Nvidia的DGX Cloud为预期客户，支持无父节点的actor:nvidia主体映射，不表示英伟达拥有Southgate资产。Firmus、CDC及Southgate Melbourne没有对应允许主体或项目ID。选定主张描述客户接入和云区域安排，未建立整座数据中心或具体系统、部件的资产范围，因此不继承Reader的root或文档级GPU、设施等标签，也不因AI或cloud region增加基础设施映射。所有选定证据统一使用该主张级主体范围。"
     }
   ],
   "answers": [],
