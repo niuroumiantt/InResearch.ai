@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2568。
+在册文件：2569。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 201 |
+| 配套说明 | 202 |
 | 测试 | 212 |
 
 ## 在册记录集合
@@ -2595,6 +2595,7 @@
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/bom-classification-20261010.md](handoff/bom-classification-20261010.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
+| [docs/handoff/campus-observation-and-stock-intake-20261011.md](handoff/campus-observation-and-stock-intake-20261011.md) | 配套说明 |
 | [docs/handoff/catalog-ownership-20261007.md](handoff/catalog-ownership-20261007.md) | 配套说明 |
 | `docs/handoff/ci-impact-routing.svg` | 项目配置 |
 | [docs/handoff/ci-impact-scoping-20261010.md](handoff/ci-impact-scoping-20261010.md) | 配套说明 |
