@@ -7326,6 +7326,64 @@
       "status": "candidate",
       "stored_path": "originals/ed/ed447c10f72242d21a196c9a9f09eb11fd6e7b33204761a00af3ce7f245888f6/dcd-ed447c10f72242d2-Scala Data Centers breaks ground on 560MW power substation in São.html",
       "title": "Scala Data Centers breaks ground on 560MW power substation in São Paulo"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+      "coverage": {
+        "characters_read": 6516,
+        "characters_total": 6516,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+      "id": "doc-e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+      "library_path": "library/by-node/system-power/2025_DCD_Solaris to supply 900MW of natural gas power to 'major'__e34c83043e7c10b1.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:backup-power",
+        "part:gas-turbine",
+        "root",
+        "site:grid",
+        "system:facility",
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-grid-alternatives",
+        "OBJ-grid-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-49ecf01b0675465f83385fb76c83ea40",
+      "report_sha256": "1b1d9f5f0771d6ac4c531071347b593e276a88cabb59058d28c63135649e8047",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+        "url": "https://www.datacenterdynamics.com/en/news/solaris-to-supply-900mw-of-natural-gas-power-to-major-data-center-operator-as-part-of-joint-venture-agreement/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/solaris-to-supply-900mw-of-natural-gas-power-to-major-data-center-operator-as-part-of-joint-venture-agreement/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/e3/e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500/dcd-e34c83043e7c10b1-Solaris to supply 900MW of natural gas power to -major- data cent.html",
+      "title": "Solaris to supply 900MW of natural gas power to 'major' data center operator as part of joint venture agreement"
     }
   ],
   "evidence": [
@@ -54573,6 +54631,89 @@
           }
         },
         "batch_id": "ec427aaaae25d8e136af32bdc971d9b6f5ea1efddeff577db5adc02b9bcb3544"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "687789b2fe2336c6d9d21a32dca439b83431f3805b638d265d7ae49b4e2196ec",
+      "document_id": "doc-e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+      "id": "rev-49ecf01b0675465f83385fb76c83ea40:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Commenting on the agreement, Bill Zartler, Solaris chairman and CEO, said: “We are also excited to solidify our partnership with an industry leader and fast mover in the artificial intelligence computing space to provide power for their newest data center campus.",
+      "reading_revision_id": "rev-49ecf01b0675465f83385fb76c83ea40",
+      "source_sha256": "e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T14:25:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句明确发言人、供电目标及合作伙伴与园区的关系，完整原文提供供电协议语境，对当前交易边界工作单具有实质性局部贡献。虽不足以完成角色划分，仍可按B类采用有界来源陈述。未识别敏感、真实冲突、替换或其他A类条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 56.064,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1fdd902a3622a4cc5269244499a17d455526645ed2a2822455ff3e25c3fd8164",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 58344,
+            "output_tokens": 1328,
+            "reasoning_output_tokens": 278
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 34.012,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f399334a4da4ef1edb13268bded47d96a7eec980c2edbf128b7654a1e2ae62b5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58971,
+              "output_tokens": 559,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "a77e118652e2d5287efd327a6f2ee83bcd9d7b6f10d0b9b766489b82105c084c"
       }
     }
   ],
@@ -105551,6 +105692,106 @@
         "request_sha256": "76e43e92e851db438788cc7326bcdb5135e1a749f8a81122e160c77c7f1cd95c"
       },
       "object_mapping_check": "独立依据原文明示的数据中心用电增长选择root，范围仅为AI数据中心整体这一设施对象类型，不表示某一座设施的电量或状态。主张直接建立前沿模型与数据中心整体用电的关系，而非仅因AI主题继承Reader标签。未描述内部供配电、计算设备或并网权利，故不增加system:power、system:compute、部件或site:grid映射；所选证据统一采用此主张范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e34c83043e7c10b126a05f9cf67ca91c5606ec35dca4ad32c1b942b370341500",
+      "evidence_ids": [
+        "rev-49ecf01b0675465f83385fb76c83ea40:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:f8c56bc4a51a1dcba214578d",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-49ecf01b0675465f83385fb76c83ea40",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2025年4月30日的报道中引述Solaris董事长兼CEO Bill Zartler称，Solaris的合作伙伴是人工智能计算领域的“行业领先者、行动迅速者”，合作旨在为该伙伴的最新数据中心园区供电。报道未披露伙伴名称、园区地点或项目时间表。这是报道时点的企业负责人陈述及供电目标，不证明供电已开始或园区已投运，也不构成当前独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T14:25:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句明确发言人、供电目标及合作伙伴与园区的关系，完整原文提供供电协议语境，对当前交易边界工作单具有实质性局部贡献。虽不足以完成角色划分，仍可按B类采用有界来源陈述。未识别敏感、真实冲突、替换或其他A类条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 56.064,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1fdd902a3622a4cc5269244499a17d455526645ed2a2822455ff3e25c3fd8164",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 58344,
+            "output_tokens": 1328,
+            "reasoning_output_tokens": 278
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 34.012,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f399334a4da4ef1edb13268bded47d96a7eec980c2edbf128b7654a1e2ae62b5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58971,
+              "output_tokens": 559,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "a77e118652e2d5287efd327a6f2ee83bcd9d7b6f10d0b9b766489b82105c084c"
+      },
+      "source_candidate_ids": [
+        "rev-49ecf01b0675465f83385fb76c83ea40:chunk:0:claim:3"
+      ],
+      "limitations": "合作伙伴的行业地位属于企业负责人的评价，未经独立验证。所选证据未提供伙伴名称、一手合同、付款安排、资产权属、运营责任或最终使用者；“其最新园区”不能证明园区归该伙伴所有。Solaris总部所在地及页面地域标签不能确定项目所在地，供电目标不能证明实际交付或投运。",
+      "conflict_check": "当前采用陈述涉及其他园区、客户、合同或资产，未发现相同合作关系的规范重复。legacy中的solaris-turbine-fleet-1h2027记录转述SemiAnalysis于2025年9月对Solaris、xAI及900MW合资安排的描述，是较晚且包含更多身份信息的另一来源；本报道未具名并不与其构成真实冲突，也不足以确认两者为同一交易。不得据此把本项伙伴补写为xAI或映射actor:xai。其他Colossus容量及燃机记录不能证明本园区身份、设备或阶段。检查限于所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "NODE-activity-V1-boundary获得供电服务方向、Solaris的供电合作角色及目标园区与伙伴关系的局部线索。仍需一手协议及反证，识别合同供电方与签约方、付款方、发电及数据中心资产所有者、各自运营方和最终使用方，并核实交付阶段。正文的合资结构不能自动证明Solaris直接履约，目标园区不能自动确定付款方或最终用户；完整互斥边界仍未建立，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a77e118652e2d5287efd327a6f2ee83bcd9d7b6f10d0b9b766489b82105c084c",
+        "source_report_sha256": "1b1d9f5f0771d6ac4c531071347b593e276a88cabb59058d28c63135649e8047",
+        "request_sha256": "1578040468246eab68c3e720f5969dfd795d15f394e8a61006531c0df33256a6"
+      },
+      "object_mapping_check": "独立依据对象契约选择root：所选主张讨论人工智能计算合作伙伴与其目标数据中心园区的整体关系，符合“一座AI数据中心”的范围。供电目标未界定园区电力系统资产、并网权益、天然气管道接入或具体设备，故不扩展映射system:power、site:grid、site:gas-supply或发电部件。Solaris及Stateline没有允许的主体ID，伙伴未具名，不新增节点或推定为xAI。所选证据统一使用该审核后的主张范围，原始标签保持不变。"
     }
   ],
   "answers": [],
