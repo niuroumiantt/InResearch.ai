@@ -8,7 +8,7 @@ const path=location.pathname, isProject=path==='/project.html', isMarket=path===
 const isHome=['/','/index.html'].includes(path);
 // These aliases share the reader shell and its optional cached font reuse.
 const isReader=isHome||isProject||isMarket||isList||isCompany;
-if(isHome){document.body.classList.add('industry-home');$('pipeline-summary').remove();$('trends-section').remove();}
+if(isHome)document.body.classList.add('industry-home');
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
 let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false, mapSignature='';
 const keys=['c','region','stage','relation','scope','role','site','country','province','address'];
@@ -36,7 +36,7 @@ function useCachedFonts(){
    });
    await face.load();document.fonts.add(face);return true;
   }catch(e){return false;}
- })).then(results=>{link.dataset.fonts=results.some(Boolean)?'cached':'fallback';});
+ })).then(results=>{link.dataset.fonts=results.some(Boolean)?'cached':'fallback';if(isHome)resizeUpdates();});
 }
 function queueCachedFonts(){
  if(!isReader||fontCacheQueued||!data||(isHome&&(!geo||!news&&!newsFailed)))return;
@@ -155,15 +155,16 @@ function sourceLink(source,label){const href=safe(source);return href?`<a href="
 function selection(){return {company:params.get('c')||'',region:params.get('region')||'',country:data?.filters?.country||'',province:data?.filters?.province||'',address:data?.filters?.address||'',site:params.get('site')||'',scope:params.get('scope')||'',relation:params.get('relation')||'',role:params.get('role')||'',siteIds:data?.rows.filter(p=>!p.portfolio).map(p=>p.site_id)||[]};}
 function select(changes){for(const [k,v] of Object.entries(changes))v?params.set(k,v):params.delete(k);history.pushState(null,'',url(path));load();}
 window.addEventListener('popstate',()=>{params=new URLSearchParams(location.search);load();});
-$('filters').addEventListener('submit',e=>e.preventDefault());
-$('filters').addEventListener('change',e=>select({[e.target.name]:e.target.value,site:''}));
-$('stage-filter').onchange=e=>select({stage:e.target.value});
-$('lead-state').onchange=renderPipeline;
+$('filters')?.addEventListener('submit',e=>e.preventDefault());
+$('filters')?.addEventListener('change',e=>select({[e.target.name]:e.target.value,site:''}));
+if($('stage-filter'))$('stage-filter').onchange=e=>select({stage:e.target.value});
+if($('lead-state'))$('lead-state').onchange=renderPipeline;
 window.addEventListener('inresearch:news-data',e=>{news=e.detail;newsFailed=false;renderPipeline();renderDaily();renderMap();});
 window.addEventListener('inresearch:news-state',e=>{newsFailed=e.detail.status==='failed';renderPipeline();renderDaily();queueCachedFonts();});
 window.addEventListener('inresearch:locate-news',e=>{const row=rawRecords().find(r=>r.id===e.detail.id);if(!validCoordinates(row?.coordinates))return;selectedSite='raw:'+row.id;pinned=false;view=[0,0,1000,490];setView();renderPopup();highlightMap();svg.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
-$('news-selection').onchange=e=>{document.querySelector('[data-datacenter-news]').dataset.newsSelection=e.target.value;window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...selection(),redraw:true}}));};
+if($('news-selection'))$('news-selection').onchange=e=>{document.querySelector('[data-datacenter-news]').dataset.newsSelection=e.target.value;window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...selection(),redraw:true}}));};
 function filters(){
+ if(!$('filters'))return;
  if(isList&&!$('geographic-filters')){
   const form=document.createElement('form');form.id='geographic-filters';form.className='geographic-filters';
   form.innerHTML=[['country','国家'],['province','省／州'],['address','区域地址']].map(([key,label])=>`<label>${label}<select name="${key}" aria-label="${label}"></select></label>`).join('');
@@ -187,6 +188,7 @@ function filters(){
  $('stage-filter').value=params.get('stage')||'';
 }
 function renderStats(){
+ if(!$('stats'))return;
  const noDisclosures=data.totals.sites>0&&data.totals.sites===data.totals.unknown,hasRanges=!!data.totals.ranged_sites;
  const labels={operating:'样本 · 已投运',construction:'样本 · 建设中',planning:'样本 · 筹备机会',unknown:'样本 · 容量未披露'};
  $('stats').innerHTML=Object.entries(labels).map(([s,label])=>`<a class="stat-link ${params.get('stage')===s?'active':''}" href="${esc(url('/projects.html',{stage:s,site:''}))}"><span>${label} ↗${s!=='unknown'&&data.totals.estimated?.[s]?` · 含参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span><strong>${s==='unknown'?data.totals.unknown:noDisclosures||hasRanges&&!data.totals[s]?'—':gw(data.totals[s])}<small>${s==='unknown'?'项':'GW'}</small></strong><span>${s==='planning'?'含官宣、选址、电力与审批阶段':s==='unknown'?'仍在地图与明细中保留':s==='operating'?'已通电 / 满载，按分期计量':'已有开工 / 机电施工记录'}${s!=='unknown'&&data.totals.estimated?.[s]?` · 其中参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span></a>`).join('');
@@ -230,19 +232,14 @@ function renderResearch(){
  for(const b of $('research-countries').querySelectorAll('button'))b.onclick=()=>{const group=countryGroups().find(g=>g.key===b.dataset.researchCountry);if(group)window.dispatchEvent(new CustomEvent('inresearch:locate-news',{detail:{id:group.items[0].id}}));};
 }
 function renderDaily(){
- if(!isHome)return;renderResearch();
- const research=news?.raw_atlas?.research_total;
- const published=news?.raw_atlas?.latest_published_at;
- const date=published?new Date(published):null;
- const sourceDate=date&&Number.isFinite(date.getTime())?new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(date):'';
- $('news-daily-summary').innerHTML=`<a class="news-research-count" href="/research/data-centers-2026-projects.html"><strong>${Number.isInteger(research)?num(research):'—'}</strong><span>条文章项目资料 ↗</span></a><small>${sourceDate?'最近报道发表 '+esc(sourceDate)+' · 北京时间':'发表日期以各篇来源为准'}<br>报道容量保留原文口径，项目现状与历史见地图。</small>`;
- queueCachedFonts();
+ if(isHome)queueCachedFonts();
 }
 function renderMap(){
  if(!geo)return;
+ hideTooltip();
  if(!svg.querySelector('#map-land-layer')){
-  let land='';for(const f of geo.features){const g=f.geometry;if(!g||!['Polygon','MultiPolygon'].includes(g.type))continue;const polygons=g.type==='Polygon'?[g.coordinates]:g.coordinates;for(const polygon of polygons){let d='';for(const ring of polygon)d+=ring.map(([lo,la],i)=>`${i?'L':'M'}${xy(lo,la).map(n=>n.toFixed(1)).join(',')}`).join('')+'Z';land+=`<path class="land" d="${d}"/>`;}}
-  svg.innerHTML=`<g id="map-land-layer">${atlasBackdrop()+land}</g><g id="map-news-layer"></g><g id="map-sites-layer"></g><g id="map-raw-layer"></g>`;
+  let land='';for(const f of geo.features){const g=f.geometry;if(!g||!['Polygon','MultiPolygon'].includes(g.type))continue;const polygons=g.type==='Polygon'?[g.coordinates]:g.coordinates;for(const polygon of polygons){let d='';for(const ring of polygon)d+=ring.map(([lo,la],i)=>`${i?'L':'M'}${xy(lo,la).map(n=>n.toFixed(1)).join(',')}`).join('')+'Z';land+=`<path class="land" d="${d}"/>${isHome?`<path class="land-texture" d="${d}"/>`:''}`;}}
+  svg.innerHTML=`<g id="map-land-layer">${isHome?atlasMaterial():''}${land}${atlasBackdrop()}</g><g id="map-news-layer"></g><g id="map-sites-layer"></g><g id="map-raw-layer"></g>`;
  }
  if(!data)return;
  const stage=params.get('stage'), rows=data.rows.filter(p=>!p.portfolio&&validCoordinates(p.coordinates));
@@ -261,17 +258,26 @@ function renderMap(){
  const raw=rawRecords(),located=raw.filter(r=>validCoordinates(r.coordinates)),countries=countryGroups();
  $('map-news-layer').innerHTML=rows.filter(p=>leads.some(r=>r.site_id===p.site_id)||raw.some(r=>r.site_id===p.site_id)).map(p=>{const [x,y]=xy(p.coordinates[1],p.coordinates[0]);return `<g class="map-marker" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${view[2]/1000})"><circle class="news-ring" cx="0" cy="0" r="${Math.max(7,Math.sqrt(p.total_mw)*.28+4)}"/></g>`;}).join('');
  $('map-raw-layer').innerHTML=located.filter(r=>r.verification_status!=='project_adopted'&&!(r.origin==='research_publication'&&r.location_precision==='country')).map(r=>{const [x,y]=xy(r.coordinates[1],r.coordinates[0]);return `<g class="raw-point" data-raw-id="${esc(r.id)}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${view[2]/1000})" tabindex="0" role="button" aria-label="新闻地点：${esc(r.title)}，待核验"><title>${esc(r.title)} · ${esc(r.location||r.location_precision||'报道地点')} · 待核验</title><path d="M0,-7 2,-2 7,0 2,2 0,7 -2,2 -7,0 -2,-2Z"/></g>`;}).join('')+countries.filter(g=>validCoordinates(g.coordinates)).map(g=>{const [x,y]=xy(g.coordinates[1],g.coordinates[0]);return `<g class="raw-point country-point" data-raw-id="${esc(g.items[0].id)}" data-country="${esc(g.key)}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${view[2]/1000})" tabindex="0" role="button" aria-label="${esc(g.name)}：${g.items.length} 条文章资料，国家示意位置"><title>${esc(g.name)} · ${g.items.length} 条文章提取记录 · 国家示意，非园区坐标</title><circle r="11"/><text text-anchor="middle" dy="3.5">${g.items.length}</text></g>`;}).join('');
- $('map-summary').textContent=`${rows.length} 条项目记录已定位 · ${data.rows.filter(p=>!p.portfolio&&!validCoordinates(p.coordinates)).length} 个项目未定位 · 当前新闻快照 ${located.length} 条有地点、${raw.length-located.length} 条未定位${news?.raw_atlas?.truncated?'（有界展示）':''}；新闻地点精度见浮窗。`;
+ if($('map-summary'))$('map-summary').textContent=`${rows.length} 条项目记录已定位 · ${data.rows.filter(p=>!p.portfolio&&!validCoordinates(p.coordinates)).length} 个项目未定位 · 当前新闻快照 ${located.length} 条有地点、${raw.length-located.length} 条未定位${news?.raw_atlas?.truncated?'（有界展示）':''}；新闻地点精度见浮窗。`;
  $('layout-link').href=url('/projects.html',{site:''});$('map-title').textContent=data.company?`${name(data.company.company_id)} · 全球布局`:'全球项目布局';
  for(const el of svg.querySelectorAll('[data-id],[data-raw-id]')){
   const id=el.dataset.id||'raw:'+el.dataset.rawId;
   const activate=()=>{if(pinned&&selectedSite!==id)return;selectedSite=id;renderPopup();highlightMap();};
-  el.onpointerenter=e=>{if(e.pointerType==='mouse'&&!drag){clearTimeout(hoverTimer);hovering=true;activate();}};
-  el.onpointerleave=()=>scheduleHoverClose();el.onfocus=()=>{if(restoringFocus)return;clearTimeout(hoverTimer);hovering=true;activate();};
-  el.onblur=e=>{if(!popup.contains(e.relatedTarget)){hovering=true;scheduleHoverClose();}};
-  el.onclick=()=>{hovering=false;clearTimeout(hoverTimer);activate();};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();hovering=false;clearTimeout(hoverTimer);activate();}};
+  if(isHome){
+   const title=el.querySelector('title');el.dataset.tooltip=title?.textContent||el.dataset.tooltip||el.getAttribute('aria-label');title?.remove();
+   el.onpointerenter=el.onpointermove=e=>{if(e.pointerType==='mouse'&&!drag)showTooltip(el,e);};
+   el.onpointerleave=hideTooltip;el.onfocus=()=>{if(!restoringFocus)showTooltip(el);};el.onblur=hideTooltip;
+  }else{
+   el.onpointerenter=e=>{if(e.pointerType==='mouse'&&!drag){clearTimeout(hoverTimer);hovering=true;activate();}};
+   el.onpointerleave=()=>scheduleHoverClose();el.onfocus=()=>{if(restoringFocus)return;clearTimeout(hoverTimer);hovering=true;activate();};
+   el.onblur=e=>{if(!popup.contains(e.relatedTarget)){hovering=true;scheduleHoverClose();}};
+  }
+  el.onclick=()=>{hideTooltip();hovering=false;clearTimeout(hoverTimer);activate();};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();hideTooltip();hovering=false;clearTimeout(hoverTimer);activate();}};
  }
  highlightMap();renderPopup();queueCachedFonts();
+}
+function atlasMaterial(){
+ return `<defs><radialGradient id="atlas-ocean" cx="52%" cy="38%" r="75%"><stop stop-color="#123449"/><stop offset="1" stop-color="#061522"/></radialGradient><linearGradient id="atlas-land" x1="0" y1="0" x2="0.3" y2="1"><stop stop-color="#365d71"/><stop offset=".55" stop-color="#244455"/><stop offset="1" stop-color="#152b3e"/></linearGradient><pattern id="atlas-texture" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#9dd9df" opacity=".3"/></pattern></defs><rect class="atlas-ocean" width="1000" height="490" fill="url(#atlas-ocean)" aria-hidden="true"/>`;
 }
 function atlasBackdrop(){
  const lines=[];
@@ -279,18 +285,35 @@ function atlasBackdrop(){
  for(let lat=-60;lat<=60;lat+=30){const y=xy(0,lat)[1];lines.push(`<path d="M0 ${y}H1000"/><text x="6" y="${y-5}">${Math.abs(lat)}°${lat<0?'S':lat>0?'N':''}</text>`);}
  return `<g class="atlas-grid" aria-hidden="true">${lines.join('')}</g>`;
 }
-const svg=$('world-map');function setView(){svg.setAttribute('viewBox',view.join(' '));for(const el of svg.querySelectorAll('[data-x]'))el.setAttribute('transform',`translate(${el.dataset.x} ${el.dataset.y}) scale(${view[2]/1000})`);positionPopup();}function zoom(f){const w=Math.max(140,Math.min(1000,view[2]*f)),h=w*.49;view=[view[0]+(view[2]-w)/2,view[1]+(view[3]-h)/2,w,h];setView();}
+const svg=$('world-map');function setView(){hideTooltip();svg.setAttribute('viewBox',view.join(' '));for(const el of svg.querySelectorAll('[data-x]'))el.setAttribute('transform',`translate(${el.dataset.x} ${el.dataset.y}) scale(${view[2]/1000})`);positionPopup();}function zoom(f){const w=Math.max(140,Math.min(1000,view[2]*f)),h=w*.49;view=[view[0]+(view[2]-w)/2,view[1]+(view[3]-h)/2,w,h];setView();}
 $('zoom-in').onclick=()=>zoom(.65);$('zoom-out').onclick=()=>zoom(1/.65);$('zoom-reset').onclick=()=>{view=[0,0,1000,490];setView();};
-let drag;svg.addEventListener('pointerdown',e=>{if(e.target.closest('[data-id],[data-raw-id]'))return;drag={x:e.clientX,y:e.clientY,view:[...view]};svg.setPointerCapture(e.pointerId);});
+let drag;svg.addEventListener('pointerdown',e=>{hideTooltip();if(e.target.closest('[data-id],[data-raw-id]'))return;drag={x:e.clientX,y:e.clientY,view:[...view]};svg.setPointerCapture(e.pointerId);});
 svg.addEventListener('pointermove',e=>{if(!drag)return;const k=view[2]/svg.getBoundingClientRect().width;view=[drag.view[0]-(e.clientX-drag.x)*k,drag.view[1]-(e.clientY-drag.y)*k,view[2],view[3]];setView();});
 svg.addEventListener('pointerup',()=>drag=null);svg.addEventListener('pointercancel',()=>drag=null);
 const popup=document.createElement('section');
 popup.id='map-popup';popup.className='map-popup';popup.hidden=true;popup.setAttribute('role','dialog');popup.setAttribute('aria-label','园区信息');
 svg.parentElement.append(popup);
+const tooltip=isHome?document.createElement('div'):null;
+if(tooltip){tooltip.id='map-tooltip';tooltip.className='map-tooltip';tooltip.hidden=true;tooltip.setAttribute('role','tooltip');svg.parentElement.append(tooltip);}
+let tooltipAnchor=null;
+function hideTooltip(){if(!tooltip)return;tooltip.hidden=true;tooltipAnchor?.removeAttribute('aria-describedby');tooltipAnchor=null;}
+function showTooltip(point,event){
+ if(!tooltip||!popup.hidden)return;
+ if(tooltipAnchor!==point)hideTooltip();tooltipAnchor=point;
+ tooltip.textContent=point.dataset.tooltip;tooltip.hidden=false;point.setAttribute('aria-describedby',tooltip.id);
+ const frame=svg.parentElement,box=frame.getBoundingClientRect(),anchor=point.getBoundingClientRect();
+ const x=(Number.isFinite(event?.clientX)?event.clientX:(anchor.left+anchor.right)/2)-box.left-frame.clientLeft;
+ const y=(Number.isFinite(event?.clientY)?event.clientY:(anchor.top+anchor.bottom)/2)-box.top-frame.clientTop;
+ const width=tooltip.offsetWidth,height=tooltip.offsetHeight;
+ const left=x+12+width<=frame.clientWidth-8?x+12:x-width-12;
+ const top=y+12+height<=frame.clientHeight-8?y+12:y-height-12;
+ tooltip.style.left=Math.max(8,Math.min(frame.clientWidth-width-8,left))+'px';
+ tooltip.style.top=Math.max(8,Math.min(frame.clientHeight-height-8,top))+'px';
+}
 let hoverTimer,hovering=false,restoringFocus=false;
 function scheduleHoverClose(){clearTimeout(hoverTimer);if(hovering&&!pinned)hoverTimer=setTimeout(()=>closePopup(),200);}
 popup.onpointerenter=()=>clearTimeout(hoverTimer);popup.onpointerleave=scheduleHoverClose;popup.onfocusin=()=>clearTimeout(hoverTimer);popup.onfocusout=e=>{if(!popup.contains(e.relatedTarget))scheduleHoverClose();};
-function closePopup(focus=false){clearTimeout(hoverTimer);hovering=false;const id=selectedSite;selectedSite='';pinned=false;popup.hidden=true;highlightMap();if(focus){restoringFocus=true;[...svg.querySelectorAll('[data-id],[data-raw-id]')].find(p=>p.dataset.id===id||'raw:'+p.dataset.rawId===id)?.focus();restoringFocus=false;}}
+function closePopup(focus=false){hideTooltip();clearTimeout(hoverTimer);hovering=false;const id=selectedSite;selectedSite='';pinned=false;popup.hidden=true;highlightMap();if(focus){restoringFocus=true;[...svg.querySelectorAll('[data-id],[data-raw-id]')].find(p=>p.dataset.id===id||'raw:'+p.dataset.rawId===id)?.focus();restoringFocus=false;}}
 function positionPopup(){
  if(popup.hidden)return;
  const raw=rawRecords().find(r=>'raw:'+r.id===selectedSite),group=raw?.origin==='research_publication'&&raw.location_precision==='country'?countryGroups().find(g=>g.items.some(r=>r.id===raw.id)):null;
@@ -304,6 +327,7 @@ function positionPopup(){
 }
 function renderPopup(){
  if(!selectedSite)return;
+ hideTooltip();
  const raw=selectedSite.startsWith('raw:')?rawRecords().find(r=>r.id===selectedSite.slice(4)):null;
  if(selectedSite.startsWith('raw:')){
   if(!raw){closePopup();return;}
@@ -325,22 +349,22 @@ function highlightMap(){
  for(const el of svg.querySelectorAll('[data-id]')){const p=data.rows.find(p=>p.site_id===el.dataset.id),matched=highlightedCompany&&[...p.developer,...p.tenant].includes(highlightedCompany);el.classList.toggle('highlighted',!!matched);el.classList.toggle('dimmed',!!highlightedCompany&&!matched);el.classList.toggle('selected',selectedSite===p.site_id);el.setAttribute('aria-pressed',String(selectedSite===p.site_id));}
  if(isHome){
   document.querySelectorAll('#company-chips [data-company],#leaders [data-company]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.company===highlightedCompany)));
-  $('map-selection').textContent=highlightedCompany?`${name(highlightedCompany)}：高亮 ${count} 个登记项目，${unlocated} 项未定位；资料 / 新闻提及 ${rawRecords().filter(r=>(r.company_ids||[]).includes(highlightedCompany)).length} 条（关系待核）。悬停园区查看信息，点击或键盘选点可固定浮窗。`:'悬停园区查看信息，点击或键盘选点可固定浮窗；详情另设链接。支持拖动和缩放。';
+  $('map-selection').textContent=highlightedCompany?`${name(highlightedCompany)} · ${count} 个已定位项目${unlocated?' · '+unlocated+' 项未定位':''} · ${rawRecords().filter(r=>(r.company_ids||[]).includes(highlightedCompany)).length} 条资料提及`:'悬停看简要信息 · 点击查看详情';
  }
 }
 function highlightCompany(id){highlightedCompany=highlightedCompany===id?'':id;highlightMap();}
 document.addEventListener('pointerdown',e=>{if(!pinned&&!popup.contains(e.target)&&!e.target.closest('[data-id],[data-raw-id]'))closePopup();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!popup.hidden){e.preventDefault();closePopup(true);}});
-window.addEventListener('resize',positionPopup);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(tooltip&&!tooltip.hidden){e.preventDefault();hideTooltip();}if(!popup.hidden){e.preventDefault();closePopup(true);}}});
+window.addEventListener('resize',()=>{hideTooltip();positionPopup();});
 function renderCompanies(){
- const ids=[...new Set(['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba',...data.leaders.map(c=>c.company_id)])].filter(id=>data.companies.some(c=>c.company_id===id)).slice(0,10);
+ const ids=[...new Set(['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba',...data.leaders.map(c=>c.company_id)])].filter(id=>data.companies.some(c=>c.company_id===id)).slice(0,isHome?7:10);
  $('company-chips').innerHTML=`<button type="button" data-company="" aria-pressed="${!(isHome?highlightedCompany:params.get('c'))}">${isHome?'清除高亮':'全部'}</button>`+ids.map(id=>`<button type="button" data-company="${esc(id)}" aria-pressed="${(isHome?highlightedCompany:params.get('c'))===id}">${esc(id==='amazon'?'Amazon / AWS':id==='bytedance'?'ByteDance / TikTok':id==='alibaba'?'Alibaba / 阿里云':name(id))}</button>`).join('');
  $('company-chips').querySelectorAll('button').forEach(b=>b.onclick=()=>isHome?highlightCompany(b.dataset.company):select({c:b.dataset.company,site:''}));
  const featured=['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba'];
  const leaders=[...data.leaders].sort((a,b)=>{const ai=featured.indexOf(a.company_id),bi=featured.indexOf(b.company_id);return (ai<0?99:ai)-(bi<0?99:bi);});
- $('leaders').innerHTML=leaders.slice(0,isHome?7:4).map(c=>`<${isHome?'button type="button" data-company="'+esc(c.company_id)+'" aria-pressed="'+(highlightedCompany===c.company_id)+'"':'a href="'+esc(url('/industry.html',{c:c.company_id,stage:'',site:''}))+'"'} class="leader"><strong>${esc(name(c.company_id))}${isHome?'':' ↗'}</strong><p>已登记的相关园区容量（含估算）</p><p class="leader-size">${c.totals.unknown===c.totals.sites?'容量未披露':c.totals.ranged_sites&&!c.totals.operating&&!c.totals.construction&&!c.totals.planning?'容量以区间披露':gw(c.totals.operating+c.totals.construction+c.totals.planning)+' GW'+(c.totals.ranged_sites?' + 区间':'')}</p><p>${c.totals.sites} 条相关项目 · ${c.totals.unknown} 项容量未披露${c.totals.ranged_sites?` · ${c.totals.ranged_sites} 项容量区间单列`:""}${c.totals.estimated_sites?` · 含参考估算 ${gw(Object.values(c.totals.estimated||{}).reduce((a,b)=>a+b,0))} GW`:''}</p><p>${c.totals.unknown===c.totals.sites?'已登记布局，容量有待来源补充。':`投运 ${gw(c.totals.operating)} / 建设 ${gw(c.totals.construction)} / 筹备 ${gw(c.totals.planning)} GW`}</p></${isHome?'button':'a'}>`).join('')||'<p class="empty">当前筛选下没有登记的主体关系。</p>';
- if(isHome&&$('company-coverage'))$('company-coverage').textContent=highlightedCompany?`${name(highlightedCompany)}：高亮本站已登记布局，未披露容量与未定位项目分别保留。`:'快捷查看 AWS、Microsoft、Google、Meta、Oracle、TikTok、Alibaba；样本有缺口，未登记不表示没有项目。';
- $('leaders').querySelectorAll('button').forEach(b=>b.onclick=()=>highlightCompany(b.dataset.company));
+ if($('leaders'))$('leaders').innerHTML=leaders.slice(0,isHome?7:4).map(c=>`<${isHome?'button type="button" data-company="'+esc(c.company_id)+'" aria-pressed="'+(highlightedCompany===c.company_id)+'"':'a href="'+esc(url('/industry.html',{c:c.company_id,stage:'',site:''}))+'"'} class="leader"><strong>${esc(name(c.company_id))}${isHome?'':' ↗'}</strong><p>已登记的相关园区容量（含估算）</p><p class="leader-size">${c.totals.unknown===c.totals.sites?'容量未披露':c.totals.ranged_sites&&!c.totals.operating&&!c.totals.construction&&!c.totals.planning?'容量以区间披露':gw(c.totals.operating+c.totals.construction+c.totals.planning)+' GW'+(c.totals.ranged_sites?' + 区间':'')}</p><p>${c.totals.sites} 条相关项目 · ${c.totals.unknown} 项容量未披露${c.totals.ranged_sites?` · ${c.totals.ranged_sites} 项容量区间单列`:""}${c.totals.estimated_sites?` · 含参考估算 ${gw(Object.values(c.totals.estimated||{}).reduce((a,b)=>a+b,0))} GW`:''}</p><p>${c.totals.unknown===c.totals.sites?'已登记布局，容量有待来源补充。':`投运 ${gw(c.totals.operating)} / 建设 ${gw(c.totals.construction)} / 筹备 ${gw(c.totals.planning)} GW`}</p></${isHome?'button':'a'}>`).join('')||'<p class="empty">当前筛选下没有登记的主体关系。</p>';
+ if(isHome&&$('company-coverage'))$('company-coverage').textContent='快捷查看 AWS、Microsoft、Google、Meta、Oracle、TikTok、Alibaba；样本有缺口，未登记不表示没有项目。';
+ $('leaders')?.querySelectorAll('button').forEach(b=>b.onclick=()=>highlightCompany(b.dataset.company));
 }
 function renderTable(){
  if(!isList)return;
@@ -458,14 +482,57 @@ function renderTracking(){
   $('detail').insertAdjacentHTML('beforeend',`<section class="detail-card" id="site-observation-timeline"><h2>站点观测时间线</h2><p>物理站点 ${esc(p.site_id)} · 运行状态 ${esc(({active:'活跃',paused:'暂停',cancelled:'取消',closed:'关闭'})[p.lifecycle]||p.lifecycle)}</p>${p.tracking?.conflicts?.length?'<p role="status">最新同口径观测存在分歧；当前暂留先前无分歧参考值，请对照来源，不作为已解决结论。</p>':''}<ol class="timeline">${(p.observations||[]).map(timelineItem).join('')||'<li>尚未登记有有效时点的独立观测；上方保留历史登记。</li>'}</ol></section>`);
  }
 }
+let updateSignature='';
+function updateDate(stamp){
+ if(!stamp)return {label:'更新时间未登记',sort:''};
+ if(/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/.test(stamp))return {label:stamp,sort:stamp};
+ const date=new Date(stamp);if(!Number.isFinite(date.getTime()))return {label:'更新时间未登记',sort:''};
+ return {label:new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(date),sort:date.toISOString()};
+}
+function renderUpdates(){
+ if(!isHome)return;
+ const entries=[];
+ for(const item of data.research_updates?.changes||[]){
+  if(!safe(item.source?.url))continue;
+  const date=updateDate(item.recorded_at),key=item.metric.split('.').pop();
+  const metric=({Capacity:'容量',Interface:'接口',Density:'容量',Technology:'技术',Speed:'频率',cooling_capacity:'制冷量',power_rating:'额定功率',industrial_electricity_price_ytd:'工业电价',manufacturer_catalogue_model:'目录型号'})[key]||key.replace(/_/g,' ');
+  const value=typeof item.value==='object'?item.value.value_range.join('–'):item.value;
+  const qualifiers=[({estimated:'估算',calculated:'推导',forecast:'预测'})[item.kind],item.conflict?'同口径分歧':null,item.revision?(item.revision.action==='withdraw'?'已撤回':'修订'):null].filter(Boolean);
+  const label=`${item.object.name} · ${qualifiers.length?qualifiers.join(' · ')+' · ':''}${metric} ${value}${item.unit==='native'?'':' '+item.unit}`;
+  entries.push({kind:'research',date,label,effective:item.effective_at,href:safe(item.source?.url)});
+ }
+ for(const item of data.tracking?.changes||[]){
+  if(!(item.sources||[]).some(s=>safe(s.url)))continue;
+  const preview=document.createElement('span');preview.innerHTML=observationValues(item).join(' · ');
+  entries.push({kind:'project',date:updateDate(item.recorded_at),label:[item.name,observationKinds[item.kind]||item.kind,item.scope&&item.scope!=='whole_site'?'分期 '+item.scope.slice(6):'',item.revision?(item.revision.action==='withdraw'?'已撤回':'修订'):'',preview.textContent].filter(Boolean).join(' · '),effective:item.effective_at,href:'/project.html?site='+encodeURIComponent(item.site_id)+'#site-observation-timeline'});
+ }
+ entries.sort((a,b)=>b.date.sort.localeCompare(a.date.sort));
+ const content=entries.slice(0,40).map(item=>`<a class="update-item" data-update-kind="${item.kind}" data-effective-at="${esc(item.effective||'')}" href="${esc(item.href)}"${item.kind==='research'?' target="_blank" rel="noopener noreferrer"':''} title="${esc(item.date.label)} 补充 · 信息发生时间：${esc(item.effective||'未明确')} · 北京时间"><time${/^\d{4}-\d{2}-\d{2}/.test(item.date.sort)?' datetime="'+esc(item.date.sort)+'"':''} aria-label="${esc(item.date.label)} 更新"><span class="update-date-full">${esc(item.date.label)} 更新</span><span class="update-date-short" aria-hidden="true">${esc(item.date.label.replace(/^\d{4}-(?=\d{2}-\d{2})/,''))}</span></time><span>${esc(item.label)}</span></a>`).join('')||'<span class="update-empty">暂无已登记的研究与项目更新</span>';
+ if(content===updateSignature)return;updateSignature=content;
+ $('update-track').innerHTML='<div class="update-items">'+content+'</div>';
+ const original=$('update-track').firstElementChild;
+ if(entries.length){const clone=original.cloneNode(true);clone.setAttribute('aria-hidden','true');clone.inert=true;for(const link of clone.querySelectorAll('a'))link.tabIndex=-1;$('update-track').append(clone);}
+ resizeUpdates();
+}
+function resizeUpdates(){
+ const track=$('update-track');if(!track?.firstElementChild)return;
+ const width=track.firstElementChild.getBoundingClientRect().width;
+ track.style.setProperty('--update-distance',-width+'px');track.style.setProperty('--update-duration',Math.max(25,width/42)+'s');
+}
+if(isHome){
+ $('update-toggle').onclick=()=>{const paused=$('home-updates').classList.toggle('paused');$('update-toggle').setAttribute('aria-pressed',String(paused));$('update-toggle').setAttribute('aria-label',paused?'继续更新播报':'暂停更新播报');$('update-toggle').textContent=paused?'▷':'Ⅱ';};
+ $('home-updates').addEventListener('focusin',e=>{if(e.target.closest('.update-item'))requestAnimationFrame(()=>e.target.scrollIntoView({block:'nearest',inline:'nearest'}));});
+ $('home-updates').addEventListener('focusout',()=>requestAnimationFrame(()=>{if(!$('home-updates').matches(':focus-within'))$('update-viewport').scrollLeft=0;}));
+ window.addEventListener('resize',resizeUpdates);
+}
 function render(){
- filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();renderDaily();renderTracking();renderObjectUpdates();
+ filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();renderDaily();renderTracking();renderObjectUpdates();renderUpdates();
  if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球布局、项目规模与有来源的最新动态。';}
- $('coverage').textContent=`${data.totals.sites} 条已追踪项目记录 · 含园区与集群，非全球普查\n核验日期 ${data.coverage.oldest_verified||'—'} — ${data.coverage.latest_verified||'—'}`;
+ if($('coverage'))$('coverage').textContent=`${data.totals.sites} 条已追踪项目记录 · 含园区与集群，非全球普查\n核验日期 ${data.coverage.oldest_verified||'—'} — ${data.coverage.latest_verified||'—'}`;
  const hidden=isProject||isMarket;
- for(const id of ['daily-pulse','research-arrivals'])$(id).hidden=!isHome;
+ for(const id of ['daily-pulse','research-arrivals'])if($(id))$(id).hidden=!isHome;
  for(const id of ['atlas-tools','atlas-layout','project-list','leaders-section','trends-section'])if($(id))$(id).hidden=hidden;
- $('detail').hidden=!isProject;$('market-detail').hidden=!isMarket;$('market-band').hidden=isProject;$('pipeline-section').hidden=!(isList||isProject);$('project-list').hidden=!isList||params.get('view')==='pipeline';if($('pipeline-summary'))$('pipeline-summary').hidden=hidden||isList;
+ if($('detail'))$('detail').hidden=!isProject;if($('market-detail'))$('market-detail').hidden=!isMarket;$('market-band').hidden=isProject;if($('pipeline-section'))$('pipeline-section').hidden=!(isList||isProject);if($('project-list'))$('project-list').hidden=!isList||params.get('view')==='pipeline';if($('pipeline-summary'))$('pipeline-summary').hidden=hidden||isList;
  if(isList){$('atlas-layout').hidden=true;$('leaders-section').hidden=true;$('trends-section').hidden=true;$('market-band').hidden=true;}
  document.title=$('page-title').textContent+' · inresearch.ai';
  window.industryFilter=selection();window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:selection()}));queueCachedFonts();

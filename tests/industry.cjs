@@ -21,7 +21,7 @@ const {mkdirSync}=require('node:fs');
   const readEntry=async(page,entry)=>{
    await page.goto(base+entry.url,{waitUntil:'domcontentloaded',timeout:10000});
    await page.locator(entry.ready).first().waitFor({timeout:10000});
-   if(['home','index'].includes(entry.label))await page.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168',null,{timeout:10000});
+   if(['home','index'].includes(entry.label))await page.locator('#update-track > .update-items:first-child .update-item').first().waitFor({timeout:10000});
    if(entry.label==='project')assert.match(await page.locator('#capacity-estimate').innerText(),/运营约 421 MW IT[\s\S]*建设中未披露[\s\S]*2026-07-28/);
    assert.equal(await page.locator('#home-fonts').getAttribute('media'),'not all',entry.label+' keeps full font CSS inactive');
    assert.equal(await page.locator('#ui-skinbar').count(),1,entry.label+' navigation mounted');
@@ -106,7 +106,7 @@ const {mkdirSync}=require('node:fs');
   await page.getByRole('link',{name:'微软项目精选',exact:true}).waitFor();
   assert.equal(await page.getByRole('link',{name:'未精选的线索',exact:true}).count(),1,'homepage defaults to all daily news');
   for(const id of ['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba'])assert.equal(await page.locator('#company-chips [data-company="'+id+'"]').count(),1,'explicit company shortcut '+id);
-  assert.equal(await page.locator('#daily-pulse').count(),1);assert.ok(overviewRequests>0,'homepage uses bounded industry projection');
+  assert.equal(await page.locator('#home-updates').count(),1);assert.ok(overviewRequests>0,'homepage uses bounded industry projection');
   const publicObservations=await (await page.request.get(base+'/api/observations?limit=100')).json();
   const publicHome=await (await page.request.get(base+'/api/industry?overview=1')).json();
   assert.equal(publicObservations.audience,'public');
@@ -117,44 +117,68 @@ const {mkdirSync}=require('node:fs');
    for(const hidden of ['review','proposal_sha256','claim_sha256'])assert.equal(hidden in row,false);
   }
   if(publicObservations.total){
-   const card=page.locator('#object-changes details[data-object]').first();await card.locator(':scope > summary').click();
-   await page.waitForFunction(()=>document.querySelector('#object-changes details')?.dataset.loaded==='1');
-   assert.ok(await card.locator('.timeline li').count()>0,'reader expands source-backed object records through public API');
+   assert.ok(await page.locator('#update-track > .update-items:first-child [data-update-kind="research"]').count()>0,'research information shares the compact update stream');
+   const objectID=publicHome.research_updates.changes[0].object_id;
+   const expanded=await (await page.request.get(base+'/api/observations?object='+encodeURIComponent(objectID)+'&limit=100')).json();
+   assert.ok(expanded.records.length>0&&expanded.records.every(row=>row.object_id===objectID),'public object history remains available after compacting the homepage');
   }
   assert.equal(await page.getByRole('link',{name:'危险链接',exact:true}).count(),0);
   await page.waitForFunction(()=>document.querySelectorAll('#world-map .site-point').length>20);
   assert.ok((await page.locator('#market-band').textContent()).includes('预测'));
-  assert.ok((await page.locator('.leader').filter({hasText:'亚马逊'}).innerText()).includes('容量未披露'));
+  assert.equal(await page.locator('#atlas-tools, #filters, #stats, #basis, #coverage, #map-summary, #news-selection, #research-updates, #daily-pulse, #research-arrivals, #leaders-section, main > footer').count(),0,'homepage removes detailed tools, cards and footer');
   assert.equal(await page.locator('table').count(),0,'homepage has no detailed tables');
-  assert.equal(await page.locator('#pipeline-section').isVisible(),false);
+  assert.equal(await page.locator('#pipeline-section').count(),0);
   assert.ok((await page.locator('#market-band').innerText()).includes('约 95'));
   assert.ok((await page.locator('#market-band').innerText()).includes('2025 估算'));
   await page.locator('#world-map .news-ring').first().waitFor();
   assert.equal(await page.locator('#pipeline-summary, #trends-section').count(),0);
-  assert.equal(await page.locator('[data-news-count]').innerText(),'当前筛选 · 报道 3 条');
-  await page.getByRole('link',{name:'查看全部项目新闻线索 →'}).click();
+  assert.equal(await page.locator('[data-news-count]').count(),0,'headline panel has no snapshot counters');
+  assert.equal(await page.locator('.dc-news-list article').count(),3);
+  assert.equal(await page.locator('.dc-news-list :is(time,small,button,.dc-news-day,.dc-news-capacity,.dc-news-state,.dc-news-mark)').count(),0,'homepage news contains titles only');
+  await page.goto(base+'/projects.html?view=pipeline');
   await page.locator('#pipeline-rows summary').first().waitFor();
   assert.equal(await page.locator('#project-list').isVisible(),false);
-  await page.goto(base+'/');await page.locator('#company-chips [data-company="microsoft"]').waitFor();
-  const before=await page.locator('#stats').innerText(),homeURL=page.url(),pointCount=await page.locator('.site-point').count();
+  await page.goto(base+'/');await page.locator('#company-chips [data-company="microsoft"]').waitFor();await page.locator('#world-map .site-point').first().waitFor();await page.getByRole('link',{name:'微软项目精选',exact:true}).waitFor();
+  const homeURL=page.url(),pointCount=await page.locator('.site-point').count();
   const baseline=await (await page.request.get(base+'/api/industry')).json();
-  assert.ok(await page.getByRole('heading',{name:'最近项目动态',exact:true}).isVisible());
+  assert.ok(await page.getByRole('region',{name:'最新研究与项目动态',exact:true}).isVisible());
   assert.equal(await page.locator('.tracking-metrics, #tracking-overview, #daily-metrics, #refresh-tracking').count(),0);
   assert.doesNotMatch(await page.locator('main').innerText(),/今日接收|采用更新|站点复核待更新|查看核验进展|新闻接收|运行同步/);
-  const realChanges=page.locator('#project-changes .project-change');
-  assert.equal(await realChanges.count(),baseline.tracking.changes.filter(item=>item.sources?.some(s=>s.url)).length);
-  assert.match(await realChanges.filter({hasText:'2026-07-28'}).innerText(),/估算[\s\S]*421 MW/);
-  assert.match(await realChanges.filter({hasText:'2026-11-01'}).innerText(),/预测[\s\S]*843 MW/);
-  for(const selector of ['#company-chips [data-company="microsoft"]','#leaders [data-company="meta"]']){
+  const realChanges=page.locator('#update-track > .update-items:first-child [data-update-kind="project"]');
+  assert.ok(await realChanges.count()>0,'project updates share the same title stream');
+  const shownProject=await realChanges.first().getAttribute('data-effective-at');
+  assert.ok(baseline.tracking.changes.some(item=>item.effective_at===shownProject),'ticker preserves the source observation time');
+  const currentObservation=baseline.tracking.changes.find(item=>item.effective_at==='2026-07-28');
+  const forecastObservation=baseline.tracking.changes.find(item=>item.effective_at==='2026-11-01');
+  assert.equal(currentObservation.kind,'estimated');assert.equal(currentObservation.fields.capacity_it_mw,421);
+  assert.equal(forecastObservation.kind,'forecast');assert.equal(forecastObservation.fields.capacity_it_mw,843);
+  assert.equal(await page.locator('#update-track .update-items[aria-hidden="true"] .update-item:not([tabindex="-1"])').count(),0,'duplicate animation content does not duplicate keyboard links');
+  await page.locator('#update-toggle').click();
+  assert.equal(await page.locator('#update-toggle').getAttribute('aria-pressed'),'true');
+  assert.ok(await page.locator('#home-updates').evaluate(el=>el.classList.contains('paused')));
+  await page.locator('#update-toggle').click();
+  assert.equal(await page.locator('#update-toggle').getAttribute('aria-pressed'),'false');
+  await page.locator('.hero h1').click();await page.locator('.hero h1').hover();
+  await page.locator('#update-track').evaluate(el=>{const animation=el.getAnimations()[0];if(!animation)throw Error('Ticker animation is not active');animation.currentTime=animation.effect.getComputedTiming().duration*.6;});
+  assert.ok(await page.evaluate(()=>document.querySelector('#update-track .update-item').getBoundingClientRect().right<document.querySelector('#update-viewport').getBoundingClientRect().left),'fixture reaches a title outside the visible marquee');
+  await page.locator('#update-viewport').focus();
+  assert.equal(await page.locator('#update-track').evaluate(el=>getComputedStyle(el).animationName),'none','keyboard focus restores a static title list');
+  await page.keyboard.press('Tab');
+  assert.ok(await page.evaluate(()=>{const link=document.activeElement,viewport=document.querySelector('#update-viewport').getBoundingClientRect(),box=link.getBoundingClientRect();return link.matches('#update-track > .update-items:first-child .update-item')&&box.left>=viewport.left-1&&box.right<=viewport.right+1;}),'real Tab reveals the headline after it has scrolled out of view');
+  await page.emulateMedia({reducedMotion:'reduce'});
+  assert.equal(await page.locator('#update-track').evaluate(el=>getComputedStyle(el).animationName),'none','reduced motion disables the ticker animation');
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  for(const selector of ['#company-chips [data-company="microsoft"]','#company-chips [data-company="meta"]']){
    const id=await page.locator(selector).getAttribute('data-company');
    await page.locator(selector).click();
-   assert.equal(page.url(),homeURL);assert.equal(await page.locator('#stats').innerText(),before);
+   assert.equal(page.url(),homeURL);assert.equal(await page.evaluate(()=>window.industryFilter?.company||''),'');
    assert.equal(await page.locator('.site-point').count(),pointCount);
    const expected=baseline.rows.filter(p=>!p.portfolio&&p.coordinates&&[...p.developer,...p.tenant].includes(id)).map(p=>p.site_id).sort();
    assert.deepEqual(await page.locator('.site-point.highlighted').evaluateAll(es=>es.map(e=>e.dataset.id).sort()),expected);
-   assert.equal(await page.locator('[data-news-count]').innerText(),'当前筛选 · 报道 3 条');
+   assert.equal(await page.locator('.dc-news-list article').count(),3,'highlight keeps news conditions unchanged');
   }
   await page.locator('#company-chips [data-company=""]').click();assert.equal(await page.locator('.site-point.dimmed').count(),0);
+  await page.goto(base+'/industry.html');await page.locator('#filters select[name=c] option[value="microsoft"]').waitFor({state:'attached'});
   await page.locator('#filters select[name=c]').selectOption('microsoft');
   await page.waitForFunction(()=>window.industryFilter?.company==='microsoft');
   const api=await (await page.request.get(base+'/api/industry?c=microsoft&stage=construction')).json();
@@ -199,8 +223,33 @@ const {mkdirSync}=require('node:fs');
   await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
   assert.equal(await page.locator('#world-map .atlas-grid').count(),1);
   const marker=page.locator('#world-map .site-point').last();
-  await marker.hover();await page.locator('#map-popup').waitFor();
-  await page.locator('.hero h1').hover();await page.waitForFunction(()=>document.querySelector('#map-popup').hidden);
+  const markerBox=await marker.boundingBox(),pointer={x:markerBox.x+markerBox.width/2,y:markerBox.y+markerBox.height/2};
+  await marker.hover();
+  assert.equal(await page.locator('#map-tooltip').evaluate(el=>el.hidden),false,'custom hover hint appears on the pointer event without waiting for a native tooltip');
+  assert.equal(await page.locator('#map-popup').evaluate(el=>el.hidden),true,'hover does not open the detailed project dialog');
+  assert.equal(await marker.locator('title').count(),0,'homepage markers do not show a second native tooltip');
+  assert.equal(await page.locator('#map-tooltip').textContent(),await marker.getAttribute('data-tooltip'));
+  const tooltipBefore=await page.locator('#map-tooltip').boundingBox();
+  assert.ok(tooltipBefore.width<=280&&tooltipBefore.height<=96,'hover hint stays compact');
+  assert.ok(Math.min(Math.abs(tooltipBefore.x-pointer.x),Math.abs(tooltipBefore.x+tooltipBefore.width-pointer.x))<=20,'hover hint is positioned beside the mouse');
+  await page.mouse.move(pointer.x+1,pointer.y+1);
+  const tooltipMoved=await page.locator('#map-tooltip').boundingBox();
+  assert.ok(Math.abs(tooltipMoved.x-tooltipBefore.x-1)<1&&Math.abs(tooltipMoved.y-tooltipBefore.y-1)<1,'hover hint follows pointer movement');
+  await page.locator('.hero h1').hover();
+  assert.equal(await page.locator('#map-tooltip').evaluate(el=>el.hidden),true,'leaving a marker immediately hides the hint');
+  const edgeIndex=await page.locator('#world-map .site-point').evaluateAll(points=>points.map((point,index)=>({index,right:point.getBoundingClientRect().right})).sort((a,b)=>b.right-a.right)[0].index);
+  await page.locator('#world-map .site-point').nth(edgeIndex).hover();
+  const edgeHint=await page.locator('#map-tooltip').boundingBox(),hintFrame=await page.locator('.map-frame').boundingBox();
+  assert.ok(edgeHint.x>=hintFrame.x&&edgeHint.x+edgeHint.width<=hintFrame.x+hintFrame.width+1&&edgeHint.y>=hintFrame.y&&edgeHint.y+edgeHint.height<=hintFrame.y+hintFrame.height+1,'hover hint stays inside the map at its edge');
+  await page.locator('.hero h1').hover();
+  await marker.click();await page.locator('#map-popup').waitFor();
+  assert.equal(await page.locator('#map-tooltip').evaluate(el=>el.hidden),true,'click replaces the compact hint with the detail dialog');
+  await page.locator('#close-site').click();
+  await page.locator('#zoom-reset').focus();await marker.focus();
+  assert.equal(await page.locator('#map-tooltip').evaluate(el=>el.hidden),false,'keyboard focus receives the same compact hint');
+  assert.equal(await page.locator('#map-popup').evaluate(el=>el.hidden),true,'focus alone does not open the detail dialog');
+  await page.keyboard.press('Escape');
+  assert.equal(await page.locator('#map-tooltip').evaluate(el=>el.hidden),true,'Escape hides the compact hint');
   const size=()=>marker.evaluate(el=>{const r=el.getBoundingClientRect();return [r.width,r.height];});
   const initialSize=await size();
   await page.locator('#zoom-in').click();await page.locator('#zoom-in').click();
@@ -225,11 +274,11 @@ const {mkdirSync}=require('node:fs');
   await page.locator('#map-popup a').click();
   await page.getByRole('heading',{name:'来源与核验'}).waitFor();
   assert.equal(new URL(page.url()).pathname,'/project.html');
-  await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
+  await page.goto(base+'/industry.html');await page.locator('#world-map .site-point').first().waitFor();
   await page.locator('#news-selection').selectOption('all');await page.getByRole('link',{name:'未精选的线索',exact:true}).waitFor();
-  assert.equal(await page.locator('[data-news-count]').innerText(),'当前筛选 · 报道 3 条');
+  assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
   await page.locator('#news-selection').selectOption('selected');
-  await page.waitForFunction(()=>document.querySelector('[data-news-count]').textContent.includes('精选报道 2 条'));
+  await page.waitForFunction(()=>document.querySelector('[data-news-count]').textContent.includes('精选 2 条'));
   for(const mode of ['dark','light']){
    await page.locator('#ui-appearance').selectOption(mode);
    assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),mode==='dark'?'rgb(27, 28, 25)':'rgb(250, 249, 246)');
@@ -255,10 +304,9 @@ const {mkdirSync}=require('node:fs');
 
   // Reader history exposes the stated interval and source date, with no inferred midpoint or private workflow clocks.
   const homeProjection=await (await page.request.get(base+'/api/industry?overview=1')).json();
-  await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:{...homeProjection,tracking:{...homeProjection.tracking,changes:[]}}}));
-  await page.goto(base+'/');await page.locator('#project-changes .empty').waitFor();
-  assert.match(await page.locator('#project-changes').innerText(),/暂无有独立来源的项目观测动态/);
-  assert.equal(await page.locator('#project-changes .project-change').count(),0,'empty source history never invents a change');
+  await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:{...homeProjection,tracking:{...homeProjection.tracking,changes:[]},research_updates:{...homeProjection.research_updates,changes:[]}}}));
+  await page.goto(base+'/');await page.locator('#home-updates .update-empty').waitFor();
+  assert.equal(await page.locator('#update-track .update-item').count(),0,'empty source history never invents a change');
   await page.unroute(/\/api\/industry(?:\?.*)?$/);
   const rangeRow=homeProjection.rows.find(p=>p.capacity_known&&p.coordinates);
   for(const stage of Object.keys(homeProjection.stages))homeProjection.totals[stage]-=rangeRow.capacity[stage];
@@ -266,26 +314,40 @@ const {mkdirSync}=require('node:fs');
   Object.assign(rangeRow,{phases:[],capacity:{operating:0,construction:0,planning:0},total_mw:0,capacity_known:false,capacity_ranged:true,
    quantity_fields:{capacity_it_mw:nativeRange},capacity_ranges:[{field:'capacity_it_mw',stage:'construction',level:'L6',...nativeRange}]});
   homeProjection.totals.ranged_sites=1;
+  homeProjection.research_updates={...homeProjection.research_updates,changes:[]};
   homeProjection.tracking={observations:777,review_overdue_sites:888,conflicting_sites:999,changes:[{
    id:'reader-interval',site_id:rangeRow.site_id,name:'有依据的区间项目',kind:'forecast',scope:'phase:two',effective_at:'2027',
-   recorded_at:'2099-01-01T00:00:00Z',reviewed_at:'2098-01-01T00:00:00Z',basis:'来源说明规划区间，尚未实现',assumptions:['不得取区间中点'],
+   recorded_at:'2026-10-11T00:00:00Z',reviewed_at:'2098-01-01T00:00:00Z',basis:'来源说明规划区间，尚未实现',assumptions:['不得取区间中点'],
    fields:{capacity_it_mw:nativeRange,capacity_it_mw_by_status:{},capacity_assessment:null},
    source_versions:[{published_at:'2026-10',first_received_at:'2097-01-01T00:00:00Z'}],sources:[{url:'https://example.com/range-source'}]
   }]};
   await page.route(/\/api\/industry(?:\?.*)?$/,r=>r.fulfill({json:homeProjection}));
-  await page.goto(base+'/');await page.locator('#project-changes .project-change').waitFor();
-  assert.match(await page.locator('#daily-freshness').innerText(),/最近补充.*历史补录不代表今日发生/);
-  assert.match(await page.locator('#project-changes .project-change summary').innerText(),/2027[\s\S]*有依据的区间项目[\s\S]*预测[\s\S]*1–2 GW/);
-  await page.locator('#project-changes .project-change summary').click();
-  assert.match(await page.locator('#project-changes .project-change').innerText(),/来源发表 2026-10/);
-  assert.match(await page.locator('#project-changes .project-change').innerText(),/分期 two/);
-  assert.equal(await page.locator('#project-changes .project-change a[href="https://example.com/range-source"]').count(),1);
-  assert.doesNotMatch(await page.locator('main').innerText(),/2099|2098|2097|777|888|999|站点复核待更新/);
-  assert.match(await page.locator('#basis').innerText(),/另有 1 项容量以区间披露/);
+  await page.goto(base+'/');await page.locator('#update-track > .update-items:first-child [data-update-kind="project"]').waitFor();await page.locator('#world-map .range-point rect').waitFor();
+  const intervalUpdate=page.locator('#update-track > .update-items:first-child [data-update-kind="project"]');
+  assert.equal(await intervalUpdate.getAttribute('data-effective-at'),'2027','information time stays separate from the update timestamp');
+  assert.match(await intervalUpdate.innerText(),/预测[\s\S]*1–2 GW/);
+  assert.match(await intervalUpdate.locator('time').getAttribute('datetime'),/2026-10-11/);
+  assert.match(await intervalUpdate.innerText(),/有依据的区间项目/);
+  assert.doesNotMatch(await page.locator('main').innerText(),/2098|2097|777|888|999|站点复核待更新/);
   assert.equal(await page.locator('.range-point rect').count(),1,'range has its own fixed marker, not an area based on a midpoint');
   await page.locator('.range-point').press('Enter');
   assert.match(await page.locator('#map-popup').innerText(),/1–2 GW/);
   assert.doesNotMatch(await page.locator('#map-popup').innerText(),/未披露|1,500|1.5 GW/);
+  homeProjection.detail={...structuredClone(baseline.rows.find(p=>p.site_id===rangeRow.site_id)),...rangeRow,adoption:null,observations:homeProjection.tracking.changes};
+  await page.goto(base+'/project.html?site='+encodeURIComponent(rangeRow.site_id));
+  await page.locator('#site-observation-timeline .timeline li').waitFor();
+  assert.match(await page.locator('#site-observation-timeline').innerText(),/2027[\s\S]*预测[\s\S]*分期 two[\s\S]*1–2 GW/);
+  assert.match(await page.locator('#site-observation-timeline').innerText(),/来源发表 2026-10/);
+  assert.equal(await page.locator('#site-observation-timeline a[href="https://example.com/range-source"]').count(),1);
+  assert.doesNotMatch(await page.locator('#site-observation-timeline').innerText(),/2098|2097|1,500|1.5 GW/);
+  for(const stamp of ['2026','2026-10']){
+   homeProjection.tracking.changes[0].recorded_at=stamp;
+   await page.goto(base+'/');
+   const preciseTime=page.locator('#update-track > .update-items:first-child [data-update-kind="project"] time');
+   await preciseTime.waitFor();
+   assert.equal(await preciseTime.getAttribute('aria-label'),stamp+' 更新','update timestamps retain the supplied year or month precision');
+   assert.equal(await preciseTime.getAttribute('datetime'),null,'partial timestamps do not acquire an invented full date');
+  }
   // Missing stages are unknown; an explicitly supplied zero remains a zero, including estimates.
   const zeroRow={...structuredClone(baseline.rows.find(p=>p.site_id===rangeRow.site_id)),
    site_id:'fixture-explicit-zero',name:'显式零容量fixture',adoption:null,observations:[],
@@ -316,28 +378,22 @@ const {mkdirSync}=require('node:fs');
   await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:rawPayload}));
   // A stalled member identity endpoint must never block public news.
   await page.route('**/api/whoami',()=>new Promise(()=>{}));
-  await page.goto(base+'/');await page.getByRole('link',{name:'微软新园区日报线索',exact:true}).waitFor();
-  assert.match(await page.locator('.dc-news').innerText(),/1,000 MW（1 GW） · IT 报道值/);
-  assert.match(await page.locator('.dc-news').innerText(),/75 MW · 设施 \/ 电网口径/);
-  assert.match(await page.locator('.dc-news').innerText(),/日报 2026-10-10 · 原文时间待补充/);
+  await page.goto(base+'/');await page.getByRole('link',{name:'微软新园区日报线索',exact:true}).waitFor();await page.locator('#world-map .country-point').waitFor({state:'visible',timeout:10000});
+  assert.equal(await page.locator('.dc-news-list article').count(),2,'raw headlines remain available without a feed');
+  assert.equal(await page.locator('.dc-news-list :is(time,small,button,.dc-news-day,.dc-news-capacity,.dc-news-state,.dc-news-mark)').count(),0);
+  assert.equal(await page.locator('.dc-news-original[href="https://example.com/raw-mw"]').count(),1,'original article links remain available');
   assert.doesNotMatch(await page.locator('main').innerText(),/今日接收|今日新闻|采用更新|站点复核待更新|查看核验进展|新闻接收|运行同步|已接收日报事件/);
-  assert.match(await page.locator('#news-daily-summary').innerText(),/发表日期以各篇来源为准/);
-  await page.evaluate(payload=>window.dispatchEvent(new CustomEvent('inresearch:news-data',{detail:{...payload,raw_atlas:{...payload.raw_atlas,latest_published_at:'2026-10-09T23:15:00Z'}}})),rawPayload);
-  assert.match(await page.locator('#news-daily-summary').innerText(),/最近报道发表 2026\/10\/10/,'publisher date uses Beijing time, never receipt or runtime sync');
-  assert.match(await page.locator('#research-summary').innerText(),/3 条文章提取记录/);
   if(process.env.UI_QA_DIR){
    await page.setViewportSize({width:1440,height:900});await page.evaluate(()=>scrollTo(0,0));
    await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-1440x900.png'});
    await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
   }
-  assert.match(await page.locator('#research-countries').innerText(),/新加坡 1 · 未定位/);
-  // News text can arrive before the independent map geometry/projection requests.
-  await page.locator('.country-point').waitFor({state:'visible',timeout:10000});
   assert.equal(await page.locator('.country-point').count(),1,'country research records cluster without fake site positions');
   assert.equal(await page.locator('.country-point text').textContent(),'2');
-  assert.match(await page.locator('#map-summary').innerText(),/2 条未定位/);
-  const sampleBefore=await page.locator('#stats').innerText();
-  await page.locator('.dc-news-locate').first().click();await page.locator('#map-popup').waitFor();
+  assert.equal(await page.locator('#world-map [data-raw-id="research-c"], #world-map [data-raw-id="raw-no-location"]').count(),0,'unlocated observations do not invent map coordinates');
+  const sampleBefore=await page.locator('.site-point').evaluateAll(points=>points.map(p=>[p.dataset.id,p.querySelector('circle')?.getAttribute('r')]));
+  await page.locator('.raw-point[data-raw-id="raw-megawatt"]').press('Enter');await page.locator('#map-popup').waitFor();
+  assert.match(await page.locator('#map-popup').innerText(),/1,000 MW[\s\S]*IT/);
   assert.match(await page.locator('#map-popup').innerText(),/报道数字不并入项目 IT 容量/);
   await page.locator('#close-site').click();
   await page.locator('.country-point').press('Enter');
@@ -345,10 +401,9 @@ const {mkdirSync}=require('node:fs');
   assert.match(await page.locator('#map-popup').innerText(),/计划 2 GW \/ 设施 3 GW/);
   await page.locator('#close-site').click();
   await page.locator('#company-chips [data-company="bytedance"]').click();assert.equal(await page.locator('.country-point.highlighted').count(),1);
-  assert.equal(await page.locator('#stats').innerText(),sampleBefore,'raw capacity does not alter adopted project totals');
+  assert.deepEqual(await page.locator('.site-point').evaluateAll(points=>points.map(p=>[p.dataset.id,p.querySelector('circle')?.getAttribute('r')])),sampleBefore,'raw capacity and highlighting do not alter adopted capacity marker areas');
   // News refresh updates overlays while keeping base geography and project DOM nodes.
-  await page.evaluate(()=>{window.oldLand=document.querySelector('#map-land-layer');window.oldProject=document.querySelector('.site-point');window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...window.industryFilter,force:true}}));});
-  await page.waitForFunction(()=>document.querySelector('.dc-news-list').textContent.includes('微软新园区日报线索'));
+  await page.evaluate(()=>new Promise(resolve=>{window.oldLand=document.querySelector('#map-land-layer');window.oldProject=document.querySelector('.site-point');window.addEventListener('inresearch:news-data',()=>resolve(true),{once:true});window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...window.industryFilter,force:true}}));}));
   assert.ok(await page.evaluate(()=>window.oldLand===document.querySelector('#map-land-layer')&&window.oldProject===document.querySelector('.site-point')));
   await page.unroute('**/api/whoami');
 
@@ -359,7 +414,7 @@ const {mkdirSync}=require('node:fs');
    await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:payload}));
    await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
    await page.waitForFunction(()=>document.querySelector('.dc-news-meta').textContent || document.querySelector('.dc-news-list').textContent);
-   assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
+   assert.equal(await page.locator('[data-news-count]').count(),0);
    if(!payload.feed)assert.match(await page.locator('.dc-news-meta').innerText(),/暂无可显示的近期报道/);
    else assert.match(await page.locator('.dc-news-list').innerText(),/当前范围暂无已整理的中文新闻/);
    assert.doesNotMatch(await page.locator('main').innerText(),/尚未连接阅读服务|等待新闻同步|查看核验进展/);
@@ -367,7 +422,7 @@ const {mkdirSync}=require('node:fs');
   await page.unroute(/\/api\/news(?:\?.*)?$/);
   await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({status:503,body:'unavailable'}));
   await page.goto(base+'/');await page.getByText('近期报道暂不可用，请稍后重试。',{exact:true}).waitFor();
-  assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
+  assert.equal(await page.locator('[data-news-count]').count(),0);
   await page.goto(base+'/project.html?site=us-tx-abilene');
   await page.locator('#capacity-estimate').waitFor();
   assert.match(await page.locator('#capacity-estimate').innerText(),/运营约 421/);
@@ -420,13 +475,13 @@ const {mkdirSync}=require('node:fs');
    await page.setViewportSize({width,height});await page.goto(base+'/');
    await page.locator('#world-map .site-point').first().waitFor();
    await page.evaluate(()=>document.fonts.ready);
-   await page.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168','real article projection fully rendered');
+   await page.locator('.country-point').first().waitFor();await page.locator('#update-track > .update-items:first-child .update-item').first().waitFor();
    const layout=await page.evaluate(()=>{
     const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height};};
     const map=rect('#world-map'),matrix=document.querySelector('#world-map').getScreenCTM();
     const screen=(x,y)=>{const p=new DOMPoint(x,y).matrixTransform(matrix);return {x:p.x,y:p.y};};
-    return {map,world:[screen(0,0),screen(1000,490)],market:rect('#market-band'),atlas:rect('.atlas-panel'),news:rect('.news-panel'),
-     controls:['#filters','#stats','#basis','#coverage','#map-summary','#company-chips','#news-selection'].map(rect),
+    return {map,world:[screen(0,0),screen(1000,490)],market:rect('#market-band'),atlas:rect('.atlas-panel'),news:rect('.news-panel'),ticker:rect('#home-updates'),
+     controls:['.company-picker','#company-chips','#company-coverage'].map(rect),
      overflow:document.documentElement.scrollWidth-innerWidth,scroll:scrollY,viewBox:document.querySelector('#world-map').getAttribute('viewBox'),
      numberSize:parseFloat(getComputedStyle(document.querySelector('.macro-card strong')).fontSize),
      metaSize:parseFloat(getComputedStyle(document.querySelector('.macro-card small')).fontSize)};
@@ -436,13 +491,16 @@ const {mkdirSync}=require('node:fs');
    assert.equal(layout.viewBox,'0 0 1000 490');
    assert.ok(Math.abs(layout.map.width/layout.map.height-1000/490)<.01,'full aspect ratio');
    assert.ok(layout.world[0].y>=layout.map.top-1 && layout.world[1].y<=layout.map.bottom+1,'no SVG clipping');
-   assert.ok(layout.controls.every(r=>r.top>=layout.map.bottom),'all filters and sample labels below map');
+   assert.ok(layout.controls.every(r=>r.top>=layout.map.bottom&&r.bottom<=layout.atlas.bottom+1),'company shortcuts sit below the map inside its panel');
+   assert.ok(layout.ticker.height<=64,'updates occupy one compact title strip');
+   assert.ok(layout.ticker.top>=layout.market.bottom&&layout.ticker.bottom<=layout.atlas.top,'one update stream sits between market figures and the atlas');
    assert.ok(layout.metaSize>=13);
    if(width>1000){
     assert.ok(layout.market.top>0 && layout.market.bottom<layout.map.top);
     assert.ok(layout.map.bottom<=height && layout.map.top>=0,`entire map visible at ${width}×${height}`);
     assert.ok(layout.map.width>=850 && layout.numberSize>=40,'retain large readable graphics');
-    assert.ok(layout.news.left>=layout.map.right && layout.news.top<layout.map.top,'news on the right');
+    assert.ok(layout.news.left>=layout.map.right && Math.abs(layout.news.top-layout.atlas.top)<=1,'news on the right, aligned to the atlas');
+    assert.ok(Math.abs(layout.news.bottom-layout.atlas.bottom)<=1,'news panel matches the complete map panel height');
    }else{
     assert.ok(layout.news.top>=layout.atlas.bottom,'mobile news follows map');
    }
@@ -459,7 +517,7 @@ const {mkdirSync}=require('node:fs');
    if(process.env.UI_QA_DIR)await page.screenshot({path:process.env.UI_QA_DIR+`/homepage-${width}x${height}.png`,fullPage:width<1000});
   }
   if(process.env.UI_QA_DIR){
-   await page.setViewportSize({width:1440,height:900});await page.goto(base+'/');await page.waitForFunction(()=>document.querySelector('#news-daily-summary strong')?.textContent==='168');await page.locator('.country-point').first().waitFor();await page.evaluate(()=>document.fonts.ready);await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/homepage-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
+   await page.setViewportSize({width:1440,height:900});await page.goto(base+'/');await page.locator('#update-track > .update-items:first-child .update-item').first().waitFor();await page.locator('.country-point').first().waitFor();await page.evaluate(()=>document.fonts.ready);await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/homepage-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
   }
   if(process.env.UI_QA_DIR)require('node:fs').writeFileSync(process.env.UI_QA_DIR+'/layout.json',JSON.stringify(measurements,null,2));
   await page.setViewportSize({width:1366,height:768});await page.goto(base+'/index.html');
@@ -469,6 +527,7 @@ const {mkdirSync}=require('node:fs');
   const mapBox=await page.locator('#world-map').boundingBox();
   await page.mouse.move(mapBox.x+mapBox.width*.4,mapBox.y+mapBox.height*.8);await page.mouse.down();await page.mouse.move(mapBox.x+mapBox.width*.4+60,mapBox.y+mapBox.height*.8+20);await page.mouse.up();
   assert.notEqual(await page.locator('#world-map').getAttribute('viewBox'),'0 0 1000 490');await page.locator('#zoom-reset').click();
+  await page.goto(base+'/industry.html');await page.locator('#filters select[name=region] option').nth(1).waitFor({state:'attached'});
   const region=await page.locator('#filters select[name=region] option').nth(1).getAttribute('value');
   await page.locator('#filters select[name=region]').selectOption(region);
   await page.waitForFunction(region=>window.industryFilter?.region===region,region);
