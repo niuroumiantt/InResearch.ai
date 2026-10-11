@@ -170,3 +170,6 @@ html[data-ui-skin] .industry .badge{color:var(--ui-body);background:var(--ui-sof
 
 .update-date-short{display:none}
 @media(max-width:600px){.update-date-full{display:none}.update-date-short{display:inline}}
+
+/* Immediate homepage hover information; clicking keeps the full source-backed dialog. */
+.industry-home .map-tooltip{position:absolute;z-index:4;max-width:min(280px,calc(100% - 16px));padding:6px 8px;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid #6a929e;border-radius:3px;background:#edf7f7;color:#133540;box-shadow:0 2px 8px #0002;font-size:13px;line-height:1.4}
