@@ -54490,6 +54490,90 @@
         },
         "batch_id": "d5890f100cf8b4ac4da07bea59cdd1f3c6b683be10e7d5386e49f38b6952d425"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c5f0342b4a4128ef1659864e6bf94bd4e1adf8803e02b4d066bcc22bd2160f0e",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:80:claim:2:ev:0",
+      "locator": "page:80/chunk:80",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 79,
+      "question_ids": [],
+      "quote": "These models typically require large quantities of electricity for training\n                    and inference and are the main drivers of electricity consumption growth from data\n                    centres today.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:32:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文及相邻模型定义充分支持限定的作者判断。该项对当前M01-Q04贡献AI用电增长驱动的定性证据，对NODE-demand-D2-conversion贡献前沿模型经训练和推理关联电力需求的局部路径。未发现敏感、真实冲突、拟替换或其他A条件，符合B级有限采用条件，不回答或关闭整个问题。",
+        "workorder_ids": [
+          "Q-M01-Q04",
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.113,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "91baff53cd09108153aab5f6b9ad092aafe15a2686ce9203c0fbc8aeb4653fb1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61075,
+            "output_tokens": 1173,
+            "reasoning_output_tokens": 171
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.986,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f096642eff13a9c1214e09e22d9f9648c379599121224a19076494956787d6e1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61653,
+              "output_tokens": 698,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "ec427aaaae25d8e136af32bdc971d9b6f5ea1efddeff577db5adc02b9bcb3544"
+      }
     }
   ],
   "statements": [
@@ -105365,6 +105449,108 @@
         "request_sha256": "4329fdfcda8e35231daa95a5d11add6185a4a3a3682616e6939cf061ab948436"
       },
       "object_mapping_check": "独立核对对象契约：Scala是原文明示的容量组合主体，匹配actor:scala。本项描述公司组合年龄结构，未限定为契约root所指的一座AI数据中心，也未展开设施、电力、IT或部件范围，故不继承root及文档其他基础设施标签。所选证据统一采用此主张级主体范围；原候选与证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:80:claim:2:ev:0"
+      ],
+      "id": "adoption:review:b1107769fce711c058b3725b",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M01-Q04",
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第80页称，用于生成任务的前沿模型通常在训练和推理中需要大量电力，是报告所述当时数据中心用电增长的主要驱动因素。这是IEA的定性判断，不构成对当前实际负载或用电增长贡献的独立认证；报告发表日期及“当时”的具体时间范围未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:32:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文及相邻模型定义充分支持限定的作者判断。该项对当前M01-Q04贡献AI用电增长驱动的定性证据，对NODE-demand-D2-conversion贡献前沿模型经训练和推理关联电力需求的局部路径。未发现敏感、真实冲突、拟替换或其他A条件，符合B级有限采用条件，不回答或关闭整个问题。",
+        "workorder_ids": [
+          "Q-M01-Q04",
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.113,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "91baff53cd09108153aab5f6b9ad092aafe15a2686ce9203c0fbc8aeb4653fb1",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61075,
+            "output_tokens": 1173,
+            "reasoning_output_tokens": 171
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.986,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f096642eff13a9c1214e09e22d9f9648c379599121224a19076494956787d6e1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61653,
+              "output_tokens": 698,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "ec427aaaae25d8e136af32bdc971d9b6f5ea1efddeff577db5adc02b9bcb3544"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:80:claim:2"
+      ],
+      "limitations": "未提供电量、功率、AI与传统负载占比、各自增速或训练与推理的贡献拆分；地域覆盖、模型版本、工作负载规模及部署状态未明确。上下文区分前沿生成模型与通常较小的领域专用模型，不能将该判断扩展至所有AI模型。全文覆盖仅为原生文字读取，未完成图像内容视觉审阅；本项不能用于计算容量、更新模型参数或认定项目投运阶段。",
+      "conflict_check": "已采用的IEA AI专用设施容量增长记录涉及容量而非用电驱动贡献；LBNL转述七份公用事业预测突出AI的记录涉及预测判断，均与本项相关但不重复。较小模型设备端运行、专家稀疏度及模型路由机制记录不否定本项限定于前沿生成模型的判断。所供legacy筛选记录为空，未发现同条件真实冲突；检查限于所供材料，不代表完整外部反证搜索，不替换已有结论。",
+      "gap_dependency_check": "M01-Q04仍需同地域、同时间及同口径的AI与传统负载或用电序列、统计分母和可复查增速推导。NODE-demand-D2-conversion仍需具体模型、训练与推理工作量、运行工程和设备条件，以及算力、电力、网络、存储转换系数、时滞和不确定性验证。本项仅建立定性电力需求关系，未完成这些转换，也不能把大量电力解释为高瞬时功率；两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ec427aaaae25d8e136af32bdc971d9b6f5ea1efddeff577db5adc02b9bcb3544",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "76e43e92e851db438788cc7326bcdb5135e1a749f8a81122e160c77c7f1cd95c"
+      },
+      "object_mapping_check": "独立依据原文明示的数据中心用电增长选择root，范围仅为AI数据中心整体这一设施对象类型，不表示某一座设施的电量或状态。主张直接建立前沿模型与数据中心整体用电的关系，而非仅因AI主题继承Reader标签。未描述内部供配电、计算设备或并网权利，故不增加system:power、system:compute、部件或site:grid映射；所选证据统一采用此主张范围。"
     }
   ],
   "answers": [],
