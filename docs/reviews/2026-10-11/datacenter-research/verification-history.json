@@ -1,0 +1,138 @@
+{
+  "schema": "source-verification-history-v1",
+  "records": [
+    {
+      "head": "7b5b45e324567849a05999c3b5f7eae1764a7708",
+      "run_id": 38098602031,
+      "status": "success",
+      "successful_jobs": 21,
+      "scope": "article source pack governance and repository tests; not standalone article rendering or production deployment"
+    },
+    {
+      "head": "148ded776d690eb126f4fad6427f093e24d80e45",
+      "run_id": 38099416647,
+      "status": "failed",
+      "actual_failures": [
+        {
+          "job_id": 114352130730,
+          "job": "validate",
+          "test": "test_published_datacenter_research_has_precise_read_only_routes",
+          "reason": "HTTP header dictionary lookup incorrectly treated Content-Type names as case sensitive",
+          "correction": "Read response header by case-insensitive key; production service unchanged."
+        },
+        {
+          "job_id": 114352130853,
+          "job": "browser (core_b)",
+          "test": "ui_skin",
+          "reason": "New HTML omitted shared data-ui-skin activation; body computed transparent instead of shared light background.",
+          "correction": "Activate existing shared skin attribute on five pages; use shared body padding and font tokens."
+        }
+      ],
+      "independent_source_issue": {
+        "file": "tests/research_delivery.cjs",
+        "reason": "Two regex decimal-point literals incorrectly doubled backslashes.",
+        "correction": "Single-backslash regex literals verified matching disclosed 0.672 and 0.9 text; failed browser did not reach these assertions."
+      },
+      "scope": "Failures retained; corrected candidate requires independent final-head CI."
+    },
+    {
+      "head": "8315f670b042c7802e9af52d79a11792f5792053",
+      "run_id": 38099874141,
+      "status": "failed",
+      "actual_failures": [
+        {
+          "job_id": 114353618793,
+          "job": "browser (core_b)",
+          "test": "ui_skin",
+          "reason": "At 360px the search input fixed width expanded its grid track, producing page width377; regional article pages and theme checks passed.",
+          "correction": "Constrain the search label grid track to minmax(0,1fr), allow its minimum width to shrink, and bound the search input width to available space. Preserve local table scrolling and existing viewport assertions."
+        }
+      ],
+      "scope": "Actual failure retained; specialized research_delivery assertions were not reached. Corrected final head requires independent full CI."
+    },
+    {
+      "head": "527a7d8d8c9e31f2a8d83cb1b67f31815c952695",
+      "run_id": 38100144919,
+      "status": "failed",
+      "actual_failures": [
+        {
+          "job_id": 114354427164,
+          "job": "browser (core_b)",
+          "test": "research_delivery",
+          "reason": "Real shared-font rendering placed five subtitle text bounds at right724–726.719 beyond 720px SVG viewBoxes; all five new pages passed shared-theme/mobile checks.",
+          "affected_figures": [
+            "figure-01",
+            "figure-04",
+            "figure-07",
+            "figure-08",
+            "figure-11"
+          ],
+          "correction": "Reflow the five two-line subtitles with unchanged capacity data and retained meanings. Apply identical text to editable SVGs, standalone full HTML and website article. Keep rendered bbox assertions intact."
+        }
+      ],
+      "scope": "Actual failure retained. Corrected final head requires independent full CI; no production receipt inferred."
+    },
+    {
+      "head": "b6f1500bc6bcdb1a5dc7aa1fe4ace72154a0d8af",
+      "run_id": 38100445239,
+      "status": "success",
+      "successful_jobs": 21,
+      "unit_tests": 2190,
+      "browser_topic_job": 114355331058,
+      "browser_topic_scope": "Actual six-chapter article, twelve SVG text bounds,1440/390/320 widths, regional appendices,168/47/2/7/52 project filters, capacity strings and HTTP JSON reads passed. Standalone editorial variants and production were not verified.",
+      "merge_context": {
+        "preserved_main": "ee8f82c1be2624e1bbdf01a4566f317a109f2a7c",
+        "changed_paths": [
+          "data/research_knowledge.json",
+          "framework/repository_manifest.json",
+          "docs/REPOSITORY_REGISTER.md"
+        ],
+        "resolution": "Retain main research increment and regenerate manifest/register from its current row; article, routes, public permissions, tests and corrections unchanged. Integration head requires its own CI."
+      }
+    },
+    {
+      "head": "fcfb19dff5d4299a371501a852e5b9fa4bdf2e52",
+      "status": "superseded_before_ci",
+      "reason": "Main advanced to116f57ab memory fix and retained research increment. Integrate all latest source, normative changes and test fixture; source-level article/ledger/browser behavior unchanged.",
+      "new_baseline": "2026.10.11.79"
+    },
+    {
+      "commit": "1943bbd9ddd5a6b48318507b7d4d9daea3ed16e7",
+      "workflow_run": 38101533831,
+      "conclusion": "success",
+      "jobs_success": 21,
+      "jobs_total": 21,
+      "validate_tests": 2197,
+      "validate_seconds": 115.944,
+      "browser_core_job": 114360078521,
+      "research_delivery_job": 114358391329,
+      "research_delivery_seconds": 4,
+      "merge_attempt": {
+        "at": "2026-10-11T01:33:51+00:00",
+        "http_status": 405,
+        "reason": "Pull Request has merge conflicts",
+        "new_main": "3b9f569ee1395a8be139ad5371b99eba82d2b7c1"
+      },
+      "limit": "Superseded by integration of newly adopted user-priority rules and implementation; this success cannot certify the new head or live publication."
+    },
+    {
+      "commit": "cc0ace205ebc6b09bd60e82d6ce07cc98632b9ff",
+      "workflow_run": 38102276105,
+      "conclusion": "success",
+      "jobs_success": 21,
+      "jobs_total": 21,
+      "validate_tests": 2199,
+      "validate_seconds": 158.448,
+      "validate_job": 114360571128,
+      "browser_core_job": 114362018759,
+      "research_delivery_job": 114360571346,
+      "research_delivery_seconds": 3,
+      "merge_attempt": {
+        "http_status": 405,
+        "reason": "Pull Request has merge conflicts",
+        "new_main": "39c9fb4996d7ae6399c710e04ceecfe5040ea9ac"
+      },
+      "limit": "New main adds one handoff file plus independently adopted C3 source records. Source implementations unchanged; the integrated head still requires its own checks."
+    }
+  ]
+}
