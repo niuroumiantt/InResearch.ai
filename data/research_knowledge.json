@@ -56112,6 +56112,93 @@
         },
         "batch_id": "9cecb5a4143c0c3d21974c595489f6649702410a4df1f23a34b3f953e401d599"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a5de9a377068bb99ea363f0ada2f3d24625455848a99bb789d5fdd219d1426f0",
+      "document_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "id": "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:10:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:power/3",
+        "chain:power/5",
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-backup-power-interfaces"
+      ],
+      "quote": "At higher densities, even modest percentage reductions in rack-level power relieve pressure on electrical distribution, cooling plant, and standby generation capacity.",
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "source_sha256": "1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:50:12+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。机架负载降低与备用发电容量压力缓解的方向性关系，实质贡献于当前备用电源接口及上下游依赖工作单。连续原句和计算效率讨论提供充分语境，可按B局部采用。封存摘要所指出的规格与数值缺口仍然成立，但不排除采用有限的作者依赖关系主张。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.602,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8930f57aee9af89dded66d1329008fbf609fee8112fe42301b4af814013925d3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 52532,
+            "output_tokens": 1373,
+            "reasoning_output_tokens": 306
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.725,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0c56c90f0f8db1dc2dc329611c7b012bad265872535210e1f0e6991e9375de2d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53178,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 238
+            }
+          }
+        },
+        "batch_id": "dc8f8688d7bae075dbc87042bb2d95ecc91d53f8457cdf9a14a82db70d48e815"
+      }
     }
   ],
   "statements": [
@@ -108581,6 +108668,108 @@
         "request_sha256": "194018133f4a4ed2dd4732bb6b1a3adc06821a62fd186c9c538af35fcf6d24f3"
       },
       "object_mapping_check": "独立依据原文与对象契约保留空映射：主张范围是欧盟数据中心市场整体的政策容量目标，并非root所指的一座AI数据中心。AI政策框架不证明目标容量全部用于AI，也未建立设施内部系统、部件、土地或并网权利的主张范围。欧盟委员会及IEA无对应允许主体ID，不借用其他主体。不继承Reader的root标签；所选证据统一采用此主张级空对象范围，保留有效的M05-Q01关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "evidence_ids": [
+        "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:10:ev:0"
+      ],
+      "id": "adoption:review:1c6822f8f717cbf06c9c5da5",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/3",
+        "chain:power/5",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-interfaces"
+      ],
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "status": "adopted",
+      "text": "Red Oak Consulting的CEO兼高级顾问Owen Thomas在DCD于2026年5月22日发表的《AI growth is running into a power and heat constraint》中认为，在英国数据中心高密度AI负载的工程规划语境下，即使机架功率仅降低较小百分比，也能缓解配电、冷却设备及备用发电容量的压力。此处保留为作者对负载与基础设施容量依赖关系的定性判断，不构成独立验证；原文未指定备用发电技术、具体项目或实施阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:50:12+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。机架负载降低与备用发电容量压力缓解的方向性关系，实质贡献于当前备用电源接口及上下游依赖工作单。连续原句和计算效率讨论提供充分语境，可按B局部采用。封存摘要所指出的规格与数值缺口仍然成立，但不排除采用有限的作者依赖关系主张。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.602,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8930f57aee9af89dded66d1329008fbf609fee8112fe42301b4af814013925d3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 52532,
+            "output_tokens": 1373,
+            "reasoning_output_tokens": 306
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.725,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0c56c90f0f8db1dc2dc329611c7b012bad265872535210e1f0e6991e9375de2d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53178,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 238
+            }
+          }
+        },
+        "batch_id": "dc8f8688d7bae075dbc87042bb2d95ecc91d53f8457cdf9a14a82db70d48e815"
+      },
+      "source_candidate_ids": [
+        "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:10"
+      ],
+      "limitations": "未给出降幅数值、功率测量边界、负载持续时间、备用发电容量换算关系、冗余配置或测试条件。没有柴油机组型号、电气与切换接口、燃料保障及互换条件。相邻段落讨论缩短计算运行时间与降低累计能耗，不能将其直接等同于瞬时机架功率或所需备用容量同比下降。",
+      "conflict_check": "现有adoption:review:ef6baaf37edf9a6b1cc48977讨论峰值负载形态及预期运行时长变化对备用策略的影响；本项新增降低机架功率可缓解容量压力的方向性主张，未被其完整覆盖。其他采用记录涉及备用用途、燃料输入及候选技术，与本项没有同条件冲突。所供legacy电价记录不涉及该容量依赖关系，contracts及projects筛选为空。未发现真实冲突或完整重复；核查限于所供材料，不覆盖全部外部反证。",
+      "gap_dependency_check": "OBJ-backup-power-interfaces仅获得一般备用发电对上游机架负载的局部依赖线索，未获得柴油机组自身的输入输出、接口规格或互换限制。仍需明确机型、峰值与持续负载、容量及冗余设计、切换与运行时长条件、燃料保障。问题保持开放，不更新设备参数、已有结论或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "dc8f8688d7bae075dbc87042bb2d95ecc91d53f8457cdf9a14a82db70d48e815",
+        "source_report_sha256": "ff456ea3807173d02482d6fda59e0048cf0c411613e9e674ea5a41edab8ee6a5",
+        "request_sha256": "4940fd556996cd93e56341bf0148f65c258f611d81c2ce1d56c7386fa7c1febb"
+      },
+      "object_mapping_check": "独立依据原句选择电力系统下的chain:power/3（发电与储能）和chain:power/5（配电），分别对应一般备用发电容量与配电压力；未指定冷却设备类别，选择system:thermal（水与散热）。原文没有将备用发电限定为柴油，故不沿用part:backup-power；合同中的system:facility涵盖土地建筑及消防安防，不对应此处冷却设备。机架功率是负载条件，未提供机柜结构或板级供电设备主张，不增加这些对象。所选证据统一采用上述声明级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
