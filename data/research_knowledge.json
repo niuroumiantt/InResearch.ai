@@ -8120,6 +8120,66 @@
       "status": "candidate",
       "stored_path": "originals/49/4935ae8f6544a140652c0473405c2c180ad7746d7663b5de21a31e9409605ee5/dcd-4935ae8f6544a140-Telehouse parent KDDI acquires office site in London-s Docklands .html",
       "title": "Telehouse母公司KDDI据报收购伦敦Docklands获数据中心规划许可的办公园区"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+      "coverage": {
+        "characters_read": 7576,
+        "characters_total": 7576,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+      "id": "doc-394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+      "library_path": "library/by-node/root/2026_Data Center Dynamics（DCD）_Cerebras starts construction on 165MW data center in Mi__394211e44e3087a3.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:cerebras-groq-sambanova-tenstorrent",
+        "actor:g42",
+        "root",
+        "site:land",
+        "system:compute",
+        "system:facility",
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-economics",
+        "NODE-workload-inference-profile"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-5359d4c1599841e099946ebd8d21e5c4",
+      "report_sha256": "68a978078fe19f6fc69402bd0bfd6384cb2fe17e98ed9002fef9f64ec9170157",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+        "url": "https://www.datacenterdynamics.com/en/news/cerebras-starts-construction-on-165mw-data-center-in-mikkeli-finland/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/cerebras-starts-construction-on-165mw-data-center-in-mikkeli-finland/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/39/394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f/dcd-394211e44e3087a3-Cerebras starts construction on 165MW data center in Mikkeli- Fin.html",
+      "title": "Cerebras starts construction on 165MW data center in Mikkeli, Finland"
     }
   ],
   "evidence": [
@@ -61066,6 +61126,89 @@
           }
         },
         "batch_id": "294523a4b471637c3c32c9d34d5606f99ea643c1a0631aea3a6980d27f97ab2a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "46cb40d90a080fd1a40f55b812321510da5dc186242407173a67b369a63189b5",
+      "document_id": "doc-394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+      "id": "rev-5359d4c1599841e099946ebd8d21e5c4:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:cerebras-groq-sambanova-tenstorrent"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "In its recent earnings call, the company noted that its revenue reached $210m, a significant increase from the prior year, but it had a net loss of $450.4m, down from $309.5m in net income in Q2 2025.",
+      "reading_revision_id": "rev-5359d4c1599841e099946ebd8d21e5c4",
+      "source_sha256": "394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:14:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。营收与净损益表述为当前M02-Q02的扩张资金约束研究提供具体财务线索，具有实质但有限的问题关系。连续原文引句与完整页面语境充分；限定来源归因并保留期间缺口后，符合B类部分采用条件。未发现敏感、真实冲突、拟替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 47.815,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4f1989cc33c1c71ce05fbdd99e0f330f9209e93b3fced9156d6f9079043af979",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71364,
+            "output_tokens": 1497,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.425,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "309a434b2a1935017f6874fe2835e7de4b7048c14b15ef555dc5a1ea786ea991",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71969,
+              "output_tokens": 462,
+              "reasoning_output_tokens": 199
+            }
+          }
+        },
+        "batch_id": "d11cfa6a01ce2047750f24aa1235b805786866022820f09d5aeabdc1f990067e"
       }
     }
   ],
@@ -118383,6 +118526,106 @@
         "request_sha256": "60bf6761e8a4ce7c856025b1f784e25ca79989fe8426f4cdab55aa78c4b32453"
       },
       "object_mapping_check": "独立复核后，本项是数据中心总体用电占电力需求的宏观比例预测，未限定AI专属设施或描述具体资产。对象合同中的root是一座AI数据中心，system:power及system:it是其内部系统，site:grid是电力配额与并网权利，均不能直接承载该综合统计。保留空对象列表及有效问题匹配；所选证据统一采用此主张级范围，不继承Reader文档标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-394211e44e3087a3252620ed23ddbc00f2c06e126ae185e94f5e8a524952cd9f",
+      "evidence_ids": [
+        "rev-5359d4c1599841e099946ebd8d21e5c4:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:63087882830e37bd839e1d9d",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:cerebras-groq-sambanova-tenstorrent"
+      ],
+      "question_ids": [
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-5359d4c1599841e099946ebd8d21e5c4",
+      "status": "adopted",
+      "text": "据DCD作者Georgia Butler于2026年9月2日发表的报道，Cerebras在报道所称的近期财报电话会上表示，营收达到$210m，较上年显著增加，但净亏损为$450.4m；报道列示的对照值为2025年第二季度净利润$309.5m。这是来源对公司财务表述的转述，未经本次独立核验；本段未明确最新数值对应的报告期间，不能据此认定公司出现现金流缺口、融资受限或扩张放缓。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:14:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。营收与净损益表述为当前M02-Q02的扩张资金约束研究提供具体财务线索，具有实质但有限的问题关系。连续原文引句与完整页面语境充分；限定来源归因并保留期间缺口后，符合B类部分采用条件。未发现敏感、真实冲突、拟替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 47.815,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4f1989cc33c1c71ce05fbdd99e0f330f9209e93b3fced9156d6f9079043af979",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71364,
+            "output_tokens": 1497,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.425,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "309a434b2a1935017f6874fe2835e7de4b7048c14b15ef555dc5a1ea786ea991",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71969,
+              "output_tokens": 462,
+              "reasoning_output_tokens": 199
+            }
+          }
+        },
+        "batch_id": "d11cfa6a01ce2047750f24aa1235b805786866022820f09d5aeabdc1f990067e"
+      },
+      "source_candidate_ids": [
+        "rev-5359d4c1599841e099946ebd8d21e5c4:chunk:0:claim:11"
+      ],
+      "limitations": "本包未提供财报电话会原文或财务报表，最新报告期间、会计口径、亏损构成及同比营收基数未知，不能补写为2026年第二季度数据。未披露经营现金流、现金余额、债务、融资条款或资本支出承诺。财务数值未限定地域或项目，不能归入芬兰Mikkeli园区，也不能用于判断该园区建设阶段。",
+      "conflict_check": "所供已采用陈述中的一般信用脆弱性判断、其他企业融资与扩张事件，以及总体资本支出计划，均未提供Cerebras同期间、同口径财务数值，不构成本项的直接验证、冲突或重复。legacy三个登记表的所供匹配记录均为空；这不证明外部不存在反证。本项不替换或覆盖既有结论。",
+      "gap_dependency_check": "M02-Q02仅获得财务表现的部分证据，尚未证明资金约束及其对扩张节奏的影响，问题保持开放。仍需Cerebras一手财报及电话会记录，核定报告期间和亏损构成，并结合现金流、可用资金、融资安排及分期交付记录形成可复查推导。该案例也不能代替对问题列举的其他头部玩家的研究，不更新容量总量、模型参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d11cfa6a01ce2047750f24aa1235b805786866022820f09d5aeabdc1f990067e",
+        "source_report_sha256": "68a978078fe19f6fc69402bd0bfd6384cb2fe17e98ed9002fef9f64ec9170157",
+        "request_sha256": "f7d4975e719fc7384556cd6d2ee0cc9846e4fce8e78f4f0ef9a2a1d27c1f58a0"
+      },
+      "object_mapping_check": "独立核对对象契约：相邻原文确立财务表述主体为Cerebras，契约中的actor:cerebras-groq-sambanova-tenstorrent包含该主体，映射仅限Cerebras，不外推至Groq、SambaNova或Tenstorrent。本项是公司财务主张，未限定契约root所指的一座AI数据中心，也未分配至设施、电力、计算或其他部件，故不继承root及文档基础设施标签。所选证据统一采用此主张级主体范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
