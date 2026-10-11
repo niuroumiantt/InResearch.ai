@@ -56422,6 +56422,87 @@
         },
         "batch_id": "0505ef50996fb43279ab2afc328c9b96a99c96186aad6eb30c7a51798a4ff2a5"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c99d81a8445626ea617abcb0b302d459cf6f192c1068dba9af01cff99fc376f3",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:20:claim:12:ev:0",
+      "locator": "page:21/chunk:20",
+      "object_ids": [],
+      "page_index": 20,
+      "question_ids": [],
+      "quote": "2 Packaging refers to the final stage in the chip production process, where the silicon die is enclosed in a\n\n                  protective casing, providing power distribution and thermal management for the chip.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:40:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及相邻芯片封装产能约束段落支持有明确归因的定义。该定义明确硅裸片到封装芯片的制造阶段及功能范围，对当前硬件制造、集成与分销边界工作单具有实质性局部贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.596,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3101e42c959535e6587face5d590fed2d425e61c313c5e15c33c674719016f11",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45893,
+            "output_tokens": 1137,
+            "reasoning_output_tokens": 122
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 34.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "734f7a46542558b0dc9c3e6828d53267dcd3f453cc9877c5af5aba9879160ce8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 46489,
+              "output_tokens": 862,
+              "reasoning_output_tokens": 594
+            }
+          }
+        },
+        "batch_id": "1c5dfbcbacc44198f9b87ae50db5f63ef7cabe1b9ace055ee157132660864617"
+      }
     }
   ],
   "statements": [
@@ -109193,6 +109274,104 @@
         "request_sha256": "d6ddb0d7b1dd1126bd495d28b5df79e63231a6a83bd266e3ee7605e629f5ab26"
       },
       "object_mapping_check": "独立按对象契约复核：LiquidCore冷却技术及主要冷却用水属于root下的水与散热系统system:thermal。system:facility的链为土地与建筑、消防安防，不符合本项冷却范围，故不继承候选标签。原文未明确冷板、浸没槽、CDU、管路、排热设备或取水许可，不下推部件、链或水权对象；CDC和Firmus未列入允许主体ID，不新增或借用其他主体。该范围统一适用于所选证据。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:20:claim:12:ev:0"
+      ],
+      "id": "adoption:review:f4bc1780663558cd1ef65458",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-activity-V2-boundary"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》原生第21页脚注2中，将封装定义为芯片生产的最后阶段：硅裸片被封入保护外壳，为芯片提供配电和热管理。来源确切发表时间未知；这是IEA在该报告中采用的制造阶段定义，不构成具体产品已完成封装、交付或投运的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:40:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及相邻芯片封装产能约束段落支持有明确归因的定义。该定义明确硅裸片到封装芯片的制造阶段及功能范围，对当前硬件制造、集成与分销边界工作单具有实质性局部贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.596,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3101e42c959535e6587face5d590fed2d425e61c313c5e15c33c674719016f11",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45893,
+            "output_tokens": 1137,
+            "reasoning_output_tokens": 122
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 34.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "734f7a46542558b0dc9c3e6828d53267dcd3f453cc9877c5af5aba9879160ce8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 46489,
+              "output_tokens": 862,
+              "reasoning_output_tokens": 594
+            }
+          }
+        },
+        "batch_id": "1c5dfbcbacc44198f9b87ae50db5f63ef7cabe1b9ace055ee157132660864617"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:20:claim:12"
+      ],
+      "limitations": "定义未限定地域、具体芯片类型、封装技术或项目，也未披露制造、集成、分销的交易主体及职责。不能据此推定整机或整柜交付形态、裸片数量、资产产权、付款安排或验收状态。全文阅读覆盖限于PDF原生文本，未进行视觉审阅；本项引用及相邻段落的原生文本充分可读。",
+      "conflict_check": "已采用的Alphabet TPU交付与需求、Dell技术提供方、CXMT权益及表决控制、Siemens能源系统集成计划分别涉及交付、角色、治理或系统集成，与本项制造阶段定义兼容，亦非同一主张的重复。legacy的BIS PDU与PSU市场预测属于数据中心及服务器电源设备口径，不是芯片封装内部配电功能的反证；合同与项目匹配记录为空。所供范围内未发现规范重复或真实冲突，不替换既有结论；未进行外部反证检索。",
+      "gap_dependency_check": "仅部分支持NODE-activity-V2-boundary中的制造阶段和产品功能边界，尚缺完整交易的产品或服务、付款方、资产所有者、运营方、使用方，以及制造、集成、分销职责的互斥划分。仍需一手交易和工艺责任资料及同口径反证。通用封装定义不能自动覆盖整个活动节点，问题保持开放，不更新容量、模型输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1c5dfbcbacc44198f9b87ae50db5f63ef7cabe1b9ace055ee157132660864617",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "d59cb5f64be04caf08d2ecfaf30467d0fe804a7fe5971e34650831868f9a7df2"
+      },
+      "object_mapping_check": "独立核对对象契约后，本项范围为通用芯片封装制造阶段，契约未提供封装或硅裸片对象。原文未限定GPU、CPU、定制AI ASIC或HBM，不能由相邻AI供应链语境补入这些部件。封装的配电和热管理功能不等于数据中心配电、机柜与板级供电或冷板等散热资产；也不涉及一座具体AI数据中心，因此不映射root或基础设施系统。空对象列表保留有效的问题匹配，所选证据统一采用此主张级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
