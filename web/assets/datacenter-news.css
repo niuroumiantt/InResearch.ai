@@ -17,3 +17,18 @@
 .dc-news-mark button[aria-pressed="true"]{opacity:1;background:var(--accent-soft,#e8f0ff);border-color:var(--accent,#2f6fde)}
 
 .dc-news-capacity{font-size:13px;line-height:1.55;margin:5px 0;color:var(--ui-ink,var(--text));font-variant-numeric:tabular-nums}.dc-news-state{overflow-wrap:anywhere}.dc-news-locate{border:0!important;background:transparent!important;padding:0!important;color:var(--ui-link,var(--text))!important;font:inherit!important;text-decoration:underline;text-underline-offset:3px}.dc-news-content .dc-news-state{font-size:12px}
+
+/* The homepage keeps a dense headline column; the shared research timeline stays detailed. */
+.dc-news[data-news-presentation="headlines"]{display:flex;flex-direction:column;min-height:0;margin:0}
+.dc-news[data-news-presentation="headlines"] .dc-news-headlines-scroll{position:relative;flex:1;min-height:0}
+.dc-news[data-news-presentation="headlines"] .dc-news-list{flex:1;min-height:0;max-height:none;padding-right:6px;scrollbar-width:thin}
+.dc-news[data-news-presentation="headlines"] article{grid-template-columns:minmax(0,1fr) 22px;gap:6px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.dc-news[data-news-presentation="headlines"] article:first-child{padding-top:0}
+.dc-news[data-news-presentation="headlines"] article:last-child{border-bottom:0}
+.dc-news[data-news-presentation="headlines"] .dc-news-headline{font-size:14px;line-height:1.65;text-decoration:none}
+.dc-news[data-news-presentation="headlines"] .dc-news-headline:hover{text-decoration:underline}
+.dc-news[data-news-presentation="headlines"] .dc-news-original{font-size:15px;line-height:1.6;text-align:right;color:var(--muted);text-decoration:none}
+.dc-news[data-news-presentation="headlines"] .dc-news-original:hover{color:var(--text)}
+.dc-news[data-news-presentation="headlines"] .dc-news-meta{flex:none}
+@media(min-width:1001px){.dc-news[data-news-presentation="headlines"] .dc-news-headlines-scroll>.dc-news-list{position:absolute;inset:0}}
+@media(max-width:1000px){.dc-news[data-news-presentation="headlines"] .dc-news-headlines-scroll{flex:none}.dc-news[data-news-presentation="headlines"] .dc-news-headlines-scroll>.dc-news-list{position:static;max-height:340px}}
