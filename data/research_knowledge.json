@@ -7616,6 +7616,64 @@
       "status": "candidate",
       "stored_path": "originals/b3/b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798/dcd-b37f1a45b7c7aef0-Schneider Electric and AMD collaborate to enable fast- resilient-.html",
       "title": "Schneider Electric and AMD collaborate to enable fast, resilient, and efficient AMD Helios rackscale solution cluster deployment"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "coverage": {
+        "characters_read": 9072,
+        "characters_total": 9072,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "id": "doc-8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "library_path": "library/by-node/part-gpu/2025_DCD_AI cloud firm partners with CDC for Australian data cen__8c305e6b0602b060.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amazon",
+        "part:gpu",
+        "part:immersion",
+        "root",
+        "system:compute",
+        "system:facility"
+      ],
+      "question_ids": [
+        "M01-Q03",
+        "OBJ-gpu-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f403da3360bf4ff199d54d9049025f1d",
+      "report_sha256": "6167991983773e77ec2e541ebc3618c3dc6f49d91d086181cf6970f2f72a367a",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+        "url": "https://www.datacenterdynamics.com/en/news/ai-cloud-firm-partners-with-cdc-for-australian-data-center-capacity/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/ai-cloud-firm-partners-with-cdc-for-australian-data-center-capacity/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/8c/8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60/dcd-8c305e6b0602b060-AI cloud firm partners with CDC for Australian data center capaci.html",
+      "title": "AI cloud firm partners with CDC for Australian data center capacity"
     }
   ],
   "evidence": [
@@ -56280,6 +56338,89 @@
           }
         },
         "batch_id": "3116afe34a08ad9fe9bf631bbbacb3567443f63fad622b8fe4051a61c04b7ade"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4c772100051525d6b29ab28f796805dcea5cc58d2296946f1294d906cda1ff75",
+      "document_id": "doc-8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "id": "rev-f403da3360bf4ff199d54d9049025f1d:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The deployments will use LiquidCore, CDC’s proprietary cooling technology, which the firm says does not consume water for primary cooling.",
+      "reading_revision_id": "rev-f403da3360bf4ff199d54d9049025f1d",
+      "source_sha256": "8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:36:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。明确的技术名称及限定于主要冷却的用水主张，对当前M08-Q04贡献可追踪的项目技术线索，具有实质但有限的工单关系。连续原文和周边合作、计划部署及建设阶段上下文充分，符合B类限定归因采用条件；未发现敏感、真实冲突、拟替换或其他A条件。M08-Q02需要冷板与浸没路线份额及转折条件，本项未确认路线，仅有技术名称，故不将其列为实质问题匹配。",
+        "workorder_ids": [
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 48.901,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0507e3cb6a9566b04e4caf1d3f708b852a6463725b3de3e3aacc497530561510",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 42961,
+            "output_tokens": 1424,
+            "reasoning_output_tokens": 382
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.123,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c9088ffc57e695ef30dc8f01b8a902431ca738749d30a944397f5b4c3af9db2d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43598,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 172
+            }
+          }
+        },
+        "batch_id": "0505ef50996fb43279ab2afc328c9b96a99c96186aad6eb30c7a51798a4ff2a5"
       }
     }
   ],
@@ -108952,6 +109093,106 @@
         "request_sha256": "d883aea531a5b9b49e2312cbf9b522521ea3746efc073711d43feee18a05c1c0"
       },
       "object_mapping_check": "独立核对对象契约：本项是跨公司合计资本支出主张，契约root指一座AI数据中心，不能继承Reader的root标签。相邻图注提供主体分组及右图样本，但未明确7,150亿美元合计的逐公司构成，不据此分配到各actor。证据也未划分设施、IT、电力或部件支出，故对象范围留空；这不影响两项问题的有效匹配。所选证据统一采用此主张级空对象范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-8c305e6b0602b0607eb19d75f07cd9b77057f57cddfef7e0c56cd353b1bf0a60",
+      "evidence_ids": [
+        "rev-f403da3360bf4ff199d54d9049025f1d:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:82412832a8e7a11c7cde6d01",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M08-Q04"
+      ],
+      "reading_revision_id": "rev-f403da3360bf4ff199d54d9049025f1d",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年10月16日的报道中称，澳大利亚AI云企业Firmus与数据中心运营商CDC合作的Project Southgate计划部署将采用CDC自有的LiquidCore冷却技术；报道转述CDC称，该技术的主要冷却过程不消耗水。这是计划采用的技术及运营商用水主张，未经本次独立验证，不代表相关部署已投运或已实现该效果。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:36:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。明确的技术名称及限定于主要冷却的用水主张，对当前M08-Q04贡献可追踪的项目技术线索，具有实质但有限的工单关系。连续原文和周边合作、计划部署及建设阶段上下文充分，符合B类限定归因采用条件；未发现敏感、真实冲突、拟替换或其他A条件。M08-Q02需要冷板与浸没路线份额及转折条件，本项未确认路线，仅有技术名称，故不将其列为实质问题匹配。",
+        "workorder_ids": [
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 48.901,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0507e3cb6a9566b04e4caf1d3f708b852a6463725b3de3e3aacc497530561510",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 42961,
+            "output_tokens": 1424,
+            "reasoning_output_tokens": 382
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.123,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c9088ffc57e695ef30dc8f01b8a902431ca738749d30a944397f5b4c3af9db2d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43598,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 172
+            }
+          }
+        },
+        "batch_id": "0505ef50996fb43279ab2afc328c9b96a99c96186aad6eb30c7a51798a4ff2a5"
+      },
+      "source_candidate_ids": [
+        "rev-f403da3360bf4ff199d54d9049025f1d:chunk:0:claim:6"
+      ],
+      "limitations": "证据为媒体转述，未提供CDC一手技术文件或现场测量。主要冷却不耗水不能扩展为整个数据中心零用水、WUE为零或全生命周期水足迹为零。未确认LiquidCore属于冷板、浸没或其他具体路线，也未披露排热方式、系统边界、负载、天气、监测期间、PUE/WUE、改善基准或单MW散热Capex。2025年的部署计划不能证明截至当前已兑现。",
+      "conflict_check": "所供已采用记录分别涉及LBNL冷却情景及PUE/WUE建模、Goodman FRA02闭环设计和Lancium循环用水声明，与本项不同主体、项目及用水边界的主张可并存，未发现重复规范记录或真实冲突。不能把这些记录视为对LiquidCore的验证。legacy合同、事实及项目匹配记录均为空，检查限于所供材料，不代表已完成外部反证检索。不替换任何既有结论。",
+      "gap_dependency_check": "M08-Q04仍需CDC一手技术资料、具体冷却配置、主要冷却与全设施用水边界、同口径基准及现场测量、负载和天气条件、PUE/WUE计算方法，以及单MW散热成本序列。M08-Q02仍需路线确认、市场分母、份额和转折条件证据，Firmus历史浸没业务不能补足这些缺口。本项仅贡献部分线索，不回答或关闭问题，不修改研究骨架或模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0505ef50996fb43279ab2afc328c9b96a99c96186aad6eb30c7a51798a4ff2a5",
+        "source_report_sha256": "6167991983773e77ec2e541ebc3618c3dc6f49d91d086181cf6970f2f72a367a",
+        "request_sha256": "d6ddb0d7b1dd1126bd495d28b5df79e63231a6a83bd266e3ee7605e629f5ab26"
+      },
+      "object_mapping_check": "独立按对象契约复核：LiquidCore冷却技术及主要冷却用水属于root下的水与散热系统system:thermal。system:facility的链为土地与建筑、消防安防，不符合本项冷却范围，故不继承候选标签。原文未明确冷板、浸没槽、CDU、管路、排热设备或取水许可，不下推部件、链或水权对象；CDC和Firmus未列入允许主体ID，不新增或借用其他主体。该范围统一适用于所选证据。"
     }
   ],
   "answers": [],
