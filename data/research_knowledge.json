@@ -60393,6 +60393,90 @@
         },
         "batch_id": "ab4e15a56acdcdd39b132d0b52c76a5132286e98ae50dac6c6da880b96bb0ded"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8794bca4391919fb773c9914680e99eab14e55c9284f808006c0a9364eb5f92d",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:55:claim:1:ev:0",
+      "locator": "page:56/chunk:55",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "page_index": 55,
+      "question_ids": [],
+      "quote": "A typical aeroderivative gas turbine requires\n                  around 5 minutes to reach full output after start-up and can then ramp at around 50% of\n                  nominal capacity per minute.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:49:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。启动时间和按额定容量归一化的爬坡速率，实质贡献于当前主用自备电源性能工作单；相邻快速负载变化讨论也为输出响应与负载接口匹配提供局部支持。完整连续引文和周围语境充分，未建立敏感内容、真实冲突、拟替换或其他A条件，符合B档有限采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-performance",
+          "Q-OBJ-prime-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.726,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cfda214990730975a4a64d5ed62f0db4ae0f1846123bb3ae48fb102cc0aa646",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66554,
+            "output_tokens": 1570,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.219,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5029f7e497e5a1b9266137eab5d7a2a957cfd3724125a0f2c704c3e3e71de4ba",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67186,
+              "output_tokens": 402,
+              "reasoning_output_tokens": 144
+            }
+          }
+        },
+        "batch_id": "43df244f80513ff33e65f5baf93a19a9b2087e124e7e9430be776d4c2382359a"
+      }
     }
   ],
   "statements": [
@@ -116998,6 +117082,108 @@
         "request_sha256": "78f586a13fe7b6edbb37a7b75e9e538001968073f772d2a3341ba3b678b4757b"
       },
       "object_mapping_check": "独立依据对象契约核对：Polaris Forge 2园区整体的拟出租关系匹配root“一座AI数据中心”；正文明确其属于Applied Digital园区组合，匹配actor:applied-digital，但映射不认证具体资产权属或运营责任。场址位置及园区租赁不等于土地权利证据，不映射site:land；本项没有并网权益、设备或系统证据，不映射site:grid、system:it或其他基础设施。租户未具名，不映射CoreWeave或其他主体。两条所选证据统一使用此审核后的主张范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:55:claim:1:ev:0"
+      ],
+      "id": "adoption:review:7bc48b9fd7f11406c26c8734",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "question_ids": [
+        "OBJ-prime-power-performance",
+        "OBJ-prime-power-interfaces"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》第56页在数据中心现场发电应对快速负载变化的讨论中称，典型航改型燃气轮机启动后约需5分钟达到满输出，此后可按每分钟约额定容量50%的速率爬坡。报告发表时间未知；这些是来源概括的典型响应参数，不构成具体机型或项目运行性能的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:49:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。启动时间和按额定容量归一化的爬坡速率，实质贡献于当前主用自备电源性能工作单；相邻快速负载变化讨论也为输出响应与负载接口匹配提供局部支持。完整连续引文和周围语境充分，未建立敏感内容、真实冲突、拟替换或其他A条件，符合B档有限采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-performance",
+          "Q-OBJ-prime-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.726,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cfda214990730975a4a64d5ed62f0db4ae0f1846123bb3ae48fb102cc0aa646",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66554,
+            "output_tokens": 1570,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.219,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5029f7e497e5a1b9266137eab5d7a2a957cfd3724125a0f2c704c3e3e71de4ba",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67186,
+              "output_tokens": 402,
+              "reasoning_output_tokens": 144
+            }
+          }
+        },
+        "batch_id": "43df244f80513ff33e65f5baf93a19a9b2087e124e7e9430be776d4c2382359a"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:55:claim:1"
+      ],
+      "limitations": "未指定型号、燃料、额定容量、启动初始状态、环境温度、负载接入方式、爬坡方向、测试方法或统计样本，也未建立具体地域、场址、项目阶段及主用、桥接或备用角色。不能将5分钟解释为冷态启动保证值或断电后的负载恢复时间，也不能用50%/分钟推算启动期间的平均爬坡速率。全文阅读限于PDF原生文本，未完成图像核验。",
+      "conflict_check": "已检查所供采用陈述。adoption:review:4bd848d9e86a1b2b6d37f016称RICE可在10分钟内从冷态达到满输出、实际与航改燃机相近，与本项约5分钟存在需要保留的数值差异线索；但旧记录没有明确给出航改燃机的10分钟参数，本项也未说明冷态条件，不能认定为同工况真实冲突或以本项修正旧结论。既有快速启动定性描述与本项兼容，但不构成独立验证。其余采用陈述未完整覆盖本项；legacy匹配记录为空仅表示本批未提供对应记录。未发现可指定的重复规范记录，检查不代表穷尽外部反证检索。",
+      "gap_dependency_check": "部分支持OBJ-prime-power-performance的启动与爬坡测量维度，以及OBJ-prime-power-interfaces的负载响应匹配边界。仍需具体机型在统一启动状态、负载和环境条件下的测试、接口规格、过渡供电条件、可靠性与失效证据，并核对既有冷态启动比较。不能证明设备可直接跟随亚秒级负载、可互换或满足具体项目供电要求；两个问题均保持开放，不覆盖既有结论或直接更新模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "43df244f80513ff33e65f5baf93a19a9b2087e124e7e9430be776d4c2382359a",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "e7052cf35f526455f5f08e6b95ce636b6d069623cfe48193c88fef20207805c4"
+      },
+      "object_mapping_check": "原文明确将参数归于航改型燃气轮机，对应system:power下chain:power/3“发电与储能”的part:gas-turbine，映射依据设备类别独立确定。相邻储能、UPS、GPU和电网讨论未进入本项参数陈述，不扩大映射至这些对象或整座数据中心；该范围不确认具体设备的运行角色或投运状态。"
     }
   ],
   "answers": [],
