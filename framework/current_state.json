@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.84",
+  "version": "2026.10.11.85",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -116,16 +116,23 @@
         "tests/unit/test_object_mapping_review.py",
         "docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json",
         "docs/research/2026-10-11/data-centers/project-ledger.json",
-        "src/inresearch/knowledge/industry.py",
         "web/components/industry.js",
-        "tests/unit/test_abilene_capacity.py"
+        "tests/unit/test_abilene_capacity.py",
+        "src/inresearch/knowledge/site_timeline.py",
+        "src/inresearch/workflow/project_review.py",
+        "tests/unit/test_site_timeline.py",
+        "tests/unit/test_project_review.py",
+        "web/pages/index.html",
+        "web/themes/industry.css",
+        "src/inresearch/knowledge/news_observations.py",
+        "src/inresearch/workflow/project_pipeline.py"
       ],
       "supersedes": [
         "data-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。",
-      "implementation_revision": "2026.10.11.84",
-      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。；2026-10-11公开原文复核撤回Citadel/Dulles无依据IT单值及Citadel未注明角度设施单值，三篇发布日期更正，完整旧记录与来源冲突审计保留；168条专题台账不自动形成正式采用。；用户采用动态对象/观测、合理估算与最新有效时点方向；本批实现Abilene历史估算保留、质量校验与行业展示。逐指标写入和周期跟踪仍待实现，不以规范冒充运行。"
+      "implementation_revision": "2026.10.11.85",
+      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。；2026-10-11公开原文复核撤回Citadel/Dulles无依据IT单值及Citadel未注明角度设施单值，三篇发布日期更正，完整旧记录与来源冲突审计保留；168条专题台账不自动形成正式采用。；用户采用动态对象/观测、合理估算与最新有效时点方向；本批实现Abilene历史估算保留、质量校验与行业展示。逐指标写入和周期跟踪仍待实现，不以规范冒充运行。; User-directed stable physical site identity and append-only time observations, latest effective-date projection, scoped rounding/derivation, actor changes, inactive supply separation and homepage tracking. Old project age requests refresh instead of breaking strict validation. Periodic end-to-end automation remains unverified."
     },
     {
       "id": "knowledge-legacy",
@@ -3757,5 +3764,5 @@
       "retire_after": "2026-12-31"
     }
   ],
-  "updated": "2026-10-10"
+  "updated": "2026-10-11"
 }

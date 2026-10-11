@@ -13,6 +13,7 @@ from inresearch.paths import project_root
 from inresearch.storage.files import locked, write_json
 from inresearch.workflow.daily_dispatch import read_events, receipt_documents, bound_urls
 from inresearch.knowledge.industry import LEVELS, public_url, number
+from inresearch.knowledge import site_timeline
 
 
 def digest(value):
@@ -27,10 +28,11 @@ def event_identity(event):
 
 def deliveries(root):
     rows = json.loads((Path(root)/'data/projects.json').read_text())['records']
-    return [{'site_id': p['site_id'], 'name': p['name'], 'verified_date': p['verified_date'],
-             'event_id': p['adoption']['event_id'], 'review_id': p['adoption']['review_id'],
-             'fields': p['adoption']['fields'], 'scope': p['adoption']['scope']}
-            for p in rows if p.get('adoption')]
+    return [{'site_id': p['site_id'], 'name': p['name'],
+             'verified_date': a['review']['at'][:10], 'event_id': a['event_id'],
+             'review_id': a['review_id'], 'fields': a['fields'], 'scope': a['scope']}
+            for p in rows for a in ([p['adoption']] if p.get('adoption') else []) +
+            [o['adoption'] for o in p.get('observations', [])]]
 
 
 def queue(data, root):
@@ -86,6 +88,45 @@ def checked_source(data, sha):
     return paths[0].read_text(encoding='utf-8')
 
 
+def quantity_supported(assertion, pairs):
+    """Exact, explicitly rounded, or reproducibly derived MW; never fuzzy units."""
+    units = {'MW': 1, 'GW': 1000}
+    value, unit = assertion.get('value'), assertion.get('unit')
+    if not number(value) or unit not in units:
+        return False
+    wanted = value * units[unit]
+    method = assertion.get('derivation')
+    if method is not None:
+        if not isinstance(method, dict) or not isinstance(method.get('basis'), str) or not method['basis'].strip():
+            return False
+        inputs = method.get('inputs')
+        if not isinstance(inputs, list) or not inputs or any(not number(n) or n not in pairs for n in inputs):
+            return False
+        if any(inputs.count(n) > pairs.count(n) for n in set(inputs)):
+            return False
+        op = method.get('operation')
+        if op == 'sum':
+            expected = sum(inputs)
+        elif op == 'difference' and len(inputs) == 2:
+            expected = inputs[0] - inputs[1]
+        elif op == 'scale' and len(inputs) == 1 and number(method.get('factor')) and method['factor'] > 0:
+            expected = inputs[0] * method['factor']
+        else:
+            return False
+        if not number(expected):
+            return False
+        pairs = [expected]
+    if 'decimal_places' in assertion:
+        precision = assertion['decimal_places']
+        if type(precision) is not int or not 0 <= precision <= 6 or not assertion.get('approximation_basis'):
+            return False
+        if round(value, precision) != value:
+            return False
+        tolerance = .5 * 10 ** (-precision) * units[unit]
+        return any(abs(wanted-n) <= tolerance + 1e-9 for n in pairs)
+    return any(abs(wanted-n) <= 1e-9 * max(1,abs(n)) for n in pairs)
+
+
 def apply(root, data, proposal):
     root, data = Path(root), Path(data)
     events = {e['id']: e for e in read_events(data)}
@@ -139,28 +180,37 @@ def apply(root, data, proposal):
             from inresearch.materials.daily_research import power_quantities
             units = {'MW': 1, 'GW': 1000}
             pairs = [n * units[u] for n, u in power_quantities(quote)]
-            if not number(assertion['value']) or assertion.get('unit') not in units or assertion['value']*units[assertion['unit']] not in pairs:
+            if not quantity_supported(assertion, pairs):
                 raise ValueError('quantity_not_in_original_quote')
         checked.append(assertion)
-    parts = p.get('capacity_it_mw_by_status') or {}
-    if len(parts) > 1:
+    if any(a.get('derivation') for a in checked):
+        meta = proposal.get('observation') or {}
+        if meta.get('kind') not in ('derived', 'estimated', 'forecast') or not meta.get('assumptions'):
+            raise ValueError('derived_capacity_requires_estimated_observation')
+    observation = proposal.get('observation')
+    changed_fields = set(proposal.get('fields') or []) if observation is not None else set(p)
+    parts = (p.get('capacity_it_mw_by_status') or {}) if 'capacity_it_mw_by_status' in changed_fields else {}
+    if len(parts) > 1 and observation is None:
         raise ValueError('multiple_phase_aggregation_requires_separate_relation_review')
     if p.get('capacity_it_mw') is not None and parts:
         raise ValueError('capacity_headline_and_breakdown_overlap')
     def backed(value, basis, scope=None):
         return any(a.get('value') == value and a.get('basis') == basis and a.get('unit') == 'MW'
                    and (scope is None or a.get('scope') == scope) for a in checked)
-    if p.get('capacity_it_mw') is not None and not backed(p['capacity_it_mw'], 'it'):
+    if 'capacity_it_mw' in changed_fields and p.get('capacity_it_mw') is not None and not backed(p['capacity_it_mw'], 'it'):
         raise ValueError('it_capacity_not_supported')
     for level, value in parts.items():
-        if level not in LEVELS or not backed(value, 'it', 'aggregate'):
+        supported = backed(value, 'it', 'aggregate') if len(parts) == 1 else any(
+            a.get('value') == value and a.get('basis') == 'it' and a.get('unit') == 'MW'
+            and a.get('scope') == 'nonoverlapping_phase' and a.get('phase') == level for a in checked)
+        if level not in LEVELS or not supported:
             raise ValueError('capacity_aggregation_not_reviewed')
-    if p.get('capacity_facility_mw') is not None and not backed(p['capacity_facility_mw'], 'facility'):
+    if 'capacity_facility_mw' in changed_fields and p.get('capacity_facility_mw') is not None and not backed(p['capacity_facility_mw'], 'facility'):
         raise ValueError('facility_capacity_not_supported')
     for k in ('capacity_it_mw', 'capacity_facility_mw'):
         if p.get(k) is not None and not number(p[k]): raise ValueError('invalid_capacity_value')
     companies = {r['company_id'] for r in json.loads((root/'data/companies.json').read_text())['records']} if (root/'data/companies.json').exists() else set()
-    if companies and not set(p.get('developer', [])+p.get('tenant', [])) <= companies:
+    if companies and not {v for k in ('developer','tenant','owner','operator','builder') for v in p.get(k, [])} <= companies:
         raise ValueError('unknown_project_actor')
     # Phase observations remain separate from the aggregate; parent/child MW never summed.
     p = dict(p, adoption={'event_id': event['id'], 'review_id': review_id,
@@ -173,7 +223,29 @@ def apply(root, data, proposal):
     with locked(path):
         value = json.loads(path.read_text())
         old = next((r for r in value['records'] if r['site_id'] == p['site_id']), None)
-        if old:
+        if observation is not None:
+            if not old:
+                raise ValueError('observation_requires_registered_physical_site')
+            if old.get('duplicate_of') or 'portfolio' in old['site_id']:
+                raise ValueError('observation_requires_canonical_physical_site')
+            if not isinstance(observation, dict) or set(observation) - {'effective_at', 'kind', 'basis', 'assumptions', 'scope'}:
+                raise ValueError('invalid_observation_metadata')
+            if not changed_fields or changed_fields - site_timeline.FIELDS:
+                raise ValueError('observation_cannot_relocate_or_merge_site')
+            for key in ('country', 'location', 'region', 'coordinates', 'duplicate_of'):
+                if key in p and p.get(key) != old.get(key):
+                    raise ValueError('physical_site_identity_changed:' + key)
+            if not changed_fields <= p.keys():
+                raise ValueError('observation_field_missing')
+            entry = dict(observation, id=review_id, recorded_at=review['at'],
+                         fields={k:p[k] for k in changed_fields}, adoption=p['adoption'], sources=p['sources'])
+            # Replay precedes the optimistic baseline guard, as with other writes.
+            updated, replay = site_timeline.append(old, entry)
+            if not replay and proposal.get('baseline_sha256') != digest(old):
+                raise ValueError('existing_project_requires_explicit_change_review')
+            if not replay:
+                value['records'][value['records'].index(old)] = updated
+        elif old:
             if old == p or (old.get('adoption') or {}).get('review_id') == review_id:
                 replay = True
             else:

@@ -25,7 +25,7 @@ from datetime import date, datetime
 ROOT = project_root()
 DATA = ROOT / "data"
 
-from inresearch.knowledge.data_rules import STATUS_LEVELS, SOURCE_GRADES as GRADES, FRESH_DAYS, price_errors
+from inresearch.knowledge.data_rules import STATUS_LEVELS, SOURCE_GRADES as GRADES, price_errors
 
 errors, warns = [], []
 
@@ -102,6 +102,16 @@ def main():
 
     # 项目库规则
     for r in projects:
+        from inresearch.knowledge import site_timeline
+        try:
+            seen_observations = set()
+            for observation in r.get('observations', []):
+                site_timeline.check(observation)
+                if observation['id'] in seen_observations:
+                    raise ValueError('duplicate_site_observation_id')
+                seen_observations.add(observation['id'])
+        except (ValueError, TypeError, KeyError) as exc:
+            err(f"projects[{r.get('site_id')}]: invalid observation: {exc}")
         sid = r.get("site_id", "?")
         if r.get('duplicate_of'):
             canonical = proj_by_id.get(r['duplicate_of'])
@@ -138,13 +148,10 @@ def main():
             if s.get("grade") not in GRADES:
                 err(f"projects[{sid}]: 来源 grade 非法: {s.get('grade')}")
         d = days_since(r.get("verified_date"))
-        limit = FRESH_DAYS["project_late"] if r.get("status") in {"L6", "L7", "L8", "L9"} else FRESH_DAYS["project_early"]
         if d is None:
             err(f"projects[{sid}]: verified_date 缺失或格式错误")
-        elif d > 2 * limit:
-            err(f"projects[{sid}]: 核验超期 {d} 天（红线 {2*limit}），不得进入输出物")
-        elif d > limit:
-            warn(f"projects[{sid}]: 核验超期 {d} 天（阈值 {limit}）")
+        # Age is a tracking obligation, not invalid evidence. The industry view
+        # displays baseline review age and the tracking planner requests refresh.
         for c in r.get("developer", []) + r.get("tenant", []):
             if c not in comp_by_id and c != "multiple":
                 warn(f"projects[{sid}]: 引用了不存在的 company_id: {c}")

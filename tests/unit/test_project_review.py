@@ -91,3 +91,30 @@ class ProjectReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'sample_review'):project_review.apply(self.root,self.data,p)
         p['review']['sample_review']={'by':'second actual reviewer','decision':'confirmed'}
         self.assertEqual(project_review.apply(self.root,self.data,p)['state'],'applied_in_checkout')
+
+    def test_new_time_observation_updates_view_preserves_baseline_and_replays(self):
+        from inresearch.knowledge.site_timeline import current
+        project_review.apply(self.root,self.data,self.proposal)
+        old=json.loads((self.root/'data/projects.json').read_text())['records'][0]
+        p=copy.deepcopy(self.proposal);p['baseline_sha256']=project_review.digest(old)
+        p['fields']=['tenant'];p['project']['tenant']=['new-user']
+        p['observation']={'effective_at':'2026-10-05','kind':'reported','basis':'reviewed original','scope':'whole_site'}
+        first=project_review.apply(self.root,self.data,p)
+        self.assertEqual(project_review.apply(self.root,self.data,p)['state'],'already_applied')
+        updated=json.loads((self.root/'data/projects.json').read_text())['records'][0]
+        self.assertEqual(updated.get('tenant'),old.get('tenant'))
+        self.assertEqual(current(updated,'2026-10-11')['tenant'],['new-user'])
+        self.assertEqual(updated['observations'][0]['adoption']['review_id'],first['review_id'])
+        p['project']['location']='Different land';p['fields']=['location']
+        with self.assertRaisesRegex(ValueError,'relocate'):project_review.apply(self.root,self.data,p)
+
+    def test_explicit_rounding_and_derived_increment_keep_precision_and_scope(self):
+        self.assertTrue(project_review.quantity_supported(
+            {'value':421,'unit':'MW','decimal_places':0,'approximation_basis':'rounded satellite estimate'},[421.25]))
+        self.assertFalse(project_review.quantity_supported({'value':421,'unit':'MW'},[421.25]))
+        assertion={'value':422,'unit':'MW','derivation':{'operation':'difference','inputs':[843,421],
+                                                       'basis':'forecast total less estimated current IT'}}
+        self.assertTrue(project_review.quantity_supported(assertion,[421,843]))
+        self.assertFalse(project_review.quantity_supported(assertion,[421]))
+        assertion['derivation'].update(operation='sum',inputs=[211,211]);assertion['value']=422
+        self.assertFalse(project_review.quantity_supported(assertion,[211]))

@@ -5,6 +5,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
+from inresearch.knowledge import site_timeline
 
 STAGES = {'operating': '已投运', 'construction': '建设中', 'planning': '筹备机会'}
 LEVELS = dict(zip(['L'+str(i) for i in range(1, 10)],
@@ -36,8 +37,14 @@ def bucket(level):
 
 
 def project(row):
+    original = row
+    row = site_timeline.current(row)
     result = {k: row.get(k) for k in ('site_id', 'name', 'country', 'region', 'location', 'developer', 'tenant',
               'status', 'verified_date', 'duplicate_of', 'deduplication_note', 'type', 'disputed', 'notes', 'power_status', 'utility', 'capacity_facility_mw')}
+    result['tracking'] = row['tracking']
+    result['observations'] = site_timeline.public_timeline(original)
+    result['lifecycle'] = row.get('lifecycle', 'active')
+    result['relationships'] = {k: row.get(k, []) for k in ('owner', 'operator', 'builder')}
     # Public project receipt: reviewed scope and quoted claims, never private paths.
     if row.get('adoption'):
         a = row['adoption']
@@ -77,8 +84,10 @@ def project(row):
 
 def totals(rows):
     sites = [p for p in rows if not p['portfolio'] and not p.get('duplicate_of')]
-    return {**{s: round(sum(p['capacity'][s] for p in sites), 6) for s in STAGES},
-            'estimated': {s: round(sum(p['capacity'][s] for p in sites if p['capacity_estimated']), 6) for s in STAGES},
+    active = [p for p in sites if p.get('lifecycle', 'active') == 'active']
+    return {**{s: round(sum(p['capacity'][s] for p in active), 6) for s in STAGES},
+            'inactive_sites': len(sites)-len(active),
+            'estimated': {s: round(sum(p['capacity'][s] for p in active if p['capacity_estimated']), 6) for s in STAGES},
             'estimated_sites': sum(p['capacity_estimated'] for p in sites),
             'sites': len(sites), 'unknown': sum(not p['capacity_known'] for p in sites),
             'unlocated': sum(p['coordinates'] is None for p in sites),
@@ -141,7 +150,8 @@ def snapshot(root, params=None):
     for p in all_rows:
         aliases = [a for a in all_records if a.get('duplicate_of') == p['site_id']]
         for key in ('developer', 'tenant'):
-            p[key] = list(dict.fromkeys(p[key] + [i for a in aliases for i in a[key]]))
+            if key not in p['tracking']['fields']:
+                p[key] = list(dict.fromkeys(p[key] + [i for a in aliases for i in a[key]]))
         p['duplicate_records'] = [{'site_id': a['site_id'], 'note': a['deduplication_note']} for a in aliases]
         for a in aliases:
             for source in a['sources']:
@@ -167,10 +177,19 @@ def snapshot(root, params=None):
     leaders.sort(key=lambda c: (-sum(c['totals'][s] for s in STAGES), c['company_id']))
     regional = [{'id': r, 'name': REGIONS.get(r, r), 'totals': totals([p for p in cohort if p['region'] == r])} for r in sorted({p['region'] for p in cohort})]
     dates = sorted(p['verified_date'] for p in cohort if p.get('verified_date'))
+    changes = [{'site_id': p['site_id'], 'name': p['name'], **observation}
+               for p in cohort if not p['portfolio'] for observation in p['observations']]
+    changes.sort(key=lambda r: (r['effective_at'] or '',r['id']), reverse=True)
+    tracking = {'observations': sum(p['tracking']['observations'] for p in cohort),
+                'sites_with_timeline': sum(bool(p['observations']) for p in cohort),
+                'conflicting_sites': sum(bool(p['tracking']['conflicts']) for p in cohort),
+                'review_overdue_sites': sum(bool(p['tracking']['review_due_fields']) for p in cohort),
+                'changes': changes[:20], 'changes_truncated': len(changes)>20}
     return {'schema_version': 1, 'generated_at': date.today().isoformat(), 'filters': params,
             'coverage': {'label': '已追踪项目 · 非全球普查', 'oldest_verified': dates[0] if dates else None,
                          'latest_verified': dates[-1] if dates else None},
             'totals': totals(cohort), 'rows': rows, 'detail': detail, 'companies': companies,
+            'tracking': tracking,
             'leaders': leaders, 'regions': [{'id': r, 'name': REGIONS.get(r, r)} for r in sorted({p['region'] for p in all_rows})],
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
             'capacity_audit': capacity_audit(all_rows, all_records),

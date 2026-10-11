@@ -34,6 +34,11 @@ const {mkdirSync}=require('node:fs');
   await page.goto(base+'/');await page.locator('#company-chips [data-company="microsoft"]').waitFor();
   const before=await page.locator('#stats').innerText(),homeURL=page.url(),pointCount=await page.locator('.site-point').count();
   const baseline=await (await page.request.get(base+'/api/industry')).json();
+  assert.ok(await page.getByRole('heading',{name:'同一地点，持续追踪',exact:true}).isVisible());
+  assert.equal(await page.locator('.tracking-metrics>div').count(),4);
+  const trackingRefresh=page.waitForResponse(r=>r.url().includes('/api/industry?')&&r.status()===200);
+  await page.getByRole('button',{name:'刷新状态',exact:true}).click();await trackingRefresh;
+  assert.equal((await (await page.request.get(base+'/api/industry')).json()).tracking.observations,baseline.tracking.observations);
   for(const selector of ['#company-chips [data-company="microsoft"]','#leaders [data-company="meta"]']){
    const id=await page.locator(selector).getAttribute('data-company');
    await page.locator(selector).click();

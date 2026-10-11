@@ -225,8 +225,27 @@ function renderPipeline(){
  }
  if(news.pipeline?.truncated)$('pipeline-rows').innerHTML+='<p class="basis">当前快照展示近期快讯与来源齐全的日报事件，非完整历史。</p>';
 }
+const observationFields={name:'名称',developer:'开发方',tenant:'使用方',owner:'业主',operator:'运营方',builder:'建设方',status:'建设阶段',lifecycle:'运行状态',capacity_it_mw:'IT容量',capacity_it_mw_by_status:'分期IT容量',capacity_facility_mw:'设施功率',power_status:'供电进展',utility:'电网',notes:'说明',capacity_assessment:'估算依据'};
+const observationKinds={disclosed:'披露',reported:'报道',estimated:'估算',derived:'推导',forecast:'预测'};
+function timelineItem(item){
+ const values=Object.entries(item.fields||{}).filter(([k])=>k!=='capacity_assessment').map(([k,v])=>{
+  const value=v==null?'未披露':Array.isArray(v)?v.map(name).join('、')||'无':k==='capacity_it_mw_by_status'?Object.entries(v).map(([stage,mw])=>`${stage} ${num(mw)} MW`).join(' / ')||'无分期值':typeof v==='number'?num(v)+' MW':String(v);
+  return esc(observationFields[k]||k)+'：'+esc(value);
+ });
+ return `<li><time>${esc(item.effective_at||'有效时间待细化')}</time><div><span class="badge">${esc(observationKinds[item.kind]||item.kind)}</span><p>${values.join('<br>')}</p><p>${esc(item.basis)}</p><span class="basis">收录 ${esc(item.recorded_at?.slice(0,10))}</span> ${(item.sources||[]).map(s=>sourceLink(s.url,'来源 ↗')).join(' · ')}</div></li>`;
+}
+function renderTracking(){
+ const t=data.tracking||{},panel=$('tracking-overview');
+ if(panel){
+  panel.innerHTML=`<div class="panel-heading"><div><p class="eyebrow">PLACES CHANGE OVER TIME</p><h2>同一地点，持续追踪</h2></div><button type="button" id="refresh-tracking">刷新状态</button></div><p class="basis">以物理站点为锚点，按事件有效时间追踪角色、容量与运行状态。预测单列；新闻先保留线索，已采用的观测进入时间线。</p><div class="tracking-metrics"><div><strong>${num(t.sites_with_timeline||0)}</strong><span>已有观测时间线</span></div><div><strong>${num(data.totals.estimated_sites||0)}</strong><span>含参考估算</span></div><div><strong>${num(t.review_overdue_sites||0)}</strong><span>站点复核待更新</span></div><div><strong>${num(t.conflicting_sites||0)}</strong><span>最新观测存在分歧</span></div></div><div class="tracking-changes">${(t.changes||[]).slice(0,6).map(item=>`<article><a href="/project.html?site=${encodeURIComponent(item.site_id)}">${esc(item.name)}</a><ol class="timeline">${timelineItem(item)}</ol></article>`).join('')||'<p class="basis">正在将既有项目接入逐项观测时间线。旧登记仍可查看，核验日期不冒充事件发生时间。</p>'}</div><p class="basis">暂停、取消与关闭站点保留档案，容量不并入活跃供给。页面可刷新；新闻同步与正式采用分别计量。</p>`;
+  $('refresh-tracking').onclick=()=>load();
+ }
+ if(isProject&&data.detail){const p=data.detail;
+  $('detail').insertAdjacentHTML('beforeend',`<section class="detail-card" id="site-observation-timeline"><h2>站点观测时间线</h2><p>物理站点 ${esc(p.site_id)} · 运行状态 ${esc(({active:'活跃',paused:'暂停',cancelled:'取消',closed:'关闭'})[p.lifecycle]||p.lifecycle)}</p>${p.tracking?.conflicts?.length?'<p role="status">最新同口径观测存在分歧；当前暂留先前无分歧参考值，请对照来源，不作为已解决结论。</p>':''}<ol class="timeline">${(p.observations||[]).map(timelineItem).join('')||'<li>尚未登记有有效时点的独立观测；上方保留历史登记。</li>'}</ol></section>`);
+ }
+}
 function render(){
- filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();
+ filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();renderTracking();
  if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球规模与园区布局，追踪算力基础设施的变化。';}
  $('coverage').textContent=`${data.totals.sites} 条已追踪项目记录 · 含园区与集群，非全球普查\n核验日期 ${data.coverage.oldest_verified||'—'} — ${data.coverage.latest_verified||'—'}`;
  const hidden=isProject||isMarket;

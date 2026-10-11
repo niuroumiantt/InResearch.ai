@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.84",
+  "version": "2026.10.11.85",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -400,8 +400,8 @@
     {
       "path": "data/schema/project.schema.json",
       "role": "source_record",
-      "bytes": 2985,
-      "sha256": "cce4acbaeccf6b2d0521bc8224232fa02427ea90b11331571001ac6edadfa239",
+      "bytes": 3579,
+      "sha256": "07b3b5f3b633c05c26a15d66ddb12d8b4e4eff7422dd5909ec9ee18bb5b97d8c",
       "collections": [
         {
           "name": "required",
@@ -608,8 +608,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 279028,
-      "sha256": "c15c4cd92ee84c532e7066ab83c3e302d9fae31cd9e8f29de591cf6bb52dd89d",
+      "bytes": 280055,
+      "sha256": "23ebefd61a588e6db8e29f0c45f3fb9ceca43019325241de341e66c280d8e154",
       "collections": []
     },
     {
@@ -18343,6 +18343,13 @@
       ]
     },
     {
+      "path": "docs/reviews/2026-10-11/research-remediation/DYNAMIC_DATA.md",
+      "role": "historical",
+      "bytes": 2857,
+      "sha256": "c3c36248d63bace3cc2422ba8373ec6588e17dfbcd25e83c25b200b59017fd62",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md",
       "role": "historical",
       "bytes": 4320,
@@ -18403,8 +18410,8 @@
     {
       "path": "framework/01_data_standards.md",
       "role": "normative",
-      "bytes": 14253,
-      "sha256": "500a01244295b08dd9c78841cd0112172330d227f4c78e1451582786615cfab2",
+      "bytes": 15844,
+      "sha256": "b90adea9e8d3b2fc7950c93a81cdbeb5e9ee7f245f041a971933eebdc8279f60",
       "collections": []
     },
     {
@@ -18481,7 +18488,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 8361,
-      "sha256": "ebed0378484f2c3b11e9c979d2ef6cc95819eceb03e0584493b76e105861636a",
+      "sha256": "c508944a33b9080b6566ed6a1ecbff504c5d4f10d2b9fbd638c4eaee65470c04",
       "collections": []
     },
     {
@@ -18507,8 +18514,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 228615,
-      "sha256": "26d418050b597cb171a7793a294ebac1461d273169d5e80f4ddcbf49fc338b6c",
+      "bytes": 229271,
+      "sha256": "688b636844f1af54dbe798fb6c3895492f445f6b3853775b1b5bdee0beb14823",
       "collections": [
         {
           "name": "policies",
@@ -18555,8 +18562,8 @@
     {
       "path": "framework/data_contract.json",
       "role": "project_config",
-      "bytes": 989,
-      "sha256": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
+      "bytes": 1143,
+      "sha256": "3e4983a37b2ee6f7598289e2cb8f62ba35573ad0519cd0857bdf89f9d488c117",
       "collections": [
         {
           "name": "source_grades",
@@ -18866,8 +18873,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 451168,
-      "sha256": "affb1bbf3233bd77bb6a80a71f6cf5aacb90f826d788c9235422d20866fa7414",
+      "bytes": 453780,
+      "sha256": "ddec5e8f394d350a2d071892a2e49c63561a1e16e78c1edbff8d08c189f96b3f",
       "collections": [
         {
           "name": "policies",
@@ -22201,8 +22208,8 @@
     {
       "path": "src/inresearch/knowledge/industry.py",
       "role": "implementation",
-      "bytes": 12695,
-      "sha256": "6f234c954d001dc5c8e3f4649bf36056a5e0d0d640ba24dbb75670a5bffc4c4b",
+      "bytes": 13967,
+      "sha256": "1b3b966ddef69dd148f99ab700e7401fc4db82ab6e0447aa84c5b69b7b4bfdd0",
       "collections": []
     },
     {
@@ -22222,8 +22229,8 @@
     {
       "path": "src/inresearch/knowledge/news_observations.py",
       "role": "implementation",
-      "bytes": 5099,
-      "sha256": "763fac77a0eb2cc6223d1670c7cba61dc8e5a3f52e5bac37cc87e9c3666ea643",
+      "bytes": 5191,
+      "sha256": "d4821479d7de6d6b492e15bd7a3195007ca91fea6c3b6a2aea35c18c40f5a2d3",
       "collections": []
     },
     {
@@ -22269,6 +22276,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/knowledge/site_timeline.py",
+      "role": "implementation",
+      "bytes": 9570,
+      "sha256": "0d6f19f079441fd32eab3713bd40eb3899f202fd42c60ab67a2927823405a6ab",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/knowledge/skeleton.py",
       "role": "implementation",
       "bytes": 512,
@@ -22292,15 +22306,15 @@
     {
       "path": "src/inresearch/knowledge/validate.py",
       "role": "implementation",
-      "bytes": 22003,
-      "sha256": "06a28f2e2bf4683054698621175f8eb9fae6021676619314c73df2216a0917ca",
+      "bytes": 22328,
+      "sha256": "95819160eb32fc559af84017c67287c621527cb9c91004cf5bca634c59dd5ef4",
       "collections": []
     },
     {
       "path": "src/inresearch/knowledge/verify.py",
       "role": "implementation",
-      "bytes": 8018,
-      "sha256": "6f2f6ed5bfbd3dd74b94057d76624b7a144ad18a3b6f15cb133819edf4c0aecd",
+      "bytes": 8306,
+      "sha256": "27f531b0e3265ad58cf6314e90a5c086161c6408bb93c8761dfbe5a6acc4d401",
       "collections": []
     },
     {
@@ -22691,15 +22705,15 @@
     {
       "path": "src/inresearch/workflow/project_pipeline.py",
       "role": "implementation",
-      "bytes": 10690,
-      "sha256": "a36aa6aa0a43f462abc0c7e0747ca29dcb42c21b3b47ff8ed2c609127e69ba8a",
+      "bytes": 10791,
+      "sha256": "824465c4cf58771fc90eb5512579cab13c90f567767da60322b8eb463af8086e",
       "collections": []
     },
     {
       "path": "src/inresearch/workflow/project_review.py",
       "role": "implementation",
-      "bytes": 13009,
-      "sha256": "21276950cb0e63481817e6a9285fbc6065e87d7760e46bc7c89917ea001b5912",
+      "bytes": 17255,
+      "sha256": "7115966ed7ab2aa282e909fa81dc1e91dca4b4b06bb4a2f9442f71a964fd2798",
       "collections": []
     },
     {
@@ -23013,8 +23027,8 @@
     {
       "path": "tests/industry.cjs",
       "role": "test",
-      "bytes": 19429,
-      "sha256": "5222ded1f3a4380a2a9ff55865d85226ab79a6966bc0d0156d496fbee99e467c",
+      "bytes": 19938,
+      "sha256": "9813b72ab94d90015c53dbe4eb909086e76343502dbea954d403c3d71b278ab4",
       "collections": []
     },
     {
@@ -23580,8 +23594,8 @@
     {
       "path": "tests/unit/test_industry.py",
       "role": "test",
-      "bytes": 14795,
-      "sha256": "67202cf1db8502e1d7379870f1351c0a25af66d7d08a7c4dd82a7c6d0345b70b",
+      "bytes": 14816,
+      "sha256": "b7a9ad153cad1ea4bdde4704b96fc775227e6c7e1d6416353ba3f4418d0878be",
       "collections": []
     },
     {
@@ -23895,8 +23909,8 @@
     {
       "path": "tests/unit/test_project_review.py",
       "role": "test",
-      "bytes": 6402,
-      "sha256": "e34f73f679b8feb89ea16d900c2414884039f75b4f8763e26e70d866cef63de7",
+      "bytes": 8536,
+      "sha256": "b160c529de2b00cd33dddaf5f11d42b347f3da765fc7ba40868b646e87a46ed3",
       "collections": []
     },
     {
@@ -24163,6 +24177,13 @@
       "role": "test",
       "bytes": 2960,
       "sha256": "4773fd60436049abcc26cb6432b3f2ec2a1e0dc8b62ad930788d9cfbe5540e54",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_site_timeline.py",
+      "role": "test",
+      "bytes": 4879,
+      "sha256": "587682f0f2e9d460457beeccbc2ce9f87f2f3ba84631f76ff6b0d18beff9576e",
       "collections": []
     },
     {
@@ -27069,8 +27090,8 @@
     {
       "path": "web/components/industry.js",
       "role": "implementation",
-      "bytes": 37616,
-      "sha256": "b115ecfc41d23a0da076bb0a1c347b2ea0f725cd3a6ee71d972f07da52fce6de",
+      "bytes": 41135,
+      "sha256": "6fdce07f8d09aa799d0c7934da01f9f14e7e006d53b4df94d834d868b6aaaa68",
       "collections": []
     },
     {
@@ -27543,8 +27564,8 @@
     {
       "path": "web/pages/index.html",
       "role": "implementation",
-      "bytes": 6832,
-      "sha256": "2ca1a1825ec8d85abc70b92d875753798edf9c9ba91f6ef14681b6044f3fbba2",
+      "bytes": 6953,
+      "sha256": "164560721d495880e270d4f19b597a4d227eb4d6c7b655bc819b6a9447d9d970",
       "collections": []
     },
     {
@@ -27725,8 +27746,8 @@
     {
       "path": "web/themes/industry.css",
       "role": "implementation",
-      "bytes": 15376,
-      "sha256": "636f33ceadd7356ca7b20ce35ad9d4391143ad65fb5e4b4755c2f238a268be33",
+      "bytes": 16262,
+      "sha256": "5bf82288682c60cf8272099df22a48192fbfc2acb38e09a47aec189c63bec915",
       "collections": []
     },
     {
@@ -27757,14 +27778,14 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 13,
-    "historical": 415,
-    "implementation": 383,
+    "historical": 416,
+    "implementation": 384,
     "normative": 16,
     "project_config": 780,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 197,
-    "test": 201
+    "test": 202
   }
 }

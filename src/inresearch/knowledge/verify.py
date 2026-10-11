@@ -30,6 +30,7 @@ ROOT = project_root()
 OUT = workspace_path("reports/verify_queue.md", ROOT)
 
 from inresearch.knowledge.data_rules import FRESH_DAYS as FRESH, price_series_freq, price_series_limit
+from inresearch.knowledge.site_timeline import current
 
 LOW_GRADES = {"media", "estimate"}
 
@@ -54,15 +55,18 @@ def build_queue(show_all=False, root=ROOT):
                       "urls": [u for u in urls if u], "action": action})
 
     # 项目库
-    for r in load("projects", root):
+    for baseline in load("projects", root):
+        r = current(baseline)
         rid = r["site_id"]
         urls = [s.get("url") for s in r.get("sources", [])]
         limit = FRESH["project_late"] if r.get("status") in {"L6", "L7", "L8", "L9"} else FRESH["project_early"]
         d = days_since(r.get("verified_date"))
         if r.get("disputed"):
             add(1, "projects", rid, "标记为争议（disputed）", urls, "查证冲突来源，裁决后去掉 disputed 或保留并注明")
-        if d is None or d > limit:
-            add(1, "projects", rid, f"核验超期 {d} 天（阈值 {limit}）", urls, "核对状态与容量，更新 verified_date")
+        if r['tracking']['review_due_fields']:
+            fields = ', '.join(r['tracking']['review_due_fields'])
+            add(1, "projects", rid, f"字段待复核（阈值 {limit} 天）：{fields}", urls,
+                "逐字段核对；新时点追加观测，无变化保留原有效时间并登记实际复核")
         elif show_all and d > limit * 0.8:
             add(3, "projects", rid, f"临近超期（{d}/{limit} 天）", urls, "顺手核验")
         grades = {s.get("grade") for s in r.get("sources", [])}
@@ -126,7 +130,7 @@ def write_markdown(queue, show_all=False):
         f"生成时间：{date.today().isoformat()} ｜ P1（必须处理）{counts[1]} 条 ｜ P2（补强来源）{counts[2]} 条"
         + (f" ｜ P3（临近超期）{counts[3]} 条" if show_all else ""),
         "",
-        "流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 manage.py validate`",
+        "流程：核对原件、对象与范围 → 新时点追加观测/历史更正单独审阅 → 保留原有效时间与实际复核时间 → `python3 manage.py validate`",
         "",
     ]
     for p in (1, 2, 3):
