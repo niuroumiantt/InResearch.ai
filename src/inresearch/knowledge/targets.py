@@ -287,7 +287,13 @@ def build(root=ROOT, as_of=None):
     for t in targets:
         t['feeds_primary'] = [k for k in t['model_inputs'] if primary[k] == t['id']]
     from inresearch.knowledge.target_request_contract import attach_contracts, PROFILES
-    attach_contracts(targets, load(root, 'framework/research_questions.json')['records'])
+    review = load(root, 'framework/research_demand_review.json')
+    defined = {r['model_input'] for r in review['requirements']}
+    unresolved = {k for k, v in evidence.items() if v.get('status') not in ('sourced', 'input')}
+    if unresolved - defined or defined != set(model.get('input_governance', {})):
+        raise ValueError('Unverified model inputs require reviewed demand definitions and input governance')
+    attach_contracts(targets, load(root, 'framework/research_questions.json')['records'],
+                     review, providers)
     counts = {'factor': 0, 'part': 0, 'software': 0, 'archetype': 0, 'site_right': 0}
     by_status = {s: 0 for s in STATUSES}
     for t in targets:
@@ -295,7 +301,7 @@ def build(root=ROOT, as_of=None):
         by_status[t['status']] += 1
     teams = sorted({t['team'] for t in targets})
     return {
-        'version': '2.2.0', 'updated': as_of, 'title': '五类变量目标清单',
+        'version': '2.3.0', 'updated': as_of, 'title': '五类变量目标清单',
         'note': ('六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：'
                  '因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；'
                  '每个物理部件按"自己的价格、供应商名单、交期"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；'
@@ -314,8 +320,9 @@ def build(root=ROOT, as_of=None):
         'statuses': STATUSES,
         'carriers': {'spec': DOCS_PLAN + '（status ≠ todo 且有 doc_id 或 source_url）', 'news / holders': EVENT_CARDS + '（带 origin_pointer 的事件卡）',
                      'observation': 'data/prices.json（带 target_id 的记录）'},
-        'request_contract': {'version': 1, 'profiles': PROFILES,
-            'question_links': '同节点与变量类的检索入口，不是语义匹配、采用或闭题证明；空集合显式表示尚无精确映射。',
+        'request_contract': {'version': 2, 'profiles': PROFILES,
+            'question_links': 'question_ids 为审核后的支持或线索用途，允许跨变量类；candidate_question_ids 仅同格检索。均不证明采用或闭题。',
+            'requirements': '混合主行按 requirement_id 细化来源责任、范围字段及验收；保留父目标身份和日历，不按旧主责队整包派工。',
             'model_links': 'model_inputs 是依赖范围，feeds_primary 是回链主行；均不证明该行交付已验证每个输入。',
             'scope': '执行前在目标行内细化型号/配置、地区、时间窗与所需字段；未披露作为缺口回执，不猜值。'},
         'principles': PRINCIPLES, 'variable_classes': VARIABLE_CLASSES,

@@ -34,7 +34,8 @@ def snapshot(root):
     file=Path(os.environ.get('INRESEARCH_READER_SNAPSHOT',workspace_path('data/research_runtime.json',root)))
     root=Path(root)
     paths=[file]+[root/'data'/name for name in ('research_knowledge.json','datacenter_model.json','projects.json','contracts.json')]
-    paths += [root/'framework'/name for name in ('research_graph.json','research_questions.json','tco_targets.json')]
+    paths += [root/'framework'/name for name in ('research_graph.json','research_questions.json','tco_targets.json','research_demand_review.json')]
+    paths.append(root/'data/facts.json')
     signature=tuple((str(p),p.stat().st_mtime_ns,p.stat().st_size) if p.exists() else (str(p),None,None) for p in paths)
     with _LOCK:
         cached=_CACHE.get(signature)
@@ -58,6 +59,9 @@ def snapshot(root):
             read('data/datacenter_model.json'), graph,
             completed_question_ids=registry.completed_questions(curated),
             supported_statement_ids=[s['id'] for s in adopted], acquisition=reader.get('acquisition'))
+        from inresearch.knowledge.research_gaps import build as research_gaps
+        gaps = research_gaps(root)
+        result['research_gaps'] = {'counts': gaps['counts'], 'records': gaps['records']}
         for name in ('projects','contracts'):
             rows=json.loads((root/'data'/(name+'.json')).read_text())['records']
             result['formal'][name]=len(rows)

@@ -153,9 +153,14 @@ class TcoTargetListTests(unittest.TestCase):
             request = target['request']
             self.assertIn(request['profile'], profiles)
             self.assertTrue(request['scope_required'])
-            for qid in request['question_ids']:
+            for qid in request['candidate_question_ids']:
                 self.assertEqual(questions[qid]['node'], request['node'])
                 self.assertEqual(questions[qid]['variable_class'], target['variable_class'])
+            self.assertEqual(set(request['question_ids']), {r['question_id'] for r in request['question_links']})
+            for link in request['question_links']:
+                self.assertIn(link['question_id'], questions)
+                self.assertIn(link['relation'], ('supports', 'lead_for'))
+                self.assertTrue(link['reason'])
             if target['id'].endswith('.operation'):
                 self.assertEqual(request['profile'], 'vendor_operation')
                 self.assertNotIn('利用率', target['disclosure_type'])

@@ -117,6 +117,8 @@ class MaterialMeasurementsTests(unittest.TestCase):
         (root/'data').mkdir()
         (root/'framework').mkdir()
         (root/'framework/tco_targets.json').write_text('{"targets":[]}')
+        (root/'framework/research_demand_review.json').write_text('{"reviewed_at":"2026-10-11"}')
+        (root/'data/facts.json').write_text('{"records":[]}')
         (root/'data/datacenter_model.json').write_text('{"inputs":{},"evidence":{}}')
         for name in ('projects','contracts'):(root/'data'/(name+'.json')).write_text('{"records":[]}')
         curated={'statements':[{'id':'adopted'},{'id':'invalid'}]}

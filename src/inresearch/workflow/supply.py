@@ -52,7 +52,7 @@ def snapshot(root):
     needed = [t for t in target_document['targets'] if t['status'] in ('needed', 'assumed', 'delivered')]
     candidates = matched.get('by_target') or {}
     demand_queue = [{k: t.get(k) for k in ('id','team','host','team_state','status','variable_class','part_id','site_right_id','model_inputs','feeds_primary','disclosure_type')}
-                    | {'candidate_documents': candidates.get(t['id'], 0),
+                    | {'request': t.get('request', {}), 'candidate_documents': candidates.get(t['id'], 0),
                        'dispatch_state': 'reading_candidate' if candidates.get(t['id']) else 'awaiting_material' if t['team_state']=='connected' else 'awaiting_team'}
                     for t in needed]
     demand_queue.sort(key=lambda t: (-t['candidate_documents'], not bool(t['feeds_primary']), t['id']))
@@ -221,17 +221,27 @@ def mutate(root, payload, actor):
             target = registered.get(target_id)
             if not target:
                 raise ValueError('请选择现行目标行；研究问题不能另建采集任务轴')
+            from inresearch.knowledge.target_request_contract import resolve_request
+            requirement_id = payload.get('requirement_id') or None
+            selected = resolve_request(target, requirement_id)
+            scope_values = payload.get('scope_values', {})
+            if not isinstance(scope_values, dict) or set(scope_values) - set(selected['scope_fields']):
+                raise ValueError('范围字段必须来自所选参数需求')
+            for field in selected['scope_fields']:
+                text(scope_values, field, 500)
             question_id = payload.get('question_id') or None
             questions = json.loads((root / 'framework/research_questions.json').read_text())['records']
             question = next((q for q in questions if q['id'] == question_id), None)
             if question_id is not None and not question:
                 raise ValueError('研究问题不存在')
-            if question and (question.get('node') != target.get('request', {}).get('node') or
-                             question.get('variable_class') != target['variable_class']):
-                raise ValueError('研究问题与目标节点或变量类不一致；跨范围研究先修订需求关联')
+            if question and question_id not in selected['question_ids']:
+                raise ValueError('研究问题不在本需求审核后的关联中；同格检索不构成派工授权')
             from inresearch.knowledge.target_request_contract import target_node
             demand = {'id': 'demand-' + operation_id, 'target_id': target_id,
                       'target_version': targets['version'], 'question_id': question_id,
+                      'requirement_id': requirement_id, 'scope_values': scope_values,
+                      'registered_acceptance': selected.get('acceptance'),
+                      'requirement_version': target.get('request', {}).get('version'),
                       'object_ids': [target_node(target)],
                       'title': text(payload, 'title', 300), 'scope': text(payload, 'scope', 3000),
                       'acceptance': text(payload, 'acceptance', 3000),
@@ -244,12 +254,19 @@ def mutate(root, payload, actor):
             target = registered.get(demand.get('target_id'))
             if not target:
                 raise ValueError('旧需求未绑定现行目标行；保留记录，请从目标行新建细化需求')
+            from inresearch.knowledge.target_request_contract import resolve_request
+            selected = resolve_request(target, demand.get('requirement_id'))
+            for field in selected['scope_fields']:
+                text(demand.get('scope_values', {}), field, 500)
         if provider:
-            if provider != target['team'] or host != target['host']:
-                raise ValueError('供应方与主执行机必须服从目标行；变更归属先更新目标规则')
+            if provider != selected['source_team'] or host != selected['host']:
+                raise ValueError('供应方与主执行机必须服从所选需求；变更归属先更新需求规则')
+            if selected.get('team_state') == 'not_connected':
+                raise ValueError('所选来源队尚未接通；可以保存需求，不能登记为已派工')
             if any(t['demand_id'] == demand['id'] and t['provider_id'] == provider for t in state['tasks']):
                 raise Conflict('该供应方已有本需求任务')
             state['tasks'].append({'id': 'task-' + operation_id, 'demand_id': demand['id'], 'target_id': target['id'],
+                                   'requirement_id': demand.get('requirement_id'),
                                    'provider_id': provider, 'execution_mode': mode,
                                    'execution_host': host, 'status': 'planned',
                                    'created_at': now, 'created_by': actor})

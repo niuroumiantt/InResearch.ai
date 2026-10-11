@@ -192,3 +192,7 @@ Reader 与 editorial 接收复用 workflow.reader_scope.read_scope 的存储范�
 模块与脚本采用 snake_case 的领域名+用途，测试随对象命名；避免泛化的 map/progress/policy/new/old/final2。已将 map 改为 project_capacity_map、progress 改为 triage_progress、policy 改为 data_rules；CLI 的 map/progress 是现有调用协议，注册表直接指向新实现，不留空转发模块。新增 target_request_contract 与 research_readiness 明示目标请求和研究就绪度。目录中的同名 reader/triage/model_assets 是不同层责任，不因同名自动判为重复实现。
 
 删除前核对导入、命令注册、路由、服务/cron、当前指南与测试。私有未调用辅助函数可直接删除；平台动态调用或外部稳定入口须先核对消费者。历史源代码快照退出运行入口，保留为审阅证据；不把年龄当成无用证明，也不保留已确认无用途的占位或注释。
+
+### 参数级派工与派生缺口（2026-10-11 R1/R2）
+
+`knowledge.target_request_contract.resolve_request` 统一解析供应中心参数需求。新建和续派都校验 requirement_id、登记范围字段、已审核问题、来源队和执行机；未接通渠道不能产生 planned 任务。旧混合记录保留但不能续派。此边界不改变实习生任务分配与原件交付指针协议；后者不是参数证据验收。`knowledge.research_gaps` 是正式源的只读投影，CLI 私有导出与管理员 material-flow 共用生成函数；不写事实、答案或采用。
