@@ -58440,6 +58440,90 @@
         },
         "batch_id": "1f9f66d7bd6adb5160dbc1c1b7eded4bf167ff93f1a919bb62f348f249369eae"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "83374b3bdf88e25a38de45e5a27470977da1ae0aaee89c37961cb1994cd2389f",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:8:ev:0",
+      "locator": "page:32/chunk:31",
+      "object_ids": [],
+      "page_index": 31,
+      "question_ids": [
+        "NODE-demand-D3-conversion"
+      ],
+      "quote": "Agentic systems that invoke\n                  multimodal models and interface with physical systems create compounding compute\n                  demand per-task, meaning the aggregate effect on energy consumption may exceed what\n                  any single trend would suggest in isolation.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:48:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文及周边语境充分支持有明确归属的定性预测。对当前D3-conversion实质贡献多模态模型调用与智能体任务执行共同影响计算及能耗的局部机制；对D4-conversion贡献应用、智能体与物理系统交互所形成的需求传导机制。未识别敏感材料、真实冲突、替换要求或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-demand-D4-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.248,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3744e11f60d76fa71f7f67764a5ee84f72ab70a710ad2c85cac4f658764a4159",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 54519,
+            "output_tokens": 1206,
+            "reasoning_output_tokens": 162
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.311,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59dc5ca0b73ea71c0090abb32550655182fb816ba14c04e468c1fd6263138913",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55147,
+              "output_tokens": 479,
+              "reasoning_output_tokens": 182
+            }
+          }
+        },
+        "batch_id": "67d96ba353721c32605ee09caa5005d183d01b381501ff7f22b94355176baff9"
+      }
     }
   ],
   "statements": [
@@ -113335,6 +113419,106 @@
         "request_sha256": "035f52b0ce6b96b095e580f306a8c4889e2dce96bb8f6ec06b0cf6e3ea1bec75"
       },
       "object_mapping_check": "独立依据原文的光子互连与相邻 CPO 语境，映射到网络链下的部件 part:optics（光模块，CPO 为新兴子条目）。本项范围是光学互连技术，不涉及具名交换机、计算器件或供电设备；电信号未被限定为 DAC/AEC，故不增映射高速铜缆。芯片间与机架间仅界定连接层级，不据此扩展到计算、内存或整机柜对象。所选证据统一使用此主张级对象范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:8:ev:0"
+      ],
+      "id": "adoption:review:933e490f8d1b8b416b9aa217",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D3-conversion",
+        "NODE-demand-D4-conversion"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第32页认为，调用多模态模型并与物理系统交互的智能体系统会形成复合的每任务计算需求，其对总能耗的影响可能超过任一趋势单独作用所暗示的程度。这是IEA的定性预测，不是已实现计算需求或能耗增幅的独立验证；所供原文未确立报告出版时间、具体实现时间、适用地域或部署项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:48:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文及周边语境充分支持有明确归属的定性预测。对当前D3-conversion实质贡献多模态模型调用与智能体任务执行共同影响计算及能耗的局部机制；对D4-conversion贡献应用、智能体与物理系统交互所形成的需求传导机制。未识别敏感材料、真实冲突、替换要求或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-demand-D4-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.248,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3744e11f60d76fa71f7f67764a5ee84f72ab70a710ad2c85cac4f658764a4159",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 54519,
+            "output_tokens": 1206,
+            "reasoning_output_tokens": 162
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.311,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59dc5ca0b73ea71c0090abb32550655182fb816ba14c04e468c1fd6263138913",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55147,
+              "output_tokens": 479,
+              "reasoning_output_tokens": 182
+            }
+          }
+        },
+        "batch_id": "67d96ba353721c32605ee09caa5005d183d01b381501ff7f22b94355176baff9"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:8"
+      ],
+      "limitations": "未提供同任务基线、复合效应的定义与量化方法、计算或能耗增幅、部署规模、运行条件、转换系数、时滞及实测验证。物理系统的用电可能位于数据中心之外，不能全部计入数据中心用电；不能据此推导网络、存储、硬件或机房需求，也不能生成模型参数或汇总GW。",
+      "conflict_check": "已比对所供采用陈述及相关legacy记录。单位提示效率改善、单次查询能耗下降预测与任务复杂度及组合效应可能提高能耗涉及不同条件和分母，不构成真实冲突。智能体可能持续运行及边缘部署规模扩大用电的既有陈述分别讨论运行时间与部署数量，不是本项组合效应的规范重复，也不构成独立互证。软件后端适配和长任务邻近性记录没有同条件反证。所供legacy匹配记录为空；反证检查限于提供材料，未发现可确认冲突或重复，不改写既有结论。",
+      "gap_dependency_check": "两个当前问题均仅获得定性部分支持并保持开放。仍需带日期的一手部署与测量资料、可比任务和模型、工具调用及运行工程条件、数据中心与终端能耗边界、需求转换系数、时滞和反证。计算需求如何进一步转换为电力、网络和存储需求尚未验证；封存摘要不能补齐这些缺项。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "67d96ba353721c32605ee09caa5005d183d01b381501ff7f22b94355176baff9",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "ca39342c239815f85a75153b6209c701901ef6ad70ce1585fefaaa6762c57095"
+      },
+      "object_mapping_check": "独立复核后，本项实际范围是通用智能体、多模态模型与物理系统交互的任务需求机制。契约中的root是一座AI数据中心，计算、电力、网络及其链条和部件均属于该设施资产；原句没有建立这些资产范围。应用或工业控制也不等同于DCIM/BMS，IEA没有契约允许的主体对象。因此不继承候选及证据的root标签，采用空对象列表；所选证据使用同一空对象范围，保留两个有效问题关系。"
     }
   ],
   "answers": [],
