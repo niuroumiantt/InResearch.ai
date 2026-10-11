@@ -817,24 +817,25 @@ def build_backflow(root=ROOT, team='fetchspec'):
 
 def news_leads(root=ROOT):
     """当前窗口里的新闻线索原样(带 target_ids、origin_pointer),只给打标记时找目标行用,不公开。"""
-    from inresearch.delivery.runtime_summary import load
-    runtime = load(root)
+    from inresearch.delivery.runtime_summary import load_acquisition
+    runtime = load_acquisition(root)
     acquisition = _reader_state(runtime).get('acquisition')
     feed = acquisition.get('news_feed') if isinstance(acquisition, dict) else None
     items = feed.get('items') if isinstance(feed, dict) else None
     return [i for i in items if isinstance(i, dict)] if isinstance(items, list) else []
 
 
-def build_news(root=ROOT, *, company_id=None, limit=80):
+def build_news(root=ROOT, *, company_id=None, limit=80, overview=False):
     """News consumes the same validated snapshot without constructing catalog/tasks."""
-    from inresearch.delivery.runtime_summary import load
-    runtime = load(root)
+    from inresearch.delivery.runtime_summary import load, load_acquisition
+    runtime = load_acquisition(root) if overview else load(root)
     knowledge = read_json(root / 'data/research_knowledge.json')
     reader = _reader_state(runtime)
     acquisition = reader.get('acquisition')
     if acquisition is not None and not isinstance(acquisition, dict):
         raise ValueError('invalid_acquisition_metadata')
     feed = acquisition.get('news_feed') if isinstance(acquisition, dict) else None
+    feed_truncated=isinstance(feed,dict) and isinstance(feed.get('items'),list) and len(feed['items'])>limit
     if feed is not None:
         if not isinstance(feed, dict) or not isinstance(feed.get('items', []), list):
             raise ValueError('invalid_news_feed')
@@ -884,7 +885,7 @@ def build_news(root=ROOT, *, company_id=None, limit=80):
                    json.loads((root/'data/projects.json').read_text())['records'] if p.get('adoption')}
         for row in rows:
             if not isinstance(row, dict): continue
-            events = [{k: e.get(k) for k in ('title_zh', 'title', 'url', 'published_at', 'event_type', 'reported_stage', 'reported_capacity', 'site_candidates', 'capacity_observations', 'constraints', 'target_ids')}
+            events = [{k: e.get(k) for k in ('title_zh', 'title', 'url', 'published_at', 'event_type', 'reported_stage', 'reported_capacity', 'site_candidates', 'capacity_observations', 'constraints', 'target_ids','country_mentions','location','published_date','event_date','matched_site_id','received_at')}
                       for e in row.get('events', []) if isinstance(e, dict) and public_url(e.get('url'))]
             for event in events:
                 event['site_candidates'] = [{k:c[k] for k in ('site_id','method','anchor') if k in c}
@@ -892,7 +893,10 @@ def build_news(root=ROOT, *, company_id=None, limit=80):
                 event['capacity_observations'] = [{k:c[k] for k in ('quoted_value','mw','basis','locator','quote','acceptance') if k in c}
                                                   for c in event.get('capacity_observations') or [] if isinstance(c,dict)]
             if events:
-                item = {k: row.get(k) for k in ('id', 'title', 'state', 'first_seen', 'last_seen', 'company_ids', 'site_id', 'review_note', 'reported_stage', 'reported_capacity', 'match_method', 'origin', 'report_date')} | {'events': events}
+                item = {k: row.get(k) for k in ('id', 'title', 'state', 'first_seen', 'last_seen', 'company_ids', 'site_id', 'review_note', 'reported_stage', 'reported_capacity', 'match_method', 'origin', 'report_date','country_mentions','location','published_date','event_date','capacity_observations')} | {'events': events}
+                from inresearch.knowledge.raw_atlas import capacities,countries
+                item['capacity_observations']=capacities(item.get('capacity_observations'))
+                item['country_mentions']=countries(item.get('country_mentions'))
                 formal = adopted.get(str(row.get('id', '')).removeprefix('daily-'))
                 if formal and row.get('origin') == 'daily_html':
                     item.update(site_id=formal['site_id'], state='linked', company_ids=formal['developer'],
@@ -904,11 +908,51 @@ def build_news(root=ROOT, *, company_id=None, limit=80):
     progress['constraints'] = {k:v for k,v in (raw_progress.get('constraints') or {}).items()
                                if k in ('water','power','permits','land','finance') and type(v) is int and v>=0}
     progress['adoption_note'] = '新闻观察不证明正式容量采用。'
-    return dict(schema_version=1, feed=feed, pipeline={'records': leads, 'available': pipeline is not None,
-                'daily_visible': sum(r.get('origin') == 'daily_html' for r in leads),
-                'total': pipeline.get('total') if isinstance(pipeline,dict) else None, 'progress': progress,
-                'truncated': bool(pipeline.get('truncated')) if isinstance(pipeline, dict) else False},
-                reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
+    from inresearch.knowledge import raw_atlas
+    raw=raw_atlas.build(root,feed,leads,received_at=reader.get('received_at'),
+                        available=(isinstance(feed,dict) and feed.get('status') not in ('not_initialized','awaiting_sync')) or isinstance(pipeline,dict),
+                        truncated=feed_truncated or (bool(pipeline.get('truncated')) if isinstance(pipeline,dict) else False))
+    out=dict(schema_version=1,feed=feed,pipeline={'records':leads,'available':pipeline is not None,
+                'daily_visible':sum(r.get('origin')=='daily_html' for r in leads),
+                'total':pipeline.get('total') if isinstance(pipeline,dict) else None,'progress':progress,
+                'truncated':bool(pipeline.get('truncated')) if isinstance(pipeline,dict) else False},raw_atlas=raw,
+                reader={key:reader[key] for key in ('status','received_at','stale') if key in reader})
+    if overview:
+        out['pipeline'].pop('records')
+        # Backflow counters serve collectors, not the anonymous homepage.
+        if out['feed']: out['feed']={k:v for k,v in out['feed'].items() if k in ('status','exported_at','items')}
+    return out
+
+
+_NEWS_PUBLIC_CACHE={}
+_NEWS_PUBLIC_LOCK=threading.RLock()
+
+
+def cached_news(root=ROOT, *, company_id=None, limit=80, overview=False):
+    """Public-only cache, invalidated immediately by every input file version."""
+    import time
+    from inresearch.delivery.runtime_summary import source_path, control_path
+    from inresearch.workflow.news_marks import marks_path
+    from inresearch.knowledge.raw_atlas import local_date
+    root=Path(root); source=source_path(root)
+    paths=[source,control_path(source),marks_path(root),root/'data/research_knowledge.json',
+           root/'framework/research_graph.json',root/'framework/research_questions.json',
+           root/'data/projects.json',root/'data/companies.json',root/'web/assets/world.geo.json',
+           root/'docs/research/2026-10-11/data-centers/project-ledger.json']
+    def version(path):
+        try:
+            stat=path.stat();return (str(path),stat.st_dev,stat.st_ino,stat.st_size,stat.st_mtime_ns)
+        except FileNotFoundError:return (str(path),None)
+    key=(str(root),company_id,limit,overview,local_date(datetime.now(timezone.utc).isoformat()),tuple(version(p) for p in paths))
+    with _NEWS_PUBLIC_LOCK:
+        cached=_NEWS_PUBLIC_CACHE.get(key)
+        if cached and time.monotonic()-cached[0]<30:return copy.deepcopy(cached[1])
+        result=build_news(root,company_id=company_id,limit=limit,overview=overview)
+        # A source rewritten during construction cannot be labelled as its newer version.
+        if key[-1]==tuple(version(p) for p in paths):
+            if len(_NEWS_PUBLIC_CACHE)>=8:_NEWS_PUBLIC_CACHE.clear()
+            _NEWS_PUBLIC_CACHE[key]=(time.monotonic(),copy.deepcopy(result))
+        return result
 
 
 def _research_state(root):

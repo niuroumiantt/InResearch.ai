@@ -523,7 +523,7 @@ class Handler(SimpleHTTPRequestHandler):
             try:
                 query = parse_qs(urlsplit(self.path).query)
                 if any(len(v) != 1 for v in query.values()): raise ValueError('duplicate filter')
-                return self._json(200, snapshot(ROOT, {k: v[0] for k, v in query.items()}))
+                return self._json(200, snapshot(ROOT, {k: v[0] for k, v in query.items()}), compressed=True)
             except LookupError as error:
                 return self._json(404, {'error': str(error)})
             except ValueError as error:
@@ -546,11 +546,13 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'error': 'company data unavailable'})
         if urlsplit(self.path).path == '/api/news':
             query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
-            if set(query) - {'company', 'limit'} or any(len(v) != 1 for v in query.values()):
+            if set(query) - {'company', 'limit','overview'} or any(len(v) != 1 for v in query.values()):
                 return self._json(400, {'error': 'invalid news filter'})
             cid = query.get('company', [None])[0]
             try:
                 limit = int(query.get('limit', ['6' if cid else '80'])[0])
+                overview=query.get('overview',['0'])[0]
+                if overview not in ('0','1'): raise ValueError('invalid overview')
                 if not 1 <= limit <= (20 if cid else 80): raise ValueError('invalid limit')
                 if cid is not None: company_window.company(ROOT, cid)
             except KeyError:
@@ -558,7 +560,7 @@ class Handler(SimpleHTTPRequestHandler):
             except (ValueError, TypeError):
                 return self._json(400, {'error': 'invalid news filter'})
             try:
-                return self._json(200, research.build_news(ROOT, company_id=cid, limit=limit))
+                return self._json(200, research.cached_news(ROOT, company_id=cid, limit=limit,overview=overview=='1'),compressed=True)
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '新闻暂不可用，请稍后重试'})
         if self._norm_path() == '/research.html':

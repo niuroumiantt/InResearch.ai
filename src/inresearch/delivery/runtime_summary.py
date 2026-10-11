@@ -141,6 +141,23 @@ def load(root):
                 reading_deliveries=[], received_at=None)
 
 
+def load_acquisition(root):
+    """Read only physically current receiver metadata, independent of curated adoption.
+
+    A later research commit does not invalidate received news. Missing or changed
+    source/control files remain unknown; this endpoint never parses a giant library.
+    """
+    source=source_path(root)
+    value=read_control(source) if source.is_file() else None
+    if value is None:
+        return dict(reader={'status':'awaiting_operational_projection' if source.exists() else 'not_connected'},received_at=None)
+    reader=value['reader'];acquisition=reader.get('acquisition')
+    if not isinstance(acquisition,dict):
+        return dict(reader={'status':'degraded'},received_at=value.get('received_at'))
+    clean={key:acquisition[key] for key in ('news_feed','project_pipeline','daily_delivery') if key in acquisition}
+    return dict(received_at=value.get('received_at'),reader={'status':reader.get('status'),'acquisition':clean})
+
+
 def read_header(source):
     """Read the writer's small metadata prefix, stopping before knowledge/reader."""
     if not source.exists():

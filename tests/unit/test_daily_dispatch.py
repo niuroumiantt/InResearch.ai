@@ -42,7 +42,9 @@ class DailyDispatchTests(unittest.TestCase):
             self.assertEqual(tasks['capacity'],'awaiting_capacity_review')
             public=project_pipeline.projection(data/'acquisition')['records'][0]
             self.assertEqual(public['origin'],'daily_html')
-            self.assertIsNone(public['site_id']);self.assertIsNone(public['reported_capacity'])
+            self.assertIsNone(public['site_id']);self.assertEqual(public['reported_capacity'],'60 MW')
+            self.assertEqual(public['events'][0]['capacity_observations'],[{'quoted_value':'60 MW','mw':60,'basis':'it','acceptance':'candidate','scope':'project','phase':'一期','nature':'announced'}])
+            self.assertEqual(public['location'],'Salo')
             serialized=json.dumps(public,ensure_ascii=False)
             self.assertNotIn('Phase 1 delivers',serialized)
             self.assertNotIn('IT负荷60MW',serialized)
