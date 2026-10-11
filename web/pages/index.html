@@ -1,28 +1,30 @@
 <!doctype html>
 <html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>全球数据中心 · inresearch.ai</title>
-<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="preload" href="/assets/fonts/noto-sans-sc-1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/assets/site-skin.css"><script src="/assets/theme-state.js"></script>
-<link rel="stylesheet" href="/assets/industry.css?v=20261008-map2"><link rel="stylesheet" href="/assets/datacenter-news.css">
-<script defer src="/assets/site-skin.js"></script><script defer src="/assets/industry.js?v=20261008-map2"></script></head>
+<link rel="stylesheet" href="/assets/industry.css?v=20261011-daily1"><link rel="stylesheet" href="/assets/datacenter-news.css">
+<script defer src="/assets/site-skin.js"></script><script defer src="/assets/industry.js?v=20261011-daily1"></script></head>
 <body><inresearch-shell data-section="industry"></inresearch-shell>
 <main class="industry">
  <nav class="local-nav" aria-label="行业浏览"><a href="/">行业总览</a><a href="/projects.html">项目与布局</a><a href="/market.html">市场规模</a><a href="/node.html">数据中心研究 ↗</a></nav>
- <header class="hero"><div><p class="eyebrow">GLOBAL DATA CENTER ATLAS</p><h1 id="page-title">全球数据中心</h1><p id="page-description">全球规模与园区布局，追踪算力基础设施的变化。</p></div></header>
+ <header class="hero"><div><p class="eyebrow">GLOBAL DATA CENTER ATLAS</p><h1 id="page-title">全球数据中心</h1><p id="page-description">全球布局、项目规模与每天的新变化。</p></div></header>
  <div id="load-status" role="status" aria-live="polite"></div>
- <section class="market-band" id="market-band" aria-label="市场规模"></section>
+ <section class="market-band" id="market-band" aria-label="全球机构基准"><div class="macro-card"><span>全球 IT 容量 · 机构估算 / 预测</span><strong>—<small>GW</small></strong><small>正在读取已登记基准</small></div><div class="macro-note">地图展示本站追踪项目<br>新闻容量单独保留报道口径</div></section>
  <section class="atlas-layout" id="atlas-layout">
   <div class="atlas-panel">
    <div class="panel-heading"><div><h2 id="map-title">全球项目布局</h2></div><a id="layout-link" href="/projects.html">查看布局明细 →</a></div>
    <div class="map-frame"><svg id="world-map" viewBox="0 0 1000 490" role="group" aria-label="全球数据中心项目地图"></svg>
     <div class="map-controls"><button type="button" id="zoom-in" aria-label="放大地图">＋</button><button type="button" id="zoom-out" aria-label="缩小地图">−</button><button type="button" id="zoom-reset">复位</button></div>
    </div>
-   <div class="map-legend"><span><i class="operating"></i>已投运</span><span><i class="construction"></i>建设中</span><span><i class="planning"></i>筹备</span><span>虚线圈：有新闻动态</span><span>圆面积 ∝ IT 容量</span><span>◇ 容量未披露</span><span>重叠点可放大或查明细</span></div>
+   <div class="map-legend"><span><i class="operating"></i>已投运</span><span><i class="construction"></i>建设中</span><span><i class="planning"></i>筹备</span><span>虚线圈：项目新动态</span><span>✦ 新闻地点 · 待核验</span><span>编号圈：国家级资料分布</span><span>圆面积 ∝ IT 容量</span><span>◇ 容量未披露</span><span>深色描边：部分字段已采用；其余项目登记</span></div>
    <div id="map-selection" class="map-selection" aria-live="polite">悬停园区查看信息，点击或键盘选点可固定浮窗；详情另设链接。支持拖动和缩放。</div>
 
   </div>
-  <aside class="news-panel"><div class="news-source">来自 inews.today</div><p class="news-count" data-news-count aria-live="polite">本次快照 · 当前筛选精选 — 条</p><div class="dc-news" data-datacenter-news data-news-selection="selected"></div></aside>
+  <aside class="news-panel"><div class="news-source">每天的新闻与研究资料</div><div id="news-daily-summary" class="news-daily-summary" aria-live="polite">正在读取今日进展…</div><p class="news-count" data-news-count aria-live="polite">本次快照 · 当前筛选线索 — 条</p><div class="dc-news" data-datacenter-news data-news-selection="all"></div></aside>
  </section>
+ <section id="daily-pulse" class="daily-pulse" aria-label="每日进展" aria-live="polite"><div><p class="eyebrow">DAILY CHANGES</p><h2>每天的新变化</h2><p id="daily-freshness">正在读取新闻与接收时间…</p></div><div id="daily-metrics" class="daily-metrics"><span>今日新闻 <strong>—</strong></span><span>今日接收 <strong>—</strong></span><span>容量观察 <strong>—</strong></span><span>有地点消息 <strong>—</strong></span></div><a href="/projects.html?view=pipeline">查看事件与采用进展 →</a></section>
+ <section id="research-arrivals" class="research-arrivals" aria-label="本批研究资料"><div><p class="eyebrow">RESEARCH MATERIALS</p><h2>本批文章提取的全球项目</h2><p id="research-summary">正在读取研究资料台账…</p></div><a href="/research/data-centers-2026-projects.html">查看文章项目台账与来源 →</a><div id="research-countries" class="research-countries"></div></section>
  <section id="atlas-tools" class="atlas-tools" aria-label="地图筛选与样本">
  <p id="map-summary" class="basis"></p>
  <form id="filters" class="filters" aria-label="项目筛选">
@@ -35,16 +37,16 @@
  </form>
  <div class="stats" id="stats" aria-label="已追踪项目容量"></div>
  <p class="basis" id="basis"></p>
-   <div class="company-picker"><p class="eyebrow">按主体高亮地图</p><div id="company-chips" class="company-chips"></div></div>
+   <div class="company-picker"><p class="eyebrow">按主体高亮地图</p><div id="company-chips" class="company-chips"></div><p id="company-coverage" class="basis"></p></div>
  <p class="coverage" id="coverage">正在读取项目数据…</p>
- <div class="atlas-options"><label class="news-choice">显示<select id="news-selection"><option value="selected">编辑精选</option><option value="all">全部数据中心线索</option></select></label><a href="/projects.html?view=pipeline">查看全部项目新闻线索 →</a></div>
+ <div class="atlas-options"><label class="news-choice">显示<select id="news-selection"><option value="all">全部新闻与日报线索</option><option value="selected">编辑精选</option></select></label><a href="/projects.html?view=pipeline">查看全部项目新闻线索 →</a></div>
  </section>
  <section id="pipeline-summary" class="pipeline-summary" aria-label="新闻建设机会"></section>
  <section id="detail" hidden></section>
  <section id="market-detail" hidden></section>
  <section class="section" id="project-list" hidden><div class="panel-heading"><div><p class="eyebrow">PROJECTS</p><h2 id="list-title">项目明细</h2></div><label>项目阶段<select id="stage-filter" aria-label="项目阶段"><option value="">全部阶段</option><option value="operating">已投运</option><option value="construction">建设中</option><option value="planning">筹备机会</option><option value="unknown">容量未披露</option></select></label></div><div id="project-rows"></div></section>
  <section class="section" id="pipeline-section" hidden><div class="panel-heading"><div><p class="eyebrow">SALES PIPELINE</p><h2>持续跟踪的项目线索</h2></div><select id="lead-state" aria-label="线索状态"><option value="active">活跃机会</option><option value="all">全部（含暂停与取消）</option></select></div><p class="basis">有项目消息即进入机会池；阶段与容量标为报道口径，未采用的数字不并入园区 IT 容量。自动匹配的园区保留匹配依据，暂停和取消可追溯。</p><div id="pipeline-rows"><p class="empty">正在读取项目线索…</p></div></section>
- <section class="section" id="leaders-section"><div class="panel-heading"><div><p class="eyebrow">THE PLAYERS</p><h2>主要玩家与布局</h2></div><span>相关园区规模，不代表公司权益容量</span></div><div id="leaders" class="leaders"></div></section>
+ <section class="section" id="leaders-section"><div class="panel-heading"><div><p class="eyebrow">THE PLAYERS</p><h2>主要玩家与布局</h2></div><span>相关项目规模 · 进入布局、查看缺口</span></div><div id="leaders" class="leaders"></div></section>
  <section class="section" id="trends-section"><p class="eyebrow">WHAT COMES NEXT</p><h2>下一轮建设，在哪里发生？</h2><div id="trends" class="trends"></div></section>
- <footer>从行业布局进入 <a href="/node.html">数据中心研究</a> · <a href="/ledger.html">成本与收益账本</a> · <a href="/bom.html">部件与系统</a><p>项目状态和容量以所列来源与核验日期为准；新闻线索保留不确定性。</p></footer>
-</main><script type="module" src="/assets/datacenter-news.js?v=20261007-retry1"></script></body></html>
+ <footer>从行业布局进入 <a href="/node.html">数据中心研究</a> · <a href="/ledger.html">成本与收益账本</a> · <a href="/bom.html">部件与系统</a><p>项目登记与新闻观察分层展示。地图保留容量和位置缺口，来源与逐项核验见详情。</p></footer>
+</main><script type="module" src="/assets/datacenter-news.js?v=20261011-daily1"></script></body></html>

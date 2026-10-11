@@ -77,6 +77,8 @@ def receive(home, articles, at, withdrawn=(), root=None):
             row = records.setdefault(ident, {'id': ident, 'state': 'lead', 'first_seen': at, 'events': [], 'company_ids': [], 'site_id': None})
             event = {k: item.get(k) for k in ('id', 'title_zh', 'title', 'url', 'published_at', 'editorial_pick', 'event_type')}
             event.update(signal)
+            previous=next((e for e in row['events'] if str(e['id'])==str(item['id'])),None)
+            event['received_at']=previous.get('received_at') if previous is not None else at
             event['withdrawn'] = False
             events = {str(e['id']): e for e in row['events']}; events[str(item['id'])] = event
             row['events'] = sorted(events.values(), key=lambda e: e.get('published_at') or 0)
@@ -93,7 +95,7 @@ def receive(home, articles, at, withdrawn=(), root=None):
 def projection(home):
     records = []
     for row in read(home)['records'].values():
-        events = [{k: e.get(k) for k in ('title_zh', 'title', 'url', 'published_at', 'event_type', 'reported_stage', 'reported_capacity', 'matched_site_id', 'site_candidates', 'capacity_observations', 'constraints', 'target_ids')} for e in row['events'] if not e.get('withdrawn') and public_url(e.get('url'))]
+        events = [{k: e.get(k) for k in ('title_zh', 'title', 'url', 'published_at','received_at', 'event_type', 'reported_stage', 'reported_capacity', 'matched_site_id', 'site_candidates', 'capacity_observations', 'constraints', 'target_ids')} for e in row['events'] if not e.get('withdrawn') and public_url(e.get('url'))]
         if not events: continue
         latest = events[-1]
         item = {k: row.get(k) for k in ('id', 'state', 'first_seen', 'last_seen', 'company_ids', 'site_id', 'review_note')}

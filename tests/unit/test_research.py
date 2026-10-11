@@ -657,7 +657,7 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
                 patch.object(research, 'current_tasks', side_effect=AssertionError('unneeded tasks')):
             code, news = self.request('GET', '/api/news')
         self.assertEqual(code, 200)
-        self.assertEqual(set(news), {'schema_version', 'feed', 'reader', 'pipeline'})
+        self.assertEqual(set(news), {'schema_version', 'feed', 'reader', 'pipeline','raw_atlas'})
         self.assertEqual(news['pipeline'], {'records': [], 'available': False, 'truncated': False, 'daily_visible': 0,
                          'total':None,'progress':{'constraints':{},'adoption_note':'新闻观察不证明正式容量采用。'}})
         self.assertEqual(len(news['feed']['items']), 80)
