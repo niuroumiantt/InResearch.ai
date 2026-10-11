@@ -52906,6 +52906,89 @@
         },
         "batch_id": "0a23acd1ce85960a90ef8a36913cacc2796d48c6698f0c9f480b55e25359ae9b"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "762d4723303094e85aa80edc97edbc0bfe13631fe072555e4195682d6682baf3",
+      "document_id": "doc-a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "id": "rev-7958e9c77d224e84a17b86e125a72e30:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "quote": "SWNI will build and operate the district heating network, which will serve the south industrial estate (Gewerbegebiet Süd), the Neue Welt residential area and the Waldschwimmbad public pool, providing a local source of heat for 600 buildings and supporting the city's decarbonization strategy.",
+      "reading_revision_id": "rev-7958e9c77d224e84a17b86e125a72e30",
+      "source_sha256": "a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:52:51+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5。连续完整原句及供热合作的相邻上下文充分，对当前交易边界工作单提供网络建设运营方和拟服务对象的实质性局部线索。未发现敏感、真实冲突、替换或其他A类条件，按B类部分采用来源预测；不完成互斥角色划分，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 48.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8cffe2883c165960a0516e3ddc482458375ec926639c6fe1344da877e0f169c4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53117,
+            "output_tokens": 1255,
+            "reasoning_output_tokens": 196
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6b7bafbda83730bcaa46de8729f3c9222374948ba176dc07059795064d179319",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53761,
+              "output_tokens": 671,
+              "reasoning_output_tokens": 394
+            }
+          }
+        },
+        "batch_id": "69115cb2d1a419fac649c820ad6d80bfcffd7f03e1a1b61a75a1dbc554cbe051"
+      }
     }
   ],
   "statements": [
@@ -102371,6 +102454,104 @@
         "request_sha256": "c1384e162441ab1e7314807599aaf05251c6eb236842147c3cc80e4af0f369dd"
       },
       "object_mapping_check": "Box 6.1明确讨论天然气燃气轮机市场及订单，独立支持映射至system:power下chain:power/3的燃气轮机部件。美国以外的下单企业未被逐一识别，不能映射至指定制造商actor，也不支持扩大至整座数据中心、电网接入或供气合同。该映射表示设备类别的市场证据，不表示任何具体资产已经交付或投运。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "evidence_ids": [
+        "rev-7958e9c77d224e84a17b86e125a72e30:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:1764b5af511a3d50cb93a4c8",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-7958e9c77d224e84a17b86e125a72e30",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年10月8日的报道中称，在德国法兰克福以南Neu-Isenburg的Goodman FRA02数据中心余热供热合作计划中，Stadtwerke Neu-Isenburg（SWNI）将建设并运营区域供热网络，拟服务南部工业区（Gewerbegebiet Süd）、Neue Welt住宅区和Waldschwimmbad公共游泳池，预计为600栋建筑提供本地热源。这是来源对未来建设运营分工及服务范围的陈述，不证明网络已投运、600栋建筑已接入，也不构成当前独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:52:51+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5。连续完整原句及供热合作的相邻上下文充分，对当前交易边界工作单提供网络建设运营方和拟服务对象的实质性局部线索。未发现敏感、真实冲突、替换或其他A类条件，按B类部分采用来源预测；不完成互斥角色划分，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 48.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8cffe2883c165960a0516e3ddc482458375ec926639c6fe1344da877e0f169c4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53117,
+            "output_tokens": 1255,
+            "reasoning_output_tokens": 196
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6b7bafbda83730bcaa46de8729f3c9222374948ba176dc07059795064d179319",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53761,
+              "output_tokens": 671,
+              "reasoning_output_tokens": 394
+            }
+          }
+        },
+        "batch_id": "69115cb2d1a419fac649c820ad6d80bfcffd7f03e1a1b61a75a1dbc554cbe051"
+      },
+      "source_candidate_ids": [
+        "rev-7958e9c77d224e84a17b86e125a72e30:chunk:0:claim:1"
+      ],
+      "limitations": "所选引文没有一手协议、付款安排、热价、资产权属、运营责任细则或接入清单。服务区域与公共设施是拟服务范围，不能确定具体签约客户、付款方或全部最终使用者；600栋建筑是计划服务数量。SWNI建设并运营网络不等于拥有网络或FRA02资产，也不能据此确认实际供热能力、履约或减碳成效。",
+      "conflict_check": "所供已采用陈述涉及其他园区的租户、托管、运营、购电、企业股权及美国电厂权属，与本项德国区域供热网络计划可以并存，未构成同范围重复或真实冲突。legacy的合同、事实和项目匹配记录均为空，未提供同一网络的相反记录或规范重复项。检查限于所供材料，不是穷尽性外部反证搜索，不替换既有结论。",
+      "gap_dependency_check": "NODE-activity-V1-boundary获得区域供热服务、网络建设运营方和拟服务范围的局部证据；仍需一手合作协议、网络与数据中心资产权属文件、付款及供热合同、交付接入证据和反证，才能区分产品或服务、付款方、资产所有者、运营方与使用方。网络运营角色不能自动覆盖数据中心运营角色，拟服务对象不能自动认定为付款方。当前工作单要求的一手来源及完整边界仍未满足，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "69115cb2d1a419fac649c820ad6d80bfcffd7f03e1a1b61a75a1dbc554cbe051",
+        "source_report_sha256": "64e60b0a709e0816fa75726f75c21a21e18906ed17e736c991234d64235c39aa",
+        "request_sha256": "af6ebddeebda3674166ee238d449a23a918a07b45b61a050035d18c11651914c"
+      },
+      "object_mapping_check": "独立核对对象契约：本项实际范围是SWNI拟建设运营的外部区域供热网络及城市用热对象。system:facility及其土地建筑链指数据中心设施，不能因服务600栋外部建筑而映射；system:thermal及排热链指数据中心散热范围，所选主张未界定FRA02侧余热回收或连接设备，不能把城市供热网络自动映射为该系统。SWNI及各服务对象没有允许的主体ID，本项也不陈述整座数据中心的权责，因此不映射root。空对象列表保留有效问题关联，所选证据统一使用此审核后的主张范围。"
     }
   ],
   "answers": [],
