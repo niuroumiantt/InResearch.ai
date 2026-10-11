@@ -1,0 +1,205 @@
+{
+  "schema": "additional-primary-support-review-v1",
+  "status": "research_review_not_adopted",
+  "applied": false,
+  "reviewed_on": "2026-10-11",
+  "reviewed_by": "Codex",
+  "scope": "Selected original passages and actual archived byte identities; no full-reading, C3 adoption or historical input-byte identity claim.",
+  "archive_receipt_sha256": "5e4519f7274433fb31196dd08368e01a32396d2ad4050f31b2d8559f4e380f86",
+  "reader_enrolled": false,
+  "facts_changed": 0,
+  "reviews": [
+    {
+      "source_id": "bloom-equinix-20250220",
+      "fact_ids": [
+        "bloom-equinix-operational-2026",
+        "bloom-equinix-construction-2026"
+      ],
+      "publication_date": "2025-02-20",
+      "locator": "Official press release, paragraph beginning With approximately",
+      "quote": "With approximately 75MW already operational and another 30MW under construction",
+      "finding": "Approximate portfolio totals at this announcement; this primary source cannot certify the old August 2026 observation time or a unique physical site.",
+      "next_action": "Review a historical observation at the actual disclosure time and seek later portfolio/site evidence; preserve both timelines.",
+      "source": {
+        "url": "https://www.bloomenergy.com/news/bloom-energy-expands-data-center-power-agreement-with-equinix-surpassing-100mw/",
+        "final_url": "https://www.bloomenergy.com/news/bloom-energy-expands-data-center-power-agreement-with-equinix-surpassing-100mw/",
+        "sha256": "72629eb81eb36ae604854e1ab6d2057bf410fa057a4e617317d9f677b62112eb",
+        "bytes": 187028,
+        "content_type": "text/html; charset=UTF-8",
+        "retrieved_at": "2026-10-11T03:50:10.121514+00:00"
+      },
+      "archive_relative_path": "acquisition/blobs/72/72629eb81eb36ae604854e1ab6d2057bf410fa057a4e617317d9f677b62112eb.html",
+      "historical_exact_input_identity": "not_established",
+      "prior_records": [
+        {
+          "fact_id": "bloom-equinix-operational-2026",
+          "metric_id": "btm_operational_mw",
+          "entity": {
+            "type": "component",
+            "id": "bloom-equinix-operational-2026",
+            "label": "Bloom × Equinix 燃料电池（已运行）"
+          },
+          "value": 75.0,
+          "unit": "MW",
+          "caliber": {
+            "power_type": "燃料电池",
+            "status": "L8",
+            "region": "US"
+          },
+          "as_of": "2026-08",
+          "evidence": {
+            "local_file": "",
+            "locator": "research/M04.md M04-F1 论证段「Bloom×Equinix 约 75MW 运行、30MW 在建」",
+            "grade": "S3"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "**只有这 75MW 计入当期供给**；另 30MW 在建（L6）不计——status 维度就是为挡这个而设。",
+          "bound": "point",
+          "asserter": "未注明",
+          "node": "part:gas-turbine",
+          "variable_class": 1
+        },
+        {
+          "fact_id": "bloom-equinix-construction-2026",
+          "metric_id": "btm_operational_mw",
+          "entity": {
+            "type": "component",
+            "id": "bloom-equinix-construction-2026",
+            "label": "Bloom × Equinix 燃料电池（在建）"
+          },
+          "value": 30.0,
+          "unit": "MW",
+          "caliber": {
+            "power_type": "燃料电池",
+            "status": "L6",
+            "region": "US"
+          },
+          "as_of": "2026-08",
+          "evidence": {
+            "local_file": "",
+            "locator": "research/M04.md M04-F1 论证段「30MW 在建」",
+            "grade": "S3"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "在建容量，**不得计入当期供给**。",
+          "bound": "point",
+          "asserter": "未注明",
+          "node": "part:gas-turbine",
+          "variable_class": 1
+        }
+      ]
+    },
+    {
+      "source_id": "nvidia-nvl72-power-water",
+      "fact_ids": [
+        "rack-nvl72-2026"
+      ],
+      "publication_date": "2025-04-22",
+      "locator": "Official blog, full-rack power density paragraph",
+      "quote": "a full-rack power density of 120 kW",
+      "finding": "Supports the named GB200 NVL72 rack configuration at this disclosure, not a universal 120–140 kW range, every NVL72 configuration or a site measurement in 2026.",
+      "next_action": "Separate configuration and source time; do not replace electrical power with another source’s cooling capacity.",
+      "source": {
+        "url": "https://blogs.nvidia.com/blog/blackwell-platform-water-efficiency-liquid-cooling-data-centers-ai-factories/",
+        "final_url": "https://blogs.nvidia.com/blog/blackwell-platform-water-efficiency-liquid-cooling-data-centers-ai-factories/",
+        "sha256": "400010e0e51456184cff5960de64c542e61bbd85e1461bf974c256bda39a6bbf",
+        "bytes": 122282,
+        "content_type": "text/html; charset=UTF-8",
+        "retrieved_at": "2026-10-11T03:50:09.760661+00:00"
+      },
+      "archive_relative_path": "acquisition/blobs/40/400010e0e51456184cff5960de64c542e61bbd85e1461bf974c256bda39a6bbf.html",
+      "historical_exact_input_identity": "not_established",
+      "prior_records": [
+        {
+          "fact_id": "rack-nvl72-2026",
+          "metric_id": "rack_density_shipping",
+          "entity": {
+            "type": "component",
+            "id": "rack-nvl72-2026",
+            "label": "NVL72 类整机柜系统"
+          },
+          "value": 120.0,
+          "unit": "kW/机柜",
+          "caliber": {
+            "rack_type": "整机柜系统(NVL类)",
+            "stat": "主流机型",
+            "power_basis": "设计功率",
+            "region": "Global",
+            "era": "未注明"
+          },
+          "as_of": "2026-08",
+          "evidence": {
+            "local_file": "",
+            "locator": "research/M06.md 功率密度段「NVL72 类系统已把设计带到约 120–140kW 级」",
+            "grade": "S3"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "原文 120–140kW，**取下界**。与上一条传统风冷 5kW **差一个数量级**，靠 rack_type 维度隔开——这两个数放进同一个「机柜功率密度」序列会得出荒谬的均值。",
+          "bound": "lower",
+          "asserter": "未注明",
+          "node": "part:rack-frame",
+          "variable_class": 1
+        }
+      ]
+    },
+    {
+      "source_id": "gds-reit-allocation-20250719",
+      "fact_ids": [
+        "gds-reit-subscription-2025"
+      ],
+      "publication_date": "2025-07-19",
+      "physical_page": 6,
+      "locator": "Official fund announcement, public allocation confirmation",
+      "quote": "实际确认比例为 0.21976466%",
+      "finding": "For public subscriptions on the last public offering date 2025-07-14. The document does not state 455.03 verbatim; 100 / 0.21976466 = 455.0322… gives an approximate reciprocal allocation ratio rounded to two decimals.",
+      "next_action": "Review this as a recomputable derived ratio, distinguish the public allocation denominator and dates, and retain the unfound prior report edition.",
+      "source": {
+        "url": "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-07-19/508060_20250719_WJU9.pdf",
+        "final_url": "https://www.sse.com.cn/disclosure/fund/announcement/c/new/2025-07-19/508060_20250719_WJU9.pdf",
+        "sha256": "895bd49f98eb22a7e70307de8553f5ca915f27572f130ea3bf118ad513bdd92e",
+        "bytes": 1631250,
+        "content_type": "application/pdf",
+        "retrieved_at": "2026-10-11T03:50:14.985609+00:00"
+      },
+      "archive_relative_path": "acquisition/blobs/89/895bd49f98eb22a7e70307de8553f5ca915f27572f130ea3bf118ad513bdd92e.pdf",
+      "historical_exact_input_identity": "not_established",
+      "prior_records": [
+        {
+          "fact_id": "gds-reit-subscription-2025",
+          "metric_id": "reit_subscription_multiple",
+          "entity": {
+            "type": "market",
+            "id": "southern-vnet-reit",
+            "label": "南方万国数据中心REIT(508060.SH)"
+          },
+          "value": 455.03,
+          "unit": "倍",
+          "caliber": {
+            "stage": "公众发售资金覆盖",
+            "region": "CN"
+          },
+          "as_of": "2025-07",
+          "evidence": {
+            "local_file": "",
+            "locator": "天风证券《周观REITs：两单数据中心公募REITs公布公众认购比例》(2025-07-19)「认购资金覆盖倍数为455.03倍」",
+            "grade": "S2"
+          },
+          "depth": "精读",
+          "derived": false,
+          "sensitive": false,
+          "notes": "**公众发售阶段**口径，与询价（网下机构）阶段的认购倍数不同、不可混用。同批南方润泽为 317.95 倍。受发售规模与打新资金面共同影响，**不宜单独当作资产质量指标**。地域=中国。",
+          "bound": "point",
+          "asserter": "未注明",
+          "node": "root",
+          "variable_class": 3
+        }
+      ]
+    }
+  ]
+}

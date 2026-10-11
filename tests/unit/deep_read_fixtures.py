@@ -71,7 +71,9 @@ L1_ROW = {
     'keep_original_name': False, 'size': 4096,
 }
 
-PROVENANCE_DEBT = 37
+# Current facts without a support-original SHA; historical input-byte identity
+# is counted separately in the R4 adoption receipt and remains unestablished.
+PROVENANCE_DEBT = 25
 
 DANGLING_SOURCE_IDS = 27
 

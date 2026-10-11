@@ -408,7 +408,7 @@ python3 manage.py research-review status
 python3 manage.py research-review ready
 ```
 
-安装 `deploy/spark-reader/inresearch-research-review.service` 到用户 systemd，独立 enable/start。每轮最多两批，角色并发更低时取更低值；新批次通常六项，超预算继续拆小批、单项不足则待核，不截上下文。十二批待发布产生背压；有可执行任务立即继续，空闲等待三十秒。原重要度≥8进待所有者，具体审核新出现A条件同样保留；其他专门数值/项目核验不借作者陈述通道改表。
+安装 `deploy/spark-reader/inresearch-research-review.service` 到用户 systemd，独立 enable/start。每轮最多两批，角色并发更低时取更低值；新批次通常六项，超预算继续拆小批、单项不足则待核，不截上下文。十二批待发布产生背压；有可执行任务立即继续，空闲等待三十秒。原重要度≥8进待所有者，具体审核新出现A条件同样保留；参数SHA绑定的 observation/calculation 经专门定量检查与每条独立复核，可追加有范围的来源支持陈述；不改写成作者主张，不直接更新事实/项目/模型输入。其余专门数值/项目核验继续使用对应入口。
 
 提速选择协议按04：需求匹配调用生成当前候选/引文中的逐字检索词，仅检索字段值；完整保存所选语义记录，重复执行回执用原登记SHA引用，保留旧协议复验。修改队列前停止该独立研究服务并作 SQLite 一致备份；`research-review regroup-queued --batch-size 6` 只合并未执行的 queued，同报告/版本，父批次留存。`research-review retry-context --batch-id 完整ID` 只重试预算失败，保留原尝试；不重试原文缺失或独立抽样未确认。恢复独立研究服务；原 Reader/relay 不重启。
 
@@ -514,3 +514,7 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 ### 具名样例的在线阅读顺序（2026-10-11）
 
 具名阅读顺序可用 `reader prioritize` 显式提高：绑定 doc_id、当前 revision_id、expected_priority、新 priority、唯一 request_id、by 与 reason。dry-run只读；在线 SQLite 事务比较当前版本与旧优先级，只改指定 reading_runs.priority 并同事务写 reader_priority 审计。重复请求幂等，异意图、旧版本、终态或降低优先级拒绝。它不构造 Reader/模型、不取得第二个 worker、不取消在途任务，不改原件、冻结配方、job/预算、模型 importance、C3 或采用；既有四分之一最老任务机会保留。 操作命令见采集操作指南；先核当前阅读版本、范围和冻结任务并保存 catalog 一致备份，再 plan/apply，同一请求回放不会再次提高。不得把调度9写成资料重要性9或正式采用。
+
+### 站点跟踪调度的启用与核验（2026-10-11）
+
+更新源码后在安全边界重载既有 `inresearch-research-review.service`，不另开worker。先对既有catalog、acquisition与review queue做SQLite在线备份；保留在途审核及原件，核新进程版本、唯一锁和原队列继续进展。既有worker每轮调用站点任务规划，`research-review status` 的 `site_tracking` 可读日/周/月水位、任务状态和最新失败。首次扫描/重启重放应核真实接收来源、任务去重与正式projects字节未改；失败不推进成功水位。此状态只表示复核任务形成，未接通的采集、站点C3和项目发布不可报告执行完成。不要手改SQLite状态或刷新verified_date掩盖缺口。
