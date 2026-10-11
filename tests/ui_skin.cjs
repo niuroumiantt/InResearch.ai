@@ -40,7 +40,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    if(file==='ops.html'){await page.locator('#tasks .task-btn').first().waitFor();await page.locator('#freshness-drawer > summary').click();await page.locator('#freshness tr').nth(1).waitFor({state:'attached'});assert.ok(await page.locator('#freshness tr').count()>=6,'generated-artifact freshness table');assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#tasks .task-btn').count()>0);assert.equal(await page.locator('#modules, #projects, #funnel, #indicators').count(),0,'funnel, monitoring, modules and project blocks retired');}
    const settledUrl=page.url();
    // Shared fonts: the bundled Inter + Noto Sans SC stack applies to the body of every application page.
-   const cacheFontId=file==='ops.html'?'ops-fonts':file==='index.html'?'home-fonts':null;
+   const cacheFontId=file==='ops.html'?'ops-fonts':['index.html','industry.html','projects.html','project.html','market.html'].includes(file)?'home-fonts':null;
    if(cacheFontId)await page.waitForFunction(id=>['cached','fallback'].includes(document.getElementById(id).dataset.fonts),cacheFontId);
    const fonts=await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').map(f=>f.family)});
    if(cacheFontId)assert.ok(fonts.every(f=>['Inter','Noto Sans SC'].includes(f)),file+' reuses cached shared fonts or system fallback');
