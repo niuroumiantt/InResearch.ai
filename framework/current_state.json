@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.100",
+  "version": "2026.10.11.101",
   "effective_at": "2026-10-11",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -4266,14 +4266,26 @@
         "tests/datacenter_news.cjs",
         "web/assets/maps/world-detail.geo.json",
         "web/assets/maps/README.md",
-        "scripts/build_world_detail.py"
+        "scripts/build_world_detail.py",
+        "web/assets/maps/map-admin1-0.geo.json",
+        "web/assets/maps/map-admin1-1.geo.json",
+        "web/assets/maps/map-admin1-2.geo.json",
+        "web/assets/maps/map-admin1-3.geo.json",
+        "web/assets/maps/map-admin1-4.geo.json",
+        "web/assets/maps/map-admin1-5.geo.json",
+        "web/assets/maps/map-admin1-6.geo.json",
+        "web/assets/maps/map-admin1-7.geo.json",
+        "web/assets/maps/map-admin1-8.geo.json",
+        "web/assets/maps/map-admin1-9.geo.json",
+        "web/assets/maps/map-admin1-10.geo.json",
+        "web/assets/maps/map-admin1-11.geo.json"
       ],
       "supersedes": [
         "interface-global-daily-20261011"
       ],
       "reason": "用户明确替代同日长首页：保留全球规模带；研究信息与项目动态合为真实正式补充时间的单行标题播报；科技感世界地图与等高的inews新闻标题栏，保留原文链接；七家主体高亮移至地图底部，其余首页资料/样本统计/筛选/玩家区块退出，其他行业页与详情保持。未精选新闻使用既有标题搜索，不假称逐条故事已公开；信息有效时间不冒充更新时间，未知不补造。",
-      "implementation_revision": "2026.10.11.100",
-      "change_reason": "已采用范围替代；用户查看上线效果后明确恢复地图原有配色和设计：取消深蓝/青色渐变、点阵与发光，复用原始底图/边界/状态点；地理投影与容量保持。桌面等高、移动端/键盘/减少动态、来源安全与公开边界同步验收，生产部署另核回执。 首页index与完整行业模板industry.html分源登记，四个行业子页原功能和公开权限保持；routes与interface_manifest同步。 用户同PR续令：首页hover/focus改即时简约单行tip并移除原生SVG title，点击/Enter保留完整详情浮窗；非首页交互保持，替代原首页hover大框条款。 用户追加放大地图精细矢量与州/省界；同源按需加载固定Natural Earth版本，保持旧地理样本锚点、原配色与现有布局/交互，失败可恢复。"
+      "implementation_revision": "2026.10.11.101",
+      "change_reason": "已采用范围替代；用户查看上线效果后明确恢复地图原有配色和设计：取消深蓝/青色渐变、点阵与发光，复用原始底图/边界/状态点；地理投影与容量保持。桌面等高、移动端/键盘/减少动态、来源安全与公开边界同步验收，生产部署另核回执。 首页index与完整行业模板industry.html分源登记，四个行业子页原功能和公开权限保持；routes与interface_manifest同步。 用户同PR续令：首页hover/focus改即时简约单行tip并移除原生SVG title，点击/Enter保留完整详情浮窗；非首页交互保持，替代原首页hover大框条款。 用户追加放大地图精细矢量与州/省界；同源按需加载固定Natural Earth版本，保持旧地理样本锚点、原配色与现有布局/交互，失败可恢复。 .100公网精细资源传输超时，.101按最大缩放约一像素精度减重，国界独立、州省界按视野分块补充复用，30秒有界等待并保留失败重试。"
     }
   ],
   "entrypoints": [

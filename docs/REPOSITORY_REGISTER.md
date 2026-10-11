@@ -1,16 +1,16 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.100。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.101。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2602。
+在册文件：2615。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 370 |
+| 静态资源 | 382 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 218 |
+| 配套说明 | 219 |
 | 测试 | 214 |
 
 ## 在册记录集合
@@ -1906,8 +1906,32 @@
 | `research/M13.md` | Finding | 6 |
 | `research/M14.md` | Finding | 11 |
 | `research/M15.md` | Finding | 12 |
+| `web/assets/maps/map-admin1-0.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-0.geo.json` | features | 34 |
+| `web/assets/maps/map-admin1-1.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-1.geo.json` | features | 152 |
+| `web/assets/maps/map-admin1-10.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-10.geo.json` | features | 2303 |
+| `web/assets/maps/map-admin1-11.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-11.geo.json` | features | 334 |
+| `web/assets/maps/map-admin1-2.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-2.geo.json` | features | 1196 |
+| `web/assets/maps/map-admin1-3.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-3.geo.json` | features | 4342 |
+| `web/assets/maps/map-admin1-4.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-4.geo.json` | features | 1602 |
+| `web/assets/maps/map-admin1-5.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-5.geo.json` | features | 5061 |
+| `web/assets/maps/map-admin1-6.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-6.geo.json` | features | 14763 |
+| `web/assets/maps/map-admin1-7.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-7.geo.json` | features | 7430 |
+| `web/assets/maps/map-admin1-8.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-8.geo.json` | features | 3354 |
+| `web/assets/maps/map-admin1-9.geo.json` | sources | 2 |
+| `web/assets/maps/map-admin1-9.geo.json` | features | 4710 |
 | `web/assets/maps/world-detail.geo.json` | sources | 2 |
-| `web/assets/maps/world-detail.geo.json` | features | 10436 |
+| `web/assets/maps/world-detail.geo.json` | features | 258 |
 | `web/assets/models/manifest.json` | models | 1 |
 | `web/assets/world.geo.json` | features | 180 |
 | `web/pages/admin/repo-content/infra-daily.json` | reach | 6 |
@@ -2652,6 +2676,7 @@
 | [docs/handoff/infra-2026-09-29.md](handoff/infra-2026-09-29.md) | 配套说明 |
 | [docs/handoff/m4-deepread.md](handoff/m4-deepread.md) | 配套说明 |
 | [docs/handoff/map-detail-admin1-20261011.md](handoff/map-detail-admin1-20261011.md) | 配套说明 |
+| [docs/handoff/map-detail-transfer-20261011.md](handoff/map-detail-transfer-20261011.md) | 配套说明 |
 | [docs/handoff/material-lineage-dashboard-20261008.md](handoff/material-lineage-dashboard-20261008.md) | 配套说明 |
 | [docs/handoff/material-progress-overview-20261006.md](handoff/material-progress-overview-20261006.md) | 配套说明 |
 | [docs/handoff/multi-object-intake-20261011.md](handoff/multi-object-intake-20261011.md) | 配套说明 |
@@ -4044,6 +4069,18 @@
 | `web/assets/hdri/studio.exr` | 静态资源 |
 | `web/assets/hdri/warehouse.exr` | 静态资源 |
 | [web/assets/maps/README.md](../web/assets/maps/README.md) | 配套说明 |
+| `web/assets/maps/map-admin1-0.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-1.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-10.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-11.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-2.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-3.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-4.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-5.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-6.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-7.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-8.geo.json` | 静态资源 |
+| `web/assets/maps/map-admin1-9.geo.json` | 静态资源 |
 | `web/assets/maps/world-detail.geo.json` | 静态资源 |
 | `web/assets/material-flow.css` | 运行代码 |
 | `web/assets/material-flow.js` | 运行代码 |
