@@ -56199,6 +56199,88 @@
         },
         "batch_id": "dc8f8688d7bae075dbc87042bb2d95ecc91d53f8457cdf9a14a82db70d48e815"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bce8a26f38d8d2bf72430fbda7c3cdb307911f1da94ec1d62ac060e1af828377",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:17:claim:7:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [],
+      "page_index": 17,
+      "question_ids": [],
+      "quote": "Leading hyperscalers and neo-clouds have announced\n                  a 75% increase in capital expenditure for 2026, amounting to USD 715 billion.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:35:51+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。连续原文直接支持金额、增幅、2026年及宣布计划性质，相邻图注提供必要的估计口径限定。该项为当前M03-Q03提供计划端比较线索，为M02-Q02提供总体投入扩张线索，具有实质问题关系。限定归因后可作B类部分证据采用；未发现敏感、真实冲突或拟替换条件。",
+        "workorder_ids": [
+          "Q-M03-Q03",
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.149,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "19480dba334985f8e07fdcde6b39765352bafee0d497b83095865e3663d94199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62446,
+            "output_tokens": 1633,
+            "reasoning_output_tokens": 593
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.482,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3df89b062e3004664c5cc95a27913e597f665839ab1f41f9c5e5ed12cbe61484",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 63075,
+              "output_tokens": 512,
+              "reasoning_output_tokens": 207
+            }
+          }
+        },
+        "batch_id": "3116afe34a08ad9fe9bf631bbbacb3567443f63fad622b8fe4051a61c04b7ade"
+      }
     }
   ],
   "statements": [
@@ -108770,6 +108852,106 @@
         "request_sha256": "4940fd556996cd93e56341bf0148f65c258f611d81c2ce1d56c7386fa7c1febb"
       },
       "object_mapping_check": "独立依据原句选择电力系统下的chain:power/3（发电与储能）和chain:power/5（配电），分别对应一般备用发电容量与配电压力；未指定冷却设备类别，选择system:thermal（水与散热）。原文没有将备用发电限定为柴油，故不沿用part:backup-power；合同中的system:facility涵盖土地建筑及消防安防，不对应此处冷却设备。机架功率是负载条件，未提供机柜结构或板级供电设备主张，不增加这些对象。所选证据统一采用上述声明级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:17:claim:7:ev:0"
+      ],
+      "id": "adoption:review:8155f9e22e4e58e9b6aed39b",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M03-Q03",
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》（发表时间未知）正文称，领先超大规模云服务商及neo-clouds宣布的2026年资本支出增长75%，金额达7,150亿美元。相邻Figure 1.2图注说明，右图涵盖超大规模云服务商及Oracle，2026年资本支出采用公司指引，但Microsoft采用市场共识估计。因此，本项保留为IEA对未来支出计划及估计的来源陈述，未经本次独立核验，不表示支出已经执行或全部金额均由公司正式宣布。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:35:51+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。连续原文直接支持金额、增幅、2026年及宣布计划性质，相邻图注提供必要的估计口径限定。该项为当前M03-Q03提供计划端比较线索，为M02-Q02提供总体投入扩张线索，具有实质问题关系。限定归因后可作B类部分证据采用；未发现敏感、真实冲突或拟替换条件。",
+        "workorder_ids": [
+          "Q-M03-Q03",
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.149,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "19480dba334985f8e07fdcde6b39765352bafee0d497b83095865e3663d94199",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62446,
+            "output_tokens": 1633,
+            "reasoning_output_tokens": 593
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.482,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3df89b062e3004664c5cc95a27913e597f665839ab1f41f9c5e5ed12cbe61484",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 63075,
+              "output_tokens": 512,
+              "reasoning_output_tokens": 207
+            }
+          }
+        },
+        "batch_id": "3116afe34a08ad9fe9bf631bbbacb3567443f63fad622b8fe4051a61c04b7ade"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:17:claim:7"
+      ],
+      "limitations": "原文未明确75%的比较基期，不能补写为同比增长。未提供逐家公司金额、完整合计样本、财年与日历年处理方式、季度节奏或实际支出。图注对neo-clouds的类别定义不等于右图数值样本；不能认定CoreWeave、Nebius均计入7,150亿美元。资本支出主要投向数据中心的语境不证明全部金额属于AI数据中心。地域和具体项目阶段未确定，不能换算为已投运容量。原生文本阅读完整，但未完成全文视觉审核，发表日期仍未知。",
+      "conflict_check": "所供已采用的融资信用判断、Oracle业务增长及自建预测、Alphabet的2027年支出展望，以及STACK、Nebius、Digital Realty、CoreWeave和Scala的事件陈述，均不构成本项2026年合计资本支出的同口径重复或直接反证。正文的公告概括与图注的共识估计例外已在采用文本中共同保留，不把口径限定升级为已证实的数值冲突。相关legacy筛选记录为空，不能据此认定外部不存在反证；不覆盖既有结论。",
+      "gap_dependency_check": "M03-Q03仍需各公司一手指引、指引版本与时点、同口径季度实际支出及差异推导；该合计不能直接完成逐季度财报核验。M02-Q02仍需逐公司项目交付时间表、融资来源、现金流和资金缺口证据；支出计划增长本身不能证明资金约束程度或实际扩张速度。两项问题保持开放，不更新模型参数、项目阶段或容量总量。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3116afe34a08ad9fe9bf631bbbacb3567443f63fad622b8fe4051a61c04b7ade",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "d883aea531a5b9b49e2312cbf9b522521ea3746efc073711d43feee18a05c1c0"
+      },
+      "object_mapping_check": "独立核对对象契约：本项是跨公司合计资本支出主张，契约root指一座AI数据中心，不能继承Reader的root标签。相邻图注提供主体分组及右图样本，但未明确7,150亿美元合计的逐公司构成，不据此分配到各actor。证据也未划分设施、IT、电力或部件支出，故对象范围留空；这不影响两项问题的有效匹配。所选证据统一采用此主张级空对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
