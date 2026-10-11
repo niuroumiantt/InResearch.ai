@@ -363,7 +363,7 @@ daily_dispatch 逐事件生成独立任务：来源未找到由 inews/M5 补源�
 
 ## 目标请求合同与执行边界（2026-10-11 R1/R2）
 
-目标表 2.3 的 request.version=2 保留五类请求轮廓和 351 个稳定父目标。`framework/research_demand_review.json` 是参数需求与关联用途的审阅源；生成器把 17 项定义附到 9 个主目标的 requirements，不新增第二条采集任务轴。父行 team/host 继续指代原有基础材料渠道，不能代表其下每个模型参数。各 requirement 写明来源队、执行机、所需范围、交付、验收、用途问题、影响输出与研究决策责任；按 requirement_id 选择后才可建立混合目标的细化需求。
+目标表 2.3 的 request.version=2 保留五类请求轮廓和 351 个稳定父目标。`framework/research_demand_review.json` 是参数需求与关联用途的审阅源；生成器把 17 项定义附到 9 个主目标的 requirements，不新增第二条采集任务轴。父行 team/host 继续指代原有基础材料渠道，不能代表其下每个模型参数。参数机制和请求轮廓也由审阅源逐项登记：官方基准结果走结构化接口，水费率走官方表格，不能仅因属于报告队就要求伪装成 PDF。各 requirement 写明来源队、执行机、所需范围、交付、验收、用途问题、影响输出与研究决策责任；按 requirement_id 选择后才可建立混合目标的细化需求。
 
 question_ids 只登记经审核的支持用途，question_links 区分 supports 与 lead_for。运行额定/测试材料可跨变量类支持性能问题，交期支持供应问题；新闻只提供线索。candidate_question_ids 仍是同节点、同变量类检索，不能作为派工的问题授权、研究采用或闭题依据。无用途关联的目标保留 question_not_registered 或 purpose_review_required，由研究端审定实际问题，不按数量生成占位问题或假答案。
 

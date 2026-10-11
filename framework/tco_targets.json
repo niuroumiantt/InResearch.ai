@@ -454,8 +454,9 @@
               "model_margin"
             ],
             "priority": 1,
-            "id": "F.revenue.utilization.report::monetized_share",
+            "mechanism": "pdf_free",
             "profile": "research_material",
+            "id": "F.revenue.utilization.report::monetized_share",
             "required_fields": [
               "target_id",
               "source_url",
@@ -473,7 +474,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -854,8 +854,9 @@
               "model_margin"
             ],
             "priority": 1,
-            "id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+            "mechanism": "api",
             "profile": "research_material",
+            "id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
             "required_fields": [
               "target_id",
               "source_url",
@@ -873,7 +874,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -2385,8 +2385,9 @@
               "operating_cost"
             ],
             "priority": 2,
-            "id": "F.cost.other_opex.other_opex.breakdown::other_opex_per_mw",
+            "mechanism": "edgar",
             "profile": "research_material",
+            "id": "F.cost.other_opex.other_opex.breakdown::other_opex_per_mw",
             "required_fields": [
               "target_id",
               "source_url",
@@ -2404,7 +2405,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "edgar",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -2431,8 +2431,9 @@
               "operating_cost"
             ],
             "priority": 2,
-            "id": "F.cost.other_opex.other_opex.breakdown::insurance_pct",
+            "mechanism": "js_page",
             "profile": "observation",
+            "id": "F.cost.other_opex.other_opex.breakdown::insurance_pct",
             "required_fields": [
               "target_id",
               "source_url",
@@ -2450,7 +2451,6 @@
               "derivation"
             ],
             "host": "macmini",
-            "mechanism": "js_page",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -2477,8 +2477,9 @@
               "operating_cost"
             ],
             "priority": 2,
-            "id": "F.cost.other_opex.other_opex.breakdown::bandwidth_per_mw",
+            "mechanism": "js_page",
             "profile": "observation",
+            "id": "F.cost.other_opex.other_opex.breakdown::bandwidth_per_mw",
             "required_fields": [
               "target_id",
               "source_url",
@@ -2496,7 +2497,6 @@
               "derivation"
             ],
             "host": "macmini",
-            "mechanism": "js_page",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -2524,8 +2524,9 @@
               "operating_cost"
             ],
             "priority": 2,
-            "id": "F.cost.other_opex.other_opex.breakdown::software_per_mw",
+            "mechanism": "js_page",
             "profile": "observation",
+            "id": "F.cost.other_opex.other_opex.breakdown::software_per_mw",
             "required_fields": [
               "target_id",
               "source_url",
@@ -2543,7 +2544,6 @@
               "derivation"
             ],
             "host": "macmini",
-            "mechanism": "js_page",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -2905,8 +2905,9 @@
               "operating_cost"
             ],
             "priority": 2,
-            "id": "F.cost.other_opex.water.rates::water_price",
+            "mechanism": "table",
             "profile": "observation",
+            "id": "F.cost.other_opex.water.rates::water_price",
             "required_fields": [
               "target_id",
               "source_url",
@@ -2924,7 +2925,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -3270,8 +3270,9 @@
               "landlord_option_return"
             ],
             "priority": 2,
-            "id": "F.cost.facility.shell_rent.lease.terms::renewal_probability",
+            "mechanism": "edgar",
             "profile": "research_material",
+            "id": "F.cost.facility.shell_rent.lease.terms::renewal_probability",
             "required_fields": [
               "target_id",
               "source_url",
@@ -3289,7 +3290,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "edgar",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -3319,8 +3319,9 @@
               "lifecycle_cashflow"
             ],
             "priority": 2,
-            "id": "F.cost.facility.shell_rent.lease.terms::bot_service_rate",
+            "mechanism": "edgar",
             "profile": "research_material",
+            "id": "F.cost.facility.shell_rent.lease.terms::bot_service_rate",
             "required_fields": [
               "target_id",
               "source_url",
@@ -3338,7 +3339,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "edgar",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -3586,8 +3586,9 @@
               "lifecycle_cashflow"
             ],
             "priority": 2,
-            "id": "F.cost.depreciation.report::decommission_pct",
+            "mechanism": "pdf_free",
             "profile": "research_material",
+            "id": "F.cost.depreciation.report::decommission_pct",
             "required_fields": [
               "target_id",
               "source_url",
@@ -3605,7 +3606,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -3922,8 +3922,9 @@
               "lifecycle_cashflow"
             ],
             "priority": 2,
-            "id": "F.cost.depreciation.capex.accelerators.product::refresh_cost_factor",
+            "mechanism": "js_page",
             "profile": "observation",
+            "id": "F.cost.depreciation.capex.accelerators.product::refresh_cost_factor",
             "required_fields": [
               "target_id",
               "source_url",
@@ -3941,7 +3942,6 @@
               "derivation"
             ],
             "host": "macmini",
-            "mechanism": "js_page",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -4560,8 +4560,9 @@
               "lifecycle_cashflow"
             ],
             "priority": 2,
-            "id": "F.cost.depreciation.capex.shell.product::contingency_pct",
+            "mechanism": "pdf_free",
             "profile": "research_material",
+            "id": "F.cost.depreciation.capex.shell.product::contingency_pct",
             "required_fields": [
               "target_id",
               "source_url",
@@ -4579,7 +4580,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -4606,8 +4606,9 @@
               "operating_cost"
             ],
             "priority": 2,
-            "id": "F.cost.depreciation.capex.shell.product::redundancy",
+            "mechanism": "pdf_free",
             "profile": "research_material",
+            "id": "F.cost.depreciation.capex.shell.product::redundancy",
             "required_fields": [
               "target_id",
               "source_url",
@@ -4625,7 +4626,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -4652,8 +4652,9 @@
               "lifecycle_cashflow"
             ],
             "priority": 2,
-            "id": "F.cost.depreciation.capex.shell.product::soft_cost_pct",
+            "mechanism": "pdf_free",
             "profile": "research_material",
+            "id": "F.cost.depreciation.capex.shell.product::soft_cost_pct",
             "required_fields": [
               "target_id",
               "source_url",
@@ -4671,7 +4672,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -4698,8 +4698,9 @@
               "lifecycle_cashflow"
             ],
             "priority": 1,
-            "id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+            "mechanism": "pdf_free",
             "profile": "observation",
+            "id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
             "required_fields": [
               "target_id",
               "source_url",
@@ -4717,7 +4718,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           },
@@ -4744,8 +4744,9 @@
               "lifecycle_cashflow"
             ],
             "priority": 1,
-            "id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+            "mechanism": "pdf_free",
             "profile": "observation",
+            "id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
             "required_fields": [
               "target_id",
               "source_url",
@@ -4763,7 +4764,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }
@@ -5845,8 +5845,9 @@
               "landlord_return"
             ],
             "priority": 2,
-            "id": "F.capital.news::residual_share",
+            "mechanism": "pdf_free",
             "profile": "research_material",
+            "id": "F.capital.news::residual_share",
             "required_fields": [
               "target_id",
               "source_url",
@@ -5864,7 +5865,6 @@
               "derivation"
             ],
             "host": "aws",
-            "mechanism": "pdf_free",
             "team_state": "not_connected",
             "evidence_status": "unverified"
           }

@@ -28,9 +28,7 @@ def target_node(row):
     return 'root'
 
 
-def attach_contracts(targets, questions, review=None, providers=None):
-    review = review or {}
-    providers = providers or {}
+def attach_contracts(targets, questions, review, providers, mechanisms):
     definitions = {r['model_input']: r for r in review.get('requirements', [])}
     if len(definitions) != len(review.get('requirements', [])):
         raise ValueError('Duplicate parameter demand definition')
@@ -66,10 +64,11 @@ def attach_contracts(targets, questions, review=None, providers=None):
             team = definition['source_team']
             if team not in providers:
                 raise ValueError(f'{key}: unregistered source team {team}')
-            mechanism = {'fetchstat': 'pdf_free', 'fetchfilings': 'edgar',
-                         'fetchreports': 'pdf_free', 'fetchquotes': 'js_page'}[team]
+            mechanism = definition['mechanism']
+            if mechanism not in mechanisms or definition['profile'] not in PROFILES:
+                raise ValueError(f'{key}: unregistered mechanism or request profile')
             requirements.append(dict(definition, id=row['id'] + '::' + key,
-                profile='observation' if team in ('fetchstat', 'fetchquotes') else 'research_material',
+                profile=definition['profile'],
                 required_fields=COMMON + ['requirement_id', 'source_sha256', 'locator', 'scope', 'native_value', 'unit', 'conditions', 'derivation'],
                 host='macmini' if mechanism == 'js_page' else providers[team].get('host_default', 'aws'),
                 mechanism=mechanism,

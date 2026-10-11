@@ -28,6 +28,8 @@ class ResearchDemandTests(unittest.TestCase):
         definitions = self.review['requirements']
         self.assertEqual(set(self.requests), {r['model_input'] for r in definitions})
         self.assertEqual(set(self.requests), set(self.model['input_governance']))
+        self.assertEqual(self.requests['tokens_per_gpu_sec'][1]['mechanism'], 'api')
+        self.assertEqual(self.requests['water_price'][1]['mechanism'], 'table')
         self.assertEqual(len(self.requests), 17)
         self.assertEqual(len({t['id'] for t, r in self.requests.values()}), 9)
         for key, (t, r) in self.requests.items():

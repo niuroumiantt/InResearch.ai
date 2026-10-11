@@ -293,7 +293,7 @@ def build(root=ROOT, as_of=None):
     if unresolved - defined or defined != set(model.get('input_governance', {})):
         raise ValueError('Unverified model inputs require reviewed demand definitions and input governance')
     attach_contracts(targets, load(root, 'framework/research_questions.json')['records'],
-                     review, providers)
+                     review, providers, MECHANISMS)
     counts = {'factor': 0, 'part': 0, 'software': 0, 'archetype': 0, 'site_right': 0}
     by_status = {s: 0 for s in STATUSES}
     for t in targets:
