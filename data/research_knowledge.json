@@ -59662,6 +59662,92 @@
         },
         "batch_id": "70fc5755dd6c794f39b37563cd53b632b634a0f1b30ebea51314002f09c703f5"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c1d899287a9867d24b5f42a3bf72b9b35b87caf4eb589cd0e0884d4d780e5ddf",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:46:claim:7:ev:0",
+      "locator": "page:47/chunk:46",
+      "object_ids": [
+        "actor:microsoft",
+        "actor:constellation-energy",
+        "system:power",
+        "chain:power/3"
+      ],
+      "page_index": 46,
+      "question_ids": [],
+      "quote": "with the restart currently targeted for 2027.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:17:21+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。项目专属的重启目标年份对当前M04-Q03比较合同宣传与真实交付时间表具有实质性局部贡献。连续原文引文及相邻页面提供充分主体和协议背景，满足B级限定来源陈述的采用条件。未识别敏感、真实冲突、拟替换或其他A条件；仅采用目标时间线索，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.031,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6c270aa338991af8c75ba812571b1a43b890eb28f13e68659513f88d066cdd83",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 42831,
+            "output_tokens": 1241,
+            "reasoning_output_tokens": 276
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2f7f7af5c4f7413d151bf94b1de501aa406220994b07611f652747b730824c9d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 43376,
+              "output_tokens": 415,
+              "reasoning_output_tokens": 144
+            }
+          }
+        },
+        "batch_id": "66c880be847f5f2a39564dffce8ce16283f31f0a82766552366bdafe17664021"
+      }
     }
   ],
   "statements": [
@@ -115657,6 +115743,109 @@
         "request_sha256": "3def92c875ecba7f79ed5c008673c702d80e6ac3b68c613ef27c351c9c4dbcbb"
       },
       "object_mapping_check": "独立核对对象契约：Meta是原文明示的组织设立主体及建设目标主体，支持actor:meta。该主张属于公司整体扩张目标，未限定契约root所指的一座AI数据中心，故不继承root。泛称compute及GW目标未展开system:compute下计算链的设备或技术范围，也未确立并网权利、土地或其他基础设施分项，不增加相应映射。两条所选证据统一采用此主张级主体范围，原候选和证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:46:claim:7:ev:0"
+      ],
+      "id": "adoption:review:9a680cf350dd3ac32f2cc813",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:microsoft",
+        "actor:constellation-energy",
+        "system:power",
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "M04-Q03"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》第47页在介绍Microsoft与Constellation于2024年宣布的、通过重启Three Mile Island Unit 1采购核电的购电协议时称，报告所述重启目标为2027年。报告出版日期及该目标的确切更新时间未由所供原文确立。2027年是来源陈述的项目目标，不构成对当前时间表、实际重启或供电交付的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:17:21+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。项目专属的重启目标年份对当前M04-Q03比较合同宣传与真实交付时间表具有实质性局部贡献。连续原文引文及相邻页面提供充分主体和协议背景，满足B级限定来源陈述的采用条件。未识别敏感、真实冲突、拟替换或其他A条件；仅采用目标时间线索，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.031,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6c270aa338991af8c75ba812571b1a43b890eb28f13e68659513f88d066cdd83",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 42831,
+            "output_tokens": 1241,
+            "reasoning_output_tokens": 276
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2f7f7af5c4f7413d151bf94b1de501aa406220994b07611f652747b730824c9d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 43376,
+              "output_tokens": 415,
+              "reasoning_output_tokens": 144
+            }
+          }
+        },
+        "batch_id": "66c880be847f5f2a39564dffce8ce16283f31f0a82766552366bdafe17664021"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:46:claim:7"
+      ],
+      "limitations": "未提供双方一手合同、目标修订记录、许可及工程里程碑、实际重启或供电交付证据，也未给出许可耗时或并网排队年限。重启目标不能直接等同客户开始获得电力的时间，不能套用于其他核电或SMR项目。阅读覆盖仅限PDF原生文本，未进行视觉复核；来源URL未独立抓取核验。",
+      "conflict_check": "所供已采用陈述涉及Kairos协议、Oklo与RPower合作、Oklo与Switch安排、Meta与Oklo开发协议及核电承购协议类型，与本项不同项目的重启目标无直接冲突，也未包含同一主张的规范重复记录。当前回答为空，legacy筛选返回的匹配记录为空。检查限于所供材料，不代表完成外部反证搜索，不替换或覆盖既有结论。",
+      "gap_dependency_check": "本项为M04-Q03提供可定位的来源目标年份，尚不能建立真实交付时间表。仍需交易双方一手协议、原定及修订目标、许可和工程依赖、实际重启与供电交付证据及反证。当前工单的一手合同和反证要求尚未满足，问题保持开放；不据此赋值许可耗时、并网等待年数或投运容量，不汇总GW或调整研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "66c880be847f5f2a39564dffce8ce16283f31f0a82766552366bdafe17664021",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "926021f76e0514f855ea77fe655d5b15efda10ae9b719c0f26ac6eb2b9841d47"
+      },
+      "object_mapping_check": "独立依据同一句中的Microsoft与Constellation选择对应企业对象，依据核电机组重启及数据中心核电采购背景选择system:power与其发电与储能链条chain:power/3。主张未建立电力配额、并网协议或排队范围，故不沿用Reader的site:grid；该机组也未被原文认定为SMR，不映射part:smr。所选证据统一采用上述主张级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
