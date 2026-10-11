@@ -58006,6 +58006,89 @@
         },
         "batch_id": "a2707ff25c15dcf636f0fd6092ec4f02b980a8c2182174cffde1210eb03d8f23"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "688d5bcef45d3cec334ec5d6a51b534e3120a83ff97f4d714aa0b6d16eddb7b4",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:29:claim:10:ev:0",
+      "locator": "page:30/chunk:29",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 29,
+      "question_ids": [],
+      "quote": "Major cloud providers report sustained low PUE performance across hyperscale\nIEA. CC BY 4.0.\n\n\n\n\n                  fleets.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:18:14+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，无敏感、真实冲突或替换条件。证据完整保留同一句原文，相关前后页提供充分语境，支持有限的作者归属陈述。该陈述直接涉及运营期持续 PUE 表现，与当前 M08-Q07 工单有实质关系，可作为定性部分证据采用，但不能回答或关闭实际 PUE 时序问题。",
+        "workorder_ids": [
+          "Q-M08-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "61f3729a4dece64e3cd06c91a773ea42de0ca560d5631ccd5c34142550b25fce",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29467,
+            "output_tokens": 990,
+            "reasoning_output_tokens": 183
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.531,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5247067ee6c351e979743b177f9e030c4d32bfd7cae79c983b25faf7f6617b44",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29867,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 166
+            }
+          }
+        },
+        "batch_id": "7d26df2d245938c8c0c105dff952ae8e876287a56017d6c7929813db678bba8c"
+      }
     }
   ],
   "statements": [
@@ -112384,6 +112467,106 @@
         "request_sha256": "b5507d286757242e04d37a89ebc4ea6f15313b78545f143323055a58828f693b"
       },
       "object_mapping_check": "原文明确涉及北欧数据中心企业atNorth，匹配独立主体actor:atnorth。契约没有Partners Group主体ID。本项是企业投资进入与退出关系，未确定某座数据中心或FIN05项目的资产交易范围，不映射root、土地、电力系统或并网权利。所选证据统一使用该企业层面的对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:29:claim:10:ev:0"
+      ],
+      "id": "adoption:review:a9e10047a5addbd9f2d1dd76",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M08-Q07"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第30页称，主要云服务商报告其超大规模数据中心设施群持续保持低 PUE。该表述属于 IEA 对服务商报告的概括；来源发表时间、服务商名称、设施所在地和报告覆盖期间均未在所供相关原文中明确，不能视为当前独立核验的运营结果。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:18:14+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，无敏感、真实冲突或替换条件。证据完整保留同一句原文，相关前后页提供充分语境，支持有限的作者归属陈述。该陈述直接涉及运营期持续 PUE 表现，与当前 M08-Q07 工单有实质关系，可作为定性部分证据采用，但不能回答或关闭实际 PUE 时序问题。",
+        "workorder_ids": [
+          "Q-M08-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 35.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "61f3729a4dece64e3cd06c91a773ea42de0ca560d5631ccd5c34142550b25fce",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29467,
+            "output_tokens": 990,
+            "reasoning_output_tokens": 183
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.531,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5247067ee6c351e979743b177f9e030c4d32bfd7cae79c983b25faf7f6617b44",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29867,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 166
+            }
+          }
+        },
+        "batch_id": "7d26df2d245938c8c0c105dff952ae8e876287a56017d6c7929813db678bba8c"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:29:claim:10"
+      ],
+      "limitations": "没有逐家服务商或逐设施的实际 PUE 数值、观测日期、时间序列、计量边界、统计方法或直接运营报告。邻近段落的设施 PUE 范围不能自动赋给本句所指设施群。阅读覆盖仅为 PDF 原生文本，未完成视觉审阅。",
+      "conflict_check": "当前采用的答案和陈述为空。所供 legacy 记录仅有 Yole 关于2024年 AI ASIC 市场收入的事实，与设施 PUE 不构成同口径冲突，也不是重复记录。未发现所供材料中的真实冲突；该检查不代表已完成外部反证检索。",
+      "gap_dependency_check": "M08-Q07 要求实际 PUE 时序而非设计值。本句仅提供 IEA 所述服务商报告持续低 PUE 的定性线索。仍须取得可定位的服务商原始运营披露，明确设施范围、地区、观测期间、实际数值及统计口径，并核查反证，才能形成可复查时序；问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7d26df2d245938c8c0c105dff952ae8e876287a56017d6c7929813db678bba8c",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "103beacbe78fa21cac3dc009881faa939ff37adeb58e3217525a5fedd4298801"
+      },
+      "object_mapping_check": "独立核对对象定义后映射至 root（一座 AI 数据中心）：本句讨论超大规模数据中心设施群的整体 PUE，属于设施整体运行效率。原文没有把表现归因于特定散热系统、电力链或设备，也未具名服务商，因此不增加子系统、零部件或主体映射；root 不表示已识别某个具体项目。"
     }
   ],
   "answers": [],
