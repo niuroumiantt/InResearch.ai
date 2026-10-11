@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.93。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.95。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2568。
+在册文件：2581。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 429 |
-| 运行代码 | 355 |
+| 历史快照 | 430 |
+| 运行代码 | 357 |
 | 现行规范 | 15 |
 | 项目配置 | 775 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 201 |
-| 测试 | 212 |
+| 配套说明 | 210 |
+| 测试 | 213 |
 
 ## 在册记录集合
 
@@ -1756,6 +1756,7 @@
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | excluded_versions | 2 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | reviews | 12 |
 | `docs/reviews/2026-10-11/research-remediation/inspur-historical-support-review.json` | records | 6 |
+| `docs/reviews/2026-10-11/research-remediation/object-first-stock-batch.json` | observations | 4 |
 | `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | boundaries | 4 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
@@ -2589,12 +2590,22 @@
 | `docs/design/technical-atlas/references/14-modern-campus-cutaway.png` | 项目配置 |
 | [docs/design/technical-atlas/references/README.md](design/technical-atlas/references/README.md) | 配套说明 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
+| [docs/guides/fetchdata/README.md](guides/fetchdata/README.md) | 配套说明 |
+| [docs/guides/fetchdata/delivery-contract.md](guides/fetchdata/delivery-contract.md) | 配套说明 |
+| [docs/guides/fetchdata/examples/README.md](guides/fetchdata/examples/README.md) | 配套说明 |
+| `docs/guides/fetchdata/examples/make_sample.py` | 运行代码 |
+| [docs/guides/fetchdata/fetchfilings-company-disclosures.md](guides/fetchdata/fetchfilings-company-disclosures.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchquotes-market-prices.md](guides/fetchdata/fetchquotes-market-prices.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchreports-research-publications.md](guides/fetchdata/fetchreports-research-publications.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchstat-statistics.md](guides/fetchdata/fetchstat-statistics.md) | 配套说明 |
+| [docs/guides/fetchdata/implementation-and-acceptance.md](guides/fetchdata/implementation-and-acceptance.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/bom-classification-20261010.md](handoff/bom-classification-20261010.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
+| [docs/handoff/campus-observation-and-stock-intake-20261011.md](handoff/campus-observation-and-stock-intake-20261011.md) | 配套说明 |
 | [docs/handoff/catalog-ownership-20261007.md](handoff/catalog-ownership-20261007.md) | 配套说明 |
 | `docs/handoff/ci-impact-routing.svg` | 项目配置 |
 | [docs/handoff/ci-impact-scoping-20261010.md](handoff/ci-impact-scoping-20261010.md) | 配套说明 |
@@ -3252,6 +3263,7 @@
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-owner-adoption-receipt.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/inspur-historical-support-review.json` | 历史快照 |
+| `docs/reviews/2026-10-11/research-remediation/object-first-stock-batch.json` | 历史快照 |
 | [docs/reviews/2026-10-11/research-remediation/stock-excerpts-and-campus-register.md](reviews/2026-10-11/research-remediation/stock-excerpts-and-campus-register.md) | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
@@ -3595,6 +3607,7 @@
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |
 | `scripts/sync_repo_pages.py` | 运行代码 |
+| `scripts/validate_collector_handoff.py` | 运行代码 |
 | `scripts/verify_data_center_publication.py` | 运行代码 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
 | `src/inresearch/__init__.py` | 运行代码 |
@@ -3840,6 +3853,7 @@
 | `tests/unit/test_claim_floor.py` | 测试 |
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
+| `tests/unit/test_collector_handoff.py` | 测试 |
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_company_window.py` | 测试 |
 | `tests/unit/test_compute_catalog.py` | 测试 |

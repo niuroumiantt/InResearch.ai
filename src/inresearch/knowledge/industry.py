@@ -7,7 +7,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
-from inresearch.knowledge import site_timeline, site_quantity, site_register
+from inresearch.knowledge import site_timeline, site_quantity, site_register, observation_time
 
 STAGES = {'operating': '已投运', 'construction': '建设中', 'planning': '筹备机会'}
 LEVELS = dict(zip(['L'+str(i) for i in range(1, 10)],
@@ -227,7 +227,10 @@ def snapshot(root, params=None):
     dates = sorted(p['verified_date'] for p in cohort if p.get('verified_date'))
     changes = [{'site_id': p['site_id'], 'name': p['name'], **observation}
                for p in cohort if not p['portfolio'] for observation in p['observations']]
-    changes.sort(key=lambda r: (r['effective_at'] or '',r['id']), reverse=True)
+    # A newly recovered historical observation is a new reader update, not a
+    # newly occurring event. Keep its effective time visible and unchanged.
+    changes.sort(key=lambda r: (observation_time.bounds(r['recorded_at'])[0],
+                               r['effective_at'] or '', r['id']), reverse=True)
     tracking = {'observations': sum(p['tracking']['observations'] for p in cohort),
                 'sites_with_timeline': sum(bool(p['observations']) for p in cohort),
                 'conflicting_sites': sum(bool(p['tracking']['conflicts']) for p in cohort),

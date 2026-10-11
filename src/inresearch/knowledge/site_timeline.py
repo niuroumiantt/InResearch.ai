@@ -34,6 +34,20 @@ def _scope(value):
     return value == 'whole_site' or isinstance(value, str) and re.fullmatch(r'phase:[A-Za-z0-9][A-Za-z0-9_.-]{0,79}', value)
 
 
+def check_object_binding(binding, *, site_id=None, fields=None, scope=None):
+    """Object adoption is independent of later research/model associations."""
+    if (not isinstance(binding, dict) or set(binding) != {'version', 'site_id', 'fields', 'scope'}
+            or type(binding['version']) is not int or binding['version'] != 1
+            or not isinstance(binding['site_id'], str) or not binding['site_id'].strip()
+            or not isinstance(binding['fields'], list) or not binding['fields']
+            or any(not isinstance(f, str) or f not in FIELDS for f in binding['fields'])
+            or len(set(binding['fields'])) != len(binding['fields']) or not _scope(binding['scope'])
+            or site_id is not None and binding['site_id'] != site_id
+            or fields is not None and set(binding['fields']) != set(fields)
+            or scope is not None and binding['scope'] != scope):
+        raise ValueError('invalid_site_object_binding')
+
+
 def check(observation):
     """Check structure; source/C3 review is enforced by the writing workflow."""
     if not isinstance(observation, dict):
@@ -134,11 +148,15 @@ def check(observation):
                     raise ValueError('site_observation_source_time_provenance_required')
         adoption = observation['adoption']
         assertions = adoption.get('assertions')
-        if (adoption.get('source_kind') not in ('daily_event', 'reader_report', 'targeted_excerpt')
+        object_only = adoption.get('target_ids') == []
+        if object_only:
+            check_object_binding(adoption.get('object_binding'), fields=fields, scope=observation['scope'])
+        if (adoption.get('source_kind') not in ('daily_event', 'reader_report', 'targeted_excerpt', 'object_excerpt')
                 or not isinstance(adoption.get('source_id'), str) or not adoption['source_id'].strip()
                 or not re.fullmatch('[0-9a-f]{64}', str(adoption.get('source_version', '')))
                 or not isinstance(adoption.get('document_refs'), list) or not adoption['document_refs']
-                or not isinstance(adoption.get('target_ids'), list) or not adoption['target_ids']
+                or not isinstance(adoption.get('target_ids'), list)
+                or adoption.get('source_kind') == 'object_excerpt' and not object_only
                 or any(not isinstance(t, str) or not t.strip() for t in adoption['target_ids'])
                 or not isinstance(assertions, list) or not assertions
                 or any(not isinstance(a, dict) or a.get('source_sha256') not in seen
@@ -191,11 +209,20 @@ def _validate_chain(rows):
 
 def check_history(project):
     """Validate references as well as individual records for strict checkout validation."""
+    for row in project.get('observations', []):
+        binding = row.get('adoption', {}).get('object_binding')
+        if binding is not None:
+            if project.get('identity_scope') in ('cluster', 'portfolio') or project.get('duplicate_of'):
+                raise ValueError('object_excerpt_requires_unique_physical_site')
+            check_object_binding(binding, site_id=project['site_id'], fields=row['fields'], scope=row['scope'])
     return _validate_chain(project.get('observations', []))
 
 
 def append(project, observation):
     check(observation)
+    binding = observation.get('adoption', {}).get('object_binding')
+    if binding is not None:
+        check_object_binding(binding, site_id=project['site_id'], fields=observation['fields'], scope=observation['scope'])
     result = copy.deepcopy(project)
     rows = result.setdefault('observations', [])
     prior = next((r for r in rows if r['id'] == observation['id']), None)

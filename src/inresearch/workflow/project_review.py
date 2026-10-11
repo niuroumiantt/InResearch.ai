@@ -44,19 +44,20 @@ def queue(data, root):
     accepted = receipt_documents(data)
     targets = {r['id'] for r in json.loads((Path(root)/'framework/tco_targets.json').read_text())['targets']}
     known_sites = {r['site_id'] for r in json.loads((Path(root)/'data/projects.json').read_text())['records']
-                   if not r.get('duplicate_of') and 'portfolio' not in r['site_id']}
+                   if not r.get('duplicate_of') and 'portfolio' not in r['site_id']
+                   and r.get('identity_scope') not in ('cluster', 'portfolio')}
     rows = []
     for event in read_events(data):
         authored = event.get('editorial_event') or {}
         project = authored.get('project') or {}
         goals = [r.get('target_id') for r in event.get('demand_matches', []) if r.get('target_id') in targets]
+        known_identity = event.get('identity_review') == 'resolved' and event.get('matched_site_id') in known_sites
         state = 'needs_binding' if any(public_url(u) for s in event.get('sources', []) for u in s.get('urls', [])) else 'needs_source'
         if bound_urls(event, accepted):
             state = 'needs_identity'
-            known_identity = event.get('identity_review') == 'resolved' and event.get('matched_site_id') in known_sites
             if known_identity or all(project.get(k) for k in ('name', 'country', 'city', 'phase')):
                 state = 'needs_evidence'
-                if event.get('structured_evidence_status') == 'quotes_verified' and goals:
+                if event.get('structured_evidence_status') == 'quotes_verified' and (goals or known_identity):
                     state = 'ready_for_review'
         if event['id'] in adopted:
             if adopted[event['id']]['review_id'].startswith(event_identity(event)[:16]):
@@ -67,7 +68,8 @@ def queue(data, root):
                      'source_version': event_identity(event), 'target_ids': sorted(set(goals)),
                      'executor': 'Codex research review',
                      'previous_review_id': adopted.get(event['id'], {}).get('review_id'),
-                     'site_id': adopted.get(event['id'], {}).get('site_id')})
+                     'site_id': adopted.get(event['id'], {}).get('site_id') or
+                                (event.get('matched_site_id') if known_identity else None)})
     rows.sort(key=lambda r: (r['state'] != 'ready_for_review', r['state'], r['event_id']))
     return {'records': rows, 'counts': dict(Counter(r['state'] for r in rows)),
             'scope': '逐事件核验；就绪不等于已审核，正式结果以项目登记及发布验收为准。'}
@@ -252,7 +254,7 @@ def _source_versions(observation, context):
                         or not isinstance(quote, str) or not observation_time.native_date_matches(published, quote)
                         or ''.join(quote.split()) not in ''.join(text.split())):
                     raise ValueError('publication_time_not_supported_by_source_version')
-                if context.get('source_kind') in ('reader_report', 'targeted_excerpt'):
+                if context.get('source_kind') in ('reader_report', 'targeted_excerpt', 'object_excerpt'):
                     import re
                     prefix = 'reader' if context['source_kind'] == 'reader_report' else 'excerpt'
                     location = re.fullmatch(prefix+r':page:([1-9]\d*)', proof['locator'])
@@ -285,7 +287,7 @@ def apply(root, data, proposal):
     source_kind = proposal.get('source_kind', 'daily_event')
     if source_kind == 'daily_event':
         context = _daily_context(data, proposal)
-    elif source_kind == 'targeted_excerpt':
+    elif source_kind in ('targeted_excerpt', 'object_excerpt'):
         if not proposal.get('observation'):
             raise ValueError('targeted_excerpt_requires_site_observation')
         from inresearch.workflow import targeted_research
@@ -332,7 +334,11 @@ def apply(root, data, proposal):
     urls = set(context['urls'])
     if not urls or not p.get('sources') or any(s.get('url') not in urls for s in p['sources']):
         raise ValueError('source_not_bound_to_received_event')
-    if not proposal.get('target_ids') or not set(proposal['target_ids']) <= {
+    object_only = proposal.get('target_ids') == [] and isinstance(proposal.get('observation'), dict)
+    if object_only:
+        site_timeline.check_object_binding(proposal.get('object_binding'), site_id=p['site_id'],
+            fields=proposal.get('fields'), scope=proposal['observation'].get('scope'))
+    elif not proposal.get('target_ids') or not set(proposal['target_ids']) <= {
             r['id'] for r in json.loads((root/'framework/tco_targets.json').read_text())['targets']}:
         raise ValueError('current_demand_required')
     if context.get('bound_target_ids') is not None and not set(proposal['target_ids']) <= set(context['bound_target_ids']):
@@ -425,6 +431,8 @@ def apply(root, data, proposal):
                          'scope': proposal['scope']})
     if source_kind == 'daily_event':
         p['adoption']['event_id'] = source_id
+    if object_only:
+        p['adoption']['object_binding'] = proposal['object_binding']
     path = root/'data/projects.json'
     replay = False
     with locked(path):
@@ -435,6 +443,8 @@ def apply(root, data, proposal):
                 raise ValueError('observation_requires_registered_physical_site')
             if old.get('duplicate_of') or 'portfolio' in old['site_id']:
                 raise ValueError('observation_requires_canonical_physical_site')
+            if object_only and old.get('identity_scope') in ('cluster', 'portfolio'):
+                raise ValueError('object_excerpt_requires_unique_physical_site')
             if not isinstance(observation, dict) or set(observation) - {'effective_at', 'valid_until', 'kind', 'basis', 'assumptions', 'scope', 'source_versions', 'revision'}:
                 raise ValueError('invalid_observation_metadata')
             if not changed_fields or changed_fields - site_timeline.FIELDS:

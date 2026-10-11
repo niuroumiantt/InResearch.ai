@@ -434,7 +434,7 @@ function renderTracking(){
  if(isHome&&panel){
   const changes=(t.changes||[]).filter(item=>(item.sources||[]).some(s=>safe(s.url))).slice(0,6);
   panel.innerHTML=changes.map(item=>`<details class="project-change"><summary><span class="change-date">${esc(item.effective_at||'观测时间未明确')}</span><strong>${esc(item.name)}</strong><span class="badge">${esc(observationKinds[item.kind]||item.kind)}</span>${item.scope&&item.scope!=='whole_site'?`<span class="badge">分期 ${esc(item.scope.slice(6))}</span>`:''}<span class="change-preview">${observationValues(item).join(' · ')}</span><span class="change-open">展开依据与历史</span></summary><ol class="timeline">${timelineItem(item)}</ol><p><a href="/project.html?site=${encodeURIComponent(item.site_id)}#site-observation-timeline">查看项目现状与完整历史 →</a></p></details>`).join('')||'<p class="empty">暂无有独立来源的项目观测动态。可从地图查看现有项目状态与历史来源。</p>';
-  $('daily-freshness').textContent='按来源中的观测时间展示；估算与预测分别标明，不代表今日发生。';
+  $('daily-freshness').textContent='按最近补充排列，标注信息发生时间；历史补录不代表今日发生，估算与预测分别标明。';
  }
  if(isProject&&data.detail){const p=data.detail;
   $('detail').insertAdjacentHTML('beforeend',`<section class="detail-card" id="site-observation-timeline"><h2>站点观测时间线</h2><p>物理站点 ${esc(p.site_id)} · 运行状态 ${esc(({active:'活跃',paused:'暂停',cancelled:'取消',closed:'关闭'})[p.lifecycle]||p.lifecycle)}</p>${p.tracking?.conflicts?.length?'<p role="status">最新同口径观测存在分歧；当前暂留先前无分歧参考值，请对照来源，不作为已解决结论。</p>':''}<ol class="timeline">${(p.observations||[]).map(timelineItem).join('')||'<li>尚未登记有有效时点的独立观测；上方保留历史登记。</li>'}</ol></section>`);
