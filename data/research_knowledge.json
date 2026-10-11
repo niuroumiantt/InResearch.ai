@@ -5811,6 +5811,61 @@
       "status": "candidate",
       "stored_path": "originals/b8/b8c6f86e1d1b73c560365fa5dbd836488891cd871150f85915f2bf3477a82631/dcd-b8c6f86e1d1b73c5-Empyrion closes financing for Taipei- Taiwan data center with E.S.html",
       "title": "Empyrion closes financing for Taipei, Taiwan data center with E.Sun Bank"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+      "coverage": {
+        "characters_read": 10654,
+        "characters_total": 10654,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+      "id": "doc-08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+      "library_path": "library/by-node/site-land/2026_DCD_Blue Owl-backed Stack buys land in Culpeper County, Vir__08fa1dd62d46c8c9.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:blue-owl",
+        "actor:stack-infrastructure",
+        "root",
+        "site:land"
+      ],
+      "question_ids": [
+        "M01-Q03"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-13dae03cb1af41d690b5afe9e23051cc",
+      "report_sha256": "3702f9ac54cf728e6a178e77ac1e9e03876fb47fb08ce83d957024d06ed9af49",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+        "url": "https://www.datacenterdynamics.com/en/news/blue-owl-backed-stack-buys-land-in-culpeper-county-virginia/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/blue-owl-backed-stack-buys-land-in-culpeper-county-virginia/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/08/08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee/dcd-08fa1dd62d46c8c9-Blue Owl-backed Stack buys land in Culpeper County- Virginia.html",
+      "title": "Blue Owl-backed Stack buys land in Culpeper County, Virginia"
     }
   ],
   "evidence": [
@@ -45656,6 +45711,94 @@
           }
         },
         "batch_id": "7f69a26d3b5b71f83a374ad9f7bdb6b7991bcf5cf2cb4fa54713d6a4cc627e5f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "fb6dbbc2d891b60721fee5b1b2d9877cc38b9f0de6929e64cef607aeb2f5dab4",
+      "document_id": "doc-08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+      "id": "rev-13dae03cb1af41d690b5afe9e23051cc:chunk:0:claim:13:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:stack-infrastructure",
+        "system:facility",
+        "part:shell",
+        "chain:power/2",
+        "site:permits"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "First filed late last year, the proposed plan includes four data center buildings totaling 1.5 million sq ft (139,354 sqm) along with a substation",
+      "reading_revision_id": "rev-13dae03cb1af41d690b5afe9e23051cc",
+      "source_sha256": "08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:29:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文引文与相邻具名主体、地点及区划申请语境充分，为当前M01-Q03提供带时间线索的规划项目样本，为M02-Q05提供多建筑园区规模的局部样本。纠正候选将已发生的首次提交写成计划提交的时态，保留方案的拟建性质。未发现敏感、真实冲突、拟替换或其他A条件，符合B类有界部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.36,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5baa9e5c0f093acb60cdc9014fdca0838caecc3460f95c367024dd9f1a74626a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 67121,
+            "output_tokens": 1511,
+            "reasoning_output_tokens": 294
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.019,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "36022330a48e99b009e89e18493ced08a36a2daf6a7aa389a0c24d292b144e16",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 67929,
+              "output_tokens": 462,
+              "reasoning_output_tokens": 124
+            }
+          }
+        },
+        "batch_id": "96044e7bf842e64b0bc6e358f0c338aa66b3358710ba66965a96f7d1d0278a2c"
       }
     }
   ],
@@ -88941,6 +89084,112 @@
         "request_sha256": "ff2753af3919b717f894e037a9d650de4ba421ae402587c0793de4a39484ebb1"
       },
       "object_mapping_check": "独立依据第19页分组注释及对象契约映射：hyperscalers为Alphabet、Meta、Microsoft、AWS，neo-clouds为Oracle、CoreWeave、Nebius，chip designers为Nvidia、AMD、Arm、Broadcom，chip manufacturers为TSMC、Samsung Electronics、SK hynix。选择契约内对应的13个企业actor；AWS通过所属企业映射actor:amazon，但保留来源AWS口径。契约未提供TSMC对象，不能为其另造ID或以其他企业替代。所选对象共同表示分组比较范围，不能把组级结论赋予每家公司。企业市场表现不对应root所定义的一座AI数据中心；一般存储芯片制造不等于服务器内存模组part:dram，也未明确HBM，不增加基础设施、内存系统或HBM映射。两条证据统一采用此复核后的声明级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-08fa1dd62d46c8c92c7a3862bb4ae3c2a7d4498fe28c22e6c0ad402b01176dee",
+      "evidence_ids": [
+        "rev-13dae03cb1af41d690b5afe9e23051cc:chunk:0:claim:13:ev:0"
+      ],
+      "id": "adoption:review:192007d6cfb22e4391653d44",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:stack-infrastructure",
+        "system:facility",
+        "part:shell",
+        "chain:power/2",
+        "site:permits"
+      ],
+      "question_ids": [
+        "M01-Q03",
+        "M02-Q05"
+      ],
+      "reading_revision_id": "rev-13dae03cb1af41d690b5afe9e23051cc",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年8月5日的报道中称，STACK通过SAC III Acquisition Co, LLC申请在美国弗吉尼亚州Caroline County开发数据中心的区划许可；该方案首次提交于报道所称的“上一年年底”（依报道日期为2025年底），拟包括四栋数据中心建筑，总建筑面积150万平方英尺（139,354平方米），以及一座变电站。这是作者对已提交拟建方案的描述，不证明许可获批、开工、投运或供电落实，也不构成对项目当前状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:29:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文引文与相邻具名主体、地点及区划申请语境充分，为当前M01-Q03提供带时间线索的规划项目样本，为M02-Q05提供多建筑园区规模的局部样本。纠正候选将已发生的首次提交写成计划提交的时态，保留方案的拟建性质。未发现敏感、真实冲突、拟替换或其他A条件，符合B类有界部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.36,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5baa9e5c0f093acb60cdc9014fdca0838caecc3460f95c367024dd9f1a74626a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 67121,
+            "output_tokens": 1511,
+            "reasoning_output_tokens": 294
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.019,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "36022330a48e99b009e89e18493ced08a36a2daf6a7aa389a0c24d292b144e16",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 67929,
+              "output_tokens": 462,
+              "reasoning_output_tokens": 124
+            }
+          }
+        },
+        "batch_id": "96044e7bf842e64b0bc6e358f0c338aa66b3358710ba66965a96f7d1d0278a2c"
+      },
+      "source_candidate_ids": [
+        "rev-13dae03cb1af41d690b5afe9e23051cc:chunk:0:claim:13"
+      ],
+      "limitations": "所供材料为二手报道，链接中的县政府申请原件未在本包中核验。首次提交时间仅精确到年底，未提供审批起止日期；不能据此计算审批时长。建筑面积不是关键IT容量，不能换算为MW或GW；变电站的容量、电压等级、设备构成及建设状态均未披露。单项目建筑规模不能证明项目规模分布的跨期变化。",
+      "conflict_check": "与已采用的格洛可阶段区分及SemiAnalysis公告阶段、项目门槛陈述相容：提交方案不等于已获批或已交付。既有法国、沙特、巴西及Garland规模记录涉及其他项目，不构成重复或同口径冲突。legacy仅提供BNEF经汇丰转引、基于特定配置的新建高压变电站3至5年交货期，不能用于推定本项目的设备交期或建设周期，也不与本条规划描述冲突。所供项目及合同匹配记录为空；未发现规范重复或真实冲突，检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "M01-Q03获得一个已提交拟建方案的项目线索，仍需原始申请、后续审批和施工记录、既有阶段定义的适用性核查、项目去重、同口径容量及历史队列，才能研究漏斗总量和转化率。M02-Q05获得建筑数量和面积样本，仍需容量定义、项目边界及同口径跨期样本，才能判断100MW至GW级园区化的规模分布变化。本条不指定L1–L7等级、不汇总GW、不填审批时长、不更新模型值或研究骨架，两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "96044e7bf842e64b0bc6e358f0c338aa66b3358710ba66965a96f7d1d0278a2c",
+        "source_report_sha256": "3702f9ac54cf728e6a178e77ac1e9e03876fb47fb08ce83d957024d06ed9af49",
+        "request_sha256": "d1106172312473e7bb9b904c4c907c3e1f4e9830ec11aab0f62f4c2750f5a145"
+      },
+      "object_mapping_check": "独立依据原文选择actor:stack-infrastructure，角色为通过具名实体提交开发区划申请的参与方，不认定其已承担运营责任。四栋建筑及总建筑面积匹配system:facility的土地与建筑范围及其链下part:shell；拟配变电站匹配system:power下的chain:power/2，但不足以识别大型变压器或开关柜等具体部件。相邻正文明确区划许可申请，匹配site:permits，映射不表示许可已获批。原文未确认本项目为AI数据中心，不选名称限定为一座AI数据中心的root；亦无土地取得、并网协议或IT设备证据，不选site:land、site:grid或IT对象。不继承Reader标签，所选证据统一采用上述主张范围。"
     }
   ],
   "answers": [],
