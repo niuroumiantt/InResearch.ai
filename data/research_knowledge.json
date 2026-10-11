@@ -55023,6 +55023,88 @@
         },
         "batch_id": "90a97de5b3419f943416a972ab08c1e5bda9293ccc7c6acd37595a1725582768"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "80e4cf8aabd9b4d563b2a28a52483fb71feb7e99da805b30c82db3db24d60113",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:8:claim:0:ev:0",
+      "locator": "page:9/chunk:8",
+      "object_ids": [],
+      "page_index": 8,
+      "question_ids": [],
+      "quote": "The data center industry’s\nimproving operational efficiency during this period initially held U.S. computing-related energy\nuse flat while servicing greater demand (Shehabi et al. 2016; Masanet et al. 2020).",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T15:05:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。该历史判断对当前需求转化工作单具有实质贡献：需求增长向能源需求传导时须考虑运行效率变化；对企业IT与通用云经济性工作单，仅贡献需求增长与效率改善共同影响资源需求的定性线索。连续引文及周围上下文充分，按有归属的部分作者证据采用。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion",
+          "Q-NODE-workload-enterprise-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.99,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "365f0e73a2106405028f7f665847b9df344c26cfd4b4c414b2049b3c8ba7327f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 57728,
+            "input_tokens": 58215,
+            "output_tokens": 1124,
+            "reasoning_output_tokens": 0
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.029,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1cb4cb9fa22b45ff6196fc122924d776c523d9b076442e9fe7a229a4bc94d455",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58611,
+              "output_tokens": 561,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "79524b6667f4fb3475408bac1cf48a91316f937f0ac785b90fda2cd8e2a3c8ac"
+      }
     }
   ],
   "statements": [
@@ -106396,6 +106478,106 @@
         "request_sha256": "6a84fb94062fe2641ec61151dbb382b2913a4e504b09bf2e57a44b239257cd95"
       },
       "object_mapping_check": "独立复核后，实际范围为数据中心总体电力需求与IEA研究模型的包含关系。合同中的root是一座AI数据中心，system:power和system:it是其内部设施，site:grid是电力配额与并网权利，均不是本项对象；研究建模框架也不是DCIM/BMS。IEA无对应允许主体ID。因此不继承Reader的root标签，所选证据统一采用空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:8:claim:0:ev:0"
+      ],
+      "id": "adoption:review:6eaa10850d4e36c9452009cd",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D1-conversion",
+        "NODE-workload-enterprise-economics"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者在讨论美国数字化及云计算基础设施需求增长时，引用Shehabi等（2016）和Masanet等（2020）称，在报告所述此前十年的这一时期，数据中心行业运行效率的改善最初使美国计算相关能源使用保持平稳，同时服务更多需求。这是报告作者引用既有研究提出的历史判断，不构成对当前能耗趋势或需求转换系数的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T15:05:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。该历史判断对当前需求转化工作单具有实质贡献：需求增长向能源需求传导时须考虑运行效率变化；对企业IT与通用云经济性工作单，仅贡献需求增长与效率改善共同影响资源需求的定性线索。连续引文及周围上下文充分，按有归属的部分作者证据采用。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion",
+          "Q-NODE-workload-enterprise-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.99,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "365f0e73a2106405028f7f665847b9df344c26cfd4b4c414b2049b3c8ba7327f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 57728,
+            "input_tokens": 58215,
+            "output_tokens": 1124,
+            "reasoning_output_tokens": 0
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.029,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1cb4cb9fa22b45ff6196fc122924d776c523d9b076442e9fe7a229a4bc94d455",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58611,
+              "output_tokens": 561,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "79524b6667f4fb3475408bac1cf48a91316f937f0ac785b90fda2cd8e2a3c8ac"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:8:claim:0"
+      ],
+      "limitations": "报告发表日期未由所供原生文本确立；“此前十年”是作者的相对时间描述，不能指定为精确观测区间，引用年份也不等于测量年份。原文限定为“最初”保持平稳，不能改写为整个十年或当前持续平稳。未提供需求单位、效率指标、能耗数值、转换系数、时滞、成本或硬件与机房容量；未区分企业IT与通用云的独立贡献。美国行业总量不能外推为全球、中国或单座AI数据中心结果。全文覆盖限于PDF原生文本，未完成图像审阅，也未独立回查被引研究。",
+      "conflict_check": "已采用adoption:review:4a058b46f67fc502cd47d778讨论IT服务需求与用电日益脱钩，与本项兼容；本项新增美国范围及运行效率这一历史解释，并非相同规范陈述。adoption:review:a055d49329a63f53ae6dc59a中的效率改善属于IEA预测假设，不能与本项历史判断混同。相邻原文及摘要描述后来用电增长，与本项“最初”平稳的阶段限定不冲突。所供legacy事实、合同和项目匹配记录均为空；检查限于所供记录，不代表外部反证检索完成，不覆盖或替换既有结论。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需回查被引研究，建立服务需求单位、能耗边界、效率变化、转换系数、时滞及不确定性验证。NODE-workload-enterprise-economics仍需企业IT与通用云的负载分解、有效产出定义、总成本计算，以及效率变化向硬件与机房需求传导的可复查证据。本项仅贡献历史机制线索，不自动覆盖整个节点，不提供模型输入，不回答或关闭任何问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "79524b6667f4fb3475408bac1cf48a91316f937f0ac785b90fda2cd8e2a3c8ac",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "34bcbb64ccca0150a28823c0c37d7833c93e2e303eefe915462f6b8670a3dd0a"
+      },
+      "object_mapping_check": "独立复核后，实际范围是美国数据中心行业效率与计算相关能源使用的历史总量关系。合同中的root指一座AI数据中心，其下计算、电力及控制系统均具有设施资产范围；本项未指认这些资产、具体部件或并网权利。运行效率也不等于DCIM/BMS软件。因此保留空对象列表，所选证据统一使用该 claim 层对象范围，不继承文档标签；有效问题关联仍保留。"
     }
   ],
   "answers": [],
