@@ -53864,6 +53864,90 @@
         },
         "batch_id": "cead6803c505ba55b225bd4c29741956b5d176ddaee2c282e7cd11b895d977e2"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4a61eb26380db6a30a9828cb331952a4f698fa070f706f82188e35878d215d8b",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:39:claim:2:ev:0",
+      "locator": "page:40/chunk:39",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "page_index": 39,
+      "question_ids": [],
+      "quote": "The first trend is driven by\n                  the growing power rating of chips (i.e. GPUs), as well as by the clustering of more chips into\n                  a single rack.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:11:00+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和充分周边语境支持明确归因的定性机制，对当前M06-Q04的机柜功率密度演进驱动因素有实质性部分贡献。未发现敏感、真实冲突、拟替换既有结论或其他A条件，符合B采用条件；仅局部采用，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.03,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d4b314b28301bcf60d2bc2c04207315cef2f750eb0e9cf2c9fe4caaed82a5d85",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38495,
+            "output_tokens": 1241,
+            "reasoning_output_tokens": 240
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.725,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "878f9e60583e9ea207a59c7e4ba068ff1150403981c548fd88a94e65dde18680",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 39090,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "96e3acfe0908cfe1f0a8f4bf2ea13f2f7a1eeb6c667f68c257fdcdb82996b571"
+      }
     }
   ],
   "statements": [
@@ -104233,6 +104317,107 @@
         "request_sha256": "fc0d4f5b6d16f338185200eaf57fa583e3d95ba0ccb01866b2d76e8c5f7a64ad"
       },
       "object_mapping_check": "独立复核对象范围：主张描述电网并网申请数量、容量及地域分布，直接对应site:grid这一site_right对象的电力配额与并网范围。它不描述一座AI数据中心整体、内部电力设备或区划、环评、排放、建设许可，因此不追加root、system:power、部件或site:permits。合同中未列Terna的actor ID，不新增对象。所选证据使用相同的主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:39:claim:2:ev:0"
+      ],
+      "id": "adoption:review:1d955f3b2f0e9b9b5b08bde7",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "question_ids": [
+        "M06-Q04"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第40页讨论面向AI模型训练和使用而设计、优化的“AI工厂”时认为，其功率密度上升由GPU芯片额定功率提高和单机架内集聚更多芯片共同驱动。来源发表时间未知；该段未限定具体地区、项目或建设及投运阶段。这是IEA的定性分析，不构成当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:11:00+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和充分周边语境支持明确归因的定性机制，对当前M06-Q04的机柜功率密度演进驱动因素有实质性部分贡献。未发现敏感、真实冲突、拟替换既有结论或其他A条件，符合B采用条件；仅局部采用，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.03,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d4b314b28301bcf60d2bc2c04207315cef2f750eb0e9cf2c9fe4caaed82a5d85",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38495,
+            "output_tokens": 1241,
+            "reasoning_output_tokens": 240
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.725,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "878f9e60583e9ea207a59c7e4ba068ff1150403981c548fd88a94e65dde18680",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 39090,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "96e3acfe0908cfe1f0a8f4bf2ea13f2f7a1eeb6c667f68c257fdcdb82996b571"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:39:claim:2"
+      ],
+      "limitations": "所选引文没有功率密度数值、具体配置、运行负载、测量方法或项目样本；芯片额定功率不能直接等同实际运行功耗。该主张不能量化冷却或供电设备需求，也不能作为模型参数。阅读覆盖为完整原生文本读取，未完成全文视觉审查，部分图像页未审查；本项仅依据所供连续文字及其语境。",
+      "conflict_check": "既有adoption:review:c346a845645c1107af478175讨论不同负载的机架功率范围，其余三项已采用陈述讨论配电评估、跨专业协调和冷却转换；均未否定本项两项密度驱动因素，也不是完整重复。原生周边文本的Blackwell示例为130 kW/机架，而工作单使用120 kW；两者配置和口径尚未建立一致性，不能认定同条件真实冲突或据此改写工作单。当前回答为空，所供legacy匹配记录为空；未发现本主张的真实冲突，检查不代表外部全面反证检索。",
+      "gap_dependency_check": "本项仅补充M06-Q04的密度演进驱动机制。仍需核对120 kW阶段与来源130 kW示例的配置及口径，审查600 kW和1 MW阶段的直接证据并保留其宣布或预测状态，以及提供向M08/M09传导的设备边界、适用工况、反证和可复查定量推导。问题保持开放，不更新容量汇总、模型输入或研究骨架，不覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "96e3acfe0908cfe1f0a8f4bf2ea13f2f7a1eeb6c667f68c257fdcdb82996b571",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "42b2f44b5e2ec4718289ec5520ab10c9b65d6f28cda699b65a16e53f2442f761"
+      },
+      "object_mapping_check": "独立依据主张选择GPU加速器及其所属计算系统：原文同时讨论GPU芯片额定功率和单机架内计算芯片的集聚。未确认NVL72类整机柜系统、机柜结构或具体供电设备，故不映射part:rack-system、part:rack-frame或电力链；冷却仅属周边上下文，不加入本主张范围。所选证据统一采用上述主张级对象范围，不继承Reader标签。"
     }
   ],
   "answers": [],
