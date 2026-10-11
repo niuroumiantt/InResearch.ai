@@ -38,7 +38,7 @@ CLI 失败修复：先保留点名批次的失败任务快照和 SQLite 备份�
 
 ## 当前骨架驱动的接收与检索（2026-10-06）
 
-本轮更新的是用途与入口，SHA 原件、catalog、extracted 与 artifacts 不迁移。用户报告/日报先在 incoming 完成逐文件校验，再按 [采集操作指南](ACQUISITION_OPERATIONS.md) 运行 research-match；原件全部进入 acquisition/blobs，供给/页码索引在 acquisition/catalog.sqlite，日报逐事件版本和复核在 acquisition/daily-events.json。未命中也保留原件，只有命中需求/角度/日报事件的材料进入 Reader；不按文件夹数量推断已读。
+本轮更新的是用途与入口，SHA 原件、catalog、extracted 与 artifacts 不迁移。用户报告/日报先在 incoming 完成逐文件校验，再按 [采集操作指南](ACQUISITION_OPERATIONS.md) 运行 research-match；原件全部进入 acquisition/blobs，供给/页码索引在 acquisition/catalog.sqlite，日报逐事件版本和复核在 acquisition/daily-events.json。未命中也保留原件，命中需求/角度/日报事件或具有经校验参数需求绑定的材料进入 Reader；不按文件夹数量推断已读。
 
 现行目标表是唯一需求来源，新阅读冻结命中目标、五类变量、六队、模型输入与目标表 SHA，以三级账和四问的缺口决定优先级及阅读上下文（见 04）。接收候选多节点链接在 library/candidates-by-node/<节点>/variable-N/；新完整报告主链接在 library/by-node/<节点>/，原件仍由 SHA 标识。旧模块视图只保留旧链接，既有配方/报告/停放不会因骨架更新被覆写或全库重读。网页从供应中心的“新闻与报告匹配”进入，按主体、地区、项目、节点及变量需求定位。
 
