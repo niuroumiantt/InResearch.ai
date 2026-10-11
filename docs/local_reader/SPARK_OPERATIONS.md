@@ -408,7 +408,7 @@ python3 manage.py research-review status
 python3 manage.py research-review ready
 ```
 
-安装 `deploy/spark-reader/inresearch-research-review.service` 到用户 systemd，独立 enable/start。每轮最多两批，角色并发更低时取更低值；新批次通常六项，超预算继续拆小批、单项不足则待核，不截上下文。十二批待发布产生背压；有可执行任务立即继续，空闲等待三十秒。原重要度≥8进待所有者，具体审核新出现A条件同样保留；其他专门数值/项目核验不借作者陈述通道改表。
+安装 `deploy/spark-reader/inresearch-research-review.service` 到用户 systemd，独立 enable/start。每轮最多两批，角色并发更低时取更低值；新批次通常六项，超预算继续拆小批、单项不足则待核，不截上下文。十二批待发布产生背压；有可执行任务立即继续，空闲等待三十秒。原重要度≥8进待所有者，具体审核新出现A条件同样保留；参数SHA绑定的 observation/calculation 经专门定量检查与每条独立复核，可追加有范围的来源支持陈述；不改写成作者主张，不直接更新事实/项目/模型输入。其余专门数值/项目核验继续使用对应入口。
 
 提速选择协议按04：需求匹配调用生成当前候选/引文中的逐字检索词，仅检索字段值；完整保存所选语义记录，重复执行回执用原登记SHA引用，保留旧协议复验。修改队列前停止该独立研究服务并作 SQLite 一致备份；`research-review regroup-queued --batch-size 6` 只合并未执行的 queued，同报告/版本，父批次留存。`research-review retry-context --batch-id 完整ID` 只重试预算失败，保留原尝试；不重试原文缺失或独立抽样未确认。恢复独立研究服务；原 Reader/relay 不重启。
 
