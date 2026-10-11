@@ -52738,6 +52738,89 @@
         },
         "batch_id": "9b50d10fc963dd36d263906d0421eb1d4f815ac6172bb03a35b53fca8c0ef729"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0e126e14a384357a52f2fa43ad61c1f80494ca57e7a122e95b3b3b211a6c9331",
+      "document_id": "doc-088f26181392b4b2e6cae5e073e6e7a00064413f4c574772efb1db3c4805e92c",
+      "id": "rev-b990e558b4084cdbb7f6fe23ea69bbca:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "As a community council, we are dismayed and will vigorously oppose the proposal to site a 600MW hyperscale data center right on the edge of our small village in Auchtertool.",
+      "reading_revision_id": "rev-b990e558b4084cdbb7f6fe23ea69bbca",
+      "source_sha256": "088f26181392b4b2e6cae5e073e6e7a00064413f4c574772efb1db3c4805e92c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:44:01+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。连续原文引句及周边项目、发言人和规划阶段信息充分，对当前M05-Q04提供具体项目的社区反对线索，具有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.057,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "25ed010f5a66afa9149343d357e27ee8192b3de6244720427802e3db8a63b391",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 44731,
+            "output_tokens": 1290,
+            "reasoning_output_tokens": 324
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.485,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5930d8294fa896d19befbcfac2307f814b70a4bb6ef68b40bbe6e236e0834fc9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 45282,
+              "output_tokens": 501,
+              "reasoning_output_tokens": 225
+            }
+          }
+        },
+        "batch_id": "9f7d57611d8ae68869f35c324a9b633db4e466ae4cad0e5aabf78cafa2dfb5ed"
+      }
     }
   ],
   "statements": [
@@ -102003,6 +102086,106 @@
         "request_sha256": "d6ea234daaadf007de65826197211f9eddd35db12452b3debac6cd17842a6b47"
       },
       "object_mapping_check": "独立依据明确的Meta主体选择actor:meta，依据明确的SMR开发范围选择发电与储能链条chain:power/3下的part:smr。允许对象中没有Oklo主体ID，不新增或借用其他企业对象。主张未建立具体数据中心整体、并网权利、UPS或IT设备范围，故不沿用Reader的root及文档其他标签。所选证据统一采用上述主张级对象范围，原候选与证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-088f26181392b4b2e6cae5e073e6e7a00064413f4c574772efb1db3c4805e92c",
+      "evidence_ids": [
+        "rev-b990e558b4084cdbb7f6fe23ea69bbca:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:e6d6e8c7c179948970fb23fe",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M05-Q04"
+      ],
+      "reading_revision_id": "rev-b990e558b4084cdbb7f6fe23ea69bbca",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年6月3日的报道中转述，Auchtertool Community Council主席Andrea Cail表示，社区委员会感到失望，并将强烈反对在苏格兰Fife的Auchtertool村庄边缘拟建600MW超大规模数据中心的提案。上下文将该项目识别为ILI Group的Cato，当时已提交原则性规划许可申请。这是来源转述的社区委员会立场，不构成对项目当前状态、容量兑现或社区反对已造成延期、取消的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:44:01+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。连续原文引句及周边项目、发言人和规划阶段信息充分，对当前M05-Q04提供具体项目的社区反对线索，具有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.057,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "25ed010f5a66afa9149343d357e27ee8192b3de6244720427802e3db8a63b391",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 44731,
+            "output_tokens": 1290,
+            "reasoning_output_tokens": 324
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.485,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5930d8294fa896d19befbcfac2307f814b70a4bb6ef68b40bbe6e236e0834fc9",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 45282,
+              "output_tokens": 501,
+              "reasoning_output_tokens": 225
+            }
+          }
+        },
+        "batch_id": "9f7d57611d8ae68869f35c324a9b633db4e466ae4cad0e5aabf78cafa2dfb5ed"
+      },
+      "source_candidate_ids": [
+        "rev-b990e558b4084cdbb7f6fe23ea69bbca:chunk:0:claim:4"
+      ],
+      "limitations": "报道发布日期由原生正文建立，主席发言的具体日期未知。所选证据是新闻转述，未提供社区委员会一手声明或会议记录；600MW是拟议项目规模，未明确其是否为IT容量。主席引文未明确噪音、用水或电价方面的反对理由，不能将邻近APRS发言中的能源担忧归给她。原文未证明项目已延期、取消或量化审批、建设时间影响。",
+      "conflict_check": "已采用的SCCS和APRS陈述涉及全国性组织倡议，Gallup陈述涉及美国公众态度，与本项具体社区委员会及Cato项目的范围不同，非重复，也无真实冲突。开发商对投资及就业的正面表态与社区反对立场可以并存，不能据此判定事实冲突。当前回答及所供legacy匹配记录为空；检查限于所供材料，不代表完成外部反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "M05-Q04仍需社区委员会一手记录、明确反对理由、政府或法院决定、审批和建设时间线、实际延期或取消结果，以及反对行动与结果之间可复查的因果关系和反证。本项只贡献项目级社区反对线索，问题保持开放；不推算许可或建设时长，不更新模型、汇总GW或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9f7d57611d8ae68869f35c324a9b633db4e466ae4cad0e5aabf78cafa2dfb5ed",
+        "source_report_sha256": "d93384a721161f474db86e27ee58edec13428347dcebd736aca3cbb997ab4e8c",
+        "request_sha256": "487b24d0ddba46cada70c1ad21b7e94541d730653fb62215329b35250e594fe4"
+      },
+      "object_mapping_check": "独立审查后选择root：本项针对原生上下文明确识别的单一Cato数据中心开发项目，实际范围是整体项目遭社区委员会反对，与root的单座数据中心层级相符。该映射依据具体项目范围，不因提及AI自动增加基础设施对象。引文没有土地价格、租金、区划权利、许可决定或并网条件，不映射site:land、site:permits、site:grid及设施子系统。所选证据统一采用这一主张级范围，原始标签保持不变。"
     }
   ],
   "answers": [],
