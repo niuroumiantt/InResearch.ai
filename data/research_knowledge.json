@@ -6391,6 +6391,69 @@
       "status": "candidate",
       "stored_path": "originals/5a/5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2/samaritan-data-center-methodology.html",
       "title": "AI data centers documentation – Methodology"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "coverage": {
+        "characters_read": 13770,
+        "characters_total": 13770,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "library_path": "library/by-node/part-chiller/2024_DatacenterDynamics_A problem shared_ How split system cooling can help tod__485bf4cced62b057.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:chilled-water-loop",
+        "part:chiller",
+        "part:room-cooling",
+        "root",
+        "site:grid",
+        "system:facility"
+      ],
+      "question_ids": [
+        "OBJ-grid-interfaces",
+        "OBJ-grid-supply",
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces",
+        "OBJ-heat-reject-performance",
+        "OBJ-heat-reject-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+        "url": "https://www.datacenterdynamics.com/en/marketwatch/a-problem-shared-how-split-system-cooling-can-help-todays-high-density-data-centers/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/marketwatch/a-problem-shared-how-split-system-cooling-can-help-todays-high-density-data-centers/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/48/485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5/dcd-485bf4cced62b057-A problem shared- How split system cooling can help today-s high-.html",
+      "title": "A problem shared: How split system cooling can help today’s high-density data centers"
     }
   ],
   "evidence": [
@@ -48609,6 +48672,551 @@
           }
         },
         "batch_id": "872a5e300e8b4230825afcb1e341a5fa7a27b816389f45fb94afdd0390abf0dd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "“Having the heat absorption process decoupled from the heat rejection process is the most space-efficient and practical approach to accommodate rising heat densities. Compared to packaged air-handling units, large ductwork is replaced by relatively small interconnected piping.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续引文和完整原生页面提供充分归因与比较语境，对当前排热替代方案、连接方式及机房空气系统替代方案工作单有实质性局部贡献。保留厂商判断及量化缺口后符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "“In the case of air cooling, it's practically impossible to move all the hot air to package units, and deliver the cooled air back down to the data halls, once you get above a two-story data center,” says Dunnavant.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及相邻分体方案语境充分，对当前空气输送接口、排热方案适用边界和建筑层数约束工作单具有实质性局部贡献。按限定布置的厂商判断部分采用，不形成通用禁限结论；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-room-cooling-interfaces",
+          "Q-NODE-space-building-constraints"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "In the Munters SyCool system, there is a separate indoor evaporator (heat absorber) and an outdoor condenser (heat rejector). A low GWP (Global Warming Potential) refrigerant – a type of working fluid used to transfer energy – flows into the evaporator in a liquid state.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保持原始重要性及评分6。具名产品、连续引文及完整页面语境充分，对当前排热定义和介质接口工作单有直接的组成与功能边界贡献。仅采用有归因的产品描述，不认证性能，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:10:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "As the hot air or liquid from the data center flows through the heat exchangers within the SyCool air-handler (CRAH) or LCEs (Liquid Cooling Evaporators), the liquid refrigerant changes phase to a vapor.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与前后蒸发器、冷凝器及循环描述构成充分上下文，对当前排热接口和CRAH接口工作单提供直接热量传递及相变路径，符合B类部分采用条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "quote": "This vapor flows up through pipes (risers), transporting the heat up to the condensers where the heat is rejected into the atmosphere, converting the vapor refrigerant back to a liquid, and allowing gravity to transport the liquid through “downcomer” pipes back to the evaporators to begin the cycle over again.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文、前置制冷剂相变描述及后续运行模式提供充分上下文，对当前排热组成和上下游接口工作单有直接局部贡献，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8726cc0783301a7fd1c69ed04ebaf711b2212e607fa6b4533c85ec0b304475b4",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:12:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal",
+        "chain:thermal/1",
+        "chain:thermal/2",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-definition"
+      ],
+      "quote": "This process of moving heat naturally, by phase change and gravity, is called a thermosyphon. Thermosyphons are an energy-efficient approach to heat exchange, since they require no pumps and offer other benefits compared to more conventional chilled water approaches.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和完整页面明确热虹吸机制，并提供工作制冷剂无泵循环的限定语境，对当前定义与替代方案工作单有实质性局部贡献。按来源机制说明及待验证节能主张部分采用，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
       }
     }
   ],
@@ -94310,6 +94918,645 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:83ba3a003319e20821a25347",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-interfaces",
+        "OBJ-room-cooling-alternatives"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "据DatacenterDynamics于2024年1月22日发表的SyCool赞助文章，Munters受访者Keith Dunnavant主张，将吸热与排热分开是适应热密度上升最节省空间且实用的方式；相较整体式空气处理机组，分体方案用较小的互连管路替代大型风管。这是受访者的定性比较，未经本次独立验证，不能视为已证实的最优方案。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续引文和完整原生页面提供充分归因与比较语境，对当前排热替代方案、连接方式及机房空气系统替代方案工作单有实质性局部贡献。保留厂商判断及量化缺口后符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:7"
+      ],
+      "limitations": "未提供同冷量、同建筑布局及同工况下的风管与管路尺寸、占地、成本或性能比较；未明确适用地域，也未对应具体项目及建设或投运阶段。来源为赞助文章，受访者来自产品厂商。",
+      "conflict_check": "已采用陈述涉及供水、建筑规划及光伏墙，未包含本项比较。legacy的风冷机柜功率门槛讨论机柜散热能力，不能与建筑级输热布置比较视为同口径冲突；冷源招标价格、OVH冷却记录及Colossus 2项目也不构成同一比较的认证或反证。未发现规范重复或真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "对三个问题仅贡献风管与管路的定性差异及分体连接路径。仍需同口径设计图、尺寸、冷量、压降、成本及适用条件与反证，才能比较空间效率和替代边界。问题保持开放，不更新模型值、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "Munters是具名受访者所属厂商，匹配actor:munters；吸热与室外排热分离对应水与散热系统及排热链，整体式空气处理机组与风管比较对应机房空气冷却部件。主张未识别冷水机组或冷冻水泵管阀，故不继承part:chiller及冷冻水回路标签；空间效率比较也未直接描述建筑构造，不继承设施标签。不因应用于数据中心而映射AI限定的root。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:0851b66d1b6293961de08462",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-interfaces",
+        "OBJ-heat-reject-alternatives",
+        "OBJ-room-cooling-interfaces",
+        "NODE-space-building-constraints"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics在2024年1月22日的SyCool赞助文章中引述Munters的Keith Dunnavant称，对于需要把全部热空气送往整体式机组、再将冷空气送回数据大厅的空气冷却布置，数据中心超过两层后，这种空气输送方式实际几乎无法实现。这是受访者针对该布置的判断，未经本次独立工程验证，不能作为所有多层数据中心空气冷却的统一限制。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及相邻分体方案语境充分，对当前空气输送接口、排热方案适用边界和建筑层数约束工作单具有实质性局部贡献。按限定布置的厂商判断部分采用，不形成通用禁限结论；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-heat-reject-alternatives",
+          "Q-OBJ-room-cooling-interfaces",
+          "Q-NODE-space-building-constraints"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:8"
+      ],
+      "limitations": "未给出风量、风管截面、输送距离、静压、层高、设备位置或设计算例，也未提供反例及工程验证。两层是受访者表述的建筑条件，不是法规或已验证技术阈值；未限定地域或具体项目阶段。",
+      "conflict_check": "legacy中的15至25kW、20kW、75kW及60kW相关记录属于机柜功率密度、附加换热设备或产品提议设计，未讨论同一多层建筑空气输送布置，不能判为本项真实冲突。已采用Garland及STACK建筑规划未提供同类冷却设计。未发现重复或真实冲突，检查限于所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "对接口和替代方案问题仅贡献一种空气往返输送布置的适用性警示；对建筑约束问题贡献该节点自身的层数条件，但缺少工程原件和反证，不能满足完整验收。仍需具名设计、风量与压降计算、设备位置及多层实例；四项问题保持开放，不改变骨架或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "独立依据具名Munters受访者、空气冷却与整体式排热机组的输送路径，选择厂商、水与散热系统、排热链及机房空气冷却。原文明示建筑超过两层，直接涉及设施的土地与建筑链，故选择system:facility及chain:facility/1；未说明土建构造或装修，不扩展到part:shell。没有冷水机组证据，不继承part:chiller。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:9:ev:0"
+      ],
+      "id": "adoption:review:5b558b18ddd73aefc101f2c9",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "据DatacenterDynamics于2024年1月22日发表的赞助文章描述，Munters SyCool系统采用分开的室内蒸发器与室外冷凝器，分别承担吸热与排热；文章称其低全球变暖潜势制冷剂以液态进入蒸发器。这是来源对产品组成及介质状态的描述，不构成对当前产品配置或性能的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保持原始重要性及评分6。具名产品、连续引文及完整页面语境充分，对当前排热定义和介质接口工作单有直接的组成与功能边界贡献。仅采用有归因的产品描述，不认证性能，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:9"
+      ],
+      "limitations": "未披露制冷剂型号、GWP数值及评价口径、压力、温度、流量、管径或具体配置版本。未限定地域，也未对应具体项目的安装、验收或投运阶段；室内蒸发器不能直接等同于冷水机组。",
+      "conflict_check": "现有采用记录没有SyCool同一配置的陈述。legacy中的水与乙二醇板式换热器属于其他项目及工况，不能与本项制冷剂接口视为矛盾；OVH共用冷却水系统也是不同方案。未发现规范重复或真实冲突，检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "定义问题获得吸热与排热部件的局部边界，接口问题获得制冷剂输入状态。仍缺完整系统图、产品版本、制冷剂参数、连接规格和工况限制，不能完成对象排除或互换性判断。两项问题保持开放，不更新模型值或骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "Munters为具名产品厂商；室内吸热与室外冷凝排热属于水与散热系统及排热链，制冷剂属于契约明确包含工质的part:coolant。该部件虽位于冷水与CDU链下，其工质名称直接适用，但不据此推定系统采用冷冻水。SyCool分体蒸发器与冷凝器不能自动归为名称限定的冷水机组，不继承part:chiller；室内侧可为空气或液体，不单凭本项选择机房空气设备。所选证据统一采用上述范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:10:ev:0"
+      ],
+      "id": "adoption:review:a2ed34edcba7cd1f6e1a2067",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:room-cooling",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-interfaces",
+        "OBJ-room-cooling-interfaces"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics在2024年1月22日的赞助文章中描述，Munters SyCool通过其空气处理机组（CRAH）或液冷蒸发器（LCE）内的换热器，接收数据中心热空气或热液体传来的热量，使液态制冷剂汽化。该表述是来源对两类室内换热路径的产品说明，未经本次独立验证，也不证明CRAH与LCE可以直接互换。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与前后蒸发器、冷凝器及循环描述构成充分上下文，对当前排热接口和CRAH接口工作单提供直接热量传递及相变路径，符合B类部分采用条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-interfaces",
+          "Q-OBJ-room-cooling-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:10"
+      ],
+      "limitations": "未提供空气或液体侧温度、流量、压力、液体成分、换热能力、连接规格及设备配对要求。原文未证明两类设备共用同一接口或可互换；未限定地域及具体项目阶段。",
+      "conflict_check": "legacy的施耐德60%至90%及JLL 70%液冷分担比例讨论热量分配，不规定SyCool接口；本项也没有新增分担比例，故不构成冲突或重复。传统板式换热器及OVH水系统记录不认证本产品的可互换性。当前采用记录无同项结论；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "两项问题获得热空气或热液体向制冷剂传热的局部接口路径。仍需分别核验CRAH和LCE型号、介质参数、额定工况、接口图、控制配对及互换限制；不能用汽化机制替代工程接口规格。问题保持开放，不更新性能输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "相邻原文确定Munters为SyCool厂商；向排热回路传热属于水与散热系统及排热链，明示CRAH直接匹配part:room-cooling，液态制冷剂汽化匹配part:coolant。契约没有独立LCE部件，其范围保留在散热系统层级，不借用CDU、冷板或冷水机组ID，也不把热液体自动认定为冷冻水。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:f62d86c08d19e6b2ed1c81c6",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "据DatacenterDynamics于2024年1月22日发表的赞助文章对Munters SyCool循环的描述，蒸汽制冷剂沿立管上升，将热量送至冷凝器并排入大气；制冷剂凝结为液体后，靠重力经下降管返回蒸发器。这是来源说明的输热与回流路径，不构成对具体安装或当前运行状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文、前置制冷剂相变描述及后续运行模式提供充分上下文，对当前排热组成和上下游接口工作单有直接局部贡献，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:11"
+      ],
+      "limitations": "未提供冷凝器与蒸发器高差、允许管长、管径、压降、充注量或热负荷范围。后文区分自然冷凝与高温时主动冷凝，本段循环描述不能解释为所有环境温度下均无需压缩机；未限定地域或具体项目阶段。",
+      "conflict_check": "已采用陈述及所供legacy未包含同一SyCool循环的规范记录。Colossus 2的空冷冷凝器建模属于另一项目容量估算，不能证明采用相同热虹吸回路；水与乙二醇换热器记录介质及系统不同。未发现重复或真实冲突，检查限于所供材料，不覆盖旧结论。",
+      "gap_dependency_check": "定义问题获得循环组成与部件角色，接口问题获得流向及重力回流依赖。仍需厂家安装规范、几何高差、管路参数、工况范围及主动冷凝衔接资料，才能判断安装与互换边界。两项问题保持开放，不填能效或容量输入，不改变骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "前后原文确定所述循环属于Munters SyCool，映射具名厂商；向大气排热与蒸汽、液体回路匹配散热系统及排热链，制冷剂流动匹配工质部件。制冷剂立管与下降管不是冷冻水管路，不能继承part:chilled-water-loop；冷凝器也不能凭名称自动归为冷水机组或干冷器部件。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:12:ev:0"
+      ],
+      "id": "adoption:review:2b84beeb258a2ceea784a741",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal",
+        "chain:thermal/1",
+        "chain:thermal/2",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-definition",
+        "OBJ-heat-reject-alternatives"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics在2024年1月22日的SyCool赞助文章中，将依靠相变和重力自然输热的过程称为热虹吸，并称这种方式因无需泵而具有节能优势，可与传统冷冻水方案比较。结合全文，此处无需泵指工作制冷剂的循环，不表示整套冷却系统不耗电或始终无需压缩机；节能优势是来源主张，未经本次独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和完整页面明确热虹吸机制，并提供工作制冷剂无泵循环的限定语境，对当前定义与替代方案工作单有实质性局部贡献。按来源机制说明及待验证节能主张部分采用，符合B类条件；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-definition",
+          "Q-OBJ-heat-reject-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 137.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "544c184373ca141aff2d689212b0309dcca0cb6985c9b1c963fda04f037bb05a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 57043,
+            "output_tokens": 5602,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.524,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f74151c54195cf737e0363b3b2ded2cd67fc6c070cab87be5ea109075aec13fa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 54220,
+              "output_tokens": 371,
+              "reasoning_output_tokens": 108
+            }
+          }
+        },
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:0:claim:12"
+      ],
+      "limitations": "未提供同冷量、同气候及同工况的总能耗或成本对比，也没有PUE、WUE或节能幅度。全文说明室外风机及高温时的主动DX冷凝，不能将无循环泵等同于全系统无动力。未限定本项比较的地域或具体项目阶段。",
+      "conflict_check": "legacy的OVH PUE 1.26带有地域及混合冷却水条件，不能用于验证或反驳未量化的SyCool节能比较；传统冷源设备招标记录也未提供同工况能耗。既有风冷门槛及液冷分担比例讨论不同指标，未形成真实冲突。未发现同项规范重复，检查限于所供材料，不替换已有能效结论。",
+      "gap_dependency_check": "定义问题获得热虹吸的相变与重力机制；替代方案问题仅获得循环泵差异及厂商节能主张。仍需匹配负荷、气候、温度设定和系统边界的年度能耗、风机与压缩机耗电及成本比较和反证。两项问题保持开放，不修改PUE、WUE、负载率或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
+      },
+      "object_mapping_check": "本项解释热虹吸排热机制并比较传统冷冻水方法，分别匹配水与散热系统、排热链及冷水与CDU链的冷水范围；工作制冷剂由相邻原文明确，匹配part:coolant。比较没有识别特定冷水机组或泵管阀配置，故不继承part:chiller及part:chilled-water-loop。该句是作者的一般机制与比较主张，不将其改为Munters独有技术结论。所选证据统一采用上述主张级范围，原标签保持不变。"
     }
   ],
   "answers": [],
