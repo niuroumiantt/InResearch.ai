@@ -49218,6 +49218,93 @@
         },
         "batch_id": "3ff8f8bc100b9ba3ffb19374632e2fb1fb01688620ae5930a7ea76278e456899"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:0:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-backup-power-definition",
+        "OBJ-backup-power-interfaces"
+      ],
+      "quote": "Data centers need backup power in case the main power source—usually the electrical grid, but sometimes a behind-the-meter power plant—drops out.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:52:05+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。备用用途和主电源中断条件实质贡献于当前定义工作单，电网或表后电厂作为主供电来源亦局部支持接口及上下游依赖工作单。连续原句和备用发电机上下文充分，采用范围限于有归因的定性说明；未发现敏感、真实冲突、拟替换或其他A条件，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition",
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 83.81,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "9f37acd801dd2c2e2fe97bc56089f427da9fb8e0cfdadc856f9e5b25d16f7d9b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 55651,
+            "output_tokens": 3212,
+            "reasoning_output_tokens": 444
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.684,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d8fe8516a870f63483068f8f83d32537c12b96ef2dae452ecaea7e8b56a929d6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55906,
+              "output_tokens": 604,
+              "reasoning_output_tokens": 243
+            }
+          }
+        },
+        "batch_id": "68faf324abb4dd37cad9033aa5dd6db3a78ecacc763e1f25370bcf6f379111f2"
+      }
     }
   ],
   "statements": [
@@ -95557,6 +95644,132 @@
         "request_sha256": "9037114b297988fb4b17c9ed14d8954b35a89699165de771cda25e550e650648"
       },
       "object_mapping_check": "本项解释热虹吸排热机制并比较传统冷冻水方法，分别匹配水与散热系统、排热链及冷水与CDU链的冷水范围；工作制冷剂由相邻原文明确，匹配part:coolant。比较没有识别特定冷水机组或泵管阀配置，故不继承part:chiller及part:chilled-water-loop。该句是作者的一般机制与比较主张，不将其改为Munters独有技术结论。所选证据统一采用上述主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:0:ev:0"
+      ],
+      "id": "adoption:review:aa4099f906ec3f161590acaa",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-definition",
+        "OBJ-backup-power-interfaces"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "《AI data centers documentation – Methodology》的作者在备用发电机影像识别讨论中称，数据中心需要备用电源应对主电源中断；主电源通常是电网，也可能是表后电厂。发表时间未知，未限定具体地域、项目或阶段。此处保留为来源对备用供电用途及其与主供电关系的定性说明，不构成具体项目备用配置需求的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:52:05+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。备用用途和主电源中断条件实质贡献于当前定义工作单，电网或表后电厂作为主供电来源亦局部支持接口及上下游依赖工作单。连续原句和备用发电机上下文充分，采用范围限于有归因的定性说明；未发现敏感、真实冲突、拟替换或其他A条件，符合B档局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition",
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 83.81,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "9f37acd801dd2c2e2fe97bc56089f427da9fb8e0cfdadc856f9e5b25d16f7d9b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 55651,
+            "output_tokens": 3212,
+            "reasoning_output_tokens": 444
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.684,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d8fe8516a870f63483068f8f83d32537c12b96ef2dae452ecaea7e8b56a929d6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55906,
+              "output_tokens": 604,
+              "reasoning_output_tokens": 243
+            }
+          }
+        },
+        "batch_id": "68faf324abb4dd37cad9033aa5dd6db3a78ecacc763e1f25370bcf6f379111f2"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:0"
+      ],
+      "limitations": "所选引文讨论一般备用电源，相邻原文虽称备用发电机通常使用柴油，但没有将其范围限定为柴油机组。未提供组成、电气接口、切换时间、过渡供电、备用等级、运行时长、容量或互换条件，也未证明特定负载必须配置柴油备用。页面顶部标示Samaritan Research，页尾另称Epoch，作者机构归属尚未澄清。",
+      "conflict_check": "现有燃气发动机、RICE及燃气轮机备用用途陈述与本项一般用途说明相容；负载和运行时长影响备用策略的陈述亦不构成反证。Janous关于训练用途可能不需要柴油备用的条件性观点针对柴油配置，本项讨论一般备用供电，不能据此认定直接冲突或推翻该观点。IEA关于已接主电网备用容量的术语分类与本项表后主供电说明范围不同，本项未断言表后电厂项目是否离网。未发现完整重复的canonical记录；legacy筛选为空，核查限于所供材料。",
+      "gap_dependency_check": "定义问题仅获得用途和触发条件；接口问题仅获得备用供电与主供电的功能依赖关系。柴油机组的组成、输入输出、电压频率、切换接口、负载恢复、燃料保障及互换限制仍需证据，两项问题均保持开放。本项不支持批准用能额度或负荷接入等待时间，不更新模型值或既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "68faf324abb4dd37cad9033aa5dd6db3a78ecacc763e1f25370bcf6f379111f2",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "970b613992f1166de0ecc495f9c74756b9436050692707eabd09eef27dc6fcb9"
+      },
+      "object_mapping_check": "独立依据备用发电机小节选择system:power下的chain:power/3（发电与储能）。主张未限定柴油技术，故不将整项映射为part:backup-power（柴油发电机组）；表后电厂也未指定燃气轮机等技术。电网在此是主电源类别，没有配额、排队或并网协议证据，故不沿用site:grid。该一般发电范围仍可局部贡献于柴油备用问题；所选证据统一采用此声明级范围。",
+      "quantitative_checks": {
+        "basis_check": "本项保留原有author_claim性质，属于来源的定性用途说明，不是项目配置、供电状态或可靠性测试的独立观测；“通常”不转化为频率数据。",
+        "comparability_check": "不适用：没有同条件量化比较。一般备用供电用途不证明不同技术可直接互换，也不能作为全部生产负载必须配置柴油机组的统一要求。",
+        "derivation_check": "不适用：本项没有计算或量化推导，不能由主电源中断条件推导备用容量、批准用能或接入等待年限。",
+        "scope_check": "量化核验不适用：本项是数据中心一般备用供电用途的定性作者说明，没有具体场址、分期、机型、软件、工作负载或量化观测。",
+        "time_check": "发表时间及经验有效时点未知；原句没有项目里程碑或等待起止日期，不能据页面其他日期建立本项时间。",
+        "units_check": "不适用：引文没有功率、能量、时长或其他数值单位，不补入容量或切换性能。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "一般主备供电关系没有提供Abilene原园区的批准值、接入容量或IT容量，不能支持energy_quota_mw。提及电网不等于取得ERCOT或输电商批准原件，要求保持未验证。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "主电源中断是备用供电的使用条件，不是负荷接入申请或批准阶段；本项没有Abilene同分期的等待起止日期，不能支持gate_wait_years。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
