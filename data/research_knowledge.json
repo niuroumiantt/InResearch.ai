@@ -51989,6 +51989,89 @@
         },
         "batch_id": "cc43205d9c2db20ea7e3cfa30efa7b17c5841979b959f9da45d04982080150c3"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "dee966bedb479878db326f1448cf1737a42c823def234260eaaa27d83089c28f",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:27:claim:8:ev:0",
+      "locator": "page:28/chunk:27",
+      "object_ids": [],
+      "page_index": 27,
+      "question_ids": [],
+      "quote": "Industry reporting indicates that the cost per token of inference has fallen by orders of\n                  magnitude over the past several years through a combination of model improvements,\n                  system optimisation, and newer and more specialised hardware.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:02:07+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文和相邻软件效率、部署优化讨论充分支持限定归属的作者转述。它为M12-Q02提供单位成本变化及降本来源线索，为NODE-demand-D3-economics提供Token服务成本机制，为NODE-workload-inference-economics提供效率改进与单位成本关系；均仅属部分支持。未识别敏感、真实冲突、替换或其他A条件，可按B类采用。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.686,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d3aef3335d1dd43282df6f527b1cf547e93808326cc5dee2cd8e5fabe03f1cdf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 62967,
+            "output_tokens": 1174,
+            "reasoning_output_tokens": 200
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.566,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "111c6678cf405f27b5cb45c6feeafeb4e1e96946864de4cf81f618109ecae3a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 63522,
+              "output_tokens": 517,
+              "reasoning_output_tokens": 197
+            }
+          }
+        },
+        "batch_id": "303b7cb9f68a5a9414a719446f44a99facdb1c3f59c67b7479d580caaddd6388"
+      }
     }
   ],
   "statements": [
@@ -100440,6 +100523,108 @@
         "request_sha256": "54e1ba44e8d96accea2290c52b21f8c176f6e4dc82b3a1663b294a94e8af9311"
       },
       "object_mapping_check": "独立核对对象契约：Bloom Energy为拟受投资及技术开发部署主体，Brookfield为投资机构，分别对应两个允许的actor对象；正文明确其技术为燃料电池，匹配发电与储能链下的part:fuel-cell。该映射只表示合作涉及的技术范围，不证明设备采购金额或具体设施部署。未建立单座AI数据中心、完整电力系统、整机柜或Nebius项目的合作范围，不继承root、system:power、part:rack-system或actor:nebius标签。两条所选证据统一使用这一主张级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:27:claim:8:ev:0"
+      ],
+      "id": "adoption:review:4e8a0e8a62a16dd0dfba96b9",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M12-Q02",
+        "NODE-demand-D3-economics",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第28页转述行业报告称，在报告所述时点之前的数年，每token推理成本下降了多个数量级，并将其归因于模型改进、系统优化以及更新、更专用的硬件。这是IEA转述的定性成本趋势主张，不是当前单位推理成本的独立认证；报告出版时间未知，具体比较年份、适用地域及部署项目阶段未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:02:07+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文和相邻软件效率、部署优化讨论充分支持限定归属的作者转述。它为M12-Q02提供单位成本变化及降本来源线索，为NODE-demand-D3-economics提供Token服务成本机制，为NODE-workload-inference-economics提供效率改进与单位成本关系；均仅属部分支持。未识别敏感、真实冲突、替换或其他A条件，可按B类采用。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.686,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d3aef3335d1dd43282df6f527b1cf547e93808326cc5dee2cd8e5fabe03f1cdf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 62967,
+            "output_tokens": 1174,
+            "reasoning_output_tokens": 200
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.566,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "111c6678cf405f27b5cb45c6feeafeb4e1e96946864de4cf81f618109ecae3a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 63522,
+              "output_tokens": 517,
+              "reasoning_output_tokens": 197
+            }
+          }
+        },
+        "batch_id": "303b7cb9f68a5a9414a719446f44a99facdb1c3f59c67b7479d580caaddd6388"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:27:claim:8"
+      ],
+      "limitations": "该句没有列明行业报告来源、成本起止值、币种、费用边界、模型、任务、token口径、硬件或服务质量条件。不能确定$/M token、硬件与能耗成本占比或毛利，也不能将成本等同API售价，或推断总算力与总用电需求下降。",
+      "conflict_check": "已采用的GPU goodput成本公式及约1.59倍云成本溢价属于特定计算方法和情景，不与本项跨数年的定性趋势直接冲突。Google每提示能耗改善讨论不同分母；SemiAnalysis关于服务价格须控制时延等KPI的论述限制可比性，但不直接反驳本项成本主张。当前原页关于复杂任务、采用扩张及反弹效应的讨论限制总需求外推，不构成单位成本趋势的真实冲突。未发现相同规范陈述，故不判重复。所供legacy匹配记录为空，未完成外部反证检索；不修改既有结论。",
+      "gap_dependency_check": "该局部转述不依赖未审阅图像、空文字页或第106页替换字符；完整原生文字覆盖不等于全文视觉核验。封存摘要与本次限定采用一致，不能补齐成本数值或作为模型输入。仍需底层行业报告、可比工况、完整费用分解、有效产出与token分母、可复算推导及反证；需求问题还缺采用率、支付意愿和需求响应数据。三个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "303b7cb9f68a5a9414a719446f44a99facdb1c3f59c67b7479d580caaddd6388",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "7d37565e2d31d0ea0ead90ad9df559bd86eb936f0c4b392d09ce0ec37d50119a"
+      },
+      "object_mapping_check": "本项范围是通用推理服务的每token成本趋势。契约没有对应的通用推理服务或IEA主体对象；root指一座AI数据中心，system:control及其链条指DCIM/BMS与固件，均非本项范围。泛称专用硬件未确立GPU、定制ASIC或具体计算系统的资产范围，因此不添加基础设施映射。空对象列表保留有效问题关系，并统一适用于所选证据。"
     }
   ],
   "answers": [],
