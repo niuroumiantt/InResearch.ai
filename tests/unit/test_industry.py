@@ -14,6 +14,26 @@ from inresearch.interfaces import http as serve, auth
 ROOT = project_root()
 
 
+def native_capacity_observation(ident, **fields):
+    """Test-only complete v2 review/support shape for native quantity fixtures."""
+    reviewed = '2026-10-11T00:00:00Z'
+    return dict(id=ident, effective_at='2026-10-01', recorded_at=reviewed, reviewed_at=reviewed,
+                schema_version=2, scope='whole_site', kind='disclosed', basis='publisher phases', fields=fields,
+                sources=[{'url': 'https://example.org/phases'}], source_versions=[{
+                    'source_sha256': 'a'*64, 'published_at': None, 'first_received_at': None,
+                    'published_at_precision': 'unknown', 'first_received_at_precision': 'unknown',
+                    'published_at_provenance': 'test-only unknown publication date',
+                    'first_received_at_provenance': 'test-only unknown receipt'}],
+                adoption={'review_id': ident, 'source_kind': 'reader_report', 'source_id': 'fixture-report',
+                    'source_version': 'b'*64, 'document_refs': [{'sha256': 'a'*64}], 'target_ids': ['fixture-demand'],
+                    'assertions': [{'source_sha256': 'a'*64, 'quote': 'fixture native capacity', 'locator': 'fixture:1'}],
+                    'review': {'by': 'fixture reviewer', 'at': reviewed, 'tier': 'A', 'score': 8,
+                        'authority': 'delegated_reviewer', 'decision': 'adopted', 'rationale': 'test-only source review',
+                        'delegation': {'delegate': 'fixture reviewer', 'granted_by': 'fixture owner',
+                            'granted_at': '2026-10-11', 'reference': 'test-only delegation',
+                            'scope': 'new_or_supplemental_research'}}})
+
+
 class IndustryTests(unittest.TestCase):
     def test_phases_override_headline_and_facility_never_enters_total(self):
         p = industry.project({'site_id': 'site-one', 'status': 'L8', 'capacity_it_mw': 300,
@@ -26,9 +46,47 @@ class IndustryTests(unittest.TestCase):
         portfolio = industry.project({'site_id': 'portfolio-all', 'status': 'L8', 'capacity_it_mw': 800})
         self.assertFalse(unknown['capacity_known'])
         self.assertEqual(industry.totals([unknown, portfolio]), {'operating': 0, 'construction': 0, 'planning': 0,
-                         'inactive_sites': 0, 'estimated': {'operating': 0, 'construction': 0, 'planning': 0}, 'estimated_sites': 0, 'sites': 1, 'unknown': 1, 'unlocated': 1, 'portfolios_excluded': 1})
+                         'inactive_sites': 0, 'estimated': {'operating': 0, 'construction': 0, 'planning': 0}, 'estimated_sites': 0, 'sites': 1, 'unknown': 1, 'ranged_sites': 0, 'unlocated': 1, 'portfolios_excluded': 1})
         for invalid in (float('nan'), float('inf'), -10, True):
             self.assertFalse(industry.project({'site_id': 'x', 'status': 'L6', 'capacity_it_mw': invalid})['capacity_known'])
+
+    def test_native_ranges_keep_exact_phases_separate_from_totals_and_unknown(self):
+        ranged = {'value_range': [1, 2], 'unit': 'GW', 'assumptions': ['design interval, not measured load']}
+        row = {'site_id': 'range-site', 'status': 'L6', 'capacity_it_mw': 9999,
+               'observations': [native_capacity_observation('phases', capacity_it_mw=None,
+                    capacity_it_mw_by_status={'L8': {'value': 0.1, 'unit': 'GW'}, 'L6': ranged}, capacity_assessment=None)]}
+        result = industry.project(row)
+        self.assertEqual(result['capacity'], {'operating': 100, 'construction': 0, 'planning': 0})
+        self.assertEqual(result['total_mw'], 100)
+        self.assertTrue(result['capacity_ranged'])
+        self.assertEqual(result['capacity_ranges'][0]['value_range'], [1, 2])
+        self.assertEqual(result['capacity_ranges'][0]['stage'], 'construction')
+        self.assertEqual(result['quantity_fields']['capacity_it_mw_by_status']['L6'], ranged)
+        count = industry.totals([result])
+        self.assertEqual((count['operating'], count['construction'], count['ranged_sites'], count['unknown']), (100, 0, 1, 0))
+        self.assertEqual(row['capacity_it_mw'], 9999)
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory); (home/'data').mkdir()
+            for filename, records in [('projects', [row]), ('companies', []), ('prices', [])]:
+                (home/'data'/f'{filename}.json').write_text(json.dumps({'records': records}))
+            self.assertEqual(len(industry.snapshot(home, {'stage': 'construction'})['rows']), 1)
+            self.assertEqual(industry.snapshot(home, {'stage': 'unknown'})['rows'], [])
+            overview = industry.snapshot(home, {'overview': '1'})
+            self.assertEqual(overview['rows'][0]['capacity_ranges'], result['capacity_ranges'])
+            self.assertEqual(overview['totals']['ranged_sites'], 1)
+
+    def test_range_only_capacity_is_disclosed_without_a_representative_scalar(self):
+        ranged = {'value_range': [100, 200], 'unit': 'MW', 'assumptions': ['estimated envelope']}
+        observation = native_capacity_observation('range', capacity_it_mw=ranged,
+                                                  capacity_it_mw_by_status={}, capacity_assessment=None)
+        observation.update(kind='estimated', basis='cooling estimate', assumptions=['estimated envelope'])
+        row = {'site_id': 'range-only', 'status': 'L6', 'observations': [observation]}
+        result = industry.project(row)
+        self.assertFalse(result['capacity_known'])
+        self.assertTrue(result['capacity_ranged'])
+        self.assertEqual(result['capacity_ranges'][0]['value_range'], [100, 200])
+        count = industry.totals([result])
+        self.assertEqual((count['unknown'], count['ranged_sites'], count['construction']), (0, 1, 0))
 
     def test_company_stage_drilldown_reconciles_and_does_not_double_count(self):
         for company in ('microsoft', 'meta'):

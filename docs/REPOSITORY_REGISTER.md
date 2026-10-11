@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.89。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.90。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2594。
+在册文件：2601。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 425 |
-| 运行代码 | 387 |
+| 历史快照 | 426 |
+| 运行代码 | 390 |
 | 现行规范 | 16 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 199 |
-| 测试 | 206 |
+| 测试 | 209 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 71 |
-| `data/research_knowledge.json` | evidence | 486 |
-| `data/research_knowledge.json` | statements | 441 |
+| `data/research_knowledge.json` | documents | 73 |
+| `data/research_knowledge.json` | evidence | 492 |
+| `data/research_knowledge.json` | statements | 443 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1755,6 +1755,7 @@
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | excluded_versions | 2 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | reviews | 12 |
 | `docs/reviews/2026-10-11/research-remediation/inspur-historical-support-review.json` | records | 6 |
+| `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | boundaries | 4 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -3248,6 +3249,7 @@
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-owner-adoption-receipt.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/inspur-historical-support-review.json` | 历史快照 |
+| `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -3706,11 +3708,13 @@
 | `src/inresearch/knowledge/news_observations.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
 | `src/inresearch/knowledge/nodes.py` | 运行代码 |
+| `src/inresearch/knowledge/observation_time.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/raw_atlas.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
 | `src/inresearch/knowledge/research_gaps.py` | 运行代码 |
 | `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
+| `src/inresearch/knowledge/site_quantity.py` | 运行代码 |
 | `src/inresearch/knowledge/site_timeline.py` | 运行代码 |
 | `src/inresearch/knowledge/skeleton.py` | 运行代码 |
 | `src/inresearch/knowledge/target_request_contract.py` | 运行代码 |
@@ -3774,6 +3778,7 @@
 | `src/inresearch/workflow/product_navigation.py` | 运行代码 |
 | `src/inresearch/workflow/project_pipeline.py` | 运行代码 |
 | `src/inresearch/workflow/project_review.py` | 运行代码 |
+| `src/inresearch/workflow/project_review_reader.py` | 运行代码 |
 | `src/inresearch/workflow/quantitative_review.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
 | `src/inresearch/workflow/reader_priority.py` | 运行代码 |
@@ -3860,6 +3865,7 @@
 | `tests/unit/test_campus_atlas_assets.py` | 测试 |
 | `tests/unit/test_campus_exploded_assets.py` | 测试 |
 | `tests/unit/test_campus_plan_assets.py` | 测试 |
+| `tests/unit/test_capacity_consumers.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_browse.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |
@@ -3877,6 +3883,7 @@
 | `tests/unit/test_cross_scale_atlas_assets.py` | 测试 |
 | `tests/unit/test_daily_bundle.py` | 测试 |
 | `tests/unit/test_daily_dispatch.py` | 测试 |
+| `tests/unit/test_daily_events.py` | 测试 |
 | `tests/unit/test_dashboard.py` | 测试 |
 | `tests/unit/test_data_center_publication.py` | 测试 |
 | `tests/unit/test_datacenter_news.py` | 测试 |
@@ -3948,6 +3955,7 @@
 | `tests/unit/test_product_coverage.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
 | `tests/unit/test_project_review.py` | 测试 |
+| `tests/unit/test_project_review_reader.py` | 测试 |
 | `tests/unit/test_public_reader.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_quantitative_review.py` | 测试 |

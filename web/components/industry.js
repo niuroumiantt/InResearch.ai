@@ -57,10 +57,30 @@ function projectGeography(p){
  try{if(p.country)country=new Intl.DisplayNames(['zh-CN'],{type:'region'}).of(p.country);}catch{}
  return `${esc(country)} · ${esc(data.regions.find(r=>r.id===p.region)?.name||p.region||'区域待核验')}<br>${esc(p.location||'具体地点待核验')}`;
 }
+function quantityText(value){
+ if(value==null)return '未披露';
+ if(typeof value==='number')return num(value)+' MW';
+ if(Array.isArray(value.value_range))return value.value_range.map(num).join('–')+' '+value.unit;
+ if(typeof value.value==='number')return num(value.value)+' '+value.unit;
+ return '未披露';
+}
+function capacityText(p){
+ const ranges=p.capacity_ranges||[],parts=[];
+ if(p.capacity_known)parts.push(`${p.capacity_estimated?'约 ':''}${num(p.total_mw)} MW${ranges.length?' 已知值合计':'（各阶段合计）'}`);
+ if(ranges.length)parts.push(ranges.map(r=>`${data.stages[r.stage]||'IT 容量'} ${quantityText(r)}`).join(' / '));
+ return parts.join('；')||'IT 容量未披露';
+}
+function stageCapacity(p,stage){
+ const ranges=(p.capacity_ranges||[]).filter(r=>r.stage===stage),parts=[];
+ if((p.phases||[]).some(phase=>phase.stage===stage))parts.push(num(p.capacity[stage])+' MW');
+ parts.push(...ranges.map(quantityText));return parts.join(' + ')||'未披露';
+}
+function rangeNotes(p){return (p.capacity_ranges||[]).map(r=>`<p class="basis">区间依据：${esc([r.basis,...r.assumptions||[]].filter(Boolean).join('；'))}</p>`).join('');}
 function capacityEstimate(p){
  const a=p.capacity_assessment||{};
  if(!p.capacity_estimated)return '';
- return `<section class="detail-card" id="capacity-estimate"><h2>参考估算 · 持续更新</h2><p>运营约 ${num(p.capacity.operating)} / 建设中约 ${num(p.capacity.construction)} / 筹备约 ${num(p.capacity.planning)} MW IT</p><p>${esc(a.basis_note||'估算方法待补')}</p><p>有效时点：${esc(a.as_of||'待补')} · 记录日期：${esc(a.recorded_at||'待补')} · 状态：${a.status==='reviewed'?'已审估算':'暂估待细化'}</p><p>待补：${(a.missing_conditions||[]).map(esc).join('；')||'无已登记缺项'}</p></section>`;
+ const stages=[['operating','运营'],['construction','建设中'],['planning','筹备']].map(([stage,label])=>{const amount=stageCapacity(p,stage);return label+(amount==='未披露'?amount:'约 '+amount+' IT');}).join(' / ');
+ return `<section class="detail-card" id="capacity-estimate"><h2>参考估算 · 持续更新</h2>${p.capacity_ranged?`<p>${esc(capacityText(p))} IT</p>${rangeNotes(p)}`:`<p>${esc(stages)}</p>`}<p>${esc(a.basis_note||'估算方法待补')}</p><p>有效时点：${esc(a.as_of||'待补')} · 记录日期：${esc(a.recorded_at||'待补')} · 状态：${a.status==='reviewed'?'已审估算':'暂估待细化'}</p><p>待补：${(a.missing_conditions||[]).map(esc).join('；')||'无已登记缺项'}</p></section>`;
 }
 function projectDossier(p){
  const pending='待查；未登记不表示不存在';
@@ -75,7 +95,7 @@ function projectDossier(p){
   ['水源、供水与冷却','待查','原水／再生水、水务运营方、取水及排放配额、冷却方案分别核验'],
   ['网络连接','待查','运营商、光纤路线、接入权、带宽及实际交付待核实'],
   ['审批与约束',esc(p.stage_label),'阶段是当前登记摘要；用地、规划、环评、建设、电水审批机关与批准范围分别待核实'],
-  ['容量口径与分期',p.capacity_known?`${num(p.total_mw)} MW IT（登记分期合计）`:'IT 容量未披露','IT、设施功率、接电额度、发电 MW 各自保留；园区／分期／楼栋与租户份额不重加'],
+  ['容量口径与分期',esc(capacityText(p)),'IT、设施功率、接电额度、发电 MW 各自保留；园区／分期／楼栋与租户份额不重加'],
   ['设备与系统','待查','设施、电力、冷却、IT、控制与软件按现行骨架登记现场配置，不套用通用 BOM'],
   ['投资、融资与合同','待查','开发成本、融资、租金／算力收入、协议期限和实际支出各自记录'],
   ['时间、运行与证据',`核验 ${esc(p.verified_date||'日期待查')}`,'公告、签约、获批、开工、通电及上架分别追踪；每个采用字段保留原文与版本']
@@ -103,10 +123,10 @@ function filters(){
  $('stage-filter').value=params.get('stage')||'';
 }
 function renderStats(){
- const noDisclosures=data.totals.sites>0&&data.totals.sites===data.totals.unknown;
+ const noDisclosures=data.totals.sites>0&&data.totals.sites===data.totals.unknown,hasRanges=!!data.totals.ranged_sites;
  const labels={operating:'样本 · 已投运',construction:'样本 · 建设中',planning:'样本 · 筹备机会',unknown:'样本 · 容量未披露'};
- $('stats').innerHTML=Object.entries(labels).map(([s,label])=>`<a class="stat-link ${params.get('stage')===s?'active':''}" href="${esc(url('/projects.html',{stage:s,site:''}))}"><span>${label} ↗${s!=='unknown'&&data.totals.estimated?.[s]?` · 含参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span><strong>${s==='unknown'?data.totals.unknown:noDisclosures?'—':gw(data.totals[s])}<small>${s==='unknown'?'项':'GW'}</small></strong><span>${s==='planning'?'含官宣、选址、电力与审批阶段':s==='unknown'?'仍在地图与明细中保留':s==='operating'?'已通电 / 满载，按分期计量':'已有开工 / 机电施工记录'}${s!=='unknown'&&data.totals.estimated?.[s]?` · 其中参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span></a>`).join('');
- $('basis').textContent=`地图样本 ${data.totals.sites} 条项目记录，非全球总量 · 建设 + 筹备 ${gw(data.totals.construction+data.totals.planning)} GW · 登记核验日期 ${data.coverage.oldest_verified}—${data.coverage.latest_verified}，非统一年末存量。点击数字查看明细与来源。`;
+ $('stats').innerHTML=Object.entries(labels).map(([s,label])=>`<a class="stat-link ${params.get('stage')===s?'active':''}" href="${esc(url('/projects.html',{stage:s,site:''}))}"><span>${label} ↗${s!=='unknown'&&data.totals.estimated?.[s]?` · 含参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span><strong>${s==='unknown'?data.totals.unknown:noDisclosures||hasRanges&&!data.totals[s]?'—':gw(data.totals[s])}<small>${s==='unknown'?'项':'GW'}</small></strong><span>${s==='planning'?'含官宣、选址、电力与审批阶段':s==='unknown'?'仍在地图与明细中保留':s==='operating'?'已通电 / 满载，按分期计量':'已有开工 / 机电施工记录'}${s!=='unknown'&&data.totals.estimated?.[s]?` · 其中参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span></a>`).join('');
+ $('basis').textContent=`地图样本 ${data.totals.sites} 条项目记录，非全球总量 · 已知值合计：建设 + 筹备 ${gw(data.totals.construction+data.totals.planning)} GW${hasRanges?`；另有 ${data.totals.ranged_sites} 项容量以区间披露，见地图与明细，未计入确定值合计`:""} · 来源核对日期 ${data.coverage.oldest_verified}—${data.coverage.latest_verified}，非统一年末存量。点击数字查看明细与来源。`;
 }
 function renderMarket(){
  const m=data.market, actual=m.series.filter(r=>!r.forecast).at(-1);
@@ -141,23 +161,18 @@ function countryGroups(){
 function renderResearch(){
  if(!isHome||!$('research-arrivals'))return;
  const rows=rawRecords().filter(r=>r.origin==='research_publication'),groups=countryGroups(),count=news?.raw_atlas?.research_total??rows.length;
- $('research-summary').textContent=news?`${num(count)} 条文章提取记录 · 当前筛选 ${rows.length} 条 · ${groups.length} 个国家级位置。容量与主体关系保留原文，尚未逐项采用。`:'正在读取研究资料台账…';
+ $('research-summary').textContent=news?`${num(count)} 条文章提取记录 · 当前筛选 ${rows.length} 条 · ${groups.length} 个国家级位置。容量、主体关系与来源日期保留原文；报道值与项目容量分别展示。`:'正在读取研究资料台账…';
  $('research-countries').innerHTML=groups.map(g=>validCoordinates(g.coordinates)?`<button type="button" data-research-country="${esc(g.key)}">${esc(g.name)} <strong>${g.items.length}</strong></button>`:`<a href="/research/data-centers-2026-projects.html">${esc(g.name)} <strong>${g.items.length}</strong> · 未定位</a>`).join('');
  for(const b of $('research-countries').querySelectorAll('button'))b.onclick=()=>{const group=countryGroups().find(g=>g.key===b.dataset.researchCountry);if(group)window.dispatchEvent(new CustomEvent('inresearch:locate-news',{detail:{id:group.items[0].id}}));};
 }
 function renderDaily(){
- if(!isHome||!$('daily-pulse'))return;renderResearch();
- const daily=news?.raw_atlas?.daily;
- const ready=daily?.news_available!==false&&!!(news?.feed&&!['awaiting_sync','not_initialized'].includes(news.feed.status)||news?.pipeline?.available);
- const status=newsFailed?'同步失败，保留上次快照':!news?'正在读取运行投影':!ready?'等待运行投影 · 文章资料仍可见':news?.reader?.stale?'快照延迟':'新闻与日报持续接收';
- const time=value=>{if(value==null||value===0||value==='')return '时间未提供';const d=new Date(value);return Number.isFinite(d.getTime())?new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d):'时间未提供';};
- const published=news?.raw_atlas?.latest_published_at,received=news?.raw_atlas?.latest_received_at,synced=news?.reader?.received_at;
- $('daily-freshness').textContent=`${daily?.today||'北京时间今日'} · ${status} · 最新发表 ${time(published)} · 新闻接收 ${time(received)} · 运行同步 ${time(synced)}`;
- const metrics=[['今日新闻',daily?.published_events],['今日接收',daily?.received_events],['容量观察',daily?.capacity_observations],['有地点消息',daily?.located_events]].map(([label,v])=>[label,ready?v:null]);
- const show=v=>Number.isInteger(v)?num(v):'—',research=news?.raw_atlas?.research_total;
- $('news-daily-summary').innerHTML=`<a class="news-research-count" href="/research/data-centers-2026-projects.html"><strong>${show(research)}</strong><span>条文章项目资料 ↗</span></a><p>今日新闻 ${show(metrics[0][1])} · 今日接收 ${show(metrics[1][1])}</p><p>容量观察 ${show(metrics[2][1])} · 采用更新 ${show(daily?.adopted_project_updates)}</p><small>${esc(status)} · 北京时间</small>`;
- $('daily-metrics').innerHTML=metrics.map(([label,v])=>`<span>${label}<strong>${Number.isInteger(v)?num(v):'—'}</strong></span>`).join('');
- const extra=document.createElement('p');extra.className='daily-note';extra.textContent='按北京时间分发表日与接收日；容量观察按事件计数，报道 MW / GW 不与项目容量相加。';$('daily-note')?.remove();extra.id='daily-note';$('daily-pulse').append(extra);queueCachedFonts();
+ if(!isHome)return;renderResearch();
+ const research=news?.raw_atlas?.research_total;
+ const published=news?.raw_atlas?.latest_published_at;
+ const date=published?new Date(published):null;
+ const sourceDate=date&&Number.isFinite(date.getTime())?new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(date):'';
+ $('news-daily-summary').innerHTML=`<a class="news-research-count" href="/research/data-centers-2026-projects.html"><strong>${Number.isInteger(research)?num(research):'—'}</strong><span>条文章项目资料 ↗</span></a><small>${sourceDate?'最近报道发表 '+esc(sourceDate)+' · 北京时间':'发表日期以各篇来源为准'}<br>报道容量保留原文口径，项目现状与历史见地图。</small>`;
+ queueCachedFonts();
 }
 function renderMap(){
  if(!geo)return;
@@ -172,10 +187,10 @@ function renderMap(){
   mapSignature=signature;
   $('map-sites-layer').innerHTML=rows.map(p=>{
    const [x,y]=xy(p.coordinates[1],p.coordinates[0]),v=stage&&stage!=='unknown'?p.capacity[stage]:p.total_mw,r=p.capacity_known?Math.max(2.5,Math.sqrt(v)*.28):4;
-   const main=stage&&stage!=='unknown'?stage:Object.keys(data.stages).reduce((a,b)=>p.capacity[a]>=p.capacity[b]?a:b,'operating');
+   const main=stage&&stage!=='unknown'?stage:p.capacity_ranged?(p.capacity_ranges[0]?.stage||'planning'):Object.keys(data.stages).reduce((a,b)=>p.capacity[a]>=p.capacity[b]?a:b,'operating');
    const color={operating:'var(--ui-green)',construction:'var(--ui-yellow)',planning:'var(--ui-muted)'}[main];
-   const shape=p.capacity_known?`<circle cx="0" cy="0" r="${r}" fill="${color}"/>`:`<path d="M0,-4l4,4 -4,4 -4,-4Z" fill="var(--ui-surface)" stroke="var(--ui-muted)"/>`;
-   return `<g class="site-point ${p.lifecycle&&p.lifecycle!=='active'?'inactive':''} ${p.adoption?'has-adoption':''}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${view[2]/1000})" tabindex="0" role="button" aria-label="${esc(p.name)}：${p.capacity_known?(p.capacity_estimated?'约 ':'')+num(v)+' MW':'容量未披露'}，${p.adoption?'已采用部分字段':'项目登记'}" data-id="${esc(p.site_id)}"><title>${esc(p.name)} · ${esc(p.location)} · ${p.capacity_known?(p.capacity_estimated?'约 ':'')+num(p.total_mw)+' MW（各阶段合计）':'容量未披露'} · ${p.adoption?'已采用部分字段':'项目登记，逐项核验见详情'}</title>${shape}</g>`;
+   const shape=p.capacity_ranged?`<rect x="-5" y="-5" width="10" height="10" fill="${color}"/>`:p.capacity_known?`<circle cx="0" cy="0" r="${r}" fill="${color}"/>`:`<path d="M0,-4l4,4 -4,4 -4,-4Z" fill="var(--ui-surface)" stroke="var(--ui-muted)"/>`;
+   return `<g class="site-point ${p.lifecycle&&p.lifecycle!=='active'?'inactive':''} ${p.capacity_ranged?'range-point':''}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y}) scale(${view[2]/1000})" tabindex="0" role="button" aria-label="${esc(p.name)}：${esc(capacityText(p))}" data-id="${esc(p.site_id)}"><title>${esc(p.name)} · ${esc(p.location)} · ${esc(capacityText(p))}</title>${shape}</g>`;
   }).join('');
  }
  const leads=(news?.pipeline?.records||[]).filter(r=>r.site_id&&!['paused','cancelled'].includes(r.state)&&(!params.get('c')||(r.company_ids||[]).includes(params.get('c'))));
@@ -230,12 +245,12 @@ function renderPopup(){
   if(!raw){closePopup();return;}
   const group=raw.origin==='research_publication'&&raw.location_precision==='country'?countryGroups().find(g=>g.items.some(r=>r.id===raw.id)):null;
   const capacities=(raw.capacity_observations||[]).slice(0,3).map(o=>`${esc(o.quoted_value||num(o.mw)+' MW')} · ${o.basis==='it'?'IT 报道值':o.basis==='facility_or_grid'?'设施 / 电网口径':'口径待核验'}`).join('<br>');
-  popup.innerHTML=`<div class="popup-actions"><button id="pin-site" type="button" aria-pressed="${pinned}">${pinned?'取消固定':'固定浮窗'}</button><button id="close-site" type="button" aria-label="关闭园区信息">×</button></div><strong>${esc(group?group.name+' · '+group.items.length+' 条文章提取记录':raw.title)}</strong><p class="raw-badge">${raw.origin==='research_publication'?'研究资料提取 · 尚未逐项采用':'新闻观察 · 待逐项核验'}</p><p>${esc(raw.location||'报道地点')} · ${raw.location_precision==='country'?'国家级示意，非城市或园区位置':raw.location_precision==='site'?'关联项目登记坐标':esc(raw.location_precision||'位置精度待补充')}</p>${group?`<p>${group.items.slice(0,4).map(r=>esc(r.title)+(r.capacity_text?'：'+esc(r.capacity_text):'')).join('<br>')}</p><p><a href="/research/data-centers-2026-projects.html">查看文章项目台账与来源 →</a></p>`:''}<p>${capacities||esc(raw.capacity_text)||'容量未披露'}<br>报道数字不并入项目 IT 容量。</p><p>${(raw.company_ids||[]).map(name).map(esc).join('、')||'主体待关联'}</p><a href="${esc(safe(raw.url))}" target="_blank" rel="noopener noreferrer">阅读原始报道 →</a>${raw.site_id?`<p><a href="${esc(url('/project.html',{site:raw.site_id}))}">查看关联项目 →</a></p>`:''}`;
+  popup.innerHTML=`<div class="popup-actions"><button id="pin-site" type="button" aria-pressed="${pinned}">${pinned?'取消固定':'固定浮窗'}</button><button id="close-site" type="button" aria-label="关闭园区信息">×</button></div><strong>${esc(group?group.name+' · '+group.items.length+' 条文章提取记录':raw.title)}</strong><p class="raw-badge">${raw.origin==='research_publication'?'研究资料中的项目 · 来源报道口径':'新闻观察 · 来源报道口径'}</p><p>${esc(raw.location||'报道地点')} · ${raw.location_precision==='country'?'国家级示意，非城市或园区位置':raw.location_precision==='site'?'关联项目登记坐标':esc(raw.location_precision||'位置精度待补充')}</p>${group?`<p>${group.items.slice(0,4).map(r=>esc(r.title)+(r.capacity_text?'：'+esc(r.capacity_text):'')).join('<br>')}</p><p><a href="/research/data-centers-2026-projects.html">查看文章项目台账与来源 →</a></p>`:''}<p>${capacities||esc(raw.capacity_text)||'容量未披露'}<br>报道数字不并入项目 IT 容量。</p><p>${(raw.company_ids||[]).map(name).map(esc).join('、')||'主体待关联'}</p><a href="${esc(safe(raw.url))}" target="_blank" rel="noopener noreferrer">阅读原始报道 →</a>${raw.site_id?`<p><a href="${esc(url('/project.html',{site:raw.site_id}))}">查看关联项目 →</a></p>`:''}`;
   popup.hidden=false;$('pin-site').onclick=()=>{pinned=!pinned;renderPopup();};$('close-site').onclick=()=>closePopup(true);positionPopup();return;
  }
  const p=data.rows.find(p=>p.site_id===selectedSite);if(!p){closePopup();return;}
  const focused=popup.contains(document.activeElement)?document.activeElement.id:null;
- popup.innerHTML=`<div class="popup-actions"><button id="pin-site" type="button" aria-pressed="${pinned}">${pinned?'取消固定':'固定浮窗'}</button><button id="close-site" type="button" aria-label="关闭园区信息">×</button></div><strong>${esc(p.name)}</strong><p>${esc(p.location)} · ${esc(p.stage_label)}</p><p>${p.capacity_known?`${p.capacity_estimated?'参考估算 · 约 ':''}投运 ${num(p.capacity.operating)} / 建设 ${num(p.capacity.construction)} / 筹备 ${num(p.capacity.planning)} MW`:'IT 容量未披露'}</p>${p.capacity_estimated?`<p>${p.capacity_assessment?.status==='reviewed'?'已审估算':'暂估待细化'} · 有效时点 ${esc(p.capacity_assessment?.as_of||'待补')}<br>${esc(p.capacity_assessment?.basis_note||'估算方法见项目明细')}</p>`:''}<p>开发：${p.developer.map(name).map(esc).join('、')||'未登记'}<br>使用：${p.tenant.map(name).map(esc).join('、')||'未登记'}</p><p>${p.adoption?'已采用部分字段':'项目登记 · 逐项核验见详情'} · ${esc(p.verified_date||'日期未登记')}<br>分期按登记口径</p><a href="${esc(siteURL(p))}">查看项目与来源 →</a>`;
+ popup.innerHTML=`<div class="popup-actions"><button id="pin-site" type="button" aria-pressed="${pinned}">${pinned?'取消固定':'固定浮窗'}</button><button id="close-site" type="button" aria-label="关闭园区信息">×</button></div><strong>${esc(p.name)}</strong><p>${esc(p.location)} · ${esc(p.stage_label)}</p><p>${esc(capacityText(p))}</p>${p.capacity_estimated?`<p>参考估算 · 观测时点 ${esc(p.capacity_assessment?.as_of||'待补')}<br>${esc(p.capacity_assessment?.basis_note||'估算方法见项目明细')}</p>`:''}<p>开发：${p.developer.map(name).map(esc).join('、')||'未登记'}<br>使用：${p.tenant.map(name).map(esc).join('、')||'未登记'}</p><p>来源核对 ${esc(p.verified_date||'日期未登记')}<br>分期按来源口径${p.capacity_ranged?'；区间未取中点':''}</p><a href="${esc(siteURL(p))}">查看项目与来源 →</a>`;
  popup.hidden=false;$('pin-site').onclick=()=>{pinned=!pinned;renderPopup();};$('close-site').onclick=()=>closePopup(true);
  if(focused)$(focused)?.focus();positionPopup();
 }
@@ -259,7 +274,7 @@ function renderCompanies(){
  $('company-chips').querySelectorAll('button').forEach(b=>b.onclick=()=>isHome?highlightCompany(b.dataset.company):select({c:b.dataset.company,site:''}));
  const featured=['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba'];
  const leaders=[...data.leaders].sort((a,b)=>{const ai=featured.indexOf(a.company_id),bi=featured.indexOf(b.company_id);return (ai<0?99:ai)-(bi<0?99:bi);});
- $('leaders').innerHTML=leaders.slice(0,isHome?7:4).map(c=>`<${isHome?'button type="button" data-company="'+esc(c.company_id)+'" aria-pressed="'+(highlightedCompany===c.company_id)+'"':'a href="'+esc(url('/industry.html',{c:c.company_id,stage:'',site:''}))+'"'} class="leader"><strong>${esc(name(c.company_id))}${isHome?'':' ↗'}</strong><p>已登记的相关园区容量（含估算）</p><p class="leader-size">${c.totals.unknown===c.totals.sites?'容量未披露':gw(c.totals.operating+c.totals.construction+c.totals.planning)+' GW'}</p><p>${c.totals.sites} 条相关项目 · ${c.totals.unknown} 项容量未披露${c.totals.estimated_sites?` · 含参考估算 ${gw(Object.values(c.totals.estimated||{}).reduce((a,b)=>a+b,0))} GW`:''}</p><p>${c.totals.unknown===c.totals.sites?'已登记布局，容量有待来源补充。':`投运 ${gw(c.totals.operating)} / 建设 ${gw(c.totals.construction)} / 筹备 ${gw(c.totals.planning)} GW`}</p></${isHome?'button':'a'}>`).join('')||'<p class="empty">当前筛选下没有登记的主体关系。</p>';
+ $('leaders').innerHTML=leaders.slice(0,isHome?7:4).map(c=>`<${isHome?'button type="button" data-company="'+esc(c.company_id)+'" aria-pressed="'+(highlightedCompany===c.company_id)+'"':'a href="'+esc(url('/industry.html',{c:c.company_id,stage:'',site:''}))+'"'} class="leader"><strong>${esc(name(c.company_id))}${isHome?'':' ↗'}</strong><p>已登记的相关园区容量（含估算）</p><p class="leader-size">${c.totals.unknown===c.totals.sites?'容量未披露':c.totals.ranged_sites&&!c.totals.operating&&!c.totals.construction&&!c.totals.planning?'容量以区间披露':gw(c.totals.operating+c.totals.construction+c.totals.planning)+' GW'+(c.totals.ranged_sites?' + 区间':'')}</p><p>${c.totals.sites} 条相关项目 · ${c.totals.unknown} 项容量未披露${c.totals.ranged_sites?` · ${c.totals.ranged_sites} 项容量区间单列`:""}${c.totals.estimated_sites?` · 含参考估算 ${gw(Object.values(c.totals.estimated||{}).reduce((a,b)=>a+b,0))} GW`:''}</p><p>${c.totals.unknown===c.totals.sites?'已登记布局，容量有待来源补充。':`投运 ${gw(c.totals.operating)} / 建设 ${gw(c.totals.construction)} / 筹备 ${gw(c.totals.planning)} GW`}</p></${isHome?'button':'a'}>`).join('')||'<p class="empty">当前筛选下没有登记的主体关系。</p>';
  if(isHome&&$('company-coverage'))$('company-coverage').textContent=highlightedCompany?`${name(highlightedCompany)}：高亮本站已登记布局，未披露容量与未定位项目分别保留。`:'快捷查看 AWS、Microsoft、Google、Meta、Oracle、TikTok、Alibaba；样本有缺口，未登记不表示没有项目。';
  $('leaders').querySelectorAll('button').forEach(b=>b.onclick=()=>highlightCompany(b.dataset.company));
 }
@@ -267,13 +282,13 @@ function renderTable(){
  if(!isList)return;
  const stage=params.get('stage'),all=data.rows,rows=(!isList&&!isCompany?all.slice(0,8):all);
  $('list-title').textContent=`${data.stages[stage]|| (stage==='unknown'?'容量未披露':'项目明细')} · ${all.length} 条记录`;
- $('project-rows').innerHTML=rows.length?`<div class="table-wrap"><table><thead><tr><th>园区 / 地区</th><th>参与主体</th><th class="num">已投运 MW</th><th class="num">建设中 MW</th><th class="num">筹备 MW</th><th>最近核验</th></tr></thead><tbody>${rows.map(p=>`<tr><td><a href="${esc(siteURL(p))}">${esc(p.name)}</a>${p.capacity_estimated?' <small>参考估算</small>':''}<small>${esc(p.location)} · ${esc(p.stage_label)}${p.portfolio?' · 组合记录（不计总量）':''}${!p.coordinates?' · 未定位':''}${p.disputed?' · 有争议':''}</small></td><td>${[...new Set([...p.developer,...p.tenant])].map(companyLink).join('、')||'未登记'}</td>${Object.keys(data.stages).map(s=>`<td class="num">${p.capacity_known?num(p.capacity[s]):'—'}</td>`).join('')}<td>${esc(p.verified_date||'未登记')}</td></tr>`).join('')}</tbody></table></div>`:'<p class="empty">没有匹配的项目。可放宽筛选；容量缺失不代表没有项目。</p>';
+ $('project-rows').innerHTML=rows.length?`<div class="table-wrap"><table><thead><tr><th>园区 / 地区</th><th>参与主体</th><th class="num">已投运 MW</th><th class="num">建设中 MW</th><th class="num">筹备 MW</th><th>最近核验</th></tr></thead><tbody>${rows.map(p=>`<tr><td><a href="${esc(siteURL(p))}">${esc(p.name)}</a>${p.capacity_estimated?' <small>参考估算</small>':''}<small>${esc(p.location)} · ${esc(p.stage_label)}${p.portfolio?' · 组合记录（不计总量）':''}${!p.coordinates?' · 未定位':''}${p.disputed?' · 有争议':''}</small></td><td>${[...new Set([...p.developer,...p.tenant])].map(companyLink).join('、')||'未登记'}</td>${Object.keys(data.stages).map(s=>`<td class="num">${esc(stageCapacity(p,s))}</td>`).join('')}<td>${esc(p.verified_date||'未登记')}</td></tr>`).join('')}</tbody></table></div>`:'<p class="empty">没有匹配的项目。可放宽筛选；容量缺失不代表没有项目。</p>';
  if(rows.length<all.length)$('project-rows').innerHTML+=`<p><a href="${esc(url('/projects.html',{site:''}))}">查看全部 ${all.length} 条记录 →</a></p>`;
 }
 function renderDetail(){
  const p=data.detail;if(!isProject)return;if(!p){$('page-title').textContent='项目详情';$('detail').innerHTML='<p class="empty">请从 <a href="/projects.html">项目列表</a> 选择一个园区。</p>';return;}
  $('page-title').textContent=p.name;$('page-description').textContent=`${p.location} · ${p.stage_label} · 核验 ${p.verified_date||'日期未登记'}`;
- $('detail').innerHTML=`<p><a href="${esc(url('/projects.html',{site:''}))}">← 返回同条件项目列表</a></p><div class="detail-grid"><div>${capacityEstimate(p)}${projectDossier(p)}<div class="detail-card"><h2>项目与分期</h2>${p.duplicate_of?`<p>重复记录，已退出聚合。<a href="${esc(url('/project.html',{site:p.duplicate_of}))}">查看主记录 →</a><br>${esc(p.deduplication_note)}</p>`:''}${(p.duplicate_records||[]).map(a=>`<p>${esc(a.note)} <a href="${esc(url('/project.html',{site:a.site_id}))}">查看保留记录 →</a></p>`).join('')}<dl><dt>开发建设</dt><dd>${p.developer.map(companyLink).join('、')||'未登记'}</dd><dt>使用 / 租用</dt><dd>${p.tenant.map(companyLink).join('、')||'待核验（尚未登记）'}</dd><dt>国家 / 区域 / 地点</dt><dd>${projectGeography(p)}</dd><dt>IT 容量</dt><dd>${p.capacity_known?(p.capacity_estimated?'约 ':'')+num(p.total_mw)+' MW（各阶段合计）':'未披露'}</dd><dt>设施总功率</dt><dd>${p.capacity_facility_mw?num(p.capacity_facility_mw)+' MW（不与 IT 容量相加）':'未披露'}</dd><dt>电力进展</dt><dd>${esc(p.power_status||'未登记')}</dd><dt>位置</dt><dd>${p.coordinates?esc(p.coordinates.join(', '))+'（登记坐标）':'仅有地区信息，未落精确坐标'}</dd></dl>${participantProfiles(p)}${p.phases.map(x=>`<p><span class="badge">${esc(x.label)}</span>${num(x.mw)} MW</p>`).join('')}<p class="basis">${esc(p.notes||'')}</p>${p.adoption?`<h3>本批材料已用于此项目</h3><p>${esc(p.adoption.scope)}</p><p>已采用字段：${esc(p.adoption.fields.join('、'))}</p><p><a href="/supply.html?event=${encodeURIComponent(p.adoption.event_id)}#matching">查看对应日报事件与原件定位 →</a></p>${p.adoption.assertions.filter(x=>x.value!=null).map(x=>`<p>${num(x.value)} ${esc(x.unit)} · ${esc(({it:'IT容量',grid:'供电容量',facility:'设施功率'})[x.basis]||x.basis)} · ${esc(x.phase)}</p><blockquote>${esc(x.quote)}</blockquote>`).join('')}`:''}${p.disputed?'<p>此项目有来源争议，请对照下列原始依据。</p>':''}${p.portfolio?'<p>组合型记录，仅供参考，不计入园区合计。</p>':''}</div></div><div><div class="detail-card"><h2>进展时间线</h2><ol class="timeline">${p.history.map(h=>`<li><time>${esc(h.date)}</time>${sourceLink(h.source_url,h.status+' · 查看当时来源')}</li>`).join('')||'<li>尚无已登记的历史事件。</li>'}</ol></div><div class="detail-card"><h2>来源与核验</h2>${p.sources.map(s=>`<p>${sourceLink(s.url,s.note||new URL(s.url).hostname)}<br><span class="basis">${esc(s.grade)} · ${esc(s.date||'日期未登记')}</span></p>`).join('')||'<p>暂无可公开的来源链接。</p>'}</div></div></div>`;
+ $('detail').innerHTML=`<p><a href="${esc(url('/projects.html',{site:''}))}">← 返回同条件项目列表</a></p><div class="detail-grid"><div>${capacityEstimate(p)}${projectDossier(p)}<div class="detail-card"><h2>项目与分期</h2>${p.duplicate_of?`<p>重复记录，已退出聚合。<a href="${esc(url('/project.html',{site:p.duplicate_of}))}">查看主记录 →</a><br>${esc(p.deduplication_note)}</p>`:''}${(p.duplicate_records||[]).map(a=>`<p>${esc(a.note)} <a href="${esc(url('/project.html',{site:a.site_id}))}">查看保留记录 →</a></p>`).join('')}<dl><dt>开发建设</dt><dd>${p.developer.map(companyLink).join('、')||'未登记'}</dd><dt>使用 / 租用</dt><dd>${p.tenant.map(companyLink).join('、')||'待核验（尚未登记）'}</dd><dt>国家 / 区域 / 地点</dt><dd>${projectGeography(p)}</dd><dt>IT 容量</dt><dd>${esc(capacityText(p))}</dd><dt>设施总功率</dt><dd>${p.quantity_fields?.capacity_facility_mw!=null?esc(quantityText(p.quantity_fields.capacity_facility_mw))+'（不与 IT 容量相加）':p.capacity_facility_mw?num(p.capacity_facility_mw)+' MW（不与 IT 容量相加）':'未披露'}</dd><dt>电力进展</dt><dd>${esc(p.power_status||'未登记')}</dd><dt>位置</dt><dd>${p.coordinates?esc(p.coordinates.join(', '))+'（登记坐标）':'仅有地区信息，未落精确坐标'}</dd></dl>${rangeNotes(p)}${participantProfiles(p)}${p.phases.map(x=>`<p><span class="badge">${esc(x.label)}</span>${num(x.mw)} MW</p>`).join('')}<p class="basis">${esc(p.notes||'')}</p>${p.adoption?`<h3>本批材料已用于此项目</h3><p>${esc(p.adoption.scope)}</p><p>已采用字段：${esc(p.adoption.fields.join('、'))}</p><p>${p.adoption.event_id?`<a href="/supply.html?event=${encodeURIComponent(p.adoption.event_id)}#matching">查看对应日报事件与原件定位 →</a>`:'<a href="#site-observation-timeline">查看观测与来源 →</a>'}</p>${p.adoption.assertions.filter(x=>x.value!=null).map(x=>`<p>${num(x.value)} ${esc(x.unit)} · ${esc(({it:'IT容量',grid:'供电容量',facility:'设施功率'})[x.basis]||x.basis)} · ${esc(x.phase)}</p><blockquote>${esc(x.quote)}</blockquote>`).join('')}`:''}${p.disputed?'<p>此项目有来源争议，请对照下列原始依据。</p>':''}${p.portfolio?'<p>组合型记录，仅供参考，不计入园区合计。</p>':''}</div></div><div><div class="detail-card"><h2>进展时间线</h2><ol class="timeline">${p.history.map(h=>`<li><time>${esc(h.date)}</time>${sourceLink(h.source_url,h.status+' · 查看当时来源')}</li>`).join('')||'<li>尚无已登记的历史事件。</li>'}</ol></div><div class="detail-card"><h2>来源与核验</h2>${p.sources.map(s=>`<p>${sourceLink(s.url,s.note||new URL(s.url).hostname)}<br><span class="basis">${esc(s.grade)} · ${esc(s.date||'日期未登记')}</span></p>`).join('')||'<p>暂无可公开的来源链接。</p>'}</div></div></div>`;
 }
 function renderTrends(){
  if(isHome)return;
@@ -315,18 +330,23 @@ function renderPipeline(){
 }
 const observationFields={name:'名称',developer:'开发方',tenant:'使用方',owner:'业主',operator:'运营方',builder:'建设方',status:'建设阶段',lifecycle:'运行状态',capacity_it_mw:'IT容量',capacity_it_mw_by_status:'分期IT容量',capacity_facility_mw:'设施功率',power_status:'供电进展',utility:'电网',notes:'说明',capacity_assessment:'估算依据'};
 const observationKinds={disclosed:'披露',reported:'报道',estimated:'估算',derived:'推导',forecast:'预测'};
-function timelineItem(item){
- const values=Object.entries(item.fields||{}).filter(([k])=>k!=='capacity_assessment').map(([k,v])=>{
-  const value=v==null?'未披露':Array.isArray(v)?v.map(name).join('、')||'无':k==='capacity_it_mw_by_status'?Object.entries(v).map(([stage,mw])=>`${stage} ${num(mw)} MW`).join(' / ')||'无分期值':typeof v==='number'?num(v)+' MW':String(v);
+function observationValues(item){
+ return Object.entries(item.fields||{}).filter(([k])=>k!=='capacity_assessment').map(([k,v])=>{
+  const value=v==null?'未披露':k==='capacity_it_mw_by_status'?Object.entries(v).map(([stage,mw])=>`${stage} ${quantityText(mw)}`).join(' / ')||'无分期值':k.startsWith('capacity_')?quantityText(v):Array.isArray(v)?v.map(name).join('、')||'无':String(v);
   return esc(observationFields[k]||k)+'：'+esc(value);
  });
- return `<li><time>${esc(item.effective_at||'有效时间待细化')}</time><div><span class="badge">${esc(observationKinds[item.kind]||item.kind)}</span><p>${values.join('<br>')}</p><p>${esc(item.basis)}</p><span class="basis">收录 ${esc(item.recorded_at?.slice(0,10))}</span> ${(item.sources||[]).map(s=>sourceLink(s.url,'来源 ↗')).join(' · ')}</div></li>`;
+}
+function timelineItem(item){
+ const sourceVersions=item.source_versions||[];
+ const published=[...new Set(sourceVersions.map(s=>s.published_at||s.publication_date).filter(Boolean))];
+ return `<li><time>${esc(item.effective_at||'观测时间未明确')}${item.valid_until?' 至 '+esc(item.valid_until):''}</time><div><span class="badge">${esc(observationKinds[item.kind]||item.kind)}</span>${item.scope&&item.scope!=='whole_site'?`<span class="badge">分期 ${esc(item.scope.slice(6))}</span>`:''}${item.revision?`<span class="badge">${item.revision.action==='withdraw'?'来源观测已撤回':'来源观测已修订'}</span>`:''}<p>${observationValues(item).join('<br>')}</p><p>${esc(item.basis)}</p>${item.assumptions?.length?`<p class="basis">${item.assumptions.map(esc).join('；')}</p>`:''}${published.length?`<span class="basis">来源发表 ${published.map(esc).join('、')}</span> `:''}${(item.sources||[]).map(s=>sourceLink(s.url,'来源 ↗')).join(' · ')}</div></li>`;
 }
 function renderTracking(){
- const t=data.tracking||{},panel=$('tracking-overview');
- if(panel){
-  panel.innerHTML=`<div class="panel-heading"><div><p class="eyebrow">PLACES CHANGE OVER TIME</p><h2>同一地点，持续追踪</h2></div><button type="button" id="refresh-tracking">刷新状态</button></div><p class="basis">以物理站点为锚点，按事件有效时间追踪角色、容量与运行状态。预测单列；新闻先保留线索，已采用的观测进入时间线。</p><div class="tracking-metrics"><div><strong>${num(t.sites_with_timeline||0)}</strong><span>已有观测时间线</span></div><div><strong>${num(data.totals.estimated_sites||0)}</strong><span>含参考估算</span></div><div><strong>${num(t.review_overdue_sites||0)}</strong><span>站点复核待更新</span></div><div><strong>${num(t.conflicting_sites||0)}</strong><span>最新观测存在分歧</span></div></div><div class="tracking-changes">${(t.changes||[]).slice(0,6).map(item=>`<article><a href="/project.html?site=${encodeURIComponent(item.site_id)}">${esc(item.name)}</a><ol class="timeline">${timelineItem(item)}</ol></article>`).join('')||'<p class="basis">正在将既有项目接入逐项观测时间线。旧登记仍可查看，核验日期不冒充事件发生时间。</p>'}</div><p class="basis">暂停、取消与关闭站点保留档案，容量不并入活跃供给。页面可刷新；新闻同步与正式采用分别计量。</p>`;
-  $('refresh-tracking').onclick=()=>load();
+ const t=data.tracking||{},panel=$('project-changes');
+ if(isHome&&panel){
+  const changes=(t.changes||[]).filter(item=>(item.sources||[]).some(s=>safe(s.url))).slice(0,6);
+  panel.innerHTML=changes.map(item=>`<details class="project-change"><summary><span class="change-date">${esc(item.effective_at||'观测时间未明确')}</span><strong>${esc(item.name)}</strong><span class="badge">${esc(observationKinds[item.kind]||item.kind)}</span>${item.scope&&item.scope!=='whole_site'?`<span class="badge">分期 ${esc(item.scope.slice(6))}</span>`:''}<span class="change-preview">${observationValues(item).join(' · ')}</span><span class="change-open">展开依据与历史</span></summary><ol class="timeline">${timelineItem(item)}</ol><p><a href="/project.html?site=${encodeURIComponent(item.site_id)}#site-observation-timeline">查看项目现状与完整历史 →</a></p></details>`).join('')||'<p class="empty">暂无有独立来源的项目观测动态。可从地图查看现有项目状态与历史来源。</p>';
+  $('daily-freshness').textContent='按来源中的观测时间展示；估算与预测分别标明，不代表今日发生。';
  }
  if(isProject&&data.detail){const p=data.detail;
   $('detail').insertAdjacentHTML('beforeend',`<section class="detail-card" id="site-observation-timeline"><h2>站点观测时间线</h2><p>物理站点 ${esc(p.site_id)} · 运行状态 ${esc(({active:'活跃',paused:'暂停',cancelled:'取消',closed:'关闭'})[p.lifecycle]||p.lifecycle)}</p>${p.tracking?.conflicts?.length?'<p role="status">最新同口径观测存在分歧；当前暂留先前无分歧参考值，请对照来源，不作为已解决结论。</p>':''}<ol class="timeline">${(p.observations||[]).map(timelineItem).join('')||'<li>尚未登记有有效时点的独立观测；上方保留历史登记。</li>'}</ol></section>`);
@@ -334,9 +354,10 @@ function renderTracking(){
 }
 function render(){
  filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();renderDaily();renderTracking();
- if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球布局、项目规模与每天的新变化。';}
+ if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球布局、项目规模与有来源的最新动态。';}
  $('coverage').textContent=`${data.totals.sites} 条已追踪项目记录 · 含园区与集群，非全球普查\n核验日期 ${data.coverage.oldest_verified||'—'} — ${data.coverage.latest_verified||'—'}`;
  const hidden=isProject||isMarket;
+ for(const id of ['daily-pulse','research-arrivals'])$(id).hidden=!isHome;
  for(const id of ['atlas-tools','atlas-layout','project-list','leaders-section','trends-section'])if($(id))$(id).hidden=hidden;
  $('detail').hidden=!isProject;$('market-detail').hidden=!isMarket;$('market-band').hidden=isProject;$('pipeline-section').hidden=!(isList||isProject);$('project-list').hidden=!isList||params.get('view')==='pipeline';if($('pipeline-summary'))$('pipeline-summary').hidden=hidden||isList;
  if(isList){$('atlas-layout').hidden=true;$('leaders-section').hidden=true;$('trends-section').hidden=true;$('market-band').hidden=true;}

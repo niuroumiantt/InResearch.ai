@@ -4,7 +4,7 @@ import json
 import re
 from pathlib import Path
 from inresearch.adapters.html_document import _Document
-from inresearch.knowledge import news_observations as observe
+from inresearch.knowledge import news_observations as observe, site_timeline
 from inresearch.storage.files import locked, write_json
 
 COUNTRIES = {'中国':'CN','澳大利亚':'AU','芬兰':'FI','英国':'GB','美国':'US','印度':'IN','菲律宾':'PH',
@@ -156,9 +156,11 @@ def projection(data):
         elif record['reported_stage']=='unknown' or any(c['basis']=='unknown' for c in record['capacity_observations']) or record.get('structured_evidence_status')=='awaiting_quote_verification': stage='awaiting_caliber'
         else: stage='awaiting_research_review'
         workflow[stage]+=1
-        site=sites.get(record.get('matched_site_id'), {})
+        baseline=sites.get(record.get('matched_site_id'))
+        site=site_timeline.current(baseline) if baseline else {}
         projected.append({**{k:v for k,v in record.items() if k not in ('interpretation_history','editorial_history','demand_history')}, 'body':record['body'][:1600],
-                          'workflow_stage':stage, 'registered_project':{k:site.get(k) for k in ('site_id','name','status','capacity_it_mw','capacity_it_mw_by_status','verified_date')} if site else None})
+                          'workflow_stage':stage, 'registered_project':{k:site.get(k) for k in ('site_id','name','status','capacity_it_mw','capacity_it_mw_by_status','capacity_facility_mw',
+                                                                                       'quantity_fields','capacity_assessment','tracking','verified_date')} if site else None})
     return {'total':len(records),'historical_parse_records':len(doc['records']),'document_versions':len({d['sha256'] for r in records for d in r['document_refs']}),
             'capacity_observations':sum(len(r['capacity_observations']) for r in records),
             'identity_candidates':sum(bool(r['site_candidates']) for r in records),

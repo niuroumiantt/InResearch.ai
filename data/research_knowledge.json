@@ -5974,6 +5974,168 @@
       "status": "candidate",
       "stored_path": "originals/30/307bfd42751f7c8162bee3288728c6edcfc84e13fd017c1e61ed3970834c92ec/dcd-307bfd42751f7c81-GridStor secures -50m credit line to help meet data center batter.html",
       "title": "GridStor secures $50m credit line to help meet data center battery storage demand"
+    },
+    {
+      "id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "doc_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "content_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "title": "MLPerf Results Summary",
+      "source_url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/llama2-70b-99.9/Server/performance/run_1/mlperf_log_summary.txt",
+      "stored_path": "originals/fa/fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958/mlperf-h100-server-summary.txt",
+      "size_bytes": 3143,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+      "manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab",
+      "coverage": {
+        "characters_read": 3143,
+        "characters_total": 3143,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "published_date": null,
+      "as_of": null,
+      "read_status": "complete",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "partial_support_only": true,
+      "model_input_verified": false,
+      "source_time_status": "Original TXT has no publication/run date; pinned commit identifies the version, not a date"
+    },
+    {
+      "id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "doc_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "content_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "title": "H100 系统配置：8×H100-SXM-80GB、HBM3 与 TensorRT/CUDA",
+      "source_url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/systems/DGX-H100_H100-SXM-80GBx8_TRT.json",
+      "stored_path": "originals/aa/aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e/mlperf-h100-system.json.txt",
+      "size_bytes": 2049,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "report_sha256": "3fea519a159922d12e40167128cacb73c3c20d632e74829e0d53a16f9a4f7e5d",
+      "manifest_sha256": "0321851d448800ce66cac0d625433f68ed70ae51410c3ca1d91117d985592bcc",
+      "coverage": {
+        "characters_read": 2049,
+        "characters_total": 2049,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "published_date": null,
+      "as_of": null,
+      "read_status": "complete",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "partial_support_only": true,
+      "model_input_verified": false,
+      "source_time_status": "Original TXT has no publication/run date; pinned commit identifies the version, not a date"
     }
   ],
   "evidence": [
@@ -47494,6 +47656,270 @@
           }
         },
         "batch_id": "ed581ec24bab235ea92b818fa8e8669430fbd8fb996b632eb41c8511bf4ed0af"
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:summary",
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "chunk_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "page_index": 0,
+      "quote": "SUT name : PySUT\nScenario : Server\nMode     : PerformanceOnly\nCompleted samples per second    : 106.21\nCompleted tokens per second: 31106.28\nResult is : VALID",
+      "locator": "TXT extraction page:1 / MLPerf Results Summary / lines:4-9; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:parameters",
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "chunk_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "page_index": 0,
+      "quote": "target_qps : 107\nttft_latency (ns): 2000000000\ntpot_latency (ns): 200000000\nmax_async_queries : 0\nmin_duration (ms): 3600000",
+      "locator": "TXT extraction page:1 / Test Parameters Used / lines:58-62; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:warning",
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "chunk_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "page_index": 0,
+      "quote": "WARNING: sample_concatenate_permutation was set to true. \nGenerated samples per query might be different as the one in the setting.\nCheck the generated_samples_per_query line in the detailed log for the real\nsamples_per_query value",
+      "locator": "TXT extraction page:1 / Test Parameters warning / lines:77-80; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:accelerators",
+      "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "chunk_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "page_index": 0,
+      "quote": "\"accelerator_memory_capacity\": \"80 GB\",\n    \"accelerator_memory_configuration\": \"HBM3\",\n    \"accelerator_model_name\": \"NVIDIA H100-SXM-80GB\",\n    \"accelerator_on-chip_memories\": \"\",\n    \"accelerators_per_node\": 8",
+      "locator": "TXT extraction page:1 / System JSON accelerator identity/count / lines:6-10; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:nodes",
+      "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "chunk_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "page_index": 0,
+      "quote": "\"number_of_nodes\": 1",
+      "locator": "TXT extraction page:1 / System JSON node count / lines:37-37; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      }
+    },
+    {
+      "id": "specialist:h100-mlperf5-server-20261011:framework",
+      "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "chunk_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+      "native_chunk_index": 0,
+      "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+      "page_index": 0,
+      "quote": "\"framework\": \"TensorRT 10.8, CUDA 12.8\"",
+      "locator": "TXT extraction page:1 / System JSON framework / lines:17-17; not a physical PDF page",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
       }
     }
   ],
@@ -92395,6 +92821,332 @@
         "request_sha256": "fd442ddec7742655c18b0f31895cfb7f5b6ed06805821d97a1dc3ed98abae1e2"
       },
       "object_mapping_check": "主张描述TW1这座拟承载AI/HPC负载的数据中心整体建设里程碑，符合root的单座数据中心范围。原文未将开工限定为土建、供电工程或许可事项，故不继承system:facility标签，也不下沉到具体系统、部件或场址权利。契约没有Empyrion主体ID。两条证据统一使用root范围。"
+    },
+    {
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "evidence_ids": [
+        "specialist:h100-mlperf5-server-20261011:summary",
+        "specialist:h100-mlperf5-server-20261011:parameters",
+        "specialist:h100-mlperf5-server-20261011:warning",
+        "specialist:h100-mlperf5-server-20261011:accelerators",
+        "specialist:h100-mlperf5-server-20261011:nodes",
+        "specialist:h100-mlperf5-server-20261011:framework"
+      ],
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "published_date": null,
+      "partial_support_only": true,
+      "scope": "MLPerf Inference v5.0 closed/NVIDIA/DGX-H100_H100-SXM-80GBx8_TRT/llama2-70b-99.9/Server/performance/run_1; scoped reference only",
+      "limitations": "31,106.28为整个8卡系统吞吐，不能标为单卡实测。；Server场景、多请求系统吞吐不是单用户生成速率；不外推其它模型/精度/序列长度/框架/交互场景。；VALID为保存的运行日志声明；本审核未重新执行协议或审查accuracy/detailed日志。99.9为目录类别，选定PerformanceOnly文件本身不报告实测准确率。；同日志警告sample_concatenate_permutation=true；实际generated_samples_per_query要求看详细日志，不能仅凭samples_per_query=1推出实际样本拼接设置。；可按展示精度显示约3,888.29，审计保留3,888.285；禁止写成精确实测单卡值。；均摊不是线性扩展规律，不推导单卡、16卡或其它批次性能。；max_async_queries=0是测试参数值；选定文件不足以解释其无限制/未设置语义，更不是实测并发为0。；106.21是完成samples/s、107是target_qps；均不能直接填并发人数、最大并发或实际并发。；2秒TTFT与200ms TPOT是测试阈值；不得改称实测均值。min_duration是参数，不补造实际墙钟运行时长。；全链路精度、输入输出长度分布、PP2x4配置与实际并发缺对应原件，不补造运行日期或当前模型适用性。",
+      "conflict_check": "新ID补充断言，与旧候选/statement及旧失败结论并存；不修改、替代或撤回。系统原生观测与÷8算术分摊分别登记，不能合并为单卡实测。Offline及其它硬件/工作负载不相容。",
+      "gap_dependency_check": "M12-Q07和F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec仅部分获支持；精度、上下文/输出分布、实际并发及配置匹配仍欠核实。保留source_team/team_state和evidence_status=unverified，不关闭问题或更改模型值，不伪造B或worker完成。",
+      "source_time_status": "Publication/run date unknown in these TXT originals; receipt/review clocks do not establish benchmark time",
+      "audit_receipt": {
+        "review_reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+        "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+        "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab",
+        "sealed_export_sha256": "c3c8c64cecab6a1e7513a4bab7ec6544ff8c52ea182afcc18f5ac7a1860b3d79",
+        "supporting_documents": [
+          {
+            "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+            "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+            "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+            "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab"
+          },
+          {
+            "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+            "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+            "source_report_sha256": "3fea519a159922d12e40167128cacb73c3c20d632e74829e0d53a16f9a4f7e5d",
+            "source_manifest_sha256": "0321851d448800ce66cac0d625433f68ed70ae51410c3ca1d91117d985592bcc"
+          }
+        ]
+      },
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "quantitative_checks": {
+        "scope_check": "固定commit 0bc17ab3f4b33f730d7869e04cc29cb70835e513及同一DGX-H100_H100-SXM-80GBx8_TRT名称关联run_1与配置，只适用llama2-70b-99.9 Server PerformanceOnly。",
+        "units_check": "31106.28为系统completed tokens/s；106.21为completed samples/s；除以1节点×8GPU后为算术tokens/s/GPU。QPS及max_async_queries均非实测并发。",
+        "time_check": "原文无运行/发布日期；保持null。审核时点2026-10-11T05:12:03.460201+00:00不冒充测试有效时间。",
+        "basis_check": "系统原生运行日志与硬件配置元数据分开；VALID为日志声明，不是本审核重新运行协议/accuracy认证。",
+        "derivation_check": "native observation直接取原文；calculation只执行31106.28/(1*8)=3888.285，不视为单卡独立实测或线性扩展规律。",
+        "comparability_check": "精度、长度分布、实际并发与完整配置欠对应；禁止外推Offline、其它工作负载或当前模型通用GPU速率。"
+      },
+      "parameter_assessments": [
+        {
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "question_id": "M12-Q07",
+          "status": "partial_support",
+          "model_input_verified": false,
+          "rationale": "真实received sidecar请求tokens_per_gpu_sec；此处仅支持限定系统原生吞吐及均摊算术，尚缺全链路精度、长度分布、实际并发/当前模型配置匹配，不能认证模型输入。"
+        }
+      ],
+      "model_input_verified": false,
+      "object_mapping_check": "整机Server吞吐对应root/part:server，H100分母配置对应part:gpu；不扩展为HBM、网络实测或芯片普遍性能。",
+      "id": "adoption:specialist:h100-mlperf5-server-20261011:native-system",
+      "kind": "observation",
+      "text": "固定MLCommons提交中llama2-70b-99.9/Server/PerformanceOnly/run_1日志记录整机Completed tokens per second为31,106.28，并标记Result is VALID。同提交同名DGX H100系统配置列为1节点×8颗H100-SXM-80GB；这是8卡系统观测，不是单卡/单用户速率。",
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。仅采用指定Server整机原生观测与所需系统配置。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "source_candidate_ids": [
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:0",
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:1",
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:2",
+        "rev-695f647746da483bb072512566cf059f:chunk:0:claim:0"
+      ],
+      "source_candidate_relation": "Specialist supplements the actual source candidates using full native text/system identity; previous candidate records/outcomes remain unchanged",
+      "measurement": {
+        "metric": "completed token throughput",
+        "value": 31106.28,
+        "unit": "completed tokens/s/system",
+        "scenario": "Server",
+        "mode": "PerformanceOnly",
+        "system": "DGX-H100_H100-SXM-80GBx8_TRT",
+        "workload_directory": "llama2-70b-99.9",
+        "number_of_nodes": 1,
+        "accelerators_per_node": 8,
+        "accelerators_per_system": 8,
+        "run_date": null,
+        "actual_concurrency": null,
+        "model_input_verified": false
+      },
+      "effective_at": null,
+      "reviewed_at": "2026-10-11T05:12:03.460201+00:00",
+      "recorded_at": "2026-10-11T05:23:02.498123+00:00",
+      "source_versions": [
+        {
+          "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:07.642848+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        },
+        {
+          "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:06.931736+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        }
+      ]
+    },
+    {
+      "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+      "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+      "status": "adopted",
+      "acceptance": "adopted",
+      "evidence_ids": [
+        "specialist:h100-mlperf5-server-20261011:summary",
+        "specialist:h100-mlperf5-server-20261011:parameters",
+        "specialist:h100-mlperf5-server-20261011:warning",
+        "specialist:h100-mlperf5-server-20261011:accelerators",
+        "specialist:h100-mlperf5-server-20261011:nodes",
+        "specialist:h100-mlperf5-server-20261011:framework"
+      ],
+      "object_ids": [
+        "root",
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "published_date": null,
+      "partial_support_only": true,
+      "scope": "MLPerf Inference v5.0 closed/NVIDIA/DGX-H100_H100-SXM-80GBx8_TRT/llama2-70b-99.9/Server/performance/run_1; scoped reference only",
+      "limitations": "31,106.28为整个8卡系统吞吐，不能标为单卡实测。；Server场景、多请求系统吞吐不是单用户生成速率；不外推其它模型/精度/序列长度/框架/交互场景。；VALID为保存的运行日志声明；本审核未重新执行协议或审查accuracy/detailed日志。99.9为目录类别，选定PerformanceOnly文件本身不报告实测准确率。；同日志警告sample_concatenate_permutation=true；实际generated_samples_per_query要求看详细日志，不能仅凭samples_per_query=1推出实际样本拼接设置。；可按展示精度显示约3,888.29，审计保留3,888.285；禁止写成精确实测单卡值。；均摊不是线性扩展规律，不推导单卡、16卡或其它批次性能。；max_async_queries=0是测试参数值；选定文件不足以解释其无限制/未设置语义，更不是实测并发为0。；106.21是完成samples/s、107是target_qps；均不能直接填并发人数、最大并发或实际并发。；2秒TTFT与200ms TPOT是测试阈值；不得改称实测均值。min_duration是参数，不补造实际墙钟运行时长。；全链路精度、输入输出长度分布、PP2x4配置与实际并发缺对应原件，不补造运行日期或当前模型适用性。",
+      "conflict_check": "新ID补充断言，与旧候选/statement及旧失败结论并存；不修改、替代或撤回。系统原生观测与÷8算术分摊分别登记，不能合并为单卡实测。Offline及其它硬件/工作负载不相容。",
+      "gap_dependency_check": "M12-Q07和F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec仅部分获支持；精度、上下文/输出分布、实际并发及配置匹配仍欠核实。保留source_team/team_state和evidence_status=unverified，不关闭问题或更改模型值，不伪造B或worker完成。",
+      "source_time_status": "Publication/run date unknown in these TXT originals; receipt/review clocks do not establish benchmark time",
+      "audit_receipt": {
+        "review_reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+        "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+        "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab",
+        "sealed_export_sha256": "c3c8c64cecab6a1e7513a4bab7ec6544ff8c52ea182afcc18f5ac7a1860b3d79",
+        "supporting_documents": [
+          {
+            "document_id": "doc-fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+            "reading_revision_id": "rev-60e9a8ff9a4a4e2089bf003605930267",
+            "source_report_sha256": "a66904140fb1554caa208836ee292a4b3d5d13b2b7d2a2985c219e9b29506b40",
+            "source_manifest_sha256": "72c6adb77648fce82b7af64da3aec9d5569ca8489021e92a436ad21188470bab"
+          },
+          {
+            "document_id": "doc-aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+            "reading_revision_id": "rev-695f647746da483bb072512566cf059f",
+            "source_report_sha256": "3fea519a159922d12e40167128cacb73c3c20d632e74829e0d53a16f9a4f7e5d",
+            "source_manifest_sha256": "0321851d448800ce66cac0d625433f68ed70ae51410c3ca1d91117d985592bcc"
+          }
+        ]
+      },
+      "research_requests": [
+        {
+          "target_version": "2.3.0",
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "question_id": "M12-Q07",
+          "scope_values": {
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用"
+          },
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad"
+        }
+      ],
+      "quantitative_checks": {
+        "scope_check": "固定commit 0bc17ab3f4b33f730d7869e04cc29cb70835e513及同一DGX-H100_H100-SXM-80GBx8_TRT名称关联run_1与配置，只适用llama2-70b-99.9 Server PerformanceOnly。",
+        "units_check": "31106.28为系统completed tokens/s；106.21为completed samples/s；除以1节点×8GPU后为算术tokens/s/GPU。QPS及max_async_queries均非实测并发。",
+        "time_check": "原文无运行/发布日期；保持null。审核时点2026-10-11T05:12:03.460201+00:00不冒充测试有效时间。",
+        "basis_check": "系统原生运行日志与硬件配置元数据分开；VALID为日志声明，不是本审核重新运行协议/accuracy认证。",
+        "derivation_check": "native observation直接取原文；calculation只执行31106.28/(1*8)=3888.285，不视为单卡独立实测或线性扩展规律。",
+        "comparability_check": "精度、长度分布、实际并发与完整配置欠对应；禁止外推Offline、其它工作负载或当前模型通用GPU速率。"
+      },
+      "parameter_assessments": [
+        {
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "question_id": "M12-Q07",
+          "status": "partial_support",
+          "model_input_verified": false,
+          "rationale": "真实received sidecar请求tokens_per_gpu_sec；此处仅支持限定系统原生吞吐及均摊算术，尚缺全链路精度、长度分布、实际并发/当前模型配置匹配，不能认证模型输入。"
+        }
+      ],
+      "model_input_verified": false,
+      "object_mapping_check": "整机Server吞吐对应root/part:server，H100分母配置对应part:gpu；不扩展为HBM、网络实测或芯片普遍性能。",
+      "id": "adoption:specialist:h100-mlperf5-server-20261011:arithmetic-per-gpu",
+      "kind": "calculation",
+      "text": "将上述8卡系统吞吐按登记的8卡均摊，算术结果为3,888.285 completed tokens/s/GPU；这不是一颗H100独立运行的实测吞吐。",
+      "review": {
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "by": "Codex /root/r4_inspur_support",
+        "at": "2026-10-11T05:12:03.460201+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "delegation": {
+          "delegate": "Codex /root/r4_inspur_support",
+          "granted_by": "user / repository owner",
+          "granted_at": "2026-10-11",
+          "granted_at_precision": "day",
+          "reference": "docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json",
+          "scope": "new_or_supplemental_research",
+          "authorization_quote": "采集审核正式采用上线",
+          "authorization_context": "本任务用户于2026-10-11明确授权采集、审核、正式采用及上线；root转交此次独立A复核。仅新增/补充研究，不含替换既有结论或放宽原件分发。"
+        },
+        "rationale": "具名独立审核者完整阅读两份封存TXT，重算原文字节SHA，核对同一固定Git提交/系统名、原生整机吞吐及1节点×8卡分母。本条仅允许算术均摊，不是单卡实测。",
+        "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
+        "replaces_record_ids": [],
+        "relaxes_distribution": false
+      },
+      "statement_ids": [
+        "adoption:specialist:h100-mlperf5-server-20261011:native-system"
+      ],
+      "source_candidate_ids": [
+        "rev-60e9a8ff9a4a4e2089bf003605930267:chunk:0:claim:1",
+        "rev-695f647746da483bb072512566cf059f:chunk:0:claim:0"
+      ],
+      "source_candidate_relation": "New specialist arithmetic from the actual two sources, not an invented Reader calculation or replacement of a failed candidate",
+      "calculation": {
+        "expression": "31106.28 / (1 * 8)",
+        "inputs": [
+          {
+            "name": "native_system_throughput",
+            "value": 31106.28,
+            "unit": "completed tokens/s/system",
+            "statement_id": "adoption:specialist:h100-mlperf5-server-20261011:native-system"
+          },
+          {
+            "name": "number_of_nodes",
+            "value": 1,
+            "unit": "node",
+            "evidence_id": "specialist:h100-mlperf5-server-20261011:nodes"
+          },
+          {
+            "name": "accelerators_per_node",
+            "value": 8,
+            "unit": "GPU/node",
+            "evidence_id": "specialist:h100-mlperf5-server-20261011:accelerators"
+          }
+        ],
+        "value": 3888.285,
+        "exact_decimal": "3888.285",
+        "unit": "completed tokens/s/GPU (arithmetic share)",
+        "independent_single_gpu_measurement": false,
+        "model_input_verified": false
+      },
+      "effective_at": null,
+      "reviewed_at": "2026-10-11T05:12:03.460201+00:00",
+      "recorded_at": "2026-10-11T05:23:02.498123+00:00",
+      "source_versions": [
+        {
+          "source_sha256": "aad87ec117b986e41e7fca9eb11f967b537a9c5c27c6ed9ab988b35458ff902e",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:07.642848+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        },
+        {
+          "source_sha256": "fa90d4aabceb98c92e6f8978fabd1af45e318cd951603fcecf8a11195559c958",
+          "published_at": null,
+          "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
+          "first_received_at": "2026-10-11T02:32:06.931736+00:00",
+          "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        }
+      ]
     }
   ],
   "answers": [],
