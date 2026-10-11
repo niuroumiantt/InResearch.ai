@@ -168,7 +168,7 @@ class CompanyWindowTests(unittest.TestCase):
         items.extend([{'title':'SMCI original title','object_ids':['actor:supermicro'],'published_at':1,'url':'https://example.test/smci'},
                       {'title':'Supermicro in title only','object_ids':['actor:nvidia'],'published_at':2000}])
         runtime={'reader':{'status':'success','stale':True,'acquisition':{'news_feed':{'status':'success','items':items}}}}
-        with patch.object(registry,'_snapshot_inputs',return_value=(None,None,{},runtime)):
+        with patch('inresearch.delivery.runtime_summary.load',return_value=runtime):
             result=registry.build_news(ROOT,company_id='supermicro',limit=6)
         self.assertEqual(len(result['feed']['items']),1)
         self.assertEqual(result['feed']['items'][0]['title'],'SMCI original title')

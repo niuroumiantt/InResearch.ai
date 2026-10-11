@@ -122,11 +122,14 @@ class MaterialMeasurementsTests(unittest.TestCase):
         (root/'data/datacenter_model.json').write_text('{"inputs":{},"evidence":{}}')
         for name in ('projects','contracts'):(root/'data'/(name+'.json')).write_text('{"records":[]}')
         curated={'statements':[{'id':'adopted'},{'id':'invalid'}]}
+        (root/'framework/research_graph.json').write_text('{}')
+        (root/'framework/research_questions.json').write_text('{"records":[]}')
+        (root/'data/research_knowledge.json').write_text(json.dumps(curated))
         reader={'execution_scope':measured_fixture()['execution_scope'],
                 'research_verification':{'state':'observed','active_batches':0,'candidates':{'review_ready':700}},
                 'material_measurements':measured_fixture()['measurements']}
         material_flow._CACHE.clear()
-        with patch.object(material_flow.registry,'_snapshot_inputs',return_value=({}, {'records':[]},curated,{},{})), \
+        with patch('inresearch.delivery.runtime_summary.load',return_value={}), \
              patch.object(material_flow.registry,'_reader_state',return_value=reader), \
              patch.object(material_flow.registry,'supported_adoption',side_effect=lambda s,k:s['id']=='adopted'), \
              patch.object(material_flow,'website_sizes',return_value={}):

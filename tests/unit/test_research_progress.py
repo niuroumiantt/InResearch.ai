@@ -24,7 +24,7 @@ class ResearchProgressTests(unittest.TestCase):
         received = registry.candidate_snapshot(payload, graph, questions)
         with tempfile.TemporaryDirectory() as td, \
              patch.dict(os.environ, {'INRESEARCH_RUNTIME_ROOT': td}), \
-             patch.object(registry, '_snapshot_inputs', return_value=[received]):
+             patch('inresearch.workflow.supply.runtime_summary', return_value=dict(received, reading_deliveries=[])):
             result = supply.snapshot(root)
         self.assertEqual(result['research_verification']['candidates'], progress['candidates'])
         self.assertEqual(result['research_verification']['active_batches'], 1)

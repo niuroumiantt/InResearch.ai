@@ -15,6 +15,7 @@ import hashlib
 import json
 import os
 import re
+import threading
 import unicodedata
 from urllib.parse import urlencode, urlsplit
 from datetime import date, datetime, timezone
@@ -24,6 +25,28 @@ from inresearch.knowledge.navigation import validate_navigation
 ROOT = project_root()
 COLLECTIONS = ('documents', 'evidence', 'statements', 'answers')
 DELEGATION_KEYS = ('delegate', 'granted_by', 'granted_at', 'reference', 'scope')
+RUNTIME_LOCK = threading.RLock()
+_RUNTIME_CACHE = {}
+
+
+def clear_runtime_cache():
+    with RUNTIME_LOCK:
+        _RUNTIME_CACHE.clear()
+
+
+def _candidate_runtime(root, path, graph, questions):
+    from inresearch.delivery.runtime_summary import signature
+    paths = (path, root/'framework/research_graph.json', root/'framework/research_questions.json')
+    key = tuple((str(p), tuple(signature(p).items()) if p.exists() else None) for p in paths)
+    with RUNTIME_LOCK:
+        if key in _RUNTIME_CACHE:
+            return _RUNTIME_CACHE[key]
+        # One current snapshot only; a refresh releases the old cached library.
+        _RUNTIME_CACHE.clear()
+        raw = read_json(path, {})
+        runtime = candidate_snapshot(raw, graph, questions) | {'received_at': raw.get('received_at')} if raw else {}
+        _RUNTIME_CACHE[key] = runtime
+        return runtime
 
 
 def parse_time(value):
@@ -717,10 +740,9 @@ def _snapshot_inputs(root):
     runtime_path = Path(os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))
     knowledge = copy.deepcopy(curated)
     try:
-        runtime = read_json(runtime_path, {})
+        runtime = _candidate_runtime(root, runtime_path, graph, questions)
         if runtime:
             # A copied/stale snapshot cannot take down the curated research interface.
-            runtime = candidate_snapshot(runtime, graph, questions) | {'received_at': runtime.get('received_at')}
             knowledge = merge_knowledge(curated, runtime['knowledge'])
     except (ValueError, TypeError, KeyError, AttributeError, OSError):
         runtime = {'reader': {'status': 'degraded', 'message': '候选快照与现行框架不一致或校验失败，等待 Spark 重同步；正式研究仍可访问。'}}
@@ -771,7 +793,8 @@ def build_backflow(root=ROOT, team='fetchspec'):
     if team not in (document.get('teams') or {}):
         raise KeyError('unknown_team')
     rows = [t for t in document['targets'] if t.get('team') == team]
-    *_, runtime = _snapshot_inputs(root)
+    from inresearch.delivery.runtime_summary import load
+    runtime = load(root)
     reader = _reader_state(runtime)
     acquisition = reader.get('acquisition') if isinstance(reader.get('acquisition'), dict) else {}
     received = {}
@@ -794,7 +817,8 @@ def build_backflow(root=ROOT, team='fetchspec'):
 
 def news_leads(root=ROOT):
     """当前窗口里的新闻线索原样(带 target_ids、origin_pointer),只给打标记时找目标行用,不公开。"""
-    *_, runtime = _snapshot_inputs(root)
+    from inresearch.delivery.runtime_summary import load
+    runtime = load(root)
     acquisition = _reader_state(runtime).get('acquisition')
     feed = acquisition.get('news_feed') if isinstance(acquisition, dict) else None
     items = feed.get('items') if isinstance(feed, dict) else None
@@ -803,7 +827,9 @@ def news_leads(root=ROOT):
 
 def build_news(root=ROOT, *, company_id=None, limit=80):
     """News consumes the same validated snapshot without constructing catalog/tasks."""
-    *_, knowledge, runtime = _snapshot_inputs(root)
+    from inresearch.delivery.runtime_summary import load
+    runtime = load(root)
+    knowledge = read_json(root / 'data/research_knowledge.json')
     reader = _reader_state(runtime)
     acquisition = reader.get('acquisition')
     if acquisition is not None and not isinstance(acquisition, dict):
