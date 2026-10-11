@@ -56031,6 +56031,87 @@
         },
         "batch_id": "bdd7beba424246c8d2af5f2a80838704c82ed71c8a56be802d87f24182d9ca98"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "eea4694e03946ae74796111009a6d8106774352b644bbc58bca1c27a09a1aa82",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:19:claim:4:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "through\n                  its AI Continent Action Plan framework (European Commission, 2025a), the\n                  European Commission has set out the goal of tripling data centre capacity in the next five to\n                  seven years.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:53:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文直接支持政策主体、框架、三倍目标及五至七年期限；相邻欧盟历史增长、项目管线和能源约束讨论提供充分语境。该目标对当前M05-Q01提供欧盟未来区域扩张方向及目标期限的实质性局部贡献，符合B类归因部分采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.313,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "983d32e5962b6ca3cc0da3f1be09388092e2e93aa56b46b69c05c2dba5a97998",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68561,
+            "output_tokens": 1257,
+            "reasoning_output_tokens": 148
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.201,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ae40b41b6aac1a07595debcfb154d44ea164643f608bd32d3e5600470dd75b68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69257,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 226
+            }
+          }
+        },
+        "batch_id": "9cecb5a4143c0c3d21974c595489f6649702410a4df1f23a34b3f953e401d599"
+      }
     }
   ],
   "statements": [
@@ -108402,6 +108483,104 @@
         "request_sha256": "319b9c1197fa880a04b361773b65a37f70a11bd529b259276f3c932e6d12ca94"
       },
       "object_mapping_check": "独立依据原文选择整体数据中心参考设计、计算链下的整机柜系统及两家合作主体：页面明确将Helios描述为fully integrated rack-scale AI solution，符合part:rack-system范围；综合数据中心参考设计对应root。合作主体为AMD，选择actor:amd，不由周边MI455X产品信息继承actor:amd-instinct。system:facility限定土地建筑及消防安防，不适用于此处泛称的数据中心设计；所选主张未描述具体UPS、配电或冷却接口，故不增加这些系统、链条或部件映射。所选证据统一采用上述主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:19:claim:4:ev:0"
+      ],
+      "id": "adoption:review:8d8608a6c4285699cb93c30e",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第1.2节援引European Commission（2025a）称，欧盟委员会通过AI Continent Action Plan框架提出，在来源所述的未来五至七年将欧盟数据中心容量增至三倍的目标。这是来源转述的政策目标，不代表容量已经实现或项目已经开工、投运，也不构成对当前容量或增长速度的独立认证。报告发表时间及该目标期限的具体起止日期未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:53:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文直接支持政策主体、框架、三倍目标及五至七年期限；相邻欧盟历史增长、项目管线和能源约束讨论提供充分语境。该目标对当前M05-Q01提供欧盟未来区域扩张方向及目标期限的实质性局部贡献，符合B类归因部分采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.313,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "983d32e5962b6ca3cc0da3f1be09388092e2e93aa56b46b69c05c2dba5a97998",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68561,
+            "output_tokens": 1257,
+            "reasoning_output_tokens": 148
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.201,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ae40b41b6aac1a07595debcfb154d44ea164643f608bd32d3e5600470dd75b68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69257,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 226
+            }
+          }
+        },
+        "batch_id": "9cecb5a4143c0c3d21974c595489f6649702410a4df1f23a34b3f953e401d599"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:19:claim:4"
+      ],
+      "limitations": "引文未定义容量属于IT容量、设施总容量或其他口径，未给出基准容量、目标绝对值、国家分配、项目阶段或实施时间表。2025a是被引文献的年份标记，不能据此确定本报告发表日期或将五至七年换算为具体目标年份。欧盟委员会原始政策文件未在本包中独立核验；来源网址仅经供应方元数据绑定。全文仅完成PDF原生文字覆盖，未完成图像审阅。",
+      "conflict_check": "已采用的adoption:review:662625184ac46f95c470d77c讨论欧盟过去十年相对增长较慢，与本条未来政策目标在时间和性质上不同，不构成冲突或重复。adoption:review:6cddc71640b73164d665342b讨论整个欧洲管线的地理分散，地域与指标均不同；法国拟建项目亦不是欧盟三倍政策目标的规范重复。既有阶段区分结论保持原状。当前回答为空，所供legacy三类登记表均无匹配记录；未发现同范围规范重复或真实冲突。检查限于所供材料，不代表外部反证已穷尽，不替换既有结论。",
+      "gap_dependency_check": "M05-Q01仅获得欧盟政策扩张目标及相对期限线索，仍需原始政策文件、基准日与容量定义、国家或区域分阶段项目清单、实际交付记录及历史增长序列，才能形成可复查的投运、在建和规划容量分布。相邻能源约束提示目标实现存在条件，不能由政策期限推导实际增长速度。本条没有俄亥俄、印第安纳或中东崛起速度的直接证据；原始来源及反证要求尚未补齐。问题保持开放，不汇总GW、不更新模型输入或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9cecb5a4143c0c3d21974c595489f6649702410a4df1f23a34b3f953e401d599",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "194018133f4a4ed2dd4732bb6b1a3adc06821a62fd186c9c538af35fcf6d24f3"
+      },
+      "object_mapping_check": "独立依据原文与对象契约保留空映射：主张范围是欧盟数据中心市场整体的政策容量目标，并非root所指的一座AI数据中心。AI政策框架不证明目标容量全部用于AI，也未建立设施内部系统、部件、土地或并网权利的主张范围。欧盟委员会及IEA无对应允许主体ID，不借用其他主体。不继承Reader的root标签；所选证据统一采用此主张级空对象范围，保留有效的M05-Q01关联。"
     }
   ],
   "answers": [],
