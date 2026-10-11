@@ -10,7 +10,8 @@ const isHome=['/','/index.html'].includes(path);
 const isReader=isHome||isProject||isMarket||isList||isCompany;
 if(isHome)document.body.classList.add('industry-home');
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
-let detailGeo=null,detailRequest=null;
+let detailGeo=null;
+const adminTiles=new Map(),detailLoads=new Map(),detailFailures=new Set();
 let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false, mapSignature='';
 const keys=['c','region','stage','relation','scope','role','site','country','province','address'];
 let fontCacheQueued=false,fontCacheStarted=false;
@@ -281,7 +282,7 @@ function renderLand(){
  const source=detailGeo||geo;if(!source)return;
  const path=(line,closed)=>line.map(([lo,la],i)=>`${i?'L':'M'}${xy(lo,la).map(n=>n.toFixed(detailGeo?3:1)).join(',')}`).join('')+(closed?'Z':'');
  let land='',boundaries='';
- for(const f of source.features){
+ for(const f of [...source.features,...[...adminTiles.values()].flatMap(tile=>tile.features)]){
   const g=f.geometry;if(!g)continue;
   if(['Polygon','MultiPolygon'].includes(g.type)){
    const polygons=g.type==='Polygon'?[g.coordinates]:g.coordinates;
@@ -293,18 +294,37 @@ function renderLand(){
  svg.querySelector('#map-land-layer').innerHTML=land+(boundaries?`<path class="admin1-boundaries" d="${boundaries}"/>`:'')+atlasBackdrop();
  svg.dataset.detail=detailGeo?'true':'false';syncMapDetail();
 }
+function requiredMapParts(){
+ if(view[2]>650)return [];
+ const parts=['world'];
+ if(view[2]<=500){
+  const first=Math.max(0,Math.min(11,Math.floor(view[0]/1000*12))),last=Math.max(0,Math.min(11,Math.floor((view[0]+view[2])/1000*12)));
+  for(let i=first;i<=last;i++)parts.push(String(i));
+ }
+ return parts;
+}
+function mapPartReady(key){return key==='world'?!!detailGeo:adminTiles.has(key);}
+function mapDetailStatus(){
+ const parts=requiredMapParts(),missing=parts.filter(key=>!mapPartReady(key));
+ let status=$('map-detail-status');
+ if(!missing.length){if(status)status.hidden=true;return;}
+ if(!status){status=document.createElement('button');status.id='map-detail-status';status.type='button';status.setAttribute('aria-live','polite');status.onclick=()=>{for(const key of requiredMapParts())detailFailures.delete(key);syncMapDetail();};svg.parentElement.append(status);}
+ const loading=missing.some(key=>detailLoads.has(key));
+ status.hidden=false;status.disabled=loading;status.textContent=loading?'正在加载精细底图…':'精细底图暂不可用 · 点击重试';
+}
 function syncMapDetail(){
  svg.classList.toggle('show-admin1',view[2]<=500);
- if(view[2]>650){if($('map-detail-status'))$('map-detail-status').hidden=true;return;}
- if(detailGeo||detailRequest)return;
- const status=$('map-detail-status')||document.createElement('button');
- if(!status.id){status.id='map-detail-status';status.type='button';status.setAttribute('aria-live','polite');status.onclick=()=>syncMapDetail();svg.parentElement.append(status);}
- status.hidden=false;status.disabled=true;status.textContent='正在加载精细底图…';
- const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
- detailRequest=fetch('/assets/world-detail.geo.json',{signal:controller.signal}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(value=>{
-  if(value.type!=='FeatureCollection'||!value.features?.some(f=>f.properties?.layer==='admin1')||!value.features.some(f=>f.properties?.layer==='country'))throw Error();
-  detailGeo=value;status.hidden=true;renderLand();
- }).catch(()=>{status.textContent='精细底图暂不可用 · 点击重试';status.disabled=false;status.hidden=view[2]>650;}).finally(()=>{clearTimeout(timer);detailRequest=null;});
+ for(const key of requiredMapParts()){
+  if(mapPartReady(key)||detailLoads.has(key)||detailFailures.has(key))continue;
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),30000);
+  const url=key==='world'?'/assets/world-detail.geo.json':`/assets/map-admin1-${key}.geo.json`;
+  detailLoads.set(key,fetch(url,{signal:controller.signal}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(value=>{
+   if(value.type!=='FeatureCollection'||!Array.isArray(value.features)||!value.features.every(f=>f.geometry&&f.properties?.layer===(key==='world'?'country':'admin1'))||(key==='world'&&!value.features.length))throw Error();
+   if(key==='world')detailGeo=value;else adminTiles.set(key,value);
+   detailFailures.delete(key);renderLand();
+  }).catch(()=>detailFailures.add(key)).finally(()=>{clearTimeout(timer);detailLoads.delete(key);mapDetailStatus();}));
+ }
+ mapDetailStatus();
 }
 function atlasBackdrop(){
  const lines=[];
