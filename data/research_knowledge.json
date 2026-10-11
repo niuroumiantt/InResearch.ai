@@ -54259,6 +54259,91 @@
         },
         "batch_id": "4fb901c6fc35ce2051808e9a1ca19bfde7aa3f767468a593d76ce7cad8c91bfb"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0407b314ed870c24c6690f6baccb420b16af31bee1e7786ae8fb1041bd20f587",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:65:claim:4:ev:0",
+      "locator": "page:65/chunk:65",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:smr"
+      ],
+      "page_index": 64,
+      "question_ids": [],
+      "quote": "Most PPAs for data centres have been for existing nuclear generators, but tech companies\n                        have signed 45 GW of other off-take agreements with next-generation nuclear",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:16:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。区分现有核电机组PPA与下一代核电承购安排，并保留融资成熟度限制，对当前M04-Q03核查合同宣传与真实交付具有实质性局部贡献。连续原文引文及相邻正文足以支持限定后的来源陈述，符合B级采用条件。未识别敏感、真实冲突、拟替换或其他A条件；采用不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 50.299,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "441e0d6872ce62dff55991f36c2f9cef773c1ac3d835a97b7a1dacb554b1495b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 40257,
+            "output_tokens": 1466,
+            "reasoning_output_tokens": 289
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.556,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "36622cdead5d06edbd464fd035dbb7427bcdeb1e4ffe1aef16a3a850499ba4a0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 41023,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 227
+            }
+          }
+        },
+        "batch_id": "a62f918b67b2dfa2cf8a33b820154eaac4ae3e059e6844dbfb3b8f2d0dcce28c"
+      }
     }
   ],
   "statements": [
@@ -104932,6 +105017,108 @@
         "request_sha256": "a7dced55cb73294f3ca8b084359e7de764b3520aa5e7731e2e2f7c45870b8752"
       },
       "object_mapping_check": "独立按主张用途复核：评分与选择均处于数据中心UPS备用电池比较语境，直接对应电力系统UPS链下part:ups-battery。此项未讨论完整BESS配置或UPS整流、逆变设备，不增加part:bess或part:ups；环保特性不建立消防设备映射。ZincFive及Wyoming Hyperscale White Box均无允许的主体ID。两条证据统一采用该范围，原标签不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:65:claim:4:ev:0"
+      ],
+      "id": "adoption:review:3f8942318ed3ec972d57e443",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:smr"
+      ],
+      "question_ids": [
+        "M04-Q03"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》图7.4称，数据中心核电购电协议（PPA）大多对应现有核电机组，而科技公司签署了45 GW下一代核电的其他承购协议。该图标示统计范围为2024—2026年，来源为IEA基于BNEF（2026）的分析；相邻正文将这45 GW描述为新建SMR容量，并称相关安排大多较不正式，尚无确定融资承诺支持。报告出版日期及各协议确切日期未由所供原文确立。这是来源对协议规模及成熟度的陈述，不构成对交付时间、实际供电或投运容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:16:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。区分现有核电机组PPA与下一代核电承购安排，并保留融资成熟度限制，对当前M04-Q03核查合同宣传与真实交付具有实质性局部贡献。连续原文引文及相邻正文足以支持限定后的来源陈述，符合B级采用条件。未识别敏感、真实冲突、拟替换或其他A条件；采用不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 50.299,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "441e0d6872ce62dff55991f36c2f9cef773c1ac3d835a97b7a1dacb554b1495b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 40257,
+            "output_tokens": 1466,
+            "reasoning_output_tokens": 289
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.556,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "36622cdead5d06edbd464fd035dbb7427bcdeb1e4ffe1aef16a3a850499ba4a0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 41023,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 227
+            }
+          }
+        },
+        "batch_id": "a62f918b67b2dfa2cf8a33b820154eaac4ae3e059e6844dbfb3b8f2d0dcce28c"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:65:claim:4"
+      ],
+      "limitations": "未提供协议清单、合同原文、具体项目所在地、逐项约束力、融资文件、许可条件、分期交付里程碑或实际进度。较不正式不等于全部协议均不具约束力；45 GW是来源所述承购安排对应的容量，不能视为已投运容量、确定可交付容量或数据中心IT容量。2024—2026年是图示统计范围，不是交付时间表。阅读覆盖仅限PDF原生文本，未进行图像视觉复核，来源URL亦未独立抓取核验。",
+      "conflict_check": "所供已采用陈述涉及Kairos协议线索、Oklo与RPower的MoU、Oklo与Switch的非约束性安排及Meta与Oklo的SMR开发协议，与本项汇总层面的协议类型区分兼容，未发现真实冲突或同一主张的规范重复记录。不能认定这些个别协议全部纳入45 GW，亦不能据本项改变其约束力结论。当前回答为空，legacy筛选返回的匹配记录为空；检查限于所供材料，不代表完成外部反证搜索，不覆盖既有结论。",
+      "gap_dependency_check": "本项为M04-Q03提供区分宣传容量、合同类型与融资阶段的核查依据，但没有真实交付时间表。仍需交易双方一手合同、逐项容量口径与统计去重、约束性条款、融资及监管条件、原定和修订工程里程碑、实际交付证据及反证。当前工单的一手合同与反证要求尚未满足，问题保持开放；不与既有协议容量相加，不更新容量台账、模型输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a62f918b67b2dfa2cf8a33b820154eaac4ae3e059e6844dbfb3b8f2d0dcce28c",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "28b2da484f939c0fcdb43723d002875c1f39a98cd03bd042f2be94edfbfdae05"
+      },
+      "object_mapping_check": "独立依据数据中心核电采购及核电机组范围选择system:power和其发电与储能链条chain:power/3；相邻正文明确将45 GW对应的新建容量称为SMR，支持part:smr。现有核电机组部分仅映射至供电系统及发电链条，不将其认定为SMR。未点名具体科技企业，也未建立并网权利、UPS、IT设备或具体数据中心整体范围，故不沿用文档标签。所选证据统一采用上述主张级对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
