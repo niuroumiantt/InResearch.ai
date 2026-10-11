@@ -58178,6 +58178,88 @@
         },
         "batch_id": "eefdf90e14d0f2d99e5dc0a13352a986b198eacb0f445c2f39fc900371f3ef0f"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f791d76ba6a0ea91165ec8e30870231d95fec6d5b98a5805b84aa0e1c86a4dda",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:21:claim:2:ev:0",
+      "locator": "page:22/chunk:21",
+      "object_ids": [],
+      "page_index": 21,
+      "question_ids": [],
+      "quote": "Growing local opposition could also affect the provision of policy,\n                  regulatory and fiscal incentives for data centres, such as tax exemptions.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:28:11+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。当地反对可能影响税收等激励的判断，对当前M05-Q03的政策风险部分具有实质性贡献，并为M05-Q04提供社会反对向政策条件传导的间接机制线索。连续原文及周边语境充分；未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类限定归因的部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q03",
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 37.393,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "fd24a928e4f1dc582b6fafb8815566bc6e6cc536cdddb806dd7b868e22564ad3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 51149,
+            "output_tokens": 1093,
+            "reasoning_output_tokens": 146
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.446,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "98a48adf86ff6985d61ccb27f30556b6f36e3e6bfc825c688b0007bcf863fa8b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 51687,
+              "output_tokens": 518,
+              "reasoning_output_tokens": 212
+            }
+          }
+        },
+        "batch_id": "c224fcffa30651ec81468092f4e0de9a4a000eb975c5c5ed050d9dfdcb28859a"
+      }
     }
   ],
   "statements": [
@@ -112760,6 +112842,106 @@
         "request_sha256": "79ca1f5208a6109e35d6205204fa6e32380aaff35524509a4bbe09e149b5ee7d"
       },
       "object_mapping_check": "独立依据正文确定范围：Google是内部设计开发及规格提供方，对应actor:alphabet-google；OCP社区是规格提供对象，对应actor:open-compute-project；Project Deschutes明确为CDU设计，对应system:thermal下冷水与CDU链中的part:cdu。供应商未具名，不映射其他actor；相邻Google液冷部署与TPU内容不属于本条，不扩展至计算设备或整个数据中心。所选证据统一采用上述范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:21:claim:2:ev:0"
+      ],
+      "id": "adoption:review:f50cfb6c2beb025eea0931f5",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q03",
+        "M05-Q04"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第22页提出，当地反对意见增加可能影响向数据中心提供政策、监管及财政激励，例如税收豁免。这是IEA对潜在政策风险的可能性判断，不构成对激励已经退坡或具体项目已受影响的独立认证。该句未限定具体地域、项目或开发阶段；报告发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:28:11+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。当地反对可能影响税收等激励的判断，对当前M05-Q03的政策风险部分具有实质性贡献，并为M05-Q04提供社会反对向政策条件传导的间接机制线索。连续原文及周边语境充分；未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类限定归因的部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q03",
+          "Q-M05-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 37.393,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "fd24a928e4f1dc582b6fafb8815566bc6e6cc536cdddb806dd7b868e22564ad3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 51149,
+            "output_tokens": 1093,
+            "reasoning_output_tokens": 146
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.446,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "98a48adf86ff6985d61ccb27f30556b6f36e3e6bfc825c688b0007bcf863fa8b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 51687,
+              "output_tokens": 518,
+              "reasoning_output_tokens": 212
+            }
+          }
+        },
+        "batch_id": "c224fcffa30651ec81468092f4e0de9a4a000eb975c5c5ed050d9dfdcb28859a"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:21:claim:2"
+      ],
+      "limitations": "未列具体州或国家、政策名称、优惠力度、资格条件、实施期限或激励退坡案例，也未说明影响方向、幅度及实现时间。该句没有项目级反对行动、审批时间线或延期取消结果；不能将前文美国项目统计的地域和时间自动赋予本项预测。全文覆盖限于原生文字，未完成图像审阅。",
+      "conflict_check": "已采用的IEA税收激励促进投资陈述讨论政策目的，本项讨论当地反对可能影响激励供给，两者兼容且非重复。IEA公众审视与政策回应、Gallup公众态度及苏格兰组织和社区诉求均未包含本项特定激励风险判断，也未提供直接反证。当前回答为空，所供legacy匹配记录为空；未发现真实冲突，不替换既有结论。检查限于所供材料，不代表穷尽性外部反证检索。",
+      "gap_dependency_check": "M05-Q03仍需州或国家级政策原文、优惠力度和适用条件、比较基准、实际退坡记录及反证。M05-Q04仍需具体社区与项目、一手反对记录、审批及建设时间线、延期取消结果和可复查因果关系；本项只贡献潜在机制，不能作为案例结果。两项问题保持开放，不更新模型参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c224fcffa30651ec81468092f4e0de9a4a000eb975c5c5ed050d9dfdcb28859a",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "2f0851b47187906de8635614e5788e3133be0f6d0ea64fe142780d1b0eb137db"
+      },
+      "object_mapping_check": "独立审查后采用空对象范围：本项是未指定具体设施的数据中心行业政策风险判断，不能建立root所指一座AI数据中心的范围。合同没有税收激励或公众反对对象；政策、监管激励也未具体指向site:permits所定义的区划、环评、排放或建设许可。未涉及任何设施系统、部件或允许主体，不继承文档或既有陈述标签。所选证据统一采用空的主张级对象范围，保留有效问题关系，原始标签不变。"
     }
   ],
   "answers": [],
