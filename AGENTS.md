@@ -6,7 +6,9 @@
 
 同一主题在同一范围内只有一个现行规范入口。`docs/archive/`、审阅快照、原始材料和候选不是当前执行指令。不要把整份历史日志作为启动提示词。全行业研究、一棵树与五类变量、局部 MECE、逐篇深读与 C3 的具体定义按各自登记的正式源文件执行。
 
-撰写、修订格洛可长文前读取 `docs/geluoke/专题写作规则.md`：A「行业编辑讲解」为主、B「科技报道叙事」辅助；配图先回答紧邻正文的问题，按内容选地图、图表或工程图，重要标注直接入图；目录与提示词一起落实。
+文章写作、配图、制作、发布及生产端交付任务统一归 [inews.today 写作入口](https://github.com/niuroumiantt/inews.today/blob/main/docs/editorial/README.md) 与 [共同文风和配图总则](https://github.com/niuroumiantt/inews.today/blob/main/docs/editorial/style-and-figures.md)；产品分别采用 [微信日报](https://github.com/niuroumiantt/inews.today/blob/main/docs/geluoke-daily-delivery.md)、[网站专栏](https://github.com/niuroumiantt/inews.today/blob/main/docs/columns.md)、[研究报告](https://github.com/niuroumiantt/inews.today/blob/main/docs/editorial/research-report.md)。InResearch 不承担文章创作，不保留独立写作规则、生成脚本或写作定时任务，也不从历史模板恢复这些任务。`docs/handoff/` 中旧文章制作交接与历史提示词仅供追溯，不作现行写作标准；不重新提交其私有运营元数据。收到文章写作请求时转交 inews 的现行制作入口。
+
+InResearch 保留文章与日报的研究素材接收、来源核验、全文阅读、正式采用、既有文章展示，以及研究 UI 的白底技术图册和工程事实检查。按 `docs/local_reader/EDITORIAL_DELIVERY.md` 执行接收；接收、展示和格式校验不等于创作、阅读完成或正式采用。
 
 ## 更新闭环
 

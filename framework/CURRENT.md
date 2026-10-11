@@ -6,7 +6,7 @@
 
 本次整改及验收边界见 [重新审查与整改](../docs/reviews/2026-10-10/architecture-reassessment/PLAN.md)。现行分类保持：五系统；IT 分计算、存储、网络，存储再分内存与持久存储。采集任务由稳定父目标与参数需求细化；R1/R2 的来源责任、审核用途和派工边界见 06，模型情景边界见 05；定向原件到参数任务书的SHA绑定与显式阅读入口见06。接收、阅读、采用、回答分别计量。动态对象/估算/最新有效时点原则见01；独立三种时间、原生区间、分期和历史修订由统一用例执行，旧估算保留。存量封存复用见04/06，规划、采用与真实上线分别验收。
 
-2026-10-11：研究是否排队、插队或直接上线由用户决定；点名来源优先级贯通审核和新发表任务发现，单一队列所有者及验收标准保持。唯一入口见 [专栏与长文交付](../docs/local_reader/EDITORIAL_DELIVERY.md)。
+2026-10-11：研究是否排队、插队或直接上线由用户决定；点名来源优先级贯通审核和新发表任务发现，单一队列所有者及验收标准保持。唯一入口见 [文章与日报研究接收](../docs/local_reader/EDITORIAL_DELIVERY.md)。
 
 2026-10-11：首页按全球整体图景与每日变化重整。正式研究与 raw 来源资料并行可见；168条公开专题提取接入 raw 地图/台账投影，报道容量、国家级位置与正式 IT 合计分开，重点公司快捷入口和轻量首屏按05执行。规范及本地验证不证明已经部署或全球布局完整。
 
@@ -31,8 +31,8 @@
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
-| 格洛可专题长文 | [专题写作规则 v2.8](../docs/geluoke/专题写作规则.md) | 精简专题、图文交付、手机排版；本机交付路径见长文交接 |
-| 专栏与长文自动研究交付 | [自动交付协议](../docs/local_reader/EDITORIAL_DELIVERY.md) | editorial-sync；Spark 五分钟专栏同步；M5 封装后的长文 outbox 自动发送 |
+| 文章写作与生产职责 | [研究接收与职责边界](../docs/local_reader/EDITORIAL_DELIVERY.md) | 创作、配图、制作、发布和生产端发送统一归 [inews.today](https://github.com/niuroumiantt/inews.today/blob/main/docs/editorial/README.md)；本仓保留历史稿与研究 UI 图册 |
+| 文章与日报研究素材接收 | [研究接收协议](../docs/local_reader/EDITORIAL_DELIVERY.md) | editorial-sync、daily-receive；Spark 五分钟专栏接收；生产端 worker 实际切换先于旧脚本删除 |
 | 按影响验收与 CI | [CI 规范](../docs/CI.md) | validate、browser (core) 两个稳定门禁，管理员同样受限 |
 | 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、inresearch.interfaces.governance |
 
