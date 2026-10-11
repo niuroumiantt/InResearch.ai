@@ -59916,6 +59916,89 @@
         },
         "batch_id": "29b586f6e178fd379c1a093a980cbdea9e9e5703f7b2c6ea5fceb1f9095b3168"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "83374b3bdf88e25a38de45e5a27470977da1ae0aaee89c37961cb1994cd2389f",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:9:ev:0",
+      "locator": "page:32/chunk:31",
+      "object_ids": [],
+      "page_index": 31,
+      "question_ids": [
+        "NODE-demand-D3-conversion"
+      ],
+      "quote": "As a result, the IEA’s electricity consumption\n                  projections for data centres incorporate substantial improvements in energy efficiency over\n                  time but still point to sharply rising electricity demand from AI in the near term.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:23:12+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文和相邻原文充分支持限定归属的作者预测，对当前D3需求转换工单有实质贡献：说明推理与智能体任务需求增长和效率改善需要共同纳入用电预测，而效率改善在IEA预测中仍未抵消需求增长。仅作定性部分采用；未识别敏感材料、真实冲突、替换要求或其他A类条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 32.293,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ab7d5ee6077d93ae7441e6b4557d2a850918e5fc6391fc247d85241b2f647ff3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 53175,
+            "output_tokens": 1056,
+            "reasoning_output_tokens": 125
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.24,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "574c4eb649e663c87dc6ee9eeb746ca00193a0bb649a0143e64306bccff6a1f2",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 53693,
+              "output_tokens": 468,
+              "reasoning_output_tokens": 148
+            }
+          }
+        },
+        "batch_id": "030fb7290f8e0ce19f920636396ea8f1217ffe55efcea60d4aae621092abe051"
+      }
     }
   ],
   "statements": [
@@ -116116,6 +116199,104 @@
         "request_sha256": "b806ec3238ed2bcdba3ffd6659274f7d7d49c414fc64566028aa916bc9706d3e"
       },
       "object_mapping_check": "独立依据原生上下文，主张描述现已承载AI业务的Polaris Forge 1园区整体建设起点，符合root的整体数据中心范围，同时明确涉及Applied Digital的业务归属，支持actor:applied-digital。原始加密货币与HPC背景保留在采用文本中。引文未明确土建部件、供电工程、许可或并网权利，不下沉映射到设施系统、建筑部件或site节点；也不因HPC业务背景映射IT设备。两条所选证据统一使用这一主张范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:9:ev:0"
+      ],
+      "id": "adoption:review:0d2fc6580725734cee3195d6",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D3-conversion"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第32页称，其数据中心用电预测已纳入随时间显著改善的能源效率，但仍预计近期AI用电需求急剧增长。这是IEA的预测，不是已实现需求增长的独立验证；所供原文未确立报告出版时间、“近期”的具体年份、适用地域或具体部署项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:23:12+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文和相邻原文充分支持限定归属的作者预测，对当前D3需求转换工单有实质贡献：说明推理与智能体任务需求增长和效率改善需要共同纳入用电预测，而效率改善在IEA预测中仍未抵消需求增长。仅作定性部分采用；未识别敏感材料、真实冲突、替换要求或其他A类条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 32.293,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ab7d5ee6077d93ae7441e6b4557d2a850918e5fc6391fc247d85241b2f647ff3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 53175,
+            "output_tokens": 1056,
+            "reasoning_output_tokens": 125
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.24,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "574c4eb649e663c87dc6ee9eeb746ca00193a0bb649a0143e64306bccff6a1f2",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 53693,
+              "output_tokens": 468,
+              "reasoning_output_tokens": 148
+            }
+          }
+        },
+        "batch_id": "030fb7290f8e0ce19f920636396ea8f1217ffe55efcea60d4aae621092abe051"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:31:claim:9"
+      ],
+      "limitations": "本项没有给出效率改善幅度、用电预测数值、任务或token到电力的转换系数、时滞及实测验证。不能据此认定增长已经实现，不能推断所有推理任务能耗均上升，也不能填入模型参数或换算、汇总GW。全文读取仅覆盖原生文字，未完成视觉复核。",
+      "conflict_check": "已比对所供采用陈述及legacy记录。Google单位提示效率改善、IEA单次查询能耗下降预测讨论单位能耗，与本项总需求预测的分母不同，不构成真实冲突。既有智能体复合计算需求及边缘部署预测讨论局部机制，不是本项IEA预测纳入效率假设的规范重复，也不构成独立互证。英伟达产品性能预测和德国余热利用门槛没有提供同口径反证。未发现可确认冲突或重复；检查限于所供材料，不改写既有结论。",
+      "gap_dependency_check": "NODE-demand-D3-conversion仅获得需求增长与效率假设共同影响电力需求的定性支持。仍需带日期的IEA模型方法、效率路径、推理与其他负载构成、任务或token计量边界、转换系数、时滞、实测校验及反证；网络和存储需求关系未获本项支持。问题保持开放，封存摘要不能补齐这些缺项。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "030fb7290f8e0ce19f920636396ea8f1217ffe55efcea60d4aae621092abe051",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "3c9032ada9bd8608a4d3acfa35df0669ca1c2704c7dada87c0ef03fdc6c928e5"
+      },
+      "object_mapping_check": "独立复核后，本项范围是数据中心总体用电预测与AI需求趋势。契约中的root为一座AI数据中心，其系统、链条及部件均属于该设施资产；原句未建立单座设施或具体设备范围，IEA也没有契约允许的主体对象。因此不继承候选及证据的root标签，所选证据采用同一空对象范围，保留有效的D3问题关系。"
     }
   ],
   "answers": [],
