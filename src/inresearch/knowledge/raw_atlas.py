@@ -6,6 +6,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from inresearch.knowledge.industry import public_url, number, project
 from inresearch.knowledge import news_observations as observe
+from inresearch.knowledge.site_timeline import current, adoptions
 
 BEIJING = timezone(timedelta(hours=8))
 COUNTRY_NAMES = {'CN':'China','US':'United States of America','AU':'Australia','FI':'Finland','GB':'United Kingdom','IN':'India','PH':'Philippines','TH':'Thailand','MY':'Malaysia','SG':'Singapore','SE':'Sweden','NO':'Norway','JP':'Japan','KR':'South Korea','DE':'Germany','FR':'France','CA':'Canada','BR':'Brazil','MX':'Mexico','AE':'United Arab Emirates','SA':'Saudi Arabia','IE':'Ireland','NL':'Netherlands','DK':'Denmark','TW':'Taiwan','CL':'Chile','ES':'Spain','IT':'Italy','BE':'Belgium','ID':'Indonesia','HK':'Hong Kong','VN':'Vietnam','KH':'Cambodia','BN':'Brunei','LA':'Laos'}
@@ -131,7 +132,7 @@ def enrichment(event):
 def build(root, feed, leads, *, received_at=None, available=False, truncated=False, now=None):
     root=Path(root)
     site_path=root/'data/projects.json';company_path=root/'data/companies.json'
-    sites={r['site_id']:r for r in json.loads(site_path.read_text())['records']} if site_path.exists() else {}
+    sites={r['site_id']:current(r) for r in json.loads(site_path.read_text())['records']} if site_path.exists() else {}
     companies=json.loads(company_path.read_text())['records'] if company_path.exists() else []; company_ids={r['company_id'] for r in companies}
     from inresearch.materials.daily_events import COUNTRIES
     company_terms=_company_terms(companies)
@@ -169,7 +170,7 @@ def build(root, feed, leads, *, received_at=None, available=False, truncated=Fal
                   location=short(event.get('location') or row.get('location')),
                   coordinates=None,location_precision='unknown',region=None,
                   capacity_observations=observations,reported_stage=short(event.get('reported_stage') or row.get('reported_stage'),40) or 'reported',
-                  verification_status='project_adopted' if site and site.get('adoption') else 'raw',capacity_adopted=False,
+                  verification_status='project_adopted' if site and adoptions(site) else 'raw',capacity_adopted=False,
                   origin=row.get('origin') or 'news_feed')
         if site:
             item.update(coordinates=project(site)['coordinates'], location=site.get('location'),region=site.get('region'))
@@ -230,8 +231,9 @@ def build(root, feed, leads, *, received_at=None, available=False, truncated=Fal
     values=sorted(records.values(),key=lambda r:(r['published_date'] or r['report_date'] or r.get('publication_date') or '',r['published_at'],r['received_at'] or ''),reverse=True)
     today=(now or datetime.now(timezone.utc)).astimezone(BEIJING).date().isoformat()
     fresh=[r for r in values if r['published_date']==today]
-    adopted=[s for s in sites.values() if s.get('adoption')]
-    updates=sum(local_date(s['adoption'].get('review',{}).get('at') or s['adoption'].get('reviewed_at'))==today for s in adopted)
+    adopted=[s for s in sites.values() if adoptions(s)]
+    updates=sum(any(local_date(a.get('review',{}).get('at') or a.get('reviewed_at'))==today
+                    for a in adoptions(s)) for s in adopted)
     groups=[]
     for code in sorted({r['country_code'] for r in values if r.get('origin')=='research_publication' and r.get('country_code')}):
         subset=[r for r in values if r.get('origin')=='research_publication' and r.get('country_code')==code]

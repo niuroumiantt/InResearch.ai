@@ -8,6 +8,7 @@ from pathlib import Path
 from inresearch.storage.files import locked, write_json
 from inresearch.knowledge.industry import public_url
 from inresearch.knowledge import news_observations as observations
+from inresearch.knowledge.site_timeline import current
 
 STATES = ('lead', 'reviewing', 'paused', 'cancelled', 'linked')
 
@@ -22,6 +23,7 @@ def read(home):
 
 def signals(item, sites, companies=()):
     """Low-threshold observations, never an adopted capacity or construction fact."""
+    sites = [current(site) for site in sites]
     title = ' '.join(str(item.get(k) or '') for k in ('title_zh', 'title'))
     text = title.casefold()
     relevant = item.get('event_type') in ('project_milestone', 'lease_contract') or (
