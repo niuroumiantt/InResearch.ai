@@ -69,14 +69,23 @@ def prepare(root,data,claims):
         evidence=claim['evidence'];sha=evidence['sha256']
         if sha not in cached:
             path,url,first=source(data,sha)
-            if path.suffix=='.json':
+            if path.suffix.lower()=='.xlsx':
+                from inresearch.adapters.xlsx_document import Workbook
+                native=Workbook(path);mode='xlsx'
+            elif path.suffix=='.json':
                 native=json.loads(path.read_text(encoding='utf-8')); mode='json'
             else:
                 from inresearch.workflow.research_match import pages
                 native=pages(path);mode='pages'
             cached[sha]=(native,mode,url,first,path)
         native,mode,url,first,path=cached[sha];loc=evidence['locator']
-        if mode=='json':
+        if mode=='xlsx':
+            from inresearch.adapters.xlsx_document import matches_value
+            cell,context=native.select(loc)
+            if not matches_value(cell,claim['value']): raise ValueError('native_xlsx_value_mismatch')
+            quoted=cell['value']
+            if evidence.get('quote',quoted)!=quoted: raise ValueError('native_xlsx_quote_mismatch')
+        elif mode=='json':
             observed=pointer(native,loc)
             # Native scalar extraction cannot silently change the source value.
             if observed!=claim['value'] or type(observed)!=type(claim['value']): raise ValueError('native_json_value_mismatch')

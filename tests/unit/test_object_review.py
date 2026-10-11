@@ -47,6 +47,36 @@ class ObjectReviewTests(unittest.TestCase):
         self.claim['evidence'].update(locator='html:srcdoc:2',quote='64 GB')
         with self.assertRaisesRegex(ValueError,'locator_required'):self.proposal()
 
+    def test_native_xlsx_extraction_adoption_replay_and_context_revalidation(self):
+        from tests.unit.test_xlsx_document import workbook_bytes
+        from inresearch.workflow.stock_objects import extract
+        body=workbook_bytes();sha=hashlib.sha256(body).hexdigest()
+        original=self.data/'acquisition/blobs'/sha[:2]/(sha+'.xlsx')
+        original.parent.mkdir(parents=True);original.write_bytes(body)
+        self.db.execute('INSERT INTO product_documents VALUES(?,?,?,?)',(sha,'https://www.micron.com/test','xlsx','2026-10-01T00:00:00Z'));self.db.commit()
+        loc='xlsx:sheet:1:cell:C2:context:A1:E3'
+        plan=[{'sha256':sha,'object':self.obj,'scope':{'condition':'synthetic estimate fixture'},
+               'basis':'native table with headers and footnotes; not real data','assumptions':['synthetic forecast fixture'],
+               'fields':[{'locator':loc,'metric':'fixture.capacity','kind':'forecast','unit':'MW'}]}]
+        claims=extract(self.root,self.data,plan+plan)
+        self.assertEqual(len(claims),1);self.assertEqual(claims[0]['value'],'64.00')
+        self.assertFalse((self.root/ledger.PATH).exists())
+        proposal=self.proposal(claims);proposal['review']['public_fields_reviewed']=True
+        self.assertEqual(workflow.apply(self.root,self.data,proposal)['records'],1)
+        before=(self.root/ledger.PATH).read_bytes()
+        self.assertEqual(workflow.apply(self.root,self.data,proposal)['state'],'already_applied')
+        self.assertEqual(before,(self.root/ledger.PATH).read_bytes())
+        row=ledger.load(self.root)['records'][0]
+        self.assertEqual(row['source']['quote'],'64.00');self.assertEqual(row['source']['locator'],loc)
+        self.assertIsNone(row['effective_at']);self.assertIsNone(row['source']['published_at'])
+        changed=copy.deepcopy(proposal);changed['claims'][0]['evidence']['locator']=loc.replace('E3','E2')
+        with self.assertRaisesRegex(ValueError,'changed_since_review'):workflow.apply(self.root,self.data,changed)
+        changed=copy.deepcopy(proposal);changed['claims'][0]['value']='65.00'
+        with self.assertRaisesRegex(ValueError,'xlsx_value_mismatch'):workflow.apply(self.root,self.data,changed)
+        original.write_bytes(body+b'changed')
+        with self.assertRaisesRegex(ValueError,'source_bytes_changed'):workflow.apply(self.root,self.data,proposal)
+        self.assertEqual(before,(self.root/ledger.PATH).read_bytes())
+
     def test_target_free_adoption_and_exact_no_write_replay(self):
         p=self.proposal();self.assertEqual(workflow.apply(self.root,self.data,p)['state'],'applied');before=(self.root/ledger.PATH).read_bytes()
         self.assertEqual(workflow.apply(self.root,self.data,p)['state'],'already_applied');self.assertEqual(before,(self.root/ledger.PATH).read_bytes())
