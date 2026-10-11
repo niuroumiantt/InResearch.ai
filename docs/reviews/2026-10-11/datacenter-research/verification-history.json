@@ -34,6 +34,21 @@
         "correction": "Single-backslash regex literals verified matching disclosed 0.672 and 0.9 text; failed browser did not reach these assertions."
       },
       "scope": "Failures retained; corrected candidate requires independent final-head CI."
+    },
+    {
+      "head": "8315f670b042c7802e9af52d79a11792f5792053",
+      "run_id": 38099874141,
+      "status": "failed",
+      "actual_failures": [
+        {
+          "job_id": 114353618793,
+          "job": "browser (core_b)",
+          "test": "ui_skin",
+          "reason": "At 360px the search input fixed width expanded its grid track, producing page width377; regional article pages and theme checks passed.",
+          "correction": "Constrain the search label grid track to minmax(0,1fr), allow its minimum width to shrink, and bound the search input width to available space. Preserve local table scrolling and existing viewport assertions."
+        }
+      ],
+      "scope": "Actual failure retained; specialized research_delivery assertions were not reached. Corrected final head requires independent full CI."
     }
   ]
 }

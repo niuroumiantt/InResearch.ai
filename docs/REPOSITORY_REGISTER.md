@@ -1741,7 +1741,7 @@
 | `docs/reviews/2026-10-10/project-audit/spark-measurements.json` | acquisition_tables | 5 |
 | `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | scope_notes | 6 |
 | `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | records | 2 |
-| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 2 |
+| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 3 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
