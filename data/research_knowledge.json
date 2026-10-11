@@ -6136,6 +6136,148 @@
       "partial_support_only": true,
       "model_input_verified": false,
       "source_time_status": "Original TXT has no publication/run date; pinned commit identifies the version, not a date"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "coverage": {
+        "characters_read": 11453,
+        "characters_total": 11453,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "library_path": "library/by-node/root/2023_DCD_Ongoing supply chain disruption continues to take its t__787ecb5b01cf879c.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:power/4",
+        "root"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-chain",
+        "NODE-activity-V2-chain",
+        "NODE-demand-D1-conversion"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "report_sha256": "1f9750d87ea247b7753f7ae691697d1f0ffeff1e6407067198cfa803d42843bd",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+        "url": "https://www.datacenterdynamics.com/en/opinions/ongoing-supply-chain-disruption-continues-to-take-its-toll/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/opinions/ongoing-supply-chain-disruption-continues-to-take-its-toll/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/78/787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32/dcd-787ecb5b01cf879c-Ongoing supply chain disruption continues to take its toll.html",
+      "title": "Ongoing supply chain disruption continues to take its toll"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "coverage": {
+        "characters_read": 3447,
+        "characters_total": 3447,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "library_path": "library/by-node/part-server/2025_MLCommons；提交方 NVIDIA_MLPerf Inference v5.0：NVIDIA DGX H100（8×H100-SXM-80GB，T__5af8f516cd3a175d.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:nvidia",
+        "actor:nvidia-networking",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:server",
+        "part:ssd",
+        "root"
+      ],
+      "question_ids": [
+        "M12-Q07",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile",
+        "OBJ-server-definition",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "report_sha256": "399de74f060d2a09e0064eaf0ad5327722df5c3708c056f31fafd8399911a900",
+      "research_requests": [
+        {
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad",
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "question_id": "M12-Q07",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "scope_values": {
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景"
+          },
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-mlperf-h100-readme.md",
+        "url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/README.md",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/README.md",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/5a/5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083/mlperf-h100-readme.html",
+      "title": "MLPerf Inference v5.0：NVIDIA DGX H100（8×H100-SXM-80GB，TensorRT）"
     }
   ],
   "evidence": [
@@ -47920,6 +48062,271 @@
         "authority_boundary": "New or supplemental scoped research only; no existing conclusion replacement, original redistribution or model-input certification",
         "replaces_record_ids": [],
         "relaxes_distribution": false
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0e515cb6175f2c0a4a3cee21b7d7bf7642da8352528b375898f0921230d4e18a",
+      "document_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "id": "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:12:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "part:pdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-activity-V2-chain"
+      ],
+      "quote": "Furthermore, two-fifths of the participants encountered similar issues with sourcing power distribution units/components, and an additional third cited difficulties in obtaining switchgear.",
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "source_sha256": "787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:17:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文和完整页面上下文充分支持有明确归因的历史调查陈述；具体设备采购困难比例对当前开关柜瓶颈及硬件交付约束研究有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-M09-Q07",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.501,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "438336aed44976c20caee6ad5beff45eb841fb1cd564181b851d8ba60c91c391",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65407,
+            "output_tokens": 1539,
+            "reasoning_output_tokens": 351
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.768,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c1fd66e6bb9aab6c7ee8c74567409c9cfbc0338ca145617a82e92a5560d03511",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 66186,
+              "output_tokens": 574,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "7677495a0f5c7c949ecd968b10b8e6667fa249a4efc694015d3e48dde10e7e07"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d5eae89b11b2bfdc879df4bb25304c1104efe292da00bfd041898fc8f8d12a64",
+      "document_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "id": "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:server"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M12-Q07",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "quote": "framework  | TensorRT 10.8, CUDA 12.8  |",
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "source_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:21:22+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性5，评分5。软件依赖实质匹配当前服务器接口工单，并为性能工况和 M12-Q07 吞吐样例提供部分配置支持。两条连续原文及完整 Software Details 上下文充分支持字段观察；未发现本项的敏感、真实冲突或替换条件，可按B有限采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M12-Q07",
+          "Q-OBJ-server-interfaces",
+          "Q-OBJ-server-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 121.576,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "af5ece1e5a6d76772956a4c864a9c24c4e9625db9dc5a20c48879b7ec7411d12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59389,
+            "output_tokens": 4613,
+            "reasoning_output_tokens": 1676
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.557,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd39909a46a15dbbbe2529195a35911c0e76a727faaf606b9d4afebd66d3869",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59189,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 187
+            }
+          }
+        },
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d5eae89b11b2bfdc879df4bb25304c1104efe292da00bfd041898fc8f8d12a64",
+      "document_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "id": "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:server"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M12-Q07",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "quote": "operating_system  | Ubuntu 24.04  |\n\nother_software_stack  | TensorRT 10.8, CUDA 12.8, cuDNN 8.9.7, Driver 550.90  |",
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "source_sha256": "5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:21:22+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性5，评分5。软件依赖实质匹配当前服务器接口工单，并为性能工况和 M12-Q07 吞吐样例提供部分配置支持。两条连续原文及完整 Software Details 上下文充分支持字段观察；未发现本项的敏感、真实冲突或替换条件，可按B有限采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M12-Q07",
+          "Q-OBJ-server-interfaces",
+          "Q-OBJ-server-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 121.576,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "af5ece1e5a6d76772956a4c864a9c24c4e9625db9dc5a20c48879b7ec7411d12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59389,
+            "output_tokens": 4613,
+            "reasoning_output_tokens": 1676
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.557,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd39909a46a15dbbbe2529195a35911c0e76a727faaf606b9d4afebd66d3869",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59189,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 187
+            }
+          }
+        },
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda"
       }
     }
   ],
@@ -93145,6 +93552,231 @@
           "published_at_provenance": "unknown_native_log_and_system_metadata_have_no_publication_date",
           "first_received_at": "2026-10-11T02:32:06.931736+00:00",
           "first_received_at_provenance": "acquisition_first_recorded_archive_receipt"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-787ecb5b01cf879c84481b653a6d761a81b70e3951a0f6c89f249bef0714fa32",
+      "evidence_ids": [
+        "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:12:ev:0"
+      ],
+      "id": "adoption:review:a03c8d4f642f7a10c948b878",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power",
+        "part:pdu"
+      ],
+      "question_ids": [
+        "M09-Q07",
+        "NODE-activity-V2-chain"
+      ],
+      "reading_revision_id": "rev-e356a6620bbe433c92821cbc454c31fc",
+      "status": "adopted",
+      "text": "BCS Consultancy的Chris Coward（Business Critical Solutions项目管理总监）在DCD于2023年11月2日发表的《Ongoing supply chain disruption continues to take its toll》中报告，在其介绍的欧洲数据中心专业人士供应链调查中，五分之二的参与者遇到配电单元／组件采购困难，另有三分之一表示难以取得开关设备。原文未指定开关设备的电压等级。这是作者报告的受访者采购经历，不构成对当前设备供应、制造产能或项目交付状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:17:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文和完整页面上下文充分支持有明确归因的历史调查陈述；具体设备采购困难比例对当前开关柜瓶颈及硬件交付约束研究有实质性局部贡献。仅采用为部分证据，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-M09-Q07",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.501,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "438336aed44976c20caee6ad5beff45eb841fb1cd564181b851d8ba60c91c391",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65407,
+            "output_tokens": 1539,
+            "reasoning_output_tokens": 351
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.768,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c1fd66e6bb9aab6c7ee8c74567409c9cfbc0338ca145617a82e92a5560d03511",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 66186,
+              "output_tokens": 574,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "7677495a0f5c7c949ecd968b10b8e6667fa249a4efc694015d3e48dde10e7e07"
+      },
+      "source_candidate_ids": [
+        "rev-e356a6620bbe433c92821cbc454c31fc:chunk:0:claim:12"
+      ],
+      "limitations": "正文将调查对象描述为3500名欧洲数据中心资深专业人士，但未提供本项有效回答数、各设备问题的统计分母、抽样方法、问卷或原始数据。确切调查日期未建立；相邻冷却设备和UPS段落提及过去一年，本句没有单独明确回顾窗口。未给出国家分布、厂商、设备规格、电压等级、采购数量、交期、产能缺口或困难原因，也未限定AI数据中心。内容属于设备采购环节，未证明具体项目已进入安装、验收或投运阶段。两类比例不能相加或理解为互斥群体。",
+      "conflict_check": "已采用的adoption:review:3b6b0c631d6bce8e2ef102e3涉及Siemens Energy变压器扩产及电网技术业务订单，设备、指标与时点不同，不与本项采购困难比例直接冲突。adoption:review:745696da226b39bf5b38ebf1强调设备发布至实际交付仍需取证，与本项兼容。所供legacy开关设备成本占比、市场规模及预测均有不同分母、地域或时间，不能作为本项受访者采购经历的同口径反证。其他已采用工艺、机柜和TPU声明未覆盖本项；未发现完整重复规范记录。当前回答为空，合同及项目匹配记录为空；检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "M09-Q07获得开关设备采购困难的需求侧症状，但没有变压器证据，也未证明困难由制造产能瓶颈造成；仍需电压与产品分类、厂商产能、订单、交期及反证。NODE-activity-V2-chain获得欧洲电气硬件采购约束线索，仍缺制造、集成与分销关系、交付周期、下游需求兑现、约束传导、反例和经验证的领先指标。设备类别材料不能自动覆盖整个活动节点。两个问题均保持开放，不更新模型输入、容量总量或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7677495a0f5c7c949ecd968b10b8e6667fa249a4efc694015d3e48dde10e7e07",
+        "source_report_sha256": "1f9750d87ea247b7753f7ae691697d1f0ffeff1e6407067198cfa803d42843bd",
+        "request_sha256": "e87c4756eb43c10c2826ab8b3f94b78810081214bd4d2523dab76957894e36f7"
+      },
+      "object_mapping_check": "独立依据对象契约核对：明确出现的power distribution units支持配电链下的part:pdu；配电设备及开关设备共同支持system:power的电气设备范围。components未细分，不另映射母线、电源模块等部件；switchgear未给电压等级，不能选择中压开关柜、低压开关柜或高压开关站，也不能据此确定变电链范围。不继承Reader的root或文档UPS链标签：本项未建立一座AI数据中心或UPS采购的声明范围。所选证据统一使用这一复核后的声明级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5af8f516cd3a175d18bae76651b7c7adca5c4f4b462f44e05adc70f149bc6083",
+      "evidence_ids": [
+        "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:0",
+        "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8:ev:1"
+      ],
+      "id": "adoption:review:4b31c0f8afb3fa1643a93942",
+      "kind": "observation",
+      "object_ids": [
+        "part:server"
+      ],
+      "question_ids": [
+        "M12-Q07",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "reading_revision_id": "rev-f518d97e75674f4bb6a69d6632af24f4",
+      "status": "adopted",
+      "text": "MLCommons 固定提交 0bc17ab3f4b33f730d7869e04cc29cb70835e513 中，提交方 NVIDIA 的 MLPerf Inference v5.0 closed、datacenter 类别 DGX H100（8×H100-SXM-80GB、TensorRT）README 在 Software Details 列出：framework 为 TensorRT 10.8、CUDA 12.8；operating_system 为 Ubuntu 24.04；other_software_stack 为 TensorRT 10.8、CUDA 12.8、cuDNN 8.9.7、Driver 550.90。本项为原生配置字段观察，不是当前独立认证的兼容性或运行环境。页首标注 February 2025，具体发布日期、运行日期及测试地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T06:21:22+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "C3 Codex /root 保留原始重要性5，评分5。软件依赖实质匹配当前服务器接口工单，并为性能工况和 M12-Q07 吞吐样例提供部分配置支持。两条连续原文及完整 Software Details 上下文充分支持字段观察；未发现本项的敏感、真实冲突或替换条件，可按B有限采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M12-Q07",
+          "Q-OBJ-server-interfaces",
+          "Q-OBJ-server-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 121.576,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "af5ece1e5a6d76772956a4c864a9c24c4e9625db9dc5a20c48879b7ec7411d12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59389,
+            "output_tokens": 4613,
+            "reasoning_output_tokens": 1676
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.557,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd39909a46a15dbbbe2529195a35911c0e76a727faaf606b9d4afebd66d3869",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59189,
+              "output_tokens": 537,
+              "reasoning_output_tokens": 187
+            }
+          }
+        },
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda"
+      },
+      "source_candidate_ids": [
+        "rev-f518d97e75674f4bb6a69d6632af24f4:chunk:0:claim:8"
+      ],
+      "limitations": "字段列示不证明软件实际安装、成功运行、兼容矩阵或互换限制，也不能确定 PP2x4 配置、全链路精度、输入输出长度分布及实际并发。README 覆盖整机提交，不能仅凭这些字段完成与指定 Server run_1 的逐项配置对应。未提供价格、成本或负载率测量。",
+      "conflict_check": "已采用 framework 记录仅覆盖 TensorRT/CUDA，本项增加操作系统、cuDNN 和 Driver，整体不是重复。现有吞吐及算术均摊结论不与软件字段观察冲突；训练故障及能耗方法记录属于其他工况。所供 legacy 匹配记录为空，检查不代表全面外部反证搜索。未发现所采用字段的直接冲突，不替换现有结论。",
+      "gap_dependency_check": "OBJ-server-interfaces 尚缺接口规范、兼容验证及限制互换的条件；OBJ-server-performance 尚缺版本对应的测试方法和完整运行工况。M12-Q07 及 tokens_per_gpu_sec 需求仅获得软件范围支持，仍需精度、长度分布、实际并发、完整配置对应及成本证据。请求中的条件不能补作源证据，不关闭问题或认证模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f9fcc6db59e9f41838d21bcb04d9a97c9b007bf018ab6c92a7a857d77f645bda",
+        "source_report_sha256": "399de74f060d2a09e0064eaf0ad5327722df5c3708c056f31fafd8399911a900",
+        "request_sha256": "5114dc602eda80e78d5765f2fc1ad7979998c328a7f4b6ef004f0a03aa208a15"
+      },
+      "object_mapping_check": "独立按对象合同核对：所列运行栈明确属于 DGX H100 加速器服务器整机，映射计算链下 part:server。软件版本不属于 DCIM/BMS 与固件控制链；本项也没有 GPU 独立性能、网络资产或整座数据中心范围，不继承 Reader 的其他标签。",
+      "quantitative_checks": {
+        "basis_check": "保留 observation 类型，依据原生配置表字段；没有重新执行安装、兼容性或基准测试，不将元数据升级为运行事实。",
+        "comparability_check": "版本一致仅提供配置比较线索，不能证明工作负载、精度、并发或性能相同，也不能外推其他模型、Offline 场景或当前模型参数。",
+        "derivation_check": "不适用算术推导：本项仅直接读取版本字段，未计算系统或单GPU吞吐。独立第二核验确认各字段、栏目和整机身份对应。",
+        "scope_check": "观察范围为该固定提交的 NVIDIA DGX H100 8卡整机 README 软件配置字段；不是指定单卡或生产服务的运行测量。",
+        "time_check": "原生页仅标注 February 2025；不能据此确认具体发布日期或运行时间。固定提交标识版本，采集和审核时间不作为测试有效时间。",
+        "units_check": "10.8、12.8、24.04、8.9.7 和 550.90 均为版本标识，不是吞吐、精度、时延或成本数值；物理量单位不适用。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M12-Q07",
+          "rationale": "TensorRT/CUDA 等字段部分支持请求中的配置范围，但本项没有 tokens/s/GPU 数值或推导，也未核实其他验收工况；不能认证、替换当前吞吐参数或关闭问题。",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "status": "partial_support"
         }
       ]
     }
