@@ -21800,6 +21800,496 @@
       "recorded_at": "2026-10-11T17:41:46.217534+00:00",
       "proposal_sha256": "27f4d06b823df5b510f4cd028d057c1ffbb9fc8ba0e7080e7002199fcf6ae4b0",
       "claim_sha256": "1449791c03055548749f5c04df5562719c8c7dd45306a20a3ac58c225d5f5248"
+    },
+    {
+      "metric": "system.nvswitch_count",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "2x",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:a0c2c71004cae1ae5070bf6d47f13d65",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "2x",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "30a8ceef4c942c616fa89863620d84880cc1ed84cfe59c4315c20971983c0c90"
+    },
+    {
+      "metric": "system.cpu_configuration",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "2 Intel® Xeon® Platinum 8570 Processors\n112 Cores total, 2.1 GHz (Base),\n4 GHz (Max Boost)",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:c7978ac8e1aea32e8da61f2179102e24",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "2 Intel® Xeon® Platinum 8570 Processors\n112 Cores total, 2.1 GHz (Base),\n4 GHz (Max Boost)",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "ff15d6dd4acfec81edbd0befa2ed883e1d7e64c2902cad7160edc2c5277ce9cf"
+    },
+    {
+      "metric": "system.host_memory_configuration",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "2 TB, configurable to 4 TB",
+      "unit": "TB",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:3b68449b77054b3c86dae5f60a03a2af",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "2 TB, configurable to 4 TB",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "cbe586290e413ab49c1119e54e87a99462304bb14677983a8fbc2f86a1a66456"
+    },
+    {
+      "metric": "system.network_configuration",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "4x OSFP ports serving 8x single-port NVIDIA ConnectX-7 VPI\n\nUp to 400 Gb/s NVIDIA InfiniBand/Ethernet\n\n2x dual-port QSFP112 NVIDIA BlueField-3 DPU\n\nUp to 400 Gb/s NVIDIA InfiniBand/Ethernet",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:8bbb3db9a6ff20fe5f0acda21507619d",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "4x OSFP ports serving 8x single-port NVIDIA ConnectX-7 VPI\n\nUp to 400 Gb/s NVIDIA InfiniBand/Ethernet\n\n2x dual-port QSFP112 NVIDIA BlueField-3 DPU\n\nUp to 400 Gb/s NVIDIA InfiniBand/Ethernet",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "fa524afa75f4e09bd549d4eca478ee4b79bf9bb748ebd5da5b875a513d460a86"
+    },
+    {
+      "metric": "system.management_network",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "10 Gb/s onboard NIC with RJ45\n100 Gb/s dual-port ethernet NIC\nHost baseboard management controller (BMC) with RJ45",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:406c8e9d5a713f130e172a0e381607f1",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "10 Gb/s onboard NIC with RJ45\n100 Gb/s dual-port ethernet NIC\nHost baseboard management controller (BMC) with RJ45",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "670a6b37054cc4ae727f57055967655add0d7914d9e6eb130866929ad0b9c617"
+    },
+    {
+      "metric": "system.storage_configuration",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "OS: 2x 1.9 TB NVMe M.2\nInternal storage: 8x 3.84 TB NVMe U.2",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:d80225e521038be1984493fedb82cfd2",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "OS: 2x 1.9 TB NVMe M.2\nInternal storage: 8x 3.84 TB NVMe U.2",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "c428376dab01fe048b0b75db7fdaa0efffba5c9191b5980330a271b098d8f32d"
+    },
+    {
+      "metric": "system.software_configuration",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "NVIDIA AI Enterprise – Optimized AI Software\nNVIDIA Mission Control – AI Data Center Operations and Orchestration with NVIDIA Run:ai Technology\nNVIDIA DGX OS / Ubuntu – Operating System",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:7963d341b8c5ef103c608529ac9312db",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "NVIDIA AI Enterprise – Optimized AI Software\nNVIDIA Mission Control – AI Data Center Operations and Orchestration with NVIDIA Run:ai Technology\nNVIDIA DGX OS / Ubuntu – Operating System",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "789f1ed5017bada52be26e22a05769faad1285d2f8a84bbfc08e9712c6ed4ac1"
+    },
+    {
+      "metric": "system.rack_units",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "10 RU",
+      "unit": "RU",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:7f629b5875ee8c2c78cf99239e75130d",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "10 RU",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "5e2fa25d3f3beda9075536386570ada1e7f2649a27f8187cde99ecb96dfac3f8"
+    },
+    {
+      "metric": "system.dimensions",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "Height: 17.5 in (444 mm)\nWidth: 19.0 in (482.2 mm)\nLength: 35.3 in (897.1 mm)",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:c1d17a29b8229b7a154fe26f368b8853",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "Height: 17.5 in (444 mm)\nWidth: 19.0 in (482.2 mm)\nLength: 35.3 in (897.1 mm)",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "aa78cd020a02f3437fde484768252268a466c1255dc38838f530fa926459aacd"
+    },
+    {
+      "metric": "system.support",
+      "scope": {
+        "configuration": "DGX B200 whole system as archived by receiver",
+        "measurement": "manufacturer specification, not observed site consumption or procurement quote"
+      },
+      "value": "Three-year Enterprise Business-Standard Support for hardware and software",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA DGX B200 specification table; preserve complete cell, option/up-to limits and per-port/storage configuration.",
+      "effective_at": null,
+      "assumptions": [
+        "System-level host CPU/memory/network/storage configurations must not be treated as per-GPU values.",
+        "Publication and effective dates are not disclosed for this table; nearby FAQ benchmark dates do not date these specifications."
+      ],
+      "id": "observation:2b0d88646ce0b8b5e7143526b167ab75",
+      "object_id": "product:238ee0388fb738b1d45bba9f87f4354c",
+      "source": {
+        "sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+        "url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+        "locator": "excerpt:page:1",
+        "quote": "Three-year Enterprise Business-Standard Support for hardware and software",
+        "context_sha256": "24e3a1b3123c931612c9c63e1ae1cd7898c03d8e6b8b546790d78366fd05499f",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.625978+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (DGX configuration source-field review in this session)",
+        "at": "2026-10-11T19:42:40.917790+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed ten exact cells of the archived NVIDIA DGX B200 table:NVSwitch, CPU, host RAM options, networking, management networking, OS/internal storage, software, rack units, dimensions and support. Preserved full configurations, up-to rates and per-port topology; no summed bandwidth or storage calculation. All are whole-system manufacturer specs, not GPU-local metrics, observed site measurements or purchased contractual support. Native table has no effective/publication date; keep null and retain earliest receiver receipt. Existing records are not revised; all417 prior ledger records remain. Network cell boundary explicitly checked against next Management Network heading. No whole-document Reader completion, model validation or question closure is claimed.",
+        "delegation": {
+          "delegate": "Codex (DGX configuration source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T19:42:40.917790+00:00",
+      "recorded_at": "2026-10-11T19:42:41.006399+00:00",
+      "proposal_sha256": "db342980ae91df96366ee88f34d20cff2725cff2c30ef2a73bb5425401b31c49",
+      "claim_sha256": "597110021816bfd561f8320aa0b4894d38b2bae09cb36dcb6d1d1f6d92b2385b"
     }
   ]
 }
