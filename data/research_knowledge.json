@@ -52821,6 +52821,91 @@
         },
         "batch_id": "9f7d57611d8ae68869f35c324a9b633db4e466ae4cad0e5aabf78cafa2dfb5ed"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "172cd11f12a0472cfe100ace79e735926c9f50b974445d2578e75023abc6fe16",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:53:claim:8:ev:0",
+      "locator": "page:54/chunk:53",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "page_index": 53,
+      "question_ids": [
+        "OBJ-prime-power-supply"
+      ],
+      "quote": "Companies outside the United States accounted for nearly 60% of the global market and\n                    increased orders by one-third in 2025 relative to 2024.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T11:10:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。全球燃机订单需求的区域结构与年度变化实质贡献于当前主用自备电源供应研究，但采用范围仅为供需背景。连续完整引文及相邻区域订单讨论充分；未见敏感内容、真实冲突、拟替换或其他A条件，符合B档局部采用条件。需求匹配材料将其理解为供应商格局，超出原文支持，故不采用该解释。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 47.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c97ff6f2752dea3405c83db4fee69e3f879fc144f92baae05b72204d0e050ca3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69620,
+            "output_tokens": 1390,
+            "reasoning_output_tokens": 430
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.846,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8bb157f5c95547ce4ed8ecc8efede8596c67367e5b81d0495bd339d294b93d6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70155,
+              "output_tokens": 443,
+              "reasoning_output_tokens": 141
+            }
+          }
+        },
+        "batch_id": "0a23acd1ce85960a90ef8a36913cacc2796d48c6698f0c9f480b55e25359ae9b"
+      }
     }
   ],
   "statements": [
@@ -102186,6 +102271,106 @@
         "request_sha256": "487b24d0ddba46cada70c1ad21b7e94541d730653fb62215329b35250e594fe4"
       },
       "object_mapping_check": "独立审查后选择root：本项针对原生上下文明确识别的单一Cato数据中心开发项目，实际范围是整体项目遭社区委员会反对，与root的单座数据中心层级相符。该映射依据具体项目范围，不因提及AI自动增加基础设施对象。引文没有土地价格、租金、区划权利、许可决定或并网条件，不映射site:land、site:permits、site:grid及设施子系统。所选证据统一采用这一主张级范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:53:claim:8:ev:0"
+      ],
+      "id": "adoption:review:70ff36de1ab3fcfa125bd823",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "question_ids": [
+        "OBJ-prime-power-supply"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》第54页Box 6.1在天然气燃气轮机订单讨论中称，美国以外的企业占全球市场近60%，其2025年订单较2024年增加三分之一。结合上下文，这是对下单企业所在地及订单需求的描述，不能解释为美国以外燃机制造商的销售份额。报告发表时间未知；该数字为来源陈述，未经独立核验。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T11:10:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。全球燃机订单需求的区域结构与年度变化实质贡献于当前主用自备电源供应研究，但采用范围仅为供需背景。连续完整引文及相邻区域订单讨论充分；未见敏感内容、真实冲突、拟替换或其他A条件，符合B档局部采用条件。需求匹配材料将其理解为供应商格局，超出原文支持，故不采用该解释。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 47.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c97ff6f2752dea3405c83db4fee69e3f879fc144f92baae05b72204d0e050ca3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69620,
+            "output_tokens": 1390,
+            "reasoning_output_tokens": 430
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.846,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8bb157f5c95547ce4ed8ecc8efede8596c67367e5b81d0495bd339d294b93d6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70155,
+              "output_tokens": 443,
+              "reasoning_output_tokens": 141
+            }
+          }
+        },
+        "batch_id": "0a23acd1ce85960a90ef8a36913cacc2796d48c6698f0c9f480b55e25359ae9b"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:53:claim:8"
+      ],
+      "limitations": "原文未明确近60%份额及订单增幅按台数、功率还是金额统计，也未提供企业名单、型号及具体国家分布。该范围包含多种用途的天然气燃机订单，不能限定为数据中心主用自备电源采购；相邻原文指出，该区域组多数国家的数据中心并非订单增长的直接原因。没有指定厂商订单簿、交付年份、制造成本或项目安装及投运证据。全文阅读限于PDF原生文本，图像未核验。",
+      "conflict_check": "已检查所供采用陈述与legacy筛选记录。既有燃机交期约束、Caterpillar扩产计划及其他设备供应格局陈述涉及不同指标，没有与本项区域订单占比及增幅形成同口径冲突，也没有完整覆盖本项的规范记录。legacy匹配记录为空仅表示本批未提供对应记录，不代表穷尽反证检索。本项不替换既有结论。",
+      "gap_dependency_check": "仅部分支持OBJ-prime-power-supply中的订单需求与供应环境研究，仍需明确统计口径、供应商对应关系、制造及交付约束和成本边界。M09-Q02要求GE Vernova、Siemens Energy及三菱各自订单簿排到哪一年，本项没有这些厂商的订单覆盖年份或可复查推导，故不关联该问题。两个当前工作单均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0a23acd1ce85960a90ef8a36913cacc2796d48c6698f0c9f480b55e25359ae9b",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "c1384e162441ab1e7314807599aaf05251c6eb236842147c3cc80e4af0f369dd"
+      },
+      "object_mapping_check": "Box 6.1明确讨论天然气燃气轮机市场及订单，独立支持映射至system:power下chain:power/3的燃气轮机部件。美国以外的下单企业未被逐一识别，不能映射至指定制造商actor，也不支持扩大至整座数据中心、电网接入或供气合同。该映射表示设备类别的市场证据，不表示任何具体资产已经交付或投运。"
     }
   ],
   "answers": [],
