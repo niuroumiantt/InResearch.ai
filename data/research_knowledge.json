@@ -58524,6 +58524,89 @@
         },
         "batch_id": "67d96ba353721c32605ee09caa5005d183d01b381501ff7f22b94355176baff9"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:17:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:applied-digital"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "having raised $24 million in a Series A round announced in September, and following that up with a $25m raise led by Applied Digital.",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:43:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。A轮标签、两笔融资金额及Applied Digital领投角色，对当前M11-Q07的融资轮次和参与关系具有实质贡献。连续原文引句及完整页面提供充分语境，可作限定归因的部分证据采用。未发现敏感、真实冲突、拟替换或其他A类条件。对M08-Q03，融资本身未建立CDU、快接头或冷却液环节的产能与格局，故不挂接。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.166,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f0cfb00682a56e60583bea8b5a93ea56876128d9d4a9b259b0cbfc75c1afea59",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 68293,
+            "output_tokens": 1358,
+            "reasoning_output_tokens": 267
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.833,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2fa6d389d50b8be29494419e1270b27bfa62ce1efd60a13298b8ad70c93822fc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68973,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 163
+            }
+          }
+        },
+        "batch_id": "4d8d9dff8d97b15d232da9b1fc56fc45daf6367cfd0c0a3b0873b3dafee8cb45"
+      }
     }
   ],
   "statements": [
@@ -113519,6 +113602,106 @@
         "request_sha256": "ca39342c239815f85a75153b6209c701901ef6ad70ce1585fefaaa6762c57095"
       },
       "object_mapping_check": "独立复核后，本项实际范围是通用智能体、多模态模型与物理系统交互的任务需求机制。契约中的root是一座AI数据中心，计算、电力、网络及其链条和部件均属于该设施资产；原句没有建立这些资产范围。应用或工业控制也不等同于DCIM/BMS，IEA没有契约允许的主体对象。因此不继承候选及证据的root标签，采用空对象列表；所选证据使用同一空对象范围，保留两个有效问题关系。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:17:ev:0"
+      ],
+      "id": "adoption:review:91999eacba9a2ab54e57edeb",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:applied-digital"
+      ],
+      "question_ids": [
+        "M11-Q07"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日发表的2025年度回顾中称，瑞士冷却技术厂商Corintis在9月宣布的A轮融资中筹得2400万美元，随后又筹得由Applied Digital领投的2500万美元。按年度回顾及相邻段落语境，9月指2025年9月；后一次融资的具体日期及轮次未披露。金额均为来源报道的融资额，未经本次独立核验。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:43:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。A轮标签、两笔融资金额及Applied Digital领投角色，对当前M11-Q07的融资轮次和参与关系具有实质贡献。连续原文引句及完整页面提供充分语境，可作限定归因的部分证据采用。未发现敏感、真实冲突、拟替换或其他A类条件。对M08-Q03，融资本身未建立CDU、快接头或冷却液环节的产能与格局，故不挂接。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.166,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f0cfb00682a56e60583bea8b5a93ea56876128d9d4a9b259b0cbfc75c1afea59",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 68293,
+            "output_tokens": 1358,
+            "reasoning_output_tokens": 267
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.833,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2fa6d389d50b8be29494419e1270b27bfa62ce1efd60a13298b8ad70c93822fc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68973,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 163
+            }
+          }
+        },
+        "batch_id": "4d8d9dff8d97b15d232da9b1fc56fc45daf6367cfd0c0a3b0873b3dafee8cb45"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:17"
+      ],
+      "limitations": "本条为二手媒体报道，一手融资公告及协议未随包提供。未披露融资工具、估值、股权比例、其他投资者、资金用途、交易条款或资本成本，也未明确后一次融资是否属于A轮追加。瑞士是厂商身份的地域描述，不能据此确定融资发生地。上下文描述其技术仍在开发，融资不证明产品已量产或部署；金额不能作为设备价格、产能、建设投入或模型成本输入，两笔金额不作合计。",
+      "conflict_check": "所供已采用陈述涉及一般融资机制、其他主体融资以及Boyd并购和CDU产品，与本条Corintis融资没有同义重复或可识别的实质冲突。遗留Applied Digital芬兰潜在电力协议及美国托管合同价格记录属于不同交易、地域和计量口径，不能与本条合并，也不构成反证。所供项目匹配记录为空，未找到本条事件的既有规范记录。检查限于所供材料，不替换既有结论，也不表示完成外部反证检索。",
+      "gap_dependency_check": "本条仅补充M11-Q07的融资轮次、规模和领投关系，不能回答资本成本或关闭问题。仍需一手公告或协议确认两笔融资的日期、轮次关系、工具类型、投资者角色、估值、信用支持及定价，并核对反证。M08-Q03仍缺各供应链环节的产能、份额、地域和交付能力；融资金额不能填补这些缺口。不修改研究骨架、既有结论或模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4d8d9dff8d97b15d232da9b1fc56fc45daf6367cfd0c0a3b0873b3dafee8cb45",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "0c8739a20aa0fad0cedee101c97f486b37de54243f964687c3c33f97b60c5574"
+      },
+      "object_mapping_check": "原文明确Applied Digital是后一次融资的领投方，支持合同中同名actor映射；不将其运营商身份转为本条的项目开发角色。Corintis在允许对象中没有对应actor ID，不新增或借用其他主体。主张范围为企业融资，未明确资金用于冷板或任何基础设施资产；邻近的芯片内微通道开发语境不足以将融资映射为芯片级资产，因此不继承part:coldplate，也不添加root、系统或链映射。所选证据统一使用此审核后的主张级对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
