@@ -7150,6 +7150,61 @@
       "status": "candidate",
       "stored_path": "originals/75/7542c4159d95b4473a4669887759e02def1be33faf1e1c9b9f6b23e18e0137c1/dcd-7542c4159d95b447-Infineon and Eaton partner on silicon-carbide-based solid-state t.html",
       "title": "Infineon and Eaton partner on silicon-carbide-based solid-state transformers to support 800VDC power architectures"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+      "coverage": {
+        "characters_read": 6724,
+        "characters_total": 6724,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+      "id": "doc-f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+      "library_path": "library/by-node/site-grid/2026_Data Center Dynamics（DCD）_Grid connection requests for data centers in Italy top__f2804604ae3661a9.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "site:grid",
+        "site:permits"
+      ],
+      "question_ids": [
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-10021ddf64994829b71f2bbc1ade9029",
+      "report_sha256": "6e998b1b8de591ef5ac9d01d4028f53c5b6604f7142504c2338a317cbc72d1c5",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+        "url": "https://www.datacenterdynamics.com/en/news/grid-connection-requests-for-data-centers-in-italy-top-95gw/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/grid-connection-requests-for-data-centers-in-italy-top-95gw/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/f2/f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0/dcd-f2804604ae3661a9-Grid connection requests for data centers in Italy top 95GW.html",
+      "title": "Grid connection requests for data centers in Italy top 95GW"
     }
   ],
   "evidence": [
@@ -53723,6 +53778,91 @@
           }
         },
         "batch_id": "688a3cc47c77b66dfeab93cf1981ea3249b9509ba161511197bae0ec9335e5f0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "fbce3cb24e358b2c818c218388f638de87b885fd78d776c7c01aedd57e9c12a1",
+      "document_id": "doc-f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+      "id": "rev-10021ddf64994829b71f2bbc1ade9029:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "site:grid"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-grid-supply"
+      ],
+      "quote": "Most applications the grid operator has received in the past five years have originated from Italy’s northern regions. Lombardy, for example, accounts for 290 requests amounting to 49GW, mostly concentrated around Milan.",
+      "reading_revision_id": "rev-10021ddf64994829b71f2bbc1ade9029",
+      "source_sha256": "f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:59:53+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。候选直接提供意大利电网数据中心并网申请的区域数量与容量，对当前M04-Q01的排队规模研究有实质但局部的贡献。连续引文及全文上下文足以识别地区、运营商、单位和申请阶段；按明确归属作者的报道采用。没有敏感内容、真实冲突、替换提议或其他A类条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M04-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.006,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "680615b73a8e614ac4860f7b9c686a32cab5b1fce47a85bcca233857ffe757c4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 39986,
+            "output_tokens": 1185,
+            "reasoning_output_tokens": 215
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.731,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "badce707dd34d6826fc65cc9121e8b3626ab7685f715748568ba41f4d9848edb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 40541,
+              "output_tokens": 576,
+              "reasoning_output_tokens": 223
+            }
+          }
+        },
+        "batch_id": "cead6803c505ba55b225bd4c29741956b5d176ddaee2c282e7cd11b895d977e2"
       }
     }
   ],
@@ -103993,6 +104133,106 @@
         "request_sha256": "a6c5f65127f94f007bd1b23ab64f907269bf2cc7d8fd939e39a4d52e312d6591"
       },
       "object_mapping_check": "本项实际范围是车辆、工厂、物流网络和消费设备中的边缘AI部署及其总用电，契约没有相应终端、边缘服务或IEA主体对象。root是一座AI数据中心，其电力、计算、网络系统及部件均属于该设施资产；本项未建立这些资产范围。物流网络不是数据中心网络，工业控制也不是DCIM/BMS。故不继承候选或证据的root标签，采用空对象列表并保留有效问题关系；所选证据使用同一空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-f2804604ae3661a99320bc8e6e01ea7a4440c7934c5366776834941f143840e0",
+      "evidence_ids": [
+        "rev-10021ddf64994829b71f2bbc1ade9029:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:6ff883c8955e5254da61379f",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:grid"
+      ],
+      "question_ids": [
+        "M04-Q01"
+      ],
+      "reading_revision_id": "rev-10021ddf64994829b71f2bbc1ade9029",
+      "status": "adopted",
+      "text": "DCD作者Greg Noone在2026年8月28日发表的报道中称，意大利电网运营商Terna在报道所述过去五年收到的多数数据中心并网申请来自意大利北部；其中伦巴第有290项申请，申请容量合计49 GW，主要集中在米兰周边。这是来源报告的申请规模与地域分布，未经本次独立核验，不代表已批准并网、已交付电力或已投运IT容量。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:59:53+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。候选直接提供意大利电网数据中心并网申请的区域数量与容量，对当前M04-Q01的排队规模研究有实质但局部的贡献。连续引文及全文上下文足以识别地区、运营商、单位和申请阶段；按明确归属作者的报道采用。没有敏感内容、真实冲突、替换提议或其他A类条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M04-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.006,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "680615b73a8e614ac4860f7b9c686a32cab5b1fce47a85bcca233857ffe757c4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 39986,
+            "output_tokens": 1185,
+            "reasoning_output_tokens": 215
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.731,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "badce707dd34d6826fc65cc9121e8b3626ab7685f715748568ba41f4d9848edb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 40541,
+              "output_tokens": 576,
+              "reasoning_output_tokens": 223
+            }
+          }
+        },
+        "batch_id": "cead6803c505ba55b225bd4c29741956b5d176ddaee2c282e7cd11b895d977e2"
+      },
+      "source_candidate_ids": [
+        "rev-10021ddf64994829b71f2bbc1ade9029:chunk:0:claim:3"
+      ],
+      "limitations": "材料为媒体报道，未提供Terna一手统计、申请明细、去重规则、容量定义或项目状态拆分。伦巴第数值的独立统计基准日未明确，不能把文章发表日直接当作数据截止日。原文申请流程使用开发项目的预计用电量，不能据此确认实际负荷、AI用途或已落实容量。没有平均等待年限、清退率或交付成本。",
+      "conflict_check": "当前已采用记录涉及PJM新增发电资源、ERCOT大负荷申请及筛选判断、AEP公司活跃队列，统计区域、主体或接入角色与伦巴第申请不同，不构成同口径重复或真实冲突，也不能相加。所供legacy匹配记录为空，不能据此声称完成全部历史记录或外部反证检索。未发现需要替换的规范记录，不覆盖既有结论。",
+      "gap_dependency_check": "本条仅部分支持M04-Q01的申请规模与地域范围研究，不能将申请总量认定为经确认的活跃排队容量。仍需Terna一手资料、明确统计时间窗、去重与状态定义，以及等待年限和清退率；PJM、ERCOT、Dominion等主要电网仍需可比证据。当前工单的一手来源及可复查推导要求尚未完整满足，问题保持开放，不调整研究骨架、模型参数或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "cead6803c505ba55b225bd4c29741956b5d176ddaee2c282e7cd11b895d977e2",
+        "source_report_sha256": "6e998b1b8de591ef5ac9d01d4028f53c5b6604f7142504c2338a317cbc72d1c5",
+        "request_sha256": "fc0d4f5b6d16f338185200eaf57fa583e3d95ba0ccb01866b2d76e8c5f7a64ad"
+      },
+      "object_mapping_check": "独立复核对象范围：主张描述电网并网申请数量、容量及地域分布，直接对应site:grid这一site_right对象的电力配额与并网范围。它不描述一座AI数据中心整体、内部电力设备或区划、环评、排放、建设许可，因此不追加root、system:power、部件或site:permits。合同中未列Terna的actor ID，不新增对象。所选证据使用相同的主张级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
