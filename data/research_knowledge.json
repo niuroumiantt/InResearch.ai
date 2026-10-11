@@ -7731,6 +7731,56 @@
       "status": "candidate",
       "stored_path": "originals/a2/a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74/dcd-a2b8adcc8280a3fd-CoreWeave surpasses 1GW of data center capacity- pushes more into.html",
       "title": "CoreWeave surpasses 1GW of data center capacity, pushes more into self builds"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "coverage": {
+        "characters_read": 5504,
+        "characters_total": 5504,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "id": "doc-189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "library_path": "library/by-node/root/2026_DCD_PDG closes additional $350m in debt financing, eyes $5b__189c19bae624bb53.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-83d4856645dc4046b1b6e9e6413690f1",
+      "report_sha256": "cfd37e39cb377ee2bc2364f3f5ba368f867514bffb8bf7a2e8ebf3ee38eac4b2",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+        "url": "https://www.datacenterdynamics.com/en/news/pdg-closes-additional-350m-in-debt-financing-eyes-5bn-in-new-investment/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/pdg-closes-additional-350m-in-debt-financing-eyes-5bn-in-new-investment/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/18/189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027/dcd-189c19bae624bb53-PDG closes additional -350m in debt financing- eyes -5bn in fresh.html",
+      "title": "PDG closes additional $350m in debt financing, eyes $5bn in fresh investment"
     }
   ],
   "evidence": [
@@ -57481,6 +57531,87 @@
           }
         },
         "batch_id": "f31ce3d6ff905c59ea4b8b6ace24f5777429bfcfbff62fa262c0ab096d5a5162"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9fba5a68ab2e08fe0f28a2a9e9f0af873a192579ba1e60d5284255a9ec1f2784",
+      "document_id": "doc-189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "id": "rev-83d4856645dc4046b1b6e9e6413690f1:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The operator said it is looking to raise up to $5 billion to fund new capacity for its current and future developments across the region.",
+      "reading_revision_id": "rev-83d4856645dc4046b1b6e9e6413690f1",
+      "source_sha256": "189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:59:41+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。筹资目标及新增容量用途为当前M02-Q02提供运营商扩张资金需求的具体线索，具有实质但有限的问题关系；PDG虽非问题列举的企业，仍属于同类运营商案例，不能代替对列举玩家的研究。连续原文引句与完整页面语境充分，保持来源归因和未来意向后符合B类部分采用条件。未发现敏感、真实冲突或拟替换条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.469,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b1bdce69a393109e909115854c237c7c8543e23f6b2928b046466926420b2024",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64813,
+            "output_tokens": 1241,
+            "reasoning_output_tokens": 200
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.339,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d85092331cf8b6b26fd51b3a10663e0bffaa19044e26a4d10e0761c055c756d8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65443,
+              "output_tokens": 523,
+              "reasoning_output_tokens": 251
+            }
+          }
+        },
+        "batch_id": "1a9de73b7bd52087e6ac7e82fb245fb94de1645d23a4855d780149064ae48a78"
       }
     }
   ],
@@ -111362,6 +111493,104 @@
         "request_sha256": "c7f6ba2807e78a3b077356ec82e5d6fc27e5a33895b923b3ead2115b7a560f82"
       },
       "object_mapping_check": "独立复核后，主张范围是软件与算法效率对单位计算能耗及新增资本需求的总体影响。合同中的system:control及chain:control/1限定DCIM/BMS与固件，本项没有此类资产陈述；root指一座AI数据中心，计算和电力系统也具有设施资产范围，原文未建立该范围或具体部件对象。相邻GPU调度等例子不能自动扩展本项证据的对象范围。因此保留空对象列表及有效问题关联，所选证据统一使用这一审定范围，不继承文档标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "evidence_ids": [
+        "rev-83d4856645dc4046b1b6e9e6413690f1:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:48b316946fbfb821c0b000ab",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-83d4856645dc4046b1b6e9e6413690f1",
+      "status": "adopted",
+      "text": "据DCD作者Barney Dixon于2026年3月11日发表的报道，亚洲数据中心运营商Princeton Digital Group（PDG）表示，拟筹集最多50亿美元，为亚洲区域内现有及未来开发项目的新增容量提供资金。这是来源转述的公司筹资意向，未经本次独立核验，不表示该笔筹资已完成、资金已支出或相应容量已交付。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T18:59:41+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。筹资目标及新增容量用途为当前M02-Q02提供运营商扩张资金需求的具体线索，具有实质但有限的问题关系；PDG虽非问题列举的企业，仍属于同类运营商案例，不能代替对列举玩家的研究。连续原文引句与完整页面语境充分，保持来源归因和未来意向后符合B类部分采用条件。未发现敏感、真实冲突或拟替换条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.469,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b1bdce69a393109e909115854c237c7c8543e23f6b2928b046466926420b2024",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64813,
+            "output_tokens": 1241,
+            "reasoning_output_tokens": 200
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.339,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d85092331cf8b6b26fd51b3a10663e0bffaa19044e26a4d10e0761c055c756d8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65443,
+              "output_tokens": 523,
+              "reasoning_output_tokens": 251
+            }
+          }
+        },
+        "batch_id": "1a9de73b7bd52087e6ac7e82fb245fb94de1645d23a4855d780149064ae48a78"
+      },
+      "source_candidate_ids": [
+        "rev-83d4856645dc4046b1b6e9e6413690f1:chunk:0:claim:1"
+      ],
+      "limitations": "未披露该筹资计划的完成期限、融资工具、承诺资金、具体项目分配、交付时间表或资金缺口；最多50亿美元是目标上限，不能视为实际融资额或已证实的资金约束。报道日期不是筹资完成日期。原文另述已完成的追加债务融资，不能与本项未来筹资意向混同。本包未提供PDG一手公告或融资文件。",
+      "conflict_check": "所供已采用陈述涉及其他企业融资、扩张预测和总体资本支出，与本项PDG筹资意向没有同命题重复或直接冲突。legacy事实jpm2504-asean-news-pdg-52mw-202407描述2024年柔佛园区一期竣工，时点、范围及指标不同，不能验证或否定本项2026年公司筹资计划，也不能将50亿美元分配给该项目。contracts和projects的所供匹配记录为空。封存摘要的信息缺失判断不构成相反的融资事实主张。检查限于所供记录，不覆盖既有结论。",
+      "gap_dependency_check": "M02-Q02仅获得筹资目标与扩张用途的部分证据，不能据此确定实际扩张速度或资金约束程度，问题保持开放。仍需PDG一手融资披露、筹资落实进度、项目分期交付记录，以及现金流、资本支出承诺和资金缺口的可复查推导；问题列举的其他头部玩家也仍需分别研究。不更新资本成本参数、容量总量、项目阶段或模型骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1a9de73b7bd52087e6ac7e82fb245fb94de1645d23a4855d780149064ae48a78",
+        "source_report_sha256": "cfd37e39cb377ee2bc2364f3f5ba368f867514bffb8bf7a2e8ebf3ee38eac4b2",
+        "request_sha256": "26eb29ef6140f48a76483fad34ca9e12779314a5ff89bbd22d05182526ab3254"
+      },
+      "object_mapping_check": "独立核对对象契约：本项是PDG跨区域现有及未来项目组合的筹资意向，契约没有PDG主体ID，不借用其他公司的actor。root名称为一座AI数据中心，本项未限定到单座数据中心，不能继承Reader的root标签；资金用途也未划分设施、电力、散热、IT或部件范围。因此对象映射留空，仍保留M02-Q02的有效问题匹配。所选证据统一采用此主张级空对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
