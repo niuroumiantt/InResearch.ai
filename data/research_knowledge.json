@@ -58607,6 +58607,87 @@
         },
         "batch_id": "4d8d9dff8d97b15d232da9b1fc56fc45daf6367cfd0c0a3b0873b3dafee8cb45"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0c52db60897bba0c1e3cbda176f2926d72023f3a9635dc8f865e02f0bbc0f659",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:24:claim:7:ev:0",
+      "locator": "page:25/chunk:24",
+      "object_ids": [],
+      "page_index": 24,
+      "question_ids": [],
+      "quote": "In the IEA’s Base Case, total data centre electricity consumption grows by two times by 2030.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:55:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。全球用电增长预测对当前M01-Q05的电量路径审查具有实质性部分贡献。连续原文及前后情景、模型和总量边界上下文充分，符合B级有限采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭整个问题。",
+        "workorder_ids": [
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.959,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7ecce754672e4a76a965ab576ac38564889fafc1f02c3dd6526541a5fe76fcaf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 52429,
+            "output_tokens": 1222,
+            "reasoning_output_tokens": 201
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.586,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "55a0ecf0d1bcaea2a8a6e58c06b574a0e46f19bc923168b1a32f9f224758d756",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53045,
+              "output_tokens": 603,
+              "reasoning_output_tokens": 274
+            }
+          }
+        },
+        "batch_id": "66a817124211444c9909164b0cfb7ab23a3b237e9125beb1dd161ae4e254ae2a"
+      }
     }
   ],
   "statements": [
@@ -113702,6 +113783,104 @@
         "request_sha256": "0c8739a20aa0fad0cedee101c97f486b37de54243f964687c3c33f97b60c5574"
       },
       "object_mapping_check": "原文明确Applied Digital是后一次融资的领投方，支持合同中同名actor映射；不将其运营商身份转为本条的项目开发角色。Corintis在允许对象中没有对应actor ID，不新增或借用其他主体。主张范围为企业融资，未明确资金用于冷板或任何基础设施资产；邻近的芯片内微通道开发语境不足以将融资映射为芯片级资产，因此不继承part:coldplate，也不添加root、系统或链映射。所选证据统一使用此审核后的主张级对象范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:24:claim:7:ev:0"
+      ],
+      "id": "adoption:review:d9560657c7e43e0963774bf8",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q05"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第25页预测，在其基准情景（Base Case）下，全球数据中心总用电量到2030年约增至两倍。该句未明确比较基年，倍数应保留为概括性预测，而非精确换算系数。这是IEA的条件性情景预测，不构成已实现结果或当前独立核证；所供原生文本未确立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T19:55:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。全球用电增长预测对当前M01-Q05的电量路径审查具有实质性部分贡献。连续原文及前后情景、模型和总量边界上下文充分，符合B级有限采用条件。未发现敏感材料、真实冲突、拟替换或其他A条件；不回答或关闭整个问题。",
+        "workorder_ids": [
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.959,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7ecce754672e4a76a965ab576ac38564889fafc1f02c3dd6526541a5fe76fcaf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 52429,
+            "output_tokens": 1222,
+            "reasoning_output_tokens": 201
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.586,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "55a0ecf0d1bcaea2a8a6e58c06b574a0e46f19bc923168b1a32f9f224758d756",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53045,
+              "output_tokens": 603,
+              "reasoning_output_tokens": 274
+            }
+          }
+        },
+        "batch_id": "66a817124211444c9909164b0cfb7ab23a3b237e9125beb1dd161ae4e254ae2a"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:24:claim:7"
+      ],
+      "limitations": "本项是全球全部数据中心的总用电量预测，不能等同于AI专属用电、IT用电或单个项目需求。所选引文未注明比较基年，也未提供容量、利用率、设施效率或完整年度路径。相邻正文的2024年约415 TWh与2030年约950 TWh不支持把“两倍”理解为精确的2.00倍。阅读覆盖仅限PDF原生文本，未完成图像视觉审阅；不能据此更新模型输入或换算GW。",
+      "conflict_check": "已采用的IEA记录涉及2025年用电增速，LBNL记录涉及美国历史估计、2028年情景及核算方法，地域、年份或预测属性不同，未发现重复或同口径冲突。legacy记录iea2026-dc-power-share-2030e-base的核心指标是全球用电占比，附带转引485→950 TWh；其2030年端点与相邻正文一致，但485 TWh的比较年份未明确，不能与正文2024年的415 TWh直接认定冲突，也不能默认为同一基年。本项不替换该记录。检查限于所供材料，合同及项目匹配记录为空，未完成穷尽外部反证检索。",
+      "gap_dependency_check": "M01-Q05仍需同地域、同年度、同情景和同设备边界的TWh与GW路径，明确容量是IT容量还是设施容量，并取得设施效率、年内投运时间及可复查利用率推导。相邻正文的年度加速服务器新增量不是在用容量存量，不能直接作为总体电量的分母。本项仅补充预测方向与量级，问题及工单保持开放，不改变骨架、模型值或既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "66a817124211444c9909164b0cfb7ab23a3b237e9125beb1dd161ae4e254ae2a",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "48cb7e60b36c76c26e4a03f21b7e883db7b62c4197e427d30227812708dff4af"
+      },
+      "object_mapping_check": "独立复核后，本项实际范围为包含AI及传统负载的全球数据中心总用电预测。对象合同中的root是一座AI数据中心，system:power及system:it是其内部系统，site:grid是电力配额与并网权利，均不能直接承载全球综合统计。保留空对象列表及有效问题匹配，不继承候选或证据的root标签；所选证据统一采用此主张级范围。"
     }
   ],
   "answers": [],
