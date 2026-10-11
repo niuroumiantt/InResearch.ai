@@ -196,7 +196,7 @@
   function renderRegion(){
     const r=region(),g=gaps(),host=byId('region-card');host.replaceChildren();
     const gate=values.gate==='chip'?'芯片门槛':'电力门槛';
-    host.append(make('p','gap-count',`情景计算：项目可行性尚未核验。${readiness(values,spec).unverified_inputs.length} 项需求的定义不等于已取得证据；地区预设也不能直接视为现场数据。`));
+    host.append(make('p','readiness-note',`情景计算：项目可行性尚未核验。${readiness(values,spec).unverified_inputs.length} 项需求的定义不等于已取得证据；地区预设也不能直接视为现场数据。`));
     host.append(make('b','',r.label||values.site),make('span','',`${gate} · 门槛等待 ${values.gate_wait_years} 年 · 审批 ${values.permit_months} 个月 · 建设 ${values.construction_years} 年`),
       make('span','',values.energy_quota_mw>0?`情景容量上限 ${values.energy_quota_mw} MW（不是批准值）`:'批准容量未知／未设置；计算不施加此上限'),make('span','',`电价 $${num(values.power_price,4)}/kWh · 需量 $${num(values.demand_rate,1)}/kW·月 · 土地 ${num(values.land_per_mw,2)} $M/MW`),
       make('span',g.size?'gap-count':'', g.size?`缺 ${g.size} 项：${[...g].map(k=>spec.inputs[k]?spec.inputs[k].label:k).join('、')}`:'表内来源登记齐全；地区与预设适用性仍须核验'));
