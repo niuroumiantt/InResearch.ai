@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.77。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.78。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2523。
+在册文件：2525。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 407 |
-| 运行代码 | 370 |
+| 运行代码 | 371 |
 | 现行规范 | 16 |
 | 项目配置 | 762 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 191 |
-| 测试 | 196 |
+| 测试 | 197 |
 
 ## 在册记录集合
 
@@ -3606,6 +3606,7 @@
 | `src/inresearch/delivery/reader_status.py` | 运行代码 |
 | `src/inresearch/delivery/reading_packet.py` | 运行代码 |
 | `src/inresearch/delivery/report.py` | 运行代码 |
+| `src/inresearch/delivery/runtime_summary.py` | 运行代码 |
 | `src/inresearch/delivery/snapshot_overlay.py` | 运行代码 |
 | `src/inresearch/interfaces/__init__.py` | 运行代码 |
 | `src/inresearch/interfaces/auth.py` | 运行代码 |
@@ -3904,6 +3905,7 @@
 | `tests/unit/test_research_sources.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_review_preference.py` | 测试 |
+| `tests/unit/test_runtime_summary.py` | 测试 |
 | `tests/unit/test_scale_atlas_assets.py` | 测试 |
 | `tests/unit/test_shared_part_preview_assets.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |

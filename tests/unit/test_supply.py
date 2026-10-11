@@ -63,7 +63,8 @@ class SupplyTests(unittest.TestCase):
         runtime={'reader':{'acquisition':{'material_matches':{'records':[{'sha256':'a'}]}}},
                  'knowledge':{'documents':[{'id':'a','content_sha256':'a','title':'delivered','read_status':'complete'}],
                               'statements':[{'document_id':'a','text':'actual delivered finding'}]}}
-        with patch('inresearch.knowledge.registry._snapshot_inputs',return_value=[runtime]):
+        runtime['reading_deliveries']=supply.reading_deliveries(runtime['knowledge'],runtime['reader']['acquisition']['material_matches'])
+        with patch('inresearch.workflow.supply.runtime_summary',return_value=runtime):
             out=supply.snapshot(self.root)
         self.assertEqual(out['reading_deliveries'][0]['claims'],['actual delivered finding'])
 

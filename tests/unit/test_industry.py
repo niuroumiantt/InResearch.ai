@@ -200,7 +200,7 @@ class PipelineIntegrationTests(unittest.TestCase):
             self.assertEqual(len(summary['project_pipeline']['records']), 1)
             self.assertEqual(summary['news_feed']['items'], [])
             summary['project_pipeline']['records'][0]['private_path'] = '/private/secret'
-            with patch.object(registry, '_snapshot_inputs', return_value=({}, {}, {}, {}, {'reader': {'acquisition': summary}})):
+            with patch('inresearch.delivery.runtime_summary.load', return_value={'reader': {'acquisition': summary}}):
                 public = registry.build_news(ROOT)
             self.assertEqual(public['pipeline']['records'][0]['company_ids'], ['microsoft'])
             self.assertNotIn('/private/secret', json.dumps(public))

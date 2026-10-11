@@ -497,3 +497,9 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 显式CI配置base_update_policy=protected_merge：仍先要求审核head两项必过门禁及全部已选择CI、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受现行两项GitHub Actions门禁保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
 
 该策略解决共享改动与研究PR互相追赶基线造成的重复验收，不替代C3、精确head CI、真实网站支持闭包或逐批published ACK。配置启用、源码加载、主分支保护和实际收尾须各自留回执。
+
+## 网站大型候选库的运行视图
+
+2026-10-11 公网验收在 157 MB 候选快照下复现 2 GiB 容器 OOM；管理接口不应为读取计数反复载入完整证据库。现行接收会流式保存完整私有快照并生成 `data/raw/research-runtime/research-runtime-control.json`。视图失配时显示待生成，原快照保留。首次上线或视图损坏可在具备足够内存的受控执行环境中运行 `python3 manage.py runtime-summary --refresh`；必须指向真实源码及 `INRESEARCH_READER_SNAPSHOT`/运行根目录，不能用源码目录的样本冒充生产。重建使用同一文件锁并校验候选与正式库身份，输出完整源 SHA、视图字节数与预览数。普通接收随后自动更新，不新增发布服务或队列所有者。
+
+大文件精确重放依赖与原快照 SHA 一致的视图语义摘要；缺失时，逐字节一致的原请求可直接重放重建；其它情况先显式重建，再重试同一请求。接收后的完整 JSON 不被删改或缩减；视图只保留既定每文档六陈述/三原文预览，完整覆盖、来源与候选资料仍在既有快照/Reader 中。真实容量、并发接口、接收重放与容器重启次数单独验收，不用单元测试或 `/healthz` 代替。
