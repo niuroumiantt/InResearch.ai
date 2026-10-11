@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import locked, write_json
+from inresearch.delivery.runtime_summary import load as runtime_summary, reading_deliveries
 
 
 class Conflict(ValueError):
@@ -46,7 +47,7 @@ def snapshot(root):
     _attach_reader_status(deliveries)
     from inresearch.knowledge import registry
     from inresearch.workflow.project_review import deliveries as project_deliveries
-    runtime = registry._snapshot_inputs(root)[-1]
+    runtime = runtime_summary(root)
     reader = registry._reader_state(runtime)
     matched = (reader.get('acquisition') or {}).get('material_matches') or {'records': [], 'total': 0, 'status': 'not_connected'}
     needed = [t for t in target_document['targets'] if t['status'] in ('needed', 'assumed', 'delivered')]
@@ -70,7 +71,7 @@ def snapshot(root):
             'daily_delivery': (reader.get('acquisition') or {}).get('daily_delivery') or {'records':[],'total':0,'news_total':0},
             'research_verification': reader.get('research_verification') or {'state':'not_started','candidates':{}},
             'research_matching': matched, 'demand_queue': demand_queue,
-            'reading_deliveries': reading_deliveries(runtime.get('knowledge') or {}, matched),
+            'reading_deliveries': runtime['reading_deliveries'],
             'project_updates': project_updates,
             'ecosystem_updates': ecosystem_updates,
             'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status','execution_scope')},
@@ -90,26 +91,6 @@ def snapshot(root):
             },
             'deliveries': deliveries,
             'delivery_connection': 'connected' if receipts['deliveries'] else 'awaiting_first_delivery'}
-
-
-def reading_deliveries(reader, matched):
-    """Received reading results only; retain candidate scope and omit raw paths."""
-    wanted = {r.get('sha256') for r in matched.get('records', [])}
-    truncated = matched.get('truncated') is True
-    outputs = []
-    for doc in reader.get('documents', []):
-        # The bounded match index is not the authority for received readings.
-        # Once truncated, absence from it cannot mean absence of a delivery.
-        if (not truncated and doc.get('content_sha256') not in wanted) or doc.get('read_status') != 'complete':
-            continue
-        ident = doc.get('doc_id') or doc.get('id')
-        claims = [r.get('text', '') for r in reader.get('statements', []) if r.get('document_id') == ident]
-        quotes = [{k: r.get(k) for k in ('quote', 'page_index')}
-                  for r in reader.get('evidence', []) if r.get('document_id') == ident]
-        outputs.append({'title': doc.get('title'), 'sha256': doc['content_sha256'],
-                        'claims': claims[:6], 'quotes': quotes[:3],
-                        'coverage': doc.get('coverage') or {}, 'acceptance': 'candidate_only'})
-    return outputs
 
 
 def _attach_reader_status(deliveries):

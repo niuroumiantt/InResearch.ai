@@ -181,7 +181,7 @@ class OperationsHTTPTests(unittest.TestCase):
             'acquisition': {'status': 'ready', 'sources': {'inews': {'items': 14291}},
                             'material_matches': {'records': ['large feed' * 100000]},
                             'daily_events': {'events': ['large feed' * 100000]}}}}
-        with patch.object(registry, '_snapshot_inputs', return_value=(None, None, None, None, published)) as load:
+        with patch('inresearch.delivery.runtime_summary.load', return_value=published) as load:
             first = ops._reader(self.root)
             first['counts']['complete'] = 99
             second = ops._reader(self.root)

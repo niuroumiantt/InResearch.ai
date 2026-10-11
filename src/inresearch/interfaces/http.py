@@ -284,6 +284,12 @@ class Handler(SimpleHTTPRequestHandler):
         return True
 
     def do_GET(self):
+        if urlsplit(self.path).path in ('/api/research', '/api/research-summary', '/api/research-materials', '/api/report'):
+            with research.RUNTIME_LOCK:
+                return self._get()
+        return self._get()
+
+    def _get(self):
         if self.path.startswith('/api/intake-worker/'):
             if not self.intake_worker():
                 return
@@ -612,6 +618,12 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
+        if self.path == '/api/reader-snapshot':
+            with research.RUNTIME_LOCK:
+                return self._post()
+        return self._post()
+
+    def _post(self):
         if self.path == '/api/intake-worker/ack':
             if not self.intake_worker():
                 return
@@ -736,13 +748,17 @@ class Handler(SimpleHTTPRequestHandler):
                 body = commands.inflate_snapshot(self.rfile.read(size), self.headers.get('Content-Encoding'))
             except commands.SnapshotTooLarge as e:
                 return self._json(413, {"ok": False, "error": str(e)})
+            research.clear_runtime_cache()
             payload = json.loads(body)
+            del body
             reply = commands.receive_snapshot(ROOT, payload)
         except CommitUncertain as error:
             return self._json(503, {'ok': False, 'error': str(error),
                                     'commit_state': 'visible_durability_unconfirmed'})
         except commands.Rejected as e:
             return self._json(e.status, {"ok": False, "error": str(e)})
+        except OSError:
+            return self._json(503, {'ok': False, 'error': 'candidate storage unavailable; retain source and retry'})
         except (ValueError, TypeError, KeyError, AttributeError) as e:
             return self._json(400, {"ok": False, "error": str(e)[:500]})
         return self._json(200, reply)

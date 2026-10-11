@@ -163,7 +163,7 @@ class NewsObservationTests(unittest.TestCase):
                                          'site_candidates':[{'site_id':'a','private_path':'PRIVATE'}],
                                          'capacity_observations':[{'mw':100,'private_path':'PRIVATE'}]}]}],'total':800,'truncated':True,
                                          'progress':{'leads':800,'events':1200,'linked':0,'private_path':'PRIVATE','constraints':{'water':5,'private':1}}}}
-        with patch.object(registry,'_snapshot_inputs',return_value=({}, {}, {}, {}, {'reader':{'acquisition':acquisition}})):
+        with patch('inresearch.delivery.runtime_summary.load',return_value={'reader':{'acquisition':acquisition}}):
             public=registry.build_news(project_root())
         self.assertEqual(public['pipeline']['total'],800)
         self.assertEqual(public['pipeline']['progress']['constraints'],{'water':5})

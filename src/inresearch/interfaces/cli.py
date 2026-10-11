@@ -15,6 +15,7 @@ COMMANDS = {
     'editorial-sync': 'inresearch.adapters.editorial_sync',
     'pipeline': 'inresearch.workflow.project_pipeline',
     'research-match': 'inresearch.workflow.research_match',
+    'runtime-summary': 'inresearch.delivery.runtime_summary',
     'daily-events': 'inresearch.materials.daily_events',
     'product-catalog': 'inresearch.workflow.product_catalog',
     'storage': 'inresearch.storage.layout',
