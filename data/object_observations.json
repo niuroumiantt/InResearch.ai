@@ -22584,6 +22584,594 @@
       "recorded_at": "2026-10-11T20:49:37.200504+00:00",
       "proposal_sha256": "61ba6ae83c2b966c317075cb95c05b1b0a8853d4e6f6225d750bc7af92c46f00",
       "claim_sha256": "91a70b7456545c294942caabeb1aba9c6d6b8bd142e49a9185f81804b100f827"
+    },
+    {
+      "metric": "rack_system.fast_memory",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "GB300 NVL72 whole rack fast memory total; do not add again to CPU/GPU memory"
+      },
+      "value": "37 TB",
+      "unit": "TB",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:9adf78d17f6dd57b9316e975cb9edd3a",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "37 TB",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "80142bebfb3163c058bc254fb4285175231dceb7ce26e1fadff9b94e2b4926f7"
+    },
+    {
+      "metric": "rack_system.cpu_memory_configuration",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack CPU LPDDR5X memory and bandwidth, separate from existing GPU memory cell"
+      },
+      "value": "17 TB LPDDR5X | 14 TB/s",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:5b690a787e4450c1ecd8ec9d3bea4847",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "17 TB LPDDR5X | 14 TB/s",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "4a6440b16cb298f5b7a3a1e65217b4b9c76e76cfdbf950311c03f23432723e54"
+    },
+    {
+      "metric": "rack_system.cpu_core_count",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack Grace CPU core count, not per CPU or per GPU"
+      },
+      "value": "2,592 Arm Neoverse V2 cores",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:8c01f013b380fa83d822d05a115e1202",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "2,592 Arm Neoverse V2 cores",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "88b9555f5eab530772b4dea78cc06f694af887404fde6e89e1f194c026f83cf8"
+    },
+    {
+      "metric": "rack_system.fp4_throughput",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack FP4 Tensor Core: 1440 PFLOPS with sparsity; 1080 PFLOPS without sparsity (footnote 2). Preserve both, not an interval"
+      },
+      "value": "1440 | 1080 2 PFLOPS",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:8f4657f65deba33737310ff9adfb952f",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "1440 | 1080 2 PFLOPS",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "461e0de43b84ae744d8d749fd2b7178ed4993b48ba807cccbc74ab56a7f13ebc"
+    },
+    {
+      "metric": "rack_system.int8_throughput",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack INT8 Tensor Core, sparsity per footnote 1"
+      },
+      "value": "24 POPS",
+      "unit": "POPS",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:b0d7285d1eec93a8e29d72f1ff84c41e",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "24 POPS",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "6ff2164c8946cdd6fbdbc60fbcd20ee869f2eb12803d056d4967bc9fc0e4c38c"
+    },
+    {
+      "metric": "rack_system.fp16_bf16_throughput",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack FP16/BF16 Tensor Core, sparsity per footnote 1"
+      },
+      "value": "360 PFLOPS",
+      "unit": "PFLOPS",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:cc050e035765dd55ce1c982de0dd25a3",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "360 PFLOPS",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "e3942727c0ed9c16f992e2dad886bd80d1d27fc74e3b5d884f2a5448725d97c6"
+    },
+    {
+      "metric": "rack_system.tf32_throughput",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack TF32 Tensor Core, sparsity per footnote 1"
+      },
+      "value": "180 PFLOPS",
+      "unit": "PFLOPS",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:3efafe89704ce158033faacdc2417e07",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "180 PFLOPS",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "a86e54256c1392c28eb9d222b2790b5f168ad60d68e5957b3464ee7054bd6854"
+    },
+    {
+      "metric": "rack_system.fp32_throughput",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack FP32; plain FP32 label is not Tensor Core, do not add sparse qualifier"
+      },
+      "value": "6 PFLOPS",
+      "unit": "PFLOPS",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:d97563146a2d98acab1a3b092701a79a",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "6 PFLOPS",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "8b2716bb2d174df450149b4f789ee162d466ce004dcce373488524ea72499b28"
+    },
+    {
+      "metric": "rack_system.fp64_throughput",
+      "scope": {
+        "configuration": "GB300 NVL72",
+        "condition": "Whole rack source combined FP64 / FP64 Tensor Core label retained; do not split into independent measured rates"
+      },
+      "value": "100 TFLOPS",
+      "unit": "TFLOPS",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:898de8f647c6900179409e28f7a19dd0",
+      "object_id": "product:f1e9b5571e33d4ea16822bec66554bd4",
+      "source": {
+        "sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+        "url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+        "locator": "excerpt:page:1",
+        "quote": "100 TFLOPS",
+        "context_sha256": "e140c2f3d4218019c7b31a013617f903685cecfdf712cb8955bbe73a139f4760",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.763014+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "f70f60f10f129da1aa7e198afd5a7ff45cb844be64a522d9cbc3182892bd4682"
+    },
+    {
+      "metric": "cpu.l1_cache",
+      "scope": {
+        "configuration": "Grace CPU Superchip",
+        "condition": "Grace CPU Superchip column; separate instruction/data cache, per core"
+      },
+      "value": "64KB i-cache + 64KB d-cache per core",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:c50d39e0442461205edd492dd570c97d",
+      "object_id": "product:531baf464fb508bef5a617b7fe639e4a",
+      "source": {
+        "sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+        "url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+        "locator": "excerpt:page:1",
+        "quote": "64KB i-cache + 64KB d-cache per core",
+        "context_sha256": "ae7a9d830f093ebb89f8c2a87c12304329dc9fc4b18834e3ab803dcb07316acc",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.789913+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "15bc32b1c128ea555be15d74d835768776a2b28556ce2be8efd4e87ff2eb6b45"
+    },
+    {
+      "metric": "cpu.l2_cache",
+      "scope": {
+        "configuration": "Grace CPU Superchip",
+        "condition": "Grace CPU Superchip column; per core"
+      },
+      "value": "1MB per core",
+      "unit": "",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:c569d3c091b201b3a400d7ea3a9ef953",
+      "object_id": "product:531baf464fb508bef5a617b7fe639e4a",
+      "source": {
+        "sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+        "url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+        "locator": "excerpt:page:1",
+        "quote": "1MB per core",
+        "context_sha256": "ae7a9d830f093ebb89f8c2a87c12304329dc9fc4b18834e3ab803dcb07316acc",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.789913+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "767db93ba013c5d6da9bbc55240ba4a89667967717fc5b21a0e9b7e5d9b6a7ab"
+    },
+    {
+      "metric": "cpu.l3_cache",
+      "scope": {
+        "configuration": "Grace CPU Superchip",
+        "condition": "Grace CPU Superchip column; 228MB whole Superchip, not C1 114MB"
+      },
+      "value": "228MB",
+      "unit": "MB",
+      "kind": "reported",
+      "basis": "Archived official NVIDIA model-specific specification table; exact original cells, columns and footnotes preserved. Manufacturer specification, not observed deployment or measured workload performance.",
+      "effective_at": null,
+      "assumptions": [
+        "Source table does not disclose effective or publication date; retain unknown times rather than use receipt time.",
+        "Rack aggregate values and per-core cache values retain their original scope; do not convert to per-GPU values."
+      ],
+      "id": "observation:a86869bfa0cb5478a64125a18a9ccba0",
+      "object_id": "product:531baf464fb508bef5a617b7fe639e4a",
+      "source": {
+        "sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+        "url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+        "locator": "excerpt:page:1",
+        "quote": "228MB",
+        "context_sha256": "ae7a9d830f093ebb89f8c2a87c12304329dc9fc4b18834e3ab803dcb07316acc",
+        "published_at": null,
+        "first_received_at": "2026-10-01T11:09:08.789913+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (NVIDIA compute and cache source-field review in this session)",
+        "at": "2026-10-11T21:45:18.957039+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Reviewed twelve exact model-specific cells of archived official NVIDIA GB300 NVL72 and Grace CPU Superchip tables, including complete column headers and two GB300 footnotes. GB300 rack Fast Memory is total, CPU LPDDR5X memory and bandwidth separate from GPU existing metric. CPU core count is rack aggregate; existing GPU count cell already includes CPU count and is not duplicated. FP4 preserves 1440 sparse versus 1080 non-sparse PFLOPS with footnote2, not a range; INT8 FP16/BF16 TF32 Tensor Core sparse conditions retained. FP32 plain label is not assigned sparse multiplier; FP64 combined source label is not split. Grace L1 I/D and L2 are per core, L3 228MB uses Superchip column rather than C1 114MB. All433 existing records and143 object identities remain. Dates absent, retained null; first receiver receipt preserved. Ordinary supplemental observations only, no whole-document completion, model validation, or question closure claimed.",
+        "delegation": {
+          "delegate": "Codex (NVIDIA compute and cache source-field review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "Current conversation: continue Spark stock expansion, review and adopt sourced information by unique object, publish and report hourly actual results; ordinary supplemental adoption authorized.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T21:45:18.957039+00:00",
+      "recorded_at": "2026-10-11T21:45:19.048819+00:00",
+      "proposal_sha256": "dd1f95bc1ba137282f626951188f3d34d6599d1a331251fb4d22f1ea388da5e0",
+      "claim_sha256": "0ce2f07ac1446731707d762ec4289638150fc8cf3240f3815c4d1e258d1ce2ef"
     }
   ]
 }
