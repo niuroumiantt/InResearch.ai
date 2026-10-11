@@ -47070,6 +47070,90 @@
         },
         "batch_id": "0cfeb4154900ee089756ff02b6ec6724d1d0d5b058c06e90cff99abca6fdafc5"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "663dee95a7c5292828488f612633be7daf457899e43f2fe5f68e62cd760490be",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:20:claim:3:ev:0",
+      "locator": "page:21/chunk:20",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "page_index": 20,
+      "question_ids": [],
+      "quote": "the depreciation associated with these investments that is​\n ​hitting both Google Cloud and Google Services.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:34:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为 6，连续原文引文及相邻页问答提供充分语境，且无已识别的 A 类触发条件。该陈述对当前折旧研究有实质但有限的贡献：明确相关投资折旧影响两个业务分部，可帮助界定 M11-Q09 的适用范围及 M11-Q14 的利润影响分析边界；不能回答年限与残值假设或完成量化。",
+        "workorder_ids": [
+          "Q-M11-Q09",
+          "Q-M11-Q14"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 30.744,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6524ab306c9fd9ea0c8a8c0dde3024e42e491dd4f8558eabdab9b9bdfc630db6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29316,
+            "output_tokens": 1187,
+            "reasoning_output_tokens": 311
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.275,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ed03967fe520a661ea2e1d4bc10d4629a64bda070a44b6c58f70ce09a3efdbc5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29781,
+              "output_tokens": 529,
+              "reasoning_output_tokens": 210
+            }
+          }
+        },
+        "batch_id": "c7231cbae0ec7ec7ba1fd00584547204e0d771721bad0454f175f5e48bc88468"
+      }
     }
   ],
   "statements": [
@@ -91557,6 +91641,108 @@
         "request_sha256": "5fcea3bf95c133d9c779a045166e3dfd81b4f2ce00fca5df6864838f9edff7f0"
       },
       "object_mapping_check": "声明直接涉及一个BESS项目，映射电力系统“发电与储能”链下的part:bess。GridStor和Black Mountain Energy Storage无允许的主体ID；地域相同不能建立actor:alphabet-google映射，也未提供UPS、并网协议或具体数据中心资产证据。所选证据统一采用该声明级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:20:claim:3:ev:0"
+      ],
+      "id": "adoption:review:ba58e3562fe0d8c4b9adea63",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "question_ids": [
+        "M11-Q09",
+        "M11-Q14"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "据《Alphabet Q1 2026 Earnings Call》，Alphabet 与 Google 高级副总裁兼 CFO Anat Ashkenazi 在解释利润率变化时表示，公司数据中心和服务器资本支出投资相关的折旧同时影响 Google Cloud 和 Google Services。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:34:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为 6，连续原文引文及相邻页问答提供充分语境，且无已识别的 A 类触发条件。该陈述对当前折旧研究有实质但有限的贡献：明确相关投资折旧影响两个业务分部，可帮助界定 M11-Q09 的适用范围及 M11-Q14 的利润影响分析边界；不能回答年限与残值假设或完成量化。",
+        "workorder_ids": [
+          "Q-M11-Q09",
+          "Q-M11-Q14"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 30.744,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6524ab306c9fd9ea0c8a8c0dde3024e42e491dd4f8558eabdab9b9bdfc630db6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29316,
+            "output_tokens": 1187,
+            "reasoning_output_tokens": 311
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.275,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ed03967fe520a661ea2e1d4bc10d4629a64bda070a44b6c58f70ce09a3efdbc5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29781,
+              "output_tokens": 529,
+              "reasoning_output_tokens": 210
+            }
+          }
+        },
+        "batch_id": "c7231cbae0ec7ec7ba1fd00584547204e0d771721bad0454f175f5e48bc88468"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:20:claim:3"
+      ],
+      "limitations": "仅采用管理层关于折旧影响范围的陈述，不构成独立核实。所供原文未确立具体来源日期；不以 URL 日期或文件元数据代替发布日期。未披露适用地域、具体项目及阶段、折旧年限、残值、折旧金额或分部折旧分配比例，也未区分 AI 与其他资产。阅读覆盖为 PDF 原生文本，未进行视觉审阅。",
+      "conflict_check": "所供当前采用陈述为空。相关旧记录仅涉及 Google Cloud 客户 API token 量，与折旧影响范围不构成冲突或重复；所供合同和项目匹配记录为空。未发现真实冲突，也未提出替换现有结论；此检查限于提供的记录，不代表完成外部反证检索。",
+      "gap_dependency_check": "两项问题均应保持开放。M11-Q09 仍需资产类别、适用时点、使用年限及残值的原始披露；M11-Q14 仍需同口径资产与折旧数据、税率、资本分母、容量及时间边界，并提供可复算推导。该陈述不能验证工单列举的公司折旧年限，不能计算每 GW NOPAT、ROIC 或年限延长带来的会计利润。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c7231cbae0ec7ec7ba1fd00584547204e0d771721bad0454f175f5e48bc88468",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "95c190fb51443a47e7cc29ad3847719116c5b2ebc3516b530a019143f159f4f7"
+      },
+      "object_mapping_check": "独立核查后，仅映射契约中名称为谷歌、kind 为 actor、无父级的 actor:alphabet-google。该主张属于 Alphabet/Google 公司业务分部的折旧影响范围；上下文虽提及数据中心和服务器投资，但未限定为一座 AI 数据中心或特定基础设施部件，因此不添加 root、系统或部件映射。此范围统一适用于所选证据，不改变原候选及证据标签。"
     }
   ],
   "answers": [],
