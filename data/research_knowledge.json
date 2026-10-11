@@ -6891,6 +6891,77 @@
       "status": "candidate",
       "stored_path": "originals/d1/d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3/samaritan-abilene-timeline.html",
       "title": "OpenAI Stargate Abilene"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "coverage": {
+        "characters_read": 12852,
+        "characters_total": 12852,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "library_path": "library/by-node/part-cdu/2026_DCD；作者 Shalin Savalia（Ama_When racks outpace the infrastructure_ Retrofitting dat__0fb166143118bf15.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:power/4",
+        "part:busway",
+        "part:cdu",
+        "part:chilled-water-loop",
+        "part:chiller",
+        "part:dry-cooler",
+        "part:rack-system",
+        "part:transformer",
+        "part:ups-battery",
+        "root",
+        "site:grid",
+        "site:network-access",
+        "system:facility",
+        "system:it"
+      ],
+      "question_ids": [
+        "OBJ-cdu-alternatives",
+        "OBJ-cdu-definition",
+        "OBJ-cdu-interfaces",
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-supply",
+        "OBJ-heat-reject-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+        "url": "https://www.datacenterdynamics.com/en/opinions/when-racks-outpace-the-infrastructure-retrofitting-data-center-power-systems-for-ai-scale-densities/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/opinions/when-racks-outpace-the-infrastructure-retrofitting-data-center-power-systems-for-ai-scale-densities/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/0f/0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153/dcd-0fb166143118bf15-When racks outpace the infrastructure- Retrofitting data center p.html",
+      "title": "When racks outpace the infrastructure: Retrofitting data center power systems for AI-scale densities"
     }
   ],
   "evidence": [
@@ -51268,6 +51339,263 @@
           }
         },
         "batch_id": "25a58c4c4972affa45a3c74c11f8fa30ed468b03b642cae804b080da0e71f15f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0ac8ce5c4246651b7940d8700a184e1b59d514e3114079f84541dc175b2020d7",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:15:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:power/5",
+        "chain:power/6"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "But raising rack voltage is its own retrofit: new PDUs, and power shelf units (PSU) input ratings, new protective-device ratings, and a workforce trained on 480V AC rather than 800V DC.",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:05:31+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原句与周边电压转换、标准仍在制定的改造语境充分，对当前M09-Q04的传统链替代条件具有实质性部分贡献。工程设备改造不等于拟替换既有研究结论；未发现敏感、真实冲突或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.653,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f86a643296fc551e89947fe07f1be4469f598b6e9047c06fa5916c1f6edcecf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62926,
+            "output_tokens": 3433,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.883,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "05fef80ac1f6372ee7f032496a3a8d51d4b76281c38b7763963716821f0d9f1e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62272,
+              "output_tokens": 413,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0ac8ce5c4246651b7940d8700a184e1b59d514e3114079f84541dc175b2020d7",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:16:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Racks at 15 to 30kW were air-cooled, and air handling units (AHUs) pushing cold air through a raised floor or a contained aisle were enough. Air runs out of headroom well before 100kW per rack; there is no practical way to move enough of it to carry that heat off a cold plate. Direct liquid cooling becomes mandatory.",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:05:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文和完整冷却改造语境支持明确归因的定性机制，对当前M06-Q04的密度向冷却系统传导及M08-Q01的存量改造采用条件有实质性部分贡献。没有将作者的必要性判断升级为实测阈值；未发现A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M06-Q04",
+          "Q-M08-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.653,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f86a643296fc551e89947fe07f1be4469f598b6e9047c06fa5916c1f6edcecf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62926,
+            "output_tokens": 3433,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.883,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "05fef80ac1f6372ee7f032496a3a8d51d4b76281c38b7763963716821f0d9f1e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62272,
+              "output_tokens": 413,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab8d5ae5545ebc46f80805af4c4fff8335bffe1196e78037647d063a0fd49d72",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:1:claim:0:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "part:cdu",
+        "part:room-cooling"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-definition",
+        "OBJ-cdu-interfaces"
+      ],
+      "quote": "An in-row or in-rack coolant distribution unit (CDU) pulls heat off the chips with a liquid loop and rejects it into the room, where the existing air handlers carry it away.",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:05:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句与液对空气、液对液路径的周边语境充分，对当前CDU定义和接口工单有直接部分贡献，对替代方案工单提供可比较路径的识别线索。未发现敏感、真实冲突、拟替换或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-definition",
+          "Q-OBJ-cdu-interfaces",
+          "Q-OBJ-cdu-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.653,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f86a643296fc551e89947fe07f1be4469f598b6e9047c06fa5916c1f6edcecf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62926,
+            "output_tokens": 3433,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.883,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "05fef80ac1f6372ee7f032496a3a8d51d4b76281c38b7763963716821f0d9f1e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62272,
+              "output_tokens": 413,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743"
       }
     }
   ],
@@ -99111,6 +99439,314 @@
         "request_sha256": "dfc0721c26252995753d6159b7426954dd33660fb8aa33d475c94589d4ba1790"
       },
       "object_mapping_check": "独立按对象合同核对：被分类对象是计算链下的 AI 加速器服务器整机，对应 part:server；分类依据明确为随整机出货的 GPU 加速器数量，对应同链下 part:gpu。GPU 映射仅表示整机组成中的数量关系，不表示 GPU 产品分类或独立性能。未将相邻整机柜讨论并入本项，也不扩展为整座数据中心、网络、供电或控制系统范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "evidence_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:15:ev:0"
+      ],
+      "id": "adoption:review:fff08276164a4886edac457c",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/5",
+        "chain:power/6"
+      ],
+      "question_ids": [
+        "M09-Q04"
+      ],
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "status": "adopted",
+      "text": "AWS数据中心工程团队高级数据中心电气工程师Shalin Savalia在DCD于2026年10月2日发表的《When racks outpace the infrastructure: Retrofitting data center power systems for AI-scale densities》中认为，既有数据中心提高机柜供电电压、转向800V DC，需要新的PDU、适配的机柜电源架输入额定值及新的保护器件额定值，并面对人员原先接受480V AC而非800V DC培训的限制。这是作者对存量改造条件的判断，未指认具体项目、地区或实施进度，不构成AWS正式承诺或当前独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:05:31+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原句与周边电压转换、标准仍在制定的改造语境充分，对当前M09-Q04的传统链替代条件具有实质性部分贡献。工程设备改造不等于拟替换既有研究结论；未发现敏感、真实冲突或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.653,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f86a643296fc551e89947fe07f1be4469f598b6e9047c06fa5916c1f6edcecf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62926,
+            "output_tokens": 3433,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.883,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "05fef80ac1f6372ee7f032496a3a8d51d4b76281c38b7763963716821f0d9f1e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62272,
+              "output_tokens": 413,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743"
+      },
+      "source_candidate_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:15"
+      ],
+      "limitations": "未提供设备型号、具体输入范围、保护配合、接地方案、培训要求、量产或交付日期。原文PSU的展开方式不同于常见服务器电源模块用法，保留其机柜电源架语义，不自行纠正或扩展。不能由改造要求推出传统设备已经被替代或800V DC已经普遍投运。",
+      "conflict_check": "既有adoption:review:7a5bdecd1ac14d40e9fbb96f讨论提高电压和AC转DC的技术路径，本项新增改造与人员条件，不构成完整重复。IEA固态变压器商业化早期判断涉及不同设备与阶段。legacy的800V架构宣称、华为600kW支持能力及54V架构限制没有否定本项改造要求；Meta电源架规格和BIS市场预测也非同工况反证。所供记录未发现真实冲突；检查限于供应材料，不替换既有结论。",
+      "gap_dependency_check": "M09-Q04仅获得新架构采用及传统链调整的条件，仍缺厂商一手量产时间表、交付和实际部署记录、传统设备保留或替代范围及同条件反证。问题保持开放，不更新时间表、替代比例或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743",
+        "source_report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+        "request_sha256": "70531a4ff71c9209b7a62ed058a6770778687af264526db321b07a991f0f0980"
+      },
+      "object_mapping_check": "独立按原文涉及的PDU、机柜电源架输入额定值及保护器件，选择system:power下的配电链和机柜与板级供电链。原文将PSU展开为power shelf units，不能直接继承为服务器电源模块part:psu。system:facility限定土地建筑及消防安防，不适合本项；人员培训不建立DCIM/BMS映射。所选证据统一使用上述主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "evidence_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:16:ev:0"
+      ],
+      "id": "adoption:review:8a97b7c2982c1cb5f2c38c91",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M06-Q04",
+        "M08-Q01"
+      ],
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "status": "adopted",
+      "text": "AWS数据中心工程团队高级数据中心电气工程师Shalin Savalia在DCD于2026年10月2日发表的上述文章中称，过去15–30kW/机柜的负载可由空气处理设备经架空地板或封闭通道送冷风满足；他认为，风冷在远低于100kW/机柜时便失去足够的散热余量，直接液冷因而成为必要条件。该判断处于既有数据中心向高密度AI负载改造的语境，未指认具体地区、项目或改造进度，是作者的工程概括，不构成通用阈值或当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:05:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文和完整冷却改造语境支持明确归因的定性机制，对当前M06-Q04的密度向冷却系统传导及M08-Q01的存量改造采用条件有实质性部分贡献。没有将作者的必要性判断升级为实测阈值；未发现A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M06-Q04",
+          "Q-M08-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.653,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f86a643296fc551e89947fe07f1be4469f598b6e9047c06fa5916c1f6edcecf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62926,
+            "output_tokens": 3433,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.883,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "05fef80ac1f6372ee7f032496a3a8d51d4b76281c38b7763963716821f0d9f1e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62272,
+              "output_tokens": 413,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743"
+      },
+      "source_candidate_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:16"
+      ],
+      "limitations": "未给出风量、送回风温度、冷板工况、机柜配置、测试方法或样本。15–30kW/机柜是作者所述历史运行情境；远低于100kW/机柜不是精确的通用风冷上限。未提供CDU或冷水机组运行参数、PUE、WUE、液冷渗透率分母或时间序列。",
+      "conflict_check": "既有adoption:review:28e30cc9f71841a53884e0ac保留企业托管风冷仍足够的条件，与本项高密度改造语境可以并存。Red Oak的传统企业5–10kW/机架及训练60–80kW/机架范围涉及不同负载，不能与本文历史15–30kW直接认定矛盾。legacy的Meta Artemis低功率风冷记录不构成反证；Catalina 93.5kW机柜采用风辅液冷，亦未证明纯风冷满足同条件需求。未发现同工况真实冲突或完整重复，不改写这些记录；检查不代表外部全面反证搜索。",
+      "gap_dependency_check": "M06-Q04仍需120kW→600kW→1MW各阶段的一手配置、工况及向M08/M09传导的可复查定量推导。M08-Q01仅获得存量改造采用液冷的条件线索，仍缺按新建AI机房与存量改造分组、具有明确地域和分母的实际渗透率曲线。两项问题均保持开放，不填入模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743",
+        "source_report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+        "request_sha256": "70531a4ff71c9209b7a62ed058a6770778687af264526db321b07a991f0f0980"
+      },
+      "object_mapping_check": "原文实际讨论机柜热负载增加时机房风冷向直接液冷转换的系统条件，跨越水与散热系统的多个链，选择system:thermal。机柜功率是冷却需求的条件，未确立NVL类整机柜、GPU规格或机柜结构范围；不增加计算设备映射。system:facility的土地建筑及消防安防范围不适用，所选证据统一采用system:thermal。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "evidence_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:1:claim:0:ev:0"
+      ],
+      "id": "adoption:review:c188d02f6be98587a8eda979",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cdu",
+        "part:room-cooling"
+      ],
+      "question_ids": [
+        "OBJ-cdu-definition",
+        "OBJ-cdu-interfaces",
+        "OBJ-cdu-alternatives"
+      ],
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "status": "adopted",
+      "text": "AWS数据中心工程团队高级数据中心电气工程师Shalin Savalia在DCD于2026年10月2日发表的上述文章中描述一种存量改造的液对空气方案：行间或机柜内CDU通过液体回路从芯片带走热量，再将热量排入机房，由现有空气处理设备继续带走。这是作者对一种CDU方案及其排热接口的说明，未指认具体型号、地区、项目或实施进度，不构成全部CDU的统一定义或当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:05:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句与液对空气、液对液路径的周边语境充分，对当前CDU定义和接口工单有直接部分贡献，对替代方案工单提供可比较路径的识别线索。未发现敏感、真实冲突、拟替换或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-definition",
+          "Q-OBJ-cdu-interfaces",
+          "Q-OBJ-cdu-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 100.653,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f86a643296fc551e89947fe07f1be4469f598b6e9047c06fa5916c1f6edcecf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62926,
+            "output_tokens": 3433,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.883,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "05fef80ac1f6372ee7f032496a3a8d51d4b76281c38b7763963716821f0d9f1e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62272,
+              "output_tokens": 413,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743"
+      },
+      "source_candidate_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:1:claim:0"
+      ],
+      "limitations": "所选引句未提供流量、压差、温度、冷却液、容量、冗余、连接标准或成本。相邻正文将液对空气称为过渡方案，并限定其依赖机房空气仍有接收排热的余量；不能据此认定任意既有风冷设施均可兼容。液对空气与液对液是CDU方案路径，不能改写为CDU已被其他设备替代。",
+      "conflict_check": "既有Schneider/Motivair和CoolIT记录讨论产品推出及MW能力宣称，本项讨论液对空气接口，非同型号性能冲突或完整重复。Flex/JetCool模块化方案记录未确认CDU边界，不足以证明本项接口错误。legacy的Meta Catalina风辅液冷仅为兼容既有设施的方案线索，未提供同一CDU接口或工况反证。未发现真实冲突，不替换既有产品能力、运行结论或已交付结果；检查限于所供记录。",
+      "gap_dependency_check": "OBJ-cdu-definition仅获得液对空气CDU的功能与局部边界，仍缺组成、其他方案及明确排除对象。OBJ-cdu-interfaces仍缺接口规格、单位、运行条件及互换限制。OBJ-cdu-alternatives仅获得一种方案路径及邻接比较线索，仍需液对液等方案在同工况下的性能、成本和约束比较。三项问题均保持开放，不更新PUE/WUE或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "420a0510ab7022e1167b84e3d708ab4136e6a40d610a0f842e241a2886d21743",
+        "source_report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+        "request_sha256": "70531a4ff71c9209b7a62ed058a6770778687af264526db321b07a991f0f0980"
+      },
+      "object_mapping_check": "原文明确描述行间或机柜内CDU，以及接收其排热的现有机房空气处理设备，分别对应冷水与CDU链下的part:cdu和机房与机柜链下的part:room-cooling。液体回路未确立为冷冻水管路，芯片也未限定GPU；不映射part:chilled-water-loop、part:gpu、冷水机组或室外排热设备。所选证据统一使用上述CDU与机房风冷接口范围。"
     }
   ],
   "answers": [],
