@@ -61210,6 +61210,87 @@
         },
         "batch_id": "d11cfa6a01ce2047750f24aa1235b805786866022820f09d5aeabdc1f990067e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c105135f5cd18b0e501c17e8f51d95230f7f1ae02fb9bd57a02eef25af231a36",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:67:claim:0:ev:0",
+      "locator": "page:67/chunk:67",
+      "object_ids": [],
+      "page_index": 66,
+      "question_ids": [],
+      "quote": "Wholesale and retail electricity prices have risen sharply across many major economies in\n                  recent years following the post-Covid-19 inflation spike and the global energy crisis of 2022.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:19:23+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。通胀与能源危机是审查居民电价上涨归因时需要考虑的其他驱动因素，实质关联当前M04-Q04工单的反证要求。连续完整引文及相邻页语境充分支持限定归因的部分作者主张，无敏感、真实冲突、拟替换或其他A条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 32.223,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "9d31913ce2c2c60fb29ed3473c1694994f1b797b619dd7d91c765a08560dda06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 53025,
+            "output_tokens": 1171,
+            "reasoning_output_tokens": 154
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.853,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3eb6136d793f03e71b98e148699b42c2ace2afe4d1a3eae2ce14a7e3b75576c8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 53629,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "28fa983ca1b3593a38009fc3e6dc0a4cf17b888baa5c87ce22bfec823c0bdeaf"
+      }
     }
   ],
   "statements": [
@@ -118626,6 +118707,104 @@
         "request_sha256": "f7d4975e719fc7384556cd6d2ee0cc9846e4fce8e78f4f0ef9a2a1d27c1f58a0"
       },
       "object_mapping_check": "独立核对对象契约：相邻原文确立财务表述主体为Cerebras，契约中的actor:cerebras-groq-sambanova-tenstorrent包含该主体，映射仅限Cerebras，不外推至Groq、SambaNova或Tenstorrent。本项是公司财务主张，未限定契约root所指的一座AI数据中心，也未分配至设施、电力、计算或其他部件，故不继承root及文档基础设施标签。所选证据统一采用此主张级主体范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:67:claim:0:ev:0"
+      ],
+      "id": "adoption:review:9b8b16bb29125439c02d65ad",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q04"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第67页称，许多主要经济体的批发和零售电价在报告所指的近年显著上涨，背景包括新冠疫情后的通胀激增和2022年全球能源危机。这是IEA对历史电价背景的概述，未经本次独立核验，不构成数据中心导致涨价或居民成本转嫁的因果结论；报告发表时间未确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:19:23+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。通胀与能源危机是审查居民电价上涨归因时需要考虑的其他驱动因素，实质关联当前M04-Q04工单的反证要求。连续完整引文及相邻页语境充分支持限定归因的部分作者主张，无敏感、真实冲突、拟替换或其他A条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 32.223,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "9d31913ce2c2c60fb29ed3473c1694994f1b797b619dd7d91c765a08560dda06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 53025,
+            "output_tokens": 1171,
+            "reasoning_output_tokens": 154
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.853,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "3eb6136d793f03e71b98e148699b42c2ace2afe4d1a3eae2ce14a7e3b75576c8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 53629,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "28fa983ca1b3593a38009fc3e6dc0a4cf17b888baa5c87ce22bfec823c0bdeaf"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:67:claim:0"
+      ],
+      "limitations": "“近年”是来源的相对时间表述，不能解释为截至当前的价格走势。引文没有涨幅、具体电价单位、分市场数据或各驱动因素的贡献估计，也未将零售电价限定为居民电价。没有数据中心PPA合同价格、居民成本分摊或政治反弹证据。原生文本读取完成不等于全文视觉审阅完成，支持限于所供原生页面及封存摘要。",
+      "conflict_check": "已采用的IEA总体负荷与零售电价弱关系、美国州级观察及局部效应限制，与本项历史涨价背景互补，不是同一主张的重复。美国受2022年危机影响较小，也不否定许多主要经济体涨价的概述。PJM容量账单反事实、核电PPA机会情景、哥伦布居民账单预测及公众担忧涉及不同指标、地域或性质，未发现真实冲突。本项不替换任何既有结论。所供legacy匹配为空，检查不代表穷尽性外部反证搜索。",
+      "gap_dependency_check": "对M04-Q04仅贡献审查涨价归因所需的历史背景和其他驱动因素，不能证明或排除数据中心的局部价格影响。仍需同口径PPA价格时间序列、居民费率与账单、成本分摊规则、政治反应的一手记录及可复查归因和反证。问题保持开放，不更新电价参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "28fa983ca1b3593a38009fc3e6dc0a4cf17b888baa5c87ce22bfec823c0bdeaf",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "f9eda09d6a3f7e9f7da4b40574c9f4a93b358a279bb147c05ce65fc1f8580b63"
+      },
+      "object_mapping_check": "独立审查后采用空对象范围。该主张涉及许多主要经济体的宏观批发和零售电价，未确立具体数据中心、项目阶段、设备、并网权利或允许的主体。合同中的root是一座AI数据中心，site:grid是其电力配额与并网，system:power及电网接入链属于设施供电范围，均不对应本项宏观价格概述；合同也没有IEA或宏观电价对象。所选证据统一采用空的主张级对象范围，保留M04-Q04的有效关联。"
     }
   ],
   "answers": [],
