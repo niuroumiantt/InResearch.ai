@@ -429,6 +429,24 @@ function timelineItem(item){
  const published=[...new Set(sourceVersions.map(s=>s.published_at||s.publication_date).filter(Boolean))];
  return `<li><time>${esc(item.effective_at||'观测时间未明确')}${item.valid_until?' 至 '+esc(item.valid_until):''}</time><div><span class="badge">${esc(observationKinds[item.kind]||item.kind)}</span>${item.scope&&item.scope!=='whole_site'?`<span class="badge">分期 ${esc(item.scope.slice(6))}</span>`:''}${item.revision?`<span class="badge">${item.revision.action==='withdraw'?'来源观测已撤回':'来源观测已修订'}</span>`:''}<p>${observationValues(item).join('<br>')}</p><p>${esc(item.basis)}</p>${item.assumptions?.length?`<p class="basis">${item.assumptions.map(esc).join('；')}</p>`:''}${(item.source_reading||[]).filter(r=>r.mode==='targeted').map(r=>`<p class="basis">局部证据已核验 · 选取 ${esc(r.pages_read)}／${esc(r.pages_total)} 页 · 未作全文阅读</p>`).join('')}${published.length?`<span class="basis">来源发表 ${published.map(esc).join('、')}</span> `:''}${(item.sources||[]).map(s=>sourceLink(s.url,'来源 ↗')).join(' · ')}</div></li>`;
 }
+function objectObservationRows(rows){
+ const labels={Capacity:'容量',Interface:'接口／吞吐',Density:'容量',Technology:'存储技术','Module Version':'外形／模块版本','Product Name':'产品系列','Bus Width':'总线宽度','CAS Latency':'CAS延迟','Operating Temp':'工作温度',Speed:'频率',industrial_electricity_price_ytd:'工业电价（年初至当月）',manufacturer_catalogue_model:'厂商目录型号',cooling_capacity:'制冷量',height:'高度',width:'宽度',depth:'深度',power_rating:'额定功率',operating_temperature:'工作温度',input_voltage:'输入电压',output_voltage:'输出电压',weight:'重量',efficiency:'效率',rack_count:'机柜数',rack_units:'机架高度',rated_current:'额定电流',outlet_configuration:'插座配置',airflow:'风量'};
+ return rows.map(r=>`<li><time>${esc(r.effective_at||'信息时间未明确')}</time><div><strong>${esc(labels[r.metric]||labels[r.metric.split('.').pop()]||r.metric)}</strong> · ${esc(typeof r.value==='object'?r.value.value_range.join('–'):r.value)} ${esc(r.unit==='native'?'':r.unit)}${r.conflict?'<span class="badge">同口径分歧待核</span>':''}${r.revision?'<span class="badge">历史修订</span>':''}<p>${r.period_start||r.period_end?'统计期间：'+esc(r.period_start||'未知')+'—'+esc(r.period_end||'未知')+' · ':''}核实：${esc(r.reviewed_at.slice(0,10))}${r.source.published_at?' · 披露：'+esc(r.source.published_at):''}</p><details class="observation-note"><summary>口径与条件</summary><p>${esc(r.basis)}</p><p>${Object.entries(r.scope).map(([k,v])=>esc(k)+': '+esc(v)).join(' · ')}</p></details>${sourceLink(r.source.url,'原始来源 ↗')}</div></li>`).join('');
+}
+function renderObjectUpdates(){
+ const panel=$('object-changes');if(!isHome||!panel)return;
+ const updates=data.research_updates||{},groups=new Map();
+ for(const row of updates.changes||[]){if(!groups.has(row.object_id))groups.set(row.object_id,[]);groups.get(row.object_id).push(row);}
+ $('object-update-count').textContent=`${updates.total||0} 项有来源信息 · ${updates.objects||0} 个对象；按最近补充排列，历史补录不代表今日发生。`;
+ panel.innerHTML=[...groups.values()].map(rows=>{const o=rows[0].object;return `<details class="project-change" data-object="${esc(o.id)}"><summary><strong>${esc(o.name)}</strong><span class="badge">${esc(({company:'公司',product:'产品',statistic:'统计',quote:'报价'})[o.type]||o.type)}</span><span class="change-preview">近期信息</span><span class="change-open">展开全部信息与来源</span></summary><p class="object-load-status" role="status"></p><ol class="timeline">${objectObservationRows(rows)}</ol></details>`}).join('')||'<p class="empty">暂无已采用的公司、产品、统计或报价更新。</p>';
+ for(const item of panel.querySelectorAll('details[data-object]'))item.addEventListener('toggle',async()=>{
+  if(!item.open||item.dataset.loaded||item.dataset.loading)return;
+  item.dataset.loading='1';const status=item.querySelector('.object-load-status');status.textContent='正在读取全部信息…';
+  try{const response=await fetch('/api/observations?object='+encodeURIComponent(item.dataset.object)+'&limit=100');if(!response.ok)throw Error('unavailable');const result=await response.json();item.querySelector('.timeline').innerHTML=objectObservationRows(result.records);status.textContent=`${result.total} 项有来源信息${result.next_offset!=null?'（当前显示前100项）':''}`;item.dataset.loaded='1';}
+  catch{status.textContent='全部信息暂不可用，保留近期摘要；重新展开可重试。';}
+  finally{delete item.dataset.loading;}
+ });
+}
 function renderTracking(){
  const t=data.tracking||{},panel=$('project-changes');
  if(isHome&&panel){
@@ -441,7 +459,7 @@ function renderTracking(){
  }
 }
 function render(){
- filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();renderDaily();renderTracking();
+ filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();renderDaily();renderTracking();renderObjectUpdates();
  if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球布局、项目规模与有来源的最新动态。';}
  $('coverage').textContent=`${data.totals.sites} 条已追踪项目记录 · 含园区与集群，非全球普查\n核验日期 ${data.coverage.oldest_verified||'—'} — ${data.coverage.latest_verified||'—'}`;
  const hidden=isProject||isMarket;

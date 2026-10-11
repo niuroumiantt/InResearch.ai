@@ -8,6 +8,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
 from inresearch.knowledge import site_timeline, site_quantity, site_register, observation_time
+from inresearch.knowledge.object_observations import public_updates
 
 STAGES = {'operating': '已投运', 'construction': '建设中', 'planning': '筹备机会'}
 LEVELS = dict(zip(['L'+str(i) for i in range(1, 10)],
@@ -268,6 +269,7 @@ def snapshot(root, params=None):
                          'latest_verified': dates[-1] if dates else None},
             'totals': totals(cohort), 'rows': rows, 'detail': detail, 'companies': companies,
             'tracking': tracking, 'geographic_filters': geographic_filters,
+            'research_updates': public_updates(root, company=params.get('c')),
             'leaders': leaders, 'regions': [{'id': r, 'name': REGIONS.get(r, r)} for r in sorted({p['region'] for p in all_rows})],
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
             'capacity_audit': audit,

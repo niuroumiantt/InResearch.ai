@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.95。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.96。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2581。
+在册文件：2590。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 430 |
-| 运行代码 | 357 |
+| 历史快照 | 431 |
+| 运行代码 | 360 |
 | 现行规范 | 15 |
-| 项目配置 | 775 |
+| 项目配置 | 776 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 29 |
-| 配套说明 | 210 |
-| 测试 | 213 |
+| 在册数据/索引 | 30 |
+| 配套说明 | 212 |
+| 测试 | 214 |
 
 ## 在册记录集合
 
@@ -47,6 +47,7 @@
 | `data/datacenter_model.json` | benchmark_series | 43 |
 | `data/event_cards.json` | records | 42 |
 | `data/facts.json` | records | 7849 |
+| `data/object_observations.json` | records | 81 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -1746,6 +1747,7 @@
 | `docs/reviews/2026-10-11/homepage-global-daily/before.json` | ledger_keys | 8 |
 | `docs/reviews/2026-10-11/homepage-global-daily/projection-benchmark.json` | before_seconds | 2 |
 | `docs/reviews/2026-10-11/homepage-global-daily/projection-benchmark.json` | after_seconds | 3 |
+| `docs/reviews/2026-10-11/object-observations/batch.json` | held_fields | 2 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | rejected_inferences | 3 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | remaining_evidence | 3 |
 | `docs/reviews/2026-10-11/research-remediation/additional-primary-support-review.json` | reviews | 3 |
@@ -1765,7 +1767,7 @@
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
-| `framework/current_state.json` | operational_guides | 11 |
+| `framework/current_state.json` | operational_guides | 12 |
 | `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/current_state.json` | compat_retirements | 7 |
 | `framework/dashboard_rules.json` | honesty | 5 |
@@ -1929,6 +1931,7 @@
 | `data/event_cards.json` | 在册数据/索引 |
 | `data/facts.json` | 在册数据/索引 |
 | `data/metric_gaps.jsonl` | 在册数据/索引 |
+| `data/object_observations.json` | 在册数据/索引 |
 | `data/policies.json` | 在册数据/索引 |
 | `data/prices.json` | 在册数据/索引 |
 | [data/product_docs_plan.csv](../data/product_docs_plan.csv) | 在册数据/索引 |
@@ -2590,6 +2593,7 @@
 | `docs/design/technical-atlas/references/14-modern-campus-cutaway.png` | 项目配置 |
 | [docs/design/technical-atlas/references/README.md](design/technical-atlas/references/README.md) | 配套说明 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
+| [docs/guides/OBJECT_OBSERVATIONS.md](guides/OBJECT_OBSERVATIONS.md) | 配套说明 |
 | [docs/guides/fetchdata/README.md](guides/fetchdata/README.md) | 配套说明 |
 | [docs/guides/fetchdata/delivery-contract.md](guides/fetchdata/delivery-contract.md) | 配套说明 |
 | [docs/guides/fetchdata/examples/README.md](guides/fetchdata/examples/README.md) | 配套说明 |
@@ -2641,6 +2645,7 @@
 | [docs/handoff/m4-deepread.md](handoff/m4-deepread.md) | 配套说明 |
 | [docs/handoff/material-lineage-dashboard-20261008.md](handoff/material-lineage-dashboard-20261008.md) | 配套说明 |
 | [docs/handoff/material-progress-overview-20261006.md](handoff/material-progress-overview-20261006.md) | 配套说明 |
+| [docs/handoff/multi-object-intake-20261011.md](handoff/multi-object-intake-20261011.md) | 配套说明 |
 | [docs/handoff/news-research-matching-20261006.md](handoff/news-research-matching-20261006.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
 | [docs/handoff/ocr-gap-rescue-four-20261007.md](handoff/ocr-gap-rescue-four-20261007.md) | 配套说明 |
@@ -3254,6 +3259,7 @@
 | [docs/reviews/2026-10-11/homepage-global-daily/README.md](reviews/2026-10-11/homepage-global-daily/README.md) | 历史快照 |
 | `docs/reviews/2026-10-11/homepage-global-daily/before.json` | 历史快照 |
 | `docs/reviews/2026-10-11/homepage-global-daily/projection-benchmark.json` | 历史快照 |
+| `docs/reviews/2026-10-11/object-observations/batch.json` | 历史快照 |
 | [docs/reviews/2026-10-11/research-remediation/DYNAMIC_DATA.md](reviews/2026-10-11/research-remediation/DYNAMIC_DATA.md) | 历史快照 |
 | [docs/reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md](reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md) | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | 历史快照 |
@@ -3311,6 +3317,7 @@
 | `framework/repository_manifest.json` | 生成物 |
 | `framework/research_demand_review.json` | 项目配置 |
 | `framework/research_graph.json` | 项目配置 |
+| `framework/research_publication.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
 | `framework/site_rights.json` | 项目配置 |
 | `framework/storage_contract.json` | 项目配置 |
@@ -3683,6 +3690,7 @@
 | `src/inresearch/knowledge/news_observations.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
 | `src/inresearch/knowledge/nodes.py` | 运行代码 |
+| `src/inresearch/knowledge/object_observations.py` | 运行代码 |
 | `src/inresearch/knowledge/observation_time.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/raw_atlas.py` | 运行代码 |
@@ -3748,6 +3756,7 @@
 | `src/inresearch/workflow/l1_batch.py` | 运行代码 |
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
 | `src/inresearch/workflow/news_marks.py` | 运行代码 |
+| `src/inresearch/workflow/object_review.py` | 运行代码 |
 | `src/inresearch/workflow/operations.py` | 运行代码 |
 | `src/inresearch/workflow/pilot_progress.py` | 运行代码 |
 | `src/inresearch/workflow/product_catalog.py` | 运行代码 |
@@ -3773,6 +3782,7 @@
 | `src/inresearch/workflow/review_preference.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
 | `src/inresearch/workflow/site_tracking.py` | 运行代码 |
+| `src/inresearch/workflow/stock_objects.py` | 运行代码 |
 | `src/inresearch/workflow/submissions.py` | 运行代码 |
 | `src/inresearch/workflow/supply.py` | 运行代码 |
 | `src/inresearch/workflow/targeted_research.py` | 运行代码 |
@@ -3920,6 +3930,7 @@
 | `tests/unit/test_news_targets.py` | 测试 |
 | `tests/unit/test_nodes.py` | 测试 |
 | `tests/unit/test_object_mapping_review.py` | 测试 |
+| `tests/unit/test_object_review.py` | 测试 |
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
