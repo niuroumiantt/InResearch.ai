@@ -60903,6 +60903,89 @@
         },
         "batch_id": "7b52029471ac39b05278a32d1eca4c83e3122fbb85b44bb669943cadf70fe90b"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6b50d04529f6d00e814d0bee51199d6d2e24abf43eda855e4ec3c7584a515bc0",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:57:claim:2:ev:0",
+      "locator": "page:58/chunk:57",
+      "object_ids": [
+        "chain:power/4"
+      ],
+      "page_index": 57,
+      "question_ids": [],
+      "quote": "By 2030, global\n                  data centre UPS capacity is expected to rise by more than 100 GW, broadly matching the\n                  growth in data centre infrastructure.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:58:47+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文和相邻供电、UPS及长时储能段落提供充分语境。来源明确将数据中心基础设施增长与UPS容量增长联系起来，对当前硬件制造、集成与分销问题中的下游扩张向设备需求传导具有实质性局部贡献。仅采用为作者预测，不回答或关闭问题；未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.274,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e1c1362d2ccd9cd8c80c190aee72d773d3ac986ee6b19f606a6c107d489e6b21",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68935,
+            "output_tokens": 1339,
+            "reasoning_output_tokens": 272
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.894,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "19b6927ec700525b6cd302fbd974be905c74c5723c56c5a121b8a7678f5b00f8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69579,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 215
+            }
+          }
+        },
+        "batch_id": "a1c3ac54eef3406d6639c5d2f416d1242029be32c88586d1ce201e0fa4c5b8b8"
+      }
     }
   ],
   "statements": [
@@ -118021,6 +118104,106 @@
         "request_sha256": "45ca9e79a8a4d9f8367e69abac40107e6542de452e38a83e39def95494a0684e"
       },
       "object_mapping_check": "独立依据具名Munters SyCool产品的两种制冷剂冷凝路径，选择厂商、散热系统、排热链和工质部件。钎焊板式换热器与主动冷凝没有证明存在冷水机组、冷冻水回路或CDU，故不继承这些标签；模式变化本身也不足以映射DCIM/BMS。所选证据统一采用此范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:57:claim:2:ev:0"
+      ],
+      "id": "adoption:review:cd9ad68cebd6c05e8c9e552a",
+      "kind": "author_forecast",
+      "object_ids": [
+        "chain:power/4"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-chain"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》（确切发表日期未知）中预计，到2030年，全球数据中心UPS容量将增加超过100 GW，大致匹配数据中心基础设施的增长。这是来源对未来UPS容量增长的预测，不构成已实现设备交付、投运IT容量或当前供应能力的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T21:58:47+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，复核评分6。连续原文引文和相邻供电、UPS及长时储能段落提供充分语境。来源明确将数据中心基础设施增长与UPS容量增长联系起来，对当前硬件制造、集成与分销问题中的下游扩张向设备需求传导具有实质性局部贡献。仅采用为作者预测，不回答或关闭问题；未发现敏感、真实冲突、拟替换或其他A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.274,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e1c1362d2ccd9cd8c80c190aee72d773d3ac986ee6b19f606a6c107d489e6b21",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68935,
+            "output_tokens": 1339,
+            "reasoning_output_tokens": 272
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.894,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "19b6927ec700525b6cd302fbd974be905c74c5723c56c5a121b8a7678f5b00f8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69579,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 215
+            }
+          }
+        },
+        "batch_id": "a1c3ac54eef3406d6639c5d2f416d1242029be32c88586d1ce201e0fa4c5b8b8"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:57:claim:2"
+      ],
+      "limitations": "原文未明确该增量的基准日期、基准容量、预测方法、情景条件或冗余配置，未提供地区分布、厂商、型号、订单、交期、价格及项目阶段。超过100 GW为UPS容量预计增量，不能解释为2030年容量总量、投运IT容量或电池能量容量，也不能与现场发电或长时储能容量直接相加。阅读覆盖限于PDF原生文本，未进行视觉审阅；2030年是预测目标时间，不能据此确定发表日期。",
+      "conflict_check": "已采用的adoption:review:b2d785ecb5a388042f57ad32涉及2023年欧洲UPS采购困难，与本项全球未来容量预测的时期、地域及指标不同，不构成真实冲突，也不能验证预测。adoption:review:745696da226b39bf5b38ebf1强调设备发布至验收和可用日期仍需取证，与本项保持预测状态兼容。其他所供采用声明未包含同口径UPS容量增长结论，未发现完整重复。当前回答及所供legacy匹配记录为空；检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "NODE-activity-V2-chain仅获得基础设施扩张与UPS设备容量需求增长之间的作者预测关系。仍需实际订单、制造产能、集成与分销记录、交付周期、约束传导、需求兑现、反例及领先指标验证。UPS设备类别材料不能自动覆盖整个硬件制造、集成与分销节点；没有证明容量增长必然导致供应瓶颈。工作单保持开放，不更新模型输入、研究骨架或容量总量。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a1c3ac54eef3406d6639c5d2f416d1242029be32c88586d1ce201e0fa4c5b8b8",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "6160948263b7cc4937f1d86df16a2c7e592cd51161c45c348667ca0445b3411f"
+      },
+      "object_mapping_check": "独立依据对象契约核对，原文主张范围为数据中心UPS容量，准确对应system:power下名为UPS的chain:power/4。原文未拆分整流、逆变、静态开关或电池容量，故保留UPS链范围，不增加具体部件映射。相邻长时储能属于另行讨论的范围，不映射part:bess；全球数据中心集合也不对应root所定义的一座AI数据中心。不因父子关系增加电力系统或IT设施对象；所选证据统一使用此声明级对象范围。"
     }
   ],
   "answers": [],
