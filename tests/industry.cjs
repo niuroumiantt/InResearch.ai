@@ -378,7 +378,7 @@ const {mkdirSync}=require('node:fs');
   await page.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:rawPayload}));
   // A stalled member identity endpoint must never block public news.
   await page.route('**/api/whoami',()=>new Promise(()=>{}));
-  await page.goto(base+'/');await page.getByRole('link',{name:'微软新园区日报线索',exact:true}).waitFor();await page.locator('#world-map .country-point').waitFor();
+  await page.goto(base+'/');await page.getByRole('link',{name:'微软新园区日报线索',exact:true}).waitFor();await page.locator('#world-map .country-point').waitFor({state:'visible',timeout:10000});
   assert.equal(await page.locator('.dc-news-list article').count(),2,'raw headlines remain available without a feed');
   assert.equal(await page.locator('.dc-news-list :is(time,small,button,.dc-news-day,.dc-news-capacity,.dc-news-state,.dc-news-mark)').count(),0);
   assert.equal(await page.locator('.dc-news-original[href="https://example.com/raw-mw"]').count(),1,'original article links remain available');
