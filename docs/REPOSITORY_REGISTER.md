@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.92。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.93。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2561。
+在册文件：2568。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 427 |
-| 运行代码 | 352 |
+| 历史快照 | 429 |
+| 运行代码 | 355 |
 | 现行规范 | 15 |
 | 项目配置 | 775 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 201 |
-| 测试 | 210 |
+| 测试 | 212 |
 
 ## 在册记录集合
 
@@ -1749,6 +1749,7 @@
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | rejected_inferences | 3 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | remaining_evidence | 3 |
 | `docs/reviews/2026-10-11/research-remediation/additional-primary-support-review.json` | reviews | 3 |
+| `docs/reviews/2026-10-11/research-remediation/explicit-location-backfill.json` | records | 78 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-adoption-proposal.json` | records | 12 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-owner-adoption-receipt.json` | records | 12 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | sources | 5 |
@@ -3246,10 +3247,12 @@
 | [docs/reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md](reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md) | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/additional-primary-support-review.json` | 历史快照 |
+| `docs/reviews/2026-10-11/research-remediation/explicit-location-backfill.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-adoption-proposal.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-owner-adoption-receipt.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/historical-fact-source-review.json` | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/inspur-historical-support-review.json` | 历史快照 |
+| [docs/reviews/2026-10-11/research-remediation/stock-excerpts-and-campus-register.md](reviews/2026-10-11/research-remediation/stock-excerpts-and-campus-register.md) | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
@@ -3673,7 +3676,9 @@
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
 | `src/inresearch/knowledge/research_gaps.py` | 运行代码 |
 | `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
+| `src/inresearch/knowledge/site_metrics.py` | 运行代码 |
 | `src/inresearch/knowledge/site_quantity.py` | 运行代码 |
+| `src/inresearch/knowledge/site_register.py` | 运行代码 |
 | `src/inresearch/knowledge/site_timeline.py` | 运行代码 |
 | `src/inresearch/knowledge/skeleton.py` | 运行代码 |
 | `src/inresearch/knowledge/target_request_contract.py` | 运行代码 |
@@ -3757,6 +3762,7 @@
 | `src/inresearch/workflow/site_tracking.py` | 运行代码 |
 | `src/inresearch/workflow/submissions.py` | 运行代码 |
 | `src/inresearch/workflow/supply.py` | 运行代码 |
+| `src/inresearch/workflow/targeted_research.py` | 运行代码 |
 | `src/inresearch/workflow/terminal_batch.py` | 运行代码 |
 | `src/inresearch/workflow/triage.py` | 运行代码 |
 | `src/inresearch/workflow/triage_progress.py` | 运行代码 |
@@ -3955,6 +3961,7 @@
 | `tests/unit/test_runtime_summary.py` | 测试 |
 | `tests/unit/test_scale_atlas_assets.py` | 测试 |
 | `tests/unit/test_shared_part_preview_assets.py` | 测试 |
+| `tests/unit/test_site_metrics.py` | 测试 |
 | `tests/unit/test_site_timeline.py` | 测试 |
 | `tests/unit/test_site_tracking.py` | 测试 |
 | `tests/unit/test_site_tracking_sources.py` | 测试 |
@@ -3964,6 +3971,7 @@
 | `tests/unit/test_supply.py` | 测试 |
 | `tests/unit/test_system_atlas_assets.py` | 测试 |
 | `tests/unit/test_target_dispatch.py` | 测试 |
+| `tests/unit/test_targeted_research.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
 | `tests/unit/test_tco_targets.py` | 测试 |
 | `tests/unit/test_text_similarity.py` | 测试 |

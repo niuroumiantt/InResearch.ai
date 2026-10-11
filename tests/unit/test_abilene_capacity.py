@@ -16,7 +16,12 @@ class AbileneCapacityTests(unittest.TestCase):
         row = next(r for r in rows if r['site_id'] == 'us-tx-abilene')
         baseline = {k: v for k, v in row.items() if k != 'observations'}
         audit = json.loads((ROOT / 'docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json').read_text())
-        self.assertEqual(audit['current_record'], baseline, 'new dated observations preserve the complete historical baseline')
+        geography_audit = json.loads((ROOT / 'docs/reviews/2026-10-11/research-remediation/explicit-location-backfill.json').read_text())
+        structured = next(r for r in geography_audit['records'] if r['site_id'] == row['site_id'])
+        self.assertEqual(structured['after'], {'province': 'Texas', 'city': 'Abilene'})
+        self.assertTrue(set(structured['after']).isdisjoint(audit['current_record']))
+        self.assertEqual({**audit['current_record'], **structured['after']}, baseline,
+                         'dated observations preserve the historical baseline; only audited explicit geography was added')
         self.assertEqual(audit['previous_record']['capacity_it_mw_by_status'], {'L8': 421, 'L6': 422})
         self.assertEqual(row['status'], audit['previous_record']['status'])
         self.assertEqual(row['verified_date'], audit['previous_record']['verified_date'])

@@ -75,6 +75,43 @@ def coverage_complete(document):
     return True
 
 
+def targeted_coverage_valid(document):
+    c = document.get('coverage', {})
+    sha = document.get('content_sha256', '')
+    if (not isinstance(c, dict) or c.get('mode') != 'targeted' or c.get('complete') is not False
+            or not re.fullmatch('[0-9a-f]{64}', str(sha))
+            or document.get('doc_id', document.get('id')) != 'doc-' + sha
+            or type(c.get('pages_total')) is not int or c['pages_total'] < 1):
+        return False
+    spans = c.get('reviewed_spans')
+    if not isinstance(spans, list) or not spans:
+        return False
+    seen = set()
+    for span in spans:
+        if (not isinstance(span, dict) or type(span.get('page_index')) is not int
+                or not 0 <= span['page_index'] < c['pages_total']
+                or not isinstance(span.get('locator'), str) or not span['locator'].strip()
+                or not re.fullmatch('[0-9a-f]{64}', str(span.get('text_sha256')))
+                or type(span.get('characters')) is not int or span['characters'] < 1
+                or span['locator'] in seen):
+            return False
+        seen.add(span['locator'])
+    return (type(c.get('pages_read')) is int
+            and c['pages_read'] == len({span['page_index'] for span in spans}))
+
+
+def coverage_supports_evidence(document, evidence):
+    """A sealed local excerpt may support a bounded claim, never a full reading."""
+    if coverage_complete(document):
+        return True
+    if not targeted_coverage_valid(document):
+        return False
+    return any(evidence.get('locator') == span['locator']
+               and evidence.get('page_index') == span['page_index']
+               and evidence.get('context_sha256') == span['text_sha256']
+               for span in document['coverage']['reviewed_spans'])
+
+
 def delegation_valid(review):
     """A named, bounded delegation; record known precision without inventing a clock time."""
     delegation = review.get('delegation')
@@ -206,6 +243,7 @@ def supported_adoption(row, knowledge):
     evidence = {e['id']: e for e in knowledge.get('evidence', [])}
     documents = {d['id']: d for d in knowledge.get('documents', [])}
     statements = {s['id']: s for s in knowledge.get('statements', [])}
+    complete_required = row.get('id') in {a.get('id') for a in knowledge.get('answers', [])}
 
     def supported(record, visiting):
         rid = record.get('id')
@@ -217,7 +255,8 @@ def supported_adoption(row, knowledge):
             d = documents.get(e.get('document_id'), {})
             if e.get('status') != 'adopted' or not review_valid(e):
                 return False
-            if not coverage_complete(d) or d.get('status') in ('withdrawn', 'rejected', 'superseded'):
+            if (not (coverage_complete(d) if complete_required else coverage_supports_evidence(d, e))
+                    or d.get('status') in ('withdrawn', 'rejected', 'superseded')):
                 return False
             if evidence_errors(e, d, adopted=True):
                 return False
@@ -288,6 +327,8 @@ def validate(graph, questions, knowledge):
             rid = row.get('id')
             if name == 'documents' and row.get('coverage', {}).get('complete') is True and not coverage_complete(row):
                 errors.append(f'{rid}: invalid complete coverage/content identity')
+            if name == 'documents' and row.get('coverage', {}).get('mode') == 'targeted' and not targeted_coverage_valid(row):
+                errors.append(f'{rid}: invalid targeted coverage/content identity')
             for field, targets in [('object_ids', objects), ('question_ids', qs),
                                    ('evidence_ids', tables['evidence']),
                                    ('statement_ids', tables['statements'])]:
@@ -412,7 +453,7 @@ def candidate_snapshot(payload, graph, questions):
                'object_ids', 'question_ids', 'document_id', 'page_index', 'locator',
                'quote', 'text', 'kind', 'evidence_ids', 'statement_ids', 'question_id',
                'model', 'read_status', 'mapping_status', 'content_sha256', 'reading_revision_id', 'report_sha256',
-               'published_date', 'as_of', 'source_provenance', 'source_role', 'editorial_references', 'research_requests'}
+               'published_date', 'as_of', 'source_provenance', 'source_role', 'editorial_references', 'research_requests', 'context_sha256'}
     known = {'object_ids': {o['id'] for o in graph.get('objects', []) if isinstance(o, dict) and 'id' in o},
              'question_ids': {q['id'] for q in questions.get('records', []) if isinstance(q, dict) and 'id' in q}}
     # 图谱 3.0：旧对象 ID 先按对象登记的别名与根前缀折算到骨架节点（不猜），折算不了的才丢
@@ -1078,7 +1119,7 @@ def adopted_for_node(root=ROOT, node='root'):
     return dict(schema_version=1, node=node, unknown=scoped.get('unknown', False),
                 questions=project(scoped['questions'], ('id', 'status')),
                 knowledge=dict(statements=reviewed(list(statements.values())), answers=reviewed(answers),
-                    evidence=reviewed(evidence, ('id', 'document_id', 'quote', 'page_index', 'locator', 'status')),
+                    evidence=reviewed(evidence, ('id', 'document_id', 'quote', 'page_index', 'locator', 'status', 'context_sha256')),
                     documents=project([d for d in curated['documents'] if d['id'] in document_ids],
                         ('id', 'title', 'content_sha256', 'reading_revision_id', 'coverage'))))
 

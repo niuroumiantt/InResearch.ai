@@ -14,6 +14,7 @@
 | models/textures 目录内图像 | 基础与资产契约、model_assets 三个既有消费场景 |
 | 普通 web 图像 | 可直接定位到已映射页面时运行对应测试；共享 JS/CSS/JSON 或无法映射的消费者跑全套；无法确立消费者时也跑全套 |
 | `data/research_knowledge.json` 仅追加有界研究资料 | 基础检查、固定研究/来源/审核/发布链路/HTTP 单元回归，单个 `browser (research)` 作业内执行既有 research_delivery 与 research_summary；不跑视觉资产、3D、装配、园区及存储容器 |
+| `data/projects.json` 仅向既有站点追加 v2 观测 | 基础检查、固定研究回归及站点时间/数量/原件采用/项目 HTTP 回归，`browser (research)` 与 `browser (industry)`；不跑无关 3D、装配、园区矩阵及存储容器 |
 | 程序、页面结构、权限、schema、非追加研究数据、依赖、测试、CI、现行规则及未知改动 | 原完整单元回归、17 个浏览器分片、资产契约、verify、indicators 和 storage-container |
 
 混合提交取所有影响的并集，任一全套条件覆盖轻量条件。规则入口和登记的操作指南不当成普通文案。派生清单仍须经治理检查验证；current_state 仅版本/日期变化、verification_contract 仅版本/审阅时间与本次实际修改文件的既有摘要变化可以随内容提交走轻量路线，规则和验收要求语义变化必须全套。图片是否很小不作为免检依据；资产登记或其它规范一起变化时按其实际范围处理。
@@ -24,7 +25,9 @@
 
 只对已存在的 `data/research_knowledge.json` v2.0.0 分类，比较完整 base/head JSON：仅 documents/evidence/statements 数组末尾可增加记录，所有旧记录的顺序、值与 JSON 类型不变，至少新增一条且各集合 ID 唯一。version、note、answers 和顶层结构不变；新增 statement 必须 partial_support_only=true，不携带正式 question_id、替代记录、放宽审核分布、对象映射替代或撤回状态。重复 JSON 键、非有限数字、未知结构、修改/删除/重排旧记录、正式答案或版本/规则变化均回到 full。不能仅凭文件名、行数、PR 标题或发布器声称追加而跳过测试。
 
-research 路线共四个执行作业：scope、validate、browser (research)、browser (core)。validate 保留治理、严格数据、registry 全量引用校验，并执行固定的 test_research*.py、test_public_reader.py、test_publish_reader.py、test_verification_contract.py、test_ci_scope.py；选定入口缺失或空测试集报错。browser (research) 串行执行原有研究成果页与研究摘要/节点资料测试，不展开 core_a/core_b/core_c 或任何 3D、装配、园区矩阵，纯研究追加也不运行 asset-check 和 storage-container。资料真实来源、C3 与原件核验仍由既有审核/发布链路完成，CI 分流本身不授予采用或上线资格。
+research 路线运行 scope、validate、browser (research)、browser (core)，追加站点观测另加 browser (industry)。validate 保留治理、严格数据、registry 全量引用校验，并执行固定的 test_research*.py、test_public_reader.py、test_publish_reader.py、test_verification_contract.py、test_ci_scope.py、test_site_*.py、test_project_review.py、test_targeted_research.py、test_industry.py；选定入口缺失或空测试集报错。browser (research) 串行执行原有研究成果页与研究摘要/节点资料测试，industry 验收首页/列表/园区详情及筛选，不展开 core_a/core_b/core_c 或任何 3D、装配、园区矩阵；纯研究追加也不运行 asset-check 和 storage-container。资料真实来源、C3 与原件核验仍由既有审核/发布链路完成，CI 分流本身不授予采用或上线资格。
+
+站点追加比较完整 JSON：顶层元数据、站点数量/顺序/身份、全部基线字段和旧观测的值/类型/顺序保持，唯一新观测 ID，只向 observations 末尾追加带 source_versions、adoption 和 fields 的 v2 观测。新增站点、补地理基线、改旧记录、显式 revision/替代/撤回、来源或采用上下文改写、歧义 JSON 与无法判定的变化仍全套。基础严格校验和现有 C3 原件写入共同检查实际合法性，不把形状检测视为采用。含 projects 的 research 汇总必须包含 industry，缺失不得通过。当前实现和规范变更本批走全套；不是用新分类器跳过自身验收。
 
 混合提交取并集：追加研究资料同时改普通文案/图片仍保留其检查；同时改已映射页面或资产则加跑对应浏览器与资产契约；任一代码、规则或未知影响仍覆盖为 full。新增正式答案、既有事实更正/替代不属于此范围。
 
@@ -36,7 +39,7 @@ GitHub main 必过检查为 `validate` 与 `browser (core)`，均绑定 GitHub A
 
 `browser (model_assets)`、`storage-container` 退出全局必过名单：需要它们时由汇总门禁强制检查成功，不需要时明确跳过。旧 PR 的完整四检查结果仍满足保留下来的两个名称，不要求为名称迁移重推全部 PR。
 
-研究发布器按精确审核 SHA 读取所有分页 check runs；两个具名门禁必须实际成功，额外运行的检查不得失败、待定或取消。条件未选择的可选任务可为 skipped，不能把必过门禁的 skipped 当成功。只有上述可证明的研究资料追加走 research 路线，其余正式研究 JSON 修改仍全套。来源、C3、当前正式上下文、网站支持闭包、Spark 回执与独占队列协议保持各自验收。
+研究发布器按精确审核 SHA 读取所有分页 check runs；两个具名门禁必须实际成功，额外运行的检查不得失败、待定或取消。条件未选择的可选任务可为 skipped，不能把必过门禁的 skipped 当成功。只有上述可证明的研究资料或既有站点观测追加走 research 路线，其余正式研究 JSON 修改仍全套。来源、C3、当前正式上下文、网站支持闭包、Spark 回执与独占队列协议保持各自验收。
 
 ## 修改与未覆盖范围
 

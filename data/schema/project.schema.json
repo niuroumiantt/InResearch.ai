@@ -72,6 +72,305 @@
                   }
                 },
                 "additionalProperties": false
+              },
+              "land_owner": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "土地权利人；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "owner": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "资产所有者；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "developer": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "开发方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "designer": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "设计方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "builder": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "EPC／总包；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "operator": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "运营方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "tenant": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "直接使用／承租方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "end_user": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "最终使用者；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "investor": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "股权出资方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "lender": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "贷款方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "power_supplier": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "供电服务方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "water_supplier": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "供水服务方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "network_provider": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "网络服务方；身份及有效时间需独立核验，不从其他角色推断"
+              },
+              "capacity_planned_it_mw": {
+                "$ref": "#/$defs/site_power_quantity"
+              },
+              "electricity_consumption_mwh": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "$ref": "#/$defs/site_resource_quantity"
+                      },
+                      {
+                        "properties": {
+                          "unit": {
+                            "enum": [
+                              "kWh",
+                              "MWh",
+                              "GWh",
+                              "TWh"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "water_consumption_m3": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "$ref": "#/$defs/site_resource_quantity"
+                      },
+                      {
+                        "properties": {
+                          "unit": {
+                            "enum": [
+                              "L",
+                              "m3",
+                              "m³",
+                              "US gal"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "water_withdrawal_m3": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "$ref": "#/$defs/site_resource_quantity"
+                      },
+                      {
+                        "properties": {
+                          "unit": {
+                            "enum": [
+                              "L",
+                              "m3",
+                              "m³",
+                              "US gal"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "water_use_m3_per_day": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "$ref": "#/$defs/site_resource_quantity"
+                      },
+                      {
+                        "properties": {
+                          "unit": {
+                            "enum": [
+                              "m3/day",
+                              "m³/day",
+                              "L/day",
+                              "US gal/day"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "pue": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "$ref": "#/$defs/site_resource_quantity"
+                      },
+                      {
+                        "properties": {
+                          "unit": {
+                            "enum": [
+                              "PUE"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "wue_l_per_kwh_it": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "allOf": [
+                      {
+                        "$ref": "#/$defs/site_resource_quantity"
+                      },
+                      {
+                        "properties": {
+                          "unit": {
+                            "enum": [
+                              "L/kWh IT",
+                              "m3/MWh IT",
+                              "m³/MWh IT"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "borrower": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "借款主体；按来源独立核验，不从产权或使用关系推断"
+              },
+              "guarantor": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "担保方；按来源独立核验，不从产权或使用关系推断"
+              },
+              "lessor": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "description": "租约出租方；按来源独立核验，不从产权或使用关系推断"
               }
             },
             "description": "容量总数/分期/估算性质作为完整字段束；原生区间无隐含中点，runtime校验顺序/依据和跨记录修订"
@@ -384,6 +683,181 @@
           }
         }
       }
+    },
+    "land_owner": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "土地权利人；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "owner": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "资产所有者；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "designer": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "设计方；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "builder": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "EPC／总包；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "operator": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "运营方；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "end_user": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "最终使用者；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "investor": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "股权出资方；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "lender": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "贷款方；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "power_supplier": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "供电服务方；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "water_supplier": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "供水服务方；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "network_provider": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "网络服务方；身份及有效时间需独立核验，不从其他角色推断"
+    },
+    "province": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "明确登记的地理分量；不从模糊地点猜值"
+    },
+    "city": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "明确登记的地理分量；不从模糊地点猜值"
+    },
+    "district": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "明确登记的地理分量；不从模糊地点猜值"
+    },
+    "street_address": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "明确登记的地理分量；不从模糊地点猜值"
+    },
+    "parcel_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "identity_scope": {
+      "enum": [
+        "registered_site",
+        "physical_campus",
+        "cluster",
+        "portfolio"
+      ],
+      "description": "仅核实明确物理边界后标physical_campus"
+    },
+    "capacity_planned_it_mw": {
+      "$ref": "#/$defs/site_power_quantity",
+      "description": "园区整体规划IT容量；不加到阶段合计，不从阶段求和推定"
+    },
+    "borrower": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "借款主体；按来源独立核验，不从产权或使用关系推断"
+    },
+    "guarantor": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "担保方；按来源独立核验，不从产权或使用关系推断"
+    },
+    "lessor": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "租约出租方；按来源独立核验，不从产权或使用关系推断"
     }
   },
   "$defs": {
@@ -458,6 +932,95 @@
           "additionalProperties": false
         }
       ]
+    },
+    "site_resource_quantity": {
+      "type": "object",
+      "required": [
+        "unit",
+        "basis",
+        "boundary",
+        "period_start",
+        "period_end",
+        "measurement_kind"
+      ],
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "value_range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "period_start": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "period_end": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "measurement_kind": {
+          "enum": [
+            "measured",
+            "reported",
+            "estimated",
+            "design",
+            "forecast"
+          ]
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "value"
+          ],
+          "not": {
+            "required": [
+              "value_range"
+            ]
+          }
+        },
+        {
+          "required": [
+            "value_range"
+          ],
+          "not": {
+            "required": [
+              "value"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
     }
   }
 }

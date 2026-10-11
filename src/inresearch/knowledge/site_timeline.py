@@ -10,12 +10,12 @@ import re
 from datetime import date, datetime, timezone
 from urllib.parse import urlsplit
 from inresearch.knowledge.data_rules import FRESH_DAYS
-from inresearch.knowledge import observation_time, site_quantity
+from inresearch.knowledge import observation_time, site_quantity, site_metrics, site_register
 
 FIELDS = frozenset(('name', 'developer', 'tenant', 'owner', 'operator', 'builder',
                     'status', 'lifecycle', 'power_status', 'utility', 'notes',
                     'capacity_it_mw', 'capacity_it_mw_by_status',
-                    'capacity_facility_mw', 'capacity_assessment'))
+                    'capacity_facility_mw', 'capacity_planned_it_mw', 'capacity_assessment')) | site_metrics.FIELDS | site_register.ACTOR_ROLES.keys()
 KINDS = frozenset(('disclosed', 'reported', 'estimated', 'derived', 'forecast'))
 IT_BUNDLE = ('capacity_it_mw', 'capacity_it_mw_by_status', 'capacity_assessment')
 
@@ -64,11 +64,11 @@ def check(observation):
         raise ValueError('site_observation_stage')
     if 'lifecycle' in fields and fields['lifecycle'] not in ('active', 'paused', 'cancelled', 'closed'):
         raise ValueError('site_observation_lifecycle')
-    for key in ('developer', 'tenant', 'owner', 'operator', 'builder'):
+    for key in site_register.ACTOR_ROLES:
         if key in fields and (not isinstance(fields[key], list) or
                               any(not isinstance(v, str) or not v for v in fields[key])):
             raise ValueError('site_observation_actor')
-    for key in ('capacity_it_mw', 'capacity_facility_mw'):
+    for key in ('capacity_it_mw', 'capacity_facility_mw', 'capacity_planned_it_mw'):
         if key in fields and fields[key] is not None:
             site_quantity.check(fields[key])
     parts = fields.get('capacity_it_mw_by_status')
@@ -79,6 +79,10 @@ def check(observation):
             if value is None:
                 raise ValueError('site_observation_capacity_value')
             site_quantity.check(value)
+    for key in site_metrics.FIELDS & fields.keys():
+        if observation.get('schema_version') != 2:
+            raise ValueError('site_observation_v2_required_for_resource_metrics')
+        site_metrics.check(key, fields[key])
     if observation.get('schema_version') != 2 and any(isinstance(q, dict) for q in (
             fields.get('capacity_it_mw'), fields.get('capacity_facility_mw'), *(parts or {}).values())):
         raise ValueError('site_observation_v2_required_for_new_metadata')
@@ -130,7 +134,7 @@ def check(observation):
                     raise ValueError('site_observation_source_time_provenance_required')
         adoption = observation['adoption']
         assertions = adoption.get('assertions')
-        if (adoption.get('source_kind') not in ('daily_event', 'reader_report')
+        if (adoption.get('source_kind') not in ('daily_event', 'reader_report', 'targeted_excerpt')
                 or not isinstance(adoption.get('source_id'), str) or not adoption['source_id'].strip()
                 or not re.fullmatch('[0-9a-f]{64}', str(adoption.get('source_version', '')))
                 or not isinstance(adoption.get('document_refs'), list) or not adoption['document_refs']
@@ -276,6 +280,8 @@ def current(project, today=None):
         if chosen is None:
             continue
         projected, quantities = site_quantity.project_fields({f: chosen['fields'].get(f) for f in fields})
+        projected, resources = site_metrics.project(projected)
+        quantities.update(resources)
         is_expired = chosen in expired
         if is_expired:
             projected = {field: {} if field == 'capacity_it_mw_by_status' else None for field in fields}
@@ -322,9 +328,11 @@ def current(project, today=None):
 
 def _comparison_fields(values, fields):
     result = {f: values.get(f) for f in fields}
-    for field in ('capacity_it_mw', 'capacity_facility_mw'):
+    for field in ('capacity_it_mw', 'capacity_facility_mw', 'capacity_planned_it_mw'):
         if field in result:
             result[field] = site_quantity.canonical(result[field])
+    for field in site_metrics.FIELDS & result.keys():
+        result[field] = site_metrics.canonical(field, result[field])
     if 'capacity_it_mw_by_status' in result:
         result['capacity_it_mw_by_status'] = {k: site_quantity.canonical(v) for k, v in (result['capacity_it_mw_by_status'] or {}).items()}
     return result
@@ -344,6 +352,9 @@ def public_timeline(project):
              'revision': ({'action': r['revision']['action'], 'observation_ids': r['revision']['observation_ids']} if r.get('revision') else None),
              'source_versions': [{k: s.get(k) for k in ('source_sha256', 'published_at', 'first_received_at', 'published_at_precision', 'first_received_at_precision')}
                                  for s in r.get('source_versions', [])],
+             'source_reading': [{k: ref['coverage'].get(k) for k in ('mode', 'complete', 'pages_total', 'pages_read')}
+                                for ref in r.get('adoption', {}).get('document_refs', [])
+                                if isinstance(ref.get('coverage'), dict)],
              'kind': r['kind'], 'basis': r['basis'], 'fields': copy.deepcopy(r['fields']),
              'assumptions': r.get('assumptions', []),
              'sources': [{k:s.get(k) for k in ('url', 'date', 'grade', 'note')}

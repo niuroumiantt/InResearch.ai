@@ -539,7 +539,10 @@ print(json.dumps({"knowledge":closure},ensure_ascii=False,separators=(",",":")))
             if s['text']!=byid[sid]['text'] or s['review']['decision']!='adopted':raise ValueError('website_adoption_mismatch')
             for eid in s['evidence_ids']:
                 e=evidence[eid]
-                if not e.get('quote') or not docs[e['document_id']]['coverage']['complete']:raise ValueError('website_support_closure_missing')
+                document = docs[e['document_id']]
+                coverage = document.get('coverage', {})
+                supported = registry.coverage_supports_evidence(document, e) if coverage.get('mode') == 'targeted' else coverage.get('complete') is True
+                if not e.get('quote') or not supported:raise ValueError('website_support_closure_missing')
         proof={'batch_id':bid,'bundle_sha256':journal['bundle_sha256'],
                'website_statement_ids':expected,'website_image':image,'verified_at':now_iso(),
                'merge_commit':journal['merge_commit'],'api':'/api/research-adopted?node=root',

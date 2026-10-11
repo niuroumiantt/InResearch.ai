@@ -19,10 +19,12 @@ FULL_SUITES = ['core_a', 'core_b', 'core_c', 'server_assembly', 'rack_assembly',
 IMAGES = {'.png', '.jpg', '.jpeg', '.gif', '.webp', '.ico', '.svg'}
 DERIVED = {'framework/repository_manifest.json', 'docs/REPOSITORY_REGISTER.md'}
 RESEARCH_PATH = 'data/research_knowledge.json'
+PROJECT_PATH = 'data/projects.json'
 RESEARCH_SUITES = ['research']
 RESEARCH_TEST_PATTERNS = ('test_research*.py', 'test_public_reader.py',
                           'test_publish_reader.py', 'test_verification_contract.py',
-                          'test_ci_scope.py')
+                          'test_ci_scope.py', 'test_site_*.py', 'test_project_review.py',
+                          'test_targeted_research.py', 'test_industry.py')
 # A page absent here needs a full run, even if only its visible text changed.
 PAGES = {'index': 'industry', 'company': 'company_page', 'company-home': 'company_window',
          'company-products': 'company_catalog_map', 'product-catalog': 'product_catalog',
@@ -103,14 +105,7 @@ def active_svg(raw):
                       for k, v in e.attrib.items()) for e in ET.fromstring(raw).iter())
 
 
-def research_append_only(before, after):
-    """Only new bounded source records; never edits, answers or policy changes.
-
-    Keep existing array order and every existing JSON value, including its type.
-    Reject ambiguous JSON rather than letting duplicate keys or NaN hide edits.
-    Shape selection is not a source/adoption approval: registry and research
-    regression still verify the actual support chain in the selected CI jobs.
-    """
+def strict_json(raw):
     def pairs(items):
         result = {}
         for key, value in items:
@@ -122,11 +117,21 @@ def research_append_only(before, after):
     def invalid_constant(value):
         raise ValueError('non-finite JSON value: '+value)
 
-    def canonical(value):
-        return json.dumps(value, sort_keys=True, ensure_ascii=True, allow_nan=False)
+    return json.loads(raw, object_pairs_hook=pairs, parse_constant=invalid_constant)
 
-    old, new = [json.loads(raw, object_pairs_hook=pairs, parse_constant=invalid_constant)
-                for raw in (before, after)]
+
+def canonical(value):
+    return json.dumps(value, sort_keys=True, ensure_ascii=True, allow_nan=False)
+
+
+def research_append_only(before, after):
+    """Only new bounded sources; preserve every old JSON value and its type.
+
+    Shape selection is not source/adoption approval. The selected CI jobs
+    continue validating the support chain and publication regression.
+    """
+
+    old, new = map(strict_json, (before, after))
     sections = {'documents', 'evidence', 'statements'}
     keys = sections | {'version', 'note', 'answers'}
     if not isinstance(old, dict) or not isinstance(new, dict) or set(old) != keys or set(new) != keys:
@@ -161,6 +166,52 @@ def research_append_only(before, after):
                         or declaration.get('relaxes_distribution', False) is not False):
                     return False
         added += len(b)-len(a)
+    return added > 0
+
+
+def project_observations_append_only(before, after):
+    """Only bounded new observations on existing identities, never revisions.
+
+    All baseline fields, source records and old observations remain byte-value
+    equivalent. New identities, backfills, explicit replacements and changes to
+    adopted context require the complete regression. Strict validation and the
+    existing source/C3 writer remain adoption gates, independently of CI scope.
+    """
+    old, new = map(strict_json, (before, after))
+    if not isinstance(old, dict) or not isinstance(new, dict) or set(old) != set(new):
+        return False
+    if 'records' not in old or any(canonical(old[k]) != canonical(new[k]) for k in old if k != 'records'):
+        return False
+    a, b = old['records'], new['records']
+    if not isinstance(a, list) or not isinstance(b, list) or len(a) != len(b):
+        return False
+    identities = set()
+    added = 0
+    for previous, current in zip(a, b):
+        if not isinstance(previous, dict) or not isinstance(current, dict):
+            return False
+        site = previous.get('site_id')
+        if not isinstance(site, str) or not site or site in identities:
+            return False
+        identities.add(site)
+        if 'observations' in previous and 'observations' not in current:
+            return False
+        if canonical({k:v for k,v in previous.items() if k != 'observations'}) != canonical({k:v for k,v in current.items() if k != 'observations'}):
+            return False
+        prior, following = previous.get('observations', []), current.get('observations', [])
+        if not isinstance(prior, list) or not isinstance(following, list) or len(following) < len(prior):
+            return False
+        if canonical(prior) != canonical(following[:len(prior)]):
+            return False
+        ids = [r.get('id') for r in following if isinstance(r, dict)]
+        if len(ids) != len(following) or any(not isinstance(i, str) or not i for i in ids) or len(set(ids)) != len(ids):
+            return False
+        for observation in following[len(prior):]:
+            if (type(observation.get('schema_version')) is not int or observation['schema_version'] != 2 or not observation.get('fields')
+                    or not observation.get('source_versions') or not observation.get('adoption')
+                    or any(k in observation for k in ('replaces_observation_ids', 'owner_decision', 'supersedes', 'revision'))):
+                return False
+        added += len(following)-len(prior)
     return added > 0
 
 
@@ -225,6 +276,12 @@ def select(root, base, head, event='pull_request', force=False):
                     return full('research edit, schema, answer or non-additive change: '+path, changes)
                 research = True
                 suites.update(RESEARCH_SUITES)
+                continue
+            if path == PROJECT_PATH:
+                if status != 'M' or not project_observations_append_only(blob(root, base, path), blob(root, head, path)):
+                    return full('project identity, baseline, revision or non-additive change: '+path, changes)
+                research = True
+                suites.update([*RESEARCH_SUITES, 'industry'])
                 continue
             suffix = Path(path).suffix.lower()
             if suffix == '.md' and (path.startswith(('docs/', 'research/', 'outputs/')) or path == 'README.md'):
@@ -329,6 +386,8 @@ def gate(plan, results):
     if plan['mode'] == 'content' and (plan['suites'] or plan['storage']):
         return False
     if plan['mode'] == 'research' and (not set(RESEARCH_SUITES) <= set(plan['suites']) or plan['storage']):
+        return False
+    if plan['mode'] == 'research' and any(r.get('path') == PROJECT_PATH for r in plan.get('files', [])) and 'industry' not in plan['suites']:
         return False
     return all(results.get(k, {}).get('result') == v for k, v in expected.items())
 

@@ -30,6 +30,10 @@ class CiScopeTests(unittest.TestCase):
                           'statements':[{'id':'statement:old', 'partial_support_only':True}],
                           'answers':[]}
         self.write(ci.RESEARCH_PATH, json.dumps(self.knowledge))
+        self.projects = {'_note':'Physical records', 'records':[{'site_id':'fixed-campus',
+            'location':'Texas, Abilene', 'country':'US', 'verified_date':'2026-10-10',
+            'observations':[]} , {'site_id':'other-campus', 'country':'IN'}]}
+        self.write(ci.PROJECT_PATH, json.dumps(self.projects))
         self.base = self.commit()
 
     def git(self, *args):
@@ -55,6 +59,49 @@ class CiScopeTests(unittest.TestCase):
         result['statements'].append({'id':'statement:new', 'partial_support_only':True,
                                      'evidence_ids':['evidence:new']})
         return result
+
+    def appended_observations(self):
+        result = copy.deepcopy(self.projects)
+        result['records'][0]['observations'].append({'id':'observation:new', 'schema_version':2,
+            'effective_at':'2026-10', 'recorded_at':'2026-10-11T00:00:00Z',
+            'fields':{'capacity_it_mw':{'value_range':[100,200],'unit':'MW','basis':'reported range'}},
+            'source_versions':[{'source_sha256':'a'*64}], 'adoption':{'review_id':'review:new'}})
+        return result
+
+    def test_append_only_site_observations_run_industry_and_source_regression(self):
+        self.write(ci.PROJECT_PATH, json.dumps(self.appended_observations()))
+        plan = self.plan()
+        self.assertEqual((plan['mode'],plan['suites'],plan['storage']),('research',['industry','research'],False))
+        self.assertFalse(set(plan['suites']) & set(ci.FULL_SUITES))
+        results={k:{'result':v} for k,v in {'scope':'success','validate':'success',
+            'browser':'success','storage-container':'skipped'}.items()}
+        self.assertTrue(ci.gate(plan,results))
+        self.assertFalse(ci.gate(dict(plan,suites=['research']),results))
+
+    def test_site_identity_baseline_revisions_old_observations_and_ambiguous_json_are_full(self):
+        candidates=[]
+        for field,value in [('site_id','moved-campus'),('verified_date','2026-10-11'),('country','IN'),('location','new plot')]:
+            candidate=self.appended_observations();candidate['records'][0][field]=value;candidates.append(candidate)
+        candidate=self.appended_observations();candidate['records'].reverse();candidates.append(candidate)
+        candidate=self.appended_observations();candidate['records'].append({'site_id':'new'});candidates.append(candidate)
+        candidate=self.appended_observations();candidate['_note']='changed policy';candidates.append(candidate)
+        for field,value in [('revision',{'action':'replace'}),('schema_version',1),('source_versions',[]),('adoption',{})]:
+            candidate=self.appended_observations();candidate['records'][0]['observations'][0][field]=value;candidates.append(candidate)
+        for candidate in candidates:
+            with self.subTest(candidate=candidate):
+                self.write(ci.PROJECT_PATH,json.dumps(candidate));self.assertEqual(self.plan()['mode'],'full')
+        initial=self.appended_observations();encoded=json.dumps(initial)
+        for raw in (encoded.replace('"country": "US"','"country": "US", "country": "IN"'),
+                    encoded.replace('100, 200','NaN, 200')):
+            self.write(ci.PROJECT_PATH,raw);self.assertEqual(self.plan()['mode'],'full')
+        following=copy.deepcopy(initial);following['records'][0]['observations'][0]['fields']['capacity_it_mw']['value_range']=[1,2]
+        self.assertFalse(ci.project_observations_append_only(json.dumps(initial),json.dumps(following)))
+        self.assertFalse(ci.project_observations_append_only(json.dumps(initial),json.dumps(self.projects)))
+
+    def test_observation_append_mixed_with_implementation_still_runs_full(self):
+        self.write(ci.PROJECT_PATH,json.dumps(self.appended_observations()))
+        self.write('src/inresearch/knowledge/site_timeline.py','changed code')
+        self.assertEqual(self.plan()['mode'],'full')
 
     def test_append_only_research_runs_related_pages_without_visual_assets_or_storage(self):
         self.write(ci.RESEARCH_PATH, json.dumps(self.appended_research()))
