@@ -16,6 +16,20 @@ ROOT=project_root()
 
 
 class HomepageRawAtlasTests(unittest.TestCase):
+    def test_precompiled_aliases_preserve_unicode_and_word_boundary_matching(self):
+        from inresearch.knowledge import news_observations
+        aliases=['AWS','Meta','阿里云','数据中心','Café','Straße','über cloud','Ｆｉｎｌａｎｄ','A_B','!!!','']
+        texts=['AWS announces a campus','drawstring and meta-data','metadata and metas',
+               '中国阿里云数据中心','阿里 云','CAFE\u0301 campus','StraSSe campus',
+               'an Über  Cloud campus','Finland data center','A_B campus','prefixA_Bsuffix','AWS公司',
+               'ＡＷＳ campus','unrelated']
+        for alias in aliases:
+            compiled=raw_atlas._compile_term(alias)
+            for text in texts:
+                with self.subTest(alias=alias,text=text):
+                    self.assertEqual(raw_atlas._contains_normalized(news_observations.normalized(text),compiled),
+                                     news_observations.contains(text,alias))
+
     def test_source_ledger_is_visible_but_never_adopts_or_aggregates_capacity(self):
         value=raw_atlas.build(ROOT,None,[],now=datetime(2026,10,10,17,tzinfo=timezone.utc))
         rows=[r for r in value['records'] if r['origin']=='research_publication']
@@ -117,6 +131,24 @@ class HomepageRawAtlasTests(unittest.TestCase):
         self.assertEqual(overview['capacity_audit']['estimated'],full['capacity_audit']['estimated'])
         self.assertGreaterEqual(overview['totals']['estimated']['operating'],421)
         self.assertGreaterEqual(overview['totals']['estimated']['construction'],422)
+
+    def test_homepage_news_does_not_require_formal_library_or_backflow_counts(self):
+        from inresearch.workflow import news_marks
+        runtime={'received_at':'2026-10-11T02:00:00Z','reader':{'status':'idle','acquisition':{
+            'news_feed':{'status':'success','exported_at':'2026-10-11T02:00:00Z','items':[
+                {'title_zh':'实时数据中心新闻','url':'https://example.org/independent-news','published_at':1791684000000}]}}}}
+        with patch('inresearch.delivery.runtime_summary.load_acquisition',return_value=runtime), \
+             patch('inresearch.delivery.runtime_summary.load',return_value=runtime), \
+             patch.object(registry,'read_json',side_effect=ValueError('formal unreadable')), \
+             patch.object(news_marks,'useful_by_target',side_effect=AssertionError('homepage backflow')), \
+             patch.object(news_marks,'adopted_by_target',side_effect=AssertionError('homepage adoption backflow')):
+            value=registry.build_news(ROOT,overview=True)
+            self.assertEqual(value['feed']['items'][0]['url'],'https://example.org/independent-news')
+            self.assertEqual(value['raw_atlas']['research_total'],168)
+            self.assertNotIn('useful_by_target',value['feed'])
+            self.assertNotIn('adopted_by_target',value['feed'])
+            with self.assertRaisesRegex(ValueError,'formal unreadable'):
+                registry.build_news(ROOT)
 
     def test_news_public_cache_versions_changes_and_never_reuses_a_failed_rebuild(self):
         registry._NEWS_PUBLIC_CACHE.clear()

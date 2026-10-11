@@ -834,7 +834,7 @@ def build_news(root=ROOT, *, company_id=None, limit=80, overview=False):
     """News consumes the same validated snapshot without constructing catalog/tasks."""
     from inresearch.delivery.runtime_summary import load, load_acquisition
     runtime = load_acquisition(root) if overview else load(root)
-    knowledge = read_json(root / 'data/research_knowledge.json')
+    knowledge = None if overview else read_json(root / 'data/research_knowledge.json')
     reader = _reader_state(runtime)
     acquisition = reader.get('acquisition')
     if acquisition is not None and not isinstance(acquisition, dict):
@@ -863,13 +863,15 @@ def build_news(root=ROOT, *, company_id=None, limit=80, overview=False):
                      if isinstance(counts, dict) and len(counts) <= 5000 else None)
         # 回流的两个「用上」信号（2026-10-01 用户定口径）：研究员点「有用」的线索（快）与顺着线索已经 C3 采用了原件的（慢），
         # 都只是按目标行的计数；标记本身留在私有运行目录。读不到标记就不给这两项，不拒整页。
-        try:
-            from inresearch.workflow import news_marks
-            used = {'useful_by_target': news_marks.useful_by_target(root),
-                    'adopted_by_target': news_marks.adopted_by_target(root, items, knowledge, review_valid)}
-            used = {k: v for k, v in used.items() if v}   # 没有就不出现,与 by_target 缺省同一习惯
-        except (ValueError, TypeError, KeyError, OSError):
-            used = {}
+        used = {}
+        if not overview:
+            try:
+                from inresearch.workflow import news_marks
+                used = {'useful_by_target': news_marks.useful_by_target(root),
+                        'adopted_by_target': news_marks.adopted_by_target(root, items, knowledge, review_valid)}
+                used = {k: v for k, v in used.items() if v}   # 没有就不出现,与 by_target 缺省同一习惯
+            except (ValueError, TypeError, KeyError, OSError):
+                used = {}
         feed = dict(status=feed.get('status'), exported_at=feed.get('exported_at'),
                     items=[{key: item[key] for key in ('title_zh', 'url', 'domain', 'published_at', 'editorial_pick', 'event_type', 'object_ids') if key in item}
                            for item in sorted(items, key=timestamp, reverse=True)[:limit]],

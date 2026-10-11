@@ -12,6 +12,28 @@ COUNTRY_NAMES = {'CN':'China','US':'United States of America','AU':'Australia','
 REGIONS = {**dict.fromkeys(('US','CA','MX'),'north-america'), **dict.fromkeys(('GB','FI','SE','NO','DE','FR','IE','NL','DK','ES','IT','BE'),'europe'), **dict.fromkeys(('AU','PH','TH','MY','SG','JP','KR','TW','ID','HK','VN','KH','BN','LA'),'apac'), **dict.fromkeys(('AE','SA'),'mena'), 'CN':'china','IN':'india','BR':'latam','CL':'latam'}
 
 
+def _compile_term(alias):
+    """Compile observe.contains semantics once; callers normalize each text once."""
+    term=observe.normalized(alias)
+    return term, None if re.search(r'[\u3400-\u9fff]',term) else re.compile(r'(?<!\w)'+re.escape(term)+r'(?!\w)')
+
+
+def _contains_normalized(text, compiled):
+    term,pattern=compiled
+    return bool(term and (term in text if pattern is None else pattern.search(text)))
+
+
+def _company_terms(companies, aliases=None):
+    aliases=aliases or {}
+    return [(company['company_id'],[_compile_term(term) for term in
+             [company.get('name_cn') or '',*(company.get('name') or '').split(' / '),*aliases.get(company['company_id'],[])]
+             if len(term)>=3]) for company in companies]
+
+
+def _company_mentions(text, terms):
+    return {ident for ident,compiled in terms if any(_contains_normalized(text,term) for term in compiled)}
+
+
 def short(value, limit=200):
     return value[:limit] if isinstance(value, str) else ''
 
@@ -112,6 +134,12 @@ def build(root, feed, leads, *, received_at=None, available=False, truncated=Fal
     sites={r['site_id']:r for r in json.loads(site_path.read_text())['records']} if site_path.exists() else {}
     companies=json.loads(company_path.read_text())['records'] if company_path.exists() else []; company_ids={r['company_id'] for r in companies}
     from inresearch.materials.daily_events import COUNTRIES
+    company_terms=_company_terms(companies)
+    research_terms=_company_terms(companies,{'amazon':['AWS','Amazon Web Services','亚马逊'],
+        'alphabet-google':['Google','谷歌'],'microsoft':['Microsoft','微软'],'meta':['Meta','Facebook'],
+        'alibaba':['Alibaba','阿里云','阿里巴巴'],'bytedance':['ByteDance','TikTok','字节跳动','抖音']})
+    country_terms=[(code,name,_compile_term(name)) for name,code in COUNTRIES.items()]
+    english_country_terms=[(code,name,_compile_term(name)) for code,name in COUNTRY_NAMES.items()]
     points=country_points(root); records={}
     input_truncated=len(leads)>1000 or len((feed or {}).get('items',[]))>80
     def make(event,row=None):
@@ -121,14 +149,13 @@ def build(root, feed, leads, *, received_at=None, available=False, truncated=Fal
         if not title: return None
         ids={i for i in (row.get('company_ids') or []) if i in company_ids}
         ids.update(i[6:] for i in event.get('object_ids',[]) if isinstance(i,str) and i.startswith('actor:') and i[6:] in company_ids)
-        for c in companies:
-            terms=[c.get('name_cn') or '',*(c.get('name') or '').split(' / ')]
-            if any(observe.contains(title,t) for t in terms if len(t)>=3): ids.add(c['company_id'])
+        normalized_title=observe.normalized(title)
+        ids.update(_company_mentions(normalized_title,company_terms))
         mentions=countries(event.get('country_mentions') or row.get('country_mentions'))
         if not mentions:
-            mentions=[{'code':code,'name':name} for name,code in COUNTRIES.items() if observe.contains(title,name)]
-            for code,name in COUNTRY_NAMES.items():
-                if observe.contains(title,name) and not any(c['code']==code for c in mentions): mentions.append({'code':code,'name':name})
+            mentions=[{'code':code,'name':name} for code,name,term in country_terms if _contains_normalized(normalized_title,term)]
+            for code,name,term in english_country_terms:
+                if _contains_normalized(normalized_title,term) and not any(c['code']==code for c in mentions): mentions.append({'code':code,'name':name})
         ident=row.get('site_id') or event.get('matched_site_id'); site=sites.get(ident)
         observations=capacities(event.get('capacity_observations') or row.get('capacity_observations'))
         if not observations: observations=capacities(observe.power(title))
@@ -187,13 +214,7 @@ def build(root, feed, leads, *, received_at=None, available=False, truncated=Fal
                 sources=[u for u in row.get('sources',[]) if public_url(u)][:10]
                 if not sources: continue
                 roles={k:short(v,600) for k,v in (row.get('roles') or {}).items() if k in ('developer_or_builder','operator','disclosed_user')}
-                text=' '.join(roles.values()); ids=set()
-                brand_aliases={'amazon':['AWS','Amazon Web Services','亚马逊'], 'alphabet-google':['Google','谷歌'],
-                               'microsoft':['Microsoft','微软'], 'meta':['Meta','Facebook'],
-                               'alibaba':['Alibaba','阿里云','阿里巴巴'], 'bytedance':['ByteDance','TikTok','字节跳动','抖音']}
-                for company in companies:
-                    terms=[company.get('name_cn') or '',*(company.get('name') or '').split(' / '),*brand_aliases.get(company['company_id'],[])]
-                    if any(observe.contains(text,t) for t in terms if len(t)>=3): ids.add(company['company_id'])
+                ids=_company_mentions(observe.normalized(' '.join(roles.values())),research_terms)
                 code=row.get('country_code'); mentions=countries([{'code':code,'name':row.get('country_label')}])
                 item=dict(id=short(row.get('id'),160),title=short(row.get('name'),400),name=short(row.get('name'),400),
                           url=sources[0],sources=sources,published_at=0,published_date=None,report_date=None,
