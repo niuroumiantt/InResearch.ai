@@ -44,3 +44,5 @@
 网站源版本基准2026.10.11.78，在既有成果目录新增 /research/data-centers-2026.html 及3个地区附录、/research/data-centers-2026-projects.html 筛选台账。5HTML和2JSON精确白名单，不公开此目录原稿或交付状态。
 
 project-ledger.json为168条来源记载，不是去重后的物理园区普查；每条容量角度/阶段保留在原文，未取原件/Reader SHA留null。网站发布与Reader/editorial接收分开；部署版本和生产页面回执仍须实际确认。数据库规模和架构评估见 ../../../reviews/2026-10-11/datacenter-research/。
+
+合并后 verify-data-center-publication 作业读取生产8个具体文件与healthz，日志内输出实际HTTP/SHA回执；检查失败不等于已上线，未验证生产实际交互或公众号交付。

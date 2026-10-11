@@ -43,6 +43,13 @@
       "collections": []
     },
     {
+      "path": ".github/workflows/verify-data-center-publication.yml",
+      "role": "project_config",
+      "bytes": 1136,
+      "sha256": "6e96f20dafd5f8b46e3df802af9733167a3bec25233d065399a7b3666bfb0733",
+      "collections": []
+    },
+    {
       "path": ".gitignore",
       "role": "project_config",
       "bytes": 4525,
@@ -297,20 +304,20 @@
     {
       "path": "data/research_knowledge.json",
       "role": "source_record",
-      "bytes": 4260251,
-      "sha256": "a12eda697238c8871909b4a6d422c6751a789b67c1ffc3e74246b1892dde2303",
+      "bytes": 4272054,
+      "sha256": "82c7ee12bf639cb731279e43a887194099d1465e5eab44d7407906ac91c81c3f",
       "collections": [
         {
           "name": "documents",
-          "count": 66
+          "count": 67
         },
         {
           "name": "evidence",
-          "count": 455
+          "count": 456
         },
         {
           "name": "statements",
-          "count": 415
+          "count": 416
         },
         {
           "name": "answers",
@@ -601,8 +608,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 275007,
-      "sha256": "c838b0381d3edf3294400665cca3497906e8afb0b5ee9413c0e026c4619b0fc6",
+      "bytes": 275263,
+      "sha256": "520de88bc931ba0059f6cd5203c9c9f0577cedd24abb49032b82b21279348e07",
       "collections": []
     },
     {
@@ -14221,8 +14228,8 @@
     {
       "path": "docs/research/2026-10-11/data-centers/README.md",
       "role": "supporting_document",
-      "bytes": 5393,
-      "sha256": "5cf9041f5107a7007e25df5ba2a6680928020a10c137518961bb1a67f15a5c4e",
+      "bytes": 5602,
+      "sha256": "cc438759ffcd3c07e1b587ed61197187a245cf46826f719e04661e6f5419d780",
       "collections": []
     },
     {
@@ -18274,8 +18281,8 @@
     {
       "path": "docs/reviews/2026-10-11/datacenter-research/ARCHITECTURE.md",
       "role": "historical",
-      "bytes": 4540,
-      "sha256": "8f0a9870986e3b90b3e58ea3d23d13eba98170b90787bcaf28188aae52db7e85",
+      "bytes": 4902,
+      "sha256": "71cab33ad647a1861b29031ff0f28d5f51064f36174290cbdaf66a95544b3011",
       "collections": []
     },
     {
@@ -18302,6 +18309,18 @@
       "role": "historical",
       "bytes": 10970,
       "sha256": "98f6cde70253032e1ecf2633b5c404f13b8be94a2953ada81c6b625fd8462bed",
+      "collections": [
+        {
+          "name": "records",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-10-11/datacenter-research/verification-history.json",
+      "role": "historical",
+      "bytes": 1693,
+      "sha256": "4a5aef097a862cc523d0933461aff60bd488f899f9d245be3c5a8f52378c4016",
       "collections": [
         {
           "name": "records",
@@ -18451,8 +18470,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 227453,
-      "sha256": "8c835d3d13161cfdd7a6543a22889006a27477321668a63d1388687b64c4fb52",
+      "bytes": 227745,
+      "sha256": "43a0761f4f32656651e241bc9af6e1226fb5e43aec4c4bf671b280a8b924a615",
       "collections": [
         {
           "name": "policies",
@@ -18810,8 +18829,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 438744,
-      "sha256": "97b8db5bef2ddb4299957f0630a2ef65ae65366d102870ac98e6bf35b1add8fe",
+      "bytes": 439722,
+      "sha256": "9b1858cd4e4bc29204e282ef99da2578fe2360c1399bd7bdc83d94ac17f5297e",
       "collections": [
         {
           "name": "policies",
@@ -21660,6 +21679,13 @@
       "collections": []
     },
     {
+      "path": "scripts/verify_data_center_publication.py",
+      "role": "implementation",
+      "bytes": 8654,
+      "sha256": "68631d2d4496e0f4ffdf60d4b93d3b9beafe1b685020836d1a119818dbcc80ed",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/README.md",
       "role": "supporting_document",
       "bytes": 4520,
@@ -23020,8 +23046,8 @@
     {
       "path": "tests/research_delivery.cjs",
       "role": "test",
-      "bytes": 6121,
-      "sha256": "457a34394a15dcc6ac67d1a764bc58162d758a052e17354ed0920ef7e516fc4b",
+      "bytes": 6119,
+      "sha256": "55e8dd36618c4cf9e5a7c9c98d4dc3ca8381c425ba7403710ebf41ca4ee1f827",
       "collections": []
     },
     {
@@ -23323,6 +23349,13 @@
       "role": "test",
       "bytes": 8381,
       "sha256": "5123ed45f2da576f39946a5365103acee70b8baafe8f6481d846c51f21f9df9c",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_data_center_publication.py",
+      "role": "test",
+      "bytes": 2411,
+      "sha256": "ce8ba5fd17b40c48fa981807bc069daeb8eac51e47446026941cb4c9ee0edf1d",
       "collections": []
     },
     {
@@ -23797,8 +23830,8 @@
     {
       "path": "tests/unit/test_public_reader.py",
       "role": "test",
-      "bytes": 9631,
-      "sha256": "fd51b3811c2501f27269acd21702b6ac0fbbc7d0c7ae2bec1d6654a3f1158472",
+      "bytes": 9728,
+      "sha256": "9b7a7284dfa89a8d699374dd0e477f90598693a379620f56903232c48e2f9cfb",
       "collections": []
     },
     {
@@ -27508,36 +27541,36 @@
     {
       "path": "web/pages/research/data-centers-2026-cn.html",
       "role": "implementation",
-      "bytes": 49628,
-      "sha256": "978554f122ae6d496e2d3afd0b7d10d9406e5d66ba44ce24d2ca641a663ff0b7",
+      "bytes": 49684,
+      "sha256": "33ad080a5f7f424af324246328d153eb831ce60c6785ddb651c2bab480d02535",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026-projects.html",
       "role": "implementation",
-      "bytes": 4894,
-      "sha256": "a6cb16c94d28b52d0b27e394531b4dc7602106ca48fa736139adfa4ed33cc082",
+      "bytes": 4950,
+      "sha256": "e3fa5f55fb4513922806c63ceb566d04c9b71d0b5ca9647e00bb83cc2d829bc2",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026-sea.html",
       "role": "implementation",
-      "bytes": 75242,
-      "sha256": "73533c28554d2cd80b61d776921d6b9762188a57a37ae1c303de8ac38a747089",
+      "bytes": 75298,
+      "sha256": "2f829ab18091c7b3c45a76efe957eebca36d0e4b42c011918d638793af64ec1f",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026-us.html",
       "role": "implementation",
-      "bytes": 88991,
-      "sha256": "706165ecc0ea92f97ccc11857a2331612ef7a7938a5d02b5544a88ea9907f41d",
+      "bytes": 89047,
+      "sha256": "f76d6b26dc15b98470882da2e30d1ac68a18feb9fdfa2d1686ad85ee93cd604b",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026.html",
       "role": "implementation",
-      "bytes": 125518,
-      "sha256": "42050c27c991516d3a6929e55433ef21771c3051e1a76214cd646e1fbd9f634b",
+      "bytes": 125574,
+      "sha256": "15ea2210dc70347442a788d4c3018b693aef54ac23bbd0b42b8e17f023ae7632",
       "collections": []
     },
     {
@@ -27638,14 +27671,14 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 13,
-    "historical": 411,
-    "implementation": 379,
+    "historical": 412,
+    "implementation": 380,
     "normative": 16,
-    "project_config": 779,
+    "project_config": 780,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 196,
-    "test": 196
+    "test": 197
   }
 }

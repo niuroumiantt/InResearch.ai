@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2558。
+在册文件：2562。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 411 |
-| 运行代码 | 379 |
+| 历史快照 | 412 |
+| 运行代码 | 380 |
 | 现行规范 | 16 |
-| 项目配置 | 779 |
+| 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 196 |
-| 测试 | 196 |
+| 测试 | 197 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 66 |
-| `data/research_knowledge.json` | evidence | 455 |
-| `data/research_knowledge.json` | statements | 415 |
+| `data/research_knowledge.json` | documents | 67 |
+| `data/research_knowledge.json` | evidence | 456 |
+| `data/research_knowledge.json` | statements | 416 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1741,6 +1741,7 @@
 | `docs/reviews/2026-10-10/project-audit/spark-measurements.json` | acquisition_tables | 5 |
 | `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | scope_notes | 6 |
 | `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | records | 2 |
+| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 2 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -1897,6 +1898,7 @@
 | `.gitattributes` | 项目配置 |
 | `.github/CODEOWNERS` | 项目配置 |
 | `.github/workflows/validate.yml` | 项目配置 |
+| `.github/workflows/verify-data-center-publication.yml` | 项目配置 |
 | `.gitignore` | 项目配置 |
 | [AGENTS.md](../AGENTS.md) | 现行入口 |
 | [CLAUDE.md](../CLAUDE.md) | 现行入口 |
@@ -3216,6 +3218,7 @@
 | [docs/reviews/2026-10-11/datacenter-research/DATABASE.md](reviews/2026-10-11/datacenter-research/DATABASE.md) | 历史快照 |
 | `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | 历史快照 |
 | `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | 历史快照 |
+| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -3599,6 +3602,7 @@
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |
 | `scripts/sync_repo_pages.py` | 运行代码 |
+| `scripts/verify_data_center_publication.py` | 运行代码 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
 | `src/inresearch/__init__.py` | 运行代码 |
 | `src/inresearch/__main__.py` | 运行代码 |
@@ -3837,6 +3841,7 @@
 | `tests/unit/test_daily_bundle.py` | 测试 |
 | `tests/unit/test_daily_dispatch.py` | 测试 |
 | `tests/unit/test_dashboard.py` | 测试 |
+| `tests/unit/test_data_center_publication.py` | 测试 |
 | `tests/unit/test_datacenter_news.py` | 测试 |
 | `tests/unit/test_declared_admin.py` | 测试 |
 | `tests/unit/test_deep_read.py` | 测试 |

@@ -97,7 +97,8 @@ class PublicReaderHTTPTests(unittest.TestCase):
                 self.assertTrue(public.allowed(path), path)
                 status, headers, body = self.request('GET', path)
                 self.assertEqual(status, 200, path)
-                self.assertIn('application/json' if path.endswith('.json') else 'text/html', headers.get('Content-Type', ''))
+                content_type = next((value for key, value in headers.items() if key.lower() == 'content-type'), '')
+                self.assertIn('application/json' if path.endswith('.json') else 'text/html', content_type)
                 if path.endswith('.json'):
                     self.assertIsInstance(json.loads(body), dict)
                 status, _, body = self.request('HEAD', path)

@@ -1,0 +1,39 @@
+{
+  "schema": "source-verification-history-v1",
+  "records": [
+    {
+      "head": "7b5b45e324567849a05999c3b5f7eae1764a7708",
+      "run_id": 38098602031,
+      "status": "success",
+      "successful_jobs": 21,
+      "scope": "article source pack governance and repository tests; not standalone article rendering or production deployment"
+    },
+    {
+      "head": "148ded776d690eb126f4fad6427f093e24d80e45",
+      "run_id": 38099416647,
+      "status": "failed",
+      "actual_failures": [
+        {
+          "job_id": 114352130730,
+          "job": "validate",
+          "test": "test_published_datacenter_research_has_precise_read_only_routes",
+          "reason": "HTTP header dictionary lookup incorrectly treated Content-Type names as case sensitive",
+          "correction": "Read response header by case-insensitive key; production service unchanged."
+        },
+        {
+          "job_id": 114352130853,
+          "job": "browser (core_b)",
+          "test": "ui_skin",
+          "reason": "New HTML omitted shared data-ui-skin activation; body computed transparent instead of shared light background.",
+          "correction": "Activate existing shared skin attribute on five pages; use shared body padding and font tokens."
+        }
+      ],
+      "independent_source_issue": {
+        "file": "tests/research_delivery.cjs",
+        "reason": "Two regex decimal-point literals incorrectly doubled backslashes.",
+        "correction": "Single-backslash regex literals verified matching disclosed 0.672 and 0.9 text; failed browser did not reach these assertions."
+      },
+      "scope": "Failures retained; corrected candidate requires independent final-head CI."
+    }
+  ]
+}
