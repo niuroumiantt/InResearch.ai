@@ -7841,6 +7841,56 @@
       "status": "candidate",
       "stored_path": "originals/4a/4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f/dcd-4a8835af9e4803ac-Partners Group to invest -1bn in AVK to help scale its microgrid .html",
       "title": "Partners Group to invest $1bn in AVK to help scale its microgrid offering for data center market"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+      "coverage": {
+        "characters_read": 5882,
+        "characters_total": 5882,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+      "id": "doc-70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+      "library_path": "library/by-node/system-power/2026_DCD_Solaris Energy signs 500MW AI data center power deal__70aff9f6dbb84c0f.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "system:power"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-a14e4e8c5ba14f7da94784a74b640500",
+      "report_sha256": "be0945b88a731caeb5de246c1b2414ede5dca15ec5a83373cc5454dc027a6fe0",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+        "url": "https://www.datacenterdynamics.com/en/news/solaris-energy-signs-500mw-ai-data-center-power-deal/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/solaris-energy-signs-500mw-ai-data-center-power-deal/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/70/70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068/dcd-70aff9f6dbb84c0f-Solaris Energy signs 500MW AI data center power deal.html",
+      "title": "Solaris Energy signs 500MW AI data center power deal"
     }
   ],
   "evidence": [
@@ -58687,6 +58737,89 @@
           }
         },
         "batch_id": "66a817124211444c9909164b0cfb7ab23a3b237e9125beb1dd161ae4e254ae2a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e6d9c3571463954674ed43a70d322be8c9303bf16858bbe83540368fbe8eb556",
+      "document_id": "doc-70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+      "id": "rev-a14e4e8c5ba14f7da94784a74b640500:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "As a backstop to the agreement, the customer's parent company has issued a guarantee covering up to 50 percent of total rental fees for the initial term. The guaranteed amount declines each year but remains at least 50 percent of the future payments during that period.",
+      "reading_revision_id": "rev-a14e4e8c5ba14f7da94784a74b640500",
+      "source_sha256": "70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:22:23+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。母公司担保的覆盖分母与逐年递减安排，对当前经济性工单中的合同风险及计量口径具有实质性局部贡献。连续两句原文及完整页面上下文足以支持明确归因的部分来源主张；未识别敏感、真实冲突、替换或其他A类条件，符合B类采用要求。采用不构成问题的完整回答。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.179,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8c27e6f3bbda58e67058b61ef7b478c92667238f576754fa5d721ba9b9cfa636",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64894,
+            "output_tokens": 1502,
+            "reasoning_output_tokens": 399
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.576,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b80d00b4c8c7a3f7d9784a0567d77d0ae22c1bf658610f4de1ecda47db181129",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65579,
+              "output_tokens": 513,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "95b5cdeb59f573fac0480f0cd7df370cf6abdc6aa84fede384865708a6276e50"
       }
     }
   ],
@@ -113881,6 +114014,106 @@
         "request_sha256": "48cb7e60b36c76c26e4a03f21b7e883db7b62c4197e427d30227812708dff4af"
       },
       "object_mapping_check": "独立复核后，本项实际范围为包含AI及传统负载的全球数据中心总用电预测。对象合同中的root是一座AI数据中心，system:power及system:it是其内部系统，site:grid是电力配额与并网权利，均不能直接承载全球综合统计。保留空对象列表及有效问题匹配，不继承候选或证据的root标签；所选证据统一采用此主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-70aff9f6dbb84c0f9f900a1c245739683dce5b0e7958c2e4ba0892d32a292068",
+      "evidence_ids": [
+        "rev-a14e4e8c5ba14f7da94784a74b640500:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:8ed9d353d1873aaa8e52b2f7",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-a14e4e8c5ba14f7da94784a74b640500",
+      "status": "adopted",
+      "text": "据Zachary Skidmore于2026年2月16日在DCD发表的报道，在Solaris子公司Solaris Power Solutions与Hatchbo的数据中心发电设备租赁协议中，客户母公司已出具担保，覆盖初始租期租金总额的最高50%；担保金额逐年下降，但在该期间始终至少覆盖未来付款的50%。报道所述初始租期计划于2027年1月1日开始，为期十年，部署地点未披露。此为来源对已签约、尚待起租安排的转述，未经本次独立核验，不证明实际付款或担保履行。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T20:22:23+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。母公司担保的覆盖分母与逐年递减安排，对当前经济性工单中的合同风险及计量口径具有实质性局部贡献。连续两句原文及完整页面上下文足以支持明确归因的部分来源主张；未识别敏感、真实冲突、替换或其他A类条件，符合B类采用要求。采用不构成问题的完整回答。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.179,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8c27e6f3bbda58e67058b61ef7b478c92667238f576754fa5d721ba9b9cfa636",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64894,
+            "output_tokens": 1502,
+            "reasoning_output_tokens": 399
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.576,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b80d00b4c8c7a3f7d9784a0567d77d0ae22c1bf658610f4de1ecda47db181129",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65579,
+              "output_tokens": 513,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "95b5cdeb59f573fac0480f0cd7df370cf6abdc6aa84fede384865708a6276e50"
+      },
+      "source_candidate_ids": [
+        "rev-a14e4e8c5ba14f7da94784a74b640500:chunk:0:claim:5"
+      ],
+      "limitations": "来源为新闻报道，未提供租赁合同、担保文件或公司一手披露正文。未披露租金金额、付款计划、担保人名称、触发及执行条件、法律适用或实际履约结果。“最高50%”以初始租期总租金为分母，“至少50%”以期间未来付款为分母，不能混用、相加或据此量化实际损失及剩余信用风险。客户的提前终止费用是另一条款，不能与担保覆盖比例等同。另行PPA仅为拟议谈判，不能视为已签署或已履行。",
+      "conflict_check": "现有已采用陈述涉及其他项目租约、WPA、政策成本责任、PJM处罚及成本定义，未涉及本交易的母公司担保，未发现同范围真实冲突或可指认的规范重复。终端用户成本敏感性等定性判断不否定具体合同设置付款担保。所供legacy合同、事实及项目匹配均为空，但筛选并非穷尽性外部反证搜索；不替换或覆盖既有结论。",
+      "gap_dependency_check": "仅部分支持NODE-activity-V1-economics对发电设备租赁付款保障和合同风险口径的研究，不自动覆盖数据中心整体经济性。仍需租赁及担保原始文件、具体金额与付款计划、责任和执行条款、担保人信用资料、履约记录及反证，才能量化风险。当前工单要求的一手来源与反证尚缺，收入、资本开支、运营成本和定价亦未完成计量；问题保持开放，不更新模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "95b5cdeb59f573fac0480f0cd7df370cf6abdc6aa84fede384865708a6276e50",
+        "source_report_sha256": "be0945b88a731caeb5de246c1b2414ede5dca15ec5a83373cc5454dc027a6fe0",
+        "request_sha256": "f770e7596c4cd023d416413553cfff52a416e59bdcd368b77685c2c20f42b3aa"
+      },
+      "object_mapping_check": "完整原文将该担保明确置于Solaris Power Solutions向Hatchbo提供数据中心发电设备的租赁协议中，实际范围匹配system:power下的“发电与储能”链。仅映射chain:power/3，不由商业条款扩展为数据中心整体结论；未确认本交易的具体机组类型、天然气管道接入或并网权利，故不映射相应部件及场址权利。Solaris、Hatchbo及未具名母公司均无允许的准确主体ID。所选证据采用此同一审核对象范围。"
     }
   ],
   "answers": [],
