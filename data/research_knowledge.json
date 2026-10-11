@@ -5626,6 +5626,81 @@
       "status": "candidate",
       "stored_path": "originals/f1/f15d4297b26d61ef4c433396dafa07adce194c99fa1b353bb9f6c89e50426f83/What is So Hard About Behind-The-Meter Power For Datacenters Part 1.pdf",
       "title": "What is So Hard About Behind-The-Meter Power For Datacenters? Part 1"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "coverage": {
+        "characters_read": 10818,
+        "characters_total": 10818,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "library_path": "library/by-node/part-chiller/2026_Data Center Dynamics（DCD）_Chilling out in 2025_ A year in data center cooling__9bafab864fd6addc.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:applied-digital",
+        "actor:boyd",
+        "actor:coolit-systems",
+        "actor:digital-realty",
+        "actor:grc-cooling",
+        "actor:motivair",
+        "actor:motivair-by-schneider",
+        "actor:open-compute-project",
+        "actor:submer",
+        "actor:switch",
+        "part:cdu",
+        "part:chiller",
+        "part:coldplate",
+        "part:gpu",
+        "part:immersion",
+        "root"
+      ],
+      "question_ids": [
+        "OBJ-cdu-alternatives",
+        "OBJ-cdu-interfaces",
+        "OBJ-cdu-performance",
+        "OBJ-cdu-supply",
+        "OBJ-coldplate-alternatives",
+        "OBJ-heat-reject-alternatives",
+        "OBJ-heat-reject-interfaces",
+        "OBJ-heat-reject-performance",
+        "OBJ-immersion-definition"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+        "url": "https://www.datacenterdynamics.com/en/analysis/chilling-out-in-2025-a-year-in-data-center-cooling/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/analysis/chilling-out-in-2025-a-year-in-data-center-cooling/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/9b/9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0/dcd-9bafab864fd6addc-Chilling out in 2025- A year in data center cooling.html",
+      "title": "Chilling out in 2025: A year in data center cooling"
     }
   ],
   "evidence": [
@@ -44018,6 +44093,438 @@
           }
         },
         "batch_id": "17cf0a3d1b8f0cbfb6e7ce53e48f4ad5a7f0f684fc8998ae4ef21ecd3fe3dafc"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "While DCD has spoken to myriad companies, particularly those operating in the enterprise colo space for whom traditional air cooling remains sufficient for their needs, there is no doubt 2025 was the year liquid cooling went fully mainstream, with leading-edge GPUs and other AI chips requiring a new level of chilling that only liquid can provide.",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "对当前M08-Q01提供负载与运营商类型的适用范围线索，尤其保留风冷仍适用的限制，可作为部分证据采用。原始重要性为6，无敏感、真实冲突或替换条件；不关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:eaton",
+        "actor:boyd"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Liquid cooling deals announced include Eaton’s bumper $9.5 billion acquisition of Boyd Thermal",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "Boyd是当前M08-Q03明确关注的供应商，收购公告对供应商格局整合具有实质贡献，可采用为有来源的事件陈述。无A条件，不据此推导产能或成本。",
+        "workorder_ids": [
+          "Q-M08-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:schneider-electric",
+        "actor:motivair",
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-performance",
+        "OBJ-cdu-supply"
+      ],
+      "quote": "Schneider Electric and Motivair unveiled their first joint cooling portfolio, with a cooling distribution unit (CDU) capable of managing 2.5MW of processing power",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "明确的供应商、CDU产品推出及能力宣称，对当前供应格局、CDU供给和性能口径问题均有部分实质贡献。连续引文及周围年度回顾语境充分支持有限采用；无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q03",
+          "Q-OBJ-cdu-performance",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-alternatives"
+      ],
+      "quote": "while Flex and JetCool, another of 2024’s big M&A deals, came up with a modular liquid cooling solution that can be stitched together to create up to 1.8MW of cooling capacity.",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "供应商名称与方案推出信息对当前M08-Q03具有实质贡献，满足有限B采用条件。对OBJ-cdu-alternatives仅提供待比较的方案线索，不能采用为已建立的CDU替代关系；无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q03",
+          "Q-OBJ-cdu-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "440ae29d1ddbe6adfacdb616df976be3703fc0bf1047b072142c2af7ea5072cc",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-performance",
+        "OBJ-cdu-supply"
+      ],
+      "quote": "Indeed, 2MW-ready CDUs now seem to be becoming the norm, with CoolIT hailing its 2MW offering, announced in April",
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "source_sha256": "9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "CoolIT产品公告直接贡献当前供应商格局及CDU供给研究，2MW宣称提供性能口径线索，可部分采用。未将作者趋势判断升级为已验证常态；无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q03",
+          "Q-OBJ-cdu-performance",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
       }
     }
   ],
@@ -85676,6 +86183,520 @@
         "request_sha256": "5ffddecd5bebefbe14b426d99e4e520f9e69bc7a3170e9b8b881f5bac6911929"
       },
       "object_mapping_check": "得州数据中心管道自建与私人支线路由属于root下site:gas-supply；明确的联邦水域穿越许可及建设监管约束属于root下site:permits。原文未建立取水权，不映射site:water-rights；候选引文未点名具体开发企业，不继承周边案例的actor标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:28e30cc9f71841a53884e0ac",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M08-Q01"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日发表的2025年度回顾中认为，2025年液冷进入主流，前沿GPU及其他AI芯片需要液冷；他同时指出，DCD接触的许多企业托管运营商仍认为传统风冷足以满足其需求。这是作者对2025年市场的定性判断。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "对当前M08-Q01提供负载与运营商类型的适用范围线索，尤其保留风冷仍适用的限制，可作为部分证据采用。原始重要性为6，无敏感、真实冲突或替换条件；不关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:1"
+      ],
+      "limitations": "未披露受访样本、地域、芯片型号、热设计条件、渗透率分母或时间序列；不能将作者的主流化判断视为已验证的市场渗透率。",
+      "conflict_check": "当前已采纳陈述为空。所供遗留白皮书的液冷占比描述针对AI液冷机柜及路线图，与本文企业托管受访范围不同，不能直接比较或认定冲突；未发现同口径冲突或重复，检查限于供应材料。",
+      "gap_dependency_check": "仍需原始统计、明确分母及地域、按新建AI机房与存量改造分组的实际曲线和可复查推导；本条仅贡献定性范围与限制，未满足工单关闭要求。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "b1ac858d9db654bdc70754181688d561cb66eec6c379e1126db9ab2e7dafa7db"
+      },
+      "object_mapping_check": "按正文实际讨论的风冷与液冷采用范围，映射到root下的水与散热系统。未确定CDU、冷板或浸没路线，不继承Reader的root标签，也不因提及AI芯片增加计算资产映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:27f1f6bc9a993862bc3035a5",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:eaton",
+        "actor:boyd"
+      ],
+      "question_ids": [
+        "M08-Q03"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日的2025年度回顾中，将Eaton宣布以95亿美元收购Boyd Thermal列为液冷行业并购事件。该金额属于企业收购交易口径，本文不能证明交易已完成。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "Boyd是当前M08-Q03明确关注的供应商，收购公告对供应商格局整合具有实质贡献，可采用为有来源的事件陈述。无A条件，不据此推导产能或成本。",
+        "workorder_ids": [
+          "Q-M08-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:2"
+      ],
+      "limitations": "属于媒体回顾，未提供交易公告原件、具体公告日、交割状态、资产边界或地域范围；95亿美元不能作为设备价格、单MW散热成本或新增产能。",
+      "conflict_check": "当前已采纳陈述及所供合同记录为空；所供遗留资本开支、项目清单和成本记录未包含同一收购事件的相反陈述或 canonical 记录。未发现冲突或重复，未执行外部反证搜索。",
+      "gap_dependency_check": "仍需企业原始公告核实交易阶段，并补充Boyd各产品环节的产能、市场份额、地域和交付能力；本条只贡献供应商整合线索，M08-Q03保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "b1ac858d9db654bdc70754181688d561cb66eec6c379e1126db9ab2e7dafa7db"
+      },
+      "object_mapping_check": "合同中的Eaton与Boyd两个actor分别对应收购方和目标企业；正文明确目标为Boyd Thermal，应保留业务范围。该并购句未确定具体设备环节，不增加CDU或其他散热部件映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:17b0969db8cf1edbb550fb9a",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:schneider-electric",
+        "actor:motivair",
+        "part:cdu"
+      ],
+      "question_ids": [
+        "M08-Q03",
+        "OBJ-cdu-performance",
+        "OBJ-cdu-supply"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日的2025年度回顾中报道，Schneider Electric与Motivair推出首个联合冷却产品组合，其中CDU被描述为能够管理2.5MW的处理功率（processing power）。这是文章报道的产品能力口径，未经本文独立性能验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "明确的供应商、CDU产品推出及能力宣称，对当前供应格局、CDU供给和性能口径问题均有部分实质贡献。连续引文及周围年度回顾语境充分支持有限采用；无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q03",
+          "Q-OBJ-cdu-performance",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:3"
+      ],
+      "limitations": "未给出型号、产品推出具体日期、地域、供回水温度、流量、压差、冷却液、冗余及测试方法。2.5MW处理功率不能直接改写为实测制冷量、用电功率或厂商制造产能。",
+      "conflict_check": "当前已采纳陈述为空。所供施耐德全球IT负载预测、设施资本开支及浸没经济性记录与本条对象和指标不同，不构成冲突或重复。所供材料中无同型号同工况反证，不代表已完成外部交叉验证。",
+      "gap_dependency_check": "需原始产品资料确认型号、能力边界及工况，并补充可靠性、失效机制、生产能力、交期和生命周期成本；本条仅贡献产品及宣称口径，三个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "b1ac858d9db654bdc70754181688d561cb66eec6c379e1126db9ab2e7dafa7db"
+      },
+      "object_mapping_check": "正文直接点名Schneider Electric、Motivair及CDU，分别对应两个actor和冷水与CDU链下的part:cdu。未将Motivair与Motivair（施耐德）作为两个独立参与方重复映射，也不把处理功率扩展到计算设备范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:85c1fddfa931ad4d6884d4ca",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M08-Q03",
+        "OBJ-cdu-alternatives"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日的2025年度回顾中报道，Flex与JetCool推出模块化液冷方案，模块组合后可形成最高1.8MW的冷却能力。这是文章报道的方案容量宣称，未经本文独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "供应商名称与方案推出信息对当前M08-Q03具有实质贡献，满足有限B采用条件。对OBJ-cdu-alternatives仅提供待比较的方案线索，不能采用为已建立的CDU替代关系；无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q03",
+          "Q-OBJ-cdu-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:4"
+      ],
+      "limitations": "1.8MW是组合方案的最高冷却能力口径，不能视作单模块或单CDU能力。未说明模块数量、型号、工况、地域、具体推出日期、成本及系统边界，也未证明方案替代CDU。",
+      "conflict_check": "当前已采纳陈述为空；所供遗留记录没有同一Flex/JetCool方案的可比性能或成本记录。其他2MW项目、CDU及经济性算例的对象和分母不同，不能据数值相近判定冲突或重复。",
+      "gap_dependency_check": "需原始方案资料确认结构、液冷分配边界、是否包含CDU及交付环节；替代问题还需同工况性能、成本和约束比较。两项问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "b1ac858d9db654bdc70754181688d561cb66eec6c379e1126db9ab2e7dafa7db"
+      },
+      "object_mapping_check": "原文仅确定模块化液冷方案，支持水与散热系统范围；未明确CDU或其他具体部件，因此移除Reader的part:cdu映射。合同中没有Flex或JetCool的对应actor，不借用其他企业ID；保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9bafab864fd6addc1e83a2a52e868db7245a56191c1c2751f62451b06a6c7dd0",
+      "evidence_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:5d922bf67972085bae20a694",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:cdu"
+      ],
+      "question_ids": [
+        "M08-Q03",
+        "OBJ-cdu-performance",
+        "OBJ-cdu-supply"
+      ],
+      "reading_revision_id": "rev-3b3fa8fab3df4886b6df2c8667aa1adf",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年1月23日的2025年度回顾中认为，支持2MW的CDU似乎正在成为常态，并报道CoolIT的2MW产品于4月宣布；按该段2025年度回顾语境，所指为2025年4月。趋势判断及产品能力均是文章报道口径。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T23:11:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "CoolIT产品公告直接贡献当前供应商格局及CDU供给研究，2MW宣称提供性能口径线索，可部分采用。未将作者趋势判断升级为已验证常态；无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q03",
+          "Q-OBJ-cdu-performance",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.453,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8d09061dc2b36745b31dd1ce5cbd61550c7a44503a741fd39cd17a2baeb2bd24",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 56548,
+            "output_tokens": 4473,
+            "reasoning_output_tokens": 757
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.17,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a8c814508656fe7dc349d0d990a2e4ce94ec508710f68365cf9449349a121974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 53792,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 137
+            }
+          }
+        },
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7"
+      },
+      "source_candidate_ids": [
+        "rev-3b3fa8fab3df4886b6df2c8667aa1adf:chunk:0:claim:5"
+      ],
+      "limitations": "seem to be becoming保留为作者判断，不能视为市场份额统计。4月年份依据年度回顾语境确定，独立公告日期未核；未给出型号、地域、测试工况及2MW的具体能力边界。",
+      "conflict_check": "当前已采纳陈述为空。所供遗留2MW浸没经济性算例是数据中心总容量，其他MW记录是项目容量，均不同于CDU宣称；未发现同型号同工况冲突或现有 canonical 记录，检查限于供应材料。",
+      "gap_dependency_check": "需CoolIT原始公告确认型号、日期、额定能力及测试条件；判定规格是否成为常态需产品样本与市场数据，供给研究仍缺产能、交期和成本。三个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9c0077439697153bfc4728957962dcb8eb4b4d0a0cbd2a1261ca77561a02dde7",
+        "source_report_sha256": "273e7a47b710e7b46f4e2232f641d99887a4f14934e244e330b9891dd2c68be7",
+        "request_sha256": "b1ac858d9db654bdc70754181688d561cb66eec6c379e1126db9ab2e7dafa7db"
+      },
+      "object_mapping_check": "正文直接点名CoolIT，且产品处于2MW-ready CDUs语境，支持CoolIT actor与冷水与CDU链下的part:cdu。邻接的Switch混合系统属于另一候选，不扩大本条对象范围。"
     }
   ],
   "answers": [],
