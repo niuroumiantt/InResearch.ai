@@ -36,11 +36,16 @@ def snapshot(root):
     paths=[file]+[root/'data'/name for name in ('research_knowledge.json','datacenter_model.json','projects.json','contracts.json')]
     paths += [root/'framework'/name for name in ('research_graph.json','research_questions.json','tco_targets.json','research_demand_review.json')]
     paths.append(root/'data/facts.json')
+    from inresearch.delivery.runtime_summary import control_path
+    paths.append(control_path(file))
     signature=tuple((str(p),p.stat().st_mtime_ns,p.stat().st_size) if p.exists() else (str(p),None,None) for p in paths)
     with _LOCK:
         cached=_CACHE.get(signature)
         if cached and time.monotonic()-cached[0]<60:return cached[1]
-        graph,questions,curated,combined,runtime=registry._snapshot_inputs(root)
+        from inresearch.delivery.runtime_summary import load as runtime_summary
+        graph,questions,curated=(json.loads((root / p).read_text()) for p in (
+            'framework/research_graph.json','framework/research_questions.json','data/research_knowledge.json'))
+        runtime=runtime_summary(root)
         reader=registry._reader_state(runtime)
         measurements=sanitize(reader.get('material_measurements'))
         scope=sanitize_scope(reader.get('execution_scope'))

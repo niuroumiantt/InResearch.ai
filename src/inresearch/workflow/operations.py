@@ -213,10 +213,14 @@ def _stamp(path):
 def _reader(root):
     from inresearch.knowledge import registry
     path = Path(os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))
-    stamp = (_stamp(path), _stamp(root / 'framework/research_graph.json'), _stamp(root / 'framework/research_questions.json'), _stamp(root / 'data/research_knowledge.json'))
+    from inresearch.delivery.runtime_summary import control_path
+    stamp = (_stamp(path), _stamp(control_path(path)), _stamp(root / 'framework/research_graph.json'), _stamp(root / 'framework/research_questions.json'), _stamp(root / 'data/research_knowledge.json'))
     def load():
         # Use the existing validation/identity rules, never trust a copied raw snapshot.
-        *_, runtime = registry._snapshot_inputs(root)
+        from inresearch.delivery.runtime_summary import load as runtime_summary
+        runtime = runtime_summary(root)
+        if runtime.get('reader', {}).get('status') == 'not_connected':
+            raise ValueError('reader_snapshot_missing')
         reader = registry._reader_state(runtime)
         # The management screen needs counters and bounded diagnostic samples,
         # not the multi-megabyte daily events / matching / delivery feed.

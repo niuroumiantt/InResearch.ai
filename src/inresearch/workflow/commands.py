@@ -11,7 +11,7 @@ from pathlib import Path
 from inresearch.knowledge import registry as research
 from inresearch.knowledge.data_rules import price_errors
 from inresearch.storage.layout import workspace_path
-from inresearch.storage.files import json_transaction, locked, write_json
+from inresearch.storage.files import json_transaction, locked, write_json, write_json_streaming
 
 ASSIGN_STATUSES = {'已派', '进行中', '已交付', '已合并', '已放弃'}
 
@@ -136,6 +136,7 @@ def assign(root, rec, by='', role='admin'):
 
 
 def receive_snapshot(root, payload, destination=None):
+    from inresearch.delivery import runtime_summary
     root = Path(root)
     destination = Path(destination or os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))
     with locked(destination):
@@ -143,14 +144,33 @@ def receive_snapshot(root, payload, destination=None):
             research.read_json(root / 'framework/research_graph.json'),
             research.read_json(root / 'framework/research_questions.json'))
         research.merge_knowledge(research.read_json(root / 'data/research_knowledge.json'), snapshot['knowledge'])
-        previous = research.read_json(destination, {})
+        previous = runtime_summary.read_header(destination)
         if previous.get('generated') and research.parse_time(snapshot['generated']) <= research.parse_time(previous['generated']):
+            if research.parse_time(snapshot['generated']) < research.parse_time(previous['generated']):
+                raise Rejected('stale or conflicting snapshot', 409)
             # The commit may succeed just before a deployment cuts its HTTP
             # acknowledgement. An exact replay is safe; changed/stale input is not.
-            comparable = lambda value: {k: v for k, v in value.items() if k != 'received_at'}
-            if snapshot['generated'] == previous['generated'] and comparable(snapshot) == comparable(previous):
+            control = runtime_summary.read_control(destination, verify_bytes=True)
+            if control is not None:
+                same = runtime_summary.semantic_digest(snapshot) == control['semantic_sha256']
+            elif destination.stat().st_size <= runtime_summary.SMALL_SNAPSHOT:
+                old = research.read_json(destination)
+                same = runtime_summary.semantic_digest(snapshot) == runtime_summary.semantic_digest(old)
+                if same:
+                    runtime_summary.write_control(destination, old, root=root)
+            else:
+                original = dict(snapshot, received_at=previous.get('received_at'))
+                if runtime_summary.physical_digest(original) != runtime_summary.digest_file(destination):
+                    raise Rejected('snapshot replay requires runtime-summary --refresh; original retained', 503)
+                same = True
+                runtime_summary.write_control(destination, original, root=root)
+            if snapshot['generated'] == previous['generated'] and same:
+                if control and control.get('curated_sha256') != runtime_summary.digest_file(root/'data/research_knowledge.json'):
+                    snapshot['received_at'] = previous['received_at']
+                    runtime_summary.write_control(destination, snapshot, root=root)
                 return {'ok': True, 'received_at': previous['received_at'],
-                        'documents': len(previous['knowledge']['documents']), 'replayed': True}
+                        'documents': len(snapshot['knowledge']['documents']), 'replayed': True}
             raise Rejected('stale or conflicting snapshot', 409)
-        write_json(destination, snapshot)
+        source_sha = write_json_streaming(destination, snapshot)
+        runtime_summary.write_control(destination, snapshot, source_sha, root=root)
     return {'ok': True, 'received_at': snapshot['received_at'], 'documents': len(snapshot['knowledge']['documents'])}
