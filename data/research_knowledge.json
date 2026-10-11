@@ -52654,6 +52654,90 @@
         },
         "batch_id": "4a9df917951adb4cdab7955659b5650c27bdde30c1e3a71201381cba4b70bb1e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "94690c06166e160161c94483177ce127d9975ba7524e5fed5af1ba066817468f",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:47:claim:7:ev:0",
+      "locator": "page:48/chunk:47",
+      "object_ids": [
+        "actor:meta",
+        "part:smr"
+      ],
+      "page_index": 47,
+      "question_ids": [],
+      "quote": "Meta and Oklo entered           Meta announced to\n                   agreement to develop SMR        purchase nuclear energy             New SMRs\n                   up to 1.2 GW",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:55:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。明确的交易双方、开发阶段及容量上限对当前M04-Q03核查合同宣传与真实交付具有实质性局部贡献。连续原文引文及图题、图注和相邻正文足以支持限定后的来源陈述，符合B级采用条件。未识别敏感、真实冲突、拟替换或其他A条件；采用不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.728,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "36d011eb5c6c1b8ecd39d56ce6b43203d9bb2acbdb02d57eb3accc71880fcdf9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 37382,
+            "output_tokens": 1290,
+            "reasoning_output_tokens": 256
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.08,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d29b9cc2eef651135a577fc471bd0749b61823ac0e3d882e58229f00ca3578c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 38007,
+              "output_tokens": 416,
+              "reasoning_output_tokens": 106
+            }
+          }
+        },
+        "batch_id": "9b50d10fc963dd36d263906d0421eb1d4f815ac6172bb03a35b53fca8c0ef729"
+      }
     }
   ],
   "statements": [
@@ -101818,6 +101902,107 @@
         "request_sha256": "73c6be3db4812846a4f746cd28a6b2c2e6d6c95c5b178190a591abdef76be4ae"
       },
       "object_mapping_check": "独立依据制造业场址作为具备电力条件的工业用地之潜在用途，选择site:land。分类与潜在用途判断未在本项确立并网协议、设备配置或整座AI数据中心，不因powered或文章AI背景加入site:grid、system:power或root。行业分类也不是DCIM/BMS软件。所选证据统一使用此主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:47:claim:7:ev:0"
+      ],
+      "id": "adoption:review:7cc88bb18dfc94baa18fc57b",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:meta",
+        "part:smr"
+      ],
+      "question_ids": [
+        "M04-Q03"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》图5.2称，Meta与Oklo达成开发最多1.2 GW小型模块化反应堆（SMR）的协议；该图讨论为数据中心采购核电的公告与协议，收录时间范围为2025年1月至2026年1月。报告出版日期及该协议确切日期未由所供原文确立。这是来源陈述的开发协议及容量上限，不构成对合同约束力、交付时间或实际投运状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:55:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。明确的交易双方、开发阶段及容量上限对当前M04-Q03核查合同宣传与真实交付具有实质性局部贡献。连续原文引文及图题、图注和相邻正文足以支持限定后的来源陈述，符合B级采用条件。未识别敏感、真实冲突、拟替换或其他A条件；采用不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.728,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "36d011eb5c6c1b8ecd39d56ce6b43203d9bb2acbdb02d57eb3accc71880fcdf9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 37382,
+            "output_tokens": 1290,
+            "reasoning_output_tokens": 256
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.08,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d29b9cc2eef651135a577fc471bd0749b61823ac0e3d882e58229f00ca3578c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 38007,
+              "output_tokens": 416,
+              "reasoning_output_tokens": 106
+            }
+          }
+        },
+        "batch_id": "9b50d10fc963dd36d263906d0421eb1d4f815ac6172bb03a35b53fca8c0ef729"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:47:claim:7"
+      ],
+      "limitations": "未提供双方一手协议、确切签署日期、项目所在地、容量计量边界、分期交付时间、许可条件或履约进度。最多1.2 GW是来源所述拟开发SMR容量上限，不能视为已交付供电容量或投运IT容量。正文关于首批商业SMR预计2030年前后运营的判断属于一般预测，不能套用于本协议。所供阅读覆盖仅限PDF原生文本，未进行图像视觉复核。",
+      "conflict_check": "已采用陈述分别涉及Kairos协议、Oklo与RPower合作及Oklo与Switch的非约束性供电安排，交易对手与协议范围均不同，未发现本项的规范重复记录或真实冲突。不能将Switch协议的非约束性属性套用于Meta与Oklo协议。所供当前回答及legacy匹配记录为空；检查限于所供材料，不代表完成外部反证搜索，不覆盖既有结论。",
+      "gap_dependency_check": "本项为M04-Q03建立协议主体、开发阶段和宣传容量上限的核查线索，尚无项目专属交付时间表。仍需双方一手协议及后续合同、约束性条款、项目与分期里程碑、许可及工程依赖、原定和修订时间表、实际交付证据与反证。当前工单的一手合同及反证要求尚未满足，问题保持开放；不汇总GW，不更新容量台账或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9b50d10fc963dd36d263906d0421eb1d4f815ac6172bb03a35b53fca8c0ef729",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "d6ea234daaadf007de65826197211f9eddd35db12452b3debac6cd17842a6b47"
+      },
+      "object_mapping_check": "独立依据明确的Meta主体选择actor:meta，依据明确的SMR开发范围选择发电与储能链条chain:power/3下的part:smr。允许对象中没有Oklo主体ID，不新增或借用其他企业对象。主张未建立具体数据中心整体、并网权利、UPS或IT设备范围，故不沿用Reader的root及文档其他标签。所选证据统一采用上述主张级对象范围，原候选与证据标签保持不变。"
     }
   ],
   "answers": [],
