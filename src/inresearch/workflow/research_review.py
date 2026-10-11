@@ -369,6 +369,14 @@ class ReviewStore:
         atomic_json(self.directory/'status.json', self.status())
         return self.status()
 
+    def ready(self, preferred=None):
+        """Order only sealed review-ready batches; preserve normal order within each lane."""
+        rows = list(self.db.execute("SELECT * FROM batches WHERE state='review_ready' ORDER BY updated"))
+        if preferred is not None:
+            keys = set(preferred.eligible_keys)
+            rows.sort(key=lambda r: '/'.join(r[k] for k in ('doc_id', 'revision_id', 'report_sha')) not in keys)
+        return [{'batch_id': r['id'], 'path': str(self.directory_for(r['id'])/'bundle.json')} for r in rows]
+
     def claim(self, batch_id=None, preferred=None):
         self.db.execute('BEGIN IMMEDIATE')
         order = "(error LIKE 'explicit semantic-values-v% retry%') DESC,(json_array_length(candidate_ids)>1) DESC,rowid"
@@ -1068,7 +1076,9 @@ def main():
     w.add_argument('--batch-size',type=int,default=6)
     w.add_argument('--preferred-sources',type=Path,
                    help='explicit registered source IDs; three preferred claims then one original-queue opportunity')
-    sub.add_parser('status');sub.add_parser('ready')
+    sub.add_parser('status')
+    ready = sub.add_parser('ready')
+    ready.add_argument('--preferred-sources', type=Path, help='user-selected source priority for new publications')
     v = sub.add_parser('verify');v.add_argument('--batch-id',required=True)
     retry = sub.add_parser('revalidate');retry.add_argument('--batch-id',required=True)
     split = sub.add_parser('split-overbudget');split.add_argument('--batch-id',required=True)
@@ -1087,7 +1097,7 @@ def main():
         print(encoded(promote(args.root,read_json(args.bundle),args.audit_directory)))
         return
     # A missing or malformed preference must fail before initializing the queue.
-    if args.command == 'work' and args.preferred_sources is not None:
+    if args.command in ('work', 'ready') and args.preferred_sources is not None:
         load_preferred_sources(args.preferred_sources, args.data)
     if args.command == 'retry-transient':
         validate_transient_retry(args.batch_id, args.expected_attempts, args.expected_error)
@@ -1145,8 +1155,8 @@ def main():
                 store.db.execute("UPDATE dispositions SET state='published',updated=? WHERE id=?",(now_iso(),r['id']))
         store.db.commit();print(encoded(store.status()))
     elif args.command=='ready':
-        print(encoded([{'batch_id':r['id'],'path':str(store.directory_for(r['id'])/'bundle.json')}
-                       for r in store.db.execute("SELECT * FROM batches WHERE state='review_ready' ORDER BY updated")]))
+        preferred = load_preferred_sources(args.preferred_sources, args.data) if args.preferred_sources else None
+        print(encoded(store.ready(preferred)))
     else:
         if args.poll<30 or not 1<=args.cycle_batches<=10 or not 1<=args.max_ready<=24 or not 1<=args.batch_size<=10:raise ValueError('worker_budget_out_of_bounds')
         # Crash recovery preserves all old attempts. Never reclaims a live worker:

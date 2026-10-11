@@ -367,6 +367,8 @@ class Publisher:
         return run(['ssh','-o','ConnectTimeout=10',self.config.get('spark','spark'),shlex.join(args)])
 
     def remote(self, *args):
+        if args == ('ready',) and self.config.get('preferred_sources'):
+            args = (*args, '--preferred-sources', self.config['preferred_sources'])
         try:
             result = self.ssh(['python3', self.spark_root+'/manage.py', 'research-review',
                                '--root', self.spark_root, '--data', self.spark_data, *args])

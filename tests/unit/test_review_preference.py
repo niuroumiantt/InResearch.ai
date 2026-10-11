@@ -48,6 +48,35 @@ class PreferenceTests(unittest.TestCase):
     def load(self):
         return load_preferred_sources(self.path, self.data)
 
+    def test_publication_priority_is_current_sealed_only_stable_and_read_only(self):
+        for key, doc, report in [('old', OLD, REPORT), ('selected', PREFERRED, REPORT),
+                                 ('stale', PREFERRED, 'f'*64), ('unfinished', UNFINISHED, REPORT),
+                                 ('selected2', PREFERRED, REPORT), ('not-ready', PREFERRED, REPORT)]:
+            self.add(hashlib.sha256(key.encode()).hexdigest(), doc, report=report)
+        not_ready = hashlib.sha256(b'not-ready').hexdigest()
+        self.store.db.execute("UPDATE batches SET state='review_ready' WHERE id!=?", (not_ready,))
+        self.store.db.commit()
+        before = list(self.store.db.execute('SELECT * FROM batches ORDER BY rowid'))
+        self.write([PREFERRED, UNFINISHED])
+        self.assertEqual([r['batch_id'] for r in self.store.ready(self.load())],
+                         [hashlib.sha256(k.encode()).hexdigest() for k in ['selected', 'selected2', 'old', 'stale', 'unfinished']])
+        self.write([OLD])
+        self.assertEqual(self.store.ready(self.load())[0]['batch_id'], hashlib.sha256(b'old').hexdigest())
+        self.assertEqual([r['batch_id'] for r in self.store.ready()],
+                         [hashlib.sha256(k.encode()).hexdigest() for k in ['old', 'selected', 'stale', 'unfinished', 'selected2']])
+        self.assertEqual(before, list(self.store.db.execute('SELECT * FROM batches ORDER BY rowid')))
+
+    def test_publisher_passes_user_preference_only_to_ready(self):
+        from inresearch.workflow.research_publish import Publisher
+        from subprocess import CompletedProcess
+        publisher = Publisher({'repo': str(self.data), 'state': str(self.data/'publisher'),
+                               'preferred_sources': '/private/user-priority.json'})
+        with patch.object(publisher, 'ssh', return_value=CompletedProcess([], 0, '[]', '')) as ssh:
+            publisher.remote('ready')
+            self.assertEqual(ssh.call_args.args[0][-3:], ['ready', '--preferred-sources', '/private/user-priority.json'])
+            publisher.remote('verify', '--batch-id', 'a'*64)
+            self.assertNotIn('--preferred-sources', ssh.call_args.args[0])
+
     def test_scope_validates_exact_registered_ids_and_excludes_unfinished_versions(self):
         self.write([PREFERRED, UNFINISHED])
         preferred = self.load()

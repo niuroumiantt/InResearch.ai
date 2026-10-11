@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.79。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.80。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2564。
+在册文件：2565。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 412 |
+| 历史快照 | 413 |
 | 运行代码 | 381 |
 | 现行规范 | 16 |
 | 项目配置 | 780 |
@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 67 |
-| `data/research_knowledge.json` | evidence | 458 |
-| `data/research_knowledge.json` | statements | 418 |
+| `data/research_knowledge.json` | evidence | 459 |
+| `data/research_knowledge.json` | statements | 419 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1741,11 +1741,11 @@
 | `docs/reviews/2026-10-10/project-audit/spark-measurements.json` | acquisition_tables | 5 |
 | `docs/reviews/2026-10-11/datacenter-research/database-summary.json` | scope_notes | 6 |
 | `docs/reviews/2026-10-11/datacenter-research/project-capacity-corrections.json` | records | 2 |
-| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 6 |
+| `docs/reviews/2026-10-11/datacenter-research/verification-history.json` | records | 7 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 50 |
+| `framework/current_state.json` | policies | 51 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -2004,6 +2004,7 @@
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md) | 历史快照 |
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md) | 历史快照 |
 | [docs/archive/2026-10-10/framework__CURRENT__before_reassessment.md](archive/2026-10-10/framework__CURRENT__before_reassessment.md) | 历史快照 |
+| [docs/archive/2026-10-11/editorial-delivery-before-user-priority.md](archive/2026-10-11/editorial-delivery-before-user-priority.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/README.md](archive/local-materials-20261010/original23-new-protocol-validation/README.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 历史快照 |
