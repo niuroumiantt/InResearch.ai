@@ -54715,6 +54715,88 @@
         },
         "batch_id": "a77e118652e2d5287efd327a6f2ee83bcd9d7b6f10d0b9b766489b82105c084c"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a415d00c594f947fa642fcf8f1d1d2a0f02a55d57a615ec7d0f70db206b3d192",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:81:claim:3:ev:0",
+      "locator": "page:81/chunk:81",
+      "object_ids": [],
+      "page_index": 80,
+      "question_ids": [],
+      "quote": "Core architectural innovations from generative AI, such as\n                    transformers, have also brought critical improvements to domains such as materials\n                    science by improving the prediction of material properties from material composition.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:36:01+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。材料组成到材料性质的预测能力，实质关联当前D2模型能力范围及D4材料科学应用能力范围，可分别贡献局部证据，但不能建立完整产品或交易边界。连续原文及周边语境充分，未识别敏感材料、实际冲突、替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-boundary",
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.475,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3594513db61a6b5c4d5431fdb75120d9edf6cf818ad23742e9f6c527c64c2754",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61106,
+            "output_tokens": 1157,
+            "reasoning_output_tokens": 189
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.397,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4be92e72d377defbc02bb9acc8be24cb653d27c951d71506f651111f4a59cf95",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61654,
+              "output_tokens": 606,
+              "reasoning_output_tokens": 298
+            }
+          }
+        },
+        "batch_id": "0d19487192d47cafb86139b7cb359378859b354427e1ca013931e9920ea2f0e4"
+      }
     }
   ],
   "statements": [
@@ -105792,6 +105874,106 @@
         "request_sha256": "1578040468246eab68c3e720f5969dfd795d15f394e8a61006531c0df33256a6"
       },
       "object_mapping_check": "独立依据对象契约选择root：所选主张讨论人工智能计算合作伙伴与其目标数据中心园区的整体关系，符合“一座AI数据中心”的范围。供电目标未界定园区电力系统资产、并网权益、天然气管道接入或具体设备，故不扩展映射system:power、site:grid、site:gas-supply或发电部件。Solaris及Stateline没有允许的主体ID，伙伴未具名，不新增节点或推定为xAI。所选证据统一使用该审核后的主张范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:81:claim:3:ev:0"
+      ],
+      "id": "adoption:review:a8e4d032d817f4c3f3cbfb2f",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-boundary",
+        "NODE-demand-D4-boundary"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第81页称，生成式AI的核心架构创新，例如Transformer，通过改善根据材料组成预测材料性质的能力，为材料科学等领域带来了重要改进。这里的Transformer指模型架构。该陈述是IEA对模型能力及科学应用范围的定性主张，不构成对当前能力或效果的独立认证；来源发表时间、具体地域及项目部署阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T13:36:01+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。材料组成到材料性质的预测能力，实质关联当前D2模型能力范围及D4材料科学应用能力范围，可分别贡献局部证据，但不能建立完整产品或交易边界。连续原文及周边语境充分，未识别敏感材料、实际冲突、替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-boundary",
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.475,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3594513db61a6b5c4d5431fdb75120d9edf6cf818ad23742e9f6c527c64c2754",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61106,
+            "output_tokens": 1157,
+            "reasoning_output_tokens": 189
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.397,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4be92e72d377defbc02bb9acc8be24cb653d27c951d71506f651111f4a59cf95",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61654,
+              "output_tokens": 606,
+              "reasoning_output_tokens": 298
+            }
+          }
+        },
+        "batch_id": "0d19487192d47cafb86139b7cb359378859b354427e1ca013931e9920ea2f0e4"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:81:claim:3"
+      ],
+      "limitations": "未指认具体模型、权重产品、供应商或材料科学应用产品，未提供预测准确性、比较基准、评测方法、数据条件或泛化限制。没有许可、采购、收费、接口、采用规模、算力或电力需求证据。阅读覆盖限于PDF原生文本，全文视觉内容未完整审核；本条文字主张不依赖图表数值。",
+      "conflict_check": "所供已采用的IEA世界基础模型、自主系统交互及Alphabet应用陈述涉及不同能力或产品，未发现同一材料性质预测主张的规范重复或实际冲突。legacy四项Wood Mackenzie记录讨论美国电力变压器交付周期，与模型架构Transformer仅有词形关联，不能验证或反驳本条。所供合同及项目匹配记录为空；检查范围限于供应材料，未完成外部全面反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "D2仅获得模型架构能力方向的局部支持，仍需具体模型及权重产品资料、许可、接口、上下层职责与交易关系；D4仅获得材料科学应用功能的局部支持，仍需应用自身资料、适用条件、评测及反证、采购和收费关系。两项问题保持开放，不能由架构创新溢出推定购买行为、规模部署或需求增长，也不更新模型参数、汇总GW或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0d19487192d47cafb86139b7cb359378859b354427e1ca013931e9920ea2f0e4",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "f8671707d1a7219cc43fa4db13f7b217b1345cb9a2f2f3b42bfbb84b3e4d9bf5"
+      },
+      "object_mapping_check": "独立核对对象合同：本条范围是模型架构及材料科学预测应用，合同没有对应模型或应用对象。part:transformer是chain:power/2变电链下的大型电力变压器，不适用于Transformer架构；system:compute属于数据中心IT计算设施，system:control及其链限定DCIM/BMS与固件，原文亦未建立root所指单座AI数据中心范围或指认合同内企业。所选证据统一使用空对象范围，保留有效D2与D4问题匹配，不继承文档标签。"
     }
   ],
   "answers": [],
