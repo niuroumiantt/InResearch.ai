@@ -35,3 +35,12 @@ PR690最终head4506698的21项CI均成功，2026-10-11 02:49:35Z正常保护合�
 整合main3fda295a的#694/#695，自动合并前端industry再次通过；补齐IT容量束assessment-only拒绝回归，保留200MW投运基线。一次并行改文件期间的全单元运行触发源码不变性断言，记录保留；最终冻结源码后重跑，以该结果为准。
 
 最终冻结后完整2,250项单元通过（85.840秒）；IT容量束等五组55项专项通过，industry整合后浏览器通过。最终框架.87，旧不变性失败未复现。
+
+
+## 连续更新实际闭环与首页冷字体
+
+PR697最终eadfa405的21项CI全部成功，03:37:51Z正常合并41adbfa9；AWS容器03:44:19Z启动，source/applied一致、精确镜像healthy。Spark03:45:25–03:49:36Z自然调用exit0/attempts1，ACK received_at=03:47:25.416807Z；新source/control物理签名精确匹配，暂存时旧pair保持可读。两者mtime晚于新容器启动，无prepared残留，成功stage已清理，原Reader/review进程保持。私有白名单审计保存在本机临时目录，不入Git。
+
+公网.87单接口HTML1.127秒、industry1.462秒、news1.875秒；真正浏览器首轮DOM32.226秒/地图42.799秒，独立冷轮FCP2.4秒/地图6.022秒。保留慢轮，不将所有耗时归因字体；两轮均下载Inter及Noto约1.44MB。主机曾采样CPU steal约71%，源码性能不能代表基础设施/CDN性能。
+
+.88限首页采用原运维缓存字体策略：冷缓存系统回退，地图/新闻已可读后异步复用原字库；/industry.html、/projects.html等共享HTML别名恢复原全字体。未更改字体包或ops规则。industry与完整ui_skin通过，7项界面单元通过；实际HTTP缓存Inter复用（FontFace loaded且字节>300KB、transfer0）、冷woff零响应/零网络、CSS悬挂仍可读及1366/1440/390/320明暗布局通过。新最终CI与实际网站回执以本PR后续记录为准。

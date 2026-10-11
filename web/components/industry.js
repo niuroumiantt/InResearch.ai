@@ -6,10 +6,44 @@ const safe=v=>{try{const u=new URL(v);return ['http:','https:'].includes(u.proto
 const num=v=>Number(v).toLocaleString('en-US',{maximumFractionDigits:2}), gw=v=>num(v/1000), money=v=>v>=1000?'$'+num(v/1000)+'T':'$'+num(v)+'B';
 const path=location.pathname, isProject=path==='/project.html', isMarket=path==='/market.html', isList=path==='/projects.html', isCompany=path==='/industry.html';
 const isHome=['/','/index.html'].includes(path);
+// This HTML also serves project/market/company aliases; preserve their full fonts.
+if(!isHome)$('home-fonts')?.setAttribute('media','all');
 if(isHome){document.body.classList.add('industry-home');$('pipeline-summary').remove();$('trends-section').remove();}
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
 let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false, mapSignature='';
 const keys=['c','region','stage','relation','scope','role','site'];
+let fontCacheQueued=false,fontCacheStarted=false;
+function useCachedFonts(){
+ const link=$('home-fonts');
+ if(!isHome||!link||fontCacheStarted)return;
+ if(!link.sheet){
+  link.addEventListener('load',useCachedFonts,{once:true});
+  link.addEventListener('error',()=>{link.dataset.fonts='fallback';},{once:true});
+  return;
+ }
+ fontCacheStarted=true;
+ // Match the operations page: inactive shared CSS supplies descriptors only.
+ // Cold cache misses never download font files or compete with public data.
+ Promise.all(Array.from(link.sheet.cssRules).filter(r=>r.type===CSSRule.FONT_FACE_RULE).map(async rule=>{
+  try{
+   const source=rule.style.getPropertyValue('src').match(/url\(["']?(\.\/[a-z0-9-]+\.woff2)["']?\)/i);
+   if(!source)return false;
+   const response=await fetch(new URL(source[1],link.href),{cache:'only-if-cached',mode:'same-origin'});
+   if(!response.ok)return false;
+   const face=new FontFace(rule.style.getPropertyValue('font-family').replace(/^["']|["']$/g,''),await response.arrayBuffer(),{
+    weight:rule.style.getPropertyValue('font-weight'),style:rule.style.getPropertyValue('font-style'),
+    unicodeRange:rule.style.getPropertyValue('unicode-range')||'U+0-10FFFF',display:'swap'
+   });
+   await face.load();document.fonts.add(face);return true;
+  }catch(e){return false;}
+ })).then(results=>{link.dataset.fonts=results.some(Boolean)?'cached':'fallback';});
+}
+function queueCachedFonts(){
+ if(!isHome||fontCacheQueued||!data||!geo||!news&&!newsFailed)return;
+ fontCacheQueued=true;
+ // Map and news are already readable; font reuse remains optional work.
+ if(window.requestIdleCallback)requestIdleCallback(useCachedFonts);else setTimeout(useCachedFonts,0);
+}
 function url(page, changes={}) {const q=new URLSearchParams(params);for(const [k,v] of Object.entries(changes))v?q.set(k,v):q.delete(k);return page+(q.size?'?'+q:'');}
 function name(id){const c=data?.companies.find(c=>c.company_id===id);return c?.name_cn||c?.name||id;}
 function companyLink(id){return `<a href="${esc(url('/industry.html',{c:id,site:'',stage:''}))}">${esc(name(id))}</a>`;}
@@ -123,7 +157,7 @@ function renderDaily(){
  const show=v=>Number.isInteger(v)?num(v):'—',research=news?.raw_atlas?.research_total;
  $('news-daily-summary').innerHTML=`<a class="news-research-count" href="/research/data-centers-2026-projects.html"><strong>${show(research)}</strong><span>条文章项目资料 ↗</span></a><p>今日新闻 ${show(metrics[0][1])} · 今日接收 ${show(metrics[1][1])}</p><p>容量观察 ${show(metrics[2][1])} · 采用更新 ${show(daily?.adopted_project_updates)}</p><small>${esc(status)} · 北京时间</small>`;
  $('daily-metrics').innerHTML=metrics.map(([label,v])=>`<span>${label}<strong>${Number.isInteger(v)?num(v):'—'}</strong></span>`).join('');
- const extra=document.createElement('p');extra.className='daily-note';extra.textContent='按北京时间分发表日与接收日；容量观察按事件计数，报道 MW / GW 不与项目容量相加。';$('daily-note')?.remove();extra.id='daily-note';$('daily-pulse').append(extra);
+ const extra=document.createElement('p');extra.className='daily-note';extra.textContent='按北京时间分发表日与接收日；容量观察按事件计数，报道 MW / GW 不与项目容量相加。';$('daily-note')?.remove();extra.id='daily-note';$('daily-pulse').append(extra);queueCachedFonts();
 }
 function renderMap(){
  if(!geo)return;
@@ -158,7 +192,7 @@ function renderMap(){
   el.onblur=e=>{if(!popup.contains(e.relatedTarget)){hovering=true;scheduleHoverClose();}};
   el.onclick=()=>{hovering=false;clearTimeout(hoverTimer);activate();};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();hovering=false;clearTimeout(hoverTimer);activate();}};
  }
- highlightMap();renderPopup();
+ highlightMap();renderPopup();queueCachedFonts();
 }
 function atlasBackdrop(){
  const lines=[];
