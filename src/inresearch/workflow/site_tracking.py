@@ -470,11 +470,24 @@ class SiteTracking:
 def status(connection):
     if not connection.execute("SELECT 1 FROM sqlite_master WHERE name='site_tracking_periods'").fetchone():
         return {'state': 'not_initialized'}
+    latest = []
+    for cadence in sorted(CADENCES):
+        row = connection.execute('''SELECT * FROM site_tracking_runs WHERE cadence=?
+            ORDER BY attempted_at DESC,rowid DESC LIMIT 1''', (cadence,)).fetchone()
+        if row is None:
+            continue
+        item = dict(row)
+        errors = json.loads(item['error']) if item['error'] else []
+        item['error_count'] = len(errors)
+        item['errors_truncated'] = len(errors) > 8
+        item['error_sha256'] = digest(errors) if errors else None
+        # Full source-specific failures remain in the private run/attempt rows.
+        # The worker logs this projection on every poll, including idle polls.
+        item['error'] = encoded([str(error)[:200] for error in errors[:8]]) if errors else None
+        latest.append(item)
     return {'timezone': 'Asia/Shanghai',
             'periods': [dict(r) for r in connection.execute('SELECT * FROM site_tracking_periods ORDER BY cadence')],
             'task_states': {r[0]: r[1] for r in connection.execute('SELECT state,count(*) FROM site_tracking_tasks GROUP BY state')},
-            'latest_runs': [dict(r) for cadence in sorted(CADENCES)
-                for r in connection.execute('''SELECT * FROM site_tracking_runs WHERE cadence=?
-                    ORDER BY attempted_at DESC,rowid DESC LIMIT 1''', (cadence,))],
+            'latest_runs': latest,
             'collection_completed': None, 'adopted_updates': None, 'published_updates': None,
             'scope': 'planning watermarks only; source collection, Reader/C3 and project publication require separate execution receipts'}

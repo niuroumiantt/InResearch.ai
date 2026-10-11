@@ -295,5 +295,21 @@ class SiteTrackingTests(unittest.TestCase):
                          {'2026-10-12', '2026-10-13'})
 
 
+    def test_large_failure_backlog_has_bounded_status_without_losing_private_errors(self):
+        self.planner.tick(self.root, self.at('2026-10-11T00:00:00Z'))
+        errors = ['news:'+str(i)+':metadata_archive_unavailable' for i in range(3000)]
+        self.store.db.execute("UPDATE site_tracking_runs SET error=?,state='partial' WHERE cadence='daily'",
+                              (json.dumps(errors),))
+        self.store.db.commit()
+        result = self.planner.status()
+        daily = next(r for r in result['latest_runs'] if r['cadence'] == 'daily')
+        self.assertEqual(daily['error_count'], len(errors))
+        self.assertTrue(daily['errors_truncated'])
+        self.assertEqual(json.loads(daily['error']), errors[:8])
+        self.assertLess(len(json.dumps(result)), 6000)
+        stored = self.store.db.execute("SELECT error FROM site_tracking_runs WHERE cadence='daily'").fetchone()[0]
+        self.assertEqual(json.loads(stored), errors)
+
+
 if __name__ == '__main__':
     unittest.main()
