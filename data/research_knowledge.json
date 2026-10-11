@@ -6791,6 +6791,106 @@
       "status": "candidate",
       "stored_path": "originals/4a/4a41d1286c8cd95ab23d0c4f920eb1b544f176dfe37de3db9d2e7a433d361b24/dcd-4a41d1286c8cd95a-Applied Digital adds 75MW of capacity at Ellendale data center ca.html",
       "title": "Applied Digital adds 75MW of capacity at Ellendale data center campus in North Dakota"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "coverage": {
+        "characters_read": 9156,
+        "characters_total": 9156,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "library_path": "library/by-node/root/2026_Samaritan Research_OpenAI Stargate Abilene__d11e952352554fcb.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:crusoe",
+        "actor:openai",
+        "chain:power/2",
+        "part:chiller",
+        "part:gas-turbine",
+        "part:shell",
+        "root",
+        "site:land",
+        "site:permits",
+        "system:compute"
+      ],
+      "question_ids": [
+        "M04-Q07",
+        "M05-Q06",
+        "NODE-activity-V1-boundary",
+        "OBJ-prime-power-definition",
+        "OBJ-prime-power-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+      "report_sha256": "ac73dfc6028cc0888a0bc00f33fcb8c3e245b5254dcbb7869e2c8acb7e6f12e9",
+      "research_requests": [
+        {
+          "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M05-Q06",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+          "scope_values": {
+            "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+            "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+            "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+            "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        },
+        {
+          "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M04-Q07",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+          "scope_values": {
+            "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+            "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+            "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+            "period": "2025至2026；历史预测与实际里程碑逐项核验",
+            "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-samaritan-abilene-timeline",
+        "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/d1/d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3/samaritan-abilene-timeline.html",
+      "title": "OpenAI Stargate Abilene"
     }
   ],
   "evidence": [
@@ -50915,6 +51015,172 @@
           }
         },
         "batch_id": "29eb5660cb5805f437c04d1d6ded43df9627d5240c64c9426093bb1fb2e30cf9"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ba079191aa163c4e9cd36ca3b4de966cbf889f8f3d976d7c482488095e3e7d7e",
+      "document_id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "id": "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "B200  | Nvidia  | 100.8k  | 255k 5.04e20  | 100.8k  | 255k 5.04e20  |\n\nB300  | Nvidia  | 100.8k  | 255k 5.04e20  | 302.4k  | 764k 1.51e21  |\n\nTotal  |  | 201.6k  | 509k 1.01e21  | 403.2k  | 1,019k 2.02e21  |",
+      "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+      "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:39:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "与当前M06-Q01工单有实质关系：提供Blackwell系列在单一客户园区的部署数量估算，可用于后续对照交付披露及宣传节奏。原始重要性为7，连续表格引文及原生上下文足以支持限定为作者估算的陈述；未发现敏感、真实冲突或替换条件，按B采用局部线索，不采用为实际出货结论。",
+        "workorder_ids": [
+          "Q-M06-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.231,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ed4f15eeb57441f927b87289e89ffc62adc8fb044557a746bfd5ba41068cb000",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 63855,
+            "output_tokens": 3856,
+            "reasoning_output_tokens": 667
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.007,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c107989def7eb284e1649a42bc6f04fac73bc97cd2f17257d9ba571db1569d3a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 64139,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "6e534e8ef19978b761cbfd7f81fe6ccfdf9062c9234c66e604833376c342e1e9"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ba079191aa163c4e9cd36ca3b4de966cbf889f8f3d976d7c482488095e3e7d7e",
+      "document_id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "id": "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Chip  | Manufacturer  | Count  | H100-eq 8-bit OP/s  | Count (Q4 '26)  | H100-eq ( Q4 '26 ) 8-bit OP/s ( Q4 '26 )  |\n\nB200  | Nvidia  | 100.8k  | 255k 5.04e20  | 100.8k  | 255k 5.04e20  |\n\nB300  | Nvidia  | 100.8k  | 255k 5.04e20  | 302.4k  | 764k 1.51e21  |\n\nTotal  |  | 201.6k  | 509k 1.01e21  | 403.2k  | 1,019k 2.02e21  |",
+      "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+      "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:39:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "与当前M06-Q01工单有实质关系：提供可在第四季度后核验的园区Blackwell数量预测，有助于分开记录预计部署与实际交付。原始重要性为7，包含表头的连续引文和原生上下文支持明确归因的预测陈述；无已发现A条件，按B采用为部分参考，不将预测计为实际出货或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.231,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ed4f15eeb57441f927b87289e89ffc62adc8fb044557a746bfd5ba41068cb000",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 63855,
+            "output_tokens": 3856,
+            "reasoning_output_tokens": 667
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.007,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c107989def7eb284e1649a42bc6f04fac73bc97cd2f17257d9ba571db1569d3a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 64139,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "6e534e8ef19978b761cbfd7f81fe6ccfdf9062c9234c66e604833376c342e1e9"
       }
     }
   ],
@@ -98409,6 +98675,254 @@
         "request_sha256": "d9ad07486a2cc8103209f0587e932ef092745030642605efd63c6a82ac3a89ec"
       },
       "object_mapping_check": "独立依据完整正文选择root及actor:applied-digital：Delta Forge 2作为Applied Digital五个AI Factory园区列表中的具名项目，主张范围是一个AI数据中心项目整体的未来地域布局，Applied Digital是正文明确关联的开发主体。Brookwood及Alabama仅为地理范围，未涉及地价、租金、区划或土地权利，故不映射site:land；也未确立内部系统、部件、并网权利或客户范围。两条所选证据统一采用此主张级对象范围，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "evidence_ids": [
+        "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:342decb1dc50fc30a6a2d155",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M06-Q01"
+      ],
+      "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+      "status": "adopted",
+      "text": "Samaritan Research在标注更新于2026年10月5日的《OpenAI Stargate Abilene》网页中估算：美国Texas州Abilene原有Stargate园区的当前芯片构成为NVIDIA B200、B300各100.8k颗，合计201.6k颗。该来源称芯片由Oracle拥有、由OpenAI使用；这些数量属于来源对运营阶段园区的估算，具体统计时点未明确，不是独立核实的交付、投运或全球出货数量。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:39:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "与当前M06-Q01工单有实质关系：提供Blackwell系列在单一客户园区的部署数量估算，可用于后续对照交付披露及宣传节奏。原始重要性为7，连续表格引文及原生上下文足以支持限定为作者估算的陈述；未发现敏感、真实冲突或替换条件，按B采用局部线索，不采用为实际出货结论。",
+        "workorder_ids": [
+          "Q-M06-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.231,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ed4f15eeb57441f927b87289e89ffc62adc8fb044557a746bfd5ba41068cb000",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 63855,
+            "output_tokens": 3856,
+            "reasoning_output_tokens": 667
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.007,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c107989def7eb284e1649a42bc6f04fac73bc97cd2f17257d9ba571db1569d3a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 64139,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "6e534e8ef19978b761cbfd7f81fe6ccfdf9062c9234c66e604833376c342e1e9"
+      },
+      "source_candidate_ids": [
+        "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:6"
+      ],
+      "limitations": "缺逐型号交付记录、实际装机清单和数量统计时点；未提供所链接计算表及完整估算假设。网页更新时间不能替代设备数量的有效日期。园区运营及楼栋投运边界含作者推断，芯片数量不能证明全部设备已投入运行。材料不覆盖Rubin及后续产品，也不足以回答或关闭M06-Q01。",
+      "conflict_check": "当前knowledge未提供已采用回答或陈述。所供legacy记录涉及GPU规格、功耗、租价、机架配置及全球年度CoWoS分配和隐含出货估计，与本条单园区芯片数量的指标、地域和时间口径不同，未发现同口径矛盾或可认定的重复。摘要的参数遗漏属于概括覆盖差异，不构成既有数量结论冲突。未进行外部反证搜索，不覆盖或替换旧记录。",
+      "gap_dependency_check": "用于M06-Q01的单项目部分证据，不能满足工单对实际出货的一手证明及反证要求。后续需取得Oracle、OpenAI或供应商对应园区和型号的交付、装机及投运披露，并核对作者计算方法。两项参数阅读需求均不能由芯片数量完成；批准容量和申请等待时间的缺口继续保留。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6e534e8ef19978b761cbfd7f81fe6ccfdf9062c9234c66e604833376c342e1e9",
+        "source_report_sha256": "ac73dfc6028cc0888a0bc00f33fcb8c3e245b5254dcbb7869e2c8acb7e6f12e9",
+        "request_sha256": "ac73f8d0d358ba391caaa34ab01ef3c53f590c30db869829dc0e486bb00fff7b"
+      },
+      "object_mapping_check": "独立按陈述范围映射：B200、B300的芯片数量对应GPU加速器part:gpu，其父级为chain:compute/1及system:compute。未沿用Reader的root标签；园区背景和拥有、使用角色不扩展为整座设施、供电、散热或主体关系的独立结论。",
+      "quantitative_checks": {
+        "basis_check": "原文明确为Samaritan Research估算；时间线方法概述涉及卫星影像、冷却设备功率模型、公司披露、监管文件和无人机影像，但未给本组型号数量的完整推导。保留作者估算性质，不改写为观测或独立认证。",
+        "comparability_check": "可作为同园区后续同口径核验的参考，不能直接与全球年度隐含出货、单机柜配置、芯片规格或其他精度的算力比较。估算装机、实际交付和全球出货须分别记录；芯片数量不适用于推定批准用能容量或排队时长。",
+        "derivation_check": "总量201.6k已由来源列示；数值复核100.8k + 100.8k = 201.6k。另作第二次核对，确认采用的是Count列而非Q4预测列，且数量不是H100等效量。此复核只验证转录、列口径和加总一致性，不验证作者模型及实际装机。",
+        "scope_check": "对象为美国Texas州Abilene原有Stargate园区的B200、B300芯片数量估算，处于来源所称当前运营阶段；不包含相邻Microsoft新园区，不是全球销量或设备交付观测。未给软件、工作负载及利用率，这些条件不能补造。",
+        "time_check": "原生页明确Updated Oct. 5, 2026，为页面更新时间，未建立首次发布日期或Count列的精确统计截止日。时间线的影像及估计日期不自动成为芯片数量测量日期。",
+        "units_check": "保留原表100.8k颗、100.8k颗及201.6k颗的精度；Count不是H100-eq，也不是8-bit OP/s、IT MW或设施容量。本条不采用相邻算力列作数量替代。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "本条为GPU数量估算，未提供ERCOT或输电商批准用能、负荷接入容量原件。不能以芯片数量或页面其他IT功率估算填入energy_quota_mw；批准容量证据仍缺失。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "当前芯片数量未提供同一分期负荷接入申请、审批或排队结束日期，不能计算gate_wait_years，也不能用建设或装机阶段替代批准等待。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "evidence_ids": [
+        "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:1d44767c286fe3deab25a5fe",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M06-Q01"
+      ],
+      "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+      "status": "adopted",
+      "text": "Samaritan Research在标注更新于2026年10月5日的《OpenAI Stargate Abilene》网页中预测：美国Texas州Abilene原有Stargate园区在2026年第四季度的NVIDIA B200数量为100.8k颗，B300数量为302.4k颗，合计403.2k颗。按该来源的当前估算列比较，B200数量不变、B300数量增加。来源称园区芯片由Oracle拥有、由OpenAI使用；上述第四季度数量是扩建投运预测，不是已实现交付或部署。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T08:39:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "与当前M06-Q01工单有实质关系：提供可在第四季度后核验的园区Blackwell数量预测，有助于分开记录预计部署与实际交付。原始重要性为7，包含表头的连续引文和原生上下文支持明确归因的预测陈述；无已发现A条件，按B采用为部分参考，不将预测计为实际出货或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.231,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ed4f15eeb57441f927b87289e89ffc62adc8fb044557a746bfd5ba41068cb000",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 63855,
+            "output_tokens": 3856,
+            "reasoning_output_tokens": 667
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.007,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c107989def7eb284e1649a42bc6f04fac73bc97cd2f17257d9ba571db1569d3a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 64139,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "6e534e8ef19978b761cbfd7f81fe6ccfdf9062c9234c66e604833376c342e1e9"
+      },
+      "source_candidate_ids": [
+        "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:7"
+      ],
+      "limitations": "预测缺逐型号订单、交付计划和实际装机证明，详细计算表及型号分配假设未提供。原生时间线将后续楼栋运营日期标为Projected并使用类比推断，不能据此认定实际投运。该预测仅覆盖单一园区Blackwell设备，不能代表NVIDIA全球出货节奏，也不能回答Rubin及后续路线图。",
+      "conflict_check": "当前knowledge无已采用回答或陈述。所供legacy的B300规格、全球年度CoWoS分配及隐含出货预测，与本条园区第四季度数量预测不具有相同统计对象和指标，未发现真实冲突或既有同口径canonical记录。本条当前列与预测列描述不同阶段，不相互覆盖。摘要参数遗漏不构成数量反证；外部冲突检索未提供。",
+      "gap_dependency_check": "仅支持M06-Q01中预计部署节奏的单项目线索。需要预测期后的实际交付、装机与投运记录，以及作者型号分配和数量推导，才能评估预测兑现情况；还需独立材料研究Rubin及后续产品。不得以预测数量履行批准容量或负荷接入等待参数需求，不替换当前模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6e534e8ef19978b761cbfd7f81fe6ccfdf9062c9234c66e604833376c342e1e9",
+        "source_report_sha256": "ac73dfc6028cc0888a0bc00f33fcb8c3e245b5254dcbb7869e2c8acb7e6f12e9",
+        "request_sha256": "ac73f8d0d358ba391caaa34ab01ef3c53f590c30db869829dc0e486bb00fff7b"
+      },
+      "object_mapping_check": "预测的实际对象是B200、B300 GPU加速器数量，独立映射至part:gpu，属于chain:compute/1下的计算部件。扩建阶段只是数量预测的条件，不产生土建、电网接入、冷却设备或整机柜数量映射；未继承Reader的root标签。",
+      "quantitative_checks": {
+        "basis_check": "本条保持author_forecast性质。原文以后续楼栋外观进度和此前楼栋进度类比推测投运时间；芯片表未展示具体型号分配、装机密度和数量公式。来源预测不构成厂商交付承诺或独立观测。",
+        "comparability_check": "可与同园区、同型号、同计数口径的后续实际记录逐项对照；当前估算与第四季度预测须分开。不能与全球年度隐含出货、CoWoS晶圆分配、机柜配置或芯片性能直接比较，更不能把预测总量视为新增出货量。",
+        "derivation_check": "来源直接列总计403.2k；数值复核100.8k + 302.4k = 403.2k。第二次按表头逐列核对，B200预测值与当前值同为100.8k，B300预测值302.4k高于当前100.8k，且全部采用Q4预测列。该核对只确认转录、加总及比较一致性，未验证预测假设或兑现情况。",
+        "scope_check": "范围为美国Texas州Abilene原有Stargate园区的第四季度GPU数量预测及后续楼栋预计投运阶段，排除相邻Microsoft新园区。不是GPU生产、全球出货或实际运行测量；软件、工作负载及利用率未披露。",
+        "time_check": "原生页更新时间为2026年10月5日，预测目标列明确为Q4 '26。时间线另有2026年11月1日预计运营条目，不能把该日期改成实际里程碑，也不能用它认定全部预测芯片的交付日期。",
+        "units_check": "保留100.8k颗、302.4k颗、403.2k颗的来源精度。数量列与H100-eq及8-bit OP/s列分开；不将数量换算成IT MW、设施MW或批准容量。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "第四季度GPU数量预测不提供批准用能或接入容量原件，不能推定energy_quota_mw。页面IT功率预测与批准容量属于不同指标，所请求批准值继续缺证。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "芯片数量和扩建预计投运阶段未建立负荷接入申请与审批等待的同分期起止日期；Q4预测或预计运营日期不能充当实际排队结束日期，不能填写gate_wait_years。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
