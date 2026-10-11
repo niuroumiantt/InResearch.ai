@@ -4,6 +4,7 @@
   "type": "object",
   "required": ["site_id", "name", "region", "country", "status", "verified_date", "sources"],
   "properties": {
+    "observations": {"type": "array", "description": "同一物理站点的追加观测；顶层旧字段为基线，当前视图按有效时间选择", "items": {"type": "object", "required": ["id", "effective_at", "recorded_at", "kind", "scope", "basis", "fields", "adoption"], "properties": {"effective_at": {"type": ["string", "null"], "description": "保留年、月、日或未知精度，不补造日期"}, "kind": {"enum": ["disclosed", "reported", "estimated", "derived", "forecast"]}, "scope": {"const": "whole_site"}, "fields": {"type": "object"}, "adoption": {"type": "object"}}}},
     "site_id": {"type": "string", "description": "物理地点主键：国家-地区-地名小写连字符，如 us-tx-abilene"},
     "duplicate_of": {"type": "string", "description": "已审阅同一物理项目的主记录 site_id；目标不得再指向别名，原始证据保留但聚合不累计"},
     "deduplication_note": {"type": "string", "description": "去重审核日期、来源与选择依据；不改变原核验日期"},

@@ -953,7 +953,7 @@ def cached_news(root=ROOT, *, company_id=None, limit=80, overview=False):
         try:
             stat=path.stat();return (str(path),stat.st_dev,stat.st_ino,stat.st_size,stat.st_mtime_ns)
         except FileNotFoundError:return (str(path),None)
-    key=(str(root),company_id,limit,overview,local_date(datetime.now(timezone.utc).isoformat()),tuple(version(p) for p in paths))
+    key=(str(root),company_id,limit,overview,local_date(datetime.now(timezone.utc).isoformat()),date.today().isoformat(),tuple(version(p) for p in paths))
     # Full research consumers must not hold the homepage's build lock.
     with _NEWS_BUILD_LOCKS[bool(overview)]:
         with _NEWS_PUBLIC_LOCK:

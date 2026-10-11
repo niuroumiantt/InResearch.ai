@@ -192,19 +192,21 @@ class HomepageRawAtlasTests(unittest.TestCase):
     def test_homepage_reuses_unchanged_inputs_but_recomputes_freshness(self):
         registry._NEWS_PUBLIC_CACHE.clear()
         self.addCleanup(registry._NEWS_PUBLIC_CACHE.clear)
-        clock=[datetime(2026,10,11,1,0,tzinfo=timezone.utc)]
+        clock=[datetime(2026,10,10,16,30,tzinfo=timezone.utc)]
         class Clock(datetime):
             @classmethod
             def now(cls,tz=None):return clock[0]
+            @classmethod
+            def today(cls):return clock[0].date()
         snapshot={'feed':{'items':[]},'reader':{'status':'idle',
                   'received_at':clock[0].isoformat(),'stale':False}}
         with tempfile.TemporaryDirectory() as tmp,patch.object(registry,'datetime',Clock), \
-             patch.object(registry,'build_news',return_value=snapshot) as build, \
+             patch.object(registry,'date',Clock),patch.object(registry,'build_news',return_value=snapshot) as build, \
              patch('time.monotonic',return_value=1) as monotonic:
             first=registry.cached_news(Path(tmp),overview=True)
             self.assertFalse(first['reader']['stale'])
             monotonic.return_value=1801
-            clock[0]=datetime(2026,10,11,1,30,tzinfo=timezone.utc)
+            clock[0]=datetime(2026,10,10,17,0,tzinfo=timezone.utc)
             later=registry.cached_news(Path(tmp),overview=True)
             self.assertTrue(later['reader']['stale'])
             self.assertEqual(build.call_count,1)
@@ -213,9 +215,12 @@ class HomepageRawAtlasTests(unittest.TestCase):
             (Path(tmp)/'data/research_knowledge.json').write_text('{}')
             registry.cached_news(Path(tmp),overview=True)
             self.assertEqual(build.call_count,1)  # Full-library adoption is not a homepage input.
-            clock[0]=datetime(2026,10,12,1,30,tzinfo=timezone.utc)
+            clock[0]=datetime(2026,10,11,0,30,tzinfo=timezone.utc)
             registry.cached_news(Path(tmp),overview=True)
-            self.assertEqual(build.call_count,2)  # Beijing day changes require new daily counts.
+            self.assertEqual(build.call_count,2)  # Site effective dates change on the server day.
+            clock[0]=datetime(2026,10,11,16,30,tzinfo=timezone.utc)
+            registry.cached_news(Path(tmp),overview=True)
+            self.assertEqual(build.call_count,3)  # Beijing day changes require new daily counts.
 
     def test_busy_full_news_consumer_does_not_block_homepage_and_home_builds_once(self):
         from concurrent.futures import ThreadPoolExecutor

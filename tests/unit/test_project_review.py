@@ -91,3 +91,43 @@ class ProjectReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'sample_review'):project_review.apply(self.root,self.data,p)
         p['review']['sample_review']={'by':'second actual reviewer','decision':'confirmed'}
         self.assertEqual(project_review.apply(self.root,self.data,p)['state'],'applied_in_checkout')
+
+    def test_new_time_observation_updates_view_preserves_baseline_and_replays(self):
+        from inresearch.knowledge.site_timeline import current
+        project_review.apply(self.root,self.data,self.proposal)
+        old=json.loads((self.root/'data/projects.json').read_text())['records'][0]
+        p=copy.deepcopy(self.proposal);p['baseline_sha256']=project_review.digest(old)
+        p['fields']=['tenant'];p['project']['tenant']=['new-user']
+        p['observation']={'effective_at':'2026-10-05','kind':'reported','basis':'reviewed original','scope':'whole_site'}
+        first=project_review.apply(self.root,self.data,p)
+        self.assertEqual(project_review.apply(self.root,self.data,p)['state'],'already_applied')
+        updated=json.loads((self.root/'data/projects.json').read_text())['records'][0]
+        self.assertEqual(updated.get('tenant'),old.get('tenant'))
+        self.assertEqual(current(updated,'2026-10-11')['tenant'],['new-user'])
+        self.assertEqual(updated['observations'][0]['adoption']['review_id'],first['review_id'])
+        p['project']['location']='Different land';p['fields']=['location']
+        with self.assertRaisesRegex(ValueError,'relocate'):project_review.apply(self.root,self.data,p)
+
+    def test_explicit_rounding_and_derived_increment_keep_precision_and_scope(self):
+        self.assertTrue(project_review.quantity_supported(
+            {'value':421,'unit':'MW','decimal_places':0,'approximation_basis':'rounded satellite estimate'},[421.25]))
+        self.assertFalse(project_review.quantity_supported({'value':421,'unit':'MW'},[421.25]))
+        assertion={'value':422,'unit':'MW','derivation':{'operation':'difference','inputs':[843,421],
+                                                       'basis':'forecast total less estimated current IT'}}
+        self.assertTrue(project_review.quantity_supported(assertion,[421,843]))
+        self.assertFalse(project_review.quantity_supported(assertion,[421]))
+        assertion['derivation'].update(operation='sum',inputs=[211,211]);assertion['value']=422
+        self.assertFalse(project_review.quantity_supported(assertion,[211]))
+
+    def test_known_reviewed_site_update_does_not_require_recreating_phase_identity(self):
+        project_review.apply(self.root,self.data,self.proposal)
+        ledger_path=self.data/'acquisition/daily-events.json';ledger=json.loads(ledger_path.read_text())
+        event=ledger['records'][self.event['id']]
+        event.update(identity_review='resolved',matched_site_id='fi-salo-test',structured_evidence_status='quotes_verified')
+        event['editorial_event']['project']={}
+        ledger_path.write_text(json.dumps(ledger))
+        # No current adoption for this changed source, so readiness is recomputed.
+        self.assertEqual(project_review.queue(self.data,self.root)['records'][0]['state'],'ready_for_review')
+        p=copy.deepcopy(self.proposal);p['source_version']=project_review.event_identity(event)
+        p['project']['site_id']='different-land'
+        with self.assertRaisesRegex(ValueError,'site_mismatch'):project_review.apply(self.root,self.data,p)

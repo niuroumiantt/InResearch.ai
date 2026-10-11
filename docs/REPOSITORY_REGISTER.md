@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.86。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.11.87。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2580。
+在册文件：2583。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 419 |
-| 运行代码 | 384 |
+| 历史快照 | 420 |
+| 运行代码 | 385 |
 | 现行规范 | 16 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 198 |
-| 测试 | 202 |
+| 测试 | 203 |
 
 ## 在册记录集合
 
@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 69 |
-| `data/research_knowledge.json` | evidence | 469 |
-| `data/research_knowledge.json` | statements | 427 |
+| `data/research_knowledge.json` | evidence | 470 |
+| `data/research_knowledge.json` | statements | 428 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -3232,6 +3232,7 @@
 | [docs/reviews/2026-10-11/homepage-global-daily/README.md](reviews/2026-10-11/homepage-global-daily/README.md) | 历史快照 |
 | `docs/reviews/2026-10-11/homepage-global-daily/before.json` | 历史快照 |
 | `docs/reviews/2026-10-11/homepage-global-daily/projection-benchmark.json` | 历史快照 |
+| [docs/reviews/2026-10-11/research-remediation/DYNAMIC_DATA.md](reviews/2026-10-11/research-remediation/DYNAMIC_DATA.md) | 历史快照 |
 | [docs/reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md](reviews/2026-10-11/research-remediation/R1_R2_ACCEPTANCE.md) | 历史快照 |
 | `docs/reviews/2026-10-11/research-remediation/abilene-capacity-correction.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
@@ -3697,6 +3698,7 @@
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
 | `src/inresearch/knowledge/research_gaps.py` | 运行代码 |
 | `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
+| `src/inresearch/knowledge/site_timeline.py` | 运行代码 |
 | `src/inresearch/knowledge/skeleton.py` | 运行代码 |
 | `src/inresearch/knowledge/target_request_contract.py` | 运行代码 |
 | `src/inresearch/knowledge/targets.py` | 运行代码 |
@@ -3969,6 +3971,7 @@
 | `tests/unit/test_runtime_summary.py` | 测试 |
 | `tests/unit/test_scale_atlas_assets.py` | 测试 |
 | `tests/unit/test_shared_part_preview_assets.py` | 测试 |
+| `tests/unit/test_site_timeline.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |

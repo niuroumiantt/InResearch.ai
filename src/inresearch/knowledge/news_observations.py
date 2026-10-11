@@ -1,6 +1,7 @@
 """Conservative project identity and power observations; never adopted facts."""
 import re
 import unicodedata
+from inresearch.knowledge.site_timeline import current
 
 
 def normalized(value):
@@ -23,7 +24,8 @@ def identity(item, sites, companies=()):
     candidates = []
     company_words = {word for c in companies for word in normalized(c.get('name') or '').split()}
     generic = {'stargate','campus','county','township','center','centre','digital','india','south','north','central','region','project'}
-    for site in sites:
+    for baseline in sites:
+        site = current(baseline)
         if site.get('duplicate_of') or 'portfolio' in site.get('site_id', ''): continue
         if not actors.intersection(site.get('developer', []) + site.get('tenant', [])): continue
         # Registered aliases are authoritative names. A city is only a candidate,
