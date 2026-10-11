@@ -331,6 +331,8 @@ const {mkdirSync}=require('node:fs');
    await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
   }
   assert.match(await page.locator('#research-countries').innerText(),/新加坡 1 · 未定位/);
+  // News text can arrive before the independent map geometry/projection requests.
+  await page.locator('.country-point').waitFor({state:'visible',timeout:10000});
   assert.equal(await page.locator('.country-point').count(),1,'country research records cluster without fake site positions');
   assert.equal(await page.locator('.country-point text').textContent(),'2');
   assert.match(await page.locator('#map-summary').innerText(),/2 条未定位/);
