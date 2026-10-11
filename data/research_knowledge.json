@@ -52072,6 +52072,89 @@
         },
         "batch_id": "303b7cb9f68a5a9414a719446f44a99facdb1c3f59c67b7479d580caaddd6388"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "688d5bcef45d3cec334ec5d6a51b534e3120a83ff97f4d714aa0b6d16eddb7b4",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:29:claim:0:ev:0",
+      "locator": "page:30/chunk:29",
+      "object_ids": [],
+      "page_index": 29,
+      "question_ids": [],
+      "quote": "Unlike conventional chat-based interactions, agentic\n                  AI applications can also decouple compute demand from direct human attention, meaning\n                  that systems may run continuously without a user actively waiting for a response.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:03:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引句和周边原生文本足以支持有归属的局部作者主张，且与当前工作单存在实质关系：对D4-conversion提供应用需求转化为持续计算负载的机制；对推理配置问题补充脱离用户即时等待的运行方式；对M12-Q06仅提供消耗可能扩大的定性线索，不给出乘数量化答案。未识别敏感、真实冲突、替换或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-M12-Q06",
+          "Q-NODE-demand-D4-conversion",
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.579,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "15cd220ce4a5783c7009540c83f5674bd6adfd4fadaaa28e08f9489c02904ae9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 52337,
+            "output_tokens": 1199,
+            "reasoning_output_tokens": 178
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.977,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "19e8112049aaa122f1ec8aea2e7eb20bde652085f45dd9a84e50a10e1623aa92",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52937,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 151
+            }
+          }
+        },
+        "batch_id": "f84f33d8f622478cae6382a1ecb3a94e05e5110fd12e4017f9b706d80c2b3202"
+      }
     }
   ],
   "statements": [
@@ -100625,6 +100708,108 @@
         "request_sha256": "7d37565e2d31d0ea0ead90ad9df559bd86eb936f0c4b392d09ce0ec37d50119a"
       },
       "object_mapping_check": "本项范围是通用推理服务的每token成本趋势。契约没有对应的通用推理服务或IEA主体对象；root指一座AI数据中心，system:control及其链条指DCIM/BMS与固件，均非本项范围。泛称专用硬件未确立GPU、定制ASIC或具体计算系统的资产范围，因此不添加基础设施映射。空对象列表保留有效问题关系，并统一适用于所选证据。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:29:claim:0:ev:0"
+      ],
+      "id": "adoption:review:15cfa6ec8814ee1302be7980",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M12-Q06",
+        "NODE-demand-D4-conversion",
+        "NODE-workload-inference-placement"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第30页指出：与传统聊天交互相比，智能体AI应用可以使计算需求脱离人的直接注意力，即系统可能在没有用户主动等待响应时持续运行。这是IEA对智能体推理运行方式的定性机制解释，不是实际持续运行或GPU利用率的独立验证；所供原文未确立报告出版时间、具体地域或部署项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:03:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引句和周边原生文本足以支持有归属的局部作者主张，且与当前工作单存在实质关系：对D4-conversion提供应用需求转化为持续计算负载的机制；对推理配置问题补充脱离用户即时等待的运行方式；对M12-Q06仅提供消耗可能扩大的定性线索，不给出乘数量化答案。未识别敏感、真实冲突、替换或其他A条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-M12-Q06",
+          "Q-NODE-demand-D4-conversion",
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.579,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "15cd220ce4a5783c7009540c83f5674bd6adfd4fadaaa28e08f9489c02904ae9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 52337,
+            "output_tokens": 1199,
+            "reasoning_output_tokens": 178
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.977,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "19e8112049aaa122f1ec8aea2e7eb20bde652085f45dd9a84e50a10e1623aa92",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52937,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 151
+            }
+          }
+        },
+        "batch_id": "f84f33d8f622478cae6382a1ecb3a94e05e5110fd12e4017f9b706d80c2b3202"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:29:claim:0"
+      ],
+      "limitations": "原文保留can和may的可能性，不证明所有智能体均持续运行。该引句未提供token乘数、任务频率、运行时长、GPU利用率、负载因子或实测曲线，也未给出价格、收入及需求弹性，不能回答“量能否补价”。不能将持续运行的可能性直接换算为设备、电力、网络或存储需求系数。",
+      "conflict_check": "已比对所供采用陈述和相关历史记录。传统推荐推理的非同步负载、prefill/decode调度与资源干扰涉及不同负载或阶段，均不直接反驳智能体可能脱离用户等待而运行。长任务降低用户邻近性重要程度的观点与本项相关，但主张不同；简单文本查询替代搜索的用电情景也不是本项规范重复。legacy匹配记录为空，反证筛查仅限所供材料，未发现真实冲突，不改写既有结论。",
+      "gap_dependency_check": "本项定性解释由已提供的第29—31页原生文本支持，不依赖未审阅图片、空文字页或第106页字符问题。M12-Q06仍需同任务基线下的token测量、乘数推导及价格关系；D4-conversion仍需需求规模、资源系数、时滞和验证；推理配置问题仍需调度、地域、利用率及共存条件。三项问题均仅获部分支持，保持开放，不生成模型参数或GW汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f84f33d8f622478cae6382a1ecb3a94e05e5110fd12e4017f9b706d80c2b3202",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "7bf9cef58a4060c1ff376f893fedeae0bf507deb5fbff9ad33a919d9b2bddc03"
+      },
+      "object_mapping_check": "本项范围是智能体AI应用与用户注意力之间的计算需求机制，没有指定一座AI数据中心或其资产配置。契约中的root是一座AI数据中心，system:compute及chain:compute/1是该设施的计算资产，system:control及chain:control/1则属于DCIM/BMS与固件；均不能仅凭应用持续运行建立映射。IEA也没有契约允许的actor对象。采用空对象列表，保留有效问题关系，不继承文档级设施标签。"
     }
   ],
   "answers": [],
