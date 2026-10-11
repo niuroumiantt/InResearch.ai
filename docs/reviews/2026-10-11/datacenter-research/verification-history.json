@@ -49,6 +49,28 @@
         }
       ],
       "scope": "Actual failure retained; specialized research_delivery assertions were not reached. Corrected final head requires independent full CI."
+    },
+    {
+      "head": "527a7d8d8c9e31f2a8d83cb1b67f31815c952695",
+      "run_id": 38100144919,
+      "status": "failed",
+      "actual_failures": [
+        {
+          "job_id": 114354427164,
+          "job": "browser (core_b)",
+          "test": "research_delivery",
+          "reason": "Real shared-font rendering placed five subtitle text bounds at right724–726.719 beyond 720px SVG viewBoxes; all five new pages passed shared-theme/mobile checks.",
+          "affected_figures": [
+            "figure-01",
+            "figure-04",
+            "figure-07",
+            "figure-08",
+            "figure-11"
+          ],
+          "correction": "Reflow the five two-line subtitles with unchanged capacity data and retained meanings. Apply identical text to editable SVGs, standalone full HTML and website article. Keep rendered bbox assertions intact."
+        }
+      ],
+      "scope": "Actual failure retained. Corrected final head requires independent full CI; no production receipt inferred."
     }
   ]
 }
