@@ -45299,6 +45299,89 @@
         },
         "batch_id": "864c689dafd87ef7350ae0a5928a0b8bdde5fc7f7c6de402d008bb885c503060"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9202bcc12573479123c932f680a3ba3a325e8ac6d2ad390f49de0b9cc61b5154",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:16:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "quote": "However, data center development is happening all across the US, in at least 23 states nationwide. Emerging markets such as Pennsylvania, the Carolinas, and Texas have become popular locations for data center firms.",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "source_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:04:06+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续两句原文及完整页面语境充分，对当前M05-Q01提供美国开发活动覆盖范围及新兴选址地区的实质性定性贡献。缺少容量和增长序列限制其贡献范围，但不妨碍部分采用。未识别敏感材料、真实冲突、拟替换或其他A条件，符合B类归因采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 36.858,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "821724b6b254a0d95e602d172a74b4cbed642b59302d1eee1ae86026f13915aa",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65261,
+            "output_tokens": 1225,
+            "reasoning_output_tokens": 151
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.073,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dd99c726f32637c894a5619a80443aa23e0b4657862802d844fe4c57470ecb04",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65920,
+              "output_tokens": 439,
+              "reasoning_output_tokens": 130
+            }
+          }
+        },
+        "batch_id": "dcd079e2029a3f404ddf56c08d9863b41a71f3a9f15efff2af36460315555044"
+      }
     }
   ],
   "statements": [
@@ -88270,6 +88353,104 @@
         "request_sha256": "b575decd9d8ff7bb5bbe6b0ab7ea2d79bc5d8914256f230e3d143e959309d0bc"
       },
       "object_mapping_check": "独立复核后保留空映射：本条对象是欧洲数据中心项目管线的区域分布及五个城市集群，未限定AI用途，不能对应合同root所指的一座AI数据中心。城市集群名称不确立特定开发商、内部设施系统、建筑部件或土地及并网权利；不借用legacy中AWS、Google或Microsoft的主体映射，也不继承Reader标签。所选证据统一使用此主张级空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "evidence_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:16:ev:0"
+      ],
+      "id": "adoption:review:157295c536f45157b78b544e",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "status": "adopted",
+      "text": "DCD作者Niva Yadav在2025年2月21日的报道中称，美国至少23个州有数据中心开发活动，宾夕法尼亚州、卡罗来纳地区和得克萨斯州等新兴市场已成为数据中心企业的热门选址。这是来源当时的区域布局陈述，未区分开发阶段，也不构成对当前区域分布或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T02:04:06+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续两句原文及完整页面语境充分，对当前M05-Q01提供美国开发活动覆盖范围及新兴选址地区的实质性定性贡献。缺少容量和增长序列限制其贡献范围，但不妨碍部分采用。未识别敏感材料、真实冲突、拟替换或其他A条件，符合B类归因采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 36.858,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "821724b6b254a0d95e602d172a74b4cbed642b59302d1eee1ae86026f13915aa",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65261,
+            "output_tokens": 1225,
+            "reasoning_output_tokens": 151
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.073,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dd99c726f32637c894a5619a80443aa23e0b4657862802d844fe4c57470ecb04",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65920,
+              "output_tokens": 439,
+              "reasoning_output_tokens": 130
+            }
+          }
+        },
+        "batch_id": "dcd079e2029a3f404ddf56c08d9863b41a71f3a9f15efff2af36460315555044"
+      },
+      "source_candidate_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:16"
+      ],
+      "limitations": "报道为二手来源，其援引的Newmark原始报告未在本包中独立核验。所选原文未列出全部州、统计基准日、开发活动定义、项目清单或热门程度指标；至少23个州是地域覆盖数量，不是项目数量或容量。未限定AI用途，未拆分投运、在建及规划状态，也未提供各区域容量或增长时间序列。卡罗来纳地区的具体统计边界未说明。",
+      "conflict_check": "已采用的Abilene第一阶段预测及Prime在Garland一带的开发计划是具体项目线索，与本条美国区域覆盖陈述相容，范围不同，不构成重复。CBRE关于2025年底美国主要市场在建容量下降的统计，在时间、市场范围、阶段和指标上均不同，不能反驳开发活动覆盖至少23个州或热门选址判断。legacy中的得克萨斯和宾夕法尼亚项目、Helios合同容量及三州核电增容记录属于个案或供电安排，不能验证完整州数，也不构成同口径反证。Frontier重复记录及既有容量口径差异保持原状；未发现本主张的规范重复记录，不替换既有结论。检查限于所供材料。",
+      "gap_dependency_check": "M05-Q01获得美国开发活动地域扩散和新兴选址地区的定性线索，仍需Newmark原始定义、完整州及项目清单、同口径容量、项目去重和分阶段历史序列，才能形成各区域投运、在建、规划容量分布及增长推导。本条没有俄亥俄、印第安纳或中东的直接证据，也不能量化所列地区的崛起速度。工作单的原始来源及反证要求尚未补齐，问题保持开放；不汇总GW、不更新模型输入或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "dcd079e2029a3f404ddf56c08d9863b41a71f3a9f15efff2af36460315555044",
+        "source_report_sha256": "63dd4b11ba1d091d7220145a08d6cd4e50c5cedc69a9bbcc94dd4d3e6a405872",
+        "request_sha256": "9682ddf5148ef9e0583f31c6675dde1808665b049b92241577fb51ea79b77639"
+      },
+      "object_mapping_check": "独立依据原文和对象合同保留空映射：主张范围是美国跨州数据中心开发活动及市场选址，未限定AI用途，也不是root所指的一座AI数据中心。地域名称和热门选址判断未建立具体土地权利、区划、设施内部系统、部件或具名参与方的主张范围，故不映射site:land、system:facility或主体ID。全文AI增长语境不足以改变本条对象范围；不继承Reader的root标签。所选证据统一采用此主张级空对象范围，保留有效的M05-Q01关联。"
     }
   ],
   "answers": [],
