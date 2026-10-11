@@ -6962,6 +6962,63 @@
       "status": "candidate",
       "stored_path": "originals/0f/0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153/dcd-0fb166143118bf15-When racks outpace the infrastructure- Retrofitting data center p.html",
       "title": "When racks outpace the infrastructure: Retrofitting data center power systems for AI-scale densities"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "coverage": {
+        "characters_read": 8573,
+        "characters_total": 8573,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "id": "doc-a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "library_path": "library/by-node/part-fuel-cell/2026_Data Center Dynamics（DCD）_Nebius to deploy Bloom Energy fuel cells to power its U__a712a0c442f31a91.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bloom-energy",
+        "actor:dataone",
+        "actor:nebius",
+        "part:fuel-cell",
+        "part:rack-system",
+        "root"
+      ],
+      "question_ids": [
+        "M04-Q02"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-434722736f4f475fab898bd647b1d9a0",
+      "report_sha256": "6708b6a3e0245fc9130440d6529f45204df33cb6f4b044297ab6a1d89ce7d889",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+        "url": "https://www.datacenterdynamics.com/en/news/nebius-to-deploy-bloom-energy-fuel-cells-to-power-its-us-data-centers/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/nebius-to-deploy-bloom-energy-fuel-cells-to-power-its-us-data-centers/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/a7/a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22/dcd-a712a0c442f31a91-Nebius to deploy Bloom Energy fuel cells to power its US data cen.html",
+      "title": "Nebius to deploy Bloom Energy fuel cells to power its US data centers"
     }
   ],
   "evidence": [
@@ -51761,6 +51818,176 @@
           }
         },
         "batch_id": "6b813115ea900d633b78ff0c7901e4a499f329297bbf220183fd70aff6acac1c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4ea06c594e337357feb4b0d43be30bd71ec6188182437a9f46b12e90cc2e052e",
+      "document_id": "doc-a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "id": "rev-434722736f4f475fab898bd647b1d9a0:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:bloom-energy",
+        "actor:brookfield",
+        "part:fuel-cell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Last year, the company inked a $5 billion AI infrastructure partnership with global investment firm Brookfield",
+      "reading_revision_id": "rev-434722736f4f475fab898bd647b1d9a0",
+      "source_sha256": "a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:25:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分6。两条引文及完整正文支持有归因的合作规模和未来投资安排，对当前M11-Q04提供资本进入AI基础设施供给端的合作级线索，具有局部实质贡献。未见敏感、真实冲突、拟替换或其他A条件，可按B类部分采用。合作规模不能回答年度实际流量，问题保持开放。金额不属于硬件收入、成本或定价数据，且未建立芯片与服务器制造、集成及分销节点自身的计量范围，因此不保留NODE-activity-V2-economics映射。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.868,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ff1c72c7e3fc3f1110f674b2fc422fb13724657ab1bc70495f70ca3bf3643614",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47411,
+            "output_tokens": 1472,
+            "reasoning_output_tokens": 332
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.736,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f801b04ced119e59a11b519345bfb38b3a80dc2b7ac1ca77f355e8d11838cc0e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48135,
+              "output_tokens": 491,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "cc43205d9c2db20ea7e3cfa30efa7b17c5841979b959f9da45d04982080150c3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4ea06c594e337357feb4b0d43be30bd71ec6188182437a9f46b12e90cc2e052e",
+      "document_id": "doc-a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "id": "rev-434722736f4f475fab898bd647b1d9a0:chunk:0:claim:11:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:bloom-energy",
+        "actor:brookfield",
+        "part:fuel-cell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "under which Brookfield will invest in the firm to support the development and deployment of its technology.",
+      "reading_revision_id": "rev-434722736f4f475fab898bd647b1d9a0",
+      "source_sha256": "a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:25:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分6。两条引文及完整正文支持有归因的合作规模和未来投资安排，对当前M11-Q04提供资本进入AI基础设施供给端的合作级线索，具有局部实质贡献。未见敏感、真实冲突、拟替换或其他A条件，可按B类部分采用。合作规模不能回答年度实际流量，问题保持开放。金额不属于硬件收入、成本或定价数据，且未建立芯片与服务器制造、集成及分销节点自身的计量范围，因此不保留NODE-activity-V2-economics映射。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.868,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ff1c72c7e3fc3f1110f674b2fc422fb13724657ab1bc70495f70ca3bf3643614",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47411,
+            "output_tokens": 1472,
+            "reasoning_output_tokens": 332
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.736,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f801b04ced119e59a11b519345bfb38b3a80dc2b7ac1ca77f355e8d11838cc0e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48135,
+              "output_tokens": 491,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "cc43205d9c2db20ea7e3cfa30efa7b17c5841979b959f9da45d04982080150c3"
       }
     }
   ],
@@ -100110,6 +100337,109 @@
         "request_sha256": "f43bace69a6fc4604d552837e4514d90e853c3f34024a45d90c37a5f2c783a43"
       },
       "object_mapping_check": "独立依据原文与对象契约保留空映射：主张范围是欧盟数据中心市场整体容量的历史变化，未限定AI用途，也不是root所指的一座AI数据中心。容量一词未确立内部IT系统、电力系统、部件或场址权利范围；欧盟及IEA均无相应允许主体ID。报告的AI主题不改变本条对象范围，不继承Reader的root标签。所选证据统一采用此主张级空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a712a0c442f31a91fb733e3e2eb66d1b64ef328ded62d8f411d14a959d137c22",
+      "evidence_ids": [
+        "rev-434722736f4f475fab898bd647b1d9a0:chunk:0:claim:11:ev:0",
+        "rev-434722736f4f475fab898bd647b1d9a0:chunk:0:claim:11:ev:1"
+      ],
+      "id": "adoption:review:7366fc2ca6b3337ca533b12b",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:bloom-energy",
+        "actor:brookfield",
+        "part:fuel-cell"
+      ],
+      "question_ids": [
+        "M11-Q04"
+      ],
+      "reading_revision_id": "rev-434722736f4f475fab898bd647b1d9a0",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年5月21日的报道中称，Bloom Energy于上一年（2025年）与全球投资机构Brookfield达成规模为$5 billion的AI基础设施合作；报道表示，Brookfield将投资Bloom，以支持其技术开发和部署。该金额在来源中属于合作规模，不能据此认定为已支付投资、年度资金流量、燃料电池设备单价或每MW资本成本。这是来源对合作及未来投资安排的陈述，不构成当前履约或资金到账的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T10:25:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分6。两条引文及完整正文支持有归因的合作规模和未来投资安排，对当前M11-Q04提供资本进入AI基础设施供给端的合作级线索，具有局部实质贡献。未见敏感、真实冲突、拟替换或其他A条件，可按B类部分采用。合作规模不能回答年度实际流量，问题保持开放。金额不属于硬件收入、成本或定价数据，且未建立芯片与服务器制造、集成及分销节点自身的计量范围，因此不保留NODE-activity-V2-economics映射。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.868,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ff1c72c7e3fc3f1110f674b2fc422fb13724657ab1bc70495f70ca3bf3643614",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 47411,
+            "output_tokens": 1472,
+            "reasoning_output_tokens": 332
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.736,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f801b04ced119e59a11b519345bfb38b3a80dc2b7ac1ca77f355e8d11838cc0e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 48135,
+              "output_tokens": 491,
+              "reasoning_output_tokens": 201
+            }
+          }
+        },
+        "batch_id": "cc43205d9c2db20ea7e3cfa30efa7b17c5841979b959f9da45d04982080150c3"
+      },
+      "source_candidate_ids": [
+        "rev-434722736f4f475fab898bd647b1d9a0:chunk:0:claim:11"
+      ],
+      "limitations": "这是媒体报道，未提供合作公告原件、投资协议、确切签署日期、期限、付款计划、履约条件或实际到账数据。原文以$标示金额，所选句未进一步明确币种。未拆分技术开发、设备部署与具体数据中心资产的资金用途，也未限定本合作的地域；不能将文章中Nebius美国项目的地域或容量套用于Brookfield合作。",
+      "conflict_check": "所供已采用Alphabet及CXMT陈述涉及其他企业的硬件收入或制造经济性，AirTrunk收购陈述涉及另一交易，均非本项的重复或同口径反证。legacy中的Bloom与Equinix运行及在建容量属于项目状态，Bloom与AEP的900MW、26.5亿美元订单属于设备采购，均不同于Brookfield合作规模，不构成真实冲突，也不能相互替代。所供合同及项目匹配记录为空。未发现既有canonical重复，不覆盖任何现有结论；检查限于 supplied材料。",
+      "gap_dependency_check": "M11-Q04仍需一手合作文件、实际支付年份与金额、投资工具和收款主体、资金用途及数据中心资产范围、年度样本覆盖、反证和去重。Brookfield合作仅补充投资机构合作安排的线索，不能代表KKR、Blackstone或主权基金的年度流量，也不能将2025年签署的全部合作规模记入2025年实际投资。不得与设备订单或企业收购金额直接相加；不关闭问题、不更新成本或容量输入、不改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "cc43205d9c2db20ea7e3cfa30efa7b17c5841979b959f9da45d04982080150c3",
+        "source_report_sha256": "6708b6a3e0245fc9130440d6529f45204df33cb6f4b044297ab6a1d89ce7d889",
+        "request_sha256": "54e1ba44e8d96accea2290c52b21f8c176f6e4dc82b3a1663b294a94e8af9311"
+      },
+      "object_mapping_check": "独立核对对象契约：Bloom Energy为拟受投资及技术开发部署主体，Brookfield为投资机构，分别对应两个允许的actor对象；正文明确其技术为燃料电池，匹配发电与储能链下的part:fuel-cell。该映射只表示合作涉及的技术范围，不证明设备采购金额或具体设施部署。未建立单座AI数据中心、完整电力系统、整机柜或Nebius项目的合作范围，不继承root、system:power、part:rack-system或actor:nebius标签。两条所选证据统一使用这一主张级对象范围。"
     }
   ],
   "answers": [],
