@@ -56587,6 +56587,88 @@
         },
         "batch_id": "de7b63174825e4f7565436eafe741a15e62cda01fbcbd098c9522fa8f26fca35"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8b9cc87a8c56a0519d1fecca2b055a60b68f861364b3b2c289496e193608a545",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:9:ev:0",
+      "locator": "page:9/chunk:8",
+      "object_ids": [],
+      "page_index": 8,
+      "question_ids": [],
+      "quote": "The global electricity demand of data centres – the critical infrastructure for training and\n                  running AI models – grew by 17% in 2025, in line with IEA projections. Electricity\n                  consumption from AI-focused data centres grew even faster, surging 50% in 2025.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:53:54+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文和跨页上下文充分支持限定的IEA作者陈述，对当前M01-Q04提供AI导向用电与总体用电增速比较的部分证据，对M01-Q05提供历史用电路径的增长线索。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级有限采用要求；不回答或关闭整个问题，不更新模型输入或覆盖既有结论。",
+        "workorder_ids": [
+          "Q-M01-Q04",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.146,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d2b746f04ca29da57b9b39ad8dfb7ecc3e763cf1b9371c8b463b42a80e2af516",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57783,
+            "output_tokens": 1403,
+            "reasoning_output_tokens": 220
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.774,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5d7ffc3a813120f3ae10cb8c5f08e8ac93b57a75e1fd72ee517e4cccfca46bea",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 58556,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "3f3ad643d7daa12e00df84ddc8a0952d4685bcac432e312511c98c20ff3027c7"
+      }
     }
   ],
   "statements": [
@@ -109558,6 +109640,106 @@
         "request_sha256": "259dc4d5fee8d166855978e1dc0a2113155fe64c642c6c3557529defce94e9bc"
       },
       "object_mapping_check": "原文明确Nvidia的DGX Cloud为预期客户，支持无父节点的actor:nvidia主体映射，不表示英伟达拥有Southgate资产。Firmus、CDC及Southgate Melbourne没有对应允许主体或项目ID。选定主张描述客户接入和云区域安排，未建立整座数据中心或具体系统、部件的资产范围，因此不继承Reader的root或文档级GPU、设施等标签，也不因AI或cloud region增加基础设施映射。所有选定证据统一使用该主张级主体范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:9:ev:0"
+      ],
+      "id": "adoption:review:69454a63138bb9b0646248b8",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q04",
+        "M01-Q05"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第9页执行摘要中称，全球数据中心电力需求在2025年增长17%，与IEA预测一致；同一全球需求讨论中的AI导向数据中心用电量在2025年增长50%。这是IEA对2025年用电增长的报告判断，不构成现场实测值或当前独立认证，也不是GPU利用率、负载因子或容量增长率。所供原生文本未确立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T17:53:54+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原文和跨页上下文充分支持限定的IEA作者陈述，对当前M01-Q04提供AI导向用电与总体用电增速比较的部分证据，对M01-Q05提供历史用电路径的增长线索。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级有限采用要求；不回答或关闭整个问题，不更新模型输入或覆盖既有结论。",
+        "workorder_ids": [
+          "Q-M01-Q04",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.146,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d2b746f04ca29da57b9b39ad8dfb7ecc3e763cf1b9371c8b463b42a80e2af516",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57783,
+            "output_tokens": 1403,
+            "reasoning_output_tokens": 220
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.774,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5d7ffc3a813120f3ae10cb8c5f08e8ac93b57a75e1fd72ee517e4cccfca46bea",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 58556,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "3f3ad643d7daa12e00df84ddc8a0952d4685bcac432e312511c98c20ff3027c7"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:9"
+      ],
+      "limitations": "引文未提供2024年与2025年的可比电量基值、AI导向数据中心分类定义、统计覆盖、估算方法或误差范围，也未提供传统负载的单独增速及AI用电占比。总体增速包含AI部分，不能将17%作为传统负载增速，或据50%与17%直接认定AI与传统负载的增速差。缺少同口径容量数据，不能换算GW、推定GPU利用率或完成隐含利用率检验。阅读覆盖仅为PDF原生文本，图像未审阅，完整文档视觉阅读未完成。",
+      "conflict_check": "已采用的IEA AI factories容量增长记录衡量容量及相对18个月窗口，前沿模型用电驱动记录属于定性判断，均与本项不同且非重复。LBNL的美国历史用电CAGR及2028年情景在地域、年份和预测属性上不同，不形成同口径冲突。legacy中的中国2024年GPU利用率上界及Google云2022年GPU利用率属于资源占用指标；贝恩经uSMART转引的2019年与2023年GW需求值具有不同年度及未明确的功率边界，不能直接反驳或验证2025年电量增速。所供合同和项目匹配记录为空。所供范围内未发现真实冲突，未完成穷尽外部反证检索，不替换任何既有记录。",
+      "gap_dependency_check": "M01-Q04仍需AI与传统负载的明确分类、同地域同年度同口径的电量基值、AI占比及传统负载序列，才能形成可复查增速差推导；AI导向设施用电也不能自动等同于纯AI工作负载用电。M01-Q05仍需同年度同地域同边界的TWh与GW路径、容量定义、设施效率和年度时间处理，才能检验隐含利用率。相邻预测及已采用容量增长线索不能直接拼接完成这些计算。两项问题及当前工单保持开放，骨架、模型值和既有结论不变。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3f3ad643d7daa12e00df84ddc8a0952d4685bcac432e312511c98c20ff3027c7",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "c66eea5089e8964a046ab00e4b415e48b1139cb4aa761292db009448f73b2519"
+      },
+      "object_mapping_check": "独立复核后，本项范围是全球数据中心总体及其中AI导向数据中心的年度用电增长统计，包含传统负载，未描述具体设施或内部系统。合同中的root为一座AI数据中心，system:power为其内部电力系统，site:grid为电力配额与并网权利，均不能直接承载本项全球综合统计。保留空对象列表及有效问题匹配，不继承候选或Reader的root标签；所选证据统一采用此主张范围。"
     }
   ],
   "answers": [],
