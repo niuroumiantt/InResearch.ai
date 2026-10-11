@@ -1,7 +1,5 @@
-# fetchdata 启动入口
+# 四个独立采集仓库启动入口
 
-当前员工任务包在 [四队采集任务包](../guides/fetchdata/README.md)，包含共同交付规范、四队任务书、开发验收和离线样例。现行研究规则在 [06 采集规范](../../framework/06_acquisition.md)。
+现行员工包见[四队启动包](../guides/fetchdata/README.md)，现行规范见[06](../../framework/06_acquisition.md)。用户已将一个fetchdata四目录方案替换为fetchstat、fetchfilings、fetchreports、fetchquotes四个独立仓库。各仓库已实际采集一条来源、保存原件、提取一条候选并通过离线校验及重放；生产接收与定时运行待联调。合同名fetchdata-handoff/1保留兼容，不能冒充Fetchspec。
 
-沿用一个 fetchdata 仓库、四队独立目录和运行任务的设计。旧启动稿中的“只抓目标点名类型”“接收回执自动更新目标完成”不再执行：有来源的信息可以先交候选，研究用途可后补；接收、审核、采用、上线分开。旧稿和退役 SEC/GPU 代码由 Git 历史保留，不能不经审查恢复到现行运行。
-
-四队仍未接通。员工格式 fetchdata-handoff/1 先用于离线交付/联调，不能冒充现有 Fetchspec API 合同。原件按原格式保存、逐条候选统一 JSONL；身份未定留线索，缺项后补、冲突与版本保留。
+原件按原格式、候选JSONL；目标可空、缺项后补、冲突保留、身份不明留线索。接收、采用、上线分别计量；不能把建仓库当171项需求已完成。旧设计由Git历史保留，不恢复退役SEC/GPU服务。
