@@ -55247,6 +55247,89 @@
         },
         "batch_id": "f35431567642345fc463fc59214db9643625369878040b3e57462df9a34935b9"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ae0c1d179cb0e46bf5ae5d48c6e04f8c985b4f5442046847f90b55a105dd3ec2",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "id": "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:0:ev:0",
+      "locator": "page:1/chunk:5",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Capacity factors for periods in prior years may not tie to previous earnings presentations due to change in methodology for comparison purposes, however full-year reported capacity factors are not impacted.",
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "source_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T15:39:45+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。核电容量因子的历史可比性实质关联当前M04-Q05供给情景的参数校准，适合作为局部方法约束采用。连续引文直接支持候选，周边原文明确方法、排除范围和核电运营语境。封存摘要所指出的直接模型参数缺失仍成立；本次仅采用有归属的口径说明，不据此回答或关闭问题。无敏感内容、真实冲突、替换提议或其他A类条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-M04-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "efe5cb93fc311a597c42fbf6a7a5c9fa8a8e680a0eaf2ed58a64e988da4a835f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 54504,
+            "output_tokens": 1188,
+            "reasoning_output_tokens": 178
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.808,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bcf47f80918d582e02f80eb6310ce8ad268f9c74dfdfa89ab857f320058be00f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55106,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 157
+            }
+          }
+        },
+        "batch_id": "d5be5c16a9558ec3f553b8b7770089c10e2cce5cddbd82eb19d88c001287989e"
+      }
     }
   ],
   "statements": [
@@ -106818,6 +106901,106 @@
         "request_sha256": "b5c794f68adafb8c1f72384dde0e7e7d39189818014d6e280ad938682d586077"
       },
       "object_mapping_check": "实际主张范围是SCCS对苏格兰消费者能源账单的担忧。对象合同没有SCCS或消费者账单对象；root表示一座AI数据中心，site:grid表示其电力配额与并网权利，system:power及相关链表示设施供电系统，均不对应本项区域性担忧。周边提及CoreWeave不能建立该账单主张的主体范围。因此不继承Reader标签，所选证据统一采用空对象范围，保留M04-Q04问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "evidence_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:0:ev:0"
+      ],
+      "id": "adoption:review:a058449b736c7f034ee8707f",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "question_ids": [
+        "M04-Q05"
+      ],
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "status": "adopted",
+      "text": "星座能源在标注日期为2026年8月6日的第二季度业绩演示第10页说明：其所展示的核电容量因子采用净月度均值方法，运营指标不包括Salem和STP；由于为比较目的改变了方法，以前年份各期间的容量因子可能与此前业绩演示不一致，但全年已报告容量因子不受影响。这是公司对自身指标口径的说明，未经本次独立核验，不能泛化为整个美国核电行业的情况。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T15:39:45+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。核电容量因子的历史可比性实质关联当前M04-Q05供给情景的参数校准，适合作为局部方法约束采用。连续引文直接支持候选，周边原文明确方法、排除范围和核电运营语境。封存摘要所指出的直接模型参数缺失仍成立；本次仅采用有归属的口径说明，不据此回答或关闭问题。无敏感内容、真实冲突、替换提议或其他A类条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-M04-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "efe5cb93fc311a597c42fbf6a7a5c9fa8a8e680a0eaf2ed58a64e988da4a835f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 54504,
+            "output_tokens": 1188,
+            "reasoning_output_tokens": 178
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.808,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bcf47f80918d582e02f80eb6310ce8ad268f9c74dfdfa89ab857f320058be00f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55106,
+              "output_tokens": 409,
+              "reasoning_output_tokens": 157
+            }
+          }
+        },
+        "batch_id": "d5be5c16a9558ec3f553b8b7770089c10e2cce5cddbd82eb19d88c001287989e"
+      },
+      "source_candidate_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:0"
+      ],
+      "limitations": "来源为混合归档网页工具响应中的星座能源材料，并非载体标题所指的Talen交易演示。未取得原始HTML或PDF字节，供应方URL绑定未独立验证；2026年8月6日是原文标注的演示日期，不据此确认独立发布日期。所供文本没有完整方法公式、历史重算数据或核电容量因子数值，不能据此设定2030年容量因子、可靠容量或数据中心可支撑GW，也不能将公司指标推广为全行业参数。",
+      "conflict_check": "已采用陈述涉及PJM容量拍卖、冬夏能力认定、改革进程，以及美国数据中心和其他行业用电需求；其对象和计量口径与本项公司核电容量因子比较方法不同，未发现重复或真实冲突。封存摘要关于缺少可直接采用参数的判断与本项有限方法约束可并存。所供legacy筛选记录均为空，仅能说明筛选范围内未见相关记录，不代表完成外部反证检索。不覆盖任何现有结论。",
+      "gap_dependency_check": "M04-Q05仍需同口径核电历史数据、方法定义与重算对照，以及2030年分地域分情景供给、退役和新增假设、其他负荷、可靠性与输配电可送达约束及数据中心容量换算推导。本项仅提醒历史校准时核对比较方法和机组范围，不提供可填入模型的容量因子或GW答案；问题和工单保持开放，骨架、既有结论与模型值不变。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d5be5c16a9558ec3f553b8b7770089c10e2cce5cddbd82eb19d88c001287989e",
+        "source_report_sha256": "1f1517764ca6223b7ce9a4a5ba3e6d940c53dfa81fba0b830ae21e37b3a97251",
+        "request_sha256": "4d0eed195861be373d98770277a5b0aa78b6ecab779bad1e9fa15ed58c622ad5"
+      },
+      "object_mapping_check": "独立核对对象合同与原文：该声明属于星座能源自身核电运营指标的比较口径说明，合同中actor:constellation-energy的名称、主体类型与之相符。未涉及一座AI数据中心的内部电力系统、电力配额或并网权利，不映射root、system:power、site:grid或核电部件；不继承文档标签。"
     }
   ],
   "answers": [],
