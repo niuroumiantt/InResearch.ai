@@ -54940,6 +54940,89 @@
         },
         "batch_id": "98749e246618baaefb5fa82b9c4909af6cb78899693a4e8c76923465215b6b2d"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "373f6ce01130c4d8a9f1cfcaa0f48feccffdaef5c7ba86c3935031618f1aab4a",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:101:claim:1:ev:0",
+      "locator": "page:101/chunk:101",
+      "object_ids": [],
+      "page_index": 100,
+      "question_ids": [
+        "M01-Q02"
+      ],
+      "quote": "For these reasons, the effects of data centres on electricity demand are already\n                   integrated into the modelling framework and scenarios of the IEA’s World Energy\n                   Outlook.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T14:30:07+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。是否包含数据中心电力需求直接关系当前M01-Q02比较机构预测的范围，具有实质但局部的贡献。连续原文和相邻解释充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。仅采用有明确归属的模型范围说明，不更新数值或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.013,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2995998a948778fa5cc0cf862a96acbc272936db18c805980334286f9372a254",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 64173,
+            "output_tokens": 1098,
+            "reasoning_output_tokens": 194
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.31,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "006d6160cf53da23328d4f8544414dfbf84e139ea8db8e09944392c83f611bde",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64663,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 149
+            }
+          }
+        },
+        "batch_id": "90a97de5b3419f943416a972ab08c1e5bda9293ccc7c6acd37595a1725582768"
+      }
     }
   ],
   "statements": [
@@ -106215,6 +106298,104 @@
         "request_sha256": "8f9d90f94c0ec1daffb4dc057b244c01151aa2021eef86c5c47c20da2013a6ab"
       },
       "object_mapping_check": "独立审查后不继承候选的root标签：契约中的root名称限定为“一座AI数据中心”，原文未确认该项目承载AI。扩展容量意向未披露具体建筑工程、供电系统、IT设备或场址权利，不能仅凭MW或全文共址背景映射设施、电力、BESS、土地或许可对象。Valorem及Minna Jukola没有允许的主体ID，不借用其他运营商ID。空对象列表保留对M02-Q05的有效局部匹配，所选证据统一采用此主张范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:101:claim:1:ev:0"
+      ],
+      "id": "adoption:review:9dae2703084c49e9abd77cfb",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》中说明，数据中心对电力需求的影响已纳入该报告所述IEA《世界能源展望》的建模框架和情景。这是IEA对自身模型包含范围的说明，不构成对当前模型版本或预测准确性的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T14:30:07+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。是否包含数据中心电力需求直接关系当前M01-Q02比较机构预测的范围，具有实质但局部的贡献。连续原文和相邻解释充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。仅采用有明确归属的模型范围说明，不更新数值或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.013,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2995998a948778fa5cc0cf862a96acbc272936db18c805980334286f9372a254",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 64173,
+            "output_tokens": 1098,
+            "reasoning_output_tokens": 194
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.31,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "006d6160cf53da23328d4f8544414dfbf84e139ea8db8e09944392c83f611bde",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64663,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 149
+            }
+          }
+        },
+        "batch_id": "90a97de5b3419f943416a972ab08c1e5bda9293ccc7c6acd37595a1725582768"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:101:claim:1"
+      ],
+      "limitations": "所供原生文本未确立报告发表日期，来源时间未知。“已纳入”限定于报告所述框架和情景，不能外推至其他版本，也不表示预测已实现或项目已投运。引文未提供机构间总量对照、容量定义、年度分解或调和推导。阅读覆盖为PDF原生文本，未完成图像审阅。",
+      "conflict_check": "已采用adoption:review:a055d49329a63f53ae6dc59a描述IEA预测方法，本项补充模型包含关系；adoption:review:64ecb6c63520116b246c9b12描述宏观增量及节能潜力未纳入，两者对象不同且相容，均非本项重复。所供legacy的IEA历史估算、未来TWh情景及PPA容量记录未提出相反的包含关系。邻页“today”的年份未知，不能据其约500 TWh与legacy的2024年415 TWh认定同口径冲突或替换。检查限于所供记录，不覆盖既有结论。",
+      "gap_dependency_check": "M01-Q02仍需IEA、JLL、C&W、麦肯锡和高盛各自的原文预测、版本、地域、年份、能源与容量定义、设备及负载范围、情景、可复查调和推导和反证。本项只确认IEA报告所述模型的一项包含边界，不回答或关闭问题，不换算或汇总GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "90a97de5b3419f943416a972ab08c1e5bda9293ccc7c6acd37595a1725582768",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "6a84fb94062fe2641ec61151dbb382b2913a4e504b09bf2e57a44b239257cd95"
+      },
+      "object_mapping_check": "独立复核后，实际范围为数据中心总体电力需求与IEA研究模型的包含关系。合同中的root是一座AI数据中心，system:power和system:it是其内部设施，site:grid是电力配额与并网权利，均不是本项对象；研究建模框架也不是DCIM/BMS。IEA无对应允许主体ID。因此不继承Reader的root标签，所选证据统一采用空对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
