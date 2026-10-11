@@ -7444,6 +7444,65 @@
       "status": "candidate",
       "stored_path": "originals/96/964bdd835aabe1fcd917fecc0d64bef7c67ec27025a7f6cfad9c1cc07d4a0143/dcd-964bdd835aabe1fc-60MW data center colocated with solar and battery storage planned.html",
       "title": "60MW data center colocated with solar and battery storage planned in Finland"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+      "coverage": {
+        "characters_read": 7795,
+        "characters_total": 7795,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+      "id": "doc-c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+      "library_path": "library/by-node/site-grid/2026_DCD_Campaigners call for moratorium on data centers in Scot__c23995056728875c.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:coreweave",
+        "root",
+        "site:grid",
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-conversion",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f0d1983fdf964c94a0b9510f6df0564b",
+      "report_sha256": "c777a0851138bdcc116c44c52f3ac09a981b823c40b66e02d087ede5dafa6ccc",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+        "url": "https://www.datacenterdynamics.com/en/news/campaigners-call-for-moratorium-on-data-centers-in-scotland-over-climate-and-power-fears/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/campaigners-call-for-moratorium-on-data-centers-in-scotland-over-climate-and-power-fears/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/c2/c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0/dcd-c23995056728875c-Campaigners call for moratorium on data centers in Scotland over .html",
+      "title": "Campaigners call for moratorium on data centers in Scotland over climate and power fears"
     }
   ],
   "evidence": [
@@ -55104,6 +55163,89 @@
           }
         },
         "batch_id": "79524b6667f4fb3475408bac1cf48a91316f937f0ac785b90fda2cd8e2a3c8ac"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "7b12bea249e52d218f7cb153d9ca55c42416ff96ab03d823b152ae2e086cf55e",
+      "document_id": "doc-c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+      "id": "rev-f0d1983fdf964c94a0b9510f6df0564b:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-grid-supply"
+      ],
+      "quote": "SCCS worries that the data centers may also push up consumer energy bills.",
+      "reading_revision_id": "rev-f0d1983fdf964c94a0b9510f6df0564b",
+      "source_sha256": "c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T15:42:23+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。该担忧实质关联当前M04-Q04工单中居民成本压力与政治反对的研究方向。连续原文及周边倡议语境足以支持限定归因的部分主张，无敏感、真实冲突或替换条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "acf5a4d89a78e0253260c59a8f4c19e47e32eb9912f4ee87de488fce0eb4633f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 48349,
+            "output_tokens": 1067,
+            "reasoning_output_tokens": 119
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.849,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7715c545ad5b64207ab02ee6423c5c3d2ec6af3c7081b9f075b69fdb2ecdac9a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 48884,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 150
+            }
+          }
+        },
+        "batch_id": "f35431567642345fc463fc59214db9643625369878040b3e57462df9a34935b9"
       }
     }
   ],
@@ -106578,6 +106720,104 @@
         "request_sha256": "34bcbb64ccca0150a28823c0c37d7833c93e2e303eefe915462f6b8670a3dd0a"
       },
       "object_mapping_check": "独立复核后，实际范围是美国数据中心行业效率与计算相关能源使用的历史总量关系。合同中的root指一座AI数据中心，其下计算、电力及控制系统均具有设施资产范围；本项未指认这些资产、具体部件或并网权利。运行效率也不等于DCIM/BMS软件。因此保留空对象列表，所选证据统一使用该 claim 层对象范围，不继承文档标签；有效问题关联仍保留。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c23995056728875c0f8cc843ced8cb75fc34c419093a9d7724c2994fabaa97e0",
+      "evidence_ids": [
+        "rev-f0d1983fdf964c94a0b9510f6df0564b:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:c91e938abc268510f6e35a3d",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q04"
+      ],
+      "reading_revision_id": "rev-f0d1983fdf964c94a0b9510f6df0564b",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年3月10日发表的报道中转述，代表多个环保团体的Stop Climate Chaos Scotland（SCCS）担忧苏格兰拟议数据中心开发可能推高消费者能源账单。这是来源转述的前瞻性担忧，未经本次独立核验，不代表账单已上涨或成本转嫁已发生。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T15:42:23+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。该担忧实质关联当前M04-Q04工单中居民成本压力与政治反对的研究方向。连续原文及周边倡议语境足以支持限定归因的部分主张，无敏感、真实冲突或替换条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.381,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "acf5a4d89a78e0253260c59a8f4c19e47e32eb9912f4ee87de488fce0eb4633f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 48349,
+            "output_tokens": 1067,
+            "reasoning_output_tokens": 119
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.849,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7715c545ad5b64207ab02ee6423c5c3d2ec6af3c7081b9f075b69fdb2ecdac9a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 48884,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 150
+            }
+          }
+        },
+        "batch_id": "f35431567642345fc463fc59214db9643625369878040b3e57462df9a34935b9"
+      },
+      "source_candidate_ids": [
+        "rev-f0d1983fdf964c94a0b9510f6df0564b:chunk:0:claim:4"
+      ],
+      "limitations": "未提供SCCS公开信正文、消费者账单基准、能源类别细分、涨幅、生效时间或成本分摊机制；消费者能源账单不能直接等同于居民电价。没有数据中心PPA单价、价格时间序列或实际转嫁的因果证据。公开信链接不构成已核验的一手材料。",
+      "conflict_check": "既有IEA陈述认为总体负荷增长与零售电价不存在简单单向关系，与SCCS表达担忧可以并存；本项不提出已验证的涨价因果结论。Gallup的美国电费担忧、哥伦布市账单预测、马萨诸塞州保护机制、PJM容量账单估计及核电PPA情景均涉及不同主体、地域或指标，不构成重复或真实冲突。所供legacy匹配为空，未发现可指认的重复规范记录；这不是穷尽性外部反证搜索，不覆盖既有结论。",
+      "gap_dependency_check": "对M04-Q04仅贡献苏格兰倡议组织因预期消费者能源负担而表达反对的定性线索，不证明电价上涨已经向居民转嫁，也不单独建立转嫁引发政治反弹的因果链。仍需SCCS公开信一手文本、当地费率及账单资料、成本分摊规则、PPA价格序列、实施与政治反应记录及反证。问题保持开放，不更新模型参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f35431567642345fc463fc59214db9643625369878040b3e57462df9a34935b9",
+        "source_report_sha256": "c777a0851138bdcc116c44c52f3ac09a981b823c40b66e02d087ede5dafa6ccc",
+        "request_sha256": "b5c794f68adafb8c1f72384dde0e7e7d39189818014d6e280ad938682d586077"
+      },
+      "object_mapping_check": "实际主张范围是SCCS对苏格兰消费者能源账单的担忧。对象合同没有SCCS或消费者账单对象；root表示一座AI数据中心，site:grid表示其电力配额与并网权利，system:power及相关链表示设施供电系统，均不对应本项区域性担忧。周边提及CoreWeave不能建立该账单主张的主体范围。因此不继承Reader标签，所选证据统一采用空对象范围，保留M04-Q04问题关联。"
     }
   ],
   "answers": [],
