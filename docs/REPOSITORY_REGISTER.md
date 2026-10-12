@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2636。
+在册文件：2637。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 233 |
+| 配套说明 | 234 |
 | 测试 | 218 |
 
 ## 在册记录集合
@@ -2710,6 +2710,7 @@
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
+| [docs/handoff/runtime-source-publication-20261012.md](handoff/runtime-source-publication-20261012.md) | 配套说明 |
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/source-statement-intake-20261012.md](handoff/source-statement-intake-20261012.md) | 配套说明 |
 | [docs/handoff/stock-archived-gpu-20261012.md](handoff/stock-archived-gpu-20261012.md) | 配套说明 |
