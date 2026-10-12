@@ -8592,6 +8592,63 @@
       "status": "candidate",
       "stored_path": "originals/2e/2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86/dcd-2e1a2c26b8837725-Circe Energy secures 2GW of natural gas capacity for West Texas d.html",
       "title": "Circe Energy secures 2GW of natural gas capacity for West Texas data center campus"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+      "coverage": {
+        "characters_read": 6969,
+        "characters_total": 6969,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+      "id": "doc-d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+      "library_path": "library/by-node/root/2026_DCD_Firmus secures $10bn debt financing facility for Projec__d09105279cee6f68.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:blackstone",
+        "actor:corning",
+        "part:gpu",
+        "part:immersion",
+        "root",
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-demand-D3-boundary"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-ebc1a8de88d74f34996d740fc4daed07",
+      "report_sha256": "eb80c0f621129b832d7655e4921e09116c23a23fa69efda251843f5eb6fc2620",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+        "url": "https://www.datacenterdynamics.com/en/news/firmus-secures-10bn-debt-financing-facility-for-project-southgate-ai-factory-roll-out/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/firmus-secures-10bn-debt-financing-facility-for-project-southgate-ai-factory-roll-out/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/d0/d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804/dcd-d09105279cee6f68-Firmus secures -10bn debt financing facility for Project Southgat.html",
+      "title": "Firmus secures $10bn debt financing facility for Project Southgate AI factory roll out"
     }
   ],
   "evidence": [
@@ -64216,6 +64273,91 @@
           }
         },
         "batch_id": "1de5dcc53d9258ea7f4da6b54e90dfa59c728cf823b6c549eb8d2050dd92d61d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f8ed5fab03b2683b8ab20e31d49ee76c3cb13d4f9c907a3f643a7f3c903f1527",
+      "document_id": "doc-d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+      "id": "rev-ebc1a8de88d74f34996d740fc4daed07:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D3-boundary"
+      ],
+      "quote": "“Each factory is purpose-built for energy efficiency and token production to meet the infrastructure needs of the world’s most demanding AI customers.",
+      "reading_revision_id": "rev-ebc1a8de88d74f34996d740fc4daed07",
+      "source_sha256": "d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:31:40+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为5。设施的Token生产用途及AI客户范围实质补充当前D3边界工单中的能力定位和服务对象，但仅为局部证据。连续引句及完整周边原文充分，无敏感材料、实际冲突、替换要求或其他A类条件，符合B类部分采用要求，不关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 56.845,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c999dbe30b982ae3aa78ed9a821f7a9451c711de2d8dd11242e534dce2a91d1e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 45183,
+            "output_tokens": 1315,
+            "reasoning_output_tokens": 409
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.929,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ad8fd374e8b8049d2fc85605bea191d13ff727857c03504bb3cd26ba5a479911",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 45669,
+              "output_tokens": 710,
+              "reasoning_output_tokens": 471
+            }
+          }
+        },
+        "batch_id": "80c664edcd1db6a1255750ffb7e866992ce4da74fb57e329ea1bd41a15107446"
       }
     }
   ],
@@ -124638,6 +124780,106 @@
         "request_sha256": "e871e6181ec5a28b215eb3b60aed3e433d7f72116ca9be0161cddec4e8d848a2"
       },
       "object_mapping_check": "独立复核后，本项是通用用电指标定义，未指认一座AI数据中心、内部电力系统、并网权利或具体设备。合同中的root为一座AI数据中心，system:power为其内部电力系统，part:ai-asic为定制AI ASIC，均缺乏本项主张级映射依据。保留空对象列表及有效问题关联；所选证据统一采用此范围，不继承Reader文档标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804",
+      "evidence_ids": [
+        "rev-ebc1a8de88d74f34996d740fc4daed07:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:3f207ce7c9ac0aab580b486d",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-demand-D3-boundary"
+      ],
+      "reading_revision_id": "rev-ebc1a8de88d74f34996d740fc4daed07",
+      "status": "adopted",
+      "text": "DCD记者Barney Dixon在2026年2月9日的报道中转引Firmus声明：在澳大利亚Project Southgate扩张背景下，公司称每座AI工厂均以能源效率和Token生产为设计目的，以满足AI客户的基础设施需求。这是Firmus对设施用途及服务对象的定位，不构成对当前投运状态、实际Token服务交付或能效表现的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:31:40+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为5。设施的Token生产用途及AI客户范围实质补充当前D3边界工单中的能力定位和服务对象，但仅为局部证据。连续引句及完整周边原文充分，无敏感材料、实际冲突、替换要求或其他A类条件，符合B类部分采用要求，不关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 56.845,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c999dbe30b982ae3aa78ed9a821f7a9451c711de2d8dd11242e534dce2a91d1e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 45183,
+            "output_tokens": 1315,
+            "reasoning_output_tokens": 409
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.929,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ad8fd374e8b8049d2fc85605bea191d13ff727857c03504bb3cd26ba5a479911",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 45669,
+              "output_tokens": 710,
+              "reasoning_output_tokens": 471
+            }
+          }
+        },
+        "batch_id": "80c664edcd1db6a1255750ffb7e866992ce4da74fb57e329ea1bd41a15107446"
+      },
+      "source_candidate_ids": [
+        "rev-ebc1a8de88d74f34996d740fc4daed07:chunk:0:claim:8"
+      ],
+      "limitations": "所供材料为媒体转引公司声明，未提供经独立核验的一手公告，公告自身日期未单独确立。未说明具体Token产品、推理部署方式、客户身份、购买关系、计价方式或上下层交易边界；也没有能效指标、Token产量及资源需求换算系数。周边报道提及多个工厂在建，不证明每座工厂均已投运或交付服务。",
+      "conflict_check": "已比对所供采用陈述及相关legacy记录。TPU工具链职责、FlashKDA开发开源及IEA推理定义与本条设施用途定位相容，未覆盖同一公司主张，不构成规范重复。legacy中的英伟达预测性能及德国余热政策具有不同主体、地域和口径，无实际冲突；所供合同和项目匹配记录为空。核查仅限供应材料，未进行外部反证检索，不改写已有结论。",
+      "gap_dependency_check": "本条仅补充NODE-demand-D3-boundary中提供能力与服务对象的局部范围，不能把基础设施供应方的定位自动扩展为D3全层边界。仍需一手公告、实际产品与采购资料、上下层合同或交易范围及反证。问题保持开放，不生成资源换算系数、模型参数或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "80c664edcd1db6a1255750ffb7e866992ce4da74fb57e329ea1bd41a15107446",
+        "source_report_sha256": "eb80c0f621129b832d7655e4921e09116c23a23fa69efda251843f5eb6fc2620",
+        "request_sha256": "6eeac4a6a39b81a53bd7e2433f7e7616e23cabaaf504d49687a73991702e8400"
+      },
+      "object_mapping_check": "独立核查后选择root：契约将其定义为一座AI数据中心，本条明确描述每座AI工厂的设施用途，周边原文建立数据中心扩张背景，具有设施整体范围依据。未继承Reader标签；能源效率目的不确立电力或散热子系统构成，Token生产不确立具体GPU资产，故不追加子系统、部件或主体对象。所选证据采用相同的root范围。"
     }
   ],
   "answers": [],
