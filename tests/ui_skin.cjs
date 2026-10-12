@@ -33,7 +33,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    await page.goto(base+'/'+file+query); await page.locator('#ui-skinbar').waitFor();
    await page.locator('.ui-navigation a[aria-current=page]').waitFor();
    assert.equal(await page.locator('.ui-navigation a[aria-current=page]').count(),1,file+' active section');
-   if(file==='index.html'){await page.locator('.ui-navigation a',{hasText:'管理'}).waitFor();assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['行业总览','数据中心研究','账本','爆炸图','采集','成果','管理'],'seven directory entries (local mode is admin)');}
+   if(file==='index.html'){await page.locator('.ui-navigation a',{hasText:'管理'}).waitFor();assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['行业总览','任务跟踪','数据中心研究','账本','爆炸图','采集','成果','管理'],'authenticated directories include the task tracker');}
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') {await page.locator('#catalog-title').waitFor();assert.match(page.url(),/product-catalog.html/);}
    if(file==='report.html') {await page.locator('#cover').waitFor();assert.equal(await page.locator('section.chapter').count(),4);}

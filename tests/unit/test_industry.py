@@ -183,21 +183,25 @@ class IndustryTests(unittest.TestCase):
         self.assertIn('第 32 页', current['locator'])
         self.assertNotIn('local_file', json.dumps(view['benchmarks']))
 
-    def test_public_api_and_details_work_without_exposing_raw_research(self):
-        with patch.object(serve, 'AUTH_ON', True), patch.object(auth, 'session_user', return_value=None):
+    def test_member_api_and_details_preserve_projection_and_anonymous_gate(self):
+        with patch.object(serve, 'AUTH_ON', True), patch.object(auth, 'session_user', return_value='member'), patch.object(auth, 'user_role', return_value='member'):
             server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
             thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
             try:
                 for path, status in [('/api/industry?c=microsoft', 200), ('/api/industry?site=us-tx-abilene', 200),
                                      ('/industry.html?c=meta', 200), ('/project.html?site=us-tx-abilene', 200),
                                      ('/api/industry?stage=fake', 400), ('/api/industry?c=nobody', 404),
-                                     ('/api/industry?c=meta&c=microsoft', 400), ('/data/projects.json', 302),
+                                     ('/api/industry?c=meta&c=microsoft', 400),
                                      ('/api/observations?limit=2',200),('/api/observations?limit=101',400),
-                                     ('/api/observations?limit=1&limit=2',400),('/api/observations?include=private',400),
-                                     ('/data/object_observations.json',302)]:
+                                     ('/api/observations?limit=1&limit=2',400),('/api/observations?include=private',400)]:
                     con = http.client.HTTPConnection(*server.server_address, timeout=4)
                     con.request('GET', path); response = con.getresponse(); response.read(); con.close()
                     self.assertEqual(response.status, status, path)
+                with patch.object(auth, 'session_user', return_value=None):
+                    for path in ('/data/projects.json', '/data/object_observations.json'):
+                        con = http.client.HTTPConnection(*server.server_address, timeout=4)
+                        con.request('GET', path); response = con.getresponse(); response.read(); con.close()
+                        self.assertEqual(response.status, 302, path)
             finally:
                 server.shutdown(); server.server_close(); thread.join()
 

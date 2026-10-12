@@ -1,6 +1,6 @@
 # 09 软件职责与写入契约
 
-2026-10-11 对象通道扩展：workflow.stock_objects 以显式 JSON Pointer 确定性提取候选；workflow.object_review 核原件、接收来源、定位与对象封印，准备和实际具名C3采用分开。正式写入只追加 data/object_observations.json，一次锁内CAS/原子提交；不覆盖现有公司档案、产品候选、价格基线和模型参数。knowledge.object_observations 统一身份、区间、有效时间、冲突与所有者修订；严格校验检查账本。research_publication.json 声明公开字段，public_records 是首页与公开分页 API 的同一服务端出口，仅统计允许公开的记录；不得直接序列化内部账本。API 支持对象/类型/公司筛选、最多100条分页，拒绝未知/重复参数。会员扩展须校验独立付费权益，不复用内部member角色，未实现时不授予访问。Fetchspec源采集/打包/接收允许无目标发现，声明模型目标仍核原合同；保持单一发布队列。
+2026-10-11 对象通道扩展：workflow.stock_objects 以显式 JSON Pointer 确定性提取候选；workflow.object_review 核原件、接收来源、定位与对象封印，准备和实际具名C3采用分开。正式写入只追加 data/object_observations.json，一次锁内CAS/原子提交；不覆盖现有公司档案、产品候选、价格基线和模型参数。knowledge.object_observations 统一身份、区间、有效时间、冲突与所有者修订；严格校验检查账本。research_publication.json 声明公开字段，public_records 是首页与登录后分页 API 的同一服务端出口，仅统计允许公开的记录；不得直接序列化内部账本。API 支持对象/类型/公司筛选、最多100条分页，拒绝未知/重复参数。会员扩展须校验独立付费权益，不复用内部member角色，未实现时不授予访问。Fetchspec源采集/打包/接收允许无目标发现，声明模型目标仍核原合同；保持单一发布队列。
 
 2026-10-11 条目采用职责：`workflow.targeted_research` 从现有归档验证字节 SHA，提取指定原生页，冻结对象/字段/范围及逐页上下文摘要；任务通道另冻结当前需求；不改 Reader 状态，不启动发布器。`workflow.project_review` 的 `object_excerpt`适配器重新解析同一源及对象绑定并核验逐页引文，`targeted_excerpt`继续校验任务需求；收到的日报事件可凭明确对象绑定使用空研究目标，继续执行实际C3、独立时间、范围及追加写入。`knowledge.site_metrics` 管水、电及强度指标的原生区间／期间／边界，`site_register` 仅投影园区地理、分角色主体与逐字段来源；不能据名字去重或据分期计算规划总量。Reader全文、局部采用、问题完成及网站发布保持独立状态。
 
@@ -29,9 +29,13 @@ add-price、assign、receive-snapshot 三个统一 JSON 用例；缺省为 proje
 
 派工用例（2026-09-28）：`assign` 接受 `target_id`（目标表的行，唯一任务书）或 `workorder_id`（兼容工单）；新增 `register_delivery(target_id, evidence_path)`（HTTP `/api/deliver`）登记交付指针。两者只写 `data/assignments.json`，不改目标表；实习生只能改分配给自己的行。目标行投影 `/api/targets` 由 `workflow/dispatch.py` 按角色在服务端过滤（`mine=1`、`team`、`node`、`col`、`status`）。
 
+全球园区任务跟踪（2026-10-12）：`workflow.research_tasks` 是协调工作包的唯一用例，`framework/research_task_plan.json` 提供新建任务及尚未分配的区域包，运行协调台账在 `data/raw/research-tasks/ledger.json`，不能经静态URL下载。登录后 `GET /api/research-tasks` 读取协调状态与既有地图容量口径；`POST` 要求 `X-Requested-With: research-tasks`、操作者、预期版本与唯一操作身份。member/admin可创建和分配，intern只能更新已分给自己的状态、交付指针及备注。版本比较、稳定锁、原子提交与同键重放防止并发覆盖，审计保留旧值与操作者。协调状态仅到“已交付”，不授予资料接收、研究采用或地图发布资格；这些回执继续由原流程独立证明。页面不采集或上传原件，不编造负责人、机器、截止时间或全球覆盖。
+
 回执进 Git 载体（2026-09-29）：`knowledge/deliveries.py` 是运行库交付指针进入 Git 载体的唯一用例——`import_assignments(root, assignments_path)` 读运行库导出的 `data/assignments.json`，把带 `delivery` 的记录写成 `data/event_cards.json` 事件卡（目标行须存在、指针须是公网 URL 或仓库内相对路径、同一指针幂等），随后由 `knowledge/targets.py` 重建目标表；`check(root)` 校验卡片。只在作者 checkout 由 CLI `deliveries import / check` 调用，HTTP 不暴露；网站与 Spark 不回写 Git。
 
-健康探针（2026-09-29）：`GET /healthz` 在公开白名单内，只返回 `{ok, service, auth_required}`，不 stat 运行文件、不读登录态；容器编排、镜像与 infra 应用登记表三处探针统一探它，不探首页或登录页。
+HTTP 访问边界（2026-10-12 替代原 reader 目录匿名规则）：只有首页 `/`、`/index.html` 与其必需资源/登录机制公开，首页数据API仅接受独占 `overview=1` 的有界投影。其他页面、完整API、研究JSON/文档/图册/模型下载均先经服务端登录门禁，GET与HEAD同查归一化路径；参数、编码、反斜线、路径别名与静态源路径不能绕过。admin/member/intern 保持既有权限，intern的旧reader读取能力显式登记，新任务页对登录团队可用。私有响应、匿名重定向与401均 `private, no-store` / `Vary: Cookie`；上线清除旧CDN公开缓存。现有机器bearer接收保留独立凭据检查，首页白名单不授予写权。
+
+健康探针（2026-09-29）：`GET/HEAD /healthz` 在公开白名单内，只返回 `{ok, service, auth_required}`，不 stat 运行文件、不读登录态；容器编排、镜像与 infra 应用登记表三处探针统一探它，不探首页或登录页。
 
 入口借用 sys.argv 调用旧子接口时，成功、导入失败、执行异常均恢复原参数对象；后续顺序调用
 不继承前一次委派的参数。此适配不支持多个线程同时使用进程级 argv；并发任务使用独立进程。
