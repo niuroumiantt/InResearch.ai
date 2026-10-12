@@ -8906,6 +8906,65 @@
       "status": "candidate",
       "stored_path": "originals/1c/1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9/mortenson-abilene-power-delivery.html",
       "title": "Abilene AI Data Center & Power Delivery"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+      "coverage": {
+        "characters_read": 6303,
+        "characters_total": 6303,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+      "id": "doc-c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+      "library_path": "library/by-node/site-land/2025_DCD_Beacon AI Center and VoltaGrid may build data center in__c064569bdb2c578e.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "root",
+        "site:land",
+        "site:permits",
+        "system:facility",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-land-definition",
+        "OBJ-land-interfaces",
+        "OBJ-land-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-43ee645f9e914415b71b77757ecf7f5f",
+      "report_sha256": "81717636117c2f00adf157d4c5ed30afd72377edcfdfa1c481694a7e917afcc5",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+        "url": "https://www.datacenterdynamics.com/en/news/beacon-ai-center-and-voltagrid-may-build-data-center-in-saint-john-canada/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/beacon-ai-center-and-voltagrid-may-build-data-center-in-saint-john-canada/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/c0/c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c/dcd-c064569bdb2c578e-Beacon AI Center and VoltaGrid may build data center in Saint Joh.html",
+      "title": "Beacon AI Center and VoltaGrid may build data center in Saint John, Canada"
     }
   ],
   "evidence": [
@@ -65479,6 +65538,88 @@
           }
         },
         "batch_id": "12ea87209b770063ade94aeb9f21287d63f0ff52f1ed17e821cf487fe1794385"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "77ebbb9155dcc42e742bf712749e19349b281c5bc3a0d8a22c21809d593e1439",
+      "document_id": "doc-c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+      "id": "rev-43ee645f9e914415b71b77757ecf7f5f:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Targeting 2027 launch dates, most of the company's gigawatt-scale portfolio is located in Alberta, with data center projects near Chestermere, High River, Acheson, Sturgeon County, Langdon, and Beaumont.",
+      "reading_revision_id": "rev-43ee645f9e914415b71b77757ecf7f5f",
+      "source_sha256": "c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:11:07+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续完整原句及相邻公司介绍明确主体、地域、组合范围和未来目标，对当前M02-Q01提供一家供给方的项目组合线索，对M05-Q01提供Alberta布局及目标时间线索，均属实质但有限的贡献。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类归因部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.526,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f5924bc92259b6d5be070de8fc3b1195ecd5bf6ea66b7e1ce845edece2836cba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 70097,
+            "output_tokens": 1249,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.391,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "469c07ba6254408273dc67a1e72fc430e88f7e09c5a4c28eb5ccdd2966991873",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70713,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 178
+            }
+          }
+        },
+        "batch_id": "1b9f528c4a8ff5d6cbeef79fdbc7cbfd85f2a7b80a4bed03770a5e5ef18f9deb"
       }
     }
   ],
@@ -127120,6 +127261,106 @@
           "status": "partial_support"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c",
+      "evidence_ids": [
+        "rev-43ee645f9e914415b71b77757ecf7f5f:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:bc3dbf54553ba428b75bf17e",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M02-Q01",
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-43ee645f9e914415b71b77757ecf7f5f",
+      "status": "adopted",
+      "text": "DCD作者Jason Ma在2025年11月1日的报道中称，Beacon AI Centers的吉瓦级项目组合以2027年上线为目标，大部分位于加拿大Alberta，项目靠近Chestermere、High River、Acheson、Sturgeon County、Langdon及Beaumont。这是来源当时报道的组合布局及上线目标，不是Saint John项目的明确投运承诺，也不构成对当前项目进度或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:11:07+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续完整原句及相邻公司介绍明确主体、地域、组合范围和未来目标，对当前M02-Q01提供一家供给方的项目组合线索，对M05-Q01提供Alberta布局及目标时间线索，均属实质但有限的贡献。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类归因部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.526,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f5924bc92259b6d5be070de8fc3b1195ecd5bf6ea66b7e1ce845edece2836cba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 70097,
+            "output_tokens": 1249,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.391,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "469c07ba6254408273dc67a1e72fc430e88f7e09c5a4c28eb5ccdd2966991873",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70713,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 178
+            }
+          }
+        },
+        "batch_id": "1b9f528c4a8ff5d6cbeef79fdbc7cbfd85f2a7b80a4bed03770a5e5ef18f9deb"
+      },
+      "source_candidate_ids": [
+        "rev-43ee645f9e914415b71b77757ecf7f5f:chunk:0:claim:7"
+      ],
+      "limitations": "报道为二手来源，公司原始项目披露及链接材料未在本包中独立核验。原文未给出精确容量、容量口径、各项目阶段、分期、交付条件或地区容量拆分；“大部分”未明确按项目数量还是容量衡量。“吉瓦级”不能改写为具体GW数值，2027年上线目标不能认作实际投运日期或具有约束力的承诺。",
+      "conflict_check": "所供已采用的Bitdeer跨国组合、Prime规划园区、CBRE美国主要市场统计及IEA区域分析涉及不同主体、地域或统计范围，不构成本条的同口径冲突或重复。legacy中的ca-ab-sturgeon-county为Meta项目；共同出现Sturgeon County不能证明其与Beacon项目相同，也不能借用其2026年动工计划或主体归属。contracts.json和facts.json未供给匹配记录；未发现本主张的规范重复记录。检查限于所供材料，不代表外部反证已穷尽，不替换既有结论。",
+      "gap_dependency_check": "M02-Q01仍需三类供给方定义、Beacon完整项目清单、同口径容量、在建与规划拆分及集中度分母。M05-Q01仍需各区域分阶段容量、实际交付记录及历史增长序列；本条不能量化Alberta增长速度，也不能回答俄亥俄、印第安纳或中东的崛起速度。原始来源及反证要求尚未补齐，两项问题保持开放；不指定漏斗等级、不汇总GW、不更新模型输入或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1b9f528c4a8ff5d6cbeef79fdbc7cbfd85f2a7b80a4bed03770a5e5ef18f9deb",
+        "source_report_sha256": "81717636117c2f00adf157d4c5ed30afd72377edcfdfa1c481694a7e917afcc5",
+        "request_sha256": "096d1a01b15bbad75f17fc2298b43001f68d86afe69be8506c478cb950168846"
+      },
+      "object_mapping_check": "独立依据原文与对象契约保留空映射：主张范围是Beacon跨多个项目的公司组合，不能对应root所指的一座AI数据中心；合同没有Beacon主体ID。地点列举未建立土地权利、区划或许可范围，吉瓦级表述未确立内部IT系统、电力系统或并网权利。相邻Saint John项目及AI公司名称不改变本条组合范围，不继承Reader的root或文档标签。所选证据统一采用此主张级空对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
