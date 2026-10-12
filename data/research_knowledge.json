@@ -62910,6 +62910,94 @@
         },
         "batch_id": "469ccab3d260f5928eb8a921c04b28919db7ff4954a1b2dfa3c0a2c8e3b0a3ee"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab8d5ae5545ebc46f80805af4c4fff8335bffe1196e78037647d063a0fd49d72",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:1:claim:1:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "part:cdu",
+        "part:room-cooling"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-alternatives",
+        "OBJ-cdu-interfaces"
+      ],
+      "quote": "It reuses the cooling plant already in place, but it is a stopgap: it is less efficient than liquid-to-liquid, and it works only while the room air still has capacity to absorb the rejected heat.",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句及充分的周边语境直接支持既有设施复用、液对空气与液对液的定性权衡，以及机房空气接收排热的限制条件，对两项当前开放工单有实质部分贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-alternatives",
+          "Q-OBJ-cdu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "10bdeb2981a4e7da8e665ef3d4b35cae83900666210a3ea144943e8b14cdecc6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 41466,
+            "output_tokens": 1322,
+            "reasoning_output_tokens": 267
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.76,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8e1af8b5ad9d2f2d2011ead4a17a6810e480c0f49498183168a508d2e4eace3d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 42100,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 134
+            }
+          }
+        },
+        "batch_id": "f3d337755ce7b13ea9efcec9e80c30f9bfe89944f3273c20fc87924f43921d0d"
+      }
     }
   ],
   "statements": [
@@ -122034,6 +122122,109 @@
         "request_sha256": "db38a99818ca9f8cbededc2efb4be7a2d16223a82c1f432adddccc9b7146c271"
       },
       "object_mapping_check": "独立核对对象合同的名称、类型及父链：本条讨论模型训练范围，合同没有对应模型或权重产品对象。root限定一座AI数据中心，system:compute及chain:compute/1属于其IT计算设施；system:control及chain:control/1限定DCIM/BMS与固件。工业生产环境的流程控制和供热制冷示例未建立上述设施范围，也未指认合同内企业。因此所选证据统一采用空对象范围，保留有效D2问题匹配，不继承候选或Reader的root标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "evidence_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:1:claim:1:ev:0"
+      ],
+      "id": "adoption:review:c764d57524132df740756077",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cdu",
+        "part:room-cooling"
+      ],
+      "question_ids": [
+        "OBJ-cdu-alternatives",
+        "OBJ-cdu-interfaces"
+      ],
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "status": "adopted",
+      "text": "AWS数据中心工程团队高级数据中心电气工程师Shalin Savalia在DCD于2026年10月2日发表的文章中，在存量数据中心向高密度AI负载改造的语境下认为，液对空气CDU方案可复用既有冷却设施，但属于过渡方案，效率低于液对液方案，并且仅在机房空气仍有余量吸收其排出热量时有效。这是作者的定性比较与适用条件判断，不构成当前独立性能认证；文中未限定具体型号、地区、项目或实际实施阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句及充分的周边语境直接支持既有设施复用、液对空气与液对液的定性权衡，以及机房空气接收排热的限制条件，对两项当前开放工单有实质部分贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-alternatives",
+          "Q-OBJ-cdu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "10bdeb2981a4e7da8e665ef3d4b35cae83900666210a3ea144943e8b14cdecc6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 41466,
+            "output_tokens": 1322,
+            "reasoning_output_tokens": 267
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.76,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8e1af8b5ad9d2f2d2011ead4a17a6810e480c0f49498183168a508d2e4eace3d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 42100,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 134
+            }
+          }
+        },
+        "batch_id": "f3d337755ce7b13ea9efcec9e80c30f9bfe89944f3273c20fc87924f43921d0d"
+      },
+      "source_candidate_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:1:claim:1"
+      ],
+      "limitations": "未说明效率的指标定义、比较工况、测试方法或量化差值，也未提供PUE、WUE、成本、容量、供回液温度、流量、压差及接口标准。不能据此确定同工况性能排名、任意既有冷却设施的兼容性或CDU互换性。过渡方案是作者对改造路径的判断，不代表具体项目已采用或完成部署。",
+      "conflict_check": "既有采用记录adoption:review:c188d02f6be98587a8eda979描述同源液对空气排热路径，其limitations已提及过渡性质及机房空气余量，因此存在部分重叠；本条新增明确的既有设施复用与低于液对液的效率判断，并非完整重复。其他已采用记录涉及产品能力、模块化方案或开放设计规格，未提供同工况反证。所供legacy匹配记录为空；检查限于供应材料，未完成外部反证检索。保留既有结论，不替换任何记录。",
+      "gap_dependency_check": "OBJ-cdu-alternatives获得两种CDU路径的定性权衡，仍需同口径、同工况的性能与成本比较。OBJ-cdu-interfaces获得机房空气接收排热这一上下游依赖，仍缺接口规格、单位、运行参数及互换条件。两项问题均保持开放；不更新PUE/WUE，不替换封存报告所述已交付运行结果，不修改研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f3d337755ce7b13ea9efcec9e80c30f9bfe89944f3273c20fc87924f43921d0d",
+        "source_report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+        "request_sha256": "97dec00a0d87e8a50b67e57587b915029db082b689a0558fa70bf13186de70eb"
+      },
+      "object_mapping_check": "独立依据原文及连续上下文确定：比较对象是液对空气与液对液CDU方案，对应水与散热系统下“冷水与CDU”链的part:cdu；限制条件涉及机房空气及承接排热的既有空气处理设备，对应“机房与机柜”链的part:room-cooling。既有冷却设施未在本条中明确为冷水机组、冷冻水管路或室外排热设备，不扩大映射。AWS仅为作者任职单位，未被确立为本条方案供应商或实施方，不映射actor。所选证据统一采用上述主张级范围。"
     }
   ],
   "answers": [],
