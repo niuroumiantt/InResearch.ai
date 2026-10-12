@@ -9494,6 +9494,60 @@
       "status": "candidate",
       "stored_path": "originals/2c/2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61/epoch-stargate-sites.html",
       "title": "OpenAI Stargate: where the US sites stand"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "coverage": {
+        "characters_read": 11528,
+        "characters_total": 11528,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "library_path": "library/by-node/part-ups/2025_DCD _ Centiel_Tecnología DARA de Centiel, innovación en UPS modulares__75f677c93907c3cd.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:power/4",
+        "part:rack-frame",
+        "part:ups",
+        "part:ups-battery",
+        "system:power"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "report_sha256": "eeb8d906ac26787d42c96994fab3e329852e8926b2739ce606e7aafc9f3c94b0",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+        "url": "https://www.datacenterdynamics.com/es/noticias/tecnolog%C3%ADa-dara-de-centiel-innovaci%C3%B3n-en-ups-modulares-con-stratuspower-para-ia/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/es/noticias/tecnolog%C3%ADa-dara-de-centiel-innovaci%C3%B3n-en-ups-modulares-con-stratuspower-para-ia/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/75/75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1/dcd-75f677c93907c3cd-Tecnología DARA de Centiel- innovación en UPS modulares con Strat.html",
+      "title": "Tecnología DARA de Centiel, innovación en UPS modulares con StratusPower para IA"
     }
   ],
   "evidence": [
@@ -68122,6 +68176,594 @@
           }
         },
         "batch_id": "5294b432bf17522cbda8a1607af738885baffe86f04b91145ce157f0ccbd3e92"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b0799fa228484b6fc988aec1830c90676db64ea9e5972a0d662d3d2f353e0ce6",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "DARA distribuye la inteligencia, el poder, el control y la redundancia en cada módulo individual. Esto significa que cada módulo, es una UPS en sí misma, lo que permite que sea un sistema totalmente independiente, capaz de operar, comunicarse y proteger por sí mismo, sin depender de un controlador central.",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "source_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。连续引文及DARA定义段上下文支持限定归属的架构陈述，对当前定义工单中的模块组成、接口工单中的中央控制依赖有实质性局部贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-ups-definition",
+          "Q-OBJ-ups-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b0799fa228484b6fc988aec1830c90676db64ea9e5972a0d662d3d2f353e0ce6",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Redundancia activa: Todos los módulos operan activamente y de forma sincronizada, evitando puntos únicos de fallo y permitiendo que el sistema siga funcionando incluso si uno o más módulos fallan.",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "source_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分5。该连续引文实质关联当前可靠性与失效机制工单，可贡献待验证的主动冗余机制及故障后运行主张。缺少工况限制其证明力，但不妨碍明确归属、保留缺口的局部采用；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b0799fa228484b6fc988aec1830c90676db64ea9e5972a0d662d3d2f353e0ce6",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Distribución de la inteligencia: Cada módulo está equipado con su propio microprocesador y lógica de control, lo que permite tomar decisiones autónomas e inteligentes.",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "source_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。微处理器与控制逻辑是具体的模块组成信息，对当前UPS定义与组成工单有实质性贡献。完整连续引文和相邻DARA语境充分，符合B类局部采用条件；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b0799fa228484b6fc988aec1830c90676db64ea9e5972a0d662d3d2f353e0ce6",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Escalabilidad sin interrupciones: Es posible añadir o retirar módulos en caliente (hot-swap), adaptando la capacidad del sistema a las necesidades reales, sin afectar la continuidad eléctrica.",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "source_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。热添加、热移除及操作期间连续供电对当前模块接口和性能工单具有实质性局部关系。连续引文及周边产品语境充分，采用时明确保留条件缺口，不形成操作许可或实测结论；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-interfaces",
+          "Q-OBJ-ups-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b0799fa228484b6fc988aec1830c90676db64ea9e5972a0d662d3d2f353e0ce6",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "La tecnología DDM™, que acompaña a DARA: permite que los módulos tomen decisiones en conjunto, sin depender de un controlador central.",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "source_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。共同决策机制支持当前定义工单，维护方式及MTTR降低的来源解释支持当前可靠性与生命周期维护研究。两条引文各自连续且位于同一完整段落，周边语境充分；限定为部分机制证据，不把维护优势转化为量化成本或可靠性结论。未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-definition",
+          "Q-OBJ-ups-performance",
+          "Q-OBJ-ups-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b0799fa228484b6fc988aec1830c90676db64ea9e5972a0d662d3d2f353e0ce6",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:5:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Menor MTTR (Mean Time to Repair), ya que el mantenimiento se hace por el frente del equipo, sin desmontar módulos",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "source_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。共同决策机制支持当前定义工单，维护方式及MTTR降低的来源解释支持当前可靠性与生命周期维护研究。两条引文各自连续且位于同一完整段落，周边语境充分；限定为部分机制证据，不把维护优势转化为量化成本或可靠性结论。未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-definition",
+          "Q-OBJ-ups-performance",
+          "Q-OBJ-ups-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b0799fa228484b6fc988aec1830c90676db64ea9e5972a0d662d3d2f353e0ce6",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "id": "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:ups"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Modularidad total: El diseño permite sistemas desde 10 KW hasta 3,75 MW en 400 V, ajustándose a la demanda de cualquier instalación.",
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "source_sha256": "75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。明确型号、容量单位及电压，对当前接口工单的电气适配和性能工单的容量规格具有实质性局部贡献。连续完整引文及StratusPower特性段落充分，保留产品规格声明性质及缺失工况，符合B类采用要求；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-interfaces",
+          "Q-OBJ-ups-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
       }
     }
   ],
@@ -131861,6 +132503,617 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "evidence_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:7c10d27f4b13f0989ec604c1",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ups"
+      ],
+      "question_ids": [
+        "OBJ-ups-definition",
+        "OBJ-ups-interfaces"
+      ],
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "status": "adopted",
+      "text": "DCD于2025年7月16日刊登的Centiel赞助文章（页面署名DCD，正文列名Centiel拉美总监Esteban Maquieira）称，Centiel的DARA架构将智能、功率、控制和冗余分布到各个UPS模块，每个模块本身是一套UPS，可自行运行、通信和保护，无需依赖中央控制器。这是来源对其产品架构的陈述，未独立核证，也不证明具体项目的运行状态。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。连续引文及DARA定义段上下文支持限定归属的架构陈述，对当前定义工单中的模块组成、接口工单中的中央控制依赖有实质性局部贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-ups-definition",
+          "Q-OBJ-ups-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      },
+      "source_candidate_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:1"
+      ],
+      "limitations": "未提供模块型号、内部电路、通信协议、共享部件、外部供电与储能依赖或故障测试。无需中央控制器不能推导为不存在其他共同失效点，模块自主运行也不能解释为无需外部能源或储能。原文未限定适用地域或具体项目阶段；作者的拉美职务不构成地域限制。",
+      "conflict_check": "现有LBNL声明讨论UPS辅助用电，IEA声明讨论电网与UPS及备用发电配合，ZincFive声明讨论电池柜充电兼容，BCS声明讨论历史采购困难，均不与该内部控制架构主张冲突，也不构成同一主张的规范重复。所供legacy事实、合同及项目匹配记录为空；检查限于本包，不代表外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "仅补充Centiel DARA架构的组成与中央控制依赖边界。定义问题仍缺整流、逆变、静态开关及储能边界；接口问题仍缺电气接口、通信与同步机制、保护配置、共享依赖和互换条件。两个问题保持开放，不更新可靠性或模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40",
+        "source_report_sha256": "eeb8d906ac26787d42c96994fab3e329852e8926b2739ce606e7aafc9f3c94b0",
+        "request_sha256": "59436dcf8307d071392dde772473207501d54e8915dd32e46609db0379e895cb"
+      },
+      "object_mapping_check": "独立依据正文确定主张对象为Centiel模块化UPS系统，对应part:ups，其parent为system:power下UPS链chain:power/4。控制与通信属于该UPS模块的内部功能，未建立DCIM/BMS或数据中心网络资产范围；未涉及具体电池或机柜结构，不选相应对象，也不自动添加祖先节点。所选证据统一使用此主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "evidence_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:033c6ceb746382b103d1d256",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ups"
+      ],
+      "question_ids": [
+        "OBJ-ups-performance"
+      ],
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "status": "adopted",
+      "text": "DCD于2025年7月16日刊登的Centiel赞助文章（页面署名DCD，正文列名Centiel拉美总监Esteban Maquieira）称，DARA架构的UPS模块均主动、同步运行，一个或多个模块故障时系统仍可继续工作。该来源未给出负载和冗余配置条件；此处保留为作者的容错机制主张，未独立核证其适用范围或当前运行表现。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分5。该连续引文实质关联当前可靠性与失效机制工单，可贡献待验证的主动冗余机制及故障后运行主张。缺少工况限制其证明力，但不妨碍明确归属、保留缺口的局部采用；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      },
+      "source_candidate_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:2"
+      ],
+      "limitations": "未提供模块数量、额定容量、负载率、冗余裕量、故障类型、隔离与切换过程、共同失效场景或测试结果。不能推定任意数量或组合的模块故障均可承受，也不能由此确认不存在单点故障。原文未限定地域或具体项目实施阶段。",
+      "conflict_check": "现有IEA供电配合声明没有规定DARA模块故障容限，LBNL用电核算、ZincFive充电兼容和BCS采购困难声明也没有同口径反证或重复主张。所供legacy匹配记录为空；未发现真实冲突或canonical重复，不代表完成外部故障证据检索，不覆盖既有结论。",
+      "gap_dependency_check": "仅为OBJ-ups-performance提供来源声称的容错机制。仍需确定冗余配置、故障后剩余容量与负载关系、故障隔离、同步失效和共同失效场景，以及测试方法与反例。问题保持开放，不填入可用性、故障率或容错数量参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40",
+        "source_report_sha256": "eeb8d906ac26787d42c96994fab3e329852e8926b2739ce606e7aafc9f3c94b0",
+        "request_sha256": "59436dcf8307d071392dde772473207501d54e8915dd32e46609db0379e895cb"
+      },
+      "object_mapping_check": "正文讨论DARA UPS模块及其系统的故障后运行，对应UPS链chain:power/4下的part:ups。同步和冗余没有建立独立网络、控制软件或储能设备的对象范围，不继承文档其他标签，也不自动扩展至整个电力系统。所选证据统一使用此主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "evidence_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:2336be10373f3d24c1e197ff",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ups"
+      ],
+      "question_ids": [
+        "OBJ-ups-definition"
+      ],
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "status": "adopted",
+      "text": "DCD于2025年7月16日刊登的Centiel赞助文章（页面署名DCD，正文列名Centiel拉美总监Esteban Maquieira）称，DARA架构的每个UPS模块均配有自己的微处理器和控制逻辑，可自主决策。这是来源对模块控制组成的描述，未独立核证具体硬件实现或当前运行能力。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。微处理器与控制逻辑是具体的模块组成信息，对当前UPS定义与组成工单有实质性贡献。完整连续引文和相邻DARA语境充分，符合B类局部采用条件；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      },
+      "source_candidate_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:3"
+      ],
+      "limitations": "未提供微处理器型号、控制算法、软件版本、决策权限、模块间协调规则或共享依赖。不能将该产品架构推广为所有模块化UPS的定义，也不能据此证明自主决策的准确性或系统可靠性。未限定地域或具体项目阶段。",
+      "conflict_check": "现有采用声明分别涉及用电核算、供电配合、电池柜充电兼容和采购困难，未覆盖这一模块硬件组成主张，未发现真实冲突。与本批claim:1存在架构背景交集，但本项新增微处理器与控制逻辑，且没有已采用的同义canonical记录，不能判为duplicate。legacy匹配记录为空，检查限于所供材料。",
+      "gap_dependency_check": "仅补充DARA模块的控制组成。OBJ-ups-definition仍需功率变换与静态开关组成、储能边界、模块与整机的关系，以及其他UPS架构和排除对象。问题保持开放，不将单一产品实现作为通用定义。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40",
+        "source_report_sha256": "eeb8d906ac26787d42c96994fab3e329852e8926b2739ce606e7aafc9f3c94b0",
+        "request_sha256": "59436dcf8307d071392dde772473207501d54e8915dd32e46609db0379e895cb"
+      },
+      "object_mapping_check": "微处理器与控制逻辑明确属于UPS模块内部组成，主张范围对应chain:power/4下的part:ups。它们不是加速器服务器的CPU或BMC，也未建立DCIM/BMS范围，因此不选择part:cpu、part:bmc或part:dcim。所选证据统一使用此独立复核的主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "evidence_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:41b2d33158f5b8b4b6ac63ad",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ups"
+      ],
+      "question_ids": [
+        "OBJ-ups-interfaces",
+        "OBJ-ups-performance"
+      ],
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "status": "adopted",
+      "text": "DCD于2025年7月16日刊登的Centiel赞助文章（页面署名DCD，正文列名Centiel拉美总监Esteban Maquieira）称，DARA架构的UPS模块可热添加或热移除，以适应实际容量需求而不影响供电连续性。这是来源对模块操作与供电连续性的主张，未独立验证；原文未给出成立所需的负载和配置条件。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。热添加、热移除及操作期间连续供电对当前模块接口和性能工单具有实质性局部关系。连续引文及周边产品语境充分，采用时明确保留条件缺口，不形成操作许可或实测结论；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-interfaces",
+          "Q-OBJ-ups-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      },
+      "source_candidate_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:4"
+      ],
+      "limitations": "未提供连接器规格、插拔顺序、安全隔离、同步与接入过程、负载率、冗余裕量、旁路条件或输出扰动测试。不能推定满载或所有运行模式下均可移除模块而保持供电，也不能据此确认模块跨型号互换。未限定地域或具体项目阶段。",
+      "conflict_check": "现有ZincFive声明涉及电池柜充电兼容，与UPS功率模块热插拔不是同一接口主张；IEA供电配合、LBNL核算与BCS采购记录也未提供相反条件或同义canonical结论。所供legacy匹配记录为空，未发现真实冲突或规范重复；检查不构成外部操作验证，不替换既有结论。",
+      "gap_dependency_check": "接口问题仍需型号级机械、电气和控制接口、互换矩阵及操作条件；性能问题仍需负载、冗余、运行模式、输出扰动和失败案例。该证据仅贡献产品声称的热插拔机制，两个问题保持开放，不更新容量配置或连续供电参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40",
+        "source_report_sha256": "eeb8d906ac26787d42c96994fab3e329852e8926b2739ce606e7aafc9f3c94b0",
+        "request_sha256": "59436dcf8307d071392dde772473207501d54e8915dd32e46609db0379e895cb"
+      },
+      "object_mapping_check": "正文中的热插拔对象是DARA UPS模块，容量调整发生于UPS系统，故对应chain:power/4下的part:ups。模块化UPS扩容不等于设施预制化交付，也未说明机柜结构或电池插拔，因此不选part:modular-dc、part:rack-frame或part:ups-battery。所选证据统一使用此主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "evidence_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:5:ev:0",
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:5:ev:1"
+      ],
+      "id": "adoption:review:95d27c5a5d4f256dd066fe5f",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ups"
+      ],
+      "question_ids": [
+        "OBJ-ups-definition",
+        "OBJ-ups-performance",
+        "OBJ-ups-supply"
+      ],
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "status": "adopted",
+      "text": "DCD于2025年7月16日刊登的Centiel赞助文章（页面署名DCD，正文列名Centiel拉美总监Esteban Maquieira）称，与DARA配合的DDM™使UPS模块能够共同决策而无需中央控制器；该段另将设备前部维护、无需拆卸模块列为降低平均修复时间（MTTR）的原因。原文没有给出MTTR数值。这是来源的控制架构与维护机制陈述，未独立核证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。共同决策机制支持当前定义工单，维护方式及MTTR降低的来源解释支持当前可靠性与生命周期维护研究。两条引文各自连续且位于同一完整段落，周边语境充分；限定为部分机制证据，不把维护优势转化为量化成本或可靠性结论。未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-definition",
+          "Q-OBJ-ups-performance",
+          "Q-OBJ-ups-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      },
+      "source_candidate_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:5"
+      ],
+      "limitations": "未提供DDM™决策协议、故障仲裁、通信依赖、维护对象、具体维修步骤、维修资源或MTTR统计方法、基准与数值。不能推定所有维修均无需拆卸模块，也不能把前部维护直接解释为DDM™自身实现的功能。没有价格、交期、维护费用或生命周期成本测算；未限定地域或具体项目阶段。",
+      "conflict_check": "现有采用声明没有DDM™或Centiel维护流程的同口径结论。BCS历史采购困难不否定维修机制，但也不能被本项用来推导交期改善；其他核算、供电配合与电池柜兼容声明亦不冲突。与本批claim:1的中央控制依赖存在交集，本项新增共同决策及维修机制，没有现成canonical记录可判duplicate。legacy匹配记录为空，检查限于本包，不替换既有结论。",
+      "gap_dependency_check": "定义问题仍缺DDM™协调边界及模块组成细节；性能问题仍缺维修任务范围、负载与供电模式、实测维修时间和对照基准；供应问题仅获得生命周期维护环节线索，仍缺供应链、服务交付、地域时间条件、交期、价格及成本边界。三个问题保持开放，不更新MTTR或成本模型。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40",
+        "source_report_sha256": "eeb8d906ac26787d42c96994fab3e329852e8926b2739ce606e7aafc9f3c94b0",
+        "request_sha256": "59436dcf8307d071392dde772473207501d54e8915dd32e46609db0379e895cb"
+      },
+      "object_mapping_check": "共同决策和前部维护均围绕Centiel UPS模块及设备，主张级范围对应chain:power/4下的part:ups。DDM™是此处的UPS控制机制，正文未建立DCIM/BMS软件、独立网络资产或机柜结构范围；也未指定电池维修，不选择其他部件。两条所选证据统一使用此范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-75f677c93907c3cd21723df9e069c6d9f0096efe6703126b44e70d56dcf22ed1",
+      "evidence_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:170f8024a057bfe3a23b41bf",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ups"
+      ],
+      "question_ids": [
+        "OBJ-ups-interfaces",
+        "OBJ-ups-performance"
+      ],
+      "reading_revision_id": "rev-0f826af553ba4ad6b970c8c2728c14b9",
+      "status": "adopted",
+      "text": "DCD于2025年7月16日刊登的Centiel赞助文章（页面署名DCD，正文列名Centiel拉美总监Esteban Maquieira）称，StratusPower的设计允许在400 V条件下形成从10 KW至3.75 MW的UPS系统。这是来源给出的产品系统容量范围与电压声明，未独立核证，不代表单个模块容量、具体项目容量或当前部署状态。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:55:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，复核评分6。明确型号、容量单位及电压，对当前接口工单的电气适配和性能工单的容量规格具有实质性局部贡献。连续完整引文及StratusPower特性段落充分，保留产品规格声明性质及缺失工况，符合B类采用要求；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-ups-interfaces",
+          "Q-OBJ-ups-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 175.518,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3bca26af7e34235921199ead47db2ee8ad0456aa9c0c7b98c595901b52925dfe",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 46659,
+            "output_tokens": 5485,
+            "reasoning_output_tokens": 492
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.908,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cc4ea07dea0270c116875f1216c5988e0746e0018bed3c85f2865561dc01c018",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43888,
+              "output_tokens": 438,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
+      },
+      "source_candidate_ids": [
+        "rev-0f826af553ba4ad6b970c8c2728c14b9:chunk:0:claim:6"
+      ],
+      "limitations": "引文未区分400 V属于输入还是输出，也未给出相数、频率、功率因数、模块与机柜组合、并联方式、冗余配置、环境条件或测试标准。容量范围不是可用容量、实测输出或项目建设规模；不能据此保证任意设施均可适配。原文未限定地域或项目阶段。",
+      "conflict_check": "所供现有采用声明没有StratusPower容量或400 V规格的同口径记录，未发现真实冲突或canonical重复。正文另述单frame上限与模块容量，对象层级不同，不直接构成对系统范围的反证，也不足以确立最大系统组合。legacy匹配记录为空，检查限于所供材料，不替换现有结论或配置参数。",
+      "gap_dependency_check": "接口问题仍需输入输出电压、频率、相制、保护、并联与上下游适配条件；性能问题仍需系统组合、冗余后可用容量、降额条件及测量方法。该证据仅贡献来源声明的产品容量范围与电压，两个问题保持开放，不填入数据中心容量、建设管线或可靠性模型。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40",
+        "source_report_sha256": "eeb8d906ac26787d42c96994fab3e329852e8926b2739ce606e7aafc9f3c94b0",
+        "request_sha256": "59436dcf8307d071392dde772473207501d54e8915dd32e46609db0379e895cb"
+      },
+      "object_mapping_check": "数值描述StratusPower UPS系统的产品容量与电压，对应chain:power/4下的part:ups。系统容量不是整座AI数据中心容量，400 V也未建立配电柜、变压器或电网接入对象范围；不继承文档的机柜和电池标签，不自动添加父节点。所选证据统一使用此主张级范围。"
     }
   ],
   "answers": [],
