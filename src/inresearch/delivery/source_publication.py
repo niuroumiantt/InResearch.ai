@@ -111,7 +111,7 @@ def bundle(root):
         additions = [v for v in row.get('observations', []) if v.get('schema_version') == 3]
         if additions:
             sites.append({'site_id': row['site_id'],
-                          'baseline': {k:v for k,v in row.items() if k != 'observations'} if row.get('identity_registration') else None,
+                          'baseline': {k:v for k,v in row.items() if k != 'observations'} if row.get('identity_registration') and row.get('verified_date') is None and row.get('observations', [{}])[0].get('schema_version') == 3 else None,
                           'observations': additions})
     doc = ledger.load(root)
     records = [r for r in doc['records'] if r.get('registration', {}).get('status') == 'unverified']

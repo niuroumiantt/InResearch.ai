@@ -1765,3 +1765,5 @@ TA22/23真实5be58335/.61与精确9079镜像healthy，独立public-v3/public-v1�
 ## 2026-10-12 Independent ordinary data publication
 
 The owner explicitly adopted ordinary information without factual verification, stable unique IDs with ongoing source history, and data releases outside code PRs. source-publish adds a private persistent ledger, atomic batch receipts and shared website/API projection. Company/product/statistic/quote intake no longer requires C3 or model targets. Research conclusions keep their existing authority boundaries. First implementation and UI repairs use full CI; later ordinary data imports use structural checks plus live receipts. Counts require production verification.
+
+2026-10-12 production follow-up: The first data-only release installed 148 ordinary records in 0.265 seconds. Export was carrying reviewed site baselines alongside ordinary additions; existing baselines were omitted before successful atomic import, without modifying their records. The exporter now omits these automatically; a regression verifies retention. Company pages share the ordinary source timeline. Actual data visibility and replay receipts remain separate from code checks.
