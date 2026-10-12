@@ -149,6 +149,26 @@ class CiScopeTests(unittest.TestCase):
         self.assertFalse(ci.project_observations_append_only(json.dumps(initial),json.dumps(following)))
         self.assertFalse(ci.project_observations_append_only(json.dumps(initial),json.dumps(self.projects)))
 
+    def test_initial_site_append_requires_reviewed_identity_and_preserves_old_records(self):
+        new={'site_id':'fi-salo-fin05','name':'FIN05','country':'FI','region':'europe','location':'Salo','status':'L2',
+             'capacity_it_mw':None,'capacity_it_mw_by_status':{},'observations':[]}
+        new['identity_registration']={k:new[k] for k in ('site_id','name','country','region','location')}
+        new['identity_registration'].update(version=1,native_name='FIN05',basis='named physical campus')
+        row=copy.deepcopy(self.appended_observations()['records'][0]['observations'][0])
+        row['fields']={'name':'FIN05','status':'L2'}
+        row['adoption'].update(target_ids=[],object_binding={'site_id':new['site_id']},assertions=[{'quote':'FIN05'}],review={'decision':'adopted'})
+        new['observations']=[row]
+        following=copy.deepcopy(self.projects);following['records'].append(new)
+        self.assertTrue(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(following)))
+        self.write(ci.PROJECT_PATH,json.dumps(following));self.assertEqual(self.plan()['suites'],['industry','research'])
+        for field,value in [('capacity_it_mw',100),('name','changed'),('identity_registration',{}),('site_id','fixed-campus')]:
+            bad=copy.deepcopy(following);bad['records'][-1][field]=value
+            with self.subTest(field=field):self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
+        bad=copy.deepcopy(following);bad['records'][-1]['observations'][0]['revision']={'action':'correct'}
+        self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
+        bad=copy.deepcopy(following);bad['records'][0]['country']='CN'
+        self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
+
     def test_observation_append_mixed_with_implementation_still_runs_full(self):
         self.write(ci.PROJECT_PATH,json.dumps(self.appended_observations()))
         self.write('src/inresearch/knowledge/site_timeline.py','changed code')

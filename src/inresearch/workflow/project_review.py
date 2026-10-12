@@ -322,6 +322,12 @@ def apply(root, data, proposal):
         if not sample.get('by') or sample.get('decision') != 'confirmed':
             raise ValueError('deterministic_sample_review_required')
     p = proposal['project']
+    initial = proposal.get('initial_identity')
+    if initial is not None:
+        from inresearch.knowledge.site_register import check_initial_identity
+        check_initial_identity(initial, p)
+        if proposal.get('target_ids') != [] or not isinstance(proposal.get('observation'), dict):
+            raise ValueError('initial_identity_requires_targetless_observation')
     if context.get('matched_site_id') and context['matched_site_id'] != p.get('site_id'):
         raise ValueError('reviewed_event_site_mismatch')
     if p.get('disputed') or p.get('sensitive') or proposal.get('replaces_record_ids'):
@@ -369,6 +375,8 @@ def apply(root, data, proposal):
             if not quantity_supported(assertion, pairs):
                 raise ValueError('quantity_not_in_original_quote')
         checked.append(assertion)
+    if initial is not None and not any(''.join(initial['native_name'].split()) in ''.join(a['quote'].split()) for a in checked):
+        raise ValueError('initial_native_identity_not_in_reviewed_quote')
     if any(a.get('derivation') for a in checked):
         meta = proposal.get('observation') or {}
         if meta.get('kind') not in ('derived', 'estimated', 'forecast') or not meta.get('assumptions'):
@@ -439,6 +447,24 @@ def apply(root, data, proposal):
         value = json.loads(path.read_text())
         old = next((r for r in value['records'] if r['site_id'] == p['site_id']), None)
         if observation is not None:
+            registering = old is None and initial is not None
+            if registering:
+                # Only the reviewed first observation may introduce mutable facts.
+                if any(k in p for k in ('observations', 'adoption_history', 'identity_registration')):
+                    raise ValueError('initial_site_cannot_inject_history')
+                if any(p.get(k) not in (None, {}) for k in ('capacity_it_mw', 'capacity_planned_it_mw', 'capacity_facility_mw', 'capacity_it_mw_by_status', 'capacity_assessment')):
+                    raise ValueError('initial_site_requires_empty_capacity_baseline')
+                if any(p.get(k) for k in site_register.ACTOR_ROLES if k not in changed_fields):
+                    raise ValueError('initial_site_actor_requires_reviewed_field')
+                if not {'name', 'status'} <= changed_fields:
+                    raise ValueError('initial_site_requires_reviewed_name_and_status')
+                for existing in value['records']:
+                    names = {str(x).casefold() for x in [existing.get('name'), *(existing.get('aliases') or [])]}
+                    if p['name'].casefold() in names or (p['country'] == existing.get('country') and
+                            set(p.get('aliases') or []) & set(existing.get('aliases') or [])):
+                        raise ValueError('possible_duplicate_project_identity')
+                old = {k:v for k,v in p.items() if k != 'adoption'}
+                old['identity_registration'] = initial
             if not old:
                 raise ValueError('observation_requires_registered_physical_site')
             if old.get('duplicate_of') or 'portfolio' in old['site_id']:
@@ -473,10 +499,13 @@ def apply(root, data, proposal):
                 entry['source_versions'] = prior['source_versions']
             # Replay precedes the optimistic baseline guard, as with other writes.
             updated, replay = site_timeline.append(old, entry)
-            if not replay and proposal.get('baseline_sha256') != digest(old):
+            if not replay and not registering and proposal.get('baseline_sha256') != digest(old):
                 raise ValueError('existing_project_requires_explicit_change_review')
             if not replay:
-                value['records'][value['records'].index(old)] = updated
+                if registering:
+                    value['records'].append(updated)
+                else:
+                    value['records'][value['records'].index(old)] = updated
         elif old:
             if old == p or (old.get('adoption') or {}).get('review_id') == review_id:
                 replay = True

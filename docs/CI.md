@@ -28,7 +28,7 @@
 
 research 路线运行 scope、validate、browser (research)、browser (core)，追加站点或四类对象观测另加 browser (industry)。validate 保留治理、严格数据、registry 全量引用校验，并执行固定的 test_research*.py、test_public_reader.py、test_publish_reader.py、test_verification_contract.py、test_ci_scope.py、test_site_*.py、test_project_review.py、test_targeted_research.py、test_industry.py、test_object_review.py、test_fetchspec_receive.py；选定入口缺失或空测试集报错。browser (research) 串行执行原有研究成果页与研究摘要/节点资料测试，industry 验收首页/列表/园区详情及筛选，不展开 core_a/core_b/core_c 或任何 3D、装配、园区矩阵；纯研究追加也不运行 asset-check 和 storage-container。资料真实来源、C3 与原件核验仍由既有审核/发布链路完成，CI 分流本身不授予采用或上线资格。
 
-站点追加比较完整 JSON：顶层元数据、站点数量/顺序/身份、全部基线字段和旧观测的值/类型/顺序保持，唯一新观测 ID，只向 observations 末尾追加带 source_versions、adoption 和 fields 的 v2 观测。新增站点、补地理基线、改旧记录、显式 revision/替代/撤回、来源或采用上下文改写、歧义 JSON 与无法判定的变化仍全套。基础严格校验和现有 C3 原件写入共同检查实际合法性，不把形状检测视为采用。含 projects 的 research 汇总必须包含 industry，缺失不得通过。当前实现和规范变更本批走全套；不是用新分类器跳过自身验收。
+站点追加比较完整 JSON：顶层元数据、站点数量/顺序/身份、全部基线字段和旧观测的值/类型/顺序保持，唯一新观测 ID，只向 observations 末尾追加带 source_versions、adoption 和 fields 的 v2 观测。旧式新增站点、补地理基线、改旧记录、显式 revision/替代/撤回、来源或采用上下文改写、歧义 JSON 与无法判定的变化仍全套。基础严格校验和现有 C3 原件写入共同检查实际合法性，不把形状检测视为采用。含 projects 的 research 汇总必须包含 industry，缺失不得通过。当前实现和规范变更本批走全套；不是用新分类器跳过自身验收。
 
 对象观测追加比较完整严格JSON：version=1及顶层结构不变，旧objects键值和所有旧records的顺序、值、类型完全不变，每批新增1–500条且ID唯一；新增对象的四类身份字段和摘要ID必须一致，并由新增观测引用。新增记录必须有原件/上下文SHA、定位、引文和adopted审核；来源为HTTPS URL，或URL为空且有与原件身份匹配的归档导入记录摘要、唯一正整数记录ID及真实带时区接收时间，目标为空。显式修订/替代/撤回、旧身份或标签修改、重复键、非有限值、未知结构、混合代码/规则变化全部回到full。CI只证明追加形状，不代替原件语义核对、C3、时间/区间校验、CAS或公开资格审核。对象或站点追加缺少industry浏览器不得汇总通过。存量提取器与此分类器的首次实现必须全套验收，后续纯追加才使用新路线。
 
@@ -61,3 +61,5 @@ GitHub main 必过检查为 `validate` 与 `browser (core)`，均绑定 GitHub A
 Dockerfile固定使用1.19.0语法，将web/assets、docs/design、docs/inbox和LIBRARY_SCORES.csv分别放入可独立复用的COPY --link层；其余源码只复制一次并明确exclude这些路径。研究记录或审计文档追加不会重新导出大型资产层。所有原有运行文件仍进入镜像，.dockerignore的Git、凭据、运行库和原件隔离保持；只读根、持久卷、健康检查与infra原部署/回退流程不变。
 
 storage-container完整路线另执行tests/container_cache.py：用实际Dockerfile构建两版隔离输入，修改单条研究数据，验证稳定层相同、最终数据不同、资产存在且敏感伪造夹具未进入镜像。首次冷构建、后续缓存构建和生产发布分别实测；缓存命中不能代替公网/Spark验收。实现依据：[Dockerfile COPY文档](https://docs.docker.com/reference/dockerfile/#copy)。
+
+首次园区登记的纯资料追加：完整JSON维持全部旧站点顺序、基线、旧观测与顶层结构；仅末尾增加最多100个具有冻结identity_registration和具名采用v2观测的园区。身份字段一致、容量基线为空、首条name/status一致、目标为空且有对象绑定/断言；重复ID/名称、旧值改变、显式修订和结构不明回full。必须跑研究、站点写入、industry及research浏览器；此形状证明不代替来源语义审核，新实现本身仍跑全套。

@@ -35,6 +35,21 @@ class TargetedResearchTests(unittest.TestCase):
         patch.object(excerpts, '_first_received', return_value={'at': None, 'provenance': 'unknown'}).start()
         self.selection = [{'sha256': self.sha, 'pages': [1]}]
 
+    def test_initial_identity_is_sealed_without_registered_site_or_model_target(self):
+        (self.data/'data/projects.json').write_text(json.dumps({'records': []}))
+        identity={'version':1,'site_id':'campus','name':'Campus','native_name':'Campus',
+                  'country':'US','region':'americas','location':'Test City','basis':'specific named campus, street unknown'}
+        binding={'version':1,'site_id':'campus','fields':['name'],'scope':'whole_site'}
+        context=excerpts.prepare(self.data,self.data,self.selection,'campus',object_binding=binding,initial_identity=identity)
+        proposal={'source_kind':'object_excerpt','project':{'site_id':'campus'},'targeted_sources':self.selection,
+                  'target_ids':[],'object_binding':binding,'initial_identity':identity,'source_version':context['source_version'],
+                  'assertions':[{'source_sha256':self.sha,'locator':'excerpt:page:1','quote':'Campus'}]}
+        excerpts.resolve(self.data,self.data,proposal)
+        bad=copy.deepcopy(proposal);bad['initial_identity']['location']='Another City'
+        with self.assertRaisesRegex(ValueError,'changed_since_review'):excerpts.resolve(self.data,self.data,bad)
+        with self.assertRaisesRegex(ValueError,'object_binding'):
+            excerpts.prepare(self.data,self.data,self.selection,'campus',initial_identity=identity)
+
     def context(self):
         return excerpts.prepare(self.data, self.data, self.selection, 'campus')
 

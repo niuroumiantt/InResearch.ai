@@ -75,3 +75,24 @@ def capacities(row):
             'operating': {'boundary': 'registered_operating_phases',
                           **provenance(row, 'capacity_it_mw_by_status' if
                               row.get('capacity_it_mw_by_status') else 'capacity_it_mw')}}
+
+
+INITIAL_IDENTITY_KEYS = frozenset(('version', 'site_id', 'name', 'country', 'region', 'location',
+                                  'native_name', 'basis', 'province', 'city', 'district', 'street_address'))
+
+
+def check_initial_identity(identity, project=None):
+    """Explicit reviewed campus anchor; an address or coordinates may be unknown."""
+    required = {'version', 'site_id', 'name', 'country', 'region', 'location', 'native_name', 'basis'}
+    if (not isinstance(identity, dict) or not required <= identity.keys()
+            or set(identity) - INITIAL_IDENTITY_KEYS or type(identity['version']) is not int
+            or identity['version'] != 1
+            or any(not isinstance(identity[k], str) or not identity[k].strip() for k in identity if k != 'version')
+            or len(identity['country']) != 2 or not identity['country'].isascii()
+            or not identity['country'].isupper() or not identity['country'].isalpha()
+            or 'portfolio' in identity['site_id'] or len(identity['native_name'].strip()) < 4):
+        raise ValueError('reviewed_initial_physical_identity_required')
+    if project is not None and (project.get('duplicate_of') or project.get('identity_scope') in ('cluster', 'portfolio')
+            or any(project.get(k) != v for k, v in identity.items() if k not in ('version', 'basis', 'native_name'))):
+        raise ValueError('initial_physical_identity_mismatch')
+    return identity
