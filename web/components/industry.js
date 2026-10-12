@@ -551,7 +551,8 @@ function renderUpdates(){
  }
  for(const item of data.tracking?.changes||[]){
   if(!(item.sources||[]).some(s=>safe(s.url)))continue;
-  const preview=document.createElement('span');preview.innerHTML=observationValues(item).join(' · ');
+  const previewFields=Object.fromEntries(Object.entries(item.fields||{}).filter(([key])=>!['name','notes'].includes(key)));
+  const preview=document.createElement('span');preview.innerHTML=observationValues({...item,fields:previewFields}).join(' · ');
   entries.push({kind:'project',date:updateDate(item.recorded_at),label:[item.name,observationKinds[item.kind]||item.kind,item.scope&&item.scope!=='whole_site'?'分期 '+item.scope.slice(6):'',item.revision?(item.revision.action==='withdraw'?'已撤回':'修订'):'',preview.textContent].filter(Boolean).join(' · '),effective:item.effective_at,href:'/project.html?site='+encodeURIComponent(item.site_id)+'#site-observation-timeline'});
  }
  entries.sort((a,b)=>b.date.sort.localeCompare(a.date.sort));

@@ -162,6 +162,7 @@ const {mkdirSync}=require('node:fs');
   const shownObservation=baseline.tracking.changes.find(item=>item.site_id===shownSite&&(item.effective_at||'')===shownProject);
   assert.ok(shownObservation,'ticker preserves the matching site observation time, including unknown');
   if(shownObservation.effective_at===null)assert.match(await realChanges.first().getAttribute('title'),/信息发生时间：未明确/);
+  if(shownObservation.fields.notes)assert.ok(!(await realChanges.first().innerText()).includes(shownObservation.fields.notes),'full evidence notes stay in the project timeline');
   const currentObservation=baseline.tracking.changes.find(item=>item.effective_at==='2026-07-28');
   const forecastObservation=baseline.tracking.changes.find(item=>item.effective_at==='2026-11-01');
   assert.equal(currentObservation.kind,'estimated');assert.equal(currentObservation.fields.capacity_it_mw,421);
