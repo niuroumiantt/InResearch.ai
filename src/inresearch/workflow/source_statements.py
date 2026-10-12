@@ -83,7 +83,7 @@ def apply(root, data, statement):
                     for r in register['records']):
                 raise ValueError('possible_duplicate_project_address')
             old={k:v for k,v in identity.items() if k not in ('version','native_name','basis')}
-            old.update(status=normalized.get('status','L1'),notes='基础登记待查',verified_date=None,
+            old.update(status=normalized.get('status'),notes='基础登记待查',verified_date=None,
                        capacity_it_mw=None,capacity_facility_mw=None,capacity_planned_it_mw=None,
                        capacity_it_mw_by_status={},sources=entry['sources'],identity_registration=identity)
         if statement.get('identity'):

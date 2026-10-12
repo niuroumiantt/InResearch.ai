@@ -73,3 +73,10 @@ class SourceStatementTests(unittest.TestCase):
         self.register();view=site_timeline.current(self.row(),'2026-10-12')
         self.assertEqual(view['quantity_fields']['water_consumption_m3']['value_range'],[10,20])
         self.assertIsNone(self.row()['verified_date'])
+
+    def test_missing_stage_is_unknown_instead_of_invented_rumor_or_plan(self):
+        self.item['fields'].pop('status');self.register()
+        self.assertIsNone(self.row()['status'])
+        from inresearch.knowledge.industry import project
+        view=project(self.row());self.assertEqual(view['stage_label'],'阶段待核实')
+        self.assertEqual(view['registration_status'],'unverified')
