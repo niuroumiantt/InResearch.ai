@@ -62998,6 +62998,88 @@
         },
         "batch_id": "f3d337755ce7b13ea9efcec9e80c30f9bfe89944f3273c20fc87924f43921d0d"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "75f548b4d2a476b82eb44d79cf1726048faf12c6624fdc958b5a31b0f9098988",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:90:claim:1:ev:0",
+      "locator": "page:90/chunk:90",
+      "object_ids": [],
+      "page_index": 89,
+      "question_ids": [],
+      "quote": "Subject matter experts\n                  are needed to coordinate model training for domain-specific models, particularly because\n                  significant amounts of knowledge and data are not held in formats suitable for model\n                  training.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:45:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及复核评分均为6。领域专家协调与训练数据格式条件，实质关联当前生产要素经济性工单中的人才、数据约束，也关联模型与权重产品经济性工单中的领域模型开发及采用门槛。连续原文与周边部署障碍语境充分支持限定归因的部分定性主张。未发现敏感内容、实际冲突、拟替换或其他A类条件，符合B类采用要求；不回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-economics",
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.809,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f6f822c6d99157e33030a31f17d1f24ef908bcef945268c8a04149c8b39a7c12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 49350,
+            "output_tokens": 1291,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.828,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "9a583de5631362dc1525b5e0cfbc5ccbad1770908c12e2ea79f8370de1e83ad7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 50031,
+              "output_tokens": 419,
+              "reasoning_output_tokens": 142
+            }
+          }
+        },
+        "batch_id": "2f33728b9a87ece9575452a5f266ddf5c9f9903c0391ea30558d4fcf1c13efc7"
+      }
     }
   ],
   "statements": [
@@ -122225,6 +122307,106 @@
         "request_sha256": "97dec00a0d87e8a50b67e57587b915029db082b689a0558fa70bf13186de70eb"
       },
       "object_mapping_check": "独立依据原文及连续上下文确定：比较对象是液对空气与液对液CDU方案，对应水与散热系统下“冷水与CDU”链的part:cdu；限制条件涉及机房空气及承接排热的既有空气处理设备，对应“机房与机柜”链的part:room-cooling。既有冷却设施未在本条中明确为冷水机组、冷冻水管路或室外排热设备，不扩大映射。AWS仅为作者任职单位，未被确立为本条方案供应商或实施方，不映射actor。所选证据统一采用上述主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:90:claim:1:ev:0"
+      ],
+      "id": "adoption:review:e8ffad6b2fa99c97f2c4184b",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D1-economics",
+        "NODE-demand-D2-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》（发表日期未知）讨论工业与能源领域先进物理AI的部署障碍时指出，领域专用模型的训练需要领域专家协调，尤其因为大量知识和数据尚未以适合模型训练的格式保存。这是IEA对该应用场景中训练条件的定性判断，未经独立验证；原文未限定适用地域，也未报告具体项目的训练或投运结果。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:45:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及复核评分均为6。领域专家协调与训练数据格式条件，实质关联当前生产要素经济性工单中的人才、数据约束，也关联模型与权重产品经济性工单中的领域模型开发及采用门槛。连续原文与周边部署障碍语境充分支持限定归因的部分定性主张。未发现敏感内容、实际冲突、拟替换或其他A类条件，符合B类采用要求；不回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-economics",
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 39.809,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f6f822c6d99157e33030a31f17d1f24ef908bcef945268c8a04149c8b39a7c12",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 49350,
+            "output_tokens": 1291,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 17.828,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "9a583de5631362dc1525b5e0cfbc5ccbad1770908c12e2ea79f8370de1e83ad7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 50031,
+              "output_tokens": 419,
+              "reasoning_output_tokens": 142
+            }
+          }
+        },
+        "batch_id": "2f33728b9a87ece9575452a5f266ddf5c9f9903c0391ea30558d4fcf1c13efc7"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:90:claim:1"
+      ],
+      "limitations": "引文未量化专家人数、协调工时、数据准备成本、模型开发成本或障碍对采用率的影响，不能据此认定需求已经下降或计算算力、电力需求。邻近中国战略讨论不构成本条的中国地域限定。来源发表日期未由所供原生文本确立，批次创建时间不能替代发表日期。封存阅读覆盖全部所供原生文本，但未完成图像审阅；本条连续文字可核对，不代表整份PDF已获视觉核验。",
+      "conflict_check": "已核对所供当前采用陈述、证据、文档及相关legacy记录。终端用户电费或租金敏感性、中间商利润、资本变现预期、开放模型替代、注意力性能及Google产品陈述分别涉及不同角色或机制，与本条不重复且未形成直接冲突。IEA关于软件进步往往无需新增资本投资的既有判断，也不排除领域训练所需的人才协调和数据准备。legacy事实、合同和项目匹配记录为空，不能据此认定不存在外部反证；不覆盖或替换既有结论。",
+      "gap_dependency_check": "对NODE-demand-D1-economics，仅提供人才和数据准备构成训练条件的定性约束，仍需工时、成本、资源可得性及采用行为证据才能建立需求变化关系。对NODE-demand-D2-economics，仅提供工业与能源领域专用模型开发和采用门槛的部分线索，仍缺采用率、单位使用量、支付意愿、成本比较及替代技术结果。周边自动化收益与部署障碍可以并存；本条不证明净需求增长或收缩。两项问题保持开放，不更新参数或聚合GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2f33728b9a87ece9575452a5f266ddf5c9f9903c0391ea30558d4fcf1c13efc7",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "0b5f4839736035d8156c94bb8df3405b9cbc33c4b46240723c61338d9511c8ce"
+      },
+      "object_mapping_check": "独立复核后，本条对象是工业与能源应用中的领域模型训练、领域专家及知识数据的格式准备。合同中的root指一座AI数据中心，system:control及其链限定DCIM/BMS与固件，计算、存储等对象亦属于设施资产；本条未建立这些资产范围，也未指向允许的具体企业。数据格式不适配不能映射为存储设备问题。保留空对象列表及有效问题关联，所选证据统一采用这一审定范围，不继承文档或Reader标签。"
     }
   ],
   "answers": [],
