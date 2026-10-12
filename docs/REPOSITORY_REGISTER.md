@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2651。
+在册文件：2653。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,8 +22,8 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 236 |
-| 测试 | 222 |
+| 配套说明 | 237 |
+| 测试 | 223 |
 
 ## 在册记录集合
 
@@ -2717,6 +2717,7 @@
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
 | [docs/handoff/runtime-source-publication-20261012.md](handoff/runtime-source-publication-20261012.md) | 配套说明 |
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
+| [docs/handoff/source-projection-throughput-20261012.md](handoff/source-projection-throughput-20261012.md) | 配套说明 |
 | [docs/handoff/source-statement-intake-20261012.md](handoff/source-statement-intake-20261012.md) | 配套说明 |
 | [docs/handoff/stock-archived-gpu-20261012.md](handoff/stock-archived-gpu-20261012.md) | 配套说明 |
 | [docs/handoff/stock-cdu-controls-20261012.md](handoff/stock-cdu-controls-20261012.md) | 配套说明 |
@@ -3996,6 +3997,7 @@
 | `tests/unit/test_news_projection.py` | 测试 |
 | `tests/unit/test_news_targets.py` | 测试 |
 | `tests/unit/test_nodes.py` | 测试 |
+| `tests/unit/test_object_current_scaling.py` | 测试 |
 | `tests/unit/test_object_mapping_review.py` | 测试 |
 | `tests/unit/test_object_review.py` | 测试 |
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
