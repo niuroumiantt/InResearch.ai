@@ -8649,6 +8649,100 @@
       "status": "candidate",
       "stored_path": "originals/d0/d09105279cee6f68d991ada21ce0ac7ab6fb79ed4074abbb59a8c00cf18fd804/dcd-d09105279cee6f68-Firmus secures -10bn debt financing facility for Project Southgat.html",
       "title": "Firmus secures $10bn debt financing facility for Project Southgate AI factory roll out"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+      "coverage": {
+        "characters_read": 6410,
+        "characters_total": 6410,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+      "id": "doc-04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+      "library_path": "library/by-node/root/2026_Crusoe_Crusoe Announces New 900 MW AI Factory Campus in Abilen__04f4e8803272acb4.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:crusoe",
+        "part:bess",
+        "part:gpu",
+        "root",
+        "system:compute",
+        "system:facility"
+      ],
+      "question_ids": [
+        "M04-Q07",
+        "M05-Q06",
+        "OBJ-gpu-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-25c837f98ce044f8884d3c294fe3abf7",
+      "report_sha256": "84d64223e35eaecd689039cc119d8f132e17fd5dd86dc68869272eb4d21cf87c",
+      "research_requests": [
+        {
+          "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+          "purpose": "R3 项目样例：Abilene 批准容量核验；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "question_id": "M05-Q06",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+          "scope_values": {
+            "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+            "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+            "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+            "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        },
+        {
+          "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+          "purpose": "R3 项目样例：Abilene 接入等待里程碑核验；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "question_id": "M04-Q07",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+          "scope_values": {
+            "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+            "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+            "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+            "period": "2025至2026；历史预测与实际里程碑逐项核验",
+            "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-crusoe-abilene-separate-microsoft-900mw.html",
+        "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/04/04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540/crusoe-abilene-separate-microsoft-900mw.html",
+      "title": "Crusoe Announces New 900 MW AI Factory Campus in Abilene, Texas to Support Microsoft AI Infrastructure"
     }
   ],
   "evidence": [
@@ -64358,6 +64452,94 @@
           }
         },
         "batch_id": "80c664edcd1db6a1255750ffb7e866992ce4da74fb57e329ea1bd41a15107446"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "7c0855e6498d0b33c20b87271835c25a34efc0c31c886af47afe1ffda02ca5a8",
+      "document_id": "doc-04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+      "id": "rev-25c837f98ce044f8884d3c294fe3abf7:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "part:shell",
+        "actor:crusoe"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q07"
+      ],
+      "quote": "Land clearing and site preparation for the new campus are already underway, with the first building expected to be energized in mid-2027, continuing Crusoe’s record-setting pace that energized the first two buildings of the Abilene campus in under one year.",
+      "reading_revision_id": "rev-25c837f98ce044f8884d3c294fe3abf7",
+      "source_sha256": "04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:14:27+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续引文及完整原生上下文支持这项有限的来源声明与预测。对当前M04-Q07提供新旧园区及阶段口径的排除依据，对M10-Q03提供待核验的施工状态与未来送电节点，具有实质的部分证据关系。未发现敏感材料、同范围真实冲突、拟替换或其他A条件，符合B类有限采用要求；采用不代表问题已回答或模型参数已验证。",
+        "workorder_ids": [
+          "Q-M04-Q07",
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 73.896,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "947e6d402e0751de403c013200cb6decf0134b68f3650bf739d9c79606702a18",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 42940,
+            "output_tokens": 2200,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.805,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b43e2f6d7a02735b19f8362dbeb3de55c9d760c090aa3636b754d269f567728e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 44150,
+              "output_tokens": 699,
+              "reasoning_output_tokens": 312
+            }
+          }
+        },
+        "batch_id": "a67c124bbd2ee8ecd8978792deaced68af921b6864ce1352d4520b7fa14a9d1b"
       }
     }
   ],
@@ -124880,6 +125062,134 @@
         "request_sha256": "6eeac4a6a39b81a53bd7e2433f7e7616e23cabaaf504d49687a73991702e8400"
       },
       "object_mapping_check": "独立核查后选择root：契约将其定义为一座AI数据中心，本条明确描述每座AI工厂的设施用途，周边原文建立数据中心扩张背景，具有设施整体范围依据。未继承Reader标签；能源效率目的不确立电力或散热子系统构成，Token生产不确立具体GPU资产，故不追加子系统、部件或主体对象。所选证据采用相同的root范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540",
+      "evidence_ids": [
+        "rev-25c837f98ce044f8884d3c294fe3abf7:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:d0fbfb675569c0c3edb7eab3",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root",
+        "part:shell",
+        "actor:crusoe"
+      ],
+      "question_ids": [
+        "M04-Q07",
+        "M10-Q03"
+      ],
+      "reading_revision_id": "rev-25c837f98ce044f8884d3c294fe3abf7",
+      "status": "adopted",
+      "text": "Crusoe在正文署期2026年3月27日的公告中称，其位于美国Texas州Abilene、支持Microsoft AI基础设施的相邻新园区已开展清场和场地准备，预计首栋建筑于2027年中送电。这是Crusoe对施工状态的声明及对未来送电节点的预测，尚未经本次独立核实。该预测属于相邻新园区，不能作为原有Abilene园区2025—2026年负荷接入批准或排队等待的实际结束里程碑。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:14:27+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续引文及完整原生上下文支持这项有限的来源声明与预测。对当前M04-Q07提供新旧园区及阶段口径的排除依据，对M10-Q03提供待核验的施工状态与未来送电节点，具有实质的部分证据关系。未发现敏感材料、同范围真实冲突、拟替换或其他A条件，符合B类有限采用要求；采用不代表问题已回答或模型参数已验证。",
+        "workorder_ids": [
+          "Q-M04-Q07",
+          "Q-M10-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 73.896,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "947e6d402e0751de403c013200cb6decf0134b68f3650bf739d9c79606702a18",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 42940,
+            "output_tokens": 2200,
+            "reasoning_output_tokens": 329
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.805,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b43e2f6d7a02735b19f8362dbeb3de55c9d760c090aa3636b754d269f567728e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 44150,
+              "output_tokens": 699,
+              "reasoning_output_tokens": 312
+            }
+          }
+        },
+        "batch_id": "a67c124bbd2ee8ecd8978792deaced68af921b6864ce1352d4520b7fa14a9d1b"
+      },
+      "source_candidate_ids": [
+        "rev-25c837f98ce044f8884d3c294fe3abf7:chunk:0:claim:2"
+      ],
+      "limitations": "清场和场地准备没有具体开始日期，2027年中仅为模糊时间精度的送电预测，未提供实际完成凭证、同分期正式开工日期或负荷接入申请及批准记录。公告未说明首栋建筑送电的具体电源路径，不能据此认定完成电网负荷接入。不能计算实际建设周期、接入等待年限或区域差异，也不能回答或关闭所关联问题。",
+      "conflict_check": "当前已采用的SB Energy俄亥俄、Empyrion台湾TW1及Applied Digital北达科他项目开工陈述涉及其他项目；Abilene影像判读方法涉及既有OpenAI-Oracle Stargate设施，未提供相邻新园区的相反送电节点，均不构成冲突或重复。所供legacy匹配记录为空。密封摘要的容量遗漏不是本候选施工状态或送电预测的相反证据。检查仅限所供材料，不构成外部反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "M04-Q07仍需原有园区同分期负荷接入申请起点、实际批准或等待结束日期、原件与可比较区域样本；相邻新园区的送电预测仅用于排除错误终点。M10-Q03仍需同一新园区首栋建筑的明确开工日期、实际送电记录、阶段边界及统一口径的可比较样本。两项定量请求均未满足，两个问题保持开放，不更新或替换当前参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a67c124bbd2ee8ecd8978792deaced68af921b6864ce1352d4520b7fa14a9d1b",
+        "source_report_sha256": "84d64223e35eaecd689039cc119d8f132e17fd5dd86dc68869272eb4d21cf87c",
+        "request_sha256": "3a6f94137a80221d21366c4705afdfbfffd52e5cdbd9cf67740c62870ed381fd"
+      },
+      "object_mapping_check": "独立依据原生上下文，主张涉及具名AI数据中心新园区的整体建设及送电里程碑，支持root；清场和场地准备明确属于part:shell在设施链下的场坪与土建范围；Crusoe是公告和施工状态声明主体，支持actor:crusoe。Microsoft仅用于标识项目服务对象，不推定投资、建设或运营责任。送电预测没有具体电气工程或并网协议内容，不映射电力设备或site:grid；不因AI用途映射计算、GPU或储能。所选证据统一使用这一审核后的主张范围。",
+      "quantitative_checks": {
+        "basis_check": "依据是Crusoe公司公告中的施工状态自述和expected送电预测，没有独立施工记录、送电凭证或接入批准原件。已再次核对连续引文与相邻新旧园区语境，保留原有author_forecast性质，不将其转为实测观察、计算结果或独立认证。",
+        "comparability_check": "预测送电与实际送电、施工历时与审批等待、相邻新园区与既有园区均不具备直接互代性。缺少统一起点、分期边界及实际终点，不能比较实际建设周期走势或得出并网等待的区域差异。",
+        "derivation_check": "不适用数值推导：没有同分期明确起止日期，不计算从公告到预计送电的工期，也不将“2027年中”转换为具体日期。不得用清场、施工或预测送电节点推导负荷接入排队等待。",
+        "scope_check": "实际主张针对美国Texas州Abilene相邻Microsoft新园区的清场、场地准备及首栋建筑送电预测，属于施工阶段声明与作者预测；不属于原有Stargate/Lancium园区的负荷接入等待或批准容量。未提供具体工作负载、软件或测量系统，本项也不是运行性能测量。",
+        "time_check": "正文明确公告署期为2026年3月27日，以此限定来源声明时间；页面另显示2026年9月3日，但未解释其性质，不认定为更新或预测修订日期。清场和场地准备的具体起点未知；2027年中保持预测及原始精度，批次创建日期不构成实际完成证据。",
+        "units_check": "所选主张提供日历时间“2027年中”，没有等待年数或容量单位。引文末尾另述既有园区前两栋建筑在不到一年内送电，该建设送电历时未扩展为本次采用主张，也不能作为接入等待年限。不产生MW、GW或years模型值。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张是明确被该请求排除的相邻Microsoft新园区施工状态及送电预测，没有原有Stargate/Lancium园区的获批用能MW值或ERCOT/输电商批准原件。公告其他容量表述不属于本候选采用范围，也不能代替批准容量；请求阅读不代表完成核验。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "本候选可为问题贡献排除错误里程碑的范围依据，但具体参数请求针对原有园区2025—2026年同分期负荷接入批准或排队等待。相邻新园区2027年中送电预测属于不同项目和阶段，且没有申请起点或实际批准终点，不能核验或替换gate_wait_years。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
