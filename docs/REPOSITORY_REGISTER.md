@@ -2713,6 +2713,7 @@
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
+| [docs/handoff/runtime-source-publication-20261012.md](handoff/runtime-source-publication-20261012.md) | 配套说明 |
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/source-statement-intake-20261012.md](handoff/source-statement-intake-20261012.md) | 配套说明 |
 | [docs/handoff/stock-archived-gpu-20261012.md](handoff/stock-archived-gpu-20261012.md) | 配套说明 |
@@ -4055,6 +4056,7 @@
 | `tests/unit/test_site_tracking.py` | 测试 |
 | `tests/unit/test_site_tracking_sources.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
+| `tests/unit/test_source_batch.py` | 测试 |
 | `tests/unit/test_source_publication.py` | 测试 |
 | `tests/unit/test_source_statements.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
