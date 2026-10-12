@@ -505,7 +505,7 @@ function objectObservationRows(rows){
  return rows.map(r=>`<li><time>${esc(r.effective_at||'信息时间未明确')}</time><div><strong>${esc(labels[r.metric]||labels[r.metric.split('.').pop()]||r.metric)}</strong> · ${esc(typeof r.value==='object'?r.value.value_range.join('–'):r.value)} ${esc(r.unit==='native'?'':r.unit)}${r.conflict?'<span class="badge">同口径分歧待核</span>':''}${r.revision?'<span class="badge">历史修订</span>':''}<p>${r.period_start||r.period_end?'统计期间：'+esc(r.period_start||'未知')+'—'+esc(r.period_end||'未知')+' · ':''}${r.registration_status==='unverified'?'基础登记待查':'核实：'+esc((r.reviewed_at||'').slice(0,10))}${r.source.published_at?' · 披露：'+esc(r.source.published_at):''}</p><details class="observation-note"><summary>口径与条件</summary><p>${esc(r.basis)}</p><p>${Object.entries(r.scope).map(([k,v])=>esc(k)+': '+esc(v)).join(' · ')}</p></details>${r.source.url?sourceLink(r.source.url,'原始来源 ↗'):'<span class="basis">归档资料 · 未提供公开原文链接</span>'}</div></li>`).join('');
 }
 function renderObjectUpdates(){
- const panel=$('object-changes');if(!isHome||!panel)return;
+ const panel=$('object-changes');if(!(isHome||isCompany)||!panel)return;
  const updates=data.research_updates||{},groups=new Map();
  for(const row of updates.changes||[]){if(!groups.has(row.object_id))groups.set(row.object_id,[]);groups.get(row.object_id).push(row);}
  $('object-update-count').textContent=`${updates.total||0} 项有来源信息 · ${updates.objects||0} 个对象；按最近补充排列，历史补录不代表今日发生。`;

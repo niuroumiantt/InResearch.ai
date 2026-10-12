@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.12.109
+> CURRENT · 基准版本 2026.10.12.110
 
 本页只定位当前规则与更新边界。实施细节进入各主题唯一源，发布过程进入 [决策记录](../docs/DECISIONS.md) 或交接；此前长篇阶段记录保留于 [历史快照](../docs/archive/2026-10-10/framework__CURRENT__before_reassessment.md)，不能作为当前执行指令。
 
@@ -86,3 +86,5 @@
 2026-10-12：CI重型图册/封装拆为独立矩阵作业，场景、来源审核与门禁不减；历史样例改从园区档案验收，不依赖有限首页更新窗口。现行入口见CI规范。
 
 2026-10-12: Ordinary source registration now includes company/product/statistic/quote. source-publish separates persistent data additions from Git code deployment; no per-batch PR/full CI. Stable identity, structure, history and public field boundaries remain. Code capability, installed data and actual public visibility are measured separately. Archived sources without a webpage URL must remain visible in details and homepage updates.
+
+2026-10-12: Data export never resubmits reviewed legacy site baselines. Company pages display their source timeline; ordinary derived public fields are explicitly registered.

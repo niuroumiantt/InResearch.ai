@@ -107,3 +107,14 @@ class SourcePublicationTests(unittest.TestCase):
         self.assertEqual(group['current'][0]['value'],6)
         self.assertEqual(len(group['conflicts']),2)
         self.assertEqual(len(ledger.public_page(self.root,{})['records']),3)
+
+    def test_existing_reviewed_identity_export_does_not_resubmit_its_baseline(self):
+        intake.apply(self.root,self.data,self.item)
+        path=self.root/'data/projects.json';doc=json.loads(path.read_text())
+        doc['records'][0]['verified_date']='2024-01-01'
+        path.write_text(json.dumps(doc))
+        payload=publication.bundle(self.root)
+        self.assertIsNone(payload['sites'][0]['baseline'])
+        receipt=publication.install(self.root,payload)
+        self.assertEqual(receipt['new_records'],0)
+        self.assertEqual(publication.projects(self.root)['records'][0]['verified_date'],'2024-01-01')
