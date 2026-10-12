@@ -65394,6 +65394,92 @@
         },
         "batch_id": "f267e15f81f20542c203de1c276d29cdf4c8d92534ea66bcdd6cf0721c44134b"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f1aab657cb2b3dce71b47282e5d832e40d3ba83548d229a878dd0d7e2642ae4b",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "id": "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:14:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:power/1",
+        "chain:power/2"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q07"
+      ],
+      "quote": "Completion Date / Estimated Completion Date:\n\nPhase 1: 2022–2024\n\nPhase 2: 2025-2026",
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "source_sha256": "1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:08:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文与完整原生页支持这一有限的页面观察，对当前M04-Q07具有实质关系：防止将电力工程阶段年份误作负荷接入排队年限。已对拟采用观察进行第二道独立核验，直接检查表头、年份与正文工程阶段语境，不依赖Reader标签或摘要。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类有限采用要求。",
+        "workorder_ids": [
+          "Q-M04-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 84.613,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f5964499cc392371a03250053cfb58300b4b12750c3b29c76445335450a0da4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 33870,
+            "output_tokens": 2298,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.482,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "329baf862f4d042c80ef72e6c1ba7ad68c437cf3471485f9151ef39b04a005e0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 34995,
+              "output_tokens": 608,
+              "reasoning_output_tokens": 249
+            }
+          }
+        },
+        "batch_id": "12ea87209b770063ade94aeb9f21287d63f0ff52f1ed17e821cf487fe1794385"
+      }
     }
   ],
   "statements": [
@@ -126907,6 +126993,131 @@
           "rationale": "本项没有Abilene原有园区同分期负荷接入申请、批准的起止日期或等待时长。覆盖估计基准日与数据库收录条件均不能替代审批、排队、施工或送电里程碑；阅读全文中的施工识别方法亦不满足该参数要求。",
           "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
           "status": "out_of_scope"
+        }
+      ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "evidence_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:14:ev:0"
+      ],
+      "id": "adoption:review:8c30ce8495331ff330778145",
+      "kind": "observation",
+      "object_ids": [
+        "chain:power/1",
+        "chain:power/2"
+      ],
+      "question_ids": [
+        "M04-Q07"
+      ],
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "status": "adopted",
+      "text": "Mortenson作为电力交付EPC承包商，其美国Texas州Lancium Abilene园区项目网页在“Completion Date / Estimated Completion Date”合并表头下列示“Phase 1: 2022–2024”和“Phase 2: 2025-2026”。这是对来源页面列示方式的观察；该阶段表没有分别标明负荷接入申请、审批、施工及爬坡的起止日期，也未逐项区分实际完成与预计完成，不能据此计算负荷接入排队等待年限。网页发布时间未知。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:08:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文与完整原生页支持这一有限的页面观察，对当前M04-Q07具有实质关系：防止将电力工程阶段年份误作负荷接入排队年限。已对拟采用观察进行第二道独立核验，直接检查表头、年份与正文工程阶段语境，不依赖Reader标签或摘要。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类有限采用要求。",
+        "workorder_ids": [
+          "Q-M04-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 84.613,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f5964499cc392371a03250053cfb58300b4b12750c3b29c76445335450a0da4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 33870,
+            "output_tokens": 2298,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.482,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "329baf862f4d042c80ef72e6c1ba7ad68c437cf3471485f9151ef39b04a005e0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 34995,
+              "output_tokens": 608,
+              "reasoning_output_tokens": 249
+            }
+          }
+        },
+        "batch_id": "12ea87209b770063ade94aeb9f21287d63f0ff52f1ed17e821cf487fe1794385"
+      },
+      "source_candidate_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:14"
+      ],
+      "limitations": "年份范围仅对应Mortenson页面中的电力基础设施工程分期，不能认定为园区整体建设周期或接入等待时长。正文另有施工和送电日期，但未提供负荷申请及实际批准起止原件，也未证明工程分期与请求中的建筑分期一一对应。该观察仅提供口径边界，不能回答或关闭区域排队差异问题，不能核验模型输入。",
+      "conflict_check": "现有采用记录涉及Crusoe支持Microsoft的相邻新园区及2027年中送电预测，与本项Lancium原有园区电力工程分期范围不同，不构成冲突或重复。其关于施工送电不能替代接入等待的限制与本项一致。所供legacy匹配记录为空；摘要遗漏属于阅读报告与原文的支持差异，不是同范围项目结论的真实冲突。检查仅限所供材料，不覆盖或替换现有结论。",
+      "gap_dependency_check": "M04-Q07仍需原有园区同分期负荷接入申请起点、实际批准或等待结束节点及原件，并需统一口径的区域可比样本。还需确认Mortenson工程Phase 1/2与两栋100MW及后续六栋建筑分期的对应关系。所选阶段表不补齐这些缺口，也不提供批准用能额度；问题保持开放，现有参数与估算不变。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "12ea87209b770063ade94aeb9f21287d63f0ff52f1ed17e821cf487fe1794385",
+        "source_report_sha256": "425a84d9c73f873b3bf83a846b4cb94c8ff803e05faa9a444fd62e2d711a93e2",
+        "request_sha256": "043de2e91e36786d206176ce76f641ae4d54bba8b45b2914eaaa56ef6e579ec3"
+      },
+      "object_mapping_check": "独立依据原生上下文，阶段表描述Mortenson承担的输电、接入扩建和变电站工程，实际范围对应system:power下的电网接入链与变电链。没有负荷配额、排队记录或并网协议，不继承候选的site:grid标签；也不把电力工程分期扩大为root整体建设分期。未采用具体设备主张，不映射变压器等部件；Mortenson没有允许的actor ID，不以其他企业替代。所选证据统一使用这一主张范围。",
+      "quantitative_checks": {
+        "basis_check": "依据是Mortenson项目页面实际列示的连续表头和年份，不是批准原件或独立工程验收。第二道核验从完整原生页重新核对：表头确实合并完成与预计完成，正文语境确实为电力工程，阶段表确实未给出负荷申请和审批起止。保持observation性质，不将其改称作者估算来改变路由。",
+        "comparability_check": "工程阶段年份、施工至送电历时、负荷申请至批准等待及运营爬坡口径不同。单个得州工程阶段表没有区域可比样本，不能用于区域等待差异比较，也不能与相邻Microsoft新园区的预测节点互代。",
+        "derivation_check": "不适用数值推导：本项没有同分期同阶段的明确起止日期，不进行年份相减，也不用开工或送电日期推算接入等待。正文其他工程历时表述不扩展为本项采用内容。",
+        "scope_check": "本项为网页阶段表的来源观察，范围是美国Texas州Abilene的Lancium园区电力基础设施EPC工程。不是负荷接入审批等待测量，也不是IT运行性能测量；软件、工作负载及GPU测量系统不适用。",
+        "time_check": "网页发布日期和更新时间均未由原生文本建立，保持未知。合并表头未逐项指明实际或预计身份，不能因审查日期已进入2026年便认定第二阶段完成。正文预计2026年10月完成临时变压器更换仍须保留预测身份，且不纳入本项阶段表观察。",
+        "units_check": "2022–2024与2025-2026为日历年份范围，保留原始精度；不是已测定的等待年数，不转换为2年、3年等持续时间。所选证据没有MW或GW数值，不产生容量模型输入。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "本候选实际观察是电力工程阶段年份的列示方式，没有批准用能MW值、IT容量或ERCOT/输电商批准原件。即使项目相关，时间表观察也不属于容量参数证据；正文其他设施容量不纳入本项，更不能替代获批额度。请求阅读不代表要求已满足。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "对原有Abilene园区提供施工工程分期不能冒充负荷接入等待的口径边界，属于方法性部分支持。缺少同分期申请起点、实际批准终点及原件，且工程分期与建筑分期对应关系未建立，不能计算、核验或替换gate_wait_years，也不关闭问题。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "partial_support"
         }
       ]
     }
