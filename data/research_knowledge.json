@@ -69118,6 +69118,182 @@
         },
         "batch_id": "6c992f4d1efe36e185226d5303bcbe1b11a1ff48c41f5f2210da84e02c551ee3"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "68b74856cd835cda2a0896b4c476efe9629efe361974d6905c3831fa0e998ecf",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:3:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-supply"
+      ],
+      "quote": "800kW (future) blocks",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:26:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文片段及完整上下文明确未来规格身份，对当前供应研究中产品规格与交付成熟度的区分有实质但有限的贡献。保留来源归因、历史时间及展望身份后符合B类部分采用条件；未发现敏感、真实冲突、替换要求或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a2f9a8449e838fa98aefcebf17e2241ba8b36873706465a5f63ebc99e17c6fca",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60589,
+            "output_tokens": 2143,
+            "reasoning_output_tokens": 403
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.569,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dc4b0d0fe2f1cf1840ae4c3a19eeca58b466a4e6422a868ec42da0a893ee6197",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 60403,
+              "output_tokens": 436,
+              "reasoning_output_tokens": 156
+            }
+          }
+        },
+        "batch_id": "57ed80d4744fc76e500d34d9368fb41931a3d76947b7c866b4735ff8b90af1dd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "68b74856cd835cda2a0896b4c476efe9629efe361974d6905c3831fa0e998ecf",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:4:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-heat-reject-performance",
+        "OBJ-heat-reject-supply"
+      ],
+      "quote": "the economizer is superior to most other strategies, allowing compressors to remain off for many annual hours, keeping energy costs low.",
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "source_sha256": "485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:26:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文和完整运行上下文支持明确归因的定性主张，对当前性能研究中的运行机制及适用边界、供应研究中的生命周期能源成本形成机制有实质性局部贡献。缺少量化验证不妨碍限定采用，但不能完成验收；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance",
+          "Q-OBJ-heat-reject-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a2f9a8449e838fa98aefcebf17e2241ba8b36873706465a5f63ebc99e17c6fca",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60589,
+            "output_tokens": 2143,
+            "reasoning_output_tokens": 403
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.569,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dc4b0d0fe2f1cf1840ae4c3a19eeca58b466a4e6422a868ec42da0a893ee6197",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 60403,
+              "output_tokens": 436,
+              "reasoning_output_tokens": 156
+            }
+          }
+        },
+        "batch_id": "57ed80d4744fc76e500d34d9368fb41931a3d76947b7c866b4735ff8b90af1dd"
+      }
     }
   ],
   "statements": [
@@ -133927,6 +134103,212 @@
           "status": "partial_support"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:3:ev:0"
+      ],
+      "id": "adoption:review:72b2f015747d016af77ebd59",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-supply"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics于2024年1月22日发表的Munters SyCool赞助文章，在介绍模块化分体冷却方案时将800 kW模块标为未来规格。这是来源当时的产品展望，不能作为该规格当时已交付或目前已可交付的证明；文章未给出其推出或交付时间。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:26:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文片段及完整上下文明确未来规格身份，对当前供应研究中产品规格与交付成熟度的区分有实质但有限的贡献。保留来源归因、历史时间及展望身份后符合B类部分采用条件；未发现敏感、真实冲突、替换要求或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a2f9a8449e838fa98aefcebf17e2241ba8b36873706465a5f63ebc99e17c6fca",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60589,
+            "output_tokens": 2143,
+            "reasoning_output_tokens": 403
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.569,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dc4b0d0fe2f1cf1840ae4c3a19eeca58b466a4e6422a868ec42da0a893ee6197",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 60403,
+              "output_tokens": 436,
+              "reasoning_output_tokens": 156
+            }
+          }
+        },
+        "batch_id": "57ed80d4744fc76e500d34d9368fb41931a3d76947b7c866b4735ff8b90af1dd"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:3"
+      ],
+      "limitations": "800 kW为来源所列冷却模块规格，未提供额定工况、型号、测试或交付证明，不能转换为IT功率或项目容量。未限定地域、具名项目或建设及投运阶段，也未说明制造环节、交期和价格。历史展望不能证明当前产品状态。",
+      "conflict_check": "当前已采用的Munters技术定位、冷凝路径及温度条件声明未采用800 kW未来规格，本条不构成完整重复或替换。MagPro产品发布和Samaritan容量估算记录涉及不同对象或方法，未形成真实冲突。所供legacy匹配记录为空；未发现包内反证，但未穷尽外部核验。",
+      "gap_dependency_check": "OBJ-heat-reject-supply仅获得来源当时的规格展望及成熟度区分。仍需厂商带日期的产品资料、额定工况、推出时间、订单或交付记录，以及制造分工、交期和生命周期成本资料。问题保持开放，不更新模型参数或现有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57ed80d4744fc76e500d34d9368fb41931a3d76947b7c866b4735ff8b90af1dd",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "ac88ef2cad68cebe28a4216334535cd392e098f8e4413ccd516c89cefc1dd636"
+      },
+      "object_mapping_check": "独立依据全文确定这是Munters SyCool分体冷却方案的模块展望，选择具名厂商、水与散热系统及其排热链。契约中的part:chiller特指冷水机组，而本条热虹吸分体方案未证明属于冷水机组，故不继承Reader标签。未限定空气冷却或具体设施，不追加机房冷却、冷冻水回路或root。所选证据统一采用此主张范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-485bf4cced62b05753a0de8d35410b210538998c591f7e19c0c23d1232f88ab5",
+      "evidence_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:4:ev:0"
+      ],
+      "id": "adoption:review:f4b1b30687cb2227426cd649",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:munters",
+        "system:thermal",
+        "chain:thermal/1"
+      ],
+      "question_ids": [
+        "OBJ-heat-reject-performance",
+        "OBJ-heat-reject-supply"
+      ],
+      "reading_revision_id": "rev-bfc3e7acc8984d67b8a32bbc7f919c1d",
+      "status": "adopted",
+      "text": "DatacenterDynamics于2024年1月22日发表的Munters SyCool赞助文章称，该方案的节能器优于大多数其他策略，可使压缩机在一年中的许多小时保持关闭，从而降低能源成本。这是来源的定性性能比较及运行成本主张，未经本次独立验证；文章未量化年度停机小时数或能源费用。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:26:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文和完整运行上下文支持明确归因的定性主张，对当前性能研究中的运行机制及适用边界、供应研究中的生命周期能源成本形成机制有实质性局部贡献。缺少量化验证不妨碍限定采用，但不能完成验收；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-heat-reject-performance",
+          "Q-OBJ-heat-reject-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 82.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a2f9a8449e838fa98aefcebf17e2241ba8b36873706465a5f63ebc99e17c6fca",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60589,
+            "output_tokens": 2143,
+            "reasoning_output_tokens": 403
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.569,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dc4b0d0fe2f1cf1840ae4c3a19eeca58b466a4e6422a868ec42da0a893ee6197",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 60403,
+              "output_tokens": 436,
+              "reasoning_output_tokens": 156
+            }
+          }
+        },
+        "batch_id": "57ed80d4744fc76e500d34d9368fb41931a3d76947b7c866b4735ff8b90af1dd"
+      },
+      "source_candidate_ids": [
+        "rev-bfc3e7acc8984d67b8a32bbc7f919c1d:chunk:1:claim:4"
+      ],
+      "limitations": "“大多数其他策略”的比较样本和系统边界不明，未提供年度小时数、能耗、费用、电价或实测方法。全文说明运行依赖环境干球温度，温度升高时主动DX冷凝按需辅助；本条未限定型号、负荷、气候、地域或项目阶段，不能理解为全年关闭压缩机、系统零耗电或固定节能幅度。",
+      "conflict_check": "已采用的adoption:review:107a5e5028f4a89fe8b8e228提供特定空气温度条件，adoption:review:66f025ab5bce1e7c6e7ae0fb提供被动与主动冷凝路径，均与本条相容；本条新增年度压缩机运行和能源成本的定性关系，不是完整重复。水侧节能器约40°F记录属于比较方案，不能视为同设备冲突。所供legacy匹配记录为空，未发现包内真实冲突，外部反证未穷尽；不替换现有结论。",
+      "gap_dependency_check": "OBJ-heat-reject-performance仍需具体型号、完整工况、控制策略、逐时气候与负荷、压缩机运行记录、性能测试及可靠性和失效反证。OBJ-heat-reject-supply仅获得运行能源成本机制，仍缺计费边界、电价、辅助设备耗电、资本及维护成本。两项问题保持开放，不推算年度节能、PUE、WUE或模型成本输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57ed80d4744fc76e500d34d9368fb41931a3d76947b7c866b4735ff8b90af1dd",
+        "source_report_sha256": "8328789bdd11c0b6493577c8d1579aeec068a8aa13fc8919401abce6db9e8105",
+        "request_sha256": "ac88ef2cad68cebe28a4216334535cd392e098f8e4413ccd516c89cefc1dd636"
+      },
+      "object_mapping_check": "独立依据SyCool节能器及室外冷凝排热的实际范围，选择Munters、水与散热系统及排热链。压缩机存在不等于设备属于契约中的冷水机组，因此不继承part:chiller；本条也未限定空气冷却末端或描述DCIM/BMS。能源成本结果不证明电网接入权利或供电设备配置。所选证据统一采用此主张范围，原始标签保持不变。"
     }
   ],
   "answers": [],
