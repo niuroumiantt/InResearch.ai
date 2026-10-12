@@ -9,5 +9,5 @@ def auth_page(name, title):
 
 
 LOGIN_PAGE = auth_page('login', '登录')
-PASSWD_PAGE = auth_page('password', '修改密码')
+PASSWD_PAGE = auth_page('password', '个人信息')
 FORBIDDEN_PAGE = auth_page('forbidden', '无权访问')

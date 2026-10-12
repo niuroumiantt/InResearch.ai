@@ -102,8 +102,12 @@ class InterfaceContractTests(unittest.TestCase):
             declared = re.search(r'<inresearch-shell data-section="([a-z]+)"', html).group(1)
             self.assertEqual(declared, listed[name], name)
         self.assertEqual({'/' + p for p in manifest['public_pages']} | {'/'}, set(public.READER_PAGES) | {'/index.html'})
-        for entry in ('datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'):
-            self.assertIn(f"['{entry}'", (ROOT/'web/components/site-shell.js').read_text(), entry)
+        shell = (ROOT/'web/components/site-shell.js').read_text()
+        for entry in ('datacenter', 'ledger', 'bom', 'acquisition', 'results'):
+            self.assertIn(f"['{entry}'", shell, entry)
+        self.assertIn("if (user.role === 'admin')", shell)
+        self.assertIn("link('/ops.html', '管理台', 'ui-management-link')", shell)
+        self.assertNotIn("['admin', '管理'", shell, 'management lives in the account menu')
         routes = json.loads((ROOT/'web/routes.json').read_text())
         for url, rel in routes.items():
             self.assertTrue((ROOT/rel).exists(), f'{url} -> {rel} is a dead route')

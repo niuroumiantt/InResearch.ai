@@ -19,25 +19,24 @@
     return el;
   }
   // 一级导航为行业总览与研究目录（05「目录」）：七项按角色出现；页面用 data-section 说自己属于哪一项。
-  // 未登录可见首页、任务与登录；实习生可进入任务跟踪和自己的采集任务。
+  // 业务导航与右上账号区分别显示；身份确认前只展示公开入口。
   const LINKS = [
     ['industry', '行业总览', '/'], ['tasks', '任务跟踪', '/tasks.html'], ['datacenter', '数据中心研究', '/node.html'], ['ledger', '账本', '/ledger.html'], ['bom', '爆炸图', '/bom.html'],
-    ['acquisition', '采集', '/supply.html'], ['results', '成果', '/report.html'], ['admin', '管理', '/ops.html']
+    ['acquisition', '采集', '/supply.html'], ['results', '成果', '/report.html']
   ];
   const VISIBLE = {
-    admin: ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'],
+    admin: ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'acquisition', 'results'],
     member: ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'acquisition', 'results'],
     intern: ['tasks', 'acquisition'],
     reader: ['industry', 'tasks']
   };
-  function navigation(section, audience) {
+  function navigation(section) {
     const nav = document.createElement('nav');
     nav.className = 'ui-navigation'; nav.setAttribute('aria-label', '全站导航');
     function render(role) {
       nav.replaceChildren();
       document.querySelectorAll('[data-requires-login]').forEach(el => { el.hidden = role === 'reader'; });
-      const visible = audience === 'reader' && role !== 'reader'
-        ? ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'results'] : (VISIBLE[role] || VISIBLE.reader);
+      const visible = VISIBLE[role] || VISIBLE.reader;
       for (const [id, label, href] of LINKS) {
         if (!visible.includes(id)) continue;
         const link = document.createElement('a');
@@ -45,25 +44,63 @@
         if (id === section) link.setAttribute('aria-current', 'page');
         nav.append(link);
       }
-      if (role === 'reader') {
-        const login = document.createElement('a'); login.href = '/login'; login.className = 'ui-login'; login.textContent = '登录';
-        nav.append(login);
-      }
-      if (audience === 'reader' && role === 'admin') {
-        const backstage = document.createElement('a');
-        const current = new URLSearchParams(location.search);
-        const query = new URLSearchParams({c: current.get('c') || 'nvidia'});
-        if (current.get('product_id')) query.set('product_id', current.get('product_id'));
-        if (current.get('series')) query.set('series', current.get('series'));
-        backstage.href = '/admin/company.html?' + query;
-        backstage.className = 'ui-admin-link'; backstage.textContent = '后台';
-        nav.append(backstage);
-      }
     }
     render('reader');
-    fetch('/api/whoami').then(response => response.ok ? response.json() : null)
-      .then(user => { if (user?.role) render(user.role); }).catch(() => {});
-    return nav;
+    return {element: nav, render};
+  }
+  function account(audience, section) {
+    const area = document.createElement('div'); area.className = 'ui-account';
+    function render(user) {
+      area.replaceChildren();
+      if (!user || !['admin', 'member', 'intern'].includes(user.role)) {
+        const login = document.createElement('a'); login.href = '/login'; login.className = 'ui-login'; login.textContent = '登录';
+        area.append(login); return;
+      }
+      const details = document.createElement('details'); details.className = 'ui-account-menu';
+      const summary = document.createElement('summary');
+      const username = typeof user.user === 'string' && user.user ? user.user : '账号';
+      summary.setAttribute('aria-label', `${username} · ${user.role}，账号菜单`);
+      summary.title = `${username} · ${user.role}`;
+      const name = document.createElement('span'); name.className = 'ui-account-name'; name.textContent = username;
+      const role = document.createElement('span'); role.className = 'ui-account-role'; role.textContent = user.role;
+      summary.append(name, role);
+      const menu = document.createElement('div'); menu.className = 'ui-account-panel';
+      const identity = document.createElement('p'); identity.className = 'ui-account-identity';
+      const fullName = document.createElement('strong'); fullName.textContent = username;
+      const fullRole = document.createElement('span'); fullRole.textContent = user.role;
+      identity.append(fullName, fullRole); menu.append(identity);
+      const link = (href, text, className) => {
+        const el = document.createElement('a'); el.href = href; el.textContent = text;
+        if (className) el.className = className;
+        menu.append(el); return el;
+      };
+      link('/account', '个人信息');
+      if (user.role === 'admin') {
+        const management = link('/ops.html', '管理台', 'ui-management-link');
+        if (section === 'admin') management.setAttribute('aria-current', 'page');
+        if (audience === 'reader') {
+          const current = new URLSearchParams(location.search);
+          const query = new URLSearchParams({c: current.get('c') || 'nvidia'});
+          if (current.get('product_id')) query.set('product_id', current.get('product_id'));
+          if (current.get('series')) query.set('series', current.get('series'));
+          link('/admin/company.html?' + query, '本公司后台', 'ui-admin-link');
+        }
+      }
+      link('/logout', '退出登录', 'ui-logout');
+      details.append(summary, menu); area.append(details);
+    }
+    area.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const details = area.querySelector('details');
+      if (details?.open) { details.open = false; details.querySelector('summary').focus(); }
+    });
+    document.addEventListener('click', event => {
+      if (!area.contains(event.target)) {
+        const details = area.querySelector('details'); if (details) details.open = false;
+      }
+    });
+    render(null);
+    return {element: area, render};
   }
   function mount() {
     const host = document.querySelector('inresearch-shell');
@@ -71,17 +108,30 @@
     const bar = document.createElement('div'); bar.id = 'ui-skinbar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', '全站外观');
     const brand = document.createElement('a'); brand.href = '/index.html'; brand.className = 'ui-home'; brand.append(icon('home'), document.createTextNode('inresearch.ai'));
     bar.append(brand);
-    if (host.dataset.section !== 'auth') bar.append(navigation(location.pathname === '/tasks.html' ? 'tasks' : host.dataset.section, host.dataset.audience));
+    const section = location.pathname === '/tasks.html' ? 'tasks' : host.dataset.section;
+    const nav = host.dataset.section !== 'auth' ? navigation(section) : null;
+    if (nav) bar.append(nav.element);
     const controls = document.createElement('div'); controls.className = 'ui-appearance-controls';
     bar.append(controls);
-    const label = document.createElement('label'); label.htmlFor = 'ui-appearance'; label.textContent = '外观';
-    const select = document.createElement('select'); select.id = 'ui-appearance';
+    const label = document.createElement('label'); label.htmlFor = 'ui-appearance';
+    const labelText = document.createElement('span'); labelText.className = 'ui-appearance-label'; labelText.textContent = '外观'; label.append(labelText);
+    const select = document.createElement('select'); select.id = 'ui-appearance'; select.setAttribute('aria-label', '外观');
     for (const [value, text] of [['light', '浅色'], ['dark', '深色'], ['system', '跟随系统']]) {
       const option = document.createElement('option'); option.value = value; option.textContent = text; select.append(option);
     }
     select.addEventListener('change', () => setPreference({mode: select.value})); label.append(select); controls.append(label);
+    const identity = account(host.dataset.audience, section); controls.append(identity.element);
     const note = document.createElement('span'); note.id = 'ui-save-status'; note.setAttribute('role', 'status'); controls.append(note);
     host.append(bar);
+    fetch('/api/whoami', {cache: 'no-store'}).then(response => response.ok ? response.json() : null)
+      .then(user => {
+        if (!user?.role) throw Error('identity unavailable');
+        nav?.render(user.role); identity.render(user);
+        document.querySelectorAll('[data-ui-account-name]').forEach(el => { el.textContent = user.user || '未登录'; });
+        document.querySelectorAll('[data-ui-account-role]').forEach(el => { el.textContent = user.role; });
+      }).catch(() => {
+        document.querySelectorAll('[data-ui-account-name], [data-ui-account-role]').forEach(el => { el.textContent = '暂时无法读取，请刷新'; });
+      });
     const measure = () => root.style.setProperty('--ui-bar-height', Math.ceil(bar.getBoundingClientRect().height) + 'px');
     if (window.ResizeObserver) new ResizeObserver(measure).observe(bar);
     measure();

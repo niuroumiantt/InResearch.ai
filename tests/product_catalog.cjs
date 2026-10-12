@@ -40,8 +40,11 @@ const {chromium}=require('playwright');
   assert.match(await page.locator('#catalog-updated').innerText(),/2026-09-27/);
   // An administrator sees the same reader body; only the separate backstage link appears.
   role='admin';await page.reload();await page.getByRole('heading',{name:'NVIDIA H200',exact:true}).waitFor();
+  await page.locator('.ui-account-menu > summary').click();
   await page.locator('.ui-admin-link').waitFor();
-  assert.equal(await page.locator('.ui-navigation a[href="/supply.html"], .ui-navigation a[href="/ops.html"]').count(),0);
+  assert.equal(await page.locator('.ui-account-panel .ui-management-link').getAttribute('href'),'/ops.html');
+  assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['行业总览','任务跟踪','数据中心研究','账本','爆炸图','采集','成果']);
+  assert.equal(await page.locator('.ui-navigation a[href="/ops.html"], .ui-navigation .ui-admin-link').count(),0);
   assert.ok(!/SHA-256|sitemap|Fetchspec|changed|unchanged/.test(await page.locator('main').innerText()));
   role='reader';
   await page.locator('.catalog-options summary').click();
