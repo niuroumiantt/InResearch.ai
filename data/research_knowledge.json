@@ -69965,6 +69965,91 @@
         },
         "batch_id": "d6dad074a861f1bc4a8a8b1a496d54fd1dd7de518731eb8bc9b747e075308af1"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0a0e02b5ee5939ec53d7bc85c1c5c1bfbf1c46ea5cf4b1eac4cb0c434331ec98",
+      "document_id": "doc-2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "id": "rev-22f241c3a6fc42788c7db7856c33905f:chunk:1:claim:3:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "system:facility",
+        "part:shell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "A satellite image from March shows steel framing and roofing for the first building (visible as a blue rectangle).",
+      "reading_revision_id": "rev-22f241c3a6fc42788c7db7856c33905f",
+      "source_sha256": "2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:45:00+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原句和Milam专属图注、场址上下文充分，对当前M01-Q07的在建状态识别及M15-Q02的带时点阶段监测具有实质但局部的贡献。既有项目记录已记载钢结构施工，本项补充首栋建筑、屋顶及明确影像日期，未认定为完全重复。按原有observation性质作B类部分采用，不改写为作者估计，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q07",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 105.399,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "29cae83d500b30859416df88d26b60f350f7ccc3b06a5de2f49e6e49edc2fb23",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 60162,
+            "output_tokens": 2295,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.966,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a26b1d594b87840a450484be9ef2bfcf80e47ce60cc76c8a18f3955df655419b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 61289,
+              "output_tokens": 632,
+              "reasoning_output_tokens": 307
+            }
+          }
+        },
+        "batch_id": "752fd2423f6e2a68458b265763443175035b8fe55f22b724bf94128fcdfe1c94"
+      }
     }
   ],
   "statements": [
@@ -135701,6 +135786,133 @@
         "request_sha256": "8a03782701da2f5c4ead4d97a1c1dec1a37b279f23b0ac1c2ba8311a1533726d"
       },
       "object_mapping_check": "VFI效率和THDi在StratusPower UPS产品能力段中，映射至chain:power/4下的part:ups。没有建立电网接入权、配电设备或水泵范围；legacy相同数字不影响对象映射。所选证据统一使用此独立复核范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "evidence_ids": [
+        "rev-22f241c3a6fc42788c7db7856c33905f:chunk:1:claim:3:ev:0"
+      ],
+      "id": "adoption:review:b34850acf1cd41d0077cfb31",
+      "kind": "observation",
+      "object_ids": [
+        "system:facility",
+        "part:shell"
+      ],
+      "question_ids": [
+        "M01-Q07",
+        "M15-Q02"
+      ],
+      "reading_revision_id": "rev-22f241c3a6fc42788c7db7856c33905f",
+      "status": "adopted",
+      "text": "Epoch AI作者Elliot Stewart与Ben Cottier在《OpenAI Stargate: where the US sites stand》中报告，美国Texas州Milam County的Stargate场址三月卫星图显示首栋建筑已有钢框架和屋顶，图中呈蓝色矩形；该场址图注标明影像由Airbus DS于2026年3月23日拍摄。本条保留为来源报告的施工影像观察，仅反映该影像时点的建筑进展，不构成对项目当前完工、交付或投运状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:45:00+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。连续原句和Milam专属图注、场址上下文充分，对当前M01-Q07的在建状态识别及M15-Q02的带时点阶段监测具有实质但局部的贡献。既有项目记录已记载钢结构施工，本项补充首栋建筑、屋顶及明确影像日期，未认定为完全重复。按原有observation性质作B类部分采用，不改写为作者估计，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q07",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 105.399,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "29cae83d500b30859416df88d26b60f350f7ccc3b06a5de2f49e6e49edc2fb23",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 60162,
+            "output_tokens": 2295,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.966,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a26b1d594b87840a450484be9ef2bfcf80e47ce60cc76c8a18f3955df655419b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 61289,
+              "output_tokens": 632,
+              "reasoning_output_tokens": 307
+            }
+          }
+        },
+        "batch_id": "752fd2423f6e2a68458b265763443175035b8fe55f22b724bf94128fcdfe1c94"
+      },
+      "source_candidate_ids": [
+        "rev-22f241c3a6fc42788c7db7856c33905f:chunk:1:claim:3"
+      ],
+      "limitations": "所供原生文字建立了影像拍摄日期，未建立文章初次发表日期；2026年4月23日是文中更新日期，2026年10月11日是访问日期。未直接审阅卫星影像，也未取得施工验收记录。钢框架与屋顶的可见状态不说明建筑完成比例、分期容量、设备安装、送电或投运情况；相邻十月交付描述仍是预测，且交付不等于完全运营。",
+      "conflict_check": "legacy项目us-tx-milam记载已进入钢结构施工阶段，与本观察相容；该记录的L6状态、L2下1200MW IT容量及2026年7月来源日期不由本条获得验证，也不因本条而调整。已有格洛可、SemiAnalysis及IEA采用陈述要求区分规划、施工与投运，本条遵守该边界。未发现同一首栋建筑屋顶及2026年3月23日影像观察的既有规范陈述。检查限于所供记录，未完成外部反证检索，不替换任何结论。",
+      "gap_dependency_check": "M01-Q07仍需全球项目清单、既有六级状态定义、逐项目分期容量及同口径统计；本项只能贡献一个美国项目的施工状态线索。M15-Q02仍需九级定义、最新容量快照、历史基线及同一项目的后续进展记录；三月影像不能直接充当十月最新状态，也不能计算逐级转化率。仍需原始影像或施工记录及后续核验，不指定具体等级、不汇总GW、不更新模型参数，两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "752fd2423f6e2a68458b265763443175035b8fe55f22b724bf94128fcdfe1c94",
+        "source_report_sha256": "541827f25236fe1c1a57b7fcd8884007be6e98072f930075e4260495197da6f0",
+        "request_sha256": "443e85f98b6bea8b7c01bdd725db30c1093ac97883eeeb7255903c6f89445a7b"
+      },
+      "object_mapping_check": "独立依据实际观察选择system:facility，其土地与建筑链涵盖数据中心建筑施工；选择其下建筑与土建部件part:shell，因为钢框架及屋顶直接属于建筑结构与屋面。首栋建筑不是机柜结构，不选part:rack-frame；本条未观察电网权利、供电设备、IT设备、控制软件或许可，不增加这些映射。周边开发运营主体不属于本观察主张，不继承主体标签。所选证据统一采用这一主张范围。",
+      "quantitative_checks": {
+        "basis_check": "依据为作者对卫星影像中钢框架和屋顶的描述，属于来源报告的定性观察；原始影像未在本次视觉核验，不能将其提升为独立现场测量或验收事实。",
+        "comparability_check": "可作为带日期的单项目施工参考。与legacy钢结构施工记录方向相容，但不足以进行同容量、同阶段的定量比较；不能跨场址用于Abilene批准用能或等待参数，也不能外推全球阶段分布或转化率。",
+        "derivation_check": "不适用数值推导：来源没有建筑完成比例、分期容量或审批时间计算。本次第二遍检查确认未从屋顶可见性推导运营容量，也未从相邻交付预测推导施工或审批时长。",
+        "scope_check": "本项是美国Texas州Milam County Stargate首栋建筑的定性施工影像观察，保留observation性质；无系统功率、软件或工作负载测量，不适用于Abilene容量及接入等待核验。",
+        "time_check": "观察有效时点为图注明确的2026年3月23日影像拍摄日。文章初次发表日期未由原生文字建立，更新日及访问日均不能替代拍摄日或当前项目状态。",
+        "units_check": "不适用定量单位换算：本条没有MW、GW、年限、算力或完成比例数值。“首栋”用于识别观察对象，不代表完成一栋或可分配园区容量。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "请求针对Abilene原有园区的批准用能容量，本项仅观察Milam County建筑施工，既非同一场址，也没有ERCOT或输电商批准原件、批准MW或IT容量依据。文档被请求阅读不等于本项满足需求；批准容量缺口保留。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "请求针对Abilene同分期负荷接入申请至批准的等待里程碑，本项为Milam County建筑影像观察，无申请起点、批准终点或接入等待时间。施工状态与相邻交付预测均不能替代审批等待；相关缺口保留。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
