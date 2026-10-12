@@ -63611,6 +63611,87 @@
         },
         "batch_id": "007861eaf2b5481dbb7d62d1580ab9ea5a09c4fed856f4db868a3e9bd374326e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "75f548b4d2a476b82eb44d79cf1726048faf12c6624fdc958b5a31b0f9098988",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:90:claim:7:ev:0",
+      "locator": "page:90/chunk:90",
+      "object_ids": [],
+      "page_index": 89,
+      "question_ids": [],
+      "quote": "In 2025, China’s models overtook those from developers in the\n                        United States in terms of total downloads on open-source platforms.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:05:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及复核评分均为6。连续引文和开源生态上下文充分支持限定归因的下载量比较，实质匹配当前模型与权重产品经济性工单中的获取与采用线索。未发现敏感材料、实际冲突、拟替换或其他A类条件，符合B类部分证据采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.985,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d6e072b5b1c3f6f3120d8a695b0c1797e9f31c97348d9fe386d7836337944388",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 41656,
+            "output_tokens": 1072,
+            "reasoning_output_tokens": 113
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.514,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "99257b944b79c196e9e5ea6818c9ee341ad587e82404461dbb042a36fd957141",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42196,
+              "output_tokens": 412,
+              "reasoning_output_tokens": 110
+            }
+          }
+        },
+        "batch_id": "8b4381238363eaa9bd91110d12b02f76d288830caf5adfec7bb6c82fb670a0e8"
+      }
     }
   ],
   "statements": [
@@ -123435,6 +123516,104 @@
         "request_sha256": "a96b4047297a9d604d85075c1a1f3bb7bea6808d9ea596e25ee986364d4458a3"
       },
       "object_mapping_check": "独立依据主张选择Scala主体及root下的水与散热系统：原文讨论该公司Tamboré园区新建筑通过液冷支持机柜设计密度的预期。未确定冷板、浸没、CDU等具体路线，不下沉到链条或部件；普通机柜密度不能证明计算链下NVL72类整机柜系统，不沿用part:rack-system。亦未提供土建结构或具体供电构成，不增加设施、电力或并网映射。所选证据统一采用此主张级范围，原候选和证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:90:claim:7:ev:0"
+      ],
+      "id": "adoption:review:25f58ecd84c4165ae21b78df",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》（发表日期未知）讨论中国开源模型生态时称，2025年中国模型在开源平台上的总下载量超过了美国开发者的模型。这是IEA报告的按模型开发者地域比较的下载量判断，未经独立验证；该段未给出具体下载次数，也未报告实际部署或项目投运结果。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:05:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及复核评分均为6。连续引文和开源生态上下文充分支持限定归因的下载量比较，实质匹配当前模型与权重产品经济性工单中的获取与采用线索。未发现敏感材料、实际冲突、拟替换或其他A类条件，符合B类部分证据采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.985,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d6e072b5b1c3f6f3120d8a695b0c1797e9f31c97348d9fe386d7836337944388",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 41656,
+            "output_tokens": 1072,
+            "reasoning_output_tokens": 113
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.514,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "99257b944b79c196e9e5ea6818c9ee341ad587e82404461dbb042a36fd957141",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42196,
+              "output_tokens": 412,
+              "reasoning_output_tokens": 110
+            }
+          }
+        },
+        "batch_id": "8b4381238363eaa9bd91110d12b02f76d288830caf5adfec7bb6c82fb670a0e8"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:90:claim:7"
+      ],
+      "limitations": "未披露具体下载次数、平台覆盖、统计窗口、去重规则或模型地域归类方法。开发者地域不等于下载者或部署所在地。下载次数不能等同独立用户数、活跃部署数、采用率、单位使用量、支付意愿或算力需求；相对超过也不能证明任一方绝对需求增长。邻页图10.4未获视觉复核，不能从所供原生文本补取图表数值。来源发表日期未知，2025年是主张涉及的统计年份。",
+      "conflict_check": "已核对所供当前采用陈述、证据、文档及legacy匹配记录。Alphabet报告的Gemma 4及公司开放模型下载次数属于单一公司的不同时间和统计范围，不能直接反驳2025年开发者地域合计比较，也不构成重复。开放模型替代约束、线性注意力性能、Veo成本效率及领域模型训练条件与本条可以并存。legacy匹配记录为空；未发现实际冲突或规范重复记录，但这不代表完成外部反证检索。不覆盖或替换既有结论。",
+      "gap_dependency_check": "仅部分支持NODE-demand-D2-economics中模型与权重产品相对获取规模的线索，不建立下载行为如何改变实际需求，也未提供非增长或替代结果。进一步结论依赖明确统计口径和时间范围、去重用户、活跃部署与留存、单位使用量、价格成本及支付意愿数据。当前问题保持开放，不更新模型参数或聚合GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8b4381238363eaa9bd91110d12b02f76d288830caf5adfec7bb6c82fb670a0e8",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "6bf58dbd9c74a135f1825c2f249acd930f50f99a2b0c13cc1bdc8b44d00fb1c8"
+      },
+      "object_mapping_check": "独立复核后，本条范围是中国与美国开发者模型在开源平台的下载量比较，未指向合同中允许的具体企业。root指一座AI数据中心，其他系统、链及部件均有设施资产范围；下载量没有建立与这些资产的直接关系，system:control所辖DCIM/BMS与固件也不适用。保留空对象列表及有效问题匹配，所选证据统一采用这一审定范围，不继承文档或Reader标签。"
     }
   ],
   "answers": [],
