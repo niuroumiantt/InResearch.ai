@@ -148,7 +148,10 @@ def main():
             if s.get("grade") not in GRADES:
                 err(f"projects[{sid}]: 来源 grade 非法: {s.get('grade')}")
         d = days_since(r.get("verified_date"))
-        if d is None:
+        unverified_identity = r.get('verified_date') is None and bool(r.get('identity_registration')) and any(
+            o.get('schema_version') == 3 and (o.get('registration') or {}).get('status') == 'unverified'
+            for o in r.get('observations', []))
+        if d is None and not unverified_identity:
             err(f"projects[{sid}]: verified_date 缺失或格式错误")
         # Age is a tracking obligation, not invalid evidence. The industry view
         # displays baseline review age and the tracking planner requests refresh.

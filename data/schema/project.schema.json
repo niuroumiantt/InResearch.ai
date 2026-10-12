@@ -382,7 +382,8 @@
             "type": "integer",
             "enum": [
               1,
-              2
+              2,
+              3
             ]
           },
           "recorded_at": {
@@ -489,6 +490,26 @@
                 "description": "实际所有者对具体after SHA和旧IDs的采用决定；跨记录链由site_timeline.check_history校验"
               }
             }
+          },
+          "registration": {
+            "type": "object",
+            "required": [
+              "status",
+              "registered_by",
+              "at"
+            ],
+            "properties": {
+              "status": {
+                "const": "unverified"
+              },
+              "registered_by": {
+                "type": "string",
+                "minLength": 1
+              },
+              "at": {
+                "type": "string"
+              }
+            }
           }
         },
         "allOf": [
@@ -508,6 +529,38 @@
                 "reviewed_at",
                 "source_versions"
               ]
+            }
+          },
+          {
+            "if": {
+              "required": [
+                "schema_version"
+              ],
+              "properties": {
+                "schema_version": {
+                  "const": 3
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "registration",
+                "source_versions"
+              ],
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "reviewed_at"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "revision"
+                    ]
+                  }
+                ]
+              }
             }
           }
         ]
@@ -649,8 +702,11 @@
       "default": false
     },
     "verified_date": {
-      "type": "string",
-      "description": "YYYY-MM-DD 最后人工核验日期"
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "实际核验日期；基础登记未核验为null"
     },
     "sources": {
       "type": "array",

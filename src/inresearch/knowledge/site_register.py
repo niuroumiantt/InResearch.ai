@@ -49,6 +49,7 @@ def provenance(row, field):
         observation = next((r for r in observations if r.get('id') == selected['observation_id']), {})
         return {'effective_at': selected['effective_at'], 'reviewed_at': selected['reviewed_at'],
                 'observation_id': selected['observation_id'], 'kind': selected['kind'],
+                **{k: selected.get(k) for k in ('registration_status','selection_at','selection_time_basis')},
                 'source_versions': [{key: version.get(key) for key in
                     ('source_sha256', 'published_at', 'first_received_at')}
                     for version in observation.get('source_versions', [])],
