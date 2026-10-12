@@ -65230,6 +65230,89 @@
         },
         "batch_id": "f117c0e3da61a767dccfd4be180de924c3e22032c5bf7917198b6d3037c5b674"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4f34542654ce1ac35ec7d426badac448c91248854a834b10795bc04474a54e46",
+      "document_id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "id": "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:water-treatment"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "AirJoule’s system uses a proprietary sorbent, based on a metal-organic framework - subject of the 2025 Nobel Prize in Chemistry - to extract water particles from data center waste heat so that the water can be reused.",
+      "reading_revision_id": "rev-d7582441c262448aa479dacb8ef07c7e",
+      "source_sha256": "1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:37:38+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。吸附剂制水机制对当前M08-Q05提供具体供水应对路径的部分贡献，与当前工单有实质关系，但不构成硬约束区域判断。连续原文引句和完整原生页面提供充分上下文，支持明确归因的有限采用。未识别敏感、真实冲突、拟替换或其他A条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.325,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2205ddfaa0bcc77a5906998c3ce48a61159948ba34a9a1662d72ac72cc4c645c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 45315,
+            "output_tokens": 1258,
+            "reasoning_output_tokens": 193
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e4353d71e7e393f7dff9df4a50f99dffac40c2b1ccf2069ed3b6e32525ee930f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 45971,
+              "output_tokens": 545,
+              "reasoning_output_tokens": 243
+            }
+          }
+        },
+        "batch_id": "7dbfae68a80c3dd21bd374fafc5778179a6fc279c22a69429a6eb0ec42a62cb2"
+      }
     }
   ],
   "statements": [
@@ -126523,6 +126606,106 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "evidence_ids": [
+        "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:18c8f751b6989765b161ccb0",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:water-treatment"
+      ],
+      "question_ids": [
+        "M08-Q05"
+      ],
+      "reading_revision_id": "rev-d7582441c262448aa479dacb8ef07c7e",
+      "status": "adopted",
+      "text": "据Matthew Gooding于2025年12月3日在DCD发表的报道，AirJoule系统使用基于金属有机框架的专有吸附剂，报道将其机制描述为从数据中心余热中提取水粒子供再利用。该描述处于美国得克萨斯州Hubbard的Nexus Data Centers拟建园区及拟议工业规模购水协议语境中，属于来源对技术机制的主张，未经本次独立验证，不代表园区已经部署或实现产水。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:37:38+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。吸附剂制水机制对当前M08-Q05提供具体供水应对路径的部分贡献，与当前工单有实质关系，但不构成硬约束区域判断。连续原文引句和完整原生页面提供充分上下文，支持明确归因的有限采用。未识别敏感、真实冲突、拟替换或其他A条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 40.325,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2205ddfaa0bcc77a5906998c3ce48a61159948ba34a9a1662d72ac72cc4c645c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 45315,
+            "output_tokens": 1258,
+            "reasoning_output_tokens": 193
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e4353d71e7e393f7dff9df4a50f99dffac40c2b1ccf2069ed3b6e32525ee930f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 45971,
+              "output_tokens": 545,
+              "reasoning_output_tokens": 243
+            }
+          }
+        },
+        "batch_id": "7dbfae68a80c3dd21bd374fafc5778179a6fc279c22a69429a6eb0ec42a62cb2"
+      },
+      "source_candidate_ids": [
+        "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:7"
+      ],
+      "limitations": "证据为媒体技术描述，未提供一手技术文件、吸附与再生过程、水分来源边界、余热温度、湿度条件、产水量、水质、能耗、可靠性或现场运行记录。原文关于从余热中提取水粒子的措辞不能作为经核验的物理过程说明。报道所述2026年下半年部署意向属于当时计划，未提供实际完成证据；也未证明Hubbard存在水资源选址硬约束。",
+      "conflict_check": "同源已采用记录adoption:review:fcac30d7bceb7de7d04a4cf1涉及供应商的验证目标，adoption:review:e51172682843e9ad90d8ea16涉及客户方用途及财务评价；本项新增吸附剂与材料机制描述，不是其重复，也不验证其效果。BP Batam海水淡化计划、AirTrunk用水估计和再生水计划、Lancium闭环冷却声明涉及不同主体、项目或机制，可与本项并存。所供legacy合同、事实及项目匹配均为空，未发现真实冲突或可指认的规范重复；检查限于所供材料，不代表外部反证检索完成，不覆盖既有结论。",
+      "gap_dependency_check": "M08-Q05仅获得供水约束应对机制线索。仍需当地可供水量、季节性压力、取水限制、监管或供水方的选址条件、一手技术资料及运行验证和反证，才能判断水资源是否成为选址硬约束。采用技术方案本身不证明当地存在硬约束或方案已解除约束；不将Hubbard加入硬约束区域清单，不回答或关闭问题，不修改骨架或模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7dbfae68a80c3dd21bd374fafc5778179a6fc279c22a69429a6eb0ec42a62cb2",
+        "source_report_sha256": "4cff0b8040eda5a5a8dd7e51d85bf562c57bf607262743e1b296c1b3f68a53e8",
+        "request_sha256": "3179a55619a965a62a9ad626da197848eae253af53355ff12a463dd381feefb5"
+      },
+      "object_mapping_check": "独立核对对象契约后，主张的实际范围是吸附剂制水并供再利用，对应system:thermal下chain:thermal/1的水处理与供水部件part:water-treatment。候选system:facility的土地建筑、消防安防范围不对应该技术机制，不予继承。该句不支持具体发电设备、水权或取水许可；AirJoule与Nexus无允许的对应主体ID，GE Vernova的邻近合资背景也不构成本项主体范围。此映射统一适用于所选证据，原始标签保持不变。"
     }
   ],
   "answers": [],
