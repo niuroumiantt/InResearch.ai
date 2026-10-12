@@ -66673,6 +66673,94 @@
         },
         "batch_id": "43236beef4dfc2d20c9510b5be37c72bcd89259efe896f826564f573b5416460"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:13:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "chain:power/3",
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-backup-power-interfaces",
+        "OBJ-backup-power-performance"
+      ],
+      "quote": "The total capacity of backup generators is often designed to support the peak power capacity of the data center under normal operation. However, sometimes the backup capacity is much lower than the peak power capacity, so it’s important to cross-check with other evidence. This is increasingly true of the largest AI data centers.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:16:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续三句引文及空气质量许可段的上下文充分支持本项定性作者主张。容量设计与上游峰值负载的关系实质贡献当前接口及依赖工作单；备用容量可能低于峰值则局部贡献性能适用边界研究，未提供可靠性测量结论。封存摘要强调容量估算与交叉核验的限制，与本次有限采用一致。未发现敏感、真实冲突、拟替换或其他A条件，符合B档局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-interfaces",
+          "Q-OBJ-backup-power-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.25,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a3ddfb5ea85af17de91784a14d46457dd2d017d0f32bb9994ce4f0b837d82144",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61270,
+            "output_tokens": 2073,
+            "reasoning_output_tokens": 264
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.04,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d09851226393fe4c61ac7d959424802ec0e03957b5408a96c221ad1bd5dd09e4",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 62421,
+              "output_tokens": 604,
+              "reasoning_output_tokens": 242
+            }
+          }
+        },
+        "batch_id": "5c74a90d304e86ac8dc19da0ecfe53f762f7ab49475a850bfd3dcf6d074cb48d"
+      }
     }
   ],
   "statements": [
@@ -129367,6 +129455,133 @@
         "request_sha256": "ef5386bc5a9f0b47bc219fd252353a12b25720ffdc4bbec887f1220a4a0ba138"
       },
       "object_mapping_check": "原文明示Digital Realty为投资参与方，与允许合同中的actor:digital-realty主体一致，采用其投资方角色。AtlasEdge没有对应允许主体ID，不能映射为Digital Edge或华为Atlas。主张是企业投资关系，未建立与root所定义单座AI数据中心的同一范围，也未明确设施系统或具体资产用途，因此不添加root、system:facility或其他基础设施对象。所选证据统一使用此审核后的主张级范围，原候选和证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:13:ev:0"
+      ],
+      "id": "adoption:review:f6621362c320bd13ef1f8cad",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/3",
+        "root"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-interfaces",
+        "OBJ-backup-power-performance"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "《AI data centers documentation – Methodology》的作者在利用空气质量许可研究备用发电容量的语境中称，备用发电机总容量常按支撑数据中心正常运营峰值功率设计，但有时备用容量远低于该峰值，因此需要与其他证据交叉核验；作者称，这种情况在最大型AI数据中心中越来越常见。发表时间及该趋势的有效时点未知，未限定具体地域、项目或分期。此处保留为来源对容量设计关系及其适用限制的定性判断，未经独立核验。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:16:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续三句引文及空气质量许可段的上下文充分支持本项定性作者主张。容量设计与上游峰值负载的关系实质贡献当前接口及依赖工作单；备用容量可能低于峰值则局部贡献性能适用边界研究，未提供可靠性测量结论。封存摘要强调容量估算与交叉核验的限制，与本次有限采用一致。未发现敏感、真实冲突、拟替换或其他A条件，符合B档局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-interfaces",
+          "Q-OBJ-backup-power-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.25,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a3ddfb5ea85af17de91784a14d46457dd2d017d0f32bb9994ce4f0b837d82144",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61270,
+            "output_tokens": 2073,
+            "reasoning_output_tokens": 264
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.04,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d09851226393fe4c61ac7d959424802ec0e03957b5408a96c221ad1bd5dd09e4",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 62421,
+              "output_tokens": 604,
+              "reasoning_output_tokens": 242
+            }
+          }
+        },
+        "batch_id": "5c74a90d304e86ac8dc19da0ecfe53f762f7ab49475a850bfd3dcf6d074cb48d"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:13"
+      ],
+      "limitations": "未给出项目样本、容量数值、覆盖比例、趋势统计、机型、备用等级、冗余配置、降额条件、保障时长或测试方法。“正常运营峰值功率”未在本段明确限定为IT功率，不能将备用容量直接换算为IT容量、实际供电能力或获批用能。较低容量也不能单独证明可靠性不足或设计失效。页面顶部标示Samaritan Research，页尾另称Epoch，机构归属尚未澄清。",
+      "conflict_check": "现有adoption:review:aa4099f906ec3f161590acaa说明主电源中断时的备用用途，没有完整覆盖容量设计关系，故非重复。adoption:review:ef6baaf37edf9a6b1cc48977及adoption:review:1c6822f8f717cbf06c9c5da5讨论负载对备用策略和容量压力的影响，与本项相容。Janous关于训练用途可能省略柴油备用的条件性观点，以及RICE和燃气轮机备用用途记录，均未断言所有项目必须覆盖正常运营峰值，不构成直接冲突。legacy三个台账的所供筛选记录为空；未发现真实冲突，但核查不等于全面外部反证搜索，不改写现有结论。",
+      "gap_dependency_check": "接口问题仅获得备用容量与数据中心峰值负载之间的设计依赖及例外；性能问题仅获得容量覆盖范围的限制线索。仍需具体柴油机组的电气和切换接口、负载范围、同工况容量、降额与冗余、启动和恢复时间、运行时长、燃料保障及可靠性测试。两个问题保持开放。本项没有Abilene原园区批准值或负荷接入等待起止日期，不满足两项参数请求，也不更新模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5c74a90d304e86ac8dc19da0ecfe53f762f7ab49475a850bfd3dcf6d074cb48d",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "00e8708d482da37fcfa6a6ede934f05be5ac001ce84d4efb9a0878d1ad07b550"
+      },
+      "object_mapping_check": "独立按主张范围选择system:power下的chain:power/3（发电与储能），对应备用发电机总容量；选择root（一座AI数据中心），对应正常运营峰值负载及整体容量设计关系。前文虽以柴油备用解释空气质量许可，所选三句未将通常关系及最大型AI数据中心例外全部限定为柴油机组，故不沿用part:backup-power。许可是证据获取背景，本项没有许可权利或办理流程结论，不增加site:permits；亦无并网配额证据，不增加site:grid。所选证据统一使用上述声明级范围，原候选和证据标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据是作者在许可研究方法中的定性说明，不是独立观测、统计调查或计算结果。“常”“有时”“远低于”没有样本和量化依据，不转化为发生率或覆盖率。",
+        "comparability_check": "引文提出同一数据中心备用容量与正常运营峰值的概念比较，但未提供可复算的同场址、同分期、同工况数据。不能据此建立跨项目统一容量比例，亦不能证明不同备用技术可互换。",
+        "derivation_check": "不适用：本项没有计算。不得由备用容量推导IT容量、获批用能、可靠性指标或接入等待年限，也不使用全文其他模型默认值补足本项。",
+        "scope_check": "本项为一般备用发电容量设计关系的定性作者判断，没有具体被测系统、场址、分期、软件或工作负载。最大型AI数据中心是来源的适用对象描述，未提供规模阈值。",
+        "time_check": "发表时间及趋势有效时点未知。“越来越常见”保留为来源在未知时点的判断，页面其他日期、采集时间或审查日期不能建立该趋势的时间区间。",
+        "units_check": "数值单位核验不适用：引文没有容量数值或单位。比较的是备用发电总容量与正常运营峰值功率，不是电量；不能补入MW、比例或将其等同于IT功率和批准用能。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "本项讨论一般备用容量与峰值负载关系，没有Abilene原园区的ERCOT或输电商批准原件、批准额度、接入容量或IT容量。交叉核验方法提示不能满足项目批准值要求；请求阅读不构成参数证据。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "备用发电容量设计不属于负荷接入申请、批准或排队等待阶段。本项没有Abilene同分期的申请起点与批准终点，不能支持等待年限，也不能以许可研究背景替代实际里程碑。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
