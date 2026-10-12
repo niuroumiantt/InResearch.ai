@@ -172,12 +172,41 @@ def research_append_only(before, after):
     return added > 0
 
 
+def initial_site_append_valid(project):
+    identity=project.get('identity_registration')
+    required={'version','site_id','name','native_name','country','region','location','basis'}
+    allowed=required|{'province','city','district','street_address'}
+    if (not isinstance(identity,dict) or not required <= identity.keys() or set(identity)-allowed
+            or type(identity['version']) is not int or identity['version']!=1
+            or any(not isinstance(v,str) or not v.strip() for k,v in identity.items() if k!='version')
+            or len(identity['country'])!=2 or not identity['country'].isascii() or not identity['country'].isupper()
+            or not identity['country'].isalpha() or len(identity['native_name'].strip())<4
+            or project.get('duplicate_of') or project.get('identity_scope') in ('cluster','portfolio')
+            or 'portfolio' in identity['site_id']
+            or any(project.get(k)!=v for k,v in identity.items() if k not in ('version','native_name','basis'))
+            or any(project.get(k) not in (None,{}) for k in ('capacity_it_mw','capacity_planned_it_mw','capacity_facility_mw','capacity_it_mw_by_status','capacity_assessment'))):
+        return False
+    observations=project.get('observations')
+    if not isinstance(observations,list) or not observations or len(observations)>500:
+        return False
+    for row in observations:
+        adoption=row.get('adoption',{}) if isinstance(row,dict) else {}
+        if (not isinstance(row,dict) or row.get('schema_version')!=2 or not row.get('fields')
+                or not row.get('source_versions') or not adoption or adoption.get('target_ids')!=[]
+                or not adoption.get('object_binding') or not adoption.get('assertions')
+                or adoption.get('review',{}).get('decision')!='adopted'
+                or any(k in row for k in ('replaces_observation_ids','owner_decision','supersedes','revision'))):
+            return False
+    return (observations[0]['fields'].get('name')==project.get('name')
+            and observations[0]['fields'].get('status')==project.get('status'))
+
+
 def project_observations_append_only(before, after):
-    """Only bounded new observations on existing identities, never revisions.
+    """Bounded observation appends and explicitly reviewed initial campuses, never revisions.
 
     All baseline fields, source records and old observations remain byte-value
-    equivalent. New identities, backfills, explicit replacements and changes to
-    adopted context require the complete regression. Strict validation and the
+    equivalent. New campuses require a frozen initial identity and targetless v2
+    source-reviewed observations; legacy new rows, backfills and revisions stay full. Strict validation and the
     existing source/C3 writer remain adoption gates, independently of CI scope.
     """
     old, new = map(strict_json, (before, after))
@@ -186,7 +215,7 @@ def project_observations_append_only(before, after):
     if 'records' not in old or any(canonical(old[k]) != canonical(new[k]) for k in old if k != 'records'):
         return False
     a, b = old['records'], new['records']
-    if not isinstance(a, list) or not isinstance(b, list) or len(a) != len(b):
+    if not isinstance(a, list) or not isinstance(b, list) or not len(a) <= len(b) <= len(a)+100:
         return False
     identities = set()
     added = 0
@@ -215,6 +244,15 @@ def project_observations_append_only(before, after):
                     or any(k in observation for k in ('replaces_observation_ids', 'owner_decision', 'supersedes', 'revision'))):
                 return False
         added += len(following)-len(prior)
+    names={str(name).casefold() for p in a for name in [p.get('name'),*(p.get('aliases') or [])] if name}
+    for project in b[len(a):]:
+        if not isinstance(project,dict) or not initial_site_append_valid(project):
+            return False
+        incoming_names={str(n).casefold() for n in [project['name'],*(project.get('aliases') or [])]}
+        if project.get('site_id') in identities or incoming_names & names:
+            return False
+        identities.add(project['site_id']);names.update(incoming_names)
+        added += len(project['observations'])
     return added > 0
 
 

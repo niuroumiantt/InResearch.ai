@@ -34,6 +34,52 @@ class ProjectReviewTests(unittest.TestCase):
           'assertions':[{'source_sha256':sha,'locator':'research/evidence.txt','quote':'60 MW of IT load',
                          'value':60,'unit':'MW','basis':'it','phase':'一期','scope':'aggregate'}]}
 
+    def initial_proposal(self):
+        event,sha=self.replace_native_text('FIN05 campus in Salo, Finland is planned. Street address not stated.')
+        p=copy.deepcopy(self.proposal);p.update(source_version=project_review.event_identity(event),target_ids=[],fields=['name','status'])
+        p['project'].update(capacity_it_mw=None,capacity_it_mw_by_status={},capacity_facility_mw=None)
+        p['observation']={'effective_at':None,'kind':'reported','basis':'source reports planned campus; date unknown','scope':'whole_site'}
+        p['initial_identity']={'version':1,'site_id':'fi-salo-test','name':'FIN05','native_name':'FIN05',
+                               'country':'FI','region':'europe','location':'Salo','basis':'named physical campus, address unknown'}
+        p['object_binding']={'version':1,'site_id':'fi-salo-test','fields':p['fields'],'scope':'whole_site'}
+        p['assertions']=[{'source_sha256':sha,'locator':'research/evidence.txt','quote':'FIN05 campus in Salo, Finland is planned.'}]
+        p['review']['delegation']={'delegate':p['review']['by'],'granted_by':'fixture owner','granted_at':'2026-10-06',
+                                 'reference':'test-only delegation','scope':'new_or_supplemental_research'}
+        return p
+
+    def test_initial_site_registers_without_targets_and_preserves_replay_times(self):
+        p=self.initial_proposal();(self.root/'framework/tco_targets.json').unlink()
+        result=project_review.apply(self.root,self.data,p);self.assertEqual(result['state'],'applied_in_checkout')
+        before=(self.root/'data/projects.json').read_bytes();site=json.loads(before)['records'][0]
+        self.assertEqual(site['identity_registration'],p['initial_identity']);self.assertEqual(len(site['observations']),1)
+        self.assertIsNone(site['observations'][0]['effective_at']);self.assertEqual(site['observations'][0]['adoption']['target_ids'],[])
+        self.assertEqual(project_review.apply(self.root,self.data,p)['state'],'already_applied')
+        self.assertEqual(before,(self.root/'data/projects.json').read_bytes())
+
+    def test_initial_site_rejects_identity_mismatch_duplicate_and_unquoted_native_name(self):
+        p=self.initial_proposal();before=(self.root/'data/projects.json').read_bytes()
+        bad=copy.deepcopy(p);bad['initial_identity']['country']='US'
+        with self.assertRaisesRegex(ValueError,'identity_mismatch'):project_review.apply(self.root,self.data,bad)
+        bad=copy.deepcopy(p);bad['initial_identity']['native_name']='another campus'
+        with self.assertRaisesRegex(ValueError,'not_in_reviewed_quote'):project_review.apply(self.root,self.data,bad)
+        self.assertEqual(before,(self.root/'data/projects.json').read_bytes())
+        project_review.apply(self.root,self.data,p)
+        bad=copy.deepcopy(p);bad['project']['site_id']='fi-salo-another';bad['initial_identity']['site_id']='fi-salo-another';bad['object_binding']['site_id']='fi-salo-another'
+        with self.assertRaisesRegex(ValueError,'duplicate_project_identity'):project_review.apply(self.root,self.data,bad)
+        bad['project']['name']='Renamed campus';bad['initial_identity']['name']='Renamed campus';bad['project']['aliases']=['fin05']
+        with self.assertRaisesRegex(ValueError,'duplicate_project_identity'):project_review.apply(self.root,self.data,bad)
+
+    def test_initial_site_cannot_inject_unreviewed_baseline_or_history(self):
+        p=self.initial_proposal();before=(self.root/'data/projects.json').read_bytes()
+        for field,value,error in [('observations',[], 'inject_history'),
+                                  ('adoption_history',[], 'inject_history'),
+                                  ('capacity_planned_it_mw',100, 'empty_capacity_baseline'),
+                                  ('developer',['unreviewed'], 'actor_requires_reviewed_field')]:
+            bad=copy.deepcopy(p);bad['project'][field]=value
+            with self.subTest(field=field):
+                with self.assertRaisesRegex(ValueError,error):project_review.apply(self.root,self.data,bad)
+                self.assertEqual(before,(self.root/'data/projects.json').read_bytes())
+
     def observation_proposal(self, **fields):
         project_review.apply(self.root,self.data,self.proposal)
         old=json.loads((self.root/'data/projects.json').read_text())['records'][0]
