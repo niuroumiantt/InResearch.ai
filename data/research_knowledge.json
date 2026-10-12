@@ -8426,6 +8426,61 @@
       "status": "candidate",
       "stored_path": "originals/16/161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff/dcd-161bc9a7a383591d-Alibaba Cloud needs 10x its 2022 compute capacity- says CEO Eddie.html",
       "title": "Alibaba Cloud needs 10x its 2022 compute capacity, says CEO Eddie Wu"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "coverage": {
+        "characters_read": 5630,
+        "characters_total": 5630,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "library_path": "library/by-node/system-power/2025_Office of the Ohio Consum_Data Center Costs 24-0508-EL-ATA__d18d41cf62e2175c.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:aep",
+        "root",
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-conversion",
+        "NODE-demand-D1-economics"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-16ee313fef2648bb80b64ed907bba23e",
+      "report_sha256": "d65b327f730cda31b1dd3bdff21ad3cb5237773816202d9c396c464865527800",
+      "source_provenance": {
+        "batch": "us-datacenter-power-20261009-v3",
+        "input_sha256": "d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+        "role": "downloaded_original",
+        "sidecar_sha256": "2f5df074d2368e7602e491855da59af9523e9f9976a5ed924733f2402a7b5ea6",
+        "source_id": "ohio",
+        "url": "https://occ.ohio.gov/content/data-center-costs-24-0508-el-ata",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://occ.ohio.gov/content/data-center-costs-24-0508-el-ata",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/d1/d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920/ohio.html",
+      "title": "Data Center Costs 24-0508-EL-ATA"
     }
   ],
   "evidence": [
@@ -63304,6 +63359,172 @@
           }
         },
         "batch_id": "388e7a1f98438c0bdb8838200654047d6c2b02f6aec728c6a3c9a91ff192d74b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8ea5e9d479a72d6741202d03aab82fe225a03093ba0dc5a1219e5283e218f724",
+      "document_id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "id": "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "quote": "Ohio’s electricity demand may be surging, if the growing number of massive data centers operated by tech giants like Amazon, Facebook, Google, and Microsoft commit to Ohio.",
+      "reading_revision_id": "rev-16ee313fef2648bb80b64ed907bba23e",
+      "source_sha256": "d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T03:32:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性及复核评分均为7。该条件性预测实质关联当前需求转化工作单中的兑现条件与不确定性，仅贡献大型数据中心布局承诺向州级电力需求传导的定性线索。连续引文、完整原生页面及已验证密封摘要足以支持这一有限采用。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级部分证据要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 58.913,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "65051f97ac2d6d5e61e3faa1983bae5c88da6ca46b0a519c879128c9817c7843",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 69200,
+            "output_tokens": 1441,
+            "reasoning_output_tokens": 380
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 34.612,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a24a970857ce95a6299b8eb4b43b18d88b0425395e48d2bec97d24e7181bb64a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69842,
+              "output_tokens": 605,
+              "reasoning_output_tokens": 298
+            }
+          }
+        },
+        "batch_id": "f5a0479636b2d4063e084ac7099eb39274f835ea7120a6e7845a989cce4b1d9c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8ea5e9d479a72d6741202d03aab82fe225a03093ba0dc5a1219e5283e218f724",
+      "document_id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "id": "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D1-economics"
+      ],
+      "quote": "On July 9, 2025, the PUCO adopted the consumer-focused settlement reached by AEP Ohio, OCC, PUCO Staff, Ohio Partners for Affordable Energy and others.",
+      "reading_revision_id": "rev-16ee313fef2648bb80b64ed907bba23e",
+      "source_sha256": "d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T03:28:47+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性及评分7。数据中心供电成本分担争议中的监管采纳事件，实质关联当前M04-Q04工单的消费者保护与监管回应部分。连续完整引文及全页争议背景足以支持这一限定归因的部分作者主张。未发现敏感材料、同口径真实冲突或拟替换条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.599,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "04f389e39e1875f3d13b70d47a2d1d9fa337ebef731c7be81af1376556c2ab93",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 54457,
+            "output_tokens": 1598,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.405,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ce3360f66124b3e05a55d5b5cd6d0b6cc924068ec473394882e1e3293903b2ff",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55130,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "0bbf6567e18134438b5f8948998cd069c23426cae0d0c9c4df2d078c3403d3f5"
       }
     }
   ],
@@ -122830,6 +123051,202 @@
         "request_sha256": "28547e8c43af8d8d442a3a42de4b4c3d9f21c6ac8942ef67e7ef01cdba7580fc"
       },
       "object_mapping_check": "独立核对对象合同：主张范围是一般物理AI终端，合同没有对应机械臂、仓库机器人、无人机或自动驾驶车辆对象，也未指认合同内企业。root的name为一座AI数据中心；计算设施与硬件属于其IT父链，system:control及其链限定DCIM/BMS与固件，均不能承接一般物理AI终端范围。不能因机器人示例推定ABB或巡检机器人厂商归属。所选证据统一使用空对象范围，保留有效D4问题匹配，不继承文档标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "evidence_ids": [
+        "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:4e331e8578c6897e79aae1ad",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-16ee313fef2648bb80b64ed907bba23e",
+      "status": "adopted",
+      "text": "俄亥俄州消费者顾问办公室（OCC）在《Data Center Costs 24-0508-EL-ATA》（发表日期未知）中提出条件性判断：若由Amazon、Facebook、Google、Microsoft等科技企业运营的大型数据中心承诺在俄亥俄州布局，该州电力需求可能激增。这是OCC在供电成本分担讨论中提出的定性预测，不构成对项目承诺已兑现、设施已投运或实际用电增长的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T03:32:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性及复核评分均为7。该条件性预测实质关联当前需求转化工作单中的兑现条件与不确定性，仅贡献大型数据中心布局承诺向州级电力需求传导的定性线索。连续引文、完整原生页面及已验证密封摘要足以支持这一有限采用。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级部分证据要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 58.913,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "65051f97ac2d6d5e61e3faa1983bae5c88da6ca46b0a519c879128c9817c7843",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 69200,
+            "output_tokens": 1441,
+            "reasoning_output_tokens": 380
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 34.612,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a24a970857ce95a6299b8eb4b43b18d88b0425395e48d2bec97d24e7181bb64a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69842,
+              "output_tokens": 605,
+              "reasoning_output_tokens": 298
+            }
+          }
+        },
+        "batch_id": "f5a0479636b2d4063e084ac7099eb39274f835ea7120a6e7845a989cce4b1d9c"
+      },
+      "source_candidate_ids": [
+        "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:3"
+      ],
+      "limitations": "原文未给出预测期限、需求增量及单位、工作负载、转换系数、时滞或误差范围，未区分AI与传统负载，也未明确具体项目阶段。commit to Ohio不能解释为项目已建成或承诺已兑现。OCC是消费者利益代表及相关和解参与方，该判断须保留其政策倡议背景。页面中的案件事件日期不等于本预测的发表日期；末尾012126不足以独立确立发布时间。来源网址仅由供应元数据绑定，未独立抓取核验。",
+      "conflict_check": "已采用adoption:review:0b22150e5309ef152c1761db强调开发、供电和客户使用时点的区分，与本项条件性预测相容且非重复。adoption:review:b338cdf4335136383d09b35b提出历史公用事业预测高估风险，构成验证提醒，并不直接反驳这项未量化的俄亥俄州预测。既有IEA扩张与效率判断及legacy全球、美国、欧洲国家的用电估算和预测具有不同地域、时期或指标，未形成同口径真实冲突。所供合同及项目匹配记录为空。检查仅限所供记录，不覆盖或替换既有结论。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需逐项目核验布局承诺、建设、并网、投运及实际使用的阶段和时点，建立工作负载、设备需求与电力需求的转换系数，并验证效率、利用率、时滞、预测误差和未兑现案例。本项不验证算力、网络或存储转换，不提供模型参数或容量汇总依据，不回答或关闭该问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f5a0479636b2d4063e084ac7099eb39274f835ea7120a6e7845a989cce4b1d9c",
+        "source_report_sha256": "d65b327f730cda31b1dd3bdff21ad3cb5237773816202d9c396c464865527800",
+        "request_sha256": "713f2755fd77956b7ecb4ac59769c3633a0a54e115e15d30a620aa9c0986affd"
+      },
+      "object_mapping_check": "独立复核后，本项范围是俄亥俄州总体电力需求的条件性预测。root限定一座AI数据中心，system:power及其链条限定设施内部电力资产，site:grid限定电力配额与并网权利，原文均未建立这些对象范围。科技企业名称用于举例说明运营者，未提供可归属于各企业的具体俄亥俄项目承诺；AEP仅出现在周围案件讨论中，不是本项预测主体。因此保留空对象列表及有效问题关联，所选证据统一使用这一审定范围，不继承原始标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "evidence_ids": [
+        "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:0:ev:0"
+      ],
+      "id": "adoption:review:015fb5ef3ee94156a5546fb1",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q04"
+      ],
+      "reading_revision_id": "rev-16ee313fef2648bb80b64ed907bba23e",
+      "status": "adopted",
+      "text": "俄亥俄州消费者顾问办公室（OCC）在《Data Center Costs 24-0508-EL-ATA》页面中称，俄亥俄州公用事业委员会（PUCO）于2025年7月9日采纳了AEP Ohio、OCC、PUCO Staff、Ohio Partners for Affordable Energy等达成的和解；OCC将其描述为以消费者保护为导向的和解。这是参与和解的消费者代表机构对监管事件的陈述，未经本次独立核验监管决定原文，不代表对和解当前效力或保护效果的认证。页面发表及更新时间未确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T03:28:47+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性及评分7。数据中心供电成本分担争议中的监管采纳事件，实质关联当前M04-Q04工单的消费者保护与监管回应部分。连续完整引文及全页争议背景足以支持这一限定归因的部分作者主张。未发现敏感材料、同口径真实冲突或拟替换条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.599,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "04f389e39e1875f3d13b70d47a2d1d9fa337ebef731c7be81af1376556c2ab93",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 54457,
+            "output_tokens": 1598,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.405,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ce3360f66124b3e05a55d5b5cd6d0b6cc924068ec473394882e1e3293903b2ff",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55130,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "0bbf6567e18134438b5f8948998cd069c23426cae0d0c9c4df2d078c3403d3f5"
+      },
+      "source_candidate_ids": [
+        "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:0"
+      ],
+      "limitations": "所选引文仅支持采纳日期、列明的参与方及OCC对和解的描述，不支持具体费率、付款义务、居民账单变化或PPA价格走势。原生页面更新段还提到2025年11月行业团体上诉，但未提供法院文件或裁判结果，不能确认当前法律效力。案件及和解链接的正文未提供，也未独立核验；末尾“012126”不能据此认定为发布日期。",
+      "conflict_check": "既有IEA总体电价关系、哥伦布居民账单增量预测、PJM容量账单反事实及核电PPA情景，均不否定本项监管采纳事件；采纳消费者保护安排也不证明居民账单不会上涨。马萨诸塞州保护机制、Gallup及SCCS担忧涉及不同地域、主体或事件，不构成重复。legacy中的俄亥俄项目容量和建设状态没有提出相反的和解采纳记录。未发现同口径真实冲突或可指认的重复规范记录，不替换已有结论；检查限于所供记录。",
+      "gap_dependency_check": "本项仅为M04-Q04贡献一项俄亥俄州成本分担争议中的监管回应事件，不能证明实际居民成本转嫁，也不能建立已发生的涨价引发政治反弹的因果链。仍需PUCO决定及和解原文、适用范围与执行记录、上诉进展、居民费率和成本分摊数据、PPA价格序列及反证。问题保持开放，不更新电价参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0bbf6567e18134438b5f8948998cd069c23426cae0d0c9c4df2d078c3403d3f5",
+        "source_report_sha256": "d65b327f730cda31b1dd3bdff21ad3cb5237773816202d9c396c464865527800",
+        "request_sha256": "23d512e23c66966732ea2c1c7e9bec3f42162c16236887326ade059bbbb3a025"
+      },
+      "object_mapping_check": "实际范围是俄亥俄州监管机构采纳和解的事件及参与方，未确立一座AI数据中心、设施系统、并网协议或具体项目阶段。root是一座AI数据中心，site:grid是其电力配额与并网权利，site:permits是项目许可，均不对应本项事件。合同中actor:aep名为“美国电力”，所供证据仅列AEP Ohio，未确立与该对象的主体身份对应关系，故不自动将子公司名称映射为该主体。其他列明机构没有对应的允许对象。独立采用空对象范围，保留M04-Q04关联，不继承Reader标签；所选证据统一使用该范围。"
     }
   ],
   "answers": [],
