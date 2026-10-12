@@ -70725,6 +70725,87 @@
         },
         "batch_id": "db8c83c3ac8d1805d93f6fb5a288182314cfec09a3c51bea5a4f369e0d697555"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9fba5a68ab2e08fe0f28a2a9e9f0af873a192579ba1e60d5284255a9ec1f2784",
+      "document_id": "doc-189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "id": "rev-83d4856645dc4046b1b6e9e6413690f1:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "This latest round of financing is provided by a consortium of banks, including Barclays, BNP Paribas, Deutsche Bank, HSBC, SMBC, Société Générale, and Standard Chartered.",
+      "reading_revision_id": "rev-83d4856645dc4046b1b6e9e6413690f1",
+      "source_sha256": "189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:24:25+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。融资提供方式及具名银行参与关系实质贡献于当前M11-Q07的融资结构维度。连续原文完整支持名单，完整原生页面明确融资主体和本轮交易语境。未发现敏感、真实研究冲突、拟替换或其他A类条件，符合B类限定归因的部分证据采用要求。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.925,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ce25507abf3f312d12c1b4a913a88600b660c40acc79593106508be6c9c5b6d9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 68771,
+            "output_tokens": 1369,
+            "reasoning_output_tokens": 444
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.309,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb63438dd1c52dfe2a8ad205b66dc0e2265e9749e7ac6615e3033b833f15a342",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69287,
+              "output_tokens": 573,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "5cec36d3bc6cdc109789be1d45548768c3f3cc01d5a4142f6afb66bf9b633e9e"
+      }
     }
   ],
   "statements": [
@@ -137447,6 +137528,104 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-189c19bae624bb53755208ac1132e6891b8a73c493420c54b87b62eee431b027",
+      "evidence_ids": [
+        "rev-83d4856645dc4046b1b6e9e6413690f1:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:197e6988dce1bf170517b82b",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M11-Q07"
+      ],
+      "reading_revision_id": "rev-83d4856645dc4046b1b6e9e6413690f1",
+      "status": "adopted",
+      "text": "据DCD作者Barney Dixon于2026年3月11日的报道，Princeton Digital Group（PDG）此次追加HoldCo债务融资由银行财团提供，参与者包括Barclays、BNP Paribas、Deutsche Bank、HSBC、SMBC、Société Générale和Standard Chartered。这是来源对融资提供方及参与关系的陈述，未经本次独立核验。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:24:25+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。融资提供方式及具名银行参与关系实质贡献于当前M11-Q07的融资结构维度。连续原文完整支持名单，完整原生页面明确融资主体和本轮交易语境。未发现敏感、真实研究冲突、拟替换或其他A类条件，符合B类限定归因的部分证据采用要求。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.925,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ce25507abf3f312d12c1b4a913a88600b660c40acc79593106508be6c9c5b6d9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 68771,
+            "output_tokens": 1369,
+            "reasoning_output_tokens": 444
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.309,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb63438dd1c52dfe2a8ad205b66dc0e2265e9749e7ac6615e3033b833f15a342",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69287,
+              "output_tokens": 573,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "5cec36d3bc6cdc109789be1d45548768c3f3cc01d5a4142f6afb66bf9b633e9e"
+      },
+      "source_candidate_ids": [
+        "rev-83d4856645dc4046b1b6e9e6413690f1:chunk:0:claim:4"
+      ],
+      "limitations": "二手报道不能代替一手融资文件。原文使用including，名单不能视为完整清单；未披露各行份额、具体安排或承销角色、最终贷款持有情况、利率、期限、担保及提款条件。报道日期明确，确切融资完成日未披露。上下文用途为亚洲多市场超大规模组合扩张，未明确各项目阶段或资金分配；融资完成不证明资金已全部提款或容量已投运。",
+      "conflict_check": "已采用STACK融资记录虽包含Deutsche Bank和Société Générale，但属于不同主体、地域和交易，不构成重复。其他已采用融资案例及一般信用风险观点不否定本条PDG银行参与关系。legacy事实中的Barclays是CoreWeave容量及Vertiv订单研究的断言者，与本条融资提供方角色不同；所供合同和项目匹配记录为空。未发现真实冲突或规范重复，检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "仅补充M11-Q07的融资结构及参与方线索，不能回答资本成本或关闭问题。仍需一手融资公告或协议、各行角色和份额、债股结构、信用支持、定价、期限及可复查推导，并核对反证。当前工单的一手来源要求尚未满足，不据此赋值债务利率、WACC或其他模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5cec36d3bc6cdc109789be1d45548768c3f3cc01d5a4142f6afb66bf9b633e9e",
+        "source_report_sha256": "cfd37e39cb377ee2bc2364f3f5ba368f867514bffb8bf7a2e8ebf3ee38eac4b2",
+        "request_sha256": "a9951ef6c4663b2961de433b7b2a3e2b3272d123e170488751003edcd52a15bd"
+      },
+      "object_mapping_check": "本条范围为PDG公司层面的HoldCo融资及银行参与关系，允许对象中没有PDG或所列银行的对应actor ID。root定义为一座AI数据中心，与亚洲多市场组合的公司融资范围不一致；未明确具体系统、链、设备或接入权的资金用途。因此不继承Reader的root标签，不借用其他主体或基础设施对象。对象为空仍保留M11-Q07的有效关联，所选证据统一采用此审核后的主张级对象范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
