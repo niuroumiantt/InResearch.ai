@@ -8743,6 +8743,69 @@
       "status": "candidate",
       "stored_path": "originals/04/04f4e8803272acb47c16ee67709e802e682603e19be50900f6dd0fdcd80c3540/crusoe-abilene-separate-microsoft-900mw.html",
       "title": "Crusoe Announces New 900 MW AI Factory Campus in Abilene, Texas to Support Microsoft AI Infrastructure"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "coverage": {
+        "characters_read": 6418,
+        "characters_total": 6418,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "library_path": "library/by-node/part-coldplate/2026_DCD_CoolIT designs 15kW coldplate to future-proof liquid co__4142916d7ca491e9.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:coldplate",
+        "part:coolant",
+        "part:gpu",
+        "system:it"
+      ],
+      "question_ids": [
+        "OBJ-coldplate-alternatives",
+        "OBJ-coldplate-definition",
+        "OBJ-coldplate-interfaces",
+        "OBJ-coldplate-performance",
+        "OBJ-coldplate-supply",
+        "OBJ-coolant-definition",
+        "OBJ-coolant-performance",
+        "Q-SCOPE-arch-blackwell"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "report_sha256": "99c6a0d743d245932f7c2276cb5339a5c2dccd2da2db155187c91fa0d39fba7b",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+        "url": "https://www.datacenterdynamics.com/en/news/coolit-designs-15kw-coldplate-to-future-proof-liquid-cooling-for-gpus/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/coolit-designs-15kw-coldplate-to-future-proof-liquid-cooling-for-gpus/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/41/4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c/dcd-4142916d7ca491e9-CoolIT designs 15kW coldplate to future-proof liquid cooling for .html",
+      "title": "CoolIT designs 15kW coldplate to future-proof liquid cooling for GPUs"
     }
   ],
   "evidence": [
@@ -64540,6 +64603,445 @@
           }
         },
         "batch_id": "a67c124bbd2ee8ecd8978792deaced68af921b6864ce1352d4520b7fa14a9d1b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "04c5e98f2806231335752497e8aaee7dc123b90b27dffea877ccf4ab9dffa0c9",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "id": "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:coldplate"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-coldplate-performance"
+      ],
+      "quote": "The company this week announced that it has developed the first 15kW coldplate design, which it claims delivers nearly four times the performance of its earlier single-phase direct liquid cooling (DLC) coldplate designs.",
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "source_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原文及完整页面提供设计对象、公司归因与测试阶段，对当前冷板性能工单贡献具体能力声明和比较线索。限定来源及适用范围后满足B类局部采用条件；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "04c5e98f2806231335752497e8aaee7dc123b90b27dffea877ccf4ab9dffa0c9",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "id": "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:coldplate"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-coldplate-definition"
+      ],
+      "quote": "The 15kW coldplate uses CoolIT's Split-Flow microchannel architecture.",
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "source_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文及相邻设计、测试段落足以识别具体对象，对当前冷板定义与组成工单提供直接的局部结构信息；缺少完整组成不妨碍限定采用。未发现A条件，符合B类条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "04c5e98f2806231335752497e8aaee7dc123b90b27dffea877ccf4ab9dffa0c9",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "id": "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:coldplate",
+        "part:coolant"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-coldplate-interfaces",
+        "OBJ-coldplate-performance",
+        "OBJ-coolant-definition",
+        "OBJ-coolant-performance"
+      ],
+      "quote": "The design was validated on a thermal test vehicle with a standard water-glycol coolant at 1.2 L/min/kW, with system-level thermal performance suitable for 45°C (113 ° F) warm-water cooling environments.",
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "source_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续引文及完整设计语境提供介质类型、归一化流量、环境温度和测试阶段，对当前冷板接口与性能、工质组成与接口问题有直接局部贡献；工质性能问题仅获得联合测试条件。修正候选对glycol的过度具体化后满足B类条件，无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-interfaces",
+          "Q-OBJ-coldplate-performance",
+          "Q-OBJ-coolant-definition",
+          "Q-OBJ-coolant-interfaces",
+          "Q-OBJ-coolant-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "04c5e98f2806231335752497e8aaee7dc123b90b27dffea877ccf4ab9dffa0c9",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "id": "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coolit-systems",
+        "system:thermal",
+        "part:coldplate"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-coldplate-alternatives"
+      ],
+      "quote": "CoolIT said the latest design shows that single‑phase DLC offers “significant performance runway” and “remains the de facto cooling standard” for high‑density AI systems.",
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "source_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分5。连续引文与相邻15 kW设计及测试语境支持明确归因的厂商路线判断，对当前替代方案和路线转折条件问题提供定性的性能余量主张。仅作局部观点证据采用，不确认市场标准或份额；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-alternatives",
+          "Q-M08-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "04c5e98f2806231335752497e8aaee7dc123b90b27dffea877ccf4ab9dffa0c9",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "id": "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coolit-systems",
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "\"Single-phase DLC is already cooling millions of AI accelerators today. This achievement shows it is also the architecture to cool AI infrastructure well into the future,\" said Kamal Mostafavi, CTO of CoolIT Systems.",
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "source_sha256": "4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分5。连续具名引文和完整发布语境支持公司报告的采用规模，对当前液冷采用曲线及路线份额问题提供有限的规模线索。允许问题ID来自本项allowed_question_ids，未沿用Reader的空匹配。仅作有归因的部分证据采用，无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M08-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
       }
     }
   ],
@@ -125190,6 +125692,525 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "evidence_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:0:ev:0"
+      ],
+      "id": "adoption:review:dfb4f104a657f441e101bf2a",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:coldplate"
+      ],
+      "question_ids": [
+        "OBJ-coldplate-performance"
+      ],
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年6月3日的报道中转述，CoolIT当周宣布已开发15 kW冷板设计，并声称其性能接近公司此前单相直接液冷冷板设计的四倍。这是公司对设计能力及相对性能的声明，不构成独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原文及完整页面提供设计对象、公司归因与测试阶段，对当前冷板性能工单贡献具体能力声明和比较线索。限定来源及适用范围后满足B类局部采用条件；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      },
+      "source_candidate_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:0"
+      ],
+      "limitations": "未说明近四倍所用性能指标、比较基线的具体型号或同工况测试方法。相邻原文将验证限定为热测试载体，未给出实际GPU部署或长期可靠性结果；测试日期、地域及商业交付阶段未确立。",
+      "conflict_check": "现有SemiAnalysis转述的传统冷板及TSMC微柱数据涉及不同载体、介质、流量和热边界，不能与本项15 kW直接比较或认定冲突。Bianca冷板版本记录讨论配置适配。所供legacy匹配记录为空，未发现同条件真实冲突或完整重复；不替换既有结论。",
+      "gap_dependency_check": "仅贡献冷板性能研究的设计能力线索。仍需性能指标定义、同工况基线、测试方法、温度与压降边界、误差及可靠性反证；问题保持开放，不更新模型值、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374",
+        "source_report_sha256": "99c6a0d743d245932f7c2276cb5339a5c2dccd2da2db155187c91fa0d39fba7b",
+        "request_sha256": "1273fa3dd3dac9c62fdd05ff0781444e0928e9d4dfe590dc3e17855d251a0456"
+      },
+      "object_mapping_check": "原文明确讨论CoolIT开发的冷板设计及其性能声明，匹配具名厂商与芯片级链下的冷板部件；不据15 kW散热声明增加GPU、电力或整机柜映射。所选证据统一采用此主张级范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "evidence_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:d454c5b37ea472a5a1e6e22a",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:coldplate"
+      ],
+      "question_ids": [
+        "OBJ-coldplate-definition"
+      ],
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年6月3日的报道中称，CoolIT的15 kW冷板设计采用该公司的Split-Flow微通道架构。这是来源对该设计结构的描述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文及相邻设计、测试段落足以识别具体对象，对当前冷板定义与组成工单提供直接的局部结构信息；缺少完整组成不妨碍限定采用。未发现A条件，符合B类条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      },
+      "source_candidate_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:1"
+      ],
+      "limitations": "仅给出架构名称，未提供微通道尺寸、材料、流路图、部件组成或对象排除边界。具体型号、开发及测试日期、地域和商业交付状态未建立。",
+      "conflict_check": "现有TSMC微柱、传统有盖及无盖冷板记录属于其他方案，Bianca记录属于配置适配，均未规定本设计结构。所供legacy匹配记录为空，未发现真实冲突或既有canonical重复；检查限于所供材料。",
+      "gap_dependency_check": "定义问题仅获得一个具名设计的架构线索，仍需产品结构图、材料和组成清单、功能边界及排除对象，不能由此回答通用冷板定义或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374",
+        "source_report_sha256": "99c6a0d743d245932f7c2276cb5339a5c2dccd2da2db155187c91fa0d39fba7b",
+        "request_sha256": "1273fa3dd3dac9c62fdd05ff0781444e0928e9d4dfe590dc3e17855d251a0456"
+      },
+      "object_mapping_check": "具名CoolIT的Split-Flow微通道架构明确属于该冷板的结构描述，匹配厂商与芯片级冷板部件；没有CDU、控制软件或其他设备的组成证据。所选证据统一采用此范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "evidence_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:07c5962f99605ca24eb8f220",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:coolit-systems",
+        "part:coldplate",
+        "part:coolant"
+      ],
+      "question_ids": [
+        "OBJ-coldplate-interfaces",
+        "OBJ-coldplate-performance",
+        "OBJ-coolant-definition",
+        "OBJ-coolant-interfaces",
+        "OBJ-coolant-performance"
+      ],
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年6月3日的报道中称，CoolIT的15 kW冷板设计在热测试载体上进行了验证，使用标准water-glycol（水与glycol混合）冷却液，流量为1.2 L/min/kW，所述系统级热性能适用于45°C（113 °F）的温水冷却环境。这是来源报告的测试条件及适用性表述，不构成实际部署性能或独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续引文及完整设计语境提供介质类型、归一化流量、环境温度和测试阶段，对当前冷板接口与性能、工质组成与接口问题有直接局部贡献；工质性能问题仅获得联合测试条件。修正候选对glycol的过度具体化后满足B类条件，无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-interfaces",
+          "Q-OBJ-coldplate-performance",
+          "Q-OBJ-coolant-definition",
+          "Q-OBJ-coolant-interfaces",
+          "Q-OBJ-coolant-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      },
+      "source_candidate_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:2"
+      ],
+      "limitations": "原文water-glycol未指明具体醇类，不能确定为乙二醇；未给出配比或产品规格。45°C被描述为温水冷却环境，未明确为冷板入口温度。缺少结温、热阻、压降、测量误差、样本量、完整测试方法及兼容性资料；测试日期、地域未确立，没有实际运行、可靠性、PUE或WUE证据。",
+      "conflict_check": "既有TSMC相关记录使用去离子水及不同测试载体，流量单位和热边界也不同，不能与本项直接比较。SyCool记录讨论相变制冷剂循环，属于另一系统，不构成介质冲突。所供legacy匹配记录为空，未发现真实冲突或完整重复，不改写既有结论。",
+      "gap_dependency_check": "冷板接口与性能获得测试条件，工质定义获得混合物类型，工质接口获得联合使用条件；工质性能仅获上下文，不能将冷板系统性能归因为工质自身性能。仍需介质规格、配比、材料兼容性、接口规范、测试边界及长期失效证据。五项问题均保持开放，不填cooling、PUE或WUE模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374",
+        "source_report_sha256": "99c6a0d743d245932f7c2276cb5339a5c2dccd2da2db155187c91fa0d39fba7b",
+        "request_sha256": "1273fa3dd3dac9c62fdd05ff0781444e0928e9d4dfe590dc3e17855d251a0456"
+      },
+      "object_mapping_check": "相邻原文明示测试对象为CoolIT的15 kW冷板，介质为water-glycol，独立匹配厂商、芯片级冷板和名称包含工质的冷却液部件。工质虽归在冷水与CDU链下，本句不证明存在CDU或冷冻水回路；系统级性能措辞也不足以增加具体设施设备。所选证据统一采用此范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "evidence_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:fffc4608da92806d7fcd82db",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:coolit-systems",
+        "system:thermal",
+        "part:coldplate"
+      ],
+      "question_ids": [
+        "OBJ-coldplate-alternatives",
+        "M08-Q02"
+      ],
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年6月3日的报道中转述，CoolIT认为其最新冷板设计显示单相直接液冷仍有显著性能提升空间，并称该路线仍是高密度AI系统的“事实冷却标准”。这是厂商对路线地位及发展空间的判断，未获本次独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分5。连续引文与相邻15 kW设计及测试语境支持明确归因的厂商路线判断，对当前替代方案和路线转折条件问题提供定性的性能余量主张。仅作局部观点证据采用，不确认市场标准或份额；未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-coldplate-alternatives",
+          "Q-M08-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      },
+      "source_candidate_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:3"
+      ],
+      "limitations": "未提供市场份额、统计分母、地域、样本或同工况路线比较；没有冷板与浸没的成本、可靠性及切换阈值证据。15 kW测试载体不能证明所有单相直接液冷设计均具有相同能力。",
+      "conflict_check": "DCD年度回顾保留企业托管风冷仍适用的条件，讨论范围与高密度AI不同；高密度改造液冷必要性的作者判断也不区分冷板与浸没。TSMC微柱测试展示其他技术选项，但不直接否定该厂商的路线观点。所供legacy匹配记录为空，未发现同条件真实冲突或完整重复。",
+      "gap_dependency_check": "两项问题仅获得厂商对单相冷板路线性能余量的定性立场。仍需同工况性能、成本、约束与反证，以及冷板和浸没的份额统计和可复查转折条件；均保持开放，不据此选择通用最优路线或覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374",
+        "source_report_sha256": "99c6a0d743d245932f7c2276cb5339a5c2dccd2da2db155187c91fa0d39fba7b",
+        "request_sha256": "1273fa3dd3dac9c62fdd05ff0781444e0928e9d4dfe590dc3e17855d251a0456"
+      },
+      "object_mapping_check": "原文是CoolIT依据新冷板设计提出的单相直接液冷路线判断，匹配厂商、冷板部件及水与散热系统的路线范围。没有浸没系统的直接主张，不因问题涉及路线比较增加part:immersion，也不因高密度AI措辞映射计算资产。所选证据统一采用此范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c",
+      "evidence_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:cd642610fdebd5e3eb2c466c",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:coolit-systems",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M08-Q01",
+        "M08-Q02"
+      ],
+      "reading_revision_id": "rev-197203a22f474c33bedc8ef53b46876c",
+      "status": "adopted",
+      "text": "据DCD作者Dan Swinhoe于2026年6月3日发表的报道，CoolIT Systems首席技术官Kamal Mostafavi称，单相直接液冷当时已用于冷却数百万个AI加速器。这是公司高管对该路线使用规模的陈述，并非独立核验的装机统计。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:35:54+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分5。连续具名引文和完整发布语境支持公司报告的采用规模，对当前液冷采用曲线及路线份额问题提供有限的规模线索。允许问题ID来自本项allowed_question_ids，未沿用Reader的空匹配。仅作有归因的部分证据采用，无A条件。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M08-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 177.784,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e535c6a4a67c42853633ca8fc8ecf69a7e86a5749b7918a90f633f0ca3be4e10",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71421,
+            "output_tokens": 5372,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.788,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "cb347bd70e46fa872fd3540c655c48a7d4954b421df55612d33f129a222a199a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68726,
+              "output_tokens": 387,
+              "reasoning_output_tokens": 120
+            }
+          }
+        },
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      },
+      "source_candidate_ids": [
+        "rev-197203a22f474c33bedc8ef53b46876c:chunk:0:claim:4"
+      ],
+      "limitations": "未披露统计来源、截止日期、地域、客户范围或计数方法；不能认定这些加速器全部采用CoolIT产品。缺少市场总量分母、时间序列、新建与改造划分及浸没路线数量，不能计算渗透率或路线份额。",
+      "conflict_check": "既有DCD市场回顾、高密度改造条件及Scala新建筑设计预期分别讨论定性采用范围、工程条件和计划阶段，均不能验证或否定数百万加速器的公司统计。未发现同口径既有canonical记录或真实冲突；所供legacy匹配记录为空，检查不代表外部全面反证搜索。",
+      "gap_dependency_check": "M08-Q01获得单一时点的公司规模陈述，M08-Q02获得单相直接液冷使用规模线索。两项问题仍需原始统计、明确分母、地域和路线边界，并分别补足新建与存量改造的实际曲线及冷板与浸没份额、转折条件和反证；均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374",
+        "source_report_sha256": "99c6a0d743d245932f7c2276cb5339a5c2dccd2da2db155187c91fa0d39fba7b",
+        "request_sha256": "1273fa3dd3dac9c62fdd05ff0781444e0928e9d4dfe590dc3e17855d251a0456"
+      },
+      "object_mapping_check": "原文是CoolIT首席技术官对单相直接液冷使用规模的陈述，匹配具名主体及水与散热系统的采用范围。数百万AI加速器未明确全部为GPU或定制ASIC，也未说明具体冷板产品，不继承计算部件或特定冷板映射。所选证据统一采用此范围，原标签保持不变。"
     }
   ],
   "answers": [],
