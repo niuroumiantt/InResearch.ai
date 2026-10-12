@@ -70050,6 +70050,90 @@
         },
         "batch_id": "752fd2423f6e2a68458b265763443175035b8fe55f22b724bf94128fcdfe1c94"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c76b29aac3c9ad82119e301facfd20588fb9ede0566e5d4c05ba7e47dfac4c51",
+      "document_id": "doc-a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "id": "rev-6884ff38f5ab4cbbaa3a456a2aba2a07:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:coreweave"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "In addition, while the execs said that they do not necessarily know for sure how the compute is being used, looking at the power profiles, they now estimate that more than 50 percent is going toward inferencing workloads.",
+      "reading_revision_id": "rev-6884ff38f5ab4cbbaa3a456a2aba2a07",
+      "source_sha256": "a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:06:53+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性及本次评分均为7。连续原文及充分上下文支持有条件的管理层用途估计，与当前M03-Q07容量分配研究有实质关系；对M03-Q06仅提供以电力负载特征识别用途的方法线索。未发现敏感、直接冲突或替换条件，可按B类采用局部来源主张，两个问题均保持开放。",
+        "workorder_ids": [
+          "Q-M03-Q07",
+          "Q-M03-Q06"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.379,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4ccbef9e63d92fc4e5f23ea2e95f9d361023803847d58b681a1935d6fc1d4da8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35563,
+            "output_tokens": 1110,
+            "reasoning_output_tokens": 211
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 41.53,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f7c2a3e7debae43c73714123889d2d2d29517549862b1af0205e890bdc8e9573",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 36049,
+              "output_tokens": 484,
+              "reasoning_output_tokens": 189
+            }
+          }
+        },
+        "batch_id": "4f696c379d534e09e0c46d912a8461deab9a656a18fb6de8191ae399952fae83"
+      }
     }
   ],
   "statements": [
@@ -135913,6 +135997,108 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a2b8adcc8280a3fd2664a028fb88487c1a4f83cccd765a34a1f2bbe78dd0bd74",
+      "evidence_ids": [
+        "rev-6884ff38f5ab4cbbaa3a456a2aba2a07:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:bfc245adaa3774179aac2332",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:coreweave"
+      ],
+      "question_ids": [
+        "M03-Q07",
+        "M03-Q06"
+      ],
+      "reading_revision_id": "rev-6884ff38f5ab4cbbaa3a456a2aba2a07",
+      "status": "adopted",
+      "text": "DCD作者Georgia Butler在2026年5月8日的报道中转述CoreWeave高管在Q1 FY2026财报电话会中的说法：高管根据电力负载特征估计，超过50%的计算用于推理工作负载，同时承认并不能确定计算的实际用途。这是管理层对公司计算用途的估计，未经本次审核独立验证；该句未指明具体地域、站点或项目阶段，不能归入文中的未来自建项目。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:06:53+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性及本次评分均为7。连续原文及充分上下文支持有条件的管理层用途估计，与当前M03-Q07容量分配研究有实质关系；对M03-Q06仅提供以电力负载特征识别用途的方法线索。未发现敏感、直接冲突或替换条件，可按B类采用局部来源主张，两个问题均保持开放。",
+        "workorder_ids": [
+          "Q-M03-Q07",
+          "Q-M03-Q06"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.379,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4ccbef9e63d92fc4e5f23ea2e95f9d361023803847d58b681a1935d6fc1d4da8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35563,
+            "output_tokens": 1110,
+            "reasoning_output_tokens": 211
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 41.53,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f7c2a3e7debae43c73714123889d2d2d29517549862b1af0205e890bdc8e9573",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 36049,
+              "output_tokens": 484,
+              "reasoning_output_tokens": 189
+            }
+          }
+        },
+        "batch_id": "4f696c379d534e09e0c46d912a8461deab9a656a18fb6de8191ae399952fae83"
+      },
+      "source_candidate_ids": [
+        "rev-6884ff38f5ab4cbbaa3a456a2aba2a07:chunk:0:claim:11"
+      ],
+      "limitations": "报道未定义计算占比的分母、统计窗口、覆盖资源及推理识别方法，也未提供原始功率曲线或测量数据。超过50%不能转换成已核实的容量、电力、GPU数量或GPU小时占比，不能推导其余计算全部用于训练。所供材料是新闻转述，未附财报电话会原始记录。",
+      "conflict_check": "已比对所供采用陈述及legacy选择结果。Meta传统推荐推理的非同步模式和ChatGPT每日提示量分别讨论负载机制与服务规模，与CoreWeave计算用途估计不构成同口径冲突，也不是规范重复。所供legacy匹配记录为空，不能据此宣称全库或外部不存在反证。本项不覆盖既有结论。",
+      "gap_dependency_check": "M03-Q07仍需原始用途分类、分母定义、统计时段、容量与使用量之间的关系及反证；M03-Q06仍需带采样周期、功率幅度和工作负载条件的实际测量曲线。新闻原文和封存摘要不能补齐这些缺口，本项不回答或关闭工作单。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4f696c379d534e09e0c46d912a8461deab9a656a18fb6de8191ae399952fae83",
+        "source_report_sha256": "437cd80b6cdf2816e2a3cbe67c4f36c55a4ce1266b7db2478bc891890a52bc83",
+        "request_sha256": "e5880c8ada9e4666f49029b83bede113447cfca92adb70e9c096350af6567a75"
+      },
+      "object_mapping_check": "actor:coreweave是合同中明确列出的经营主体，符合本项公司范围的用途估计。该占比没有按GPU型号或资产类别拆分，邻近GPU讨论不足以把整体计算占比限定为part:gpu；也未确立一座数据中心的资产范围，因此不映射root、计算系统或电力设施。所有所选证据采用这一复核后的主张范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
