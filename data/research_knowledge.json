@@ -9287,6 +9287,105 @@
       "status": "candidate",
       "stored_path": "originals/36/36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af/dcd-36efa5cf4482e9bf-Data center power density- Planning liquid-cooled AI data centers.html",
       "title": "Data center power density: Planning liquid-cooled AI data centers around grid and power constraints"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+      "coverage": {
+        "characters_read": 8187,
+        "characters_total": 8187,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+      "id": "doc-bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+      "library_path": "library/by-node/root/2025_Crusoe_Crusoe expands AI data center campus in Abilene to 1.2__bdb06156e604a2f8.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:crusoe",
+        "actor:lancium",
+        "part:bess",
+        "part:gas-turbine",
+        "part:rack-system",
+        "root",
+        "site:grid",
+        "system:facility"
+      ],
+      "question_ids": [
+        "M01-Q03",
+        "M04-Q07",
+        "M05-Q06",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-305a6ef987574664a5ad3c6328c798cd",
+      "report_sha256": "634b15f054f34c93e484f04073763bfe9fc1285eac1939b5b5133d7d6e9197b8",
+      "research_requests": [
+        {
+          "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+          "purpose": "R3 项目样例：Abilene 批准容量核验；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "question_id": "M05-Q06",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+          "scope_values": {
+            "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+            "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+            "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+            "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        },
+        {
+          "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+          "purpose": "R3 项目样例：Abilene 接入等待里程碑核验；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "question_id": "M04-Q07",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+          "scope_values": {
+            "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+            "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+            "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+            "period": "2025至2026；历史预测与实际里程碑逐项核验",
+            "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-crusoe-abilene-1200mw-expansion.html",
+        "url": "https://www.crusoe.ai/resources/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.crusoe.ai/resources/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bd/bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100/crusoe-abilene-1200mw-expansion.html",
+      "title": "Crusoe expands AI data center campus in Abilene to 1.2 gigawatts"
     }
   ],
   "evidence": [
@@ -67578,6 +67677,89 @@
           }
         },
         "batch_id": "3967d13782d425b54c3b20a2d24fecd17034aebbf822225ff8cdfb9d56d55355"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "556d433317f7377694f2b61fea5ae33422464c86f46e0e2e4ff1b686660b7b68",
+      "document_id": "doc-bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+      "id": "rev-305a6ef987574664a5ad3c6328c798cd:chunk:0:claim:13:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The data center will also feature natural gas turbines to power its back-up power supply.",
+      "reading_revision_id": "rev-305a6ef987574664a5ad3c6328c798cd",
+      "source_sha256": "bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:02:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整原文明确区分设备类别与计划用途，实质贡献于当前主用自备电源定义工作单的用途边界和排除判断。周围能源方案与建设阶段语境充分；未发现敏感内容、真实冲突、拟替换或其他A条件，可作B档局部采用。采用保留author_forecast性质，不构成运行事实或定量参数证据。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 66.452,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "078a0efe74d3cbdc55e61206593d57b56f5ccad24703062fee4b9a45372d3666",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68547,
+            "output_tokens": 1831,
+            "reasoning_output_tokens": 281
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "62bdcae81a1bc1a45d3a160782315657ebd48e61a1249827cef4e6d122eccc61",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69444,
+              "output_tokens": 507,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "06b6b93c960c25576da3a68fe78f91491541bf380885d827e76bc7496298cf86"
       }
     }
   ],
@@ -130963,6 +131145,130 @@
         "request_sha256": "46083efec2aafbd9169061ce4ec2f587438d541d0414907edd8ca493ad586008"
       },
       "object_mapping_check": "原文项目段明确将Schneider Electric与Motivair by Schneider Electric列为集成供应参与方，分别对应两个actor；不再将actor:motivair重复列为独立参与方。Motivair CDU对应冷水与CDU链下的part:cdu，机柜内歧管对应机房与机柜链下的part:manifold。该组件陈述未说明快接头，也不承载并网权利、UPS、监控软件或计算设备结论，因此不继承这些文档级标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+      "evidence_ids": [
+        "rev-305a6ef987574664a5ad3c6328c798cd:chunk:0:claim:13:ev:0"
+      ],
+      "id": "adoption:review:6b835e3dd5eb50490694599a",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "question_ids": [
+        "OBJ-prime-power-definition"
+      ],
+      "reading_revision_id": "rev-305a6ef987574664a5ad3c6328c798cd",
+      "status": "adopted",
+      "text": "Crusoe在正文署期为2025年3月18日的Abilene园区扩建公告中称，美国Texas州Abilene的Lancium Clean Campus数据中心计划配置天然气轮机，为其备用电源供电。这是建设阶段公告中的未来配置声明，不代表轮机已经安装或投运；该句没有将这些轮机定位为主用自备电源。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:02:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整原文明确区分设备类别与计划用途，实质贡献于当前主用自备电源定义工作单的用途边界和排除判断。周围能源方案与建设阶段语境充分；未发现敏感内容、真实冲突、拟替换或其他A条件，可作B档局部采用。采用保留author_forecast性质，不构成运行事实或定量参数证据。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 66.452,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "078a0efe74d3cbdc55e61206593d57b56f5ccad24703062fee4b9a45372d3666",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68547,
+            "output_tokens": 1831,
+            "reasoning_output_tokens": 281
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "62bdcae81a1bc1a45d3a160782315657ebd48e61a1249827cef4e6d122eccc61",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 69444,
+              "output_tokens": 507,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "06b6b93c960c25576da3a68fe78f91491541bf380885d827e76bc7496298cf86"
+      },
+      "source_candidate_ids": [
+        "rev-305a6ef987574664a5ad3c6328c798cd:chunk:0:claim:13"
+      ],
+      "limitations": "未提供轮机型号、数量、容量、启动与切换条件、保障时长、可靠性、燃料接入或供气合同，也未明确轮机配置对应哪一建设分期。不能据此证明轮机仅能用于备用、项目不存在其他主用自备电源，或当前配置已经实现。页面另有未解释的2026年8月18日字段，不据此认定公告已更新或计划已落实。来源网址仅有供应方元数据绑定，未独立在线核验。",
+      "conflict_check": "所供现有采用陈述中的燃机可转作备用、启动性能及燃料共同中断风险，与本项项目备用规划未形成同对象、同条件的冲突，也不能独立验证本项。已有设备定义和通用技术判断没有完整覆盖Abilene这项计划，不判为duplicate。legacy三类筛选记录均为空，仅表示本批未供对应记录，不代表外部不存在反证。未发现真实冲突，不覆盖或替换任何既有结论。",
+      "gap_dependency_check": "仅部分支持OBJ-prime-power-definition：说明燃气轮机这一设备类别不能仅凭名称被认定承担主用角色，本项目公告明确描述的是备用规划。完整定义、组成、运行边界和其他排除对象仍待补证；实际项目角色需设计、调试或运行资料核验。问题保持开放，批准用能和接入等待需求也未获得参数证据，不调整骨架或既有模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "06b6b93c960c25576da3a68fe78f91491541bf380885d827e76bc7496298cf86",
+        "source_report_sha256": "634b15f054f34c93e484f04073763bfe9fc1285eac1939b5b5133d7d6e9197b8",
+        "request_sha256": "0942f5ee561b8969c1098d25c3d2b43173081206af26507505a280de0634ed09"
+      },
+      "object_mapping_check": "独立依据原文明确出现的天然气轮机，映射至system:power下chain:power/3“发电与储能”的part:gas-turbine。备用是运行角色；合同中的part:backup-power专指柴油发电机组，本项不支持该映射。未建立天然气管道接入权利，也不因数据中心背景继承root或整套系统范围。所选证据统一采用此项范围，原始标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据Crusoe公告中的未来配置声明，原始性质为author_forecast；不是设备实测、审批原件或运行记录。",
+        "comparability_check": "仅可作为同项目公告时点的用途边界线索。备用配置、主用发电、园区接入容量、批准用能和审批等待分别属于不同口径，不能相互替代。",
+        "derivation_check": "不适用计算复核：没有提出派生值，也没有将园区容量分摊给轮机或用建设日期推算等待年限。本项不是B档观察或计算，观察／计算的独立第二检查要求不适用。",
+        "scope_check": "本项是Abilene原有Lancium园区建设公告中的天然气轮机备用配置预测，无测量系统、软件或工作负载参数；不能外推为相邻园区或全部燃机的主用角色。",
+        "time_check": "正文署期为2025年3月18日，陈述保持当时的未来规划身份。没有轮机配置完成日期或实际运行有效时点；页面其他日期不证明计划实现。",
+        "units_check": "不适用定量单位核验：本项引文没有容量、能量、时长或其他数值。全文其他容量不能分配给这些轮机，也不能当作批准用能或IT容量。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "虽然涉及同一Abilene园区，本项实际声明仅为天然气轮机备用规划，没有批准用能数值或ERCOT／输电商批准原件。全文园区设施及接入容量声明也不能填补批准配额或IT容量缺口；请求阅读不代表要求已满足。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "missing_evidence"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "本项没有对应负荷接入申请、批准或实际结束日期，不能计算等待年限。全文开工日期、送电预测及扩建完工预测属于不同阶段，不能代替同分期审批等待的起止原件；请求阅读不构成参数验收。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "missing_evidence"
+        }
+      ]
     }
   ],
   "answers": [],
