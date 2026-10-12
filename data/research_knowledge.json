@@ -8965,6 +8965,64 @@
       "status": "candidate",
       "stored_path": "originals/c0/c064569bdb2c578eecc295245cf6ca44705e6c284be42d559cef30a83b9cab1c/dcd-c064569bdb2c578e-Beacon AI Center and VoltaGrid may build data center in Saint Joh.html",
       "title": "Beacon AI Center and VoltaGrid may build data center in Saint John, Canada"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "coverage": {
+        "characters_read": 5411,
+        "characters_total": 5411,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "library_path": "library/by-node/part-cdu/2025_DCD_LiquidStack launches modular CDU able to offer 10MW of__6c31e764c09e087c.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:thermal/2",
+        "part:cdu",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "OBJ-cdu-alternatives",
+        "OBJ-cdu-definition",
+        "OBJ-cdu-interfaces",
+        "OBJ-cdu-performance",
+        "OBJ-cdu-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "report_sha256": "b62a8607dd4f7f8032b2df5b170e7aa2636a732142b8d634b8f59799424fd43b",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+        "url": "https://www.datacenterdynamics.com/en/news/liquidstack-launches-modular-cdu-able-to-offer-10mw-of-cooling-capacity/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/liquidstack-launches-modular-cdu-able-to-offer-10mw-of-cooling-capacity/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/6c/6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9/dcd-6c31e764c09e087c-LiquidStack launches modular CDU able to offer 10MW of cooling ca.html",
+      "title": "LiquidStack launches modular CDU able to offer 10MW of cooling capacity"
     }
   ],
   "evidence": [
@@ -65790,6 +65848,608 @@
           }
         },
         "batch_id": "99d56a9f91055625af183e6641105a86954b857e971273ecefbc92a34f6ee9c6"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d6633902ae0a2509a711181d6c37fd457809ac0dff13ac65f6421ed84b744c7f",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-definition",
+        "OBJ-cdu-performance"
+      ],
+      "quote": "The company this week unveiled the GigaModular CDU. Described as the industry’s first modular, scalable CDU, the system offers up to 10MW cooling capacity.",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "source_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文及产品发布上下文充分，对当前CDU定义与性能工单提供产品形态和标称容量的实质部分支持。未发现敏感、真实冲突、拟替换或其他A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-definition",
+          "Q-OBJ-cdu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d6633902ae0a2509a711181d6c37fd457809ac0dff13ac65f6421ed84b744c7f",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-interfaces",
+        "OBJ-cdu-performance"
+      ],
+      "quote": "The system supports single-phase direct-to-chip liquid cooling heat loads from 2.5MW to 10MW.",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "source_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句和明确的产品上下文支持技术路线及热负载范围，对当前接口与性能工单有实质部分贡献。缺少测试条件限制采用范围，但不妨碍采用为归因清楚的报道口径；无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-interfaces",
+          "Q-OBJ-cdu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d6633902ae0a2509a711181d6c37fd457809ac0dff13ac65f6421ed84b744c7f",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-performance"
+      ],
+      "quote": "said Joe Capes, CEO of LiquidStack.",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "source_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。容量引文自身连续，署名引文也保持原样；完整原文段落建立同一发言人的归属及产品发布语境，对当前性能工单中的容量与冗余关系提供实质部分支持。未发现A条件，可有限B采用。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d6633902ae0a2509a711181d6c37fd457809ac0dff13ac65f6421ed84b744c7f",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:3:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-performance"
+      ],
+      "quote": "With up to 10MW of cooling capacity at N, N+1, or N+2, the GigaModular is a platform like no other",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "source_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。容量引文自身连续，署名引文也保持原样；完整原文段落建立同一发言人的归属及产品发布语境，对当前性能工单中的容量与冗余关系提供实质部分支持。未发现A条件，可有限B采用。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d6633902ae0a2509a711181d6c37fd457809ac0dff13ac65f6421ed84b744c7f",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-interfaces"
+      ],
+      "quote": "The CDU is serviceable from the front of the unit, with no rear or end access required, allowing the system to be placed against the wall.",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "source_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句及明确产品上下文直接支持维护接近和安装空间条件，对当前接口工单中的布置约束有实质部分贡献。无敏感、真实冲突、拟替换或其他A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d6633902ae0a2509a711181d6c37fd457809ac0dff13ac65f6421ed84b744c7f",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-definition",
+        "OBJ-cdu-supply"
+      ],
+      "quote": "The skid-mounted system can come with rail and overhead piping pre-installed or shipped as separate cabinets for on-site assembly.",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "source_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句和产品上下文充分，对当前定义工单的局部组成与集成边界、供应工单的预装和现场组装环节有实质部分贡献。未提供接口规格，故不另将其采用为接口答案；无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-definition",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d6633902ae0a2509a711181d6c37fd457809ac0dff13ac65f6421ed84b744c7f",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "id": "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-cdu-supply"
+      ],
+      "quote": "LiquidStack said quoting for the new CDU will begin by September 2025, with production in LiquidStack’s manufacturing facilities in Carrollton, Texas.",
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "source_sha256": "6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文、明确报道日期及产品上下文支持供应商、制造地点和报价计划，对当前CDU供应工单及M08-Q03供应格局研究有实质部分贡献。保留预测性质，不用计划证明当前供给能力；无A条件，可有限B采用。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-supply",
+          "Q-M08-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
       }
     }
   ],
@@ -127649,6 +128309,615 @@
           "status": "partial_support"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "evidence_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:c6ee5d4a49ffa18acd364d96",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "question_ids": [
+        "OBJ-cdu-definition",
+        "OBJ-cdu-performance"
+      ],
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中，将LiquidStack新推出的GigaModular描述为模块化、可扩展CDU，并报道其最高冷却容量为10MW；文章还使用了“行业首款”的描述。这些是报道中的产品描述与容量宣称，行业首创及性能均未经本文独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文及产品发布上下文充分，对当前CDU定义与性能工单提供产品形态和标称容量的实质部分支持。未发现敏感、真实冲突、拟替换或其他A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-definition",
+          "Q-OBJ-cdu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      },
+      "source_candidate_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:1"
+      ],
+      "limitations": "未提供行业首创的比较范围、产品模块组成、地域适用范围、容量对应配置、温度、流量、压差、冷却液或测试方法。10MW不能视为实测值、制造产能或已投运IT容量。",
+      "conflict_check": "既有CoolIT、Schneider/Motivair记录涉及其他产品和能力口径。Flex/JetCool记录描述模块化液冷方案，未明确CDU边界及推出日期，不能据此确定本条行业首创描述存在真实冲突。所供legacy记录涉及燃机订单、机柜功耗、参考设计成本和项目容量，均非同产品同工况证据。未发现完整重复或真实冲突，检查限于所供材料。",
+      "gap_dependency_check": "定义问题仍缺完整组成、功能边界与排除对象；性能问题仍缺测试方法、运行工况、可靠性及失效机制。需原始产品资料和同口径反证，两个问题均保持开放，不修改模型值或既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389",
+        "source_report_sha256": "b62a8607dd4f7f8032b2df5b170e7aa2636a732142b8d634b8f59799424fd43b",
+        "request_sha256": "7a5a4dd65839068c7096462e2c2bf2192075a38d5f97331369566309672b8446"
+      },
+      "object_mapping_check": "原文明示GigaModular为CDU，对应水与散热系统下冷水与CDU链的part:cdu。仅映射该产品范围，不重复添加祖先节点。合同没有独立的LiquidStack actor；名称为多家的组合actor不适合代表本条单一供应商。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "evidence_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:6c6695c7839347921190daac",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "question_ids": [
+        "OBJ-cdu-interfaces",
+        "OBJ-cdu-performance"
+      ],
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中称，LiquidStack的GigaModular CDU支持热负载为2.5MW至10MW的单相直接芯片液冷。这是报道的适配路线与产品能力口径，不构成当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句和明确的产品上下文支持技术路线及热负载范围，对当前接口与性能工单有实质部分贡献。缺少测试条件限制采用范围，但不妨碍采用为归因清楚的报道口径；无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-interfaces",
+          "Q-OBJ-cdu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      },
+      "source_candidate_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:2"
+      ],
+      "limitations": "未说明该范围对应的模块数量、冗余配置、供回液温度、流量、压差、工质、测试方法或地域适用范围。支持某种液冷路线不能证明具体接口兼容或产品可互换。",
+      "conflict_check": "既有其他厂商的2MW或2.5MW产品宣称对象不同；既有液对空气CDU记录描述另一种排热路径，不能据此判断本产品的设施侧接口。legacy参考设计中的10MW为IT负载，其他记录为机柜功耗或项目容量，均非本产品同工况反证。未发现真实冲突或完整重复，保留既有结论。",
+      "gap_dependency_check": "接口问题仍需输入输出、连接规格、上下游依赖和互换限制；性能问题仍需工况、测试方法、可靠性与失效证据。不能凭热负载范围推算运行效率、PUE或WUE，两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389",
+        "source_report_sha256": "b62a8607dd4f7f8032b2df5b170e7aa2636a732142b8d634b8f59799424fd43b",
+        "request_sha256": "7a5a4dd65839068c7096462e2c2bf2192075a38d5f97331369566309672b8446"
+      },
+      "object_mapping_check": "原文中的system承接GigaModular CDU，实际主张范围为该CDU的适配路线和热负载范围，对应part:cdu。单相直接芯片液冷未确定具体冷板、工质或计算芯片，不增加相关部件映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "evidence_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:3:ev:0",
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:3:ev:1"
+      ],
+      "id": "adoption:review:e243d2fad9aa6c60d6ce41a8",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "question_ids": [
+        "OBJ-cdu-performance"
+      ],
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中引述LiquidStack首席执行官Joe Capes称，GigaModular CDU在N、N+1或N+2配置下具有最高10MW的冷却容量。这是厂商负责人在产品发布报道中的容量宣称，未经本文独立测试验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。容量引文自身连续，署名引文也保持原样；完整原文段落建立同一发言人的归属及产品发布语境，对当前性能工单中的容量与冗余关系提供实质部分支持。未发现A条件，可有限B采用。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      },
+      "source_candidate_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:3"
+      ],
+      "limitations": "未提供N、N+1、N+2各配置的模块数量、容量表、故障状态、测试条件或可靠性测量，不能据此认定每种配置在任意工况及故障状态下均能维持10MW。文中未限定具体部署地域或项目。",
+      "conflict_check": "与本批前两项的最高10MW及2.5MW至10MW表述存在内容重叠，本条新增冗余配置和明确发言人，非完整重复。已采纳其他产品能力记录及legacy容量记录均未提供同型号同配置反证，未发现真实冲突，不替换既有结论。",
+      "gap_dependency_check": "需原始配置规格和测试记录确定各冗余方案的容量边界、可靠性及失效行为。最高容量宣称只能贡献待核查的性能口径，OBJ-cdu-performance保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389",
+        "source_report_sha256": "b62a8607dd4f7f8032b2df5b170e7aa2636a732142b8d634b8f59799424fd43b",
+        "request_sha256": "7a5a4dd65839068c7096462e2c2bf2192075a38d5f97331369566309672b8446"
+      },
+      "object_mapping_check": "主张明确针对GigaModular CDU的容量和冗余配置，对应冷水与CDU链的part:cdu。CEO为发言人，不新增人物或组合企业映射，也不把热容量映射为计算设备容量。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "evidence_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:9b4cfa40ef321056395f66e9",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "question_ids": [
+        "OBJ-cdu-interfaces"
+      ],
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中称，LiquidStack的GigaModular CDU可从正面检修，无需后方或端部检修通道，因此可以靠墙放置。这是该产品的安装与检修条件报道，未构成对具体现场布置的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句及明确产品上下文直接支持维护接近和安装空间条件，对当前接口工单中的布置约束有实质部分贡献。无敏感、真实冲突、拟替换或其他A条件，符合B级有限采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      },
+      "source_candidate_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:4"
+      ],
+      "limitations": "未提供设备尺寸、正面检修净距、管路连接位置、起吊空间、完整安装手册或各维护操作的适用条件。无需后方或端部检修通道不能扩展为没有任何安装间距要求。",
+      "conflict_check": "已采纳记录讨论其他产品能力、开放设计或液对空气排热限制，未讨论GigaModular检修通道。所供legacy记录未包含同产品布置要求或反证，未发现真实冲突或完整重复；检查限于所供材料。",
+      "gap_dependency_check": "仍需原始安装维护手册补充尺寸、净距、连接规格及上下游依赖，才能判断现场适配与互换条件。OBJ-cdu-interfaces保持开放，不由本条推算占地收益或维护成本。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389",
+        "source_report_sha256": "b62a8607dd4f7f8032b2df5b170e7aa2636a732142b8d634b8f59799424fd43b",
+        "request_sha256": "7a5a4dd65839068c7096462e2c2bf2192075a38d5f97331369566309672b8446"
+      },
+      "object_mapping_check": "原文描述GigaModular CDU自身的检修接近条件，对应part:cdu。靠墙放置是设备布置条件，未形成建筑或机柜结构的独立主张，不增加part:shell或part:rack-frame。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "evidence_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:e1bdc862446cad2242543ccf",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "question_ids": [
+        "OBJ-cdu-definition",
+        "OBJ-cdu-supply"
+      ],
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中称，LiquidStack的GigaModular撬装CDU系统可带预装轨道和顶部管路交付，也可按分开的机柜运输并在现场组装。这是报道中的产品集成与交付方式描述，不证明已有具体项目完成交付。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续原句和产品上下文充分，对当前定义工单的局部组成与集成边界、供应工单的预装和现场组装环节有实质部分贡献。未提供接口规格，故不另将其采用为接口答案；无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-definition",
+          "Q-OBJ-cdu-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      },
+      "source_candidate_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:5"
+      ],
+      "limitations": "未给出柜数、模块组成、管路介质和接口、预装检验、现场责任划分、运输约束、交期、地域范围或成本。两种方式的效率和经济性未经比较。",
+      "conflict_check": "既有Flex/JetCool模块化方案对象不同，且未确定CDU边界；其他已采纳记录和所供legacy记录未包含本产品相反的交付安排。未发现真实冲突或完整重复，不替换已有供应或产品结论。",
+      "gap_dependency_check": "定义问题仍缺完整部件清单、功能边界及排除对象；供应问题仍缺制造流程、交付责任、交期和生命周期成本。需原始交付文件和项目记录，两项问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389",
+        "source_report_sha256": "b62a8607dd4f7f8032b2df5b170e7aa2636a732142b8d634b8f59799424fd43b",
+        "request_sha256": "7a5a4dd65839068c7096462e2c2bf2192075a38d5f97331369566309672b8446"
+      },
+      "object_mapping_check": "原文承接GigaModular CDU，描述其撬装系统及分柜交付方式，对应part:cdu。CDU机柜不等同于设施机柜或预制数据中心；顶部管路未说明为冷冻水回路或机柜歧管，不增加这些映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-6c31e764c09e087ccd198faf6888901e10511473f9ee2b85df5dbd93caef53a9",
+      "evidence_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:189f84bc6555cd5440f8bf3c",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:cdu"
+      ],
+      "question_ids": [
+        "OBJ-cdu-supply",
+        "M08-Q03"
+      ],
+      "reading_revision_id": "rev-fabef2f4bd0c4052afde17e5b675a33b",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中转述LiquidStack当时的计划：GigaModular CDU将不晚于2025年9月开始报价，生产将安排在LiquidStack位于美国得克萨斯州Carrollton的制造设施。这是当时的报价与制造计划，不能据此确认报价或生产已经开始。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:15:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文、明确报道日期及产品上下文支持供应商、制造地点和报价计划，对当前CDU供应工单及M08-Q03供应格局研究有实质部分贡献。保留预测性质，不用计划证明当前供给能力；无A条件，可有限B采用。",
+        "workorder_ids": [
+          "Q-OBJ-cdu-supply",
+          "Q-M08-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 157.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6876a79f6f21d3b4f2dc855e37cc89097eb6a9eb737596cfb5f3d7c4cbf06c2e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 54883,
+            "output_tokens": 4686,
+            "reasoning_output_tokens": 628
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.582,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c187ab14746a5801e12198f26fb372536609d213897e14e67d06037884592492",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52023,
+              "output_tokens": 391,
+              "reasoning_output_tokens": 121
+            }
+          }
+        },
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
+      },
+      "source_candidate_ids": [
+        "rev-fabef2f4bd0c4052afde17e5b675a33b:chunk:0:claim:6"
+      ],
+      "limitations": "属于媒体转述的厂商计划，未提供原始公告、实际执行记录、生产开始日期、制造产能、交期、供应份额或成本。2025年9月是计划开始报价的时间界限，不是确认交付或投产日期。",
+      "conflict_check": "既有Boyd并购及Schneider/Motivair、CoolIT产品记录提供其他供应商线索，与LiquidStack本项计划不重复或冲突。所供contracts为空，legacy事实和项目记录没有该产品计划执行情况或相反安排。未发现真实冲突，未进行外部执行状态核查。",
+      "gap_dependency_check": "OBJ-cdu-supply仍缺实际制造和交付记录、交期及生命周期成本；M08-Q03仍需企业原始资料、各环节制造产能、市场份额、地域和竞争格局证据。本条只贡献历史供应商及制造地点线索，两项问题均保持开放，不推算新增供给或投运容量。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389",
+        "source_report_sha256": "b62a8607dd4f7f8032b2df5b170e7aa2636a732142b8d634b8f59799424fd43b",
+        "request_sha256": "7a5a4dd65839068c7096462e2c2bf2192075a38d5f97331369566309672b8446"
+      },
+      "object_mapping_check": "原文明示新CDU的报价与制造安排，对应part:cdu。合同没有独立LiquidStack actor，不以多家组合actor代替该企业。Carrollton是制造地点，非已建立的数据中心项目或土地权利，不新增设施或site映射。"
     }
   ],
   "answers": [],
