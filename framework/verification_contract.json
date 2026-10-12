@@ -810,7 +810,7 @@
     "src/inresearch/workflow/object_review.py": "b3cc6957866f7f619fdb0c253e1197c9bfdf0e2e1df9b021d8d97188513e33ff",
     "src/inresearch/workflow/stock_objects.py": "a0b74faea72f4ff3b4814a54f9d1a1ae7a4ea289ba12d69b662284af600a67bf",
     "src/inresearch/materials/fetchspec_receive.py": "a5245b294ad900b30c9ef9d8d14a66614e5fb641e6e53403b8a5c45e75375bdb",
-    "tests/unit/test_object_review.py": "d915884ac015c30f7b7d6453f5e0bdd07d8778531d7f5bb4a0178dd54bd52c16",
+    "tests/unit/test_object_review.py": "5005a96d45666396c7f71d35c8e3ce6bf7bfe606dc486597e9e5a31eaa5f20b5",
     "web/pages/industry.html": "2d6365d32f53e8350ba3c2132657685f5dc655234a6cc554f7b1f7371daa339a",
     "deploy/Dockerfile": "9818e4bce3ce27860a8277cd033f47233ca19d38d81adc04aee84ae82fca98d1",
     "tests/container_cache.py": "1bf414a5a432d5a63603442fe2ff868821e2650bbb790b52f7e7de1673b47f33",
@@ -3176,7 +3176,7 @@
       "policy": "ci-impact-20261010",
       "scope": "project",
       "source": "docs/CI.md",
-      "checked_requirement": "完整 Git 差异保守分流；仅追加研究资料必须保持完整 JSON 旧记录/顺序/类型、answers、版本和结构，唯一新增ID且无替代或放宽审核；固定研究/来源/审核/发布/HTTP回归和一个research浏览器作业，原成果与摘要测试完整执行，入口缺失报错；普通资料图像真实解码及新增引用检查；代码/结构/非追加数据/依赖/规则/未知全套；混合检查取并集、汇总门禁只允许未选作业跳过、两个必过真正成功，完整场景仍恰覆盖一次。；2026-10-10重新审阅：validate增加交付卡目标/对象绑定/指针/重复检查；两必过汇总和全套代码规则路线、原时限保持；实质批次/实际耗时与研究闭环分别计量。；2026-10-11逐条复审站点追加：完整JSON保持顶层、身份顺序、基线与旧观测值/类型，只追加v2有来源/采用的非修订观测；固定站点/原件写入/行业HTTP回归，research+industry浏览器缺任一不得汇总通过。地理补录、旧值/修订/规则/混合程序改动仍全套。；2026.10.11.99实际复审：对象账本完整严格JSON保持旧对象及记录值/类型/顺序，1–500新增观测及被引用的新身份摘要，修订/身份变更/歧义JSON/混合实现仍full；固定回归补对象采用和Fetchspec，industry缺失不得汇总。实际Dockerfile两次隔离构建验证所有稳定层同一digest、动态数据变化、资产路径存在且Git/凭据/SQLite伪造夹具隔离；来源C3不由CI授予。本实现首次全套，后续吞吐另实测。；归档纯追加接受冻结导入来源形状，缺失/伪造记录摘要回到full。；首次具名园区末尾追加保留全部旧值/类型/顺序，身份字段/首条name及status一致、容量基线空、来源采用非空，目标为空；修订、身份或混合源码变化全套。；主题切换的URL不变性断言在账本模型异步初始化并移除aria-busy后取基准，保留原断言，不以启动期#lifecycle正常归一误判跳转。；持续新增园区以原始登记ID集合核对去重后站点，不固定全库123或旧核实日期；容量/位置未知计数与明细一致。首页按具体site_id和有效时间核对应观测，未知时间为空属性且标题明确未明确；不把空字符串误判为伪造日期。；2026.10.12.106逐项复审：technical_atlas/chip_package独立矩阵，全case集合与无重复断言不减、300秒/15分钟不变；industry历史估算/预测改从站点全历史读取，首页仍验证当前site/time/未知时点。实际提速另验，不把拆分当性能证明。",
+      "checked_requirement": "完整 Git 差异保守分流；仅追加研究资料必须保持完整 JSON 旧记录/顺序/类型、answers、版本和结构，唯一新增ID且无替代或放宽审核；固定研究/来源/审核/发布/HTTP回归和一个research浏览器作业，原成果与摘要测试完整执行，入口缺失报错；普通资料图像真实解码及新增引用检查；代码/结构/非追加数据/依赖/规则/未知全套；混合检查取并集、汇总门禁只允许未选作业跳过、两个必过真正成功，完整场景仍恰覆盖一次。；2026-10-10重新审阅：validate增加交付卡目标/对象绑定/指针/重复检查；两必过汇总和全套代码规则路线、原时限保持；实质批次/实际耗时与研究闭环分别计量。；2026-10-11逐条复审站点追加：完整JSON保持顶层、身份顺序、基线与旧观测值/类型，只追加v2有来源/采用的非修订观测；固定站点/原件写入/行业HTTP回归，research+industry浏览器缺任一不得汇总通过。地理补录、旧值/修订/规则/混合程序改动仍全套。；2026.10.11.99实际复审：对象账本完整严格JSON保持旧对象及记录值/类型/顺序，1–500新增观测及被引用的新身份摘要，修订/身份变更/歧义JSON/混合实现仍full；固定回归补对象采用和Fetchspec，industry缺失不得汇总。实际Dockerfile两次隔离构建验证所有稳定层同一digest、动态数据变化、资产路径存在且Git/凭据/SQLite伪造夹具隔离；来源C3不由CI授予。本实现首次全套，后续吞吐另实测。；归档纯追加接受冻结导入来源形状，缺失/伪造记录摘要回到full。；首次具名园区末尾追加保留全部旧值/类型/顺序，身份字段/首条name及status一致、容量基线空、来源采用非空，目标为空；修订、身份或混合源码变化全套。；主题切换的URL不变性断言在账本模型异步初始化并移除aria-busy后取基准，保留原断言，不以启动期#lifecycle正常归一误判跳转。；持续新增园区以原始登记ID集合核对去重后站点，不固定全库123或旧核实日期；容量/位置未知计数与明细一致。首页按具体site_id和有效时间核对应观测，未知时间为空属性且标题明确未明确；不把空字符串误判为伪造日期。；2026.10.12.106逐项复审：technical_atlas/chip_package独立矩阵，全case集合与无重复断言不减、300秒/15分钟不变；industry历史估算/预测改从站点全历史读取，首页仍验证当前site/time/未知时点。实际提速另验，不把拆分当性能证明。；PR841实测暴露XLSX夹具SHA两位目录与既有夹具碰撞时mkdir失败，目录创建改幂等，原件值/上下文/重放断言不变。",
       "tests": [
         "tests/unit/test_ci_scope.py::CiScopeTests.test_document_image_and_derived_inventory_only_are_content",
         "tests/unit/test_ci_scope.py::CiScopeTests.test_corrupt_image_and_new_broken_reference_fail_content_check",
