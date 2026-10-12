@@ -70806,6 +70806,92 @@
         },
         "batch_id": "5cec36d3bc6cdc109789be1d45548768c3f3cc01d5a4142f6afb66bf9b633e9e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f7ac77445ed36514ae3696372d9c5a7af203ae4939319e1c333b6b6a08c77ac7",
+      "document_id": "doc-255d47cec4795dfb754c53c0e6226e45330775140f7b283e6eec23603016b7ad",
+      "id": "rev-c3e34627212d41a2870accb438be1fc0:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:server",
+        "part:gpu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "quote": "@ConfigRegistry.register(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP, \"PP2\")\nclass H100_SXM_80GB_PP2x1(HopperServerGPUBaseConfig):\n    system = KnownSystem.H100_SXM_80GBx2\n    vboost_slider = 0\n    min_duration = 3600000\n\n    gpu_batch_size = {'llama2-70b': 1024}\n    server_target_qps = 25.25",
+      "reading_revision_id": "rev-c3e34627212d41a2870accb438be1fc0",
+      "source_sha256": "255d47cec4795dfb754c53c0e6226e45330775140f7b283e6eec23603016b7ad",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:13:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "C3 Codex /root 保留原始重要性6，评分6。连续引文与完整原生类定义充分支持字段观察；通过已采用的PP2x4继承关系，本项新增父类批大小、注册条件及两GPU目标边界，实质补充当前M12-Q07所需的吞吐样例配置核对。首次逐字段检查后，独立第二检查重新从完整源码的注册项、父子类覆盖关系和已有日志指标核对作用范围，确认保持observation身份，未把配置升级为测量。未发现敏感、真实冲突、替换或其他A条件，可按B部分采用；不关闭问题或认证模型输入。",
+        "workorder_ids": [
+          "Q-M12-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.396,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "fc59e7d6cf27cb86346a9133590e23f305d2a837f1da2db02b1ddd3d247e18f5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 63467,
+            "output_tokens": 2381,
+            "reasoning_output_tokens": 308
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.04,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1171dd2b87a5b8986e35123f9cebbcada425cd57b91ce4ada4868bc08956fac6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64892,
+              "output_tokens": 582,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "157b711b2aba15cf7677e106c4286ee66dc76ab6fdf8937b1f2dad1a3b905368"
+      }
     }
   ],
   "statements": [
@@ -137626,6 +137712,124 @@
         "request_sha256": "a9951ef6c4663b2961de433b7b2a3e2b3272d123e170488751003edcd52a15bd"
       },
       "object_mapping_check": "本条范围为PDG公司层面的HoldCo融资及银行参与关系，允许对象中没有PDG或所列银行的对应actor ID。root定义为一座AI数据中心，与亚洲多市场组合的公司融资范围不一致；未明确具体系统、链、设备或接入权的资金用途。因此不继承Reader的root标签，不借用其他主体或基础设施对象。对象为空仍保留M11-Q07的有效关联，所选证据统一采用此审核后的主张级对象范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-255d47cec4795dfb754c53c0e6226e45330775140f7b283e6eec23603016b7ad",
+      "evidence_ids": [
+        "rev-c3e34627212d41a2870accb438be1fc0:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:5a96d7e14a34d9e513dd0d8a",
+      "kind": "observation",
+      "object_ids": [
+        "part:server",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M12-Q07"
+      ],
+      "reading_revision_id": "rev-c3e34627212d41a2870accb438be1fc0",
+      "status": "adopted",
+      "text": "提交方 NVIDIA 的 llama2-70b Server 配置源码中，H100_SXM_80GB_PP2x1 继承 HopperServerGPUBaseConfig，以 Custom、k_99、MaxP、PP2 注册，系统标识为 KnownSystem.H100_SXM_80GBx2；该类设置 vboost_slider=0、min_duration=3600000、gpu_batch_size={'llama2-70b': 1024}、server_target_qps=25.25。这是两 GPU 系统的原生配置字段观察：1024不是实际观测并发，25.25是目标QPS，不是实测完成吞吐或tokens/s。源码发布日期、运行时间、测试地域及实际部署阶段未知。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:13:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "C3 Codex /root 保留原始重要性6，评分6。连续引文与完整原生类定义充分支持字段观察；通过已采用的PP2x4继承关系，本项新增父类批大小、注册条件及两GPU目标边界，实质补充当前M12-Q07所需的吞吐样例配置核对。首次逐字段检查后，独立第二检查重新从完整源码的注册项、父子类覆盖关系和已有日志指标核对作用范围，确认保持observation身份，未把配置升级为测量。未发现敏感、真实冲突、替换或其他A条件，可按B部分采用；不关闭问题或认证模型输入。",
+        "workorder_ids": [
+          "Q-M12-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.396,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "fc59e7d6cf27cb86346a9133590e23f305d2a837f1da2db02b1ddd3d247e18f5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 63467,
+            "output_tokens": 2381,
+            "reasoning_output_tokens": 308
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.04,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1171dd2b87a5b8986e35123f9cebbcada425cd57b91ce4ada4868bc08956fac6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64892,
+              "output_tokens": 582,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "157b711b2aba15cf7677e106c4286ee66dc76ab6fdf8937b1f2dad1a3b905368"
+      },
+      "source_candidate_ids": [
+        "rev-c3e34627212d41a2870accb438be1fc0:chunk:0:claim:3"
+      ],
+      "limitations": "系统标识不独立证明实际运行硬件；注册项k_99不等于所请求的99.9场景，也不证明实测准确率。完整源码中的八GPU PP2x4子类继承该父类，但覆盖系统标识与目标QPS，因此不能将两GPU目标25.25用于八GPU系统。配置字段不证明实际执行、实际运行时长或全链路精度。本条引文未显式标注min_duration单位，也没有实际并发、输入输出分布、token吞吐、价格、能耗或单位成本测量。",
+      "conflict_check": "已有八GPU配置记录的目标107与本项两GPU目标25.25属于不同配置范围；完整源码明确子类覆盖目标，不构成真实冲突。已有八卡日志的106.21 completed samples/s、31106.28 completed tokens/s及按八卡算术均摊分别属于完成指标或派生值，不能与本项目标QPS混同。既有父类构建参数、八卡注册关系和日志最低时长记录与本项部分重叠，但没有覆盖本项完整的批大小、两GPU目标及注册条件，整体不判重复。所供legacy匹配记录为空，不代表完成外部反证搜索；不替换或重写任何已采用结论。",
+      "gap_dependency_check": "本项通过父类条件和子类覆盖边界，为M12-Q07提供配置核对的部分支持，不能回答实测单位成本。包内已有指定八卡Server吞吐日志及硬件、软件记录，不能笼统认定这些原件缺失。仍需确认99.9 Server run_1实际选择的配置与构建产物、完整精度链路、输入输出分布、实际并发及详细日志中的样本拼接条件，并取得费用边界和可复查成本推导。请求阅读不等于验收完成；不关闭问题，不更新或认证tokens_per_gpu_sec。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "157b711b2aba15cf7677e106c4286ee66dc76ab6fdf8937b1f2dad1a3b905368",
+        "source_report_sha256": "6b65cbcb400779c08e0c12b728f0f72fe15725f0806a85a95cf4f1522dc223d8",
+        "request_sha256": "74c4715f80413d2e470cc92f75615cb3deb490c5352bc0378ecaa0ee2e599774"
+      },
+      "object_mapping_check": "按对象合同独立核对：Server配置的批大小、最低持续时间和目标QPS属于计算链chain:compute/1下的加速器服务器part:server；H100-SXM-80GBx2系统标识直接涉及同链下GPU加速器part:gpu。范围为该服务器及加速器配置，不代表独立单GPU性能。没有一座AI数据中心的整体范围证据，因此不继承root；推理配置注册不属于DCIM/BMS与固件控制链，也不增加网络、HBM或设施映射。选中证据使用这一审定的联合主张范围。",
+      "quantitative_checks": {
+        "basis_check": "保持observation类型，依据连续Python配置字段、注册装饰器和系统标识；不是作者吞吐估计，也不是独立运行测量。MaxP与k_99属于注册条件，不证明实际功耗或实测准确率。需求中的TensorRT/CUDA版本、TTFT与TPOT条件不能补成本条源码已经验证的运行事实。",
+        "comparability_check": "两GPU/k_99配置与请求的八GPU/99.9场景存在明确范围差异，但父类批大小与持续时间字段可用于配置核对。25.25不能替代八GPU目标107，目标QPS不能直接比较或转换为完成tokens/s。完整精度、长度分布、实际并发和引擎对应尚未核实；不能外推Offline、其他模型、GPU数量或生产服务，也不能作为通用GPU性能率。",
+        "derivation_check": "算术推导不适用：本项仅读取字段，没有计算token吞吐、按GPU分摊或实际运行总量。独立第二检查重新追踪PP2x4继承并确认其将系统覆盖为x8、目标覆盖为107；1024与3600000在该子类中未覆盖。继承分析不证明实际执行，不把25.25乘四、除二或乘输出长度转换为八卡或单GPU实测吞吐。",
+        "scope_check": "观察对象是NVIDIA llama2-70b Server源码中的两GPU H100_SXM_80GB_PP2x1配置，注册为Custom/k_99/MaxP/PP2。供应元数据绑定MLPerf Inference v5.0固定提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；本项不是八GPU高精度Server运行观测。完整源码的PP2x4继承关系仅提供请求场景的父类配置线索，不证明指定run_1实际执行对应。测试地点与生产部署阶段未建立。",
+        "time_check": "原生源码未建立发布日期、运行日期或参数实际生效时间。2025版权年份不作为发表时间，固定提交仅标识版本；采集与审核时间不冒充测试有效时间。",
+        "units_check": "25.25保留原始小数精度，为server_target_qps的目标queries/s配置口径，不是tokens/s或实测并发。1024为gpu_batch_size整数配置值，不补造实际批量或并发。3600000为min_duration原始整数；选中源码未显式声明单位，已有八卡日志虽标注同值为ms，仍不能据此独立认证本两GPU配置的字段单位或实际时长。vboost_slider=0为配置值，不解释为功率测量；x2为配置GPU数量标识，80GB保留为型号中的容量标识，不聚合容量。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M12-Q07",
+          "rationale": "实际候选为两GPU/k_99父类配置，而请求是八GPU/99.9 Server吞吐样例。完整源码及既有采用记录建立PP2x4继承关系，使批大小、持续时间和目标覆盖边界可贡献配置核对；两GPU目标25.25不适用于八GPU系统。本项没有tokens/s/GPU观测或计算，也未完成指定run_1的运行对应及其余工况验收，不能认证、替换当前模型输入或关闭实测成本问题。",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "status": "partial_support"
+        }
+      ]
     }
   ],
   "answers": [],
