@@ -64136,6 +64136,87 @@
         },
         "batch_id": "9c33aa0072fcc9415478ff63a720e7f2d4ce5d4da365f7efbcee7d284a682862"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "197ef59c269289e8d85ca5d2d9717ab9bf8efe432f9c89f382218ff0d58f9152",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:116:claim:4:ev:0",
+      "locator": "page:117/chunk:116",
+      "object_ids": [],
+      "page_index": 116,
+      "question_ids": [],
+      "quote": "Load factor: The ratio of average electricity demand to peak electricity demand over a\n                  specified period, expressed as a percentage. A higher load factor indicates greater sustained\n                  consumption over the period.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:10:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。平均需求与峰值需求的分子、分母及指定时期条件，对当前M01-Q05隐含利用率检验具有实质性口径贡献。连续引文与相邻容量定义上下文充分，且与密封摘要关于电力指标不能替代GPU或ASIC运行数据的限制一致。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 37.851,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "925754290cf9f056f829d70b0b62d489eb001f7b64d36c9492a04c6dcaa822ff",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 56049,
+            "output_tokens": 1050,
+            "reasoning_output_tokens": 85
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.617,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "9a4cf960ad56f63ca39c8b5da342511e6ef703d0e5b06d65f1079391a3d329c0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 56605,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 142
+            }
+          }
+        },
+        "batch_id": "1de5dcc53d9258ea7f4da6b54e90dfa59c728cf823b6c549eb8d2050dd92d61d"
+      }
     }
   ],
   "statements": [
@@ -124459,6 +124540,104 @@
         "request_sha256": "8fbf2c236a339f0b7812ccddd9a496a0d205cc0514588c698ce08fe315d7ae91"
       },
       "object_mapping_check": "独立核对对象契约：Cummins准确对应actor:cummins；天然气发电机组产品范围属于system:power下的chain:power/3（发电与储能）。原文未确定燃气轮机或往复式技术路线，不映射part:gas-turbine或part:gas-engine。园区仅提供采购用途背景，不继承root，也不建立土地、建筑、并网或天然气管道接入范围。契约没有Circe主体ID，保留名称而不新增对象。所选证据统一采用上述主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:116:claim:4:ev:0"
+      ],
+      "id": "adoption:review:b0c7fbb5373c8bbae6ade8e9",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q05"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第117页附录B中，将负荷率（load factor）定义为指定时期内平均用电需求与峰值用电需求的比值，以百分比表示，并说明较高负荷率表示该时期内更持续的用电。这是IEA的通用用电指标定义，不构成对具体设施或设备运行参数的独立认证；所供原生文本未确立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:10:13+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。平均需求与峰值需求的分子、分母及指定时期条件，对当前M01-Q05隐含利用率检验具有实质性口径贡献。连续引文与相邻容量定义上下文充分，且与密封摘要关于电力指标不能替代GPU或ASIC运行数据的限制一致。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 37.851,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "925754290cf9f056f829d70b0b62d489eb001f7b64d36c9492a04c6dcaa822ff",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 56049,
+            "output_tokens": 1050,
+            "reasoning_output_tokens": 85
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.617,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "9a4cf960ad56f63ca39c8b5da342511e6ef703d0e5b06d65f1079391a3d329c0",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 56605,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 142
+            }
+          }
+        },
+        "batch_id": "1de5dcc53d9258ea7f4da6b54e90dfa59c728cf823b6c549eb8d2050dd92d61d"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:116:claim:4"
+      ],
+      "limitations": "该定义未限定地域、具体设备或项目阶段，也未提供负荷率数值、测量周期及平均与峰值需求数据。峰值用电需求不能直接等同于额定IT容量或最大设计容量，负荷率不能替代GPU利用率、商业利用率或定制AI ASIC运行参数。阅读覆盖仅限PDF原生文本，未完成图像视觉审阅。",
+      "conflict_check": "已采用的LBNL平均功率建模陈述区分额定、最大、空闲功率及运行时间，与本项平均需求／峰值需求定义相容，但不是相同定义，不构成重复。既有IT用电与设施用电转换方法、历史增速及情景预测也未否定本项定义。所供legacy匹配记录为空，仅能说明本次提供范围内未检出相关记录，不能声称完成外部反证检索。未发现真实冲突，不替换任何既有结论。",
+      "gap_dependency_check": "本项仅为M01-Q05提供指标口径支持。仍需同地域、同年度、同情景和同设备边界的TWh与GW路径，明确GW分母属于峰值需求、额定IT容量还是设施设计容量，并核对设施效率、年内投运时间及年度时间处理，形成可复查推导。该定义本身不能证明路径自洽，不能赋值ASIC负荷率；问题及当前工单保持开放，研究骨架和模型值不变。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1de5dcc53d9258ea7f4da6b54e90dfa59c728cf823b6c549eb8d2050dd92d61d",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "e871e6181ec5a28b215eb3b60aed3e433d7f72116ca9be0161cddec4e8d848a2"
+      },
+      "object_mapping_check": "独立复核后，本项是通用用电指标定义，未指认一座AI数据中心、内部电力系统、并网权利或具体设备。合同中的root为一座AI数据中心，system:power为其内部电力系统，part:ai-asic为定制AI ASIC，均缺乏本项主张级映射依据。保留空对象列表及有效问题关联；所选证据统一采用此范围，不继承Reader文档标签。"
     }
   ],
   "answers": [],
