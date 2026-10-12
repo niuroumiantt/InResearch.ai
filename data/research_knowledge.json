@@ -63443,6 +63443,89 @@
         },
         "batch_id": "f5a0479636b2d4063e084ac7099eb39274f835ea7120a6e7845a989cce4b1d9c"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8ea5e9d479a72d6741202d03aab82fe225a03093ba0dc5a1219e5283e218f724",
+      "document_id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "id": "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D1-economics"
+      ],
+      "quote": "On July 9, 2025, the PUCO adopted the consumer-focused settlement reached by AEP Ohio, OCC, PUCO Staff, Ohio Partners for Affordable Energy and others.",
+      "reading_revision_id": "rev-16ee313fef2648bb80b64ed907bba23e",
+      "source_sha256": "d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T03:28:47+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性及评分7。数据中心供电成本分担争议中的监管采纳事件，实质关联当前M04-Q04工单的消费者保护与监管回应部分。连续完整引文及全页争议背景足以支持这一限定归因的部分作者主张。未发现敏感材料、同口径真实冲突或拟替换条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.599,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "04f389e39e1875f3d13b70d47a2d1d9fa337ebef731c7be81af1376556c2ab93",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 54457,
+            "output_tokens": 1598,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.405,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ce3360f66124b3e05a55d5b5cd6d0b6cc924068ec473394882e1e3293903b2ff",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55130,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "0bbf6567e18134438b5f8948998cd069c23426cae0d0c9c4df2d078c3403d3f5"
+      }
     }
   ],
   "statements": [
@@ -123066,6 +123149,104 @@
         "request_sha256": "713f2755fd77956b7ecb4ac59769c3633a0a54e115e15d30a620aa9c0986affd"
       },
       "object_mapping_check": "独立复核后，本项范围是俄亥俄州总体电力需求的条件性预测。root限定一座AI数据中心，system:power及其链条限定设施内部电力资产，site:grid限定电力配额与并网权利，原文均未建立这些对象范围。科技企业名称用于举例说明运营者，未提供可归属于各企业的具体俄亥俄项目承诺；AEP仅出现在周围案件讨论中，不是本项预测主体。因此保留空对象列表及有效问题关联，所选证据统一使用这一审定范围，不继承原始标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920",
+      "evidence_ids": [
+        "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:0:ev:0"
+      ],
+      "id": "adoption:review:015fb5ef3ee94156a5546fb1",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q04"
+      ],
+      "reading_revision_id": "rev-16ee313fef2648bb80b64ed907bba23e",
+      "status": "adopted",
+      "text": "俄亥俄州消费者顾问办公室（OCC）在《Data Center Costs 24-0508-EL-ATA》页面中称，俄亥俄州公用事业委员会（PUCO）于2025年7月9日采纳了AEP Ohio、OCC、PUCO Staff、Ohio Partners for Affordable Energy等达成的和解；OCC将其描述为以消费者保护为导向的和解。这是参与和解的消费者代表机构对监管事件的陈述，未经本次独立核验监管决定原文，不代表对和解当前效力或保护效果的认证。页面发表及更新时间未确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T03:28:47+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性及评分7。数据中心供电成本分担争议中的监管采纳事件，实质关联当前M04-Q04工单的消费者保护与监管回应部分。连续完整引文及全页争议背景足以支持这一限定归因的部分作者主张。未发现敏感材料、同口径真实冲突或拟替换条件，符合B类采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.599,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "04f389e39e1875f3d13b70d47a2d1d9fa337ebef731c7be81af1376556c2ab93",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 54457,
+            "output_tokens": 1598,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.405,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ce3360f66124b3e05a55d5b5cd6d0b6cc924068ec473394882e1e3293903b2ff",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55130,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 126
+            }
+          }
+        },
+        "batch_id": "0bbf6567e18134438b5f8948998cd069c23426cae0d0c9c4df2d078c3403d3f5"
+      },
+      "source_candidate_ids": [
+        "rev-16ee313fef2648bb80b64ed907bba23e:chunk:0:claim:0"
+      ],
+      "limitations": "所选引文仅支持采纳日期、列明的参与方及OCC对和解的描述，不支持具体费率、付款义务、居民账单变化或PPA价格走势。原生页面更新段还提到2025年11月行业团体上诉，但未提供法院文件或裁判结果，不能确认当前法律效力。案件及和解链接的正文未提供，也未独立核验；末尾“012126”不能据此认定为发布日期。",
+      "conflict_check": "既有IEA总体电价关系、哥伦布居民账单增量预测、PJM容量账单反事实及核电PPA情景，均不否定本项监管采纳事件；采纳消费者保护安排也不证明居民账单不会上涨。马萨诸塞州保护机制、Gallup及SCCS担忧涉及不同地域、主体或事件，不构成重复。legacy中的俄亥俄项目容量和建设状态没有提出相反的和解采纳记录。未发现同口径真实冲突或可指认的重复规范记录，不替换已有结论；检查限于所供记录。",
+      "gap_dependency_check": "本项仅为M04-Q04贡献一项俄亥俄州成本分担争议中的监管回应事件，不能证明实际居民成本转嫁，也不能建立已发生的涨价引发政治反弹的因果链。仍需PUCO决定及和解原文、适用范围与执行记录、上诉进展、居民费率和成本分摊数据、PPA价格序列及反证。问题保持开放，不更新电价参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0bbf6567e18134438b5f8948998cd069c23426cae0d0c9c4df2d078c3403d3f5",
+        "source_report_sha256": "d65b327f730cda31b1dd3bdff21ad3cb5237773816202d9c396c464865527800",
+        "request_sha256": "23d512e23c66966732ea2c1c7e9bec3f42162c16236887326ade059bbbb3a025"
+      },
+      "object_mapping_check": "实际范围是俄亥俄州监管机构采纳和解的事件及参与方，未确立一座AI数据中心、设施系统、并网协议或具体项目阶段。root是一座AI数据中心，site:grid是其电力配额与并网权利，site:permits是项目许可，均不对应本项事件。合同中actor:aep名为“美国电力”，所供证据仅列AEP Ohio，未确立与该对象的主体身份对应关系，故不自动将子公司名称映射为该主体。其他列明机构没有对应的允许对象。独立采用空对象范围，保留M04-Q04关联，不继承Reader标签；所选证据统一使用该范围。"
     }
   ],
   "answers": [],
