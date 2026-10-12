@@ -27,12 +27,12 @@ def pointer(value, path):
     return value
 
 
-def source(data, sha):
+def source(data, sha, *, with_provenance=False):
     """Resolve receiver provenance, bytes and earliest *receiver* receipt."""
     if not isinstance(sha,str) or not re.fullmatch('[0-9a-f]{64}',sha):
         raise ValueError('source_hash_required')
     data=Path(data); acquisition=data/'acquisition/catalog.sqlite'
-    rows=[]
+    rows=[]; archive=None
     if acquisition.is_file():
         with _readonly(acquisition) as db:
             rows=db.execute('SELECT * FROM product_documents WHERE sha256=? ORDER BY received_at', (sha,)).fetchall()
@@ -44,20 +44,29 @@ def source(data, sha):
     else:
         from inresearch.delivery.reader_export import supplied_sources
         with _readonly(data/'catalog/catalog.sqlite') as db:
-            row=db.execute('SELECT original_rel FROM documents WHERE sha256=?',(sha,)).fetchone()
+            row=db.execute('SELECT doc_id,original_rel FROM documents WHERE sha256=?',(sha,)).fetchone()
+            if not row: raise ValueError('received_source_required')
+            receipts=db.execute('SELECT id,source_key,received FROM sources WHERE doc_id=? ORDER BY id',(row['doc_id'],)).fetchall()
         supplied=supplied_sources(data,sha).get(sha)
-        if not row or not supplied or not supplied.get('source_url'): raise ValueError('received_source_required')
-        path=safe_path(data,row['original_rel']);url=supplied['source_url']
-        with _readonly(data/'catalog/catalog.sqlite') as db:
-            received=db.execute('SELECT MIN(received) FROM sources WHERE doc_id=?',('doc-'+sha,)).fetchone()[0]
+        path=safe_path(data,row['original_rel']);url=(supplied or {}).get('source_url')
+        received=min((r['received'] for r in receipts if r['received'] is not None),default=None)
         first=datetime.fromtimestamp(received,timezone.utc).isoformat() if received is not None else None
+        if not url:
+            if (row['doc_id']!='doc-'+sha or not receipts or
+                    any(not r['source_key'] or r['received'] is None for r in receipts)):
+                raise ValueError('actual_archive_import_required')
+            # Source paths stay in the runtime catalog. Freeze only their hashes
+            # in Git; importing a local original does not invent a webpage URL.
+            archive={'kind':'catalog_import','doc_id':row['doc_id'],'receipts':[
+                {'id':r['id'],'source_key_sha256':hashlib.sha256(r['source_key'].encode()).hexdigest(),
+                 'received_at':datetime.fromtimestamp(r['received'],timezone.utc).isoformat()} for r in receipts]}
     h=hashlib.sha256()
     with path.open('rb') as f:
         for chunk in iter(lambda:f.read(1024*1024),b''): h.update(chunk)
     if h.hexdigest()!=sha: raise ValueError('source_bytes_changed')
-    if not url.startswith('https://'): raise ValueError('public_source_url_required')
+    if (url is None and archive is None) or (url is not None and not url.startswith('https://')): raise ValueError('public_source_url_required')
     if first is not None and observation_time.precision(first)!='timestamp': raise ValueError('invalid_receiver_receipt')
-    return path,url,first
+    return (path,url,first,archive) if with_provenance else (path,url,first)
 
 
 def prepare(root,data,claims):
@@ -68,7 +77,7 @@ def prepare(root,data,claims):
         ledger.identity(claim['object'],root);ledger.check_claim(claim)
         evidence=claim['evidence'];sha=evidence['sha256']
         if sha not in cached:
-            path,url,first=source(data,sha)
+            path,url,first,archive=source(data,sha,with_provenance=True)
             if path.suffix.lower()=='.xlsx':
                 from inresearch.adapters.xlsx_document import Workbook
                 native=Workbook(path);mode='xlsx'
@@ -77,8 +86,8 @@ def prepare(root,data,claims):
             else:
                 from inresearch.workflow.research_match import pages
                 native=pages(path);mode='pages'
-            cached[sha]=(native,mode,url,first,path)
-        native,mode,url,first,path=cached[sha];loc=evidence['locator']
+            cached[sha]=(native,mode,url,first,path,archive)
+        native,mode,url,first,path,archive=cached[sha];loc=evidence['locator']
         if mode=='xlsx':
             from inresearch.adapters.xlsx_document import matches_value
             cell,context=native.select(loc)
@@ -113,6 +122,7 @@ def prepare(root,data,claims):
         contexts.append({'sha256':sha,'url':url,'locator':loc,'quote':quoted,
                          'context_sha256':hashlib.sha256(context.encode()).hexdigest(),
                          'published_at':published,'first_received_at':first})
+        if archive is not None: contexts[-1]['archive']=archive
     return {'version':digest({'claims':claims,'sources':contexts}),'sources':contexts}
 
 

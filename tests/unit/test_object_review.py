@@ -28,6 +28,47 @@ class ObjectReviewTests(unittest.TestCase):
     def proposal(self,claims=None):
         claims=claims or [self.claim];ctx=workflow.prepare(self.root,self.data,claims)
         return {'claims':claims,'source_version':ctx['version'],'baseline_sha256':digest(ledger.load(self.root)),'review':self.review}
+    def archive_fixture(self):
+        self.db.execute('DELETE FROM product_documents');self.db.commit()
+        folder=self.data/'catalog';folder.mkdir()
+        original=self.data/'originals'/('source-'+self.sha+'.json');original.parent.mkdir();
+        original.write_bytes(json.dumps({'part':'TEST-64','density':'64GB','range':[60,64]}).encode())
+        with sqlite3.connect(folder/'catalog.sqlite') as db:
+            db.execute('CREATE TABLE documents(doc_id TEXT,sha256 TEXT,original_rel TEXT)')
+            db.execute('CREATE TABLE sources(id INTEGER PRIMARY KEY,doc_id TEXT,source_key TEXT,received REAL)')
+            db.execute('INSERT INTO documents VALUES(?,?,?)',('doc-'+self.sha,self.sha,str(original.relative_to(self.data))))
+            db.execute('INSERT INTO sources VALUES(1,?,?,?)',('doc-'+self.sha,'m4-import/private/project.xlsx',1759276800))
+        return original
+
+    def test_archive_import_adopts_without_webpage_and_public_projection_hides_provenance(self):
+        self.archive_fixture();proposal=self.proposal();proposal['review']['public_fields_reviewed']=True
+        self.assertEqual(workflow.apply(self.root,self.data,proposal)['records'],1)
+        before=(self.root/ledger.PATH).read_bytes()
+        self.assertEqual(workflow.apply(self.root,self.data,proposal)['state'],'already_applied')
+        self.assertEqual(before,(self.root/ledger.PATH).read_bytes())
+        record=ledger.load(self.root)['records'][0]
+        self.assertEqual(record['source']['first_received_at'],'2025-10-01T00:00:00+00:00')
+        self.assertIsNone(record['source']['url']);self.assertTrue(ledger.archived_source_valid(record['source']))
+        self.assertNotIn('m4-import/private',before.decode())
+        public=ledger.public_page(self.root,{})['records'][0]
+        self.assertEqual(public['source'],{'url':None,'published_at':None})
+        self.assertNotIn('archive',json.dumps(public));self.assertNotIn('source_key',json.dumps(public))
+
+    def test_archive_receipt_changes_and_missing_import_block_before_writing(self):
+        self.archive_fixture();proposal=self.proposal()
+        with sqlite3.connect(self.data/'catalog/catalog.sqlite') as db:
+            db.execute('UPDATE sources SET source_key=?',('m4-import/changed',))
+        with self.assertRaisesRegex(ValueError,'changed_since_review'):workflow.apply(self.root,self.data,proposal)
+        self.assertFalse((self.root/ledger.PATH).exists())
+        with sqlite3.connect(self.data/'catalog/catalog.sqlite') as db:db.execute('DELETE FROM sources')
+        with self.assertRaisesRegex(ValueError,'actual_archive_import_required'):self.proposal()
+
+    def test_archive_bytes_and_forged_provenance_cannot_pass(self):
+        original=self.archive_fixture();proposal=self.proposal();original.write_bytes(b'changed original')
+        with self.assertRaisesRegex(ValueError,'source_bytes_changed'):workflow.apply(self.root,self.data,proposal)
+        evidence={'url':None,'sha256':self.sha,'archive':{'kind':'catalog_import','doc_id':'doc-'+self.sha,'receipts':[]}}
+        self.assertFalse(ledger.archived_source_valid(evidence))
+
     def test_archived_srcdoc_context_is_frozen_without_network_or_scripts(self):
         from html import escape
         from inresearch.adapters.html_document import srcdoc
