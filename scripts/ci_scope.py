@@ -11,7 +11,7 @@ import re
 import subprocess
 from urllib.parse import unquote, urlsplit
 
-FULL_SUITES = ['core_a', 'core_b', 'core_c', 'server_assembly', 'rack_assembly',
+FULL_SUITES = ['core_a', 'core_b', 'core_c', 'technical_atlas', 'chip_package', 'server_assembly', 'rack_assembly',
                'rack_exploded', 'scene_atlas', 'campus_overview:views',
                'campus_overview:geometry', 'campus_overview:navigation',
                'campus_overview:lifecycle', 'campus_exploded:views',

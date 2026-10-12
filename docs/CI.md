@@ -63,3 +63,9 @@ Dockerfile固定使用1.19.0语法，将web/assets、docs/design、docs/inbox和
 storage-container完整路线另执行tests/container_cache.py：用实际Dockerfile构建两版隔离输入，修改单条研究数据，验证稳定层相同、最终数据不同、资产存在且敏感伪造夹具未进入镜像。首次冷构建、后续缓存构建和生产发布分别实测；缓存命中不能代替公网/Spark验收。实现依据：[Dockerfile COPY文档](https://docs.docker.com/reference/dockerfile/#copy)。
 
 首次园区登记的纯资料追加：完整JSON维持全部旧站点顺序、基线、旧观测与顶层结构；仅末尾增加最多100个具有冻结identity_registration和具名采用v2观测的园区。身份字段一致、容量基线为空、首条name/status一致、目标为空且有对象绑定/断言；重复ID/名称、旧值改变、显式修订和结构不明回full。必须跑研究、站点写入、industry及research浏览器；此形状证明不代替来源语义审核，新实现本身仍跑全套。
+
+## 重型浏览器分片（2026-10-12）
+
+PR839实际core_a耗时516秒；technical_atlas约94秒，chip_package两场景约219秒，在同一作业内串行。将technical_atlas和chip_package分别移入现有矩阵的独立作业，其余场景保持，测试验证全部case恰好一次覆盖；300秒单场景和15分钟作业时限、validate/core汇总与所有断言保持。只改变全套作业编组，不扩大纯资料豁免，也不改变发布器按精确head检查所有作业的要求。首次修改全套运行，是否提速以新实际CI回执为准。
+
+首页最新动态是有界窗口；历史估算和预测从对应园区档案验证，不要求历史样例永远出现在最新动态。实际首页仍验证所显示site_id与有效时间对应、未知时点明示和完整备注不挤入标题流。

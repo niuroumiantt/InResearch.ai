@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.105。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.106。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2629。
+在册文件：2630。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 230 |
+| 配套说明 | 231 |
 | 测试 | 216 |
 
 ## 在册记录集合
@@ -52,7 +52,7 @@
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
-| `data/projects.json` | records | 133 |
+| `data/projects.json` | records | 146 |
 | `data/research_knowledge.json` | documents | 109 |
 | `data/research_knowledge.json` | evidence | 647 |
 | `data/research_knowledge.json` | statements | 582 |
@@ -2719,6 +2719,7 @@
 | [docs/handoff/stock-expansion-20261011.md](handoff/stock-expansion-20261011.md) | 配套说明 |
 | [docs/handoff/stock-network-bulk-20261012.md](handoff/stock-network-bulk-20261012.md) | 配套说明 |
 | [docs/handoff/stock-pdf-expansion-20261011.md](handoff/stock-pdf-expansion-20261011.md) | 配套说明 |
+| [docs/handoff/stock-sites-next-20261012.md](handoff/stock-sites-next-20261012.md) | 配套说明 |
 | [docs/handoff/stock-sn5600-20261012.md](handoff/stock-sn5600-20261012.md) | 配套说明 |
 | [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |

@@ -18,7 +18,7 @@ class ObjectReviewTests(unittest.TestCase):
         (self.root/'framework').mkdir()
         shutil.copyfile(Path(__file__).resolve().parents[2]/'framework/research_publication.json',self.root/'framework/research_publication.json')
         body=json.dumps({'part':'TEST-64','density':'64GB','range':[60,64]}).encode();self.sha=hashlib.sha256(body).hexdigest()
-        original=self.data/'acquisition/blobs'/self.sha[:2]/(self.sha+'.json');original.parent.mkdir(parents=True);original.write_bytes(body)
+        original=self.data/'acquisition/blobs'/self.sha[:2]/(self.sha+'.json');original.parent.mkdir(parents=True,exist_ok=True);original.write_bytes(body)
         self.db=sqlite3.connect(self.data/'acquisition/catalog.sqlite');self.addCleanup(self.db.close)
         self.db.execute('CREATE TABLE product_documents(sha256 TEXT,source_url TEXT,format TEXT,received_at TEXT)')
         self.db.execute('INSERT INTO product_documents VALUES(?,?,?,?)',(self.sha,'https://www.micron.com/test','json','2026-10-01T00:00:00Z'));self.db.commit()
@@ -93,7 +93,7 @@ class ObjectReviewTests(unittest.TestCase):
         from inresearch.workflow.stock_objects import extract
         body=workbook_bytes();sha=hashlib.sha256(body).hexdigest()
         original=self.data/'acquisition/blobs'/sha[:2]/(sha+'.xlsx')
-        original.parent.mkdir(parents=True);original.write_bytes(body)
+        original.parent.mkdir(parents=True,exist_ok=True);original.write_bytes(body)
         self.db.execute('INSERT INTO product_documents VALUES(?,?,?,?)',(sha,'https://www.micron.com/test','xlsx','2026-10-01T00:00:00Z'));self.db.commit()
         loc='xlsx:sheet:1:cell:C2:context:A1:E3'
         plan=[{'sha256':sha,'object':self.obj,'scope':{'condition':'synthetic estimate fixture'},

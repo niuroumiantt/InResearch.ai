@@ -163,8 +163,10 @@ const {mkdirSync}=require('node:fs');
   assert.ok(shownObservation,'ticker preserves the matching site observation time, including unknown');
   if(shownObservation.effective_at===null)assert.match(await realChanges.first().getAttribute('title'),/信息发生时间：未明确/);
   if(shownObservation.fields.notes)assert.ok(!(await realChanges.first().innerText()).includes(shownObservation.fields.notes),'full evidence notes stay in the project timeline');
-  const currentObservation=baseline.tracking.changes.find(item=>item.effective_at==='2026-07-28');
-  const forecastObservation=baseline.tracking.changes.find(item=>item.effective_at==='2026-11-01');
+  // The homepage is a bounded latest-updates window; history belongs to the site.
+  const historicalSite=(await (await page.request.get(base+'/api/industry?site=us-tx-abilene')).json()).detail;
+  const currentObservation=historicalSite.observations.find(item=>item.effective_at==='2026-07-28');
+  const forecastObservation=historicalSite.observations.find(item=>item.effective_at==='2026-11-01');
   assert.equal(currentObservation.kind,'estimated');assert.equal(currentObservation.fields.capacity_it_mw,421);
   assert.equal(forecastObservation.kind,'forecast');assert.equal(forecastObservation.fields.capacity_it_mw,843);
   assert.equal(await page.locator('#update-track .update-items[aria-hidden="true"] .update-item:not([tabindex="-1"])').count(),0,'duplicate animation content does not duplicate keyboard links');
