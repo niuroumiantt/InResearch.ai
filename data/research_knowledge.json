@@ -70892,6 +70892,87 @@
         },
         "batch_id": "157b711b2aba15cf7677e106c4286ee66dc76ab6fdf8937b1f2dad1a3b905368"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0fc02e77aa20f54de25788aff8f7e686e250ff8702289116664f63cdddbeaa6d",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "id": "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Swiss private equity firm Partners Group has agreed to acquire a majority stake in AVK Power Solutions, a UK-based power infrastructure firm for the data center market.",
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "source_sha256": "4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:26:57+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文及完整页面支持限定归因的多数股权收购协议主张，对当前M11-Q04提供私募资本进入数据中心电力供应商的交易追踪线索，具有局部实质贡献。供应商投资与数据中心资产投资须区分；不能回答年度流量或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.073,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b353b877752164a2bf6b87b8da158ef0b3c858bab40a230c87abb6b3f6420031",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 40371,
+            "output_tokens": 1188,
+            "reasoning_output_tokens": 202
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 42.36,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7880c0955d8155dbfe5106e39095893dd1d6c03858b4f7ca2109767a933f6448",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 40948,
+              "output_tokens": 573,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "0227849afea67176e4dac6d2c785a4bfd4c8660ecde7edd70ca2d6f9fc104a3e"
+      }
     }
   ],
   "statements": [
@@ -137830,6 +137911,104 @@
           "status": "partial_support"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-4a8835af9e4803acfcd63b6970c9114e898ab75fdc4c0918bfc32f63db84b57f",
+      "evidence_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:0:ev:0"
+      ],
+      "id": "adoption:review:d74c07ec1c0d54701aacecb2",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M11-Q04"
+      ],
+      "reading_revision_id": "rev-c3fd695e16d24246a771924249d1f2b8",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年8月6日的报道中称，瑞士私募股权机构Partners Group已同意收购英国数据中心电力基础设施供应商AVK Power Solutions的多数股权。这是来源对收购协议阶段的陈述，不构成交易已交割、资金已支付或当前股权状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T08:26:57+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续原文及完整页面支持限定归因的多数股权收购协议主张，对当前M11-Q04提供私募资本进入数据中心电力供应商的交易追踪线索，具有局部实质贡献。供应商投资与数据中心资产投资须区分；不能回答年度流量或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.073,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b353b877752164a2bf6b87b8da158ef0b3c858bab40a230c87abb6b3f6420031",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 40371,
+            "output_tokens": 1188,
+            "reasoning_output_tokens": 202
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 42.36,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7880c0955d8155dbfe5106e39095893dd1d6c03858b4f7ca2109767a933f6448",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 40948,
+              "output_tokens": 573,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "0227849afea67176e4dac6d2c785a4bfd4c8660ecde7edd70ca2d6f9fc104a3e"
+      },
+      "source_candidate_ids": [
+        "rev-c3fd695e16d24246a771924249d1f2b8:chunk:0:claim:0"
+      ],
+      "limitations": "所选引文未披露确切持股比例、收购价、交易条件、交割日期或实际付款。英国限定标的企业所在地，不能推定全部资金用途或项目所在地。正文另有Partners Group拟投入超过$1 billion股权资金并辅以债务融资的表述，但该句不在本项所选证据中，且拟投入金额不能等同于收购价或年度实际流量。本项没有一手交易文件。",
+      "conflict_check": "已采用的Partners Group自2021年以来约$4bn累计投资及atNorth进入与退出陈述涉及累计统计或另一交易，不是本项AVK收购协议的重复，也不能证明本项交割。AirTrunk收购与Bloom—Brookfield合作属于其他交易。所供legacy匹配记录为空，未发现同一AVK交易的canonical记录、真实冲突或替换条件；检查限于所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "M11-Q04仍需一手协议及交割公告、年度支付金额、收购与追加资本拆分、股权与债务口径、资金收款方和用途、供应商与数据中心资产的统计边界、年度样本覆盖及反证。需查明本项与同文累计投资口径是否重叠，不能直接相加。Partners Group案例不代表KKR、Blackstone或主权基金的年度流量；问题保持开放，不更新模型输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0227849afea67176e4dac6d2c785a4bfd4c8660ecde7edd70ca2d6f9fc104a3e",
+        "source_report_sha256": "73d573a6b4eafb94eb749fd8262318018b40ce93057dddf45788dd4dd8d3bb52",
+        "request_sha256": "24c3ed584323f56e5ce14856f4f7ca60ec531bccdea87965172e46d0670b7ca4"
+      },
+      "object_mapping_check": "独立核对对象契约：本项范围为Partners Group收购AVK企业股权，两个企业均无允许的对应actor ID。root表示一座AI数据中心，不能承接供应商企业收购；system:power及其链、部件表示设施电力范围，所选主张未将交易分配到具体系统、设备或并网权利。全文其他客户和供应商关系不属于本项对象范围，因此对象列表为空，保留有效的M11-Q04匹配。所选证据使用同一主张级范围，原始标签不变。"
     }
   ],
   "answers": [],
