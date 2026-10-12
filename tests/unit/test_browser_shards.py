@@ -35,7 +35,7 @@ class BrowserShardTests(unittest.TestCase):
         case_ids=[(c['suite'],c['scenario']) for c in groups['cases']]
         self.assertEqual(len(case_ids),len(set(case_ids)))
         self.assertEqual(set(case_ids),{(c['suite'],c['scenario']) for c in groups['expectedCases']})
-        for heavy in ('server_assembly','rack_assembly','rack_exploded','scene_atlas'):
+        for heavy in ('technical_atlas','chip_package','server_assembly','rack_assembly','rack_exploded','scene_atlas'):
             self.assertEqual(groups['shards'][heavy],[heavy])
         self.assertEqual(groups['c'],['part_dossier'])
         self.assertEqual(set(groups['scenes']),{'/bom3d.html?p=server',
