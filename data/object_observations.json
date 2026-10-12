@@ -1562,6 +1562,66 @@
       },
       "name": "SN5610",
       "id": "product:1260e79d62999fa16af81bfc92c0ddbd"
+    },
+    "product:bac72a4f406b6144e758594b9738589c": {
+      "type": "product",
+      "identity": {
+        "company_id": "nvidia",
+        "model": "A100",
+        "version": "not_disclosed"
+      },
+      "name": "A100",
+      "id": "product:bac72a4f406b6144e758594b9738589c"
+    },
+    "product:ea0225f317fffa28e6628e929397c1b3": {
+      "type": "product",
+      "identity": {
+        "company_id": "nvidia",
+        "model": "H100",
+        "version": "not_disclosed"
+      },
+      "name": "H100",
+      "id": "product:ea0225f317fffa28e6628e929397c1b3"
+    },
+    "product:06dd03a39f9b1454d3bfc0083c869382": {
+      "type": "product",
+      "identity": {
+        "company_id": "nvidia",
+        "model": "A800",
+        "version": "not_disclosed"
+      },
+      "name": "A800",
+      "id": "product:06dd03a39f9b1454d3bfc0083c869382"
+    },
+    "product:afcfdfd7984791912389a420e74c8224": {
+      "type": "product",
+      "identity": {
+        "company_id": "nvidia",
+        "model": "H800",
+        "version": "not_disclosed"
+      },
+      "name": "H800",
+      "id": "product:afcfdfd7984791912389a420e74c8224"
+    },
+    "product:e8c822c22263151d1b759d10aa52270b": {
+      "type": "product",
+      "identity": {
+        "company_id": "nvidia",
+        "model": "H20",
+        "version": "not_disclosed"
+      },
+      "name": "H20",
+      "id": "product:e8c822c22263151d1b759d10aa52270b"
+    },
+    "product:78fe2ee4e242f672ed6f17a4b2066574": {
+      "type": "product",
+      "identity": {
+        "company_id": "nvidia",
+        "model": "L20",
+        "version": "not_disclosed"
+      },
+      "name": "L20",
+      "id": "product:78fe2ee4e242f672ed6f17a4b2066574"
     }
   },
   "records": [
@@ -26632,6 +26692,1596 @@
       "recorded_at": "2026-10-11T23:09:22.240510+00:00",
       "proposal_sha256": "3ca6cf264bcae6e56ea39356bd8a68cf253316d7502cd34806e9c18b2623ca1e",
       "claim_sha256": "48fe63dbbb00db8bd0388f86c4f6a12b496adc2e5b5b056f2dddee01792ca47a"
+    },
+    {
+      "metric": "manufacturer_catalogue_model",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "A100",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:e19ae2ec97f2b051663a0d6f4f4d4cb7",
+      "object_id": "product:bac72a4f406b6144e758594b9738589c",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:C2:context:A1:I18",
+        "quote": "A100",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "cd31dd3394e16dfde6a890e072f1a47c444876281f9ad5d4c8cf61a7d4a2cf8f"
+    },
+    {
+      "metric": "chip_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "AI GPU",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:08c4acad20ff4d54b6dfa290ecf41ba4",
+      "object_id": "product:bac72a4f406b6144e758594b9738589c",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:B2:context:A1:I18",
+        "quote": "AI GPU",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "c9716ee53458a3430cc81772f73350da524cddc6369c0c47afbcedd01a075c41"
+    },
+    {
+      "metric": "process_node",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "7nm",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:02758fd019c3b6a230cb232b7e800628",
+      "object_id": "product:bac72a4f406b6144e758594b9738589c",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:F2:context:A1:I18",
+        "quote": "7nm",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "420dc09013db6787b8afe5e9499e0884531e72e9804bd5171b8be42a42c1fe17"
+    },
+    {
+      "metric": "memory_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "HBM2e 8 High",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:6e39d750f675e58f747df75386d952ad",
+      "object_id": "product:bac72a4f406b6144e758594b9738589c",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:G2:context:A1:I18",
+        "quote": "HBM2e 8 High",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "0416b23213ae64d1db61a79089c194d8a9a6734b96cbb3130ea9e36ed41a5b36"
+    },
+    {
+      "metric": "memory_capacity",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": 80,
+      "unit": "GB",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:ec4bdb892a9e479399ba6b66ec4c78bf",
+      "object_id": "product:bac72a4f406b6144e758594b9738589c",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:H2:context:A1:I18",
+        "quote": "80",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "6aa7a205d46d2124cba43752bf2b6afbd6d5d95df597486f87405ad2473d7dcb"
+    },
+    {
+      "metric": "manufacturer_catalogue_model",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "H100",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:2ca9c368b4f9108ea5f8d16ed0ea413c",
+      "object_id": "product:ea0225f317fffa28e6628e929397c1b3",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:C3:context:A1:I18",
+        "quote": "H100",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "43bbdbfb704d27a6738afbe6f09d9d4ccbce48ebf7758bfef3c48962c893aaee"
+    },
+    {
+      "metric": "chip_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "AI GPU",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:beaf27d15360fc4a49b92c71f61a129c",
+      "object_id": "product:ea0225f317fffa28e6628e929397c1b3",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:B3:context:A1:I18",
+        "quote": "AI GPU",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "7fabbbd17adcf1115f904b5d399d7145689889c44546478f96722892b9a7d247"
+    },
+    {
+      "metric": "process_node",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "4nm",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:9508fb6c348087bd33277fa7a8b8af3e",
+      "object_id": "product:ea0225f317fffa28e6628e929397c1b3",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:F3:context:A1:I18",
+        "quote": "4nm",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "27b0936a46a95d4843948adf743cb8187270161038891e3733d82c736ec0850b"
+    },
+    {
+      "metric": "memory_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": "HBM3 8 High",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:5d4a08da12bc692b8e945051dbef6a1b",
+      "object_id": "product:ea0225f317fffa28e6628e929397c1b3",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:G3:context:A1:I18",
+        "quote": "HBM3 8 High",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "bc147ba1183a6a1e70f92aca01a6897b9bd399326e140b122bcc36e8aed4fc7c"
+    },
+    {
+      "metric": "memory_capacity",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Global)"
+      },
+      "value": 80,
+      "unit": "GB",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:a1f64a1b0180cff7c82c4db1c2b0ed20",
+      "object_id": "product:ea0225f317fffa28e6628e929397c1b3",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:H3:context:A1:I18",
+        "quote": "80",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "ff6c13a0b2062959baaeceaddbfda931ab22b3392843d77812080a63a33919a1"
+    },
+    {
+      "metric": "manufacturer_catalogue_model",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "A800",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:bb56fd9eb1f1084b116f5d3ba14f40da",
+      "object_id": "product:06dd03a39f9b1454d3bfc0083c869382",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:C12:context:A1:I18",
+        "quote": "A800",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "eb353b0b452b8b39bc33d3438559fdee58ac30c825aee6fa1f672e7a0057ff90"
+    },
+    {
+      "metric": "chip_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "AI GPU",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:59da8cb8984a4c4804c9ee929796e255",
+      "object_id": "product:06dd03a39f9b1454d3bfc0083c869382",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:B12:context:A1:I18",
+        "quote": "AI GPU",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "6b870cca0af20cecef21f31eea350750f9354f7ba0db8dd73f990dbe8466dd04"
+    },
+    {
+      "metric": "process_node",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "7nm",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:de7e2d0df2bb10839b7bf89c2e7f225b",
+      "object_id": "product:06dd03a39f9b1454d3bfc0083c869382",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:F12:context:A1:I18",
+        "quote": "7nm",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "525dad8705e6367ef51df79cd47de8b65d615066dd9bc8e0a72543d8d301e552"
+    },
+    {
+      "metric": "memory_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "HBM2e 8 High",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:aa6d9c6e2ffc13b701f124760282efb0",
+      "object_id": "product:06dd03a39f9b1454d3bfc0083c869382",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:G12:context:A1:I18",
+        "quote": "HBM2e 8 High",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "1a5f04512f296e54b94cb841a24a0f57e544d12cbcda88e89c21344f9ea5decf"
+    },
+    {
+      "metric": "memory_capacity",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": 80,
+      "unit": "GB",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:2f2c9e76c5a5b00455307f71e540ad4c",
+      "object_id": "product:06dd03a39f9b1454d3bfc0083c869382",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:H12:context:A1:I18",
+        "quote": "80",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "1e28e3321cbae9fd9a0fe8c1f49369daa41dd05d84a7a26f2365e701c77f0b67"
+    },
+    {
+      "metric": "manufacturer_catalogue_model",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "H800",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:2eda0899c1793601b6bd684b7de8fa61",
+      "object_id": "product:afcfdfd7984791912389a420e74c8224",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:C13:context:A1:I18",
+        "quote": "H800",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "2e787ada933d8c35cdac24bc02be1c8c1883a7ca17fb143bba1b1afc612531b0"
+    },
+    {
+      "metric": "chip_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "AI GPU",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:b8debd596fdc1ae095d830dffa291446",
+      "object_id": "product:afcfdfd7984791912389a420e74c8224",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:B13:context:A1:I18",
+        "quote": "AI GPU",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "202eefa5dae11904f527ca91109c6099f45d9d132670ae34496f145b8e7e7672"
+    },
+    {
+      "metric": "process_node",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "4nm",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:526fab2de891e8741433b9501c20e95d",
+      "object_id": "product:afcfdfd7984791912389a420e74c8224",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:F13:context:A1:I18",
+        "quote": "4nm",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "8ce73bdcbabc5adf5694806611f78831b82c7fc1cfd40857633387ce61ad62fb"
+    },
+    {
+      "metric": "memory_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "HBM3 8 High",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:bfd69f59daf0e13512c34804e1f5a74c",
+      "object_id": "product:afcfdfd7984791912389a420e74c8224",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:G13:context:A1:I18",
+        "quote": "HBM3 8 High",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "5b272b99d39df60fdafb28539645fb2d5b7edf6af33d39fb62e0ffc7432a00b6"
+    },
+    {
+      "metric": "memory_capacity",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": 80,
+      "unit": "GB",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:958018232881b21c3345234166aaaf19",
+      "object_id": "product:afcfdfd7984791912389a420e74c8224",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:H13:context:A1:I18",
+        "quote": "80",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "77323cbe4ace2cda1a9372a2553bdd329023d41801140303c48d491196bca931"
+    },
+    {
+      "metric": "manufacturer_catalogue_model",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "H20",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:137b7229d9b0abf6983fe9cc09010d1f",
+      "object_id": "product:e8c822c22263151d1b759d10aa52270b",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:C15:context:A1:I18",
+        "quote": "H20",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "bf7ad24dd06956fcc4fd1ca2296a42391ff04a130d73a0dec44e9fc180c71675"
+    },
+    {
+      "metric": "chip_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "AI GPU",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:9edf68257a077da827dce3b19468bc91",
+      "object_id": "product:e8c822c22263151d1b759d10aa52270b",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:B15:context:A1:I18",
+        "quote": "AI GPU",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "bff7fc7fc1857daba4863e549800ea989b57b6fd4163c838cb655131f2ec818c"
+    },
+    {
+      "metric": "process_node",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "4nm",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:c1579f141f1538a980b6ce32399dedaf",
+      "object_id": "product:e8c822c22263151d1b759d10aa52270b",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:F15:context:A1:I18",
+        "quote": "4nm",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "f5c5f3768bdea85668fc08dbf9afeadacb4ef53e78906521726aebde1932e462"
+    },
+    {
+      "metric": "memory_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "HBM3 8 High",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:6cde3051052000ea05b02c5d1d1083d8",
+      "object_id": "product:e8c822c22263151d1b759d10aa52270b",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:G15:context:A1:I18",
+        "quote": "HBM3 8 High",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "d57afc865003f30b7ea24477df4468c28dd907fc800d50b8f3a8d97475a071d5"
+    },
+    {
+      "metric": "memory_capacity",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": 96,
+      "unit": "GB",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:0a58aa0a729c3ff9f8aaafddebcce81c",
+      "object_id": "product:e8c822c22263151d1b759d10aa52270b",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:H15:context:A1:I18",
+        "quote": "96",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "c5e725344158799386dee665458fc5189d2216fa635c5a989a7baf423e31f4e9"
+    },
+    {
+      "metric": "manufacturer_catalogue_model",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "L20",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:032c10527ab186efa53421d7b33f7fff",
+      "object_id": "product:78fe2ee4e242f672ed6f17a4b2066574",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:C17:context:A1:I18",
+        "quote": "L20",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "adc40c33f08bc601ce54e6664861ff697889df36abfd57e4653c5fceab138af6"
+    },
+    {
+      "metric": "chip_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "AI GPU",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:f873c7be7641f1fd2b2670be325fd0bb",
+      "object_id": "product:78fe2ee4e242f672ed6f17a4b2066574",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:B17:context:A1:I18",
+        "quote": "AI GPU",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "5645f91c9be3d4fcf3eac8b6c239eea2f6040fd4ff512f7f185f655670bb3044"
+    },
+    {
+      "metric": "process_node",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "5nm",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:5c9e99d15b141e94f4e59656d2d14561",
+      "object_id": "product:78fe2ee4e242f672ed6f17a4b2066574",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:F17:context:A1:I18",
+        "quote": "5nm",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "4b0ccc0e3299a60f368edf0ae98a14c90f81dcc2b0fa69bb2b7195f800be3950"
+    },
+    {
+      "metric": "memory_type",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": "GDDR6",
+      "unit": "native",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:7b3f033bee802c09ed14dd167139a2dd",
+      "object_id": "product:78fe2ee4e242f672ed6f17a4b2066574",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:G17:context:A1:I18",
+        "quote": "GDDR6",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "b903b7d1f85deaf4b478069151963d6a520c5ba5ef2b52b67cffbfe91867e119"
+    },
+    {
+      "metric": "memory_capacity",
+      "scope": {
+        "boundary": "single_chip_model",
+        "variant": "not_disclosed",
+        "market": "NVIDIA (Chinese market)"
+      },
+      "value": 48,
+      "unit": "GB",
+      "kind": "reported",
+      "basis": "归档GPU参数对照表的原生字段；表内未区分具体板卡版本，资料披露时间与指标有效时间未明确。作为来源报告值保留，尚未与厂商逐项复核，不据此推定最新规格或产品可售状态。",
+      "effective_at": null,
+      "assumptions": [
+        "版本未区分；来源报告值，尚未与厂商逐项复核"
+      ],
+      "id": "observation:724d0af97b26c76723d512c3e2582ab4",
+      "object_id": "product:78fe2ee4e242f672ed6f17a4b2066574",
+      "source": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "url": null,
+        "locator": "xlsx:sheet:2:cell:H17:context:A1:I18",
+        "quote": "48",
+        "context_sha256": "6c4353f713610a9c7ed0cde4d05547eb49f0eff9c12201e617e258b7653f07d0",
+        "published_at": null,
+        "first_received_at": "2026-09-07T00:02:41.157814+00:00",
+        "archive": {
+          "kind": "catalog_import",
+          "doc_id": "doc-ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+          "receipts": [
+            {
+              "id": 11672,
+              "source_key_sha256": "917f362656456c580dd8d33c66ea3e9d732f7cffa09d1c901df7fe135da14289",
+              "received_at": "2026-09-07T00:02:41.157814+00:00"
+            }
+          ]
+        }
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex archived GPU source-cell review 2026-10-12",
+        "at": "2026-10-12T00:08:05.476395+00:00",
+        "score": 7,
+        "tier": "B",
+        "authority": "reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "逐项核对GPU参数统计表A1:I18内六个明确NVIDIA型号及30个非公式单元格。原件SHA、catalog实际导入记录、表头、单位、型号/市场边界冻结；原始数值按来源报告值采用，版本未分及未与厂商复核在公开口径保留。无明确披露/有效时间保持空，不从release列或孤立更新备注推造。只公开普通产品事实字段与口径，未公开原件、引文、私人目录、导入元数据或第三方预测序列。"
+      },
+      "reviewed_at": "2026-10-12T00:08:05.476395+00:00",
+      "recorded_at": "2026-10-12T00:08:05.585327+00:00",
+      "proposal_sha256": "7d544af2f9e272cc3a3100ff244502980ab31bb373203348fdbac51adc154863",
+      "claim_sha256": "ad23646f50d175a7f749d3da90388dec794faa94e11979d9f1b9c6f65a26dc14"
     }
   ]
 }
