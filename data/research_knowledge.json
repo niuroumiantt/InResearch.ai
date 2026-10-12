@@ -63526,6 +63526,91 @@
         },
         "batch_id": "0bbf6567e18134438b5f8948998cd069c23426cae0d0c9c4df2d078c3403d3f5"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "12b9e6ccfa2a3d5a121b6a6afa7c864bf50c588bed981c83cc2a137471a0aa84",
+      "document_id": "doc-ed447c10f72242d21a196c9a9f09eb11fd6e7b33204761a00af3ce7f245888f6",
+      "id": "rev-c52a2ee5919141b9be1a7125cdd557a7:chunk:0:claim:14:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:scala",
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "all of the new buildings showcase a future-proof design, enabling densities that will range from 24kW per rack up to 100kW per rack with the adoption of liquid cooling technologies.",
+      "reading_revision_id": "rev-c52a2ee5919141b9be1a7125cdd557a7",
+      "source_sha256": "ed447c10f72242d21a196c9a9f09eb11fd6e7b33204761a00af3ce7f245888f6",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:03:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及完整园区扩张语境支持有明确来源归属的设计预期，对当前M06-Q04提供机柜密度与冷却技术关联的项目线索，对M08-Q01提供新建筑液冷采用的计划侧线索，具有实质性部分贡献。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04",
+          "Q-M08-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 60.123,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aebdd80214698552cdfa44806c51748618f11489e449424d2604b24977282ef2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 52569,
+            "output_tokens": 1469,
+            "reasoning_output_tokens": 367
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.301,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "79e8702861c36a978b5387eea06f3ef7d906505749b3529c65084e3c67609a96",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53263,
+              "output_tokens": 523,
+              "reasoning_output_tokens": 223
+            }
+          }
+        },
+        "batch_id": "007861eaf2b5481dbb7d62d1580ab9ea5a09c4fed856f4db868a3e9bd374326e"
+      }
     }
   ],
   "statements": [
@@ -123247,6 +123332,109 @@
         "request_sha256": "23d512e23c66966732ea2c1c7e9bec3f42162c16236887326ade059bbbb3a025"
       },
       "object_mapping_check": "实际范围是俄亥俄州监管机构采纳和解的事件及参与方，未确立一座AI数据中心、设施系统、并网协议或具体项目阶段。root是一座AI数据中心，site:grid是其电力配额与并网权利，site:permits是项目许可，均不对应本项事件。合同中actor:aep名为“美国电力”，所供证据仅列AEP Ohio，未确立与该对象的主体身份对应关系，故不自动将子公司名称映射为该主体。其他列明机构没有对应的允许对象。独立采用空对象范围，保留M04-Q04关联，不继承Reader标签；所选证据统一使用该范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-ed447c10f72242d21a196c9a9f09eb11fd6e7b33204761a00af3ce7f245888f6",
+      "evidence_ids": [
+        "rev-c52a2ee5919141b9be1a7125cdd557a7:chunk:0:claim:14:ev:0"
+      ],
+      "id": "adoption:review:31c12a353d64f94953ae4ed8",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:scala",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M06-Q04",
+        "M08-Q01"
+      ],
+      "reading_revision_id": "rev-c52a2ee5919141b9be1a7125cdd557a7",
+      "status": "adopted",
+      "text": "DCD于2024年5月10日刊载、标注Sponsored及By Press Release的Scala Data Centers新闻稿称，其巴西圣保罗Tamboré园区的所有新建筑具有面向未来的设计，预计通过采用液冷技术支持24–100 kW/机柜的功率密度。这是新闻稿对新建筑设计能力的预期，未确认具体建筑的液冷安装或投运进度，不构成实际运行功率、当前独立性能认证或液冷渗透率的确认。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:03:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及完整园区扩张语境支持有明确来源归属的设计预期，对当前M06-Q04提供机柜密度与冷却技术关联的项目线索，对M08-Q01提供新建筑液冷采用的计划侧线索，具有实质性部分贡献。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04",
+          "Q-M08-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 60.123,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aebdd80214698552cdfa44806c51748618f11489e449424d2604b24977282ef2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 52569,
+            "output_tokens": 1469,
+            "reasoning_output_tokens": 367
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.301,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "79e8702861c36a978b5387eea06f3ef7d906505749b3529c65084e3c67609a96",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53263,
+              "output_tokens": 523,
+              "reasoning_output_tokens": 223
+            }
+          }
+        },
+        "batch_id": "007861eaf2b5481dbb7d62d1580ab9ea5a09c4fed856f4db868a3e9bd374326e"
+      },
+      "source_candidate_ids": [
+        "rev-c52a2ee5919141b9be1a7125cdd557a7:chunk:0:claim:14"
+      ],
+      "limitations": "未提供机柜配置、功率计量边界、实际负载、液冷路线、测试方法或验收结果；不能推定所有机柜均运行于该范围，也不能把24 kW视为液冷必要阈值。全文涉及已投运、在建和规划建筑，但未逐栋确定本项所述液冷实施阶段。没有液冷采用比例、统计分母、时间序列、存量改造数据或设备价格。",
+      "conflict_check": "既有训练环境60–80 kW及特殊配置超过100 kW的概括、Helios最高246 kW参考设计和Kyber接近600 kW预测，涉及不同配置、来源时间及阶段，与本项园区设计范围未形成同条件矛盾。既有风冷适用范围及高密度改造液冷必要性的作者判断也不与本项冲突：本项没有宣称24 kW必须液冷。现有记录未完整覆盖此园区、日期及设计预期，不判为重复。当前回答为空，所供legacy匹配记录为空；检查限于供应材料，不代表完成外部全面反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "M06-Q04仍需120 kW→600 kW→1 MW各阶段的直接来源、配置与工况，以及向M08/M09传导的可复查定量推导；本项24–100 kW设计范围不能补齐这些阶段。M08-Q01仍需确认实际液冷投运状态，并取得按新建AI机房与存量改造分组、具有明确地域和分母的实际渗透率曲线及反证。本项只贡献设计预期侧的部分证据，两项问题保持开放，不更新模型参数、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "007861eaf2b5481dbb7d62d1580ab9ea5a09c4fed856f4db868a3e9bd374326e",
+        "source_report_sha256": "b45e32debe084a920f3de478152fb4dabe2feecefd7d56e6a24bd771c6d82993",
+        "request_sha256": "a96b4047297a9d604d85075c1a1f3bb7bea6808d9ea596e25ee986364d4458a3"
+      },
+      "object_mapping_check": "独立依据主张选择Scala主体及root下的水与散热系统：原文讨论该公司Tamboré园区新建筑通过液冷支持机柜设计密度的预期。未确定冷板、浸没、CDU等具体路线，不下沉到链条或部件；普通机柜密度不能证明计算链下NVL72类整机柜系统，不沿用part:rack-system。亦未提供土建结构或具体供电构成，不增加设施、电力或并网映射。所选证据统一采用此主张级范围，原候选和证据标签保持不变。"
     }
   ],
   "answers": [],
