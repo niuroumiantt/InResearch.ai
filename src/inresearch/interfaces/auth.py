@@ -190,16 +190,16 @@ def set_password(username: str, new_password: str, *, current_password: str | No
 
 
 ROLES = ("admin", "member", "intern")
-# 第四种角色 reader 是公开只读：不登录即是，不建账号；能看什么由 interfaces/public.py 的白名单决定。
+# reader 是未登录访客：仅首页及其必要依赖公开，不建账号；边界由 interfaces/public.py 决定。
 
 # 实习生白名单（默认拒绝）。为什么不是黑名单：打分表的 summary 里就有招标控制价
 # 数字——敏感的不只是标了 sensitive 的事实记录，账本本身就是。逐条拉黑必漏，
 # **漏一条路径等于没锁门**；白名单只放行工单系统，其余一概 403。
 # 2026-09-28：实习生的入口是采集页（目标表与研究问题任务两个标签；/api/targets 在服务端只给分配给自己的行）。
-INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/fonts/", "/supply.html", "/api/targets", "/reports/workorders.json", "/data/assignments.json",
-                    "/api/status", "/api/tasks", "/api/whoami", "/account", "/login", "/logout",
+INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/fonts/", "/supply.html", "/tasks.html", "/api/targets", "/reports/workorders.json", "/data/assignments.json",
+                    "/api/status", "/api/tasks", "/api/research-tasks", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
-INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign", "/api/deliver")
+INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign", "/api/deliver", "/api/research-tasks")
 
 
 def user_role(username: str) -> str:

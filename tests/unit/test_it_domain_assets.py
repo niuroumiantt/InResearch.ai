@@ -28,7 +28,7 @@ class ITDomainAssetTests(unittest.TestCase):
   sf=g['source_factory'];self.assertEqual(sha((R/sf['file']).read_bytes()),sf['sha256']);self.assertEqual(g['existing_actual_geometry']['mesh'],152)
   b=(R/'web/pages/bom3d.html').read_text();a=(R/'web/components/technical-atlas.js').read_text();self.assertIn("['compute','memory','storage','network'].includes(activeDomain)) && p.system===activeDomain?'system':null",b);self.assertIn("campusMode && d.key==='compute'",b);self.assertIn('八类计算对象本场景均未建模',b);self.assertIn("partId === 'compute-domain' && view === 'domain' ? computeDomain",a)
   page='compute-atlas.html';m=j(R/'framework/interface_manifest.json');routes=j(R/'web/routes.json');self.assertEqual(routes['/'+page],'web/pages/'+page)
-  for k in ['static_pages','public_pages']:self.assertIn(page,m[k])
+  self.assertIn(page,m['static_pages']);self.assertNotIn(page,m['public_pages'])
   self.assertIn(page,m['sections']['bom']);s=(R/'web/pages'/page).read_text();self.assertIn("'compute-domain',{view:'domain'}",s)
   for u in re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"',s):self.assertIn(u,routes);self.assertTrue((R/routes[u]).is_file())
   self.assertNotIn('/assets/site-shell.js',s);self.assertIn('独立服务器三维示例',s);self.assertIn('独立整柜三维示例',s);self.assertIn('view=rack&amp;x=0&amp;node=part:rack-frame',s);self.assertNotIn('view=overview',s)
@@ -38,7 +38,7 @@ class ITDomainAssetTests(unittest.TestCase):
   labels=j(d/'labels-v1.json')['labels'];cpu=next(l for l in labels if l['number']=='04');self.assertEqual(cpu['part_id'],'cpu');self.assertEqual(cpu['source_component'],'dram');self.assertTrue(cpu['context_only']);self.assertNotIn('cpu',ids)
   m=j(d/'asset-manifest-v1.json');s=E.parse(R/m['assets'][1]['file']).getroot();self.assertEqual(s.find('.//s:g[@data-label="04"]',N).get('data-object'),'cpu');texts=' '.join(e.text for e in s.findall('.//s:text',N));self.assertIn('封装内堆栈',texts);self.assertIn('逻辑裸片旁内存',texts);self.assertIn('不是 HBM→DIMM→CXL 的三级串联',texts);self.assertIn('CPU内存控制器 ↔ RDIMM',texts);self.assertIn('支持CXL的主机 ↔ 扩展设备',texts)
   routes=j(R/'web/routes.json');m=j(R/'framework/interface_manifest.json');page='memory-atlas.html';self.assertEqual(routes['/'+page],'web/pages/'+page)
-  for key in ['static_pages','public_pages']:self.assertIn(page,m[key])
+  self.assertIn(page,m['static_pages']);self.assertNotIn(page,m['public_pages'])
   self.assertIn(page,m['sections']['bom']);text=(R/'web/pages'/page).read_text();self.assertIn("'memory-domain',{view:'domain'}",text)
   for u in re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"',text):self.assertIn(u,routes);self.assertTrue((R/routes[u]).is_file())
 
@@ -57,7 +57,7 @@ class ITDomainAssetTests(unittest.TestCase):
   routes=j(R/'web/routes.json');m=j(R/'framework/interface_manifest.json');b=(R/'web/pages/bom3d.html').read_text()
   for domain in ['compute','memory','storage','network']:
    page=domain+'-atlas.html';self.assertEqual(routes['/'+page],'web/pages/'+page)
-   for key in ['static_pages','public_pages']:self.assertIn(page,m[key])
+   self.assertIn(page,m['static_pages']);self.assertNotIn(page,m['public_pages'])
    self.assertIn(page,m['sections']['bom']);s=(R/'web/pages'/page).read_text();self.assertIn("'"+domain+"-domain',{view:'domain'}",s);self.assertIn("campusMode && d.key==='"+domain+"'",b)
    for u in re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"',s):self.assertIn(u,routes);self.assertTrue((R/routes[u]).is_file())
    self.assertNotIn('/assets/site-shell.js',s)

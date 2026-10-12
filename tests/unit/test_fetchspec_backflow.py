@@ -65,9 +65,10 @@ class BackflowEndpointTest(unittest.TestCase):
         self.assertEqual(requirements['S.grid.holders']['site_right_id'], 'grid')
         self.assertNotIn('local_file', requirements['S.grid.holders'])
 
-    def test_backflow_is_on_the_public_reader_allowlist(self):
+    def test_backflow_requires_login_and_retains_existing_intern_read_grant(self):
         from inresearch.interfaces import public
-        self.assertIn('/api/targets/backflow', public.READER_API)
+        self.assertFalse(public.allowed('/api/targets/backflow'))
+        self.assertIn('/api/targets/backflow', public.INTERN_RESEARCH_API)
 
 
 class ReceiverObservationsAndProjectionTest(unittest.TestCase):
