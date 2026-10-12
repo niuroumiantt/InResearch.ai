@@ -119,7 +119,10 @@ class IndustryTests(unittest.TestCase):
     def test_reviewed_duplicate_preserves_evidence_without_double_counting(self):
         view = industry.snapshot(ROOT)
         self.assertEqual(view['totals']['planning'], 21324)
-        self.assertEqual(view['totals']['sites'], 123)
+        records=json.loads((ROOT/'data/projects.json').read_text())['records']
+        expected={r['site_id'] for r in records if not r.get('duplicate_of') and 'portfolio' not in r['site_id']}
+        self.assertEqual({r['site_id'] for r in view['rows'] if not r['portfolio']}, expected)
+        self.assertEqual(view['totals']['sites'], len(expected))
         self.assertNotIn('us-tx-shackelford-frontier', [p['site_id'] for p in view['rows']])
         main = industry.snapshot(ROOT, {'site': 'us-tx-shackelford'})['detail']
         old = industry.snapshot(ROOT, {'site': 'us-tx-shackelford-frontier'})['detail']
@@ -134,9 +137,13 @@ class IndustryTests(unittest.TestCase):
     def test_capacity_audit_is_global_and_discloses_unknown_scope(self):
         audit = industry.snapshot(ROOT)['capacity_audit']
         self.assertEqual(audit, industry.snapshot(ROOT, {'c': 'meta'})['capacity_audit'])
-        self.assertEqual((audit['known'], audit['unknown'], audit['unlocated']), (38, 85, 20))
+        rows=[r for r in industry.snapshot(ROOT)['rows'] if not r['portfolio']]
+        self.assertEqual(audit['known']+audit['unknown'], audit['sites'])
+        self.assertEqual(audit['unknown'],sum(not r['capacity_known'] and not r['capacity_ranged'] for r in rows))
+        self.assertEqual(audit['unlocated'],sum(r['coordinates'] is None for r in rows))
         self.assertEqual((audit['duplicates_excluded'], audit['portfolios_excluded']), (1, 2))
-        self.assertEqual((audit['oldest_verified'], audit['latest_verified']), ('2026-07-23', '2026-10-07'))
+        dates=sorted(r['verified_date'] for r in rows if r.get('verified_date'))
+        self.assertEqual((audit['oldest_verified'], audit['latest_verified']), (dates[0], dates[-1]))
         self.assertIn('不能用 95 GW', audit['comparability'])
         self.assertIn('推导余额', audit['unresolved'])
         self.assertIn('集群', audit['coverage'])
