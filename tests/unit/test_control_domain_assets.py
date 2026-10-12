@@ -29,7 +29,7 @@ class ControlDomainAssetTests(unittest.TestCase):
   self.assertIn("if(campusMode&&activeDomain==='control'&&id==='dcim')return",b);self.assertIn('软件信息上下文，无物理模型；背景设施不证明数据接入或自动控制',b);self.assertIn('不是待建硬件',b);self.assertIn("['compute','memory','storage','network'].includes(activeDomain)) && p.system===activeDomain?'system':null",b)
   self.assertIn("const currentPartMeshes=pid=>campusMode&&campusSelectedMeshes?campusSelectedMeshes:PARTMESH[pid]",b);self.assertIn("id:campusMode&&campusSelectedInstance?campusSelectedInstance:'part:'+id",b);self.assertRegex(b,r'dcim\s*:\s*"control"')
   routes=j(R/'web/routes.json');m=j(R/'framework/interface_manifest.json');page='control-atlas.html';self.assertEqual(routes['/'+page],'web/pages/'+page)
-  for k in ['static_pages','public_pages']:self.assertIn(page,m[k])
+  self.assertIn(page,m['static_pages']);self.assertNotIn(page,m['public_pages'])
   self.assertIn(page,m['sections']['bom']);s=(R/'web/pages'/page).read_text();self.assertIn("'control-domain',{view:'domain'}",s);self.assertNotIn('/assets/site-shell.js',s);self.assertNotIn('/campus-atlas.html',s)
   for u in re.findall(r'href="(/[^"]+)"',s):self.assertIn(u.split('#')[0].split('?')[0],routes)
   for u in re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"',s):self.assertIn(u,routes);self.assertTrue((R/routes[u]).is_file())

@@ -15,7 +15,7 @@ ROOT = project_root()
 
 class InterfaceContractTests(unittest.TestCase):
     def test_mutable_static_entries_revalidate_without_disabling_conditional_reads(self):
-        with patch.object(serve, 'AUTH_ON', True), patch.object(auth, 'session_user', return_value=None):
+        with patch.object(serve, 'AUTH_ON', True), patch.object(auth, 'session_user', return_value='member'), patch.object(auth, 'user_role', return_value='member'):
             server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
             thread = threading.Thread(target=server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
             thread.start()
@@ -27,13 +27,13 @@ class InterfaceContractTests(unittest.TestCase):
                             connection.request(method, path)
                             response = connection.getresponse(); response.read()
                             self.assertEqual(response.status, 200, (method, path))
-                            self.assertEqual(response.getheader('Cache-Control'), 'no-cache')
+                            self.assertEqual(response.getheader('Cache-Control'), 'no-cache' if path == '/assets/site-skin.css' else 'private, no-store')
                             modified = response.getheader('Last-Modified')
                             self.assertIsNotNone(modified)
                             connection.request(method, path, headers={'If-Modified-Since': modified})
                             response = connection.getresponse(); response.read()
                             self.assertEqual(response.status, 304)
-                            self.assertEqual(response.getheader('Cache-Control'), 'no-cache')
+                            self.assertEqual(response.getheader('Cache-Control'), 'no-cache' if path == '/assets/site-skin.css' else 'private, no-store')
                         finally:
                             connection.close()
             finally:
@@ -115,21 +115,32 @@ class InterfaceContractTests(unittest.TestCase):
             thread=threading.Thread(target=server.serve_forever,kwargs={'poll_interval':.01},daemon=True)
             thread.start()
             try:
-                # 公开只读（reader，2026-09-28）：目录三项、账本与它们的数据不登录可 GET；采集、管理、事实层、任务板与一切写接口不公开。
+                # Only the homepage and its rendering dependencies are anonymous.
                 cases={'/assets/site-skin.css':200,'/assets/site-skin.js?v=1':200,
-                       '/assets/fonts/fonts.css':200,'/assets/fonts/noto-sans-sc-1.woff2':200,'/assets/fonts/LICENSE-NotoSansSC.txt':200,
-                       '/assets/fonts/manifest.json':200,'/assets/fonts/../research.css':200,'/assets/InterVariable.woff2':404,'/assets/other.woff2':404,
-                       '/login':200,'/assets/research.css':200,'/framework/research_graph.json':302,
-                       '/api/research':401,'/data/users.json':404,'/assets/.hub_secret':404,
+                       '/assets/fonts/fonts.css':200,'/assets/fonts/noto-sans-sc-1.woff2':200,
+                       '/assets/fonts/LICENSE-NotoSansSC.txt':200,'/assets/fonts/manifest.json':200,
+                       '/assets/fonts/../research.css':302,'/assets/InterVariable.woff2':302,
+                       '/assets/other.woff2':302,'/login':200,'/assets/research.css':302,
+                       '/framework/research_graph.json':302,'/api/research':401,
+                       '/data/users.json':404,'/assets/.hub_secret':404,
                        '/assets/site-skin.css/../../data/research_runtime.json':404,
-                       '/':200,'/index.html':200,'/node.html':200,'/ledger.html':200,'/bom.html':200,'/bom3d.html':200,'/server-plan.html':200,'/rack-atlas.html':200,'/rack-exploded.html':200,'/chip-atlas.html':200,
-                       '/assets/chip-package-assembly.js':200,'/assets/chip-package-generator.js':200,
-                       '/assets/technical-atlas/chip-package-v1.png':200,'/assets/technical-atlas/chip-package-v1.svg':200,'/assets/technical-atlas/chip-package-v1-preview.svg':200,
-                       '/assets/rack-exploded-generator.js':200,'/assets/rack-exploded-view.js':200,'/assets/technical-atlas/rack-exploded-v1.png':200,
-                       '/assets/technical-atlas/rack-exploded-v1.svg':200,'/assets/technical-atlas/rack-exploded-v1-preview.svg':200,'/report.html':200,
-                       '/data/dashboard.json':200,'/data/tco_targets.json':200,'/data/datacenter_model.json':200,'/api/whoami':200,
-                       '/supply.html':302,'/team.html':302,'/ops.html':302,'/materials.html':302,'/company.html':302,'/doc.html':302,'/research.html':302,
-                       '/data/facts.json':302,'/framework/part_fetch.json':302,'/api/tasks':401,'/api/supply':401,'/api/users':401}
+                       '/':200,'/index.html':200,'/node.html':302,'/ledger.html':302,'/bom.html':302,
+                       '/bom3d.html':302,'/server-plan.html':302,'/rack-atlas.html':302,
+                       '/rack-exploded.html':302,'/chip-atlas.html':302,
+                       '/assets/chip-package-assembly.js':302,'/assets/chip-package-generator.js':302,
+                       '/assets/technical-atlas/chip-package-v1.png':302,
+                       '/assets/technical-atlas/chip-package-v1.svg':302,
+                       '/assets/technical-atlas/chip-package-v1-preview.svg':302,
+                       '/assets/rack-exploded-generator.js':302,'/assets/rack-exploded-view.js':302,
+                       '/assets/technical-atlas/rack-exploded-v1.png':302,
+                       '/assets/technical-atlas/rack-exploded-v1.svg':302,
+                       '/assets/technical-atlas/rack-exploded-v1-preview.svg':302,'/report.html':302,
+                       '/data/dashboard.json':302,'/data/tco_targets.json':302,
+                       '/data/datacenter_model.json':302,'/api/whoami':200,
+                       '/supply.html':302,'/team.html':302,'/ops.html':302,'/materials.html':302,
+                       '/company.html':302,'/doc.html':302,'/research.html':302,
+                       '/data/facts.json':302,'/framework/part_fetch.json':302,
+                       '/api/tasks':401,'/api/supply':401,'/api/users':401}
                 for method in ['GET','HEAD']:
                     for path,expected in cases.items():
                         if method=='HEAD' and path in ('/login','/api/whoami'):continue  # dynamic pages answer GET only

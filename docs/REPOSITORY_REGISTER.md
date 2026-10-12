@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.110。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.111。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2636。
+在册文件：2645。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 434 |
-| 运行代码 | 365 |
+| 历史快照 | 435 |
+| 运行代码 | 369 |
 | 现行规范 | 15 |
-| 项目配置 | 776 |
+| 项目配置 | 777 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 233 |
-| 测试 | 218 |
+| 配套说明 | 234 |
+| 测试 | 220 |
 
 ## 在册记录集合
 
@@ -1766,7 +1766,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 55 |
+| `framework/current_state.json` | policies | 56 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -1779,8 +1779,8 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 50 |
-| `framework/interface_manifest.json` | public_pages | 32 |
+| `framework/interface_manifest.json` | static_pages | 51 |
+| `framework/interface_manifest.json` | public_pages | 1 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -1790,6 +1790,7 @@
 | `framework/research_graph.json` | objects | 354 |
 | `framework/research_graph.json` | relations | 373 |
 | `framework/research_questions.json` | records | 458 |
+| `framework/research_task_plan.json` | packages | 6 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 26 |
@@ -2056,6 +2057,7 @@
 | [docs/archive/2026-10-11/editorial-ownership-retired.md](archive/2026-10-11/editorial-ownership-retired.md) | 历史快照 |
 | [docs/archive/2026-10-11/framework__05_interface_system__before_global_daily.md](archive/2026-10-11/framework__05_interface_system__before_global_daily.md) | 历史快照 |
 | [docs/archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md](archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md) | 历史快照 |
+| [docs/archive/2026-10-12/framework__05_interface_system__before_private_tasks.md](archive/2026-10-12/framework__05_interface_system__before_private_tasks.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/README.md](archive/local-materials-20261010/original23-new-protocol-validation/README.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 历史快照 |
@@ -2692,6 +2694,7 @@
 | [docs/handoff/pr-412-conflict-fix-20261009.md](handoff/pr-412-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/pr-417-conflict-fix-20261009.md](handoff/pr-417-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
+| [docs/handoff/private-research-tasks-20261012.md](handoff/private-research-tasks-20261012.md) | 配套说明 |
 | [docs/handoff/project-audit-20261010.md](handoff/project-audit-20261010.md) | 配套说明 |
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/public-actions-recovery-20261009.md](handoff/public-actions-recovery-20261009.md) | 配套说明 |
@@ -3371,6 +3374,7 @@
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_publication.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
+| `framework/research_task_plan.json` | 项目配置 |
 | `framework/site_rights.json` | 项目配置 |
 | `framework/storage_contract.json` | 项目配置 |
 | `framework/supply_contract.json` | 项目配置 |
@@ -3834,6 +3838,7 @@
 | `src/inresearch/workflow/research_publish.py` | 运行代码 |
 | `src/inresearch/workflow/research_review.py` | 运行代码 |
 | `src/inresearch/workflow/research_sources.py` | 运行代码 |
+| `src/inresearch/workflow/research_tasks.py` | 运行代码 |
 | `src/inresearch/workflow/review_preference.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
 | `src/inresearch/workflow/site_tracking.py` | 运行代码 |
@@ -3885,6 +3890,7 @@
 | `tests/repository_pages.cjs` | 测试 |
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
+| `tests/research_tasks.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
 | `tests/scale_atlas.cjs` | 测试 |
 | `tests/scene_atlas.cjs` | 测试 |
@@ -4038,6 +4044,7 @@
 | `tests/unit/test_research_retry_transient.py` | 测试 |
 | `tests/unit/test_research_review.py` | 测试 |
 | `tests/unit/test_research_sources.py` | 测试 |
+| `tests/unit/test_research_tasks.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_review_preference.py` | 测试 |
 | `tests/unit/test_runtime_summary.py` | 测试 |
@@ -4491,6 +4498,7 @@
 | `web/components/rack-exploded-generator.js` | 运行代码 |
 | `web/components/rack-exploded-view.js` | 运行代码 |
 | `web/components/research-graph.js` | 运行代码 |
+| `web/components/research-tasks.js` | 运行代码 |
 | `web/components/scene-atlas.js` | 运行代码 |
 | `web/components/scene-data.js` | 运行代码 |
 | `web/components/scene-motion.js` | 运行代码 |
@@ -4566,6 +4574,7 @@
 | `web/pages/server-plan.html` | 运行代码 |
 | `web/pages/storage-atlas.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
+| `web/pages/tasks.html` | 运行代码 |
 | `web/pages/thermal-atlas.html` | 运行代码 |
 | `web/robots.txt` | 项目配置 |
 | `web/routes.json` | 项目配置 |
@@ -4574,5 +4583,6 @@
 | `web/themes/company.css` | 运行代码 |
 | `web/themes/industry.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
+| `web/themes/research-tasks.css` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |

@@ -226,8 +226,8 @@ class ProductCatalogTests(unittest.TestCase):
                     response = client.getresponse(); status = response.status
                     data = json.loads(response.read()); client.close()
                     return status, data
-                # 公开只读（2026-09-28）：规格库是爆炸图的入口，匿名 reader 可 GET；接收端与不公开的接口仍 401。
-                self.assertEqual(request('GET')[0], 200)
+                # Homepage-only access: catalog reads require login; the bearer receiver keeps its own authentication.
+                self.assertEqual(request('GET')[0], 401)
                 self.assertEqual(request('GET', path='/api/supply')[0], 401)
                 self.assertEqual(request('POST', bundle(), 'bad')[0], 401)
                 self.assertFalse(catalog.database(self.root).exists())
