@@ -70638,6 +70638,93 @@
         },
         "batch_id": "a17ee7cd1a3f3ac618346d87542d0576bcdf03295694dabde93ddea5b98c403c"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:12:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "part:backup-power",
+        "site:permits"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-backup-power-definition"
+      ],
+      "quote": "Data centers normally require air quality permits, because they have backup diesel generators that pollute the air when operating. So if an air quality permit document is available, we can at least learn the number of backup generators and the power capacity of each generator.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:53:52+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续两句原文完整支持候选主张，许可研究小节及相邻容量核验说明提供充分上下文。机组数量和单机容量的信息获取途径实质贡献当前定义与组成工作单；运行排放与空气质量许可的关系局部贡献当前上下游依赖工作单。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B档有限采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition",
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e097e38f883bc6fcade79d9645f4ff5823516a1d1dc6c04e1edfb5ecaa7b619d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 64027,
+            "output_tokens": 1874,
+            "reasoning_output_tokens": 186
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.306,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd6ea2fdaee841bc3887ae769785a76582ab808283c0e3b7320a0962894221a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65061,
+              "output_tokens": 480,
+              "reasoning_output_tokens": 191
+            }
+          }
+        },
+        "batch_id": "db8c83c3ac8d1805d93f6fb5a288182314cfec09a3c51bea5a4f369e0d697555"
+      }
     }
   ],
   "statements": [
@@ -137233,6 +137320,133 @@
         "request_sha256": "72800d1d42f6c04e3e05934bf3b95cc3998f0a91c484872ebe3f22f2aaba5776"
       },
       "object_mapping_check": "Universal Rack UPS对应system:power下UPS链chain:power/4的part:ups；明确作为外部集成对象的19英寸机架支持设施链chain:facility/1下的part:rack-frame。契约名称为一般机柜与结构，映射不表示该机架属于ORV3，也不建立整机柜计算系统part:rack-system或机柜电源架part:power-shelf范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:12:ev:0"
+      ],
+      "id": "adoption:review:9580c8ce21d7de3e35165fd5",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:backup-power",
+        "site:permits"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-definition",
+        "OBJ-backup-power-interfaces"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "《AI data centers documentation – Methodology》的作者在许可资料研究方法中称，数据中心通常需要空气质量许可，因为柴油备用发电机运行时会造成空气污染；若空气质量许可文件可得，可以从中了解备用发电机数量及每台机组的功率容量。发表时间未知，该段未限定具体地域、项目或分期。此处保留为来源对设备信息获取途径及排放许可依赖的说明，不构成对具体项目许可义务、设备配置或运行能力的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:53:52+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续两句原文完整支持候选主张，许可研究小节及相邻容量核验说明提供充分上下文。机组数量和单机容量的信息获取途径实质贡献当前定义与组成工作单；运行排放与空气质量许可的关系局部贡献当前上下游依赖工作单。未发现敏感材料、真实冲突、拟替换或其他A条件，符合B档有限采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition",
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 71.047,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e097e38f883bc6fcade79d9645f4ff5823516a1d1dc6c04e1edfb5ecaa7b619d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 64027,
+            "output_tokens": 1874,
+            "reasoning_output_tokens": 186
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.306,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afd6ea2fdaee841bc3887ae769785a76582ab808283c0e3b7320a0962894221a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65061,
+              "output_tokens": 480,
+              "reasoning_output_tokens": 191
+            }
+          }
+        },
+        "batch_id": "db8c83c3ac8d1805d93f6fb5a288182314cfec09a3c51bea5a4f369e0d697555"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:12"
+      ],
+      "limitations": "未提供具体许可原件、适用法规、监管辖区、机型、机组数量或容量实值，也未区分本项文件中的规划配置与实际安装、投运配置。全文指出许可披露的计划可能过时，各地法规与公开程度不同，备用总容量有时低于正常运营峰值，须交叉核验。页面顶部标示Samaritan Research，页尾另称Epoch，机构归属尚未澄清；不能将该段作为全球统一许可规则。",
+      "conflict_check": "现有adoption:review:aa4099f906ec3f161590acaa讨论备用用途，adoption:review:f6621362c320bd13ef1f8cad讨论备用容量与峰值负载及交叉核验，均未完整覆盖本项许可依赖与配置信息获取主张。IEA的燃料和分类说明、燃气备用方案记录及Janous关于大规模柴油许可困难的条件性观点均无同条件反证。三个legacy台账所供筛选记录为空；未发现真实冲突或完整重复，核查限于供应材料，不代表全面外部反证搜索，不覆盖现有结论。",
+      "gap_dependency_check": "定义问题仅获得识别机组数量及单机容量的资料途径，仍缺具体柴油机组的组成、边界和适用配置证据。接口问题仅获得运行排放对应许可的监管依赖，仍缺电气与切换接口、燃料保障、工况及互换条件。需取得对应辖区、项目、分期的许可原件并核对修订和实施状态；两项问题保持开放。该说明不支持Abilene批准用能额度或负荷接入等待时间，不更新模型参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db8c83c3ac8d1805d93f6fb5a288182314cfec09a3c51bea5a4f369e0d697555",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "73e701b158d9c333aed3216c13b9bf74e436b22b2af921f359d675e588bf7370"
+      },
+      "object_mapping_check": "独立依据原文选择chain:power/3下的part:backup-power（柴油发电机组）：首句明确指定柴油备用技术，后句在同一许可语境中说明机组配置信息。选择root下的site:permits（许可），因为空气污染与空气质量许可的依赖本身是实质主张。未涉及电力配额、并网协议或申请排队，不映射site:grid；未涉及天然气设备、柴油储运或具体企业，不增加这些对象。所选证据统一采用上述声明级范围，原候选和证据标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据是作者对许可资料用途及一般监管依赖的定性说明，并非已读取具体许可所得的观测或计算。“通常”没有统计样本，不能转为发生率。本项不属于拟采用的B档观测或计算，量化独立第二检查不适用。",
+        "comparability_check": "不适用：没有同工况量化比较。许可要求与披露内容依赖辖区及文件状态，规划机组不能直接代表实际投运配置，备用容量亦不能直接替代正常运营峰值或IT功率。",
+        "derivation_check": "不适用：没有计算或推导。不得由文件可能披露的机组数量及单机容量推导项目总容量、IT容量、获批用能、实际供电能力或等待年限。",
+        "scope_check": "量化观测核验不适用：本项是一般数据中心柴油备用设备及许可研究方法的定性说明，没有具体被测系统、场址、分期、软件或工作负载。",
+        "time_check": "发表时间及本项经验有效时点未知；未给出许可申请、批准、修订或投运日期。全文其他日期及采集日期不能建立本项发布时间或项目里程碑。",
+        "units_check": "本项提及机组数量与单机功率容量两类字段，但没有数量实值、功率数值或单位。不能补入MW，也不能将单机容量等同于IT容量、设施容量或批准用能。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "本项是柴油备用设备空气质量许可的资料获取说明，没有Abilene原园区的ERCOT或输电商批准原件、批准额度、接入容量或IT容量。空气质量许可不等于负荷接入批准， requested_reading_only不构成参数证据。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "本项涉及设备运行排放许可，不涉及Abilene原园区同分期的负荷接入申请、排队或批准起止日期。不能以空气质量许可依赖推导负荷接入等待年限，参数要求仍未验证。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
