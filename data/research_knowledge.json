@@ -9386,6 +9386,114 @@
       "status": "candidate",
       "stored_path": "originals/bd/bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100/crusoe-abilene-1200mw-expansion.html",
       "title": "Crusoe expands AI data center campus in Abilene to 1.2 gigawatts"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "coverage": {
+        "characters_read": 17832,
+        "characters_total": 17832,
+        "chunks_read": 4,
+        "chunks_total": 4,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "id": "doc-2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "library_path": "library/by-node/root/未知_Epoch AI_OpenAI Stargate_ where the US sites stand__2c1579ff7c831476.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:crusoe",
+        "actor:lancium",
+        "actor:openai",
+        "actor:related-digital",
+        "actor:sb-energy",
+        "actor:stack-infrastructure",
+        "actor:vantage",
+        "part:gpu",
+        "root",
+        "site:grid",
+        "system:facility"
+      ],
+      "question_ids": [
+        "M01-Q01",
+        "M01-Q03",
+        "M01-Q07",
+        "M04-Q07",
+        "M05-Q06",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-22f241c3a6fc42788c7db7856c33905f",
+      "report_sha256": "541827f25236fe1c1a57b7fcd8884007be6e98072f930075e4260495197da6f0",
+      "research_requests": [
+        {
+          "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+          "purpose": "R3 项目样例：Abilene 批准容量核验；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。 原件发表于2026-04-17并于04-23修订，专门核验旧421/422MW IT归属与引用日期；不将4月设施估算当作10月IT或批准等待参数。",
+          "question_id": "M05-Q06",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+          "scope_values": {
+            "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+            "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+            "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+            "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        },
+        {
+          "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+          "purpose": "R3 项目样例：Abilene 接入等待里程碑核验；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。 原件发表于2026-04-17并于04-23修订，专门核验旧421/422MW IT归属与引用日期；不将4月设施估算当作10月IT或批准等待参数。",
+          "question_id": "M04-Q07",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+          "scope_values": {
+            "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+            "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+            "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+            "period": "2025至2026；历史预测与实际里程碑逐项核验",
+            "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-epoch-stargate-sites",
+        "url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/2c/2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61/epoch-stargate-sites.html",
+      "title": "OpenAI Stargate: where the US sites stand"
     }
   ],
   "evidence": [
@@ -67846,6 +67954,174 @@
           }
         },
         "batch_id": "b85cc90f697d7e496a0a5b247a72ccbd09df1a2e67e727c14488b26faa66cc5e"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e6c1c9d626325ca273780108b503760dec41d1cd9d1e123c98e422f992406956",
+      "document_id": "doc-2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "id": "rev-22f241c3a6fc42788c7db7856c33905f:chunk:2:claim:6:ev:0",
+      "locator": "page:1/chunk:2",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "We did not find direct confirmation of a closed-loop system for Milam County, but it is designed",
+      "reading_revision_id": "rev-22f241c3a6fc42788c7db7856c33905f",
+      "source_sha256": "2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:09:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。该项对当前M08-Q01提供在建项目冷却配置的确认边界，防止把设计目标计作实际液冷采用；对M08-Q04提供区分节水目的与实测改善的具体项目线索，具有实质但有限的工单关系。两条原始引文覆盖同一句连续表述，完整原生页面提供项目及冷却备注上下文。未发现敏感材料、同范围真实冲突或拟替换结论，符合B类有限归因采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.998,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ae8be43600516d41ed69e1b65b66502c7ddb3b354a465c0cc7c316e024ef87c2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65336,
+            "output_tokens": 2296,
+            "reasoning_output_tokens": 426
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.914,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f0214a57891142a7c7056f3d64607c754029989795a918495f48a9c12ced8bc7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 66550,
+              "output_tokens": 504,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "5294b432bf17522cbda8a1607af738885baffe86f04b91145ce157f0ccbd3e92"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e6c1c9d626325ca273780108b503760dec41d1cd9d1e123c98e422f992406956",
+      "document_id": "doc-2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "id": "rev-22f241c3a6fc42788c7db7856c33905f:chunk:2:claim:6:ev:1",
+      "locator": "page:1/chunk:2",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "to minimize water usage.",
+      "reading_revision_id": "rev-22f241c3a6fc42788c7db7856c33905f",
+      "source_sha256": "2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:09:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。该项对当前M08-Q01提供在建项目冷却配置的确认边界，防止把设计目标计作实际液冷采用；对M08-Q04提供区分节水目的与实测改善的具体项目线索，具有实质但有限的工单关系。两条原始引文覆盖同一句连续表述，完整原生页面提供项目及冷却备注上下文。未发现敏感材料、同范围真实冲突或拟替换结论，符合B类有限归因采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.998,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ae8be43600516d41ed69e1b65b66502c7ddb3b354a465c0cc7c316e024ef87c2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65336,
+            "output_tokens": 2296,
+            "reasoning_output_tokens": 426
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.914,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f0214a57891142a7c7056f3d64607c754029989795a918495f48a9c12ced8bc7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 66550,
+              "output_tokens": 504,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "5294b432bf17522cbda8a1607af738885baffe86f04b91145ce157f0ccbd3e92"
       }
     }
   ],
@@ -131458,6 +131734,133 @@
         "request_sha256": "3987a20d3502b3def677593ab7d303c08ca01a3b78e5b7414697f47d9c0125b8"
       },
       "object_mapping_check": "独立依据原文及相邻指代映射：施耐德电气与AMD是参考设计合作方，对应两个具名主体；Helios明确为整机柜方案，对应计算链下的part:rack-system；液冷实施适用性对应system:thermal，但原句不足以确定冷板、CDU或具体回路，不下推到部件。system:facility契约限定土地与建筑、消防安防，本项未陈述这些范围，因此不继承Reader的设施标签；问题的适用场景匹配仍有效。不因AI背景增加root、GPU、UPS或控制软件映射。所选证据统一使用上述主张级范围，原候选与证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2c1579ff7c8314768f6331942ead2d41059f6eb97acf24a4f4f9d1a9fecc6e61",
+      "evidence_ids": [
+        "rev-22f241c3a6fc42788c7db7856c33905f:chunk:2:claim:6:ev:0",
+        "rev-22f241c3a6fc42788c7db7856c33905f:chunk:2:claim:6:ev:1"
+      ],
+      "id": "adoption:review:370482efd1a24fe7cbecb68d",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M08-Q01",
+        "M08-Q04"
+      ],
+      "reading_revision_id": "rev-22f241c3a6fc42788c7db7856c33905f",
+      "status": "adopted",
+      "text": "Epoch AI作者Elliot Stewart和Ben Cottier在《OpenAI Stargate: where the US sites stand》中表示，他们未找到美国得克萨斯州Milam County Stargate项目采用闭式循环系统的直接确认，但文章称该项目的设计目标是尽量减少用水。文章所述项目处于建设阶段；所供原文包含2026年4月23日更新，但该冷却备注的具体写作时间未知。这是作者当时的检索结果及设计目标转述，不证明闭式循环配置已安装或投运，也不构成实际节水或WUE改善的独立核证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:09:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。该项对当前M08-Q01提供在建项目冷却配置的确认边界，防止把设计目标计作实际液冷采用；对M08-Q04提供区分节水目的与实测改善的具体项目线索，具有实质但有限的工单关系。两条原始引文覆盖同一句连续表述，完整原生页面提供项目及冷却备注上下文。未发现敏感材料、同范围真实冲突或拟替换结论，符合B类有限归因采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 90.998,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ae8be43600516d41ed69e1b65b66502c7ddb3b354a465c0cc7c316e024ef87c2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65336,
+            "output_tokens": 2296,
+            "reasoning_output_tokens": 426
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.914,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f0214a57891142a7c7056f3d64607c754029989795a918495f48a9c12ced8bc7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 66550,
+              "output_tokens": 504,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "5294b432bf17522cbda8a1607af738885baffe86f04b91145ce157f0ccbd3e92"
+      },
+      "source_candidate_ids": [
+        "rev-22f241c3a6fc42788c7db7856c33905f:chunk:2:claim:6"
+      ],
+      "limitations": "作者未找到直接确认不等于系统不存在，也不证明截至2026年10月仍未获得确认。闭式循环冷却不自动等于芯片液冷。所选证据未提供一手技术文件、具体冷却配置、验收或投运记录、用水基准、监测期间、运行负载、天气条件、节水量、PUE/WUE或单MW散热Capex；文中链接所指资料未随本项提供，不能作为已核验原件。",
+      "conflict_check": "既有Lancium声明针对其Clean Campuses，不能扩展至SB Energy的Milam County项目；Goodman、CDC及Scala记录涉及其他项目和技术边界，均不验证本项。LBNL效率建模及DCD液冷市场判断也未确认Milam County配置，未发现同范围真实冲突或规范重复。legacy项目us-tx-milam记录涉及建设阶段及容量归类，未记录闭式循环配置或实测节水；本项不确认其IT容量归属或状态口径，也不修改该记录。legacy合同与事实匹配结果为空，检查限于所供材料，不代表完成外部反证检索。",
+      "gap_dependency_check": "M08-Q01仍需项目一手冷却配置、安装与投运证据，以及按新建AI机房和存量改造分组、具有明确地域、分母和时序的实际渗透率曲线。M08-Q04仍需同边界基准与现场PUE/WUE测量、负载和天气条件、成本序列及可复查推导。作者未找到确认仅保留项目证据缺口，不能作为未采用液冷的统计样本。两项问题保持开放，不调整研究骨架、既有结论或模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5294b432bf17522cbda8a1607af738885baffe86f04b91145ce157f0ccbd3e92",
+        "source_report_sha256": "541827f25236fe1c1a57b7fcd8884007be6e98072f930075e4260495197da6f0",
+        "request_sha256": "667e8f690823e3e46fbc6eb9b7276aa4126e7165ab23db6df104ecc016adec49"
+      },
+      "object_mapping_check": "独立按对象契约复核：闭式循环冷却及其用水设计目的属于root下的水与散热系统system:thermal。system:facility限定土地与建筑、消防安防，不符合本项实际范围，故不继承候选标签。未确认冷冻水回路、CDU、冷板、排热设备或取水许可，不下推部件、链或水权对象；周边开发主体不作为本项冷却主张的主体映射。两条所选证据统一采用这一主张级范围，原候选及证据标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据为作者连续原文及其引用设计目标的语境，保留author_claim身份。未找到直接确认是作者检索结果，未说明完整检索范围；设计目标未附一手技术文件或测量记录，不是已验证模型输入。",
+        "comparability_check": "缺少冷却路线、系统边界、基准用水、负载、天气和运行期间，不能与其他项目用水或PUE/WUE数据作定量比较，也不能把其他闭环系统声明用于填补本项目确认缺口。",
+        "derivation_check": "不适用数值推导：本项没有观测序列、计算式或数值假设，不推导节水率、液冷渗透率、容量或等待年限。本项不是拟采用的B类观察或计算，因此观察与计算的独立第二检查要求不适用。",
+        "scope_check": "本项是作者对美国得州Milam County在建项目配置确认缺口及用水设计目的的定性陈述，不是现场观测、容量批准或等待时长计算。未提供具体软件、工作负载或测量系统。",
+        "time_check": "原生文本确立文章含2026年4月23日更新，引用信息确立年份2026；未确立该冷却备注的具体写作或生效日期。研究请求所述4月17日发表日期未由所供原生正文确立。访问日、包创建日及相关工作更新日期不能替代本项有效时间，不能据此认证10月配置状态。",
+        "units_check": "不适用数值单位核验：所选证据没有用水量、流量、WUE、PUE、成本或功率数值。尽量减少用水不能转写为零耗水、零WUE或任何节水百分比。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "本项涉及Milam County冷却确认及节水设计目的，而请求针对Abilene原有园区的批准用能容量。所选证据没有ERCOT或输电商批准值，不能用文中其他设施容量估计填入该参数；请求阅读不构成核验完成。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "本项既不涉及Abilene负荷接入批准等待，也没有同分期申请与实际批准结束日期。Milam County施工状态、冷却设计目的及文章日期不能替代审批里程碑或推导等待年限。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
