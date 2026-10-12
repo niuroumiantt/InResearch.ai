@@ -63910,6 +63910,91 @@
         },
         "batch_id": "af5cb5fcb6a40f0ad7cf7386245c411760d915cd5bed3097a768e8a9125d39fc"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cf2a2facd1ef460686a4a2523176391a4bc7ac9e8ec675840a7bb9a51dc3cad8",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:2:ev:0",
+      "locator": "page:112/chunk:111",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "page_index": 111,
+      "question_ids": [
+        "OBJ-prime-power-performance"
+      ],
+      "quote": "characterised by a compact footprint, rapid start-up capability (typically under ten minutes\n                  to full load) and high part-load efficiency.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:08:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。启动至满负荷的时间描述及部分负荷效率维度，实质贡献于当前主用自备电源性能工作单。连续引文与完整定义段落提供充分语境，可作为有限的来源归因陈述采用。未发现敏感内容、真实冲突、拟替换或其他A条件；采用不表示工作单验收完成。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.398,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "67a0a5bbf338b344faed7f958c65316afe53db3e53be32a3706f13ba01a74737",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67125,
+            "output_tokens": 1352,
+            "reasoning_output_tokens": 240
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.456,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6f615956f5c3bcdb107deaa1428c8b570ce46ccb3ecd4ba0e81a6af4ba547374",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67818,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 181
+            }
+          }
+        },
+        "batch_id": "f8f97f8eb870e8c7426a7f8aa868717a44bc2c07d920250efa343b20523608af"
+      }
     }
   ],
   "statements": [
@@ -124030,6 +124115,106 @@
         "request_sha256": "dd0daee21836db1505eb4329978bba97c2833d0253e31e6f26774a8cc1350453"
       },
       "object_mapping_check": "独立核查后，本项范围是通用推理过程的术语定义，没有指定数据中心或设施资产。契约中的root是一座AI数据中心，system:compute及其计算链属于该设施的计算资产；system:control及其链限定为DCIM/BMS与固件，均不由本项定义建立映射。契约没有IEA或通用模型服务对象，故选用空对象列表，保留有效问题匹配，不继承文档级或历史标签；所选证据采用相同的空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:2:ev:0"
+      ],
+      "id": "adoption:review:4d4d761006c1be29885df472",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "question_ids": [
+        "OBJ-prime-power-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》第112页附录B将航空衍生燃气轮机描述为占地紧凑、启动迅速，通常不到10分钟达到满负荷，并具有较高的部分负荷效率。报告发表时间未知；这是来源对设备类别的概括性技术描述，不构成具体机型或项目运行性能的独立认证，也未确定其主用、桥接或备用角色。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:08:40+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。启动至满负荷的时间描述及部分负荷效率维度，实质贡献于当前主用自备电源性能工作单。连续引文与完整定义段落提供充分语境，可作为有限的来源归因陈述采用。未发现敏感内容、真实冲突、拟替换或其他A条件；采用不表示工作单验收完成。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.398,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "67a0a5bbf338b344faed7f958c65316afe53db3e53be32a3706f13ba01a74737",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67125,
+            "output_tokens": 1352,
+            "reasoning_output_tokens": 240
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.456,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6f615956f5c3bcdb107deaa1428c8b570ce46ccb3ecd4ba0e81a6af4ba547374",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67818,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 181
+            }
+          }
+        },
+        "batch_id": "f8f97f8eb870e8c7426a7f8aa868717a44bc2c07d920250efa343b20523608af"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:2"
+      ],
+      "limitations": "未指定机型、额定容量、燃料、启动初始状态、环境条件、满负荷定义、测试方法或样本。部分负荷效率没有数值、负载区间、效率口径或比较基准，占地也没有尺寸。未建立具体地域、场址或项目阶段，未提供可靠性、失效机制及适用边界证据。不能将不到10分钟解释为冷态启动保证值或断电后的负载恢复时间，也不能据此赋值效率参数。全文覆盖限于PDF原生文本，图像未核验。",
+      "conflict_check": "已检查所供采用陈述和legacy记录。adoption:review:7bc48b9fd7f11406c26c8734所述典型航改燃机约5分钟达到满输出，与通常不到10分钟兼容，但同源且工况未明确，不能视为独立验证。adoption:review:4bd848d9e86a1b2b6d37f016所述RICE冷态10分钟及与航改燃机相近，未建立同机型、同初始状态冲突。既有航改及IGT能效不及其他方案的相对判断，与本项未指定基准的部分负荷效率描述没有形成同口径反证。legacy的35%–40%效率和105美元/MWh LCOE未明确部分负荷条件，不能验证或反驳本项。既有记录覆盖部分启动与效率主题，但未完整覆盖本项部分负荷效率描述，故不判为重复；不替换任何既有结论。检查限于所供记录。",
+      "gap_dependency_check": "仅部分支持OBJ-prime-power-performance中的启动响应与不同负载下效率的研究。仍需明确机型、来源时点、启动状态、负载区间、环境条件、测试方法，以及效率曲线、可靠性和失效反证；同时保留并核对既有约5分钟参数及冷态启动比较。附录定义不能完成性能测量或失效边界验收，问题保持开放，不更新模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f8f97f8eb870e8c7426a7f8aa868717a44bc2c07d920250efa343b20523608af",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "89e8d696ca30f388d01682cadd9483ea067988cdb35d20e2740078f025c01f98"
+      },
+      "object_mapping_check": "依据完整定义段落独立确定对象：航空衍生燃气轮机是燃气轮机子类，对应system:power下chain:power/3“发电与储能”的part:gas-turbine。航空发动机来源、启动能力及部分负荷效率不支持扩大映射至整座数据中心、UPS、柴油备用、储能或供气接入对象，也不证明具体运行角色或投运状态。所选证据统一采用此项 claim 的对象范围，不改动原始标签。"
     }
   ],
   "answers": [],
