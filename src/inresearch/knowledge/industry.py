@@ -52,6 +52,7 @@ def project(row):
     row = site_timeline.current(row)
     result = {k: row.get(k) for k in ('site_id', 'name', 'country', 'region', 'location', 'developer', 'tenant',
               'status', 'verified_date', 'duplicate_of', 'deduplication_note', 'type', 'disputed', 'notes', 'power_status', 'utility', 'capacity_facility_mw')}
+    result['registration_status'] = 'unverified' if any(v.get('registration_status') == 'unverified' for v in row['tracking']['fields'].values()) else 'reviewed'
     result['tracking'] = row['tracking']
     result['geography'] = site_register.geography(row)
     result['participants'] = site_register.participants(row)

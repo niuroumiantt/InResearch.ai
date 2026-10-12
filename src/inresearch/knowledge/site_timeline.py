@@ -58,7 +58,7 @@ def check(observation):
     if 'effective_at' not in observation:
         raise ValueError('site_observation_required:effective_at')
     observation_time.validate_period(observation['effective_at'], observation.get('valid_until'))
-    if observation.get('schema_version') != 2:
+    if observation.get('schema_version') not in (2, 3):
         if (observation.get('scope') != 'whole_site'
                 or any(k in observation for k in ('valid_until', 'revision', 'source_versions', 'reviewed_at'))
                 or observation_time.precision(observation['effective_at']) == 'timestamp'):
@@ -94,10 +94,10 @@ def check(observation):
                 raise ValueError('site_observation_capacity_value')
             site_quantity.check(value)
     for key in site_metrics.FIELDS & fields.keys():
-        if observation.get('schema_version') != 2:
+        if observation.get('schema_version') not in (2, 3):
             raise ValueError('site_observation_v2_required_for_resource_metrics')
         site_metrics.check(key, fields[key])
-    if observation.get('schema_version') != 2 and any(isinstance(q, dict) for q in (
+    if observation.get('schema_version') not in (2, 3) and any(isinstance(q, dict) for q in (
             fields.get('capacity_it_mw'), fields.get('capacity_facility_mw'), *(parts or {}).values())):
         raise ValueError('site_observation_v2_required_for_new_metadata')
     # IT headline and phase breakdown form one bundle: explicit clearing prevents
@@ -107,8 +107,39 @@ def check(observation):
             raise ValueError('site_observation_capacity_bundle_required')
         if fields['capacity_it_mw'] is not None and fields['capacity_it_mw_by_status']:
             raise ValueError('site_observation_capacity_overlap')
-    if not isinstance(observation.get('adoption'), dict) or not observation['adoption'].get('review_id'):
+    if not isinstance(observation.get('adoption'), dict) or (observation.get('schema_version') != 3 and not observation['adoption'].get('review_id')):
         raise ValueError('site_observation_review_required')
+    if observation.get('schema_version') == 3:
+        registration = observation.get('registration') or {}
+        adoption = observation['adoption']
+        if (adoption.get('registration_id') != observation['id'] or registration.get('status') != 'unverified' or not registration.get('registered_by')
+                or registration.get('at') != observation['recorded_at']
+                or adoption.get('source_kind') != 'source_statement' or adoption.get('target_ids') != []
+                or 'review' in adoption or observation.get('revision') or observation.get('reviewed_at') is not None):
+            raise ValueError('unverified_source_registration_required')
+        check_object_binding(adoption.get('object_binding'), fields=fields, scope=observation['scope'])
+        refs = adoption.get('document_refs')
+        versions = observation.get('source_versions')
+        if (not isinstance(refs, list) or not refs or not isinstance(versions, list) or not versions
+                or {r.get('source_sha256') for r in refs} != {r.get('source_sha256') for r in versions}):
+            raise ValueError('source_registration_provenance_required')
+        if (len(refs) != 1 or len(versions) != 1 or adoption.get('source_id') != refs[0]['source_sha256']
+                or not re.fullmatch('[0-9a-f]{64}', str(adoption.get('source_version', '')))):
+            raise ValueError('source_registration_binding_required')
+        from inresearch.knowledge.object_observations import archived_source_valid
+        ref, version = refs[0], versions[0]
+        native_source = {'sha256': ref['source_sha256'], 'url': ref.get('source_url'),
+                         'archive': ref.get('archive'), 'first_received_at': version.get('first_received_at')}
+        if not (_safe_url(ref.get('source_url')) or archived_source_valid(native_source)):
+            raise ValueError('source_registration_archive_receipt_required')
+        for source in versions:
+            if not re.fullmatch('[0-9a-f]{64}',str(source.get('source_sha256',''))):
+                raise ValueError('source_registration_hash_required')
+            for key in ('published_at','first_received_at'):
+                if key not in source or source.get(key+'_precision') != observation_time.precision(source[key]):
+                    raise ValueError('source_registration_time_required')
+        if observation_time.precision(observation['recorded_at']) != 'timestamp':
+            raise ValueError('source_registration_timestamp_required')
     if observation.get('schema_version') == 2:
         from inresearch.knowledge.registry import review_valid
         review = observation['adoption'].get('review') or {}
@@ -243,8 +274,9 @@ def adoptions(project):
 def current(project, today=None):
     """Latest effective observation per field; future forecasts stay separate.
 
-    Equal-time disagreement is visible and does not pick a winner by arrival
-    order. Unknown-time legacy values are only the fallback, never invented dates.
+    Reviewed legacy disagreements preserve their existing policy. Ordinary v3
+    statements select by source time then registration order, retaining history.
+    Fallback clocks are explicit and never become event dates.
     """
     from zoneinfo import ZoneInfo
     explicit_day = today is not None
@@ -256,14 +288,24 @@ def current(project, today=None):
     suppressed = _validate_chain(observations)
     forecasts, imprecise = [], []
     expired, scoped = [], {}
-    for row in observations:
+    for original_row in observations:
+        row = copy.deepcopy(original_row)
+        if row.get('schema_version') == 3:
+            row['_native_effective_at'] = row['effective_at']
+            times = [('effective_at',row['effective_at'])]
+            for key in ('published_at','first_received_at'):
+                times.extend((key,v.get(key)) for v in row['source_versions'])
+            times.append(('recorded_at',row['recorded_at']))
+            kind,stamp = next((key,value) for key,value in times if value is not None)
+            row['_selection_time_basis'] = kind
+            row['effective_at'] = stamp
         if row['id'] in suppressed or (row.get('revision') or {}).get('action') == 'withdraw':
             continue
         if row['kind'] == 'forecast':
             forecasts.append(row)
             continue
         effective_precision = observation_time.precision(row['effective_at'])
-        if effective_precision == 'unknown' or (row.get('schema_version') != 2 and effective_precision != 'day'):
+        if effective_precision == 'unknown' or (row.get('schema_version') not in (2,3) and effective_precision != 'day'):
             imprecise.append(row)
             continue
         if (not observation_time.certainly_past(row['effective_at'], today)
@@ -283,6 +325,14 @@ def current(project, today=None):
         fields = ('capacity_it_mw', 'capacity_it_mw_by_status', 'capacity_assessment') if group == 'it_capacity_bundle' else (group,)
         chosen = None
         remaining = list(rows)
+        if any(r.get('schema_version') == 3 for r in rows):
+            chosen = max(rows,key=lambda r:(observation_time.bounds(r['effective_at'])[1],observation_time.bounds(r['recorded_at'])[1],r['id']))
+            latest=chosen['effective_at'];peers=[chosen];remaining=[]
+            same_time = [r for r in rows if r['effective_at'] == latest]
+            if len({json.dumps(_comparison_fields(r['fields'], fields),sort_keys=True) for r in same_time}) > 1:
+                conflicts.append({'field':group,'effective_at':chosen.get('_native_effective_at',latest),
+                                  'scope':'whole_site','observation_ids':sorted(r['id'] for r in same_time),
+                                  'selection':'latest_registration'})
         while remaining:
             latest_rows = [r for r in remaining if not any(observation_time.definitely_after(other['effective_at'], r['effective_at']) for other in remaining)]
             # Any overlapping candidate belongs to the same unresolved frontier.
@@ -316,14 +366,14 @@ def current(project, today=None):
         result.setdefault('quantity_fields', {}).update(quantities)
         for field in fields:
             result[field] = copy.deepcopy(projected[field])
-            selected[field] = {'effective_at': latest, 'observation_id': chosen['id'],
+            selected[field] = {'effective_at': chosen.get('_native_effective_at',latest), 'selection_at':latest, 'selection_time_basis':chosen.get('_selection_time_basis','effective_at'), 'registration_status':'unverified' if chosen.get('schema_version')==3 else 'reviewed', 'observation_id': chosen['id'],
                                'kind': chosen['kind'], 'recorded_at': chosen['recorded_at'],
-                               'reviewed_at': max((r.get('reviewed_at', r['recorded_at']) for r in peers), key=lambda stamp: observation_time.bounds(stamp)[1]),
+                               'reviewed_at': None if chosen.get('schema_version')==3 else max((r.get('reviewed_at', r['recorded_at']) for r in peers), key=lambda stamp: observation_time.bounds(stamp)[1]),
                                'valid_until': chosen.get('valid_until'), 'expired': is_expired,
                                'supporting_observation_ids': sorted(r['id'] for r in peers)}
         if not is_expired and group == 'it_capacity_bundle' and chosen['kind'] in ('estimated', 'derived'):
             result['capacity_assessment'] = {
-                'kind':'estimate', 'status':'reviewed', 'as_of':chosen['effective_at'],
+                'kind':'estimate', 'status':'provisional' if chosen.get('schema_version')==3 else 'reviewed', 'as_of':chosen.get('_native_effective_at',chosen['effective_at']),
                 'recorded_at':chosen['recorded_at'][:10], 'basis_note':chosen['basis'],
                 'assumptions':chosen['assumptions'], 'missing_conditions':[]}
     limit = FRESH_DAYS['project_late' if result.get('status') in ('L6','L7','L8','L9') else 'project_early']
@@ -332,7 +382,7 @@ def current(project, today=None):
         native = result.get('quantity_fields', {}).get(field)
         if result.get(field) in (None, '', [], {}) and native in (None, '', [], {}):
             continue
-        reviewed = selected[field]['reviewed_at'][:10] if field in selected else project.get('verified_date')
+        reviewed = (selected[field].get('reviewed_at') or selected[field]['recorded_at'])[:10] if field in selected else project.get('verified_date')
         age = _age(reviewed, today)
         if age is None or age > limit:
             due.append(field)
@@ -341,13 +391,22 @@ def current(project, today=None):
                           'observations': len(observations), 'forecasts': len(forecasts),
                           'imprecise_times': len(imprecise), 'expired_observations': len(expired),
                           'superseded_observation_ids': sorted(suppressed),
-                          'latest_effective_at': max((r['effective_at'] for r in selected.values()), key=lambda stamp: observation_time.bounds(stamp)[1], default=None),
+                          'latest_effective_at': max((r['effective_at'] for r in selected.values() if r['effective_at'] is not None), key=lambda stamp: observation_time.bounds(stamp)[1], default=None),
                           'baseline_reviewed_at': project.get('verified_date'),
                           'baseline_review_age_days': _age(project.get('verified_date'), today)}
     result['scope_views'] = {}
     for scope, rows in scoped.items():
         # A scoped quantity never supplies missing whole-site values or joins totals.
-        local = dict(observations=[{k: v for k, v in dict(row, scope='whole_site').items() if k != 'revision'} for row in rows])
+        local_rows = []
+        for scoped_row in rows:
+            row = copy.deepcopy(next(r for r in observations if r['id'] == scoped_row['id']))
+            row['scope'] = 'whole_site'
+            row.pop('revision', None)
+            binding = row.get('adoption', {}).get('object_binding')
+            if binding is not None:
+                binding['scope'] = 'whole_site'
+            local_rows.append(row)
+        local = dict(observations=local_rows)
         view = current(local, today)
         result['scope_views'][scope] = {k: v for k, v in view.items() if k in FIELDS or k in ('quantity_fields', 'tracking')}
     return result
@@ -375,14 +434,14 @@ def _age(value, today):
 def public_timeline(project):
     """Public source URLs and semantic history; never private archive paths."""
     return [{'id': r['id'], 'effective_at': r['effective_at'], 'recorded_at': r['recorded_at'],
-             'reviewed_at': r.get('reviewed_at', r['recorded_at']), 'scope': r['scope'], 'valid_until': r.get('valid_until'),
+             'reviewed_at': None if r.get('schema_version')==3 else r.get('reviewed_at', r['recorded_at']), 'scope': r['scope'], 'valid_until': r.get('valid_until'),
              'revision': ({'action': r['revision']['action'], 'observation_ids': r['revision']['observation_ids']} if r.get('revision') else None),
              'source_versions': [{k: s.get(k) for k in ('source_sha256', 'published_at', 'first_received_at', 'published_at_precision', 'first_received_at_precision')}
                                  for s in r.get('source_versions', [])],
              'source_reading': [{k: ref['coverage'].get(k) for k in ('mode', 'complete', 'pages_total', 'pages_read')}
                                 for ref in r.get('adoption', {}).get('document_refs', [])
                                 if isinstance(ref.get('coverage'), dict)],
-             'kind': r['kind'], 'basis': r['basis'], 'fields': copy.deepcopy(r['fields']),
+             'registration_status': 'unverified' if r.get('schema_version')==3 else 'reviewed', 'kind': r['kind'], 'basis': r['basis'], 'fields': copy.deepcopy(r['fields']),
              'assumptions': r.get('assumptions', []),
              'sources': [{k:s.get(k) for k in ('url', 'date', 'grade', 'note')}
                          for s in r.get('sources', []) if _safe_url(s.get('url'))]}
