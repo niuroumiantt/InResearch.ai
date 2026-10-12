@@ -64,7 +64,7 @@ def project(row):
     result['lifecycle'] = row.get('lifecycle', 'active')
     result['relationships'] = {k: row.get(k, []) for k in ('owner', 'operator', 'builder')}
     # Public project receipt: reviewed scope and quoted claims, never private paths.
-    receipts = site_timeline.adoptions(row)
+    receipts = [r for r in site_timeline.adoptions(row) if r.get('source_kind') != 'source_statement']
     if receipts:
         a = max(receipts, key=lambda r:(r.get('review') or {}).get('at',''))
         result['adoption'] = {k:a.get(k) for k in ('event_id','fields','scope','target_ids')}
@@ -186,10 +186,12 @@ def snapshot(root, params=None):
     for k, allowed in {'stage': {'', *STAGES, 'unknown'}, 'relation': {'', 'developer', 'tenant'},
                        'scope': {'', 'ai'}, 'role': {'', *ROLE_GROUPS}}.items():
         if params.get(k, '') not in allowed: raise ValueError('invalid '+k)
-    companies = [{k: c.get(k) for k in ('company_id', 'name', 'name_cn', 'roles', 'profile')} for c in json.loads((root/'data/companies.json').read_text())['records']]
+    from inresearch.delivery.source_publication import companies as company_register
+    companies = [{k: c.get(k) for k in ('company_id', 'name', 'name_cn', 'roles', 'profile')} for c in company_register(root)['records']]
     by_id = {c['company_id']: c for c in companies}
     if params.get('c') and params['c'] not in by_id: raise LookupError('company not found')
-    raw_rows = json.loads((root/'data/projects.json').read_text())['records']
+    from inresearch.delivery.source_publication import projects
+    raw_rows = projects(root)['records']
     all_records = [project(p) for p in raw_rows]
     all_rows = [p for p in all_records if not p.get('duplicate_of')]
     # Identity joins retain relationships and evidence, never add duplicate capacity or overwrite stages.

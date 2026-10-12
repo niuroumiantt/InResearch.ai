@@ -68,3 +68,9 @@ Spark归档实际核验13份原件，采用81条：68条产品规格、3条公�
 使用 `python3 manage.py source-statements --data <原件运行目录> --input <私有JSONL或JSON数组> --receipt <私有回执.json>`。每条包含version=1、唯一site_id、fields、source.sha256；published_at/effective_at未知可空，basis为来源陈述说明。首次对象加identity（沿物理身份结构，不能把同城其他园区混入）。known字段含规划/投运/设施功率、角色与可选水电指标。单条失败保存held_statements供后补，不阻断其他条目；重放不改首次登记时间。
 
 不要求C3、全文阅读、研究目标、网页URL或专用采集凭证；原件来自实际接收目录，字段值不做真假判断。结果registered_in_checkout只是已登记到该源码副本，仍需单一发布队列和网站实际回执才能计上线。公开状态为基础登记待查，verified_date不伪造；当前展示按01的时间顺序，旧版本保留。`object-review`用于主动做研究核验，不能再次作为普通园区登记的前置门槛。
+
+## Ordinary source intake and data-only publication
+
+For ordinary information the owner's latest policy supersedes the C3 prerequisite above. Run source-statements --data RAW_ROOT --input statements.json --receipt receipt.json. Sites provide site_id/identity/fields/source; company/product/statistic/quote provide object (type, native identity, name, digest ID), metric/value/unit/kind/scope/basis and source (sha256, locator, quote, published_at). effective_at may be null. No model target, full reading or truth review is required. Research object-review remains available for C3 conclusions.
+
+Run source-publish export --output bundle.json from the authoring dataset. Transfer through the existing authenticated SSH operator channel and run source-publish install inside the website container with its existing INRESEARCH_RUNTIME_ROOT; read the bundle from stdin. No per-batch source PR or image build. Check the atomic receipt and live /api/industry and /api/observations output. Identical replay returns new_records=0, old records are never overwritten, and original files remain on Spark. Only allowlisted projections are public. New company identities enter the same directory; typed product/statistic/quote observations retain their distinct scopes.

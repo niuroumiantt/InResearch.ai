@@ -73,3 +73,7 @@ PR839实际core_a耗时516秒；technical_atlas约94秒，chip_package两场景�
 ## 普通园区来源登记的追加分流（2026-10-12）
 
 v3普通来源登记可进入既有research路线：完整JSON证明旧基线/身份/观测及其类型、顺序不变，只末尾追加；registration为unverified、无reviewed_at/伪造review/revision、target_ids=[]，字段绑定与稳定site_id一致，来源SHA及HTTPS或真实归档导入摘要齐备。首次新园区要求冻结identity_registration、首条名称一致、基线容量为空，阶段可null且verified_date为null。仍须strict/registry/治理和固定来源登记、站点与研究回归，browser research+industry均必过。旧身份/旧值/历史修订/代码规则变化仍full；CI只证明结构，不判断来源内容真假，也不授予研究采用。本机制本批全套验收，后续纯资料批才使用分流。
+
+## Independent ordinary data releases (2026-10-12)
+
+Ordinary source additions publish through source-publish to persistent storage, outside code PRs, GitHub Actions and image builds. Per-batch checks cover bounded strict JSON, stable identities, source shape, fields/times/intervals, immutable history, atomic append and replay; then verify actual homepage/API responses. They do not certify factual truth or C3 support. Code, schema, permissions, UI and normative changes keep the existing PR checks. Daily 02:17 Asia/Shanghai full regression remains. This first mechanism and UI repair run full CI; later ordinary data imports do not. Research conclusion adoption keeps its separate queue.

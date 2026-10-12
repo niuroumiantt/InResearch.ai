@@ -20,6 +20,8 @@ def digest(value):
 
 def apply(root, data, statement):
     root,data=Path(root),Path(data)
+    if isinstance(statement, dict) and 'object' in statement:
+        return apply_object(root, data, statement)
     if not isinstance(statement,dict) or statement.get('version')!=1:
         raise ValueError('source_statement_version_required')
     site_id=statement.get('site_id')
@@ -96,6 +98,54 @@ def apply(root, data, statement):
             else:register['records'][index]=updated
             write_json(path,register)
     return {'state':'already_registered' if replay else 'registered_in_checkout','site_id':site_id,'statement_id':key,'status':'unverified','fields':sorted(normalized),'truth_checked':False}
+
+
+def apply_object(root, data, statement):
+    """Register a typed claim with actual source provenance, without C3 or a target."""
+    from inresearch.knowledge import object_observations as ledger
+    if statement.get('version') != 1:
+        raise ValueError('source_statement_version_required')
+    obj = statement['object']
+    ledger.identity(obj)
+    ledger.check_claim(statement)
+    evidence = statement.get('source') or statement.get('evidence') or {}
+    sha = evidence.get('sha256')
+    _, url, first, archive = source(data, sha, with_provenance=True)
+    if not isinstance(evidence.get('locator'), str) or not evidence['locator'].strip():
+        raise ValueError('source_locator_required')
+    if not isinstance(evidence.get('quote'), str) or not evidence['quote'].strip():
+        raise ValueError('source_excerpt_required')
+    observation_time.precision(evidence.get('published_at'))
+    native = {k:copy.deepcopy(statement.get(k)) for k in ('metric','value','unit','kind','scope','effective_at','valid_until','period_start','period_end','basis','assumptions')}
+    native.update(object_id=obj['id'], target_ids=[], source={'sha256':sha,'url':url,'archive':archive,
+                  'locator':evidence['locator'],'quote':evidence['quote'],
+                  'context_sha256':digest({'locator':evidence['locator'],'quote':evidence['quote']}),
+                  'published_at':evidence.get('published_at'),'first_received_at':first})
+    key = 'source-object-'+digest(native)
+    stamp = datetime.now(timezone.utc).isoformat()
+    native.update(id=key,recorded_at=stamp,reviewed_at=None,
+                  registration={'status':'unverified','registered_by':statement.get('registered_by') or 'source-intake','at':stamp})
+    path = Path(root)/ledger.PATH
+    with locked(path):
+        # Authoring writes the checkout ledger; runtime import is a separate command.
+        doc = json.loads(path.read_text()) if path.exists() else ledger.empty()
+        old = next((v for v in doc['records'] if v['id'] == key), None)
+        if old:
+            if doc['objects'].get(obj['id']) != obj: raise ValueError('immutable_object_identity_collision')
+            return {'state':'already_registered','object_id':obj['id'],'statement_id':key,'truth_checked':False}
+        if obj['id'] in doc['objects'] and doc['objects'][obj['id']] != obj:
+            raise ValueError('immutable_object_identity_collision')
+        if obj['type'] == 'company':
+            known = json.loads((Path(root)/'data/companies.json').read_text())['records']
+            known += [{'company_id':o['identity']['company_id'],'name':o['name']} for o in doc['objects'].values() if o['type']=='company']
+            if any(c['company_id'] != obj['identity']['company_id'] and
+                   str(c.get('name','')).casefold() == obj['name'].casefold() for c in known):
+                raise ValueError('possible_duplicate_company_identity')
+        doc['objects'][obj['id']] = copy.deepcopy(obj)
+        doc['records'].append(native)
+        ledger.check(doc, root)
+        write_json(path,doc)
+    return {'state':'registered_in_checkout','object_id':obj['id'],'statement_id':key,'status':'unverified','truth_checked':False}
 
 
 def apply_batch(root, data, statements):

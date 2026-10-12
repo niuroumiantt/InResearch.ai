@@ -177,3 +177,9 @@ reader 和接收 API 只产生 candidate；正式回答需已采用证据、完�
 已确认的新决策在相同适用范围内替代旧规则，必须同步本手册、机器声明、使用该规则的代码、网页说明和测试，并登记 supersedes、原因及影响路径。新材料或未批准提案不自动修改规范。
 
 结论引用稳定记录 ID 与具体版本，数值保留单位、时间和不确定性。对外实名与金额区间等已采用纪律保持，详见当前基准。保留历史证据和替代链；旧规则不再从当前入口加载。
+
+## Ordinary source registration and independent data publication (2026-10-12)
+
+The owner's latest decision supersedes factual/C3/full-document/model-target approval requirements for ordinary company, product, statistic and quote information as well as sites. Stable typed identity, structural fields, source references, independent clocks, append-only history and the public allowlist are technical gates. Unknown values remain unknown; intervals and conflicts are retained. Ordinary records carry unverified status and never grant model support. Reviewed research conclusions and their explicit revision authority retain the research rules above.
+
+source-statements accepts both site fields and typed object claims. source-publish export/install publishes only ordinary registrations atomically into the existing private runtime directory data/raw/source-publication/registry.json. Homepage, site details and public observation API consume the same combined projection. Quotes, archive metadata and local paths remain private. Imports use the existing authenticated SSH/operator CLI, not an anonymous write API. Data batches need no Git commit, PR, Actions run or image rebuild. Structural checks preserve identities, all old rows and idempotent replay. A failed install commits nothing. Receipt counts and live HTTP visibility are separately verified.

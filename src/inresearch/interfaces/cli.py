@@ -40,6 +40,7 @@ COMMANDS = {
     'daily-receive': 'inresearch.materials.daily_bundle',
     'object-extract': 'inresearch.workflow.stock_objects',
     'source-statements': 'inresearch.workflow.source_statements',
+    'source-publish': 'inresearch.delivery.source_publication',
     'object-review': 'inresearch.workflow.object_review',
     'project-review': 'inresearch.workflow.project_review',
     'targeted-research': 'inresearch.workflow.targeted_research',
