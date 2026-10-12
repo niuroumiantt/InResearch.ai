@@ -9133,6 +9133,91 @@
       "status": "candidate",
       "stored_path": "originals/b6/b6de53ab420fe4d389e9354c5e09c73d21b4075baae7c26eb715986edfe3fcd8/dcd-b6de53ab420fe4d3-Digital Edge breaks ground on 100MW data center campus in Thailan.html",
       "title": "Digital Edge breaks ground on 100MW data center campus in Thailand"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+      "coverage": {
+        "characters_read": 3272,
+        "characters_total": 3272,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+      "id": "doc-5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+      "library_path": "library/by-node/part-server/2025_MLCommons_MLPerf Inference v5.0 — NVIDIA DGX H100__5fa855adc6363658.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:nvidia",
+        "actor:nvidia-networking",
+        "part:gpu",
+        "part:hbm",
+        "part:nic",
+        "part:server",
+        "part:ssd",
+        "root"
+      ],
+      "question_ids": [
+        "M12-Q07",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile",
+        "OBJ-server-definition",
+        "OBJ-server-interfaces",
+        "OBJ-server-performance"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-9d734660607f450caa85a79b9f8b35f3",
+      "report_sha256": "6926bd5b0cad45a2c718430e492438b7f0f7e8b9a37ed0ac4df910c45b6cd153",
+      "research_requests": [
+        {
+          "demand_id": "demand-ed0cc1b5-4b72-4197-86aa-1d87fa23dcad",
+          "purpose": "R3 吞吐样例：MLPerf Llama2-70B Server / 8×H100；保留预测/声明/派生值与适用范围，不能将缺失原件或条件当作已验证。",
+          "question_id": "M12-Q07",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "requirement_sha256": "bad1b143d6e50fe6d398a03c8a7dff15cb95d31ca1c3a10c0e426af7089c7e90",
+          "scope_values": {
+            "concurrency": "实际并发待核验；gpu_batch_size/max_async_queries不能代替观测并发",
+            "configuration": "不可变提交0bc17ab3f4b33f730d7869e04cc29cb70835e513；TensorRT10.8/CUDA12.8；PP2x4配置仍需逐项对应",
+            "context_length": "输入/输出分布待数据集与生成配置对应核验",
+            "hardware": "NVIDIA DGX H100，8×H100-SXM-80GB",
+            "latency_slo": "原始Server日志目标TTFT2s、TPOT200ms；不是Offline吞吐",
+            "period": "MLPerf Inference5.0冻结提交；当前模型其他工作负载不自动适用",
+            "precision": "精度完整链路待配置原件核验，不能将FP8插件当全链路FP8",
+            "workload": "MLPerf Inference v5.0 closed llama2-70b-99.9 Server，仅该提交场景"
+          },
+          "target_id": "F.revenue.tokens.token.price_throughput",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-mlperf-h100-summary.html",
+        "url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/summary.html",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://raw.githubusercontent.com/mlcommons/inference_results_v5.0/0bc17ab3f4b33f730d7869e04cc29cb70835e513/closed/NVIDIA/results/DGX-H100_H100-SXM-80GBx8_TRT/summary.html",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/5f/5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56/mlperf-h100-summary.html",
+      "title": "MLPerf Inference v5.0 — NVIDIA DGX H100"
     }
   ],
   "evidence": [
@@ -66904,6 +66989,94 @@
           }
         },
         "batch_id": "211b0e485b88d8c9479bc5ac94ec4f3c7a11bcbf04a8999004aaf4732e35352c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "5d1ce99649ed9088cf9eef820ea9add437d40efc7ef5bb381b89fcdde0c2284f",
+      "document_id": "doc-5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+      "id": "rev-9d734660607f450caa85a79b9f8b35f3:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:nvidia",
+        "part:gpu",
+        "part:hbm"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-server-definition"
+      ],
+      "quote": "accelerator_memory_configuration  | HBM3  |",
+      "reading_revision_id": "rev-9d734660607f450caa85a79b9f8b35f3",
+      "source_sha256": "5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续字段引文及系统、提交者上下文直接支持限定的配置声明，可为当前GPU平台内存组织及HBM定义工作提供产品与内存类型关系的局部样例。该贡献不回答或关闭两项问题。未发现本条的敏感、同口径真实冲突或拟替换条件，符合B级局部采用要求。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-tech-gpu-memory",
+          "Q-OBJ-hbm-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 81.664,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e8b0eff945a0b2d0c14f7038fb14b1209e07b8605cc15202185fe0206d2709bf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 54274,
+            "output_tokens": 2042,
+            "reasoning_output_tokens": 583
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.945,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0f3cb743a2f6e5fcf680b9f61e24d340a67c1f46aa4722d06677cf1854dccf5a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 55084,
+              "output_tokens": 549,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "55fb9e6064ee89f141b35ccfe8c284dad56a67e4ba3ff45155212f8466f8b108"
       }
     }
   ],
@@ -129827,6 +130000,127 @@
         "request_sha256": "5e478b5f5cb7110ef0dd00490e50d963dadc160439e5f8051ed7fa3b2980dc53"
       },
       "object_mapping_check": "独立复核后，Digital Edge是明确的发言主体，对应actor:digital-edge；预测直接指向春武里这一具体AI-ready数据中心园区的未来服务作用，可在设施整体范围映射root，不表示园区已投运或仅承载AI。原文未描述内部系统、具体设备或场址接入权利，不增加电力、IT、网络接入或控制系统映射。所选证据统一采用此主张范围，不继承Reader的其他标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56",
+      "evidence_ids": [
+        "rev-9d734660607f450caa85a79b9f8b35f3:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:28e0ba1f17cb63613060786d",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nvidia",
+        "part:gpu",
+        "part:hbm"
+      ],
+      "question_ids": [
+        "Q-SCOPE-tech-gpu-memory",
+        "OBJ-hbm-definition"
+      ],
+      "reading_revision_id": "rev-9d734660607f450caa85a79b9f8b35f3",
+      "status": "adopted",
+      "text": "在MLPerf Inference v5.0中由NVIDIA提交的DGX H100系统摘要页，NVIDIA将该系统H100-SXM-80GB加速器的内存配置声明为HBM3。页面标注“February 2025”，但确切发表日期及测试日期未建立。这是特定提交系统的配置声明，不构成当前部署配置的独立认证；该页没有提供HBM产能扩张时间表。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:20:36+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。连续字段引文及系统、提交者上下文直接支持限定的配置声明，可为当前GPU平台内存组织及HBM定义工作提供产品与内存类型关系的局部样例。该贡献不回答或关闭两项问题。未发现本条的敏感、同口径真实冲突或拟替换条件，符合B级局部采用要求。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-tech-gpu-memory",
+          "Q-OBJ-hbm-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 81.664,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e8b0eff945a0b2d0c14f7038fb14b1209e07b8605cc15202185fe0206d2709bf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 54274,
+            "output_tokens": 2042,
+            "reasoning_output_tokens": 583
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.945,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0f3cb743a2f6e5fcf680b9f61e24d340a67c1f46aa4722d06677cf1854dccf5a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 55084,
+              "output_tokens": 549,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "55fb9e6064ee89f141b35ccfe8c284dad56a67e4ba3ff45155212f8466f8b108"
+      },
+      "source_candidate_ids": [
+        "rev-9d734660607f450caa85a79b9f8b35f3:chunk:0:claim:5"
+      ],
+      "limitations": "仅支持特定型号的加速器内存类型样例，未解释HBM的定义、内部组成、接口、分类边界或排除对象，也未验证实际部署、供应能力或性能。页面月份标注不能直接视为测试日期或确切发布日期；测试地点及商业部署阶段未知。",
+      "conflict_check": "已比对所供采用声明及legacy记录。既有HBM带宽、prefill价值及长鑫制造准备度判断不反驳本条特定配置声明，也不构成重复。legacy的H100系统内存记录区分主机DRAM与HBM，其附注中的96GB与本页特定H100-SXM-80GB型号的容量字段存在需另行核对的口径差异，但不是本条HBM3类型声明的直接冲突；本次不采用容量结论或消解该差异。AMD平台HBM3/HBM3E记录涉及其他产品。未发现本条同口径反证，不修改既有结论；检查范围限于所供材料。",
+      "gap_dependency_check": "本条不依赖吞吐日志、价格、并发、精度或缺失的运行配置即可记录内存类型声明。完整回答两项当前问题仍需原始技术规范中的定义、组成、分类及接口边界。封存摘要与原页覆盖描述的不一致需单独校正，不能据此宣称完整阅读流程已验证。吞吐参数要求保持未满足，任何模型输入更新均不由本条授权。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "55fb9e6064ee89f141b35ccfe8c284dad56a67e4ba3ff45155212f8466f8b108",
+        "source_report_sha256": "6926bd5b0cad45a2c718430e492438b7f0f7e8b9a37ed0ac4df910c45b6cd153",
+        "request_sha256": "fab995686e02b1cae6c105e942384f4372543fe045c00f1a2e2dc50a027a38a8"
+      },
+      "object_mapping_check": "独立依据原文确定：NVIDIA是提交者，对应actor:nvidia；H100-SXM-80GB是计算链下的GPU加速器，对应part:gpu；其声明的HBM3属于内存链下的HBM，对应part:hbm。该字段讨论加速器内存类型，不建立整座数据中心、完整内存系统、服务器整机性能或网络范围，因此不继承文档的其他对象标签。",
+      "quantitative_checks": {
+        "basis_check": "依据是原页加速器配置字段及其系统上下文，保留提交者配置声明身份；不是实测内存性能，也不将页面其他基准结果改标为作者观点。",
+        "comparability_check": "仅可作为该提交系统内存类型的配置样例；缺少跨型号、软件、工作负载及运行条件的可比性依据，不能推出通用GPU性能、生产吞吐或经济性参数。",
+        "derivation_check": "不适用：本条没有算术派生、容量汇总或每GPU吞吐归一化，也没有提出B级定量观测或计算。",
+        "scope_check": "本条是NVIDIA提交系统的分类配置声明，限定于DGX H100中的H100-SXM-80GB；没有采用系统吞吐观测或单GPU计算。测试地点及生产部署阶段未建立。",
+        "time_check": "原页标注February 2025；确切发表时间、测试时间及当前配置有效期未知，不将批次创建时间作为来源时间。",
+        "units_check": "不适用：HBM3是内存类型名称，没有数值单位；型号中的80GB不在本条中作为容量参数采用。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M12-Q07",
+          "rationale": "所选证据仅声明HBM3内存类型，不提供tokens_per_gpu_sec或系统吞吐计算依据。原页其他结果字段未作为本条证据采用；请求读取该文档不代表吞吐要求已验收。并发、输入输出分布、精度链路、PP2x4配置及Server延迟条件仍需对应原件核验，本条不认证模型输入、不关闭问题或替换当前参数。",
+          "requirement_id": "F.revenue.tokens.token.price_throughput::tokens_per_gpu_sec",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
