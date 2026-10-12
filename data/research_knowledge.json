@@ -68765,6 +68765,93 @@
         },
         "batch_id": "1affa848e8ac3bcdf09dc94bbbf2c8c247f070ee5682546750a35dbd77a74e40"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f1aab657cb2b3dce71b47282e5d832e40d3ba83548d229a878dd0d7e2642ae4b",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "id": "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:transformer",
+        "chain:power/2"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q07",
+        "OBJ-substation-supply"
+      ],
+      "quote": "Five main power transformers energized by March 10, 2026.",
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "source_sha256": "1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:12:21+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整引文及原文周围第二阶段建设、采购约束和临时设备替换语境，支持明确归因的设备送电节点，对当前变电站与大型变压器供应工作单的交付环节有实质性局部贡献。保留原始author_claim身份；本项是承包商项目报告，没有测量或计算结果被改写为作者主张。未发现敏感材料、实质冲突、拟替换既有结论或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-substation-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1f895c850238620b0421987b305d5f54a5161644f45b9ec71c6024c7122c9253",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 39410,
+            "output_tokens": 2003,
+            "reasoning_output_tokens": 242
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.567,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f1b2c38ec4612bd17eb1ecac19a671d6be479abaabba98f51559d180f4ee506d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40525,
+              "output_tokens": 539,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "68f8d880b2b3f0cf662bd16ecbb7440430533a1a7dcd874bc4268fdb36091dca"
+      }
     }
   ],
   "statements": [
@@ -133114,6 +133201,131 @@
         "request_sha256": "59436dcf8307d071392dde772473207501d54e8915dd32e46609db0379e895cb"
       },
       "object_mapping_check": "数值描述StratusPower UPS系统的产品容量与电压，对应chain:power/4下的part:ups。系统容量不是整座AI数据中心容量，400 V也未建立配电柜、变压器或电网接入对象范围；不继承文档的机柜和电池标签，不自动添加父节点。所选证据统一使用此主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "evidence_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:160bda15959ac5841e0e0520",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:transformer",
+        "chain:power/2"
+      ],
+      "question_ids": [
+        "OBJ-substation-supply"
+      ],
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "status": "adopted",
+      "text": "Mortenson在《Abilene AI Data Center & Power Delivery》网页中，以Lancium美国得州Abilene园区电力交付EPC承包商身份称，第二阶段绿地变电站工程的五台主电力变压器截至2026年3月10日已送电。原文说明其中三台为临时设备，因此这一节点不表示全部永久设备已经交付或更换完成。网页发表及更新日期未知；这是承包商报告的历史工程节点，不构成当前设备交付或运行状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:12:21+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整引文及原文周围第二阶段建设、采购约束和临时设备替换语境，支持明确归因的设备送电节点，对当前变电站与大型变压器供应工作单的交付环节有实质性局部贡献。保留原始author_claim身份；本项是承包商项目报告，没有测量或计算结果被改写为作者主张。未发现敏感材料、实质冲突、拟替换既有结论或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-substation-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.864,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1f895c850238620b0421987b305d5f54a5161644f45b9ec71c6024c7122c9253",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 39410,
+            "output_tokens": 2003,
+            "reasoning_output_tokens": 242
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.567,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f1b2c38ec4612bd17eb1ecac19a671d6be479abaabba98f51559d180f4ee506d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40525,
+              "output_tokens": 539,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "68f8d880b2b3f0cf662bd16ecbb7440430533a1a7dcd874bc4268fdb36091dca"
+      },
+      "source_candidate_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:11"
+      ],
+      "limitations": "未提供制造商、型号、单台额定容量、订购日期、实际交付日期、逐台送电日期、验收原件或带载运行数据。五台送电包含临时设备，不能认定五台永久设备交付完成，也不能由送电推断IT投产、批准用能额度、采购交期或接入排队时长。",
+      "conflict_check": "已采用的同源记录分别涉及2024年原有变电站设备迁移扩建，以及第二阶段三台临时设备预计于2026年10月完成永久设备替换。历史送电与永久设备替换是不同里程碑，彼此不矛盾；本项也不是这些记录的完整重复。IEA转述的Siemens Energy制造扩产及订单情况具有不同主体和范围，无同口径冲突。所供legacy筛选记录为空，检查限于所供材料，不代表外部穷尽反查。",
+      "gap_dependency_check": "对OBJ-substation-supply仅补充采购受限情况下设备投入送电的项目交付节点，不能回答供应商、制造周期、采购交期、价格形成或生命周期成本分解，问题保持开放。仍需设备订单、制造商及逐台交付、永久设备更换和验收资料。批准用能及负荷接入排队参数须另取相应审批原件，不由本项补足或替换。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "68f8d880b2b3f0cf662bd16ecbb7440430533a1a7dcd874bc4268fdb36091dca",
+        "source_report_sha256": "425a84d9c73f873b3bf83a846b4cb94c8ff803e05faa9a444fd62e2d711a93e2",
+        "request_sha256": "400d3ec36eb51dc6feb2ab4280815b80d017180967d8d1a3865fbe73fecf3689"
+      },
+      "object_mapping_check": "原文明确为园区第二阶段高压绿地变电站中的主电力变压器送电，支持大型电力变压器part:transformer及其父链变电chain:power/2。送电节点未提供电力配额、并网协议或排队权利证据，因此不继承site:grid，也不因AI园区用途扩展至root或IT资产。Mortenson没有允许的actor ID，不以其他企业代替。所选证据统一采用上述主张级对象范围，原候选及证据标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据为电力交付EPC承包商Mortenson的自身项目叙述，未附独立验收、测量或审批原件。不存在需要保留的估算模型或测量方法；其缺失不通过新增假设补足。",
+        "comparability_check": "设备送电、永久设备交付、采购交期、施工完工、负荷接入批准及排队等待具有不同口径，不能互代。五台计数不能转换为批准用能或IT容量，也不能推广为区域交期、排队均值或其他项目的交付能力。",
+        "derivation_check": "无新增计算或推导，五台及截止日期直接来自连续引文，临时设备条件来自原文周边语境。实际内容为原始author_claim类项目报告，不是源观测或计算，拟采用B观测或计算的独立二次检查要求不适用；另行复核原文事实栏与后续采购叙述，未发现计数或日期矛盾。",
+        "scope_check": "范围为美国得州Lancium Abilene园区第二阶段绿地变电站的五台主电力变压器送电，包含三台临时设备；不是全部永久设备交付、整个园区完工或IT投产。软件、工作负载和GPU测量条件不适用，因为本项是变电工程节点报告。",
+        "time_check": "2026年3月10日是来源报告的送电截止节点，网页发表及更新日期未知。不能将下载、审核日期作为发表日期，也不能据该历史节点认定审核日的设备状态。",
+        "units_check": "保留五台设备计数及2026年3月10日的日级截止日期。“截至”不表示五台均在当天送电。没有单台容量、批准MW或等待年数，不进行容量分配、GW汇总或单位换算。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张是主电力变压器的设备计数及送电节点，未提供ERCOT或输电商批准的负荷用能额度。项目相同不使送电证据满足批准容量要求，变电站规格也不能转为批准用能或IT容量；requested_reading_only不表示参数已经取得或核验。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "该历史节点可作为同园区工程送电时间线的背景，但实际主张属于施工调试阶段，不是负荷接入申请、批准或排队等待。未取得对应申请起点及同阶段审批结束原件，不能将送电日指定为审批结束日或计算等待年数，也不支持替换当前参数。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
