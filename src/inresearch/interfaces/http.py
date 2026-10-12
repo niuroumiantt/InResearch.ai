@@ -23,6 +23,7 @@ import hmac
 from inresearch.workflow import operations
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
+from inresearch.workflow import research_tasks
 from inresearch.workflow import news_marks
 from inresearch.workflow import dispatch
 from inresearch.workflow import pilot_progress
@@ -111,14 +112,18 @@ class Handler(SimpleHTTPRequestHandler):
         pass
 
     def end_headers(self):
-        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() == '/admin/company.html':
+        compressible = getattr(self, '_compressible_response', False)
+        private = self._norm_path() in ('/login', '/api/whoami') or not public.allowed(self._norm_path(), urlsplit(self.path).query)
+        if private or compressible:
             self.send_header('Cache-Control', 'private, no-store')
-            self.send_header('Vary', 'Cookie')
+            vary = ['Cookie'] if private else []
+            if compressible: vary.append('Accept-Encoding')
+            self.send_header('Vary', ', '.join(vary))
             self.send_header('X-Frame-Options', 'SAMEORIGIN')
-        elif Path(self._norm_path()).suffix.lower() in ('.html', '.js', '.css'):
-            # Mutable entry pages/components must revalidate after publication.
-            # Keep Last-Modified/304 support; fonts and illustration files stay cacheable.
+        elif self._norm_path() in public.READER_PAGES or Path(self._norm_path()).suffix.lower() in ('.html', '.js', '.css'):
+            # Homepage and mutable components revalidate after publication.
             self.send_header('Cache-Control', 'no-cache')
+        self._compressible_response = False
         super().end_headers()
 
     def handle(self):
@@ -138,14 +143,14 @@ class Handler(SimpleHTTPRequestHandler):
             body = gzip.compress(body, compresslevel=5, mtime=0)
         self.send_response(code)
         self.send_header("Content-Type", "application/json; charset=utf-8")
+        self._compressible_response = compressed
         if compressed:
-            self.send_header('Cache-Control', 'private, no-store')
-            self.send_header('Vary', 'Accept-Encoding')
             if gzip_ok:
                 self.send_header('Content-Encoding', 'gzip')
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
-        self.wfile.write(body)
+        if self.command != 'HEAD':
+            self.wfile.write(body)
 
     def _html(self, code, html, extra_headers=()):
         body = html.encode()
@@ -155,7 +160,8 @@ class Handler(SimpleHTTPRequestHandler):
         for k, v in extra_headers:
             self.send_header(k, v)
         self.end_headers()
-        self.wfile.write(body)
+        if self.command != 'HEAD':
+            self.wfile.write(body)
 
     def _redirect(self, to, extra_headers=()):
         self.send_response(302)
@@ -201,19 +207,16 @@ class Handler(SimpleHTTPRequestHandler):
         if "/.hub_secret" in low or "/users.json" in low:
             self._json(404, {"ok": False, "error": "not found"})
             return None
-        # 登录前只公开外观 CSS/JS 与字体包(含许可证); 字体包目录整体公开, 里面只有 infra 同步来的字体文件。
-        if self._norm_path() in {"/assets/site-skin.js", "/assets/theme-state.js", "/assets/auth-form.js", "/assets/auth.css", "/assets/site-skin.css"} or self._norm_path().startswith("/assets/fonts/"):
-            return ""
         user = auth.session_user(self.headers.get("Cookie"))
         if user:
             return user
-        # 公开只读（reader）：目录三项、账本与它们读的数据，只对 GET/HEAD 匿名放行（白名单见 public.py）；
-        # 写接口永远不放行，模型文件按角色过滤后再给（见 do_GET）。
-        if self.command in ("GET", "HEAD") and public.allowed(self._norm_path()):
+        # Only the homepage, its bounded projections and login assets are public.
+        # Query parameters are part of the gate, not a way to request detail/export.
+        if self.command in ("GET", "HEAD") and public.allowed(self._norm_path(), urlsplit(self.path).query):
             return ""
-        if self.path == "/login" or self.path == "/api/login":
+        if self.command == "POST" and self.path == "/api/login":
             return ""
-        if self.path.startswith("/api/"):
+        if self._norm_path().startswith("/api/"):
             self._json(401, {"ok": False, "error": "未登录"})
         else:
             self._redirect("/login")
@@ -247,8 +250,8 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def _intern_allowed(self, path):
-        # 实习生白名单 + 公开只读的内容：reader 不登录能看的，登录的实习生当然能看（账本给的是同一份公开视图）。
-        return public.allowed(path) or any(path == a or (a.endswith("/") and path.startswith(a))
+        # Public closure changes anonymous access, not the intern's existing role grants.
+        return public.allowed(path, urlsplit(self.path).query) or public.intern_research_allowed(path) or any(path == a or (a.endswith("/") and path.startswith(a))
                                            for a in auth.INTERN_GET_ALLOW)
 
     def _role(self, user):
@@ -256,7 +259,10 @@ class Handler(SimpleHTTPRequestHandler):
         return auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
 
     def do_HEAD(self):
-        # SimpleHTTPRequestHandler 自带 HEAD 支持——不过闸的话可以用 HEAD 探文件存在与大小
+        # Dynamic public mechanisms must implement the same HEAD gate as GET.
+        if self._norm_path() in ('/healthz', '/api/whoami', '/login', *public.HOME_DATA_API):
+            return self._get()
+        # Static HEAD still passes authentication and role checks before file metadata.
         user = self._gate()
         if user is None:
             return
@@ -327,7 +333,7 @@ class Handler(SimpleHTTPRequestHandler):
             query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
             query.setdefault('c', ['microsoft'])
             return self._redirect('/product-catalog.html?' + urlencode(query, doseq=True))
-        if self.path == "/login":
+        if self._norm_path() == "/login":
             if user:                       # 已登录还访问登录页 → 回首页
                 return self._redirect("/")
             return self._html(200, pages.LOGIN_PAGE)
@@ -341,7 +347,7 @@ class Handler(SimpleHTTPRequestHandler):
             # 健康探针（2026-09-29）：只证明进程在、能路由、能序列化；不 stat 日志、不读运行文件、不看登录态。
             # 容器编排、Dockerfile 与 infra hosts/apps.json 都探这里，不再探登录页或首页。
             return self._json(200, {"ok": True, "service": "inresearch", "auth_required": bool(AUTH_ON)})
-        if self.path == "/api/whoami":
+        if self._norm_path() == "/api/whoami":
             role = self._role(user)
             return self._json(200, {"ok": True, "user": user or (None if role == "reader" else "(本地模式)"), "role": role})
         if self._norm_path() == "/data/datacenter_model.json" and self._role(user) in ("reader", "intern"):
@@ -624,6 +630,11 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, report_model.build_report(ROOT) if legacy else report_model.build_snapshot_report(ROOT))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '报告暂不可用，请稍后重试'})
+        if urlsplit(self.path).path == '/api/research-tasks':
+            try:
+                return self._json(200, research_tasks.snapshot(ROOT, actor=user or 'local', role=self._role(user)))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '任务跟踪暂不可用，请稍后重试'})
         if urlsplit(self.path).path == '/api/tasks':
             try:
                 return self._json(200, research.task_board(ROOT))
@@ -694,6 +705,21 @@ class Handler(SimpleHTTPRequestHandler):
             return self.api_login(payload)
         if user and role == "intern" and self.path not in auth.INTERN_POST_ALLOW:
             return self._json(403, {"ok": False, "error": "该操作需要内部成员权限"})
+        if self.path == '/api/research-tasks':
+            if self.headers.get('X-Requested-With') != 'research-tasks':
+                return self._json(403, {'ok': False, 'error': 'invalid request'})
+            try:
+                return self._json(200, research_tasks.mutate(ROOT, payload, user or 'local', role))
+            except research_tasks.Conflict as error:
+                return self._json(409, {'ok': False, 'error': str(error)})
+            except research_tasks.Forbidden as error:
+                return self._json(403, {'ok': False, 'error': str(error)})
+            except ValueError as error:
+                return self._json(400, {'ok': False, 'error': str(error)})
+            except CommitUncertain:
+                return self._json(503, {'ok': False, 'error': '提交结果需核对，请刷新；重试将复用同一操作身份'})
+            except OSError:
+                return self._json(503, {'ok': False, 'error': '任务台账暂不可写，请保留交付材料并重试'})
         if self.path == "/api/supply":
             if role != "admin" or self.headers.get("X-Requested-With") != "supply-center":
                 return self._json(403, {"ok": False, "error": "仅管理员可管理供应需求"})

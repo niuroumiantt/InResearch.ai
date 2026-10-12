@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.11.homepage-headlines",
+  "version": "2026.10.12.private-tasks",
   "static_pages": [
     "index.html",
     "node.html",
@@ -50,7 +50,8 @@
     "research/data-centers-2026-us.html",
     "research/data-centers-2026-sea.html",
     "research/data-centers-2026-cn.html",
-    "research/data-centers-2026-projects.html"
+    "research/data-centers-2026-projects.html",
+    "tasks.html"
   ],
   "sections": {
     "industry": [
@@ -91,7 +92,8 @@
       "cross-scale-atlas.html"
     ],
     "acquisition": [
-      "supply.html"
+      "supply.html",
+      "tasks.html"
     ],
     "results": [
       "report.html",
@@ -146,40 +148,9 @@
   },
   "section_questions_note": "行业总览回答市场规模、地理布局与项目进展；研究目录继续对应四问，行业总览与管理不强行映射四问。",
   "public_pages": [
-    "index.html",
-    "node.html",
-    "ledger.html",
-    "bom.html",
-    "bom3d.html",
-    "rack3d.html",
-    "product-catalog.html",
-    "report.html",
-    "industry.html",
-    "projects.html",
-    "project.html",
-    "market.html",
-    "compute-catalog.html",
-    "server-plan.html",
-    "rack-atlas.html",
-    "rack-exploded.html",
-    "chip-atlas.html",
-    "campus-plan.html",
-    "facility-atlas.html",
-    "power-atlas.html",
-    "thermal-atlas.html",
-    "compute-atlas.html",
-    "memory-atlas.html",
-    "storage-atlas.html",
-    "network-atlas.html",
-    "control-atlas.html",
-    "cross-scale-atlas.html",
-    "research/data-centers-2026.html",
-    "research/data-centers-2026-us.html",
-    "research/data-centers-2026-sea.html",
-    "research/data-centers-2026-cn.html",
-    "research/data-centers-2026-projects.html"
+    "index.html"
   ],
-  "sections_note": "七项导航；行业总览及其市场、布局、项目页公开只读，原研究页面仍保留。",
+  "sections_note": "导航与七类页面分区分别登记；仅首页匿名公开，其余行业、市场、布局、项目及研究页面登录后按角色读取，任务跟踪归采集分区。",
   "dynamic_pages": {
     "src/inresearch/interfaces/pages.py": [
       "LOGIN_PAGE",
@@ -276,7 +247,8 @@
     "research/data-centers-2026-us.html": "web/pages/research/data-centers-2026-us.html",
     "research/data-centers-2026-sea.html": "web/pages/research/data-centers-2026-sea.html",
     "research/data-centers-2026-cn.html": "web/pages/research/data-centers-2026-cn.html",
-    "research/data-centers-2026-projects.html": "web/pages/research/data-centers-2026-projects.html"
+    "research/data-centers-2026-projects.html": "web/pages/research/data-centers-2026-projects.html",
+    "tasks.html": "web/pages/tasks.html"
   },
   "template_fragments": [
     "web/pages/auth/layout.html",

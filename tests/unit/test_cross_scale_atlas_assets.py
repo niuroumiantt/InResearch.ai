@@ -305,11 +305,11 @@ class CrossScaleAtlasAssetTests(unittest.TestCase):
                 self.assertIn(path, routes, url); self.assertTrue((ROOT / routes[path]).is_file(), url)
         self.assertRegex(page.read_text(), r"mountTechnicalAtlas\([^;]+,'cross-scale',\{view:'cross-scale'\}\)")
         tree = ast.parse((ROOT / 'src/inresearch/interfaces/public.py').read_text())
-        reader_pages = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'READER_PAGES' for t in n.targets))
+        reader_pages = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'INTERN_RESEARCH_PAGES' for t in n.targets))
         self.assertIn('/cross-scale-atlas.html', reader_pages)
         interface = read(ROOT / 'framework/interface_manifest.json')
-        for key in ['static_pages', 'public_pages']:
-            self.assertIn('cross-scale-atlas.html', interface[key])
+        self.assertIn('cross-scale-atlas.html', interface['static_pages'])
+        self.assertNotIn('cross-scale-atlas.html', interface['public_pages'])
         self.assertIn('cross-scale-atlas.html', interface['sections']['bom'])
         self.assertEqual(interface['page_sources']['cross-scale-atlas.html'], str(page.relative_to(ROOT)))
 

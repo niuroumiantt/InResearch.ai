@@ -19,23 +19,25 @@
     return el;
   }
   // 一级导航为行业总览与研究目录（05「目录」）：七项按角色出现；页面用 data-section 说自己属于哪一项。
-  // reader 是公开只读，不登录即是；实习生只见采集入口（目标表与研究问题任务）。
+  // 未登录只见首页与登录；实习生可进入任务跟踪和自己的采集任务。
   const LINKS = [
-    ['industry', '行业总览', '/'], ['datacenter', '数据中心研究', '/node.html'], ['ledger', '账本', '/ledger.html'], ['bom', '爆炸图', '/bom.html'],
+    ['industry', '行业总览', '/'], ['tasks', '任务跟踪', '/tasks.html'], ['datacenter', '数据中心研究', '/node.html'], ['ledger', '账本', '/ledger.html'], ['bom', '爆炸图', '/bom.html'],
     ['acquisition', '采集', '/supply.html'], ['results', '成果', '/report.html'], ['admin', '管理', '/ops.html']
   ];
   const VISIBLE = {
-    admin: ['industry', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'],
-    member: ['industry', 'datacenter', 'ledger', 'bom', 'acquisition', 'results'],
-    intern: ['acquisition'],
-    reader: ['industry', 'datacenter', 'ledger', 'bom', 'results']
+    admin: ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'],
+    member: ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'acquisition', 'results'],
+    intern: ['tasks', 'acquisition'],
+    reader: ['industry']
   };
   function navigation(section, audience) {
     const nav = document.createElement('nav');
     nav.className = 'ui-navigation'; nav.setAttribute('aria-label', '全站导航');
     function render(role) {
       nav.replaceChildren();
-      const visible = audience === 'reader' ? VISIBLE.reader : (VISIBLE[role] || VISIBLE.member);
+      document.querySelectorAll('[data-requires-login]').forEach(el => { el.hidden = role === 'reader'; });
+      const visible = audience === 'reader' && role !== 'reader'
+        ? ['industry', 'datacenter', 'ledger', 'bom', 'results'] : (VISIBLE[role] || VISIBLE.reader);
       for (const [id, label, href] of LINKS) {
         if (!visible.includes(id)) continue;
         const link = document.createElement('a');
@@ -58,7 +60,7 @@
         nav.append(backstage);
       }
     }
-    render(audience === 'reader' ? 'reader' : 'member');
+    render('reader');
     fetch('/api/whoami').then(response => response.ok ? response.json() : null)
       .then(user => { if (user?.role) render(user.role); }).catch(() => {});
     return nav;
@@ -69,7 +71,7 @@
     const bar = document.createElement('div'); bar.id = 'ui-skinbar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', '全站外观');
     const brand = document.createElement('a'); brand.href = '/index.html'; brand.className = 'ui-home'; brand.append(icon('home'), document.createTextNode('inresearch.ai'));
     bar.append(brand);
-    if (host.dataset.section !== 'auth') bar.append(navigation(host.dataset.section, host.dataset.audience));
+    if (host.dataset.section !== 'auth') bar.append(navigation(location.pathname === '/tasks.html' ? 'tasks' : host.dataset.section, host.dataset.audience));
     const controls = document.createElement('div'); controls.className = 'ui-appearance-controls';
     bar.append(controls);
     const label = document.createElement('label'); label.htmlFor = 'ui-appearance'; label.textContent = '外观';

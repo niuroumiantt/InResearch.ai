@@ -52,7 +52,11 @@ Spark 不执行采集任务；它接收已交付的永久原件、运行提取�
 
 `/supply.html` 是采集页（目标表、研究问题任务、收件箱、规格批次与供应台账）；演示页已退役。资料收件箱链接进入供应中心，两页复用站点登录、导航和外观。供应中心的 `#overview` 展示目的、待补目录、供应入口、计划任务、真实交付和接收原件数；`#coverage` 展示先广后深批次；`#resources` 展示 AWS、macmini、Spark 分工；交付标签读取真实 Fetchspec 回执及现有 Reader 目录状态。回执里的“已接收”“Reader 候选就绪”“证据审核”“C3 采用”分别计量，彼此不能冒充。
 
-`workflow.supply` 是人工需求与任务计划唯一写入用例；生成目标由因子树、部件表和权利表产生，不在供应中心手写。`GET /api/supply` 为成员只读视图，并投影全部 `team=fetchspec` 的生成目标及 sourced/assumed/needed 计数；`POST /api/supply` 仅管理员经同源自定义请求头可创建补充需求、追加供应方任务。每项人工任务保存 execution_mode 与 execution_host，机器组合由能力目录强制校验。Fetchspec 接收 CLI `fetchspec-receive` 从文件系统接收已传输的 package，并将回执写入同一私有 supply-center 状态根；同一个任务 ID 必须存在且分配给 fetchspec。回执表只记传输验收，不代替原任务计划或生成目标。
+`workflow.supply` 是供应中心人工需求与供应方任务计划唯一写入用例；生成目标由因子树、部件表和权利表产生，不在供应中心手写。`GET /api/supply` 为成员只读视图，并投影全部 `team=fetchspec` 的生成目标及 sourced/assumed/needed 计数；`POST /api/supply` 仅管理员经同源自定义请求头可创建补充需求、追加供应方任务。每项人工任务保存 execution_mode 与 execution_host，机器组合由能力目录强制校验。Fetchspec 接收 CLI `fetchspec-receive` 从文件系统接收已传输的 package，并将回执写入同一私有 supply-center 状态根；同一个任务 ID 必须存在且分配给 fetchspec。回执表只记传输验收，不代替原任务计划或生成目标。
+
+全球存量普查协作入口为 `/tasks.html`，`workflow.research_tasks` 仅管理项目协调工作包（地区、来源范围、负责人、截止日期、机器、模型与交付指针），不创建供应方执行任务，不自动调用模型或采集服务。管理员与成员可分配，实习生只更新分配给自己的工作包进展与交付；版本比较、请求UUID和审计防止覆盖与重复。私有 `data/raw/research-tasks/ledger.json` 沿现有运行根保存，读取不创建状态。工作包交付不代表原件已接收、信息已登记或研究已采用；正式数据从既有园区账本只读计量。
+
+交付复用员工共同 `fetchdata-handoff/1`（原生原件、manifest、SHA256SUMS、observations.jsonl、errors.jsonl、run-report），OCR/文本/JSON是带原件身份与定位的派生物。四队包仍是交换格式，不能冒充Fetchspec生产接收。一般园区来源不需要模型目标或全文/C3前置，按01的source-statements逐条基础登记；研究结论和模型用途另验。
 
 能力目录随 Git 发布；需求/任务/操作回执保存在 `data/raw/supply-center/ledger.json`，生产由既有 private data/raw 规则映射到持久运行目录，不进 Git、不提供静态下载、不新增种子或迁移原有存储布局。写入使用锁、台账版本比较和操作 UUID 重放，登记真实执行人。读取不创建目录，损坏台账报错而非重建。提交持久性不确定时读取后以相同身份重试。
 

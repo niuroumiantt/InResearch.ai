@@ -598,7 +598,7 @@ let loading=false;
 async function load({quiet=false}={}){
  if(quiet&&loading)return;
  request?.abort();const current=new AbortController();request=current;loading=true;if(!quiet)$('load-status').textContent='正在读取项目数据…';
- const q=new URLSearchParams();if(isHome)q.set('overview','1');for(const k of keys)if(params.get(k))q.set(k,params.get(k));
+ const q=new URLSearchParams();if(isHome)q.set('overview','1');else for(const k of keys)if(params.get(k))q.set(k,params.get(k));
  try{const r=await fetch('/api/industry?'+q,{signal:current.signal});if(!r.ok)throw Error(r.status===404?'未找到对应的项目或主体。':r.status===400?'筛选条件无效，请重置后重试。':'项目数据暂时无法读取。');const value=await r.json();if(request!==current)return;$('load-status').textContent='';if(quiet&&JSON.stringify(value)===JSON.stringify(data))return;data=value;render();}
  catch(e){if(e.name==='AbortError')return;$('load-status').innerHTML=quiet&&data?'状态刷新暂缓，保留上次读取结果。':esc(e.message)+' <a href="/">返回行业总览</a>';}
  finally{if(request===current)loading=false;}

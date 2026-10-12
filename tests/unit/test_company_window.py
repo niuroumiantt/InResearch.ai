@@ -174,8 +174,8 @@ class CompanyWindowTests(unittest.TestCase):
         self.assertEqual(result['feed']['items'][0]['title'],'SMCI original title')
         self.assertNotIn('pipeline',result)
 
-    def test_anonymous_endpoints_validate_filters_and_keep_deep_links(self):
-        with patch.object(serve,'AUTH_ON',True),patch.object(auth,'session_user',return_value=None),patch.dict(os.environ,{'INRESEARCH_MARKET_ENABLED':'0'}):
+    def test_member_endpoints_validate_filters_and_keep_deep_links(self):
+        with patch.object(serve,'AUTH_ON',True),patch.object(auth,'session_user',return_value='member'),patch.object(auth,'user_role',return_value='member'),patch.dict(os.environ,{'INRESEARCH_MARKET_ENABLED':'0'}):
             server=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler)
             thread=threading.Thread(target=server.serve_forever,kwargs={'poll_interval':.01},daemon=True);thread.start()
             try:

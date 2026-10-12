@@ -203,7 +203,7 @@ class OperationsHTTPTests(unittest.TestCase):
                     response = connection.getresponse(); body = response.read()
                     self.assertEqual(response.status, 200)
                     self.assertEqual(response.getheader('Cache-Control'), 'private, no-store')
-                    self.assertEqual(response.getheader('Vary'), 'Accept-Encoding')
+                    self.assertEqual(set(response.getheader('Vary').split(', ')), {'Accept-Encoding', 'Cookie'})
                     self.assertEqual(response.getheader('Content-Encoding'), 'gzip' if compressed else None)
                     if compressed:
                         self.assertLess(len(body), 200)
