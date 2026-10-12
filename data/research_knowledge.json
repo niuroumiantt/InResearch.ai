@@ -66451,6 +66451,93 @@
         },
         "batch_id": "217c0cee50c3171651f81b422663532e77dcadede12f19896a7c9d88c40fd389"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f1aab657cb2b3dce71b47282e5d832e40d3ba83548d229a878dd0d7e2642ae4b",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "id": "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:transformer",
+        "chain:power/2"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-substation-supply"
+      ],
+      "quote": "As demand for power increased, Mortenson completed the Abilene Expansion project during the second half of 2024. The project involved relocating a main power transformer and existing equipment from a nearby substation to create a third bay within the Abilene station.",
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "source_sha256": "1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:11:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整引文和原文周边扩建、调试语境明确支持设备迁移及复用的交付案例，对当前供应交付环节和替代路径工作单具有实质性局部贡献。候选保留原有author_claim身份，没有实测或计算结果被改写为作者主张。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-substation-supply",
+          "Q-OBJ-substation-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.487,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d9182b62425882e7cdf16d22d84568b2ffe4b9225d096b1cd1f8a7a6f6b4e347",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 43851,
+            "output_tokens": 1987,
+            "reasoning_output_tokens": 229
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.117,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d7e40e17404058bb69ee97f11ef4bfb68c5469df4563d4bda296edbee4061e80",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 44951,
+              "output_tokens": 552,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "4796b0b4f997ea92230e3cb0ce738762af04b1b29d433541af5a6965e236f03b"
+      }
     }
   ],
   "statements": [
@@ -128918,6 +129005,133 @@
         "request_sha256": "7a5a4dd65839068c7096462e2c2bf2192075a38d5f97331369566309672b8446"
       },
       "object_mapping_check": "原文明示新CDU的报价与制造安排，对应part:cdu。合同没有独立LiquidStack actor，不以多家组合actor代替该企业。Carrollton是制造地点，非已建立的数据中心项目或土地权利，不新增设施或site映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "evidence_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:ed03583a5357e1013e71cec5",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:transformer",
+        "chain:power/2"
+      ],
+      "question_ids": [
+        "OBJ-substation-supply",
+        "OBJ-substation-alternatives"
+      ],
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "status": "adopted",
+      "text": "Mortenson在《Abilene AI Data Center & Power Delivery》网页中，以Lancium美国得州Abilene园区电力交付EPC承包商身份称，其于2024年下半年完成Abilene Expansion扩建项目，将附近变电站的一台主电力变压器及现有设备迁入Abilene站，形成第三个间隔。该叙述属于原有变电站的2024年扩建阶段，网页发表及更新日期未知；这是承包商报告的项目情况，不构成当前交付状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:11:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整引文和原文周边扩建、调试语境明确支持设备迁移及复用的交付案例，对当前供应交付环节和替代路径工作单具有实质性局部贡献。候选保留原有author_claim身份，没有实测或计算结果被改写为作者主张。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-substation-supply",
+          "Q-OBJ-substation-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.487,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d9182b62425882e7cdf16d22d84568b2ffe4b9225d096b1cd1f8a7a6f6b4e347",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 43851,
+            "output_tokens": 1987,
+            "reasoning_output_tokens": 229
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.117,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "d7e40e17404058bb69ee97f11ef4bfb68c5469df4563d4bda296edbee4061e80",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 44951,
+              "output_tokens": 552,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "4796b0b4f997ea92230e3cb0ce738762af04b1b29d433541af5a6965e236f03b"
+      },
+      "source_candidate_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:3"
+      ],
+      "limitations": "未提供迁出变电站名称、设备制造商、型号、单台额定容量、设备状态、迁移开始日期、具体完工日或验收原件。没有采购交期、迁移工期、成本、寿命、可靠性或同口径方案比较，不能据此认定复用方案更快、更便宜或性能等同。扩建完成不等于批准用能、IT投产或接入审批完成。",
+      "conflict_check": "已采用的同源记录涉及第二阶段临时变压器预计于2026年10月完成永久设备替换，与本项2024年原有变电站扩建属于不同阶段和里程碑，不构成冲突或重复。IEA的制造扩产及固态变压器评估、DCD的未来平台探索也没有同项目同阶段的相反陈述。所供legacy筛选记录为空，未发现完整重复规范记录；检查限于供应记录，不代表外部穷尽反查。",
+      "gap_dependency_check": "对OBJ-substation-supply仅补充设备迁移复用这一交付环节，仍缺制造商、采购与交付起止、成本边界及生命周期成本。对OBJ-substation-alternatives仅提供迁移现有设备的项目路径，未完成与新购或其他方案的同口径性能、成本和约束比较。两个问题均保持开放；不得用本项补足批准用能或接入排队参数，也不替换既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4796b0b4f997ea92230e3cb0ce738762af04b1b29d433541af5a6965e236f03b",
+        "source_report_sha256": "425a84d9c73f873b3bf83a846b4cb94c8ff803e05faa9a444fd62e2d711a93e2",
+        "request_sha256": "d605dbf1b69ba7e1607bace36d2bb41f2428ca72480a997b4d3280775abdf2c0"
+      },
+      "object_mapping_check": "原文明确为园区原有高压变电站内的主电力变压器迁移和第三间隔扩建，支持大型电力变压器part:transformer及其父链变电chain:power/2。该主张没有配额、并网协议或排队权利证据，故不继承site:grid；未明确现有设备种类，不能增映射开关柜。Mortenson没有允许的actor ID，不以其他企业代替，也不因AI园区用途扩展至root或IT资产。所选证据统一采用上述主张级范围，原候选标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据为EPC承包商Mortenson对自身项目的历史叙述，未附独立测量、验收、批准或设备交付原件。来源声称完成不等于本次独立核实完成。",
+        "comparability_check": "设备复用案例没有新购方案基线、同型号工况、成本及交期对照，不能据此判断方案优劣或跨地区通用性。扩建完工与采购交期、接入排队、批准用能及IT容量口径不同，不能互代。",
+        "derivation_check": "无新增计算或推导，设备计数、间隔序数及半年级日期均直接来自连续引文。本项原始种类为author_claim，实际内容是承包商项目报告，不含测量或计算结果；拟采用B观测或计算的独立二次检查要求不适用。",
+        "scope_check": "范围为美国得州Lancium Abilene园区原有变电站的2024年扩建及设备迁移，不是2025—2026年绿地变电站建设、整个园区完工或IT投产。软件、工作负载及GPU测量条件不适用，因为本项是变电工程项目叙述。",
+        "time_check": "完成时间仅精确到2024年下半年，不推定具体日期。网页发表及更新日期未知，审核日期不能替代来源日期；该历史扩建节点不能充当2025—2026年负荷接入申请或批准节点。",
+        "units_check": "保留一台主电力变压器的设备计数及第三个间隔的序数；第三个间隔不表示新增三个间隔。候选未提供设备功率、批准MW或等待年数，不进行容量换算或分配。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张是2024年变电设备迁移及间隔扩建，未提供ERCOT或输电商批准的负荷用能额度，也没有IT容量证据。同园区的工程案例不能满足批准容量要求， requested_reading_only不表示参数已经取得或核验。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "2024年扩建完成属于施工交付节点，既非请求中的2025—2026年分期负荷接入申请或批准节点，也未提供同阶段申请起点与实际结束日期，不能计算审批或排队等待年数。该历史案例不支持替换当前参数。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
