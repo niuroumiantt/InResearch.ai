@@ -67491,6 +67491,94 @@
         },
         "batch_id": "4aa1c536d29024ae9f7c3f6cb11a448bfee4873d4f6a67ab9ee56525146bce7e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d540cf6a8731e441935461bd4bcfb7f1cc3e515c9241b4c42edaeda6f3988bf8",
+      "document_id": "doc-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "id": "rev-103353e71e7641918b0a01fce902d4cf:chunk:1:claim:3:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "actor:schneider-electric",
+        "actor:motivair-by-schneider",
+        "part:cdu",
+        "part:manifold"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Motivair CDUs  [link: Motivair CDUs — https://youtu.be/nDti33ICAXg] , in-rack manifolds  [link: in-rack manifolds — https://www.motivaircorp.com/products/in-rack-manifold/]",
+      "reading_revision_id": "rev-103353e71e7641918b0a01fce902d4cf",
+      "source_sha256": "36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:42:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续引文与原文项目段落支持明确的设备组成及供应参与方，对当前歧管定义和供应工单具有实质部分贡献，并为M08-Q03提供供应商部署案例。未发现敏感材料、真实冲突或替换提议，满足有限B采用条件；三个问题均不能据此关闭。",
+        "workorder_ids": [
+          "Q-OBJ-manifold-definition",
+          "Q-OBJ-manifold-supply",
+          "Q-M08-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 68.481,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "92b3eb8222912595f574cfc9cdf0591d01f71b3155d6919bf795a75807044b06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 41051,
+            "output_tokens": 1533,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.742,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7be29fa75b8ace3c144c2405000716417a53bc5f2ab31db730faf1391f08a515",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 41640,
+              "output_tokens": 522,
+              "reasoning_output_tokens": 200
+            }
+          }
+        },
+        "batch_id": "3967d13782d425b54c3b20a2d24fecd17034aebbf822225ff8cdfb9d56d55355"
+      }
     }
   ],
   "statements": [
@@ -130768,6 +130856,113 @@
           "status": "partial_support"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "evidence_ids": [
+        "rev-103353e71e7641918b0a01fce902d4cf:chunk:1:claim:3:ev:0"
+      ],
+      "id": "adoption:review:ca75e6c3cfea9a2ece4a39a2",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:schneider-electric",
+        "actor:motivair-by-schneider",
+        "part:cdu",
+        "part:manifold"
+      ],
+      "question_ids": [
+        "OBJ-manifold-definition",
+        "OBJ-manifold-supply",
+        "M08-Q03"
+      ],
+      "reading_revision_id": "rev-103353e71e7641918b0a01fce902d4cf",
+      "status": "adopted",
+      "text": "施耐德电气IT业务部门解决方案架构师Vance Peterson在2026年7月29日发表于DCD的署名赞助文章中称，美国纽约州布法罗的TeraWulf Lake Mariner园区分期部署正在由Schneider Electric与Motivair by Schneider Electric提供集成供电及液冷基础设施，其中包括Motivair CDU和机柜内歧管。这是作者对部署组成的描述，不能据此确认设备已全部交付、验收或投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:42:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续引文与原文项目段落支持明确的设备组成及供应参与方，对当前歧管定义和供应工单具有实质部分贡献，并为M08-Q03提供供应商部署案例。未发现敏感材料、真实冲突或替换提议，满足有限B采用条件；三个问题均不能据此关闭。",
+        "workorder_ids": [
+          "Q-OBJ-manifold-definition",
+          "Q-OBJ-manifold-supply",
+          "Q-M08-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 68.481,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "92b3eb8222912595f574cfc9cdf0591d01f71b3155d6919bf795a75807044b06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 41051,
+            "output_tokens": 1533,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.742,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7be29fa75b8ace3c144c2405000716417a53bc5f2ab31db730faf1391f08a515",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 41640,
+              "output_tokens": 522,
+              "reasoning_output_tokens": 200
+            }
+          }
+        },
+        "batch_id": "3967d13782d425b54c3b20a2d24fecd17034aebbf822225ff8cdfb9d56d55355"
+      },
+      "source_candidate_ids": [
+        "rev-103353e71e7641918b0a01fce902d4cf:chunk:1:claim:3"
+      ],
+      "limitations": "赞助文章属于供应方署名陈述，未提供采购合同、交付清单或验收记录。未说明CDU及歧管型号、数量、接口、快接配置、冷却液、运行工况、制造产能、交期、份额或成本；产品链接不是已核验的产品资料，也不足以证明歧管的独立制造主体。",
+      "conflict_check": "既有Schneider Electric与Motivair联合产品组合陈述涉及产品推出及2.5MW处理功率口径，与本条具体园区组件描述不重复，也没有相反陈述。Boyd、CoolIT、Flex/JetCool及LiquidStack记录涉及其他事件或产品。所供legacy匹配记录为空，未发现同项目同组件的冲突或canonical记录；检查限于本审计包，不代表完成外部反证核查。",
+      "gap_dependency_check": "OBJ-manifold-definition仅获得机柜内歧管作为液冷部署组件的位置线索，仍缺定义、结构及排除边界；OBJ-manifold-supply仅获得集成供应参与方和产品部署线索，仍缺制造分工、交期及生命周期成本；M08-Q03仅获得供应商部署案例，仍缺各环节制造产能、竞争份额及地域格局。需产品原始资料及项目采购、交付证据补充，三个问题保持开放，不修改既有结论或模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3967d13782d425b54c3b20a2d24fecd17034aebbf822225ff8cdfb9d56d55355",
+        "source_report_sha256": "c8c47425a847cc20eca6ce620cadd62c8101b3eef1c30a705c18e92d83454dc7",
+        "request_sha256": "46083efec2aafbd9169061ce4ec2f587438d541d0414907edd8ca493ad586008"
+      },
+      "object_mapping_check": "原文项目段明确将Schneider Electric与Motivair by Schneider Electric列为集成供应参与方，分别对应两个actor；不再将actor:motivair重复列为独立参与方。Motivair CDU对应冷水与CDU链下的part:cdu，机柜内歧管对应机房与机柜链下的part:manifold。该组件陈述未说明快接头，也不承载并网权利、UPS、监控软件或计算设备结论，因此不继承这些文档级标签。"
     }
   ],
   "answers": [],
