@@ -63224,6 +63224,87 @@
         },
         "batch_id": "cbfaef43cef62842ba906ba5cb181383671e4a37c1ad8b20dac956a381d410e9"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ec8305a1cee969d945d15ab700bb31ebc37630cf9b63a0d64842bdcf30ae5d08",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:0:ev:0",
+      "locator": "page:86/chunk:86",
+      "object_ids": [],
+      "page_index": 85,
+      "question_ids": [],
+      "quote": "Physical\n                  AI is embodied in hardware such as industrial robotic arms, robots used in warehouses,\n                  drones and autonomous vehicles.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T02:53:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。物理AI自身的现实交互定位及具体终端形态，实质匹配当前D4应用与终端需求边界工单，可贡献局部范围证据。连续引文和周边原文充分，未识别敏感材料、实际冲突、拟议替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.362,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3c7d0e55b0a5bdf899dbc8e8820788f5b79df99ec5c7e2c5f07243f7c061f19f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 60247,
+            "output_tokens": 1129,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.987,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1e1a04fc10e2dcfc3cadc7a5ef39b7e4126e0a919d0ef022368bd5c7450091e1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 60768,
+              "output_tokens": 463,
+              "reasoning_output_tokens": 124
+            }
+          }
+        },
+        "batch_id": "388e7a1f98438c0bdb8838200654047d6c2b02f6aec728c6a3c9a91ff192d74b"
+      }
     }
   ],
   "statements": [
@@ -122651,6 +122732,104 @@
         "request_sha256": "677662ddd4569e6e4b764f6fb0fae71d777215b25da216f1a84fc5754dc63f2e"
       },
       "object_mapping_check": "独立核对原文后，选定主张明确针对Alibaba Cloud整体毛利率，与契约中name为阿里云、kind为actor且无父节点的actor:alibaba直接对应；映射依据是明确业务主体，而非阿里巴巴名称或Reader标签。该预测未界定一座AI数据中心或其下属计算系统、服务器、GPU、ASIC及内存的利润范围，故不映射root或基础设施对象。选定证据统一使用这一主张级主体范围，原候选和证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:0:ev:0"
+      ],
+      "id": "adoption:review:3b8df08565564c9864ba147c",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D4-boundary"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第86页将物理AI描述为设计用于与现实世界交互的系统，并列举工业机械臂、仓库机器人、无人机和自动驾驶车辆等硬件形态。这是IEA对物理AI应用及终端范围的定性描述，不构成对当前具体产品能力或部署情况的独立认证；来源发表时间、具体地域及项目部署阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T02:53:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。物理AI自身的现实交互定位及具体终端形态，实质匹配当前D4应用与终端需求边界工单，可贡献局部范围证据。连续引文和周边原文充分，未识别敏感材料、实际冲突、拟议替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 41.362,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3c7d0e55b0a5bdf899dbc8e8820788f5b79df99ec5c7e2c5f07243f7c061f19f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 60247,
+            "output_tokens": 1129,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.987,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1e1a04fc10e2dcfc3cadc7a5ef39b7e4126e0a919d0ef022368bd5c7450091e1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 60768,
+              "output_tokens": 463,
+              "reasoning_output_tokens": 124
+            }
+          }
+        },
+        "batch_id": "388e7a1f98438c0bdb8838200654047d6c2b02f6aec728c6a3c9a91ff192d74b"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:0"
+      ],
+      "limitations": "所列硬件形态是示例，不是穷尽分类，也不表示所有此类设备均具备物理AI能力。未指认具体产品、供应商、客户或项目，未提供功能评测、采购收费、接口、采用规模、算力或电力需求。阅读覆盖限于PDF原生文本，全文视觉内容未完整审核；本条文字主张不依赖图表数值。",
+      "conflict_check": "所供已采用的同页IEA自然语言高层指令陈述讨论交互能力，本条讨论终端形态，属于互补证据，不构成规范重复或实际冲突。其余已采用的Alphabet应用、材料科学预测及建筑能源管理陈述涉及不同产品或能力。所供legacy合同、事实及项目匹配记录均为空。相邻第87页称机器人部署前景仍不确定，限制部署推断，但不否定本条范围描述。检查限于所供材料，不代表穷尽外部反证。",
+      "gap_dependency_check": "本条仅补充D4层的应用及终端范围，不能回答该层购买什么或完整上下层交易边界。仍需具体产品自身资料、能力限制与反证、接口、采购和收费关系、各参与方职责及部署状态。问题保持开放，不覆盖既有结论、不改变研究骨架，也不据此赋值采用率、算力、电力或GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "388e7a1f98438c0bdb8838200654047d6c2b02f6aec728c6a3c9a91ff192d74b",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "28547e8c43af8d8d442a3a42de4b4c3d9f21c6ac8942ef67e7ef01cdba7580fc"
+      },
+      "object_mapping_check": "独立核对对象合同：主张范围是一般物理AI终端，合同没有对应机械臂、仓库机器人、无人机或自动驾驶车辆对象，也未指认合同内企业。root的name为一座AI数据中心；计算设施与硬件属于其IT父链，system:control及其链限定DCIM/BMS与固件，均不能承接一般物理AI终端范围。不能因机器人示例推定ABB或巡检机器人厂商归属。所选证据统一使用空对象范围，保留有效D4问题匹配，不继承文档标签。"
     }
   ],
   "answers": [],
