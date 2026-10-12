@@ -63828,6 +63828,88 @@
         },
         "batch_id": "2eba9172102649c3f705484808e7e1c7d62173d0cfc3d2a58b3c0f186636ca8f"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a7aab71bcf2d968aaefc56b4669358fcc4e93c57d5e66412deb7a5ba5cf44502",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:115:claim:4:ev:0",
+      "locator": "page:116/chunk:115",
+      "object_ids": [],
+      "page_index": 115,
+      "question_ids": [],
+      "quote": "Inference: Inference is the process of deploying a trained model to analyse new or real-time\n                  data in order to generate outputs such as predictions, classifications, decisions, or responses.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:08:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引句和周边原生文本充分支持有来源归属的局部定义：对D3边界问题补充部署推理的输入、处理能力与输出范围，对推理配置问题补充已训练模型的使用阶段。与两项当前开放工作单有实质关系，但不能回答或关闭完整问题。未识别敏感材料、真实冲突、替换要求或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary",
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "9f90f030ad0ff5dfdf1d5241aa15112a0b4ce78abb05859431751ce22b404645",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 60421,
+            "output_tokens": 1083,
+            "reasoning_output_tokens": 111
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.725,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5823da0c8d4b90d9ed2269f33facb3772bbed7dbf6c96437f6488c716397d7cc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 60975,
+              "output_tokens": 436,
+              "reasoning_output_tokens": 157
+            }
+          }
+        },
+        "batch_id": "af5cb5fcb6a40f0ad7cf7386245c411760d915cd5bed3097a768e8a9125d39fc"
+      }
     }
   ],
   "statements": [
@@ -123848,6 +123930,106 @@
         "request_sha256": "5453250d2c7a68a81d95d2de6368119be87ec66da21c431b9bc49b6c0ead6d70"
       },
       "object_mapping_check": "本条范围为Macquarie Technology Group的融资协议关系，允许对象中没有该主体ID。原生页面明确具体数据中心及冷却规划，但未明确其AI用途，尚不足以对应root所定义的一座AI数据中心；融资也未划分设施、建筑或设备资金份额。因此不继承Reader的root、system:facility或part:shell标签。对象为空仍保留M11-Q07的有效关联，所选证据统一采用此审核后的主张级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:115:claim:4:ev:0"
+      ],
+      "id": "adoption:review:c667b30f76643da02172d3e0",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D3-boundary",
+        "NODE-workload-inference-placement"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第116页术语表中，将推理定义为部署已训练模型，分析新数据或实时数据，以生成预测、分类、决策或响应等输出。这是该报告采用的术语口径，不构成对具体部署或当前运行状态的独立认证；所供原文未确立出版时间、具体地域或项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:08:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引句和周边原生文本充分支持有来源归属的局部定义：对D3边界问题补充部署推理的输入、处理能力与输出范围，对推理配置问题补充已训练模型的使用阶段。与两项当前开放工作单有实质关系，但不能回答或关闭完整问题。未识别敏感材料、真实冲突、替换要求或其他A条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary",
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "9f90f030ad0ff5dfdf1d5241aa15112a0b4ce78abb05859431751ce22b404645",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 60421,
+            "output_tokens": 1083,
+            "reasoning_output_tokens": 111
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.725,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5823da0c8d4b90d9ed2269f33facb3772bbed7dbf6c96437f6488c716397d7cc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 60975,
+              "output_tokens": 436,
+              "reasoning_output_tokens": 157
+            }
+          }
+        },
+        "batch_id": "af5cb5fcb6a40f0ad7cf7386245c411760d915cd5bed3097a768e8a9125d39fc"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:115:claim:4"
+      ],
+      "limitations": "仅界定推理的功能与运行阶段，不提供工具链或Token服务的提供方、购买方、计价方式及上下层交易边界，也不提供调度、地域布局、利用率、系统配置或负载共存条件。新数据或实时数据是定义中的输入范围，不能据此认定所有推理均为实时服务或持续运行。",
+      "conflict_check": "已比对所供采用陈述及相关legacy匹配记录。既有规范记录adoption:review:8c60d55d1105e9f9383f8f26将推理界定为已部署模型的日常使用，与本项相容；本项新增输入数据范围和输出功能，具有实质增量，不判为重复。prefill/decode调度、传统推荐推理、智能体运行方式及TPU工具链记录涉及更具体机制，无直接反证。legacy匹配记录为空，筛查仅限所供材料，不构成穷尽外部反证检索，也不改写已有结论。",
+      "gap_dependency_check": "本项定义由第116页完整文字及邻句支持，不依赖未审阅图像、空文字页或第106页字符问题。原生文字覆盖完整不等于完整视觉阅读。D3边界仍需产品、采购、交易范围及反证；推理配置仍需调度、地域、利用率、配置与共存条件。两项问题保持开放，不产生资源需求系数、模型输入或GW汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "af5cb5fcb6a40f0ad7cf7386245c411760d915cd5bed3097a768e8a9125d39fc",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "dd0daee21836db1505eb4329978bba97c2833d0253e31e6f26774a8cc1350453"
+      },
+      "object_mapping_check": "独立核查后，本项范围是通用推理过程的术语定义，没有指定数据中心或设施资产。契约中的root是一座AI数据中心，system:compute及其计算链属于该设施的计算资产；system:control及其链限定为DCIM/BMS与固件，均不由本项定义建立映射。契约没有IEA或通用模型服务对象，故选用空对象列表，保留有效问题匹配，不继承文档级或历史标签；所选证据采用相同的空对象范围。"
     }
   ],
   "answers": [],
