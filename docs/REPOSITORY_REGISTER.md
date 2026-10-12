@@ -52,7 +52,7 @@
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
-| `data/projects.json` | records | 126 |
+| `data/projects.json` | records | 133 |
 | `data/research_knowledge.json` | documents | 109 |
 | `data/research_knowledge.json` | evidence | 646 |
 | `data/research_knowledge.json` | statements | 581 |

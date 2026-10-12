@@ -17,3 +17,9 @@ Spark三份已局部检查原件：Bosung SolaSeaDo（0065f33959cedf7f1101953a2b
 私有续接目录：M5 `~/.local/state/inresearch.ai/initial-physical-site-intake-20261012/`；Spark同名。发布协调器仍唯一，已有PR838先实际published。不得重启Reader、删原件、或改主工作区；本任务stop标记须发布验收后移除并恢复原LaunchAgent。CI失败先修，不以改状态计采用。
 
 本地完整单元测试2427项通过（74.521秒）；research+industry浏览器通过；规范映射/严格校验/registry已过。首次测试因并行更新治理清单影响源码不变性测试而失败，静止源码重跑通过；不属于放宽断言。GitHub最终head和生产版本另验。
+
+## 首批扩大至七份存量原件
+
+在上述三份基础上，补审Trino原Galileo Ferraris电厂、AWS Homer City Energy Campus、NTT TKY12和Revikon Gießen Katzenfeld原件。新增7个唯一园区、7条v2观测、21个字段（name/status/notes）；未绑定模型需求，容量为空，披露时间有原文日期证明，实际有效时点未知不补造；TKY12依原文已开工登记L6，其余按已公布规划登记L2。目标空不计模型验证。7条隔离审核/无写重放0.763秒，语义核对及CI等待另计。
+
+全部旧126园区完整JSON保持，首批扩大版本替代三份试跑提案作为本批实际发布集合，三份不能再加算为10份。明确地址未取得的留来源地点，不伪造坐标；4.5GW发电、光伏电池和附近TKY11容量未串入本园区。私有adoption-proposals/receipts/isolated-acceptance保存完整审核。正式上线以后续生产回执为准。
