@@ -69030,6 +69030,94 @@
         },
         "batch_id": "59f20f4f6d40631d7222dd132f0a95e90fccba8334039edc231fe0bbf3795980"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ba079191aa163c4e9cd36ca3b4de966cbf889f8f3d976d7c482488095e3e7d7e",
+      "document_id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "id": "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:17:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "part:shell"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q07",
+        "M05-Q06"
+      ],
+      "quote": "Building 2 is fully operational. This exact date corresponds to the expected completion date of \"Four (4) data hall spaces and an administrative office build-out\" according to a TDLR filing  [link: TDLR filing — https://www.tdlr.texas.gov/TABS/Search/Project/TABS2025007742] , but this date is also consistent with satellite imagery.",
+      "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+      "source_sha256": "d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:19:06+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分7。连续引文及完整原生上下文支持这一有限、明确归属于来源的日期推断。对当前M10-Q03提供待核验的楼栋运营终点线索，对M04-Q07提供预计装修完工不能替代接入等待结束的范围边界，具有实质的部分证据关系。未发现敏感材料、同口径真实冲突、拟替换或其他A条件，符合B类有限采用要求；采用不回答或关闭问题，也不验证模型输入。",
+        "workorder_ids": [
+          "Q-M10-Q03",
+          "Q-M04-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.533,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "30ad70e1041f0fcd6cd22ae17a8d8499da2dc7e9dd7cd2b823175207aae69ec7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58606,
+            "output_tokens": 2139,
+            "reasoning_output_tokens": 173
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.296,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "82faa839fd7549e5dfe692ceb11e35f12ecdfc728569456975f9a34c860e086f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 59933,
+              "output_tokens": 695,
+              "reasoning_output_tokens": 316
+            }
+          }
+        },
+        "batch_id": "6c992f4d1efe36e185226d5303bcbe1b11a1ff48c41f5f2210da84e02c551ee3"
+      }
     }
   ],
   "statements": [
@@ -133712,6 +133800,133 @@
         "request_sha256": "23ae3c5cb4f183c93a6e584d7fca09427f143af7de3ed15e81dee3d69938ba9a"
       },
       "object_mapping_check": "独立依据Munters受访者身份、室内吸热至室外排热路径及水或制冷剂输热介质，选择actor:munters、system:thermal、排热链chain:thermal/1及名称包含工质的part:coolant。一般水管路未被确定为冷冻水泵管阀系统，室外排热设备也未被确定为冷水机组、干冷器或冷却塔，故不继承这些部件标签。屋顶及建筑周边仅为设备位置，没有建筑构造或土地权益主张，不继承system:facility。所选证据统一采用上述主张级范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-d11e952352554fcb7d672a46bd2b38e09f35b893319812a325d5f3b8a688a5e3",
+      "evidence_ids": [
+        "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:17:ev:0"
+      ],
+      "id": "adoption:review:c55129ccb2820c88642a2c15",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "part:shell"
+      ],
+      "question_ids": [
+        "M10-Q03",
+        "M04-Q07"
+      ],
+      "reading_revision_id": "rev-a8b616d75c674fa6845847abce1c4c82",
+      "status": "adopted",
+      "text": "Samaritan Research在《OpenAI Stargate Abilene》时间线的2025年12月24日条目中，将美国Texas州Abilene原有OpenAI-Oracle Stargate园区2号楼描述为完全运营。作者说明，该具体日期对应其所引TDLR申报TABS2025007742中“四个数据厅及行政办公室装修”的预计完工日期，并认为与卫星影像相符。这是作者据预计装修完工日期及影像作出的运营时间判断，尚未经本次独立核实，不能视为实际通电、运营验收或负荷接入批准原件记录。页面标注更新于2026年10月5日，首次发布时间未知。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:19:06+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分7。连续引文及完整原生上下文支持这一有限、明确归属于来源的日期推断。对当前M10-Q03提供待核验的楼栋运营终点线索，对M04-Q07提供预计装修完工不能替代接入等待结束的范围边界，具有实质的部分证据关系。未发现敏感材料、同口径真实冲突、拟替换或其他A条件，符合B类有限采用要求；采用不回答或关闭问题，也不验证模型输入。",
+        "workorder_ids": [
+          "Q-M10-Q03",
+          "Q-M04-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.533,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "30ad70e1041f0fcd6cd22ae17a8d8499da2dc7e9dd7cd2b823175207aae69ec7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58606,
+            "output_tokens": 2139,
+            "reasoning_output_tokens": 173
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.296,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "82faa839fd7549e5dfe692ceb11e35f12ecdfc728569456975f9a34c860e086f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 59933,
+              "output_tokens": 695,
+              "reasoning_output_tokens": 316
+            }
+          }
+        },
+        "batch_id": "6c992f4d1efe36e185226d5303bcbe1b11a1ff48c41f5f2210da84e02c551ee3"
+      },
+      "source_candidate_ids": [
+        "rev-a8b616d75c674fa6845847abce1c4c82:chunk:0:claim:17"
+      ],
+      "limitations": "未提供TDLR申报原件、卫星影像原始数据、运营确认或实际送电凭证。原生上下文称2号楼在2025年9月26日看起来尚未完工、到2026年1月15日看起来已与1号楼一样完成，但这不足以独立验证2025年12月24日这一精确运营日期。预计装修完工、外观完成、通电、完全运营和负荷接入批准属于不同里程碑。本项不提供实际工期、排队等待年限或区域差异。",
+      "conflict_check": "Crusoe既有证据称原园区前两栋建筑在不到一年内送电，所供采用声明主要保留相邻Microsoft新园区的预测；送电历时与本项2号楼完全运营判断不是同一里程碑，尚不构成真实冲突，但后续计算工期前须核验起点、阶段及终点定义。Mortenson电力工程阶段年份、Samaritan施工影像方法及楼栋5—8阶段描述均未提供2号楼同口径相反运营日期，也不构成重复。其他采用项目涉及不同场址；所供legacy匹配记录为空。检查仅限所供材料，不代表完成外部反证检索，不覆盖现有结论。",
+      "gap_dependency_check": "M10-Q03仍需同一2号楼分期的一手开工依据、实际通电日期、明确施工与运营阶段边界及可比较项目序列，不能将预计装修完工日期与清地日期相减形成实际建设周期。M04-Q07仍需同分期负荷接入申请起点、实际批准或等待结束节点及原件，并需统一口径的区域样本。本项只补充待核验线索和阶段边界；两个问题保持开放，不更新或替换当前参数及估算。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6c992f4d1efe36e185226d5303bcbe1b11a1ff48c41f5f2210da84e02c551ee3",
+        "source_report_sha256": "ac73dfc6028cc0888a0bc00f33fcb8c3e245b5254dcbb7869e2c8acb7e6f12e9",
+        "request_sha256": "69f23c5feffb3f925b1b81623a7d3db20d42fe62688ff370dd65a5cf71916364"
+      },
+      "object_mapping_check": "独立依据原生主张范围，具名AI数据中心楼栋的运营时间判断对应root；四个数据厅及行政办公室装修明确属于设施系统土地与建筑链下part:shell所含机房装修范围。映射不表示整个建筑与土建对象已验收完成。TDLR申报仅作为作者日期判断的依据，没有许可批准或办理时长主张，不映射site:permits；没有接入协议或配额，不映射site:grid。项目名称不建立主体责任或IT设备主张。所选证据统一使用此审核后范围，原候选和证据标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "依据为Samaritan Research转述的TDLR预计装修完工日期及作者对卫星影像的相容性判断。未提供申报原件、影像判读误差或运营验证程序；保持作者推断的原有性质，不改称实测观察。第二道复核直接检查原生条目及前后外观描述，确认没有实际通电或接入批准证明。",
+        "comparability_check": "预计装修完工、外观完成、送电、完全运营及接入批准不能互代。缺少统一起点、阶段定义、实际终点及区域样本，不能与Crusoe的送电历时直接比较，也不能据单栋楼作者判断建立建设周期走势或区域排队差异。",
+        "derivation_check": "不适用数值计算：本候选未提供可用于同分期工期计算的已验证起止日期。作者把预计装修日期用作完全运营日期的依据属于推断，不能据此推导实际通电日、批准日或排队年限；本次不进行日期相减。",
+        "scope_check": "范围为美国Texas州Abilene原有OpenAI-Oracle Stargate园区2号楼的装修预计完工与作者完全运营判断，属于楼栋建设至运营阶段线索，不是负荷接入等待测量。软件、工作负载及GPU测量系统不适用，因为本项不涉及运行性能基准。",
+        "time_check": "条目日期为2025年12月24日；页面更新日期为2026年10月5日，首次发布时间未知。该日期在作者判断中用作历史运营节点，其底层TDLR日期仍保留预计装修完工身份；不能因审查时间已晚于该日期便认定预测已兑现，也不能认定条目日期就是影像拍摄日期。",
+        "units_check": "2025年12月24日是日历日期，保留来源条目的日级精度，但该精度不代表实际运营日期已获验证。“四个”为装修范围中的数据厅数量，不是功率或等待时间。本项没有MW、GW或years值，不生成容量或持续时间参数。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "实际主张是2号楼运营日期的来源推断，没有原园区获批用能、接入容量或IT容量数值，也没有ERCOT或输电商批准原件。全文其他IT估算不属于本项采用范围，不能核验或替换energy_quota_mw；请求阅读不代表容量要求已满足。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "同一原园区2号楼的日期推断可辅助区分预计装修完工、作者运营判断与负荷接入等待结束，提供防止错误终点的部分边界支持。缺少同分期申请起点、实际批准终点及原件，不能计算、核验或替换gate_wait_years，也不能关闭区域差异问题。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "partial_support"
+        }
+      ]
     }
   ],
   "answers": [],
