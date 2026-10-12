@@ -61914,6 +61914,256 @@
         },
         "batch_id": "ef63df6fd2e5cd25b1406c46ca1c4bacf5e4ac8c466a3cb3279ab12a1e1926ee"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0ac8ce5c4246651b7940d8700a184e1b59d514e3114079f84541dc175b2020d7",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:13:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:power/5",
+        "chain:power/6"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Moving distribution from 208V to 415V roughly doubles the power delivered per amp; moving to 800V DC at the rack does far more",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:13:26+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文及原文周边三相电流、导体容量和固定供电入口的改造语境，支持明确归因的电压提升机制，对当前M09-Q04的新架构与传统配电链调整具有实质性部分贡献。未发现敏感内容、真实冲突、拟替换既有结论或其他A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 63.182,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8928aa149aacce1d1c82b1b60b0bc35910046a020ca575aa243877ea40738fb3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53506,
+            "output_tokens": 2367,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.928,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59f3e3dac08be90bc791de305fe89da17ecad8d5edf522715675ea5268dfb7dc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53627,
+              "output_tokens": 460,
+              "reasoning_output_tokens": 134
+            }
+          }
+        },
+        "batch_id": "cbb74ff70d78baa0042b82fd3c055f603bdabac4ea1789ebe3ba3b7191f10131"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0ac8ce5c4246651b7940d8700a184e1b59d514e3114079f84541dc175b2020d7",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:14:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:power/5"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "IEEE Project P3710.1, the high-voltage-DC sub-project of IEEE’s modular-data-center effort, which addresses HVDC distribution from 300 to 1,500 volts for data centers.",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:13:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。两段连续原文引句及其间设备、保护器件和人员改造语境充分，直接贡献当前M09-Q04的新架构成熟度及实施依赖。未发现敏感内容、真实冲突、拟替换既有结论或其他A条件，符合B局部采用要求；采用作者陈述不等于确认标准项目的当前状态。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 63.182,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8928aa149aacce1d1c82b1b60b0bc35910046a020ca575aa243877ea40738fb3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53506,
+            "output_tokens": 2367,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.928,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59f3e3dac08be90bc791de305fe89da17ecad8d5edf522715675ea5268dfb7dc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53627,
+              "output_tokens": 460,
+              "reasoning_output_tokens": 134
+            }
+          }
+        },
+        "batch_id": "cbb74ff70d78baa0042b82fd3c055f603bdabac4ea1789ebe3ba3b7191f10131"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0ac8ce5c4246651b7940d8700a184e1b59d514e3114079f84541dc175b2020d7",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:14:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:power/5"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "It also means the topology you are converting toward is still being standardized while you build.",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:13:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。两段连续原文引句及其间设备、保护器件和人员改造语境充分，直接贡献当前M09-Q04的新架构成熟度及实施依赖。未发现敏感内容、真实冲突、拟替换既有结论或其他A条件，符合B局部采用要求；采用作者陈述不等于确认标准项目的当前状态。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 63.182,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8928aa149aacce1d1c82b1b60b0bc35910046a020ca575aa243877ea40738fb3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53506,
+            "output_tokens": 2367,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.928,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59f3e3dac08be90bc791de305fe89da17ecad8d5edf522715675ea5268dfb7dc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53627,
+              "output_tokens": 460,
+              "reasoning_output_tokens": 134
+            }
+          }
+        },
+        "batch_id": "cbb74ff70d78baa0042b82fd3c055f603bdabac4ea1789ebe3ba3b7191f10131"
+      }
     }
   ],
   "statements": [
@@ -120026,6 +120276,208 @@
         "request_sha256": "5634acdfa4e9b1c1be1818de2c45ab690a8aa7af320e11db536dd64018fd1e57"
       },
       "object_mapping_check": "独立核对对象合同：原文范围是一般建筑能源管理应用，未建立root所指一座AI数据中心的范围，也未指认合同内企业。system:control及chain:control/1限定数据中心DCIM/BMS与固件，part:dcim亦处于该父链，不能因应用包含建筑管理与自动控制就映射这些对象；一般暖通控制也不足以映射数据中心散热设备。合同无适合的应用对象，所选证据统一使用空对象范围，保留有效D4问题关系，不继承文档基础设施标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "evidence_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:13:ev:0"
+      ],
+      "id": "adoption:review:649c86df8ab26598fe1d487d",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/5",
+        "chain:power/6"
+      ],
+      "question_ids": [
+        "M09-Q04"
+      ],
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "status": "adopted",
+      "text": "AWS数据中心工程团队高级数据中心电气工程师Shalin Savalia在DCD于2026年10月2日发表的《When racks outpace the infrastructure: Retrofitting data center power systems for AI-scale densities》中称，将内部配电从208V提高到415V，可使每安培输送的功率约翻倍，并主张向机柜800V DC供电转变。该论述针对保持供电入口容量不变的既有数据中心高密度改造；前文以美国较老机房常见的208V三相供电作比较，但未指认具体项目或800V DC部署地域、实施进度。这是作者的技术判断，不构成AWS正式承诺或当前独立认证，也不能据此推断电网接入容量增加。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:13:26+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分6。连续引文及原文周边三相电流、导体容量和固定供电入口的改造语境，支持明确归因的电压提升机制，对当前M09-Q04的新架构与传统配电链调整具有实质性部分贡献。未发现敏感内容、真实冲突、拟替换既有结论或其他A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 63.182,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8928aa149aacce1d1c82b1b60b0bc35910046a020ca575aa243877ea40738fb3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53506,
+            "output_tokens": 2367,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.928,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59f3e3dac08be90bc791de305fe89da17ecad8d5edf522715675ea5268dfb7dc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53627,
+              "output_tokens": 460,
+              "reasoning_output_tokens": 134
+            }
+          }
+        },
+        "batch_id": "cbb74ff70d78baa0042b82fd3c055f603bdabac4ea1789ebe3ba3b7191f10131"
+      },
+      "source_candidate_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:13"
+      ],
+      "limitations": "每安培功率约翻倍的比较须保持相同相制及可比功率因数等条件；所选引文未完整列出这些条件。原文对800V DC仅作定性评价，未提供可复算的AC/DC比较边界、提升倍数、效率、导体配置、保护方案或实测结果。未提供量产、交付、投运日期或传统设备替代比例。",
+      "conflict_check": "已采用的IEA电压提升及AC转DC技术路径与本项相容，但未包含208V至415V的具体比较，不构成完整重复。既有DCD改造条件陈述说明PDU、电源架和保护器件等依赖，也非重复。IEA关于传统、混合和400V AC过渡架构继续使用的判断，限制替代范围，与本项限定的存量高密度改造方向没有真实冲突。legacy中800V相对415V AC的功率与铜耗宣称采用不同比较口径，不能用来验证本项或认定数值冲突；54V架构上限、华为支持能力也不等于实际替代记录。检查限于所供材料，不修订既有结论。",
+      "gap_dependency_check": "M09-Q04获得内部配电电压提升的机制线索，仍缺厂商一手量产时间表、实际交付与部署、同条件AC/DC比较，以及传统链各设备保留或替代的证据。既有改造条件和架构并存记录须继续保留；问题保持开放，不更新量产年份、替代比例或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "cbb74ff70d78baa0042b82fd3c055f603bdabac4ea1789ebe3ba3b7191f10131",
+        "source_report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+        "request_sha256": "08bf63d25ebe97257904f4a966aaf9067d763a9a839b6be4e4322a271aadd320"
+      },
+      "object_mapping_check": "独立按主张的内部配电电压及机柜800V DC供电范围，选择system:power下的配电链chain:power/5和机柜与板级供电链chain:power/6。未建立具体母线槽、PDU或电源架型号属性，故不细分部件。合同中的system:facility仅涵盖土地建筑与消防安防，不适合本项；固定供电入口语境也不建立site:grid并网权利主张。所选证据统一使用上述主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "evidence_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:14:ev:0",
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:14:ev:1"
+      ],
+      "id": "adoption:review:d96dc72dbd8d2ec837018a80",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/5"
+      ],
+      "question_ids": [
+        "M09-Q04"
+      ],
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "status": "adopted",
+      "text": "AWS数据中心工程团队高级数据中心电气工程师Shalin Savalia在DCD于2026年10月2日发表的《When racks outpace the infrastructure: Retrofitting data center power systems for AI-scale densities》中称，IEEE Project P3710.1是IEEE模块化数据中心项目的高压直流子项目，涉及数据中心300至1,500V的HVDC配电；作者并指出，既有数据中心向文中所述高压直流拓扑改造时，目标拓扑仍在标准化过程中。这是作者在存量高密度改造语境中的项目范围说明与阶段判断，未限定国家或具体工程，不构成IEEE项目状态的当前独立核验或AWS正式承诺。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:13:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。两段连续原文引句及其间设备、保护器件和人员改造语境充分，直接贡献当前M09-Q04的新架构成熟度及实施依赖。未发现敏感内容、真实冲突、拟替换既有结论或其他A条件，符合B局部采用要求；采用作者陈述不等于确认标准项目的当前状态。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 63.182,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8928aa149aacce1d1c82b1b60b0bc35910046a020ca575aa243877ea40738fb3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53506,
+            "output_tokens": 2367,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.928,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "59f3e3dac08be90bc791de305fe89da17ecad8d5edf522715675ea5268dfb7dc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53627,
+              "output_tokens": 460,
+              "reasoning_output_tokens": 134
+            }
+          }
+        },
+        "batch_id": "cbb74ff70d78baa0042b82fd3c055f603bdabac4ea1789ebe3ba3b7191f10131"
+      },
+      "source_candidate_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:14"
+      ],
+      "limitations": "来源为作者评论，未提供IEEE一手项目文件、版本、批准或发布记录，不能将项目电压范围改写为已发布标准或已认证设备规格。300至1,500V属于作者所述项目涉及的配电范围，不等于单一设备输入输出范围。未给标准完成日期、量产或投运时间，也未证明标准化阶段必然阻止商业部署。",
+      "conflict_check": "既有DCD设备改造条件陈述与本项同段但主张不同，不构成完整重复。IEA固态变压器商业化早期及Eaton与Infineon未来平台探索涉及不同技术对象和阶段；标准化尚在进行与商业探索可以并存。IEA关于传统及过渡供电架构继续使用的判断也与本项相容。legacy的800V架构宣称、54V限制及华为支持能力未提供P3710.1的相反状态记录，不能作为本项的独立验证或真实冲突。所供记录未发现规范重复或真实冲突；检查不覆盖外部穷尽反证搜索。",
+      "gap_dependency_check": "M09-Q04获得标准化阶段和实施依赖的部分线索，仍需IEEE一手项目范围与进度文件、厂商量产及交付路线图、实际部署记录，以及传统链保留或替代边界和同条件反证。不能由仍在标准化推导具体量产年份、延迟长度或替代比例；问题保持开放，不覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "cbb74ff70d78baa0042b82fd3c055f603bdabac4ea1789ebe3ba3b7191f10131",
+        "source_report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+        "request_sha256": "08bf63d25ebe97257904f4a966aaf9067d763a9a839b6be4e4322a271aadd320"
+      },
+      "object_mapping_check": "主张明确针对数据中心HVDC配电的标准项目范围及拓扑阶段，对应system:power下的配电链chain:power/5。虽处于机柜电压改造语境，但项目范围未限定机柜或板级设备，故不附加chain:power/6或具体部件。模块化数据中心项目名称不证明预制化设施交付属性，也不支持system:facility、part:modular-dc、UPS或并网权利映射。两条所选证据统一使用上述主张级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
