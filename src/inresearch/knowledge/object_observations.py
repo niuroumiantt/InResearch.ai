@@ -68,6 +68,27 @@ def load(root):
     return json.loads(p.read_text()) if p.exists() else empty()
 
 
+def archived_source_valid(source):
+    archive = source.get('archive')
+    if (source.get('url') is not None or not isinstance(archive, dict)
+            or set(archive) != {'kind', 'doc_id', 'receipts'}
+            or archive['kind'] != 'catalog_import'
+            or archive['doc_id'] != 'doc-'+source.get('sha256', '')
+            or not isinstance(archive['receipts'], list) or not archive['receipts']):
+        return False
+    seen = set()
+    for receipt in archive['receipts']:
+        if (not isinstance(receipt, dict) or set(receipt) != {'id', 'source_key_sha256', 'received_at'}
+                or type(receipt['id']) != int or receipt['id'] <= 0 or receipt['id'] in seen
+                or not isinstance(receipt['source_key_sha256'], str)
+                or not re.fullmatch('[0-9a-f]{64}', receipt['source_key_sha256'])
+                or observation_time.precision(receipt['received_at']) != 'timestamp'):
+            return False
+        seen.add(receipt['id'])
+    return source.get('first_received_at') == min(
+        archive['receipts'], key=lambda r: observation_time.bounds(r['received_at'])[0])['received_at']
+
+
 def check(doc, root=None):
     if doc.get('version') != 1 or not isinstance(doc.get('objects'), dict) or not isinstance(doc.get('records'), list):
         raise ValueError('invalid_object_observation_ledger')
@@ -84,7 +105,8 @@ def check(doc, root=None):
                 raise ValueError('actual_review_and_record_times_required')
         source = row.get('source') or {}
         if (not isinstance(source.get('sha256'), str) or not re.fullmatch('[0-9a-f]{64}',source['sha256'])
-                or not source.get('url', '').startswith('https://') or not source.get('locator') or not source.get('quote')
+                or not (isinstance(source.get('url'), str) and source['url'].startswith('https://')
+                        or archived_source_valid(source)) or not source.get('locator') or not source.get('quote')
                 or not source.get('context_sha256') or row.get('target_ids') != []):
             raise ValueError('source_backed_object_observation_required')
         observation_time.precision(source.get('published_at'))

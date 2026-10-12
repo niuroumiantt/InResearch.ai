@@ -77,6 +77,16 @@ class CiScopeTests(unittest.TestCase):
              'review':{'decision':'adopted'}}
         return {'version':1,'objects':{obj['id']:obj},'records':[row]}
 
+    def test_archived_object_source_requires_real_receipt_shape_for_scoped_ci(self):
+        source={'sha256':'a'*64,'url':None,'first_received_at':'2026-09-06T00:00:00Z',
+                'archive':{'kind':'catalog_import','doc_id':'doc-'+'a'*64,
+                           'receipts':[{'id':1,'source_key_sha256':'b'*64,'received_at':'2026-09-06T00:00:00Z'}]}}
+        self.assertTrue(ci.object_source_reference(source))
+        for key,value in [('receipts',[]),('doc_id','wrong')]:
+            bad=copy.deepcopy(source);bad['archive'][key]=value;self.assertFalse(ci.object_source_reference(bad))
+        bad=copy.deepcopy(source);bad['first_received_at']='2026-10-12T00:00:00Z';self.assertFalse(ci.object_source_reference(bad))
+        bad=copy.deepcopy(source);bad['archive']['receipts'][0]['source_key_sha256']='local/private/path';self.assertFalse(ci.object_source_reference(bad))
+
     def test_object_append_selects_source_review_fetchspec_and_industry(self):
         self.write(ci.OBJECT_PATH,json.dumps({'version':1,'objects':{},'records':[]}))
         self.base=self.commit()

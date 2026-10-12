@@ -502,7 +502,7 @@ function timelineItem(item){
 }
 function objectObservationRows(rows){
  const labels={Capacity:'容量',Interface:'接口／吞吐',Density:'容量',Technology:'存储技术','Module Version':'外形／模块版本','Product Name':'产品系列','Bus Width':'总线宽度','CAS Latency':'CAS延迟','Operating Temp':'工作温度',Speed:'频率',industrial_electricity_price_ytd:'工业电价（年初至当月）',manufacturer_catalogue_model:'厂商目录型号',cooling_capacity:'制冷量',height:'高度',width:'宽度',depth:'深度',power_rating:'额定功率',operating_temperature:'工作温度',input_voltage:'输入电压',output_voltage:'输出电压',weight:'重量',efficiency:'效率',rack_count:'机柜数',rack_units:'机架高度',rated_current:'额定电流',outlet_configuration:'插座配置',airflow:'风量'};
- return rows.map(r=>`<li><time>${esc(r.effective_at||'信息时间未明确')}</time><div><strong>${esc(labels[r.metric]||labels[r.metric.split('.').pop()]||r.metric)}</strong> · ${esc(typeof r.value==='object'?r.value.value_range.join('–'):r.value)} ${esc(r.unit==='native'?'':r.unit)}${r.conflict?'<span class="badge">同口径分歧待核</span>':''}${r.revision?'<span class="badge">历史修订</span>':''}<p>${r.period_start||r.period_end?'统计期间：'+esc(r.period_start||'未知')+'—'+esc(r.period_end||'未知')+' · ':''}核实：${esc(r.reviewed_at.slice(0,10))}${r.source.published_at?' · 披露：'+esc(r.source.published_at):''}</p><details class="observation-note"><summary>口径与条件</summary><p>${esc(r.basis)}</p><p>${Object.entries(r.scope).map(([k,v])=>esc(k)+': '+esc(v)).join(' · ')}</p></details>${sourceLink(r.source.url,'原始来源 ↗')}</div></li>`).join('');
+ return rows.map(r=>`<li><time>${esc(r.effective_at||'信息时间未明确')}</time><div><strong>${esc(labels[r.metric]||labels[r.metric.split('.').pop()]||r.metric)}</strong> · ${esc(typeof r.value==='object'?r.value.value_range.join('–'):r.value)} ${esc(r.unit==='native'?'':r.unit)}${r.conflict?'<span class="badge">同口径分歧待核</span>':''}${r.revision?'<span class="badge">历史修订</span>':''}<p>${r.period_start||r.period_end?'统计期间：'+esc(r.period_start||'未知')+'—'+esc(r.period_end||'未知')+' · ':''}核实：${esc(r.reviewed_at.slice(0,10))}${r.source.published_at?' · 披露：'+esc(r.source.published_at):''}</p><details class="observation-note"><summary>口径与条件</summary><p>${esc(r.basis)}</p><p>${Object.entries(r.scope).map(([k,v])=>esc(k)+': '+esc(v)).join(' · ')}</p></details>${r.source.url?sourceLink(r.source.url,'原始来源 ↗'):'<span class="basis">归档资料 · 未提供公开原文链接</span>'}</div></li>`).join('');
 }
 function renderObjectUpdates(){
  const panel=$('object-changes');if(!isHome||!panel)return;
@@ -540,13 +540,14 @@ function renderUpdates(){
  if(!isHome)return;
  const entries=[];
  for(const item of data.research_updates?.changes||[]){
-  if(!safe(item.source?.url))continue;
+  const sourceHref=safe(item.source?.url);
+  if(item.source?.url&&!sourceHref)continue;
   const date=updateDate(item.recorded_at),key=item.metric.split('.').pop();
   const metric=({Capacity:'容量',Interface:'接口',Density:'容量',Technology:'技术',Speed:'频率',cooling_capacity:'制冷量',power_rating:'额定功率',industrial_electricity_price_ytd:'工业电价',manufacturer_catalogue_model:'目录型号'})[key]||key.replace(/_/g,' ');
   const value=typeof item.value==='object'?item.value.value_range.join('–'):item.value;
   const qualifiers=[({estimated:'估算',calculated:'推导',forecast:'预测'})[item.kind],item.conflict?'同口径分歧':null,item.revision?(item.revision.action==='withdraw'?'已撤回':'修订'):null].filter(Boolean);
   const label=`${item.object.name} · ${qualifiers.length?qualifiers.join(' · ')+' · ':''}${metric} ${value}${item.unit==='native'?'':' '+item.unit}`;
-  entries.push({kind:'research',date,label,effective:item.effective_at,href:safe(item.source?.url)});
+  entries.push({kind:'research',date,label,effective:item.effective_at,href:sourceHref||'#research-observation',observation:sourceHref?null:item.id});
  }
  for(const item of data.tracking?.changes||[]){
   if(!(item.sources||[]).some(s=>safe(s.url)))continue;
@@ -554,7 +555,7 @@ function renderUpdates(){
   entries.push({kind:'project',date:updateDate(item.recorded_at),label:[item.name,observationKinds[item.kind]||item.kind,item.scope&&item.scope!=='whole_site'?'分期 '+item.scope.slice(6):'',item.revision?(item.revision.action==='withdraw'?'已撤回':'修订'):'',preview.textContent].filter(Boolean).join(' · '),effective:item.effective_at,href:'/project.html?site='+encodeURIComponent(item.site_id)+'#site-observation-timeline'});
  }
  entries.sort((a,b)=>b.date.sort.localeCompare(a.date.sort));
- const content=entries.slice(0,40).map(item=>`<a class="update-item" data-update-kind="${item.kind}" data-effective-at="${esc(item.effective||'')}" href="${esc(item.href)}"${item.kind==='research'?' target="_blank" rel="noopener noreferrer"':''} title="${esc(item.date.label)} 补充 · 信息发生时间：${esc(item.effective||'未明确')} · 北京时间"><time${/^\d{4}-\d{2}-\d{2}/.test(item.date.sort)?' datetime="'+esc(item.date.sort)+'"':''} aria-label="${esc(item.date.label)} 更新"><span class="update-date-full">${esc(item.date.label)} 更新</span><span class="update-date-short" aria-hidden="true">${esc(item.date.label.replace(/^\d{4}-(?=\d{2}-\d{2})/,''))}</span></time><span>${esc(item.label)}</span></a>`).join('')||'<span class="update-empty">暂无已登记的研究与项目更新</span>';
+ const content=entries.slice(0,40).map(item=>`<a class="update-item" data-update-kind="${item.kind}" data-effective-at="${esc(item.effective||'')}" href="${esc(item.href)}"${item.observation?' data-observation="'+esc(item.observation)+'"':item.kind==='research'?' target="_blank" rel="noopener noreferrer"':''} title="${esc(item.date.label)} 补充 · 信息发生时间：${esc(item.effective||'未明确')} · 北京时间"><time${/^\d{4}-\d{2}-\d{2}/.test(item.date.sort)?' datetime="'+esc(item.date.sort)+'"':''} aria-label="${esc(item.date.label)} 更新"><span class="update-date-full">${esc(item.date.label)} 更新</span><span class="update-date-short" aria-hidden="true">${esc(item.date.label.replace(/^\d{4}-(?=\d{2}-\d{2})/,''))}</span></time><span>${esc(item.label)}</span></a>`).join('')||'<span class="update-empty">暂无已登记的研究与项目更新</span>';
  if(content===updateSignature)return;updateSignature=content;
  $('update-track').innerHTML='<div class="update-items">'+content+'</div>';
  const original=$('update-track').firstElementChild;
@@ -568,6 +569,15 @@ function resizeUpdates(){
 }
 if(isHome){
  $('update-toggle').onclick=()=>{const paused=$('home-updates').classList.toggle('paused');$('update-toggle').setAttribute('aria-pressed',String(paused));$('update-toggle').setAttribute('aria-label',paused?'继续更新播报':'暂停更新播报');$('update-toggle').textContent=paused?'▷':'Ⅱ';};
+ $('home-updates').addEventListener('click',event=>{
+  const link=event.target.closest('[data-observation]');if(!link)return;
+  event.preventDefault();
+  const row=(data.research_updates?.changes||[]).find(r=>r.id===link.dataset.observation);if(!row)return;
+  let dialog=$('research-observation');
+  if(!dialog){dialog=document.createElement('dialog');dialog.id='research-observation';dialog.setAttribute('aria-label','研究信息');document.body.append(dialog);}
+  dialog.innerHTML='<form method="dialog"><button aria-label="关闭研究信息">关闭</button></form><h3>'+esc(row.object.name)+'</h3><ol class="timeline">'+objectObservationRows([row])+'</ol>';
+  dialog.showModal();
+ });
  $('home-updates').addEventListener('focusin',e=>{if(e.target.closest('.update-item'))requestAnimationFrame(()=>e.target.scrollIntoView({block:'nearest',inline:'nearest'}));});
  $('home-updates').addEventListener('focusout',()=>requestAnimationFrame(()=>{if(!$('home-updates').matches(':focus-within'))$('update-viewport').scrollLeft=0;}));
  window.addEventListener('resize',resizeUpdates);

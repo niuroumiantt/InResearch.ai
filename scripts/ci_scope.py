@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Conservative Git-tree CI selection and its always-reported acceptance gate."""
 import argparse
+from datetime import datetime
 import hashlib
 from html.parser import HTMLParser
 import json
@@ -217,6 +218,28 @@ def project_observations_append_only(before, after):
     return added > 0
 
 
+def object_source_reference(source):
+    if isinstance(source.get('url'), str) and source['url'].startswith('https://'):
+        return True
+    archive = source.get('archive')
+    if (source.get('url') is not None or not isinstance(archive, dict)
+            or set(archive) != {'kind', 'doc_id', 'receipts'}
+            or archive['kind'] != 'catalog_import' or archive['doc_id'] != 'doc-'+source.get('sha256', '')
+            or not isinstance(archive['receipts'], list) or not archive['receipts']):
+        return False
+    try:
+        ids=[];dates=[]
+        for row in archive['receipts']:
+            if (set(row) != {'id', 'source_key_sha256', 'received_at'} or type(row['id']) != int or row['id'] <= 0
+                    or not re.fullmatch('[0-9a-f]{64}', row['source_key_sha256'])): return False
+            date=datetime.fromisoformat(row['received_at'].replace('Z','+00:00'))
+            if date.tzinfo is None: return False
+            ids.append(row['id']);dates.append((date,row['received_at']))
+        return len(ids)==len(set(ids)) and source.get('first_received_at')==min(dates)[1]
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return False
+
+
 def object_observations_append_only(before, after):
     """Prove bounded append-only observations; adoption still requires source/C3."""
     old, new = map(strict_json, (before, after))
@@ -258,7 +281,7 @@ def object_observations_append_only(before, after):
                 or row.get('status') in {'withdrawn','superseded','rejected'}
                 or not isinstance(source,dict) or not source.get('quote') or not source.get('locator')
                 or any(not re.fullmatch('[0-9a-f]{64}',str(source.get(k,''))) for k in ('sha256','context_sha256'))
-                or not source.get('url','').startswith('https://')
+                or not object_source_reference(source)
                 or not isinstance(review,dict) or review.get('decision') != 'adopted'
                 or any(k in review for k in ('supersedes','replaces_record_ids','relaxes_distribution'))):
             return False
