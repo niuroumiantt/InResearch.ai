@@ -70134,6 +70134,92 @@
         },
         "batch_id": "4f696c379d534e09e0c46d912a8461deab9a656a18fb6de8191ae399952fae83"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1cf8eb07e206998436639496887b4722b3705107cbd7b667ce6fe980bdd371af",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:14:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "part:gas-turbine",
+        "site:permits"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-backup-power-alternatives"
+      ],
+      "quote": "An air quality permit is also required if natural gas turbines are used as a main or backup power source.",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:50:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。连续完整引文及相邻柴油备用许可讨论提供充分语境，实质贡献于当前备用电源替代方案工作单中的候选技术与许可约束研究。采用限于有来源归因的条件性主张；没有敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B档局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.063,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5f83a920615a6f15a9cd823549447bcf3e1770b27c2d39b4d2745ec0795dd280",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 50116,
+            "output_tokens": 1761,
+            "reasoning_output_tokens": 244
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 50.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7c7e77e676c4b5c6a004a7c559b0c1a7d882a643e072dbe6b9dcda4f8e854973",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 50974,
+              "output_tokens": 638,
+              "reasoning_output_tokens": 282
+            }
+          }
+        },
+        "batch_id": "9b3439140a8ea80fc9f39306e92aadfd7443f6d259b9b19e05ec31785799be74"
+      }
     }
   ],
   "statements": [
@@ -136099,6 +136185,131 @@
         "request_sha256": "e5880c8ada9e4666f49029b83bede113447cfca92adb70e9c096350af6567a75"
       },
       "object_mapping_check": "actor:coreweave是合同中明确列出的经营主体，符合本项公司范围的用途估计。该占比没有按GPU型号或资产类别拆分，邻近GPU讨论不足以把整体计算占比限定为part:gpu；也未确立一座数据中心的资产范围，因此不映射root、计算系统或电力设施。所有所选证据采用这一复核后的主张范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:14:ev:0"
+      ],
+      "id": "adoption:review:f86a3a1c0d8c563a075145ee",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gas-turbine",
+        "site:permits"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-alternatives"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "Samaritan Research网站所载《AI data centers documentation – Methodology》在许可资料讨论中称，如果天然气轮机用作主电源或备用电源，也需要空气质量许可。发表时间未知；该句未指定司法辖区、轮机型号、运行工况或项目阶段。此项保留为来源关于候选供电方案许可约束的主张，不构成具体项目的许可认定或备用适用性认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T07:50:29+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。连续完整引文及相邻柴油备用许可讨论提供充分语境，实质贡献于当前备用电源替代方案工作单中的候选技术与许可约束研究。采用限于有来源归因的条件性主张；没有敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B档局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.063,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5f83a920615a6f15a9cd823549447bcf3e1770b27c2d39b4d2745ec0795dd280",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 50116,
+            "output_tokens": 1761,
+            "reasoning_output_tokens": 244
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 50.893,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7c7e77e676c4b5c6a004a7c559b0c1a7d882a643e072dbe6b9dcda4f8e854973",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 50974,
+              "output_tokens": 638,
+              "reasoning_output_tokens": 282
+            }
+          }
+        },
+        "batch_id": "9b3439140a8ea80fc9f39306e92aadfd7443f6d259b9b19e05ec31785799be74"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:1:claim:14"
+      ],
+      "limitations": "原文未提供适用法规、许可门槛、排放条件或具体许可原件，也未提供与柴油机组同口径的性能、成本和可靠性比较。条件句不能证明天然气轮机可直接替换柴油备用，亦未证明任何项目已经取得许可。网页页首标示Samaritan Research，页尾另称Epoch，机构归属差异保留，不据此补定作者身份或发表日期。",
+      "conflict_check": "既有采用记录讨论燃气轮机备用用途、RICE启动与替代主张、训练用途下柴油备用配置，以及天然气供给中断的附加保障；这些均未否定本项空气质量许可主张，也未完整覆盖它，因此不判为冲突或重复。所供legacy筛选记录为空；检查限于供应材料，不代表全面外部法规核验。不覆盖或改写既有结论。",
+      "gap_dependency_check": "本项仅部分支持OBJ-backup-power-alternatives：识别天然气轮机备用用途的来源线索及空气质量许可约束。仍需适用司法辖区和法规、机型与工况、切换和过渡供电、燃料保障，以及同口径性能、成本和可靠性比较。问题保持开放；文档被请求阅读不等于Abilene容量或等待时间要求已满足。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9b3439140a8ea80fc9f39306e92aadfd7443f6d259b9b19e05ec31785799be74",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "4db90b48b4ff5126621f2894ca656967b18524e4239dc3eee4f7b55476b263df"
+      },
+      "object_mapping_check": "独立依据主张选择chain:power/3（发电与储能）下的part:gas-turbine（燃气轮机），以及root下的site:permits（含排放许可）。合同中的part:backup-power专指柴油发电机组，不能因天然气轮机承担备用角色而映射该对象；相邻柴油语境只用于理解比较背景。主张没有电力配额、并网协议、天然气管道接入或具体企业项目内容，不扩展其他对象。",
+      "quantitative_checks": {
+        "basis_check": "依据为方法说明中的作者主张，不是批准原件、实测观察或计算结果；没有量化假设和精度可核验。保留原始author_claim类型，不以它认证项目参数。",
+        "comparability_check": "没有柴油与天然气轮机同机型、同工况或同地域的比较数据；“also”仅支持来源所述许可约束，不能证明性能、成本或可靠性等效。空气质量许可不等于负荷接入批准。",
+        "derivation_check": "不适用：本项没有计算或派生数值，不从空气质量许可推导获批容量或接入等待时长。它不是拟按B采用的观察或计算，故不触发该类量化独立第二检查。",
+        "scope_check": "量化系统检查不适用：本项是天然气轮机主用或备用角色下的定性许可主张，没有测量系统、软件、工作负载、具体场址或分期；不能绑定Abilene原园区。",
+        "time_check": "来源发表时间未知，选定段落也未建立许可规定的有效时间。网页其他段落的统计截至日期不能作为本项发布日期或法规生效日期。",
+        "units_check": "不适用：选定证据没有容量、功率、时间、成本或其他数值单位，不产生MW或年数输入。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "本项仅讨论一般天然气轮机空气质量许可，不涉及Texas/ERCOT下Abilene原园区的获批用能、接入或IT容量，不能验证或替换energy_quota_mw。所需批准原件及容量口径仍缺失；请求阅读不是参数证据。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "本项没有Abilene原园区同分期负荷接入申请、批准起止日期或等待时长。空气质量许可与负荷接入审批属于不同事项，不能据此计算gate_wait_years，也不能用施工或送电阶段替代所需里程碑。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
