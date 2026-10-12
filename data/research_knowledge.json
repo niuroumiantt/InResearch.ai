@@ -61833,6 +61833,87 @@
         },
         "batch_id": "8025cfa5fd11d9588b4a5aa726f64b3059f908b923bc54eeaf4bbf4f3f49a6b1"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a415d00c594f947fa642fcf8f1d1d2a0f02a55d57a615ec7d0f70db206b3d192",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:81:claim:1:ev:0",
+      "locator": "page:81/chunk:81",
+      "object_ids": [],
+      "page_index": 80,
+      "question_ids": [],
+      "quote": "For example, several commercially available AI-led building\n                    energy management solutions leverage predictive analytics and automated heating,\n                    ventilation and air conditioning control through machine learning.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:09:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。建筑能源管理应用自身的预测分析及自动暖通控制能力，实质匹配当前D4应用与终端需求能力边界工单，可贡献局部功能证据。连续原文及周边语境充分，未识别敏感材料、实际冲突、拟议替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 33.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cf2c51a27d327bf16e54bdb81534b087e6a9aac1dbfab2222c16ee87e2b8c33b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58908,
+            "output_tokens": 1137,
+            "reasoning_output_tokens": 157
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.755,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0de7eaf3621e0dcbe65394c5759bfd5fe76190942f09245d435a56be2239cab8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 59475,
+              "output_tokens": 418,
+              "reasoning_output_tokens": 127
+            }
+          }
+        },
+        "batch_id": "ef63df6fd2e5cd25b1406c46ca1c4bacf5e4ac8c466a3cb3279ab12a1e1926ee"
+      }
     }
   ],
   "statements": [
@@ -119847,6 +119928,104 @@
         "request_sha256": "88b837953506e100994e1debbfb3adb04eb6b3a79c7364c9bbbf64181a16d063"
       },
       "object_mapping_check": "独立依据主张所指的Vera Rubin NVL144和Rubin Ultra Kyber机柜，选择计算链chain:compute/1下的整机柜系统part:rack-system。原文明确讨论命名机柜系统的到来时间及机柜级功率预期，符合该对象范围；不映射土地建筑链下的机柜结构，也不由改造背景增加电网、UPS、配电或冷却对象。AWS任职信息只是作者身份，不建立亚马逊采购或部署角色。所选证据统一采用此主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:81:claim:1:ev:0"
+      ],
+      "id": "adoption:review:00f7840b5d88ed9c5780bb52",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D4-boundary"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第81页称，在报告所述当时，已有数种商业可用的AI建筑能源管理方案，通过机器学习提供预测分析及自动供暖、通风和空调控制。这是IEA对应用能力及商业可用状态的定性陈述，不构成对当前产品能力或部署效果的独立认证；来源发表时间、具体地域及项目部署阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:09:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。建筑能源管理应用自身的预测分析及自动暖通控制能力，实质匹配当前D4应用与终端需求能力边界工单，可贡献局部功能证据。连续原文及周边语境充分，未识别敏感材料、实际冲突、拟议替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 33.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cf2c51a27d327bf16e54bdb81534b087e6a9aac1dbfab2222c16ee87e2b8c33b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58908,
+            "output_tokens": 1137,
+            "reasoning_output_tokens": 157
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.755,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0de7eaf3621e0dcbe65394c5759bfd5fe76190942f09245d435a56be2239cab8",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 59475,
+              "output_tokens": 418,
+              "reasoning_output_tokens": 127
+            }
+          }
+        },
+        "batch_id": "ef63df6fd2e5cd25b1406c46ca1c4bacf5e4ac8c466a3cb3279ab12a1e1926ee"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:81:claim:1"
+      ],
+      "limitations": "“commercially available”说明方案商业可用，不能据此限定为商业建筑。未指认具体产品、供应商、客户或部署项目，也未提供控制条件、性能评测、节能效果、采购收费、接口、采用规模或资源用量。原生文本覆盖完整，但全文视觉内容未完整审核；本条文字主张不依赖图表数值。",
+      "conflict_check": "所供已采用陈述涉及Alphabet应用、IEA自主系统交互及材料性质预测，未包含同一建筑能源管理主张，未发现规范重复或实际冲突。legacy中的Flexential调查涉及企业部署或计划部署的AI用例比例，其预测分析类别不能验证或反驳本条具体应用能力。所供合同及项目匹配记录为空。相邻第82页关于多数能源AI成功仍为个案、存在数据及部署障碍的说明，限制规模推断，但不否定方案商业可用。检查限于所供材料，不代表全面外部反证检索。",
+      "gap_dependency_check": "仅补充D4层提供什么能力，不能回答该层购买什么或完整上下层交易边界。仍需具体产品自身资料、适用条件、功能评测与反证、接口、采购和收费关系、各参与方职责及部署状态。问题保持开放，不覆盖既有结论、不改变研究骨架，也不据此赋值采用率、算力、电力或GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ef63df6fd2e5cd25b1406c46ca1c4bacf5e4ac8c466a3cb3279ab12a1e1926ee",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "5634acdfa4e9b1c1be1818de2c45ab690a8aa7af320e11db536dd64018fd1e57"
+      },
+      "object_mapping_check": "独立核对对象合同：原文范围是一般建筑能源管理应用，未建立root所指一座AI数据中心的范围，也未指认合同内企业。system:control及chain:control/1限定数据中心DCIM/BMS与固件，part:dcim亦处于该父链，不能因应用包含建筑管理与自动控制就映射这些对象；一般暖通控制也不足以映射数据中心散热设备。合同无适合的应用对象，所选证据统一使用空对象范围，保留有效D4问题关系，不继承文档基础设施标签。"
     }
   ],
   "answers": [],
