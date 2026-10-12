@@ -8536,6 +8536,62 @@
       "status": "candidate",
       "stored_path": "originals/2b/2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f/dcd-2bef9b0f6fdb0ef8-Macquarie Technology upsizes debt capacity by AU-50 million to ex.html",
       "title": "Macquarie Technology upsizes debt capacity by AU$50 million to expand IC3 Super West facility in Sydney, Australia"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+      "coverage": {
+        "characters_read": 5804,
+        "characters_total": 5804,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+      "id": "doc-2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+      "library_path": "library/by-node/root/2026_DCD_Circe Energy secures 2GW of natural gas capacity for We__2e1a2c26b8837725.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:shell",
+        "root",
+        "site:grid",
+        "site:land",
+        "system:facility"
+      ],
+      "question_ids": [
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-ffc8ff522bde412d88e725750e421d1d",
+      "report_sha256": "ca24447672c09cdc6c49697c08b80680f16ef409d63407b8376f06273dbd2413",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+        "url": "https://www.datacenterdynamics.com/en/news/circe-energy-secures-2gw-of-natural-gas-capacity-for-west-texas-data-center-campus/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/circe-energy-secures-2gw-of-natural-gas-capacity-for-west-texas-data-center-campus/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/2e/2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86/dcd-2e1a2c26b8837725-Circe Energy secures 2GW of natural gas capacity for West Texas d.html",
+      "title": "Circe Energy secures 2GW of natural gas capacity for West Texas data center campus"
     }
   ],
   "evidence": [
@@ -63994,6 +64050,91 @@
           }
         },
         "batch_id": "f8f97f8eb870e8c7426a7f8aa868717a44bc2c07d920250efa343b20523608af"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bab750feea3a82d5cfe0da0215b8d3b36c9589fd85b7c86a432cf38659d11ceb",
+      "document_id": "doc-2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+      "id": "rev-ffc8ff522bde412d88e725750e421d1d:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:cummins",
+        "chain:power/3"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Active since 1919, the company offers a range of natural gas generation units, ranging from 13kW to 2,000kW. The companies did not disclose what generation units would be supplied to Circe as part of the agreement.",
+      "reading_revision_id": "rev-ffc8ff522bde412d88e725750e421d1d",
+      "source_sha256": "2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:28:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文及完整原生页面支持明确归因的产品范围与型号披露边界，对当前NODE-activity-V2-boundary中的交易产品识别具有实质性局部贡献；对M09-Q02提供避免将未分类天然气发电采购误计为燃气轮机订单的证据边界。无敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M09-Q02",
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.856,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "93ae819729b43038cfc64e8f144e7f55b98e4b78539fd853e59b7c06a1a9e4fb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49991,
+            "output_tokens": 1416,
+            "reasoning_output_tokens": 322
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 47.622,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "559c275abadd4933450802c9ec7f20385746a50d55a0d589fcfd1b6b4d5788e5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 50666,
+              "output_tokens": 1023,
+              "reasoning_output_tokens": 761
+            }
+          }
+        },
+        "batch_id": "9c33aa0072fcc9415478ff63a720e7f2d4ce5d4da365f7efbcee7d284a682862"
       }
     }
   ],
@@ -124215,6 +124356,109 @@
         "request_sha256": "89e8d696ca30f388d01682cadd9483ea067988cdb35d20e2740078f025c01f98"
       },
       "object_mapping_check": "依据完整定义段落独立确定对象：航空衍生燃气轮机是燃气轮机子类，对应system:power下chain:power/3“发电与储能”的part:gas-turbine。航空发动机来源、启动能力及部分负荷效率不支持扩大映射至整座数据中心、UPS、柴油备用、储能或供气接入对象，也不证明具体运行角色或投运状态。所选证据统一采用此项 claim 的对象范围，不改动原始标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2e1a2c26b8837725292c90432838b3e33f66dee96cc9acf66dda7e826d5dde86",
+      "evidence_ids": [
+        "rev-ffc8ff522bde412d88e725750e421d1d:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:a5b0c73cddf2809c8aabe446",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:cummins",
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "M09-Q02",
+        "NODE-activity-V2-boundary"
+      ],
+      "reading_revision_id": "rev-ffc8ff522bde412d88e725750e421d1d",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年6月17日的报道中称，Cummins提供的天然气发电机组产品范围为13kW至2,000kW，但双方未披露该协议将向Circe供应哪些机组。该协议的报道用途包括拟建的美国西得克萨斯AI园区及未来北美部署。产品范围不能视为本协议实际机组规格；依据该报道无法确认采购设备属于燃气轮机。这是来源当时的产品介绍与披露状况陈述，不构成实际供货或当前设备配置的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:28:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续引文及完整原生页面支持明确归因的产品范围与型号披露边界，对当前NODE-activity-V2-boundary中的交易产品识别具有实质性局部贡献；对M09-Q02提供避免将未分类天然气发电采购误计为燃气轮机订单的证据边界。无敏感、真实冲突、拟替换或其他A条件，符合B类部分采用要求，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M09-Q02",
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.856,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "93ae819729b43038cfc64e8f144e7f55b98e4b78539fd853e59b7c06a1a9e4fb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49991,
+            "output_tokens": 1416,
+            "reasoning_output_tokens": 322
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 47.622,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "559c275abadd4933450802c9ec7f20385746a50d55a0d589fcfd1b6b4d5788e5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 50666,
+              "output_tokens": 1023,
+              "reasoning_output_tokens": 761
+            }
+          }
+        },
+        "batch_id": "9c33aa0072fcc9415478ff63a720e7f2d4ce5d4da365f7efbcee7d284a682862"
+      },
+      "source_candidate_ids": [
+        "rev-ffc8ff522bde412d88e725750e421d1d:chunk:0:claim:8"
+      ],
+      "limitations": "来源为新闻报道，未提供Cummins产品资料或供货协议原件。13kW至2,000kW是报道介绍的产品范围，不是本协议单机规格或项目容量。未披露实际型号、技术路线、数量、项目分配及验收状态；型号未披露既不能确认燃气轮机，也不能证明其被排除。产品范围未限定销售地域，不能将西得克萨斯项目地点扩展为产品范围的地域限制。",
+      "conflict_check": "现有AVK供应关系及Siemens能源系统开发计划涉及不同供应方和交易，与本项兼容，不能补齐Cummins协议型号。Alphabet、Dell、CXMT及封装定义记录亦无同口径反证。所供legacy合同、事实和项目匹配记录均为空，未发现规范重复或真实冲突；检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "M09-Q02仍缺GE Vernova、Siemens Energy及三菱燃气轮机订单簿的一手年份、机型、适用范围和可复查推导；本报道的交付计划不能转换为这些厂商的订单排期。NODE-activity-V2-boundary仅获得产品类别及实际型号未披露的局部边界，仍缺完整交易的付款方、资产所有者、运营方、使用方，以及制造、集成与分销职责划分和同口径反证。能源设备实例不自动覆盖整个活动节点；两个问题保持开放，不更新模型输入、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "9c33aa0072fcc9415478ff63a720e7f2d4ce5d4da365f7efbcee7d284a682862",
+        "source_report_sha256": "ca24447672c09cdc6c49697c08b80680f16ef409d63407b8376f06273dbd2413",
+        "request_sha256": "8fbf2c236a339f0b7812ccddd9a496a0d205cc0514588c698ce08fe315d7ae91"
+      },
+      "object_mapping_check": "独立核对对象契约：Cummins准确对应actor:cummins；天然气发电机组产品范围属于system:power下的chain:power/3（发电与储能）。原文未确定燃气轮机或往复式技术路线，不映射part:gas-turbine或part:gas-engine。园区仅提供采购用途背景，不继承root，也不建立土地、建筑、并网或天然气管道接入范围。契约没有Circe主体ID，保留名称而不新增对象。所选证据统一采用上述主张级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
