@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.107。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.108。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2633。
+在册文件：2634。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 232 |
+| 配套说明 | 233 |
 | 测试 | 217 |
 
 ## 在册记录集合
@@ -52,7 +52,7 @@
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
-| `data/projects.json` | records | 146 |
+| `data/projects.json` | records | 149 |
 | `data/research_knowledge.json` | documents | 116 |
 | `data/research_knowledge.json` | evidence | 664 |
 | `data/research_knowledge.json` | statements | 599 |
@@ -2637,6 +2637,7 @@
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
+| [docs/handoff/archived-site-registration-20261012.md](handoff/archived-site-registration-20261012.md) | 配套说明 |
 | [docs/handoff/bom-classification-20261010.md](handoff/bom-classification-20261010.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
 | [docs/handoff/campus-observation-and-stock-intake-20261011.md](handoff/campus-observation-and-stock-intake-20261011.md) | 配套说明 |

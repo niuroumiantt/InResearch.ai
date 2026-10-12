@@ -69,3 +69,7 @@ storage-container完整路线另执行tests/container_cache.py：用实际Docker
 PR839实际core_a耗时516秒；technical_atlas约94秒，chip_package两场景约219秒，在同一作业内串行。将technical_atlas和chip_package分别移入现有矩阵的独立作业，其余场景保持，测试验证全部case恰好一次覆盖；300秒单场景和15分钟作业时限、validate/core汇总与所有断言保持。只改变全套作业编组，不扩大纯资料豁免，也不改变发布器按精确head检查所有作业的要求。首次修改全套运行，是否提速以新实际CI回执为准。
 
 首页最新动态是有界窗口；历史估算和预测从对应园区档案验证，不要求历史样例永远出现在最新动态。实际首页仍验证所显示site_id与有效时间对应、未知时点明示和完整备注不挤入标题流。
+
+## 普通园区来源登记的追加分流（2026-10-12）
+
+v3普通来源登记可进入既有research路线：完整JSON证明旧基线/身份/观测及其类型、顺序不变，只末尾追加；registration为unverified、无reviewed_at/伪造review/revision、target_ids=[]，字段绑定与稳定site_id一致，来源SHA及HTTPS或真实归档导入摘要齐备。首次新园区要求冻结identity_registration、首条名称一致、基线容量为空，阶段可null且verified_date为null。仍须strict/registry/治理和固定来源登记、站点与研究回归，browser research+industry均必过。旧身份/旧值/历史修订/代码规则变化仍full；CI只证明结构，不判断来源内容真假，也不授予研究采用。本机制本批全套验收，后续纯资料批才使用分流。

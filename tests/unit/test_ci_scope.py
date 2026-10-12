@@ -149,6 +149,23 @@ class CiScopeTests(unittest.TestCase):
         self.assertFalse(ci.project_observations_append_only(json.dumps(initial),json.dumps(following)))
         self.assertFalse(ci.project_observations_append_only(json.dumps(initial),json.dumps(self.projects)))
 
+    def test_unverified_source_append_is_scoped_without_research_review(self):
+        from tests.unit.test_source_statements import SourceStatementTests
+        fixture=SourceStatementTests('test_no_url_sidecar_model_target_or_c3_is_required')
+        fixture.setUp();self.addCleanup(fixture.doCleanups);fixture.register();new=fixture.row()
+        following=copy.deepcopy(self.projects);following['records'].append(new)
+        self.assertTrue(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(following)))
+        self.write(ci.PROJECT_PATH,json.dumps(following));self.assertEqual(self.plan()['suites'],['industry','research'])
+        for field,value in [('reviewed_at','2026-10-12'),('revision',{'action':'correct'})]:
+            bad=copy.deepcopy(following);bad['records'][-1]['observations'][0][field]=value
+            self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
+        bad=copy.deepcopy(following);bad['records'][-1]['observations'][0]['adoption']['document_refs'][0]['archive']['receipts']=[]
+        self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
+        bad=copy.deepcopy(following);bad['records'][0]['country']='XX'
+        self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
+        before=copy.deepcopy(following);extra=copy.deepcopy(new['observations'][0]);extra['id']='another-statement';extra['adoption']['registration_id']=extra['id'];following['records'][-1]['observations'].append(extra)
+        self.assertTrue(ci.project_observations_append_only(json.dumps(before),json.dumps(following)))
+
     def test_initial_site_append_requires_reviewed_identity_and_preserves_old_records(self):
         new={'site_id':'fi-salo-fin05','name':'FIN05','country':'FI','region':'europe','location':'Salo','status':'L2',
              'capacity_it_mw':None,'capacity_it_mw_by_status':{},'observations':[]}

@@ -27,7 +27,7 @@ RESEARCH_TEST_PATTERNS = ('test_research*.py', 'test_public_reader.py',
                           'test_publish_reader.py', 'test_verification_contract.py',
                           'test_ci_scope.py', 'test_site_*.py', 'test_project_review.py',
                           'test_targeted_research.py', 'test_industry.py',
-                          'test_object_review.py', 'test_fetchspec_receive.py')
+                          'test_object_review.py', 'test_fetchspec_receive.py', 'test_source_statements.py')
 # A page absent here needs a full run, even if only its visible text changed.
 PAGES = {'index': 'industry', 'company': 'company_page', 'company-home': 'company_window',
          'company-products': 'company_catalog_map', 'product-catalog': 'product_catalog',
@@ -172,6 +172,38 @@ def research_append_only(before, after):
     return added > 0
 
 
+def source_registration_append_valid(row, site_id):
+    """Shape proof only; never a factual verdict or research-review grant."""
+    if not isinstance(row, dict) or type(row.get('schema_version')) is not int or row['schema_version'] != 3:
+        return False
+    registration = row.get('registration') or {}
+    adoption = row.get('adoption') or {}
+    if not isinstance(adoption, dict):
+        return False
+    fields, versions, refs = row.get('fields'), row.get('source_versions'), adoption.get('document_refs')
+    if (not isinstance(registration, dict) or registration.get('status') != 'unverified'
+            or not isinstance(registration.get('registered_by'), str) or not registration['registered_by']
+            or registration.get('at') != row.get('recorded_at')
+            or adoption.get('registration_id') != row.get('id') or adoption.get('source_kind') != 'source_statement'
+            or adoption.get('target_ids') != [] or 'review' in adoption
+            or any(k in row for k in ('reviewed_at','revision','owner_decision','supersedes','replaces_observation_ids'))
+            or not isinstance(fields, dict) or not fields
+            or not isinstance(versions,list) or len(versions)!=1 or not isinstance(refs,list) or len(refs)!=1
+            or not isinstance(versions[0],dict) or not isinstance(refs[0],dict)):
+        return False
+    binding = adoption.get('object_binding')
+    if binding != {'version':1, 'site_id':site_id, 'fields':sorted(fields), 'scope':row.get('scope')}:
+        return False
+    sha = versions[0].get('source_sha256')
+    if (not isinstance(sha,str) or not re.fullmatch('[0-9a-f]{64}',sha)
+            or refs[0].get('source_sha256') != sha or adoption.get('source_id') != sha
+            or not re.fullmatch('[0-9a-f]{64}',str(adoption.get('source_version','')))):
+        return False
+    source = {'sha256':sha, 'url':refs[0].get('source_url'), 'archive':refs[0].get('archive'),
+              'first_received_at':versions[0].get('first_received_at')}
+    return object_source_reference(source)
+
+
 def initial_site_append_valid(project):
     identity=project.get('identity_registration')
     required={'version','site_id','name','native_name','country','region','location','basis'}
@@ -189,6 +221,11 @@ def initial_site_append_valid(project):
     observations=project.get('observations')
     if not isinstance(observations,list) or not observations or len(observations)>500:
         return False
+    if all(isinstance(row,dict) and row.get('schema_version')==3 for row in observations):
+        return (project.get('verified_date') is None
+                and all(source_registration_append_valid(row,project['site_id']) for row in observations)
+                and observations[0]['fields'].get('name')==project['name']
+                and observations[0]['fields'].get('status')==project.get('status'))
     for row in observations:
         adoption=row.get('adoption',{}) if isinstance(row,dict) else {}
         if (not isinstance(row,dict) or row.get('schema_version')!=2 or not row.get('fields')
@@ -202,12 +239,13 @@ def initial_site_append_valid(project):
 
 
 def project_observations_append_only(before, after):
-    """Bounded observation appends and explicitly reviewed initial campuses, never revisions.
+    """Bounded observation appends and stable initial campuses, never revisions.
 
     All baseline fields, source records and old observations remain byte-value
-    equivalent. New campuses require a frozen initial identity and targetless v2
-    source-reviewed observations; legacy new rows, backfills and revisions stay full. Strict validation and the
-    existing source/C3 writer remain adoption gates, independently of CI scope.
+    equivalent. New campuses require a frozen identity with targetless v2
+    reviewed observations or v3 unverified source registrations. Backfills and
+    revisions stay full. Strict validation remains independent of CI scope;
+    ordinary registrations never require or grant C3 research adoption.
     """
     old, new = map(strict_json, (before, after))
     if not isinstance(old, dict) or not isinstance(new, dict) or set(old) != set(new):
@@ -239,9 +277,11 @@ def project_observations_append_only(before, after):
         if len(ids) != len(following) or any(not isinstance(i, str) or not i for i in ids) or len(set(ids)) != len(ids):
             return False
         for observation in following[len(prior):]:
-            if (type(observation.get('schema_version')) is not int or observation['schema_version'] != 2 or not observation.get('fields')
+            if (type(observation.get('schema_version')) is not int or observation['schema_version'] not in (2,3) or not observation.get('fields')
                     or not observation.get('source_versions') or not observation.get('adoption')
                     or any(k in observation for k in ('replaces_observation_ids', 'owner_decision', 'supersedes', 'revision'))):
+                return False
+            if observation['schema_version']==3 and not source_registration_append_valid(observation,current['site_id']):
                 return False
         added += len(following)-len(prior)
     names={str(name).casefold() for p in a for name in [p.get('name'),*(p.get('aliases') or [])] if name}

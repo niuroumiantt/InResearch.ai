@@ -113,11 +113,14 @@ def main():
         except (ValueError, TypeError, KeyError) as exc:
             err(f"projects[{r.get('site_id')}]: invalid observation: {exc}")
         sid = r.get("site_id", "?")
+        unverified_identity = r.get('verified_date') is None and bool(r.get('identity_registration')) and any(
+            o.get('schema_version') == 3 and (o.get('registration') or {}).get('status') == 'unverified'
+            for o in r.get('observations', []))
         if r.get('duplicate_of'):
             canonical = proj_by_id.get(r['duplicate_of'])
             if not canonical or canonical is r or canonical.get('duplicate_of') or not r.get('deduplication_note'):
                 err(f"projects[{sid}]: duplicate_of 须引用非重复主记录并附审核依据")
-        if r.get("status") not in STATUS_LEVELS:
+        if r.get("status") not in STATUS_LEVELS and not (r.get("status") is None and unverified_identity):
             err(f"projects[{sid}]: status 非法（须 L1-L9）: {r.get('status')}")
         cap, cap_by = r.get("capacity_it_mw"), r.get("capacity_it_mw_by_status")
         if cap is not None and cap_by:
@@ -148,9 +151,6 @@ def main():
             if s.get("grade") not in GRADES:
                 err(f"projects[{sid}]: 来源 grade 非法: {s.get('grade')}")
         d = days_since(r.get("verified_date"))
-        unverified_identity = r.get('verified_date') is None and bool(r.get('identity_registration')) and any(
-            o.get('schema_version') == 3 and (o.get('registration') or {}).get('status') == 'unverified'
-            for o in r.get('observations', []))
         if d is None and not unverified_identity:
             err(f"projects[{sid}]: verified_date 缺失或格式错误")
         # Age is a tracking obligation, not invalid evidence. The industry view

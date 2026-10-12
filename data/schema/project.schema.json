@@ -618,7 +618,10 @@
       "description": "company_id 列表：谁用（M03，经 contracts 关联）"
     },
     "status": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "enum": [
         "L1",
         "L2",
@@ -628,9 +631,10 @@
         "L6",
         "L7",
         "L8",
-        "L9"
+        "L9",
+        null
       ],
-      "description": "九级漏斗，见 framework/01_data_standards.md"
+      "description": "已知九级阶段；普通初始来源登记未披露阶段为null，不猜为传闻或规划"
     },
     "status_history": {
       "type": "array",
@@ -719,7 +723,10 @@
         ],
         "properties": {
           "url": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "grade": {
             "type": "string",
@@ -728,7 +735,8 @@
               "company",
               "research",
               "media",
-              "estimate"
+              "estimate",
+              "source_statement"
             ]
           },
           "date": {
