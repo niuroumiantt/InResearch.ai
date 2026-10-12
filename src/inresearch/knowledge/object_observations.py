@@ -157,6 +157,7 @@ def current(doc, today=None):
     from datetime import date
     today = today or date.today().isoformat()
     replaced = {r['revision']['of'] for r in doc['records'] if r.get('revision')}
+    positions = {r['id']: i for i, r in enumerate(doc['records'])}
     groups = {}
     for r in doc['records']:
         if r['id'] in replaced or r.get('revision', {}).get('action') == 'withdraw': continue
@@ -173,7 +174,7 @@ def current(doc, today=None):
         clock = lambda r: selection_clock(r)[0] if r.get('registration') else r.get('effective_at')
         latest = [r for r in candidates if not any(observation_time.definitely_after(clock(n), clock(r)) for n in candidates)]
         if latest and all(r.get('registration') for r in latest):
-            latest.sort(key=lambda r: (observation_time.bounds(clock(r))[0], observation_time.bounds(r['recorded_at'])[0], doc['records'].index(r)), reverse=True)
+            latest.sort(key=lambda r: (observation_time.bounds(clock(r))[0], observation_time.bounds(r['recorded_at'])[0], positions[r['id']]), reverse=True)
         g['current'] = latest[:1] if latest and all(r.get('registration') for r in latest) else latest
         if len({digest(r['value']) for r in latest}) > 1: g['conflicts'] = [r['id'] for r in latest]
     return list(groups.values())

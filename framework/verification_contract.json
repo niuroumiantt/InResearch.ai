@@ -806,7 +806,7 @@
     "docs/guides/fetchdata/examples/make_sample.py": "c1afbca9b4e3fefe6cf707e28ea273a194aa2e845a92d052b0a00d2d9d383bf3",
     "framework/research_publication.json": "df6a947d7ae4c3a49670a1265626c63a6f1ca7ef863387e097a545e817d454a5",
     "docs/guides/OBJECT_OBSERVATIONS.md": "1b9962bae1dab0acb2174c1fb600e2e4d642906934a7a8c94c6c90db380cbf3a",
-    "src/inresearch/knowledge/object_observations.py": "cd0ac132a419a2237def5e53d8cb7303b92d7eeb3f65e77113e6daeb3e513f4a",
+    "src/inresearch/knowledge/object_observations.py": "b9f875807b22e0d61774bec9e796e6752811ba2f25ee0d9fc545ef2c39131e82",
     "src/inresearch/workflow/object_review.py": "b3cc6957866f7f619fdb0c253e1197c9bfdf0e2e1df9b021d8d97188513e33ff",
     "src/inresearch/workflow/stock_objects.py": "a0b74faea72f4ff3b4814a54f9d1a1ae7a4ea289ba12d69b662284af600a67bf",
     "src/inresearch/materials/fetchspec_receive.py": "a5245b294ad900b30c9ef9d8d14a66614e5fb641e6e53403b8a5c45e75375bdb",
@@ -833,7 +833,8 @@
     "web/themes/research-tasks.css": "d45931b5e23eff61297812bfbf9381995a0fa19bd6f8b330a5620c6c89c844dd",
     "src/inresearch/workflow/research_task_examples.py": "2dcc4663113ca9737ef5a11d8638b0f5236cbc1b71c31015f54eb86e47775169",
     "tests/unit/test_research_task_examples.py": "c6e872907d77b7aa68b6c8a6c7c7af3b1776d2ccfcd71cc48daa5b751d7191db",
-    "tests/unit/test_source_batch.py": "19f38ee79d1a04be0aa6c6a3e5590c7e693b84c76fdfc941604b52d5585746c4"
+    "tests/unit/test_source_batch.py": "19f38ee79d1a04be0aa6c6a3e5590c7e693b84c76fdfc941604b52d5585746c4",
+    "tests/unit/test_object_current_scaling.py": "15e86d500c3fd7689b8bc0e8ee0f8205a9f52837fc3a8e1cff597688078bdce4"
   },
   "policies": [
     {
@@ -1142,7 +1143,9 @@
         "tests/unit/test_source_batch.py::SourceBatchTests.test_bad_identity_missing_dependency_and_bad_source_do_not_contaminate_valid_rows",
         "tests/unit/test_source_batch.py::SourceBatchTests.test_source_bytes_or_receiver_provenance_change_aborts_without_partial_write",
         "tests/unit/test_source_batch.py::SourceBatchTests.test_duplicate_company_name_cannot_create_second_id_and_old_records_are_unchanged",
-        "tests/unit/test_source_batch.py::SourceBatchTests.test_bounded_chunks_and_mixed_site_order_preserve_dependencies"
+        "tests/unit/test_source_batch.py::SourceBatchTests.test_bounded_chunks_and_mixed_site_order_preserve_dependencies",
+        "tests/unit/test_object_current_scaling.py::CurrentOrderingTests.test_same_clock_selects_later_append_and_retains_conflict_without_mutation",
+        "tests/unit/test_object_current_scaling.py::CurrentOrderingTests.test_many_independent_objects_keep_append_order_for_each_tied_history"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
