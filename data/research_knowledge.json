@@ -61749,6 +61749,90 @@
         },
         "batch_id": "fe4308633e866303c3ec5d363f53dee24a0a4d38362ffea82197cf805eb091c2"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "0ac8ce5c4246651b7940d8700a184e1b59d514e3114079f84541dc175b2020d7",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "id": "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:rack-system"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Vera Rubin NVL144 arrives in 2026, and the Rubin Ultra “Kyber” rack is projected near 600kW in 2027.",
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "source_sha256": "0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:53:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原文及完整页面语境支持明确归因的路线图预期，对当前M06-Q01的宣传预期与实际出货对照，以及M06-Q04的未来机柜密度阶段，均有实质性部分贡献。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B采用条件。仅采用为作者预测，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q01",
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.949,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f781762aa2650bf513b6a850befc4b4b28b6eb2a098896139c172b99dd6edc0b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 58869,
+            "output_tokens": 1506,
+            "reasoning_output_tokens": 297
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.68,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1b3da7396d3f9d5b26f364849034b08ae527506cf1eae4a06a6c1b49fc39fc1c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 59669,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 131
+            }
+          }
+        },
+        "batch_id": "8025cfa5fd11d9588b4a5aa726f64b3059f908b923bc54eeaf4bbf4f3f49a6b1"
+      }
     }
   ],
   "statements": [
@@ -119661,6 +119745,108 @@
         "request_sha256": "e7adcb0793fa3b46ef4160b325335f84fd44f0d256f008f7cc3c7b43a2aef9ba"
       },
       "object_mapping_check": "独立复核后采用空对象列表。part:transformer定义为大型电力变压器，原文仅称transformers，不能继承Reader标签；断路器亦未确定电压等级或开关柜类型。上下文为美国能源系统AI应用，未确立一座AI数据中心或其system:power、变电链范围，因此不添加数据中心基础设施映射。AI监测应用也不是DCIM/BMS与固件证据；允许主体中没有C3.ai或具名能源客户。空映射保留其对两个问题的有限支持，并适用于所选证据。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0fb166143118bf1541c8a042f6a3f0010305ca8fa3dd558ab465eb153802d153",
+      "evidence_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:2cad39ba89afcc0e427b8746",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:rack-system"
+      ],
+      "question_ids": [
+        "M06-Q01",
+        "M06-Q04"
+      ],
+      "reading_revision_id": "rev-c0298e93fbc944f988c47a9ea05a042c",
+      "status": "adopted",
+      "text": "AWS数据中心工程团队高级数据中心电气工程师Shalin Savalia在DCD于2026年10月2日发表的《When racks outpace the infrastructure: Retrofitting data center power systems for AI-scale densities》中，预计Vera Rubin NVL144于2026年到来，并称Rubin Ultra“Kyber”机柜预计在2027年接近600 kW/机柜。这是作者在既有数据中心高密度AI改造讨论中引用的路线图预期，未限定地区或具体项目，不构成NVIDIA实际出货、现场运行功率或当前独立认证的确认。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:53:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原文及完整页面语境支持明确归因的路线图预期，对当前M06-Q01的宣传预期与实际出货对照，以及M06-Q04的未来机柜密度阶段，均有实质性部分贡献。未发现敏感材料、真实冲突、拟替换既有结论或其他A条件，符合B采用条件。仅采用为作者预测，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q01",
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.949,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f781762aa2650bf513b6a850befc4b4b28b6eb2a098896139c172b99dd6edc0b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 58869,
+            "output_tokens": 1506,
+            "reasoning_output_tokens": 297
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.68,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1b3da7396d3f9d5b26f364849034b08ae527506cf1eae4a06a6c1b49fc39fc1c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 59669,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 131
+            }
+          }
+        },
+        "batch_id": "8025cfa5fd11d9588b4a5aa726f64b3059f908b923bc54eeaf4bbf4f3f49a6b1"
+      },
+      "source_candidate_ids": [
+        "rev-c0298e93fbc944f988c47a9ea05a042c:chunk:0:claim:3"
+      ],
+      "limitations": "“到来”未定义为发布、量产、交付、装机或投运，不能据此认定2026年实际出货。接近600 kW是预测，原文未说明额定、设计、峰值或实际运行功率边界，也未提供完整配置、工作负载、测量方法或预测依据。所选证据没有NVL144的功率值，也未明确Kyber的NVL编号；不得从legacy补入。作者任职AWS不使该预测成为AWS或NVIDIA的官方承诺。未提供向M08/M09传导的定量结果。",
+      "conflict_check": "legacy中的ghzq2508-kyber-rubin-ultra-nvl576-600kw记录2027年计划推出600 kW等级Kyber，fms25-upscale-ai-rack-power-2027e记录2027年前沿机柜600 kW目标，与本项方向相容，但不能据此认定独立互证。两者未完整覆盖本项的Vera Rubin NVL144于2026年到来及该作者归属，不判为完整重复。legacy的NVL144 220 kW和未明确型号的Rubin 180 kW涉及不同或未对齐配置，本项没有NVL144功率值，未形成同口径矛盾。现有Blackwell园区数量估算、Helios参考设计及密度传导机制陈述也不构成本项反证。所供当前回答为空，未发现真实冲突；检查限于所供记录，不覆盖既有结论。",
+      "gap_dependency_check": "M06-Q01获得可供后续核验的作者预期，仍需NVIDIA一手路线图及对应型号的实际交付、装机、投运记录，明确“到来”的里程碑并取得反证。M06-Q04获得2027年接近600 kW/机柜的预测点，仍缺同口径120 kW、600 kW及1 MW阶段的配置、功率边界、适用工况和向M08/M09传导的可复查推导。两项问题保持开放，不更新模型参数、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8025cfa5fd11d9588b4a5aa726f64b3059f908b923bc54eeaf4bbf4f3f49a6b1",
+        "source_report_sha256": "71a7789ef16193f5fc7ed2922bc9c8e1efcb06ba20faf959402b1dd692724fdc",
+        "request_sha256": "88b837953506e100994e1debbfb3adb04eb6b3a79c7364c9bbbf64181a16d063"
+      },
+      "object_mapping_check": "独立依据主张所指的Vera Rubin NVL144和Rubin Ultra Kyber机柜，选择计算链chain:compute/1下的整机柜系统part:rack-system。原文明确讨论命名机柜系统的到来时间及机柜级功率预期，符合该对象范围；不映射土地建筑链下的机柜结构，也不由改造背景增加电网、UPS、配电或冷却对象。AWS任职信息只是作者身份，不建立亚马逊采购或部署角色。所选证据统一采用此主张级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
