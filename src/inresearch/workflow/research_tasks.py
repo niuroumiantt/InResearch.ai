@@ -63,7 +63,7 @@ def snapshot(root, actor='', role='reader'):
     # Use exactly the map's existing projection and deduplication rules. These are
     # observed database totals, not a claim about worldwide coverage or live ACK.
     from inresearch.knowledge import industry
-    view = industry.snapshot(root, {'overview': '1'})
+    view = industry.cached_snapshot(root, {'overview': '1'})
     projection = {k: v for k, v in state.items() if k != 'operations'}
     if role == 'reader':
         projection = {k: state[k] for k in ('version', 'revision')}
