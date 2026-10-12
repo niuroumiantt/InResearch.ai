@@ -8806,6 +8806,106 @@
       "status": "candidate",
       "stored_path": "originals/41/4142916d7ca491e9baf81f049f2e355397553683982cdb778be15e1f36369f2c/dcd-4142916d7ca491e9-CoolIT designs 15kW coldplate to future-proof liquid cooling for .html",
       "title": "CoolIT designs 15kW coldplate to future-proof liquid cooling for GPUs"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "coverage": {
+        "characters_read": 6203,
+        "characters_total": 6203,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "library_path": "library/by-node/site-grid/未知_Mortenson_Abilene AI Data Center & Power Delivery__1c039f4b27e3fbb0.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:aep",
+        "actor:lancium",
+        "part:transformer",
+        "root",
+        "site:grid",
+        "system:facility",
+        "system:power"
+      ],
+      "question_ids": [
+        "M04-Q07",
+        "M05-Q06",
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply",
+        "OBJ-substation-alternatives",
+        "OBJ-substation-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "report_sha256": "425a84d9c73f873b3bf83a846b4cb94c8ff803e05faa9a444fd62e2d711a93e2",
+      "research_requests": [
+        {
+          "demand_id": "demand-6aa7a360-c67d-4d24-839e-072285aee354",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M05-Q06",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "requirement_sha256": "4b21f9c424618c73a4b2ccd4e22c03354230481e3e4c5019fb32754fc8379353",
+          "scope_values": {
+            "authority": "ERCOT/输电商实际批准原件待取得；Lancium网页仅为运营商声明",
+            "capacity_basis": "1.2GW interconnect/设施容量与批准用能/IT MW分开，IT容量未知",
+            "period": "2025-03-18与2026-03-27来源；截至2026-10-11核验",
+            "project": "us-tx-abilene：Stargate/Lancium原有园区；排除相邻Microsoft 900MW新园区",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        },
+        {
+          "demand_id": "demand-da697b1e-8a44-4d10-b687-03a25f674da7",
+          "purpose": "R3动态项目样例：核验同一Abilene原园区的IT估算/预测及送电时间线；同源估算与原件披露分别记录，普通修订不清空旧估算。421MW当前估算与843MW Q4预测分开，422MW为差额；建设/送电时长不冒充申请排队时长。",
+          "question_id": "M04-Q07",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "requirement_sha256": "057d32546d26ec263464968278afa02c39dbe95834f8cf8dacb43e92466430a0",
+          "scope_values": {
+            "gate_type": "负荷接入批准/排队等待与施工送电、扩建完工分开",
+            "milestone_end": "待取得同分期同阶段实际结束日期及原件；mid-2026/end-2026保留预测身份",
+            "milestone_start": "待取得项目对应申请/批准起始日期及原件，不用开工日期替代",
+            "period": "2025至2026；历史预测与实际里程碑逐项核验",
+            "project": "us-tx-abilene原有园区，区分两栋100MW与后续六栋分期",
+            "region": "美国Texas，ERCOT"
+          },
+          "target_id": "F.cost.depreciation.capex.shell.product",
+          "target_version": "2.3.0"
+        }
+      ],
+      "source_provenance": {
+        "batch": "r3-two-pilots-20261011",
+        "input_sha256": "1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+        "role": "downloaded_original",
+        "sidecar_sha256": "11396c9f85211999c5f7a8e07d1d103159d665c6b45bcd3a78622a680512bba6",
+        "source_id": "r3-pilot-mortenson-abilene-power-delivery",
+        "url": "https://www.mortenson.com/projects/abilene-data-center-development",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.mortenson.com/projects/abilene-data-center-development",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/1c/1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9/mortenson-abilene-power-delivery.html",
+      "title": "Abilene AI Data Center & Power Delivery"
     }
   ],
   "evidence": [
@@ -65042,6 +65142,93 @@
           }
         },
         "batch_id": "49a9954b023b406faee6aba381c81e1d73c976f782e44797370bdd105b7da374"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f1aab657cb2b3dce71b47282e5d832e40d3ba83548d229a878dd0d7e2642ae4b",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "id": "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:13:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:transformer",
+        "chain:power/2"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q07",
+        "OBJ-substation-supply"
+      ],
+      "quote": "Mortenson is currently swapping the temporary transformers with the permanent equipment and expected to complete all three swap overs by October 2026.",
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "source_sha256": "1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:21:24+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整原句及周围采购受限、临时设备投入和永久设备替换的叙述，实质支持当前变电站与大型变压器供应研究中的交付环节项目案例。保持作者预测身份，仅作局部证据；没有敏感内容、实质冲突、替换现有结论或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-substation-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 64.88,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8dd496e7c0c0a8e398991476c06ad4535359966e5412bde2f061c0fca182ca73",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 32705,
+            "output_tokens": 1890,
+            "reasoning_output_tokens": 376
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.162,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e09f592036120a8ab458fa1f619b1ce8adcede8f1d394f264866f483ce3fe784",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 33577,
+              "output_tokens": 580,
+              "reasoning_output_tokens": 205
+            }
+          }
+        },
+        "batch_id": "f117c0e3da61a767dccfd4be180de924c3e22032c5bf7917198b6d3037c5b674"
       }
     }
   ],
@@ -126211,6 +126398,131 @@
         "request_sha256": "1273fa3dd3dac9c62fdd05ff0781444e0928e9d4dfe590dc3e17855d251a0456"
       },
       "object_mapping_check": "原文是CoolIT首席技术官对单相直接液冷使用规模的陈述，匹配具名主体及水与散热系统的采用范围。数百万AI加速器未明确全部为GPU或定制ASIC，也未说明具体冷板产品，不继承计算部件或特定冷板映射。所选证据统一采用此范围，原标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1c039f4b27e3fbb0be8ac008e2cd75105f5195c174fb531b6ebb67440d7e9bb9",
+      "evidence_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:13:ev:0"
+      ],
+      "id": "adoption:review:b2b417948caf9b75f2b42d39",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:transformer",
+        "chain:power/2"
+      ],
+      "question_ids": [
+        "OBJ-substation-supply"
+      ],
+      "reading_revision_id": "rev-4faa6414220e4ec7ae7b7f358fb99a92",
+      "status": "adopted",
+      "text": "Mortenson在《Abilene AI Data Center & Power Delivery》网页中，以Lancium美国得州Abilene园区电力交付EPC承包商身份称，第二阶段变电站工程的临时变压器正在换为永久设备，并预计到2026年10月完成全部三台的更换。网页发表及更新日期未知，“正在”仅代表来源叙述时的状态；2026年10月是来源预测，不能据此认定截至2026年10月11日已经完成，也不构成当前交付状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:21:24+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续完整原句及周围采购受限、临时设备投入和永久设备替换的叙述，实质支持当前变电站与大型变压器供应研究中的交付环节项目案例。保持作者预测身份，仅作局部证据；没有敏感内容、实质冲突、替换现有结论或其他A条件，符合B采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-substation-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 64.88,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8dd496e7c0c0a8e398991476c06ad4535359966e5412bde2f061c0fca182ca73",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 10112,
+            "input_tokens": 32705,
+            "output_tokens": 1890,
+            "reasoning_output_tokens": 376
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.162,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e09f592036120a8ab458fa1f619b1ce8adcede8f1d394f264866f483ce3fe784",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 33577,
+              "output_tokens": 580,
+              "reasoning_output_tokens": 205
+            }
+          }
+        },
+        "batch_id": "f117c0e3da61a767dccfd4be180de924c3e22032c5bf7917198b6d3037c5b674"
+      },
+      "source_candidate_ids": [
+        "rev-4faa6414220e4ec7ae7b7f358fb99a92:chunk:0:claim:13"
+      ],
+      "limitations": "未提供变压器制造商、型号、单台额定容量、订购及实际交付日期、三台各自更换日期或验收记录。没有可计算采购交期、成本分解或生命周期成本的数据。来源日期未知，不能确定该预测何时形成，也不能判断后续是否兑现。",
+      "conflict_check": "现有采用记录是IEA转述Siemens Energy一般变压器扩产及电网技术业务订单情况，与本项承包商的单项目更换预测在主体、范围和时间口径上不同，未见实质冲突或完整重复。所供legacy筛选记录为空，不能视为已完成外部穷尽反查。更换预测与原文此前送电的叙述属于不同里程碑，不构成矛盾。",
+      "gap_dependency_check": "本项对OBJ-substation-supply贡献于临时设备过渡至永久设备的交付环节和预计完成节点，不能回答制造周期、采购交期、价格形成或生命周期成本，问题保持开放。仍需订单、制造商交付、逐台更换和验收资料。批准用能与接入排队参数另需相应主管机构原件，不能由设备更换预测补足。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f117c0e3da61a767dccfd4be180de924c3e22032c5bf7917198b6d3037c5b674",
+        "source_report_sha256": "425a84d9c73f873b3bf83a846b4cb94c8ff803e05faa9a444fd62e2d711a93e2",
+        "request_sha256": "c8ca02305cafa97fc437e211d9afed0dd4623eca350c9e733b5a2c32ec46f3b7"
+      },
+      "object_mapping_check": "原文周围语境明确为绿地变电站中的主电力变压器临时设备更换，支持大型电力变压器part:transformer及其父链变电chain:power/2。本项没有配额、并网协议或排队权利声明，因此不继承site:grid；也不因园区用于AI而扩展到root或IT资产。Mortenson没有允许的actor ID，不以其他企业代替。",
+      "quantitative_checks": {
+        "basis_check": "依据为EPC承包商Mortenson的项目叙述和预测，未附独立验收、交付或审批记录；预测方法和进度假设未披露。",
+        "comparability_check": "设备更换节点与采购交期、负荷接入排队、批准用能、IT容量及整体园区投产口径不同，不能互代，也不能据此形成跨区域平均值。软件、工作负载和GPU性能比较不适用，因为本项是变电设备更换预测。",
+        "derivation_check": "无新增计算或推导，三台和预计月份均直接来自引文。本项保留author_forecast身份，不是拟采用的观测或计算，观测/计算的独立二次检查要求不适用。",
+        "scope_check": "范围为美国得州Abilene、Lancium园区第二阶段变电站工程的三台临时变压器更换计划，不是整个园区完工、IT投产或接入批准。",
+        "time_check": "网页发表及更新日期未知；2026年10月是预计完成月份，不能改为实际完成日期或推定具体日。“正在”不映射为审核日的当前状态。",
+        "units_check": "保留三台设备的计数及2026年10月的月级时间精度；未提供单台功率、批准MW或等待年数，不进行容量分配或单位换算。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "候选实际陈述是三台临时变压器的更换预测，未提供ERCOT或输电商批准的负荷用能额度。项目相同不能使设备更换证据满足批准容量要求，也不能将变电站规格转为批准用能或IT容量。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "候选可作为同项目设备更换预测节点记录，但该节点属于施工交付阶段，未提供负荷接入申请、批准或同阶段实际结束日期，不能计算接入审批或排队等待年数，也不支持替换当前参数。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
