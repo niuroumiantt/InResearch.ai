@@ -8481,6 +8481,61 @@
       "status": "candidate",
       "stored_path": "originals/d1/d18d41cf62e2175cc9a7f8481483a0f296a25d6fcb15351276f152b2a94f1920/ohio.html",
       "title": "Data Center Costs 24-0508-EL-ATA"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+      "coverage": {
+        "characters_read": 5496,
+        "characters_total": 5496,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+      "id": "doc-2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+      "library_path": "library/by-node/root/2026_DCD_Macquarie Technology upsizes debt capacity by AU$50 mil__2bef9b0f6fdb0ef8.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:shell",
+        "root",
+        "system:facility"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary",
+        "OBJ-shell-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-90fabc6535484b92b5a6ccd204e8663f",
+      "report_sha256": "fe9fa455f5ec5475dfc7a3af3d0bc6e8e6a0e621f5b075cdfc8731fb88a6bf69",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+        "url": "https://www.datacenterdynamics.com/en/news/macquarie-technology-upsizes-debt-capacity-by-au50-million-to-expand-ic3-super-west-facility-in-sydney-australia/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/macquarie-technology-upsizes-debt-capacity-by-au50-million-to-expand-ic3-super-west-facility-in-sydney-australia/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/2b/2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f/dcd-2bef9b0f6fdb0ef8-Macquarie Technology upsizes debt capacity by AU-50 million to ex.html",
+      "title": "Macquarie Technology upsizes debt capacity by AU$50 million to expand IC3 Super West facility in Sydney, Australia"
     }
   ],
   "evidence": [
@@ -63691,6 +63746,87 @@
           }
         },
         "batch_id": "8b4381238363eaa9bd91110d12b02f76d288830caf5adfec7bb6c82fb670a0e8"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "efa33430ab744cf7b84a381a6197fae6a532c127b3d1d8aa5cac0497fd44aa2d",
+      "document_id": "doc-2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+      "id": "rev-90fabc6535484b92b5a6ccd204e8663f:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The debt facility is arranged under the existing agreement",
+      "reading_revision_id": "rev-90fabc6535484b92b5a6ccd204e8663f",
+      "source_sha256": "2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:07:20+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。协议延续关系实质贡献于当前M11-Q07的融资结构维度；连续原文引句及完整原生页面提供充分语境，可作限定归因的部分证据采用。未发现敏感、真实研究冲突、拟替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.598,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "15484606cefe73b8db75d5f7c7539b0b9eee803a206e1d52eb8ffc8045bf18d6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 60845,
+            "output_tokens": 1072,
+            "reasoning_output_tokens": 241
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.6,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "50bd0b2c32326607cf0bade17873ccc2cd55a64ca075b54a3553251978f94bb7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61273,
+              "output_tokens": 415,
+              "reasoning_output_tokens": 154
+            }
+          }
+        },
+        "batch_id": "2eba9172102649c3f705484808e7e1c7d62173d0cfc3d2a58b3c0f186636ca8f"
       }
     }
   ],
@@ -123614,6 +123750,104 @@
         "request_sha256": "6bf58dbd9c74a135f1825c2f249acd930f50f99a2b0c13cc1bdc8b44d00fb1c8"
       },
       "object_mapping_check": "独立复核后，本条范围是中国与美国开发者模型在开源平台的下载量比较，未指向合同中允许的具体企业。root指一座AI数据中心，其他系统、链及部件均有设施资产范围；下载量没有建立与这些资产的直接关系，system:control所辖DCIM/BMS与固件也不适用。保留空对象列表及有效问题匹配，所选证据统一采用这一审定范围，不继承文档或Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2bef9b0f6fdb0ef8b0af0e83dca68be995c957ef1ba8ca63ed367d1510fb8e3f",
+      "evidence_ids": [
+        "rev-90fabc6535484b92b5a6ccd204e8663f:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:32be04bcc82ab43f2934fec9",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M11-Q07"
+      ],
+      "reading_revision_id": "rev-90fabc6535484b92b5a6ccd204e8663f",
+      "status": "adopted",
+      "text": "据DCD作者Barney Dixon于2026年2月19日的报道，Macquarie Technology Group为澳大利亚悉尼Macquarie Park的IC3 Super West数据中心建设扩容筹措的此次增量债务融资，是在现有协议下安排的。这是来源对融资协议延续关系的陈述，未经本次独立核验，不表示既有条款全部保持不变。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:07:20+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。协议延续关系实质贡献于当前M11-Q07的融资结构维度；连续原文引句及完整原生页面提供充分语境，可作限定归因的部分证据采用。未发现敏感、真实研究冲突、拟替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-M11-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.598,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "15484606cefe73b8db75d5f7c7539b0b9eee803a206e1d52eb8ffc8045bf18d6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 60845,
+            "output_tokens": 1072,
+            "reasoning_output_tokens": 241
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.6,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "50bd0b2c32326607cf0bade17873ccc2cd55a64ca075b54a3553251978f94bb7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61273,
+              "output_tokens": 415,
+              "reasoning_output_tokens": 154
+            }
+          }
+        },
+        "batch_id": "2eba9172102649c3f705484808e7e1c7d62173d0cfc3d2a58b3c0f186636ca8f"
+      },
+      "source_candidate_ids": [
+        "rev-90fabc6535484b92b5a6ccd204e8663f:chunk:0:claim:3"
+      ],
+      "limitations": "所选引文仅支持此次债务融资与现有协议的关系。现有协议及一手融资文件未随包提供，不能确认其法律主体、修订内容、利率、期限、担保、契约或提款条件。报道发表日期已由原文确定，具体融资完成日期未披露。报道中的预计开放时间不能作为当前投运证明。",
+      "conflict_check": "所供已采用陈述涉及一般融资机制及STACK、Fluidstack、AirTrunk、Empyrion等不同主体或交易，没有本次IC3 Super West协议关系的规范重复或相反证据。Fluidstack交易中的Macquarie Group不能视为本条Macquarie Technology Group的同一主体或交易。相关legacy筛选记录为空；检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "仅补充M11-Q07的融资协议延续关系，不能回答资本成本或关闭问题。仍需一手协议及修订文件、债股结构、信用支持、定价和可复查推导，并核对反证；当前工单的一手来源要求尚未满足。不据此更新债务利率、WACC、模型状态或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2eba9172102649c3f705484808e7e1c7d62173d0cfc3d2a58b3c0f186636ca8f",
+        "source_report_sha256": "fe9fa455f5ec5475dfc7a3af3d0bc6e8e6a0e621f5b075cdfc8731fb88a6bf69",
+        "request_sha256": "5453250d2c7a68a81d95d2de6368119be87ec66da21c431b9bc49b6c0ead6d70"
+      },
+      "object_mapping_check": "本条范围为Macquarie Technology Group的融资协议关系，允许对象中没有该主体ID。原生页面明确具体数据中心及冷却规划，但未明确其AI用途，尚不足以对应root所定义的一座AI数据中心；融资也未划分设施、建筑或设备资金份额。因此不继承Reader的root、system:facility或part:shell标签。对象为空仍保留M11-Q07的有效关联，所选证据统一采用此审核后的主张级对象范围。"
     }
   ],
   "answers": [],
