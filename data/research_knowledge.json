@@ -62827,6 +62827,89 @@
         },
         "batch_id": "0139fb357c4cfd984865d8f50d6e914dae75f4347d1e7669ae58a4154f3aae7d"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "87870ce63a133b3a41018161ed446110376aada3ff5620b094978a820101a814",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:88:claim:6:ev:0",
+      "locator": "page:88/chunk:88",
+      "object_ids": [],
+      "page_index": 87,
+      "question_ids": [
+        "NODE-demand-D2-boundary"
+      ],
+      "quote": "12 Domain-specific models are trained on specific tasks, in specific environments. They contrast with models\n\n                  that are trained to generalise to a broader range of tasks.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:36:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。按任务和环境限定模型训练范围，实质匹配当前D2模型与权重产品能力范围及边界工作单，可贡献局部定义证据。引文连续，周边语境充分，未识别敏感材料、真实冲突、替换或其他A条件，符合B类部分采用要求；不能据此认定完整产品或交易边界已建立。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 31.408,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5a575d1423eae47190eb05201db86eaea3dbc2b0762e8199fb6db9bbe632dfa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 36429,
+            "output_tokens": 1100,
+            "reasoning_output_tokens": 168
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.142,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2405b45363254a7a7d1b92aede14e9fa8c585cbe5acbff7f5a282357c49c7eff",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 36942,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 261
+            }
+          }
+        },
+        "batch_id": "469ccab3d260f5928eb8a921c04b28919db7ff4954a1b2dfa3c0a2c8e3b0a3ee"
+      }
     }
   ],
   "statements": [
@@ -121853,6 +121936,104 @@
         "request_sha256": "4b442424a2e980597b43904c330f82bfb693b1c5fb6c1d167ecb2a8b716c9d97"
       },
       "object_mapping_check": "完整上下文将可靠性比较限定为AeroLev 1850冷水机平台相关技术与传统压缩机；允许对象没有独立压缩机，映射part:chiller，同时保留统计对象层级未明确的限制。不能据此映射整座数据中心可靠性或控制系统。所选证据统一采用该范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:88:claim:6:ev:0"
+      ],
+      "id": "adoption:review:aa5abd9c182eacf928026fda",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-boundary"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第88页脚注12中，将领域专用模型定义为针对特定环境中的特定任务训练的模型，并将其与为泛化到更广泛任务而训练的模型相区别。这是IEA在工业流程自动化语境下对模型训练范围的定义，不构成对当前模型能力或泛化效果的独立认证；来源发表时间、具体地域及项目部署阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:36:56+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。按任务和环境限定模型训练范围，实质匹配当前D2模型与权重产品能力范围及边界工作单，可贡献局部定义证据。引文连续，周边语境充分，未识别敏感材料、真实冲突、替换或其他A条件，符合B类部分采用要求；不能据此认定完整产品或交易边界已建立。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 31.408,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5a575d1423eae47190eb05201db86eaea3dbc2b0762e8199fb6db9bbe632dfa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 36429,
+            "output_tokens": 1100,
+            "reasoning_output_tokens": 168
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.142,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2405b45363254a7a7d1b92aede14e9fa8c585cbe5acbff7f5a282357c49c7eff",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 36942,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 261
+            }
+          }
+        },
+        "batch_id": "469ccab3d260f5928eb8a921c04b28919db7ff4954a1b2dfa3c0a2c8e3b0a3ee"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:88:claim:6"
+      ],
+      "limitations": "定义未指认具体模型、权重产品、版本、供应商或部署项目，未提供性能评测、泛化实测或比较基准。未说明权重交付、许可、接口、采购、收费及上下层交易关系。全文阅读仅覆盖PDF原生文本，未完成视觉复核；本条文字定义不依赖图表。",
+      "conflict_check": "所供已采用的世界基础模型定义、Transformer材料性质预测用途及领域专用模型与工业自动化的联系，均未重复本条对特定任务、特定环境训练范围的定义，也未构成反证。本条补充定义，不覆盖或替换这些结论。所供legacy合同、事实及项目匹配记录均为空；检查范围内未发现真实冲突，但不代表已完成外部全面反证检索。",
+      "gap_dependency_check": "本条仅部分支持D2中模型能力范围如何界定，不能回答提供和购买何种具体产品、谁向谁交易及上下层职责如何划分。仍需具体模型与权重产品资料、许可和接口、采购及收费关系、适用条件、评测与反证。当前问题保持开放，不据此推定部署规模、算力或电力需求，不更新模型参数、汇总GW或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "469ccab3d260f5928eb8a921c04b28919db7ff4954a1b2dfa3c0a2c8e3b0a3ee",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "db38a99818ca9f8cbededc2efb4be7a2d16223a82c1f432adddccc9b7146c271"
+      },
+      "object_mapping_check": "独立核对对象合同的名称、类型及父链：本条讨论模型训练范围，合同没有对应模型或权重产品对象。root限定一座AI数据中心，system:compute及chain:compute/1属于其IT计算设施；system:control及chain:control/1限定DCIM/BMS与固件。工业生产环境的流程控制和供热制冷示例未建立上述设施范围，也未指认合同内企业。因此所选证据统一采用空对象范围，保留有效D2问题匹配，不继承候选或Reader的root标签。"
     }
   ],
   "answers": [],
