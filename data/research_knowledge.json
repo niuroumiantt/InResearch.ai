@@ -61433,6 +61433,92 @@
         },
         "batch_id": "95f2a7d3ed4de78b2a67a0761312d541cfdd21acbce0ddbf02c9ecced1dee73e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "210b3ec025a8668fa3cccfc36809f31e1ebbab7bbeba57a6a527386d0377fcdf",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:35:claim:6:ev:0",
+      "locator": "page:36/chunk:35",
+      "object_ids": [
+        "site:grid"
+      ],
+      "page_index": 35,
+      "question_ids": [
+        "OBJ-grid-supply"
+      ],
+      "quote": "For example, ERCOT, the grid operator in Texas, has received interconnection\n                  requests of 160 GW from data centres (Utility Dive, 2026), which is twice the existing global\n                  capacity of hyperscale and colocation data centres.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:41:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。连续引文直接支持160 GW申请规模及两倍比较，相邻原文明确负荷接入角色和申请未必落地的限制。该项实质贡献当前M04-Q01的ERCOT申请规模研究，并为M01-Q01提供有限的来源比较线索；完整问题的一手来源要求仍未满足。未确立敏感材料、同口径真实冲突、替换提议或其他A条件，符合B类归因部分采用条件。",
+        "workorder_ids": [
+          "Q-M04-Q01",
+          "Q-M01-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 61.776,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0824ff25a8d64320f0ad2403749de0044bda8fdbcee315fc78077978dad0621b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67678,
+            "output_tokens": 1960,
+            "reasoning_output_tokens": 741
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.238,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5d9a900e9e489ab307c0b77fdb2d510e0d10a568b4e6bacda847ef9eeacef629",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68495,
+              "output_tokens": 486,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "195e89949f79a7d72a5df0ef84a86e6321990c284053b96ac1036a9a8fc97eaa"
+      }
     }
   ],
   "statements": [
@@ -119045,6 +119131,108 @@
         "request_sha256": "d648a08c5fe151cb1b0a47c348e94d12214ebfb46948ac8f6e2ae849f94391a2"
       },
       "object_mapping_check": "独立复核后，本项描述全球全部数据中心容量中AI工作负载的预测份额，分母包含传统负载。合同中的root是一座AI数据中心，不能直接承载这一全球综合份额统计；原文也未描述其内部系统、部件或场址权利。因此不继承候选的root标签，不因AI主题增加基础设施映射。空对象列表保留M01-Q04的有效部分关系，所选证据统一采用此主张范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:35:claim:6:ev:0"
+      ],
+      "id": "adoption:review:12c2a3b79fcabe8437d556c0",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:grid"
+      ],
+      "question_ids": [
+        "M04-Q01",
+        "M01-Q01"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第3.2节引用Utility Dive（2026）称，美国得州电网运营商ERCOT已收到来自数据中心的160 GW并网申请，并将该申请规模描述为报告所述全球现有超大规模及托管数据中心容量的两倍。IEA同时提醒，并非所有申请都会获批并进入建设，部分申请可能具有推测性质。这是来源作者的转述及容量对照，未经本次独立核验；申请统计基准日和报告发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T22:41:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。连续引文直接支持160 GW申请规模及两倍比较，相邻原文明确负荷接入角色和申请未必落地的限制。该项实质贡献当前M04-Q01的ERCOT申请规模研究，并为M01-Q01提供有限的来源比较线索；完整问题的一手来源要求仍未满足。未确立敏感材料、同口径真实冲突、替换提议或其他A条件，符合B类归因部分采用条件。",
+        "workorder_ids": [
+          "Q-M04-Q01",
+          "Q-M01-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 61.776,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0824ff25a8d64320f0ad2403749de0044bda8fdbcee315fc78077978dad0621b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67678,
+            "output_tokens": 1960,
+            "reasoning_output_tokens": 741
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.238,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5d9a900e9e489ab307c0b77fdb2d510e0d10a568b4e6bacda847ef9eeacef629",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68495,
+              "output_tokens": 486,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "195e89949f79a7d72a5df0ef84a86e6321990c284053b96ac1036a9a8fc97eaa"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:35:claim:6"
+      ],
+      "limitations": "未提供Utility Dive原始报道、ERCOT一手统计、申请去重规则、状态拆分或容量定义。引用年份2026不等于统计基准日或IEA报告发表日期。全球比较范围限于超大规模及托管数据中心，未确立IT容量口径及L8+验收状态；不能据两倍关系反推全球投运IT容量。未提供平均等待年限、清退率或区域和类型容量拆分。全文覆盖仅限PDF原生文字，未完成图像审阅，来源网址未独立联网核验。",
+      "conflict_check": "已采用记录adoption:review:6438c729fe25f5a289d063fd转述截至2026年4月ERCOT正在评估超过410 GW大负荷申请、超过87%来自数据中心，与本条160 GW存在需要核对的显著数值差异。但本条统计时点未知，前者87%的分母亦未明确，且大负荷总申请与数据中心申请的范围不同；现有证据不足以确立同一时点、同一口径的真实冲突，也不能宣称差异已调和。311 GW“Phantom”分类不能用于扣减或解释本条。PJM、AEP及意大利申请记录涉及不同主体、区域或接入角色；legacy的中泰证券基础负荷变化、RAND供给预测和得州项目记录亦不能验证或反驳该申请总量。未发现本条的既有规范重复记录；检查限于所供材料，不覆盖任何既有结论。",
+      "gap_dependency_check": "M04-Q01仅获得来源转述的ERCOT申请规模线索，仍需取得Utility Dive原始报道和ERCOT一手队列，核对160 GW的基准日、覆盖范围、去重及阶段定义，并与已采用的2026年4月记录逐项比较；还须补充主要电网可比统计、等待年限和清退率。M01-Q01仅获得有界容量比较，仍缺统一基准日、L8+状态、IT容量定义及全球区域和类型拆分。上述差异未解决前，不把本条作为统一队列基线或模型数值；不汇总、反推或扣减GW，两项问题保持开放，研究骨架和既有结论保持原状。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "195e89949f79a7d72a5df0ef84a86e6321990c284053b96ac1036a9a8fc97eaa",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "609f756ae70a43114a439099e058974c7402fcbf0cde381379cdad77e6cfdcd4"
+      },
+      "object_mapping_check": "独立依据对象契约复核：主张直接描述美国得州ERCOT的数据中心负荷并网申请，对应site:grid这一site_right对象的电力配额与并网范围。全球容量比较未明确IT或设施供电口径，不据此追加system:it、system:power或部件；市场总量也不等于root所定义的一座AI数据中心。契约未列ERCOT、IEA或Utility Dive的主体ID，不新增对象。所选证据统一使用此主张级范围，原候选和证据标签保持不变。"
     }
   ],
   "answers": [],
