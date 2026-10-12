@@ -11,8 +11,8 @@
 - 源码在 Codex 工作树 `~/.codex/worktrees/private-research-tasks/inresearch.ai`，分支 `codex/datacenter-intake-example`；主工作区的其他任务未移动。
 - 选 Equinix SG3，六份实际原件含运营商开业声明、施工集团目录、CDP 坐标表与三份 SGX 披露。实际接收六个 SHA，重放零新增且首次接收时钟不变；未运行 Reader 全文任务、OCR 或外部模型调用。
 - 私有材料根 `~/.local/share/inresearch.ai/task-examples/equinix-sg3-20261012/`。`acquisition-log.json`、`receiver-summary.json`、`receiver-receipts/` 保留真实来源与失败；原件不进 Git。定向提取不声称全文 C3。
-- 普通来源登记使用独立 authoring 副本与隔离 runtime；园区、历史产权、开发/运营、施工参与及历史客户分开。IT/设施/电网 MW 和年度电量未披露，保持未知；原始坐标是自报点位，非测绘边界。
-- 本地全部 2,482 项单测通过；完整浏览器与实际样例页面回执单独保存。GitHub Actions 仍明确返回预算不足，不能据本地通过宣称 CI 或生产已成功。
+- 普通来源登记使用独立 authoring 副本与隔离 runtime；最新批量实现重放 11 条零新增且原字节保持；园区、历史产权、开发/运营、施工参与及历史客户分开。IT/设施/电网 MW 和年度电量未披露，保持未知；原始坐标是自报点位，非测绘边界。
+- 合入 main 的批量准备改动后，本地全部 2,487 项单测通过；43 套完整浏览器展开 66 场景、两项真实 Docker 存储/缓存验收及实际样例下载/地图回执通过。测试日志与截图单独保存于 `~/.local/state/inresearch.ai/release-audits/datacenter-intake-example-20261012/`。GitHub Actions 仍明确返回预算不足，不能据本地通过宣称 CI 或生产已成功。
 
 ## 部署接续
 

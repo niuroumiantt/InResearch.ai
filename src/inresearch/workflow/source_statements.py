@@ -107,8 +107,7 @@ def apply(root, data, statement):
     return {'state':'already_registered' if replay else 'registered_in_checkout','site_id':site_id,'statement_id':key,'status':'unverified','fields':sorted(normalized),'truth_checked':False}
 
 
-def apply_object(root, data, statement):
-    """Register a typed claim with actual source provenance, without C3 or a target."""
+def _object_statement(statement, resolve):
     from inresearch.knowledge import object_observations as ledger
     if statement.get('version') != 1:
         raise ValueError('source_statement_version_required')
@@ -117,7 +116,7 @@ def apply_object(root, data, statement):
     ledger.check_claim(statement)
     evidence = statement.get('source') or statement.get('evidence') or {}
     sha = evidence.get('sha256')
-    _, url, first, archive = source(data, sha, with_provenance=True)
+    _, url, first, archive = resolve(sha)
     if not isinstance(evidence.get('locator'), str) or not evidence['locator'].strip():
         raise ValueError('source_locator_required')
     if not isinstance(evidence.get('quote'), str) or not evidence['quote'].strip():
@@ -132,40 +131,111 @@ def apply_object(root, data, statement):
     stamp = datetime.now(timezone.utc).isoformat()
     native.update(id=key,recorded_at=stamp,reviewed_at=None,
                   registration={'status':'unverified','registered_by':statement.get('registered_by') or 'source-intake','at':stamp})
-    path = Path(root)/ledger.PATH
+    return obj, native
+
+
+def _object_batch(root, data, statements):
+    """One bounded transaction; source snapshots are verified before commit."""
+    from inresearch.knowledge import object_observations as ledger
+    root, data = Path(root), Path(data)
+    path = root/ledger.PATH
+    frozen = {}
+    def resolve(sha):
+        if sha not in frozen:
+            frozen[sha] = source(data, sha, with_provenance=True)
+        return frozen[sha]
+    receipts = []
     with locked(path):
-        # Authoring writes the checkout ledger; runtime import is a separate command.
         doc = json.loads(path.read_text()) if path.exists() else ledger.empty()
-        old = next((v for v in doc['records'] if v['id'] == key), None)
-        if old:
-            if doc['objects'].get(obj['id']) != obj: raise ValueError('immutable_object_identity_collision')
-            return {'state':'already_registered','object_id':obj['id'],'statement_id':key,'truth_checked':False}
-        if obj['id'] in doc['objects'] and doc['objects'][obj['id']] != obj:
-            raise ValueError('immutable_object_identity_collision')
-        if obj['type'] == 'company':
-            known = json.loads((Path(root)/'data/companies.json').read_text())['records']
-            known += [{'company_id':o['identity']['company_id'],'name':o['name']} for o in doc['objects'].values() if o['type']=='company']
-            if any(c['company_id'] != obj['identity']['company_id'] and
-                   str(c.get('name','')).casefold() == obj['name'].casefold() for c in known):
-                raise ValueError('possible_duplicate_company_identity')
-        doc['objects'][obj['id']] = copy.deepcopy(obj)
-        doc['records'].append(native)
         ledger.check(doc, root)
-        write_json(path,doc)
-    return {'state':'registered_in_checkout','object_id':obj['id'],'statement_id':key,'status':'unverified','truth_checked':False}
+        records = {r['id']:r for r in doc['records']}
+        companies = json.loads((root/'data/companies.json').read_text())['records']
+        names = {}
+        for c in companies:
+            names.setdefault(str(c.get('name','')).casefold(), set()).add(c['company_id'])
+        company_objects = {}
+        for obj in doc['objects'].values():
+            if obj['type'] == 'company':
+                cid = obj['identity']['company_id']
+                company_objects[cid] = obj
+                names.setdefault(obj['name'].casefold(), set()).add(cid)
+        for statement in statements:
+            try:
+                obj, native = _object_statement(statement, resolve)
+                key = native['id']
+                current = doc['objects'].get(obj['id'])
+                if current is not None and current != obj:
+                    raise ValueError('immutable_object_identity_collision')
+                if key in records:
+                    receipt = {'state':'already_registered','object_id':obj['id'],
+                               'statement_id':key,'truth_checked':False}
+                else:
+                    cid = obj['identity'].get('company_id')
+                    if obj['type'] == 'company' and names.get(obj['name'].casefold(), set()) - {cid}:
+                        raise ValueError('possible_duplicate_company_identity')
+                    # Validate the new row with only its actual identity dependency.
+                    # Earlier rejected rows must never leave identities behind.
+                    objects = {obj['id']:obj}
+                    if obj['type'] != 'company' and cid in company_objects:
+                        dependency = company_objects[cid]
+                        objects[dependency['id']] = dependency
+                    ledger.check({'version':1,'objects':objects,'records':[native]}, root)
+                    doc['objects'][obj['id']] = copy.deepcopy(obj)
+                    doc['records'].append(native)
+                    records[key] = native
+                    if obj['type'] == 'company':
+                        company_objects[cid] = obj
+                        names.setdefault(obj['name'].casefold(), set()).add(cid)
+                    receipt = {'state':'registered_in_checkout','object_id':obj['id'],
+                               'statement_id':key,'status':'unverified','truth_checked':False}
+            except (ValueError, TypeError, KeyError, FileNotFoundError) as exc:
+                receipt = {'state':'held_as_clue','error':str(exc)}
+            receipts.append(receipt)
+        if any(r['state'] == 'registered_in_checkout' for r in receipts):
+            # Re-resolve bytes and receiver provenance, not just file timestamps.
+            # A changed source aborts the whole bounded transaction without writes.
+            try:
+                for sha, snapshot in frozen.items():
+                    if source(data, sha, with_provenance=True) != snapshot:
+                        raise ValueError('source_provenance_changed_during_batch')
+                ledger.check(doc, root)
+            except (ValueError, TypeError, KeyError, FileNotFoundError) as exc:
+                return [{'state':'held_as_clue','error':str(exc)} for _ in statements]
+            write_json(path, doc)
+    return receipts
+
+
+def apply_object(root, data, statement):
+    """The single-row entry shares the bounded batch identity and source checks."""
+    receipt = _object_batch(root, data, [statement])[0]
+    if receipt['state'] == 'held_as_clue':
+        raise ValueError(receipt['error'])
+    return receipt
 
 
 def apply_batch(root, data, statements):
-    """One failed identity must not block unrelated registrations."""
+    """Preserve input order and item holds; write at most once per 500 typed rows."""
     import time
     started = time.monotonic()
     receipts = []
-    for index, item in enumerate(statements):
-        try:
-            receipt = apply(root, data, item)
-        except (ValueError, TypeError, KeyError, FileNotFoundError) as exc:
-            receipt = {'state': 'held_as_clue', 'error': str(exc)}
-        receipts.append({'index': index, **receipt})
+    index = 0
+    while index < len(statements):
+        item = statements[index]
+        if isinstance(item, dict) and 'object' in item:
+            end = index + 1
+            while (end < len(statements) and end-index < 500
+                   and isinstance(statements[end], dict) and 'object' in statements[end]):
+                end += 1
+            batch = _object_batch(root, data, statements[index:end])
+            receipts.extend({'index':index+i, **r} for i,r in enumerate(batch))
+            index = end
+        else:
+            try:
+                receipt = apply(root, data, item)
+            except (ValueError, TypeError, KeyError, FileNotFoundError) as exc:
+                receipt = {'state':'held_as_clue','error':str(exc)}
+            receipts.append({'index':index, **receipt})
+            index += 1
     return {'receipts': receipts,
             'registered': sum(r['state'] == 'registered_in_checkout' for r in receipts),
             'replayed': sum(r['state'] == 'already_registered' for r in receipts),

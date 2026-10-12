@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2649。
+在册文件：2651。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,8 +22,8 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 235 |
-| 测试 | 221 |
+| 配套说明 | 236 |
+| 测试 | 222 |
 
 ## 在册记录集合
 
@@ -53,9 +53,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 149 |
-| `data/research_knowledge.json` | documents | 125 |
-| `data/research_knowledge.json` | evidence | 724 |
-| `data/research_knowledge.json` | statements | 652 |
+| `data/research_knowledge.json` | documents | 126 |
+| `data/research_knowledge.json` | evidence | 727 |
+| `data/research_knowledge.json` | statements | 655 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -2715,6 +2715,7 @@
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
+| [docs/handoff/runtime-source-publication-20261012.md](handoff/runtime-source-publication-20261012.md) | 配套说明 |
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/source-statement-intake-20261012.md](handoff/source-statement-intake-20261012.md) | 配套说明 |
 | [docs/handoff/stock-archived-gpu-20261012.md](handoff/stock-archived-gpu-20261012.md) | 配套说明 |
@@ -4059,6 +4060,7 @@
 | `tests/unit/test_site_tracking.py` | 测试 |
 | `tests/unit/test_site_tracking_sources.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
+| `tests/unit/test_source_batch.py` | 测试 |
 | `tests/unit/test_source_publication.py` | 测试 |
 | `tests/unit/test_source_statements.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
