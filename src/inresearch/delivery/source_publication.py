@@ -55,6 +55,7 @@ def _merge_rows(old, new):
 
 
 def _projects(root, runtime):
+    from inresearch.knowledge import site_register
     doc = strict_json((Path(root)/'data/projects.json').read_text())
     by_id = {r['site_id']: r for r in doc['records']}
     for ident, addition in runtime['sites'].items():
@@ -67,6 +68,8 @@ def _projects(root, runtime):
         baseline = addition.get('baseline')
         if baseline is not None and row.get('identity_registration') != baseline['identity_registration']:
             raise ValueError('runtime_identity_conflicts_with_code_baseline')
+        if baseline is not None:
+            site_register.check_initial_identity(baseline['identity_registration'], row)
         row['observations'] = _merge_rows(row.get('observations', []), addition['observations'])
     return doc
 
@@ -138,9 +141,34 @@ def install(root, payload):
             return {**previous['receipts'][key], 'state':'already_published', 'new_records':0,
                     'seconds':round(time.monotonic()-started,6)}
         updated = copy.deepcopy(previous)
+        # Validate the combined typed identities before using company IDs in a
+        # site's roles. Runtime and same-batch ordinary companies share one
+        # directory; neither an unreferenced identity nor a malformed claim is
+        # authority to introduce a participant.
+        for row in payload['records']:
+            if row.get('registration', {}).get('status') != 'unverified': raise ValueError('ordinary_source_only')
+        used = {r['object_id'] for r in payload['records']}
+        if set(payload['objects']) != used: raise ValueError('unreferenced_object_identity')
+        native_path = Path(root)/ledger.PATH
+        native = strict_json(native_path.read_text()) if native_path.exists() else ledger.empty()
+        old_objects = _objects(native, previous)
+        candidate = _objects(old_objects, payload)
+        ledger.check(candidate, root)
         before_projects = _projects(root, previous)
         by_id = {r['site_id']:r for r in before_projects['records']}
-        companies = {r['company_id'] for r in strict_json((Path(root)/'data/companies.json').read_text())['records']}
+        known_companies = strict_json((Path(root)/'data/companies.json').read_text())['records']
+        for obj in candidate['objects'].values():
+            if obj['type'] != 'company': continue
+            ident, name = obj['identity']['company_id'], obj['name']
+            if any(c['company_id'] == ident and c.get('name') != name for c in known_companies):
+                raise ValueError('immutable_company_identity_collision')
+            # Same case-folded name is the existing ordinary intake's duplicate
+            # identity rule. Apply it across code, runtime and this whole batch.
+            if any(c['company_id'] != ident and str(c.get('name','')).casefold() == name.casefold()
+                   for c in known_companies):
+                raise ValueError('possible_duplicate_company_identity')
+            known_companies.append({'company_id':ident,'name':name})
+        companies = {c['company_id'] for c in known_companies}
         new_sites = new_records = 0
         seen = set()
         for item in payload['sites']:
@@ -158,6 +186,8 @@ def install(root, payload):
                     raise ValueError('unverified_initial_identity_required')
                 if old and old.get('identity_registration') != identity:
                     raise ValueError('immutable_site_identity_collision')
+                if old:
+                    site_register.check_initial_identity(identity, old)
             if old is None:
                 if baseline is None: raise ValueError('new_site_identity_required')
                 first = item['observations'][0]
@@ -186,15 +216,6 @@ def install(root, payload):
             new_records += len(merged) - len(old.get('observations', []))
             target = updated['sites'].setdefault(ident, {'baseline':copy.deepcopy(baseline), 'observations':[]})
             target['observations'] = _merge_rows(target['observations'], item['observations'])
-        for row in payload['records']:
-            if row.get('registration', {}).get('status') != 'unverified': raise ValueError('ordinary_source_only')
-        used = {r['object_id'] for r in payload['records']}
-        if set(payload['objects']) != used: raise ValueError('unreferenced_object_identity')
-        native_path = Path(root)/ledger.PATH
-        native = strict_json(native_path.read_text()) if native_path.exists() else ledger.empty()
-        old_objects = _objects(native, previous)
-        candidate = _objects(old_objects, payload)
-        ledger.check(candidate, root)
         new_records += len(candidate['records']) - len(old_objects['records'])
         updated['objects'] = _objects({'version':1,'objects':updated['objects'],'records':[]},
                                      {'objects':payload['objects'],'records':[]})['objects']

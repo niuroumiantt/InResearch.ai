@@ -17,9 +17,9 @@
       if (!response.ok) throw Error(response.status === 401 ? '请登录后查看任务' : '任务台账暂不可用，请刷新重试');
       state = await response.json();
       $('new-package').hidden = !state.can_create;
-      $('task-role-note').textContent = state.can_create ? '内部成员可以新增、分配和更新工作包；负责人使用成员登录名，实习生成员可更新自己的状态、交付与备注。' : state.role === 'intern' ? '实习生成员可查看全部分工；只可更新分配给自己登录名的工作包状态、交付与备注。范围、负责人、机器与模型由内部成员维护。' : '当前角色可以查看任务与下载模板，工作包由内部成员维护。';
+      $('task-role-note').textContent = state.can_create ? '内部成员可以新增、分配和更新工作包；负责人使用成员登录名，实习生成员可更新自己的状态、交付与备注。' : state.role === 'intern' ? '实习生成员可查看全部分工；只可更新分配给自己登录名的工作包状态、交付与备注。范围、负责人、机器与模型由内部成员维护。' : '任务方向、协调状态和公开样例可直接查看；实际负责人、机器、模型、备注和交付指针登录后可见。';
       render(); renderRegister();
-      $('tasks-status').textContent = `服务端台账 · 版本 ${state.revision} · ${state.packages.length} 个工作包。机器与模型按实际执行填写，未分配不默认运行。`;
+      $('tasks-status').textContent = `服务端台账 · 版本 ${state.revision} · ${state.packages.length} 个工作包。${state.public_view?'公开只读视图；登录后可查看实际分工并协作。':'机器与模型按实际执行填写，未分配不默认运行。'}`;
     } catch (error) {
       $('tasks-status').textContent = error.message;
       $('register-stats').textContent = '台账读取失败，请刷新重试。';
@@ -40,7 +40,7 @@
     $('package-counts').innerHTML = [[count('unassigned'),'待分配'],[count('ready')+count('in_progress'),'待开始 / 进行中'],[count('blocked'),'受阻'],[count('delivered'),'已交付']].map(([n,label])=>`<span><strong>${n}</strong>${label}</span>`).join('');
     const filter = $('package-filter').value;
     const items = state.packages.filter(p => !filter || p.status === filter);
-    $('package-rows').innerHTML = items.map(p => `<tr data-package="${esc(p.id)}"><td data-label="工作包"><strong class="package-name">${esc(p.title)}</strong><span class="package-region">${esc(p.region)}</span><p class="package-scope">${esc(p.scope)}</p><details><summary>来源方向与备注</summary><p>${esc(p.sources)}</p>${p.note?`<p>${esc(p.note)}</p>`:''}</details></td><td data-label="负责人">${esc(p.assignee || '待分配')}</td><td data-label="机器 / 模型">${esc(p.machine || '待确认')}<br><span class="muted">${esc(p.model || '模型未登记')}</span></td><td data-label="截止日">${esc(p.due || '待安排')}</td><td data-label="协调状态"><span class="package-status ${esc(p.status)}">${esc(statuses[p.status] || p.status)}</span></td><td data-label="交付 / 操作">${p.delivery_pointer?`<details><summary>交付指针</summary><p class="delivery-pointer">${esc(p.delivery_pointer)}</p></details>`:'<span class="muted">尚无交付指针</span>'}${canEdit(p)?`<button type="button" data-edit="${esc(p.id)}">${state.can_create?'分配 / 更新':'更新我的进度'}</button>`:''}</td></tr>`).join('') || '<tr><td colspan="6">这个状态下暂无工作包。</td></tr>';
+    $('package-rows').innerHTML = items.map(p => `<tr data-package="${esc(p.id)}"><td data-label="工作包"><strong class="package-name">${esc(p.title)}</strong><span class="package-region">${esc(p.region)}</span><p class="package-scope">${esc(p.scope)}</p><details><summary>${state.public_view?'来源方向':'来源方向与备注'}</summary><p>${esc(p.sources)}</p>${p.note?`<p>${esc(p.note)}</p>`:''}</details></td><td data-label="负责人">${esc(state.public_view?'登录后可见':p.assignee || '待分配')}</td><td data-label="机器 / 模型">${state.public_view?'<span class="muted">登录后可见</span>':`${esc(p.machine || '待确认')}<br><span class="muted">${esc(p.model || '模型未登记')}</span>`}</td><td data-label="截止日">${esc(state.public_view?'登录后可见':p.due || '待安排')}</td><td data-label="协调状态"><span class="package-status ${esc(p.status)}">${esc(statuses[p.status] || p.status)}</span></td><td data-label="交付 / 操作">${state.public_view?'<a href="/login">登录协作 →</a>':p.delivery_pointer?`<details><summary>交付指针</summary><p class="delivery-pointer">${esc(p.delivery_pointer)}</p></details>`:'<span class="muted">尚无交付指针</span>'}${canEdit(p)?`<button type="button" data-edit="${esc(p.id)}">${state.can_create?'分配 / 更新':'更新我的进度'}</button>`:''}</td></tr>`).join('') || '<tr><td colspan="6">这个状态下暂无工作包。</td></tr>';
     $('package-rows').querySelectorAll('[data-edit]').forEach(button=>button.addEventListener('click',()=>openPackage(button.dataset.edit)));
   }
 
@@ -94,7 +94,7 @@
 
   $('download-brief').addEventListener('click',()=> {
     if (!state) { $('tasks-status').textContent = '请先刷新并成功读取服务端任务台账，再下载任务书。'; return; }
-    const brief = `# ${state.mission.title}\n\n优先级：P1\n任务建立：2026-10-12\n\n${state.mission.goal}\n\n${state.mission.scale_note}\n\n## 工作包（服务端台账版本 ${state.revision}）\n\n` + state.packages.map(p=>`### ${p.title}\n\n- ID：${p.id}\n- 范围：${p.region}；${p.scope}\n- 来源：${p.sources}\n- 负责人：${p.assignee || '待分配'}\n- 机器 / 模型：${p.machine || '待确认'} / ${p.model || '未登记'}\n- 截止日：${p.due || '待安排'}\n- 状态：${statuses[p.status]}\n- 交付指针：${p.delivery_pointer || '尚无'}\n- 备注：${p.note || '无'}\n`).join('\n') + `\n## 每条资料怎么交\n\n保留原生 PDF/HTML/Office/CSV/API 原响应，不改字节。交 manifest.json、SHA256SUMS、originals/、observations.jsonl、errors.jsonl、run-report.json。OCR/文本/JSON 作为 derived/ 增补，带 derived_from_sha256、页码、实际工具与版本、漏页及未读图片。\n\n十二个检查角度：物理地点与边界；土地与产权；开发/设计/承建/运营；使用方与租赁；电源/输配电/接入；水源/供水/冷却；网络；审批与约束；容量与分期；设备与系统；投资/融资/合同；时间/运行/证据。\n\n每条候选一个对象、指标和证据范围，保留原值/单位、口径、有效与披露时间、原文引句、页/表/行列和上下文。IT、设施、接电、发电、合同 MW 分开；年度电耗 MWh 另记。缺项保持 null，已知一条即可交，不把全园区与分期重复相加。\n\n候选交换契约：fetchdata-handoff/1。一般信息 target_ids 可为空；研究端映射后按唯一身份和原件追加来源登记，标记基础登记待查。正式结论/答案/模型输入按 C3。采集、原件接收、阅读、登记及实际上线分别留回执；工作包已交付不表示已采用。\n\n完整字段与离线验包：https://inresearch.ai/doc.html?f=docs/guides/fetchdata/delivery-contract.md\n`;
+    const brief = `# ${state.mission.title}\n\n优先级：P1\n任务建立：2026-10-12\n\n${state.mission.goal}\n\n${state.mission.scale_note}\n\n## 工作包（服务端台账版本 ${state.revision}）\n\n` + state.packages.map(p=>`### ${p.title}\n\n- ID：${p.id}\n- 范围：${p.region}；${p.scope}\n- 来源：${p.sources}\n- 负责人：${state.public_view ? '登录后可见' : p.assignee || '待分配'}\n- 机器 / 模型：${state.public_view ? '登录后可见' : p.machine || '待确认'} / ${state.public_view ? '登录后可见' : p.model || '未登记'}\n- 截止日：${state.public_view ? '登录后可见' : p.due || '待安排'}\n- 状态：${statuses[p.status]}\n- 交付指针：${state.public_view ? '登录后可见' : p.delivery_pointer || '尚无'}\n- 备注：${state.public_view ? '登录后可见' : p.note || '无'}\n`).join('\n') + `\n## 每条资料怎么交\n\n保留原生 PDF/HTML/Office/CSV/API 原响应，不改字节。交 manifest.json、SHA256SUMS、originals/、observations.jsonl、errors.jsonl、run-report.json。OCR/文本/JSON 作为 derived/ 增补，带 derived_from_sha256、页码、实际工具与版本、漏页及未读图片。\n\n十二个检查角度：物理地点与边界；土地与产权；开发/设计/承建/运营；使用方与租赁；电源/输配电/接入；水源/供水/冷却；网络；审批与约束；容量与分期；设备与系统；投资/融资/合同；时间/运行/证据。\n\n每条候选一个对象、指标和证据范围，保留原值/单位、口径、有效与披露时间、原文引句、页/表/行列和上下文。IT、设施、接电、发电、合同 MW 分开；年度电耗 MWh 另记。缺项保持 null，已知一条即可交，不把全园区与分期重复相加。\n\n候选交换契约：fetchdata-handoff/1。一般信息 target_ids 可为空；研究端映射后按唯一身份和原件追加来源登记，标记基础登记待查。正式结论/答案/模型输入按 C3。采集、原件接收、阅读、登记及实际上线分别留回执；工作包已交付不表示已采用。\n\n完整字段与离线验包：https://inresearch.ai/doc.html?f=docs/guides/fetchdata/delivery-contract.md\n`;
     download('全球数据中心普查-任务书.md',brief,'text/markdown;charset=utf-8');
   });
 
@@ -118,7 +118,54 @@
 
   $('new-package').addEventListener('click',()=>openPackage());
   $('close-package').addEventListener('click',()=>$('package-dialog').close());
-  $('refresh-tasks').addEventListener('click',load);
+  const stageLabels = {complete:'本步已有执行结果',pending:'尚未完成',blocked:'受阻',not_applicable:'本例未执行此项'};
+  function artifactRow(artifact) {
+    if (!artifact) return '';
+    const size = artifact.size < 1024 ? artifact.size+' B' : artifact.size < 1024*1024 ? (artifact.size/1024).toFixed(1)+' KiB' : (artifact.size/1024/1024).toFixed(1)+' MiB';
+    return `<li class="example-artifact" data-artifact="${esc(artifact.id)}"><div>${artifact.available?`<a href="${esc(artifact.download_url)}" download>${esc(artifact.filename)} ↓</a>`:`<span>${esc(artifact.filename)} · 产物不可用</span>`}<small>${esc(size)} · ${artifact.access_scope==='public'?'公开样例产物':'登录可见产物'}</small><code>SHA256 ${esc(artifact.sha256)}</code></div></li>`;
+  }
+  function renderExample(sample, authenticated) {
+    const artifacts = Object.fromEntries(sample.artifacts.map(a=>[a.id,a]));
+    const used = new Set(sample.stages.flatMap(stage=>stage.artifact_ids));
+    const facts = sample.facts.map(f=>`<div><dt>${esc(f.label)}</dt><dd>${esc(f.value===null?'未知':f.value)}${f.unit?` <small>${esc(f.unit)}</small>`:''}<div class="example-fact-sources">${f.source_ids.map(id=>`<a href="#example-${esc(sample.id)}-source-${esc(id)}">来源 ${esc(id)} ↗</a>`).join(' ')}${f.locator?`<span>${esc(f.locator)}</span>`:''}</div></dd></div>`).join('');
+    const execution = sample.execution || {};
+    const stages = sample.stages.map((stage,index)=>{
+      const missing = stage.artifact_ids.some(id=>!artifacts[id]?.available);
+      return `<details class="example-stage" data-stage="${esc(stage.id)}" ${index===0?'open':''}><summary><span class="example-stage-number">${String(index+1).padStart(2,'0')}</span><strong>${esc(stage.title)}</strong><span class="example-stage-state ${esc(stage.state)}">${esc(stageLabels[stage.state])}</span></summary><div class="example-stage-body"><p>${esc(stage.result)}</p>${missing?'<p class="example-warning">本步有产物缺失或摘要不符，当前无法复验，请联系负责人恢复原产物。</p>':''}<ul class="example-artifacts">${stage.artifact_ids.map(id=>artifactRow(artifacts[id])).join('')}</ul>${!stage.artifact_ids.length?'<p class="small muted">本步没有可供当前访问者下载的产物；执行状态按实际记录保留。</p>':''}</div></details>`;
+    }).join('');
+    const extra = sample.artifacts.filter(a=>!used.has(a.id));
+    return `<article class="worked-example-card" data-example="${esc(sample.id)}"><header class="example-heading"><div><p class="mission-eyebrow">真实园区 · ${esc(sample.id)}</p><h3>${esc(sample.name)}</h3><p>${esc(sample.status)} · 处理记录 ${esc(sample.processed_at || '时间未登记')}</p></div><div class="example-links">${sample.links.project?`<a href="${esc(sample.links.project)}">查看园区档案${authenticated?'':'（登录）'} →</a>`:''}${sample.links.map?`<a href="${esc(sample.links.map)}">在地图定位${authenticated?'':'（登录）'} →</a>`:''}</div></header><dl class="example-facts">${facts}</dl><div class="example-execution"><strong>本次实际执行</strong><span>${authenticated?`机器 ${esc(execution.machine || '未登记')} · 模型 ${esc(execution.model || '未使用或未登记')} · 操作者 ${esc(execution.actor || '未登记')}`:'登录后查看实际机器、模型与操作者。'}</span><span>阅读范围：${esc(execution.reading_scope || '未登记，不据此认定全文阅读')}</span></div><div class="example-stages">${stages}</div>${extra.length?`<details class="example-stage"><summary><strong>其他交付产物</strong></summary><ul class="example-artifacts example-stage-body">${extra.map(artifactRow).join('')}</ul></details>`:''}<div class="example-unknowns"><h4>本例仍然不知道什么</h4>${sample.unknowns.length?sample.unknowns.map(row=>`<article><strong>${esc(row.label)}</strong><p>${esc(row.reason)}</p><small>下一步：${esc(row.next_action)}</small></article>`).join(''):'<p class="small muted">未登记缺项清单，不据此声称信息完整。</p>'}</div><details class="example-source-list"><summary>原文出处与证据定位 · ${sample.sources.length} 项</summary>${sample.sources.map(s=>`<article id="example-${esc(sample.id)}-source-${esc(s.id)}"><strong>${esc(s.id)} · ${esc(s.title)}</strong>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">访问原始出处 ↗</a>`:''}<p>${esc(s.locator || '定位未登记')}</p>${s.artifact_id?`<ul class="example-artifacts">${artifactRow(artifacts[s.artifact_id])}</ul>`:''}</article>`).join('')}</details></article>`;
+  }
+  async function loadExamples() {
+    $('examples-status').textContent = '正在读取真实样例…';
+    try {
+      const response = await fetch('/api/research-task-examples',{cache:'no-store'});
+      if (!response.ok) throw Error('样例包暂不可用，请刷新或联系负责人修复。');
+      const data = await response.json();
+      if (!data.examples.length) {
+        $('examples-status').textContent = '真实样例尚未安装。';
+        $('example-content').innerHTML = '<div class="example-empty">目前没有可回查的真实样例包。原件、候选和真实回执安装后会逐步显示；这里不会用模板或假数据填成已完成。</div>';
+        return;
+      }
+      $('examples-status').textContent = '状态来自实际样例记录；每个下载文件按登记 SHA 和大小核对，缺失或变化会停止下载。';
+      $('example-content').innerHTML = data.examples.map(sample=>renderExample(sample,data.authenticated)).join('');
+    } catch (error) {
+      $('examples-status').textContent = error.message;
+      $('example-content').innerHTML = '<div class="example-empty">无法读取真实样例，请重试。已有样例不因暂时失败被重建或标为完成。</div>';
+    }
+  }
+  $('refresh-examples').addEventListener('click',loadExamples);
+  $('example-content').addEventListener('click',event=>{
+    const link = event.target.closest('a[href^="#example-"]');
+    if (!link) return;
+    const target = document.getElementById(link.getAttribute('href').slice(1));
+    if (!target) return;
+    event.preventDefault();
+    const drawer = target.closest('details'); if (drawer) drawer.open = true;
+    target.scrollIntoView({block:'start'}); target.tabIndex = -1; target.focus({preventScroll:true});
+  });
+  $('refresh-tasks').addEventListener('click',()=>{load();loadExamples();});
   $('package-filter').addEventListener('change',()=> {if(state)render();});
   load();
+  loadExamples();
 })();

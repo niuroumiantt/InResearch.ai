@@ -31,9 +31,10 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
  for (const file of manifest.static_pages) {
    const query = file==='doc.html'?'?f=framework/05_interface_system.md':'';
    await page.goto(base+'/'+file+query); await page.locator('#ui-skinbar').waitFor();
-   await page.locator('.ui-navigation a[aria-current=page]').waitFor();
-   assert.equal(await page.locator('.ui-navigation a[aria-current=page]').count(),1,file+' active section');
-   if(file==='index.html'){await page.locator('.ui-navigation a',{hasText:'管理'}).waitFor();assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['行业总览','任务跟踪','数据中心研究','账本','爆炸图','采集','成果','管理'],'authenticated directories include the task tracker');}
+   await page.locator('#ui-skinbar a[aria-current=page]').waitFor({state:'attached'});
+   assert.equal(await page.locator('#ui-skinbar a[aria-current=page]').count(),1,file+' active section');
+   assert.equal(await page.locator('.ui-navigation a[href="/login"], .ui-navigation a[href="/account"], .ui-navigation a[href="/ops.html"], .ui-navigation .ui-admin-link').count(),0,file+' business navigation only');
+   if(file==='index.html'){await page.locator('.ui-account-menu > summary').waitFor();assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['行业总览','任务跟踪','数据中心研究','账本','爆炸图','采集','成果'],'authenticated business directories include the task tracker');assert.equal(await page.locator('.ui-account-panel .ui-management-link').getAttribute('href'),'/ops.html');}
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') {await page.locator('#catalog-title').waitFor();assert.match(page.url(),/product-catalog.html/);}
    if(file==='report.html') {await page.locator('#cover').waitFor();assert.equal(await page.locator('section.chapter').count(),4);}
@@ -89,6 +90,14 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    const box=await page.locator('#ui-skinbar').boundingBox();assert.ok(box.width<=360);
    assert.ok(box.height<=90,file+' phone head bar is two rows, got '+box.height+'px');
    const b=await page.locator('#ui-appearance').boundingBox();assert.ok(b.x>=0 && b.x+b.width<=361,file+' appearance control on screen');
+   for(const width of [320,390]){
+     await page.setViewportSize({width,height:800});
+     const summary=page.locator('.ui-account-menu > summary');await summary.click();
+     const menu=await page.locator('.ui-account-panel').boundingBox(),header=await page.locator('#ui-skinbar').boundingBox();
+     assert.ok(header.width<=width && header.height<=90,file+' account header fits '+width);
+     assert.ok(menu.x>=0 && menu.x+menu.width<=width+1,file+' account menu fits '+width);
+     await summary.press('Escape');
+   }
    if(file==='research.html') {assert.ok((await measure()).width<=361);if(dir)await page.screenshot({path:path.join(dir,'research-mobile.png')});}
    await page.setViewportSize({width:1440,height:1000});console.log('PASS',file,'light/dark, fonts, controls + phone head bar');
  }

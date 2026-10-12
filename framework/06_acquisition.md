@@ -54,7 +54,9 @@ Spark 不执行采集任务；它接收已交付的永久原件、运行提取�
 
 `workflow.supply` 是供应中心人工需求与供应方任务计划唯一写入用例；生成目标由因子树、部件表和权利表产生，不在供应中心手写。`GET /api/supply` 为成员只读视图，并投影全部 `team=fetchspec` 的生成目标及 sourced/assumed/needed 计数；`POST /api/supply` 仅管理员经同源自定义请求头可创建补充需求、追加供应方任务。每项人工任务保存 execution_mode 与 execution_host，机器组合由能力目录强制校验。Fetchspec 接收 CLI `fetchspec-receive` 从文件系统接收已传输的 package，并将回执写入同一私有 supply-center 状态根；同一个任务 ID 必须存在且分配给 fetchspec。回执表只记传输验收，不代替原任务计划或生成目标。
 
-全球存量普查协作入口为 `/tasks.html`，`workflow.research_tasks` 仅管理项目协调工作包（地区、来源范围、负责人、截止日期、机器、模型与交付指针），不创建供应方执行任务，不自动调用模型或采集服务。管理员与成员可分配，实习生只更新分配给自己的工作包进展与交付；版本比较、请求UUID和审计防止覆盖与重复。私有 `data/raw/research-tasks/ledger.json` 沿现有运行根保存，读取不创建状态。工作包交付不代表原件已接收、信息已登记或研究已采用；正式数据从既有园区账本只读计量。
+全球存量普查协作入口为公开 `/tasks.html`，匿名读取任务目标、工作包范围/来源方向/状态与公开交付样例；真实人员、机器、模型、期限、备注与内部交付指针登录后显示。`workflow.research_tasks` 仅管理项目协调工作包，不创建供应方执行任务，不自动调用模型或采集服务。管理员与成员可分配，实习生只更新分配给自己的工作包进展与交付；版本比较、请求UUID和审计防止覆盖与重复。私有 `data/raw/research-tasks/ledger.json` 沿现有运行根保存，读取不创建状态。工作包交付不代表原件已接收、信息已登记或研究已采用；正式数据从既有园区账本只读计量。
+
+真实交付样例由 `workflow.research_task_examples` 从私有运行目录 `data/raw/research-task-examples/<样例ID>/example.json` 只读投影。样例分原件、候选与缺口、离线验包、实际接收、来源登记、发布及地图回执，各阶段只据实际产物标记，不由工作包状态推定。原件和完整运行回执不进Git；公开下载必须逐产物显式声明public并核对内容，缺省private。公开收据移除凭据、本机路径和内部身份；公开源不自动使完整接收审计公开。样例保留原生PDF/HTML及SHA、选中页/片段定位、独立时间、未知指标、失败/补源和幂等重放。首次园区坐标沿01的带来源身份登记，未知IT容量仍可按真实位置和阶段展示，不填零或制造GW增量。
 
 交付复用员工共同 `fetchdata-handoff/1`（原生原件、manifest、SHA256SUMS、observations.jsonl、errors.jsonl、run-report），OCR/文本/JSON是带原件身份与定位的派生物。四队包仍是交换格式，不能冒充Fetchspec生产接收。一般园区来源不需要模型目标或全文/C3前置，按01的source-statements逐条基础登记；研究结论和模型用途另验。
 

@@ -1,7 +1,8 @@
-# Only the homepage is public; login, research and work pages are private.
+# Homepage and task brief are public; other pages require login.
 User-agent: *
 Disallow: /
 Allow: /$
 Allow: /index.html$
+Allow: /tasks.html$
 Allow: /assets/
 Disallow: /api/

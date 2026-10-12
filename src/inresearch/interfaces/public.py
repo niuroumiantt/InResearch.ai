@@ -1,4 +1,4 @@
-"""Only the homepage and its bounded rendering dependencies are anonymous.
+"""The homepage and task guide have explicit anonymous read projections.
 
 All other pages, research files, APIs and assets require a session. The former
 reader grants remain explicit intern grants; hiding navigation never authorizes
@@ -25,13 +25,14 @@ INTERN_RESEARCH_DATA = ('/data/dashboard.json', '/data/dashboard_rules.json', '/
 # 只读接口。写接口、任务板、供应台账、用户管理不在内。规格库每家登记公司一条（GET 只读；POST 接收端仍要机器凭证）。
 INTERN_RESEARCH_API = ('/api/industry', '/api/observations', '/api/whoami', '/api/report', '/api/news', '/api/company-window', '/api/company-quote', '/api/targets/backflow', '/api/model-assets',
               *('/api/product-catalog/' + company for company in COMPANIES))
-# Login and homepage resources are individually declared, never all /assets/.
-READER_PAGES = ('/', '/index.html')
-READER_API = ('/api/whoami',)
+# Login, homepage and task resources are individually declared, never all /assets/.
+READER_PAGES = ('/', '/index.html', '/tasks.html')
+READER_API = ('/api/whoami', '/api/research-tasks', '/api/research-task-examples')
 READER_ASSETS = ('/assets/theme-state.js', '/assets/site-skin.js', '/assets/site-skin.css',
                  '/assets/auth-form.js', '/assets/auth.css', '/assets/industry.js',
                  '/assets/industry.css', '/assets/datacenter-news.js', '/assets/datacenter-news.css',
                  '/assets/world.geo.json', '/assets/world-detail.geo.json',
+                 '/assets/research-tasks.js', '/assets/research-tasks.css',
                  *('/assets/map-admin1-' + str(i) + '.geo.json' for i in range(12)))
 READER_PREFIXES = ('/assets/fonts/',)
 READER_AUTH = ('/login',)
@@ -41,7 +42,7 @@ HOME_DATA_API = ('/api/industry', '/api/news')
 
 
 def allowed(path, query=''):
-    """Allow only GET/HEAD dependencies of the homepage and login mechanism.
+    """Allow explicit GET/HEAD dependencies of the homepage, tasks and login.
 
     The query is checked separately from the normalized path: overview must be
     the only parameter and exactly 1, so company/detail/export queries stay private.
@@ -51,6 +52,11 @@ def allowed(path, query=''):
     query = query or parsed.query
     if path in HOME_DATA_API:
         return parse_qs(query, keep_blank_values=True) == {'overview': ['1']}
+    if path.startswith('/api/research-task-examples/'):
+        import re
+        return not query and bool(re.fullmatch(r'/api/research-task-examples/equinix-sg3-20261012/files/[A-Za-z0-9][A-Za-z0-9._-]{0,99}', path))
+    if path in ('/api/research-tasks', '/api/research-task-examples') and query:
+        return False
     return (path in READER_PAGES or path in READER_API or path in READER_ASSETS
             or path in READER_AUTH or path in READER_PROBE
             or any(path.startswith(prefix) for prefix in READER_PREFIXES))

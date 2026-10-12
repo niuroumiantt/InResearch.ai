@@ -43,6 +43,114 @@ class SourcePublicationTests(unittest.TestCase):
         self.assertFalse((self.data/'original.txt').is_symlink())
         self.assertTrue((self.data/'original.txt').exists())
 
+    def test_initial_coordinate_identity_reaches_runtime_map_and_cannot_move(self):
+        from inresearch.knowledge.industry import project
+        self.item['identity'].update(coordinates='1.3254,103.6751', coordinate_source={
+            'precision':'address', 'coordinate_system':'WGS84', 'method':'address_geocode',
+            'source_sha256':self.sha, 'url':'https://example.org/map', 'locator':'/result/0',
+            'basis':'Address point; not a surveyed building centre'})
+        intake.apply(self.root,self.data,self.item)
+        payload = publication.bundle(self.root)
+        (self.root/'data/projects.json').write_text(json.dumps({'records':[]}))
+        publication.install(self.root,payload)
+        self.assertEqual(project(publication.projects(self.root)['records'][0])['coordinates'], [1.3254,103.6751])
+        before = (Path(self.runtime.name)/publication.PATH).read_bytes()
+        bad = copy.deepcopy(payload)
+        bad['sites'][0]['baseline']['coordinates'] = '1.4,103.7'
+        bad['sites'][0]['baseline']['identity_registration']['coordinates'] = '1.4,103.7'
+        with self.assertRaisesRegex(ValueError, 'immutable_site_identity'):publication.install(self.root,bad)
+        self.assertEqual(before,(Path(self.runtime.name)/publication.PATH).read_bytes())
+        # A code baseline may not retain an old identity block while moving its point.
+        code = publication.projects(self.root)
+        code['records'][0]['coordinates'] = '1.4,103.7'
+        (self.root/'data/projects.json').write_text(json.dumps(code))
+        with self.assertRaisesRegex(ValueError, 'identity_mismatch'):publication.projects(self.root)
+
+    def test_site_roles_accept_valid_same_batch_and_existing_runtime_companies(self):
+        claim = self.claims()[0]
+        intake.apply(self.root,self.data,claim)
+        self.item['fields']['operator'] = ['named-company']
+        intake.apply(self.root,self.data,self.item)
+        payload = publication.bundle(self.root)
+        (self.root/'data/projects.json').write_text(json.dumps({'records':[]}))
+        (self.root/ledger.PATH).unlink()
+        receipt = publication.install(self.root,payload)
+        self.assertEqual((receipt['new_sites'],receipt['new_records']), (1,2))
+        self.assertEqual(publication.companies(self.root)['records'][0]['company_id'], 'named-company')
+        self.item['fields']['owner'] = ['named-company']
+        intake.apply(self.root,self.data,self.item)
+        later = publication.bundle(self.root);later.update(objects={},records=[])
+        (self.root/'data/projects.json').write_text(json.dumps({'records':[]}))
+        self.assertEqual(publication.install(self.root,later)['new_records'], 1)
+
+    def test_bad_or_unknown_same_batch_company_is_rejected_atomically(self):
+        claim = self.claims()[0];intake.apply(self.root,self.data,claim)
+        self.item['fields']['operator'] = ['named-company']
+        intake.apply(self.root,self.data,self.item)
+        payload = publication.bundle(self.root)
+        (self.root/'data/projects.json').write_text(json.dumps({'records':[]}))
+        (self.root/ledger.PATH).unlink()
+        bad = copy.deepcopy(payload);bad.update(objects={},records=[])
+        with self.assertRaisesRegex(ValueError, 'unknown_participant'):publication.install(self.root,bad)
+        bad = copy.deepcopy(payload)
+        next(iter(bad['objects'].values()))['id'] = 'company:wrong'
+        with self.assertRaisesRegex(ValueError, 'identity_digest'):publication.install(self.root,bad)
+        bad = copy.deepcopy(payload);bad['records'] = []
+        with self.assertRaisesRegex(ValueError, 'unreferenced_object'):publication.install(self.root,bad)
+        self.assertFalse((Path(self.runtime.name)/publication.PATH).exists())
+        publication.install(self.root,payload)
+        before = (Path(self.runtime.name)/publication.PATH).read_bytes()
+        bad = copy.deepcopy(payload);next(iter(bad['objects'].values()))['name'] = 'Different legal entity'
+        with self.assertRaisesRegex(ValueError, 'identity_collision'):publication.install(self.root,bad)
+        self.assertEqual(before,(Path(self.runtime.name)/publication.PATH).read_bytes())
+
+    def company_payload(self):
+        intake.apply(self.root,self.data,self.claims()[0])
+        payload = publication.bundle(self.root)
+        (self.root/ledger.PATH).unlink()
+        return payload
+
+    def relabel_company(self, payload, ident, name):
+        result = copy.deepcopy(payload)
+        obj = ledger.object_record('company', {'company_id':ident}, name)
+        result['objects'] = {obj['id']:obj}
+        result['records'][0]['object_id'] = obj['id']
+        result['records'][0]['id'] += '-'+ident
+        return result
+
+    def test_company_name_conflicts_with_code_directory_reject_without_writes(self):
+        payload = self.company_payload()
+        (self.root/'data/companies.json').write_text(json.dumps({'records':[
+            {'company_id':'existing-company','name':'NAME COMPANY'}]}))
+        with self.assertRaisesRegex(ValueError, 'duplicate_company_identity'):
+            publication.install(self.root,payload)
+        same_id = self.relabel_company(payload,'existing-company','Different legal entity')
+        with self.assertRaisesRegex(ValueError, 'immutable_company_identity'):
+            publication.install(self.root,same_id)
+        self.assertFalse((Path(self.runtime.name)/publication.PATH).exists())
+        exact_identity = self.relabel_company(payload,'existing-company','NAME COMPANY')
+        self.assertEqual(publication.install(self.root,exact_identity)['new_records'], 1)
+
+    def test_company_name_conflicts_with_runtime_and_same_batch_are_atomic(self):
+        payload = self.company_payload();publication.install(self.root,payload)
+        path = Path(self.runtime.name)/publication.PATH;before = path.read_bytes()
+        duplicate = self.relabel_company(payload,'other-company','nAmE cOmPaNy')
+        with self.assertRaisesRegex(ValueError, 'duplicate_company_identity'):
+            publication.install(self.root,duplicate)
+        self.assertEqual(before,path.read_bytes())
+        collision = self.relabel_company(payload,'named-company','Different legal entity')
+        with self.assertRaisesRegex(ValueError, 'immutable_object_identity'):
+            publication.install(self.root,collision)
+        self.assertEqual(before,path.read_bytes())
+        # A fresh install has no previous state to catch an intra-batch duplicate.
+        path.unlink()
+        together = copy.deepcopy(payload)
+        together['objects'].update(duplicate['objects'])
+        together['records'].extend(duplicate['records'])
+        with self.assertRaisesRegex(ValueError, 'duplicate_company_identity'):
+            publication.install(self.root,together)
+        self.assertFalse(path.exists())
+
     def test_code_release_retains_runtime_additions_and_identical_git_import_is_not_duplicated(self):
         intake.apply(self.root,self.data,self.item)
         payload=publication.bundle(self.root)

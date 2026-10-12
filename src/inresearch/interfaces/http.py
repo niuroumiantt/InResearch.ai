@@ -24,6 +24,7 @@ from inresearch.workflow import operations
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
 from inresearch.workflow import research_tasks
+from inresearch.workflow import research_task_examples
 from inresearch.workflow import news_marks
 from inresearch.workflow import dispatch
 from inresearch.workflow import pilot_progress
@@ -113,7 +114,9 @@ class Handler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         compressible = getattr(self, '_compressible_response', False)
-        private = self._norm_path() in ('/login', '/api/whoami') or not public.allowed(self._norm_path(), urlsplit(self.path).query)
+        private = (self._norm_path() in ('/login', '/api/whoami', '/api/research-tasks', '/api/research-task-examples')
+                   or self._norm_path().startswith('/api/research-task-examples/')
+                   or not public.allowed(self._norm_path(), urlsplit(self.path).query))
         if private or compressible:
             self.send_header('Cache-Control', 'private, no-store')
             vary = ['Cookie'] if private else []
@@ -260,7 +263,8 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_HEAD(self):
         # Dynamic public mechanisms must implement the same HEAD gate as GET.
-        if self._norm_path() in ('/healthz', '/api/whoami', '/login', *public.HOME_DATA_API):
+        if (self._norm_path() in ('/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/research-task-examples', *public.HOME_DATA_API)
+                or self._norm_path().startswith('/api/research-task-examples/')):
             return self._get()
         # Static HEAD still passes authentication and role checks before file metadata.
         user = self._gate()
@@ -635,6 +639,34 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, research_tasks.snapshot(ROOT, actor=user or 'local', role=self._role(user)))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '任务跟踪暂不可用，请稍后重试'})
+        if self._norm_path() == '/api/research-task-examples':
+            try:
+                return self._json(200, research_task_examples.snapshot(ROOT, authenticated=self._role(user) != 'reader'))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '真实样例包暂不可用，请刷新或联系负责人修复'})
+        if self._norm_path().startswith('/api/research-task-examples/'):
+            match = re.fullmatch(r'/api/research-task-examples/([A-Za-z0-9._-]+)/files/([A-Za-z0-9._-]+)', self._norm_path())
+            if not match or urlsplit(self.path).query:
+                return self._json(404, {'ok': False, 'error': '样例产物不存在'})
+            try:
+                artifact = research_task_examples.download(ROOT, *match.groups(), authenticated=self._role(user) != 'reader')
+            except research_task_examples.PrivateArtifact:
+                return self._json(401, {'ok': False, 'error': '此样例产物登录后可下载'})
+            except research_task_examples.NotInstalled:
+                return self._json(404, {'ok': False, 'error': '样例产物未安装或未登记'})
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(409, {'ok': False, 'error': '样例产物缺失或内容已变化，不能下载'})
+            from urllib.parse import quote
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/octet-stream')
+            self.send_header('Content-Length', str(len(artifact['body'])))
+            self.send_header('Content-Disposition', "attachment; filename*=UTF-8''" + quote(artifact['filename'], safe=''))
+            self.send_header('X-Content-Type-Options', 'nosniff')
+            self.send_header('X-Content-SHA256', artifact['sha256'])
+            self.end_headers()
+            if self.command != 'HEAD':
+                self.wfile.write(artifact['body'])
+            return
         if urlsplit(self.path).path == '/api/tasks':
             try:
                 return self._json(200, research.task_board(ROOT))

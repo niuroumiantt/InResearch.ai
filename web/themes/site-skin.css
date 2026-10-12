@@ -85,16 +85,16 @@ html[data-ui-skin] .co.sel{outline:1px solid var(--ui-ink);outline-offset:-1px}
 
 .ui-icon{width:17px;height:17px;flex:none;vertical-align:middle;fill:none;stroke:currentColor}
 html[data-ui-skin] .ui-icon{stroke-width:1.2;stroke-linejoin:miter;stroke-linecap:square}
-html[data-ui-skin] #ui-skinbar{position:fixed;top:0;left:0;right:0;z-index:1000;box-sizing:border-box;display:flex;align-items:center;gap:16px;flex-wrap:wrap;min-height:53px;margin:0;padding:9px 20px;background:var(--ui-surface);color:var(--ui-ink);border:0;border-bottom:1px solid var(--ui-line);border-radius:0;box-shadow:none;font:13px/1.35 var(--ui-font);width:auto;text-align:left}
+html[data-ui-skin] #ui-skinbar{position:fixed;top:0;left:0;right:0;z-index:1000;box-sizing:border-box;display:flex;align-items:center;gap:16px;flex-wrap:nowrap;min-height:53px;margin:0;padding:9px 20px;background:var(--ui-surface);color:var(--ui-ink);border:0;border-bottom:1px solid var(--ui-line);border-radius:0;box-shadow:none;font:13px/1.35 var(--ui-font);width:auto;text-align:left}
 html[data-ui-skin] #ui-skinbar *{box-sizing:border-box}
-html[data-ui-skin] #ui-skinbar .ui-home{display:inline-flex;align-items:center;gap:8px;color:var(--ui-ink);font:600 14px/1.3 var(--ui-font);margin:0;text-decoration:none}
+html[data-ui-skin] #ui-skinbar .ui-home{display:inline-flex;flex:none;align-items:center;gap:8px;color:var(--ui-ink);font:600 14px/1.3 var(--ui-font);margin:0;text-decoration:none}
 /* Native horizontal scrollbars must not add a third phone-header row. Scrolling remains enabled. */
-.ui-navigation{display:flex;align-items:center;gap:4px;min-width:0;overflow:auto;scrollbar-width:none}
+.ui-navigation{display:flex;flex:1;align-items:center;gap:4px;min-width:0;overflow:auto;scrollbar-width:none}
 .ui-navigation::-webkit-scrollbar{display:none}
 .ui-navigation a{display:block;flex:none;padding:7px 12px;color:var(--ui-secondary);text-decoration:none;border-bottom:1px solid transparent;white-space:nowrap}
 .ui-navigation a[aria-current=page]{color:var(--ui-accent);border-bottom-color:var(--ui-accent)}
 .ui-navigation a:hover{background:var(--ui-hover);color:var(--ui-ink)}
-@media(max-width:1000px){.ui-navigation{order:3;width:100%;gap:2px}.ui-navigation a{padding:7px 12px}}
+@media(max-width:1000px){html[data-ui-skin] #ui-skinbar{flex-wrap:wrap}.ui-navigation{order:3;flex:0 0 100%;width:100%;gap:2px}.ui-navigation a{padding:7px 12px}}
 html[data-ui-skin] #ui-skinbar label{display:flex;align-items:center;gap:7px;color:var(--ui-muted);font:12px/1.3 var(--ui-font);margin:0;width:auto}
 html[data-ui-skin] #ui-skinbar select{font:12px/1.35 var(--ui-font);padding:5px 28px 5px 8px;background-color:var(--ui-surface);color:var(--ui-ink);border:1px solid var(--ui-line);border-radius:var(--ui-control-radius);width:auto;margin:0}
 html[data-ui-skin] #ui-skinbar #ui-save-status{font-size:11px;color:var(--ui-yellow);padding:0;border:0;width:auto}
@@ -127,9 +127,32 @@ html[data-ui-skin] .rg-chip[data-tone=gold]{color:var(--rg-gold)}
 html[data-ui-skin] .rg-chip[data-tone=blue]{color:var(--rg-blue)}
 
 /* Style and appearance stay together on the right of the shared header. */
-html[data-ui-skin] #ui-skinbar .ui-appearance-controls{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-left:auto;flex-wrap:wrap}
+html[data-ui-skin] #ui-skinbar .ui-appearance-controls{position:relative;display:flex;flex:none;align-items:center;justify-content:flex-end;gap:12px;margin-left:auto;flex-wrap:nowrap}
+html[data-ui-skin] #ui-skinbar #ui-save-status:not(:empty){position:absolute;top:calc(100% + 4px);right:0;max-width:calc(100vw - 20px);padding:4px 7px;background:var(--ui-surface);border:1px solid var(--ui-line)}
+.ui-account{position:relative;flex:none;min-width:0}
+html[data-ui-skin] #ui-skinbar .ui-account-menu{margin:0;padding:0;border:0;background:transparent}
+html[data-ui-skin] #ui-skinbar .ui-login,html[data-ui-skin] #ui-skinbar .ui-account-menu>summary{display:flex;align-items:center;gap:7px;min-height:28px;margin:0;padding:5px 10px;border:1px solid var(--ui-line);border-radius:var(--ui-control-radius);background:var(--ui-surface);color:var(--ui-ink);font:12px/1.35 var(--ui-font);text-decoration:none;white-space:nowrap;cursor:pointer}
+.ui-account-menu>summary{list-style:none;max-width:240px}
+.ui-account-menu>summary::-webkit-details-marker{display:none}
+.ui-account-menu>summary::after{content:'';flex:none;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.ui-account-name{min-width:0;max-width:135px;overflow:hidden;text-overflow:ellipsis}
+.ui-account-role{color:var(--ui-muted);font-size:11px}
+html[data-ui-skin] #ui-skinbar .ui-account-menu>summary:hover,html[data-ui-skin] #ui-skinbar .ui-login:hover{background:var(--ui-hover)}
+html[data-ui-skin] #ui-skinbar summary:focus-visible{outline:2px solid var(--ui-accent);outline-offset:3px}
+.ui-account-panel{position:absolute;top:calc(100% + 10px);right:0;width:240px;max-width:calc(100vw - 20px);padding:7px;border:1px solid var(--ui-frame);background:var(--ui-surface);box-shadow:0 10px 28px #00000012}
+html[data-ui-skin] #ui-skinbar .ui-account-identity{display:flex;flex-direction:column;gap:3px;margin:0 0 5px;padding:8px 10px 11px;border-bottom:1px solid var(--ui-line);overflow-wrap:anywhere}
+.ui-account-identity strong{color:var(--ui-ink);font-weight:600}
+.ui-account-identity span{color:var(--ui-muted);font-size:11px}
+html[data-ui-skin] #ui-skinbar .ui-account-panel a{display:block;padding:9px 10px;color:var(--ui-ink);font:13px/1.4 var(--ui-font);text-decoration:none}
+html[data-ui-skin] #ui-skinbar .ui-account-panel a:hover,html[data-ui-skin] #ui-skinbar .ui-account-panel a[aria-current=page]{background:var(--ui-hover)}
+html[data-ui-skin] #ui-skinbar .ui-account-panel .ui-logout{border-top:1px solid var(--ui-line);margin-top:5px;color:var(--ui-secondary)}
+html[data-ui-skin] .ui-profile{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 16px;margin:18px 0 24px;padding-bottom:18px;border-bottom:1px solid var(--ui-line)}
+html[data-ui-skin] .ui-profile dt{color:var(--ui-muted)}
+html[data-ui-skin] .ui-profile dd{margin:0;color:var(--ui-ink);overflow-wrap:anywhere}
+html[data-ui-skin] body.ui-auth form h2{font-size:16px;margin:0 0 18px}
 html[data-ui-skin] #ui-skinbar #ui-save-status:empty{display:none}
-@media(max-width:700px){html[data-ui-skin] #ui-skinbar .ui-appearance-controls{gap:8px;flex-wrap:nowrap}}
+@media(max-width:700px){html[data-ui-skin] #ui-skinbar .ui-appearance-controls{gap:8px}.ui-account-role{display:none}.ui-account-menu>summary{max-width:110px}.ui-account-name{max-width:75px}}
+@media(max-width:400px){.ui-appearance-label{display:none}html[data-ui-skin] #ui-skinbar select{width:78px}html[data-ui-skin] #ui-skinbar label{gap:0}.ui-account-menu>summary{max-width:80px}.ui-account-name{max-width:48px}html[data-ui-skin] #ui-skinbar .ui-account-menu>summary{padding-inline:7px;gap:5px}}
 
 /* A frame encloses content; quieter separators organize the content inside it. */
 html[data-ui-skin] :is(h1,h2,h3,h4,.rg-node h2,.bh h2){color:var(--ui-ink);font-weight:var(--ui-heading-weight);letter-spacing:var(--ui-tracking)}

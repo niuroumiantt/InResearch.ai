@@ -80,3 +80,87 @@ class SourceStatementTests(unittest.TestCase):
         from inresearch.knowledge.industry import project
         view=project(self.row());self.assertEqual(view['stage_label'],'阶段待核实')
         self.assertEqual(view['registration_status'],'unverified')
+
+    def located_item(self):
+        raw = self.data/'geocode.json'
+        raw.write_text('{"LATITUDE":"1.3254","LONGITUDE":"103.6751","ADDRESS":"Named Campus"}')
+        sha = hashlib.sha256(raw.read_bytes()).hexdigest()
+        with sqlite3.connect(self.data/'catalog/catalog.sqlite') as db:
+            db.execute('insert into documents values(?,?,?)', ('doc-'+sha, sha, 'geocode.json'))
+            db.execute('insert into sources values(?,?,?,?)', (2, 'doc-'+sha, '/private/geocode.json', 1704067201))
+        item = copy.deepcopy(self.item)
+        item['identity'].update(coordinates='1.3254,103.6751', coordinate_source={
+            'precision':'address', 'coordinate_system':'WGS84', 'method':'address_geocode',
+            'source_sha256':sha, 'url':'https://example.org/geocode?address=NamedCampus',
+            'locator':'/results/0/LATITUDE and /results/0/LONGITUDE',
+            'basis':'Official address match; address location, not a surveyed building centre'})
+        item['fields']['status'] = 'L8'
+        return item
+
+    def test_initial_coordinates_register_map_point_with_private_source_audit(self):
+        from inresearch.knowledge.industry import project
+        item = self.located_item()
+        self.register(item)
+        view = project(self.row())
+        self.assertEqual(view['coordinates'], [1.3254,103.6751])
+        self.assertEqual(view['geography']['coordinate_source']['precision'], 'address')
+        self.assertNotIn('source_sha256', view['geography']['coordinate_source'])
+        self.assertNotIn('locator', view['geography']['coordinate_source'])
+        self.assertEqual(view['registration_status'], 'unverified')
+        before = (self.root/'data/projects.json').read_bytes()
+        self.assertEqual(self.register(item)['state'], 'already_registered')
+        self.assertEqual(before, (self.root/'data/projects.json').read_bytes())
+
+    def test_initial_coordinates_require_source_precision_and_finite_wgs84_bounds(self):
+        from inresearch.knowledge.site_register import check_initial_identity
+        item = self.located_item()
+        for value in ('91,103', '1,181', 'NaN,103', '1,Infinity', '1e309,103', '1,2,3'):
+            identity = copy.deepcopy(item['identity']);identity['coordinates'] = value
+            with self.subTest(coordinates=value), self.assertRaisesRegex(ValueError, 'coordinates'):
+                check_initial_identity(identity)
+        for key in ('coordinates', 'coordinate_source'):
+            identity = copy.deepcopy(item['identity']);identity.pop(key)
+            with self.assertRaisesRegex(ValueError, 'required_together'):check_initial_identity(identity)
+        for key, value in (('precision','city'), ('precision','building'), ('coordinate_system','SVY21'),
+                           ('source_sha256','bad'), ('url','http://example.org/map'),
+                           ('url','https://user:password@example.org/map'), ('locator','')):
+            identity = copy.deepcopy(item['identity']);identity['coordinate_source'][key] = value
+            with self.subTest(field=key,value=value), self.assertRaises(ValueError):check_initial_identity(identity)
+
+    def test_reported_coordinate_table_is_distinct_from_map_or_address_geocoding(self):
+        from inresearch.knowledge.site_register import check_initial_identity
+        from inresearch.knowledge.industry import project
+        item = self.located_item()
+        item['identity']['coordinate_source'].update(method='reported_coordinates', precision='site',
+            basis='Operator-reported point displayed in WGS84; not a surveyed boundary or entrance')
+        check_initial_identity(item['identity'])
+        self.register(item)
+        view = project(self.row())
+        self.assertEqual(view['geography']['coordinate_source']['method'], 'reported_coordinates')
+        self.assertEqual(view['geography']['coordinate_source']['coordinate_system'], 'WGS84')
+        self.assertEqual(view['registration_status'], 'unverified')
+
+    def test_coordinate_source_bytes_are_real_and_reverified_on_replay(self):
+        item = self.located_item();bad = copy.deepcopy(item)
+        bad['identity']['coordinate_source']['source_sha256'] = 'f'*64
+        with self.assertRaisesRegex(ValueError, 'received_source_required'):self.register(bad)
+        self.assertEqual(json.loads((self.root/'data/projects.json').read_text())['records'], [])
+        self.register(item);before = (self.root/'data/projects.json').read_bytes()
+        (self.data/'geocode.json').write_text('changed geocoding response')
+        with self.assertRaisesRegex(ValueError, 'bytes_changed'):self.register(item)
+        self.assertEqual(before, (self.root/'data/projects.json').read_bytes())
+
+    def test_existing_coordinates_and_source_cannot_be_changed_or_added(self):
+        item = self.located_item();self.register(item)
+        before = (self.root/'data/projects.json').read_bytes()
+        for key, value in (('coordinates','1.4,103.7'), ('coordinate_source',
+                           {**item['identity']['coordinate_source'], 'basis':'different address'})):
+            bad = copy.deepcopy(item);bad['identity'][key] = value
+            with self.assertRaisesRegex(ValueError, 'identity_changed:'+key):self.register(bad)
+        self.assertEqual(before, (self.root/'data/projects.json').read_bytes())
+        self.item['site_id'] = self.item['identity']['site_id'] = 'another-campus'
+        self.item['identity']['name'] = self.item['fields']['name'] = 'Another Campus'
+        self.register()
+        bad = copy.deepcopy(self.item)
+        bad['identity'].update({k:item['identity'][k] for k in ('coordinates','coordinate_source')})
+        with self.assertRaisesRegex(ValueError, 'identity_changed:coordinates'):self.register(bad)
