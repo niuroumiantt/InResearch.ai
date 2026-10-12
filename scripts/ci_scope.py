@@ -246,10 +246,12 @@ def project_observations_append_only(before, after):
         added += len(following)-len(prior)
     names={str(name).casefold() for p in a for name in [p.get('name'),*(p.get('aliases') or [])] if name}
     for project in b[len(a):]:
-        if (not isinstance(project,dict) or not initial_site_append_valid(project)
-                or project.get('site_id') in identities or project['name'].casefold() in names):
+        if not isinstance(project,dict) or not initial_site_append_valid(project):
             return False
-        identities.add(project['site_id']);names.add(project['name'].casefold())
+        incoming_names={str(n).casefold() for n in [project['name'],*(project.get('aliases') or [])]}
+        if project.get('site_id') in identities or incoming_names & names:
+            return False
+        identities.add(project['site_id']);names.update(incoming_names)
         added += len(project['observations'])
     return added > 0
 

@@ -66,6 +66,8 @@ class ProjectReviewTests(unittest.TestCase):
         project_review.apply(self.root,self.data,p)
         bad=copy.deepcopy(p);bad['project']['site_id']='fi-salo-another';bad['initial_identity']['site_id']='fi-salo-another';bad['object_binding']['site_id']='fi-salo-another'
         with self.assertRaisesRegex(ValueError,'duplicate_project_identity'):project_review.apply(self.root,self.data,bad)
+        bad['project']['name']='Renamed campus';bad['initial_identity']['name']='Renamed campus';bad['project']['aliases']=['fin05']
+        with self.assertRaisesRegex(ValueError,'duplicate_project_identity'):project_review.apply(self.root,self.data,bad)
 
     def test_initial_site_cannot_inject_unreviewed_baseline_or_history(self):
         p=self.initial_proposal();before=(self.root/'data/projects.json').read_bytes()

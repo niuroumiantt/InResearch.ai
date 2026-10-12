@@ -460,8 +460,8 @@ def apply(root, data, proposal):
                     raise ValueError('initial_site_requires_reviewed_name_and_status')
                 for existing in value['records']:
                     names = {str(x).casefold() for x in [existing.get('name'), *(existing.get('aliases') or [])]}
-                    if p['name'].casefold() in names or (p['country'] == existing.get('country') and
-                            set(p.get('aliases') or []) & set(existing.get('aliases') or [])):
+                    incoming_names = {str(x).casefold() for x in [p['name'], *(p.get('aliases') or [])]}
+                    if incoming_names & names:
                         raise ValueError('possible_duplicate_project_identity')
                 old = {k:v for k,v in p.items() if k != 'adoption'}
                 old['identity_registration'] = initial

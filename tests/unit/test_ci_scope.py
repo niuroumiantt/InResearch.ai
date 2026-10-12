@@ -164,6 +164,9 @@ class CiScopeTests(unittest.TestCase):
         for field,value in [('capacity_it_mw',100),('name','changed'),('identity_registration',{}),('site_id','fixed-campus')]:
             bad=copy.deepcopy(following);bad['records'][-1][field]=value
             with self.subTest(field=field):self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
+        bad=copy.deepcopy(following);bad['records'][0]['name']='EXISTING';bad['records'][-1]['aliases']=['existing']
+        before=copy.deepcopy(self.projects);before['records'][0]['name']='EXISTING'
+        self.assertFalse(ci.project_observations_append_only(json.dumps(before),json.dumps(bad)))
         bad=copy.deepcopy(following);bad['records'][-1]['observations'][0]['revision']={'action':'correct'}
         self.assertFalse(ci.project_observations_append_only(json.dumps(self.projects),json.dumps(bad)))
         bad=copy.deepcopy(following);bad['records'][0]['country']='CN'
