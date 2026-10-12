@@ -69,7 +69,7 @@
     "tests/scene_framing.cjs": "0d4a3882b2c0fb542f5c140d0643645c7305bd444fb907f604c22ac271a665df",
     "tests/scene_resources.cjs": "c86e3681d0fe640c64edd9cca3c669731078cd1b426bf722ac569a83ce1db820",
     "tests/supply.cjs": "d49ff7a642d8aae914f3298cc91aee6ca27606f9f7b2e3fb88579fcd6bca1356",
-    "tests/ui_skin.cjs": "49a294c2e397c4c62d2772b5b3700a4f0cdc419c56367671ef9ec671685c9108",
+    "tests/ui_skin.cjs": "65871208272a200e70828b07859175f7fac453afd3da7f120d2be95b60ea183d",
     "tests/unit/deep_read_fixtures.py": "9e6da1b10acf02b9fc04f906b42c7b65432db14b2fb250792d880110be362aa7",
     "tests/unit/test_acquisition.py": "9759d573e19ed4714c58c790785ab2043beebc05c20d4b04b26531751c6a01dd",
     "tests/unit/test_apply_triage.py": "dad79b6f60099206f6f5d32eb1cd3ebf8c9a46af9e0ea055a33ca3ece2bd51f1",
@@ -3176,7 +3176,7 @@
       "policy": "ci-impact-20261010",
       "scope": "project",
       "source": "docs/CI.md",
-      "checked_requirement": "完整 Git 差异保守分流；仅追加研究资料必须保持完整 JSON 旧记录/顺序/类型、answers、版本和结构，唯一新增ID且无替代或放宽审核；固定研究/来源/审核/发布/HTTP回归和一个research浏览器作业，原成果与摘要测试完整执行，入口缺失报错；普通资料图像真实解码及新增引用检查；代码/结构/非追加数据/依赖/规则/未知全套；混合检查取并集、汇总门禁只允许未选作业跳过、两个必过真正成功，完整场景仍恰覆盖一次。；2026-10-10重新审阅：validate增加交付卡目标/对象绑定/指针/重复检查；两必过汇总和全套代码规则路线、原时限保持；实质批次/实际耗时与研究闭环分别计量。；2026-10-11逐条复审站点追加：完整JSON保持顶层、身份顺序、基线与旧观测值/类型，只追加v2有来源/采用的非修订观测；固定站点/原件写入/行业HTTP回归，research+industry浏览器缺任一不得汇总通过。地理补录、旧值/修订/规则/混合程序改动仍全套。；2026.10.11.99实际复审：对象账本完整严格JSON保持旧对象及记录值/类型/顺序，1–500新增观测及被引用的新身份摘要，修订/身份变更/歧义JSON/混合实现仍full；固定回归补对象采用和Fetchspec，industry缺失不得汇总。实际Dockerfile两次隔离构建验证所有稳定层同一digest、动态数据变化、资产路径存在且Git/凭据/SQLite伪造夹具隔离；来源C3不由CI授予。本实现首次全套，后续吞吐另实测。；归档纯追加接受冻结导入来源形状，缺失/伪造记录摘要回到full。；首次具名园区末尾追加保留全部旧值/类型/顺序，身份字段/首条name及status一致、容量基线空、来源采用非空，目标为空；修订、身份或混合源码变化全套。",
+      "checked_requirement": "完整 Git 差异保守分流；仅追加研究资料必须保持完整 JSON 旧记录/顺序/类型、answers、版本和结构，唯一新增ID且无替代或放宽审核；固定研究/来源/审核/发布/HTTP回归和一个research浏览器作业，原成果与摘要测试完整执行，入口缺失报错；普通资料图像真实解码及新增引用检查；代码/结构/非追加数据/依赖/规则/未知全套；混合检查取并集、汇总门禁只允许未选作业跳过、两个必过真正成功，完整场景仍恰覆盖一次。；2026-10-10重新审阅：validate增加交付卡目标/对象绑定/指针/重复检查；两必过汇总和全套代码规则路线、原时限保持；实质批次/实际耗时与研究闭环分别计量。；2026-10-11逐条复审站点追加：完整JSON保持顶层、身份顺序、基线与旧观测值/类型，只追加v2有来源/采用的非修订观测；固定站点/原件写入/行业HTTP回归，research+industry浏览器缺任一不得汇总通过。地理补录、旧值/修订/规则/混合程序改动仍全套。；2026.10.11.99实际复审：对象账本完整严格JSON保持旧对象及记录值/类型/顺序，1–500新增观测及被引用的新身份摘要，修订/身份变更/歧义JSON/混合实现仍full；固定回归补对象采用和Fetchspec，industry缺失不得汇总。实际Dockerfile两次隔离构建验证所有稳定层同一digest、动态数据变化、资产路径存在且Git/凭据/SQLite伪造夹具隔离；来源C3不由CI授予。本实现首次全套，后续吞吐另实测。；归档纯追加接受冻结导入来源形状，缺失/伪造记录摘要回到full。；首次具名园区末尾追加保留全部旧值/类型/顺序，身份字段/首条name及status一致、容量基线空、来源采用非空，目标为空；修订、身份或混合源码变化全套。；主题切换的URL不变性断言在账本模型异步初始化并移除aria-busy后取基准，保留原断言，不以启动期#lifecycle正常归一误判跳转。",
       "tests": [
         "tests/unit/test_ci_scope.py::CiScopeTests.test_document_image_and_derived_inventory_only_are_content",
         "tests/unit/test_ci_scope.py::CiScopeTests.test_corrupt_image_and_new_broken_reference_fail_content_check",
