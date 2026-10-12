@@ -65313,6 +65313,87 @@
         },
         "batch_id": "7dbfae68a80c3dd21bd374fafc5778179a6fc279c22a69429a6eb0ec42a62cb2"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cd76bc10a762c533bb583e46eb2addab608c8c79496b8a94bef28fb2d9333837",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "id": "rev-30ae06756bbd416d866d487e9870ba6f:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Based on the total amount of AI compute reported in the Chip Sales database  [link: Chip Sales database — https://samaritan-research.org/data/ai-chip-sales] , we estimate this database’s coverage of global deployed AI computing capacity to be 43% as of October 11, 2026 (90% CI: 23% to 81%).",
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "source_sha256": "5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:32:46+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续完整原句直接支持覆盖估计及其日期、区间和数据库依据，全文提供算力定义、收录条件与发现偏差的充分语境。该项对当前M01-Q01具有实质但有限的方法贡献：说明候选数据库覆盖不完整，且算力覆盖不能代替IT电力容量覆盖。保留原候选的作者估计性质，不将其作为实测观察或已验证计算采用。未发现敏感材料、真实冲突、替换提议或其他A条件，符合B类归因部分采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 87.477,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "794f15514baa97540c2b408838ccce03be1071b45b7e631a0e8bdcfa61c10fff",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 47709,
+            "output_tokens": 2561,
+            "reasoning_output_tokens": 710
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.127,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fd71570ce2eef7051e835876465fe924280a0fce59f65926c2664a5928a9b804",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 48904,
+              "output_tokens": 623,
+              "reasoning_output_tokens": 260
+            }
+          }
+        },
+        "batch_id": "f267e15f81f20542c203de1c276d29cdf4c8d92534ea66bcdd6cf0721c44134b"
+      }
     }
   ],
   "statements": [
@@ -126706,6 +126787,128 @@
         "request_sha256": "3179a55619a965a62a9ad626da197848eae253af53355ff12a463dd381feefb5"
       },
       "object_mapping_check": "独立核对对象契约后，主张的实际范围是吸附剂制水并供再利用，对应system:thermal下chain:thermal/1的水处理与供水部件part:water-treatment。候选system:facility的土地建筑、消防安防范围不对应该技术机制，不予继承。该句不支持具体发电设备、水权或取水许可；AirJoule与Nexus无允许的对应主体ID，GE Vernova的邻近合资背景也不构成本项主体范围。此映射统一适用于所选证据，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-5a5b048c02747898d7edc9b91395b07c5c3ec168d6efd79a2735bc17e49173d2",
+      "evidence_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:a351186841e5153a9c37fd88",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q01"
+      ],
+      "reading_revision_id": "rev-30ae06756bbd416d866d487e9870ba6f",
+      "status": "adopted",
+      "text": "署名为Samaritan Research的《AI data centers documentation – Methodology》页面作者称，基于Chip Sales数据库报告的AI算力总量，其估算该数据中心数据库截至2026年10月11日覆盖全球已部署AI算力的43%，90%置信区间为23%至81%。页面将AI算力定义为所估计的AI专用芯片计算能力。该比例是作者的算力覆盖估计，不是IT电力容量覆盖率，也不构成本次独立核实的全球容量统计。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T04:32:46+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续完整原句直接支持覆盖估计及其日期、区间和数据库依据，全文提供算力定义、收录条件与发现偏差的充分语境。该项对当前M01-Q01具有实质但有限的方法贡献：说明候选数据库覆盖不完整，且算力覆盖不能代替IT电力容量覆盖。保留原候选的作者估计性质，不将其作为实测观察或已验证计算采用。未发现敏感材料、真实冲突、替换提议或其他A条件，符合B类归因部分采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 87.477,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "794f15514baa97540c2b408838ccce03be1071b45b7e631a0e8bdcfa61c10fff",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "c1616ce39424129f1e081412eb7096ee9c60e9b784b0de8f7f1dd1f856e2f243",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 47709,
+            "output_tokens": 2561,
+            "reasoning_output_tokens": 710
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.127,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fd71570ce2eef7051e835876465fe924280a0fce59f65926c2664a5928a9b804",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "27623134fab295a26441653f6c1f343ff0df5f330e8faa1493c1bcd3279e4cc7",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 48904,
+              "output_tokens": 623,
+              "reasoning_output_tokens": 260
+            }
+          }
+        },
+        "batch_id": "f267e15f81f20542c203de1c276d29cdf4c8d92534ea66bcdd6cf0721c44134b"
+      },
+      "source_candidate_ids": [
+        "rev-30ae06756bbd416d866d487e9870ba6f:chunk:0:claim:4"
+      ],
+      "limitations": "页面发表时间未知；2026年10月11日是估计基准日。页面标题署名为Samaritan Research，页尾另称Epoch，作者机构归属存在未澄清的标识差异。估计所链接的Colab Notebook和Chip Sales数据库内容未随本项提供，无法复算覆盖比例或置信区间。数据库以美国项目为主，主要收录2024年及以后投运的设施，存在例外，且亦收录已开工的未来项目；所供材料未展示覆盖计算如何区分这些阶段。该比例不提供全球投运IT容量GW、区域或类型分布，也不证明项目满足L8+验收。",
+      "conflict_check": "已采用的阶段区分陈述与本项兼容。IEA人口与容量占比、欧盟历史份额、ERCOT申请规模以及Khazna运营容量分别涉及不同分母、地域、时间或阶段，不能与本项算力数据库覆盖率直接比较；未见同口径真实冲突或规范重复记录。所供legacy三类匹配记录均为空，当前回答为空。页面机构标识差异保留为归属限制，尚不足以确立覆盖估计本身的真实冲突。检查限于所供材料，不表示外部反证已穷尽，不覆盖既有结论。",
+      "gap_dependency_check": "M01-Q01仅获得数据库覆盖与统计口径的局部方法证据。仍需覆盖计算原始Notebook、Chip Sales分母及部署口径、数据库投运子集、统一基准日、L8+状态、IT MW数据、站点去重、区域及类型拆分和反证，才能形成可复查的全球投运IT容量统计。不能用43%直接放大电力容量或外推全球GW。Abilene的获批用能额度及负荷接入等待时间均未由本项提供；请求阅读不表示参数要求已满足，不更新模型输入、研究骨架或既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "reviewed scoped source support; not global model calibration",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f267e15f81f20542c203de1c276d29cdf4c8d92534ea66bcdd6cf0721c44134b",
+        "source_report_sha256": "c0a4fe8b2b29b8bcbdd73df8a974f9853c6ac32bc682a6d417c4b62a311aac77",
+        "request_sha256": "ead5f0ac0c0ce4d91ce98646dbb2c7dddc7d999940f9fa18381b87ada462e3d6"
+      },
+      "object_mapping_check": "独立依据对象契约保留空映射：主张描述全球算力数据库的覆盖比例及方法，不描述root所定义的一座AI数据中心，也未提供某设施内部计算系统或具体芯片的性能。提及AI专用芯片仅界定统计口径，不足以映射system:compute、part:gpu或其他基础设施对象。契约没有该数据库或页面作者的对应对象ID。所选证据统一采用此主张级空对象范围，保留M01-Q01关联，原候选和证据标签保持不变。",
+      "quantitative_checks": {
+        "basis_check": "来源明确使用Chip Sales数据库报告的AI算力总量作为估计依据，并链接计算Notebook。实际分子、分母、部署假设、统计方法及置信区间构造未提供；这是作者估计，不是本次独立测量或认证。",
+        "comparability_check": "AI算力覆盖率与IT电力容量覆盖率的分母不同，缺少硬件效率、功率口径及部署阶段对应关系，不能相互替代。美国为主的覆盖结构不能推出区域电力容量分布；与已采用容量占比、运营商MW及接入申请GW不存在直接可比性。",
+        "derivation_check": "在来源支持核对之外，另行从原句复核数值、量纲、基准日及全文算力定义：43%位于所报告的23%至81%区间内，90%描述置信水平。未复算覆盖估计或区间；第二次口径检查不验证底层计算，不据此生成新的容量结果。",
+        "scope_check": "统计对象为该数据库覆盖的全球已部署AI专用芯片计算能力比例；不是全球全部数据中心电力容量，也不是Abilene园区批准用能额度。数据库收录规则与部署分子之间的具体筛选未展示。",
+        "time_check": "估计有效时点明确为2026年10月11日，页面发表时间未知。该日期不能作为项目投运、获批或送电日期；本项不是未来容量预测。",
+        "units_check": "43%为无量纲覆盖比例；23%至81%为作者报告的区间端点，90%为置信水平。保持原始精度，不换算为MW、GW、芯片数量或利用率。"
+      },
+      "parameter_assessments": [
+        {
+          "model_input_verified": false,
+          "question_id": "M05-Q06",
+          "rationale": "本项实际主张是全球AI算力数据库覆盖率，不涉及美国Texas、ERCOT下Abilene原有园区的批准用能额度、接入容量或IT MW。未提供ERCOT或输电商批准原件，也不能用覆盖百分比验证1.2GW接入声明。该请求仅为阅读需求，不代表参数已获支持。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::energy_quota_mw",
+          "status": "out_of_scope"
+        },
+        {
+          "model_input_verified": false,
+          "question_id": "M04-Q07",
+          "rationale": "本项没有Abilene原有园区同分期负荷接入申请、批准的起止日期或等待时长。覆盖估计基准日与数据库收录条件均不能替代审批、排队、施工或送电里程碑；阅读全文中的施工识别方法亦不满足该参数要求。",
+          "requirement_id": "F.cost.depreciation.capex.shell.product::gate_wait_years",
+          "status": "out_of_scope"
+        }
+      ]
     }
   ],
   "answers": [],
