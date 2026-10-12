@@ -1,22 +1,7 @@
-# inresearch.ai：公开只读（reader）的页面可以索引；写接口、采集页、管理页与登录页不索引。
+# Only the homepage is public; login, research and work pages are private.
 User-agent: *
+Disallow: /
 Allow: /$
-Allow: /node.html
-Allow: /ledger.html
-Allow: /bom.html
-Allow: /bom3d.html
-Allow: /rack3d.html
-Allow: /product-catalog.html
-Allow: /report.html
+Allow: /index.html$
 Allow: /assets/
 Disallow: /api/
-Disallow: /data/
-Disallow: /framework/
-Disallow: /supply.html
-Disallow: /ops.html
-Disallow: /company.html
-Disallow: /doc.html
-Disallow: /admin/
-Disallow: /login
-Disallow: /account
-Disallow: /healthz

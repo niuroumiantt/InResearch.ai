@@ -1,5 +1,6 @@
 const assert = require('node:assert/strict');
-const {execFileSync} = require('node:child_process');
+const {execFileSync, spawn} = require('node:child_process');
+const {createInterface} = require('node:readline');
 const {chromium} = require('playwright');
 const pages = JSON.parse(execFileSync(process.env.PYTHON || 'python3', ['-c',
   "import sys,json;sys.path.insert(0,'src');from inresearch.interfaces import pages as auth;print(json.dumps({n:getattr(auth,n) for n in ('LOGIN_PAGE','PASSWD_PAGE','FORBIDDEN_PAGE')}))"], {encoding:'utf8'}));
@@ -22,5 +23,95 @@ const pages = JSON.parse(execFileSync(process.env.PYTHON || 'python3', ['-c',
       }
     }
     console.log('PASS 12 auth appearances, field labels and public navigation boundary');
+    // Exercise the actual production gate and session cookies, without writing
+    // task state or modifying repository accounts/runtime logs.
+    const fixture = spawn(process.env.PYTHON || 'python3', ['-u', '-c', `
+import sys, tempfile, threading
+from pathlib import Path
+sys.path.insert(0, 'src')
+from inresearch.interfaces import http as serve, auth
+with tempfile.TemporaryDirectory() as temporary:
+    auth.USERS_FILE = Path(temporary) / 'users.json'
+    auth.SECRET_FILE = Path(temporary) / '.hub_secret'
+    for username, role in [('admin', 'admin'), ('member', 'member'), ('intern', 'intern')]:
+        auth.add_user(username, 'Only-test-private-site-8391', role)
+    serve.AUTH_ON = True
+    serve.log_run = lambda *args: None
+    server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
+    worker = threading.Thread(target=server.serve_forever, daemon=True)
+    worker.start()
+    try:
+        print(server.server_port, flush=True)
+        sys.stdin.readline()
+    finally:
+        server.shutdown()
+        server.server_close()
+        worker.join(timeout=2)
+`], {stdio:['pipe', 'pipe', 'inherit']});
+    const lines = createInterface({input:fixture.stdout});
+    try {
+      const port = await new Promise((resolve, reject) => {
+        lines.once('line', line => /^\d+$/.test(line) ? resolve(line) : reject(Error('Invalid private-site fixture')));
+        fixture.once('error', reject);
+        fixture.once('exit', code => reject(Error('Private-site fixture exited: ' + code)));
+      });
+      const base = 'http://127.0.0.1:' + port;
+      const context = await browser.newContext({viewport:{width:1280,height:900}});
+      const home = await context.newPage(); const errors=[];
+      home.on('pageerror', error => errors.push(error.message));
+      const response = await home.goto(base + '/');
+      assert.equal(response.status(), 200);
+      assert.equal(response.headers()['cache-control'], 'no-cache');
+      await home.locator('.ui-login').waitFor();
+      await home.locator('#world-map .site-point').first().waitFor();
+      assert.deepEqual(await home.locator('.ui-navigation a').allTextContents(), ['行业总览', '登录']);
+      assert.equal(await home.locator('.local-nav').isVisible(), false);
+      assert.equal(await home.locator('#layout-link').isVisible(), false);
+      for (const method of ['GET', 'HEAD']) {
+        for (const path of ['/tasks.html', '/projects.html', '/ledger.html', '/research/data-centers-2026-project-ledger.json', '/assets/technical-atlas/chip-package-v1.svg']) {
+          const result = await context.request.fetch(base + path, {method, maxRedirects:0});
+          assert.equal(result.status(), 302, method + ' ' + path);
+          assert.equal(result.headers()['location'], '/login');
+          assert.equal(result.headers()['cache-control'], 'private, no-store');
+        }
+        for (const path of ['/api/industry', '/api/news?company=nvidia', '/api/research-tasks']) {
+          const result = await context.request.fetch(base + path, {method});
+          assert.equal(result.status(), 401, method + ' ' + path);
+        }
+        for (const path of ['/api/industry?overview=1', '/api/news?overview=1']) {
+          assert.equal((await context.request.fetch(base + path, {method})).status(), 200);
+        }
+      }
+      await home.goto(base + '/tasks.html');
+      assert.equal(new URL(home.url()).pathname, '/login');
+      await home.locator('input[name=username]').fill('member');
+      await home.locator('input[name=password]').fill('Only-test-private-site-8391');
+      await Promise.all([home.waitForURL(base + '/'), home.locator('form button').click()]);
+      await home.locator('.ui-navigation a[href="/tasks.html"]').waitFor();
+      assert.equal(await home.locator('#layout-link').isVisible(), true);
+      // The request client does not apply Chromium's loopback Secure-cookie exception.
+      const memberHeaders = {Cookie:(await context.cookies()).map(cookie => cookie.name + '=' + cookie.value).join('; ')};
+      assert.equal((await context.request.get(base + '/tasks.html', {headers:memberHeaders, maxRedirects:0})).status(), 200);
+      assert.equal((await context.request.get(base + '/data/raw/research-tasks/ledger.json', {headers:memberHeaders, maxRedirects:0})).status(), 404);
+      const whoami = await context.request.get(base + '/api/whoami', {headers:memberHeaders});
+      assert.equal(whoami.headers()['cache-control'], 'private, no-store');
+      assert.match(whoami.headers()['vary'], /Cookie/);
+      assert.equal((await whoami.json()).role, 'member');
+      const intern = await browser.newContext();
+      const internLogin = await intern.request.post(base + '/api/login', {data:{username:'intern',password:'Only-test-private-site-8391'}});
+      assert.equal(internLogin.status(), 200);
+      const internHeaders = {Cookie:internLogin.headers()['set-cookie'].split(';')[0]};
+      const internPage = await intern.newPage(); await internPage.goto(base + '/tasks.html');
+      await internPage.locator('.ui-navigation a[href="/supply.html"]').waitFor();
+      assert.deepEqual(await internPage.locator('.ui-navigation a').allTextContents(), ['任务跟踪', '采集']);
+      assert.equal((await intern.request.get(base + '/api/research-tasks', {headers:internHeaders})).status(), 200);
+      assert.equal((await intern.request.get(base + '/ops.html', {headers:internHeaders})).status(), 403);
+      assert.deepEqual(errors, []);
+      await intern.close(); await context.close();
+      console.log('PASS real anonymous homepage, private GET/HEAD/download gate, member login and intern task access');
+    } finally {
+      fixture.stdin.end('\n'); lines.close();
+      await new Promise(resolve => fixture.once('exit', resolve));
+    }
   } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exitCode=1;});

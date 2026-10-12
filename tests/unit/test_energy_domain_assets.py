@@ -68,7 +68,7 @@ class EnergyDomainAssetsTests(unittest.TestCase):
     for i in g['existing_actual_geometry']['instances']:self.assertEqual(i['home'],i['position'])
     self.assertEqual(g['existing_actual_geometry']['mesh'],152)
     self.assertIn(f"partId === '{domain}-domain' && view === 'domain' ? {domain}Domain",s);self.assertIn(f"campusMode && d.key==='{domain}'",b)
-    page=domain+'-atlas.html';self.assertEqual(routes['/'+page],'web/pages/'+page);self.assertIn(page,m['static_pages']);self.assertIn(page,m['public_pages']);self.assertIn(page,m['sections']['bom']);p=(ROOT/'web/pages'/page).read_text();self.assertIn(f"'{domain}-domain',{{view:'domain'}}",p)
+    page=domain+'-atlas.html';self.assertEqual(routes['/'+page],'web/pages/'+page);self.assertIn(page,m['static_pages']);self.assertNotIn(page,m['public_pages']);self.assertIn(page,m['sections']['bom']);p=(ROOT/'web/pages'/page).read_text();self.assertIn(f"'{domain}-domain',{{view:'domain'}}",p)
     urls=re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"',p);self.assertNotIn('/assets/site-shell.js',urls)
     for url in urls:self.assertIn(url,routes);self.assertTrue((ROOT/routes[url]).is_file())
     for src in load(d,'technical-sources-v1.json')['sources']:self.assertEqual(sha((ROOT/('docs/design/technical-atlas/bom-source-20260928.json' if src['file']=='framework/bom.json' else src['file'])).read_bytes()),src['sha256'])

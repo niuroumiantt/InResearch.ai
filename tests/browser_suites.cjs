@@ -1,5 +1,5 @@
 /* Serial core and CI shards share one exhaustive suite list. */
-const defaults = ['ops_dashboard', 'industry', 'repository_pages', 'supply', 'nvidia_pilot', 'product_catalog', 'company_page', 'company_window', 'company_catalog_map', 'catalog_materials', 'compute_catalog', 'ui_skin', 'datacenter_cost', 'datacenter_economics', 'datacenter_tco', 'datacenter_news',
+const defaults = ['ops_dashboard', 'industry', 'repository_pages', 'supply', 'research_tasks', 'nvidia_pilot', 'product_catalog', 'company_page', 'company_window', 'company_catalog_map', 'catalog_materials', 'compute_catalog', 'ui_skin', 'datacenter_cost', 'datacenter_economics', 'datacenter_tco', 'datacenter_news',
   'url_rendering', 'research_delivery', 'auth_appearance', 'research_summary', 'part_dossier', 'technical_atlas', 'bom_layout', 'system_atlas', 'scale_atlas', 'campus_overview', 'campus_exploded', 'campus_plan', 'server_assembly', 'server_plan', 'rack_assembly', 'rack_atlas', 'rack_exploded', 'rack_exploded_atlas', 'chip_package', 'chip_atlas', 'dashboard', 'scene_bootstrap', 'scene_framing', 'scene_resources', 'scene_atlas', 'model_assets'];
 const core = defaults.filter(s => s !== 'model_assets');
 // Bounded source additions share one small job; full shards still cover each once.

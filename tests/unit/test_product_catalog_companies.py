@@ -129,7 +129,8 @@ class ProductCatalogCompanyTests(unittest.TestCase):
                 value = catalog.index_snapshot(self.root, company)
                 self.assertEqual(value['products'][0]['navigation']['group'], 'vendor-group')
                 self.assertEqual({c['id'] for c in value['registered_companies']}, set(catalog.COMPANIES))
-                self.assertTrue(public.allowed('/api/product-catalog/'+company))
+                self.assertFalse(public.allowed('/api/product-catalog/'+company))
+                self.assertTrue(public.intern_research_allowed('/api/product-catalog/'+company))
                 for other in vendors:
                     if other != company:
                         with self.assertRaises(ValueError): catalog.validate(payload, other)
@@ -351,9 +352,9 @@ class ProductCatalogCompanyTests(unittest.TestCase):
 
     def test_http_routes_per_company_and_unknown_company(self):
         from inresearch.interfaces import http
-        self.assertIn('/api/product-catalog/nvidia', public.READER_API)
-        self.assertIn('/api/product-catalog/micron', public.READER_API)
-        self.assertTrue(public.allowed('/api/product-catalog/micron'))
+        self.assertIn('/api/product-catalog/nvidia', public.INTERN_RESEARCH_API)
+        self.assertIn('/api/product-catalog/micron', public.INTERN_RESEARCH_API)
+        self.assertFalse(public.allowed('/api/product-catalog/micron'))
         self.assertFalse(public.allowed('/api/product-catalog/acme'))
         targets(self.root)
         token_file = self.root / 'token'
@@ -374,7 +375,7 @@ class ProductCatalogCompanyTests(unittest.TestCase):
                     headers = dict(response.getheaders())
                     client.close()
                     return status, raw, headers
-                self.assertEqual(request('GET', '/api/product-catalog/micron')[0], 200)
+                self.assertEqual(request('GET', '/api/product-catalog/micron')[0], 401)
                 self.assertEqual(request('GET', '/api/product-catalog/acme')[0], 401)
                 self.assertEqual(request('POST', '/api/product-catalog/micron', micron_bundle(), 'bad')[0], 401)
                 self.assertEqual(request('POST', '/api/product-catalog/acme', micron_bundle(), 'x' * 48)[0], 404)

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "mission": {
+    "id": "global-datacenter-census-20261012",
+    "title": "点亮全球已有数据中心",
+    "priority": "P1",
+    "created_at": "2026-10-12",
+    "status": "open",
+    "goal": "摸清现有物理园区与分期、主体与客户、容量与用电，把可追溯的已有信息持续登记到地图。",
+    "scale_note": "90+ GW 是本次摸底的待校准目标，不是已验证的全球存量或当前覆盖率。"
+  },
+  "packages": [
+    {"id":"dc-census-na","title":"北美存量园区","region":"美国、加拿大","scope":"先列运营商园区与已投运分期；关联超大规模客户、地方许可和电网文件。区分规划总量、设施功率与已投运 IT 负载。","sources":"运营商站点目录；SEC 10-K/附件；县市规划与许可；电网/公用事业文件","assignee":"","machine":"","model":"","due":"","status":"unassigned","delivery_pointer":"","note":"","created_at":"2026-10-12","created_by":"用户任务指令"},
+    {"id":"dc-census-cn","title":"中国存量园区","region":"中国大陆","scope":"以具名园区与地址归一，开发建设、运营、使用方分别登记；回查节能审查、环评、供电与运营披露，保留批准能耗与实际电耗的区别。","sources":"运营商年报/官网；地方政府项目库；环评与节能审查；招标与竣工资料","assignee":"","machine":"","model":"","due":"","status":"unassigned","delivery_pointer":"","note":"","created_at":"2026-10-12","created_by":"用户任务指令"},
+    {"id":"dc-census-eu","title":"欧洲存量园区","region":"欧洲","scope":"按园区与分期建立清单，关联电力/水资源约束、运营商目录和规划文件。国家电耗统计单列，不向园区摊分。","sources":"运营商园区目录；地方规划门户；电网接入与许可；国家统计电耗资料","assignee":"","machine":"","model":"","due":"","status":"unassigned","delivery_pointer":"","note":"","created_at":"2026-10-12","created_by":"用户任务指令"},
+    {"id":"dc-census-apac","title":"亚太存量园区","region":"亚太（中国大陆除外）","scope":"覆盖印度、东南亚、日本、韩国、澳新与其他亚太地区。先取官方地点、阶段与主体，补许可/接电/运营资料，不用城市级点位代替精确园区坐标。","sources":"运营商地点页；证券披露；政府审批；电力公司；行业报告","assignee":"","machine":"","model":"","due":"","status":"unassigned","delivery_pointer":"","note":"","created_at":"2026-10-12","created_by":"用户任务指令"},
+    {"id":"dc-census-em","title":"中东、非洲与拉美","region":"中东、非洲、拉美","scope":"先保存已有物理园区证据。政府合作、规划、投资意向与已投运分别记录，同一全球客户合作公告不自动变成多个已运营园区。","sources":"本地运营商与云厂商；能源/通信监管；政府审批；当地媒体及原始公告","assignee":"","machine":"","model":"","due":"","status":"unassigned","delivery_pointer":"","note":"","created_at":"2026-10-12","created_by":"用户任务指令"},
+    {"id":"dc-census-reconcile","title":"全球主体与容量对账","region":"跨区域","scope":"检查别名/园区/分期重复、法律主体和角色。分别核对运营/建设/规划、IT/设施/接电/发电/合同容量和年度电耗，保留统计口径及差异，不强行凑总量。","sources":"全球运营商披露；IEA与国家统计；行业存量报告；各区域交付包；当前项目台账","assignee":"","machine":"","model":"","due":"","status":"unassigned","delivery_pointer":"","note":"","created_at":"2026-10-12","created_by":"用户任务指令"}
+  ]
+}
