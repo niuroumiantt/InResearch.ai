@@ -8365,6 +8365,67 @@
       "status": "candidate",
       "stored_path": "originals/1c/1cac38f3b36992d2ba205b09faec344a84f53c5516840e5099e83ddc11603fe6/dcd-1cac38f3b36992d2-MagPro launches AeroLev 1850 to advance water-smart cooling for A.html",
       "title": "MagPro launches AeroLev 1850 to advance water-smart cooling for AI data centers"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+      "coverage": {
+        "characters_read": 10551,
+        "characters_total": 10551,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+      "id": "doc-161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+      "library_path": "library/by-node/system-compute/2026_DCD_Alibaba Cloud needs 10x its 2022 compute capacity, says__161bc9a7a383591d.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alibaba",
+        "actor:meta",
+        "actor:moore-threads",
+        "part:ai-asic",
+        "part:cpu",
+        "part:gpu",
+        "part:server",
+        "system:compute",
+        "system:memory"
+      ],
+      "question_ids": [
+        "OBJ-gpu-supply",
+        "OBJ-server-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-71f55499bad04874a528fa0476a46557",
+      "report_sha256": "049512f80f4be767a6edefceb6c47d62d3f03322811e5aa48402a08d0fcc8085",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+        "url": "https://www.datacenterdynamics.com/en/news/alibaba-cloud-needs-10x-its-2022-compute-capacity-says-ceo-eddie-wu/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/alibaba-cloud-needs-10x-its-2022-compute-capacity-says-ceo-eddie-wu/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/16/161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff/dcd-161bc9a7a383591d-Alibaba Cloud needs 10x its 2022 compute capacity- says CEO Eddie.html",
+      "title": "Alibaba Cloud needs 10x its 2022 compute capacity, says CEO Eddie Wu"
     }
   ],
   "evidence": [
@@ -63079,6 +63140,89 @@
           }
         },
         "batch_id": "2f33728b9a87ece9575452a5f266ddf5c9f9903c0391ea30558d4fcf1c13efc7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1480a6290c7d2edf24ff0300ad719099cd9aba6b86ff4bfd807dcf20a451ee99",
+      "document_id": "doc-161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+      "id": "rev-71f55499bad04874a528fa0476a46557:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:alibaba"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Wu estimates that \"in the next two to three years, we can expect to see significantly higher gross margin for Alibaba Cloud, and we can expect to start to see that in the next one to two quarters.\"",
+      "reading_revision_id": "rev-71f55499bad04874a528fa0476a46557",
+      "source_sha256": "161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:57:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。云服务收入与成本形成的毛利率及其预计改善节奏，实质关联当前NODE-activity-V3-economics工单的算力变现经济性和不可直接比较的口径。连续引文与完整原生页面提供充分语境，可作为明确归因的部分管理层预测按B类采用。未发现敏感、真实冲突、替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.213,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2d033ad72c1397aaccc36bea8bab2a8d23c9a3827cbb1efe123fe27eb900d234",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62210,
+            "output_tokens": 1204,
+            "reasoning_output_tokens": 155
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.679,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fa1484e96cb70f7a435d26a123e49198d6f1d81fbfb00a33fcaa99f42962ebaa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62848,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 204
+            }
+          }
+        },
+        "batch_id": "cbfaef43cef62842ba906ba5cb181383671e4a37c1ad8b20dac956a381d410e9"
       }
     }
   ],
@@ -122407,6 +122551,106 @@
         "request_sha256": "0b5f4839736035d8156c94bb8df3405b9cbc33c4b46240723c61338d9511c8ce"
       },
       "object_mapping_check": "独立复核后，本条对象是工业与能源应用中的领域模型训练、领域专家及知识数据的格式准备。合同中的root指一座AI数据中心，system:control及其链限定DCIM/BMS与固件，计算、存储等对象亦属于设施资产；本条未建立这些资产范围，也未指向允许的具体企业。数据格式不适配不能映射为存储设备问题。保留空对象列表及有效问题关联，所选证据统一采用这一审定范围，不继承文档或Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-161bc9a7a383591df58ec633e600322c392cb81dfc08ee432c5ea19f1f2b62ff",
+      "evidence_ids": [
+        "rev-71f55499bad04874a528fa0476a46557:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:3af8abaac04f9b65ad53aa59",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:alibaba"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-71f55499bad04874a528fa0476a46557",
+      "status": "adopted",
+      "text": "DCD作者Georgia Butler在2026年5月14日的报道中转述，CEO吴泳铭在5月13日的Q4 FY2026财报电话会上预计：阿里云毛利率在发言时点之后的两至三年将显著提高，并预计在未来一至两个季度开始体现。这是报道所载的管理层云业务毛利率预测，不构成对实际改善或当前盈利水平的独立认证；不能直接作为芯片毛利率或推理单位成本输入。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:57:58+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。云服务收入与成本形成的毛利率及其预计改善节奏，实质关联当前NODE-activity-V3-economics工单的算力变现经济性和不可直接比较的口径。连续引文与完整原生页面提供充分语境，可作为明确归因的部分管理层预测按B类采用。未发现敏感、真实冲突、替换或其他A类条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.213,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2d033ad72c1397aaccc36bea8bab2a8d23c9a3827cbb1efe123fe27eb900d234",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 62210,
+            "output_tokens": 1204,
+            "reasoning_output_tokens": 155
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.679,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fa1484e96cb70f7a435d26a123e49198d6f1d81fbfb00a33fcaa99f42962ebaa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62848,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 204
+            }
+          }
+        },
+        "batch_id": "cbfaef43cef62842ba906ba5cb181383671e4a37c1ad8b20dac956a381d410e9"
+      },
+      "source_candidate_ids": [
+        "rev-71f55499bad04874a528fa0476a46557:chunk:0:claim:7"
+      ],
+      "limitations": "来源为媒体转述，未提供一手电话会记录、具体毛利率水平、改善幅度、计算方法或实际兑现结果。周边服务器部署成本及定价权表述不能替代完整收入成本拆分。预测未按地域、客户、资产或具体项目阶段拆分，不能限定为中国业务或某座数据中心；云业务毛利率也不能等同于芯片毛利率、EBITA利润率、现金回报率或回本周期。相对预测窗口以当时发言为基准，不表示截至当前已实现。",
+      "conflict_check": "所供已采用陈述涉及Meta合同风险、AI收入风险、DGX Lepton竞争、Oracle盈利和价格战预测、Alphabet回报与折旧及CoreWeave收入确认，未包含同一阿里云毛利率预测，不构成规范重复。不同主体、条件和期限下的利润压缩风险不直接否定本条管理层展望；本页成本上涨与定价权论述也不构成同条件真实冲突。相关legacy筛选记录为空。检查限于所供材料，不证明外部不存在反证，不替换既有结论。",
+      "gap_dependency_check": "仅补充NODE-activity-V3-economics的盈利预期及业务口径边界，不回答或关闭问题。仍需一手披露、毛利率定义、收入和成本组成、资本开支与折旧分配、实际兑现结果及反证，才能评估算力资产经济性。不得据此更新芯片毛利率、单位算力成本或其他模型参数，也不汇总GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "cbfaef43cef62842ba906ba5cb181383671e4a37c1ad8b20dac956a381d410e9",
+        "source_report_sha256": "049512f80f4be767a6edefceb6c47d62d3f03322811e5aa48402a08d0fcc8085",
+        "request_sha256": "677662ddd4569e6e4b764f6fb0fae71d777215b25da216f1a84fc5754dc63f2e"
+      },
+      "object_mapping_check": "独立核对原文后，选定主张明确针对Alibaba Cloud整体毛利率，与契约中name为阿里云、kind为actor且无父节点的actor:alibaba直接对应；映射依据是明确业务主体，而非阿里巴巴名称或Reader标签。该预测未界定一座AI数据中心或其下属计算系统、服务器、GPU、ASIC及内存的利润范围，故不映射root或基础设施对象。选定证据统一使用这一主张级主体范围，原候选和证据标签保持不变。"
     }
   ],
   "answers": [],
