@@ -67761,6 +67761,92 @@
         },
         "batch_id": "06b6b93c960c25576da3a68fe78f91491541bf380885d827e76bc7496298cf86"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c67f8d9e2f5cc3e63bc8b9b088b1cb6e8aed83c14c1624f9dbed6c45d4d99a95",
+      "document_id": "doc-b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "id": "rev-80794acb1b974736b71eb1bf0dd9efe4:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:schneider-electric",
+        "actor:amd",
+        "part:rack-system",
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "It also supports data center teams addressing extreme densities and organizations that have not previously implemented liquid cooling.",
+      "reading_revision_id": "rev-80794acb1b974736b71eb1bf0dd9efe4",
+      "source_sha256": "b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:47:55+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原始重要性及评分7。连续原文引句与完整页面明确了参考设计、合作方和目标使用者，对当前工作单的适用场景维度具有实质性局部贡献。按归因明确的作者主张作B类部分采用，不回答或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-ecosystem-facility"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.418,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d08af66bbbc5678a7bcb1cc9de082a3771d947592cc3ce85517fe9956abe2faf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 55604,
+            "output_tokens": 1429,
+            "reasoning_output_tokens": 380
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.868,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "12a9d4d800206dce1725c6bce8081dfeffd4e6062c50ae15bbc56d3aa637b679",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 56229,
+              "output_tokens": 500,
+              "reasoning_output_tokens": 193
+            }
+          }
+        },
+        "batch_id": "b85cc90f697d7e496a0a5b247a72ccbd09df1a2e67e727c14488b26faa66cc5e"
+      }
     }
   ],
   "statements": [
@@ -131269,6 +131355,109 @@
           "status": "missing_evidence"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "evidence_ids": [
+        "rev-80794acb1b974736b71eb1bf0dd9efe4:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:b863631fb39a7822bfd4afc1",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:schneider-electric",
+        "actor:amd",
+        "part:rack-system",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "Q-SCOPE-ecosystem-facility"
+      ],
+      "reading_revision_id": "rev-80794acb1b974736b71eb1bf0dd9efe4",
+      "status": "adopted",
+      "text": "据DCD于2026年9月28日发布、署名Press Release并注明由施耐德电气与AMD提供的赞助新闻稿，两家公司合作形成的AMD Helios集群数据中心参考设计，也面向应对极高密度的数据中心团队，以及此前未实施液冷的组织。这是来源对参考设计适用对象的主张，属于规划与设计层面的说明，不构成对实际部署适用性或运行效果的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:47:55+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原始重要性及评分7。连续原文引句与完整页面明确了参考设计、合作方和目标使用者，对当前工作单的适用场景维度具有实质性局部贡献。按归因明确的作者主张作B类部分采用，不回答或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-ecosystem-facility"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.418,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d08af66bbbc5678a7bcb1cc9de082a3771d947592cc3ce85517fe9956abe2faf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 55604,
+            "output_tokens": 1429,
+            "reasoning_output_tokens": 380
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 35.868,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "12a9d4d800206dce1725c6bce8081dfeffd4e6062c50ae15bbc56d3aa637b679",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 56229,
+              "output_tokens": 500,
+              "reasoning_output_tokens": 193
+            }
+          }
+        },
+        "batch_id": "b85cc90f697d7e496a0a5b247a72ccbd09df1a2e67e727c14488b26faa66cc5e"
+      },
+      "source_candidate_ids": [
+        "rev-80794acb1b974736b71eb1bf0dd9efe4:chunk:0:claim:5"
+      ],
+      "limitations": "原句未定义“极高密度”的统一阈值，未限定适用地域，也未说明初次实施液冷所需的人员能力、既有设施条件或改造前提。材料未提供用户案例、验收或运行记录；不能据此判断液冷渗透率、部署成功率、节能效果或运营表现。链接中的参考设计原件未在本包中核验。",
+      "conflict_check": "所供已采用陈述涉及其他项目的供水计划、建筑与许可配置及特定空气冷却布置，未包含同一Helios参考设计的适用对象陈述，不构成重复或直接冲突。legacy中的谷歌液冷机队、液冷市场收入及预测、Blackwell性能规格、Vera Rubin进水温度和机柜功率路线图具有不同主体、产品、时间或指标口径，不能认证或否定本项。项目及合同匹配为空。检查限于所供记录，未发现可指认的规范重复或真实冲突，不替换既有结论。",
+      "gap_dependency_check": "Q-SCOPE-ecosystem-facility仅获得一个参考设计面向高密度团队及液冷初次实施组织的适用场景线索；尚未解决设施与机柜的定义边界、主要分类轴或完整适用条件。仍需参考设计原件及版本、设施前提、接口约束、实施实例与反证。问题保持开放，不修改研究骨架、模型输入或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b85cc90f697d7e496a0a5b247a72ccbd09df1a2e67e727c14488b26faa66cc5e",
+        "source_report_sha256": "47eac481c61f0f015b0e4a18e8801f37a2db0f495cb329221bf3cd5e2f7c39e0",
+        "request_sha256": "3987a20d3502b3def677593ab7d303c08ca01a3b78e5b7414697f47d9c0125b8"
+      },
+      "object_mapping_check": "独立依据原文及相邻指代映射：施耐德电气与AMD是参考设计合作方，对应两个具名主体；Helios明确为整机柜方案，对应计算链下的part:rack-system；液冷实施适用性对应system:thermal，但原句不足以确定冷板、CDU或具体回路，不下推到部件。system:facility契约限定土地与建筑、消防安防，本项未陈述这些范围，因此不继承Reader的设施标签；问题的适用场景匹配仍有效。不因AI背景增加root、GPU、UPS或控制软件映射。所选证据统一使用上述主张级范围，原候选与证据标签保持不变。"
     }
   ],
   "answers": [],
