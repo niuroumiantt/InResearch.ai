@@ -61667,6 +61667,88 @@
         },
         "batch_id": "55fd4e2470a9ed568910034864553bc5f00816ec1c4c1a40665719210b4fbac1"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4b601cbc7e50b3469f8dcd3650e0d1a4b89f622e1f920fd962f4304bcdfaa522",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:78:claim:3:ev:0",
+      "locator": "page:78/chunk:78",
+      "object_ids": [],
+      "page_index": 77,
+      "question_ids": [],
+      "quote": "In\n                        the United States, AI tools now monitor more than 10 000 transformers and\n                        22 000 circuit breakers, significantly reducing outages (C3.ai, n.d.).",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:03:16+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及周边语境充分，具体监测数量与可靠性效果陈述实质关联当前设备可靠性和企业侧真实需求工单，可作为能源行业实际应用规模的有限来源证据。未识别敏感材料、真实冲突或替换既有结论的提议，无A类条件，按B部分采用；不据此认定需求增长或关闭问题。",
+        "workorder_ids": [
+          "Q-OBJ-substation-performance",
+          "Q-M03-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.976,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a1712e99a7335fb7409b6939f8486574a67475152efb6ec06907912c1c8f3289",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57907,
+            "output_tokens": 1445,
+            "reasoning_output_tokens": 359
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.092,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "23c515ad9bf2f3c97dc05d703a90c143a707983f05c1856510eb4684ce205f39",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 58577,
+              "output_tokens": 907,
+              "reasoning_output_tokens": 603
+            }
+          }
+        },
+        "batch_id": "fe4308633e866303c3ec5d363f53dee24a0a4d38362ffea82197cf805eb091c2"
+      }
     }
   ],
   "statements": [
@@ -119479,6 +119561,106 @@
         "request_sha256": "6d038490e8a467e08f4936f20fded54fed687ad00f9bf632c249a396a3d4cf91"
       },
       "object_mapping_check": "原文讨论非洲一般数据与云需求带来的存储设施需求。part:storage-array是持久存储链下的IT存储系统，不能将data storage facilities等同于该部件；root及其设施系统限定一座AI数据中心，本项未建立这一范围。独立复核后保留空对象列表，不继承Reader标签；所选证据统一使用该审定范围，问题关联仍有效。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:78:claim:3:ev:0"
+      ],
+      "id": "adoption:review:c8f355a7f3d6f64cdd7e1642",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "OBJ-substation-performance",
+        "M03-Q05"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第78页第9.1节的能源系统可靠性与韧性讨论中，援引C3.ai（n.d.，无日期）称，在报告所述时点，美国AI工具正在监测超过10,000台变压器及22,000台断路器，并显著减少停电。这是IEA转述的能源行业AI监测应用及效果陈述；报告确切发布日期、部署起始时间和效果观察期间未知，未获本次审核独立核验。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T23:03:16+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。连续原文及周边语境充分，具体监测数量与可靠性效果陈述实质关联当前设备可靠性和企业侧真实需求工单，可作为能源行业实际应用规模的有限来源证据。未识别敏感材料、真实冲突或替换既有结论的提议，无A类条件，按B部分采用；不据此认定需求增长或关闭问题。",
+        "workorder_ids": [
+          "Q-OBJ-substation-performance",
+          "Q-M03-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 43.976,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a1712e99a7335fb7409b6939f8486574a67475152efb6ec06907912c1c8f3289",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57907,
+            "output_tokens": 1445,
+            "reasoning_output_tokens": 359
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.092,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "23c515ad9bf2f3c97dc05d703a90c143a707983f05c1856510eb4684ce205f39",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 58577,
+              "output_tokens": 907,
+              "reasoning_output_tokens": 603
+            }
+          }
+        },
+        "batch_id": "fe4308633e866303c3ec5d363f53dee24a0a4d38362ffea82197cf805eb091c2"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:78:claim:3"
+      ],
+      "limitations": "原文未限定大型电力变压器或数据中心供电设备，未说明客户、项目、设备型号、电压等级、运行工况、统计范围或部署阶段细节。未量化停电降幅，也未提供基准、观察期间、测试方法、失效样本或因果识别。设备监测数量不是企业客户数、需求增速、AI支出或算力用量；所引C3.ai原始材料未 supplied，本次仅核对所供IEA原生文本。全文覆盖限于原生文本，未完成视觉审核。",
+      "conflict_check": "已采用的DCD持续80 kW/机架设计评估和IEA固态变压器效率、商业化阶段判断涉及不同对象及工况，与本项监测应用不重复，也未形成真实冲突。Alphabet企业应用案例不能独立验证本项；Wells Fargo场所退出不能反驳该美国能源行业应用陈述。所供legacy事实、合同及项目匹配均为空，未发现相同规范记录；此检查不构成外部全面反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "OBJ-substation-performance仅获得AI监测与减少停电的定性可靠性线索，仍需确认大型变压器或变电站适用范围、测量指标、工况、失效机制及效果比较。M03-Q05仅获得非AI实验室能源行业的应用规模线索，缺企业侧一手确认、客户范围、历史可比序列、采购及资源用量，不能证明真实需求增长。后续需定位C3.ai原始材料并补充客户侧及反证资料；两个问题均保持开放，不更新模型参数或推算IT容量。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe4308633e866303c3ec5d363f53dee24a0a4d38362ffea82197cf805eb091c2",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "e7adcb0793fa3b46ef4160b325335f84fd44f0d256f008f7cc3c7b43a2aef9ba"
+      },
+      "object_mapping_check": "独立复核后采用空对象列表。part:transformer定义为大型电力变压器，原文仅称transformers，不能继承Reader标签；断路器亦未确定电压等级或开关柜类型。上下文为美国能源系统AI应用，未确立一座AI数据中心或其system:power、变电链范围，因此不添加数据中心基础设施映射。AI监测应用也不是DCIM/BMS与固件证据；允许主体中没有C3.ai或具名能源客户。空映射保留其对两个问题的有限支持，并适用于所选证据。"
     }
   ],
   "answers": [],
