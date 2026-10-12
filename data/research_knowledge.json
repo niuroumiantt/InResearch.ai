@@ -9218,6 +9218,75 @@
       "status": "candidate",
       "stored_path": "originals/5f/5fa855adc636365860d7c706dfc92eaa62015a745c7d2d85540dd803295c3e56/mlperf-h100-summary.html",
       "title": "MLPerf Inference v5.0 — NVIDIA DGX H100"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "coverage": {
+        "characters_read": 13349,
+        "characters_total": 13349,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "id": "doc-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "library_path": "library/by-node/site-grid/2026_DCD（施耐德电气署名赞助文章）_Data center power density_ Planning liquid-cooled AI da__36efa5cf4482e9bf.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:motivair",
+        "actor:motivair-by-schneider",
+        "actor:schneider-electric",
+        "chain:power/4",
+        "part:chilled-water-loop",
+        "part:chiller",
+        "part:dcim",
+        "part:gpu",
+        "part:manifold",
+        "part:rack-system",
+        "part:ups-battery",
+        "root",
+        "site:grid",
+        "system:facility"
+      ],
+      "question_ids": [
+        "OBJ-dcim-definition",
+        "OBJ-dcim-supply",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-interfaces",
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-103353e71e7641918b0a01fce902d4cf",
+      "report_sha256": "c8c47425a847cc20eca6ce620cadd62c8101b3eef1c30a705c18e92d83454dc7",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+        "url": "https://www.datacenterdynamics.com/en/opinions/data-center-power-density-planning-liquid-cooled-ai-data-centers-around-grid-and-power-constraints/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/opinions/data-center-power-density-planning-liquid-cooled-ai-data-centers-around-grid-and-power-constraints/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/36/36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af/dcd-36efa5cf4482e9bf-Data center power density- Planning liquid-cooled AI data centers.html",
+      "title": "Data center power density: Planning liquid-cooled AI data centers around grid and power constraints"
     }
   ],
   "evidence": [
@@ -67077,6 +67146,172 @@
           }
         },
         "batch_id": "55fb9e6064ee89f141b35ccfe8c284dad56a67e4ba3ff45155212f8466f8b108"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "640ae9e60adcf0f9a0f30598fcee67950cff1c3d4de4f61a10d2b51b08a65034",
+      "document_id": "doc-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "id": "rev-103353e71e7641918b0a01fce902d4cf:chunk:0:claim:10:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Legacy air-cooled facilities commonly operate at PUE values between 1.55 and 1.67",
+      "reading_revision_id": "rev-103353e71e7641918b0a01fce902d4cf",
+      "source_sha256": "36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:33:42+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。两条连续引文和完整原生页面支持限定的作者陈述，周边语境明确其用于说明设施开销及液冷规划。该运行PUE概括对M08-Q04贡献待核验的风冷比较基线，对M08-Q07贡献运营值来源线索，对M01-Q05贡献区分IT用电与设施总用电的参数线索。无A类触发条件，符合B类部分采用要求，不能回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q04",
+          "Q-M08-Q07",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 61.254,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6dba31ee1adaa5944e7f7aa99b0fc91d7b6e938ead4a91d37e3c2e49574b0d47",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71151,
+            "output_tokens": 1429,
+            "reasoning_output_tokens": 292
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.096,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7ea53a9940bc0434fcc70038443e47c160bf4797c9d4732e70e1c07b28ab6974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71872,
+              "output_tokens": 649,
+              "reasoning_output_tokens": 265
+            }
+          }
+        },
+        "batch_id": "a07ac739f94f31f9978e6e26afa1e4244c5a84a3fba520131485f6eaccd977f3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "640ae9e60adcf0f9a0f30598fcee67950cff1c3d4de4f61a10d2b51b08a65034",
+      "document_id": "doc-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "id": "rev-103353e71e7641918b0a01fce902d4cf:chunk:0:claim:10:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "meaning roughly a third of incoming electricity supports infrastructure rather than IT equipment.",
+      "reading_revision_id": "rev-103353e71e7641918b0a01fce902d4cf",
+      "source_sha256": "36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:33:42+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。两条连续引文和完整原生页面支持限定的作者陈述，周边语境明确其用于说明设施开销及液冷规划。该运行PUE概括对M08-Q04贡献待核验的风冷比较基线，对M08-Q07贡献运营值来源线索，对M01-Q05贡献区分IT用电与设施总用电的参数线索。无A类触发条件，符合B类部分采用要求，不能回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q04",
+          "Q-M08-Q07",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 61.254,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6dba31ee1adaa5944e7f7aa99b0fc91d7b6e938ead4a91d37e3c2e49574b0d47",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71151,
+            "output_tokens": 1429,
+            "reasoning_output_tokens": 292
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.096,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7ea53a9940bc0434fcc70038443e47c160bf4797c9d4732e70e1c07b28ab6974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71872,
+              "output_tokens": 649,
+              "reasoning_output_tokens": 265
+            }
+          }
+        },
+        "batch_id": "a07ac739f94f31f9978e6e26afa1e4244c5a84a3fba520131485f6eaccd977f3"
       }
     }
   ],
@@ -130121,6 +130356,109 @@
           "status": "out_of_scope"
         }
       ]
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-36efa5cf4482e9bf0448e0ddbc83f8d9d1670a5aab42c86243bd426f5dbad4af",
+      "evidence_ids": [
+        "rev-103353e71e7641918b0a01fce902d4cf:chunk:0:claim:10:ev:0",
+        "rev-103353e71e7641918b0a01fce902d4cf:chunk:0:claim:10:ev:1"
+      ],
+      "id": "adoption:review:61fbe4e2368a03bf56eb991a",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M08-Q04",
+        "M08-Q07",
+        "M01-Q05"
+      ],
+      "reading_revision_id": "rev-103353e71e7641918b0a01fce902d4cf",
+      "status": "adopted",
+      "text": "施耐德电气IT业务部门解决方案架构师Vance Peterson在DCD于2026年7月29日刊登的赞助文章中称，传统风冷数据中心设施通常以1.55–1.67的PUE运行，并概括称约三分之一的输入电力用于基础设施而非IT设备。该表述是作者引用外部网页作出的运行效率概括，不构成当前独立核证的实测结果；所涉设施地域、观测期间及具体项目阶段未明确。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-12T06:33:42+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性及评分6。两条连续引文和完整原生页面支持限定的作者陈述，周边语境明确其用于说明设施开销及液冷规划。该运行PUE概括对M08-Q04贡献待核验的风冷比较基线，对M08-Q07贡献运营值来源线索，对M01-Q05贡献区分IT用电与设施总用电的参数线索。无A类触发条件，符合B类部分采用要求，不能回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q04",
+          "Q-M08-Q07",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 61.254,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6dba31ee1adaa5944e7f7aa99b0fc91d7b6e938ead4a91d37e3c2e49574b0d47",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71151,
+            "output_tokens": 1429,
+            "reasoning_output_tokens": 292
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.096,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7ea53a9940bc0434fcc70038443e47c160bf4797c9d4732e70e1c07b28ab6974",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71872,
+              "output_tokens": 649,
+              "reasoning_output_tokens": 265
+            }
+          }
+        },
+        "batch_id": "a07ac739f94f31f9978e6e26afa1e4244c5a84a3fba520131485f6eaccd977f3"
+      },
+      "source_candidate_ids": [
+        "rev-103353e71e7641918b0a01fce902d4cf:chunk:0:claim:10"
+      ],
+      "limitations": "PUE为无量纲比值。原文未提供设施样本、计量边界、统计方法、负载、天气条件或实际PUE时序。按非IT用电占总输入电量的比例1−1/PUE计算，该区间对应约35.5%–40.1%；作者的“约三分之一”仅保留为粗略概括，不能作为精确占比。未提供同条件液冷改造前后测量、WUE、单MW散热Capex或可配对的TWh与GW路径；链接所指基础资料未在本包中提供。",
+      "conflict_check": "既有LBNL采用陈述强调冷却类型、天气与辅助负荷的建模条件，与本项未经条件细分的作者概括相容；IEA所述超大规模设施群持续低PUE涉及不同设施类型，不能视为同范围冲突或本项验证。既有节水设计及运营商声明没有相同PUE区间，不构成重复。作者的粗略占比不作为精确推导采用。所供legacy匹配记录为空，未检出真实冲突或规范重复，但未完成外部反证检索；不替换任何既有结论。",
+      "gap_dependency_check": "M08-Q04仍需一手测量、同口径基准、液冷配置、负载与天气条件、PUE/WUE改善及成本序列；M08-Q07仍需明确设施、期间和统计边界的实际时序；M01-Q05仍需同地域、年度和情景的TWh与GW路径及可复查利用率推导。本项仅保留可追踪的作者基线线索，不认证通用模型参数，不更新骨架或模型值，三项问题及工单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a07ac739f94f31f9978e6e26afa1e4244c5a84a3fba520131485f6eaccd977f3",
+        "source_report_sha256": "c8c47425a847cc20eca6ce620cadd62c8101b3eef1c30a705c18e92d83454dc7",
+        "request_sha256": "800783165728c11226466ee82d162c98aa5794ecbf7b40c999b5579ce8231642"
+      },
+      "object_mapping_check": "独立复核后，本项描述未具名传统风冷设施的整体PUE及全部非IT基础设施开销。合同中的system:facility限定土地与建筑、消防安防，不适合承载整体能效；root限定一座AI数据中心，本项未确立该用途或具体设施。风冷背景没有将全部开销归属于system:thermal，也未确认CRAH/CRAC等设备，故不下推冷却或电力部件。保留空对象列表及有效问题匹配，所选证据统一采用此范围，不继承Reader标签。"
     }
   ],
   "answers": [],
