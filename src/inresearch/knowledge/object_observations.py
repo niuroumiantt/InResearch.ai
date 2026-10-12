@@ -65,7 +65,9 @@ def empty():
 
 def load(root):
     p = Path(root)/PATH
-    return json.loads(p.read_text()) if p.exists() else empty()
+    doc = json.loads(p.read_text()) if p.exists() else empty()
+    from inresearch.delivery.source_publication import objects
+    return objects(root, doc)
 
 
 def archived_source_valid(source):
@@ -92,15 +94,28 @@ def archived_source_valid(source):
 def check(doc, root=None):
     if doc.get('version') != 1 or not isinstance(doc.get('objects'), dict) or not isinstance(doc.get('records'), list):
         raise ValueError('invalid_object_observation_ledger')
+    companies = {o['identity']['company_id'] for o in doc['objects'].values() if o.get('type') == 'company'}
+    if root is not None:
+        companies.update(r['company_id'] for r in json.loads((Path(root)/'data/companies.json').read_text())['records'])
     for ident, obj in doc['objects'].items():
-        if identity(obj, root) != ident:
+        if root is not None and 'company_id' in obj.get('identity', {}) and obj['identity']['company_id'] not in companies:
+            raise ValueError('registered_unique_company_required')
+        if obj.get('identity', {}).get('company_id') in {'multiple', 'unknown'}:
+            raise ValueError('registered_unique_company_required')
+        if identity(obj) != ident:
             raise ValueError('object_registry_key_mismatch')
     seen, revised = {}, set()
     for row in doc['records']:
         check_claim(row)
-        if row.get('object_id') not in doc['objects'] or row.get('id') in seen or not review_valid(row):
+        ordinary = row.get('registration', {}).get('status') == 'unverified'
+        if ordinary:
+            registration = row['registration']
+            if (registration.get('at') != row.get('recorded_at') or not registration.get('registered_by')
+                    or row.get('review') is not None or row.get('reviewed_at') is not None or row.get('revision')):
+                raise ValueError('unverified_registration_cannot_impersonate_review')
+        if row.get('object_id') not in doc['objects'] or row.get('id') in seen or (not ordinary and not review_valid(row)):
             raise ValueError('observation_identity_or_review_invalid')
-        for key in ('recorded_at', 'reviewed_at'):
+        for key in (('recorded_at',) if ordinary else ('recorded_at', 'reviewed_at')):
             if observation_time.precision(row.get(key)) != 'timestamp':
                 raise ValueError('actual_review_and_record_times_required')
         source = row.get('source') or {}
@@ -125,6 +140,18 @@ def check(doc, root=None):
     return doc
 
 
+def selection_clock(row):
+    source = row.get('source') or {}
+    for key, value in (('effective_at', row.get('effective_at')),
+                       ('published_at', source.get('published_at')),
+                       ('first_received_at', source.get('first_received_at')),
+                       ('recorded_at', row.get('recorded_at'))):
+        if value is not None:
+            observation_time.precision(value)
+            return value, key
+    return None, 'unknown'
+
+
 def current(doc, today=None):
     """Return candidates/conflicts explicitly; overlapping precision is not ordered."""
     from datetime import date
@@ -135,14 +162,19 @@ def current(doc, today=None):
         if r['id'] in replaced or r.get('revision', {}).get('action') == 'withdraw': continue
         key = digest({k:r.get(k) for k in ('object_id','metric','scope','unit')})
         g = groups.setdefault(key, {'current': [], 'conflicts': [], 'other': []})
-        if (r['kind'] == 'forecast' or not observation_time.certainly_past(r.get('effective_at'), today)
+        clock = selection_clock(r)[0] if r.get('registration') else r.get('effective_at')
+        past = (clock is not None and observation_time.bounds(clock)[0] <= observation_time.day_end(today)) if r.get('registration') else observation_time.certainly_past(clock, today)
+        if (r['kind'] == 'forecast' or not past
                 or r.get('valid_until') and observation_time.definitely_after(today, r['valid_until'])):
             g['other'].append(r); continue
         g['current'].append(r)
     for g in groups.values():
         candidates = g['current']
-        latest = [r for r in candidates if not any(observation_time.definitely_after(n['effective_at'],r['effective_at']) for n in candidates)]
-        g['current'] = latest
+        clock = lambda r: selection_clock(r)[0] if r.get('registration') else r.get('effective_at')
+        latest = [r for r in candidates if not any(observation_time.definitely_after(clock(n), clock(r)) for n in candidates)]
+        if latest and all(r.get('registration') for r in latest):
+            latest.sort(key=lambda r: (observation_time.bounds(clock(r))[0], observation_time.bounds(r['recorded_at'])[0], doc['records'].index(r)), reverse=True)
+        g['current'] = latest[:1] if latest and all(r.get('registration') for r in latest) else latest
         if len({digest(r['value']) for r in latest}) > 1: g['conflicts'] = [r['id'] for r in latest]
     return list(groups.values())
 
@@ -168,13 +200,17 @@ def public_records(root, company=None, object_id=None, kind=None):
         if company and obj['identity'].get('company_id') != company: continue
         if object_id and obj['id'] != object_id: continue
         if kind and obj['type'] != kind: continue
-        if row['review'].get('public_fields_reviewed') is not True: continue
+        ordinary = row.get('registration', {}).get('status') == 'unverified'
+        if not ordinary and row['review'].get('public_fields_reviewed') is not True: continue
         item = {k:copy.deepcopy(row.get(k)) for k in fields['record_fields']}
         if item.get('revision'):
             item['revision'] = {k:item['revision'].get(k) for k in fields['revision_fields']}
         item.update(object={k:copy.deepcopy(obj.get(k)) for k in fields['object_fields']},
                     conflict=row['id'] in conflicts,
                     source={k:row['source'].get(k) for k in fields['source_fields']})
+        if ordinary:
+            item['registration_status'] = 'unverified'
+            item['selection_time'], item['selection_time_basis'] = selection_clock(row)
         result.append(item)
     return result
 

@@ -1761,3 +1761,7 @@ TA22/23真实5be58335/.61与精确9079镜像healthy，独立public-v3/public-v1�
 ## 2026-10-11：四个独立采集仓库替代单fetchdata方案
 
 用户明确要求四队独立交给员工。fetchstat、fetchfilings、fetchreports、fetchquotes已创建公开仓库，各交README/任务书/统一候选合同/标准库采集器及8项测试；EIA、Microsoft、LBNL发布页、Lambda各完成一个真实原件和一条候选，离线校验及重放通过。LBNL PDF请求403只记录缺口；报价币种代码/地区未知不补造。仓库存在不等于生产接收，connection保持not_connected，不改171项缺口或17项模型验证。此前单fetchdata四目录建设安排被替代，兼容文档目录及合同名保持。
+
+## 2026-10-12 Independent ordinary data publication
+
+The owner explicitly adopted ordinary information without factual verification, stable unique IDs with ongoing source history, and data releases outside code PRs. source-publish adds a private persistent ledger, atomic batch receipts and shared website/API projection. Company/product/statistic/quote intake no longer requires C3 or model targets. Research conclusions keep their existing authority boundaries. First implementation and UI repairs use full CI; later ordinary data imports use structural checks plus live receipts. Counts require production verification.

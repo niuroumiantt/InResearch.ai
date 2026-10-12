@@ -2,11 +2,41 @@
   "version": 1,
   "purpose": "One server-side projection for reader pages and public observation APIs; publication is separate from research adoption.",
   "public": {
-    "record_fields": ["id", "object_id", "metric", "value", "unit", "kind", "scope", "effective_at", "valid_until", "period_start", "period_end", "basis", "assumptions", "recorded_at", "reviewed_at", "revision"],
-    "object_fields": ["id", "type", "identity", "name"],
-    "source_fields": ["url", "published_at"],
-    "revision_fields": ["of", "action", "reason"],
-    "eligibility": "Named adoption review explicitly confirms public_fields_reviewed=true. This confirms the allowlisted research fields, not permission to republish the whole source. No additional owner confirmation per batch."
+    "record_fields": [
+      "id",
+      "object_id",
+      "metric",
+      "value",
+      "unit",
+      "kind",
+      "scope",
+      "effective_at",
+      "valid_until",
+      "period_start",
+      "period_end",
+      "basis",
+      "assumptions",
+      "recorded_at",
+      "reviewed_at",
+      "revision"
+    ],
+    "object_fields": [
+      "id",
+      "type",
+      "identity",
+      "name"
+    ],
+    "source_fields": [
+      "url",
+      "published_at"
+    ],
+    "revision_fields": [
+      "of",
+      "action",
+      "reason"
+    ],
+    "eligibility": "Named adoption review explicitly confirms public_fields_reviewed=true. This confirms the allowlisted research fields, not permission to republish the whole source. No additional owner confirmation per batch.",
+    "ordinary_source_eligibility": "Stable typed identity and structural registration only; status unverified. The same public allowlist applies without factual/C3 adoption review. Quotes, archived paths and receiver provenance remain internal."
   },
   "subscriber": {
     "enabled": false,

@@ -604,6 +604,19 @@ const {mkdirSync}=require('node:fs');
   }
   await page.locator('#market-band a').first().click();await page.locator('#capacity').waitFor();
   await page.goBack();await page.waitForFunction(region=>window.industryFilter?.region===region,region);
+  // Archived ordinary registrations have no webpage URL, stage or C3 adoption.
+  // They must still render complete details and appear on the reader homepage.
+  const archivedIds=['cn-anhui-luan-telecom-cloud','cn-zhejiang-jinhua-wucheng-telecom','cn-fujian-nanan-power-dispatch'];
+  for(const id of archivedIds){
+   await page.goto(base+'/project.html?site='+id);
+   await page.locator('#site-observation-timeline').waitFor();
+   assert.match(await page.locator('#site-observation-timeline').innerText(),/\u57fa\u7840\u767b\u8bb0\u5f85\u67e5/);
+   assert.equal(await page.locator('#load-status').innerText(),'');
+  }
+  await page.goto(base+'/');
+  await page.locator('#update-track .update-item').first().waitFor();
+  const links=await page.locator('#update-track [data-update-kind=project]').evaluateAll(es=>es.map(e=>new URL(e.href).searchParams.get('site')));
+  for(const id of archivedIds)assert.ok(links.includes(id),'archived source update remains visible');
   await page.goto(base+'/project.html?site=missing');await page.getByText('未找到对应的项目或主体。',{exact:false}).waitFor();
   assert.deepEqual(errors,[]);
   console.log('PASS industry: viewport matrix, real-endpoint screenshots, scoped news counts, company/map/news filters, drilldowns, sources, history, zoom/pan, keyboard, mobile and dark mode');
