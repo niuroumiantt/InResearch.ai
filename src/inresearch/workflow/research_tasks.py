@@ -64,8 +64,13 @@ def snapshot(root, actor='', role='reader'):
     # observed database totals, not a claim about worldwide coverage or live ACK.
     from inresearch.knowledge import industry
     view = industry.snapshot(root, {'overview': '1'})
-    public = {k: v for k, v in state.items() if k != 'operations'}
-    return {**public, 'mission': plan(root)['mission'], 'actor': actor, 'role': role,
+    projection = {k: v for k, v in state.items() if k != 'operations'}
+    if role == 'reader':
+        projection = {k: state[k] for k in ('version', 'revision')}
+        projection['packages'] = [{k: p.get(k) for k in ('id', 'title', 'region', 'scope', 'sources', 'status')}
+                                  for p in state['packages']]
+    return {**projection, 'mission': plan(root)['mission'], 'actor': actor if role != 'reader' else '', 'role': role,
+            'public_view': role == 'reader',
             'can_create': role in ('admin', 'member'),
             'map_register': {'status': 'observed', 'counts': view['capacity_audit'],
                 'basis': view['basis'], 'coverage': view['coverage'],

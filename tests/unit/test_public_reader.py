@@ -1,4 +1,4 @@
-"""Homepage-only anonymous access; authenticated role grants remain separate."""
+"""Homepage and task guide anonymous projections; all other role grants stay separate."""
 import http.client
 import json
 import threading
@@ -15,12 +15,15 @@ ROOT = Path(__file__).resolve().parents[2]
 class PublicViewTests(unittest.TestCase):
     def test_allowed_is_a_whitelist(self):
         for path in ('/', '/index.html', '/api/whoami', '/login', '/healthz', '/robots.txt',
+                     '/tasks.html', '/api/research-tasks', '/api/research-task-examples',
+                     '/assets/research-tasks.js', '/assets/research-tasks.css',
+                     '/api/research-task-examples/equinix-sg3-20261012/files/source-1',
                      '/assets/site-skin.js', '/assets/industry.js', '/assets/fonts/fonts.css',
                      '/assets/world.geo.json', '/assets/world-detail.geo.json', '/assets/map-admin1-11.geo.json',
                      '/api/industry?overview=1', '/api/news?overview=1'):
             self.assertTrue(public.allowed(path), path)
         for path in ('/industry.html', '/projects.html', '/node.html', '/ledger.html', '/bom.html', '/report.html',
-                     '/tasks.html', '/supply.html', '/company.html', '/product-catalog.html', '/logout',
+                     '/supply.html', '/company.html', '/product-catalog.html', '/logout',
                      '/data/dashboard.json', '/data/datacenter_model.json', '/framework/bom.json',
                      '/api/industry', '/api/news', '/api/observations', '/api/report', '/api/product-catalog/nvidia',
                      '/assets/models/x.glb', '/assets/part-dossier.js', '/assets/technical-atlas/rack-atlas-v1.png',
@@ -136,13 +139,15 @@ class PublicReaderHTTPTests(unittest.TestCase):
             self.assertFalse(ledger['aggregation_allowed'])
             self.assertFalse(ledger['formal_database_ingested'])
 
-    def test_task_api_requires_login_and_rechecks_intern_ownership_in_workflow(self):
+    def test_task_api_has_public_projection_but_writes_recheck_login_and_intern_ownership(self):
         from inresearch.workflow import research_tasks
         endpoint = '/api/research-tasks'
-        with patch.object(auth, 'session_user', return_value=None), patch.object(research_tasks, 'snapshot') as snapshot:
-            self.assertEqual(self.request('GET', endpoint)[0], 401)
+        with patch.object(auth, 'session_user', return_value=None), patch.object(research_tasks, 'snapshot', return_value={'role': 'reader'}) as snapshot:
+            status, headers, body = self.request('GET', endpoint)
+            self.assertEqual((status, json.loads(body)), (200, {'role': 'reader'}))
+            self.assertEqual(headers['Cache-Control'], 'private, no-store')
             self.assertEqual(self.request('POST', endpoint, b'{}')[0], 401)
-            snapshot.assert_not_called()
+            snapshot.assert_called_once_with(serve.ROOT, actor='local', role='reader')
         with patch.object(auth, 'session_user', return_value='intern'), patch.object(auth, 'user_role', return_value='intern'):
             with patch.object(research_tasks, 'snapshot', return_value={'role': 'intern'}) as snapshot:
                 status, headers, body = self.request('GET', endpoint)

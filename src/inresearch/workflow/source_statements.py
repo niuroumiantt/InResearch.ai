@@ -89,8 +89,15 @@ def apply(root, data, statement):
                        capacity_it_mw=None,capacity_facility_mw=None,capacity_planned_it_mw=None,
                        capacity_it_mw_by_status={},sources=entry['sources'],identity_registration=identity)
         if statement.get('identity'):
-            for k in ('site_id','country','region','location','province','city','district','street_address'):
+            site_register.check_initial_coordinates(statement['identity'])
+            for k in ('site_id','country','region','location','province','city','district','street_address',
+                      'coordinates','coordinate_source'):
                 if k in statement['identity'] and statement['identity'][k]!=old.get(k):raise ValueError('physical_site_identity_changed:'+k)
+            if statement['identity'].get('coordinate_source'):
+                point_source = statement['identity']['coordinate_source']
+                _, point_url, _, _ = source(data, point_source['source_sha256'], with_provenance=True)
+                if point_url is not None and point_url != point_source['url']:
+                    raise ValueError('coordinate_source_url_mismatch')
         updated,replay=site_timeline.append(old,entry)
         if not replay:
             index=next((i for i,r in enumerate(register['records']) if r['site_id']==site_id),None)

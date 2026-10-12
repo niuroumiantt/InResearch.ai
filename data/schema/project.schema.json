@@ -922,6 +922,90 @@
       },
       "uniqueItems": true,
       "description": "租约出租方；按来源独立核验，不从产权或使用关系推断"
+    },
+    "coordinate_source": {
+      "$ref": "#/$defs/coordinate_source",
+      "description": "首次物理园区的WGS84定位来源与精度；地址地理编码不冒充楼体中心，字节定位与接收审计保持私有"
+    },
+    "identity_registration": {
+      "type": "object",
+      "required": [
+        "version",
+        "site_id",
+        "name",
+        "country",
+        "region",
+        "location",
+        "native_name",
+        "basis"
+      ],
+      "properties": {
+        "site_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "country": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[A-Z]{2}$"
+        },
+        "region": {
+          "type": "string",
+          "minLength": 1
+        },
+        "location": {
+          "type": "string",
+          "minLength": 1
+        },
+        "native_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "province": {
+          "type": "string",
+          "minLength": 1
+        },
+        "city": {
+          "type": "string",
+          "minLength": 1
+        },
+        "district": {
+          "type": "string",
+          "minLength": 1
+        },
+        "street_address": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "const": 1
+        },
+        "coordinates": {
+          "type": "string",
+          "pattern": "^\\s*[+-]?\\d+(?:\\.\\d+)?\\s*,\\s*[+-]?\\d+(?:\\.\\d+)?\\s*$",
+          "maxLength": 100
+        },
+        "coordinate_source": {
+          "$ref": "#/$defs/coordinate_source"
+        }
+      },
+      "additionalProperties": false,
+      "dependentRequired": {
+        "coordinates": [
+          "coordinate_source"
+        ],
+        "coordinate_source": [
+          "coordinates"
+        ]
+      }
     }
   },
   "$defs": {
@@ -1085,6 +1169,76 @@
         }
       ],
       "additionalProperties": false
+    },
+    "coordinate_source": {
+      "type": "object",
+      "required": [
+        "precision",
+        "coordinate_system",
+        "method",
+        "source_sha256",
+        "url",
+        "locator",
+        "basis"
+      ],
+      "properties": {
+        "precision": {
+          "enum": [
+            "address",
+            "site",
+            "building"
+          ]
+        },
+        "coordinate_system": {
+          "const": "WGS84",
+          "description": "地图展示采用的坐标基准；来源是否明示该基准另在basis说明"
+        },
+        "method": {
+          "enum": [
+            "address_geocode",
+            "source_map",
+            "reported_coordinates"
+          ]
+        },
+        "source_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://",
+          "maxLength": 4096
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "method": {
+                "const": "address_geocode"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "precision": {
+                "const": "address"
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

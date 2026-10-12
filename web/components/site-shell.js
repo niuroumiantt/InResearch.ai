@@ -19,7 +19,7 @@
     return el;
   }
   // 一级导航为行业总览与研究目录（05「目录」）：七项按角色出现；页面用 data-section 说自己属于哪一项。
-  // 未登录只见首页与登录；实习生可进入任务跟踪和自己的采集任务。
+  // 未登录可见首页、任务与登录；实习生可进入任务跟踪和自己的采集任务。
   const LINKS = [
     ['industry', '行业总览', '/'], ['tasks', '任务跟踪', '/tasks.html'], ['datacenter', '数据中心研究', '/node.html'], ['ledger', '账本', '/ledger.html'], ['bom', '爆炸图', '/bom.html'],
     ['acquisition', '采集', '/supply.html'], ['results', '成果', '/report.html'], ['admin', '管理', '/ops.html']
@@ -28,7 +28,7 @@
     admin: ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'],
     member: ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'acquisition', 'results'],
     intern: ['tasks', 'acquisition'],
-    reader: ['industry']
+    reader: ['industry', 'tasks']
   };
   function navigation(section, audience) {
     const nav = document.createElement('nav');
@@ -37,7 +37,7 @@
       nav.replaceChildren();
       document.querySelectorAll('[data-requires-login]').forEach(el => { el.hidden = role === 'reader'; });
       const visible = audience === 'reader' && role !== 'reader'
-        ? ['industry', 'datacenter', 'ledger', 'bom', 'results'] : (VISIBLE[role] || VISIBLE.reader);
+        ? ['industry', 'tasks', 'datacenter', 'ledger', 'bom', 'results'] : (VISIBLE[role] || VISIBLE.reader);
       for (const [id, label, href] of LINKS) {
         if (!visible.includes(id)) continue;
         const link = document.createElement('a');

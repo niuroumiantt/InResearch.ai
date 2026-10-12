@@ -4,6 +4,8 @@ Geography is recorded explicitly. A city, campus name or approximate coordinate
 is never a deduplication key; only the reviewed canonical site_id links records.
 """
 import copy
+import math
+import re
 from urllib.parse import urlsplit
 
 ACTOR_ROLES = {
@@ -32,7 +34,7 @@ def _sources(rows):
 
 def geography(row):
     address = ' · '.join(row[key] for key in ('city', 'district', 'street_address') if row.get(key))
-    return {'country': row.get('country'), **{
+    result = {'country': row.get('country'), **{
         key: copy.deepcopy(row.get(key)) for key in GEOGRAPHY_FIELDS},
         'regional_address': address or row.get('location') or '',
         'location_description': row.get('location'),
@@ -40,6 +42,11 @@ def geography(row):
         'identity_scope': 'portfolio' if 'portfolio' in row.get('site_id', '') else
             'cluster' if row.get('identity_scope') == 'cluster' else
             row.get('identity_scope', 'registered_site')}
+    if row.get('coordinate_source'):
+        # Byte/receiver audit and local locators stay in the private source record.
+        result['coordinate_source'] = {k: row['coordinate_source'].get(k) for k in
+            ('precision', 'coordinate_system', 'method', 'url', 'basis')}
+    return result
 
 
 def provenance(row, field):
@@ -79,7 +86,46 @@ def capacities(row):
 
 
 INITIAL_IDENTITY_KEYS = frozenset(('version', 'site_id', 'name', 'country', 'region', 'location',
-                                  'native_name', 'basis', 'province', 'city', 'district', 'street_address'))
+                                  'native_name', 'basis', 'province', 'city', 'district', 'street_address',
+                                  'coordinates', 'coordinate_source'))
+COORDINATE_SOURCE_KEYS = frozenset(('precision', 'coordinate_system', 'method', 'source_sha256',
+                                   'url', 'locator', 'basis'))
+
+
+def check_initial_coordinates(identity):
+    """Optional source-located WGS84 point, never an inferred city centroid."""
+    if not isinstance(identity, dict):
+        raise ValueError('initial_identity_object_required')
+    present = {'coordinates', 'coordinate_source'} & identity.keys()
+    if not present:
+        return
+    if len(present) != 2:
+        raise ValueError('coordinates_and_source_required_together')
+    value, source = identity['coordinates'], identity['coordinate_source']
+    if (not isinstance(value, str) or len(value) > 100 or not re.fullmatch(
+            r'\s*[+-]?\d+(?:\.\d+)?\s*,\s*[+-]?\d+(?:\.\d+)?\s*', value)):
+        raise ValueError('initial_coordinates_lat_lon_required')
+    lat, lon = (float(v) for v in value.split(','))
+    if not (math.isfinite(lat) and math.isfinite(lon) and -90 <= lat <= 90 and -180 <= lon <= 180):
+        raise ValueError('initial_coordinates_out_of_range')
+    if (not isinstance(source, dict) or set(source) != COORDINATE_SOURCE_KEYS
+            or source.get('precision') not in ('address', 'site', 'building')
+            or source.get('coordinate_system') != 'WGS84'
+            or source.get('method') not in ('address_geocode', 'source_map', 'reported_coordinates')
+            or source.get('method') == 'address_geocode' and source.get('precision') != 'address'
+            or not re.fullmatch('[0-9a-f]{64}', str(source.get('source_sha256', '')))
+            or any(not isinstance(source.get(k), str) or not source[k].strip()
+                   or len(source[k]) > limit for k, limit in (('locator', 1000), ('basis', 4000)))):
+        raise ValueError('initial_coordinate_source_required')
+    url = source.get('url')
+    try:
+        parsed = urlsplit(url)
+        parsed.port
+        if (not isinstance(url, str) or len(url) > 4096 or re.search(r'\s|[\x00-\x1f\x7f]', url)
+                or parsed.scheme != 'https' or not parsed.hostname or parsed.username or parsed.password):
+            raise ValueError()
+    except (ValueError, TypeError, AttributeError):
+        raise ValueError('initial_coordinate_source_https_required') from None
 
 
 def check_initial_identity(identity, project=None):
@@ -88,11 +134,13 @@ def check_initial_identity(identity, project=None):
     if (not isinstance(identity, dict) or not required <= identity.keys()
             or set(identity) - INITIAL_IDENTITY_KEYS or type(identity['version']) is not int
             or identity['version'] != 1
-            or any(not isinstance(identity[k], str) or not identity[k].strip() for k in identity if k != 'version')
+            or any(not isinstance(identity[k], str) or not identity[k].strip()
+                   for k in identity if k not in ('version', 'coordinate_source'))
             or len(identity['country']) != 2 or not identity['country'].isascii()
             or not identity['country'].isupper() or not identity['country'].isalpha()
             or 'portfolio' in identity['site_id'] or len(identity['native_name'].strip()) < 4):
         raise ValueError('reviewed_initial_physical_identity_required')
+    check_initial_coordinates(identity)
     if project is not None and (project.get('duplicate_of') or project.get('identity_scope') in ('cluster', 'portfolio')
             or any(project.get(k) != v for k, v in identity.items() if k not in ('version', 'basis', 'native_name'))):
         raise ValueError('initial_physical_identity_mismatch')

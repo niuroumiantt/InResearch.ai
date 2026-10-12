@@ -197,7 +197,7 @@ ROLES = ("admin", "member", "intern")
 # **漏一条路径等于没锁门**；白名单只放行工单系统，其余一概 403。
 # 2026-09-28：实习生的入口是采集页（目标表与研究问题任务两个标签；/api/targets 在服务端只给分配给自己的行）。
 INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/fonts/", "/supply.html", "/tasks.html", "/api/targets", "/reports/workorders.json", "/data/assignments.json",
-                    "/api/status", "/api/tasks", "/api/research-tasks", "/api/whoami", "/account", "/login", "/logout",
+                    "/api/status", "/api/tasks", "/api/research-tasks", "/api/research-task-examples", "/api/research-task-examples/", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
 INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign", "/api/deliver", "/api/research-tasks")
 

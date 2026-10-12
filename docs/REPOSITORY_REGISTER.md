@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.111。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.12.112。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2645。
+在册文件：2649。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 435 |
-| 运行代码 | 369 |
+| 历史快照 | 436 |
+| 运行代码 | 370 |
 | 现行规范 | 15 |
 | 项目配置 | 777 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 234 |
-| 测试 | 220 |
+| 配套说明 | 235 |
+| 测试 | 221 |
 
 ## 在册记录集合
 
@@ -1766,7 +1766,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 56 |
+| `framework/current_state.json` | policies | 57 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -1780,7 +1780,7 @@
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 51 |
-| `framework/interface_manifest.json` | public_pages | 1 |
+| `framework/interface_manifest.json` | public_pages | 2 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -2058,6 +2058,7 @@
 | [docs/archive/2026-10-11/framework__05_interface_system__before_global_daily.md](archive/2026-10-11/framework__05_interface_system__before_global_daily.md) | 历史快照 |
 | [docs/archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md](archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md) | 历史快照 |
 | [docs/archive/2026-10-12/framework__05_interface_system__before_private_tasks.md](archive/2026-10-12/framework__05_interface_system__before_private_tasks.md) | 历史快照 |
+| [docs/archive/2026-10-12/framework__05_interface_system__before_public_tasks.md](archive/2026-10-12/framework__05_interface_system__before_public_tasks.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/README.md](archive/local-materials-20261010/original23-new-protocol-validation/README.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 历史快照 |
@@ -2657,6 +2658,7 @@
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | 项目配置 |
 | [docs/handoff/daily-evidence-loop-20261006.md](handoff/daily-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/daily-oct7-adoption.md](handoff/daily-oct7-adoption.md) | 配套说明 |
+| [docs/handoff/datacenter-intake-example-20261012.md](handoff/datacenter-intake-example-20261012.md) | 配套说明 |
 | [docs/handoff/dcd-publish-latency-20261009.md](handoff/dcd-publish-latency-20261009.md) | 配套说明 |
 | [docs/handoff/editorial-delivery-20261009.md](handoff/editorial-delivery-20261009.md) | 配套说明 |
 | [docs/handoff/event-delivery-20261006.md](handoff/event-delivery-20261006.md) | 配套说明 |
@@ -3838,6 +3840,7 @@
 | `src/inresearch/workflow/research_publish.py` | 运行代码 |
 | `src/inresearch/workflow/research_review.py` | 运行代码 |
 | `src/inresearch/workflow/research_sources.py` | 运行代码 |
+| `src/inresearch/workflow/research_task_examples.py` | 运行代码 |
 | `src/inresearch/workflow/research_tasks.py` | 运行代码 |
 | `src/inresearch/workflow/review_preference.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
@@ -4044,6 +4047,7 @@
 | `tests/unit/test_research_retry_transient.py` | 测试 |
 | `tests/unit/test_research_review.py` | 测试 |
 | `tests/unit/test_research_sources.py` | 测试 |
+| `tests/unit/test_research_task_examples.py` | 测试 |
 | `tests/unit/test_research_tasks.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_review_preference.py` | 测试 |

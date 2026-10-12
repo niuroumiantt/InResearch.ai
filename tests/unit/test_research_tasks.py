@@ -116,6 +116,24 @@ class ResearchTaskTests(unittest.TestCase):
         self.assertNotIn('operations', view)
         self.assertFalse(view['can_create'])
 
+    def test_public_task_projection_excludes_actual_people_execution_and_delivery(self):
+        tasks.mutate(self.root, self.request(assignee='secret-owner', machine='secret-host',
+            model='secret-model', note='secret-note', delivery_pointer='private/secret-receipt.json'), 'editor', 'member')
+        path = tasks.ledger_path(self.root)
+        state = json.loads(path.read_text())
+        state['internal_runtime_note'] = 'secret-top-level'
+        path.write_text(json.dumps(state))
+        projection = {'capacity_audit': {'sites': 9, 'operating': 150},
+                      'basis': 'existing map basis', 'coverage': {'label': '非全球普查'}}
+        with patch('inresearch.knowledge.industry.snapshot', return_value=projection):
+            view = tasks.snapshot(self.root, 'must-not-be-echoed', 'reader')
+        self.assertTrue(view['public_view'])
+        self.assertEqual(view['actor'], '')
+        self.assertEqual(set(view['packages'][0]), {'id', 'title', 'region', 'scope', 'sources', 'status'})
+        self.assertEqual(view['packages'][0]['status'], 'in_progress')
+        self.assertNotIn('secret-', json.dumps(view))
+        self.assertNotIn('internal_runtime_note', view)
+
     def test_corruption_is_never_overwritten(self):
         path = tasks.ledger_path(self.root)
         path.parent.mkdir(parents=True)

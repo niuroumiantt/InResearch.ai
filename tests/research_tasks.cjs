@@ -6,6 +6,7 @@ const {tmpdir} = require('node:os');
 const {join,resolve} = require('node:path');
 const {createInterface} = require('node:readline');
 const {chromium} = require('playwright');
+const {createHash} = require('node:crypto');
 const root = resolve(__dirname,'..');
 const directory = mkdtempSync(join(tmpdir(),'inresearch-tasks-'));
 const environment = {...process.env,INRESEARCH_RUNTIME_ROOT:join(directory,'runtime'),INRESEARCH_INTAKE_ROOT:join(directory,'intake'),HUB_AUTH:'on',INRESEARCH_MARKET_ENABLED:'0',PYTHONDONTWRITEBYTECODE:'1'};
@@ -20,15 +21,39 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const config = await ready, base = 'http://127.0.0.1:'+config.port;
     browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});
     const anonymous = await browser.newPage();
-    assert.equal((await anonymous.request.get(base+'/api/research-tasks')).status(),401);
+    assert.equal((await anonymous.request.get(base+'/api/research-tasks')).status(),200);
+    assert.equal((await anonymous.request.post(base+'/api/research-tasks',{data:{}})).status(),401);
     await anonymous.goto(base+'/tasks.html');
-    await anonymous.locator('input[name="username"]').waitFor();
-    await anonymous.close();
+    await anonymous.locator('#package-rows tr').nth(5).waitFor();
+    await anonymous.waitForFunction(()=>document.querySelector('#examples-status').textContent.includes('尚未安装'));
+    assert.equal(await anonymous.locator('#new-package').isVisible(),false);
+    assert.match(await anonymous.locator('#task-role-note').innerText(),/登录后可见/);
+    // Synthetic test bytes are private runtime fixtures, separate from the real
+    // worked example installed by an operator. They never enter source data.
+    const sampleId='equinix-sg3-20261012', sampleDirectory=join(directory,'runtime/data/raw/research-task-examples',sampleId);
+    mkdirSync(sampleDirectory,{recursive:true});
+    const sampleArtifacts=[['original','SYNTHETIC PUBLIC ORIGINAL\n','public'],['validation','{"offline_valid":true,"synthetic":true}\n','public'],['internal','SYNTHETIC PRIVATE OPERATOR NOTE\n','private']].map(([id,content,access_scope])=>{const bytes=Buffer.from(content);writeFileSync(join(sampleDirectory,id+'.txt'),bytes);return{id,path:id+'.txt',filename:id+'.txt',sha256:createHash('sha256').update(bytes).digest('hex'),size:bytes.length,access_scope};});
+    const sample={version:1,id:sampleId,name:'合成浏览器样例 · 不是真实研究数据',site_id:'synthetic-example',status:'测试字节，不可用于研究采用',processed_at:'2026-10-12T12:00:00+08:00',execution:{machine:'private-sample-host',model:'private-sample-model',actor:'private-sample-operator',reading_scope:'仅相关段落，未全文阅读'},sources:[{id:'source-1',title:'合成原件',url:'https://example.invalid/source',artifact_id:'original',locator:'第1节 · 原文定位'}],facts:[{id:'name',label:'园区原名',value:'合成站点',unit:null,source_ids:['source-1'],locator:'第1节'}],unknowns:[{id:'electricity',label:'年度电耗',reason:'原件未披露，保持未知',next_action:'寻找运行年度报告，不填0'}],stages:[{id:'originals',title:'原件取得',state:'complete',result:'已保存合成测试字节',artifact_ids:['original']},{id:'validate',title:'离线验包',state:'complete',result:'合成测试报告',artifact_ids:['validation']},{id:'receive',title:'实际接收',state:'pending',result:'未执行，不可计为已接收',artifact_ids:['internal']},{id:'map',title:'网站与地图回执',state:'pending',result:'未执行，不可计为已点亮',artifact_ids:[]}],artifacts:sampleArtifacts,links:{project:'/project.html?site=synthetic-example',map:'/industry.html?site=synthetic-example'}};
+    writeFileSync(join(sampleDirectory,'example.json'),JSON.stringify(sample));
+    await anonymous.locator('#refresh-examples').click();
+    await anonymous.locator('[data-example="'+sampleId+'"]').waitFor();
+    assert.ok(!(await anonymous.locator('#example-content').innerText()).includes('private-sample-'));
+    assert.equal(await anonymous.locator('[data-stage="receive"] [data-artifact="internal"]').count(),0);
+    assert.match(await anonymous.locator('[data-stage="map"] summary').innerText(),/尚未完成/);
+    assert.equal((await anonymous.request.get(base+'/api/research-task-examples/'+sampleId+'/files/internal')).status(),401);
+    const [sourceDownload]=await Promise.all([anonymous.waitForEvent('download'),anonymous.locator('[data-stage="originals"] a[download]').click()]);
+    assert.equal(createHash('sha256').update(readFileSync(await sourceDownload.path())).digest('hex'),sampleArtifacts[0].sha256);
+    await anonymous.locator('.example-fact-sources a').first().click();
+    assert.equal(await anonymous.locator('.example-source-list').evaluate(e=>e.open),true);
+    assert.match(await anonymous.locator('.example-source-list').innerText(),/第1节 · 原文定位/);
+    assert.match(await anonymous.locator('.example-unknowns').innerText(),/年度电耗.*未披露/s);
     const page = await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true});
     await page.context().addCookies([{name:'hub_session',value:config.cookies['task-member'].split('=')[1],url:base}]);
     const errors = [];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'/tasks.html');
     await page.locator('#package-rows tr').nth(5).waitFor();
+    await page.locator('[data-example="'+sampleId+'"]').waitFor();
+    assert.match(await page.locator('.example-execution').innerText(),/private-sample-host/);
     assert.equal(await page.locator('.angle-grid article').count(),12);
     assert.match(await page.locator('.mission-scale').innerText(),/待校准/);
     assert.match(await page.locator('#register-stats').innerText(),/参与统计项目记录/);
@@ -48,6 +73,9 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const ledger = JSON.parse(readFileSync(join(directory,'runtime/data/raw/research-tasks/ledger.json'),'utf8'));
     assert.equal(ledger.packages[0].assignee,'task-intern');
     assert.equal(ledger.operations.length,1);
+    const anonymousTasks=await (await anonymous.request.get(base+'/api/research-tasks')).json();
+    assert.equal(anonymousTasks.packages[0].status,'in_progress');
+    for(const field of ['assignee','machine','model','note','delivery_pointer','created_by','updated_by','due'])assert.ok(!(field in anonymousTasks.packages[0]),'anonymous field '+field);
 
     // An editor's old complete form must never pair with a newly loaded revision.
     await page.locator('[data-edit="dc-census-na"]').click();
@@ -126,8 +154,14 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await intern.locator('#package-dialog').waitFor({state:'hidden'});
     await intern.locator('[data-package="dc-census-na"] .package-status.delivered').waitFor();
     assert.match(await intern.locator('[data-package="dc-census-na"]').innerText(),/已交付/);
+    assert.equal((await intern.request.get(base+'/api/research-task-examples/'+sampleId+'/files/internal')).status(),200);
+    writeFileSync(join(sampleDirectory,'original.txt'),'CHANGED SYNTHETIC ORIGINAL');
+    await anonymous.locator('#refresh-examples').click();
+    await anonymous.locator('[data-stage="originals"] .example-warning').waitFor();
+    assert.equal((await anonymous.request.get(base+'/api/research-task-examples/'+sampleId+'/files/original')).status(),409);
+    assert.equal(await anonymous.locator('[data-stage="originals"] a[download]').count(),0);
 
     assert.deepEqual(errors,[]);
-    console.log('PASS task privacy, persisted assignment, concurrent-edit protection, own intern delivery, anonymous boundary, real downloads and 4 responsive widths');
+    console.log('PASS public task privacy, real-byte example downloads, unknowns/evidence/pending states, changed-file rejection, persisted assignment, concurrent-edit protection, own intern delivery and 4 responsive widths');
   } finally {if(browser)await browser.close();server.kill();lines.close();rmSync(directory,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});
