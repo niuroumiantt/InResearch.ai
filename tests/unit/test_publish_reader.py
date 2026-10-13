@@ -19,6 +19,7 @@ class PublisherTests(unittest.TestCase):
     def test_transient_deployment_errors_retry_identical_snapshot_without_waiting_for_timer(self):
         request = publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot', data=b'fixed-body')
         response = unittest.mock.MagicMock()
+        response.__enter__.return_value.headers = {}
         response.__enter__.return_value.read.return_value = b'{"ok":true,"received_at":"original-commit","replayed":true}'
         errors = [urllib.error.HTTPError(request.full_url, code, 'deployment', {}, io.BytesIO(b'')) for code in (502,503)]
         with patch.object(publish_reader.urllib.request,'build_opener') as opener, patch.object(publish_reader.time,'sleep') as sleep:
@@ -41,6 +42,7 @@ class PublisherTests(unittest.TestCase):
     def test_slow_receipt_uses_one_decreasing_deadline_and_stops_after_budget(self):
         request=publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot',data=b'fixed-body')
         response=unittest.mock.MagicMock()
+        response.__enter__.return_value.headers={}
         response.__enter__.return_value.read.return_value=b'{"ok":true}'
         with patch.object(publish_reader.urllib.request,'build_opener') as opener, \
              patch.object(publish_reader.time,'monotonic',side_effect=[0,0,130,131]), \
@@ -59,6 +61,62 @@ class PublisherTests(unittest.TestCase):
                 publish_reader.post_snapshot(request)
             self.assertEqual(opener.return_value.open.call_count,1)
             sleep.assert_not_called()
+
+    def test_gzip_manifest_is_decoded_with_wire_and_inflated_bounds(self):
+        request=publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot',data=b'{}')
+        body=json.dumps({'ok':True,'document_hashes':{'doc-a':'a'*64}}).encode()
+        wire=gzip.compress(body)
+        response=unittest.mock.MagicMock()
+        response.__enter__.return_value.headers={'Content-Encoding':'gzip','Content-Length':str(len(wire))}
+        response.__enter__.return_value.read.return_value=wire
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener:
+            opener.return_value.open.return_value=response
+            value,attempts=publish_reader.post_snapshot(request,max_response_bytes=1024)
+        self.assertEqual(value,json.loads(body));self.assertEqual(attempts,1)
+        self.assertEqual(request.get_header('Accept-encoding'),'gzip')
+        response.__enter__.return_value.read.assert_called_once_with(1025)
+
+    def test_gzip_bomb_corruption_trailing_data_and_unknown_encoding_are_rejected(self):
+        request=publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot',data=b'{}')
+        cases=[(gzip.compress(b'x'*10000),'gzip','inflated'),
+               (b'not-gzip','gzip','corrupt'),
+               (gzip.compress(b'{}')+b'trailing','gzip','trailing'),
+               (b'{}','br','unsupported')]
+        for wire,encoding,expected in cases:
+            response=unittest.mock.MagicMock();response.__enter__.return_value.headers={'Content-Encoding':encoding}
+            response.__enter__.return_value.read.return_value=wire
+            with self.subTest(expected=expected),patch.object(publish_reader.urllib.request,'build_opener') as opener:
+                opener.return_value.open.return_value=response
+                with self.assertRaisesRegex(ValueError,expected):publish_reader.post_snapshot(request,max_response_bytes=128)
+                self.assertEqual(opener.return_value.open.call_count,1)
+
+    def test_truncated_manifest_retries_same_request_and_oversize_header_does_not_read(self):
+        request=publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot',data=b'{}')
+        truncated=unittest.mock.MagicMock();truncated.__enter__.return_value.headers={'Content-Length':'100'}
+        truncated.__enter__.return_value.read.return_value=b'{'
+        complete=unittest.mock.MagicMock();complete.__enter__.return_value.headers={}
+        complete.__enter__.return_value.read.return_value=b'{"ok":true}'
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener,patch.object(publish_reader.time,'sleep'):
+            opener.return_value.open.side_effect=[truncated,complete]
+            result,attempts=publish_reader.post_snapshot(request)
+            self.assertTrue(result['ok']);self.assertEqual(attempts,2)
+            self.assertEqual([c.args[0] for c in opener.return_value.open.call_args_list],[request,request])
+        truncated.__enter__.return_value.headers={'Content-Encoding':'gzip'}
+        truncated.__enter__.return_value.read.return_value=gzip.compress(b'{}')[:-4]
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener,patch.object(publish_reader.time,'sleep'):
+            opener.return_value.open.side_effect=[truncated,complete]
+            self.assertEqual(publish_reader.post_snapshot(request)[1],2)
+        from http.client import IncompleteRead
+        truncated.__enter__.return_value.read.side_effect=IncompleteRead(b'{',100)
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener,patch.object(publish_reader.time,'sleep'):
+            opener.return_value.open.side_effect=[truncated,complete]
+            self.assertEqual(publish_reader.post_snapshot(request)[1],2)
+        complete.__enter__.return_value.headers={'Content-Length':'129'}
+        complete.__enter__.return_value.read.reset_mock()
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener:
+            opener.return_value.open.return_value=complete
+            with self.assertRaisesRegex(ValueError,'bounded'):publish_reader.post_snapshot(request,max_response_bytes=128)
+        complete.__enter__.return_value.read.assert_not_called()
 
     def test_unchanged_poll_skips_export_and_keeps_last_acknowledgement(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -92,6 +150,7 @@ class PublisherTests(unittest.TestCase):
                     contextlib.redirect_stdout(io.StringIO()):
                 run.return_value.returncode = worker_code
                 response = opener.return_value.open.return_value.__enter__.return_value
+                response.headers = {}
                 response.read.return_value = b'{"ok":true,"received_at":"2026-09-06T00:00:00Z"}'
                 self.assertEqual(0, publish_reader.main([]))
                 request = opener.return_value.open.call_args.args[0]
@@ -163,6 +222,7 @@ class PublisherTests(unittest.TestCase):
                     patch.object(publish_reader.urllib.request, 'build_opener') as opener, \
                     contextlib.redirect_stdout(io.StringIO()):
                 response = opener.return_value.open.return_value.__enter__.return_value
+                response.headers = {}
                 response.read.return_value = b'{"ok":true,"received_at":"2026-09-27T00:00:00Z"}'
                 self.assertEqual(0, publish_reader.main())
                 reader.assert_not_called()

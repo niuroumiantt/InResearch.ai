@@ -1,6 +1,8 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.13.119
+> CURRENT · 基准版本 2026.10.13.120
+
+2026-10-13：候选manifest响应支持有界gzip及原未压缩兼容；传输/解压上限、原重试预算、认证和CAS不变。CDN拒绝gzip POST与origin慢链路须分别核实，唯一publisher完成真实增量与网站ACK后才计验收。唯一运行入口为SPARK_OPERATIONS。
 
 2026-10-13：补齐CLI进程超时的有界stdout终止事件及stderr首尾诊断，认证与未知超时保留安全计量；relay凭据轮换先排空原服务，再核旧拒绝/新认证及自然工作。候选增量按真实manifest、逐批ACK、保留旧候选与网站HTTPS投影验收，维护不恢复暂停汇报。唯一操作入口为SPARK_OPERATIONS；源码与生产回执分别计量。
 

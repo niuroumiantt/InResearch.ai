@@ -545,3 +545,5 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 轮换只处理私有relay token，不改模型身份、并发、原件或研究采用。先在内存比较当前token与实际进程环境，输出消费者PID/服务及匹配布尔值；禁止输出完整launchctl/systemctl环境、plist凭据、请求头或原始上游错误。保存0600配置和SQLite一致备份；审核服务须自然空闲，Reader使用现有SIGINT退出并等待工作线程完成，确认运行任务与relay子进程为零后替换凭据。新token以安全随机数生成，经SSH stdin传递，私有token和消费者环境文件同目录原子替换为0600。M5 LaunchAgent通过shell builtin读取私有token文件并exec原程序，不在plist或argv内放token值。只重启原服务，保留模型/并发/配方/次数/成功缓存。分别在M5 loopback及Spark隧道向推理端点发送无模型执行的无效请求：旧token须401，新token须通过认证后因身份缺失409；再核客户端实际环境匹配及正常工作调用。旧备份中的token此后已撤销，备份仍私有保留。
 
 生产增量须先核当前receiver的真实manifest协议，再让唯一既有publisher按私有开关运行；不得另起常驻发布者。保留前后manifest、逐批ACK、Spark发布状态和网站HTTPS运行投影，确认未发送文档保留、变更SHA匹配、整个剩余清单完成及接收时点一致；候选接收不计正式采用。断线、超时、CAS冲突或网站发布滞后保留失败实测，不以夹具、服务启动或源码标签宣称生产验收通过。凭据轮换、源码CI/部署与候选数据接收分别留私有回执；暂停的定时汇报不因维护自动恢复。
+
+发布器对原HTTPS端点显式请求gzip响应；manifest回包的传输及解压均不得超过32MiB，普通ACK均按原4KiB上限。单个gzip流须完整，无尾随数据；未知编码、损坏或超限拒绝，未压缩兼容。Content-Length不足、gzip截断及HTTP分块断流只按原三次/240秒预算重试同一请求，不增加总预算。CDN拒绝gzip POST与origin慢链路分别实测；不得仅因小型未压缩manifest成功就把整个发布URL切往CDN。真实增量ACK、传输模式与网站时点仍分别验收，不把候选接收当作正式采用。

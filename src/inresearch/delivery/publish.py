@@ -4,6 +4,7 @@ import json
 import os
 import argparse
 import gzip
+from http.client import IncompleteRead
 from pathlib import Path
 import stat
 import sys
@@ -12,6 +13,7 @@ import sqlite3
 import time
 import urllib.error
 import urllib.request
+import zlib
 from urllib.parse import urlsplit
 
 from inresearch.workflow.reader import Reader
@@ -48,19 +50,40 @@ def change_marker(data, state, repo):
 
 def post_snapshot(request, max_response_bytes=4096):
     """Retry short deployment/transport interruptions within one bounded 240-second budget."""
+    request.add_header('Accept-Encoding', 'gzip')
     deadline = time.monotonic() + 240
     for attempt in range(1, 4):
         try:
             with urllib.request.build_opener(NoRedirect).open(request, timeout=max(.1, deadline - time.monotonic())) as response:
+                length = response.headers.get('Content-Length')
+                if length is not None and not 0 <= int(length) <= max_response_bytes:
+                    raise ValueError('receiver response exceeds bounded limit')
                 raw = response.read(max_response_bytes + 1)
                 if len(raw) > max_response_bytes:
                     raise ValueError('receiver response exceeds bounded limit')
+                if length is not None and len(raw) != int(length):
+                    raise ConnectionError('truncated receiver response')
+                encoding = response.headers.get('Content-Encoding', 'identity').strip().lower()
+                if encoding == 'gzip':
+                    inflater = zlib.decompressobj(16 + zlib.MAX_WBITS)
+                    try:
+                        raw = inflater.decompress(raw, max_response_bytes + 1)
+                    except zlib.error:
+                        raise ValueError('corrupt gzip receiver response') from None
+                    if len(raw) > max_response_bytes or inflater.unconsumed_tail:
+                        raise ValueError('inflated receiver response exceeds bounded limit')
+                    if not inflater.eof:
+                        raise ConnectionError('truncated gzip receiver response')
+                    if inflater.unused_data:
+                        raise ValueError('trailing gzip receiver response data')
+                elif encoding not in ('identity', ''):
+                    raise ValueError('unsupported receiver response encoding')
                 return json.loads(raw), attempt
         except urllib.error.HTTPError as error:
             detail = error.read(2000).decode('utf-8', 'replace')
             if error.code not in (502, 503, 504) or attempt == 3:
                 raise ValueError('receiver rejected snapshot: HTTP %d %s' % (error.code, detail)) from None
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+        except (urllib.error.URLError, TimeoutError, ConnectionError, IncompleteRead) as error:
             if attempt == 3:
                 raise ValueError('snapshot transport failed: ' + type(error).__name__) from None
         delay = (1, 3)[attempt - 1]
