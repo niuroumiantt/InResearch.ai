@@ -50,6 +50,8 @@ class SiteWorkspaceTests(unittest.TestCase):
         self.assertTrue(protected)
         self.assertTrue(all('href' not in row for row in protected))
         self.assertTrue(all('href' in row for row in admin['blocks'][0]['rows']))
+        entry=next(row for row in member['blocks'][0]['rows'] if row['name']=='workspace.html')
+        self.assertEqual(entry['href'],'/workspace.html?section=overview')
 
     def test_navigation_never_infers_deployment_from_framework(self):
         with patch.dict(os.environ,{},clear=True):

@@ -266,7 +266,7 @@ def view(root, role, user, query):
             rows = []
             paths = _read(root, 'framework/interface_manifest.json')['static_pages']
             for path in paths:
-                href = '/' + path
+                href = '/workspace.html?section=overview' if path == 'workspace.html' else '/' + path
                 active = resolve(root, href)
                 from inresearch.interfaces.repository_pages import protected
                 administrator = protected(href) or href.lower() == '/admin/company.html'

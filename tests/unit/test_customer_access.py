@@ -9,6 +9,7 @@ import socket
 import unittest
 import xml.etree.ElementTree as ET
 from unittest.mock import patch
+from urllib.parse import quote
 
 from inresearch.interfaces import auth, http as serve, public
 from inresearch.knowledge import economics
@@ -847,6 +848,94 @@ class CustomerHTTPTests(unittest.TestCase):
                           if line.lower().startswith(b'content-length:'))
             self.assertGreater(int(length), 0)
             self.assertEqual(body, b'')
+
+
+class InternAuxiliaryHTTPTests(unittest.TestCase):
+    """Real signed intern cookies, private task state and durable personal feedback."""
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.runtime = Path(self.temp.name) / 'runtime'; (self.runtime / 'data').mkdir(parents=True)
+        for item in (patch.object(serve, 'AUTH_ON', True),
+                     patch.object(auth, 'USERS_FILE', self.runtime / 'data/users.json'),
+                     patch.object(auth, 'SECRET_FILE', self.runtime / 'data/.hub_secret'),
+                     patch.dict('os.environ', {'INRESEARCH_RUNTIME_ROOT': str(self.runtime)})):
+            item.start(); self.addCleanup(item.stop)
+        auth.add_user('fixture-admin', 'fixture-password')
+        auth.add_user('intern-self', 'fixture-password', 'intern')
+        self.cookie = auth.make_cookie('intern-self').split(';', 1)[0]
+        self.assertEqual(auth.session_user(self.cookie), 'intern-self')
+        self.assertEqual(auth.user_role('intern-self'), 'intern')
+        self.ledger = serve.research_tasks.ledger_path(ROOT)
+        self.ledger.parent.mkdir(parents=True, exist_ok=True)
+        self.ledger.write_text(json.dumps({'version': 1, 'revision': 1, 'operations': [], 'packages': [
+            {'id': 'own', 'title': '研究 任务 own', 'region': '测试地区', 'scope': '测试范围', 'sources': '公开来源',
+             'status': 'ready', 'assignee': 'intern-self'},
+            {'id': 'other', 'title': '研究 另一位隐私任务', 'region': '测试地区', 'scope': '测试范围', 'sources': '公开来源',
+             'status': 'ready', 'assignee': 'another-intern'}]}))
+        self.server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
+        self.thread = threading.Thread(target=self.server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
+        self.thread.start()
+        self.addCleanup(lambda: (self.server.shutdown(), self.server.server_close(), self.thread.join(timeout=2)))
+
+    def request(self, method, path, payload=None):
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=10)
+        try:
+            connection.request(method, path, json.dumps(payload) if payload is not None else None,
+                               {'Cookie': self.cookie, 'Content-Type': 'application/json'})
+            response = connection.getresponse()
+            return response.status, dict(response.getheaders()), response.read()
+        finally:
+            connection.close()
+
+    def test_signed_intern_search_contains_only_permitted_menu_entries_and_own_task(self):
+        status, _, identity = self.request('GET', '/api/whoami')
+        self.assertEqual((status, json.loads(identity)['role']), (200, 'intern'))
+        status, _, body = self.request('GET', '/api/navigation')
+        self.assertEqual(status, 200)
+        navigation = json.loads(body)['navigation']
+        self.assertEqual(navigation['delivery'], [])
+        self.assertEqual([row['id'] for row in navigation['backstage']], ['production'])
+        self.assertEqual([row['id'] for row in navigation['backstage'][0]['children']], ['tasks', 'intake'])
+        path = '/api/site-search?scope=backstage&q=' + quote('研究')
+        status, headers, body = self.request('GET', path)
+        self.assertEqual(status, 200)
+        result = json.loads(body)
+        self.assertEqual(result['scope'], 'backstage')
+        self.assertTrue(all(row['area'] == 'backstage' for row in result['rows']))
+        self.assertEqual([row['title'] for row in result['rows'] if row['kind'] == '团队任务'], ['研究 任务 own'])
+        menu = [row for row in result['rows'] if row['kind'] in ('栏目', '页面')]
+        self.assertEqual({row['href'] for row in menu}, {'/tasks.html#work-packages', '/supply.html#targets'})
+        self.assertNotIn('另一位隐私', body.decode())
+        status, head, body = self.request('HEAD', path)
+        self.assertEqual((status, body), (200, b''))
+        self.assertEqual(head['Content-Length'], headers['Content-Length'])
+
+    def test_intern_auxiliary_pages_are_readable_but_other_scopes_and_backend_sections_stay_denied(self):
+        for path in ('/search.html', '/search.html?scope=backstage', '/guide.html', '/guide.html?view=feedback',
+                     '/guide.html?view=privacy', '/assets/site-guide.js', '/assets/site-search.js'):
+            for method in ('GET', 'HEAD'): self.assertEqual(self.request(method, path)[0], 200, path)
+        for path in ('/search.html?scope=all', '/search.html?scope=delivery',
+                     '/api/site-search?scope=all&q=x', '/api/site-search?scope=delivery&q=x',
+                     '/api/site-search?scope=backstage&scope=all&q=x', '/guide.html?view=internal',
+                     '/workspace.html?section=architecture', '/api/workspace?section=content&view=feedback',
+                     '/api/workspace?section=production&view=adoption', '/api/research-summary', '/api/users'):
+            for method in ('GET', 'HEAD'): self.assertEqual(self.request(method, path)[0], 403, path)
+
+    def test_intern_feedback_is_private_and_uses_authenticated_actor_without_new_research_write_grants(self):
+        before = self.ledger.read_bytes()
+        status, _, body = self.request('POST', '/api/feedback', {
+            'title': '入口反馈', 'description': '测试反馈内容', 'context': '/guide.html?view=feedback',
+            'actor': 'another-user', 'role': 'admin'})
+        self.assertEqual(status, 200)
+        ident = json.loads(body)['id']
+        path = self.runtime / 'data/raw/site-feedback/requests.jsonl'
+        saved = [json.loads(line) for line in path.read_text().splitlines()]
+        self.assertEqual([(row['id'], row['actor'], row['role']) for row in saved], [(ident, 'intern-self', 'intern')])
+        self.assertEqual(self.ledger.read_bytes(), before)
+        self.assertIn('/api/feedback', auth.INTERN_POST_ALLOW)
+        for target in ('/api/run', '/api/add-price', '/api/users', '/api/research-summary'):
+            self.assertEqual(self.request('POST', target, {})[0], 403, target)
+        self.assertEqual(self.request('GET', '/data/raw/site-feedback/requests.jsonl')[0], 403)
 
 
 if __name__ == '__main__':

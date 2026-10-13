@@ -13,6 +13,29 @@ with tempfile.TemporaryDirectory(prefix='inresearch-workspace-browser-') as temp
  from inresearch.storage.layout import initialize_runtime,workspace_path
  initialize_runtime()
  assert workspace_path('data/raw/site-feedback/requests.jsonl').is_relative_to(Path(temporary).resolve())
+ # A persisted ordinary test observation exercises interval/nested-scope cells
+ # through the actual server; this temporary source is never formally adopted.
+ from inresearch.paths import project_root
+ from inresearch.delivery import source_publication
+ from inresearch.knowledge import object_observations
+ from datetime import datetime,timezone
+ import hashlib
+ identity=object_observations.object_record('statistic',{'publisher':'SYNTHETIC UI FIXTURE',
+   'series':'SYNTHETIC interval only','geography':'test','definition':'browser rendering only'},'SYNTHETIC interval only')
+ stamp=datetime.now(timezone.utc).isoformat()
+ marker='SYNTHETIC browser interval fixture; not research evidence'
+ row={'id':'synthetic-workspace-interval','object_id':identity['id'],'metric':'range',
+   'scope':{'configuration':{'region':'SYNTHETIC UI ONLY','modes':['A','B']},'quantity':0,'live':False},
+   'kind':'reported','basis':'SYNTHETIC browser fixture only','unit':'test units','value':{'value_range':[0,1.25]},
+   'effective_at':'2026-10-13','recorded_at':stamp,'target_ids':[],
+   'registration':{'status':'unverified','at':stamp,'registered_by':'workspace-browser-fixture'},
+   'source':{'url':'https://example.invalid/synthetic-workspace-fixture',
+     'sha256':hashlib.sha256(marker.encode()).hexdigest(),'locator':'temporary browser fixture',
+     'quote':marker,'context_sha256':hashlib.sha256(marker.encode()).hexdigest(),'published_at':'2026-10-13'}}
+ object_observations.check({'version':1,'objects':{identity['id']:identity},'records':[row]})
+ publication=source_publication.empty();publication['objects'][identity['id']]=identity;publication['records']=[row]
+ path=workspace_path(source_publication.PATH,project_root());assert path.is_relative_to(Path(temporary).resolve())
+ path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(publication))
  from inresearch.interfaces import http as serve,auth
  for username,role in [('workspace-admin','admin'),('workspace-customer','customer')]: auth.add_user(username,'Only-test-workspace-729461',role)
  serve.AUTH_ON=True
@@ -71,6 +94,40 @@ with tempfile.TemporaryDirectory(prefix='inresearch-workspace-browser-') as temp
   await page.goto(base+'/report.html');await page.locator('#q4 h2').waitFor();assert.equal(await page.locator('#docroot section.chapter').count(),4);assert.equal(await page.locator('#q4 h2').innerText(),'四、口径与来源');assert.ok(!/undefined|\bNaN\b|\[object Object\]|阅读队列|审核队列|派工/.test(await page.locator('#docroot').innerText()),'delivered report renders safe API fields without internal workflow or missing-value artifacts');await mobile(page,'delivered report');
   await page.goto(base+'/workspace.html?section=companies&view=companies');await page.locator('#workspace-app[aria-busy=false]').waitFor();const initial=await page.locator('#workspace-content tbody tr').count(),term=await page.locator('#workspace-content tbody tr td').first().innerText();await page.locator('#workspace-query').fill(term);await page.locator('#workspace-filter button').click();await page.waitForURL(url=>url.searchParams.get('q')===term);await page.waitForFunction(value=>!document.getElementById('workspace-app').getAttribute('aria-busy').includes('true')&&document.querySelectorAll('#workspace-content tbody tr').length<value,initial);assert.ok(await page.locator('#workspace-content tbody tr').count()>0);
   await page.locator('#workspace-query').fill('__no-such-workspace-record__');await page.locator('#workspace-filter button').click();await page.locator('.workspace-empty').waitFor();assert.equal(await page.locator('#workspace-content tbody tr').count(),0);
+  // Delay genuine responses to keep the replacement request pending after the
+  // first browser fetch aborts. No response payload is fabricated or replaced.
+  const delayed=new Map(),started=new Map(),signals=new Map();
+  for(const key of ['__cancelled_old_workspace__','Microsoft'])signals.set(key,new Promise(resolve=>started.set(key,resolve)));
+  const routePattern='**/api/workspace?*';
+  const delayWorkspace=async route=>{
+   const key=new URL(route.request().url()).searchParams.get('q');
+   if(!signals.has(key))return route.continue();
+   const response=await route.fetch(),data=await response.json();let release;
+   const wait=new Promise(resolve=>{release=resolve;});
+   const entry={data,release,done:null};delayed.set(key,entry);started.get(key)();
+   entry.done=(async()=>{await wait;try{await route.fulfill({response});}catch(error){if(!route.request().failure())throw error;}})();
+   await entry.done;
+  };
+  await page.route(routePattern,delayWorkspace);
+  await page.locator('#workspace-query').fill('__cancelled_old_workspace__');await page.locator('#workspace-filter button').click();await signals.get('__cancelled_old_workspace__');
+  const oldAborted=page.waitForEvent('requestfailed',{predicate:r=>new URL(r.url()).pathname==='/api/workspace'&&new URL(r.url()).searchParams.get('q')==='__cancelled_old_workspace__'});
+  await page.locator('#workspace-query').fill('Microsoft');await page.locator('#workspace-filter button').click();await Promise.all([oldAborted,signals.get('Microsoft')]);
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  assert.equal(await page.locator('#workspace-app').getAttribute('aria-busy'),'true','cancelled old request cannot finish the replacement loading state');
+  assert.equal(await page.locator('#workspace-error').isVisible(),false);
+  delayed.get('__cancelled_old_workspace__').release();await delayed.get('__cancelled_old_workspace__').done;
+  assert.equal(await page.locator('#workspace-app').getAttribute('aria-busy'),'true','late cancelled response cannot alter the new busy state');
+  delayed.get('Microsoft').release();await delayed.get('Microsoft').done;await page.locator('#workspace-app[aria-busy=false]').waitFor();
+  assert.equal(await page.locator('#workspace-content tbody tr').count(),delayed.get('Microsoft').data.blocks.reduce((n,b)=>n+b.rows.length,0));
+  assert.equal(await page.locator('#workspace-content tbody tr td').first().innerText(),delayed.get('Microsoft').data.blocks[0].rows[0].name);assert.equal(await page.locator('#workspace-error').isVisible(),false);await page.unroute(routePattern,delayWorkspace);
+  await admin.page.goto(base+'/workspace.html?section=content&view=statistics');await admin.page.locator('#workspace-app[aria-busy=false]').waitFor();
+  const statistics=admin.page.locator('.workspace-block').filter({has:admin.page.getByRole('heading',{name:'统计与报价观测历史',exact:true})});
+  assert.ok(!/\[object Object\]/.test(await statistics.innerText()),'actual stored statistic scopes are readable');
+  const native=statistics.locator('tbody tr').filter({hasText:'Texas industrial electricity price'}).first();assert.match(await native.innerText(),/sector：industrial.*coverage：ultimate customers/s);
+  const interval=statistics.locator('tbody tr').filter({hasText:'SYNTHETIC interval only'});assert.equal(await interval.count(),1);assert.equal(await interval.locator('td').nth(2).innerText(),'0 至 1.25');
+  assert.match(await interval.locator('td').nth(4).innerText(),/configuration：\{region：SYNTHETIC UI ONLY；modes：\[A、B\]\}；quantity：0；live：false/);
+  assert.equal(await interval.locator('td').nth(6).innerText(),'unverified');await mobile(admin.page,'statistics objects and intervals');
+  console.log('PASS actual statistic scope/nested arrays/zero/false and native interval formatting; cancelled real response cannot clear replacement busy state or overwrite current rows');
   await page.goto(base+'/search.html?q=Microsoft&scope=delivery');await page.locator('.search-item').first().waitFor();assert.deepEqual(await page.locator('#search-scope option').evaluateAll(nodes=>nodes.map(n=>n.value)),['delivery']);const result=await (await request.get(base+'/api/site-search?q=Microsoft&scope=delivery')).json();assert.ok(result.total>0);assert.equal(await page.locator('.search-item').count(),result.rows.length);assert.ok(result.rows.every(row=>row.area==='delivery'));assert.equal((await request.get(base+'/api/site-search?q=tasks&scope=all')).status(),403);await mobile(page,'actual search results');
   await page.locator('#search-query').fill('__no-such-search-record__');await page.locator('#site-search button').click();await page.waitForFunction(()=>document.getElementById('search-status').textContent==='0 条结果');assert.equal(await page.locator('.search-item').count(),0);
   for(const view of ['method','sources','help','about','updates','privacy','terms']){assert.equal((await page.goto(base+'/guide.html?view='+view)).status(),200);await page.locator('[data-guide="'+view+'"].is-current h1').waitFor();assert.equal(await page.locator('[data-guide].is-current').count(),1);}

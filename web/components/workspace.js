@@ -2,13 +2,24 @@
   const app=document.getElementById('workspace-app'),params=new URLSearchParams(location.search);
   const node=(tag,text)=>{const e=document.createElement(tag);if(text!=null)e.textContent=String(text);return e;};
   const link=(label,href)=>{const a=node('a',label);a.href=href;return a;};
+  function cell(value){
+    if(value===null||value===undefined||value==='')return '未登记';
+    if(Array.isArray(value))return value.length?'['+value.map(cell).join('、')+']':'未登记';
+    if(typeof value==='object'){
+      const entries=Object.entries(value);
+      if(entries.length===1&&Array.isArray(value.value_range)&&value.value_range.length===2)return value.value_range.map(cell).join(' 至 ');
+      return entries.length?'{'+entries.map(([key,item])=>key+'：'+cell(item)).join('；')+'}':'未登记';
+    }
+    return String(value);
+  }
   const error=document.getElementById('workspace-error');
   const query=document.getElementById('workspace-query');query.value=params.get('q')||'';
-  let controller;
+  let controller,generation=0;
   async function load(){
-    controller?.abort();controller=new AbortController();app.setAttribute('aria-busy','true');error.hidden=true;
+    const current=++generation;controller?.abort();const requestController=new AbortController();controller=requestController;app.setAttribute('aria-busy','true');error.hidden=true;
     try{
-      const r=await fetch('/api/workspace?'+params,{cache:'no-store',signal:controller.signal});const d=await r.json();
+      const r=await fetch('/api/workspace?'+params,{cache:'no-store',signal:requestController.signal});const d=await r.json();
+      if(current!==generation||requestController.signal.aborted)return;
       if(!r.ok||d.ok===false)throw Error(d.error||'栏目暂时无法读取');
       document.title=d.title+' — inresearch.ai';document.getElementById('workspace-title').textContent=d.title;
       document.getElementById('workspace-summary').textContent=d.summary||'';
@@ -22,14 +33,14 @@
         else{
           const wrap=node('div');wrap.className='workspace-table-wrap';const table=node('table');const head=node('thead'),tr=node('tr');
           block.columns.forEach(c=>{const th=node('th',c.label);th.scope='col';tr.append(th);});head.append(tr);table.append(head);const body=node('tbody');
-          for(const row of block.rows){const line=node('tr');block.columns.forEach((c,i)=>{const td=node('td');const text=row[c.key]===null||row[c.key]===undefined||row[c.key]===''?'未登记':String(row[c.key]);if(i===0&&row.href)td.append(link(text,row.href));else td.textContent=text;line.append(td);});body.append(line);}
+          for(const row of block.rows){const line=node('tr');block.columns.forEach((c,i)=>{const td=node('td');const text=cell(row[c.key]);if(i===0&&row.href)td.append(link(text,row.href));else td.textContent=text;line.append(td);});body.append(line);}
           table.append(body);wrap.append(table);s.append(wrap);
           if(block.total>block.rows.length)s.append(node('p',`本页显示 ${block.rows.length} / ${block.total} 条，请使用筛选缩小范围。`));
         }content.append(s);
       }
       document.getElementById('workspace-links').replaceChildren(...d.links.map(x=>link(x.label,x.href)));
-    }catch(e){if(e.name!=='AbortError'){error.hidden=false;error.textContent=e.message;}}
-    finally{app.setAttribute('aria-busy','false');}
+    }catch(e){if(current===generation&&!requestController.signal.aborted&&e.name!=='AbortError'){error.hidden=false;error.textContent=e.message;}}
+    finally{if(current===generation)app.setAttribute('aria-busy','false');}
   }
   document.getElementById('workspace-filter').addEventListener('submit',e=>{e.preventDefault();if(query.value.trim())params.set('q',query.value.trim());else params.delete('q');history.replaceState(null,'',location.pathname+'?'+params);load();});
   load();

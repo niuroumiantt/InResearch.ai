@@ -265,6 +265,12 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def _intern_allowed(self, path):
+        query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+        if path in ('/search.html', '/api/site-search'):
+            return query.get('scope', ['backstage']) == ['backstage']
+        if path == '/guide.html':
+            return query.get('view', ['help']) in [[view] for view in
+                ('method', 'sources', 'help', 'feedback', 'about', 'updates', 'privacy', 'terms')]
         # Public closure changes anonymous access, not the intern's existing role grants.
         return public.allowed(path, urlsplit(self.path).query) or public.intern_research_allowed(path) or any(path == a or (a.endswith("/") and path.startswith(a))
                                            for a in auth.INTERN_GET_ALLOW)

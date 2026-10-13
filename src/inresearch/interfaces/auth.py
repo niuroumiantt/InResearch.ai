@@ -202,7 +202,7 @@ ROLES = ("admin", "member", "intern", "customer")
 INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/fonts/", "/supply.html", "/tasks.html", "/api/targets", "/reports/workorders.json", "/data/assignments.json",
                     "/api/status", "/api/tasks", "/api/research-tasks", "/api/research-task-examples", "/api/research-task-examples/", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
-INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign", "/api/deliver", "/api/research-tasks")
+INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign", "/api/deliver", "/api/research-tasks", "/api/feedback")
 
 
 def user_role(username: str) -> str:
