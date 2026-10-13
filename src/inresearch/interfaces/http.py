@@ -541,13 +541,11 @@ class Handler(SimpleHTTPRequestHandler):
             except (OSError, TypeError, KeyError):
                 return self._json(503, {'error': '观测数据暂不可用'})
         if urlsplit(self.path).path == '/api/industry':
-            from inresearch.knowledge.industry import snapshot, homepage_snapshot
+            from inresearch.knowledge.industry import cached_snapshot as snapshot
             try:
                 query = parse_qs(urlsplit(self.path).query)
                 if any(len(v) != 1 for v in query.values()): raise ValueError('duplicate filter')
-                params = {k:v[0] for k,v in query.items()}
-                value = homepage_snapshot(ROOT) if params == {'overview':'1'} else snapshot(ROOT, params)
-                return self._json(200, value, compressed=True)
+                return self._json(200, snapshot(ROOT, {k: v[0] for k, v in query.items()}), compressed=True)
             except LookupError as error:
                 return self._json(404, {'error': str(error)})
             except ValueError as error:
