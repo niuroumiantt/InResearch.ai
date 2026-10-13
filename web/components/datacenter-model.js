@@ -187,7 +187,110 @@
   const region=()=>spec.regions[values.site]||{};
   const gaps=()=>new Set(region().gaps||[]);
 
-  function applyPreset(id){values=withPreset(spec,id);activePreset=id;byId('preset-note').textContent=(spec.presets[id]&&spec.presets[id].note)||'';renderInputs();render();}
+  let bridge=null,bridgeApplied=false,inputBasis={},basisRevision=0;
+  const invalidInputs=new Set();
+  const BASIS_LABEL={observation:'已有资料 · 第三方估算',regional_reference:'地区参考 · 现场未知',assumption:'情景假设 · 现场未知',user_assumption:'用户假设 · 现场未知',unknown:'未知'};
+  const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  function bridgeProvenance(next,origin){
+    return Object.fromEntries(Object.keys(spec.inputs).map(id=>[id,{kind:origin,actual_state:'unknown',note:'计算取值不是本园区事实',source_ref:{model_source_sha256:bridge.model_source_sha256,path:'assumptions.'+id}}]));
+  }
+  function confirmBridgeChange(next,label){
+    if(!bridgeApplied)return true;
+    const changed=Object.keys(spec.inputs).filter(id=>!same(values[id],next[id]));
+    if(!changed.length)return true;
+    return window.confirm(`${label}将改变 ${changed.length} 项：${changed.map(id=>spec.inputs[id].label).join('、')}。本次被设置的输入重新标为假设。是否继续？`);
+  }
+  function bridgeChanged(before,origin,overwritten=[]){
+    if(!bridgeApplied)return;
+    for(const id of Object.keys(spec.inputs))if(overwritten.includes(id)||!same(before[id],values[id]))inputBasis[id]={kind:origin,actual_state:'unknown',note:'用户或预设设置；原园区观察保持'};
+    basisRevision++;
+  }
+  function annualEnergy(){
+    const facilityKwh=effectiveMw(values)*1000*values.load_factor*values.pue*HOURS;
+    return {effective_it_mw:effectiveMw(values),facility_kwh:facilityKwh,energy_charge_usd:facilityKwh*values.power_price,hours:HOURS,
+      formula:'min(it_mw, positive scenario energy_quota_mw if set) * 1000 * load_factor * pue * 8760',
+      input_ids:['it_mw','energy_quota_mw','load_factor','pue','power_price'],status:'scenario_only',excludes:['demand charges','other contract charges']};
+  }
+  function bridgeSnapshot(){
+    return {schema:'site-model-scenario-v2',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
+      bridge_version:bridge.version,mapping_version:bridge.mapping_version,data_sha256:bridge.data_sha256,observation_sha256:bridge.observation_sha256,
+      model_id:spec.model_id,model_as_of:spec.as_of,model_source_sha256:bridge.model_source_sha256,model_spec:structuredClone(spec),revision:basisRevision,
+      capacity_source:structuredClone(bridge.capacity_source),rules:structuredClone(bridge.rules),review_sha256:bridge.review_sha256,
+      review:structuredClone(bridge.review),blockers:structuredClone(bridge.blockers),
+      inputs:structuredClone(values),input_basis:structuredClone(inputBasis),
+      configurations:structuredClone(bridge.configurations),economic_candidates:structuredClone(bridge.economic_candidates),
+      unknowns:structuredClone(bridge.unknowns),coverage:structuredClone(bridge.coverage),annual_energy:annualEnergy(),
+      readiness:{status:'scenario_only',project_feasibility:'not_verified'},results:run(values,spec)};
+  }
+  function bridgeEvidence(host){
+    const pending=make('details');pending.append(make('summary','','候选、异常与来源推导（不自动填参）'));
+    for(const c of [...bridge.configurations,...bridge.economic_candidates]){
+      pending.append(make('h3','',c.label+' · 候选'),make('p','',c.content),make('p','',c.missing.join('；')));
+      for(const id of c.evidence_ids){const fact=bridge.review.items.find(e=>e.id===id),source=bridge.review.sources.find(e=>e.id===fact.source_id),link=make('a','',id+' · '+fact.locator);link.href=source.url;link.target='_blank';link.rel='noopener';pending.append(link,make('p','note','原件 SHA256 '+source.sha256));}
+    }
+    for(const b of bridge.blockers)pending.append(make('h3','',b.label+' · 阻止自动填参'),make('p','',b.reason+' 影响：'+b.blocked_targets.map(id=>spec.inputs[id].label).join('、')));
+    for(const d of bridge.review.derivations)pending.append(make('p','',d.id+'：'+d.input_item_ids.join(' + ')+' → '+d.output_item_id+'（候选）'),make('p','note',d.locator+' · '+d.formula+' · '+d.scope+'；'+d.assumptions.join('；')));
+    pending.append(make('p','',bridge.review.limitations.join(' ')));host.append(pending);
+    const sources=make('details');sources.append(make('summary','','全部复核来源、版本与阅读范围'));
+    for(const source of bridge.review.sources){const link=make('a','',source.id);link.href=source.url;link.target='_blank';link.rel='noopener';sources.append(link,make('p','note',source.sha256+' · '+source.checked_scope));}
+    sources.append(make('p','note','复核输入 '+bridge.review.input_sha256+'；清单 '+bridge.review.checklist_version+'；复核摘要 '+bridge.review_sha256));host.append(sources);
+    const unknown=make('details');unknown.append(make('summary','','现场未知与未检查项'));
+    for(const e of bridge.review.items.filter(e=>['unknown','not_checked'].includes(e.state)))unknown.append(make('p','',e.label+' · '+(e.state==='unknown'?'未知':'未检查')+'；'+e.reason));host.append(unknown);
+  }
+  function bridgeRender(){
+    if(!bridge)return;
+    const result=byId('bridge-result');result.replaceChildren();
+    if(!bridgeApplied){result.textContent='尚未应用：当前模型仍为通用情景。确认后使用固定容量估算，其余输入逐项标明参考或假设。';return;}
+    if(invalidInputs.size){result.textContent='输入无效，暂停情景结果与导出：'+[...invalidInputs].map(id=>spec.inputs[id].label).join('、');return;}
+    const energy=annualEnergy();
+    result.append(make('h3','','年度用电情景'),make('p','',`设施用电 ${(energy.facility_kwh/1e9).toFixed(3)} 十亿 kWh；电量费用 ${money(energy.energy_charge_usd)}。未含需量费及其他合同收费。`),
+      make('p','',`容量 ${values.it_mw} MW（计算 ${energy.effective_it_mw} MW） · 平均IT负载 ${(values.load_factor*100).toFixed(1)}% · PUE ${values.pue} · 电量单价 $${values.power_price}/kWh · ${HOURS}小时。`),
+      make('p','note','这是所选规模的年度情景，不是园区实际年度账单。成本、收入与回报视图共用此输入表，现场未知保持未知；利润、回报及合同未核验。批准容量未知，未设置时计算不施加该约束。'));
+    const list=make('details');list.append(make('summary','','全部输入依据与当前取值'));
+    for(const id of Object.keys(spec.inputs))list.append(make('p','',`${spec.inputs[id].label}：${values[id]} · ${BASIS_LABEL[inputBasis[id]?.kind]||'未知'} · ${inputBasis[id]?.note||''}`));result.append(list);
+    const download=make('button','','导出本次情景与依据（JSON）');download.type='button';download.id='bridge-export';
+    download.onclick=()=>{const blob=new Blob([JSON.stringify(bridgeSnapshot(),null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=make('a');a.href=url;a.download=bridge.site_id+'-scenario.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};result.append(download);
+    document.querySelectorAll('[data-bridge-basis]').forEach(el=>el.remove());
+    for(const [id,basis] of Object.entries(inputBasis)){const label=document.querySelector(`label[for="input-${id}"]`);if(label){const note=make('small','',BASIS_LABEL[basis.kind]);note.dataset.bridgeBasis=id;label.append(note);label.querySelector('.badge')?.remove();}}
+  }
+  async function bootBridge(){
+    const sid=new URLSearchParams(location.search).get('site');if(!sid)return;
+    const host=make('section','panel');host.id='site-model-bridge';host.setAttribute('aria-live','polite');byId('scenario').before(host);
+    try{
+      const response=await getJson('/api/industry?site='+encodeURIComponent(sid));bridge=response.detail?.model_bridge;
+      if(!bridge){host.textContent=response.detail?.model_bridge_error||'此园区尚未登记模型映射；当前保持通用情景。';return;}
+      const requested=new URLSearchParams(location.search).get('scope');
+      if(requested&&requested!==bridge.scope.id)throw Error('所请求的观察范围不匹配，未填入任何园区参数');
+      const s=bridge.scope;host.append(make('h2','','园区参数预览 · '+response.detail.name),make('p','',`${bridge.site_id} · ${s.label} · ${s.accounting_basis}`),make('p','',`包含：${s.included}。排除：${s.excluded}。分析主体：${s.actor||'未确定'}。`));
+      const back=make('a','','返回园区配置与来源 →');back.href='/project.html?site='+encodeURIComponent(sid)+'#campus-equipment';host.append(back);
+      const table=make('div','tscroll');const t=make('table','bridge-parameter-table');
+      for(const cells of [
+        ['参数','建议取值','资料身份','适用边界'],
+        ['IT容量',bridge.expected_it_mw+' MW','已有资料 · 第三方估算',bridge.capacity_source.effective_at+'；非实测，固定观察 '+bridge.observation_id],
+        ['地区／电量单价','得州／$'+spec.regions.us_texas.power_price+'/kWh','地区参考 · 现场未知','预设不是园区合同、税费或等待期'],
+        ['平均IT负载率',(bridge.demo_assumptions.load_factor*100)+'%','情景假设 · 现场未知','仅作年度演示'],
+        ['PUE',String(bridge.demo_assumptions.pue),'情景假设 · 现场未知','不由冷源或公司设计范围反推'],
+        ['GPU、冷源、发电、资本成本','保留原数及推导','候选 · 不自动填参','范围、时间、主体与用途未对齐'],
+        ['来源三项异常','已复核，仍阻断相关用途','异常 · 不自动填参','#REF!、精度说明冲突、整数配置推导'],
+        ['现场批准容量、收入、实绩','未知','未知','计算用值另标假设，不补造事实']]){const row=make('tr');cells.forEach((x,i)=>{const td=make('td','',x);td.dataset.label=['参数','建议取值','资料身份','适用边界'][i];row.append(td);});t.append(row);}table.append(t);host.append(table);
+      const provenance=make('details');provenance.append(make('summary','','已有容量估算的原始来源与版本'));
+      for(const source of bridge.capacity_source.sources){const link=make('a','',source.url||'来源');if(source.url)link.href=source.url;provenance.append(link);}
+      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeEvidence(host);
+      const apply=make('button','','确认生成园区年度用电情景');apply.id='bridge-apply';apply.type='button';
+      apply.onclick=()=>{const next=withPreset(spec,'baseline');next.site='us_texas';applyTable(next,'site',spec);Object.assign(next,bridge.demo_assumptions,{it_mw:bridge.expected_it_mw});
+        if(!confirmBridgeChange(next,'重新应用园区情景'))return;
+        values=next;activePreset='';bridgeApplied=true;basisRevision++;inputBasis=bridgeProvenance(next,'assumption');
+        const regionGaps=new Set(spec.regions.us_texas.gaps||[]);
+        for(const id of Object.keys(spec.regions.us_texas))if(id in spec.inputs)inputBasis[id]={kind:regionGaps.has(id)?'assumption':'regional_reference',actual_state:'unknown',note:regionGaps.has(id)?'地区预设亦缺来源；只作计算假设':'得州参考；本园区适用值未知',source_ref:{model_source_sha256:bridge.model_source_sha256,path:'regions.us_texas.'+id}};
+        inputBasis.site={kind:'regional_reference',actual_state:'known_geography',note:'已登记得州地点，仅建议地区表'};
+        for(const id of Object.keys(bridge.demo_assumptions))inputBasis[id]={kind:'assumption',actual_state:'unknown',note:'本次演示显式假设，非现场实绩',source_ref:{bridge_version:bridge.version,path:'demo_assumptions.'+id}};
+        inputBasis.it_mw={kind:'observation',actual_state:'existing_estimate',observation_id:bridge.observation_id,observation_sha256:bridge.observation_sha256,rule_id:'it-capacity-v1',note:`固定观察；${bridge.expected_it_mw}MW第三方估算，非实测`};
+        byId('preset-note').textContent='园区情景：已有容量估算＋地区参考＋显式假设；候选与异常未自动填参。';renderInputs();render();};
+      host.append(apply);const result=make('div');result.id='bridge-result';host.append(result);bridgeRender();
+    }catch(error){bridge=null;host.textContent='园区参数预览不可用：'+error.message+'。当前保持通用情景。';}
+  }
+
+  function applyPreset(id){const next=withPreset(spec,id);if(!confirmBridgeChange(next,"切换预设"))return;const before={...values};values=next;bridgeChanged(before,"assumption",Object.keys(spec.inputs));activePreset=id;byId('preset-note').textContent=(spec.presets[id]&&spec.presets[id].note)||'';renderInputs();render();}
   function renderPresets(){
     const host=byId('presets');host.replaceChildren();let group='';
     for(const [id,p] of Object.entries(spec.presets)){if(p.group!==group){group=p.group;host.append(make('span','preset-group',group));}const b=make('button','',p.label);b.type='button';b.dataset.id=id;b.title=p.note||'';b.addEventListener('click',()=>applyPreset(id));host.append(b);}
@@ -203,6 +306,7 @@
     host.title=r.source||'';
   }
   function renderInputs(){
+    invalidInputs.clear();
     const form=byId('model-inputs');const openState={};form.querySelectorAll('details').forEach(d=>openState[d.dataset.group]=d.open);form.replaceChildren();const g=gaps();
     spec.groups.forEach((group,gi)=>{
       const box=make('details','input-group');box.dataset.group=group.id;box.open=group.id in openState?openState[group.id]:gi<2;
@@ -213,9 +317,9 @@
         label.append(badge,make('span','',cfg.label));if(g.has(id))label.append(make('em','gap','缺'));if(cfg.note)label.append(make('small','',cfg.note));
         const holder=make('div','input-box');
         if(cfg.type==='select'){const sel=make('select');sel.id='input-'+id;const opts=cfg.options?Object.entries(spec[cfg.options]).map(([k,v])=>[k,v.label]):cfg.choices;for(const [v,l] of opts){const o=make('option','',l);o.value=v;sel.append(o);}sel.value=values[id];
-          sel.addEventListener('change',()=>{values[id]=sel.value;if(cfg.options)applyTable(values,id,spec);activePreset='';byId('preset-note').textContent='';renderInputs();render();});holder.append(sel);}
+          sel.addEventListener('change',()=>{const before={...values},next={...values,[id]:sel.value};if(cfg.options)applyTable(next,id,spec);if(!confirmBridgeChange(next,'切换'+cfg.label)){sel.value=values[id];return;}values=next;bridgeChanged(before,'user_assumption',[id,...(cfg.options?Object.keys(spec[cfg.options][values[id]]):[])]);activePreset='';byId('preset-note').textContent='';renderInputs();render();});holder.append(sel);}
         else{const input=make('input');input.type='number';input.id='input-'+id;input.min=cfg.min;input.max=cfg.max;input.step=cfg.step;input.value=cfg.display==='percent'?Math.round(values[id]*10000)/100:values[id];
-          input.addEventListener('input',()=>{const raw=Number(input.value);if(!Number.isFinite(raw))return;values[id]=cfg.display==='percent'?raw/100:cfg.step===1?Math.round(raw):raw;activePreset='';byId('preset-note').textContent='';render();});holder.append(input,make('span','',cfg.unit));}
+          input.addEventListener('input',()=>{if(input.value.trim()===''||!input.validity.valid){invalidInputs.add(id);input.setAttribute('aria-invalid','true');render();return;}const raw=Number(input.value);if(!Number.isFinite(raw))return;invalidInputs.delete(id);input.removeAttribute('aria-invalid');const before={...values};values[id]=cfg.display==='percent'?raw/100:cfg.step===1?Math.round(raw):raw;bridgeChanged(before,'user_assumption',[id]);activePreset='';byId('preset-note').textContent='';render();});holder.append(input,make('span','',cfg.unit));}
         row.append(label,holder);box.append(row);
       }
       form.append(box);
@@ -383,8 +487,9 @@
     event.preventDefault();if(legacy)showView(legacy);else showColumn(requested);const menu=anchor.closest('details');if(menu)menu.open=false;
   }
   function render(){
-    const r=run(values,spec);markPreset();renderRegion();projectLine(r);renderLifecycle(r);renderLedgers(r);renderUnit(r);renderInverse(r);renderGaps();
-    byId('copy-results').onclick=()=>{const c=r.ledgers.compute,l=r.lifecycle;const txt=JSON.stringify({model_id:spec.model_id,as_of:spec.as_of,preset:activePreset||null,assumptions:values,levelised:l.levelised,per_kw_month:l.per_kw_month,per_gpu_hour:l.per_gpu_hour,roic:c.roic,revenue:c.revenue,nopat:c.nopat,annualised:c.annualised,unit_cost:c.unit_cost,inverse:r.inverse},null,2);const btn=byId('copy-results');const done=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制假设与结果',1500);};(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt).then(done):Promise.reject()).catch(()=>{const ta=document.createElement('textarea');ta.value=txt;document.body.append(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}ta.remove();});};
+    byId('model-error').hidden=!invalidInputs.size;byId('model-error').textContent=invalidInputs.size?'输入无效；下方保留上次有效计算，修正后再计算与导出。':'';byId('copy-results').disabled=!!invalidInputs.size;
+    const r=run(values,spec);markPreset();renderRegion();projectLine(r);renderLifecycle(r);renderLedgers(r);renderUnit(r);renderInverse(r);renderGaps();bridgeRender();
+    byId('copy-results').onclick=()=>{const c=r.ledgers.compute,l=r.lifecycle;const txt=JSON.stringify({site_scenario:bridgeApplied?bridgeSnapshot():null,model_id:spec.model_id,as_of:spec.as_of,preset:activePreset||null,assumptions:values,levelised:l.levelised,per_kw_month:l.per_kw_month,per_gpu_hour:l.per_gpu_hour,roic:c.roic,revenue:c.revenue,nopat:c.nopat,annualised:c.annualised,unit_cost:c.unit_cost,inverse:r.inverse},null,2);const btn=byId('copy-results');const done=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制假设与结果',1500);};(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt).then(done):Promise.reject()).catch(()=>{const ta=document.createElement('textarea');ta.value=txt;document.body.append(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}ta.remove();});};
   }
   const getJson=url=>fetch(url,{cache:'no-store'}).then(res=>{if(!res.ok)throw Error(url+' HTTP '+res.status);return res.json()});
   const boot=([data,p])=>{spec=data;prices=p;byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;renderPresets();renderCalibration();renderBenchmarks();applyPreset('baseline');
@@ -393,7 +498,7 @@
     byId('reset-model').addEventListener('click',()=>applyPreset('baseline'));
     document.addEventListener('click',handleColumnLink);window.addEventListener('popstate',()=>restoreLocation());window.addEventListener('hashchange',()=>restoreLocation());
     byId('column-tabs').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;const links=[...byId('column-tabs').querySelectorAll('a')],index=links.indexOf(event.target);if(index<0)return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?links.length-1:(index+(event.key==='ArrowRight'?1:-1)+links.length)%links.length;links[next].focus();showColumn(links[next].dataset.column);});
-    restoreLocation('replace');app.removeAttribute('aria-busy');};
+    restoreLocation('replace');app.removeAttribute('aria-busy');bootBridge();};
   const fail=error=>{const el=byId('model-error');el.hidden=false;el.textContent='模型加载失败：'+error.message;app.setAttribute('aria-busy','false');};
   Promise.all([getJson('/data/datacenter_model.json'),getJson('/data/prices.json').catch(()=>({records:[]}))]).then(boot).catch(fail);
 })();

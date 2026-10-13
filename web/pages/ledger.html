@@ -22,6 +22,17 @@
   .head .kind { color: var(--ui-muted); font-size: 12px; }
   .panel { min-width: 0; background: var(--ui-surface, var(--card)); border: 1px solid var(--ui-line); border-radius: var(--ui-radius); padding: 14px 16px; margin-bottom: 14px; }
   .panel h2 { font-size: 15px; margin-bottom: 4px; } .panel h2 small { color: var(--ui-muted); font-weight: 400; font-size: 11.5px; margin-left: 8px; }
+  #site-model-bridge { overflow-wrap: anywhere; }
+  #site-model-bridge details { margin: 10px 0; }
+  #site-model-bridge button { margin: 10px 0; padding: 8px 12px; font: inherit; color: var(--ui-ink); background: var(--ui-surface); border: 1px solid var(--ui-ink); border-radius: var(--ui-radius); cursor: pointer; }
+  @media (max-width: 640px) {
+    .bridge-parameter-table, .bridge-parameter-table tbody { display: block; }
+    .bridge-parameter-table tr { display: grid; grid-template-columns: 82px minmax(0,1fr); border-bottom: 1px solid var(--ui-line); padding: 8px 0; }
+    .bridge-parameter-table tr:first-child { display: none; }
+    .bridge-parameter-table td { border: 0; padding: 3px 6px; }
+    .bridge-parameter-table td:first-child { grid-row: 1 / 4; font-weight: 600; }
+    .bridge-parameter-table td:not(:first-child)::before { content: attr(data-label) "："; color: var(--ui-muted); }
+  }
   .q, .muted, .note { color: var(--ui-muted); font-size: 12px; margin-bottom: 8px; }
   .tscroll { overflow-x: auto; max-width: 100%; }
   table { width: 100%; border-collapse: collapse; font-size: 12.5px; }

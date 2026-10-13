@@ -1,6 +1,6 @@
 {
-  "version": "2026.10.13.121",
-  "effective_at": "2026-10-13",
+  "version": "2026.10.14.122",
+  "effective_at": "2026-10-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -4611,7 +4611,7 @@
       "status": "current",
       "source": "framework/05_interface_system.md",
       "scope": "project",
-      "effective_at": "2026-10-12",
+      "effective_at": "2026-10-14",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -4881,18 +4881,36 @@
         "src/inresearch/workflow/observation_audit.py",
         "tests/unit/test_observation_audit.py",
         "docs/handoff/observation-coverage.md",
-        "docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json"
+        "docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json",
+        "data/site_model_bridges.json",
+        "src/inresearch/knowledge/site_model_bridge.py",
+        "src/inresearch/knowledge/validate.py",
+        "scripts/export_site_model_preview.py",
+        "tests/unit/test_site_model_bridge.py",
+        "tests/site_model_bridge.cjs",
+        "tests/global_campuses.cjs"
       ],
       "supersedes": [
         "interface-private-tasks-20261012"
       ],
-      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。",
-      "implementation_revision": "2026.10.13.121",
-      "change_reason": "用户要求不拘数字重审架构；替代数字总纲、五类正交独占和四问倒序，保留旧接口投影；可扩展观察、问题模板、来源队研究侧交付与Abilene附件局部核验；暂不上线",
+      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。",
+      "implementation_revision": "2026.10.14.122",
+      "change_reason": "User authorized local Abilene parameter preview after recheck: pinned estimate, explicit scenario assumptions/unknowns, source and derivation preservation, anomaly-blocked mappings; no publication.",
       "implementation_paths": [
         "docs/handoff/global-campuses.md",
         "tests/global_campuses.cjs",
-        "tests/unit/test_geographic_analysis.py"
+        "tests/unit/test_geographic_analysis.py",
+        "data/site_model_bridges.json",
+        "src/inresearch/knowledge/site_model_bridge.py",
+        "src/inresearch/knowledge/industry.py",
+        "src/inresearch/knowledge/validate.py",
+        "web/components/industry.js",
+        "web/components/datacenter-model.js",
+        "web/pages/ledger.html",
+        "scripts/export_site_model_preview.py",
+        "tests/unit/test_site_model_bridge.py",
+        "tests/site_model_bridge.cjs",
+        "tests/browser_suites.cjs"
       ]
     }
   ],
@@ -5001,5 +5019,5 @@
       "retire_after": "2026-12-31"
     }
   ],
-  "updated": "2026-10-13"
+  "updated": "2026-10-14"
 }

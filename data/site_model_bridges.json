@@ -1,0 +1,941 @@
+{
+  "schema_version": 2,
+  "version": "2026.10.14.1",
+  "mapping_version": "site-model-bridge-v2",
+  "sites": [
+    {
+      "site_id": "us-tx-abilene",
+      "scope": {
+        "id": "abilene-20260728-estimated-operating",
+        "label": "2026年7月28日聚合运行容量估算",
+        "effective_at": "2026-07-28",
+        "physical_scope": "whole_site",
+        "included": "原Stargate／Lancium园区来源估算的运行部分，无法逐栋分配",
+        "excluded": "相邻园区、未确认运行部分及2026年11月预测",
+        "actor": null,
+        "accounting_basis": "物理成本情景；不代表任一企业账目"
+      },
+      "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+      "expected_it_mw": 421,
+      "configurations": [
+        {
+          "id": "gb200",
+          "label": "计算设备设计披露",
+          "content": "影响报告为设计上限，计数单位／型号措辞有歧义；不能当作安装清单。",
+          "status": "candidate",
+          "measurement_kind": "reported",
+          "effective_at": null,
+          "scope": "source_scope_not_aligned",
+          "source_url": "https://cdn.prod.website-files.com/6855c1aa175582ee23e0aa19/68710273a71bb7c11049ba28_Crusoe_Impact_Report_2024.pdf",
+          "locator": "PDF p19",
+          "evidence_ids": [
+            "impact-gpu-wording"
+          ],
+          "missing": [
+            "与421MW估算所选日期、楼栋和资产边界对齐",
+            "字段级研究与模型用途审核"
+          ],
+          "relations": {
+            "shared": "unknown",
+            "redundancy": "unknown",
+            "included_in": "unknown"
+          },
+          "node": "part:gpu"
+        },
+        {
+          "id": "gpu-count",
+          "label": "GPU数量估算",
+          "content": "B200、B300合计201600颗为研究方估算；50400单栋取整并非公司原文精确披露。",
+          "status": "candidate",
+          "measurement_kind": "estimated",
+          "effective_at": null,
+          "scope": "source_scope_not_aligned",
+          "source_url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+          "locator": "body-chips",
+          "evidence_ids": [
+            "body-chips",
+            "native-integer-gpu",
+            "impact-gpu-wording"
+          ],
+          "missing": [
+            "与421MW估算所选日期、楼栋和资产边界对齐",
+            "字段级研究与模型用途审核"
+          ],
+          "relations": {
+            "shared": "unknown",
+            "redundancy": "unknown",
+            "included_in": "unknown"
+          },
+          "node": "part:gpu",
+          "quantity": {
+            "value": 201600,
+            "unit": "颗"
+          }
+        },
+        {
+          "id": "cooling-terminal",
+          "label": "机房散热设计",
+          "content": "直接芯片液冷与风冷冷水机组为设计描述；实际比例、运行工况未知。",
+          "status": "candidate",
+          "measurement_kind": "reported",
+          "effective_at": null,
+          "scope": "source_scope_not_aligned",
+          "source_url": "https://cdn.prod.website-files.com/6855c1aa175582ee23e0aa19/68710273a71bb7c11049ba28_Crusoe_Impact_Report_2024.pdf",
+          "locator": "PDF p19/26",
+          "evidence_ids": [
+            "impact-cooling-design"
+          ],
+          "missing": [
+            "与421MW估算所选日期、楼栋和资产边界对齐",
+            "字段级研究与模型用途审核"
+          ],
+          "relations": {
+            "shared": "unknown",
+            "redundancy": "unknown",
+            "included_in": "unknown"
+          },
+          "node": "system:thermal"
+        },
+        {
+          "id": "chillers",
+          "label": "室外冷源估算",
+          "content": "Airedale OptiChill Free Cool估算320台、562.7MW制冷能力；不是设施电功率，不反推PUE。",
+          "status": "candidate",
+          "measurement_kind": "estimated",
+          "effective_at": null,
+          "scope": "source_scope_not_aligned",
+          "source_url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+          "locator": "body-cooling",
+          "evidence_ids": [
+            "body-cooling"
+          ],
+          "missing": [
+            "与421MW估算所选日期、楼栋和资产边界对齐",
+            "字段级研究与模型用途审核"
+          ],
+          "relations": {
+            "shared": "unknown",
+            "redundancy": "unknown",
+            "included_in": "unknown"
+          },
+          "node": "system:thermal",
+          "quantity": {
+            "value": 320,
+            "unit": "台"
+          }
+        },
+        {
+          "id": "generation",
+          "label": "许可材料发电配置",
+          "content": "五台38MW及五台34.1MW合计360.5MW为满建成发电额定描述；不是IT、接电批准值或已投运清单。",
+          "status": "candidate",
+          "measurement_kind": "reported",
+          "effective_at": null,
+          "scope": "source_scope_not_aligned",
+          "source_url": "https://drive.google.com/uc?export=download&id=1FgfX6hqojlBtqNXJHjzJmnwWAMx4_M0b",
+          "locator": "PDF p149",
+          "evidence_ids": [
+            "permit-turbines",
+            "native-turbine-allocation"
+          ],
+          "missing": [
+            "与421MW估算所选日期、楼栋和资产边界对齐",
+            "字段级研究与模型用途审核"
+          ],
+          "relations": {
+            "shared": "unknown",
+            "redundancy": "unknown",
+            "included_in": "unknown"
+          },
+          "node": "system:power"
+        }
+      ],
+      "economic_candidates": [
+        {
+          "id": "total-capex",
+          "label": "资本成本估算",
+          "content": "159亿美元来自单位容量成本模型；不是已支出，也不能填为IT单位造价或与设施成本重复相加。",
+          "status": "candidate",
+          "measurement_kind": "estimated",
+          "effective_at": null,
+          "scope": "source_scope_not_aligned",
+          "source_url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+          "locator": "body-capex",
+          "evidence_ids": [
+            "body-capex",
+            "method-capex"
+          ],
+          "missing": [
+            "现场成本组成与币值时点",
+            "业主／运营商／租户及资产边界",
+            "模型估算依赖与现场适用性"
+          ],
+          "relations": {
+            "shared": "unknown",
+            "redundancy": "unknown",
+            "included_in": "unknown"
+          },
+          "value": 15900000000,
+          "unit": "USD"
+        }
+      ],
+      "unknowns": [
+        "分栋IT容量及实际运行日期",
+        "PUE、WUE及统计期间",
+        "园区适用电量费、需量费和水价",
+        "批准容量原件、冗余与共享设备",
+        "主体对应投资、租赁、融资和收入合同"
+      ],
+      "rules": [
+        {
+          "id": "it-capacity-v1",
+          "target": "it_mw",
+          "kind": "observation",
+          "source_field": "capacity_it_mw",
+          "conditions": "固定观察ID、日期、whole_site范围和421MW估算值一致；不使用最新总量或预测",
+          "evidence_ids": [
+            "body-it"
+          ],
+          "independent_of": [
+            "gpu-integer-configuration",
+            "it-from-hardware",
+            "performance-from-hardware"
+          ]
+        },
+        {
+          "id": "region-v1",
+          "target": "site",
+          "kind": "regional_reference",
+          "value": "us_texas",
+          "conditions": "园区country=US且province=Texas；预设不取得现场适用性"
+        }
+      ],
+      "demo_assumptions": {
+        "load_factor": 0.7,
+        "pue": 1.28
+      },
+      "coverage": [
+        {
+          "angle": "容量／范围",
+          "item": "421MW已采用估算",
+          "state": "adopted",
+          "destination": "确认后it_mw",
+          "reason": "固定原观察ID与版本；仍为第三方估算，不是实测"
+        },
+        {
+          "angle": "容量／时间",
+          "item": "843MW预测、1.2GW计划",
+          "state": "excluded",
+          "destination": "历史／规划资料",
+          "reason": "不作为所选日期运行容量或批准值"
+        },
+        {
+          "angle": "设备／算力",
+          "item": "GPU数量、精度与IT开销推导",
+          "state": "candidate",
+          "destination": "现场配置候选与异常",
+          "reason": "保留5条推导关系；不自动映射"
+        },
+        {
+          "angle": "冷却／效率",
+          "item": "320台、562.7MW、设计PUE范围",
+          "state": "candidate",
+          "destination": "配置／通用设计说明",
+          "reason": "制冷功率不是电功率；公司设计范围不是本园区实绩"
+        },
+        {
+          "angle": "电力／韧性",
+          "item": "360.5MW发电、均分楼栋假设",
+          "state": "candidate",
+          "destination": "许可配置候选",
+          "reason": "满建成额定不是投运IT／批准接入"
+        },
+        {
+          "angle": "经济／主体",
+          "item": "159亿美元资本成本",
+          "state": "candidate",
+          "destination": "成本估算候选",
+          "reason": "容量成本模型不是实际支出，主体、分项与时点未对齐"
+        },
+        {
+          "angle": "运行／市场／环境",
+          "item": "现场费率、负载、PUE、收入、水耗",
+          "state": "unknown",
+          "destination": "待补；计算另设假设",
+          "reason": "未知现场值与计算取值分开；设计零蒸发不等于实测WUE=0"
+        },
+        {
+          "angle": "来源／证据",
+          "item": "附件余页与影像",
+          "state": "not_checked",
+          "destination": "未检查项",
+          "reason": "完整取得PDF不等于逐页读完；不授予模型支持"
+        }
+      ],
+      "review": {
+        "id": "abilene-recheck-20261013",
+        "reviewed_at": "2026-10-13",
+        "input_sha256": "5fb850656bdbee0d83de0ad54fb8012b019574c5331a2e77f44732d36680462b",
+        "result_sha256": "4d9c4a393bd2c375675369b420addfc2265e6a55560b45d338249bf1349a2dab",
+        "checklist_version": "2026.10.13.2",
+        "checklist_sha256": "3ae336b5fdf1215bd9ab3ea681341c6a64ed0818eab5101eae4d8ddfbe3d76a9",
+        "inventory_units": 150,
+        "item_counts": {
+          "anomaly": 3,
+          "candidate": 142,
+          "excluded": 0,
+          "existing_observation": 2,
+          "not_applicable": 0,
+          "not_checked": 3,
+          "unknown": 23,
+          "unread_attachment": 0
+        },
+        "report_exhaustive": "not_certified",
+        "sources": [
+          {
+            "id": "body",
+            "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+            "status": "checked",
+            "sha256": "d0e4e8d1248671d25a77d11286698db88eadcbdb66c44602a44bde7bd0debe2d",
+            "text_sha256": "fb5ce3f385778802b0e469fa50d73fd8c30c94a480f493e9fa62e1316c43570d",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "timeline",
+            "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/edit?usp=sharing",
+            "status": "checked",
+            "sha256": "7e94dd2a8465676746e32d313b67e247ed3d376fc6fd3a56d2ca5b7bb4fba9e9",
+            "text_sha256": "795d966119adb19ab003f102c36246d176773cdfbfd4fd3fdb096ac9901656fd",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "method",
+            "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+            "status": "checked",
+            "sha256": "b5bf1b9e371a6faf2b9873a44e338188ca010ee867865132f6ce2b09dd5e10c6",
+            "text_sha256": "2a29ba5f6fe303b62df2abedceece5e2c46e6f8143171a726579c7fa38193624",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "mortenson",
+            "url": "https://www.mortenson.com/projects/abilene-data-center-development",
+            "status": "checked",
+            "sha256": "171b183bd51a9a5abf8dc70518411dc4d7fcf376c2abc359af022d311afa656d",
+            "text_sha256": "3742d4f7dd8839ccafed7a34254e6bd7494daa22e795562c2003f8e2ebe41777",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "impact",
+            "url": "https://cdn.prod.website-files.com/6855c1aa175582ee23e0aa19/68710273a71bb7c11049ba28_Crusoe_Impact_Report_2024.pdf",
+            "status": "checked",
+            "sha256": "8f71520614821e7bddee0ebc36de910c5249e22b41097f0daad7be689f3a9e28",
+            "text_sha256": "255f59f0e3ff4952940d95c03e90f30deefca192106cefa3bc7971a877d677c5",
+            "checked_scope": "全文文本检索；相关文本页18,19,21,26,42,51；视觉页19、26",
+            "total_pages": 64,
+            "text_review_pages": [
+              18,
+              19,
+              21,
+              26,
+              42,
+              51
+            ],
+            "visual_review_pages": [
+              19,
+              26
+            ],
+            "remaining_pages": "not_individually_reviewed"
+          },
+          {
+            "id": "permit",
+            "url": "https://drive.google.com/uc?export=download&id=1FgfX6hqojlBtqNXJHjzJmnwWAMx4_M0b",
+            "status": "checked",
+            "sha256": "666eb551cc87b0bb2fd271a49acd63a9fc126fdff951fa7f1bc1c43d9ef3f9f5",
+            "text_sha256": "1334f6e41fd1db6d62a3acb12301f046facbbd61caebe6717b83a3e06c2a93d5",
+            "checked_scope": "全文文本检索；相关文本页1,2,149,150,151,152,157；视觉页149、157",
+            "total_pages": 312,
+            "text_review_pages": [
+              1,
+              2,
+              149,
+              150,
+              151,
+              152,
+              157
+            ],
+            "visual_review_pages": [
+              149,
+              157
+            ],
+            "remaining_pages": "not_individually_reviewed"
+          },
+          {
+            "id": "chip-quantities",
+            "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Chip+quantities",
+            "status": "checked",
+            "sha256": "b086c23c514eb92534572d50d0929e20496c8782bf0c8fe4be2ea19f3652f3bc",
+            "text_sha256": "4709f93c54dfc8e1f63a69580e1374a6cd021f0b4c69c886272132fab21422f6",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "calculations",
+            "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Calculations",
+            "status": "checked",
+            "sha256": "75965e90307fe26671cd2ec404db9258374354476f0192d9f6fb6467a241d1b4",
+            "text_sha256": "b4a7b98f44b710673e35b7ec8a99f7b3b6b7006355950d047fc1d579f35b5f20",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "parameters",
+            "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Parameters",
+            "status": "checked",
+            "sha256": "ebc6e22a5b15e57fca65d7382668a214b6d264c38ecd96eff631277264a29543",
+            "text_sha256": "5e427b1c0566bb62461017cbb1018b10dbd2f0bfea7064bbc34af7dc39be133f",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "cooling-quantities",
+            "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Cooling+quantities",
+            "status": "checked",
+            "sha256": "fd04fb82d60d9fe1cabc90645bf1903455002e866217e7eff2d500297f1165ff",
+            "text_sha256": "f8d816672316c2a3a6154c147e3d3f1ca8a4396ee8c8bbc3677dfcc1dfe2ab9d",
+            "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述"
+          },
+          {
+            "id": "native-workbook",
+            "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/export?format=xlsx",
+            "status": "checked",
+            "sha256": "54c7252b6aff1c9b46e14087b03e1d214e16d58b5bca3d26dc5a1566a75c63c5",
+            "text_sha256": "fd57b9065be35ab69435dd37df91dbc897e1aaf34ce942047e7147795a0f124e",
+            "checked_scope": "Timeline!L17；Calculations!B4/B11/B12/B13/B18/B21/C4/C16/C21；Parameters!B26/E26/H26及依赖索引；其余仅提取，不声称语义全审"
+          }
+        ],
+        "items": [
+          {
+            "id": "body-it",
+            "label": "421MW当前估算",
+            "state": "existing_observation",
+            "source_id": "body",
+            "locator": "body-it",
+            "reason": "对应原有容量观察ID；本轮不改变既有估算／预测或来源版本",
+            "observation_id": "30103f2fd01b810c-b03dfa2fe924b039"
+          },
+          {
+            "id": "body-forecast",
+            "label": "843MW预测",
+            "state": "existing_observation",
+            "source_id": "body",
+            "locator": "body-forecast",
+            "reason": "对应原有容量观察ID；本轮不改变既有估算／预测或来源版本",
+            "observation_id": "30103f2fd01b810c-21d74279e89b111f"
+          },
+          {
+            "id": "body-compute",
+            "label": "等效算力与8-bit性能",
+            "state": "candidate",
+            "source_id": "body",
+            "locator": "body-compute",
+            "reason": "有来源线索，范围、时间与原件语义仍需审核；不授予现场事实或模型资格"
+          },
+          {
+            "id": "body-chips",
+            "label": "B200／B300分型号数量和预测",
+            "state": "candidate",
+            "source_id": "body",
+            "locator": "body-chips",
+            "reason": "有来源线索，范围、时间与原件语义仍需审核；不授予现场事实或模型资格"
+          },
+          {
+            "id": "body-cooling",
+            "label": "冷源型号、数量和制冷能力",
+            "state": "candidate",
+            "source_id": "body",
+            "locator": "body-cooling",
+            "reason": "有来源线索，范围、时间与原件语义仍需审核；不授予现场事实或模型资格"
+          },
+          {
+            "id": "body-capex",
+            "label": "159亿及319亿美元成本估算",
+            "state": "candidate",
+            "source_id": "body",
+            "locator": "body-capex",
+            "reason": "有来源线索，范围、时间与原件语义仍需审核；不授予现场事实或模型资格"
+          },
+          {
+            "id": "body-images-unread",
+            "label": "卫星／无人机图像及交互图未逐张检查",
+            "state": "not_checked",
+            "source_id": "body",
+            "locator": "body-images-unread",
+            "reason": "已登记图像线索，尚未取得与逐张审阅原图；文字不代替图像审核"
+          },
+          {
+            "id": "table-ref-error",
+            "label": "单位成本公式错误",
+            "state": "anomaly",
+            "source_id": "timeline",
+            "locator": "table-ref-error",
+            "reason": "原表存在公式错误；不执行或猜补，不采用错误值",
+            "followup": {
+              "status": "confirmed_source_error",
+              "conclusion": "已核原生Timeline!L17：公式自身含失效引用；不填值、不修来源。",
+              "item_ids": [
+                "native-ref-error"
+              ],
+              "at": "2026-10-13"
+            }
+          },
+          {
+            "id": "parameters-row-3",
+            "label": "parameters 第3行：IT power overhead factor",
+            "state": "candidate",
+            "source_id": "parameters",
+            "locator": "parameters / row:3",
+            "reason": "原生CSV单元格值及说明已提取；本轮候选登记，不执行公式；通用参数不证明本园区安装或实际运行"
+          },
+          {
+            "id": "parameters-row-4",
+            "label": "parameters 第4行：NVIDIA GB200 NVL72 power",
+            "state": "candidate",
+            "source_id": "parameters",
+            "locator": "parameters / row:4",
+            "reason": "原生CSV单元格值及说明已提取；本轮候选登记，不执行公式；通用参数不证明本园区安装或实际运行"
+          },
+          {
+            "id": "parameters-row-24",
+            "label": "parameters 第24行：NVIDIA GB200 NVL72 peak performance per chip",
+            "state": "candidate",
+            "source_id": "parameters",
+            "locator": "parameters / row:24",
+            "reason": "原生CSV单元格值及说明已提取；本轮候选登记，不执行公式；通用参数不证明本园区安装或实际运行"
+          },
+          {
+            "id": "method-capex",
+            "label": "单位容量成本估算及范围",
+            "state": "candidate",
+            "source_id": "method",
+            "locator": "method-capex",
+            "reason": "第三方通用成本模型；不是Abilene实际支出"
+          },
+          {
+            "id": "precision-conflict",
+            "label": "8-bit页面标签与计算行FP16表述需核对",
+            "state": "anomaly",
+            "source_id": "calculations",
+            "locator": "precision-conflict",
+            "reason": "计算行出现FP16，而正文展示8-bit；可能涉及换算或标签，未核原公式前不选一个覆盖另一个",
+            "followup": {
+              "status": "confirmed_internal_inconsistency",
+              "conclusion": "已追到8-bit参数与FP16文字说明；冲突仍未得到来源澄清。",
+              "item_ids": [
+                "native-performance-formula"
+              ],
+              "at": "2026-10-13"
+            }
+          },
+          {
+            "id": "source-label-check",
+            "label": "公司披露标签与50400整数配置推导需核对",
+            "state": "anomaly",
+            "source_id": "chip-quantities",
+            "locator": "source-label-check",
+            "reason": "数量表标公司披露，Calculations又解释按整数NVL72配置取50400；未读影响报告前不能认定该精确值为公司原文",
+            "followup": {
+              "status": "clarified_derivation_not_literal_disclosure",
+              "conclusion": "原PDF给设计上限且计数单位有歧义；50400来自研究方整柜取整，不作为公司逐字披露或已部署值。",
+              "item_ids": [
+                "impact-gpu-wording",
+                "native-integer-gpu"
+              ],
+              "at": "2026-10-13"
+            }
+          },
+          {
+            "id": "unknown-capacity.3",
+            "label": "已上架／签约容量",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-configuration.2",
+            "label": "网络型号、链路与拓扑",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-workload.1",
+            "label": "训练／推理及业务用途",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-workload.3",
+            "label": "实测吞吐、时延与工作负载条件",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-workload.5",
+            "label": "利用率和有效计算开销",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-efficiency.1",
+            "label": "期间能耗及负载曲线",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-efficiency.4",
+            "label": "闲置功耗及效率曲线",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-resources.2",
+            "label": "水权、水源和供水能力",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-resources.3",
+            "label": "网络接入、带宽和路由",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-market.1",
+            "label": "市场存量及新增供应",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-market.2",
+            "label": "可供／空置／预租容量",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-market.3",
+            "label": "签约、吸纳、取消与上架",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-market.5",
+            "label": "地区需求、价格和交易口径",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-delivery.4",
+            "label": "延期原因及前后依赖",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-economics.3",
+            "label": "运营成本与收费组成",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-economics.4",
+            "label": "租约、销售、融资与主体承担",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-resilience.1",
+            "label": "故障事件、持续时间与影响",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-resilience.2",
+            "label": "根因、恢复、损失及SLA",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-resilience.4",
+            "label": "维护、检测与变更管理",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-resilience.5",
+            "label": "人员、技能与外包组织",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-environment.1",
+            "label": "直接、间接水耗与当地水压力",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-environment.3",
+            "label": "余热、设备废弃与回收",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "unknown-environment.4",
+            "label": "噪声、社区意见与项目影响",
+            "state": "unknown",
+            "reason": "本轮已查正文、工作表及关联页未取得足以登记该项的资料；未读附件和未检索来源不据此判定无数据"
+          },
+          {
+            "id": "impact-design-capacity",
+            "label": "园区计划容量、分期、面积和送电预期",
+            "state": "candidate",
+            "source_id": "impact",
+            "locator": "PDF p19",
+            "reason": "第19页为设计／计划：1.2GW、八栋约400万平方英尺及2025送电预期；不能认定实际IT容量"
+          },
+          {
+            "id": "impact-gpu-wording",
+            "label": "原文计数单位及每栋上限表述",
+            "state": "candidate",
+            "source_id": "impact",
+            "locator": "PDF p19",
+            "reason": "原文为设计上限且型号／计数单位有歧义；没有50400这一精确值；不把原文改写为已安装GPU数"
+          },
+          {
+            "id": "impact-cooling-design",
+            "label": "冷板液冷、风冷冷机及闭环水系统设计",
+            "state": "candidate",
+            "source_id": "impact",
+            "locator": "PDF p19/26",
+            "reason": "第19、26页为设计说明；零蒸发及循环补水表述不能直接等于全园区实测WUE=0或实际耗水=0"
+          },
+          {
+            "id": "impact-generic-pue",
+            "label": "公司设计PUE范围",
+            "state": "candidate",
+            "source_id": "impact",
+            "locator": "PDF p18",
+            "reason": "第18页为公司设计平均目标，不是Abilene期间实测；不能拿来认证情景PUE1.28"
+          },
+          {
+            "id": "permit-turbines",
+            "label": "发电机组与满建成范围",
+            "state": "candidate",
+            "source_id": "permit",
+            "locator": "PDF p149",
+            "reason": "第149页列五台38MW及五台34.1MW，算术合计360.5MW为发电额定描述；不是园区已运行IT或批准接入容量"
+          },
+          {
+            "id": "permit-plan",
+            "label": "Ludicrous BLDG2设计平面与面积",
+            "state": "candidate",
+            "source_id": "permit",
+            "locator": "PDF p157 / B2-A101",
+            "reason": "第157页建筑设计图约484960平方英尺；设备图形不自动证明安装数量，单栋面积不外推全园区"
+          },
+          {
+            "id": "impact-remaining-pages",
+            "label": "影响报告其余页未逐页研究",
+            "state": "not_checked",
+            "source_id": "impact",
+            "locator": "impact-remaining-pages",
+            "reason": "完整原件和全文检索已完成，但只核验已列相关页；文本抽取不算全篇语义审阅"
+          },
+          {
+            "id": "permit-remaining-pages",
+            "label": "许可附件其余页未逐页研究",
+            "state": "not_checked",
+            "source_id": "permit",
+            "locator": "permit-remaining-pages",
+            "reason": "完整原件和全文检索已完成，但只核验已列相关页；文本抽取不算全篇语义审阅"
+          },
+          {
+            "id": "native-ref-error",
+            "label": "原生公式确认为失效引用",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Timeline!L17",
+            "reason": "Timeline!L17公式本身引用已失效，不是仅HTML提取丢值；不能自行修复来源公式或填参数；这是原异常的补充证据，不重复创建异常编号。"
+          },
+          {
+            "id": "native-performance-formula",
+            "label": "算力公式、参数口径和说明不一致",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Calculations!B21/C21; Parameters!B26/E26/H26",
+            "reason": "Calculations!B21引用标为8-bit的E26=5E15；C21却称FP16。结构已追溯，真实预期口径仍待来源澄清；这是原异常的补充证据，不重复创建异常编号。"
+          },
+          {
+            "id": "native-integer-gpu",
+            "label": "每栋50400是研究方配置取整",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Calculations!B4/C4",
+            "reason": "Calculations!C4明确解释由约50000取整以匹配整柜；原文设计上限与研究方50400推导分开保存"
+          },
+          {
+            "id": "native-it-overheads",
+            "label": "GPU、服务器功率及IT开销推导",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Calculations!B11",
+            "reason": "该式推导每栋IT容量；数值、工作负载与实际配置适用性未核，不能作为独立测量"
+          },
+          {
+            "id": "native-turbine-allocation",
+            "label": "发电功率均分两栋是假设",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Calculations!B13/C13",
+            "reason": "申请机组数值能核到，均分两栋仍为来源假设；不等于每栋可用容量或实际负载"
+          }
+        ],
+        "derivations": [
+          {
+            "id": "gpu-integer-configuration",
+            "output_item_id": "native-integer-gpu",
+            "input_item_ids": [
+              "impact-gpu-wording"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Calculations!C4",
+            "formula": "source uses approximately 50000 and integer NVL72 configurations to choose 50400; no local execution",
+            "assumptions": [
+              "原文上限和计数单位待厘清",
+              "整数机架配置为研究方选择，非原披露精确数"
+            ],
+            "scope": "单栋参考配置",
+            "review_state": "candidate"
+          },
+          {
+            "id": "it-from-hardware",
+            "output_item_id": "native-it-overheads",
+            "input_item_ids": [
+              "native-integer-gpu",
+              "parameters-row-3",
+              "parameters-row-4"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Calculations!B11",
+            "formula": "B4/B3*Parameters!E5*Parameters!E4",
+            "assumptions": [
+              "器件型号、每机数量、额定功率和IT开销条件适用性待核"
+            ],
+            "scope": "来源单栋IT估算",
+            "review_state": "candidate"
+          },
+          {
+            "id": "performance-from-hardware",
+            "output_item_id": "native-performance-formula",
+            "input_item_ids": [
+              "native-integer-gpu",
+              "parameters-row-24"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Calculations!B21",
+            "formula": "B6*B4*Parameters!E26",
+            "assumptions": [
+              "8栋相同配置假设",
+              "8-bit与FP16说明不一致；不是实测吞吐"
+            ],
+            "scope": "来源全建成算力估算",
+            "review_state": "candidate"
+          },
+          {
+            "id": "turbines-to-building",
+            "output_item_id": "native-turbine-allocation",
+            "input_item_ids": [
+              "permit-turbines"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Calculations!B13",
+            "formula": "(5*38+5*34.1)/2",
+            "assumptions": [
+              "两栋均分不是许可原文所证明的实际负载"
+            ],
+            "scope": "前两栋分配假设",
+            "review_state": "candidate"
+          },
+          {
+            "id": "cost-from-it-scale",
+            "output_item_id": "body-capex",
+            "input_item_ids": [
+              "body-it",
+              "method-capex"
+            ],
+            "source_id": "method",
+            "locator": "Capital cost model",
+            "formula": "IT capacity times source unit-capacity cost model; not actual spend",
+            "assumptions": [
+              "通用单位成本与现场组成、价格、币值时点和主体不完全对齐"
+            ],
+            "scope": "来源园区成本估算",
+            "review_state": "candidate"
+          }
+        ],
+        "limitations": [
+          "只投影与模型预览有关的复核条目；完整150个显式资料单元留在本地审计。",
+          "PDF相关页已核，余页未逐页阅读；原影像未逐张检查。",
+          "推导只登记关系与条件，不在此执行来源工作簿公式。",
+          "复核不是新事实采用或模型用途认证。"
+        ]
+      },
+      "review_sha256": "5c79b3ab4d1906c0fc85dfe90336f9f682670fec495f57f1234b4636abcfc555",
+      "expected_observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+      "blockers": [
+        {
+          "id": "table-ref-error",
+          "evidence_ids": [
+            "table-ref-error",
+            "native-ref-error"
+          ],
+          "status": "confirmed_source_error",
+          "label": "来源公式失效",
+          "reason": "Timeline!L17原生公式含#REF!；不猜修复值。",
+          "blocked_targets": [
+            "it_capex_per_kw",
+            "shell_capex_per_mw"
+          ],
+          "automatic_fill": false
+        },
+        {
+          "id": "precision-conflict",
+          "evidence_ids": [
+            "precision-conflict",
+            "native-performance-formula"
+          ],
+          "status": "confirmed_internal_inconsistency",
+          "label": "算力精度不一致",
+          "reason": "Calculations!B21使用8-bit参数，C21称FP16；不转实测吞吐。",
+          "blocked_targets": [
+            "gpus_per_mw",
+            "gpu_utilization"
+          ],
+          "automatic_fill": false
+        },
+        {
+          "id": "source-label-check",
+          "evidence_ids": [
+            "source-label-check",
+            "impact-gpu-wording",
+            "native-integer-gpu"
+          ],
+          "status": "clarified_derivation_not_literal_disclosure",
+          "label": "披露与取整推导分开",
+          "reason": "原PDF给设计上限且单位有歧义；50400为整数NVL72配置选择，不证明实际安装。",
+          "blocked_targets": [
+            "gpus_per_mw",
+            "it_mw"
+          ],
+          "automatic_fill": false,
+          "exception_rule_ids": [
+            "it-capacity-v1"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.13.121。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.122。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2696。
+在册文件：2703。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 438 |
-| 运行代码 | 384 |
+| 历史快照 | 439 |
+| 运行代码 | 386 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 30 |
-| 配套说明 | 243 |
-| 测试 | 239 |
+| 在册数据/索引 | 31 |
+| 配套说明 | 244 |
+| 测试 | 241 |
 
 ## 在册记录集合
 
@@ -66,6 +66,7 @@
 | `data/schema/project.schema.json` | required | 7 |
 | `data/schema/source.schema.json` | required | 5 |
 | `data/schema/submission.schema.json` | required | 4 |
+| `data/site_model_bridges.json` | sites | 1 |
 | `data/sources.json` | records | 74 |
 | `docs/CN_PROJECT_ARCHIVES.csv` | rows | 40 |
 | `docs/LIBRARY_SCORES.csv` | rows | 13664 |
@@ -1769,6 +1770,9 @@
 | `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | sources | 11 |
 | `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | anomaly_followups | 3 |
 | `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | derivations | 5 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | derivations | 5 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | blockers | 3 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | limitations | 5 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -1990,6 +1994,7 @@
 | `data/schema/project.schema.json` | 在册数据/索引 |
 | `data/schema/source.schema.json` | 在册数据/索引 |
 | `data/schema/submission.schema.json` | 在册数据/索引 |
+| `data/site_model_bridges.json` | 在册数据/索引 |
 | `data/sources.json` | 在册数据/索引 |
 | `deploy/Dockerfile` | 项目配置 |
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
@@ -2653,6 +2658,7 @@
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
+| [docs/handoff/abilene-model-preview.md](handoff/abilene-model-preview.md) | 配套说明 |
 | [docs/handoff/archived-site-registration-20261012.md](handoff/archived-site-registration-20261012.md) | 配套说明 |
 | [docs/handoff/bom-classification-20261010.md](handoff/bom-classification-20261010.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
@@ -3352,6 +3358,7 @@
 | `docs/reviews/2026-10-11/stock-pdf-expansion/batch.json` | 历史快照 |
 | `docs/reviews/2026-10-13/observation-coverage/abilene-audit-receipt.json` | 历史快照 |
 | `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -3694,6 +3701,7 @@
 | `scripts/ci_scope.py` | 运行代码 |
 | `scripts/daily_repository_pages.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
+| `scripts/export_site_model_preview.py` | 运行代码 |
 | `scripts/publish_repository_pages.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
 | `scripts/repository_pages_daemon.py` | 运行代码 |
@@ -3789,6 +3797,7 @@
 | `src/inresearch/knowledge/research_gaps.py` | 运行代码 |
 | `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
 | `src/inresearch/knowledge/site_metrics.py` | 运行代码 |
+| `src/inresearch/knowledge/site_model_bridge.py` | 运行代码 |
 | `src/inresearch/knowledge/site_quantity.py` | 运行代码 |
 | `src/inresearch/knowledge/site_register.py` | 运行代码 |
 | `src/inresearch/knowledge/site_timeline.py` | 运行代码 |
@@ -3939,6 +3948,7 @@
 | `tests/server_plan.cjs` | 测试 |
 | `tests/shared_part_preview.cjs` | 测试 |
 | `tests/shared_part_preview_spin.cjs` | 测试 |
+| `tests/site_model_bridge.cjs` | 测试 |
 | `tests/site_navigation.cjs` | 测试 |
 | `tests/site_workspace.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
@@ -4101,6 +4111,7 @@
 | `tests/unit/test_scale_atlas_assets.py` | 测试 |
 | `tests/unit/test_shared_part_preview_assets.py` | 测试 |
 | `tests/unit/test_site_metrics.py` | 测试 |
+| `tests/unit/test_site_model_bridge.py` | 测试 |
 | `tests/unit/test_site_timeline.py` | 测试 |
 | `tests/unit/test_site_tracking.py` | 测试 |
 | `tests/unit/test_site_tracking_sources.py` | 测试 |

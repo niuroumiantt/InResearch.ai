@@ -36,7 +36,7 @@ const ready=new Promise((resolve,reject)=>{lines.once('line',s=>{try{resolve(JSO
    const go=async route=>{await page.goto(base+route);await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();await page.waitForFunction(()=>document.getElementById('load-status')?.textContent==='');};
    const json=async route=>{const r=await context.request.get(base+route);assert.equal(r.status(),200);return r.json();};
    const source=await json('/api/industry');assert.ok(source.rows.length>0);
-   const named=source.rows.find(r=>!r.portfolio&&r.geography?.identity_scope!=='cluster'&&r.country);
+   const named=source.rows.find(r=>r.site_id==='us-tx-abilene');
    assert.ok(named);const id=named.site_id;
    const nav=await json('/api/navigation?page=%2Fregions.html');
    assert.equal(nav.navigation.delivery.length,7);assert.equal(nav.navigation.delivery.flatMap(x=>x.children).length,15);
@@ -64,8 +64,8 @@ const ready=new Promise((resolve,reject)=>{lines.once('line',s=>{try{resolve(JSO
    await go('/project.html?site='+encodeURIComponent(id)+'#site-observation-timeline');await page.locator('#site-observation-timeline').waitFor();
    assert.equal(await page.locator('[data-campus-module]').count(),7);assert.ok((await page.locator('#campus-overview').innerText()).includes(id));
    assert.match(await page.locator('#campus-equipment').innerText(),/不.*现场安装/);
-   assert.match(await page.locator('#campus-economics').innerText(),/不自动填入园区参数/);
-   const after=await json('/api/industry?site='+encodeURIComponent(id));assert.deepEqual(after.detail,source.rows.find(r=>r.site_id===id));
+   assert.match(await page.locator('#campus-economics').innerText(),/此通用入口不携带园区参数/);assert.match(await page.locator('#campus-economics').innerText(),/园区情景请先预览并确认/);
+   const after=await json('/api/industry?site='+encodeURIComponent(id));const {model_bridge,...facts}=after.detail;assert.deepEqual(facts,source.rows.find(r=>r.site_id===id));assert.equal(model_bridge.site_id,id);assert.equal(model_bridge.expected_it_mw,421);
    await go('/industry.html');assert.equal(await page.locator('#industry-entry').isVisible(),true);assert.equal(await page.locator('#atlas-tools').isHidden(),true);
    await go('/industry.html?c=meta');await page.locator('#world-map .site-point').first().waitFor();
    if(role==='admin'){
