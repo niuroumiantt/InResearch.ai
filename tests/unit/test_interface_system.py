@@ -70,6 +70,9 @@ class InterfaceContractTests(unittest.TestCase):
         shell=(ROOT/'web/components/site-shell.js').read_text()
         self.assertNotIn('data-ui-choice',shell)
         self.assertNotIn('ui-skin-choices',shell)
+        self.assertIn("/assets/brand/inresearch-ai/icon-orange.svg", shell)
+        self.assertIn('mountImageBranding', shell)
+        self.assertIn('.ui-branded-image', skin)
         # 字体包必须与自己的 manifest 一致 (infra scripts/sync_fonts.py --check 的本地版)
         import hashlib
         fonts=ROOT/'web/assets/fonts'
@@ -112,6 +115,7 @@ class InterfaceContractTests(unittest.TestCase):
         for url, rel in routes.items():
             self.assertTrue((ROOT/rel).exists(), f'{url} -> {rel} is a dead route')
         self.assertEqual(routes['/data/datacenter_model.json'], 'data/datacenter_model.json')
+        self.assertEqual(routes['/assets/brand/inresearch-ai/icon-orange.svg'], 'web/assets/brand/inresearch-ai/icon-orange.svg')
 
     def test_public_read_only_boundary(self):
         with patch.object(serve,'AUTH_ON',True), patch.object(auth,'session_user',return_value=None):
