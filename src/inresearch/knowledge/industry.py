@@ -3,6 +3,7 @@ import json
 import copy
 from functools import lru_cache
 import math
+import threading
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -186,12 +187,13 @@ def snapshot(root, params=None):
     for k, allowed in {'stage': {'', *STAGES, 'unknown'}, 'relation': {'', 'developer', 'tenant'},
                        'scope': {'', 'ai'}, 'role': {'', *ROLE_GROUPS}}.items():
         if params.get(k, '') not in allowed: raise ValueError('invalid '+k)
-    from inresearch.delivery.source_publication import companies as company_register
-    companies = [{k: c.get(k) for k in ('company_id', 'name', 'name_cn', 'roles', 'profile')} for c in company_register(root)['records']]
+    from inresearch.delivery.source_publication import companies as company_register, state
+    runtime = state(root)
+    companies = [{k: c.get(k) for k in ('company_id', 'name', 'name_cn', 'roles', 'profile')} for c in company_register(root, runtime=runtime)['records']]
     by_id = {c['company_id']: c for c in companies}
     if params.get('c') and params['c'] not in by_id: raise LookupError('company not found')
     from inresearch.delivery.source_publication import projects
-    raw_rows = projects(root)['records']
+    raw_rows = projects(root, runtime=runtime)['records']
     all_records = [project(p) for p in raw_rows]
     all_rows = [p for p in all_records if not p.get('duplicate_of')]
     # Identity joins retain relationships and evidence, never add duplicate capacity or overwrite stages.
@@ -272,9 +274,44 @@ def snapshot(root, params=None):
                          'latest_verified': dates[-1] if dates else None},
             'totals': totals(cohort), 'rows': rows, 'detail': detail, 'companies': companies,
             'tracking': tracking, 'geographic_filters': geographic_filters,
-            'research_updates': public_updates(root, company=params.get('c')),
+            'research_updates': public_updates(root, company=params.get('c'), runtime=runtime),
             'leaders': leaders, 'regions': [{'id': r, 'name': REGIONS.get(r, r)} for r in sorted({p['region'] for p in all_rows})],
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
             'capacity_audit': audit,
             'stages': STAGES, 'company': next((c for c in companies if c['company_id']==params.get('c')),None),
             'basis': '仅汇总已披露 IT 负载的确定值 MW，容量区间单列且不取中点；公司视图为相关园区容量，并非持有或租用份额。组合记录不参加容量合计。'}
+
+
+_home_snapshot_lock = threading.Lock()
+_home_snapshot_cache = {}
+
+
+def homepage_snapshot(root):
+    """Reuse an unchanged public projection; never cache across a data replacement."""
+    from inresearch.delivery.source_publication import PATH
+    from inresearch.storage.layout import workspace_path
+    root = Path(root).resolve()
+    paths = [root/name for name in (
+        'data/projects.json', 'data/companies.json', 'data/object_observations.json',
+        'data/prices.json', 'data/facts.json', 'framework/research_publication.json',
+        'framework/storage_contract.json')]
+    paths.append(workspace_path(PATH, root))
+    def signature():
+        stamps = []
+        for path in paths:
+            try:
+                stat = path.stat()
+                stamps.append((str(path), stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns))
+            except FileNotFoundError:
+                stamps.append((str(path), None))
+        return (date.today().isoformat(), tuple(stamps))
+    with _home_snapshot_lock:
+        key = signature()
+        cached = _home_snapshot_cache.get(str(root))
+        if cached is not None and cached[0] == key:
+            return copy.deepcopy(cached[1])
+        value = snapshot(root, {'overview':'1'})
+        if signature() == key:
+            _home_snapshot_cache.clear()
+            _home_snapshot_cache[str(root)] = (key, value)
+        return copy.deepcopy(value)

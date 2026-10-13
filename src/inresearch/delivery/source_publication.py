@@ -74,8 +74,8 @@ def _projects(root, runtime):
     return doc
 
 
-def projects(root):
-    return _projects(root, state(root))
+def projects(root, runtime=None):
+    return _projects(root, state(root) if runtime is None else runtime)
 
 
 def _objects(doc, runtime):
@@ -92,12 +92,17 @@ def objects(root, doc):
     return _objects(doc, state(root))
 
 
-def companies(root):
+def companies(root, runtime=None):
     """New company identities share the directory; observations stay in their timeline."""
     from inresearch.knowledge import object_observations as ledger
     doc = strict_json((Path(root)/'data/companies.json').read_text())
     known = {c['company_id'] for c in doc['records']}
-    for obj in ledger.load(root)['objects'].values():
+    native = Path(root)/ledger.PATH
+    base = strict_json(native.read_text()) if native.exists() else ledger.empty()
+    runtime = state(root) if runtime is None else runtime
+    identities = _objects({'version':1, 'objects':base['objects'], 'records':[]},
+                          {'objects':runtime['objects'], 'records':[]})['objects']
+    for obj in identities.values():
         if obj['type'] == 'company' and obj['identity']['company_id'] not in known:
             ident = obj['identity']['company_id']
             doc['records'].append({'company_id':ident,'name':obj['name'],'name_cn':None,
@@ -157,17 +162,22 @@ def install(root, payload):
         before_projects = _projects(root, previous)
         by_id = {r['site_id']:r for r in before_projects['records']}
         known_companies = strict_json((Path(root)/'data/companies.json').read_text())['records']
+        names_by_id, ids_by_name = {}, {}
+        for company in known_companies:
+            names_by_id.setdefault(company['company_id'], set()).add(company.get('name'))
+            ids_by_name.setdefault(str(company.get('name','')).casefold(), set()).add(company['company_id'])
         for obj in candidate['objects'].values():
             if obj['type'] != 'company': continue
             ident, name = obj['identity']['company_id'], obj['name']
-            if any(c['company_id'] == ident and c.get('name') != name for c in known_companies):
+            if names_by_id.get(ident, set()) - {name}:
                 raise ValueError('immutable_company_identity_collision')
             # Same case-folded name is the existing ordinary intake's duplicate
             # identity rule. Apply it across code, runtime and this whole batch.
-            if any(c['company_id'] != ident and str(c.get('name','')).casefold() == name.casefold()
-                   for c in known_companies):
+            if ids_by_name.get(name.casefold(), set()) - {ident}:
                 raise ValueError('possible_duplicate_company_identity')
             known_companies.append({'company_id':ident,'name':name})
+            names_by_id.setdefault(ident, set()).add(name)
+            ids_by_name.setdefault(name.casefold(), set()).add(ident)
         companies = {c['company_id'] for c in known_companies}
         new_sites = new_records = 0
         seen = set()
