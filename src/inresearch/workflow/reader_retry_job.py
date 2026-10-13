@@ -17,7 +17,7 @@ from inresearch.materials.reading_artifacts import ReadingArtifacts
 from inresearch.materials.reader_contracts import Blocked, RECIPE_VERSION
 from inresearch.storage.files import atomic_write, locked, sync_directory
 
-ERRORS = frozenset({'model_cli_failed'})
+ERRORS = frozenset({'model_cli_failed', 'model_cli_timeout'})
 
 
 def _require(condition, code):

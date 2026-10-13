@@ -522,3 +522,12 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 ### 站点跟踪调度的启用与核验（2026-10-11）
 
 更新源码后在安全边界重载既有 `inresearch-research-review.service`，不另开worker。先对既有catalog、acquisition与review queue做SQLite在线备份；保留在途审核及原件，核新进程版本、唯一锁和原队列继续进展。既有worker每轮调用站点任务规划，`research-review status` 的 `site_tracking` 可读日/周/月水位、任务状态和最新失败。首次扫描/重启重放应核真实接收来源、任务去重与正式projects字节未改；失败不推进成功水位。此状态只表示复核任务形成，未接通的采集、站点C3和项目发布不可报告执行完成。不要手改SQLite状态或刷新verified_date掩盖缺口。
+
+
+## 有界候选增量与模型网络恢复（2026-10-13）
+
+全量JSON达到192MiB接收边界时，先按接收端相同candidate_snapshot契约规范化后重新计量；本地导出的接收端不保留字段不再传输，原件、报告、实际接收的证据/陈述不删改。规范化后仍超限才走增量。不提高HTTP解压/线上内存上限，不删除旧候选或来源。唯一既有publisher使用原认证端点的`candidate-manifest-v1`读取文档及本篇证据/陈述的规范化SHA；`candidate-delta-v1`仅发送变更文档，每批最多250篇、16MiB。每批按接收端generated进行CAS，完整执行原candidate_snapshot、正式库内容身份冲突检查与原子source/control安装。未在本批出现的候选保留；部分成功有回执，下次从实际manifest继续。回答涉及跨文档支持闭包，不能借此协议替换，明确留在原完整路径。manifest回包最多32MiB；同一文档超过批次预算显式阻塞并保留，不能截断证据。无权限访问、原始引文分发、C3与普通登记边界不变。源码测试不证明receiver或Spark publisher已更新，旧receiver拒绝新协议时保留原数据并报告，不回退到无校验写入。
+
+既有可信操作员`receive-snapshot` CLI可用于一次性私有归档接收；它与HTTP共用业务校验、原子锁与source/control回执。恢复时冻结源SHA并保留旧candidate快照，接收、当前批次完整阅读计数及实际HTTP显示另验，不把新接收当正式采用。不得另起常驻publisher与既有队列竞争。
+
+模型CLI达到进程预算时，读取其有界stderr末尾，只将明确的断流/请求网络超时/配额信号归为暂态等待；没有证据的长推理仍是model_cli_timeout，不能无限重试。日志仅保存分类与摘要，不保留正文/凭据。先核真实活动进程的模型与relay配置，最小请求对比网络后再修复配置；不盲增推理时限。已失败read任务可经现有retry-job显式CAS恢复model_cli_failed或model_cli_timeout，核当前revision、原件、配方、分块、错误和次数，保留attempts/available、已完成分块和审计；不绕过worker生命周期锁或重启Reader批量清空尝试。

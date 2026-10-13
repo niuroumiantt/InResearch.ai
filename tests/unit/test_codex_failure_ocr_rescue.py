@@ -46,6 +46,21 @@ class FailureTests(unittest.TestCase):
                 models.JsonModelClient(profile).generate('system','private data')
         self.assertEqual(caught.exception.code,'model_relay_unavailable')
 
+    def test_process_timeout_classifies_observed_network_failure_without_persisting_text(self):
+        import subprocess
+        profile=models.ModelProfile(backend='codex_cli',url='',model='gpt-6.1-sol',command='codex')
+        for detail,expected in [(b'stream disconnected: request timed out PRIVATE-DOCUMENT','model_relay_unavailable'),
+                                (b'HTTP 429 private quota message','model_quota_wait'),
+                                (b'no provider failure detail','model_cli_timeout')]:
+            def timeout(command,**kw):
+                kw['stderr'].write(detail)
+                raise subprocess.TimeoutExpired(command,600)
+            with mock.patch.object(codex_inference.subprocess,'run',side_effect=timeout):
+                with self.assertRaises(models.InferenceError) as caught:
+                    models.JsonModelClient(profile).generate('system','private data')
+            self.assertEqual(caught.exception.code,expected)
+            self.assertNotIn('PRIVATE-DOCUMENT',str(getattr(caught.exception,'diagnostics',{})))
+
     def test_scope_discloses_unread_pages_from_verified_current_reports(self):
         from inresearch.workflow.reader_scope import gap_counts
         with tempfile.TemporaryDirectory() as folder:

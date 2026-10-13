@@ -35,7 +35,7 @@ def cli_failure(returncode, events, stderr, elapsed):
         code, kind = 'model_cli_authentication_failed', 'authentication'
     elif status in (408, 500, 502, 503, 504) or any(s in detail for s in (
             'stream disconnected', 'error sending request', 'connection reset',
-            'connection closed', 'service unavailable', 'server_error', 'unexpected eof')):
+            'connection closed', 'service unavailable', 'server_error', 'unexpected eof', 'request timed out')):
         code, kind = 'model_relay_unavailable', 'transport'
     else:
         code, kind = 'model_cli_failed', 'unclassified'
@@ -158,8 +158,18 @@ def generate(client, system, user, *, json_schema=None, image_path=None):
                 path=root/'page.png';path.write_bytes(image_bytes);command.extend(['--image',str(path)])
             command.extend(['-o',str(answer),'-'])
             with tempfile.TemporaryFile() as output, tempfile.TemporaryFile() as errors:
-                proc=subprocess.run(command,input=user,text=True,cwd=directory,
-                    stdout=output,stderr=errors,timeout=p.timeout,check=False)
+                try:
+                    proc=subprocess.run(command,input=user,text=True,cwd=directory,
+                        stdout=output,stderr=errors,timeout=p.timeout,check=False)
+                except subprocess.TimeoutExpired:
+                    # The process budget may expire while the CLI is retrying a
+                    # disconnected stream. Keep only classified diagnostics, so
+                    # transport waits defer rather than exhaust document retries.
+                    errors.seek(0,2); size=errors.tell(); errors.seek(max(0,size-8192))
+                    failure=cli_failure(None, [], errors.read(8192).decode(errors='replace'), time.monotonic()-start)
+                    if failure.code in {'model_relay_unavailable','model_quota_wait'}:
+                        raise failure from None
+                    raise InferenceError('model_cli_timeout') from None
                 output.seek(0);raw=output.read(MAX_RESPONSE+1)
                 # Startup warnings can fill the beginning; terminal errors are
                 # frequently at the end. Inspect both bounds, never log either.
