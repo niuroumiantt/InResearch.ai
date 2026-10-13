@@ -18,7 +18,7 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  assert.equal(await page.locator('#return-revenue').textContent(),'$2.291B');assert.equal(await page.locator('#cost-per-hour').textContent(),'$3.57');
  assert.ok((await page.locator('#return-surplus').textContent()).startsWith('+$4.93'));
  // Inverse view: Goldman's hurdle gives 11.6 bn/GW at 34.6% EBIT margin; the grid marks both anchors
- await page.locator('#views button[data-view=inverse]').click();await page.locator('#view-inverse.on').waitFor();
+ await page.locator('#column-tabs a[data-column=scenarios]').click();await page.locator('#view-inverse.on').waitFor();
  await page.getByRole('button',{name:'校准 · 高盛 15% 回报门槛'}).click();
  assert.equal(await page.locator('#inv-revenue strong').textContent(),'$11.65B');
  assert.ok((await page.locator('#inv-revenue .sub').textContent()).includes('EBIT 利润率 34.6%'));

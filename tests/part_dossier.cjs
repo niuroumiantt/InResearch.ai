@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Real scene deep links exercise the shared dossier and WebGL inspector. */
 const assert = require('node:assert/strict');
 const {chromium} = require('playwright');
@@ -8,8 +9,11 @@ if (requestedScene && !dossierScenes.includes(requestedScene)) throw Error('Unkn
   const browser = await chromium.launch({headless:true, args:['--enable-unsafe-swiftshader']});
   try {
     const page = await browser.newPage({viewport:{width:1280,height:900}, reducedMotion:'reduce', deviceScaleFactor:process.env.CI ? .5 : 1});
-    const errors = [], fullRequests=[]; page.on('pageerror', e => errors.push(e.message));
+    const errors = [], fullRequests=[],privateRequests=[]; page.on('pageerror', e => errors.push(e.message));
     page.on('request', request=>{if(new URL(request.url()).pathname==='/api/research')fullRequests.push(request.url());});
+    page.on('request', request=>{if(/research-graph|object-network|research-(summary|materials|adopted)|tco_targets|\/data\/products\.json|\/framework\/modules\.json/.test(new URL(request.url()).pathname))privateRequests.push(request.url());});
+    const internal = await browser.newPage();internal.on('pageerror',error=>errors.push(error.message));
+    if(process.env.UI_ADMIN_COOKIE){const cookie=process.env.UI_ADMIN_COOKIE,i=cookie.indexOf('=');for(const reader of [page,internal])await reader.context().addCookies([{name:cookie.slice(0,i),value:cookie.slice(i+1),url:process.env.UI_BASE_URL}]);}
     // Inspect actual scene objects without shipping debug globals in application code.
     await page.route(/\/(bom3d|rack3d)\.html/, async route => {
       const response = await route.fetch();
@@ -24,15 +28,13 @@ if (requestedScene && !dossierScenes.includes(requestedScene)) throw Error('Unkn
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
       await dossier.locator('h2').waitFor();
-      await dossier.locator('.rg-3d-panel[data-state=ready]').waitFor();
-      assert.match(await dossier.locator('.rg-3d-panel .rg-chips').textContent(), /个问题.*条证据.*个关联任务/);
-      assert.ok(await dossier.locator('.rg-3d-neighbors a').count()>0);
-      console.log('Scene contract: research ready '+url);
+      assert.equal(await dossier.locator('.rg-3d-panel,.dossier-targets').count(),0,'delivered scenes have no internal research or task panel');
+      console.log('Scene contract: delivery dossier ready '+url);
       if (url.includes('p=server') || new URL(url,'http://localhost').searchParams.get('node')==='part:server') {
         const server = dossier.locator('.technical-atlas[data-figure="TA-11"]');
         await server.waitFor();
         assert.match(await server.locator('figcaption').textContent(), /通用风冷.*仅为示例/);
-        assert.ok((await server.locator('img').getAttribute('src')).endsWith('/server-v1-preview.svg'));
+        assert.ok((await server.locator('img:not(.ui-brand-watermark)').getAttribute('src')).endsWith('/server-v1-preview.svg'));
         assert.equal(await server.locator('[data-related-figure="TA-03"]').getAttribute('href'), '/assets/technical-atlas/chassis-v1.svg');
       } else if (url.includes('part:coldplate')) {
         const coldplate = dossier.locator('.technical-atlas[data-figure="TA-10"]');
@@ -71,7 +73,7 @@ if (requestedScene && !dossierScenes.includes(requestedScene)) throw Error('Unkn
         await board.waitFor();
         assert.match(await board.locator('h3').textContent(), /服务器主板.*CPU 与 DIMM/);
         assert.match(await board.locator('figcaption').textContent(), /不代表 MRDIMM/);
-        assert.ok((await board.locator('img').getAttribute('src')).endsWith('/motherboard-v1-preview.svg'));
+        assert.ok((await board.locator('img:not(.ui-brand-watermark)').getAttribute('src')).endsWith('/motherboard-v1-preview.svg'));
         assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-05"]').count(), 0);
       } else {
         assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-03"]').count(), 0, 'GPU must not inherit enclosure diagram');
@@ -79,32 +81,39 @@ if (requestedScene && !dossierScenes.includes(requestedScene)) throw Error('Unkn
         await gpu.waitFor();
         assert.match(await gpu.locator('h3').textContent(), /GPU 加速基板.*模组装配/);
         assert.match(await gpu.locator('figcaption').textContent(), /多 GPU 模组与基板/);
-        assert.ok((await gpu.locator('img').getAttribute('src')).endsWith('/gpu-board-v1-preview.svg'));
+        assert.ok((await gpu.locator('img:not(.ui-brand-watermark)').getAttribute('src')).endsWith('/gpu-board-v1-preview.svg'));
       }
       const canvas = dossier.locator('canvas'); await canvas.waitFor();
       assert.equal(await canvas.count(), 1);
-      assert.ok(await dossier.getByRole('link', {name:'采集：这个部件的目标行'}).isVisible());
-      await dossier.locator('.dossier-targets [data-target-id]').first().waitFor();
-      assert.ok((await dossier.locator('.dossier-targets').innerText()).includes('交付与正式采用分别验收'));
       const part = await dossier.getAttribute('data-part-id');
-      assert.ok((await dossier.locator('.dossier-targets').innerText()).includes('P.'+part+'.spec'));
+      assert.equal(await dossier.locator('a[href*="supply.html"]').count(),0);
+      // The same research component and actual target rows remain authorized on the workbench.
+      await internal.goto(process.env.UI_BASE_URL+'/research-workbench.html?id='+encodeURIComponent('part:'+part));
+      await internal.locator('#targets table tbody tr').first().waitFor();
+      assert.match(await internal.locator('#targets').innerText(),new RegExp('P\\.'+part+'\\.spec'));
+      assert.equal(await internal.locator('#five a[href^="supply.html?"]').count(),5);
+      await internal.evaluate(async node=>{const {mountNodeResearch}=await import('/assets/research-graph.js');const host=document.createElement('div');host.id='retained-internal-panel';document.querySelector('main').append(host);mountNodeResearch(host,node);},'part:'+part);
+      const retained=internal.locator('#retained-internal-panel[data-state=ready]');await retained.waitFor();
+      assert.match(await retained.locator('.rg-chips').textContent(),/个问题.*条证据.*个关联任务/);
+      assert.ok(await retained.locator('.rg-3d-neighbors a').count()>0,'original research relations remain in the internal tool');
+      assert.ok(await retained.locator('a[href^="http"]').count()>0);
       assert.ok(await dossier.getByRole('heading', {name:'类别数据与指标 · 按原记录时点'}).isVisible());
       const box = await canvas.boundingBox();
       await page.mouse.move(box.x+40, box.y+40); await page.mouse.down();
       await page.mouse.move(box.x+90, box.y+65, {steps:4}); await page.mouse.up();
-      await page.locator('#ui-appearance').selectOption('dark');
+      await setAppearance(page, 'dark');
       assert.ok(await canvas.isVisible());
       if (process.env.REVIEW_SCREENSHOTS) await page.screenshot({path:process.env.REVIEW_SCREENSHOTS + '/' + (url.includes('bom3d') ? 'scene-campus.png' : 'scene-rack.png')});
       await dossier.getByRole('button',{name:'关闭部件档案'}).click();
       assert.ok(!await dossier.isVisible());
       await page.waitForFunction(() => Boolean(globalThis.__sceneForTest));
-      await page.locator('#ui-appearance').selectOption('light');
+      await setAppearance(page, 'light');
       // Reduced-motion playback finishes at the selected end, without background writers.
       await page.locator('#play').click();
       assert.equal(await page.locator('#explode').inputValue(), '100');
       await page.locator('.rg-stage-control').selectOption({index:1});
       const selected = await page.locator('#explode').inputValue();
-      await page.locator('#ui-appearance').selectOption('dark');
+      await setAppearance(page, 'dark');
       assert.equal(await page.locator('#explode').inputValue(), selected);
       // Exercise normal animation too: repeated play then a manual phase owns the state.
       await page.emulateMedia({reducedMotion:'no-preference'});
@@ -196,7 +205,9 @@ if (requestedScene && !dossierScenes.includes(requestedScene)) throw Error('Unkn
     });
     assert.ok(contracts);
     assert.deepEqual(fullRequests, [], '3D dossier must not fetch full research');
+    assert.deepEqual(privateRequests, [], 'delivered scenes do not fetch internal data or modules');
     assert.deepEqual(errors, []);
-    console.log('PASS both real 3D scenes: research ready without full snapshot, dossiers, themes, motion takeover, stale frames, materials, picking, drag and cleanup');
+    await internal.close();
+    console.log('PASS real 3D delivery: retained workbench questions/evidence/tasks/relations; dossiers, themes, motion takeover, stale frames, materials, picking, drag and cleanup');
   } finally { await browser.close(); }
 })().catch(error => {console.error(error); process.exitCode=1;});

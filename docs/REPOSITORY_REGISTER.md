@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.13.115。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.13.116。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2662。
+在册文件：2687。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 436 |
-| 运行代码 | 371 |
+| 运行代码 | 383 |
 | 现行规范 | 15 |
-| 项目配置 | 777 |
+| 项目配置 | 779 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 240 |
-| 测试 | 226 |
+| 配套说明 | 241 |
+| 测试 | 236 |
 
 ## 在册记录集合
 
@@ -1779,7 +1779,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 51 |
+| `framework/interface_manifest.json` | static_pages | 55 |
 | `framework/interface_manifest.json` | public_pages | 2 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
@@ -1791,6 +1791,10 @@
 | `framework/research_graph.json` | relations | 373 |
 | `framework/research_questions.json` | records | 458 |
 | `framework/research_task_plan.json` | packages | 6 |
+| `framework/site_implementation.json` | milestones | 7 |
+| `framework/site_implementation.json` | releases | 0 |
+| `framework/site_navigation.json` | public_navigation | 2 |
+| `framework/site_navigation.json` | page_rules | 25 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 26 |
@@ -2688,6 +2692,7 @@
 | [docs/handoff/material-progress-overview-20261006.md](handoff/material-progress-overview-20261006.md) | 配套说明 |
 | [docs/handoff/multi-object-intake-20261011.md](handoff/multi-object-intake-20261011.md) | 配套说明 |
 | [docs/handoff/native-xlsx-evidence-20261012.md](handoff/native-xlsx-evidence-20261012.md) | 配套说明 |
+| [docs/handoff/navigation-auth-shell.md](handoff/navigation-auth-shell.md) | 配套说明 |
 | [docs/handoff/news-research-matching-20261006.md](handoff/news-research-matching-20261006.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
 | [docs/handoff/ocr-gap-rescue-four-20261007.md](handoff/ocr-gap-rescue-four-20261007.md) | 配套说明 |
@@ -3382,6 +3387,8 @@
 | `framework/research_publication.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
 | `framework/research_task_plan.json` | 项目配置 |
+| `framework/site_implementation.json` | 项目配置 |
+| `framework/site_navigation.json` | 项目配置 |
 | `framework/site_rights.json` | 项目配置 |
 | `framework/storage_contract.json` | 项目配置 |
 | `framework/supply_contract.json` | 项目配置 |
@@ -3729,6 +3736,8 @@
 | `src/inresearch/interfaces/__init__.py` | 运行代码 |
 | `src/inresearch/interfaces/auth.py` | 运行代码 |
 | `src/inresearch/interfaces/cli.py` | 运行代码 |
+| `src/inresearch/interfaces/customer_catalog.py` | 运行代码 |
+| `src/inresearch/interfaces/customer_scene.py` | 运行代码 |
 | `src/inresearch/interfaces/deep_read.py` | 运行代码 |
 | `src/inresearch/interfaces/governance.py` | 运行代码 |
 | `src/inresearch/interfaces/http.py` | 运行代码 |
@@ -3740,6 +3749,7 @@
 | `src/inresearch/interfaces/static.py` | 运行代码 |
 | `src/inresearch/interfaces/users.py` | 运行代码 |
 | `src/inresearch/interfaces/verification.py` | 运行代码 |
+| `src/inresearch/interfaces/workspace.py` | 运行代码 |
 | `src/inresearch/knowledge/__init__.py` | 运行代码 |
 | `src/inresearch/knowledge/company_ids.py` | 运行代码 |
 | `src/inresearch/knowledge/coverage.py` | 运行代码 |
@@ -3877,11 +3887,13 @@
 | `tests/container_storage.py` | 测试 |
 | `tests/control_domain.cjs` | 测试 |
 | `tests/cross_scale_atlas.cjs` | 测试 |
+| `tests/customer_catalog.cjs` | 测试 |
 | `tests/dashboard.cjs` | 测试 |
 | `tests/datacenter_cost.cjs` | 测试 |
 | `tests/datacenter_economics.cjs` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/datacenter_tco.cjs` | 测试 |
+| `tests/economics_navigation.cjs` | 测试 |
 | `tests/energy_domain.cjs` | 测试 |
 | `tests/facility_domain.cjs` | 测试 |
 | `tests/industry.cjs` | 测试 |
@@ -3904,15 +3916,19 @@
 | `tests/scale_atlas.cjs` | 测试 |
 | `tests/scene_atlas.cjs` | 测试 |
 | `tests/scene_bootstrap.cjs` | 测试 |
+| `tests/scene_delivery.cjs` | 测试 |
 | `tests/scene_framing.cjs` | 测试 |
 | `tests/scene_resources.cjs` | 测试 |
 | `tests/server_assembly.cjs` | 测试 |
 | `tests/server_plan.cjs` | 测试 |
 | `tests/shared_part_preview.cjs` | 测试 |
 | `tests/shared_part_preview_spin.cjs` | 测试 |
+| `tests/site_navigation.cjs` | 测试 |
+| `tests/site_workspace.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
 | `tests/system_atlas.cjs` | 测试 |
 | `tests/technical_atlas.cjs` | 测试 |
+| `tests/ui_helpers.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
 | `tests/unit/deep_read_fixtures.py` | 测试 |
 | `tests/unit/test_abilene_capacity.py` | 测试 |
@@ -3942,6 +3958,9 @@
 | `tests/unit/test_continuous_reader.py` | 测试 |
 | `tests/unit/test_control_domain_assets.py` | 测试 |
 | `tests/unit/test_cross_scale_atlas_assets.py` | 测试 |
+| `tests/unit/test_customer_access.py` | 测试 |
+| `tests/unit/test_customer_catalog.py` | 测试 |
+| `tests/unit/test_customer_scene.py` | 测试 |
 | `tests/unit/test_daily_bundle.py` | 测试 |
 | `tests/unit/test_daily_dispatch.py` | 测试 |
 | `tests/unit/test_daily_events.py` | 测试 |
@@ -4067,6 +4086,7 @@
 | `tests/unit/test_site_timeline.py` | 测试 |
 | `tests/unit/test_site_tracking.py` | 测试 |
 | `tests/unit/test_site_tracking_sources.py` | 测试 |
+| `tests/unit/test_site_workspace.py` | 测试 |
 | `tests/unit/test_snapshot_delta.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_source_batch.py` | 测试 |
@@ -4519,12 +4539,15 @@
 | `web/components/scene-atlas.js` | 运行代码 |
 | `web/components/scene-data.js` | 运行代码 |
 | `web/components/scene-motion.js` | 运行代码 |
+| `web/components/scene-navigation.js` | 运行代码 |
 | `web/components/scene-picking.js` | 运行代码 |
 | `web/components/scene-resources.js` | 运行代码 |
 | `web/components/scene-view.js` | 运行代码 |
 | `web/components/series-summary.js` | 运行代码 |
 | `web/components/server-assembly.js` | 运行代码 |
 | `web/components/server-plan-generator.js` | 运行代码 |
+| `web/components/site-guide.js` | 运行代码 |
+| `web/components/site-search.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
 | `web/components/supply.js` | 运行代码 |
 | `web/components/system-atlas.js` | 运行代码 |
@@ -4532,6 +4555,7 @@
 | `web/components/tasks-board.js` | 运行代码 |
 | `web/components/technical-atlas.css` | 运行代码 |
 | `web/components/technical-atlas.js` | 运行代码 |
+| `web/components/workspace.js` | 运行代码 |
 | `web/pages/admin/agentrepo.html` | 运行代码 |
 | `web/pages/admin/aimailrepo.html` | 运行代码 |
 | `web/pages/admin/company.html` | 运行代码 |
@@ -4570,6 +4594,7 @@
 | `web/pages/cross-scale-atlas.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
 | `web/pages/facility-atlas.html` | 运行代码 |
+| `web/pages/guide.html` | 运行代码 |
 | `web/pages/index.html` | 运行代码 |
 | `web/pages/industry.html` | 运行代码 |
 | `web/pages/ledger.html` | 运行代码 |
@@ -4583,16 +4608,19 @@
 | `web/pages/rack-exploded.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
+| `web/pages/research-workbench.html` | 运行代码 |
 | `web/pages/research/data-centers-2026-cn.html` | 运行代码 |
 | `web/pages/research/data-centers-2026-projects.html` | 运行代码 |
 | `web/pages/research/data-centers-2026-sea.html` | 运行代码 |
 | `web/pages/research/data-centers-2026-us.html` | 运行代码 |
 | `web/pages/research/data-centers-2026.html` | 运行代码 |
+| `web/pages/search.html` | 运行代码 |
 | `web/pages/server-plan.html` | 运行代码 |
 | `web/pages/storage-atlas.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
 | `web/pages/tasks.html` | 运行代码 |
 | `web/pages/thermal-atlas.html` | 运行代码 |
+| `web/pages/workspace.html` | 运行代码 |
 | `web/robots.txt` | 项目配置 |
 | `web/routes.json` | 项目配置 |
 | `web/themes/company-browser.css` | 运行代码 |
@@ -4603,3 +4631,4 @@
 | `web/themes/research-tasks.css` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |
+| `web/themes/workspace.css` | 运行代码 |

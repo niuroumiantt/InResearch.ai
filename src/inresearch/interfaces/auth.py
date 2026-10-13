@@ -189,7 +189,10 @@ def set_password(username: str, new_password: str, *, current_password: str | No
     return True
 
 
-ROLES = ("admin", "member", "intern")
+ROLES = ("admin", "member", "intern", "customer")
+# customer is a product reader, never an internal member. HTTP grants are
+# explicitly projected from site_navigation.json; account roles confer no
+# access to private research records or operational writes.
 # reader 是未登录访客：仅首页及其必要依赖公开，不建账号；边界由 interfaces/public.py 决定。
 
 # 实习生白名单（默认拒绝）。为什么不是黑名单：打分表的 summary 里就有招标控制价
@@ -199,7 +202,7 @@ ROLES = ("admin", "member", "intern")
 INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/fonts/", "/supply.html", "/tasks.html", "/api/targets", "/reports/workorders.json", "/data/assignments.json",
                     "/api/status", "/api/tasks", "/api/research-tasks", "/api/research-task-examples", "/api/research-task-examples/", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
-INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign", "/api/deliver", "/api/research-tasks")
+INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign", "/api/deliver", "/api/research-tasks", "/api/feedback")
 
 
 def user_role(username: str) -> str:

@@ -10,14 +10,14 @@ const suites = process.argv.slice(2);
 const {selectCases} = require('./browser_suites.cjs');
 const environment = {...process.env, INRESEARCH_INTAKE_ROOT: directory, INRESEARCH_MARKET_ENABLED: '0'};
 const server = spawn(process.env.PYTHON || 'python3', ['-u', '-c',
-  "import sys,os,json,secrets; from pathlib import Path; sys.path.insert(0,'src'); from inresearch.interfaces import http as serve,auth; directory=Path(os.environ['INRESEARCH_INTAKE_ROOT']); auth.USERS_FILE=directory/'browser-users.json'; auth.SECRET_FILE=directory/'.browser-secret'; auth.add_user('browser-admin',secrets.token_urlsafe(32),'admin'); s=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler); print(json.dumps({'port':s.server_port,'admin_cookie':auth.make_cookie('browser-admin').split(';')[0]}),flush=True); s.serve_forever()"],
+  "import sys,os,json,secrets; from pathlib import Path; sys.path.insert(0,'src'); from inresearch.interfaces import http as serve,auth; directory=Path(os.environ['INRESEARCH_INTAKE_ROOT']); auth.USERS_FILE=directory/'browser-users.json'; auth.SECRET_FILE=directory/'.browser-secret'; auth.add_user('browser-admin',secrets.token_urlsafe(32),'admin'); auth.add_user('browser-customer',secrets.token_urlsafe(32),'customer'); s=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler); print(json.dumps({'port':s.server_port,'admin_cookie':auth.make_cookie('browser-admin').split(';')[0],'customer_cookie':auth.make_cookie('browser-customer').split(';')[0]}),flush=True); s.serve_forever()"],
   {cwd:root, env:environment, stdio:['ignore','pipe','inherit']});
 const lines = createInterface({input:server.stdout});
 const ready = new Promise((resolve, reject) => {
   lines.once('line', line => {
     try {
       const result=JSON.parse(line);
-      if(!Number.isInteger(result.port) || !result.admin_cookie) throw Error('Invalid test server readiness');
+      if(!Number.isInteger(result.port) || !result.admin_cookie || !result.customer_cookie) throw Error('Invalid test server readiness');
       resolve(result);
     } catch(error) { reject(error); }
   });
@@ -26,7 +26,7 @@ const ready = new Promise((resolve, reject) => {
 });
 (async () => {
   try {
-    const {port, admin_cookie} = await ready;
+    const {port, admin_cookie, customer_cookie} = await ready;
     const selected=selectCases(suites);
     for (const {suite,scenario} of selected) {
       // Software WebGL at DPR 2 has four times the pixels. Give each density
@@ -35,7 +35,7 @@ const ready = new Promise((resolve, reject) => {
       console.log('START '+label);
       await new Promise((resolve, reject) => {
         const child = spawn(process.execPath, [join(__dirname, suite + '.cjs'), ...(scenario?[scenario]:[])], {
-          timeout:300000, cwd:root, env:{...environment, UI_BASE_URL:'http://127.0.0.1:' + port, UI_ADMIN_COOKIE:admin_cookie}, stdio:'inherit'});
+          timeout:300000, cwd:root, env:{...environment, UI_BASE_URL:'http://127.0.0.1:' + port, UI_ADMIN_COOKIE:admin_cookie, UI_CUSTOMER_COOKIE:customer_cookie}, stdio:'inherit'});
         child.once('error', reject);
         child.once('exit', (code, signal) => code === 0 ? resolve() : reject(Error(label + ' failed after '+Math.round((Date.now()-started)/1000)+'s: ' + (signal || code))));
       });

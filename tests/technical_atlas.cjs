@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Check the real dossier entry and a self-contained, editable exported figure. */
 const assert = require('node:assert/strict');
 const {readFileSync} = require('node:fs');
@@ -7,11 +8,11 @@ const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/vi
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
 async function thumbnailSource(page, part, mode) {
   const card=page.locator(`.pbox[data-atlas-part="${part}"]`);
-  return (await card.locator('img').count()) ? card.locator('img').getAttribute('src') : card.locator('image').getAttribute('href');
+  return (await card.locator('img:not(.ui-brand-watermark)').count()) ? card.locator('img:not(.ui-brand-watermark)').getAttribute('src') : card.locator('image').getAttribute('href');
 }
 async function thumbnailTitle(page, part) {
   const card=page.locator(`.pbox[data-atlas-part="${part}"]`);
-  return (await card.locator('img').count()) ? card.locator('img').getAttribute('alt') : card.locator('title').textContent();
+  return (await card.locator('img:not(.ui-brand-watermark)').count()) ? card.locator('img:not(.ui-brand-watermark)').getAttribute('alt') : card.locator('title').textContent();
 }
 const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-11','server','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电'], ['server-fan','TA-09','fan-wall','水与散热'], ['coldplate','TA-10','coldplate','水与散热']]
   .filter(([,figure]) => accepted.has(figure));
@@ -28,8 +29,8 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
       await page.goto(process.env.UI_BASE_URL + url, {waitUntil: 'domcontentloaded'});
       const atlas = page.locator('.technical-atlas[data-figure="TA-01"]');
       await atlas.waitFor(); await atlas.scrollIntoViewIfNeeded();
-      await atlas.locator('img').evaluate(image => image.decode());
-      assert.ok((await atlas.locator('img').getAttribute('src')).endsWith('/ssd-v1-preview.svg'));
+      await atlas.locator('img:not(.ui-brand-watermark)').evaluate(image => image.decode());
+      assert.ok((await atlas.locator('img:not(.ui-brand-watermark)').getAttribute('src')).endsWith('/ssd-v1-preview.svg'));
       assert.match(await atlas.locator('figcaption').textContent(), /通用.*不代表某个厂商型号/);
       assert.equal(await page.locator('.technical-atlas').count(), 1);
       assert.equal(await page.locator('link[data-technical-atlas]').count(), 1);
@@ -60,14 +61,14 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
       for (const width of [1280, 390]) {
         await page.setViewportSize({width, height: 900});
         for (const mode of ['light', 'dark']) {
-          await page.locator('#ui-appearance').selectOption(mode);
+          await setAppearance(page, mode);
           assert.equal(await atlas.locator('figure > a').evaluate(node => getComputedStyle(node).backgroundColor), 'rgb(250, 249, 242)');
           assert.equal(await atlas.locator('figcaption').evaluate(node => getComputedStyle(node).fontSize), '14px');
           await atlas.locator('summary').click();
           assert.equal(await atlas.locator('li').count(), 6);
           assert.ok(await atlas.locator('li').first().isVisible());
           await atlas.locator('summary').click();
-          assert.ok(await atlas.locator('img').evaluate(node => node.complete && node.naturalWidth === 1536));
+          assert.ok(await atlas.locator('img:not(.ui-brand-watermark)').evaluate(node => node.complete && node.naturalWidth === 1536));
           const box = await atlas.boundingBox(); assert.ok(box.width <= width);
         }
       }
@@ -91,9 +92,9 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
     for (const [part, figure, asset, context] of illustrationCases) {
       await page.goto(process.env.UI_BASE_URL + '/bom.html#' + part, {waitUntil:'domcontentloaded'});
       const atlas = page.locator(`#selected-atlas .technical-atlas[data-figure="${figure}"]`);
-      await atlas.waitFor(); await atlas.locator('img').scrollIntoViewIfNeeded();
-      await atlas.locator('img').evaluate(img => img.decode());
-      assert.ok((await atlas.locator('img').getAttribute('src')).endsWith(`/${asset}-v1-preview.svg`));
+      await atlas.waitFor(); await atlas.locator('img:not(.ui-brand-watermark)').scrollIntoViewIfNeeded();
+      await atlas.locator('img:not(.ui-brand-watermark)').evaluate(img => img.decode());
+      assert.ok((await atlas.locator('img:not(.ui-brand-watermark)').getAttribute('src')).endsWith(`/${asset}-v1-preview.svg`));
       assert.ok((await page.locator('.atlas-context').textContent()).startsWith(context + ' →'));
       if (figure === 'TA-10') {
         assert.match(await atlas.locator('h3').textContent(), /冷板与接头.*内部液路与快接/);
@@ -148,7 +149,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         for (const width of [1280,390]) {
           await page.setViewportSize({width,height:900});
           for (const theme of ['light','dark']) {
-            await page.locator('#ui-appearance').selectOption(theme);
+            await setAppearance(page, theme);
             assert.equal(await atlas.locator('figure > a').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(250, 249, 242)');
             assert.ok((await atlas.boundingBox()).width<=width);
           }
@@ -168,7 +169,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
     await page.locator('#c-hdd').click();
     assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"]').count(),1,'system HDD has its independent drawing');
     await page.locator('[data-mode="scale"]').click();
-    assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"] img').getAttribute('src'),'/assets/technical-atlas/system/hdd-v2-preview.svg','scale explicitly reuses the same HDD artwork');
+    assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"] img:not(.ui-brand-watermark)').getAttribute('src'),'/assets/technical-atlas/system/hdd-v2-preview.svg','scale explicitly reuses the same HDD artwork');
     assert.deepEqual(errors, []);
     console.log(`Technical atlas: SSD and ${illustrationCases.length} accepted category illustrations, system/scale context, editable SVG, zoom/downloads, narrow/light/dark and retained 3D passed`);
   } finally { await browser.close(); }

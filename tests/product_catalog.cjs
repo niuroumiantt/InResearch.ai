@@ -1,12 +1,14 @@
+const {navigationProjection} = require('./ui_helpers.cjs');
 const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
 (async()=>{
- const browser=await chromium.launch({headless:true});
+ const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  let role='reader';
+  let role='customer';
   await page.route('**/api/whoami',r=>r.fulfill({json:{role}}));
+  await page.route('**/api/navigation?*',r=>r.fulfill({json:navigationProjection(role,{area:'delivery',section:'companies',view:'products'})}));
   const cell=(text,colspan=1)=>({text,colspan,rowspan:1,header:false});
   const product={id:'nvidia-aaaaaaaaaaaaaaaaaaaa',name:'NVIDIA H200',category:'Data Center',kind:'named_product',observed_at:'2026-09-27',source_url:'https://www.nvidia.com/en-us/data-center/h200/',source_sha256:'a'.repeat(64),official_pages:[{url:'https://www.nvidia.cn/data-center/h200/',sha256:'b'.repeat(64)}],website_sitemap:{matched:true,roles:['en_us']},attachments:[],tables:[{index:1,section:'Specifications',notes:'* Sparse, per GPU',source_refs:[{url:'https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/h200.pdf',sha256:'c'.repeat(64)}],rows:[[cell(''),cell('SXM'),cell('NVL')],[cell('Memory'),cell('141 GB',2)]]}]};
   product.navigation={group:'datacenter',family:'accelerators',family_label:'GPU / CPU / 超级芯片',role:'catalog'};
@@ -38,15 +40,17 @@ const {chromium}=require('playwright');
   assert.equal(await page.locator('#metrics, #collection-statistics, #registry-panel, #research-details, #model-table').count(),0);
   assert.ok(!/SHA-256|sitemap|Fetchspec|changed|unchanged/.test(await page.locator('main').innerText()));
   assert.match(await page.locator('#catalog-updated').innerText(),/2026-09-27/);
-  // An administrator sees the same reader body; only the separate backstage link appears.
+  // Product delivery body stays the same when the separate IT directory is available.
   role='admin';await page.reload();await page.getByRole('heading',{name:'NVIDIA H200',exact:true}).waitFor();
+  await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
   await page.locator('.ui-account-menu > summary').click();
-  await page.locator('.ui-admin-link').waitFor();
-  assert.equal(await page.locator('.ui-account-panel .ui-management-link').getAttribute('href'),'/ops.html');
-  assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['行业总览','任务跟踪','数据中心研究','账本','爆炸图','采集','成果']);
-  assert.equal(await page.locator('.ui-navigation a[href="/ops.html"], .ui-navigation .ui-admin-link').count(),0);
+  assert.deepEqual(await page.locator('.ui-account-panel a').allTextContents(),['个人信息','修改密码','退出登录']);
+  assert.equal(await page.locator('.ui-navigation-delivery [data-nav-section]').count(),6);
+  assert.equal(await page.locator('.ui-navigation-backstage [data-nav-section]').count(),6);
+  assert.equal(await page.locator('.ui-account-panel .ui-management-link,.ui-account-panel .ui-admin-link').count(),0);
+  await page.keyboard.press('Escape');
   assert.ok(!/SHA-256|sitemap|Fetchspec|changed|unchanged/.test(await page.locator('main').innerText()));
-  role='reader';
+  role='customer';
   await page.locator('.catalog-options summary').click();
   assert.match(await page.locator('#export-map').getAttribute('href'),/export=map/);
   assert.equal(await page.locator('#groups button').count(),5);

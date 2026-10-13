@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Real authenticated server, shared admin navigation and original embedded diagrams. */
 const assert = require('node:assert/strict');
 const {spawn} = require('node:child_process');
@@ -67,7 +68,7 @@ const ready = new Promise((resolve, reject)=>{
    const backgrounds=new Set();
    for(const width of (name==='inresearchrepo'?[1440,390,320]:[1440,390])) for(const mode of ['light','dark']) {
     await page.setViewportSize({width,height:1000});
-    await page.locator('#ui-appearance').selectOption(mode);
+    await setAppearance(page, mode);
     assert.ok(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--ui-font').trim()),'shared theme must be active');
     backgrounds.add(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor));
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),name+' '+width);

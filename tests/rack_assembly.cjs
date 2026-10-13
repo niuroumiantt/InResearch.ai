@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* TA13 actual procedural overview; old exploded and adopted-model contracts remain separate. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=require('playwright');
 (async()=>{
@@ -53,9 +54,9 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=requ
   }
   await page.locator('#explode').evaluate(e=>{e.value=0;e.dispatchEvent(new Event('input',{bubbles:true}));});
   for(const width of [1280,390])for(const theme of ['light','dark']){
-   await page.setViewportSize({width,height:900});await page.locator('#ui-appearance').selectOption(theme);await fit('whole '+width+' '+theme);if(width===390)await page.getByLabel('展开或收起场景控制').click();await screenshot('rack-whole-'+width+'-'+theme);
+   await page.setViewportSize({width,height:900});await setAppearance(page, theme);await fit('whole '+width+' '+theme);if(width===390)await page.getByLabel('展开或收起场景控制').click();await screenshot('rack-whole-'+width+'-'+theme);
   }
-  await page.setViewportSize({width:1280,height:900});await openControls();await page.locator('#ui-appearance').selectOption('light');await fit('dossier');
+  await page.setViewportSize({width:1280,height:900});await openControls();await setAppearance(page, 'light');await fit('dossier');
   await page.locator('#rack-overview-dossier').click();await page.locator('#dossier canvas').waitFor();
   assert.equal(await page.locator('#dossier').getAttribute('data-part-id'),'rack-frame');assert.equal(await page.locator('#dossier .technical-atlas').getAttribute('data-figure'),'TA-13');assert.match(await page.locator('#dossier').textContent(),/研究链接仍指向机柜类别.*不代表本示例/);assert.doesNotMatch(await page.locator('#dossier').textContent(),/5-10kW|GB200 NVL72/);
   const whole=await page.evaluate(()=>({count:__rackTest.inspector.objectsForTest().length,selected:__rackTest.currentPartMeshes('rack-frame').length,rotation:__rackTest.inspector.rotationForTest()}));assert.equal(whole.count,structure.meshes);assert.equal(whole.selected,structure.meshes);assert.deepEqual(whole.rotation,{x:.2,y:-.55});results.push({label:'whole dossier owns every actual installed mesh',...whole});

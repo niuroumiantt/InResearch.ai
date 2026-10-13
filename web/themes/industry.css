@@ -169,3 +169,15 @@ html[data-ui-skin] .industry .badge{color:var(--ui-body);background:var(--ui-sof
 #map-detail-status{position:absolute;top:8px;left:8px;max-width:calc(100% - 16px);font:13px var(--ui-font);padding:5px 8px;border:1px solid var(--ui-line);background:var(--ui-surface);color:var(--ui-muted);z-index:2}
 
 #research-observation{max-width:min(720px,calc(100vw - 32px));max-height:80vh;overflow:auto;background:var(--bg,#faf9f6);color:var(--ink,#222);border:1px solid var(--line,#ccc);padding:24px}#research-observation form{text-align:right}#research-observation::backdrop{background:#0005}
+
+/* Global navigation owns business links; homepage keeps its map-first layout. */
+.industry-home > .industry > .local-nav{display:none}
+@media(min-width:1001px){.industry-home #world-map{max-height:calc(100vh - var(--ui-bar-height) - 280px);margin-inline:auto}}
+
+@media(min-width:1001px){
+ html[data-ui-skin] body.industry-home .industry .hero{padding:0;margin:0}
+ html[data-ui-skin] body.industry-home .industry .hero h1{font-size:20px;line-height:24px;margin:0}
+ html[data-ui-skin] body.industry-home .industry .hero :is(.eyebrow,#page-description){display:none}
+ .industry-home .market-band{margin-bottom:4px}
+ .industry-home .home-updates{margin-bottom:6px}
+}

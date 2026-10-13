@@ -1,6 +1,10 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.13.115
+> CURRENT · 基准版本 2026.10.13.116
+
+2026-10-13：用户接受并授权分阶段实施交付六个一级／十四个二级、后台六个一级／二十个二级，以及匿名／客户只读／IT页眉页脚。旧七项混合导航与账户菜单后台业务入口由05现行目录替代；site_navigation.json为唯一机器导航登记，接口菜单、聚合页、辅助页及搜索按实际角色服务端授权。普通信息登记与研究审核、本地情景与正式模型保持分离。接受规则、源码、测试与实际部署分别登记，进度见[目录与登录外壳交接](../docs/handoff/navigation-auth-shell.md)。
+
+
 
 2026-10-13：候选全量超限转原认证端点的有界文档增量、SHA清单、CAS和逐批回执；模型网络超时分类及triage/read/synthesize保留原件/次数/成功缓存的在线重试见SPARK_OPERATIONS。实际接收与代码部署分别验收。
 
@@ -50,7 +54,7 @@
 | M4 原件分类整理（独立 scope） | [M4 任务卡](../docs/M4_TRIAGE_TASK.md) | inventory / triage / organize；不扩大 Spark originals 操作权限 |
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
 | 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（14张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
-| 全站界面、字体与外观 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、web/assets/fonts（infra 字体包）、interface_manifest.json |
+| 全站目录、身份、页眉页脚、字体与外观 | [05 界面规范](05_interface_system.md) | site_navigation.json（机器导航／页面归属）、web/components/site-shell.js、web/themes、web/assets/fonts、interface_manifest.json（界面／资源验收） |
 | 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、六仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
@@ -82,7 +86,7 @@
 - 当前规范、兼容研究记录、资料候选、设计依据、历史审计和生成物分别标识；打开文档页会显示身份。
 - 旧决策、旧全景和旧 reader 指令已移入 `docs/archive/2026-09-06/`。原路径保留当前说明或转向，避免旧链接继续发出操作指令。
 - 在册清单覆盖 Git 源码与记录；不枚举百度网盘、Spark 原件、运行数据库、密钥或本机忽略文件。Spark 资料以内容身份和 SQLite 台账计量，网页候选以收到的快照计量，不能拿源码行数代替。
-- 目录七项与四问的对应（行业总览为独立市场入口）、"一个模板"只指节点页、主体 / stage / 对象三条判据见 05「目录」与 03「三条判据」（2026-09-29）；兼容层退役日历在 `current_state.json` 的 `compat_retirements`，`governance --check` 过期即报错。
+- 两组六个一级及其二级、页面归属和身份边界见05「目录」与site_navigation.json；“一个模板”只指节点页，主体／stage／对象三条判据见03「三条判据」；兼容层退役日历在 `current_state.json` 的 `compat_retirements`，`governance --check` 过期即报错。
 - 12 页架构 PDF 与 5 页数据中心经济模型指导（`docs/guides/model-governance-2026-09-27`，三级四段五类六队，快照原文仍写"五层"）是已采用设计的交付快照；持续变更的执行规则以这里登记的现行文档为准。2026-09-28 起"五层"改称"五类变量"（见 06 采集规范），快照本身不改。
 
 主规范保留稳定文件名及最后更新日期；新讨论/评审/交付快照文件名以日期开头，必要时加时间。当前状态决定执行依据，日期不授予覆盖权。

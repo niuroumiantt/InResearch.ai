@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
 const {mkdirSync}=require('node:fs');
@@ -60,7 +61,7 @@ const {mkdirSync}=require('node:fs');
       for(const [width,height] of [[1366,768],[1440,900],[390,844],[320,740]]){
        await cold.setViewportSize({width,height});
        for(const mode of ['light','dark']){
-        await cold.locator('#ui-appearance').selectOption(mode);
+        await setAppearance(cold, mode);
         assert.ok(await cold.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'system-font layout '+width+' '+mode);
         if(width>1000)assert.ok(await cold.locator('#world-map').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),'cold atlas stays completely above fold '+width);
         if(process.env.UI_QA_DIR)await cold.screenshot({path:process.env.UI_QA_DIR+`/homepage-cold-fonts-${width}-${mode}.png`,fullPage:width<1000,timeout:10000});
@@ -327,7 +328,7 @@ const {mkdirSync}=require('node:fs');
   await page.locator('#news-selection').selectOption('selected');
   await page.waitForFunction(()=>document.querySelector('[data-news-count]').textContent.includes('精选 2 条'));
   for(const mode of ['dark','light']){
-   await page.locator('#ui-appearance').selectOption(mode);
+   await setAppearance(page, mode);
    assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),mode==='dark'?'rgb(27, 28, 25)':'rgb(250, 249, 246)');
    for(const width of [390,768,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),mode+' '+width);}
   }
@@ -446,7 +447,7 @@ const {mkdirSync}=require('node:fs');
   if(process.env.UI_QA_DIR){
    await page.setViewportSize({width:1440,height:900});await page.evaluate(()=>scrollTo(0,0));
    await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-1440x900.png'});
-   await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
+   await setAppearance(page, 'dark');await page.screenshot({path:process.env.UI_QA_DIR+'/fixture-daily-capacity-dark-1440x900.png'});await setAppearance(page, 'light');
   }
   assert.equal(await page.locator('.country-point').count(),1,'country research records cluster without fake site positions');
   assert.equal(await page.locator('.country-point text').textContent(),'2');
@@ -514,7 +515,8 @@ const {mkdirSync}=require('node:fs');
   await page.goto(base+'/project.html?site=fi-salo-atnorth-fin05');
   await page.getByRole('button',{name:'重试新闻同步',exact:true}).waitFor();
   assert.equal(await page.locator('#project-dossier tbody tr').count(),12,'all project angles are visible, including unknown roles');
-  assert.match(await page.getByRole('link',{name:'查看对应日报事件与原件定位 →',exact:true}).getAttribute('href'),/^\/supply.html\?event=daily-event-[a-f0-9]{64}#matching$/,'daily adoption keeps its real source event link');
+  assert.equal(await page.getByRole('link',{name:'查看观测与来源 →',exact:true}).getAttribute('href'),'#site-observation-timeline','daily adoption links to delivered observations and sources');
+  assert.equal(await page.locator('#detail a[href^="/supply.html"]').count(),0,'delivery project never exposes internal source-workflow links');
   assert.equal(await page.locator('#detail a[href*="undefined"]').count(),0);
 
   assert.match(await page.locator('#project-dossier').innerText(),/辖区政府不自动视为地主/);
@@ -577,7 +579,7 @@ const {mkdirSync}=require('node:fs');
    if(process.env.UI_QA_DIR)await page.screenshot({path:process.env.UI_QA_DIR+`/homepage-${width}x${height}.png`,fullPage:width<1000});
   }
   if(process.env.UI_QA_DIR){
-   await page.setViewportSize({width:1440,height:900});await page.goto(base+'/');await page.locator('#update-track > .update-items:first-child .update-item').first().waitFor();await page.locator('.country-point').first().waitFor();await page.evaluate(()=>document.fonts.ready);await page.locator('#ui-appearance').selectOption('dark');await page.screenshot({path:process.env.UI_QA_DIR+'/homepage-dark-1440x900.png'});await page.locator('#ui-appearance').selectOption('light');
+   await page.setViewportSize({width:1440,height:900});await page.goto(base+'/');await page.locator('#update-track > .update-items:first-child .update-item').first().waitFor();await page.locator('.country-point').first().waitFor();await page.evaluate(()=>document.fonts.ready);await setAppearance(page, 'dark');await page.screenshot({path:process.env.UI_QA_DIR+'/homepage-dark-1440x900.png'});await setAppearance(page, 'light');
   }
   if(process.env.UI_QA_DIR)require('node:fs').writeFileSync(process.env.UI_QA_DIR+'/layout.json',JSON.stringify(measurements,null,2));
   await page.setViewportSize({width:1366,height:768});await page.goto(base+'/index.html');

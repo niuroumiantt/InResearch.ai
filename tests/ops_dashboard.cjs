@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Dashboard states, queue identity, escaping, recovery and mobile geometry.
  * API fixtures are explicitly synthetic; rendering never triggers work. */
 const assert=require('node:assert/strict');
@@ -42,7 +43,7 @@ const fixture={generated:now,reader:{status:'degraded',generated:now,received_at
  for(const width of [1440,390]){
   await page.setViewportSize({width,height:1000});
   for(const mode of ['light','dark']){
-   await page.locator('#ui-appearance').selectOption(mode);
+   await setAppearance(page, mode);
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'no page overflow '+width+' '+mode);
    if(process.env.UI_QA_DIR)await page.screenshot({path:process.env.UI_QA_DIR+'/ops-'+width+'-'+mode+'.png',fullPage:true});
   }

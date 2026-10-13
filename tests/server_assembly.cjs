@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* TA-11: actual server route, installation axes, gestures, picks and exports. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=require('playwright');
 (async()=>{
@@ -59,7 +60,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=requ
    if(process.env.REVIEW_SCREENSHOTS)fs.writeFileSync(process.env.REVIEW_SCREENSHOTS+'/server-'+part+'-current.svg',raw);await page.getByRole('button',{name:'关闭部件档案'}).click();
   }
   for(const width of [1280,390])for(const theme of ['light','dark']){
-   await page.setViewportSize({width,height:900});await page.locator('#ui-appearance').selectOption(theme);await page.locator('#explode').evaluate(el=>{el.value=100;el.dispatchEvent(new Event('input',{bubbles:true}));});await fitCheck(width+' '+theme+' fully exploded');
+   await page.setViewportSize({width,height:900});await setAppearance(page, theme);await page.locator('#explode').evaluate(el=>{el.value=100;el.dispatchEvent(new Event('input',{bubbles:true}));});await fitCheck(width+' '+theme+' fully exploded');
    if(width===390)await page.getByLabel('展开或收起场景控制').click();await screenshot('server-full-'+width+'-'+theme);
   }
   const released=await page.evaluate(async()=>{const v=__serverTest,geo=new Set(),mat=new Set();v.rack.traverse(o=>{if(o.isMesh){geo.add(o.geometry);[].concat(o.material||[]).forEach(m=>mat.add(m));}});let geometries=0,materials=0,renders=0;geo.forEach(g=>g.addEventListener('dispose',()=>geometries++));mat.forEach(m=>m.addEventListener('dispose',()=>materials++));const render=v.composer.render.bind(v.composer);v.composer.render=(...args)=>{renders++;return render(...args);};v.disposePage();v.disposePage();const at=renders;await new Promise(r=>setTimeout(r,80));return {sourceGeometry:geo.size,sourceMaterials:mat.size,geometries,materials,rendersAfter:renders-at,parent:!!v.rack.parent,animations:v.animated.length,picks:v.pickables.length,spinners:v.spinners.length,labels:document.querySelectorAll('.atlas-scene-labels').length};});

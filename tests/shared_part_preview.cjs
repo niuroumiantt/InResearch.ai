@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* TA29 actual-public acceptance runner: actual https://inresearch.ai only.
  * Owner reviews this runner before deployed public execution. This file is test source,
  * never a claim of browser/visual acceptance. No local product/server fallback.
@@ -385,13 +386,13 @@ for (const key of ['enlarge','shrink','fit','spin','exportMini','enlargedHost'])
     // use the same document so an accidental context-per-show leak is observable.
     await go('/bom3d.html?p=transformer','campus');
     for(const width of [1280,390])for(const theme of ['light','dark']) {
-      await page.setViewportSize({width,height:width===390?844:900});await page.locator('#ui-appearance').selectOption(theme);await settle();
+      await page.setViewportSize({width,height:width===390?844:900});await setAppearance(page, theme);await settle();
       await miniGestures('preview-'+width+'-'+theme);await save('preview-'+width+'-'+theme,true);
       const before=await snapshotPreview();await closeDossier();await pick('transformer',before.state.objectId);const reopened=await assertPhysical('reopened '+width+' '+theme,'transformer');
       assert.equal(reopened.state.objectId,before.state.objectId);assert.equal(reopened.state.spin,false,'Reduced motion restored');
       assert.deepEqual(reopened.state.rotation,{x:.25,y:.25},'Reopen restores authored orientation');
     }
-    await page.setViewportSize({width:1280,height:900});await page.locator('#ui-appearance').selectOption('light');await settle();
+    await page.setViewportSize({width:1280,height:900});await setAppearance(page, 'light');await settle();
     // Explicit campus view keeps the delivery template/nonphysical category out of
     // old legacy hardware routing. No invented preview or geometry is permitted.
     await go('/bom3d.html?view=campus&p=modular-dc','campus');
@@ -444,7 +445,7 @@ for (const key of ['enlarge','shrink','fit','spin','exportMini','enlargedHost'])
       {figure:'TA-13',url:'/rack3d.html?view=rack&x=0&node=part:rack-frame',mode:'rack'}]) {
       const acceptance=JSON.parse(fs.readFileSync(path.join(root,'docs/design/technical-atlas',item.figure,'acceptance-v1.json')));
       await go(item.url,item.mode);const art=page.locator('#dossier .technical-atlas[data-figure="'+item.figure+'"]');
-      await art.waitFor();await art.locator('img').evaluate(image=>image.decode());
+      await art.waitFor();await art.locator('img:not(.ui-brand-watermark)').evaluate(image=>image.decode());
       for(const name of ['下载标注图','下载无字底图']) {
         const link=art.getByRole('link',{name,exact:true}),href=await link.getAttribute('href');
         const target=new URL(href,base);assert.equal(target.origin,base);

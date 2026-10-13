@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* TA35 actual-public-only candidate. Never executed by its author.
  * UI_BASE_URL=https://inresearch.ai TA_CROSS_SCALE_SOURCE_ROOT=/absolute/reviewed/tree
  * REVIEW_SCREENSHOTS=/absolute/output UI_HEADED=1 node /private/tmp/ta35-public-fixture-child.cjs
@@ -133,7 +134,7 @@ const expectedStages=['preflight','public_source_and_declared_resources','visibl
     function noErrors(){assert.deepEqual(result.errors,[]);assert.deepEqual(result.route_errors,[]);assert.deepEqual(result.resource_failures,[]);}
     async function readyAtlas(p,id) {
       const atlas=p.locator('.technical-atlas[data-figure="'+id+'"]');await atlas.waitFor({state:'visible'});
-      await atlas.locator('img').evaluate(async image=>{await image.decode();if(!image.complete||image.naturalWidth!==1536||image.naturalHeight!==1024)throw Error('Actual atlas image must decode at native1536x1024');});
+      await atlas.locator('img:not(.ui-brand-watermark)').evaluate(async image=>{await image.decode();if(!image.complete||image.naturalWidth!==1536||image.naturalHeight!==1024)throw Error('Actual atlas image must decode at native1536x1024');});
       await p.waitForFunction(()=>{const a=document.querySelector('.technical-atlas figure>a');return a&&getComputedStyle(a).backgroundColor==='rgb(250, 249, 242)';});
       await settle(p);noErrors();return atlas;
     }
@@ -165,14 +166,14 @@ const expectedStages=['preflight','public_source_and_declared_resources','visibl
     let atlas;
     await stage('new_atlas_and_four_views',async()=>{
       atlas=await readyAtlas(page,'TA-35');assert.equal(await page.locator('.technical-atlas').count(),1);
-      assert.equal(await atlas.locator('img').getAttribute('src'),'/assets/technical-atlas/cross-scale-v1-preview.svg');
+      assert.equal(await atlas.locator('img:not(.ui-brand-watermark)').getAttribute('src'),'/assets/technical-atlas/cross-scale-v1-preview.svg');
       assert.equal(await atlas.locator('details li').count(),7);
       const details=atlas.locator('details');if(!await details.evaluate(element=>element.open))await details.locator(':scope>summary').click();
       const rows=await atlas.locator('details li').allTextContents();rows.forEach((t,i)=>assert.ok(t.startsWith(String(i+1).padStart(2,'0'))));
       const caption=await atlas.locator('figcaption').textContent();assert.match(caption,/不同通用例型/);assert.match(caption,/非同一套设备或共同实物比例/);assert.match(caption,/另一选定方案/);assert.match(caption,/风冷机箱/);
       assert.equal(await atlas.locator('a[data-related-figure]').count(),6);
       for(const width of [1280,390])for(const theme of ['light','dark']){
-        await page.setViewportSize({width,height:width===390?844:900});await page.locator('#ui-appearance').selectOption(theme);await settle(page);
+        await page.setViewportSize({width,height:width===390?844:900});await setAppearance(page, theme);await settle(page);
         assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No horizontal overflow');
         const visibleList=await atlas.locator('details li').evaluateAll(elements=>elements.map(element=>{const box=element.getBoundingClientRect(),style=getComputedStyle(element),range=document.createRange();range.selectNodeContents(element);return{text:element.textContent,fontSize:parseFloat(style.fontSize),visible:element.closest('details').open&&style.display!=='none'&&style.visibility!=='hidden'&&box.width>0&&box.height>0,left:box.left,right:box.right,text_rects:[...range.getClientRects()].map(r=>({left:r.left,right:r.right})),viewport:innerWidth};}));
         assert.equal(visibleList.length,7);for(const li of visibleList){assert.ok(li.visible&&li.fontSize>=14);assert.ok(li.left>=0&&li.right<=width);assert.ok(li.text_rects.every(r=>r.left>=0&&r.right<=width));}
@@ -247,12 +248,12 @@ const expectedStages=['preflight','public_source_and_declared_resources','visibl
       try{await inspectSVG(popup,'/assets/technical-atlas/cross-scale-v1.svg','full');}finally{await popup.close();}
     });
     await stage('preview_svg_own_fonts',async()=>{const previewPage=await context.newPage();try{await inspectSVG(previewPage,'/assets/technical-atlas/cross-scale-v1-preview.svg','preview');}finally{await previewPage.close();}});
-    await page.setViewportSize({width:1280,height:900});await page.locator('#ui-appearance').selectOption('light');await settle(page);
+    await page.setViewportSize({width:1280,height:900});await setAppearance(page, 'light');await settle(page);
     for(const target of related)await stage('related_'+target.id,async()=>{
       const link=atlas.locator('a[data-related-figure="'+target.id+'"]');assert.equal(await link.count(),1);
       const popup=await linkDocument(page,link,target.href,true);
       try{
-        await popup.setViewportSize({width:1280,height:900});await popup.locator('#ui-appearance').selectOption('light');await settle(popup);
+        await popup.setViewportSize({width:1280,height:900});await setAppearance(popup, 'light');await settle(popup);
         let observed;
         if(target.type==='3D'){
           await popup.waitForFunction(title=>document.querySelector('.hud h1')?.textContent===title,target.title);

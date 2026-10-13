@@ -9,6 +9,8 @@ const input=document.getElementById('material-query'),status=document.getElement
 let offset=Math.max(0,Number(params.get('offset'))||0),q=params.get('q')||'',generation=0;
 input.value=q;
 async function load(){const id=++generation;status.textContent='读取资料索引…';try{
+ const profileResponse=await fetch('/api/company-window?'+new URLSearchParams({c:cid}));if(!profileResponse.ok)throw Error();const profile=await profileResponse.json();if(id!==generation)return;
+ if(!profile.catalog?.registered){status.textContent='尚未登记产品目录。';list.replaceChildren();document.getElementById('material-search').hidden=true;document.getElementById('material-search').style.display='none';document.getElementById('material-previous').disabled=true;document.getElementById('material-next').disabled=true;return;}
  const r=await fetch('/api/product-catalog/'+encodeURIComponent(cid)+'?'+new URLSearchParams({view:'materials',q,offset:String(offset)}));if(!r.ok)throw Error();const d=await r.json();if(id!==generation)return;
  status.textContent=d.available?`${d.total} 份已索引资料 · ${d.unassigned} 份型号待关联 · 当前匹配 ${d.matched} 份`:'资料索引尚未接收。';
  list.innerHTML=d.items.map(v=>{const url=original(v.urls[0]);const links=[...new Map(v.links.map(l=>[l.product_id,l])).values()];return `<li><strong><a href="${esc(url)}" target="_blank" rel="noopener">${esc(v.name)}</a></strong><p>${esc(v.format.toUpperCase())} · ${links.length?links.map(l=>`<a href="/product-catalog.html?${esc(new URLSearchParams({c:cid,view:'products',product_id:l.product_id}).toString())}">${esc((l.product_name?l.product_name+' · ':'')+(l.label||'关联产品'))}</a>`).join(' · '):'型号待关联'}</p><small>${v.link_count>4?`另有 ${v.link_count-4} 个产品页关联 · `:''}资料原文请点击文件名</small></li>`;}).join('');

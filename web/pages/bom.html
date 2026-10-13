@@ -226,8 +226,7 @@
 <inresearch-shell data-section="bom"></inresearch-shell>
 <div class="topbar">
   <a class="tab on" href="bom.html">爆炸图 2D</a>
-  <a class="tab" href="bom3d.html">爆炸图 3D</a>
-  <a class="tab" href="rack3d.html">机柜拆解台</a>
+  <span id="dimension-switch"></span>
   <a class="tab" href="product-catalog.html">规格库</a>
   <span class="sp"></span>
 </div>
@@ -252,7 +251,7 @@
       <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
       <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
       <a class="mode" href="/cross-scale-atlas.html" data-atlas-cross-scale>跨尺度讲解图 →</a>
-      <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
+      </div>
     <p class="system-note" id="system-overview-actions"><a href="/assets/technical-atlas/system-overview-v2.svg" target="_blank" rel="noopener">查看设备代表示意 ↗</a> · <a href="/assets/technical-atlas/system-overview-v2.svg" download="system-overview-v2.svg">下载标注总览</a> · <a href="/assets/technical-atlas/system-overview-v2.png" download="system-overview-v2.png">下载无字总览</a><br>每个物理系统仅取一个代表；完整类别展开在下方。</p>
     <p class="system-note" id="scale-overview-actions" hidden><a href="/assets/technical-atlas/scale-overview-v1.svg" target="_blank" rel="noopener">查看五尺度总览示意 ↗</a> · <a href="/assets/technical-atlas/scale-overview-v1.svg" download="scale-overview-v1.svg">下载标注总览</a> · <a href="/assets/technical-atlas/scale-overview-v1.png" download="scale-overview-v1.png">下载无字总览</a><br>从部件到园区，每组取一代表；排版大小不表示实物比例。</p>
     <div id="stack">加载中…<div id="selected-atlas" hidden></div></div>
@@ -287,17 +286,28 @@ document.getElementById('poster-fit').addEventListener('click', event => {
 });
 
 (async () => {
-  const [bom, companies, prices, inds, rights] = await Promise.all([
+  const [bom, companies, prices, inds, rights, navigation] = await Promise.all([
     get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
     get("framework/indicators.json"),
-    get("framework/site_rights.json").catch(() => ({ rights: [] }))]);
+    get("framework/site_rights.json").catch(() => ({ rights: [] })), get('api/navigation')]);
   BOM = bom; PRICES = prices.records;
+  // A delivered view switch appears only after the same server navigation policy authorizes its page.
+  const deliveryPages = new Set(navigation.delivery_pages || []);
+  for (const [href, text] of [['/bom3d.html','爆炸图 3D'],['/rack3d.html','机柜拆解台']]) {
+    if (!deliveryPages.has(href)) continue;
+    const link = document.createElement('a'); link.href = href; link.className = 'tab'; link.textContent = text;
+    document.getElementById('dimension-switch').append(link);
+  }
+  if (deliveryPages.has('/bom3d.html')) {
+    const link = document.createElement('a'); link.href = '/bom3d.html'; link.className = 'go3d'; link.textContent = '进入 3D 立体拆解 →';
+    document.querySelector('.legend').append(link);
+  }
   const isPart = p => (p.kind || "part") === "part";
   document.getElementById("partCount").textContent = bom.parts.filter(isPart).length;
   companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
   inds.indicators.forEach(i => INDS[i.id] = i);
   // 右栏是同一份部件档案（part-dossier.js，与 3D 共用）；2D 档案不启用 WebGL 预览
-  showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", BOM: bom, companies: CN, prices, indicators: INDS,
+  showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", mode: 'delivery', deliveryPages: navigation.delivery_pages || [], BOM: bom, companies: CN, prices, indicators: INDS,
     statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } },
     atlasHost: document.getElementById('selected-atlas'), atlasViewFor: () => document.getElementById('stack').dataset.mode });
 
@@ -398,7 +408,7 @@ function otherEntries(bom, rights, mode) {
   if (!chips && !rchips) return "";
   return `<div class="lrow other-entries" id="site-rights">
     <div class="callout"><div class="ch"><b>不占尺度的条目</b><span class="en">Software · Archetype · Site rights</span></div>
-      <div class="cd">软件与设施基型有订阅价与供应商但不是零件；站点权利（土地、水权、电力配额、燃气接入、网络接入、许可）不可采购，进目标表不进 3D。</div>
+      <div class="cd">软件与设施基型有订阅价与供应商但不是零件；站点权利（土地、水权、电力配额、燃气接入、网络接入、许可）不可采购，按独立权利条目阅读。</div>
       <div class="plist">${chips}${rchips}</div></div></div>`;
 }
 // 旧部件 ID（重切前的 substation、fan-vc 等）经 bom.aliases 指向去处；指向权利的旧 ID 没有部件档案

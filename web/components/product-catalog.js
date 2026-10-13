@@ -296,6 +296,17 @@
     const timeout=setTimeout(()=>loadController.abort(),15000);
     $('#status').textContent='正在读取产品清单…';
     try {
+      const profileResponse=await fetch('/api/company-window?'+new URLSearchParams({c:company}),{cache:'no-store',signal:loadController.signal});
+      if(!profileResponse.ok)throw Error('公司资料暂不可用，请刷新重试。');
+      const profile=await profileResponse.json();if(current!==generation)return;
+      if(!profile.catalog?.registered){
+        window.dispatchEvent(new CustomEvent('company:catalog-error',{detail:'unregistered'}));
+        $('#products').replaceChildren();$('#groups').replaceChildren();$('#families').replaceChildren();
+        $('#detail').textContent='尚未登记产品目录。';$('#status').textContent='尚未登记产品目录。';
+        for(const mode of ['products','map','specs']){const link=$('#export-'+mode);link.hidden=true;link.style.display='none';link.removeAttribute('href');}
+        for(const selector of ['#query','#kind','#with-specs','#all-catalog','#auxiliary','#previous','#next'])$(selector).disabled=true;
+        return;
+      }
       const response=await fetch(api+'?view=index',{cache:'no-store',signal:loadController.signal});
       if(current!==generation)return;
       if(response.status===404){window.dispatchEvent(new CustomEvent('company:catalog-error',{detail:'unregistered'}));$('#detail').textContent='暂无可展示的产品资料。';throw Error(`这家公司的产品资料尚未提供。`);}

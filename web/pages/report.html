@@ -17,6 +17,7 @@
     font-family: var(--ui-font); font-size: 13px; z-index: 10; }
   .topbar b { font-size: 14px; }
   .topbar .sp { flex: 1; }
+  .topbar button { font: inherit; color: var(--text); background: transparent; border: 1px solid var(--line); padding: 3px 8px; cursor: pointer; }
   .layout { display: flex; max-width: 1200px; margin: 64px auto 60px; gap: 24px; padding: 0 16px; }
   nav.toc { width: 230px; flex-shrink: 0; position: sticky; top: 64px; align-self: flex-start;
     max-height: calc(100vh - 90px); overflow-y: auto; font-family: var(--ui-font);
@@ -72,13 +73,10 @@
 <body>
 <inresearch-shell data-section="results"></inresearch-shell>
 <div class="topbar">
-  <span style="color:var(--muted)">成果 · 树的可发布快照</span>
+  <span id="report-mode" style="color:var(--muted)">研究报告 · 当前快照</span>
   <span class="sp"></span>
-   <a href="node.html">数据中心</a> <a href="bom.html">爆炸图</a> <a href="ledger.html">账本</a> <a href="report.html" id="mode-snapshot">快照</a> <a href="report.html?legacy=1" id="mode-legacy">专题全文</a>
-  <a href="doc.html?f=framework/01_data_standards.md">口径手册</a>
-  <a href="doc.html?f=reports/verify_queue.md">核验队列</a>
-  <a href="https://github.com/niuroumiantt/InResearch.ai" target="_blank">GitHub</a>
-  <a href="javascript:window.print()">打印/存 PDF</a>
+  <a id="report-context-link" href="/workspace.html?section=reports">返回报告库</a>
+  <button type="button" id="print-report">打印/存 PDF</button>
 </div>
 <div class="layout">
   <nav class="toc" id="toc"></nav>
@@ -168,20 +166,25 @@ function renderGenericBlock(header, lines) {
   return h + "</div>";
 }
 
+document.getElementById("print-report").addEventListener("click", () => window.print());
 const LEGACY = new URLSearchParams(location.search).get("legacy") === "1";
 const STATUS = { sourced: "已有", assumed: "假设", delivered: "已交付", registered: "登记数", needed: "缺" };
 const fmt = (v, u) => v == null ? "缺" : (typeof v === "number" ? (Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : (Number.isInteger(v) ? String(v) : v.toLocaleString(undefined, { maximumFractionDigits: 3 }))) : esc(String(v))) + (u ? ` <small>${esc(u)}</small>` : "");
 
-/* 快照：封面是可信边界，四章即四问，末章是专题目录（全部由权威文件生成，本页不做聚合） */
+/* Delivered snapshot: the three research chapters are selected by stable ID.
+   Operational dispatch remains in the authorized API/backstage, not this document. */
 async function renderSnapshot() {
   const r = await get("/api/report");
-  const b = r.boundary, [q1, q2, q3, q4] = r.chapters, toc = [];
+  const b = r.boundary, chapters = new Map(r.chapters.map(chapter => [chapter.id, chapter])), toc = [];
+  const q1 = chapters.get("q1"), q2 = chapters.get("q2"), q3 = chapters.get("q3");
+  if (!q1 || !q2 || !q3) throw new Error("报告缺少必要研究章节");
   const st = s => `<span class="badge b-${s === "sourced" ? "cur" : s === "needed" ? "sta" : "rev"}">${STATUS[s] || esc(s)}</span>`;
   let html = `<section class="page-doc cover-page" id="cover"><div class="cover"><h1>${esc(r.title)}</h1>
-    <div class="meta">数据时点 ${esc(r.as_of)} ｜ 内容版本 ${esc(r.data_revision.slice(0, 12))} ｜ 图谱 ${esc(b.registries.graph)} · 问题表 ${esc(b.registries.questions)} · 目标表 ${esc(b.registries.targets)} · 模型 ${esc(b.registries.model)}<br>
-    <b>可信边界</b>：模型输入 ${b.model_inputs.total} 个（已有 ${b.model_inputs.sourced} · 假设 ${b.model_inputs.assumed} · 用户给定 ${b.model_inputs.input}）；目标行 ${b.targets.total} 行（已有 ${b.targets.sourced || 0} · 假设 ${b.targets.assumed || 0} · 已交付 ${b.targets.delivered || 0} · 缺 ${b.targets.needed || 0}，待建队名下 ${b.targets.not_connected} 行）。基准情景：${esc(b.scenario)}。<br>
-    ${(b.honesty || []).map(esc).join("；")}。生成日期不代表来源核验日期。</div>
-    <div class="chapter-sub">三种导出：${r.exports.map(e => `<code>${esc(e.label)}</code> ${esc(e.how)}`).join(" · ")}</div></div></section>`;
+    <div class="meta">数据时点 ${esc(r.as_of)} ｜ 源数据版本 ${esc(r.data_revision.slice(0, 12))} ｜ 模型口径 ${esc(b.registries.model || "未登记")}<br>
+    分类版本 ${esc(b.registries.bom || "未登记")} · 研究数据版本 ${esc(b.registries.dashboard || "未登记")}<br>
+    <b>可信边界</b>：模型输入 ${b.model_inputs.total} 个（已有 ${b.model_inputs.sourced} · 假设 ${b.model_inputs.assumed} · 用户给定 ${b.model_inputs.input}）。基准情景：${esc(b.scenario)}。<br>
+    缺失不填零；来源记载、研究采用与模型情景分别表达。生成日期不代表来源核验日期。</div>
+    <p class="chapter-sub">源数据版本用于识别当前快照，不是完整历史版本库。本页尚未提供完整报告版本归档；可使用上方打印保存当前阅读内容。</p></div></section>`;
   // 一、它值多少
   toc.push({ id: "q1", label: "一、它值多少" });
   html += `<section class="page-doc chapter" id="q1"><h2 class="chapter">一、它值多少</h2><div class="chapter-sub">三级账来自唯一的统一经济模型（基准情景）；回报是账的输出，不是一列。</div>
@@ -200,20 +203,16 @@ async function renderSnapshot() {
   toc.push({ id: "q3", label: "三、它怎么影响账" });
   html += `<section class="page-doc chapter" id="q3"><h2 class="chapter">三、它怎么影响账</h2><div class="chapter-sub">规则：因子树从公式往下推，每个因子汇总它的部件与权利，再喂模型输入。</div>
     ${Object.entries(q3.formulas).map(([k, v]) => `<p class="lead"><b class="lbl">${esc(k)}：</b><code>${esc(v)}</code></p>`).join("")}
-    <table><tr><th>因子</th><th>侧</th><th>公式</th><th>模型输入</th><th>部件</th><th>权利</th><th>抓取登记</th></tr>${q3.factors.map(f => `<tr><td>${f.parent ? "└ " : "<b>"}${esc(f.label)}${f.parent ? "" : "</b>"}</td><td>${esc(f.side)}</td><td><code>${esc(f.formula || "")}</code></td><td>${f.model_inputs}</td><td>${f.bom_parts}</td><td>${f.site_rights}</td><td>${f.fetch}</td></tr>`).join("")}</table></section>`;
-  // 四、数据从哪来、缺什么
-  toc.push({ id: "q4", label: "四、数据从哪来、缺什么" });
-  html += `<section class="page-doc chapter" id="q4"><h2 class="chapter">四、数据从哪来、缺什么</h2><div class="chapter-sub">目标表是唯一任务书：${Object.entries(q4.by_status).map(([k, v]) => `${STATUS[k] || k} ${v}`).join(" · ")}；30 天内到期且仍缺 ${q4.due_30d} 行；待建队名下 ${q4.not_connected} 行不排到期。</div>
-    <table><tr><th>队</th><th>状态</th><th>行</th><th>缺</th><th>已交付</th><th>下一到期</th></tr>${q4.teams.map(t => `<tr><td>${esc(t.name)}</td><td>${t.connected ? "已接入" : "待建队"}</td><td>${t.rows}</td><td>${t.needed}</td><td>${t.delivered}</td><td>${esc(t.next_due || "—")}</td></tr>`).join("")}</table>
-    <h3>四态与 Git 内载体</h3><ul class="arg">${Object.entries(q4.statuses).map(([k, v]) => `<li><b>${esc(k)}</b>：${esc(v)}</li>`).join("")}${Object.entries(q4.carriers).map(([k, v]) => `<li>载体 <b>${esc(k)}</b>：${esc(v)}</li>`).join("")}</ul>
-    <div class="chapter-src">派工与筛选在 <a href="supply.html#targets">采集页</a>；每行链回节点页停在该列。</div></section>`;
-  // 附录：专题目录
-  toc.push({ id: "topics", label: "附录 · 专题目录" });
-  html += `<section class="page-doc" id="topics"><h2 class="chapter">附录 · 专题目录（兼容研究结论）</h2><div class="chapter-sub">${esc(r.topics.note)} 共 ${r.topics.finding_count} 条${r.topics.review_count ? `，${r.topics.review_count} 条待复核` : ""}。<a href="${esc(r.topics.link)}">专题全文 →</a></div>
-    <table><tr><th>专题</th><th>结论</th><th>待复核</th></tr>${r.topics.chapters.map(ch => `<tr><td><a href="report.html?legacy=1#ch-${esc(ch.module)}">${esc(ch.module)} ${esc(ch.name)}</a></td><td>${ch.findings}</td><td>${ch.review}</td></tr>`).join("")}</table></section>`;
+    <table><tr><th>因子</th><th>侧</th><th>公式</th><th>模型输入</th><th>部件</th><th>权利</th></tr>${q3.factors.map(f => `<tr><td>${f.parent ? "└ " : "<b>"}${esc(f.label)}${f.parent ? "" : "</b>"}</td><td>${esc(f.side)}</td><td><code>${esc(f.formula || "")}</code></td><td>${f.model_inputs}</td><td>${f.bom_parts}</td><td>${f.site_rights}</td></tr>`).join("")}</table></section>`;
+  // 四、读者口径与来源说明；不读取内部q4派工字段。
+  toc.push({ id: "q4", label: "四、口径与来源" });
+  html += `<section class="page-doc chapter" id="q4"><h2 class="chapter">四、口径与来源</h2>
+    <p>模型输入区分已有来源、作者假设与用户给定。分类、公式与结果共用当前正式数据；有来源的记录不自动证明适用于每个项目或情景。</p>
+    <p>具体来源、信息日期、统计范围与不确定性随对应内容展示。历史补录不会变成今天发生的事件，报告生成时间也不会刷新原始来源日期。</p>
+    <div class="chapter-src"><a href="/guide.html?view=method">数据口径与方法</a> · <a href="/guide.html?view=sources">来源与引用</a></div></section>`;
   document.getElementById("docroot").innerHTML = html;
   document.getElementById("toc").innerHTML = toc.map(t => `<a href="#${t.id}" id="toc-${t.id}">${t.label}</a>`).join("");
-  document.getElementById("mode-snapshot").style.fontWeight = "700";
+  document.getElementById("report-mode").textContent = "研究报告 · 当前快照";
   document.title = r.title + " — inresearch.ai";
   const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
   if (target) target.scrollIntoView();
@@ -222,7 +221,9 @@ async function renderSnapshot() {
 (async () => {
   try {
     if (!LEGACY) { await renderSnapshot(); return; }
-    document.getElementById("mode-legacy").style.fontWeight = "700";
+    document.getElementById("report-mode").textContent = "内部兼容研究结论";
+    const contextLink = document.getElementById("report-context-link");
+    contextLink.href = "/workspace.html?section=production&view=adoption"; contextLink.textContent = "返回研究审核与采用";
     const report = await get("/api/report?legacy=1");
     const chapters = report.chapters;
     const summaryMd = report.summary;
@@ -236,7 +237,7 @@ async function renderSnapshot() {
     let html = `<section class="page-doc cover-page"><div class="cover"><h1>全球数据中心研究</h1>
       <div class="meta">兼容研究结论 ｜ 生成日期 ${today} ｜ 内容版本 ${esc(report.data_revision.slice(0,12))} ｜ ${mods.length} 章 · ${totalFindings} 条研究结论 · ${sources.size} 个来源
       ${reviewCount ? `｜ <span style="color:var(--yellow)">⚠️ ${reviewCount} 条待复核</span>` : ""}<br>
-      生成日期不代表来源核验日期；既有 Finding 未自动取得对象证据的 C3 采用资格。<br>
+      生成日期不代表来源核验日期；既有 Finding 未自动取得对象证据的 C3 采用资格。历史记录为结论修订，不是完整报告版本库。<br>
       框架 v${reg.version} · 口径规则见<a href="doc.html?f=framework/01_data_standards.md">《口径与核验规则手册》</a> · 证据分级 S1 监管文件 / S2 公司披露 / S3 权威第三方 / S4 媒体 / S5 推算</div></div>`;
 
     const toc = [];

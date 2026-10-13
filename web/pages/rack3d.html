@@ -100,7 +100,7 @@
 <details class="ui-viewer-controls" data-responsive-panel open><summary aria-label="展开或收起场景控制">机柜拆解台 · Rack Teardown</summary><div>
   <h1>机柜拆解台 · Rack Teardown</h1>
   <div class="m">拖动旋转 · 滚轮缩放 · 点击部件看档案</div>
-  <div class="m rg-concept-note">概念示意 · 现场安装与尺寸未知 · 点击节点追溯证据</div>
+  <div class="m rg-concept-note">概念示意 · 现场安装与尺寸未知 · 类别数据与来源口径分别说明</div>
   <input aria-label="爆炸拆解进度" type="range" id="explode" min="0" max="100" value="0">
   <div class="stage" id="stage">整柜：一台 AI 机柜（ORV3 形态示意）</div>
   <button id="fit-view" type="button">适配视图</button>
@@ -134,7 +134,7 @@ import {createScenePicking} from "/assets/scene-picking.js";
 import {createSceneMotion} from "/assets/scene-motion.js";
 import {createPartDossier, dossierNode} from "/assets/part-dossier.js?v=20261008.14";
 import {createPartInspector} from "/assets/part-inspector.js?v=20261008.14";
-import { bindResearchMeshNodes, installStageControl, safeURL } from "./assets/research-graph.js";
+import { bindResearchMeshNodes, installStageControl, safeURL } from "./assets/scene-navigation.js";
 import { OrbitControls } from "./assets/vendor/OrbitControls.js";
 import { EffectComposer } from "./assets/vendor/EffectComposer.js";
 import { RenderPass } from "./assets/vendor/RenderPass.js";
@@ -146,16 +146,18 @@ import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources
 import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js?v=20261008.14";
 
 import {loadSceneData} from "/assets/scene-data.js";
-const [BOM, companies, prices, inds, reg] = await loadSceneData([
+// Navigation is optional for geometry, but missing authorization keeps dossier page links closed.
+const navigationPromise = fetch('/api/navigation', {cache:'no-store', signal:AbortSignal.timeout(12000)})
+  .then(response => response.ok ? response.json() : {}).catch(() => ({}));
+const [BOM, companies, prices, inds] = await loadSceneData([
   {url:"framework/bom.json", collection:"parts"},
   {url:"data/companies.json", collection:"records"},
   {url:"data/prices.json", collection:"records"},
   {url:"framework/indicators.json", collection:"indicators"},
-  {url:"framework/modules.json", collection:"modules"},
 ], {controls:[document.querySelector(".hud")]});
+const navigation = await navigationPromise;
 const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
 const INDS = {}; inds.indicators.forEach(i => INDS[i.id] = i);
-const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
 const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
 // 重切前的旧部件 ID（bom.aliases）继续打开去处的档案；指向站点权利的旧 ID 在机柜里没有对象
 Object.entries(BOM.aliases || {}).forEach(([old, to]) => { if (!PART[old] && PART[to]) PART[old] = PART[to]; });
@@ -718,7 +720,7 @@ const inspector = createPartInspector({THREE, environment: () => scene.environme
   identityFor:pid=>chipSelectedInstance||rackSelectedInstance||serverSelectedInstance||(rackMode&&pid==='rack-frame'?'rack/whole':'part:'+pid),
   titleFor:pid=>(chipSelectedInstance==='package/whole'?'完整通用封装':rackMode&&pid==='rack-frame'?'完整通用机柜':serverMode&&pid==='server'?'完整通用服务器':PART[pid]?.name||pid)+' · '+(chipSelectedInstance||rackSelectedInstance||serverSelectedInstance?'示例实例':'类别聚合')});
 const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',
-  BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
+  mode: 'delivery', deliveryPages: navigation.delivery_pages || [], BOM, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
   atlasViewFor:p=>chipMode?'chip':rackMode&&p.id==='rack-frame'?(rackExplodedMode?'exploded':'overview'):null});
 function showDossier(p){if(serverMode){serverSelectedMeshes=null;serverSelectedInstance=null;}rawShowDossier(p);}

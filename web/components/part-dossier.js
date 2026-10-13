@@ -1,7 +1,15 @@
 /* One dossier owns its DOM; the scene supplies data and its inspector. */
 import {latest, sparkline} from './series-summary.js';
-import {mountNodeResearch, safeURL} from './research-graph.js';
 import {mountTechnicalAtlas} from './technical-atlas.js?v=20261008.15';
+
+// Pure URL handling keeps the delivered dossier independent of internal research modules.
+function safeURL(value) {
+  if (typeof value !== 'string' || !value.trim()) return null;
+  try {
+    const url = new URL(value, location.href);
+    return ['http:', 'https:'].includes(url.protocol) ? url.href : null;
+  } catch { return null; }
+}
 
 export function dossierNode(tag, text, className) {
   const actual = document.createElement(tag);
@@ -40,7 +48,18 @@ function mountTargetSummary(host, node) {
   }).catch(() => { content.textContent = '目标表暂不可读取；请从采集页重试，缺失状态不计为零。'; });
 }
 export function createPartDossier({el, view, BOM, companies: CN,
-  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el, atlasViewFor = () => null, researchNodeFor = p => "part:" + p.id}) {
+  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el, atlasViewFor = () => null, researchNodeFor = p => "part:" + p.id,
+  mode = 'research', deliveryPages = []}) {
+const delivery = mode === 'delivery';
+const preview = view !== 'bom';
+const pages = new Set(deliveryPages);
+const deliveredPage = href => {
+  try {
+    const url = new URL(href, location.href);
+    return url.origin === location.origin && url.searchParams.get('legacy') !== '1' && pages.has(url.pathname);
+  } catch { return false; }
+};
+const linkFor = (text, href) => delivery && !deliveredPage(href) ? dossierNode('span', text, 'chip') : dossierLink(text, href);
 return function showDossier(p) {
   inspector.hide();
   el.replaceChildren();
@@ -62,32 +81,51 @@ return function showDossier(p) {
   badge.style.background = SBADGE[p.status] || "#64748b";
   meta.append(" · ", badge); el.append(meta);
   el.append(dossierNode("p", "概念示意 · 类别级研究锚点。形状、数量、尺寸不代表真实现场配置。", "rg-concept-note"));
-  const research = document.createElement("div"); el.append(research);
-  mountNodeResearch(research, researchNodeFor(p));
-  const slot = dossierNode("div", undefined, "insp");
-  slot.id = "inspSlot"; slot.style.display = "none";
-  slot.append(dossierNode("div", "独立三维预览 · 拖动旋转；可放大与单独导出", "ihint")); el.append(slot);
+  if (!delivery) {
+    const research = document.createElement('div'); el.append(research);
+    import('./research-graph.js').then(({mountNodeResearch}) => {
+      if (research.isConnected) mountNodeResearch(research, researchNodeFor(p));
+    }).catch(() => { if (research.isConnected) research.textContent = '研究工具暂不可读取，请刷新重试。'; });
+  }
+  let slot;
+  if (preview) {
+    slot = dossierNode('div', undefined, 'insp');
+    slot.id = 'inspSlot'; slot.style.display = 'none';
+    slot.append(dossierNode('div', '独立三维预览 · 拖动旋转；可放大与单独导出', 'ihint')); el.append(slot);
+  }
   el.append(dossierNode("div", p.desc || "说明待补充"));
   const hasAtlas = mountTechnicalAtlas(atlasHost, p.id, {view:atlasViewFor(p)});
+  if (delivery) {
+    // Registered figure files retain their zoom/download controls; page deep links use the one server policy.
+    for (const link of atlasHost.querySelectorAll('[data-related-figure]')) {
+      const url = new URL(link.href, location.href);
+      if (!url.pathname.startsWith('/assets/') && !deliveredPage(link.href)) link.remove();
+    }
+  }
   if (atlasHost !== el) atlasHost.hidden = !hasAtlas;
   const links = dossierNode("div", undefined, "sec");
   links.append(dossierNode("h3", "参考研究与结构"));
-  links.append(dossierLink("节点页：五列与目标", "node.html?id=" + encodeURIComponent(researchNodeFor(p))));
-  links.append(dossierLink("采集：这个部件的目标行", "supply.html?" + new URLSearchParams({ node: researchNodeFor(p) }) + "#targets"));
-  if (view !== "bom") links.append(dossierLink("爆炸图档案", "bom.html#" + encodeURIComponent(p.id)));
-  if (view === "campus" && ["S4", "S5"].includes(p.scale))
-    links.append(dossierLink("继续拆解机柜 →", "rack3d.html?x=100&node=" + encodeURIComponent(researchNodeFor(p)) + "#" + encodeURIComponent(p.id)));
-  if (view === "rack")
-    links.append(dossierLink("返回园区定位", "bom3d.html?" + new URLSearchParams({ p: p.id, node: "part:" + p.id })));
+  links.append(linkFor('节点页：分类与五类变量', 'node.html?id=' + encodeURIComponent(researchNodeFor(p))));
+  if (!delivery) links.append(dossierLink('研究工作台：五列与目标', 'research-workbench.html?id=' + encodeURIComponent(researchNodeFor(p))));
+  if (!delivery) links.append(dossierLink("采集：这个部件的目标行", "supply.html?" + new URLSearchParams({ node: researchNodeFor(p) }) + "#targets"));
+  if (view !== "bom") links.append(linkFor("爆炸图档案", "bom.html#" + encodeURIComponent(p.id)));
+  if (view === "campus" && ["S4", "S5"].includes(p.scale)) {
+    const href = "rack3d.html?x=100&node=" + encodeURIComponent(researchNodeFor(p)) + "#" + encodeURIComponent(p.id);
+    if (!delivery || deliveredPage(href)) links.append(dossierLink("继续拆解机柜 →", href));
+  }
+  if (view === "rack") {
+    const href = "bom3d.html?" + new URLSearchParams({ p: p.id, node: "part:" + p.id });
+    if (!delivery || deliveredPage(href)) links.append(dossierLink("返回园区定位", href));
+  }
   el.append(links);
-  mountTargetSummary(el, researchNodeFor(p));
+  if (!delivery) mountTargetSummary(el, researchNodeFor(p));
   if (p.upstream?.length) {
     const upstream = dossierNode("div", undefined, "sec"); upstream.append(dossierNode("h3", "上游研究主题"));
     p.upstream.forEach(u => upstream.append(dossierNode("span", u, "chip"))); el.append(upstream);
   }
   if (p.companies?.length) {
     const companies = dossierNode("div", undefined, "sec"); companies.append(dossierNode("h3", "类别关联公司 · 不代表现场供应商"));
-    p.companies.forEach(c => companies.append(dossierLink(CN[c] || c, "product-catalog.html?c=" + encodeURIComponent(c)))); el.append(companies);
+    p.companies.forEach(c => companies.append(linkFor(CN[c] || c, "product-catalog.html?c=" + encodeURIComponent(c)))); el.append(companies);
   }
   const metrics = dossierNode("div", undefined, "sec"); metrics.append(dossierNode("h3", "类别数据与指标 · 按原记录时点"));
   let n = 0;
@@ -105,9 +143,9 @@ return function showDossier(p) {
     row.append(dossierNode("span", i.name + (i.as_of ? " · " + i.as_of : "")), dossierNode("b", i.value == null ? "未披露 / 待核实" : String(i.value) + " " + (i.unit || "")));
     metrics.append(row); n++;
   });
-  if (!n) metrics.append(dossierNode("div", "当前没有量化数据。非数字陈述与未知见节点研究。", "meta"));
+  if (!n) metrics.append(dossierNode("div", "当前没有量化数据。缺项保留为空，不能据此推定为零。", "meta"));
   el.append(metrics);
-  if (inspector.show(p.id)) { slot.style.display = "block"; slot.insertBefore(inspector.canvas, slot.firstChild); if (inspector.controls) slot.append(inspector.controls); }
+  if (preview && inspector.show(p.id)) { slot.style.display = "block"; slot.insertBefore(inspector.canvas, slot.firstChild); if (inspector.controls) slot.append(inspector.controls); }
   el.style.display = "block";
 }
 

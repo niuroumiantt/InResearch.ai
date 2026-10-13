@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /*
  * TA-28 actual-public-only acceptance. Source reviewed before actual deployed execution.
  * Execution uses existing user-authorized public observation, reviewed
@@ -60,7 +61,7 @@ let browser;
     }
     async function readyAtlas(atlas) {
       await atlas.waitFor();
-      await atlas.locator('img').evaluate(image => image.decode());
+      await atlas.locator('img:not(.ui-brand-watermark)').evaluate(image => image.decode());
       await page.waitForFunction(() => {
         const anchor = document.querySelector('.technical-atlas figure>a');
         return !!anchor && getComputedStyle(anchor).backgroundColor === 'rgb(250, 249, 242)';
@@ -102,7 +103,7 @@ let browser;
     assert.match(await atlas.locator('figcaption').textContent(), /软件/);
     for (const width of [1280,390]) for (const theme of ['light','dark']) {
       await page.setViewportSize({width,height:width === 390 ? 844 : 900});
-      await page.locator('#ui-appearance').selectOption(theme);
+      await setAppearance(page, theme);
       await settle();
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       assert.equal(await atlas.locator('figure>a').evaluate(e => getComputedStyle(e).backgroundColor), 'rgb(250, 249, 242)');
@@ -211,7 +212,7 @@ let browser;
       const art = page.locator('#dossier .technical-atlas');
       assert.equal(await art.count(), 1);
       assert.equal(await art.getAttribute('data-figure'), figure, 'Software uses TA28 domain artwork, not system TA47');
-      assert.equal(await art.locator('img').getAttribute('src'), preview);
+      assert.equal(await art.locator('img:not(.ui-brand-watermark)').getAttribute('src'), preview);
       assert.equal(await page.locator('#dossier [data-figure="TA-47"]').count(), 0);
       await readyAtlas(art);
       const observed = await page.evaluate(() => {
@@ -236,10 +237,10 @@ let browser;
     }
     for (const width of [1280,390]) for (const theme of ['light','dark']) {
       await page.setViewportSize({width,height:width===390?844:900}); await go('?d=control');
-      await page.locator('#ui-appearance').selectOption(theme);
+      await setAppearance(page, theme);
       const panel=await openControls(), plate=page.locator('.facility-domain-plate[data-figure="TA-28"]');
-      assert.equal(await plate.count(),1); await plate.locator('img').evaluate(image=>image.decode());
-      assert.equal(await plate.locator('img').getAttribute('src'),preview);
+      assert.equal(await plate.count(),1); await plate.locator('img:not(.ui-brand-watermark)').evaluate(image=>image.decode());
+      assert.equal(await plate.locator('img:not(.ui-brand-watermark)').getAttribute('src'),preview);
       assert.equal(await page.locator('#domainParts .pitem').count(),1);
       assert.equal(await page.locator('#domainParts .pitem').getAttribute('data-part'),'dcim');
       assert.equal(await page.locator('#domainParts .nm').textContent(),'控制软件');

@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.13.115",
+  "version": "2026.10.13.116",
   "effective_at": "2026-10-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -4820,14 +4820,39 @@
         "framework/research_task_plan.json",
         "tests/research_tasks.cjs",
         "src/inresearch/workflow/research_task_examples.py",
-        "tests/unit/test_research_task_examples.py"
+        "tests/unit/test_research_task_examples.py",
+        "framework/site_navigation.json",
+        "docs/handoff/navigation-auth-shell.md",
+        "framework/site_implementation.json",
+        "src/inresearch/interfaces/workspace.py",
+        "tests/unit/test_site_workspace.py",
+        "tests/unit/test_customer_access.py",
+        "tests/site_navigation.cjs",
+        "tests/site_workspace.cjs",
+        "tests/economics_navigation.cjs",
+        "web/pages/workspace.html",
+        "web/pages/search.html",
+        "web/pages/guide.html",
+        "web/components/workspace.js",
+        "web/components/site-search.js",
+        "web/components/site-guide.js",
+        "web/themes/workspace.css",
+        "web/pages/node.html",
+        "web/pages/research-workbench.html",
+        "web/components/scene-navigation.js",
+        "tests/scene_delivery.cjs",
+        "src/inresearch/interfaces/customer_catalog.py",
+        "src/inresearch/interfaces/customer_scene.py",
+        "tests/unit/test_customer_catalog.py",
+        "tests/unit/test_customer_scene.py",
+        "tests/customer_catalog.cjs"
       ],
       "supersedes": [
         "interface-private-tasks-20261012"
       ],
       "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。",
-      "implementation_revision": "2026.10.12.112",
-      "change_reason": "Owner correction: homepage and task page are public; coordination details and writes remain authenticated. A real source delivery example is projected from private runtime with explicit public artifact declarations. User further places login, personal account and role/admin console at the top right; business navigation remains on the left."
+      "implementation_revision": "2026.10.13.116",
+      "change_reason": "2026-10-13用户接受并授权分阶段实施交付6一级14二级／后台6一级20二级；site_navigation.json统一机器导航与页面归属。匿名首页与tasks保持，客户customer独立于内部member，IT按授权看到两组目录；桌面工具行加目录行、手机两行、角色页脚、授权搜索与辅助页。替代旧七项混合导航及账户菜单后台入口。普通登记不前置研究C3，经济入口共用模型情景。本批接入源码和本地验收；完整CI、合并与实际部署分别留回执，不能用规范版本冒充环境安装版本。"
     }
   ],
   "entrypoints": [

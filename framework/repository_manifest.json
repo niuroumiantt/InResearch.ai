@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.13.115",
+  "version": "2026.10.13.116",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -620,8 +620,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 309929,
-      "sha256": "80733a5b9cd513d1014a4e66f8102d5a0760d267e2641c07c31821b1f7227d1b",
+      "bytes": 311504,
+      "sha256": "8980241132298230530f157d29126ac79f834e860bdc95a6c6f49bab3caa8e1c",
       "collections": []
     },
     {
@@ -11174,6 +11174,13 @@
       "collections": []
     },
     {
+      "path": "docs/handoff/navigation-auth-shell.md",
+      "role": "supporting_document",
+      "bytes": 9851,
+      "sha256": "65779587039b606940a061ae6c036628db2b778e7ef0aab20025fee703b0133a",
+      "collections": []
+    },
+    {
       "path": "docs/handoff/news-research-matching-20261006.md",
       "role": "supporting_document",
       "bytes": 3688,
@@ -18962,8 +18969,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 83512,
-      "sha256": "78211889796a3654d1ae7e986f353046962f42dcb326c6004d5797e69b41a59e",
+      "bytes": 88267,
+      "sha256": "8fb77b8a6e91ddab55e0178a941e458be9af5e94796e4ead8a7879aabb4cbdf4",
       "collections": []
     },
     {
@@ -19011,8 +19018,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 15526,
-      "sha256": "d26feecf4e5c9e38700decc962861a71b499fc0585bf6d8c1f1997596beca35c",
+      "bytes": 16219,
+      "sha256": "918e934680d011bed4671f41f68b257dda1d202b56b8f0b46a20c06d5e8a4cb4",
       "collections": []
     },
     {
@@ -19038,8 +19045,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 287996,
-      "sha256": "a262bc21f53d9e3b7881f5fd5b5323dc14c2a2950b5c7a7f66c3fa6414a9da52",
+      "bytes": 289297,
+      "sha256": "ad1d74ad847497399c1f4aacb06568629c2005f6ee33e99ab0c02cc38d9d4e31",
       "collections": [
         {
           "name": "policies",
@@ -19122,12 +19129,12 @@
     {
       "path": "framework/interface_manifest.json",
       "role": "project_config",
-      "bytes": 13665,
-      "sha256": "70ef43c3628b7b5ad0afda3fec0a8cd90d28ea529772a04f1a04fa2308b5cb69",
+      "bytes": 14149,
+      "sha256": "a622d999811827cffa2612319315e499ac71ef254d342373a29e0fcbb5b18d17",
       "collections": [
         {
           "name": "static_pages",
-          "count": 51
+          "count": 55
         },
         {
           "name": "public_pages",
@@ -19355,6 +19362,38 @@
       ]
     },
     {
+      "path": "framework/site_implementation.json",
+      "role": "project_config",
+      "bytes": 1938,
+      "sha256": "a752c3d22bae2ce32b037ab1a683c64dd8955e7bf373ce797b8bbf95ba45685e",
+      "collections": [
+        {
+          "name": "milestones",
+          "count": 7
+        },
+        {
+          "name": "releases",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "path": "framework/site_navigation.json",
+      "role": "project_config",
+      "bytes": 38835,
+      "sha256": "eff41b4db609bb11fdb1a47d8e238a3a11ffb90fac4dc0a473507d8f3836d920",
+      "collections": [
+        {
+          "name": "public_navigation",
+          "count": 2
+        },
+        {
+          "name": "page_rules",
+          "count": 25
+        }
+      ]
+    },
+    {
       "path": "framework/site_rights.json",
       "role": "project_config",
       "bytes": 5603,
@@ -19416,8 +19455,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 585178,
-      "sha256": "c19e28183b55c05e9133dbc1ab811dba18f5af3f68ac4a8cef2bfa7ccd57ac79",
+      "bytes": 601078,
+      "sha256": "8bfd3b6976ab2278d267e1c71f848659d88d1004fef9b316058e9e9ce406293f",
       "collections": [
         {
           "name": "policies",
@@ -22324,8 +22363,8 @@
     {
       "path": "src/inresearch/interfaces/auth.py",
       "role": "implementation",
-      "bytes": 15848,
-      "sha256": "67b9c12106346239abe602875b0f00f3ee8c3b1c0cd7fbc0a6e05bc4e67e4238",
+      "bytes": 16085,
+      "sha256": "f743a1614340215b1dfaf17806711d66f3667fd0153f8af44b1430b4f654807c",
       "collections": []
     },
     {
@@ -22333,6 +22372,20 @@
       "role": "implementation",
       "bytes": 6113,
       "sha256": "ffefa662bd7d3ba1a0b3486db03897250fc6184141e7623a10fc6bf3bb5b9350",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/interfaces/customer_catalog.py",
+      "role": "implementation",
+      "bytes": 10705,
+      "sha256": "994e85d0781827aa85979946aa9fdfb6c1dbd63c49427f5b39c8bded2b9c18bd",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/interfaces/customer_scene.py",
+      "role": "implementation",
+      "bytes": 2155,
+      "sha256": "1b5e7c26713355893304b96c287d90bc78b7d47d1a71e66d7cbd9bd742ea9700",
       "collections": []
     },
     {
@@ -22352,8 +22405,8 @@
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 58901,
-      "sha256": "c719b1643e10120437491d88d73efa0c81739b05d316b64ba0b6dcd5536b245f",
+      "bytes": 66409,
+      "sha256": "43baa974f56c0c6bd9af2c55dc01016cac534299f4c12465c3448f62c9c6e5f1",
       "collections": []
     },
     {
@@ -22373,8 +22426,8 @@
     {
       "path": "src/inresearch/interfaces/public.py",
       "role": "implementation",
-      "bytes": 5551,
-      "sha256": "b0848415c86c6d899b85ee54514fa803ef036a10db84701d4458a217e6d609e4",
+      "bytes": 34713,
+      "sha256": "162724f73a7f149c67ce1d64bdc9dd74d09b58befe9a0f4101aeacf83dd11c04",
       "collections": []
     },
     {
@@ -22401,8 +22454,8 @@
     {
       "path": "src/inresearch/interfaces/users.py",
       "role": "implementation",
-      "bytes": 3623,
-      "sha256": "f84f5352cc588fa786c18db0bc8ebb554ef2772a86461794869251e60fdaed7b",
+      "bytes": 3689,
+      "sha256": "2fa83703f4b76ebe6bcde2fea9ee657e81fa39bf1d53baf7ac7e103f72b5f431",
       "collections": []
     },
     {
@@ -22410,6 +22463,13 @@
       "role": "implementation",
       "bytes": 4522,
       "sha256": "7b5399dd05da0febbc5d466d7f9b5fb9c4b4a7d9508bb4f40d5c06224e0c8ec3",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/interfaces/workspace.py",
+      "role": "implementation",
+      "bytes": 31204,
+      "sha256": "894bb17c425352199efdaf8770a327caedb536848dd6bd86f5485cde197e340a",
       "collections": []
     },
     {
@@ -22940,8 +23000,8 @@
     {
       "path": "src/inresearch/workflow/company_window.py",
       "role": "implementation",
-      "bytes": 8161,
-      "sha256": "5d0c1756ccaeaf59c484ab99a0db51dc65b7ac7de0677c3549f6215edf44218d",
+      "bytes": 8198,
+      "sha256": "91f7c01c64c89c1b84ac4df2ac312d1d88762c36818fa0825b04b58fbc443d65",
       "collections": []
     },
     {
@@ -23255,43 +23315,43 @@
     {
       "path": "tests/auth_appearance.cjs",
       "role": "test",
-      "bytes": 14860,
-      "sha256": "82155cd637099aeb62fd3bd25e0542170ddb1733bae3dd67f8b191de3bd27a44",
+      "bytes": 17409,
+      "sha256": "23fe083d93bb685153e2d03faff74a7003ff1be3957884d848c7fa2988aef771",
       "collections": []
     },
     {
       "path": "tests/bom_layout.cjs",
       "role": "test",
-      "bytes": 7997,
-      "sha256": "f20bce3df9c1fd998711f9347147679680577828a47535fd75ea30ef64b669c1",
+      "bytes": 8051,
+      "sha256": "0d833f5039866f752fd87e66f7481926fd55b4792be2b00744b3a546941e64d3",
       "collections": []
     },
     {
       "path": "tests/browser_suites.cjs",
       "role": "test",
-      "bytes": 3224,
-      "sha256": "191bada218f08159b0680cc42e51892c29768afe4b9f4fce00b2db5f3a35d44f",
+      "bytes": 3323,
+      "sha256": "310405193061d40314577f6120bb8ba9fbe11780e3599f7107fdafa6a5e37eb3",
       "collections": []
     },
     {
       "path": "tests/campus_exploded.cjs",
       "role": "test",
-      "bytes": 48887,
-      "sha256": "9cbb741f000ce084777974152501f9f79a5e83e7522eeef6e115e68b93ffc75d",
+      "bytes": 49004,
+      "sha256": "06f4efa71284de10af9738a23e37e4cf6488e07f4c702303b382c6620fd21780",
       "collections": []
     },
     {
       "path": "tests/campus_overview.cjs",
       "role": "test",
-      "bytes": 42401,
-      "sha256": "f4b0b5ea593ba9cc23c19db9714fbdee5322a5115a3b1847a3d70930eead4627",
+      "bytes": 42518,
+      "sha256": "fd5a741f8de6c32bee00c95f212f955eb48ce673bb7bf5ea11260c5ca1ba75fb",
       "collections": []
     },
     {
       "path": "tests/campus_plan.cjs",
       "role": "test",
-      "bytes": 14910,
-      "sha256": "9e18088ffff3d4c10dd1bf046daf14ec45140bff3504181bd53f0872b2cf4c73",
+      "bytes": 15014,
+      "sha256": "bce3c56aaccd773407a5515e28a74a8ee72409f479a22f13206792181a900fd1",
       "collections": []
     },
     {
@@ -23304,15 +23364,15 @@
     {
       "path": "tests/chip_atlas.cjs",
       "role": "test",
-      "bytes": 7448,
-      "sha256": "acfb7a6a2d3fe566d3ffa56ddd1f304ef32d833e9f9a8e1471665a192528b5d3",
+      "bytes": 7552,
+      "sha256": "ff8eee678b75a66fbe9a690ccbca38d5ad75519c29c8063a2265020394c328ba",
       "collections": []
     },
     {
       "path": "tests/chip_package.cjs",
       "role": "test",
-      "bytes": 15508,
-      "sha256": "a4a41647dd8d9c436b0bdf49e7c938cbbbba74fd57d9bd852097091841a214d4",
+      "bytes": 15513,
+      "sha256": "971591b63bd9bf4a33674f0972ef2405bfd5b724603e99ab6998f965e3b2c124",
       "collections": []
     },
     {
@@ -23360,29 +23420,36 @@
     {
       "path": "tests/control_domain.cjs",
       "role": "test",
-      "bytes": 25404,
-      "sha256": "41916c8e80f447a5e15f23b5346915371e2260f6dbc650ee7998297fc0afb6ef",
+      "bytes": 25509,
+      "sha256": "aeaef83310a03996768db964b850fc3a707ade1c6cfae8e833ecbc776ac82904",
       "collections": []
     },
     {
       "path": "tests/cross_scale_atlas.cjs",
       "role": "test",
-      "bytes": 27684,
-      "sha256": "f578d4918bbfe2eb131a00e4b2ce3ede8f41d2f7c7f4817f86188d90b8de281b",
+      "bytes": 27715,
+      "sha256": "30263736793e42971fb8af0186600ca9aaf353d3e5d29288c8b22a21a09bfe43",
+      "collections": []
+    },
+    {
+      "path": "tests/customer_catalog.cjs",
+      "role": "test",
+      "bytes": 14612,
+      "sha256": "ee229141d47c4b90cb0a5dcb1f885937a3d5bf25967fb30aa4c9013234bf9529",
       "collections": []
     },
     {
       "path": "tests/dashboard.cjs",
       "role": "test",
-      "bytes": 9780,
-      "sha256": "30ea091b79afc05b642d70d757855ff754022b7fecdc05b7cf2447ec5f0264ab",
+      "bytes": 17931,
+      "sha256": "6239fc9b26c9c20eb4fbed60f7b0b41b97af1bd0de15cd01c872ea0d06a5a07e",
       "collections": []
     },
     {
       "path": "tests/datacenter_cost.cjs",
       "role": "test",
-      "bytes": 4130,
-      "sha256": "832d58437516245c9c2440dece45aa1efaa7e84d176efa2cc19f1dd01b03732f",
+      "bytes": 4135,
+      "sha256": "54f68f0813f67097b2ae45fe0058e56950c509e4bde5e4f25e520c325dde511f",
       "collections": []
     },
     {
@@ -23395,8 +23462,8 @@
     {
       "path": "tests/datacenter_news.cjs",
       "role": "test",
-      "bytes": 10622,
-      "sha256": "4a3cf395393b1a8ecde664f73efa06036827981b3e14eee360b95bbc196ed67b",
+      "bytes": 10861,
+      "sha256": "a7f5aa17138dacd131d433ea8225e227d567c39243524705ba0df4497168a1b0",
       "collections": []
     },
     {
@@ -23407,38 +23474,45 @@
       "collections": []
     },
     {
+      "path": "tests/economics_navigation.cjs",
+      "role": "test",
+      "bytes": 10482,
+      "sha256": "5fbe5546f39f762dfa6c14512befd23829f361506dc6abc2b6403edc271e3146",
+      "collections": []
+    },
+    {
       "path": "tests/energy_domain.cjs",
       "role": "test",
-      "bytes": 16006,
-      "sha256": "fdd42221cac8f1c5b1c817a96d662be4c143c79520683384e7d81253b33e6d0f",
+      "bytes": 16136,
+      "sha256": "28148cba906b5d8deebd5d75b4d6529268bcb73139b45149e9ea498448258288",
       "collections": []
     },
     {
       "path": "tests/facility_domain.cjs",
       "role": "test",
-      "bytes": 14831,
-      "sha256": "cc0d75c02347e5660fc9d8476cb95bb77767b61827d0cc16cc372e3765aa36d9",
+      "bytes": 14911,
+      "sha256": "eec95477e165edf16adb3c579f014ce7362ebbe386229c12d0652505ba371df3",
       "collections": []
     },
     {
       "path": "tests/industry.cjs",
       "role": "test",
-      "bytes": 59896,
-      "sha256": "a0e5902c4810f019edf39682f74ad27f0184d3168176628d98329c3a5dfc325f",
+      "bytes": 59913,
+      "sha256": "688c12bcc926848310f473c6f28745eaf3e2a2b64e795bab7c9ea4b2aa05cfb4",
       "collections": []
     },
     {
       "path": "tests/it_domain.cjs",
       "role": "test",
-      "bytes": 20746,
-      "sha256": "331457c68cec0de3d8af4c47aec5879d7e31a8cc8664a6584e6aa3e3683f08de",
+      "bytes": 20876,
+      "sha256": "0ec87f4e1d2e168bdf6cf661134b66aa61f3b42051883eb32f205805e28647f7",
       "collections": []
     },
     {
       "path": "tests/model_assets.cjs",
       "role": "test",
-      "bytes": 12981,
-      "sha256": "9b96c1a178838cb93bf9e491f1d9973fb3803529878740ae432b7596dbf3aab2",
+      "bytes": 13010,
+      "sha256": "143b6f43ed694100d8d321c21942155c7df01fec4f0234d65c5d68d2e31b02f5",
       "collections": []
     },
     {
@@ -23451,113 +23525,120 @@
     {
       "path": "tests/ops_dashboard.cjs",
       "role": "test",
-      "bytes": 10855,
-      "sha256": "ff78e52669731274be998dce6b86698d89ced0fbc80e3b8ba311d5c72535dd23",
+      "bytes": 10884,
+      "sha256": "d57a8a539ecbb53a4fd2a2b8db5d50540e3d7671610984526c8ca3bd38833f57",
       "collections": []
     },
     {
       "path": "tests/panel_sources.cjs",
       "role": "test",
-      "bytes": 35601,
-      "sha256": "785ae85dfbb46f11fc4d97deac5543ac3acb2dbb9c416efa7df4ee26dafbde09",
+      "bytes": 35630,
+      "sha256": "e45eca538a6971663ccde36311d7f6558c54e315c689e8a2db5055722613237d",
       "collections": []
     },
     {
       "path": "tests/part_dossier.cjs",
       "role": "test",
-      "bytes": 16284,
-      "sha256": "6b2aaf5173f2c22c9f0c20322ca8efcc124bbe1142d5a4a59d0ca62c03a78d28",
+      "bytes": 17828,
+      "sha256": "02a1531f2e668cb769ce2de20a4ff7f18bd8d10f2d76fbfbd015f3a8516dcd44",
       "collections": []
     },
     {
       "path": "tests/product_catalog.cjs",
       "role": "test",
-      "bytes": 15006,
-      "sha256": "895d2cdb3d918a68760c09f585400053d6145271549792c2892878dfdf8ab9e0",
+      "bytes": 15365,
+      "sha256": "5df46606e204cf68a137d511ec50d7a663a85c158c47a8c64a88cb5a58862e8e",
       "collections": []
     },
     {
       "path": "tests/rack_assembly.cjs",
       "role": "test",
-      "bytes": 18588,
-      "sha256": "2beaf5e75fcc25250fae82bb2cf017e690863993bb6bdef668bc1763bfb97dfa",
+      "bytes": 18593,
+      "sha256": "ce6ee3358d7b5733d74a3613bf5ee871e0091c82e85c125cb4079500bb84c35f",
       "collections": []
     },
     {
       "path": "tests/rack_atlas.cjs",
       "role": "test",
-      "bytes": 5370,
-      "sha256": "4058b6314e570ce3dd920a98b27c8f48b3eed1ede138b3371e6f8f75eb930f9b",
+      "bytes": 5474,
+      "sha256": "7ccf007265e1655135dd68683f7baf3f74ce701cb75b65e0ec1994ea2a906e27",
       "collections": []
     },
     {
       "path": "tests/rack_exploded.cjs",
       "role": "test",
-      "bytes": 17049,
-      "sha256": "a1322204a66f326670dbe6a6184d4ca49b15326423bf6f542cc5ba9cb6c71b80",
+      "bytes": 17078,
+      "sha256": "df1c9d05bf432fe927fce2a8777b2d1101e1246207f722b2b7b6e4766548216f",
       "collections": []
     },
     {
       "path": "tests/rack_exploded_atlas.cjs",
       "role": "test",
-      "bytes": 7375,
-      "sha256": "96cb7528bd947ee73f80b2122e88bba7466bbb65cb0b1db3ae93f663637024ca",
+      "bytes": 7479,
+      "sha256": "5cd037dc819b52328e5e32a2ec80966f248986e2ec931b9075f0e6e1be3dbeca",
       "collections": []
     },
     {
       "path": "tests/repository_pages.cjs",
       "role": "test",
-      "bytes": 8433,
-      "sha256": "cb977288fe7afc7e66c03e2765defbe5221e6366083c8650db8fa9a9d5fb7c0d",
+      "bytes": 8462,
+      "sha256": "36ebf78efb1e080d2b6aea6144ec91890be971a7953fa94be935aad051a1b06c",
       "collections": []
     },
     {
       "path": "tests/research_delivery.cjs",
       "role": "test",
-      "bytes": 6119,
-      "sha256": "55e8dd36618c4cf9e5a7c9c98d4dc3ca8381c425ba7403710ebf41ca4ee1f827",
+      "bytes": 11006,
+      "sha256": "11e50d97310a3c5c46dff3bb55dc139c0edfb9a0a855b8363aeffd9039927bf0",
       "collections": []
     },
     {
       "path": "tests/research_summary.cjs",
       "role": "test",
-      "bytes": 11775,
-      "sha256": "f551aa4ccd390d833132f21a3a0377cd1f2bdcb53e8c867fb3648b905754606e",
+      "bytes": 11789,
+      "sha256": "cfc2d0e59443d9e757f037d30c5a5d9bb8b5a449828cbe8618554023026176be",
       "collections": []
     },
     {
       "path": "tests/research_tasks.cjs",
       "role": "test",
-      "bytes": 16353,
-      "sha256": "75b4011dcb978660fc0837a6342cb301c8bffc5f1ef80726c6bd70b7283f5436",
+      "bytes": 16398,
+      "sha256": "d97e9659c9548f1c5a1a972f7b8faf0cc7284685128d4db7e6879fa017cafd26",
       "collections": []
     },
     {
       "path": "tests/run_browser.cjs",
       "role": "test",
-      "bytes": 2973,
-      "sha256": "87d3f7e1cae72d0b4aecc818dd318b5b98fca7c8cfde98fcb31adf14f1e11993",
+      "bytes": 3194,
+      "sha256": "b9ea22981e108f0be92098c562746e9d50dd8290d5b9480c22440919efca12a1",
       "collections": []
     },
     {
       "path": "tests/scale_atlas.cjs",
       "role": "test",
-      "bytes": 14108,
-      "sha256": "3daf9e8b538348e708c70126fad6be0a34df1ba6f26ef8c73b8ba255b41f8f03",
+      "bytes": 14337,
+      "sha256": "31936d2f0e524f354bee49dfbd6548d62b9e8d3fc1852da3a7ce1bc0b85093ac",
       "collections": []
     },
     {
       "path": "tests/scene_atlas.cjs",
       "role": "test",
-      "bytes": 6474,
-      "sha256": "a2f07325f1a88879c02915aedd08f856e709d1ff7dc36c5a4b03a4b8829d0e1a",
+      "bytes": 6781,
+      "sha256": "2e6e64ad6967426a9ab5998aaa66077263a2ef05be2ce8a42a3229dec907da19",
       "collections": []
     },
     {
       "path": "tests/scene_bootstrap.cjs",
       "role": "test",
-      "bytes": 6013,
-      "sha256": "71dce825c781ee8ab88f86ee04224aaf00cb81fc5222be031b71e06373b469f1",
+      "bytes": 6453,
+      "sha256": "22cef72f4575d9c1a545284aa8eb605d54657d83ea98b3a3d83e5f09e8759de6",
+      "collections": []
+    },
+    {
+      "path": "tests/scene_delivery.cjs",
+      "role": "test",
+      "bytes": 7963,
+      "sha256": "97cd71ffe5524b191a0eb39f85943786315130bdd81f404a4efe6333ffc02cf0",
       "collections": []
     },
     {
@@ -23577,22 +23658,22 @@
     {
       "path": "tests/server_assembly.cjs",
       "role": "test",
-      "bytes": 15239,
-      "sha256": "2fd5ca63a10cd34318bd64b0a10293bdeb5be95ab03b3af6e57ef61f938d8889",
+      "bytes": 15268,
+      "sha256": "c8a26ed3fade12a23ea8162bf2ed979429d2ee28f7162fc64ea5f1628e187521",
       "collections": []
     },
     {
       "path": "tests/server_plan.cjs",
       "role": "test",
-      "bytes": 10032,
-      "sha256": "24099771c471f1a39886b020228fa3d150075a03bd8786f1a6c3f021d0f4abeb",
+      "bytes": 10161,
+      "sha256": "d3ff19a6b6bc50c077ad34b6cc9bf8c0d5ad9afdd53851d89ad14c7e64679819",
       "collections": []
     },
     {
       "path": "tests/shared_part_preview.cjs",
       "role": "test",
-      "bytes": 51403,
-      "sha256": "39b3437c006659d8db1a335a1f60f9ac9786ca35cda91b0051f25332ae7e0875",
+      "bytes": 51433,
+      "sha256": "6f5d44160c24067cbcb2c46076b0f2a345fe69c2beaa4d6215eda2880397fee2",
       "collections": []
     },
     {
@@ -23603,31 +23684,52 @@
       "collections": []
     },
     {
+      "path": "tests/site_navigation.cjs",
+      "role": "test",
+      "bytes": 11431,
+      "sha256": "06a030f5489d34998196f0e2bba5f7b3bd3d84135a04f059f1a2f89bcf60c4a0",
+      "collections": []
+    },
+    {
+      "path": "tests/site_workspace.cjs",
+      "role": "test",
+      "bytes": 19680,
+      "sha256": "c867b00b5f21efc29f562fcd5a22d3e0349a799475f1b480a8974ca0c0c2306e",
+      "collections": []
+    },
+    {
       "path": "tests/supply.cjs",
       "role": "test",
-      "bytes": 16061,
-      "sha256": "d49ff7a642d8aae914f3298cc91aee6ca27606f9f7b2e3fb88579fcd6bca1356",
+      "bytes": 16090,
+      "sha256": "a61c54c5cb72bffdb3acdbbe1523b35328078043d5d39dab78a109f190816d61",
       "collections": []
     },
     {
       "path": "tests/system_atlas.cjs",
       "role": "test",
-      "bytes": 13390,
-      "sha256": "96d7e0259f34af4c7016d437a4d21d30857da27f9cdb2fc2b0b963f9e777261a",
+      "bytes": 13594,
+      "sha256": "211ca7edf8a8ee2b920920ed9481c8ee87ff2a8a652cce72ef0f6a69d5ea861e",
       "collections": []
     },
     {
       "path": "tests/technical_atlas.cjs",
       "role": "test",
-      "bytes": 14163,
-      "sha256": "f7ed78843000884fad0e8a9da989e07a22a8060a23ecd75199377c94e247d55b",
+      "bytes": 14443,
+      "sha256": "7c53a3811f256aceb5b37cba9c42e98ca9832a899bdc9264ef608209b844ac5d",
+      "collections": []
+    },
+    {
+      "path": "tests/ui_helpers.cjs",
+      "role": "test",
+      "bytes": 1592,
+      "sha256": "fb9c73b051a20f4d9dd2a947f7147caf1004e192364f590a27e431b4dd1717e3",
       "collections": []
     },
     {
       "path": "tests/ui_skin.cjs",
       "role": "test",
-      "bytes": 11356,
-      "sha256": "d6c60ce4cd54f269edb9a022b04f648c177e29ee00865d824c0b8cc614481aaf",
+      "bytes": 12290,
+      "sha256": "7f563b56531e6fa07176884f0cf0707bdcfdadd010e8167f97d0e414abeeda39",
       "collections": []
     },
     {
@@ -23661,8 +23763,8 @@
     {
       "path": "tests/unit/test_auth.py",
       "role": "test",
-      "bytes": 4964,
-      "sha256": "a9c8862627005814bfe7b43bffdd5d55c0159871e85097d8349fe8af49f0854d",
+      "bytes": 5719,
+      "sha256": "0afea93a39e861773aa8bab34962affaf2dced7fcee6d82e70c3a1d41c8fad64",
       "collections": []
     },
     {
@@ -23682,8 +23784,8 @@
     {
       "path": "tests/unit/test_browser_shards.py",
       "role": "test",
-      "bytes": 4665,
-      "sha256": "3637c5f2ced5ea20da282a3f3cc4166ff0eb7ae2b6fbeeaacd68d59c45f06097",
+      "bytes": 4764,
+      "sha256": "cb3eb4e4facf22fa2b976d3e65cd1725847ac40ff0028d2cfd289e49ea7f1ea4",
       "collections": []
     },
     {
@@ -23794,8 +23896,8 @@
     {
       "path": "tests/unit/test_company_window.py",
       "role": "test",
-      "bytes": 13520,
-      "sha256": "67ba464131c5d12d93d9f03bdda040cc3d46b148b0a80c1f612ddccedebc9180",
+      "bytes": 14317,
+      "sha256": "563286cc5cef20882988b5d953c9ce9576a45c00b7fb28d75cf9014ef963625c",
       "collections": []
     },
     {
@@ -23824,6 +23926,27 @@
       "role": "test",
       "bytes": 23948,
       "sha256": "6a1cb7121ee283e93dc8c5b077d233f4dac89e24df5a691ba51b6a48a5e7b09b",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_customer_access.py",
+      "role": "test",
+      "bytes": 64217,
+      "sha256": "05cecb886b8282432e4f8d6bff73bd3beb031d51d5ff702de5997c0d3dd7c63b",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_customer_catalog.py",
+      "role": "test",
+      "bytes": 14413,
+      "sha256": "96b7e9e6d936b263b5c333b31520d28973e46610407c67828fb4ecb8a16c2d26",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_customer_scene.py",
+      "role": "test",
+      "bytes": 6698,
+      "sha256": "26806fdb607ad8dd2fa15c45acb8d0ce710215cc432d8636ce4ec743b53bd3bf",
       "collections": []
     },
     {
@@ -24060,8 +24183,8 @@
     {
       "path": "tests/unit/test_interface_system.py",
       "role": "test",
-      "bytes": 14386,
-      "sha256": "ac9eabb056ddc64b393a357a0df640a5848347aa103138640234465cc2f4b489",
+      "bytes": 14850,
+      "sha256": "2b9c52b4fdd9e9c2a6828ee6d99973555c56a9bdd703161dd9e1baa4db2d19f0",
       "collections": []
     },
     {
@@ -24702,6 +24825,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_site_workspace.py",
+      "role": "test",
+      "bytes": 10376,
+      "sha256": "f9f91cbbe287fb8d2ea07d6ae20e72a7e87bac1a1ac7139692b3acccb6f67625",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_snapshot_delta.py",
       "role": "test",
       "bytes": 11705,
@@ -25302,8 +25432,8 @@
     {
       "path": "web/assets/ops-forms.js",
       "role": "implementation",
-      "bytes": 8570,
-      "sha256": "b6f9d5199aa7c22dc6c8dc36128533ab5b3a5e0c12348a2b585bdbd95bac5b3e",
+      "bytes": 8632,
+      "sha256": "d8ab6c5671d3ec1bebad1f1464e2f441a313cea759a18bc13bb18c5316656d93",
       "collections": []
     },
     {
@@ -27799,8 +27929,8 @@
     {
       "path": "web/components/catalog-materials.js",
       "role": "implementation",
-      "bytes": 3130,
-      "sha256": "e24230bd91ab710e00a531313a58a8d7c607a363e8ec3ab3fce42b137f87d9f0",
+      "bytes": 3673,
+      "sha256": "98cedbc05207734a939523fce864f993ad2e0144934715fa685f2b90e5b37286",
       "collections": []
     },
     {
@@ -27834,8 +27964,8 @@
     {
       "path": "web/components/company-home.js",
       "role": "implementation",
-      "bytes": 10199,
-      "sha256": "4db5baa5fcd45de2084d8a86c411f0822338550bfb29bfdf8ec00864dc2b65ff",
+      "bytes": 10262,
+      "sha256": "f2f136f326bcb7d48a25d4767b6e6b09329c90783dc108d1de8ea71abe15a402",
       "collections": []
     },
     {
@@ -27855,15 +27985,15 @@
     {
       "path": "web/components/datacenter-model.js",
       "role": "implementation",
-      "bytes": 53816,
-      "sha256": "5d052087de7d1f80eda9ca835060e716555b33646f81433e969f81f171e3f291",
+      "bytes": 57707,
+      "sha256": "729bc5300144e4ae82193ca69aa5f74b87350af3eb7ea894a05513f693b57a40",
       "collections": []
     },
     {
       "path": "web/components/datacenter-news.js",
       "role": "implementation",
-      "bytes": 13183,
-      "sha256": "69f0bb1f531a774d72d1533ebf5d4469571b8f60adce0964f9c4509b2ea5afa9",
+      "bytes": 13401,
+      "sha256": "5c05fb91a26c526633c7b3906bfa401f928a010b7da170c32e4e5dbb17c9cd07",
       "collections": []
     },
     {
@@ -27876,8 +28006,8 @@
     {
       "path": "web/components/industry.js",
       "role": "implementation",
-      "bytes": 75791,
-      "sha256": "c116085efc6a2d0a62868b6e0f6d987ce6177fd80c9602cf5f9aa49d6ff7685a",
+      "bytes": 76603,
+      "sha256": "7190c036a92446d1e2f264f5eadf2c023f5f0d22fb9adb31023d5d1308960260",
       "collections": []
     },
     {
@@ -27911,8 +28041,8 @@
     {
       "path": "web/components/part-dossier.js",
       "role": "implementation",
-      "bytes": 7553,
-      "sha256": "6830a767301212adac1c374819eff5a38e654314d7f8acace8a02a36e9ff07fc",
+      "bytes": 9303,
+      "sha256": "5b20fb0d8dd861d6cc8bbfc187d50f1581b330105478667eedc4c35d8acd08c5",
       "collections": []
     },
     {
@@ -27932,8 +28062,8 @@
     {
       "path": "web/components/product-catalog.js",
       "role": "implementation",
-      "bytes": 32602,
-      "sha256": "6e27b7648c11f0a77fc116d71d6a72f07eb1fcbb16697996ab35ea39f439e926",
+      "bytes": 33601,
+      "sha256": "0c4aaeb74d37f2ef7e2a1cf31dd2b2b08b8371b1828a9b79fbc40fbdf36a2238",
       "collections": []
     },
     {
@@ -27960,8 +28090,8 @@
     {
       "path": "web/components/research-graph.js",
       "role": "implementation",
-      "bytes": 59214,
-      "sha256": "e288c545592ac3ca7af586042063e903b94cb5c89b74c6068d555ab5f4f6dbc5",
+      "bytes": 58038,
+      "sha256": "04f3cd7ab39c787f6b7c328a72c3371bd6affb1b83b8b39b5d2f5e5a6f5fef67",
       "collections": []
     },
     {
@@ -27990,6 +28120,13 @@
       "role": "implementation",
       "bytes": 884,
       "sha256": "f88b58d79915b50dac43972d7b2bac06decf4282701d1ed819cc51b754985db1",
+      "collections": []
+    },
+    {
+      "path": "web/components/scene-navigation.js",
+      "role": "implementation",
+      "bytes": 1623,
+      "sha256": "2c7630ca4697a6e930510887636a658e1a0ecd3051afeae508dc41bc1baa637f",
       "collections": []
     },
     {
@@ -28035,10 +28172,24 @@
       "collections": []
     },
     {
+      "path": "web/components/site-guide.js",
+      "role": "implementation",
+      "bytes": 2014,
+      "sha256": "516490170669db6c9f72d9fd06aca07f9439403b5aa1f99bf6153d8aa9b2555d",
+      "collections": []
+    },
+    {
+      "path": "web/components/site-search.js",
+      "role": "implementation",
+      "bytes": 2373,
+      "sha256": "7f213a56699799fa758ba681b449d6902ab04005d83719e6f7e9d84711216a94",
+      "collections": []
+    },
+    {
       "path": "web/components/site-shell.js",
       "role": "implementation",
-      "bytes": 10813,
-      "sha256": "d33f37d0e87cf7db4ed260aa150e8a23ff26e1a7ef8a121c9dbed4e75054b2b8",
+      "bytes": 18448,
+      "sha256": "99db425f82bdbc916059dcb890ccbac602c61614e84ca25655f83924d6754161",
       "collections": []
     },
     {
@@ -28084,6 +28235,13 @@
       "collections": []
     },
     {
+      "path": "web/components/workspace.js",
+      "role": "implementation",
+      "bytes": 3921,
+      "sha256": "f064b6d5a35277a14a4757c26ccab6be25b458bb604d23f7488e39622edff018",
+      "collections": []
+    },
+    {
       "path": "web/pages/admin/agentrepo.html",
       "role": "implementation",
       "bytes": 14566,
@@ -28100,8 +28258,8 @@
     {
       "path": "web/pages/admin/company.html",
       "role": "implementation",
-      "bytes": 2476,
-      "sha256": "5f59386bbc23c5b782e63981af8085d230afe112dacd9fd867a14a80fd495310",
+      "bytes": 2417,
+      "sha256": "5195e410999554415c94c366386ff8ad409e62b645c3741c0b3af1b9e577e035",
       "collections": []
     },
     {
@@ -28252,22 +28410,22 @@
     {
       "path": "web/pages/auth/password.html",
       "role": "implementation",
-      "bytes": 772,
-      "sha256": "4f2392928a00e7ac6ae11f36b085de9da8d8cade457c50fb014e4b678d901422",
+      "bytes": 786,
+      "sha256": "50dd03264fb3ae3020df7e2605603e2d5521dd0fae53a68549ba1ef9147a4d15",
       "collections": []
     },
     {
       "path": "web/pages/bom.html",
       "role": "implementation",
-      "bytes": 39166,
-      "sha256": "2451af5bc34eecd26903d28b9d3a541ec7973ba33c07e8703f28b25475647b63",
+      "bytes": 39871,
+      "sha256": "fc10352ea2ba83768ce4b10159907db931830f38e5415949f4cf3b394ec5423d",
       "collections": []
     },
     {
       "path": "web/pages/bom3d.html",
       "role": "implementation",
-      "bytes": 79506,
-      "sha256": "f6e83e1561c2c1627416173efa6b2d7e1c3c7c5cc28294e2da3be804005835d3",
+      "bytes": 78859,
+      "sha256": "9f38c106ab18c6de4f1056e68272d69db2a6d5130b495de821fe766d38c54bc1",
       "collections": []
     },
     {
@@ -28287,22 +28445,22 @@
     {
       "path": "web/pages/company-home.html",
       "role": "implementation",
-      "bytes": 3785,
-      "sha256": "32dea58415aa79bc415a43040864268f82b13d488d3c1f08722bd1089ebde866",
+      "bytes": 3726,
+      "sha256": "edca1000f1b4bf5556b2b12605799b0a59df797b34e4b64b34a17b53a052892a",
       "collections": []
     },
     {
       "path": "web/pages/company-products.html",
       "role": "implementation",
-      "bytes": 3629,
-      "sha256": "774ed7d5fc8a8829b83ac942de46c7e1f1e799ff5938138651871733027f39c4",
+      "bytes": 3481,
+      "sha256": "e96f1515221bee521ac72d27b53dd6ae00907b53bccbbc5187f805088ceeffae",
       "collections": []
     },
     {
       "path": "web/pages/company.html",
       "role": "implementation",
-      "bytes": 885,
-      "sha256": "827e026d8d93abb859d97ae622a7e0401f9aba362a36d152dfe5aa2c087d2070",
+      "bytes": 826,
+      "sha256": "3f012b597109a7ac5b70f6e08ea2f4f37463539367742cd0d303a76c11d80e88",
       "collections": []
     },
     {
@@ -28322,8 +28480,8 @@
     {
       "path": "web/pages/compute-catalog.html",
       "role": "implementation",
-      "bytes": 3546,
-      "sha256": "cd47d708fd4a6f6bded8e588c3c391582a6107f8ad1d6065a1ebdc6fc41ae00a",
+      "bytes": 3487,
+      "sha256": "6906b85cb5f6aa2e8176010ea47df7a9fbe4f01847895e8ad1b70df1fce1e272",
       "collections": []
     },
     {
@@ -28355,6 +28513,13 @@
       "collections": []
     },
     {
+      "path": "web/pages/guide.html",
+      "role": "implementation",
+      "bytes": 7003,
+      "sha256": "85649c1054ee6e1af7df19b0069355190aa61545d70781a41d38689604dba12c",
+      "collections": []
+    },
+    {
       "path": "web/pages/index.html",
       "role": "implementation",
       "bytes": 4153,
@@ -28364,15 +28529,15 @@
     {
       "path": "web/pages/industry.html",
       "role": "implementation",
-      "bytes": 8504,
-      "sha256": "2d6365d32f53e8350ba3c2132657685f5dc655234a6cc554f7b1f7371daa339a",
+      "bytes": 8341,
+      "sha256": "30c2be1f08c4e5e36423fb882a31cb578c9901dc3c7df8387fd082839ead39fd",
       "collections": []
     },
     {
       "path": "web/pages/ledger.html",
       "role": "implementation",
-      "bytes": 16646,
-      "sha256": "d6d91c0ceae6987b0e253b6301307ac0448085921dc5c507dbc11b2529685477",
+      "bytes": 19003,
+      "sha256": "4de0e9c42441cae6423556140381907c37312b541e2858c864b7231dba83154c",
       "collections": []
     },
     {
@@ -28392,15 +28557,15 @@
     {
       "path": "web/pages/node.html",
       "role": "implementation",
-      "bytes": 45199,
-      "sha256": "28eca7790a6d8fb08beefe2fe8c14fc55cbcd1c1273d43280e0b1df64443b667",
+      "bytes": 30265,
+      "sha256": "dcbba0281fe2098e3e23a324aab25f697efe192f8bd6c038ca899bf64bdde6c4",
       "collections": []
     },
     {
       "path": "web/pages/ops.html",
       "role": "implementation",
-      "bytes": 16214,
-      "sha256": "88968fc8fad256202d9f91144abddd94addb85797875a0da86d9b06a2390f27a",
+      "bytes": 16317,
+      "sha256": "a3335c718ffa78e462e001358816ed84f8043bc35946aab39e30e81d4583ad17",
       "collections": []
     },
     {
@@ -28413,8 +28578,8 @@
     {
       "path": "web/pages/product-catalog.html",
       "role": "implementation",
-      "bytes": 5213,
-      "sha256": "47d3850d772f6ce9834f84e03f8a312faac361e1fc9e55cd7fd89ab0d5a75a32",
+      "bytes": 5154,
+      "sha256": "45eeec8d418e4ff107ab2d1841837b7272eaa90cee728bcb53a7343b2df722e9",
       "collections": []
     },
     {
@@ -28434,50 +28599,64 @@
     {
       "path": "web/pages/rack3d.html",
       "role": "implementation",
-      "bytes": 55503,
-      "sha256": "bb639fc0ae3efb99f6d412b6cbcbb54a10761d132e9403752dfcd178a13932e2",
+      "bytes": 55757,
+      "sha256": "1e26f941f63083be4fb463225c527815b249ebfa99f19ca1dd610c9c9c4a4efa",
       "collections": []
     },
     {
       "path": "web/pages/report.html",
       "role": "implementation",
-      "bytes": 23413,
-      "sha256": "2868f0f3d4ca7ec16cb1c646d7198df57bdbc1b69675a0b027a024d26271ab51",
+      "bytes": 22569,
+      "sha256": "77ef787309ec20957fc77ae570b410238dcdc3fd99713a12bc2dea2e6f2e0d4a",
+      "collections": []
+    },
+    {
+      "path": "web/pages/research-workbench.html",
+      "role": "implementation",
+      "bytes": 45308,
+      "sha256": "1dcd9882e5a5e42d1f8c297becfbbee9e8c839f0341f2ef056c75aa5c227be5e",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026-cn.html",
       "role": "implementation",
-      "bytes": 49684,
-      "sha256": "33ad080a5f7f424af324246328d153eb831ce60c6785ddb651c2bab480d02535",
+      "bytes": 49625,
+      "sha256": "2fb2030d62d0f0e67916e684f38452e5a9dd1bb211081478d4bbe1fcdcd419ca",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026-projects.html",
       "role": "implementation",
-      "bytes": 5035,
-      "sha256": "0be85dafcec77672aecba779d1110bbb04db661699980e8c11ca892a8f28860f",
+      "bytes": 4976,
+      "sha256": "058a2e19c13dace4090ba4b6c31c63286c69f3ade3d521f5321bac0cbf9ff778",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026-sea.html",
       "role": "implementation",
-      "bytes": 75298,
-      "sha256": "2f829ab18091c7b3c45a76efe957eebca36d0e4b42c011918d638793af64ec1f",
+      "bytes": 75239,
+      "sha256": "3891e7e28cc96c3e9b1b20ca61cde180b54b1352c4b58c1b8d89f2ec145de2be",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026-us.html",
       "role": "implementation",
-      "bytes": 89047,
-      "sha256": "f76d6b26dc15b98470882da2e30d1ac68a18feb9fdfa2d1686ad85ee93cd604b",
+      "bytes": 88988,
+      "sha256": "03e0d3acb26690de6ea7f6aaf38fecf38ae7202f919b8423f2503a8d3a4fa590",
       "collections": []
     },
     {
       "path": "web/pages/research/data-centers-2026.html",
       "role": "implementation",
-      "bytes": 125589,
-      "sha256": "f5f1620ea6bee802f2f139a724839edc3d2ff8dbae8252220a65dcaf4abe3e6e",
+      "bytes": 125530,
+      "sha256": "0c3c1cfdf2c950329cd6e2ef59ce7fb0d9b629c7229385f7b1701a4116cab706",
+      "collections": []
+    },
+    {
+      "path": "web/pages/search.html",
+      "role": "implementation",
+      "bytes": 1116,
+      "sha256": "014c703facc44a0813841ab8e672bf954fe9c340785bd432cf3ea2cb7c77f678",
       "collections": []
     },
     {
@@ -28516,6 +28695,13 @@
       "collections": []
     },
     {
+      "path": "web/pages/workspace.html",
+      "role": "implementation",
+      "bytes": 1443,
+      "sha256": "1919ed8b90efe4fa9f297034f9302fbbececfbc66697c2c5b9ae3711d1d07f68",
+      "collections": []
+    },
+    {
       "path": "web/robots.txt",
       "role": "project_config",
       "bytes": 173,
@@ -28525,8 +28711,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 48739,
-      "sha256": "9c1f7cd22c86208a03d44a2c8d0364f59c69b412649b32833611b422ae327a26",
+      "bytes": 49242,
+      "sha256": "cf53f3561dd29c395ed0de1b83a8761a55579c4c4401bf28a583c63d883fae8b",
       "collections": []
     },
     {
@@ -28553,8 +28739,8 @@
     {
       "path": "web/themes/industry.css",
       "role": "implementation",
-      "bytes": 29664,
-      "sha256": "ee4335cb694c09b484f7c3ab2266f221f2943c1ff8623e8520c44df0f6a2700d",
+      "bytes": 30329,
+      "sha256": "fec728b8636c3799fb8e45d3b438cb5e1e0257ad15c2999a143fcb681bdea8cc",
       "collections": []
     },
     {
@@ -28574,8 +28760,8 @@
     {
       "path": "web/themes/site-skin.css",
       "role": "implementation",
-      "bytes": 30714,
-      "sha256": "5dc38779be04acd7c4a33e6491fad5fed74f21d073f0e5af1a34c57131bbfb91",
+      "bytes": 41395,
+      "sha256": "3756cbfa8c8c800adc91a58cbdfce4c9e4409c0d8bb3a332a34935c7a6c1045a",
       "collections": []
     },
     {
@@ -28583,6 +28769,13 @@
       "role": "implementation",
       "bytes": 9063,
       "sha256": "d2b3d5dad342d43550008b106a1fb94592e7d60faa3012591b3af9364c72874e",
+      "collections": []
+    },
+    {
+      "path": "web/themes/workspace.css",
+      "role": "implementation",
+      "bytes": 2612,
+      "sha256": "81324ca2b179341a969b57d94d152ec3c32ee5283883889f7409fe88d2780275",
       "collections": []
     }
   ],
@@ -28593,13 +28786,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 436,
-    "implementation": 371,
+    "implementation": 383,
     "normative": 15,
-    "project_config": 777,
+    "project_config": 779,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 30,
-    "supporting_document": 240,
-    "test": 226
+    "supporting_document": 241,
+    "test": 236
   }
 }

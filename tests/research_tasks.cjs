@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Real durable mutations run against an isolated runtime, never the source tree. */
 const assert = require('node:assert/strict');
 const {spawn,execFileSync} = require('node:child_process');
@@ -118,7 +119,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(validation.offline_valid,true);
 
     await page.locator('#new-package').click();
-    for(const [name,value] of Object.entries({title:'测试城市定位补充',region:'欧洲',scope:'测试工作包范围',sources:'运营商地点目录'}))await page.locator('[name="'+name+'"]').fill(value);
+    for(const [name,value] of Object.entries({title:'测试城市定位补充',region:'欧洲',scope:'测试工作包范围',sources:'运营商地点目录'}))await page.locator('#package-dialog [name="'+name+'"]').fill(value);
     await page.locator('#save-package').click();
     await page.locator('#package-dialog').waitFor({state:'hidden'});
     await page.locator('#package-rows tr').nth(6).waitFor();
@@ -134,7 +135,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     if(process.env.UI_TASKS_SCREENSHOT_PREFIX){
       for(const mode of ['light','dark'])for(const width of [1440,390,320]){
         await page.setViewportSize({width,height:1000});
-        await page.locator('#ui-appearance').selectOption(mode);
+        await setAppearance(page, mode);
         await page.evaluate(()=>scrollTo(0,0));
         await page.screenshot({path:process.env.UI_TASKS_SCREENSHOT_PREFIX+'-'+mode+'-'+width+'.png',fullPage:true});
       }

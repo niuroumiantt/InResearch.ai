@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Startup definitions recover without constructing a second scene or changing data. */
 const assert = require('node:assert/strict');
 const {chromium} = require('playwright');
@@ -19,16 +20,18 @@ const {chromium} = require('playwright');
    for(const width of [1280,360]) {
     await page.setViewportSize({width,height:900});
     for(const mode of ['light','dark']) {
-     await page.locator('#ui-appearance').selectOption(mode);
+     await setAppearance(page, mode);
      assert.ok(await status.getByRole('button',{name:'重试',exact:true}).isVisible());
      const box=await status.boundingBox();assert.ok(box.x>=0 && box.x+box.width<=width);
      assert.equal(await status.getAttribute('aria-busy'),'false');
-     assert.equal(await page.getByRole('link',{name:'爆炸图',exact:true}).first().isVisible(),true);
+     await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
+     assert.equal(await page.locator('#ui-skinbar .ui-home').isVisible(),true,'shared navigation remains usable while scene data is unavailable');
     }
    }
    await page.setViewportSize({width:1280,height:900});
    failure=false;await status.getByRole('button',{name:'重试',exact:true}).click();
-   await page.locator('#dossier .rg-3d-panel[data-state=ready]').waitFor();
+   await page.locator('#dossier .insp canvas').waitFor();
+   assert.equal(await page.locator('#dossier .rg-3d-panel').count(),0,'delivery recovery does not initialize internal research');
    assert.equal(await page.locator('.rg-scene-startup').count(),0);
    assert.equal(await page.locator('.hud').evaluate(el=>el.inert),false);
    assert.equal(await page.locator('#dossier canvas').count(),1);
@@ -69,8 +72,9 @@ const {chromium} = require('playwright');
     check(recovered[0].records[0].id==='retry' && control.inert,'retry changed prior control state');
    } finally {globalThis.fetch=originalFetch;control.remove();}
   });
-  // Match the actual anonymous production gate: products redirects to a login HTML page.
-  await page.route('**/data/products.json',route=>route.fulfill({status:302,headers:{location:'/login'},body:''}));
+  // The delivered scene never attempts the restricted product registry; unknown stays unknown.
+  let productRequests=0;
+  await page.route('**/data/products.json',route=>{productRequests++;return route.fulfill({status:302,headers:{location:'/login'},body:''});});
   await page.goto(process.env.UI_BASE_URL+'/bom3d.html?d=compute&p=server');
   await page.locator('#dossier .insp canvas').waitFor();
   assert.equal(await page.locator('.rg-scene-startup').count(),0);
@@ -79,7 +83,8 @@ const {chromium} = require('playwright');
   assert.ok((await page.locator('#domainParts .covb').allTextContents()).every(text=>text==='—/4'));
   await page.locator('#covChip').click();assert.equal(await page.locator('#covLegend').isVisible(),false);
   assert.equal(await page.locator('.hud').evaluate(el=>el.inert),false);
+  assert.equal(productRequests,0,'delivery does not probe the private product registry');
   assert.deepEqual(errors,[]);
-  console.log('PASS both scene startup HTTP/shape failures → retry → real research/renderer ready; controls/navigation, 8 appearance/width combinations, timeout, sibling cancellation, double retry, stale batch and prior inert state');
+  console.log('PASS both scene startup HTTP/shape failures → retry → real delivery renderer ready; controls/navigation, 8 appearance/width combinations, timeout, sibling cancellation, double retry, stale batch and prior inert state; zero private product probes');
  } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -23,12 +23,12 @@ $('company-links').innerHTML=[external(c.website&&(/^https?:/.test(c.website)?c.
 const facts=[['成立',c.founded_year?c.founded_year+' 年':'未登记'],['总部',c.hq_address||c.hq_country||'未登记'],['员工',c.employees||'未登记'],['首席执行官',c.ceo||'未登记']];
 $('company-facts').innerHTML=facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}${k==='员工'&&c.employees_as_of?`<small>截至 ${esc(c.employees_as_of)}</small>`:''}</dd></div>`).join('');
 $('profile-source').innerHTML=c.profile_source?`公司资料：${external(c.profile_source,'官方披露')} · 披露期 ${esc(c.profile_as_of||'未登记')}`:'公司基本资料以已登记信息为准；空缺项待核对官方披露。';
-for(const id of ['catalog-link','all-products'])setLink(id,product({scope:'all'}));setLink('research-link',product({scope:'all'}));
 const catalog=data.catalog, sum=catalog.summary;
+for(const id of ['catalog-link','all-products','research-link']){const link=$(id);link.hidden=!catalog.registered;if(catalog.registered)setLink(id,product({scope:'all'}));else link.removeAttribute('href');}
 $('catalog-summary').innerHTML=sum?[
  ['已收录型号',sum.named_products],['有规格的型号',sum.named_with_tables],['规格原表',sum.specification_tables]
 ].map(([label,n])=>`<div><strong>${esc(n)}</strong><span>${label}</span></div>`).join(''):'';
-$('catalog-status').textContent=sum?`来自已接收产品数据库 · ${sum.entities} 个目录实体 · 更新 ${String(catalog.generated_at||'').slice(0,10)}`:catalog.status==='error'?'产品资料读取失败，请稍后刷新。':catalog.registered?'等待产品资料交付。':'此公司尚未接通产品资料库。';
+$('catalog-status').textContent=sum?`来自已接收产品数据库 · ${sum.entities} 个目录实体 · 更新 ${String(catalog.generated_at||'').slice(0,10)}`:catalog.status==='error'?'产品资料读取失败，请稍后刷新。':catalog.registered?'等待产品资料交付。':'尚未登记产品目录。';
 $('product-lines').innerHTML=data.product_lines.map((v,i)=>{
  const filter=v.filter||(v.id?{line:v.id,scope:'all'}:{q:v.query||v.name});
  const count=typeof v.entities==='number'?(v.entities?`${v.entities} 个条目${typeof v.named_with_tables==='number'?` · ${v.named_with_tables} 个型号有规格`:''}`:'尚未收录此类资料'):'等待资料关联';

@@ -1,10 +1,11 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
 (async()=>{const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});try{
  const page=await browser.newPage({viewport:{width:1280,height:900}});const errors=[];let fullRequests=0;page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/api/news',r=>r.fulfill({json:{reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[{title:'Datacenter opens',title_zh:'数据中心开业',publisher:'Example',published_at:Date.parse('2026-09-06T02:30:00Z'),url:'https://example.com/news',category:'数据中心'},{title:'unsafe',url:'javascript:alert(1)'},...Array.from({length:15},(_,i)=>({title:'Data center '+i,title_zh:'数据中心 '+i,url:'https://example.com/'+i,published_at:Date.parse(i===0?'2026-09-05T16:10:00Z':'2026-09-05T15:50:00Z')}))]}}}));
  await page.route('**/api/research',r=>{fullRequests++;return r.fulfill({status:500,body:'unexpected full snapshot'});});
- for(const file of ['node.html']){  // 2026-09-28：管理页不再重复新闻时间线
+ for(const file of ['research-workbench.html']){  // 2026-09-28：管理页不再重复新闻时间线
  await page.goto((process.env.UI_BASE_URL||'http://127.0.0.1:8882')+'/'+file);
  await page.getByRole('link',{name:'数据中心开业',exact:true}).waitFor();
  assert.equal(await page.locator('.dc-news a').count(),16);
@@ -15,13 +16,14 @@ const {chromium}=require('playwright');
  assert.equal(await page.locator('.dc-news-time').first().getAttribute('datetime'),'2026-09-06T02:30:00.000Z');
  assert.equal(await page.locator('.dc-news-timezone').textContent(),'北京时间');
  if(file==='index.html'){await page.locator('.dc-news').screenshot({path:'/tmp/news-timeline.png'});}
- for(const mode of ['dark','light'])await page.locator('#ui-appearance').selectOption(mode);
+ for(const mode of ['dark','light'])await setAppearance(page, mode);
  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.setViewportSize({width:1280,height:900});
  }
  assert.equal(fullRequests,0);assert.deepEqual(errors,[]);console.log('PASS shared research news timeline: scrolling, titles, safe links, skins, mobile');
- const home=await browser.newPage({viewport:{width:1440,height:1000}}),homeErrors=[];let identityRequests=0,markRequests=0;
+ const home=await browser.newPage({viewport:{width:1440,height:1000}}),homeErrors=[];let identityRequests=0,navigationRequests=0,markRequests=0;
  home.on('pageerror',e=>homeErrors.push(e.message));
  await home.route('**/api/whoami',r=>{identityRequests++;return r.fulfill({json:{role:'admin'}});});
+ await home.route('**/api/navigation?*',r=>{navigationRequests++;return r.continue();});
  await home.route(/\/api\/news\/marks?$/,r=>{markRequests++;return r.fulfill({json:{marks:{}}});});
  await home.route(/\/api\/news(?:\?.*)?$/,r=>r.fulfill({json:{reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[
   {title:'A selected campus',title_zh:'已精选园区新闻',url:'https://example.com/selected',cluster_id:77,editorial_pick:true},
@@ -51,11 +53,11 @@ const {chromium}=require('playwright');
  assert.equal(await home.getByRole('link',{name:'危险脚本链接',exact:true}).count(),0);assert.equal(await home.getByRole('link',{name:'含有凭据的链接',exact:true}).count(),0);
  assert.equal(await home.getByRole('link',{name:'不混入新闻的研究副本',exact:true}).count(),0);
  assert.ok(await home.locator('.dc-news-list').evaluate(el=>el.scrollHeight>el.clientHeight),'compact headlines scroll within the map-height panel');
- assert.equal(identityRequests,1,'only the shared navigation checks identity; headlines do not');assert.equal(markRequests,0,'headlines do not request member marks');
- for(const theme of ['dark','light']){await home.locator('#ui-appearance').selectOption(theme);await home.setViewportSize({width:390,height:844});assert.ok(await home.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ assert.equal(navigationRequests,1,'the shared shell gets identity and menu from the one authorized projection');assert.equal(identityRequests,0,'headlines do not request a separate identity');assert.equal(markRequests,0,'headlines do not request member marks');
+ for(const theme of ['dark','light']){await setAppearance(home, theme);await home.setViewportSize({width:390,height:844});assert.ok(await home.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
  assert.deepEqual(homeErrors,[]);await home.close();
  console.log('PASS homepage headlines: verified inews story/search links, original sources, no metadata or mark requests, mobile');
- for(const file of ['node.html','']){
+ for(const file of ['research-workbench.html','']){
  const race = await browser.newPage();
  await race.addInitScript(()=>{
    const originalFetch=window.fetch, originalInterval=window.setInterval;
