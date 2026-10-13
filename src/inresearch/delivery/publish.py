@@ -46,13 +46,16 @@ def change_marker(data, state, repo):
         return None  # Unavailable trigger never suppresses a normal publication.
 
 
-def post_snapshot(request):
+def post_snapshot(request, max_response_bytes=4096):
     """Retry short deployment/transport interruptions within one bounded 240-second budget."""
     deadline = time.monotonic() + 240
     for attempt in range(1, 4):
         try:
             with urllib.request.build_opener(NoRedirect).open(request, timeout=max(.1, deadline - time.monotonic())) as response:
-                return json.loads(response.read(4096)), attempt
+                raw = response.read(max_response_bytes + 1)
+                if len(raw) > max_response_bytes:
+                    raise ValueError('receiver response exceeds bounded limit')
+                return json.loads(raw), attempt
         except urllib.error.HTTPError as error:
             detail = error.read(2000).decode('utf-8', 'replace')
             if error.code not in (502, 503, 504) or attempt == 3:
@@ -64,6 +67,49 @@ def post_snapshot(request):
         if deadline - time.monotonic() <= delay:
             raise ValueError('snapshot publication retry budget exhausted')
         time.sleep(delay)
+
+
+def transport_payload(payload, repo):
+    """Before declaring an oversize snapshot, apply the receiver's exact schema.
+
+    Raw export contains local projection fields that the receiver already drops.
+    Keep originals/reports unchanged; this removes no accepted evidence or claim.
+    """
+    document = encoded(payload).encode('utf-8')
+    if len(document) > commands.SNAPSHOT_MAX_BYTES:
+        from inresearch.knowledge import registry as research
+        payload = research.candidate_snapshot(payload,
+            research.read_json(repo / 'framework/research_graph.json'),
+            research.read_json(repo / 'framework/research_questions.json'))
+        payload.pop('received_at', None)  # Only the receiver timestamps reception.
+        document = encoded(payload).encode('utf-8')
+    return payload, document
+
+
+def post_incremental(payload, destination, token, state, repo):
+    """Resume from receiver document hashes; only complete batch ACKs advance."""
+    from inresearch.delivery import snapshot_delta
+    from inresearch.knowledge import registry as research
+    normalized = research.candidate_snapshot(payload,
+        research.read_json(repo / 'framework/research_graph.json'),
+        research.read_json(repo / 'framework/research_questions.json'))
+    def request(value, limit=4096):
+        body = gzip.compress(snapshot_delta.encoded(value), compresslevel=6, mtime=0)
+        req = urllib.request.Request(destination, data=body, method='POST', headers={
+            'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Authorization': 'Bearer ' + token})
+        return post_snapshot(req, max_response_bytes=limit)[0]
+    remote = request({'operation': 'candidate-manifest-v1'}, snapshot_delta.MAX_MANIFEST_BYTES)
+    base = remote.get('base_generated'); applied = 0; result = None
+    for ids, grouped in snapshot_delta.batches(normalized, remote):
+        result = request(snapshot_delta.envelope(normalized, ids, grouped, base))
+        if (result.get('ok') is not True or result.get('applied_documents') != len(ids)
+                or not isinstance(result.get('generated'), str)):
+            raise ValueError('receiver did not acknowledge exact candidate delta')
+        base = result['generated']; applied += len(ids)
+        atomic_json(state / 'publish-incremental-status.json', {
+            'generated': base, 'received_at': result.get('received_at'),
+            'applied_documents_this_attempt': applied, 'candidate_only': True})
+    return {**result, 'incremental_documents': applied}
 
 
 def main(argv=None):
@@ -134,9 +180,19 @@ def main(argv=None):
             payload['reader']['external_overlay'] = snapshot_overlay.overlay(
                 payload, snapshot_overlay.load_directory(external), allowed,
                 object_resolver(registry['objects'], registry.get('legacy_root_prefixes')))
-        document = encoded(payload).encode('utf-8')
+        payload, document = transport_payload(payload, Path(os.environ.get('READER_REPO_ROOT', project_root())))
         if len(document) > commands.SNAPSHOT_MAX_BYTES:
-            raise ValueError('snapshot exceeds receiver limit; incremental export is required')
+            result = post_incremental(payload, destination, token, state,
+                                      Path(os.environ.get('READER_REPO_ROOT', project_root())))
+            status = {'published': now_iso(), 'status': 'ok', 'bytes': len(document),
+                      'documents': result['documents'], 'received_at': result['received_at'],
+                      'transport': 'candidate-delta-v1',
+                      'incremental_documents': result['incremental_documents']}
+            atomic_json(state / ('publish-relay-status.json' if args.snapshot else 'publish-status.json'), status)
+            if args.if_changed and marker is not None:
+                atomic_json(trigger_path, {'marker': marker, 'acknowledged_at': time.time()})
+            print(encoded(status))
+            return 0
         # At 65.7 MB of JSON (2026-09-28) the plain body was 98 % of the 64 MiB wire limit.
         body = gzip.compress(document, compresslevel=6, mtime=0)
         if len(body) > commands.SNAPSHOT_WIRE_MAX_BYTES:
