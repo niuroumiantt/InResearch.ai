@@ -40,6 +40,8 @@ inresearch.ai 交付一件东西：**一座 AI 数据中心，可以被追问到
 - 采集：`framework/tco_factors.json` + `bom.json` + `site_rights.json` + `part_fetch.json` → `python3 manage.py targets --refresh` → `framework/tco_targets.json`；`framework/supply_contract.json`。
 - 事实：`data/prices.json`、`data/facts.json`、`framework/indicators.json`、`data/products.json`、`data/companies.json`、`data/research_knowledge.json`，每条记录带 `node` 与 `variable_class`。
 
+观察完整性另用 `framework/observation_checklist.json`，通用数据中心与真实园区共用十二角度58项检查；保留原有3／4／5／6职责，具体执行与限制见03、06。此入口只补观察覆盖与报告信息去向，不授予采集接通、研究采用或模型参数资格。
+
 ## 保持不变的纪律
 
 `01_data_standards.md` 与 `02_knowledge_format.md` 的口径、容量/用电/金额/需求模型边界、官方未披露容量不推算、跨中外口径、独立核验与 C3 采用要求保持。视图层不填估值：有值写"数值 + 时点 + 队 · 目标行"，无值写"缺 · 待某队 · 行 ID · 到期"，假设标"假设"，登记数标"登记数"，推算标"推算"。自动深读不自动创建正式采用；数据只留不删，原件不随缓存或任务 TTL 清理。

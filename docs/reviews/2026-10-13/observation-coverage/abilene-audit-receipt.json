@@ -1,0 +1,130 @@
+{
+  "site_id": "us-tx-abilene",
+  "scope": "Abilene原园区；正文及时间线、公开计算表五个工作表、方法与Mortenson关联页；附件和图像未读部分逐项保留。只登记候选和缺口，不采用新事实。",
+  "checklist_version": "2026.10.13.1",
+  "checklist_sha256": "d8b472fc2fab5facc4039750970c07cce8258b5ffdf438791663ac6ecb885759",
+  "input_sha256": "3386134031ea43e3e26dc219c63941b377d85f5540b99808f162f34187f2b6f6",
+  "checks_total": 58,
+  "angles_total": 12,
+  "inventory_units": 132,
+  "item_counts": {
+    "anomaly": 3,
+    "candidate": 124,
+    "excluded": 0,
+    "existing_observation": 2,
+    "not_applicable": 0,
+    "not_checked": 1,
+    "unknown": 23,
+    "unread_attachment": 2
+  },
+  "disposition_check": "passed_for_declared_inventory",
+  "report_exhaustive": "not_certified",
+  "source_bytes_verified": true,
+  "formal_adoptions": 0,
+  "model_parameters_verified": 0,
+  "published": false,
+  "limitations": [
+    "本文本与CSV覆盖审计不等于全文研究C3、事实采用或模型验证",
+    "两份PDF和原始卫星／无人机图像本轮未读，未对所有递归引用穷尽检索",
+    "所有工作表逐行提取，仅登记为候选；CSV为服务器返回值，不执行或认证原公式",
+    "正文网页更新日与历史原件版本不同，保留已有观察和原SHA，不自动替换",
+    "一般参数表含其他设备参数，不证明Abilene采用；已有与候选均须匹配范围和时间",
+    "六队责任由现行合同映射；未接通状态不制造到期日或执行成功",
+    "同源容量、算力和成本推导不能重复计作独立证据"
+  ],
+  "sources": [
+    {
+      "id": "body",
+      "url": "https://samaritan-research.org/data/data-centers/satellite-explorer/OpenAIStargateAbilene",
+      "status": "checked",
+      "sha256": "d0e4e8d1248671d25a77d11286698db88eadcbdb66c44602a44bde7bd0debe2d",
+      "text_sha256": "fb5ce3f385778802b0e469fa50d73fd8c30c94a480f493e9fa62e1316c43570d",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    },
+    {
+      "id": "timeline",
+      "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/edit?usp=sharing",
+      "status": "checked",
+      "sha256": "7e94dd2a8465676746e32d313b67e247ed3d376fc6fd3a56d2ca5b7bb4fba9e9",
+      "text_sha256": "795d966119adb19ab003f102c36246d176773cdfbfd4fd3fdb096ac9901656fd",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    },
+    {
+      "id": "method",
+      "url": "https://samaritan-research.org/data/data-centers-documentation/methodology",
+      "status": "checked",
+      "sha256": "b5bf1b9e371a6faf2b9873a44e338188ca010ee867865132f6ce2b09dd5e10c6",
+      "text_sha256": "2a29ba5f6fe303b62df2abedceece5e2c46e6f8143171a726579c7fa38193624",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    },
+    {
+      "id": "mortenson",
+      "url": "https://www.mortenson.com/projects/abilene-data-center-development",
+      "status": "checked",
+      "sha256": "171b183bd51a9a5abf8dc70518411dc4d7fcf376c2abc359af022d311afa656d",
+      "text_sha256": "3742d4f7dd8839ccafed7a34254e6bd7494daa22e795562c2003f8e2ebe41777",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    },
+    {
+      "id": "impact",
+      "url": "https://cdn.prod.website-files.com/6855c1aa175582ee23e0aa19/68710273a71bb7c11049ba28_Crusoe_Impact_Report_2024.pdf",
+      "status": "unread_attachment",
+      "checked_scope": "未读取PDF正文",
+      "reason": "附件本轮原件获取未在约三分钟墙钟预算内完成；整体请求已终止；未保存完整PDF，不判定无权限或来源不存在"
+    },
+    {
+      "id": "permit",
+      "url": "https://drive.google.com/uc?export=download&id=1FgfX6hqojlBtqNXJHjzJmnwWAMx4_M0b",
+      "status": "unread_attachment",
+      "checked_scope": "未读取PDF正文",
+      "reason": "附件本轮原件获取未在约三分钟墙钟预算内完成；整体请求已终止；未保存完整PDF，不判定无权限或来源不存在"
+    },
+    {
+      "id": "chip-quantities",
+      "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Chip+quantities",
+      "status": "checked",
+      "sha256": "b086c23c514eb92534572d50d0929e20496c8782bf0c8fe4be2ea19f3652f3bc",
+      "text_sha256": "4709f93c54dfc8e1f63a69580e1374a6cd021f0b4c69c886272132fab21422f6",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    },
+    {
+      "id": "calculations",
+      "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Calculations",
+      "status": "checked",
+      "sha256": "75965e90307fe26671cd2ec404db9258374354476f0192d9f6fb6467a241d1b4",
+      "text_sha256": "b4a7b98f44b710673e35b7ec8a99f7b3b6b7006355950d047fc1d579f35b5f20",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    },
+    {
+      "id": "parameters",
+      "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Parameters",
+      "status": "checked",
+      "sha256": "ebc6e22a5b15e57fca65d7382668a214b6d264c38ecd96eff631277264a29543",
+      "text_sha256": "5e427b1c0566bb62461017cbb1018b10dbd2f0bfea7064bbc34af7dc39be133f",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    },
+    {
+      "id": "cooling-quantities",
+      "url": "https://docs.google.com/spreadsheets/d/197BW-5tHutOzJ_LTv990eCO_M8nUXT2t1nl--UfMIUk/gviz/tq?tqx=out%3Acsv&sheet=Cooling+quantities",
+      "status": "checked",
+      "sha256": "fd04fb82d60d9fe1cabc90645bf1903455002e866217e7eff2d500297f1165ff",
+      "text_sha256": "f8d816672316c2a3a6154c147e3d3f1ca8a4396ee8c8bbc3677dfcc1dfe2ab9d",
+      "checked_scope": "保存原始字节及文字／单元格值；正文相关段落及表格条目逐项登记，不执行公式、不认证每条来源陈述",
+      "reason": "本轮已取得原件；机器文本抽取与语义／研究采用分别表达"
+    }
+  ],
+  "artifacts_sha256": {
+    "audit-input.json": "5c012cb604201814012f949e4bd188f867c7967090eb5f88bf13a389abf7b463",
+    "audit-result.json": "dc0ce89182c910017ba12a895274c89d42d1529548c62c95fbf33408f6f8e2d7",
+    "audit-result.html": "5e29d13626a4fff304a498cf6545d25495be9db3cc03eb6fa7c6b45329d351eb"
+  },
+  "tests": "本地8项新增测试及30项相关组合回归成功；strict零warning、registry有效、governance通过；未跑全套CI、未部署",
+  "model_implementation": "paused_pending_observation_review; earlier local draft not deployed"
+}

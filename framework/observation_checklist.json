@@ -1,0 +1,1060 @@
+{
+  "schema_version": 1,
+  "version": "2026.10.13.1",
+  "role": "cross_cutting_observation_checks",
+  "not_a_dispatch_axis": true,
+  "architecture": {
+    "objects": [
+      "generic_dc",
+      "site"
+    ],
+    "structural_source": "framework/bom.json",
+    "variable_classes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "accounts_source": "data/datacenter_model.json",
+    "process_source": "framework/04_reading_scoring_standard.md",
+    "provider_source": "framework/supply_contract.json",
+    "rule": "十二角度是可多标签的观察完整性检查；不替代唯一骨架、三账、四问四段、五类变量和六队；检查项不是新增模型派工ID。"
+  },
+  "source_requirements": [
+    "native_source_version",
+    "locator",
+    "scope",
+    "effective_time_or_unknown",
+    "observation_vs_derivation",
+    "destination",
+    "limitations"
+  ],
+  "angles": [
+    {
+      "id": "identity",
+      "label": "对象与空间范围",
+      "question_ids": [
+        "M01-Q01",
+        "M05-Q01"
+      ],
+      "field_refs": [
+        "site:site_id",
+        "site:aliases",
+        "site:parcel_ids",
+        "site:coordinate_source",
+        "site:identity_scope"
+      ],
+      "source_teams": [
+        "fetchstat",
+        "fetchfilings",
+        "inews"
+      ],
+      "variable_classes": [
+        1,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "空间边界与楼栋身份",
+        "面积的范围及测量依据"
+      ],
+      "checks": [
+        {
+          "id": "identity.1",
+          "question": "身份、边界与别名",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "identity.2",
+          "question": "分期、楼栋与空间包含",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "identity.3",
+          "question": "面积、坐标及定位精度",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "identity.4",
+          "question": "分析主体与包含／排除范围",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "capacity",
+      "label": "容量与交付状态",
+      "question_ids": [
+        "M01-Q03",
+        "M02-Q06",
+        "M15-Q02"
+      ],
+      "field_refs": [
+        "site:capacity_it_mw",
+        "site:capacity_facility_mw",
+        "site:capacity_planned_it_mw",
+        "site:capacity_it_mw_by_status"
+      ],
+      "source_teams": [
+        "fetchstat",
+        "fetchfilings",
+        "inews"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        4
+      ],
+      "proposed_fields": [
+        "批准、接入、可用与签约容量的独立语义"
+      ],
+      "checks": [
+        {
+          "id": "capacity.1",
+          "question": "规划／批准／接入容量",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "capacity.2",
+          "question": "建成／可用／运行容量",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "capacity.3",
+          "question": "已上架／签约容量",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "capacity.4",
+          "question": "IT／设施／发电／制冷口径与区间",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "configuration",
+      "label": "现场设备配置",
+      "question_ids": [
+        "M06-Q04",
+        "OBJ-rack-frame-interfaces"
+      ],
+      "field_refs": [
+        "model:it_class",
+        "model:redundancy",
+        "model:gpus_per_mw"
+      ],
+      "source_teams": [
+        "fetchspec",
+        "fetchfilings",
+        "fetchreports"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "园区资产／配置实例到通用节点和产品的关系"
+      ],
+      "checks": [
+        {
+          "id": "configuration.1",
+          "question": "计算、内存与存储型号数量",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "configuration.2",
+          "question": "网络型号、链路与拓扑",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "configuration.3",
+          "question": "供配电与备用设备",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "configuration.4",
+          "question": "机房散热与室外冷源",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "configuration.5",
+          "question": "配置状态、共享、备用与包含关系",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "workload",
+      "label": "算力与工作负载",
+      "question_ids": [
+        "M03-Q06",
+        "M03-Q07",
+        "M13-Q09"
+      ],
+      "field_refs": [
+        "model:tokens_per_gpu_sec",
+        "model:gpu_utilization",
+        "metric:mfu_rate",
+        "metric:checkpoint_throughput"
+      ],
+      "source_teams": [
+        "fetchreports",
+        "fetchspec",
+        "fetchfilings"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "园区算力观察与工作负载测试条件"
+      ],
+      "checks": [
+        {
+          "id": "workload.1",
+          "question": "训练／推理及业务用途",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "workload.2",
+          "question": "理论性能与精度、稀疏性",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "workload.3",
+          "question": "实测吞吐、时延与工作负载条件",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "workload.4",
+          "question": "等效算力与折算基准",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "workload.5",
+          "question": "利用率和有效计算开销",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "efficiency",
+      "label": "运行与资源效率",
+      "question_ids": [
+        "M08-Q04",
+        "M08-Q07",
+        "M03-Q06"
+      ],
+      "field_refs": [
+        "site:pue",
+        "site:wue_l_per_kwh_it",
+        "site:electricity_consumption_mwh",
+        "site:water_consumption_m3",
+        "site:water_withdrawal_m3",
+        "site:water_use_m3_per_day"
+      ],
+      "source_teams": [
+        "fetchfilings",
+        "fetchreports",
+        "fetchstat"
+      ],
+      "variable_classes": [
+        2,
+        4
+      ],
+      "proposed_fields": [
+        "负载时序、运行工况及峰值效率定义"
+      ],
+      "checks": [
+        {
+          "id": "efficiency.1",
+          "question": "期间能耗及负载曲线",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "efficiency.2",
+          "question": "设计／峰值／期间PUE",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "efficiency.3",
+          "question": "WUE、取水与耗水边界",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "efficiency.4",
+          "question": "闲置功耗及效率曲线",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "efficiency.5",
+          "question": "气候、温湿度及运行工况",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "resources",
+      "label": "资源与外部连接",
+      "question_ids": [
+        "M04-Q01",
+        "M04-Q07",
+        "M05-Q06"
+      ],
+      "field_refs": [
+        "site:utility",
+        "site:power_status",
+        "site:power_supplier",
+        "site:water_supplier",
+        "site:network_provider",
+        "model:energy_quota_mw"
+      ],
+      "source_teams": [
+        "fetchstat",
+        "fetchfilings",
+        "inews"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "接入、资源合同与许可条件记录"
+      ],
+      "checks": [
+        {
+          "id": "resources.1",
+          "question": "电网接入及供电合同",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resources.2",
+          "question": "水权、水源和供水能力",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resources.3",
+          "question": "网络接入、带宽和路由",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resources.4",
+          "question": "燃料、自备及备用能源",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resources.5",
+          "question": "审批权利及资源约束",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "market",
+      "label": "市场与客户需求",
+      "question_ids": [
+        "M02-Q03",
+        "M02-Q07",
+        "M03-Q01"
+      ],
+      "field_refs": [
+        "metric:dc_vacancy_rate",
+        "metric:hyperscaler_lease_ratio",
+        "metric:contract_to_full_load_months",
+        "site:tenant",
+        "site:end_user"
+      ],
+      "source_teams": [
+        "fetchreports",
+        "fetchfilings",
+        "fetchquotes"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "区域供应／吸纳时序与园区经营容量"
+      ],
+      "checks": [
+        {
+          "id": "market.1",
+          "question": "市场存量及新增供应",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "market.2",
+          "question": "可供／空置／预租容量",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "market.3",
+          "question": "签约、吸纳、取消与上架",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "market.4",
+          "question": "客户结构与集中度",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "market.5",
+          "question": "地区需求、价格和交易口径",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "delivery",
+      "label": "建设与供应链",
+      "question_ids": [
+        "M09-Q01",
+        "M09-Q03",
+        "M08-Q03"
+      ],
+      "field_refs": [
+        "site:status",
+        "site:status_history",
+        "model:construction_years",
+        "model:permit_months",
+        "model:gate_wait_years",
+        "metric:gpu_lead_time"
+      ],
+      "source_teams": [
+        "inews",
+        "fetchstat",
+        "fetchfilings",
+        "fetchspec",
+        "fetchreports"
+      ],
+      "variable_classes": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "逐分期里程碑和设备采购替换关系"
+      ],
+      "checks": [
+        {
+          "id": "delivery.1",
+          "question": "清场／施工／安装／调试／运行节点",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "delivery.2",
+          "question": "计划、实际与预期时间",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "delivery.3",
+          "question": "采购交期、供货批次和瓶颈",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "delivery.4",
+          "question": "延期原因及前后依赖",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "delivery.5",
+          "question": "临时替代与永久设备切换",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "economics",
+      "label": "成本、交易与融资",
+      "question_ids": [
+        "M11-Q03",
+        "M11-Q07",
+        "M11-Q12"
+      ],
+      "field_refs": [
+        "model:it_capex_per_kw",
+        "model:capex_electrical",
+        "model:capex_mechanical",
+        "model:wacc",
+        "site:investor",
+        "site:lender",
+        "site:borrower"
+      ],
+      "source_teams": [
+        "fetchfilings",
+        "fetchquotes",
+        "fetchreports",
+        "fetchstat"
+      ],
+      "variable_classes": [
+        3,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "园区成本观察和合同／现金流边界"
+      ],
+      "checks": [
+        {
+          "id": "economics.1",
+          "question": "总投资及IT／设施／土地拆分",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "economics.2",
+          "question": "估算／预算／报价／成交／支出性质",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "economics.3",
+          "question": "运营成本与收费组成",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "economics.4",
+          "question": "租约、销售、融资与主体承担",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "economics.5",
+          "question": "现金流期间、币种、税及分母",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "resilience",
+      "label": "可靠性与运营管理",
+      "question_ids": [
+        "M10-Q05",
+        "M10-Q07",
+        "M13-Q09"
+      ],
+      "field_refs": [
+        "model:redundancy",
+        "model:fte_per_mw",
+        "model:maint_pct_facility",
+        "metric:fault_localization_days",
+        "metric:racks_per_ops_staff"
+      ],
+      "source_teams": [
+        "fetchreports",
+        "fetchfilings",
+        "inews",
+        "fetchspec"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "园区运行事件和管理记录"
+      ],
+      "checks": [
+        {
+          "id": "resilience.1",
+          "question": "故障事件、持续时间与影响",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resilience.2",
+          "question": "根因、恢复、损失及SLA",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resilience.3",
+          "question": "硬件冗余与服务韧性",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resilience.4",
+          "question": "维护、检测与变更管理",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "resilience.5",
+          "question": "人员、技能与外包组织",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "environment",
+      "label": "环境与社会约束",
+      "question_ids": [
+        "M05-Q04",
+        "M08-Q04"
+      ],
+      "field_refs": [
+        "metric:dc_cue",
+        "metric:grid_emission_factor",
+        "metric:dc_carbon_footprint",
+        "metric:dc_water_footprint",
+        "metric:industry_water_use"
+      ],
+      "source_teams": [
+        "fetchstat",
+        "fetchfilings",
+        "fetchreports",
+        "inews"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "园区环境／社区事件和排放范围"
+      ],
+      "checks": [
+        {
+          "id": "environment.1",
+          "question": "直接、间接水耗与当地水压力",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "environment.2",
+          "question": "排放边界与能源匹配方式",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "environment.3",
+          "question": "余热、设备废弃与回收",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "environment.4",
+          "question": "噪声、社区意见与项目影响",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "environment.5",
+          "question": "环境许可与适用约束",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    },
+    {
+      "id": "uncertainty",
+      "label": "历史、预测与不确定性",
+      "question_ids": [
+        "M15-Q02",
+        "M15-Q07",
+        "M01-Q03"
+      ],
+      "field_refs": [
+        "site:observations",
+        "site:capacity_assessment",
+        "model:it_refresh_years",
+        "model:residual_share"
+      ],
+      "source_teams": [
+        "fetchreports",
+        "fetchfilings",
+        "fetchstat",
+        "inews"
+      ],
+      "variable_classes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "proposed_fields": [
+        "公式与观察依赖图、预测兑现和配置版本"
+      ],
+      "checks": [
+        {
+          "id": "uncertainty.1",
+          "question": "来源版本与有效／披露／接收时间",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "uncertainty.2",
+          "question": "配置历史、替换、退役及残值",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "uncertainty.3",
+          "question": "预测版本与兑现情况",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "uncertainty.4",
+          "question": "推导公式、输入依赖与误差",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        },
+        {
+          "id": "uncertainty.5",
+          "question": "冲突、反证与独立性",
+          "applies_to": [
+            "generic_dc",
+            "site"
+          ],
+          "generic_use": "通用定义、配置条件、规律及模型参数；须保留适用范围",
+          "site_use": "具体园区／分期／主体／时点的观察；缺项可登记",
+          "acceptance": "原件定位、原始单位、范围、时间、性质、去向及缺口；不适用须说明理由"
+        }
+      ]
+    }
+  ]
+}
