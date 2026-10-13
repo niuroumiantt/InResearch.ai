@@ -6,7 +6,7 @@
 
   // Brand every image shown in the site without altering the source artwork or
   // downloaded originals. The observer also covers atlas images mounted later.
-  const WATERMARK_SRC = '/assets/brand/inresearch-ai/icon-orange.svg';
+  const WATERMARK_SRC = '/assets/brand/inresearch-ai/wordmark-primary.svg';
   const WATERMARK_EXCLUDE = new Set(['ui-brand-watermark', 'ui-icon', 'favicon']);
   function shouldBrandImage(node) {
     if (!(node instanceof Element) || !['IMG', 'CANVAS'].includes(node.tagName)) return false;

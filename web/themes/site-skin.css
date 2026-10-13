@@ -37,7 +37,7 @@ html[data-ui-skin] body{background:var(--ui-bg);color:var(--ui-body);font-family
 /* The source image stays untouched; the small signature mark is presentation-only. */
 html[data-ui-skin] .ui-branded-image{position:relative;display:inline-block;max-width:100%;line-height:0;vertical-align:top;isolation:isolate}
 html[data-ui-skin] .ui-branded-image>img:not(.ui-brand-watermark),html[data-ui-skin] .ui-branded-image>canvas{display:block;max-width:100%}
-html[data-ui-skin] .ui-brand-watermark{position:absolute;z-index:2;right:clamp(6px,1.3vw,18px);bottom:clamp(6px,1.3vw,18px);width:clamp(18px,4.8%,48px);height:auto;max-width:none;opacity:.9;pointer-events:none;user-select:none;filter:drop-shadow(0 1px 1px #0005)}
+html[data-ui-skin] .ui-brand-watermark{position:absolute;z-index:2;right:clamp(6px,1.3vw,18px);bottom:clamp(6px,1.3vw,18px);width:clamp(64px,18%,180px);height:auto;max-width:none;opacity:.88;pointer-events:none;user-select:none;filter:drop-shadow(0 1px 1px #0005)}
 html[data-ui-skin] .ui-branded-image[data-image-watermark] .ui-brand-watermark{object-fit:contain}
 html[data-ui-skin] :is(button,input,select,textarea){font-family:var(--ui-font)}
 html[data-ui-skin] :is(h1,h2,h3){font-family:var(--ui-font);font-weight:var(--ui-heading-weight);color:var(--ui-ink)}
