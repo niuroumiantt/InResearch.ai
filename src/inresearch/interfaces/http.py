@@ -541,7 +541,7 @@ class Handler(SimpleHTTPRequestHandler):
             except (OSError, TypeError, KeyError):
                 return self._json(503, {'error': '观测数据暂不可用'})
         if urlsplit(self.path).path == '/api/industry':
-            from inresearch.knowledge.industry import snapshot
+            from inresearch.knowledge.industry import cached_snapshot as snapshot
             try:
                 query = parse_qs(urlsplit(self.path).query)
                 if any(len(v) != 1 for v in query.values()): raise ValueError('duplicate filter')

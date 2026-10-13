@@ -4,6 +4,8 @@ import copy
 from functools import lru_cache
 import math
 from collections import Counter
+from collections import OrderedDict
+import threading
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -17,6 +19,52 @@ REGIONS = {'north-america': '北美', 'europe': '欧洲', 'china': '中国', 'ap
 ROLE_GROUPS = {'demand': {'hyperscaler', 'ai-lab', 'neocloud', 'sovereign'},
                'operator': {'colo'}, 'capital': {'capital'}, 'energy': {'utility'},
                'supplier': {'chip', 'storage', 'network', 'cooling', 'electrical', 'server-odm', 'facility', 'construction'}}
+
+_view_lock = threading.Lock()
+_views = OrderedDict()
+
+
+def _view_signature(root):
+    from inresearch.storage.layout import workspace_path
+    paths = [root / path for path in (
+        'data/projects.json', 'data/companies.json', 'data/object_observations.json',
+        'data/prices.json', 'data/facts.json', 'framework/research_publication.json',
+        'framework/storage_contract.json')]
+    paths.append(workspace_path('data/raw/source-publication/registry.json', root))
+    result = [date.today().isoformat()]
+    for path in paths:
+        try:
+            stat = path.stat()
+            signature = (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns)
+        except FileNotFoundError:
+            signature = None
+        result.append((str(path), signature))
+    return tuple(result)
+
+
+def cached_snapshot(root, params=None):
+    """Share versioned projections across map and task readers, never callers' mutations.
+
+    One builder prevents CDN retries from multiplying full-ledger work. Atomic
+    runtime replacements and midnight invalidate the view immediately; errors
+    and projections built while inputs change are never cached.
+    """
+    root = Path(root).resolve()
+    params = dict(params or {})
+    key = (str(root), tuple(sorted(params.items())))
+    with _view_lock:
+        signature = _view_signature(root)
+        entry = _views.get(key)
+        if entry is None or entry[0] != signature:
+            value = snapshot(root, params)
+            if _view_signature(root) != signature:
+                raise OSError('industry_inputs_changed_during_projection')
+            entry = (signature, value)
+            _views[key] = entry
+            while len(_views) > 8:
+                _views.popitem(last=False)
+        _views.move_to_end(key)
+    return copy.deepcopy(entry[1])
 
 
 def public_url(value):
