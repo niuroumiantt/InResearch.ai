@@ -546,6 +546,10 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 生产增量须先核当前receiver的真实manifest协议，再让唯一既有publisher按私有开关运行；不得另起常驻发布者。保留前后manifest、逐批ACK、Spark发布状态和网站HTTPS运行投影，确认未发送文档保留、变更SHA匹配、整个剩余清单完成及接收时点一致；候选接收不计正式采用。断线、超时、CAS冲突或网站发布滞后保留失败实测，不以夹具、服务启动或源码标签宣称生产验收通过。凭据轮换、源码CI/部署与候选数据接收分别留私有回执；暂停的定时汇报不因维护自动恢复。
 
+发布器对原HTTPS端点显式请求gzip响应；manifest回包的传输及解压均不得超过32MiB，普通ACK均按原4KiB上限。单个gzip流须完整，无尾随数据；未知编码、损坏或超限拒绝，未压缩兼容。Content-Length不足、gzip截断及HTTP分块断流只按原三次/240秒预算重试同一请求，不增加总预算。CDN拒绝gzip POST与origin慢链路分别实测；不得仅因小型未压缩manifest成功就把整个发布URL切往CDN。真实增量ACK、传输模式与网站时点仍分别验收，不把候选接收当作正式采用。
+
+若origin大清单响应在原预算内无法完成，可在私有`READER_PUBLISH_MANIFEST_URL`配置同一receiver的另一个可信HTTPS入口（无嵌入凭据、query/fragment，协议路径必须相同）；缺省仍使用原发布URL。仅manifest小请求发送未压缩JSON，响应仍有界协商gzip；文档delta继续经原`READER_PUBLISH_URL`发送gzip并由接收generated进行CAS。实际生产可使用正式域名读manifest、origin写delta，不复制凭据或增加发布者。两入口必须实际核对同一候选库，错误base仍拒绝并重新读清单，不能绕过认证/校验或把两份库拼成成功。非法配置在访问token或打开Reader前拒绝。
+
 
 ### 2026-10-13：初筛披露年份与内容时间范围
 
