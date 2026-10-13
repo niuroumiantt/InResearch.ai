@@ -349,4 +349,36 @@ class ReaderRetryJobTests(unittest.TestCase):
         self.assertEqual('failed',self.failed_job()['state'])
 
 
+
+    def test_triage_timeout_recovers_online_without_running_or_resetting_read_jobs(self):
+        with self.reader.transaction():
+            self.reader.conn.execute("UPDATE jobs SET state='pending',attempts=0,error_code=NULL,result_rel=NULL WHERE revision_id=? AND stage='read'",(self.doc['revision_id'],))
+            self.reader.conn.execute("UPDATE jobs SET state='failed',attempts=3,error_code='model_cli_timeout',result_rel=NULL WHERE revision_id=? AND stage='triage'",(self.doc['revision_id'],))
+            self.reader.conn.execute("UPDATE reading_runs SET state='failed',phase='triage',error_code='model_cli_timeout',chunks_read=0 WHERE revision_id=?",(self.doc['revision_id'],))
+        folder=self.reader.data/self.doc['artifact_rel']
+        (folder/'triage.json').unlink()
+        for p in (folder/'chunks').glob('*.json'):p.unlink()
+        before=[dict(x) for x in self.reader.conn.execute("SELECT * FROM jobs WHERE stage='read'")]
+        with self.reader.worker_session():r=self.call(stage='triage',chunk_index=0,error_code='model_cli_timeout')
+        self.assertEqual(r['status'],'applied');self.assertEqual(r['attempts_preserved'],3)
+        self.assertEqual(before,[dict(x) for x in self.reader.conn.execute("SELECT * FROM jobs WHERE stage='read'")])
+        self.assertEqual(self.call(stage='triage',chunk_index=0,error_code='model_cli_timeout')['status'],'already_applied')
+
+    def test_synthesis_timeout_preserves_all_completed_chunks_and_partial_synthesis_cache(self):
+        with self.reader.transaction():
+            self.reader.conn.execute("UPDATE jobs SET state='pending',attempts=0,error_code=NULL WHERE revision_id=? AND stage='read' AND chunk=63",(self.doc['revision_id'],))
+            self.reader.conn.execute("UPDATE reading_runs SET state='queued',error_code=NULL WHERE revision_id=?",(self.doc['revision_id'],))
+        self.clock.advance(5000)
+        with contextlib.redirect_stdout(io.StringIO()):self.reader.run(once=True,max_jobs=500)
+        complete=self.reader.doc(self.doc['doc_id']);self.assertEqual(complete['state'],'complete')
+        folder=self.reader.data/complete['artifact_rel'];(folder/'report.json').unlink()
+        with self.reader.transaction():
+            self.reader.conn.execute("UPDATE jobs SET state='failed',attempts=3,error_code='model_cli_timeout',result_rel=NULL WHERE revision_id=? AND stage='synthesize'",(self.doc['revision_id'],))
+            self.reader.conn.execute("UPDATE reading_runs SET state='failed',phase='synthesize',error_code='model_cli_timeout',report_rel=NULL,report_sha256=NULL WHERE revision_id=?",(self.doc['revision_id'],))
+        before={str(p.relative_to(folder)):p.read_bytes() for p in folder.rglob('*.json')}
+        with self.reader.worker_session():r=self.call(stage='synthesize',chunk_index=0,error_code='model_cli_timeout')
+        self.assertEqual(r['status'],'applied');self.assertEqual(r['attempts_preserved'],3)
+        self.assertEqual(self.reader.doc(self.doc['doc_id'])['chunks_read'],complete['chunks_read'])
+        self.assertEqual(before,{str(p.relative_to(folder)):p.read_bytes() for p in folder.rglob('*.json')})
+
 if __name__=='__main__':unittest.main()

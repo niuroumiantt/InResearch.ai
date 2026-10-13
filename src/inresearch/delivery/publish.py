@@ -119,6 +119,9 @@ def main(argv=None):
     parser.add_argument('--if-changed', action='store_true',
                         help='publish changed work promptly; otherwise keep a five-minute heartbeat')
     args = parser.parse_args(argv)
+    incremental = os.environ.get('READER_PUBLISH_INCREMENTAL', '0')
+    if incremental not in ('0', '1'):
+        raise ValueError('READER_PUBLISH_INCREMENTAL must be 0 or 1')
     state = Path(os.environ.get('READER_STATE_ROOT', Path.home() / '.local/state/inresearch.ai'))
     destination = os.environ.get('READER_PUBLISH_URL', 'https://inresearch.ai/api/reader-snapshot')
     parsed = urlsplit(destination)
@@ -181,7 +184,7 @@ def main(argv=None):
                 payload, snapshot_overlay.load_directory(external), allowed,
                 object_resolver(registry['objects'], registry.get('legacy_root_prefixes')))
         payload, document = transport_payload(payload, Path(os.environ.get('READER_REPO_ROOT', project_root())))
-        if len(document) > commands.SNAPSHOT_MAX_BYTES:
+        if incremental == '1' or len(document) > commands.SNAPSHOT_MAX_BYTES:
             result = post_incremental(payload, destination, token, state,
                                       Path(os.environ.get('READER_REPO_ROOT', project_root())))
             status = {'published': now_iso(), 'status': 'ok', 'bytes': len(document),
