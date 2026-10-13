@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.13.120。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.13.121。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2695。
+在册文件：2696。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 437 |
+| 历史快照 | 438 |
 | 运行代码 | 384 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
@@ -1765,6 +1765,10 @@
 | `docs/reviews/2026-10-11/stock-pdf-expansion/batch.json` | sources | 3 |
 | `docs/reviews/2026-10-13/observation-coverage/abilene-audit-receipt.json` | limitations | 7 |
 | `docs/reviews/2026-10-13/observation-coverage/abilene-audit-receipt.json` | sources | 10 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | limitations | 7 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | sources | 11 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | anomaly_followups | 3 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | derivations | 5 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -1787,8 +1791,9 @@
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
-| `framework/observation_checklist.json` | source_requirements | 7 |
+| `framework/observation_checklist.json` | source_requirements | 10 |
 | `framework/observation_checklist.json` | angles | 12 |
+| `framework/observation_checklist.json` | question_templates | 4 |
 | `framework/research_demand_review.json` | requirements | 17 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
 | `framework/research_graph.json` | objects | 354 |
@@ -3346,6 +3351,7 @@
 | `docs/reviews/2026-10-11/stock-expansion/batch.json` | 历史快照 |
 | `docs/reviews/2026-10-11/stock-pdf-expansion/batch.json` | 历史快照 |
 | `docs/reviews/2026-10-13/observation-coverage/abilene-audit-receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |

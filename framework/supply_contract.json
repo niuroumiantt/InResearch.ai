@@ -1,6 +1,6 @@
 {
-  "version": "1.8",
-  "effective_at": "2026-10-11",
+  "version": "1.9",
+  "effective_at": "2026-10-13",
   "phase": "planning_live",
   "operating_plan": {
     "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
@@ -453,5 +453,80 @@
       "collection_line": "求广：发现 → 闸门 → 打标（事件类型、研究角度、层标签）→ 事件 feed；默认不翻译",
       "editorial_line": "求精：从打标池按配额选簇 → 取正文 → 全文翻译 → 发布；挑选在先，翻译在后，翻译只花在被挑出的对象上"
     }
+  },
+  "observation_delivery": {
+    "version": "2026.10.13.1",
+    "scope": "research_side_requirements_only",
+    "wire_protocol_changed": false,
+    "common": [
+      "source_identity_and_byte_version",
+      "native_format_and_completeness",
+      "locator_and_selected_context",
+      "object_scope_and_identity_uncertainty",
+      "raw_value_unit_time_conditions",
+      "assertion_vs_derivation_and_dependencies",
+      "document_sheet_figure_attachment_inventory",
+      "access_and_distribution_scope",
+      "retrieval_outcome_reason_next_action",
+      "existing_question_or_optional_discovery_link"
+    ],
+    "profiles": [
+      {
+        "provider_id": "fetchspec",
+        "deliver": [
+          "产品型号与版本原件",
+          "额定性能、接口、工况及效率曲线",
+          "参考配置、PCN和交期披露"
+        ],
+        "limit": "产品规格不认证现场安装、数量或实测效率"
+      },
+      {
+        "provider_id": "inews",
+        "deliver": [
+          "原文链接及已有feed事件身份",
+          "园区发现、建设、交付、合同、故障及社区线索",
+          "事件对象、信息时间、已知字段与缺项"
+        ],
+        "limit": "沿原feed协议接收，不要求新闻伪装原件包；线索不直接关闭研究问题"
+      },
+      {
+        "provider_id": "fetchstat",
+        "deliver": [
+          "公共统计与地域总体口径",
+          "费率、资源、规划、许可及接入原件",
+          "批准条件、期间、修订、附件与缺失说明"
+        ],
+        "limit": "公共费率和地区均值不自动适用于园区；申请不等于批准"
+      },
+      {
+        "provider_id": "fetchfilings",
+        "deliver": [
+          "具名法人、报告期及披露原件",
+          "投资、合同、融资、经营、人员和环境表",
+          "主体／资产边界、未来承诺及脚注"
+        ],
+        "limit": "集团值不向园区分摊；计划不作实际完成"
+      },
+      {
+        "provider_id": "fetchreports",
+        "deliver": [
+          "报告正文、方法、表图、数据集及附件目录",
+          "原始数据与研究方估算分离",
+          "公式输入、单位、精度、假设、误差、局限及引用线索"
+        ],
+        "limit": "来源研究结论与自有审核分开；同链推导不算多份独立证据"
+      },
+      {
+        "provider_id": "fetchquotes",
+        "deliver": [
+          "报价方、配置、市场、时点及计费基础",
+          "价格、税费、附加费、合同条件和数量约束",
+          "报价、合约、成交或账单性质及可比条件"
+        ],
+        "limit": "公开报价不证明真实成交或园区合同价格"
+      }
+    ],
+    "execution": "连接状态复用providers.connection；未接通只登记待办，不制造planned、due或success。补采仍复用既有任务及requirement，普通发现目标可空。",
+    "responsibility": "采集端交原件、定位、源声明和可解释缺项；研究端负责对象匹配、语义审核、推导与采用；一份原件可复用但字节身份不重复计证据。"
   }
 }

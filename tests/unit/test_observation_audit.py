@@ -24,8 +24,9 @@ class ObservationAuditTests(unittest.TestCase):
 
     def test_twelve_angles_dual_scope_reuse_existing_registry(self):
         c=audit.checklist(ROOT)
-        self.assertEqual(len(c['angles']),12)
-        self.assertEqual(sum(len(a['checks']) for a in c['angles']),58)
+        self.assertTrue(c['angles'])
+        self.assertTrue(all(a['checks'] for a in c['angles']))
+        self.assertEqual(c['architecture']['legacy_variable_views']['role'],'compatibility_display_only')
         self.assertTrue(c['not_a_dispatch_axis'])
         self.assertTrue(all(x['applies_to']==['generic_dc','site'] for a in c['angles'] for x in a['checks']))
         self.assertEqual(next(a for a in c['angles'] if a['id']=='configuration')['provider_status']['fetchfilings'],'not_connected')
@@ -36,7 +37,7 @@ class ObservationAuditTests(unittest.TestCase):
         self.assertFalse(result['published'])
         self.assertTrue(result['source_bytes_verified'])
         self.assertEqual(result['report_exhaustive'],'not_certified')
-        self.assertEqual(len(result['unresolved_checks']),57)
+        self.assertEqual(len(result['unresolved_checks']),len(self.data['checks'])-1)
 
     def test_missing_angle_and_unaccounted_unit_rejected(self):
         for mutate in [lambda d:d['checks'].pop(),lambda d:d['inventory'].clear(),lambda d:d['required_inventory_ids'].append('unread-section')]:
@@ -72,3 +73,32 @@ class ObservationAuditTests(unittest.TestCase):
         output=audit.render(audit.audit(ROOT,self.data))
         self.assertIn('&lt;script&gt;',output)
         self.assertNotIn('<script>',output)
+
+
+    def test_new_view_does_not_require_fixed_count(self):
+        temp=Path(self.temp.name)/'registry'
+        files=['framework/observation_checklist.json','framework/research_questions.json','framework/supply_contract.json','framework/metrics.json','data/datacenter_model.json','data/schema/project.schema.json']
+        for name in files:
+            target=temp/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes((ROOT/name).read_bytes())
+        p=temp/'framework/observation_checklist.json';doc=json.loads(p.read_text())
+        added=copy.deepcopy(doc['angles'][0]);added['id']='additional-view'
+        for n,check in enumerate(added['checks']):check['id']='additional-view.'+str(n+1)
+        doc['angles'].append(added)
+        p.write_text(json.dumps(doc))
+        with self.assertRaisesRegex(ValueError,'unmapped_observation_view'):audit.checklist(temp)
+        doc['question_templates'].append({'id':'new-purpose','label':'new question','outputs':['explicit new use'],'coverage_ids':[added['id']]})
+        p.write_text(json.dumps(doc));self.assertEqual(len(audit.checklist(temp)['angles']),len(doc['angles']))
+
+    def test_provider_profiles_do_not_claim_connection(self):
+        c=audit.checklist(ROOT);delivery=c['delivery_requirements']
+        self.assertFalse(delivery['wire_protocol_changed'])
+        self.assertEqual(delivery['scope'],'research_side_requirements_only')
+        self.assertTrue(all(p['deliver'] and p['limit'] for p in delivery['profiles']))
+
+    def test_derivation_unknown_input_and_cycles_rejected(self):
+        d=copy.deepcopy(self.data)
+        rel=dict(id='derived',output_item_id='claim',input_item_ids=['absent'],source_id='body',locator='p1',formula='a*b',review_state='candidate',assumptions=['scope not verified'],scope='example')
+        d['derivations']=[rel]
+        with self.assertRaisesRegex(ValueError,'dependencies'):audit.audit(ROOT,d)
+        rel['input_item_ids']=['claim']
+        with self.assertRaisesRegex(ValueError,'cycle'):audit.audit(ROOT,d)

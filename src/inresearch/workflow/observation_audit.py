@@ -22,8 +22,14 @@ def checklist(root):
     metrics={r['metric_id'] for r in read(root/'framework/metrics.json')['metrics']}
     from inresearch.knowledge.site_timeline import FIELDS
     fields=set(FIELDS)|set(read(root/'data/schema/project.schema.json')['properties'])
-    providers={r['id']:r for r in read(root/'framework/supply_contract.json')['providers']}
-    if doc.get('schema_version')!=1 or not doc.get('not_a_dispatch_axis') or len(doc['angles'])!=12:
+    supply=read(root/'framework/supply_contract.json')
+    providers={r['id']:r for r in supply['providers']}
+    delivery=supply.get('observation_delivery',{})
+    profiles=delivery.get('profiles',[])
+    profile_ids=[r.get('provider_id') for r in profiles]
+    if not delivery.get('common') or len(profile_ids)!=len(set(profile_ids)) or set(profile_ids)-providers.keys():
+        raise ValueError('observation_delivery_profiles')
+    if doc.get('schema_version')!=1 or not doc.get('not_a_dispatch_axis') or not doc.get('angles'):
         raise ValueError('observation_checklist_contract')
     seen=set()
     for angle in doc['angles']:
@@ -32,7 +38,7 @@ def checklist(root):
         seen.add(angle['id'])
         if not angle['question_ids'] or set(angle['question_ids'])-questions:
             raise ValueError('unregistered_question:'+angle['id'])
-        if not angle['source_teams'] or set(angle['source_teams'])-providers.keys():
+        if not angle['source_teams'] or set(angle['source_teams'])-providers.keys() or set(angle['source_teams'])-set(profile_ids):
             raise ValueError('unregistered_provider:'+angle['id'])
         if not angle['variable_classes'] or set(angle['variable_classes'])-{1,2,3,4,5}:
             raise ValueError('invalid_variable_class')
@@ -45,6 +51,18 @@ def checklist(root):
                 raise ValueError('check_identity_or_scope')
             seen.add(check['id'])
         angle['provider_status']={p:providers[p].get('connection','unknown') for p in angle['source_teams']}
+    templates=doc.get('question_templates',[])
+    if not templates or len({t['id'] for t in templates})!=len(templates):
+        raise ValueError('question_template_identity')
+    angles={a['id'] for a in doc['angles']}
+    mapped=set()
+    for t in templates:
+        if not t.get('outputs') or set(t.get('coverage_ids',[]))-angles:
+            raise ValueError('question_template_mapping')
+        mapped.update(t['coverage_ids'])
+    if mapped!=angles:
+        raise ValueError('unmapped_observation_view')
+    doc['delivery_requirements']=delivery
     return doc
 
 
@@ -124,6 +142,25 @@ def audit(root, data, verify_files=True):
         coverage[row['check_id']]=row
     if set(coverage)!=set(checks):
         raise ValueError('missing_observation_check')
+    derivations=data.get('derivations',[])
+    edges={}
+    derivation_ids=set()
+    for relation in derivations:
+        if (not relation.get('id') or relation['id'] in derivation_ids
+                or relation.get('output_item_id') not in items
+                or not relation.get('input_item_ids')
+                or set(relation['input_item_ids'])-items.keys()
+                or relation.get('source_id') not in sources
+                or not relation.get('locator') or not relation.get('formula')
+                or relation.get('review_state')!='candidate'
+                or not relation.get('assumptions') or not relation.get('scope')):
+            raise ValueError('derivation_identity_scope_or_dependencies')
+        derivation_ids.add(relation['id'])
+        edges.setdefault(relation['output_item_id'],set()).update(relation['input_item_ids'])
+    def walk(node,path):
+        if node in path:raise ValueError('derivation_cycle')
+        for child in edges.get(node,()):walk(child,path|{node})
+    for node in edges:walk(node,set())
     unresolved=[r['check_id'] for r in coverage.values() if r['state'] in {'unknown','not_checked','anomaly','unread_attachment'}]
     return {'schema_version':1,'site_id':data['site_id'],'scope':data['scope'],'checklist_version':c['version'],
             'checklist_sha256':hashlib.sha256((Path(root)/'framework/observation_checklist.json').read_bytes()).hexdigest(),
@@ -131,9 +168,9 @@ def audit(root, data, verify_files=True):
             'checks_total':len(checks),'angles_total':len(c['angles']),'inventory_units':len(data['inventory']),
             'item_counts':{s:sum(i['state']==s for i in items.values()) for s in sorted(STATES)},
             'unresolved_checks':unresolved,'sources':data['sources'],'inventory':data['inventory'],
-            'items':data['items'],'checks':data['checks'],'angles':c['angles'],'limitations':data.get('limitations',[]),
+            'items':data['items'],'checks':data['checks'],'derivations':derivations,'angles':c['angles'],'limitations':data.get('limitations',[]),
             'disposition_check':'passed_for_declared_inventory','report_exhaustive':'not_certified',
-            'source_bytes_verified':verify_files,'formal_adoptions':0,'model_parameters_verified':0,'published':False}
+            'source_bytes_verified':verify_files,'question_templates':c['question_templates'],'architecture':c['architecture'],'delivery_requirements':c['delivery_requirements'],'formal_adoptions':0,'model_parameters_verified':0,'published':False}
 
 
 def render(result):
@@ -141,14 +178,18 @@ def render(result):
     labels={'candidate':'候选','existing_observation':'引用已有观察','unknown':'未知','anomaly':'异常待核','unread_attachment':'未读附件','not_checked':'未检查','not_applicable':'不适用','excluded':'排除','checked':'已读取指定范围'}
     label=lambda v:labels.get(v,v)
     source_names={'body':'Abilene正文','timeline':'计算表：Timeline','method':'方法说明','mortenson':'Mortenson工程页','impact':'Crusoe影响报告PDF','permit':'空气许可申请PDF','chip-quantities':'计算表：芯片数量','calculations':'计算表：推导计算','parameters':'计算表：参数','cooling-quantities':'计算表：冷却设备'}
-    source_rows=''.join('<tr><td>'+esc(source_names.get(s['id'],s['id']))+'</td><td><a href="'+esc(s['url'])+'">来源</a></td><td>'+esc(label(s['status']))+'</td><td>'+esc(s['reason'])+'</td></tr>' for s in result['sources'])
+    source_rows=''.join('<tr><td>'+esc(source_names.get(s['id'],s['id']))+'</td><td><a href="'+esc(s['url'])+'">来源</a></td><td>'+esc(label(s['status']))+'</td><td>'+esc(s['reason'])+'<br><small>'+esc(s.get('checked_scope','未读取正文'))+'</small></td></tr>' for s in result['sources'])
     sections=[]
     by={r['check_id']:r for r in result['checks']}
     for angle in result['angles']:
         rows=''.join('<tr><td>'+esc(x['question'])+'</td><td>'+esc(label(by[x['id']]['state']))+'</td><td>'+esc(by[x['id']]['reason'])+'</td><td>'+esc(by[x['id']]['next_action'])+'</td></tr>' for x in angle['checks'])
-        sections.append('<section><h2>'+esc(angle['label'])+'</h2><p>复用问题：'+esc(', '.join(angle['question_ids']))+'</p><p>复用字段：'+esc(', '.join(angle['field_refs']))+'</p><p>来源责任／登记状态：'+esc(angle['provider_status'])+'</p><div class="scroll"><table><tr><th>检查项</th><th>状态</th><th>依据或缺口</th><th>下一步</th></tr>'+rows+'</table></div></section>')
-    items=''.join('<tr><td>'+esc(i['id'])+'</td><td>'+esc(i['label'])+('<details><summary>来源定位与原始内容</summary><pre>'+esc(i.get('source_id','')+' / '+i.get('locator',''))+'\n'+esc(json.dumps(i['native_cells'],ensure_ascii=False,indent=2) if 'native_cells' in i else i.get('evidence',''))+'</pre></details>' if i.get('source_id') else '')+'</td><td>'+esc(label(i['state']))+'</td><td>'+esc(i['reason'])+'</td><td>'+esc(i['destination'])+'</td><td>'+esc(i.get('next_action','审核适用范围'))+'</td></tr>' for i in result['items'])
-    return '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Abilene观察覆盖审计</title><style>body{font:16px/1.7 system-ui;max-width:1200px;margin:32px auto;padding:0 16px;color:#20302a;background:#f7f8f5}section{background:white;padding:20px;margin:20px 0;border:1px solid #ccd5cc;border-radius:12px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:10px;text-align:left;vertical-align:top;border-bottom:1px solid #ddd;overflow-wrap:anywhere}.scroll{overflow:auto}p{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-width:650px}h1{font-size:28px}</style><h1>Abilene：十二角度与报告信息去向</h1><p>'+esc(result['angles_total'])+'个观察角度 · '+esc(result['checks_total'])+'条检查 · '+esc(result['inventory_units'])+'个已登记资料单元；下方候选包含表头与参数行，不是同等数量的已审核事实。</p><p>离线审计；未采用新事实、未认证模型参数、未上线。范围：'+esc(result['scope'])+'</p><p>'+esc({label(k):v for k,v in result['item_counts'].items()})+'</p><p>去向检查仅针对显式列入的资料单元，不认证整份报告或附件已穷尽。未知、异常和未读附件保持可见。</p><section><h2>来源版本与读取状态</h2><div class="scroll"><table>'+source_rows+'</table></div></section>'+''.join(sections)+'<section><h2>逐项信息去向</h2><div class="scroll"><table><tr><th>ID</th><th>信息</th><th>状态</th><th>依据或缺口</th><th>去向</th><th>下一步</th></tr>'+items+'</table></div></section><p>'+esc(result['limitations'])+'</p></html>'
+        sections.append('<section><h2>'+esc(angle['label'])+'</h2><p>'+esc(angle.get('placement','观察检查'))+'</p><p>复用问题：'+esc(', '.join(angle['question_ids']))+'</p><p>复用字段：'+esc(', '.join(angle['field_refs']))+'</p><p>来源责任／登记状态：'+esc(angle['provider_status'])+'</p><div class="scroll"><table><tr><th>检查项</th><th>状态</th><th>依据或缺口</th><th>下一步</th></tr>'+rows+'</table></div></section>')
+    items=''.join('<tr><td>'+esc(i['id'])+'</td><td>'+esc(i['label'])+('<details><summary>来源定位与原始内容</summary><pre>'+esc(i.get('source_id','')+' / '+i.get('locator',''))+'\n'+esc(json.dumps(i['native_cells'],ensure_ascii=False,indent=2) if 'native_cells' in i else i.get('evidence',''))+'</pre></details>' if i.get('source_id') else '')+'</td><td>'+esc(label(i['state']))+'</td><td>'+esc(i['reason'])+('<br><strong>复核：</strong>'+esc(i['followup']['conclusion']) if i.get('followup') else '')+'</td><td>'+esc(i['destination'])+'</td><td>'+esc(i.get('next_action','审核适用范围'))+'</td></tr>' for i in result['items'])
+    architecture='<section><h2>研究架构与分类边界</h2><p>'+esc(result.get('architecture',{}).get('rule',''))+'</p><p>'+esc(result.get('architecture',{}).get('completeness',''))+'</p><p>'+esc(result.get('architecture',{}).get('legacy_variable_views',{}).get('reason',''))+'</p></section>'
+    templates='<section><h2>研究问题提示（可调整）</h2>'+''.join('<h3>'+esc(t['label'])+'</h3><p>'+esc('；'.join(t['outputs']))+'</p>' for t in result.get('question_templates',[]))+'</section>'
+    profiles='<section><h2>来源队交付要求</h2>'+''.join('<h3>'+esc(p['provider_id'])+'</h3><p>'+esc('；'.join(p['deliver']))+'</p><p>'+esc(p['limit'])+'</p>' for p in result.get('delivery_requirements',{}).get('profiles',[]))+'</section>'
+    relations='<section><h2>推导关系（候选，未执行源公式）</h2>'+''.join('<p>'+esc(r['output_item_id']+' ← '+', '.join(r['input_item_ids']))+'</p><p>'+esc(r['formula'])+'</p><p>'+esc('；'.join(r['assumptions']))+'</p>' for r in result.get('derivations',[]))+'</section>'
+    return '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Abilene观察覆盖审计</title><style>body{font:16px/1.7 system-ui;max-width:1200px;margin:32px auto;padding:0 16px;color:#20302a;background:#f7f8f5}section{background:white;padding:20px;margin:20px 0;border:1px solid #ccd5cc;border-radius:12px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:10px;text-align:left;vertical-align:top;border-bottom:1px solid #ddd;overflow-wrap:anywhere}.scroll{overflow:auto}p{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-width:650px}h1{font-size:28px}</style><h1>Abilene：十二角度与报告信息去向</h1><p>'+esc(result['angles_total'])+'个观察角度 · '+esc(result['checks_total'])+'条检查 · '+esc(result['inventory_units'])+'个已登记资料单元；下方候选包含表头与参数行，不是同等数量的已审核事实。</p><p>离线审计；未采用新事实、未认证模型参数、未上线。范围：'+esc(result['scope'])+'</p><p>'+esc({label(k):v for k,v in result['item_counts'].items()})+'</p><p>去向检查仅针对显式列入的资料单元，不认证整份报告或附件已穷尽。未知、异常和未读附件保持可见。</p><section><h2>来源版本与读取状态</h2><div class="scroll"><table>'+source_rows+'</table></div></section>'+architecture+templates+profiles+''.join(sections)+'<section><h2>逐项信息去向</h2><div class="scroll"><table><tr><th>ID</th><th>信息</th><th>状态</th><th>依据或缺口</th><th>去向</th><th>下一步</th></tr>'+items+'</table></div></section>'+relations+'<p>'+esc(result['limitations'])+'</p></html>'
 
 
 def main(argv=None):
