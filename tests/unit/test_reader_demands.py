@@ -88,6 +88,8 @@ class ReaderDemandTests(unittest.TestCase):
         from inresearch.adapters.models import InferenceError
         for current in (False, True):
             schema = strict_schema(_schema('triage', current))
+            pattern = schema['properties']['classification']['properties']['year']['pattern']
+            self.assertNotIn('(?', pattern, 'Provider regex compiler rejects lookaround; use portable alternatives')
             classification = {'title': 'Campus plans 2024–2026', 'org': '', 'module_id': 'unknown'}
             if current:
                 classification['node'] = None

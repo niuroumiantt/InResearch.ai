@@ -36,7 +36,7 @@ def _schema(stage, current=False):
                 "summary": {"type": "string", "maxLength": 1200}},
                 "required": ["chunk_sha256", "claims", "summary"]}
     if stage == "triage":
-        year = {"type": "string", "pattern": r"^(?:[0-9]{4}|unknown|未知)?(?![\s\S])",
+        year = {"type": "string", "pattern": r"^([0-9]{4}|unknown|未知)?$",
                 "description": "Publication year only; use unknown when not explicit. Never use a date or the years discussed by the document."}
         classification = {"type": "object", "properties": {"title": text, "org": text, "year": year,
                           "module_id": {"type": "string", "enum": ["M%02d" % i for i in range(1, 16)] + ["unknown"]}},

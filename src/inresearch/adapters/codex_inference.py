@@ -118,8 +118,13 @@ def validate_shape(schema, value):
         if not schema.get('minItems',0) <= len(value) <= schema.get('maxItems',100000): raise InferenceError('model_output_invalid')
         for item in value: validate_shape(schema.get('items',{}),item)
     if isinstance(value, str) and len(value)>schema.get('maxLength',10000000): raise InferenceError('model_output_invalid')
-    if isinstance(value, str) and 'pattern' in schema and not re.search(schema['pattern'], value):
-        raise InferenceError('model_output_invalid')
+    if isinstance(value, str) and 'pattern' in schema:
+        pattern = schema['pattern']
+        # Anchored contracts require the entire string; Python '$' alone also
+        # matches before a trailing newline, unlike the intended year contract.
+        match = re.fullmatch(pattern, value) if pattern.startswith('^') and pattern.endswith('$') else re.search(pattern, value)
+        if not match:
+            raise InferenceError('model_output_invalid')
     if type(value) in (int,float) and not schema.get('minimum',float('-inf')) <= value <= schema.get('maximum',float('inf')):
         raise InferenceError('model_output_invalid')
 
