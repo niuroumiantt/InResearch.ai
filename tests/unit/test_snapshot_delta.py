@@ -98,7 +98,7 @@ class CandidateDeltas(unittest.TestCase):
         value=self.snapshot('abcd');calls=[];delta_calls=0
         def deliver(request,max_response_bytes=4096):
             nonlocal delta_calls
-            payload=json.loads(gzip.decompress(request.data));calls.append(payload)
+            payload=json.loads(gzip.decompress(request.data) if request.get_header('Content-encoding')=='gzip' else request.data);calls.append(payload)
             if payload['operation']=='candidate-delta-v1':
                 delta_calls+=1
                 if delta_calls==2:raise ValueError('injected transport loss')
@@ -109,7 +109,7 @@ class CandidateDeltas(unittest.TestCase):
             self.assertEqual(len(registry.read_json(self.destination)['knowledge']['documents']),2)
             remaining=[]
             def resume(request,max_response_bytes=4096):
-                payload=json.loads(gzip.decompress(request.data))
+                payload=json.loads(gzip.decompress(request.data) if request.get_header('Content-encoding')=='gzip' else request.data)
                 if payload['operation']=='candidate-delta-v1':remaining.extend(payload['document_ids'])
                 return commands.receive_snapshot(self.root,payload),1
             with patch.object(publish,'post_snapshot',side_effect=resume):
@@ -117,6 +117,26 @@ class CandidateDeltas(unittest.TestCase):
         self.assertEqual(result['incremental_documents'],2)
         self.assertNotIn(complete_document('b'*64)['id'],remaining)
         self.assertEqual(len(registry.read_json(self.destination)['knowledge']['documents']),4)
+        self.assertEqual(registry.read_json(self.root/'data/research_knowledge.json'),self.empty)
+
+    def test_plain_manifest_can_use_separate_https_route_while_deltas_keep_origin_and_cas(self):
+        import gzip
+        from inresearch.delivery import publish
+        commands.receive_snapshot(self.root,self.snapshot('a'));seen=[];base=self.manifest()['base_generated']
+        def deliver(request,max_response_bytes=4096):
+            compressed=request.get_header('Content-encoding')=='gzip'
+            value=json.loads(gzip.decompress(request.data) if compressed else request.data)
+            seen.append((request.full_url,compressed,max_response_bytes,value))
+            self.assertEqual(request.get_header('Authorization'),'Bearer private-test')
+            return commands.receive_snapshot(self.root,value),1
+        with patch.object(publish,'post_snapshot',side_effect=deliver):
+            result=publish.post_incremental(self.snapshot('ab'),'https://origin.test/api/reader-snapshot',
+                'private-test',self.root,self.root,manifest_destination='https://public.test/api/reader-snapshot')
+        self.assertEqual(seen[0][:3],('https://public.test/api/reader-snapshot',False,delta.MAX_MANIFEST_BYTES))
+        self.assertEqual(seen[1][:3],('https://origin.test/api/reader-snapshot',True,4096))
+        self.assertEqual(seen[1][3]['base_generated'],base)
+        self.assertEqual(result['incremental_documents'],1)
+        self.assertEqual(len(registry.read_json(self.destination)['knowledge']['documents']),2)
         self.assertEqual(registry.read_json(self.root/'data/research_knowledge.json'),self.empty)
 
     def test_oversize_export_normalizes_receiver_fields_without_losing_accepted_evidence(self):

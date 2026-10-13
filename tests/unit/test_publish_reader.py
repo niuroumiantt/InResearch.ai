@@ -16,6 +16,14 @@ from inresearch.delivery import publish as publish_reader
 
 
 class PublisherTests(unittest.TestCase):
+    def test_invalid_manifest_route_rejects_before_reader_or_private_token_access(self):
+        for endpoint in ['http://receiver.test/api/reader-snapshot','https://user:secret@receiver.test/api/reader-snapshot',
+                         'https://receiver.test/api/reader-snapshot?token=private','https://receiver.test/other',
+                         'https://receiver.test/api/reader-snapshot#fragment']:
+            with self.subTest(endpoint=endpoint),patch.dict(os.environ,{'READER_PUBLISH_MANIFEST_URL':endpoint}),patch.object(publish_reader,'Reader') as reader:
+                with self.assertRaisesRegex(ValueError,'manifest requires'):publish_reader.main([])
+                reader.assert_not_called()
+
     def test_transient_deployment_errors_retry_identical_snapshot_without_waiting_for_timer(self):
         request = publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot', data=b'fixed-body')
         response = unittest.mock.MagicMock()

@@ -4,6 +4,8 @@
 
 生产验收发现origin清单读取慢，AWS本机同协议成功；Spark正式域名未压缩manifest成功，但既有publisher的gzip POST被CDN403拒绝，未形成delta ACK。保留失败实测，恢复原origin写入。发布器请求并有界解码gzip响应，manifest传输/解压仍限32MiB，普通ACK仍4KiB；未知/损坏/超限/尾随流拒绝，截断只经原三次240秒预算重试同一请求。协议文档数、CAS、候选验证及唯一发布者不变，普通接收不授予正式采用。
 
+origin压缩清单只读探针仍超过235秒绝对期限，因此补充私有manifest读取URL：同一receiver的可信HTTPS、相同协议路径、无凭据/query/fragment，未压缩的小请求可经正式域名读取；delta仍经origin写入。缺省兼容原URL，非法配置在token/Reader前拒绝；两路实际候选身份及CAS/ACK分别验收，不从数据接收推定正式采用。
+
 ## 2026-10-13：超时诊断补齐、relay轮换与生产增量验收
 
 用户明确授权继续诊断与增量验收、安全轮换已暴露relay凭据，定时任务保持暂停。超时诊断补充stdout末64KiB的完整error/turn.failed事件与stderr首4KiB/末8KiB；普通正文、未换行片段和超大行不作故障证据，未知仍为model_cli_timeout，认证失败不冒充暂态。仅存计量/分类/摘要，原模型、时限和队列预算不变。
