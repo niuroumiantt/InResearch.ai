@@ -48,7 +48,7 @@ def _snapshot(conn, intent):
     doc = conn.execute('SELECT * FROM current_readings WHERE doc_id=?', (intent['doc_id'],)).fetchone()
     _require(doc and doc['revision_id'] == intent['revision_id'], 'retry_current_revision_changed')
     doc = dict(doc)
-    _require(doc['state'] == 'failed' and doc['phase'] == 'read'
+    _require(doc['state'] == 'failed' and doc['phase'] == intent['stage']
              and doc['error_code'] == intent['error_code'] and doc['recipe'] == intent['recipe'],
              'retry_reading_state_changed')
     jobs = [dict(r) for r in conn.execute('SELECT * FROM jobs WHERE doc_id=? AND revision_id=? ORDER BY stage,chunk',
@@ -90,8 +90,25 @@ def _files(data, snapshot, expected_recipe_sha256):
              'retry_extraction_changed')
     paths = [source, recipe, context_path,
              artifacts.artifact_path(doc, 'extraction.json')]
-    failed_cache = artifacts.artifact_path(doc, 'chunks/%06d.json' % snapshot['job']['chunk'])
+    stage = snapshot['job']['stage']
+    failed_name = ('chunks/%06d.json' % snapshot['job']['chunk'] if stage == 'read'
+                   else 'triage.json' if stage == 'triage' else 'report.json')
+    failed_cache = artifacts.artifact_path(doc, failed_name)
     _require(not failed_cache.exists(), 'retry_failed_chunk_cache_exists')
+    if stage == 'triage':
+        _require(doc['chunks_read'] == 0, 'retry_triage_has_successful_reads')
+    if stage == 'synthesize':
+        _require(doc['chunks_read'] == doc['chunks_total'], 'retry_synthesis_coverage_incomplete')
+        directory = artifacts.artifact_path(doc, 'synthesis')
+        if directory.exists():
+            for path in sorted(directory.glob('*.json')):
+                value = json.loads(path.read_text())
+                marker = value.get('_marker') if isinstance(value, dict) else None
+                _require(isinstance(marker, str) and re.fullmatch('synth:[a-f0-9]{64}', marker),
+                         'retry_synthesis_cache_changed')
+                _require(artifacts._cached(doc, 'synthesis/' + path.name, marker) is not None
+                         and value.get('member_hash') == marker, 'retry_synthesis_cache_changed')
+                paths.append(path)
     for index, chunk in enumerate(extraction['chunks']):
         _require(chunk.get('index') == index, 'retry_extraction_changed')
         artifacts._chunk_text(chunk)  # Existing frozen native bytes, never re-extract.
@@ -169,11 +186,12 @@ def _commit(conn):
 
 def retry_job(data_root, *, doc_id, revision_id, stage, chunk_index, error_code,
               expected_attempts, expected_recipe, expected_recipe_sha256, request_id, by, reason, dry_run=False):
-    """Requeue one failed read job without replacing its exhausted budget."""
+    """Requeue one failed model stage without replacing its exhausted budget."""
     _require(data_root is not None, 'retry_explicit_data_root_required')
     _require(re.fullmatch(r'doc-[a-f0-9]{64}', doc_id or '')
              and re.fullmatch(r'rev-[a-f0-9]{32}', revision_id or ''), 'retry_invalid_identity')
-    _require(stage == 'read' and type(chunk_index) is int and chunk_index >= 0,
+    _require(stage in ('read', 'triage', 'synthesize') and type(chunk_index) is int
+             and (chunk_index >= 0 if stage == 'read' else chunk_index == 0),
              'retry_invalid_stage_or_chunk')
     _require(error_code in ERRORS and type(expected_attempts) is int and expected_attempts >= 1,
              'retry_invalid_error_or_attempts')
@@ -244,8 +262,8 @@ def retry_job(data_root, *, doc_id, revision_id, stage, chunk_index, error_code,
             changed = conn.execute("UPDATE jobs SET state='pending',error_code=NULL WHERE job_id=? AND doc_id=? AND revision_id=? AND stage=? AND chunk=? AND state='failed' AND attempts=? AND error_code=?",
                                    (job['job_id'], doc_id, revision_id, stage, chunk_index, expected_attempts, error_code))
             _require(changed.rowcount == 1, 'retry_job_compare_failed')
-            changed = conn.execute("UPDATE reading_runs SET state='queued',error_code=NULL WHERE doc_id=? AND revision_id=? AND state='failed' AND phase='read' AND recipe=? AND error_code=?",
-                                   (doc_id, revision_id, expected_recipe, error_code))
+            changed = conn.execute("UPDATE reading_runs SET state='queued',error_code=NULL WHERE doc_id=? AND revision_id=? AND state='failed' AND phase=? AND recipe=? AND error_code=?",
+                                   (doc_id, revision_id, stage, expected_recipe, error_code))
             _require(changed.rowcount == 1, 'retry_reading_state_changed')
             conn.execute('INSERT INTO meta(key,value) VALUES(?,?)', (key, encoded(marker)))
             _commit(conn); committed = True

@@ -531,3 +531,8 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 既有可信操作员`receive-snapshot` CLI可用于一次性私有归档接收；它与HTTP共用业务校验、原子锁与source/control回执。恢复时冻结源SHA并保留旧candidate快照，接收、当前批次完整阅读计数及实际HTTP显示另验，不把新接收当正式采用。不得另起常驻publisher与既有队列竞争。
 
 模型CLI达到进程预算时，读取其有界stderr末尾，只将明确的断流/请求网络超时/配额信号归为暂态等待；没有证据的长推理仍是model_cli_timeout，不能无限重试。日志仅保存分类与摘要，不保留正文/凭据。先核真实活动进程的模型与relay配置，最小请求对比网络后再修复配置；不盲增推理时限。已失败read任务可经现有retry-job显式CAS恢复model_cli_failed或model_cli_timeout，核当前revision、原件、配方、分块、错误和次数，保留attempts/available、已完成分块和审计；不绕过worker生命周期锁或重启Reader批量清空尝试。
+
+
+### 非read阶段超时的在线恢复（2026-10-13）
+
+同一retry-job现支持triage、read、synthesize的明确CLI失败/超时；必须与当前失败phase相同，triage/synthesize的chunk索引只能0。仍限唯一idle失败任务及现行revision、配方、原件、错误和耗尽次数CAS，不清零次数或更改available。triage要求尚无成功read块且无成功triage缓存；synthesize要求全部read块完成、每块缓存复验，已有部分synthesis缓存保留并绑定原recipe/doc/revision/member hash，不能删除成功块换取准入。有成功最终report缓存、额外失败/运行任务、来源/配方漂移仍拒绝；队列与审计同事务，旧请求精确重放不重排。此支持只恢复原任务，不创建新阅读结论或C3采用。

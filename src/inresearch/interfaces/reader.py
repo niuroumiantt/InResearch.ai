@@ -45,7 +45,7 @@ def main(argv=None):
     priority.add_argument('--expected-priority', type=int, required=True)
     priority.add_argument('--priority', type=int, required=True)
     priority.add_argument('--dry-run', action='store_true')
-    retry_job = sub.add_parser('retry-job', help='CAS retry one failed read job online; preserve attempts and source artifacts')
+    retry_job = sub.add_parser('retry-job', help='CAS retry one failed model stage online; preserve attempts and source artifacts')
     for name in ('doc-id','revision-id','stage','expected-error','expected-recipe','expected-recipe-sha256','request-id','by','reason'):
         retry_job.add_argument('--' + name, required=True)
     retry_job.add_argument('--chunk-index', type=int, required=True)
