@@ -4,6 +4,7 @@ import json
 import os
 import argparse
 import gzip
+from http.client import IncompleteRead
 from pathlib import Path
 import stat
 import sys
@@ -12,6 +13,7 @@ import sqlite3
 import time
 import urllib.error
 import urllib.request
+import zlib
 from urllib.parse import urlsplit
 
 from inresearch.workflow.reader import Reader
@@ -48,19 +50,40 @@ def change_marker(data, state, repo):
 
 def post_snapshot(request, max_response_bytes=4096):
     """Retry short deployment/transport interruptions within one bounded 240-second budget."""
+    request.add_header('Accept-Encoding', 'gzip')
     deadline = time.monotonic() + 240
     for attempt in range(1, 4):
         try:
             with urllib.request.build_opener(NoRedirect).open(request, timeout=max(.1, deadline - time.monotonic())) as response:
+                length = response.headers.get('Content-Length')
+                if length is not None and not 0 <= int(length) <= max_response_bytes:
+                    raise ValueError('receiver response exceeds bounded limit')
                 raw = response.read(max_response_bytes + 1)
                 if len(raw) > max_response_bytes:
                     raise ValueError('receiver response exceeds bounded limit')
+                if length is not None and len(raw) != int(length):
+                    raise ConnectionError('truncated receiver response')
+                encoding = response.headers.get('Content-Encoding', 'identity').strip().lower()
+                if encoding == 'gzip':
+                    inflater = zlib.decompressobj(16 + zlib.MAX_WBITS)
+                    try:
+                        raw = inflater.decompress(raw, max_response_bytes + 1)
+                    except zlib.error:
+                        raise ValueError('corrupt gzip receiver response') from None
+                    if len(raw) > max_response_bytes or inflater.unconsumed_tail:
+                        raise ValueError('inflated receiver response exceeds bounded limit')
+                    if not inflater.eof:
+                        raise ConnectionError('truncated gzip receiver response')
+                    if inflater.unused_data:
+                        raise ValueError('trailing gzip receiver response data')
+                elif encoding not in ('identity', ''):
+                    raise ValueError('unsupported receiver response encoding')
                 return json.loads(raw), attempt
         except urllib.error.HTTPError as error:
             detail = error.read(2000).decode('utf-8', 'replace')
             if error.code not in (502, 503, 504) or attempt == 3:
                 raise ValueError('receiver rejected snapshot: HTTP %d %s' % (error.code, detail)) from None
-        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+        except (urllib.error.URLError, TimeoutError, ConnectionError, IncompleteRead) as error:
             if attempt == 3:
                 raise ValueError('snapshot transport failed: ' + type(error).__name__) from None
         delay = (1, 3)[attempt - 1]
@@ -86,19 +109,23 @@ def transport_payload(payload, repo):
     return payload, document
 
 
-def post_incremental(payload, destination, token, state, repo):
+def post_incremental(payload, destination, token, state, repo, manifest_destination=None):
     """Resume from receiver document hashes; only complete batch ACKs advance."""
     from inresearch.delivery import snapshot_delta
     from inresearch.knowledge import registry as research
     normalized = research.candidate_snapshot(payload,
         research.read_json(repo / 'framework/research_graph.json'),
         research.read_json(repo / 'framework/research_questions.json'))
-    def request(value, limit=4096):
-        body = gzip.compress(snapshot_delta.encoded(value), compresslevel=6, mtime=0)
-        req = urllib.request.Request(destination, data=body, method='POST', headers={
-            'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Authorization': 'Bearer ' + token})
+    def request(value, limit=4096, endpoint=destination, compress=True):
+        body = snapshot_delta.encoded(value)
+        headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
+        if compress:
+            body = gzip.compress(body, compresslevel=6, mtime=0)
+            headers['Content-Encoding'] = 'gzip'
+        req = urllib.request.Request(endpoint, data=body, method='POST', headers=headers)
         return post_snapshot(req, max_response_bytes=limit)[0]
-    remote = request({'operation': 'candidate-manifest-v1'}, snapshot_delta.MAX_MANIFEST_BYTES)
+    remote = request({'operation': 'candidate-manifest-v1'}, snapshot_delta.MAX_MANIFEST_BYTES,
+                     endpoint=manifest_destination or destination, compress=False)
     base = remote.get('base_generated'); applied = 0; result = None
     for ids, grouped in snapshot_delta.batches(normalized, remote):
         result = request(snapshot_delta.envelope(normalized, ids, grouped, base))
@@ -127,6 +154,11 @@ def main(argv=None):
     parsed = urlsplit(destination)
     if parsed.scheme != 'https' or parsed.username or parsed.password or parsed.query:
         raise ValueError('publisher requires an HTTPS endpoint without embedded credentials')
+    manifest_destination = os.environ.get('READER_PUBLISH_MANIFEST_URL', destination)
+    manifest_parsed = urlsplit(manifest_destination)
+    if (manifest_parsed.scheme != 'https' or manifest_parsed.username or manifest_parsed.password
+            or manifest_parsed.query or manifest_parsed.fragment or manifest_parsed.path != parsed.path):
+        raise ValueError('publisher manifest requires a trusted HTTPS endpoint with the same protocol path')
     token_path = Path(os.environ.get('READER_PUBLISH_TOKEN_FILE', state / 'reader-sync.token'))
     if token_path.is_symlink() or stat.S_IMODE(token_path.stat().st_mode) & 0o077:
         raise ValueError('publisher token must be a private regular file')
@@ -186,7 +218,8 @@ def main(argv=None):
         payload, document = transport_payload(payload, Path(os.environ.get('READER_REPO_ROOT', project_root())))
         if incremental == '1' or len(document) > commands.SNAPSHOT_MAX_BYTES:
             result = post_incremental(payload, destination, token, state,
-                                      Path(os.environ.get('READER_REPO_ROOT', project_root())))
+                                      Path(os.environ.get('READER_REPO_ROOT', project_root())),
+                                      manifest_destination=manifest_destination)
             status = {'published': now_iso(), 'status': 'ok', 'bytes': len(document),
                       'documents': result['documents'], 'received_at': result['received_at'],
                       'transport': 'candidate-delta-v1',
