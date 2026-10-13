@@ -535,7 +535,7 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 ### 非read阶段超时的在线恢复（2026-10-13）
 
-同一retry-job现支持triage、read、synthesize的明确CLI失败/超时；必须与当前失败phase相同，triage/synthesize的chunk索引只能0。仍限唯一idle失败任务及现行revision、配方、原件、错误和耗尽次数CAS，不清零次数或更改available。triage要求尚无成功read块且无成功triage缓存；synthesize要求全部read块完成、每块缓存复验，已有部分synthesis缓存保留并绑定原recipe/doc/revision/member hash，不能删除成功块换取准入。有成功最终report缓存、额外失败/运行任务、来源/配方漂移仍拒绝；队列与审计同事务，旧请求精确重放不重排。此支持只恢复原任务，不创建新阅读结论或C3采用。
+同一retry-job现支持triage、read、synthesize的明确CLI失败/超时，以及仅triage阶段的model_output_invalid；后者只重新执行初筛，仍须通过原结构/注册ID校验，read/synthesize的输出错误不在此入口放行；必须与当前失败phase相同，triage/synthesize的chunk索引只能0。仍限唯一idle失败任务及现行revision、配方、原件、错误和耗尽次数CAS，不清零次数或更改available。triage要求尚无成功read块且无成功triage缓存；synthesize要求全部read块完成、每块缓存复验，已有部分synthesis缓存保留并绑定原recipe/doc/revision/member hash，不能删除成功块换取准入。有成功最终report缓存、额外失败/运行任务、来源/配方漂移仍拒绝；队列与审计同事务，旧请求精确重放不重排。此支持只恢复原任务，不创建新阅读结论或C3采用。
 
 
 在已确认接收端部署candidate-delta-v1后，可设置发布器私有`READER_PUBLISH_INCREMENTAL=1`，对所有大小的快照强制使用已验收的250篇/16MiB分批协议，避免CDN拒绝大POST；缺省0仍保留全量兼容，非法值在打开Reader前拒绝。该开关不提高HTTP/分批预算，不改变认证、接收业务校验或原件保留；旧接收端不支持时明确失败。逐批真实ACK与整个剩余清单完成分开计量。

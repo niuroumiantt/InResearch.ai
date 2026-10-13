@@ -364,6 +364,56 @@ class ReaderRetryJobTests(unittest.TestCase):
         self.assertEqual(before,[dict(x) for x in self.reader.conn.execute("SELECT * FROM jobs WHERE stage='read'")])
         self.assertEqual(self.call(stage='triage',chunk_index=0,error_code='model_cli_timeout')['status'],'already_applied')
 
+    def prepare_invalid_triage(self, keep_cache=False):
+        with self.reader.transaction():
+            self.reader.conn.execute("UPDATE jobs SET state='pending',attempts=0,error_code=NULL,result_rel=NULL,available=2000 WHERE revision_id=? AND stage='read'", (self.doc['revision_id'],))
+            self.reader.conn.execute("UPDATE jobs SET state='failed',attempts=3,error_code='model_output_invalid',result_rel=NULL WHERE revision_id=? AND stage='triage'", (self.doc['revision_id'],))
+            self.reader.conn.execute("UPDATE reading_runs SET state='failed',phase='triage',error_code='model_output_invalid',chunks_read=0 WHERE revision_id=?", (self.doc['revision_id'],))
+        folder = self.reader.data/self.doc['artifact_rel']
+        if not keep_cache:
+            (folder/'triage.json').unlink()
+        for path in (folder/'chunks').glob('*.json'):
+            path.unlink()
+        return folder
+
+    def test_invalid_triage_explicit_retry_preserves_attempts_and_revalidates_new_result(self):
+        folder = self.prepare_invalid_triage()
+        frozen = {p.name:p.read_bytes() for p in folder.glob('*.json')}
+        read_jobs = [dict(r) for r in self.reader.conn.execute("SELECT * FROM jobs WHERE stage='read'")]
+        with self.reader.worker_session():
+            result = self.call(stage='triage', chunk_index=0, error_code='model_output_invalid')
+        self.assertEqual('applied', result['status'])
+        self.assertEqual(3, result['attempts_preserved'])
+        self.assertEqual(read_jobs, [dict(r) for r in self.reader.conn.execute("SELECT * FROM jobs WHERE stage='read'")])
+        for name, value in frozen.items():
+            self.assertEqual(value, (folder/name).read_bytes())
+        job = self.reader.claim()
+        self.assertEqual(('triage',4), (job['stage'],job['attempts']))
+        self.assertEqual('succeeded', self.reader.process(job))
+        self.assertTrue((folder/'triage.json').exists())
+        self.assertEqual('already_applied', self.call(stage='triage',chunk_index=0,error_code='model_output_invalid')['status'])
+
+    def test_invalid_triage_still_invalid_is_terminal_not_silently_accepted(self):
+        folder = self.prepare_invalid_triage()
+        self.call(stage='triage',chunk_index=0,error_code='model_output_invalid')
+        job = self.reader.claim()
+        with mock.patch.object(self.reader.model,'generate',return_value={}):
+            self.assertEqual('failed',self.reader.process(job))
+        row = self.reader.doc(self.doc['doc_id'])
+        self.assertEqual(('failed','model_output_invalid'), (row['state'],row['error_code']))
+        self.assertFalse((folder/'triage.json').exists())
+        self.assertIsNone(self.reader.claim())
+        self.assertEqual('already_applied',self.call(stage='triage',chunk_index=0,error_code='model_output_invalid')['status'])
+
+    def test_invalid_triage_existing_success_cache_is_never_removed_for_retry(self):
+        folder = self.prepare_invalid_triage(keep_cache=True)
+        before = (folder/'triage.json').read_bytes()
+        jobs = self.table('jobs')
+        with self.assertRaises(ReaderError):
+            self.call(stage='triage',chunk_index=0,error_code='model_output_invalid',dry_run=True)
+        self.assertEqual(before,(folder/'triage.json').read_bytes())
+        self.assertEqual(jobs,self.table('jobs'))
+
     def test_synthesis_timeout_preserves_all_completed_chunks_and_partial_synthesis_cache(self):
         with self.reader.transaction():
             self.reader.conn.execute("UPDATE jobs SET state='pending',attempts=0,error_code=NULL WHERE revision_id=? AND stage='read' AND chunk=63",(self.doc['revision_id'],))
