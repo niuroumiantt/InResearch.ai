@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 const assert = require('node:assert/strict');
 const {execFileSync, spawn} = require('node:child_process');
 const {createInterface} = require('node:readline');
@@ -17,7 +18,7 @@ const pages = JSON.parse(execFileSync(process.env.PYTHON || 'python3', ['-c',
       assert.equal(await page.locator('[data-ui-choice]').count(),0,'no skin switch on auth pages');
       for (const mode of ['light','dark']) for (const width of [360,1440]) {
         await page.setViewportSize({width,height:800});
-        await page.locator('#ui-appearance').selectOption(mode);
+        await setAppearance(page, mode);
         assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),name);
         assert.ok(await page.locator('form,.ui-auth-message').isVisible(),name);
       }
@@ -33,9 +34,10 @@ from inresearch.interfaces import http as serve, auth
 with tempfile.TemporaryDirectory() as temporary:
     auth.USERS_FILE = Path(temporary) / 'users.json'
     auth.SECRET_FILE = Path(temporary) / '.hub_secret'
-    for username, role in [('admin', 'admin'), ('member', 'member'), ('intern', 'intern')]:
+    for username, role in [('admin', 'admin'), ('member', 'member'), ('intern', 'intern'), ('customer', 'customer')]:
         auth.add_user(username, 'Only-test-private-site-8391', role)
     serve.AUTH_ON = True
+    serve.Handler.log_message = lambda *args: None
     serve.log_run = lambda *args: None
     server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
     worker = threading.Thread(target=server.serve_forever, daemon=True)
@@ -63,8 +65,9 @@ with tempfile.TemporaryDirectory() as temporary:
       assert.equal(response.status(), 200);
       assert.equal(response.headers()['cache-control'], 'no-cache');
       await home.locator('.ui-login').waitFor();
+      await home.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
       await home.locator('#world-map .site-point').first().waitFor();
-      assert.deepEqual(await home.locator('.ui-navigation a').allTextContents(), ['行业总览', '任务跟踪']);
+      assert.deepEqual(await home.locator('.ui-navigation a').allTextContents(), ['地图首页', '任务']);
       assert.equal(await home.locator('.ui-appearance-controls .ui-login').getAttribute('href'), '/login');
       assert.equal(await home.locator('.ui-navigation a[href="/login"], .ui-navigation a[href="/account"], .ui-navigation a[href="/ops.html"]').count(), 0);
       for (const width of [320,390,1280]) {
@@ -122,7 +125,7 @@ with tempfile.TemporaryDirectory() as temporary:
       await home.locator('input[name=username]').fill('member');
       await home.locator('input[name=password]').fill('Only-test-private-site-8391');
       await Promise.all([home.waitForURL(base + '/'), home.locator('form button').click()]);
-      await home.locator('.ui-navigation a[href="/tasks.html"]').waitFor();
+      await home.locator('.ui-navigation-backstage [data-nav-section=production]').waitFor();
       assert.equal(await home.locator('#layout-link').isVisible(), true);
       // The request client does not apply Chromium's loopback Secure-cookie exception.
       const memberHeaders = {Cookie:(await context.cookies()).map(cookie => cookie.name + '=' + cookie.value).join('; ')};
@@ -140,6 +143,22 @@ with tempfile.TemporaryDirectory() as temporary:
       for (const field of ['assignee', 'machine', 'model', 'note', 'delivery_pointer', 'due']) {
         assert.ok(field in memberTasks.packages[0], 'member task field ' + field);
       }
+      const customer = await browser.newContext();
+      const customerPage = await customer.newPage();
+      customerPage.on('pageerror', error => errors.push(error.message));
+      await customerPage.goto(base + '/login');
+      await customerPage.locator('input[name=username]').fill('customer');
+      await customerPage.locator('input[name=password]').fill('Only-test-private-site-8391');
+      await Promise.all([customerPage.waitForURL(base + '/'), customerPage.locator('form button').click()]);
+      await customerPage.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
+      assert.equal(await customerPage.locator('.ui-navigation-delivery [data-nav-section]').count(),6);
+      assert.equal(await customerPage.locator('.ui-navigation-backstage,.ui-footer-runtime').count(),0);
+      const customerHeaders = {Cookie:(await customer.cookies()).map(cookie => cookie.name + '=' + cookie.value).join('; ')};
+      const customerNavigation = await (await customer.request.get(base + '/api/navigation?page=/ledger.html?view=cost',{headers:customerHeaders})).json();
+      assert.equal(customerNavigation.identity.kind,'customer');
+      assert.equal(customerNavigation.navigation.backstage.length,0);
+      assert.deepEqual(customerNavigation.search.scopes,['delivery']);
+      for(const path of ['/ops.html','/supply.html','/admin/company.html','/workspace.html?section=production']) assert.equal((await customer.request.get(base + path,{headers:customerHeaders,maxRedirects:0})).status(),403,'customer denial '+path);
       async function checkAccount(accountPage, username, role) {
         const summary = accountPage.locator('.ui-account-menu > summary');
         await summary.waitFor();
@@ -148,15 +167,16 @@ with tempfile.TemporaryDirectory() as temporary:
         assert.equal(await accountPage.locator('.ui-navigation a[href="/login"], .ui-navigation a[href="/account"], .ui-navigation a[href="/ops.html"], .ui-navigation .ui-admin-link').count(), 0);
         for (const mode of ['light','dark']) for (const width of [1280,390,320]) {
           await accountPage.setViewportSize({width,height:900});
-          await accountPage.locator('#ui-appearance').selectOption(mode);
+          await setAppearance(accountPage, mode);
           await summary.focus(); await summary.press('Enter');
           await accountPage.locator('.ui-account-panel a[href="/account"]').waitFor();
           assert.equal(await accountPage.locator('.ui-account-identity').innerText(), username + '\n' + role);
-          assert.equal(await accountPage.locator('.ui-account-panel .ui-management-link').count(), role === 'admin' ? 1 : 0);
+          assert.equal(await accountPage.locator('.ui-account-panel .ui-management-link,.ui-account-panel .ui-admin-link').count(),0);
+          assert.deepEqual(await accountPage.locator('.ui-account-panel a').allTextContents(),['个人信息','修改密码','退出登录']);
           const menu = await accountPage.locator('.ui-account-panel').boundingBox();
           const bar = await accountPage.locator('#ui-skinbar').boundingBox();
           assert.ok(menu.x >= 0 && menu.x + menu.width <= width + 1, role + ' menu fits ' + width);
-          assert.ok(bar.height <= 90, role + ' header has at most two rows at ' + width);
+          assert.ok(bar.height <= (width<=700?90:140), role + ' header follows the registered desktop/mobile rows at ' + width);
           await summary.press('Tab');
           assert.equal(await accountPage.evaluate(()=>document.activeElement.getAttribute('href')), '/account');
           await accountPage.keyboard.press('Escape');
@@ -169,6 +189,11 @@ with tempfile.TemporaryDirectory() as temporary:
         await accountPage.waitForFunction(name=>document.querySelector('[data-ui-account-name]')?.textContent===name,username);
         assert.equal(await accountPage.locator('[data-ui-account-role]').textContent(), role);
         assert.equal(await accountPage.locator('input[name=old_password]').count(), 1, 'password change remains available');
+        await accountPage.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
+        await accountPage.locator('.ui-account-menu > summary').click();
+        await accountPage.locator('.ui-account-panel a[href="/account#password"]').click();
+        await accountPage.waitForURL(base + '/account#password');
+        await accountPage.locator('#password').waitFor();
         await accountPage.locator('.ui-account-menu > summary').click();
         await accountPage.locator('.ui-logout').click();
         await accountPage.waitForURL(base + '/login');
@@ -177,13 +202,15 @@ with tempfile.TemporaryDirectory() as temporary:
         assert.deepEqual(await accountPage.evaluate(()=>fetch('/api/whoami').then(r=>r.json())), {ok:true,user:null,role:'reader'});
       }
       await checkAccount(home, 'member', 'member');
+      await checkAccount(customerPage, 'customer', 'customer');
       const intern = await browser.newContext();
       const internLogin = await intern.request.post(base + '/api/login', {data:{username:'intern',password:'Only-test-private-site-8391'}});
       assert.equal(internLogin.status(), 200);
       const internHeaders = {Cookie:internLogin.headers()['set-cookie'].split(';')[0]};
       const internPage = await intern.newPage(); await internPage.goto(base + '/tasks.html');
-      await internPage.locator('.ui-navigation a[href="/supply.html"]').waitFor();
-      assert.deepEqual(await internPage.locator('.ui-navigation a').allTextContents(), ['任务跟踪', '采集']);
+      await internPage.locator('.ui-navigation-backstage [data-nav-section=production]').waitFor();
+      assert.equal(await internPage.locator('.ui-navigation-delivery').count(),0);
+      assert.deepEqual(await internPage.locator('.ui-navigation-backstage .ui-section-panel a').allTextContents(),['团队任务','采集与接收']);
       assert.equal((await intern.request.get(base + '/api/research-tasks', {headers:internHeaders})).status(), 200);
       assert.equal((await intern.request.get(base + '/ops.html', {headers:internHeaders})).status(), 403);
       await checkAccount(internPage, 'intern', 'intern');
@@ -194,16 +221,16 @@ with tempfile.TemporaryDirectory() as temporary:
       await adminPage.locator('input[name=username]').fill('admin');
       await adminPage.locator('input[name=password]').fill('Only-test-private-site-8391');
       await Promise.all([adminPage.waitForURL(base + '/'), adminPage.locator('form button').click()]);
-      await adminPage.locator('.ui-account-menu > summary').click();
-      await adminPage.locator('.ui-management-link').click();
-      await adminPage.waitForURL(base + '/ops.html');
-      await adminPage.locator('.ui-navigation a[href="/supply.html"]').waitFor();
-      assert.deepEqual(await adminPage.locator('.ui-navigation a').allTextContents(), ['行业总览','任务跟踪','数据中心研究','账本','爆炸图','采集','成果']);
-      assert.equal(await adminPage.locator('.ui-management-link').getAttribute('aria-current'), 'page');
+      await adminPage.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
+      await adminPage.goto(base + '/ops.html');
+      await adminPage.locator('.ui-navigation-backstage [data-nav-section=operations] > summary').waitFor();
+      assert.equal(await adminPage.locator('.ui-navigation-delivery [data-nav-section]').count(),6);
+      assert.equal(await adminPage.locator('.ui-navigation-backstage [data-nav-section]').count(),6);
+      assert.equal(await adminPage.locator('.ui-navigation-backstage [data-nav-section=operations] > summary').getAttribute('aria-current'),'page');
       await checkAccount(adminPage, 'admin', 'admin');
       assert.deepEqual(errors, []);
-      await admin.close(); await intern.close(); await context.close();
-      console.log('PASS anonymous right login and strict task projection, private GET/HEAD/download gate, real member/admin/intern accounts, profile/logout and keyboard menus in two themes at 320/390/1280');
+      await admin.close(); await intern.close(); await customer.close(); await context.close();
+      console.log('PASS anonymous right login and strict task projection, private GET/HEAD/download gate, real customer/member/admin/intern accounts, profile/logout and keyboard menus in two themes at 320/390/1280');
     } finally {
       fixture.stdin.end('\n'); lines.close();
       await new Promise(resolve => fixture.once('exit', resolve));

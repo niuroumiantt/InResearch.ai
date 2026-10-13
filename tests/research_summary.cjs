@@ -111,7 +111,7 @@ finally:
     fullRequests++;
     return fullRequests === 1 ? route.fulfill({status:503,json:{error:'temporary'}}) : route.fulfill({json:mixed.adopted});
   });
-  await page.goto(process.env.UI_BASE_URL+'/node.html');
+  await page.goto(process.env.UI_BASE_URL+'/research-workbench.html');
   const materials = page.locator('#materials');
   await materials.getByRole('button',{name:'重试'}).click();
   await materials.locator('[data-material-id="material:0"]').waitFor();

@@ -118,6 +118,17 @@ class CompanyWindowTests(unittest.TestCase):
         self.assertNotIn('contracts', result)
         with self.assertRaises(KeyError): company_window.snapshot(ROOT, '../private')
 
+    def test_runtime_company_identity_uses_the_same_directory_and_public_window(self):
+        from inresearch.delivery import source_publication
+        ordinary={'objects':{'company:runtime-company':{'type':'company','name':'Runtime Company','identity':{'company_id':'runtime-company'}}},'records':[]}
+        with patch.object(source_publication,'state',return_value=ordinary):
+            data=company_window.snapshot(ROOT,'runtime-company')
+        self.assertEqual(data['company']['company_id'],'runtime-company')
+        self.assertEqual(data['company']['name'],'Runtime Company')
+        self.assertTrue(any(row['id']=='runtime-company' for row in data['companies']))
+        self.assertFalse(data['catalog']['registered'])
+        self.assertNotIn('registration_status',data['company'])
+
     def test_navigation_reads_projected_sql_not_specification_payload(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/'catalog.sqlite3'

@@ -107,6 +107,7 @@
     <input id="nuName" placeholder="新用户名（小写字母/数字）" style="flex:1;min-width:160px;padding:8px 11px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
     <select id="nuRole" style="padding:8px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
       <option value="intern">intern · 只见工单板</option>
+      <option value="customer">customer · 客户交付区只读</option>
       <option value="member">member · 看全量可录入</option>
       <option value="admin">admin · 全部权限</option>
     </select>
@@ -114,7 +115,7 @@
   </div>
   <div id="usersMsg" style="font-size:12.5px;margin-top:8px;min-height:1.2em"></div>
   <div style="font-size:11.5px;color:var(--muted);margin-top:4px">
-    角色说明：reader 不登录即可看数据中心、账本基准、爆炸图、成果；intern 只见采集页的目标表与研究问题任务，认领分配给自己的行；member 可看全部数据、录价格、派工；admin 另可跑管线任务与管理用户。
+    角色说明：未登录只见首页与任务；customer 可查看与搜索客户交付区，不可修改正式数据；intern 只见采集页的目标表与研究问题任务，认领分配给自己的行；member 可看全部数据、录价格、派工；admin 另可跑管线任务与管理用户。
     改名后旧名的登录立即失效，须用新名重登；最后一个 admin 不可降级或删除。</div>
   </section>
 

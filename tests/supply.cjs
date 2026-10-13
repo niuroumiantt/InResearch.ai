@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
 const base=process.env.UI_BASE_URL;
@@ -134,7 +135,7 @@ const base=process.env.UI_BASE_URL;
   for(const width of [390,1280]){
    await page.setViewportSize({width,height:950});
    for(const theme of ['light','dark']){
-    await page.locator('#ui-appearance').selectOption(theme);
+    await setAppearance(page, theme);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
    }
   }

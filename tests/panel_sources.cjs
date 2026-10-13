@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* TA30–34 actual-public panel runner. Test source only, NOT EXECUTED.
  * Exact https://inresearch.ai only. Local source is read for byte/SHA checks,
  * never imported, executed, served, or used as a network fallback.
@@ -174,7 +175,7 @@ function sameMain(a,b,label){for(const k of ['camera','target','quaternion'])a[k
   }
   const initial={};for(const item of ITEMS)initial[item.key]=await inspect(item);assert.equal(new Set(Object.values(initial).map(d=>d.uuid)).size,5);
   for(const width of [1280,390])for(const theme of ['light','dark']){
-   await page.setViewportSize({width,height:width===390?844:900});await page.locator('#ui-appearance').selectOption(theme);await settle(page);
+   await page.setViewportSize({width,height:width===390?844:900});await setAppearance(page, theme);await settle(page);
    await stage(page,0);await capture(page,'legacy0-'+width+'-'+theme);await stage(page,35);await capture(page,'legacy35-'+width+'-'+theme);
    const before=await main(page);await open(page);
    assert.equal(await page.locator('.panel-source-dialog nav button[data-figure-id]').count(),5);

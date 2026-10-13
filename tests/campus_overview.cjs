@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* TA18 actual geometry/public observer. This file never starts a server.
  * Interactive invocations require public HTTPS; the separately authorized CI
  * runner may supply its own loopback HTTP origin when CI=true. This task only
@@ -259,7 +260,7 @@ const note = (label,data={}) => results.push({label,...data});
         await go('/bom3d.html');
         assert.equal(await page.evaluate(()=>__campusTest.campusMode),true);
         assert.equal(await page.locator('#explode').inputValue(),'0');
-        await page.locator('#ui-appearance').selectOption(theme);
+        await setAppearance(page, theme);
         await settled();
         const initial=await measure();
         clearsGeometry(initial,'Default assembled '+width+' '+theme);
@@ -431,7 +432,7 @@ const note = (label,data={}) => results.push({label,...data});
         assert.equal(r.campus,true);assert.equal(r.kind,'site_right');assert.equal(r.canonical,canonical);
         assert.equal(r.modeled,0);assert.equal(r.meshes,0);assert.equal(r.inspector,0);
         assert.ok(r.nodeLinks.some(h=>h.includes('node.html?id='+encodeURIComponent('site:'+canonical))));
-        assert.ok(r.nodeLinks.some(h=>h.includes('supply.html?node='+encodeURIComponent('site:'+canonical))));
+        assert.equal(r.nodeLinks.some(h=>h.includes('supply.html')),false,'private target filters are tested on the workbench in dashboard; delivered rights retain only the canonical reading link');
         note('Actual nonphysical canonical/legacy site entry',{query,...r});
       }
       await go('/bom3d.html?node=part:dcim');

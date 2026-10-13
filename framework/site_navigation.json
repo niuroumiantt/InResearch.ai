@@ -1,0 +1,1148 @@
+{
+  "version": "2026.10.13.114",
+  "public_navigation": [
+    {
+      "id": "home",
+      "label": "地图首页",
+      "href": "/"
+    },
+    {
+      "id": "tasks",
+      "label": "任务",
+      "href": "/tasks.html"
+    }
+  ],
+  "navigation": {
+    "delivery": [
+      {
+        "id": "industry",
+        "label": "行业总览",
+        "href": "/industry.html",
+        "children": [
+          {
+            "id": "projects",
+            "label": "全球项目",
+            "href": "/industry.html"
+          },
+          {
+            "id": "market",
+            "label": "市场规模",
+            "href": "/market.html"
+          },
+          {
+            "id": "updates",
+            "label": "行业动态",
+            "href": "/workspace.html?section=industry&view=updates"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member",
+          "customer"
+        ]
+      },
+      {
+        "id": "datacenter",
+        "label": "数据中心研究",
+        "href": "/node.html",
+        "children": [
+          {
+            "id": "build",
+            "label": "怎么建设",
+            "href": "/node.html?col=4"
+          },
+          {
+            "id": "components",
+            "label": "由什么组成",
+            "href": "/node.html?col=1"
+          },
+          {
+            "id": "operate",
+            "label": "怎么运转",
+            "href": "/node.html?col=2"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member",
+          "customer"
+        ]
+      },
+      {
+        "id": "companies",
+        "label": "企业与产品",
+        "href": "/workspace.html?section=companies&view=companies",
+        "children": [
+          {
+            "id": "companies",
+            "label": "企业目录",
+            "href": "/workspace.html?section=companies&view=companies"
+          },
+          {
+            "id": "products",
+            "label": "产品与型号",
+            "href": "/workspace.html?section=companies&view=products"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member",
+          "customer"
+        ]
+      },
+      {
+        "id": "atlas",
+        "label": "技术图册",
+        "href": "/workspace.html?section=atlas&view=systems",
+        "children": [
+          {
+            "id": "systems",
+            "label": "系统图解",
+            "href": "/workspace.html?section=atlas&view=systems"
+          },
+          {
+            "id": "equipment",
+            "label": "设备与结构",
+            "href": "/workspace.html?section=atlas&view=equipment"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member",
+          "customer"
+        ]
+      },
+      {
+        "id": "economics",
+        "label": "成本与收益",
+        "href": "/ledger.html?view=basis",
+        "children": [
+          {
+            "id": "basis",
+            "label": "基准与口径",
+            "href": "/ledger.html?view=basis"
+          },
+          {
+            "id": "cost",
+            "label": "成本结构",
+            "href": "/ledger.html?view=cost"
+          },
+          {
+            "id": "returns",
+            "label": "收入与回报",
+            "href": "/ledger.html?view=returns"
+          },
+          {
+            "id": "scenarios",
+            "label": "情景比较",
+            "href": "/ledger.html?view=scenarios"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member",
+          "customer"
+        ]
+      },
+      {
+        "id": "reports",
+        "label": "研究报告",
+        "href": "/workspace.html?section=reports",
+        "children": [],
+        "roles": [
+          "admin",
+          "member",
+          "customer"
+        ]
+      }
+    ],
+    "backstage": [
+      {
+        "id": "overview",
+        "label": "工作总览",
+        "href": "/workspace.html?section=overview",
+        "children": [],
+        "roles": [
+          "admin",
+          "member"
+        ]
+      },
+      {
+        "id": "production",
+        "label": "研究生产",
+        "href": "/workspace.html?section=production&view=tasks",
+        "children": [
+          {
+            "id": "tasks",
+            "label": "团队任务",
+            "href": "/tasks.html#work-packages",
+            "roles": [
+              "admin",
+              "member",
+              "intern"
+            ]
+          },
+          {
+            "id": "intake",
+            "label": "采集与接收",
+            "href": "/supply.html#inbox",
+            "roles": [
+              "admin",
+              "member",
+              "intern"
+            ],
+            "role_hrefs": {
+              "intern": "/supply.html#targets"
+            }
+          },
+          {
+            "id": "reading",
+            "label": "阅读与提取",
+            "href": "/workspace.html?section=production&view=reading",
+            "roles": [
+              "admin",
+              "member"
+            ]
+          },
+          {
+            "id": "adoption",
+            "label": "研究审核与采用",
+            "href": "/workspace.html?section=production&view=adoption",
+            "roles": [
+              "admin",
+              "member"
+            ]
+          }
+        ],
+        "roles": [
+          "admin",
+          "member",
+          "intern"
+        ]
+      },
+      {
+        "id": "content",
+        "label": "内容与数据",
+        "href": "/workspace.html?section=content&view=projects",
+        "children": [
+          {
+            "id": "companies",
+            "label": "企业与产品",
+            "href": "/admin/company.html",
+            "roles": [
+              "admin"
+            ]
+          },
+          {
+            "id": "projects",
+            "label": "园区与项目",
+            "href": "/workspace.html?section=content&view=projects"
+          },
+          {
+            "id": "statistics",
+            "label": "统计与报价",
+            "href": "/workspace.html?section=content&view=statistics"
+          },
+          {
+            "id": "sources",
+            "label": "来源与证据",
+            "href": "/workspace.html?section=content&view=sources"
+          },
+          {
+            "id": "quality",
+            "label": "数据质量",
+            "href": "/workspace.html?section=content&view=quality"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member"
+        ]
+      },
+      {
+        "id": "construction",
+        "label": "建设进展",
+        "href": "/workspace.html?section=construction&view=plans",
+        "children": [
+          {
+            "id": "plans",
+            "label": "需求与计划",
+            "href": "/workspace.html?section=construction&view=plans"
+          },
+          {
+            "id": "features",
+            "label": "功能建设",
+            "href": "/workspace.html?section=construction&view=features"
+          },
+          {
+            "id": "releases",
+            "label": "验收与发布",
+            "href": "/workspace.html?section=construction&view=releases"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member"
+        ]
+      },
+      {
+        "id": "architecture",
+        "label": "系统架构",
+        "href": "/workspace.html?section=architecture&view=pages",
+        "children": [
+          {
+            "id": "modules",
+            "label": "主站模块与职责",
+            "href": "/admin/inresearchrepo.html",
+            "roles": [
+              "admin"
+            ]
+          },
+          {
+            "id": "pages",
+            "label": "全站页面地图",
+            "href": "/workspace.html?section=architecture&view=pages"
+          },
+          {
+            "id": "services",
+            "label": "数据流与服务",
+            "href": "/workspace.html?section=architecture&view=services"
+          },
+          {
+            "id": "repositories",
+            "label": "关联仓库与规范",
+            "href": "/admin/repos.html",
+            "roles": [
+              "admin"
+            ]
+          }
+        ],
+        "roles": [
+          "admin",
+          "member"
+        ]
+      },
+      {
+        "id": "operations",
+        "label": "运行管理",
+        "href": "/workspace.html?section=operations&view=health",
+        "children": [
+          {
+            "id": "health",
+            "label": "服务与健康",
+            "href": "/ops.html#ops-health",
+            "roles": [
+              "admin"
+            ]
+          },
+          {
+            "id": "deployment",
+            "label": "部署与恢复",
+            "href": "/workspace.html?section=operations&view=deployment"
+          },
+          {
+            "id": "logs",
+            "label": "执行与日志",
+            "href": "/ops.html#ops-history",
+            "roles": [
+              "admin"
+            ]
+          },
+          {
+            "id": "accounts",
+            "label": "账号与权限",
+            "href": "/ops.html#users-drawer",
+            "roles": [
+              "admin"
+            ]
+          }
+        ],
+        "roles": [
+          "admin",
+          "member"
+        ]
+      }
+    ]
+  },
+  "page_rules": [
+    {
+      "paths": [
+        "/research-workbench.html"
+      ],
+      "area": "backstage",
+      "section": "production",
+      "view": "reading"
+    },
+    {
+      "paths": [
+        "/report.html"
+      ],
+      "area": "backstage",
+      "section": "production",
+      "view": "adoption",
+      "query": {
+        "legacy": "1"
+      }
+    },
+    {
+      "paths": [
+        "/",
+        "/index.html"
+      ],
+      "area": "public",
+      "section": "home",
+      "view": null
+    },
+    {
+      "paths": [
+        "/tasks.html"
+      ],
+      "area": "public",
+      "section": "tasks",
+      "view": null
+    },
+    {
+      "paths": [
+        "/market.html"
+      ],
+      "area": "delivery",
+      "section": "industry",
+      "view": "market"
+    },
+    {
+      "paths": [
+        "/industry.html",
+        "/projects.html",
+        "/project.html"
+      ],
+      "area": "delivery",
+      "section": "industry",
+      "view": "projects"
+    },
+    {
+      "paths": [
+        "/node.html"
+      ],
+      "area": "delivery",
+      "section": "datacenter",
+      "view": "build",
+      "query": {
+        "col": "4"
+      }
+    },
+    {
+      "paths": [
+        "/node.html"
+      ],
+      "area": "delivery",
+      "section": "datacenter",
+      "view": "components",
+      "query": {
+        "col": "1"
+      }
+    },
+    {
+      "paths": [
+        "/node.html"
+      ],
+      "area": "delivery",
+      "section": "datacenter",
+      "view": "operate",
+      "query": {
+        "col": "2"
+      }
+    },
+    {
+      "paths": [
+        "/node.html"
+      ],
+      "area": "delivery",
+      "section": "datacenter",
+      "view": "components"
+    },
+    {
+      "paths": [
+        "/ledger.html",
+        "/cost.html",
+        "/economics.html",
+        "/tco.html"
+      ],
+      "area": "delivery",
+      "section": "economics",
+      "view": "basis",
+      "query": {
+        "view": "basis"
+      }
+    },
+    {
+      "paths": [
+        "/ledger.html",
+        "/cost.html",
+        "/economics.html",
+        "/tco.html"
+      ],
+      "area": "delivery",
+      "section": "economics",
+      "view": "cost",
+      "query": {
+        "view": "cost"
+      }
+    },
+    {
+      "paths": [
+        "/ledger.html",
+        "/cost.html",
+        "/economics.html",
+        "/tco.html"
+      ],
+      "area": "delivery",
+      "section": "economics",
+      "view": "returns",
+      "query": {
+        "view": "returns"
+      }
+    },
+    {
+      "paths": [
+        "/ledger.html",
+        "/cost.html",
+        "/economics.html",
+        "/tco.html"
+      ],
+      "area": "delivery",
+      "section": "economics",
+      "view": "scenarios",
+      "query": {
+        "view": "scenarios"
+      }
+    },
+    {
+      "paths": [
+        "/ledger.html",
+        "/cost.html",
+        "/economics.html",
+        "/tco.html"
+      ],
+      "area": "delivery",
+      "section": "economics",
+      "view": "cost"
+    },
+    {
+      "paths": [
+        "/product-catalog.html",
+        "/company.html",
+        "/compute-catalog.html"
+      ],
+      "area": "delivery",
+      "section": "companies",
+      "view": "products"
+    },
+    {
+      "paths": [
+        "/bom.html",
+        "/facility-atlas.html",
+        "/power-atlas.html",
+        "/thermal-atlas.html",
+        "/compute-atlas.html",
+        "/memory-atlas.html",
+        "/storage-atlas.html",
+        "/network-atlas.html",
+        "/control-atlas.html"
+      ],
+      "area": "delivery",
+      "section": "atlas",
+      "view": "systems"
+    },
+    {
+      "paths": [
+        "/bom3d.html",
+        "/rack3d.html",
+        "/rack-atlas.html",
+        "/rack-exploded.html",
+        "/server-plan.html",
+        "/chip-atlas.html",
+        "/campus-plan.html",
+        "/cross-scale-atlas.html"
+      ],
+      "area": "delivery",
+      "section": "atlas",
+      "view": "equipment"
+    },
+    {
+      "paths": [
+        "/report.html",
+        "/research/data-centers-2026.html",
+        "/research/data-centers-2026-us.html",
+        "/research/data-centers-2026-sea.html",
+        "/research/data-centers-2026-cn.html",
+        "/research/data-centers-2026-projects.html"
+      ],
+      "area": "delivery",
+      "section": "reports",
+      "view": null
+    },
+    {
+      "paths": [
+        "/supply.html",
+        "/team.html",
+        "/materials.html",
+        "/nvidia-pilot.html"
+      ],
+      "area": "backstage",
+      "section": "production",
+      "view": "intake"
+    },
+    {
+      "paths": [
+        "/ops.html"
+      ],
+      "area": "backstage",
+      "section": "operations",
+      "view": "health"
+    },
+    {
+      "paths": [
+        "/admin/company.html",
+        "/admin/product",
+        "/admin/product/",
+        "/admin/product/index.html"
+      ],
+      "area": "backstage",
+      "section": "content",
+      "view": "companies"
+    },
+    {
+      "paths": [
+        "/admin/inresearchrepo.html"
+      ],
+      "area": "backstage",
+      "section": "architecture",
+      "view": "modules"
+    },
+    {
+      "paths": [
+        "/doc.html"
+      ],
+      "area": "backstage",
+      "section": "architecture",
+      "view": "repositories"
+    },
+    {
+      "paths": [
+        "/compare.html"
+      ],
+      "area": "backstage",
+      "section": "construction",
+      "view": "features"
+    }
+  ],
+  "footer": {
+    "groups": [
+      {
+        "id": "research",
+        "label": "研究说明",
+        "links": [
+          {
+            "label": "数据口径与方法",
+            "href": "/guide.html?view=method"
+          },
+          {
+            "label": "来源与引用",
+            "href": "/guide.html?view=sources"
+          }
+        ]
+      },
+      {
+        "id": "support",
+        "label": "使用支持",
+        "links": [
+          {
+            "label": "使用指南",
+            "href": "/guide.html?view=help"
+          },
+          {
+            "label": "反馈与纠错",
+            "href": "/guide.html?view=feedback"
+          }
+        ]
+      },
+      {
+        "id": "about",
+        "label": "关于本站",
+        "links": [
+          {
+            "label": "项目介绍",
+            "href": "/guide.html?view=about"
+          },
+          {
+            "label": "产品更新",
+            "href": "/guide.html?view=updates"
+          }
+        ]
+      }
+    ],
+    "legal": [
+      {
+        "label": "隐私说明",
+        "href": "/guide.html?view=privacy"
+      },
+      {
+        "label": "使用条款",
+        "href": "/guide.html?view=terms"
+      }
+    ]
+  },
+  "access": {
+    "customer": {
+      "pages": [
+        "/",
+        "/index.html",
+        "/tasks.html",
+        "/workspace.html",
+        "/guide.html",
+        "/search.html",
+        "/market.html",
+        "/industry.html",
+        "/projects.html",
+        "/project.html",
+        "/product-catalog.html",
+        "/company.html",
+        "/compute-catalog.html",
+        "/ledger.html",
+        "/cost.html",
+        "/economics.html",
+        "/tco.html",
+        "/server-plan.html",
+        "/facility-atlas.html",
+        "/power-atlas.html",
+        "/thermal-atlas.html",
+        "/compute-atlas.html",
+        "/memory-atlas.html",
+        "/storage-atlas.html",
+        "/network-atlas.html",
+        "/control-atlas.html",
+        "/rack-atlas.html",
+        "/rack-exploded.html",
+        "/chip-atlas.html",
+        "/campus-plan.html",
+        "/cross-scale-atlas.html",
+        "/research/data-centers-2026.html",
+        "/research/data-centers-2026-us.html",
+        "/research/data-centers-2026-sea.html",
+        "/research/data-centers-2026-cn.html",
+        "/research/data-centers-2026-projects.html",
+        "/report.html",
+        "/bom.html",
+        "/node.html",
+        "/bom3d.html",
+        "/rack3d.html"
+      ],
+      "data": [
+        "/data/companies.json",
+        "/data/datacenter_model.json",
+        "/data/prices.json",
+        "/research/data-centers-2026-project-ledger.json",
+        "/research/data-centers-2026-chart-data.json",
+        "/framework/bom.json",
+        "/framework/site_rights.json",
+        "/framework/indicators.json",
+        "/data/dashboard.json"
+      ],
+      "assets": [
+        "/assets/auth-form.js",
+        "/assets/auth.css",
+        "/assets/theme-state.js",
+        "/assets/site-skin.js",
+        "/assets/site-skin.css",
+        "/assets/company-home.js",
+        "/assets/company-home.css",
+        "/assets/company-overview.js",
+        "/assets/company.css",
+        "/assets/company-browser.js",
+        "/assets/company-browser.css",
+        "/assets/product-catalog.js",
+        "/assets/compute-catalog.js",
+        "/assets/catalog-materials.js",
+        "/assets/datacenter-model.js",
+        "/assets/datacenter-research-ledger.js",
+        "/assets/markdown-inline.js",
+        "/assets/site-search.js",
+        "/assets/site-guide.js",
+        "/assets/technical-atlas.js",
+        "/assets/system-atlas.js",
+        "/assets/technical-atlas.css",
+        "/assets/technical-atlas/server-plan-v1.svg",
+        "/assets/technical-atlas/server-plan-v1-preview.svg",
+        "/assets/technical-atlas/server-plan-v1.png",
+        "/assets/technical-atlas/facility-domain-v1.svg",
+        "/assets/technical-atlas/facility-domain-v1-preview.svg",
+        "/assets/technical-atlas/facility-domain-v1.png",
+        "/assets/technical-atlas/power-domain-v1.svg",
+        "/assets/technical-atlas/power-domain-v1-preview.svg",
+        "/assets/technical-atlas/power-domain-v1.png",
+        "/assets/technical-atlas/thermal-domain-v1.svg",
+        "/assets/technical-atlas/thermal-domain-v1-preview.svg",
+        "/assets/technical-atlas/thermal-domain-v1.png",
+        "/assets/technical-atlas/compute-domain-v1.svg",
+        "/assets/technical-atlas/compute-domain-v1-preview.svg",
+        "/assets/technical-atlas/compute-domain-v1.png",
+        "/assets/technical-atlas/memory-domain-v1.svg",
+        "/assets/technical-atlas/memory-domain-v1-preview.svg",
+        "/assets/technical-atlas/memory-domain-v1.png",
+        "/assets/technical-atlas/storage-domain-v1.svg",
+        "/assets/technical-atlas/storage-domain-v1-preview.svg",
+        "/assets/technical-atlas/storage-domain-v1.png",
+        "/assets/technical-atlas/network-domain-v1.svg",
+        "/assets/technical-atlas/network-domain-v1-preview.svg",
+        "/assets/technical-atlas/network-domain-v1.png",
+        "/assets/technical-atlas/control-domain-v1.svg",
+        "/assets/technical-atlas/control-domain-v1-preview.svg",
+        "/assets/technical-atlas/control-domain-v1.png",
+        "/assets/technical-atlas/rack-overview-v1.svg",
+        "/assets/technical-atlas/rack-overview-v1-preview.svg",
+        "/assets/technical-atlas/rack-overview-v1.png",
+        "/assets/technical-atlas/rack-exploded-v1.svg",
+        "/assets/technical-atlas/rack-exploded-v1-preview.svg",
+        "/assets/technical-atlas/rack-exploded-v1.png",
+        "/assets/technical-atlas/chip-package-v1.svg",
+        "/assets/technical-atlas/chip-package-v1-preview.svg",
+        "/assets/technical-atlas/chip-package-v1.png",
+        "/assets/technical-atlas/campus-plan-v1.svg",
+        "/assets/technical-atlas/campus-plan-v1-preview.svg",
+        "/assets/technical-atlas/campus-plan-v1.png",
+        "/assets/technical-atlas/cross-scale-v1.svg",
+        "/assets/technical-atlas/cross-scale-v1-preview.svg",
+        "/assets/technical-atlas/cross-scale-v1.png",
+        "/assets/datacenter-news.js",
+        "/assets/datacenter-news.css",
+        "/assets/industry.js",
+        "/assets/industry.css",
+        "/assets/research-tasks.js",
+        "/assets/research-tasks.css",
+        "/assets/workspace.js",
+        "/assets/workspace.css",
+        "/assets/world.geo.json",
+        "/assets/world-detail.geo.json",
+        "/assets/map-admin1-0.geo.json",
+        "/assets/map-admin1-1.geo.json",
+        "/assets/map-admin1-2.geo.json",
+        "/assets/map-admin1-3.geo.json",
+        "/assets/map-admin1-4.geo.json",
+        "/assets/map-admin1-5.geo.json",
+        "/assets/map-admin1-6.geo.json",
+        "/assets/map-admin1-7.geo.json",
+        "/assets/map-admin1-8.geo.json",
+        "/assets/map-admin1-9.geo.json",
+        "/assets/map-admin1-10.geo.json",
+        "/assets/map-admin1-11.geo.json",
+        "/assets/brand/inresearch-ai/icon-orange.svg",
+        "/assets/brand/inresearch-ai/wordmark-primary.svg",
+        "/assets/fonts/fonts.css",
+        "/assets/fonts/inter-variable-italic.woff2",
+        "/assets/fonts/inter-variable.woff2",
+        "/assets/fonts/noto-sans-sc-1.woff2",
+        "/assets/fonts/noto-sans-sc-2.woff2",
+        "/assets/fonts/noto-sans-sc-3.woff2",
+        "/assets/fonts/noto-sans-sc-4.woff2",
+        "/assets/fonts/noto-sans-sc-5.woff2",
+        "/assets/fonts/noto-sans-sc-6.woff2",
+        "/assets/fonts/noto-sans-sc-7.woff2",
+        "/assets/fonts/noto-sans-sc-8.woff2",
+        "/assets/fonts/noto-sans-sc-9.woff2",
+        "/assets/fonts/noto-sans-sc-10.woff2",
+        "/assets/part-dossier.js",
+        "/assets/series-summary.js",
+        "/assets/bom-classification/overview-v1-preview.jpg",
+        "/assets/bom-classification/overview-v1.png",
+        "/assets/bom-classification/overview-v1.svg",
+        "/assets/technical-atlas/coldplate-v1-preview.svg",
+        "/assets/technical-atlas/coldplate-v1.png",
+        "/assets/technical-atlas/coldplate-v1.svg",
+        "/assets/technical-atlas/fan-wall-v1-preview.svg",
+        "/assets/technical-atlas/fan-wall-v1.png",
+        "/assets/technical-atlas/fan-wall-v1.svg",
+        "/assets/technical-atlas/fire-v1-preview.svg",
+        "/assets/technical-atlas/fire-v1.png",
+        "/assets/technical-atlas/fire-v1.svg",
+        "/assets/technical-atlas/gpu-board-v1-preview.svg",
+        "/assets/technical-atlas/gpu-board-v1.png",
+        "/assets/technical-atlas/gpu-board-v1.svg",
+        "/assets/technical-atlas/hbm-package-v1-preview.svg",
+        "/assets/technical-atlas/hbm-package-v1.png",
+        "/assets/technical-atlas/hbm-package-v1.svg",
+        "/assets/technical-atlas/motherboard-v1-preview.svg",
+        "/assets/technical-atlas/motherboard-v1.png",
+        "/assets/technical-atlas/motherboard-v1.svg",
+        "/assets/technical-atlas/nic-v1-preview.svg",
+        "/assets/technical-atlas/nic-v1.png",
+        "/assets/technical-atlas/nic-v1.svg",
+        "/assets/technical-atlas/psu-v1-preview.svg",
+        "/assets/technical-atlas/psu-v1.png",
+        "/assets/technical-atlas/psu-v1.svg",
+        "/assets/technical-atlas/rack-frame-v1-preview.svg",
+        "/assets/technical-atlas/rack-frame-v1.png",
+        "/assets/technical-atlas/rack-frame-v1.svg",
+        "/assets/technical-atlas/scale-overview-v1.png",
+        "/assets/technical-atlas/scale-overview-v1.svg",
+        "/assets/technical-atlas/security-v1-preview.svg",
+        "/assets/technical-atlas/security-v1.png",
+        "/assets/technical-atlas/security-v1.svg",
+        "/assets/technical-atlas/server-v1-preview.svg",
+        "/assets/technical-atlas/server-v1.png",
+        "/assets/technical-atlas/server-v1.svg",
+        "/assets/technical-atlas/shell-v1-preview.svg",
+        "/assets/technical-atlas/shell-v1.png",
+        "/assets/technical-atlas/shell-v1.svg",
+        "/assets/technical-atlas/ssd-v1-preview.svg",
+        "/assets/technical-atlas/ssd-v1.png",
+        "/assets/technical-atlas/ssd-v1.svg",
+        "/assets/technical-atlas/system-overview-v2.png",
+        "/assets/technical-atlas/system-overview-v2.svg",
+        "/assets/technical-atlas/system/ai-asic-v2-preview.svg",
+        "/assets/technical-atlas/system/ai-asic-v2-tile.png",
+        "/assets/technical-atlas/system/ai-asic-v2.png",
+        "/assets/technical-atlas/system/ai-asic-v2.svg",
+        "/assets/technical-atlas/system/backup-power-v2-preview.svg",
+        "/assets/technical-atlas/system/backup-power-v2-tile.png",
+        "/assets/technical-atlas/system/backup-power-v2.png",
+        "/assets/technical-atlas/system/backup-power-v2.svg",
+        "/assets/technical-atlas/system/bbu-v2-preview.svg",
+        "/assets/technical-atlas/system/bbu-v2-tile.png",
+        "/assets/technical-atlas/system/bbu-v2.png",
+        "/assets/technical-atlas/system/bbu-v2.svg",
+        "/assets/technical-atlas/system/bess-v2-preview.svg",
+        "/assets/technical-atlas/system/bess-v2-tile.png",
+        "/assets/technical-atlas/system/bess-v2.png",
+        "/assets/technical-atlas/system/bess-v2.svg",
+        "/assets/technical-atlas/system/bmc-v2-preview.svg",
+        "/assets/technical-atlas/system/bmc-v2-tile.png",
+        "/assets/technical-atlas/system/bmc-v2.png",
+        "/assets/technical-atlas/system/bmc-v2.svg",
+        "/assets/technical-atlas/system/busway-v2-preview.svg",
+        "/assets/technical-atlas/system/busway-v2-tile.png",
+        "/assets/technical-atlas/system/busway-v2.png",
+        "/assets/technical-atlas/system/busway-v2.svg",
+        "/assets/technical-atlas/system/cabling-v2-preview.svg",
+        "/assets/technical-atlas/system/cabling-v2-tile.png",
+        "/assets/technical-atlas/system/cabling-v2.png",
+        "/assets/technical-atlas/system/cabling-v2.svg",
+        "/assets/technical-atlas/system/cdu-v2-preview.svg",
+        "/assets/technical-atlas/system/cdu-v2-tile.png",
+        "/assets/technical-atlas/system/cdu-v2.png",
+        "/assets/technical-atlas/system/cdu-v2.svg",
+        "/assets/technical-atlas/system/chilled-water-loop-v2-preview.svg",
+        "/assets/technical-atlas/system/chilled-water-loop-v2-tile.png",
+        "/assets/technical-atlas/system/chilled-water-loop-v2.png",
+        "/assets/technical-atlas/system/chilled-water-loop-v2.svg",
+        "/assets/technical-atlas/system/chiller-v2-preview.svg",
+        "/assets/technical-atlas/system/chiller-v2-tile.png",
+        "/assets/technical-atlas/system/chiller-v2.png",
+        "/assets/technical-atlas/system/chiller-v2.svg",
+        "/assets/technical-atlas/system/connector-v2-preview.svg",
+        "/assets/technical-atlas/system/connector-v2-tile.png",
+        "/assets/technical-atlas/system/connector-v2.png",
+        "/assets/technical-atlas/system/connector-v2.svg",
+        "/assets/technical-atlas/system/coolant-v2-preview.svg",
+        "/assets/technical-atlas/system/coolant-v2-tile.png",
+        "/assets/technical-atlas/system/coolant-v2.png",
+        "/assets/technical-atlas/system/coolant-v2.svg",
+        "/assets/technical-atlas/system/copper-interconnect-v2-preview.svg",
+        "/assets/technical-atlas/system/copper-interconnect-v2-tile.png",
+        "/assets/technical-atlas/system/copper-interconnect-v2.png",
+        "/assets/technical-atlas/system/copper-interconnect-v2.svg",
+        "/assets/technical-atlas/system/cxl-memory-v2-preview.svg",
+        "/assets/technical-atlas/system/cxl-memory-v2-tile.png",
+        "/assets/technical-atlas/system/cxl-memory-v2.png",
+        "/assets/technical-atlas/system/cxl-memory-v2.svg",
+        "/assets/technical-atlas/system/dry-cooler-v2-preview.svg",
+        "/assets/technical-atlas/system/dry-cooler-v2-tile.png",
+        "/assets/technical-atlas/system/dry-cooler-v2.png",
+        "/assets/technical-atlas/system/dry-cooler-v2.svg",
+        "/assets/technical-atlas/system/fpga-v2-preview.svg",
+        "/assets/technical-atlas/system/fpga-v2-tile.png",
+        "/assets/technical-atlas/system/fpga-v2.png",
+        "/assets/technical-atlas/system/fpga-v2.svg",
+        "/assets/technical-atlas/system/fuel-cell-v2-preview.svg",
+        "/assets/technical-atlas/system/fuel-cell-v2-tile.png",
+        "/assets/technical-atlas/system/fuel-cell-v2.png",
+        "/assets/technical-atlas/system/fuel-cell-v2.svg",
+        "/assets/technical-atlas/system/fuel-storage-v2-preview.svg",
+        "/assets/technical-atlas/system/fuel-storage-v2-tile.png",
+        "/assets/technical-atlas/system/fuel-storage-v2.png",
+        "/assets/technical-atlas/system/fuel-storage-v2.svg",
+        "/assets/technical-atlas/system/gas-engine-v2-preview.svg",
+        "/assets/technical-atlas/system/gas-engine-v2-tile.png",
+        "/assets/technical-atlas/system/gas-engine-v2.png",
+        "/assets/technical-atlas/system/gas-engine-v2.svg",
+        "/assets/technical-atlas/system/gas-turbine-v2-preview.svg",
+        "/assets/technical-atlas/system/gas-turbine-v2-tile.png",
+        "/assets/technical-atlas/system/gas-turbine-v2.png",
+        "/assets/technical-atlas/system/gas-turbine-v2.svg",
+        "/assets/technical-atlas/system/general-server-v2-preview.svg",
+        "/assets/technical-atlas/system/general-server-v2-tile.png",
+        "/assets/technical-atlas/system/general-server-v2.png",
+        "/assets/technical-atlas/system/general-server-v2.svg",
+        "/assets/technical-atlas/system/hdd-v2-preview.svg",
+        "/assets/technical-atlas/system/hdd-v2-tile.png",
+        "/assets/technical-atlas/system/hdd-v2.png",
+        "/assets/technical-atlas/system/hdd-v2.svg",
+        "/assets/technical-atlas/system/heatsink-vc-v2-preview.svg",
+        "/assets/technical-atlas/system/heatsink-vc-v2-tile.png",
+        "/assets/technical-atlas/system/heatsink-vc-v2.png",
+        "/assets/technical-atlas/system/heatsink-vc-v2.svg",
+        "/assets/technical-atlas/system/hv-switchyard-v2-preview.svg",
+        "/assets/technical-atlas/system/hv-switchyard-v2-tile.png",
+        "/assets/technical-atlas/system/hv-switchyard-v2.png",
+        "/assets/technical-atlas/system/hv-switchyard-v2.svg",
+        "/assets/technical-atlas/system/immersion-v2-preview.svg",
+        "/assets/technical-atlas/system/immersion-v2-tile.png",
+        "/assets/technical-atlas/system/immersion-v2.png",
+        "/assets/technical-atlas/system/immersion-v2.svg",
+        "/assets/technical-atlas/system/leak-detection-v2-preview.svg",
+        "/assets/technical-atlas/system/leak-detection-v2-tile.png",
+        "/assets/technical-atlas/system/leak-detection-v2.png",
+        "/assets/technical-atlas/system/leak-detection-v2.svg",
+        "/assets/technical-atlas/system/lv-switchgear-v2-preview.svg",
+        "/assets/technical-atlas/system/lv-switchgear-v2-tile.png",
+        "/assets/technical-atlas/system/lv-switchgear-v2.png",
+        "/assets/technical-atlas/system/lv-switchgear-v2.svg",
+        "/assets/technical-atlas/system/manifold-v2-preview.svg",
+        "/assets/technical-atlas/system/manifold-v2-tile.png",
+        "/assets/technical-atlas/system/manifold-v2.png",
+        "/assets/technical-atlas/system/manifold-v2.svg",
+        "/assets/technical-atlas/system/mv-switchgear-v2-preview.svg",
+        "/assets/technical-atlas/system/mv-switchgear-v2-tile.png",
+        "/assets/technical-atlas/system/mv-switchgear-v2.png",
+        "/assets/technical-atlas/system/mv-switchgear-v2.svg",
+        "/assets/technical-atlas/system/network-switch-v2-preview.svg",
+        "/assets/technical-atlas/system/network-switch-v2-tile.png",
+        "/assets/technical-atlas/system/network-switch-v2.png",
+        "/assets/technical-atlas/system/network-switch-v2.svg",
+        "/assets/technical-atlas/system/optics-v2-preview.svg",
+        "/assets/technical-atlas/system/optics-v2-tile.png",
+        "/assets/technical-atlas/system/optics-v2.png",
+        "/assets/technical-atlas/system/optics-v2.svg",
+        "/assets/technical-atlas/system/pcie-switch-v2-preview.svg",
+        "/assets/technical-atlas/system/pcie-switch-v2-tile.png",
+        "/assets/technical-atlas/system/pcie-switch-v2.png",
+        "/assets/technical-atlas/system/pcie-switch-v2.svg",
+        "/assets/technical-atlas/system/pdu-v2-preview.svg",
+        "/assets/technical-atlas/system/pdu-v2-tile.png",
+        "/assets/technical-atlas/system/pdu-v2.png",
+        "/assets/technical-atlas/system/pdu-v2.svg",
+        "/assets/technical-atlas/system/power-shelf-v2-preview.svg",
+        "/assets/technical-atlas/system/power-shelf-v2-tile.png",
+        "/assets/technical-atlas/system/power-shelf-v2.png",
+        "/assets/technical-atlas/system/power-shelf-v2.svg",
+        "/assets/technical-atlas/system/quick-disconnect-v2-preview.svg",
+        "/assets/technical-atlas/system/quick-disconnect-v2-tile.png",
+        "/assets/technical-atlas/system/quick-disconnect-v2.png",
+        "/assets/technical-atlas/system/quick-disconnect-v2.svg",
+        "/assets/technical-atlas/system/rack-system-v2-preview.svg",
+        "/assets/technical-atlas/system/rack-system-v2-tile.png",
+        "/assets/technical-atlas/system/rack-system-v2.png",
+        "/assets/technical-atlas/system/rack-system-v2.svg",
+        "/assets/technical-atlas/system/retimer-v2-preview.svg",
+        "/assets/technical-atlas/system/retimer-v2-tile.png",
+        "/assets/technical-atlas/system/retimer-v2.png",
+        "/assets/technical-atlas/system/retimer-v2.svg",
+        "/assets/technical-atlas/system/room-cooling-v2-preview.svg",
+        "/assets/technical-atlas/system/room-cooling-v2-tile.png",
+        "/assets/technical-atlas/system/room-cooling-v2.png",
+        "/assets/technical-atlas/system/room-cooling-v2.svg",
+        "/assets/technical-atlas/system/sidecar-hx-v2-preview.svg",
+        "/assets/technical-atlas/system/sidecar-hx-v2-tile.png",
+        "/assets/technical-atlas/system/sidecar-hx-v2.png",
+        "/assets/technical-atlas/system/sidecar-hx-v2.svg",
+        "/assets/technical-atlas/system/smr-v2-preview.svg",
+        "/assets/technical-atlas/system/smr-v2-tile.png",
+        "/assets/technical-atlas/system/smr-v2.png",
+        "/assets/technical-atlas/system/smr-v2.svg",
+        "/assets/technical-atlas/system/storage-array-v2-preview.svg",
+        "/assets/technical-atlas/system/storage-array-v2-tile.png",
+        "/assets/technical-atlas/system/storage-array-v2.png",
+        "/assets/technical-atlas/system/storage-array-v2.svg",
+        "/assets/technical-atlas/system/switch-asic-v2-preview.svg",
+        "/assets/technical-atlas/system/switch-asic-v2-tile.png",
+        "/assets/technical-atlas/system/switch-asic-v2.png",
+        "/assets/technical-atlas/system/switch-asic-v2.svg",
+        "/assets/technical-atlas/system/transformer-v2-preview.svg",
+        "/assets/technical-atlas/system/transformer-v2-tile.png",
+        "/assets/technical-atlas/system/transformer-v2.png",
+        "/assets/technical-atlas/system/transformer-v2.svg",
+        "/assets/technical-atlas/system/ups-battery-v2-preview.svg",
+        "/assets/technical-atlas/system/ups-battery-v2-tile.png",
+        "/assets/technical-atlas/system/ups-battery-v2.png",
+        "/assets/technical-atlas/system/ups-battery-v2.svg",
+        "/assets/technical-atlas/system/ups-v2-preview.svg",
+        "/assets/technical-atlas/system/ups-v2-tile.png",
+        "/assets/technical-atlas/system/ups-v2.png",
+        "/assets/technical-atlas/system/ups-v2.svg",
+        "/assets/technical-atlas/system/vrm-v2-preview.svg",
+        "/assets/technical-atlas/system/vrm-v2-tile.png",
+        "/assets/technical-atlas/system/vrm-v2.png",
+        "/assets/technical-atlas/system/vrm-v2.svg",
+        "/assets/technical-atlas/system/water-treatment-v2-preview.svg",
+        "/assets/technical-atlas/system/water-treatment-v2-tile.png",
+        "/assets/technical-atlas/system/water-treatment-v2.png",
+        "/assets/technical-atlas/system/water-treatment-v2.svg",
+        "/assets/campus-assembly.js",
+        "/assets/campus-exploded-assembly.js",
+        "/assets/chip-package-assembly.js",
+        "/assets/model-assets.js",
+        "/assets/panel-source-viewer.js",
+        "/assets/part-inspector.js",
+        "/assets/rack-assembly.js",
+        "/assets/rack-exploded-view.js",
+        "/assets/scene-atlas.js",
+        "/assets/scene-data.js",
+        "/assets/scene-motion.js",
+        "/assets/scene-navigation.js",
+        "/assets/scene-picking.js",
+        "/assets/scene-resources.js",
+        "/assets/scene-view.js",
+        "/assets/server-assembly.js",
+        "/assets/vendor/BufferGeometryUtils.js",
+        "/assets/vendor/CopyShader.js",
+        "/assets/vendor/EffectComposer.js",
+        "/assets/vendor/GLTFLoader.js",
+        "/assets/vendor/MaskPass.js",
+        "/assets/vendor/OrbitControls.js",
+        "/assets/vendor/OutputPass.js",
+        "/assets/vendor/OutputShader.js",
+        "/assets/vendor/Pass.js",
+        "/assets/vendor/RenderPass.js",
+        "/assets/vendor/ShaderPass.js",
+        "/assets/vendor/three.module.js",
+        "/assets/technical-atlas/campus-overview-v1.svg",
+        "/assets/technical-atlas/campus-overview-v1-preview.svg",
+        "/assets/technical-atlas/campus-overview-v1.png",
+        "/assets/technical-atlas/campus-exploded-v1.svg",
+        "/assets/technical-atlas/campus-exploded-v1-preview.svg",
+        "/assets/technical-atlas/campus-exploded-v1.png",
+        "/assets/panels/server_nvme.png",
+        "/assets/panels/display/server_nvme-contain.svg",
+        "/assets/panels/server_gpu.png",
+        "/assets/panels/display/server_gpu-contain.svg",
+        "/assets/panels/server_storage.png",
+        "/assets/panels/display/server_storage-contain.svg",
+        "/assets/panels/switch_tor.png",
+        "/assets/panels/display/switch_tor-contain.svg",
+        "/assets/panels/switch_ib.png",
+        "/assets/panels/display/switch_ib-contain.svg",
+        "/assets/research.css"
+      ],
+      "sections": [
+        "industry",
+        "companies",
+        "atlas",
+        "reports"
+      ]
+    }
+  },
+  "principles": {
+    "ordinary_registration": "普通信息按唯一身份与来源登记；研究审核采用单独计量",
+    "model": "同一模型与当前情景",
+    "publication": "代码实现、验收、部署与内容上线分别记录"
+  }
+}

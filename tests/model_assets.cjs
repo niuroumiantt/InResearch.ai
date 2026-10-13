@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Published adoption, real GLTF parsing and owned replacement across all consumers. */
 const assert=require('node:assert/strict'),{createHash}=require('node:crypto');
 const {chromium}=require('playwright');
@@ -48,7 +49,7 @@ function fixture(name, brokenTexture=false) {
    for(const width of [360,1280]) {
     await page.setViewportSize({width,height:900});
     for(const mode of ['light','dark']) {
-     await page.locator('#ui-appearance').selectOption(mode);
+     await setAppearance(page, mode);
      const b=await status.boundingBox();assert.ok(b.x>=0 && b.x+b.width<=width);
      const retry=status.getByRole('button',{name:'重试',exact:true});assert.ok(await retry.isVisible());
      assert.ok(await retry.evaluate(e=>{const b=e.getBoundingClientRect();return e.contains(document.elementFromPoint(b.x+b.width/2,b.y+b.height/2))}),'retry is covered by another panel');

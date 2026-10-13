@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Read the whole system before its parts; exercise real skeleton navigation and layout. */
 const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
@@ -12,7 +13,7 @@ const bom=require('../framework/bom.json');
   await page.goto(process.env.UI_BASE_URL+'/bom.html');
   await page.locator('.equipment[data-part="ssd"]').waitFor();
   await page.evaluate(()=>document.fonts.ready);
-  const poster = page.locator('.classification-poster img');
+  const poster = page.locator('.classification-poster img:not(.ui-brand-watermark)');
   await poster.evaluate(e=>e.decode());
   assert.deepEqual(await poster.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[1536,1800]);
   assert.ok((await poster.getAttribute('src')).endsWith('overview-v1-preview.jpg'));
@@ -38,7 +39,7 @@ const bom=require('../framework/bom.json');
   for(const width of [1920,1440,1280,900,390,320]){
    await page.setViewportSize({width,height:1000});
    for(const mode of ['light','dark']){
-    await page.locator('#ui-appearance').selectOption(mode);
+    await setAppearance(page, mode);
     const layout=await page.evaluate(()=>{
      const wrap=document.querySelector('.wrap').getBoundingClientRect(),stack=document.getElementById('stack').getBoundingClientRect();
      return {width:document.documentElement.scrollWidth,viewport:innerWidth,wrap:wrap.width,stack:stack.width,columns:getComputedStyle(document.querySelector('.chain-grid')).gridTemplateColumns.split(' ').length};

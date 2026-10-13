@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Browser regression. Start: python3 manage.py serve 8878
  * Run: NODE_PATH=<directory containing playwright> node tests/ui_skin.cjs
  * UI_BASE_URL defaults to local server; screenshots go to UI_QA_DIR if set.
@@ -31,10 +32,11 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
  for (const file of manifest.static_pages) {
    const query = file==='doc.html'?'?f=framework/05_interface_system.md':'';
    await page.goto(base+'/'+file+query); await page.locator('#ui-skinbar').waitFor();
-   await page.locator('#ui-skinbar a[aria-current=page]').waitFor({state:'attached'});
-   assert.equal(await page.locator('#ui-skinbar a[aria-current=page]').count(),1,file+' active section');
-   assert.equal(await page.locator('.ui-navigation a[href="/login"], .ui-navigation a[href="/account"], .ui-navigation a[href="/ops.html"], .ui-navigation .ui-admin-link').count(),0,file+' business navigation only');
-   if(file==='index.html'){await page.locator('.ui-account-menu > summary').waitFor();assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['行业总览','任务跟踪','数据中心研究','账本','爆炸图','采集','成果'],'authenticated business directories include the task tracker');assert.equal(await page.locator('.ui-account-panel .ui-management-link').getAttribute('href'),'/ops.html');}
+   await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
+   const navState=await page.evaluate(()=>fetch('/api/navigation?'+new URLSearchParams({page:location.pathname+location.search})).then(response=>response.json()));
+   if(navState.navigation[navState.active.area]?.some(item=>item.id===navState.active.section)){const active=page.locator('.ui-navigation-'+navState.active.area+' [data-nav-section="'+navState.active.section+'"]');assert.equal(await active.count(),1,file+' registered primary section');assert.equal(await active.evaluate(node=>node.matches('[aria-current=page]')||!!node.querySelector(':scope > summary[aria-current=page]')),true,file+' active primary navigation');}else if(navState.active.section){assert.deepEqual(navState.active,{area:'public',section:'tasks',view:null},file+' only the public task page sits outside signed-in business navigation');}
+   assert.equal(await page.locator('.ui-navigation a[href="/login"], .ui-navigation a[href="/account"], .ui-navigation .ui-admin-link').count(),0,file+' business navigation only');
+   if(file==='index.html'){await page.locator('.ui-account-menu > summary').waitFor();assert.equal(await page.locator('.ui-navigation-delivery [data-nav-section]').count(),6);assert.equal(await page.locator('.ui-navigation-backstage [data-nav-section]').count(),6);assert.equal(await page.locator('.ui-account-panel .ui-management-link').count(),0,'account menu contains account actions only');}
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') {await page.locator('#catalog-title').waitFor();assert.match(page.url(),/product-catalog.html/);}
    if(file==='report.html') {await page.locator('#cover').waitFor();assert.equal(await page.locator('section.chapter').count(),4);}
@@ -50,7 +52,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    else assert.ok(fonts.includes('Inter')&&fonts.includes('Noto Sans SC'),file+' bundled fonts loaded: '+fonts.join(','));
    assert.match((await measure()).font,/^Inter, "Noto Sans SC"/,file+' body font stack');
    for (const mode of ['light','dark']) {
-     await page.locator('#ui-appearance').selectOption(mode);
+     await setAppearance(page, mode);
      const state=await measure(); assert.equal(state.theme,mode);assert.equal(state.bar,1);
      const url=page.url();assert.equal(url,settledUrl);
      const radius=await page.evaluate(()=>getComputedStyle(document.querySelector('.board,.rg-node,.hud,.card,.kpi')||document.documentElement).borderRadius);
@@ -64,8 +66,9 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
        assert.equal(await page.locator('.rg-detail-tab').first().evaluate(e=>getComputedStyle(e).borderRadius),'0px');
        assert.equal(await page.locator('#researchSearch').evaluate(e=>getComputedStyle(e).borderRadius),'2px');
      }
-     // Form controls: native select chrome is replaced everywhere, including the appearance control itself.
-     assert.equal(await page.locator('#ui-appearance').evaluate(e=>getComputedStyle(e).appearance),'none',file+' select appearance');
+     // The compact theme button retains all three preference modes.
+     assert.equal(await page.locator('.ui-theme-panel [data-ui-mode-choice]').count(),3,file+' three theme choices');
+     assert.equal(await page.locator('[data-ui-mode-choice="'+mode+'"]').getAttribute('aria-pressed'),'true',file+' selected theme');
      if(file==='materials.html'){
        const contrast=await page.locator('#submit').evaluate(e=>{
          const css=getComputedStyle(e);
@@ -88,7 +91,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    // Head bar must remain usable on a phone: brand + appearance on one row, navigation on a second, nothing more.
    await page.setViewportSize({width:360,height:800});
    const box=await page.locator('#ui-skinbar').boundingBox();assert.ok(box.width<=360);
-   assert.ok(box.height<=90,file+' phone head bar is two rows, got '+box.height+'px');
+   assert.ok(box.height<=90,file+' phone head bar is two rows, got '+box.height+'px; '+JSON.stringify(await page.locator('#ui-skinbar :scope > *,#ui-skinbar .ui-toolbar > *,#ui-skinbar .ui-mobile-navigation > *').evaluateAll(nodes=>nodes.map(node=>({class:node.className,height:node.getBoundingClientRect().height,margin:getComputedStyle(node).margin,padding:getComputedStyle(node).padding})))));
    const b=await page.locator('#ui-appearance').boundingBox();assert.ok(b.x>=0 && b.x+b.width<=361,file+' appearance control on screen');
    for(const width of [320,390]){
      await page.setViewportSize({width,height:800});
@@ -103,19 +106,19 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
  }
  // 研究页已退役（2026-09-28）：节点页承接；刷新保留外观偏好
  await page.goto(base+'/node.html?id=part:gpu');await page.locator('#five .col').first().waitFor();
- await page.locator('#ui-appearance').selectOption('light');const url=page.url();
+ await setAppearance(page, 'light');const url=page.url();
  await page.reload();assert.equal((await measure()).theme,'light');assert.equal(page.url(),url);
  const second=await context.newPage();await second.goto(base+'/index.html');
- await second.locator('#ui-appearance').selectOption('dark');await page.waitForFunction(()=>document.documentElement.dataset.uiTheme==='dark');
- await page.locator('#ui-appearance').selectOption('system');assert.equal((await measure()).theme,'dark');await page.emulateMedia({colorScheme:'light'});await page.waitForFunction(()=>document.documentElement.dataset.uiTheme==='light');
- await page.locator('#ui-appearance').selectOption('light');await page.emulateMedia({colorScheme:'dark'});assert.equal((await measure()).theme,'light');
+ await setAppearance(second, 'dark');await page.waitForFunction(()=>document.documentElement.dataset.uiTheme==='dark');
+ await setAppearance(page, 'system');assert.equal((await measure()).theme,'dark');await page.emulateMedia({colorScheme:'light'});await page.waitForFunction(()=>document.documentElement.dataset.uiTheme==='light');
+ await setAppearance(page, 'light');await page.emulateMedia({colorScheme:'dark'});assert.equal((await measure()).theme,'light');
  await page.emulateMedia({media:'print'});assert.equal(await page.locator('#ui-skinbar').isVisible(),false);
  await page.emulateMedia({media:'screen'});
  // Preferences saved before 2026-09-22 carried a skin field; it is ignored and the mode still applies.
  await page.evaluate(()=>localStorage.setItem('inresearch.ui.v1','{"skin":"attio","mode":"dark"}'));await page.reload();assert.equal((await measure()).theme,'dark');
  await page.evaluate(()=>localStorage.setItem('inresearch.ui.v1','{bad json'));await page.reload();assert.equal((await measure()).theme,'light');
  const blocked=await browser.newContext();await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('disabled')}}));
- const bp=await blocked.newPage();await bp.goto(base+'/index.html');await bp.locator('#ui-appearance').selectOption('dark');assert.equal(await bp.locator('html').getAttribute('data-ui-theme'),'dark');assert.match(await bp.locator('#ui-save-status').textContent(),/未保存/);await blocked.close();
+ const bp=await blocked.newPage();await bp.goto(base+'/index.html');await setAppearance(bp, 'dark');assert.equal(await bp.locator('html').getAttribute('data-ui-theme'),'dark');assert.match(await bp.locator('#ui-save-status').textContent(),/未保存/);await blocked.close();
  assert.deepEqual(errors,[]);console.log('PASS persistence, cross-tab sync, explicit/system mode, print, legacy/corrupt/blocked storage, preserved research state; no page errors');
  await context.close();
  } finally { await browser.close(); }

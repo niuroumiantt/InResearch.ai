@@ -1,3 +1,4 @@
+const {setAppearance} = require('./ui_helpers.cjs');
 /* Real WebGL pixels/export and edge ownership, separate from visual review. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -34,7 +35,7 @@ const {chromium} = require('playwright');
       await page.locator('#dossier .insp canvas').waitFor();
       await page.locator('.rg-scene-model-status[data-state="ready"]').waitFor({state:'attached'});
       for (const width of [1280,390]) for (const mode of ['light','dark']) {
-        await page.setViewportSize({width,height:900});await page.locator('#ui-appearance').selectOption(mode);
+        await page.setViewportSize({width,height:900});await setAppearance(page, mode);
         console.log('EXPORT',name,width,mode);
         const downloadPromise=page.waitForEvent('download');
         await page.getByRole('button',{name:'导出当前图册',exact:true}).click();
@@ -69,12 +70,14 @@ const {chromium} = require('playwright');
       await page.locator('#dossier .close').click();
       await page.setViewportSize({width:1280,height:900});
       if(name==='bom3d') {
+        assert.equal(await page.locator('#covChip').getAttribute('aria-disabled'),'true');
+        assert.match(await page.locator('#covChip').textContent(),/产品登记未读.*覆盖率未知/);
         await page.locator('#covChip').click();
         const pending=page.waitForEvent('download');await page.locator('#atlas-export').click();
         const raw=fs.readFileSync(await (await pending).path(),'utf8');
         const meta=await page.evaluate(raw=>JSON.parse(new DOMParser().parseFromString(raw,'image/svg+xml').querySelector('metadata').textContent),raw);
-        assert.match(meta.diagnostics,/红0\/4.*绿4\/4.*非硬件状态/);
-        assert.ok(raw.includes('非硬件状态'));await page.locator('#covChip').click();
+        assert.equal(meta.diagnostics,null,'no fabricated coverage score when the internal product registry is not read');
+        assert.equal(await page.locator('#covLegend').isVisible(),false,'unknown coverage does not enable a false heatmap');
       }
       await page.locator('#explode').evaluate(input=>{input.value='45';input.dispatchEvent(new Event('input',{bubbles:true}));});
       assert.equal(await page.locator('#explode').inputValue(),'45');

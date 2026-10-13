@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>搜索 — inresearch.ai</title>
+  <script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/workspace.css"><script defer src="/assets/site-search.js"></script>
+</head>
+<body><inresearch-shell data-section="search"></inresearch-shell>
+<main class="workspace" id="search-app"><h1>搜索</h1>
+  <form class="workspace-filter" id="site-search"><label for="search-query">关键词</label><input id="search-query" name="q" type="search" maxlength="160" required><label for="search-scope">范围</label><select id="search-scope" name="scope"></select><button type="submit">搜索</button></form>
+  <p id="search-status" role="status"></p><div id="search-results" aria-live="polite"></div><p id="search-coverage"></p>
+</main></body>
+</html>

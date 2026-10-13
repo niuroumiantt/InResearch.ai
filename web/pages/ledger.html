@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="一座数据中心的账本：一个模型、一份输入表、三种问法、四本账输出">
-<title>账本 — inresearch.ai</title>
+<title>成本与收益 — inresearch.ai</title>
 <style>
   /* 账本：根节点"价格"列的一个展开。统一经济模型 v3：上半部分输入与情景（五类分组），下半部分四个结果视图。 */
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,10 +65,15 @@
   .input-box span { color: var(--ui-muted); font-size: 11px; white-space: nowrap; }
   .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
   .views { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--ui-line); margin-bottom: 10px; }
-  .views button { background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; color: var(--ui-muted); cursor: pointer; }
-  .views button.on { color: var(--ui-accent); border-bottom-color: var(--ui-accent); font-weight: 600; }
-  .views button:focus-visible { outline: 2px solid var(--ui-focus, var(--ui-accent)); }
+  .views button, .column-tabs a { background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; color: var(--ui-muted); cursor: pointer; }
+  .views button.on, .column-tabs a[aria-current="page"] { color: var(--ui-accent); border-bottom-color: var(--ui-accent); font-weight: 600; }
+  .views button:focus-visible, .column-tabs a:focus-visible { outline: 2px solid var(--ui-focus, var(--ui-accent)); }
   .view { display: none; } .view.on { display: block; }
+  [hidden] { display: none !important; }
+  .column-tabs { margin-bottom: 14px; flex-wrap: nowrap; overflow-x: auto; }
+  .column-tabs a { flex: 0 0 auto; white-space: nowrap; padding-inline: 8px; }
+  .basis-definitions dt { font-weight: 600; margin-top: 10px; }
+  .basis-definitions dd { margin: 3px 0 10px; }
   .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin: 8px 0 12px; }
   .tile { border: 1px solid var(--ui-line); border-radius: var(--ui-radius); padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
   .tile small { color: var(--ui-muted); font-size: 11px; } .tile strong { font-size: 20px; overflow-wrap: anywhere; } .tile .sub { color: var(--ui-muted); font-size: 11px; }
@@ -93,20 +98,21 @@
 <body>
 <inresearch-shell data-section="ledger"></inresearch-shell>
 <div class="topbar">
-  <b>账本</b>
+  <b>成本与收益</b>
   <a class="tab" href="node.html?col=3">← 根节点 · 价格列</a>
   <span class="sp"></span>
   <span class="tab" id="model-date"></span>
-  <a class="tab" href="doc.html?f=framework/05_interface_system.md">口径 ↗</a>
+  <a class="tab" href="/guide.html?view=method">口径 ↗</a>
 </div>
 <main class="wrap" id="model-app" aria-busy="true">
   <header class="head"><h1>一座数据中心的 <em>账本</em></h1><span class="kind">根节点"价格"列的展开 · 一个模型 · 一份输入表 · 三种问法（正算、反算、情景网格）· 四本账输出</span></header>
 
-  <section class="panel" id="calibration">
-    <h2>校准锚<small>同一份输入表复现三家的数字；它们是校准，不是基准</small></h2>
-    <div class="q">摩根士丹利回答"满配一年挣多少"，高盛回答"要 15% 回报需要多少收入"，我们 09-14 的基准回答"每有效设备小时全成本"。三个预设各自复现登记值，说明一个引擎能回答三种问法。</div>
-    <div class="tscroll"><div id="calibration-table"></div></div>
-  </section>
+  <nav class="views column-tabs" id="column-tabs" aria-label="成本与收益栏目">
+    <a href="/ledger.html?view=basis" data-column="basis" aria-current="page">基准与口径</a>
+    <a href="/ledger.html?view=cost" data-column="cost">成本结构</a>
+    <a href="/ledger.html?view=returns" data-column="returns">收入与回报</a>
+    <a href="/ledger.html?view=scenarios" data-column="scenarios">情景比较</a>
+  </nav>
 
   <section class="panel" id="scenario">
     <h2>预设与地区<small>基准只有一个；校准、地区与主体预设都是同一份输入表上的改动</small></h2>
@@ -123,13 +129,32 @@
       <form id="model-inputs" onsubmit="return false"></form>
     </section>
 
+    <div id="column-content">
+    <section class="panel" id="basis">
+      <h2>基准与口径</h2>
+      <p class="q">四个栏目共用上方的当前情景与左侧输入。切换栏目保持当前假设；调整只用于本地试算，不改正式研究。基准只有一个，校准算例用于复现已登记数字，不是多个正式基准。</p>
+      <dl class="basis-definitions">
+        <dt>生命周期与平准化</dt><dd>按等待、建设与运营逐年计算现金流，折现得到TCO现值，再平准化为年成本。适合查看完整周期和每单位服务成本。</dd>
+        <dt>稳态单位成本</dt><dd>资本按资本成本率年化，加稳态运营费用，再除以有效设备小时。它与生命周期折现使用同一份输入，但不是同一种年成本公式，不能混加或直接等同。</dd>
+        <dt>收入与回报</dt><dd>四本账按稳态一年、折旧和税后NOPAT展示。ROIC随所选资本分母变化；每小时盈余已扣资本回收，不等于会计利润。</dd>
+        <dt>情景与适用范围</dt><dd>地区、主体及校准预设均是在同一输入表上改值。来源状态不自动证明现场适用性，情景上限不代表取得审批或设备交付。</dd>
+      </dl>
+      <p><a href="/guide.html?view=method">查看方法与口径说明 →</a></p>
+      <section id="calibration">
+    <h2>校准锚<small>同一份输入表复现三家的数字；它们是校准，不是基准</small></h2>
+    <div class="q">摩根士丹利回答"满配一年挣多少"，高盛回答"要 15% 回报需要多少收入"，我们 09-14 的基准回答"每有效设备小时全成本"。三个预设各自复现登记值，说明一个引擎能回答三种问法。</div>
+    <div class="tscroll"><div id="calibration-table"></div></div>
+  </section>
+
+    </section>
     <section class="panel" id="views-panel">
-      <h2>四个视图<small>同一次计算的四种读法；交互只在浏览器里，不改写研究权威</small></h2>
+      <h2 id="column-title">成本结构</h2>
+      <p class="q" id="column-description">同一份输入下的不同成本读法，分别保留生命周期和稳态口径。</p>
       <div class="views" role="tablist" id="views">
-        <button type="button" role="tab" data-view="lifecycle" class="on">成本结构与平准化</button>
-        <button type="button" role="tab" data-view="ledgers">四本账</button>
-        <button type="button" role="tab" data-view="unit">每有效设备小时全成本</button>
-        <button type="button" role="tab" data-view="inverse">反算与情景网格</button>
+        <button type="button" role="tab" data-view="lifecycle" class="on" aria-controls="view-lifecycle">生命周期与平准化</button>
+        <button type="button" role="tab" data-view="ledgers" aria-controls="view-ledgers" hidden>四本账</button>
+        <button type="button" role="tab" data-view="unit" aria-controls="view-unit">稳态单位成本</button>
+        <button type="button" role="tab" data-view="inverse" aria-controls="view-inverse" hidden>反算与情景网格</button>
       </div>
 
       <div class="view on" id="view-lifecycle">
@@ -138,11 +163,7 @@
         <h3>成本结构</h3><div id="structure"></div><div class="legend" id="structure-legend"></div>
         <h3>逐年现金流</h3><div id="timeline"></div><div class="note" id="timeline-note"></div>
         <h3>成本表</h3><div class="tscroll" id="cost-table"></div>
-        <div class="two">
-          <div><h3>资本开支 $M/MW</h3><div id="capex-bars"></div><div class="note" id="capex-note"></div></div>
-          <div><h3>对标</h3><div id="benchmark-compare"></div><h3>回报敏感性</h3><div id="tornado"></div><div class="note" id="tornado-note"></div></div>
-        </div>
-        <h3>情景对照</h3><div class="tscroll" id="scenario-table"></div>
+        <h3>资本开支 $M/MW</h3><div id="capex-bars"></div><div class="note" id="capex-note"></div>
       </div>
 
       <div class="view" id="view-ledgers">
@@ -171,8 +192,14 @@
         <div class="note" id="inv-gap"></div>
         <h3>情景网格 <label style="font-weight:400;font-size:12px">稳态利用率 <select id="grid-util" style="width:auto"></select></label></h3>
         <div class="tscroll" id="grid-table"></div><div class="note" id="grid-note"></div>
+        <div class="two">
+          <div><h3>对标</h3><div id="benchmark-compare"></div></div>
+          <div><h3>回报敏感性</h3><div id="tornado"></div><div class="note" id="tornado-note"></div></div>
+        </div>
+        <h3>情景对照</h3><div class="tscroll" id="scenario-table"></div>
       </div>
     </section>
+    </div>
   </div>
 
   <div class="two">

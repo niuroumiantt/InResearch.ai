@@ -11,6 +11,7 @@
     sudo docker exec inresearch-host-inresearch-1 python3 manage.py users list / remove <用户名>
 
 规则（实现全在 auth.py，此处只是壳）：首个用户强制 admin；其余默认 intern；
+customer 为交付产品只读账户，与内部 member 分开；
 最后一个 admin 不可降级/删除；密码只显示一次；data/users.json 不进 git。
 
 **必须在容器内执行**：容器带 `INRESEARCH_RUNTIME_ROOT=/runtime`，账号表解析到

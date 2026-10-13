@@ -183,7 +183,7 @@
   const COLOR={capex_facility:'var(--ui-green)',capex_it:'var(--ui-accent)',energy:'var(--ui-yellow)',demand:'color-mix(in srgb,var(--ui-yellow) 60%,var(--ui-surface))',water:'color-mix(in srgb,var(--ui-info-ink,#405879) 70%,var(--ui-surface))',staff:'var(--ui-purple)',maintenance:'color-mix(in srgb,var(--ui-green) 60%,var(--ui-surface))',maintenance_it:'color-mix(in srgb,var(--ui-accent) 55%,var(--ui-surface))',software:'color-mix(in srgb,var(--ui-purple) 55%,var(--ui-surface))',insurance_tax:'var(--ui-muted)',bandwidth:'color-mix(in srgb,var(--ui-muted) 60%,var(--ui-surface))',other:'color-mix(in srgb,var(--ui-muted) 40%,var(--ui-surface))',lease:'var(--ui-red)',decommission:'color-mix(in srgb,var(--ui-red) 50%,var(--ui-surface))'};
   const STATUS={input:['用户给定','input'],sourced:['已有来源','sourced'],assumed:['作者假设','assumed'],needed:['待获取','needed']};
   const MODE={own:'自建自持',bot:'BOT',lease:'租带电壳',colo:'托管'};
-  let spec,values,prices,activePreset='',view='lifecycle';
+  let spec,values,prices,activePreset='',view='lifecycle',column='basis',costView='lifecycle';
   const region=()=>spec.regions[values.site]||{};
   const gaps=()=>new Set(region().gaps||[]);
 
@@ -196,7 +196,7 @@
   function renderRegion(){
     const r=region(),g=gaps(),host=byId('region-card');host.replaceChildren();
     const gate=values.gate==='chip'?'芯片门槛':'电力门槛';
-    host.append(make('p','readiness-note',`情景计算：项目可行性尚未核验。${readiness(values,spec).unverified_inputs.length} 项需求的定义不等于已取得证据；地区预设也不能直接视为现场数据。`));
+    host.append(make('p','readiness-note','情景计算：项目可行性尚未核验。参数定义不等于已取得证据；地区预设也不能直接视为现场数据。'));
     host.append(make('b','',r.label||values.site),make('span','',`${gate} · 门槛等待 ${values.gate_wait_years} 年 · 审批 ${values.permit_months} 个月 · 建设 ${values.construction_years} 年`),
       make('span','',values.energy_quota_mw>0?`情景容量上限 ${values.energy_quota_mw} MW（不是批准值）`:'批准容量未知／未设置；计算不施加此上限'),make('span','',`电价 $${num(values.power_price,4)}/kWh · 需量 $${num(values.demand_rate,1)}/kW·月 · 土地 ${num(values.land_per_mw,2)} $M/MW`),
       make('span',g.size?'gap-count':'', g.size?`缺 ${g.size} 项：${[...g].map(k=>spec.inputs[k]?spec.inputs[k].label:k).join('、')}`:'表内来源登记齐全；地区与预设适用性仍须核验'));
@@ -209,7 +209,7 @@
       const sum=make('summary');sum.append(make('b','',group.label),make('small','',group.hint));box.append(sum);
       for(const id of group.inputs){
         const cfg=spec.inputs[id],ev=spec.evidence[id]||{status:'needed'},row=make('div','input-row'),label=make('label');label.htmlFor='input-'+id;
-        const badge=make('i','badge '+STATUS[ev.status][1]);badge.title=STATUS[ev.status][0]+(ev.note?'：'+ev.note:'')+(ev.fetch_what?'｜抓取：'+ev.fetch_what:'');
+        const badge=make('i','badge '+STATUS[ev.status][1]);badge.title=STATUS[ev.status][0]+(ev.note?'：'+ev.note:'');
         label.append(badge,make('span','',cfg.label));if(g.has(id))label.append(make('em','gap','缺'));if(cfg.note)label.append(make('small','',cfg.note));
         const holder=make('div','input-box');
         if(cfg.type==='select'){const sel=make('select');sel.id='input-'+id;const opts=cfg.options?Object.entries(spec[cfg.options]).map(([k,v])=>[k,v.label]):cfg.choices;for(const [v,l] of opts){const o=make('option','',l);o.value=v;sel.append(o);}sel.value=values[id];
@@ -341,9 +341,9 @@
   function renderGaps(){
     const host=byId('gap-list');host.replaceChildren();const counts={input:0,sourced:0,assumed:0,needed:0},rows=[],g=gaps();
     for(const group of spec.groups)for(const id of group.inputs){const ev=spec.evidence[id]||{status:'needed'};counts[ev.status]=(counts[ev.status]||0)+1;if(ev.status==='assumed'||ev.status==='needed'||g.has(id))rows.push([group.label.replace(/^\d+ · /,''),spec.inputs[id].label,ev,g.has(id)]);}
-    byId('gap-summary').textContent=`${Object.keys(spec.inputs).length} 个输入：用户给定 ${counts.input}、已有来源 ${counts.sourced}、作者假设 ${counts.assumed}、待获取 ${counts.needed}；当前地区标缺 ${g.size} 项。下面是要去找数据替换的项。`;
-    const table=make('table','bi gaps'),thead=make('thead'),tr=make('tr');for(const h of ['变量类','输入','现状','抓取类型','要找什么'])tr.append(make('th','',h));thead.append(tr);table.append(thead);const body=make('tbody');const KIND={product:'产品',news:'新闻',data:'数据',report:'报告'};
-    for(const [gl,l,ev,gap] of rows){const row=make('tr');const st=make('td');st.append(make('span','badge-text '+(gap?'needed':ev.status),gap?'该地区缺':STATUS[ev.status][0]));row.append(make('td','',gl),make('td','',l),st,make('td','',KIND[ev.fetch_kind]||'—'),make('td','',ev.fetch_what||ev.note||''));body.append(row);}
+    byId('gap-summary').textContent=`${Object.keys(spec.inputs).length} 个输入：用户给定 ${counts.input}、已有来源 ${counts.sourced}、作者假设 ${counts.assumed}、待获取 ${counts.needed}；当前地区标缺 ${g.size} 项。以下说明当前假设与来源缺口，不表示现场适用性已经核验。`;
+    const table=make('table','bi gaps'),thead=make('thead'),tr=make('tr');for(const h of ['变量类','输入','来源状态','说明'])tr.append(make('th','',h));thead.append(tr);table.append(thead);const body=make('tbody');
+    for(const [gl,l,ev,gap] of rows){const row=make('tr');const st=make('td');st.append(make('span','badge-text '+(gap?'needed':ev.status),gap?'该地区缺':STATUS[ev.status][0]));row.append(make('td','',gl),make('td','',l),st,make('td','',ev.note||''));body.append(row);}
     table.append(body);host.append(table);
   }
   function renderBenchmarks(){
@@ -353,7 +353,35 @@
       const row=make('div','benchmark-row'),head=make('div');head.append(make('b','',b.label),make('small','',[rec.as_of,GL[rec.grade]||rec.grade,rec.region||''].filter(Boolean).join(' · ')));row.append(head,make('strong','',(Math.abs(rec.value)>=1000?Math.round(rec.value).toLocaleString():Number(rec.value).toLocaleString(undefined,{maximumFractionDigits:2}))+' '+rec.unit));row.title=(rec.note||'')+(rec.assumptions?'；'+rec.assumptions:'');list.append(row);}
     byId('benchmark-updated').textContent=shown.length?'价格库更新至 '+shown.map(x=>x.as_of).sort().pop():'价格库暂无对应序列';
   }
-  function showView(name){view=name;document.querySelectorAll('#views button').forEach(b=>{const on=b.dataset.view===name;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);});document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='view-'+name));history.replaceState(null,'',location.pathname+location.search+'#'+name);}
+  const COLUMNS={basis:['基准与口径','唯一基准、校准算例和不同计算口径。'],cost:['成本结构','同一份输入下的两种成本读法；生命周期与稳态口径分别计算。'],returns:['收入与回报','四本账的收入、利润与回报，共用当前输入和资本分母。'],scenarios:['情景比较','目标反算、情景网格、对照和敏感性，共用当前情景。']};
+  const LEGACY_VIEWS={lifecycle:'lifecycle',ledgers:'ledgers',unit:'unit',inverse:'inverse',economics:'ledgers',tco:'lifecycle',cost:'unit'};
+  const viewColumn=name=>name==='ledgers'?'returns':name==='inverse'?'scenarios':'cost';
+  function showColumn(name,{calculationView,historyMode='push',legacyHash=false}={}){
+    column=Object.hasOwn(COLUMNS,name)?name:'basis';
+    if(calculationView==='lifecycle'||calculationView==='unit')costView=calculationView;
+    view=column==='cost'?costView:column==='returns'?'ledgers':column==='scenarios'?'inverse':'lifecycle';
+    app.dataset.column=column;
+    document.querySelectorAll('#column-tabs a').forEach(link=>{if(link.dataset.column===column)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
+    byId('basis').hidden=column!=='basis';byId('views-panel').hidden=column==='basis';byId('views').hidden=column!=='cost';
+    byId('column-title').textContent=COLUMNS[column][0];byId('column-description').textContent=COLUMNS[column][1];
+    document.querySelectorAll('#views button').forEach(button=>{const on=button.dataset.view===view;button.classList.toggle('on',on);button.setAttribute('aria-selected',String(on));button.tabIndex=on?0:-1;button.hidden=!['lifecycle','unit'].includes(button.dataset.view);});
+    document.querySelectorAll('.view').forEach(panel=>panel.classList.toggle('on',column!=='basis'&&panel.id==='view-'+view));
+    const url=new URL(location.href);url.searchParams.set('view',column);url.hash=legacyHash?'#'+view:'';
+    if(historyMode!=='none'&&url.href!==location.href)history[historyMode==='replace'?'replaceState':'pushState'](null,'',url);
+    window.dispatchEvent(new CustomEvent('inresearch:page-navigation',{detail:{column,view,href:location.pathname+location.search}}));
+  }
+  function showView(name,options={}){if(Object.hasOwn(LEGACY_VIEWS,name)){const selected=LEGACY_VIEWS[name];showColumn(viewColumn(selected),{...options,calculationView:selected,legacyHash:true});}}
+  function restoreLocation(historyMode='none'){
+    const legacy=LEGACY_VIEWS[location.hash.slice(1)],requested=new URLSearchParams(location.search).get('view'),fromPath=/\/(economics|tco|cost)\.html$/.exec(location.pathname);
+    if(legacy)showView(legacy,{historyMode});else if(Object.hasOwn(COLUMNS,requested))showColumn(requested,{historyMode});else if(fromPath)showView(fromPath[1],{historyMode});else showColumn('basis',{historyMode});
+  }
+  function handleColumnLink(event){
+    if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const anchor=event.target.closest?.('a[href]');if(!anchor||anchor.hasAttribute('download')||anchor.target&&anchor.target!=='_self')return;
+    const url=new URL(anchor.href,location.href),requested=url.searchParams.get('view'),legacy=LEGACY_VIEWS[url.hash.slice(1)];
+    if(url.origin!==location.origin||!/^\/(ledger|economics|tco|cost)\.html$/.test(url.pathname)||(!legacy&&!Object.hasOwn(COLUMNS,requested)))return;
+    event.preventDefault();if(legacy)showView(legacy);else showColumn(requested);const menu=anchor.closest('details');if(menu)menu.open=false;
+  }
   function render(){
     const r=run(values,spec);markPreset();renderRegion();projectLine(r);renderLifecycle(r);renderLedgers(r);renderUnit(r);renderInverse(r);renderGaps();
     byId('copy-results').onclick=()=>{const c=r.ledgers.compute,l=r.lifecycle;const txt=JSON.stringify({model_id:spec.model_id,as_of:spec.as_of,preset:activePreset||null,assumptions:values,levelised:l.levelised,per_kw_month:l.per_kw_month,per_gpu_hour:l.per_gpu_hour,roic:c.roic,revenue:c.revenue,nopat:c.nopat,annualised:c.annualised,unit_cost:c.unit_cost,inverse:r.inverse},null,2);const btn=byId('copy-results');const done=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制假设与结果',1500);};(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt).then(done):Promise.reject()).catch(()=>{const ta=document.createElement('textarea');ta.value=txt;document.body.append(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}ta.remove();});};
@@ -361,9 +389,11 @@
   const getJson=url=>fetch(url,{cache:'no-store'}).then(res=>{if(!res.ok)throw Error(url+' HTTP '+res.status);return res.json()});
   const boot=([data,p])=>{spec=data;prices=p;byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;renderPresets();renderCalibration();renderBenchmarks();applyPreset('baseline');
     document.querySelectorAll('#views button').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));byId('grid-util').addEventListener('change',()=>renderInverse(run(values,spec)));
+    byId('views').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;const buttons=[...byId('views').querySelectorAll('button:not([hidden])')],index=buttons.indexOf(event.target);if(index<0)return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?buttons.length-1:(index+(event.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;buttons[next].focus();showView(buttons[next].dataset.view);});
     byId('reset-model').addEventListener('click',()=>applyPreset('baseline'));
-    const VIEWS={lifecycle:'lifecycle',ledgers:'ledgers',unit:'unit',inverse:'inverse',economics:'ledgers',tco:'lifecycle',cost:'unit'};
-    const fromPath=/\/(economics|tco|cost)\.html$/.exec(location.pathname);showView(VIEWS[location.hash.slice(1)]||(fromPath?VIEWS[fromPath[1]]:'lifecycle'));app.removeAttribute('aria-busy');};
+    document.addEventListener('click',handleColumnLink);window.addEventListener('popstate',()=>restoreLocation());window.addEventListener('hashchange',()=>restoreLocation());
+    byId('column-tabs').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;const links=[...byId('column-tabs').querySelectorAll('a')],index=links.indexOf(event.target);if(index<0)return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?links.length-1:(index+(event.key==='ArrowRight'?1:-1)+links.length)%links.length;links[next].focus();showColumn(links[next].dataset.column);});
+    restoreLocation('replace');app.removeAttribute('aria-busy');};
   const fail=error=>{const el=byId('model-error');el.hidden=false;el.textContent='模型加载失败：'+error.message;app.setAttribute('aria-busy','false');};
   Promise.all([getJson('/data/datacenter_model.json'),getJson('/data/prices.json').catch(()=>({records:[]}))]).then(boot).catch(fail);
 })();

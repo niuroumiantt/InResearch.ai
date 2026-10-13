@@ -19,6 +19,18 @@ class UserTransactionTests(TestCase):
         self.addCleanup(patch.stop)
         auth.add_user('admin', 'test-password')
 
+    def test_customer_is_a_distinct_persisted_role_without_promoting_existing_users(self):
+        auth.add_user('client', 'client-password', 'customer')
+        auth.add_user('intern', 'intern-password')
+        self.assertEqual(auth.user_role('client'), 'customer')
+        self.assertEqual(auth.user_role('intern'), 'intern')
+        self.assertEqual(auth.user_role('admin'), 'admin')
+        self.assertTrue(auth.verify_password('client', 'client-password'))
+        self.assertTrue(auth.set_role('client', 'member')[0])
+        self.assertEqual(auth.user_role('client'), 'member')
+        self.assertTrue(auth.set_role('client', 'customer')[0])
+        self.assertFalse(auth.set_role('admin', 'customer')[0], 'last administrator remains protected')
+
     def test_concurrent_deletions_do_not_restore_accounts(self):
         for i in range(12):
             auth.add_user(f'user{i}', 'test-password')

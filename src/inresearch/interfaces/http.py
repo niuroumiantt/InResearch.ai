@@ -36,6 +36,7 @@ from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
 from inresearch.knowledge import graph as graph_mod
 from inresearch.delivery import report as report_model
+from inresearch.delivery import source_publication
 import posixpath
 import sqlite3
 import subprocess as subprocess
@@ -114,7 +115,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         compressible = getattr(self, '_compressible_response', False)
-        private = (self._norm_path() in ('/login', '/api/whoami', '/api/research-tasks', '/api/research-task-examples')
+        private = (self._norm_path() in ('/login', '/api/navigation', '/api/whoami', '/api/research-tasks', '/api/research-task-examples')
                    or self._norm_path().startswith('/api/research-task-examples/')
                    or not public.allowed(self._norm_path(), urlsplit(self.path).query))
         if private or compressible:
@@ -203,6 +204,17 @@ class Handler(SimpleHTTPRequestHandler):
                 self._html(403, pages.FORBIDDEN_PAGE)
                 return None
             return user
+        # A real customer session remains restricted even on a loopback server;
+        # the existing unauthenticated local-operator behavior is unchanged.
+        customer = auth.session_user(self.headers.get('Cookie'))
+        if customer and auth.user_role(customer) == 'customer':
+            if public.customer_allowed(ROOT, self._norm_path(), urlsplit(self.path).query, self.command):
+                return customer
+            if self._norm_path().startswith('/api/'):
+                self._json(403, {'ok': False, 'error': '该内容或操作仅供内部团队使用'})
+            else:
+                self._html(403, pages.FORBIDDEN_PAGE)
+            return None
         if not AUTH_ON:
             return ""
         # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）。
@@ -262,9 +274,14 @@ class Handler(SimpleHTTPRequestHandler):
         return auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
 
     def do_HEAD(self):
+        customer = auth.session_user(self.headers.get('Cookie'))
+        if customer and auth.user_role(customer) == 'customer' and (
+                self._norm_path().startswith('/api/') or self._norm_path() in public.CUSTOMER_PROJECTED_DATA):
+            return self._get()
         # Dynamic public mechanisms must implement the same HEAD gate as GET.
         if (self._norm_path() in ('/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/research-task-examples', *public.HOME_DATA_API)
-                or self._norm_path().startswith('/api/research-task-examples/')):
+                or self._norm_path().startswith('/api/research-task-examples/')
+                or self._norm_path() in ('/api/navigation', '/api/workspace', '/api/site-search', '/data/companies.json', '/research.html')):
             return self._get()
         # Static HEAD still passes authentication and role checks before file metadata.
         user = self._gate()
@@ -301,6 +318,11 @@ class Handler(SimpleHTTPRequestHandler):
         return self._get()
 
     def _get(self):
+        customer = auth.session_user(self.headers.get('Cookie'))
+        if customer and auth.user_role(customer) == 'customer' and not public.customer_allowed(
+                ROOT, self._norm_path(), urlsplit(self.path).query, self.command):
+            self._gate()
+            return
         if self.path.startswith('/api/intake-worker/'):
             if not self.intake_worker():
                 return
@@ -324,6 +346,30 @@ class Handler(SimpleHTTPRequestHandler):
             return
         if self._norm_path() in repository_pages.ALIASES:
             return self._redirect(repository_pages.ALIASES[self._norm_path()])
+        if self._norm_path() == '/data/companies.json':
+            try:
+                data = source_publication.companies(ROOT)
+                return self._json(200, public.customer_companies(data) if self._role(user) == 'customer' else data,
+                                  compressed=True)
+            except (OSError, ValueError, TypeError, KeyError):
+                return self._json(503, {'ok': False, 'error': '企业目录暂不可用'})
+        if self._role(user) == 'customer' and self._norm_path() in public.CUSTOMER_PROJECTED_DATA:
+            builders = {'/data/datacenter_model.json': public.customer_model,
+                        '/data/tco_targets.json': public.customer_targets,
+                        '/framework/tco_targets.json': public.customer_targets,
+                        '/data/prices.json': public.customer_prices,
+                        '/data/companies.json': public.customer_companies,
+                        '/data/dashboard.json': lambda data: public.customer_dashboard(data, ROOT),
+                        '/framework/bom.json': public.customer_bom,
+                        '/framework/site_rights.json': public.customer_site_rights,
+                        '/framework/indicators.json': public.customer_indicators,
+                        '/research/data-centers-2026-project-ledger.json': public.customer_project_ledger,
+                        '/research/data-centers-2026-chart-data.json': public.customer_chart_data}
+            try:
+                data = json.loads(source_path(self._norm_path(), ROOT).read_text())
+                return self._json(200, builders[self._norm_path()](data), compressed=True)
+            except (OSError, ValueError, TypeError, KeyError):
+                return self._json(503, {'ok': False, 'error': '交付数据暂不可用'})
         merged = {'/team.html': '#tasks', '/materials.html': '#inbox', '/nvidia-pilot.html': '#pilot'}
         if self._norm_path() in merged:  # 三页并入采集页（2026-09-28）
             return self._redirect('/supply.html' + merged[self._norm_path()])
@@ -341,6 +387,26 @@ class Handler(SimpleHTTPRequestHandler):
             if user:                       # 已登录还访问登录页 → 回首页
                 return self._redirect("/")
             return self._html(200, pages.LOGIN_PAGE)
+        if self._norm_path() in ('/api/navigation', '/api/workspace', '/api/site-search'):
+            from inresearch.interfaces import workspace
+            role = self._role(user)
+            query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            try:
+                if any(len(values) != 1 for values in query.values()):
+                    raise ValueError('one value per filter required')
+                if self._norm_path() == '/api/navigation':
+                    value = workspace.navigation(ROOT, role, user, self.path)
+                else:
+                    query = {key: values[0] for key, values in query.items()}
+                    build = workspace.view if self._norm_path() == '/api/workspace' else workspace.search
+                    value = build(ROOT, role, user, query)
+                return self._json(200, value, compressed=True)
+            except PermissionError:
+                return self._json(403, {'ok': False, 'error': '无权访问该范围'})
+            except ValueError as error:
+                return self._json(400, {'ok': False, 'error': str(error)})
+            except (OSError, TypeError, KeyError):
+                return self._json(503, {'ok': False, 'error': '页面数据暂不可用'})
         if self.path == "/logout":
             return self._redirect("/login", [("Set-Cookie", auth.clear_cookie())])
         if self.path == "/account":
@@ -384,6 +450,11 @@ class Handler(SimpleHTTPRequestHandler):
                 {"name": n, "role": u.get("role", "member"), "created": u.get("created", "?")}
                 for n, u in sorted(users.items())]})
         if urlsplit(self.path).path.startswith('/api/product-catalog/'):
+            from inresearch.interfaces import customer_catalog
+            def catalog_response(value, view):
+                if self._role(user) == 'customer':
+                    value = customer_catalog.project(value, view)
+                return self._json(200, value)
             # 规格库按公司分库（2026-10-01）：/api/product-catalog/<company>，公司须在 COMPANIES 登记。
             company = urlsplit(self.path).path.removeprefix('/api/product-catalog/')
             if company not in product_catalog.COMPANIES:
@@ -392,10 +463,10 @@ class Handler(SimpleHTTPRequestHandler):
             if query.get('view') == ['browse']:
                 from inresearch.workflow.catalog_browse import query as browse_query
                 try:
-                    return self._json(200, browse_query(ROOT, company,
+                    return catalog_response(browse_query(ROOT, company,
                         category=query.get('category',[''])[0], line=query.get('line',[''])[0],
                         q=query.get('q',[''])[0], kind=query.get('kind',[''])[0],
-                        with_specs=query.get('with_specs',[''])[0]=='1', offset=query.get('offset',['0'])[0]))
+                        with_specs=query.get('with_specs',[''])[0]=='1', offset=query.get('offset',['0'])[0]), 'browse')
                 except ValueError as exc:
                     return self._json(400, {'error':str(exc)})
                 except sqlite3.Error:
@@ -403,14 +474,15 @@ class Handler(SimpleHTTPRequestHandler):
             if query.get('view') == ['materials']:
                 from inresearch.workflow.catalog_materials import query as material_query
                 try:
-                    return self._json(200, material_query(ROOT,company,query.get('q',[''])[0],query.get('offset',['0'])[0]))
+                    return catalog_response(material_query(ROOT,company,query.get('q',[''])[0],query.get('offset',['0'])[0]), 'materials')
                 except (ValueError, sqlite3.Error):
                     return self._json(400, {'error':'invalid material query'})
             export = query.get('export', [''])[0]
             if export:
                 value = product_catalog.snapshot(ROOT, company)
                 try:
-                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0], company=company, line=query.get('line', [''])[0], category=query.get('category',[''])[0]).encode('utf-8')
+                    exporter = customer_catalog.csv_export if self._role(user) == 'customer' else product_catalog.csv_export
+                    body = exporter(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0], company=company, line=query.get('line', [''])[0], category=query.get('category',[''])[0]).encode('utf-8')
                 except ValueError as exc:
                     return self._json(400, {'error': str(exc)})
                 self.send_response(200)
@@ -418,7 +490,9 @@ class Handler(SimpleHTTPRequestHandler):
                 self.send_header('Content-Disposition', 'attachment; filename="' + company + '-' + export + '.csv"')
                 self.send_header('Content-Length', str(len(body)))
                 self.end_headers()
-                return self.wfile.write(body)
+                if self.command != 'HEAD':
+                    self.wfile.write(body)
+                return
             product_id = query.get('product_id', [''])[0]
             if product_id:
                 try:
@@ -427,7 +501,7 @@ class Handler(SimpleHTTPRequestHandler):
                     return self._json(400, {'error': str(exc)})
                 if value['product'] is None:
                     return self._json(404, {'error': 'product not found'})
-                return self._json(200, value)
+                return catalog_response(value, 'product')
             series_id = query.get('series_id', [''])[0]
             if series_id:  # one vendor series: its parts pivoted into a comparison table
                 try:
@@ -436,14 +510,14 @@ class Handler(SimpleHTTPRequestHandler):
                     return self._json(400, {'error': str(exc)})
                 if value['available'] and value['series'] is None:
                     return self._json(404, {'error': 'series not found'})
-                return self._json(200, value)
+                return catalog_response(value, 'series')
             view = query.get('view', ['full'])[0]
             if view == 'index':
-                return self._json(200, product_catalog.index_snapshot(ROOT, company))
+                return catalog_response(product_catalog.index_snapshot(ROOT, company), 'index')
             if view == 'summary':  # the company page: coverage, vendor groups and demand alignment, no product list
-                return self._json(200, product_catalog.summary_snapshot(ROOT, company))
+                return catalog_response(product_catalog.summary_snapshot(ROOT, company), 'summary')
             if view == 'full':
-                return self._json(200, product_catalog.snapshot(ROOT, company))
+                return catalog_response(product_catalog.snapshot(ROOT, company), 'full')
             return self._json(400, {'error': 'unknown catalog view'})
         if urlsplit(self.path).path == '/api/pilot-progress/nvidia':
             try:
@@ -507,7 +581,12 @@ class Handler(SimpleHTTPRequestHandler):
             if set(query) - {'page'} or len(page) != 1 or (page[0] is not None and page[0] not in model_assets.PAGES):
                 return self._json(400, {'ok': False, 'error': '无效场景'})
             try:
-                return self._json(200, model_assets.snapshot(ROOT, page[0]))
+                if self._role(user) == 'customer':
+                    from inresearch.interfaces import customer_scene
+                    value = customer_scene.model_assets(ROOT, page[0])
+                else:
+                    value = model_assets.snapshot(ROOT, page[0])
+                return self._json(200, value)
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '模型登记暂不可用，请重试'})
         if urlsplit(self.path).path == '/api/targets/backflow':
@@ -561,6 +640,10 @@ class Handler(SimpleHTTPRequestHandler):
                 profile = company_window.company(ROOT, cid)
                 value = (company_quotes.snapshot(ROOT, profile) if urlsplit(self.path).path == '/api/company-quote'
                          else company_window.snapshot(ROOT, cid))
+                if self._role(user) == 'customer':
+                    from inresearch.interfaces.customer_catalog import project_company_quote, project_company_window
+                    value = (project_company_quote(value) if urlsplit(self.path).path == '/api/company-quote'
+                             else project_company_window(value))
                 return self._json(200, value)
             except KeyError:
                 return self._json(404, {'error': 'unknown company'})
@@ -582,17 +665,19 @@ class Handler(SimpleHTTPRequestHandler):
             except (ValueError, TypeError):
                 return self._json(400, {'error': 'invalid news filter'})
             try:
-                return self._json(200, research.cached_news(ROOT, company_id=cid, limit=limit,overview=overview=='1'),compressed=True)
+                customer = self._role(user) == 'customer'
+                value = research.cached_news(ROOT, company_id=cid, limit=limit, overview=customer or overview=='1')
+                return self._json(200, public.customer_news(value) if customer else value, compressed=True)
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '新闻暂不可用，请稍后重试'})
         if self._norm_path() == '/research.html':
-            # 研究页退役（2026-09-28）：问题、候选证据、陈述与一跳关系并入节点页第一问；旧 ID 折算到骨架节点
+            # 退役研究别名保留旧ID，在原内部权限下转到研究生产工作台。
             wanted = parse_qs(urlsplit(self.path).query).get('node', [''])[0]
             try:
                 node = graph_mod.node_for(wanted, json.loads((ROOT / 'framework/bom.json').read_text(encoding='utf-8'))) if wanted else None
             except (OSError, ValueError):
                 node = None
-            return self._redirect('/node.html' + ('?' + urlencode({'id': node}) if node and node != 'root' else ''))
+            return self._redirect('/research-workbench.html' + ('?' + urlencode({'id': node}) if node and node != 'root' else ''))
         if urlsplit(self.path).path == '/api/research-summary':
             try:
                 node = parse_qs(urlsplit(self.path).query).get('node', [''])[0]
@@ -631,17 +716,20 @@ class Handler(SimpleHTTPRequestHandler):
         if urlsplit(self.path).path == '/api/report':
             try:
                 legacy = parse_qs(urlsplit(self.path).query).get('legacy', [''])[0] == '1'
-                return self._json(200, report_model.build_report(ROOT) if legacy else report_model.build_snapshot_report(ROOT))
+                value = report_model.build_report(ROOT) if legacy else report_model.build_snapshot_report(ROOT)
+                return self._json(200, public.customer_report(value, ROOT) if self._role(user) == 'customer' else value)
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '报告暂不可用，请稍后重试'})
         if urlsplit(self.path).path == '/api/research-tasks':
             try:
-                return self._json(200, research_tasks.snapshot(ROOT, actor=user or 'local', role=self._role(user)))
+                customer = self._role(user) == 'customer'
+                return self._json(200, research_tasks.snapshot(ROOT, actor='local' if customer else user or 'local',
+                    role='reader' if customer else self._role(user)))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '任务跟踪暂不可用，请稍后重试'})
         if self._norm_path() == '/api/research-task-examples':
             try:
-                return self._json(200, research_task_examples.snapshot(ROOT, authenticated=self._role(user) != 'reader'))
+                return self._json(200, research_task_examples.snapshot(ROOT, authenticated=self._role(user) not in ('reader', 'customer')))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '真实样例包暂不可用，请刷新或联系负责人修复'})
         if self._norm_path().startswith('/api/research-task-examples/'):
@@ -649,7 +737,7 @@ class Handler(SimpleHTTPRequestHandler):
             if not match or urlsplit(self.path).query:
                 return self._json(404, {'ok': False, 'error': '样例产物不存在'})
             try:
-                artifact = research_task_examples.download(ROOT, *match.groups(), authenticated=self._role(user) != 'reader')
+                artifact = research_task_examples.download(ROOT, *match.groups(), authenticated=self._role(user) not in ('reader', 'customer'))
             except research_task_examples.PrivateArtifact:
                 return self._json(401, {'ok': False, 'error': '此样例产物登录后可下载'})
             except research_task_examples.NotInstalled:
@@ -675,6 +763,12 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
+        # Machine receivers authenticate independently below. A customer cookie
+        # never turns those endpoints into customer write capabilities.
+        customer = auth.session_user(self.headers.get('Cookie'))
+        if customer and auth.user_role(customer) == 'customer' and not public.customer_allowed(
+                ROOT, self._norm_path(), urlsplit(self.path).query, 'POST'):
+            return self._json(403, {'ok': False, 'error': '客户账户仅可浏览交付产品'})
         if self.path == '/api/reader-snapshot':
             with research.RUNTIME_LOCK:
                 return self._post()
@@ -735,6 +829,16 @@ class Handler(SimpleHTTPRequestHandler):
         role = auth.user_role(user) if user else "admin"   # 本地模式视同 admin
         if self.path == "/api/login":
             return self.api_login(payload)
+        if self.path == '/api/feedback':
+            from inresearch.interfaces import workspace
+            try:
+                return self._json(200, workspace.feedback(ROOT, role, user, payload))
+            except PermissionError:
+                return self._json(403, {'ok': False, 'error': '请登录后提交反馈'})
+            except ValueError as error:
+                return self._json(400, {'ok': False, 'error': str(error)})
+            except (OSError, TypeError, KeyError):
+                return self._json(503, {'ok': False, 'error': '反馈暂未保存，请重试'})
         if user and role == "intern" and self.path not in auth.INTERN_POST_ALLOW:
             return self._json(403, {"ok": False, "error": "该操作需要内部成员权限"})
         if self.path == '/api/research-tasks':

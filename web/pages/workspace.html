@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>研究工作区 — inresearch.ai</title>
+  <script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/workspace.css">
+  <script defer src="/assets/workspace.js"></script>
+</head>
+<body>
+  <inresearch-shell data-section="workspace"></inresearch-shell>
+  <main class="workspace" id="workspace-app" aria-busy="true">
+    <nav class="workspace-crumb" id="workspace-crumb" aria-label="当前位置"></nav>
+    <header><h1 id="workspace-title">正在读取栏目</h1><p id="workspace-summary"></p></header>
+    <nav class="workspace-tabs" id="workspace-tabs" aria-label="栏目视图"></nav>
+    <form class="workspace-filter" id="workspace-filter"><label for="workspace-query">筛选当前列表</label><input id="workspace-query" type="search" name="q" maxlength="160"><button type="submit">筛选</button></form>
+    <div id="workspace-content" aria-live="polite"></div>
+    <nav class="workspace-links" id="workspace-links" aria-label="相关操作"></nav>
+    <p id="workspace-error" class="workspace-error" role="alert" hidden></p>
+  </main>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.12.private-tasks",
+  "version": "2026.10.13.navigation-shell",
   "static_pages": [
     "index.html",
     "node.html",
@@ -51,7 +51,11 @@
     "research/data-centers-2026-sea.html",
     "research/data-centers-2026-cn.html",
     "research/data-centers-2026-projects.html",
-    "tasks.html"
+    "tasks.html",
+    "workspace.html",
+    "guide.html",
+    "search.html",
+    "research-workbench.html"
   ],
   "sections": {
     "industry": [
@@ -93,7 +97,8 @@
     ],
     "acquisition": [
       "supply.html",
-      "tasks.html"
+      "tasks.html",
+      "research-workbench.html"
     ],
     "results": [
       "report.html",
@@ -118,6 +123,15 @@
       "admin/glocalstoragerepo.html",
       "admin/openapirepo.html",
       "admin/agentrepo.html"
+    ],
+    "workspace": [
+      "workspace.html"
+    ],
+    "guide": [
+      "guide.html"
+    ],
+    "search": [
+      "search.html"
     ]
   },
   "section_questions": {
@@ -144,14 +158,17 @@
       3,
       4
     ],
-    "admin": []
+    "admin": [],
+    "workspace": [],
+    "guide": [],
+    "search": []
   },
   "section_questions_note": "行业总览回答市场规模、地理布局与项目进展；研究目录继续对应四问，行业总览与管理不强行映射四问。",
   "public_pages": [
     "index.html",
     "tasks.html"
   ],
-  "sections_note": "导航与七类页面分区分别登记；仅首页匿名公开，其余行业、市场、布局、项目及研究页面登录后按角色读取，任务跟踪归采集分区。",
+  "sections_note": "sections保留HTML模板的兼容标签；业务目录、页面归属和角色过滤唯一登记于site_navigation.json。匿名仅首页与任务公开。",
   "dynamic_pages": {
     "src/inresearch/interfaces/pages.py": [
       "LOGIN_PAGE",
@@ -249,7 +266,11 @@
     "research/data-centers-2026-sea.html": "web/pages/research/data-centers-2026-sea.html",
     "research/data-centers-2026-cn.html": "web/pages/research/data-centers-2026-cn.html",
     "research/data-centers-2026-projects.html": "web/pages/research/data-centers-2026-projects.html",
-    "tasks.html": "web/pages/tasks.html"
+    "tasks.html": "web/pages/tasks.html",
+    "workspace.html": "web/pages/workspace.html",
+    "guide.html": "web/pages/guide.html",
+    "search.html": "web/pages/search.html",
+    "research-workbench.html": "web/pages/research-workbench.html"
   },
   "template_fragments": [
     "web/pages/auth/layout.html",

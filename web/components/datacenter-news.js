@@ -76,13 +76,14 @@ if (host) {
   }
   function render(data){
     const feed=data.feed,raw=(data.raw_atlas?.records||[]).filter(r=>r.origin!=='research_publication');
-    if((!feed||['awaiting_sync','not_initialized'].includes(feed.status))&&!raw.length){
-      meta.hidden=false;meta.textContent=isHome?'暂无可显示的近期报道，项目与研究资料仍可浏览。':data.reader?.status==='not_connected'?'尚未连接阅读服务':data.reader?.status==='degraded'?'新闻快照暂不可用，请稍后重试。':feed?.status==='not_initialized'?'新闻尚未初始化':'等待新闻同步';
+    if((!feed||['awaiting_sync','not_initialized','not_connected'].includes(feed.status))&&!raw.length){
+      meta.hidden=false;meta.textContent=feed?.status==='not_connected'?'新闻源尚未连接':isHome?'暂无可显示的近期报道，项目与研究资料仍可浏览。':data.reader?.status==='not_connected'?'尚未连接阅读服务':data.reader?.status==='degraded'?'新闻快照暂不可用，请稍后重试。':feed?.status==='not_initialized'?'新闻尚未初始化':'等待新闻同步';
       list.replaceChildren();showCount();return;
     }
-    const age=Date.now()-Date.parse(feed?.exported_at||''),stale=!!data.reader?.stale||(!!feed&&(!Number.isFinite(age)||age>2*3600000));
-    meta.hidden=feed?.status==='success'&&!stale||headlines&&!feed&&raw.length>0;
-    meta.textContent=feed?.status==='running'?'正在更新':feed&&feed.status!=='success'?'更新暂时失败':stale?'更新延迟':!feed?(isHome?'日报报道 · 原始新闻时间以来源为准':'已接收日报事件 · 原始新闻时间以来源为准'):'';
+    const exported=feed?.exported_at,clock=typeof exported==='number'?exported:Date.parse(exported||''),age=Date.now()-clock;
+    const knownClock=Number.isFinite(age),stale=!!data.reader?.stale||(!!feed&&knownClock&&age>2*3600000);
+    meta.hidden=feed?.status==='success'&&knownClock&&!stale||headlines&&!feed&&raw.length>0;
+    meta.textContent=feed?.status==='running'?'正在更新':feed&&feed.status!=='success'?'更新暂时失败':stale?'更新延迟':feed&&!knownClock?'快照时间未知':!feed?(isHome?'日报报道 · 原始新闻时间以来源为准':'已接收日报事件 · 原始新闻时间以来源为准'):'';
     const progress=data.pipeline?.progress;
     if(!isHome&&progress&&Number.isInteger(progress.leads)){
       meta.hidden=false;const link=document.createElement('a');link.href='/projects.html?view=pipeline';link.textContent=`历史 ${progress.leads} 条线索 · ${progress.linked} 已关联 · 查看核验进展`;

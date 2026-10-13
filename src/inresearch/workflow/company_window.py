@@ -9,8 +9,8 @@ PROFILE_FIELDS = ('company_id', 'name', 'name_cn', 'legal_name', 'ticker', 'cik'
 
 
 def company(root, cid):
-    record = next((c for c in json.loads((root/'data/companies.json').read_text())['records']
-                   if c['company_id'] == cid), None)
+    from inresearch.delivery.source_publication import companies
+    record = next((c for c in companies(root)['records'] if c['company_id'] == cid), None)
     if record is None:
         raise KeyError('unknown company')
     return {k: record[k] for k in PROFILE_FIELDS if k in record}
@@ -98,6 +98,7 @@ def catalog_groups(root, cid):
 
 
 def snapshot(root, cid):
+    from inresearch.delivery.source_publication import companies
     profile = company(root, cid)
     disclosures = json.loads((root/'data/company_disclosures.json').read_text())
     record = next((r for r in disclosures['records'] if r['company_id'] == cid), {})
@@ -130,6 +131,6 @@ def snapshot(root, cid):
                               'entities': catalog['summary']['auxiliary_entities'],
                               'filter': {'scope': 'auxiliary'}, 'basis': 'received_catalog_index'})
     return {'company': profile, 'companies': [{'id': c['company_id'], 'name': c.get('name_cn') or c['name']}
-                for c in json.loads((root/'data/companies.json').read_text())['records']],
+                for c in companies(root)['records']],
             'product_lines': lines[:13], 'catalog': catalog,
             'financials': record.get('financials', [])[:24], 'checked_at': record.get('checked_at')}

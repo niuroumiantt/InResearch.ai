@@ -91,7 +91,7 @@ class InterfaceContractTests(unittest.TestCase):
         manifest = json.loads((ROOT/'framework/interface_manifest.json').read_text())
         listed = {page: section for section, pages in manifest['sections'].items() for page in pages}
         self.assertEqual(set(listed), set(manifest['static_pages']), 'every application page belongs to exactly one directory entry')
-        self.assertEqual(list(manifest['sections']), ['industry', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'])
+        self.assertEqual(list(manifest['sections']), ['industry', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin', 'workspace', 'guide', 'search'])
         # 研究目录 ↔ 四问：行业总览与管理不对应任何一问，其余每一问至少被一项覆盖
         questions = manifest['section_questions']
         self.assertEqual(list(questions), list(manifest['sections']))
@@ -106,11 +106,16 @@ class InterfaceContractTests(unittest.TestCase):
             self.assertEqual(declared, listed[name], name)
         self.assertEqual({'/' + p for p in manifest['public_pages']} | {'/'}, set(public.READER_PAGES) | {'/index.html'})
         shell = (ROOT/'web/components/site-shell.js').read_text()
-        for entry in ('datacenter', 'ledger', 'bom', 'acquisition', 'results'):
-            self.assertIn(f"['{entry}'", shell, entry)
-        self.assertIn("if (user.role === 'admin')", shell)
-        self.assertIn("link('/ops.html', '管理台', 'ui-management-link')", shell)
-        self.assertNotIn("['admin', '管理'", shell, 'management lives in the account menu')
+        # Legacy template sections remain classified; business navigation has one
+        # role-filtered source, separate from template identity.
+        navigation = json.loads((ROOT/'framework/site_navigation.json').read_text())
+        self.assertEqual([x['label'] for x in navigation['navigation']['delivery']],
+                         ['行业总览','数据中心研究','企业与产品','技术图册','成本与收益','研究报告'])
+        self.assertEqual([x['label'] for x in navigation['navigation']['backstage']],
+                         ['工作总览','研究生产','内容与数据','建设进展','系统架构','运行管理'])
+        self.assertIn('/api/navigation', shell)
+        self.assertNotIn('ui-management-link', shell)
+        self.assertNotIn('ui-admin-link', shell)
         routes = json.loads((ROOT/'web/routes.json').read_text())
         for url, rel in routes.items():
             self.assertTrue((ROOT/rel).exists(), f'{url} -> {rel} is a dead route')

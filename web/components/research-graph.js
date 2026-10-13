@@ -1,3 +1,5 @@
+import {safeURL} from './scene-navigation.js';
+export {safeURL, bindResearchMeshNodes, installStageControl} from './scene-navigation.js';
 import { mountObjectNetwork } from "./object-network.js";
 /* Shared, read-only research UI. Identity comes from the API; no module-wide
    task counts or marketing documents are promoted to object-level evidence. */
@@ -78,17 +80,10 @@ function button(text, fn, cls = "rg-button") {
   const el = element("button", cls, text); el.type = "button"; el.addEventListener("click", fn); return el;
 }
 export function researchHref(id, view = "P", tab = "network") {
-  // 研究页已退役（2026-09-28）：问题与证据在节点页第一问；旧参数 view / tab 不再有意义
-  return "node.html?" + new URLSearchParams(id === "root" ? {} : { id }).toString();
+  // 内部研究工具在工作台；交付节点页不挂研究问题、候选或派工。旧 view / tab 不再使用。
+  return "research-workbench.html?" + new URLSearchParams(id === "root" ? {} : { id }).toString();
 }
-export function safeURL(value) {
-  if (typeof value !== "string" || !value.trim()) return null;
-  try {
-    const url = new URL(value, location.href);
-    if (!["http:", "https:"].includes(url.protocol)) return null;
-    return url.href;
-  } catch { return null; }
-}
+
 function link(text, url, cls = "rg-link-button") {
   const target = safeURL(url);
   if (!target) return element("span", "rg-muted", text + "（链接不可用）");
@@ -367,28 +362,7 @@ export function mountNodeResearch(container, nodeId) {
   }
   load();
 }
-export function bindResearchMeshNodes(meshes) {
-  for (const mesh of meshes) if (mesh.userData?.part) {
-    mesh.userData.legacy_bom_id = mesh.userData.part;
-    mesh.userData.node_id = "part:" + mesh.userData.part;
-    mesh.userData.representation = "conceptual";
-  }
-}
-export function installStageControl(stages, slider, apply) {
-  const select = element("select", "rg-stage-control"); select.setAttribute("aria-label", "选择拆解阶段");
-  stages.forEach(([at, title]) => {
-    const option = element("option", "", title); option.value = String(Math.round(at * 100)); select.append(option);
-  });
-  select.addEventListener("change", () => { slider.value = select.value; slider.dispatchEvent(new Event("input", { bubbles: true })); });
-  const sync = () => {
-    let selected = stages[0]?.[0] || 0;
-    for (const [at] of stages) if (Number(slider.value) / 100 >= at) selected = at;
-    select.value = String(Math.round(selected * 100));
-  };
-  slider.addEventListener("input", sync);
-  slider.insertAdjacentElement("afterend", select); sync();
-  return sync;
-}
+
 async function startWorkbench() {
   const root = document.getElementById("researchApp");
   if (!root) return;
