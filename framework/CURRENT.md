@@ -1,6 +1,8 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.13.121
+2026-10-13：初筛classification.year仅指原文明确披露的单一年份；未知留unknown，资料涉及的年份区间进入后续陈述，不猜出版年。生成schema与提示词对齐原单年校验，Codex本地结构校验执行pattern；原ID、原件、次数、成功缓存和候选/C3边界保持。
+
+> CURRENT · 基准版本 2026.10.13.122
 
 2026-10-13：候选manifest响应支持有界gzip及原未压缩兼容；清单小请求可显式选择同一receiver的可信HTTPS读取入口，delta保持原写入入口和generated CAS。传输/解压上限、原重试预算、认证不变。CDN拒绝gzip POST与origin慢链路须分别核实，唯一publisher完成真实增量与网站ACK后才计验收。唯一运行入口为SPARK_OPERATIONS。
 

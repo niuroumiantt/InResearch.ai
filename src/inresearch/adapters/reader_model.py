@@ -36,7 +36,9 @@ def _schema(stage, current=False):
                 "summary": {"type": "string", "maxLength": 1200}},
                 "required": ["chunk_sha256", "claims", "summary"]}
     if stage == "triage":
-        classification = {"type": "object", "properties": {"title": text, "org": text, "year": text,
+        year = {"type": "string", "pattern": r"^(?:[0-9]{4}|unknown|未知)?(?![\s\S])",
+                "description": "Publication year only; use unknown when not explicit. Never use a date or the years discussed by the document."}
+        classification = {"type": "object", "properties": {"title": text, "org": text, "year": year,
                           "module_id": {"type": "string", "enum": ["M%02d" % i for i in range(1, 16)] + ["unknown"]}},
                           "required": ["title", "org", "year"] if current else ["title", "org", "year", "module_id"]}
         if current:
@@ -117,6 +119,8 @@ class ModelClient:
         }
         if current and stage=='triage':
             contracts['triage'] = 'Return {"classification":{"title":string,"org":string,"year":string,"node":one allowed object ID or null},"importance":integer 1..9,"rationale":string,"object_ids":[IDs],"question_ids":[IDs]}. Classify by the current skeleton nodes, not M01-M15 modules. The preview is coarse sampling, not full reading.'
+        if stage == 'triage':
+            contracts['triage'] += ' classification.year is the explicitly disclosed publication year: exactly four digits, or unknown when absent. Dates and periods discussed in the content (e.g. 2024–2026) are not publication years; preserve them in the subsequent reading claims instead. Never infer a publication year from a forecast, filename or retrieval date.'
         if stage == 'read_batch':
             contracts[stage] = ('Return {"chunks":[one read result for EVERY supplied chunk]}. Each result must also include its supplied chunk_index. '
                 'Apply the following read contract independently to every chunk, preserving its exact hash and using ONLY that chunk\'s text and allowed IDs. '

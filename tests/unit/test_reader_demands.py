@@ -82,3 +82,21 @@ class ReaderDemandTests(unittest.TestCase):
     def test_current_schema_does_not_require_legacy_module_but_old_recipe_does(self):
         self.assertNotIn('module_id',_schema('triage',True)['properties']['classification']['required'])
         self.assertIn('module_id',_schema('triage')['properties']['classification']['required'])
+
+    def test_publication_year_rejects_content_periods_without_guessing_missing_year(self):
+        from inresearch.adapters.codex_inference import strict_schema, validate_shape
+        from inresearch.adapters.models import InferenceError
+        for current in (False, True):
+            schema = strict_schema(_schema('triage', current))
+            classification = {'title': 'Campus plans 2024–2026', 'org': '', 'module_id': 'unknown'}
+            if current:
+                classification['node'] = None
+            response = {'classification': classification, 'importance': 5, 'rationale': 'Preview only',
+                        'object_ids': [], 'question_ids': []}
+            for year in ('2026', 'unknown', '未知', ''):
+                classification['year'] = year
+                validate_shape(schema, response)
+            for year in ('2024–2026', '2024-2026', '2026-10-13', '2026\n', 'next year'):
+                classification['year'] = year
+                with self.assertRaises(InferenceError):
+                    validate_shape(schema, response)
