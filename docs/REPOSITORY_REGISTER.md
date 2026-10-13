@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2656。
+在册文件：2657。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,8 +22,8 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 238 |
-| 测试 | 224 |
+| 配套说明 | 239 |
+| 测试 | 225 |
 
 ## 在册记录集合
 
@@ -2677,6 +2677,7 @@
 | [docs/handoff/homepage-headlines-20261011.md](handoff/homepage-headlines-20261011.md) | 配套说明 |
 | [docs/handoff/homepage-map-audit-20261003.md](handoff/homepage-map-audit-20261003.md) | 配套说明 |
 | [docs/handoff/homepage-map-original-20261011.md](handoff/homepage-map-original-20261011.md) | 配套说明 |
+| [docs/handoff/homepage-projection-throughput-20261013.md](handoff/homepage-projection-throughput-20261013.md) | 配套说明 |
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
 | [docs/handoff/infra-2026-09-29.md](handoff/infra-2026-09-29.md) | 配套说明 |
 | [docs/handoff/initial-physical-site-intake-20261012.md](handoff/initial-physical-site-intake-20261012.md) | 配套说明 |
@@ -3970,6 +3971,7 @@
 | `tests/unit/test_http_workflow.py` | 测试 |
 | `tests/unit/test_industry.py` | 测试 |
 | `tests/unit/test_industry_cache.py` | 测试 |
+| `tests/unit/test_industry_read_efficiency.py` | 测试 |
 | `tests/unit/test_intake.py` | 测试 |
 | `tests/unit/test_interface_system.py` | 测试 |
 | `tests/unit/test_it_domain_assets.py` | 测试 |

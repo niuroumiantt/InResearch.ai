@@ -63,11 +63,11 @@ def empty():
     return {'version': 1, 'objects': {}, 'records': []}
 
 
-def load(root):
+def load(root, runtime=None):
     p = Path(root)/PATH
     doc = json.loads(p.read_text()) if p.exists() else empty()
-    from inresearch.delivery.source_publication import objects
-    return objects(root, doc)
+    from inresearch.delivery.source_publication import objects, _objects
+    return objects(root, doc) if runtime is None else _objects(doc, runtime)
 
 
 def archived_source_valid(source):
@@ -185,13 +185,13 @@ def publication_contract(root):
     return json.loads(path.read_text())
 
 
-def public_records(root, company=None, object_id=None, kind=None):
+def public_records(root, company=None, object_id=None, kind=None, runtime=None):
     """The same reviewed field allowlist feeds pages and the public API.
 
     Adoption alone does not grant source redistribution. Ineligible rows do not
     contribute to public totals. Internal audit and original excerpts stay out.
     """
-    doc = check(load(root))
+    doc = check(load(root) if runtime is None else load(root, runtime=runtime))
     if not doc['records']: return []
     fields = publication_contract(root)['public']
     conflicts = {i for g in current(doc) for i in g['conflicts']}
@@ -216,8 +216,8 @@ def public_records(root, company=None, object_id=None, kind=None):
     return result
 
 
-def public_updates(root, limit=36, company=None):
-    rows = public_records(root, company=company)
+def public_updates(root, limit=36, company=None, runtime=None):
+    rows = public_records(root, company=company) if runtime is None else public_records(root, company=company, runtime=runtime)
     result, counts = [], {}
     for row in rows:
         ident = row['object_id']
