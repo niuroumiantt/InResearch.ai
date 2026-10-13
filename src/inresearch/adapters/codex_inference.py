@@ -21,6 +21,41 @@ import urllib.request
 from inresearch.adapters.models import InferenceError, MAX_RESPONSE, json_object, load_profile, JsonModelClient
 
 MAX_REQUEST = 24 * 1024 * 1024
+TIMEOUT_STDOUT_TAIL = 64 * 1024
+
+
+def timeout_failure(output, errors, elapsed):
+    """Inspect bounded spool slices; only complete terminal JSONL is evidence."""
+    output.seek(0, 2); stdout_bytes = output.tell()
+    offset = max(0, stdout_bytes - TIMEOUT_STDOUT_TAIL)
+    output.seek(max(0, offset - 1))
+    boundary = output.read(1) if offset else b'\n'
+    raw = output.read(TIMEOUT_STDOUT_TAIL)
+    if offset and boundary != b'\n':
+        raw = raw.partition(b'\n')[2]
+    events = []
+    # A killed process may leave its last JSONL record incomplete. Never infer
+    # a provider failure from that fragment or from ordinary model text.
+    for line in raw.split(b'\n')[:-1]:
+        try:
+            event = json.loads(line)
+        except (ValueError, UnicodeError):
+            continue
+        if isinstance(event, dict) and event.get('type') in ('error', 'turn.failed'):
+            events.append(event)
+    errors.seek(0, 2); stderr_bytes = errors.tell()
+    errors.seek(0); head = errors.read(min(4096, stderr_bytes))
+    tail_offset = max(len(head), stderr_bytes - 8192)
+    errors.seek(tail_offset); tail = errors.read(8192)
+    failure = cli_failure(None, events, (head + b'\n' + tail).decode(errors='replace'), elapsed)
+    if failure.code == 'model_cli_failed':
+        diagnostics = failure.diagnostics
+        failure = InferenceError('model_cli_timeout')
+        failure.diagnostics = diagnostics
+    failure.diagnostics.update({'process_timeout': True, 'stdout_bytes': stdout_bytes,
+        'stderr_bytes': stderr_bytes, 'stdout_truncated': offset > 0,
+        'stderr_truncated': tail_offset > len(head), 'terminal_events': len(events)})
+    return failure
 
 
 def cli_failure(returncode, events, stderr, elapsed):
@@ -165,11 +200,7 @@ def generate(client, system, user, *, json_schema=None, image_path=None):
                     # The process budget may expire while the CLI is retrying a
                     # disconnected stream. Keep only classified diagnostics, so
                     # transport waits defer rather than exhaust document retries.
-                    errors.seek(0,2); size=errors.tell(); errors.seek(max(0,size-8192))
-                    failure=cli_failure(None, [], errors.read(8192).decode(errors='replace'), time.monotonic()-start)
-                    if failure.code in {'model_relay_unavailable','model_quota_wait'}:
-                        raise failure from None
-                    raise InferenceError('model_cli_timeout') from None
+                    raise timeout_failure(output, errors, time.monotonic()-start) from None
                 output.seek(0);raw=output.read(MAX_RESPONSE+1)
                 # Startup warnings can fill the beginning; terminal errors are
                 # frequently at the end. Inspect both bounds, never log either.
