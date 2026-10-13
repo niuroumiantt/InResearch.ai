@@ -10,7 +10,7 @@
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 382 |
+| 静态资源 | 383 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -4087,6 +4087,7 @@
 | `web/assets/bom-classification/overview-v1-preview.jpg` | 静态资源 |
 | `web/assets/bom-classification/overview-v1.png` | 静态资源 |
 | `web/assets/bom-classification/overview-v1.svg` | 静态资源 |
+| `web/assets/brand/inresearch-ai/icon-orange.svg` | 静态资源 |
 | `web/assets/datacenter-news.css` | 运行代码 |
 | `web/assets/fonts/LICENSE-Inter.txt` | 静态资源 |
 | `web/assets/fonts/LICENSE-NotoSansSC.txt` | 静态资源 |

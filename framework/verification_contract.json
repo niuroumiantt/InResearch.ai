@@ -94,7 +94,7 @@
     "tests/unit/test_html_document.py": "0baea18f4fc046c1ef1c5bf60d9e857516dc9dc0129e5dc7ff78c8df1dd2c97b",
     "tests/unit/test_industry.py": "12b30a7b7b8637f62b0bdec41200cadbec3d9b5024a365f0aa2bcd20d14d478c",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
-    "tests/unit/test_interface_system.py": "b2e70b9ae92493a487060dac1c9348df430a587b82c1c68326596928429fa7f8",
+    "tests/unit/test_interface_system.py": "3927399eb2787af423a9c504dac53ce1f65f16d6785988c402feb5904baff4b1",
     "tests/unit/test_m4_ocr_gaps.py": "70114c9521a37ea5ac2b75f471e4c267bbc820b2504da2f90c8b14436d01cfb4",
     "tests/unit/test_m4_office_text.py": "92228bf2a15d3cd2ed85af962db95ecba47a76ebe69c9efe7e54ad3c751442c2",
     "tests/unit/test_m4_offload_requeue.py": "b22b873cdc190c8e248e9e6ca748f482a4f3c8665fbf95dd36886643c0c65f88",
@@ -189,8 +189,8 @@
     "tests/unit/test_research_progress.py": "4921949079387e1c79e704221db6aea87245bcbd22a9c84fc7de70f76621fb6e",
     "tests/unit/test_research_publication_merge.py": "c55d779f4bc268141a0263756236bf693d37a716a9bfc3d1934ae22bd58349b7",
     "src/inresearch/interfaces/http.py": "c719b1643e10120437491d88d73efa0c81739b05d316b64ba0b6dcd5536b245f",
-    "web/routes.json": "327315ffdcad916bb20aa04169660f1335f280807b4bcd6da71d6125d0cae62c",
-    "web/components/site-shell.js": "890335949b7601970f9a477d4e52d70ac0602bf757b29a83214f4df8369b56f4",
+    "web/routes.json": "58ea29937823af6b4fe3c1cc3199a8b2f55b756625ef87b171201046588d3fdf",
+    "web/components/site-shell.js": "083b09bcb2465c79977d990ec1e02f21c2421df600a1396c204021e7c7b00c23",
     "web/components/company-home.js": "4db5baa5fcd45de2084d8a86c411f0822338550bfb29bfdf8ec00864dc2b65ff",
     "web/components/company-overview.js": "561b11ff9f66cd4f12b586efe540b707776b7d86a4f0be2ab52b087fa367d745",
     "web/components/product-catalog.js": "6e27b7648c11f0a77fc116d71d6a72f07eb1fcbb16697996ab35ea39f439e926",
@@ -715,7 +715,7 @@
     "docs/design/technical-atlas/TA-35/source-review-v1.json": "488da16bf531552c02d240d949244bfb76ded7a458aefaa35db0f9c54852ddf6",
     "tests/bom_layout.cjs": "f20bce3df9c1fd998711f9347147679680577828a47535fd75ea30ef64b669c1",
     "docs/design/technical-atlas/TA-35/bom-layout-main-baseline-20261010.json": "d1d64108fff3e296aa1fde64c3f824b4c36b75d7828d20898c2f7e0cbcdf0626",
-    "web/themes/site-skin.css": "b04c0eb0a6b1ee263003daae11e3d77af6ca1223c33e34c4525fbee66006bcae",
+    "web/themes/site-skin.css": "69e80a0ca854a8e6f26d549124a86d1c02ac9e70851a287e53d1f212c25abfd1",
     "src/inresearch/workflow/reader_retry_job.py": "4baea478e2f21025078f18330f17c3c8fe126b7f68e871bdbebcab073584a3bc",
     "src/inresearch/interfaces/reader.py": "d9890e40475734f268035824fee112e2002e315e9e668a5562c75f81d5d5c7df",
     "tests/unit/test_reader_retry_job.py": "ee1de0a75be52c0c1be7c9afd32d5cee486d6ef0519ec850a65c4d3e832095bf",
@@ -836,7 +836,7 @@
     "tests/unit/test_source_batch.py": "19f38ee79d1a04be0aa6c6a3e5590c7e693b84c76fdfc941604b52d5585746c4",
     "tests/unit/test_object_current_scaling.py": "15e86d500c3fd7689b8bc0e8ee0f8205a9f52837fc3a8e1cff597688078bdce4",
     "tests/unit/test_industry_cache.py": "f2d547a679ded815dad69e330a94c69aacb0650db396a2c2108a01291bcc8822",
-    "tests/unit/test_industry_read_efficiency.py": "8ed334f8792f97dc85d8eaa50e52d7747af3d76f87c32d148bae45ba5b642129"
+    "web/assets/brand/inresearch-ai/icon-orange.svg": "00cc7e74e2d72fd4df631e0c67aba7ad58ddd025fd086c8f4a6e778f3147eb74"
   },
   "policies": [
     {
@@ -1559,7 +1559,7 @@
       "policy": "interface-public-tasks-20261012",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "2026-10-12 当前替代：匿名页面为首页 /、/index.html 和任务 /tasks.html，独占 overview=1 的 industry/news 有界投影与首页必需静态资源逐项白名单；其他页面（任务除外）、完整API、原件/研究JSON/图册/模型下载经服务端登录门禁，GET/HEAD和归一化路径一致，筛选参数/编码/源路径不能绕过。登录与whoami、私有页面/API/资源、匿名拒绝/跳转均private,no-store并Vary:Cookie；压缩合并Vary，首页no-cache。原member/admin/intern角色与机器bearer接收边界保留，intern原reader读取能力显式授权。匿名导航为首页/任务/登录，无私有链接闪现；登录后任务入口可用。任务页真实六个未分配区域包，member/admin可创建分配，intern只更改本人状态/交付/备注；私有运行台账稳定锁/CAS/UUID重放/原子写入/前后审计，损坏不重建。页面409丢弃过时编辑，重新打开方可保存；已交付须指针、受阻须备注，无采用或发布状态。实时分工任务书和六文件模板可下载，模板填充后通过现有离线验包；原件优先、SHA/定位/时间/范围/主体保留，OCR可选，四队交换包不冒充Fetchspec生产接收。图解现场主体关系、十二角度、五类变量/六项站点权利；IT/设施/接入/租赁功率与期间电量分列，全园区/分期/楼栋/租户范围不重计。普通园区来源按01基础登记无需C3/全文/目标前置，研究结论另核。地图进度复用实际capacity_audit，估算/未知/区间独立，90+GW为待校准目标，无伪造全球覆盖或生产回执。既有首页规模/播报/地图/新闻、坐标与时间精度、容量与历史/估算/预测边界、浮窗/键盘/即时提示、冷缓存字体、按需精细地图、登录后列表/公司/目录/3D/研究/导出功能保持现有测试。共享外观明暗/字体/导航/移动边界，新增任务页1440/760/390/320无整页横溢。 Explicit .112 review: anonymous homepage and tasks; authenticated remaining pages and writes preserve roles. Task top-level and package-field allowlists hide private coordination. Read-only actual example metadata grants no execution; absent/pending/broken states are honest. Public artifact access requires explicit grant, safe no-symlink path walking, frozen bytes, size and SHA; metadata and downloads have private no-store cookie-aware responses. Source-backed reported coordinates retain precision and immutable identity; registration and publication replay do not mutate clocks. Same-bundle runtime companies validate before site roles and reject code/runtime/batch identity collisions atomically. Historical actors and unknown IT capacity do not imply current tenancy or known GW. Further explicit UI review: top-right anonymous login; authenticated real username/role account menu with profile/logout, admin-only console and preserved company backstage deep links. Left navigation uses the same seven business pages for member/admin on all pages, original intern two-page navigation. Account profile displays actual identity and retains password form; single whoami fetch, mobile two-row header, keyboard Escape/focus and no viewport overflow are covered by actual role/browser behavior.；2026-10-13复审：HTTP地图与任务进度共用按完整依赖文件版本及日期失效的最多8项内存投影，并发只建一次、返回独立副本，失败及建造期间输入变化不缓存；原匿名/登录/角色和下载投影保持。",
+      "checked_requirement": "2026-10-12 当前替代：匿名页面为首页 /、/index.html 和任务 /tasks.html，独占 overview=1 的 industry/news 有界投影与首页必需静态资源逐项白名单；其他页面（任务除外）、完整API、原件/研究JSON/图册/模型下载经服务端登录门禁，GET/HEAD和归一化路径一致，筛选参数/编码/源路径不能绕过。登录与whoami、私有页面/API/资源、匿名拒绝/跳转均private,no-store并Vary:Cookie；压缩合并Vary，首页no-cache。原member/admin/intern角色与机器bearer接收边界保留，intern原reader读取能力显式授权。匿名导航为首页/任务/登录，无私有链接闪现；登录后任务入口可用。任务页真实六个未分配区域包，member/admin可创建分配，intern只更改本人状态/交付/备注；私有运行台账稳定锁/CAS/UUID重放/原子写入/前后审计，损坏不重建。页面409丢弃过时编辑，重新打开方可保存；已交付须指针、受阻须备注，无采用或发布状态。实时分工任务书和六文件模板可下载，模板填充后通过现有离线验包；原件优先、SHA/定位/时间/范围/主体保留，OCR可选，四队交换包不冒充Fetchspec生产接收。图解现场主体关系、十二角度、五类变量/六项站点权利；IT/设施/接入/租赁功率与期间电量分列，全园区/分期/楼栋/租户范围不重计。普通园区来源按01基础登记无需C3/全文/目标前置，研究结论另核。地图进度复用实际capacity_audit，估算/未知/区间独立，90+GW为待校准目标，无伪造全球覆盖或生产回执。既有首页规模/播报/地图/新闻、坐标与时间精度、容量与历史/估算/预测边界、浮窗/键盘/即时提示、冷缓存字体、按需精细地图、登录后列表/公司/目录/3D/研究/导出功能保持现有测试。共享外观明暗/字体/导航/移动边界，新增任务页1440/760/390/320无整页横溢。 Explicit .112 review: anonymous homepage and tasks; authenticated remaining pages and writes preserve roles. Task top-level and package-field allowlists hide private coordination. Read-only actual example metadata grants no execution; absent/pending/broken states are honest. Public artifact access requires explicit grant, safe no-symlink path walking, frozen bytes, size and SHA; metadata and downloads have private no-store cookie-aware responses. Source-backed reported coordinates retain precision and immutable identity; registration and publication replay do not mutate clocks. Same-bundle runtime companies validate before site roles and reject code/runtime/batch identity collisions atomically. Historical actors and unknown IT capacity do not imply current tenancy or known GW. Further explicit UI review: top-right anonymous login; authenticated real username/role account menu with profile/logout, admin-only console and preserved company backstage deep links. Left navigation uses the same seven business pages for member/admin on all pages, original intern two-page navigation. Account profile displays actual identity and retains password form; single whoami fetch, mobile two-row header, keyboard Escape/focus and no viewport overflow are covered by actual role/browser behavior.；2026-10-13复审：HTTP地图与任务进度共用按完整依赖文件版本及日期失效的最多8项内存投影，并发只建一次、返回独立副本，失败及建造期间输入变化不缓存；原匿名/登录/角色和下载投影保持。；2026-10-13 品牌水印复审：共享 site-shell 为所有图片与 canvas 自动叠加 inresearch.ai 橙色 icon，源图片与下载字节保持不变，动态插入、无水印标记和站内 UI 图标均有边界；静态资源路由与接口契约已登记，单元契约覆盖资产、挂载和样式。",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",

@@ -3,6 +3,48 @@
   'use strict';
   const root = document.documentElement;
   const {getState, setPreference} = window.InresearchUI;
+
+  // Brand every image shown in the site without altering the source artwork or
+  // downloaded originals. The observer also covers atlas images mounted later.
+  const WATERMARK_SRC = '/assets/brand/inresearch-ai/icon-orange.svg';
+  const WATERMARK_EXCLUDE = new Set(['ui-brand-watermark', 'ui-icon', 'favicon']);
+  function shouldBrandImage(node) {
+    if (!(node instanceof Element) || !['IMG', 'CANVAS'].includes(node.tagName)) return false;
+    if (node.dataset.noWatermark === 'true' || node.closest('[data-no-watermark="true"]')) return false;
+    if (node.closest('#ui-skinbar, .ui-brand-watermark')) return false;
+    return ![...node.classList].some(name => WATERMARK_EXCLUDE.has(name));
+  }
+  function brandImage(node) {
+    if (!shouldBrandImage(node) || node.dataset.brandWatermarked === 'true') return;
+    const wrapper = document.createElement('span');
+    wrapper.className = 'ui-branded-image';
+    wrapper.dataset.brandWatermark = 'true';
+    wrapper.setAttribute('data-image-watermark', 'inresearch.ai');
+    node.dataset.brandWatermarked = 'true';
+    node.parentNode?.insertBefore(wrapper, node);
+    wrapper.append(node);
+    const mark = document.createElement('img');
+    mark.className = 'ui-brand-watermark';
+    mark.src = WATERMARK_SRC;
+    mark.alt = '';
+    mark.setAttribute('aria-hidden', 'true');
+    mark.draggable = false;
+    wrapper.append(mark);
+  }
+  function brandImages() {
+    document.querySelectorAll('img, canvas').forEach(brandImage);
+  }
+  function mountImageBranding() {
+    brandImages();
+    const observer = new MutationObserver(records => {
+      records.forEach(record => record.addedNodes.forEach(node => {
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+        if (node.matches?.('img, canvas')) brandImage(node);
+        node.querySelectorAll?.('img, canvas').forEach(brandImage);
+      }));
+    });
+    observer.observe(document.documentElement, {childList: true, subtree: true});
+  }
   function apply(state = getState()) {
     const select = document.getElementById('ui-appearance');
     if (select) select.value = state.mode;
@@ -140,5 +182,11 @@
     compact(); phone.addEventListener('change', compact);
     apply();
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, {once: true}); else mount();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mount, {once: true});
+    document.addEventListener('DOMContentLoaded', mountImageBranding, {once: true});
+  } else {
+    mount();
+    mountImageBranding();
+  }
 })();
