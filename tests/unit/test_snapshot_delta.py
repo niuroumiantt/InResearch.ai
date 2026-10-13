@@ -145,3 +145,24 @@ class CandidateDeltas(unittest.TestCase):
         corrupt=copy.deepcopy(payload);corrupt['snapshot']['knowledge']['documents'][0]['title']='changed after commit'
         with self.assertRaises(commands.Rejected) as exc:commands.receive_snapshot(self.root,corrupt)
         self.assertEqual(exc.exception.status,409);self.assertEqual(self.destination.read_bytes(),before)
+
+    def test_explicit_incremental_mode_never_posts_the_complete_body(self):
+        import contextlib,io,os
+        from inresearch.delivery import publish
+        token=self.root/'reader-sync.token';token.write_text('private-fixture-token-'*3);token.chmod(0o600)
+        value=self.snapshot('a')
+        for doc in value['knowledge']['documents']:doc['doc_id']=doc['id']
+        with patch.dict(os.environ,{'READER_STATE_ROOT':str(self.root),'READER_REPO_ROOT':str(self.root),
+                                   'READER_PUBLISH_URL':'https://receiver.test/api/reader-snapshot','READER_PUBLISH_INCREMENTAL':'1'}), \
+             patch.object(publish,'Reader') as reader,patch.object(publish,'ModelClient'), \
+             patch.object(publish.subprocess,'run') as worker, \
+             patch.object(publish,'post_snapshot',side_effect=AssertionError('full body is forbidden in explicit delta mode')), \
+             patch.object(publish,'post_incremental',return_value={'ok':True,'documents':1,'received_at':'2026-10-13T00:00:00Z','incremental_documents':1}) as send, \
+             contextlib.redirect_stdout(io.StringIO()):
+            r=reader.return_value.initialize.return_value;r.data=self.root
+            r.export_snapshot.return_value=value;r.snapshot.return_value={'objects':self.graph['objects'],'questions':self.questions['records']}
+            worker.return_value.returncode=0
+            self.assertEqual(publish.main([]),0);self.assertEqual(send.call_count,1)
+        self.assertEqual(json.loads((self.root/'publish-status.json').read_text())['transport'],'candidate-delta-v1')
+        with patch.dict(os.environ,{'READER_PUBLISH_INCREMENTAL':'maybe'}):
+            with self.assertRaisesRegex(ValueError,'must be 0 or 1'):publish.main([])

@@ -10,7 +10,7 @@
 
 ## 进度
 - 工作树：`/Users/m5/.codex/worktrees/navigation-auth-shell/inresearch.ai`；分支`codex/navigation-auth-shell`；起点`54b18867`。不改主工作区。
-- 已登记接受方案：05、CURRENT、DECISIONS、current_state由.113推进至.115（保留主分支.114的研究传输修复），机器导航清单已建立。
+- 已登记接受方案：05、CURRENT、DECISIONS、current_state由.113推进至.116（保留主分支.114/.115的研究传输与Reader恢复），机器导航清单已建立。
 - 本地第一批已接入：唯一导航登记及角色默认拒绝、共享页眉页脚、workspace/search/guide/反馈，以及后台只读聚合和页面归属；customer企业、行业、经济、默认报告、节点研究及已审核2D/3D资源按精确闭包分发。主会话仍在集成，不将当前已审目录等同于全站所有资料的客户许可。
 - 经济栏目已接入：basis/cost/returns/scenarios同页切换，保持唯一模型、输入与当前情景；旧hash和cost/tco/economics地址保留。生命周期与稳态年化口径独立，模型引擎段逐字节保持。交付页移除内部抓取派工提示，两身份统一适用性说明，缺少内部元数据不冒充0项缺口。
 - 已通过的本地验证：共享壳5种角色场景、真实auth、ui_skin、product_catalog、BOM、scene_framing、technical_atlas、tasks、supply、ops；主会话报告site_workspace/interface/auth/customer首批36项通过，后续权限扩展继续复验并由主会话收口结果。
@@ -22,10 +22,11 @@
 - 3D最终本地验证：开启AUTH_ON的独立临时双账号服务运行scene_delivery，七类园区／分层／非物理权利／服务器／机柜／机柜分层／芯片视图通过同相位world matrix、顶点／索引及实例ID对照，实际WebGL帧、独立预览、原图SHA、SVG取证元数据、手机、零私有请求及零资源拒绝。缺失的纯research.css精确许可由主会话补齐后复跑通过。原campus_overview／campus_exploded navigation、server_assembly、rack_assembly、rack_exploded views、chip_package assembly、scene_atlas DPR1/2矩阵通过；整柜类别导出part:rack-frame与完整预览rack/whole分别保留原口径。
 - 客户企业/产品边界已完成：七个catalog JSON视图、公司窗口与行情缓存逐层投影；真实双角色六CSV字节一致，财报/型号/附件/筛选/手机和未登记运行企业空态通过。6模板旧壳404引用删除，未登记目录不请求受限API。模型已知容器和报价叶值深审后13预设计算/生命周期一致，真实socket HEAD不发CSV正文。
 - 已保存实现checkpoint dcdb7ce8；已合入origin/main的PR900（afcadb42，研究快照增量/网络恢复），当前规范.115，没有覆盖主工作区。治理refresh/check、strict、registry/deliveries通过；完整最终unit、CI和生产回执由主会话收口。
-- PR已创建并附在当前任务：[PR902](https://github.com/niuroumiantt/InResearch.ai/pull/902)，初始最终head为7bd233e8。GitHub运行38373860783的scope/core没有启动任何steps，annotation明确为“The job was not started because an Actions budget is preventing further use.”；不是代码测试失败。本地同base/head的ci_scope plan正确选择full。已请求用户解除预算，未合并和部署。
+- PR已创建并附在当前任务：[PR902](https://github.com/niuroumiantt/InResearch.ai/pull/902)，初始候选head为7bd233e8。GitHub运行38373860783的scope/core没有启动任何steps，annotation明确为“The job was not started because an Actions budget is preventing further use.”；不是代码测试失败。本地同base/head的ci_scope plan正确选择full。用户随后表示预算应该已恢复；最新head必须以实际启动的CI确认，未合并和部署。
 - 最后只读复核窄修完成：intern说明、后台限定搜索与本人反馈有相应许可，仍拒其它后台/研究/账号操作；统计对象/数组/区间可读且保留0/false/原值，实际网络验证旧请求不清新busy或覆盖结果；页面地图workspace带有效section。真实HTTP3项及workspace场景通过。
 - 本地Docker：container_storage真实只读根、HTTP/CLI和A→B→A切换保留运行写入；container_cache两次真实构建保持10稳定层、内容/秘密隔离通过。它们不代替未能启动的GitHub必过检查。
 - 生产三身份验收仍待CI、合并与部署后执行；现网预查为afcadb42精确source/status/applied、sha256:8d325ecc…1531镜像healthy、无pin。Spark只读核版本16679eda，未修改或重启研究服务。
+- 用户指出PR902冲突后已保存最后窄修3fa2d07a（2581项unit通过），合入最新main fe129b0a/PR901（历史triage/synthesize恢复与显式delta）；冲突限共同规范/派生清单，导航、客户投影及Reader功能均保留，合并版本.116。最终集成后重新跑治理、严格校验、unit与CI。生产QA预备脚本在/tmp/inresearch-navigation-live-qa.cjs，未执行，不含获取凭据逻辑。
 - 实际发布：尚未执行本批最终合并、部署及生产回执核验。
 
 
@@ -36,7 +37,7 @@
 - 最终整合后的完整CI、合并和生产验收；批准目录的客户字段及资源闭包已接通，新增资料须单独审查。
 
 ## 下一步
-1. 用户解除GitHub Actions预算限制后，对PR902最新head重跑完整CI；若main变化先集成基线与规范版本再验，不重启目录设计或另开资料队列。
+1. 用户已表示预算应该恢复：推送本次已解决冲突的最新head并核实际CI；若main再次变化先集成基线与规范版本再验，不重复请求已授权的实施/发布。
 2. 核最终head的治理／严格数据与所有选定CI，通过后正常合并；后台在线写入和历史看板按实际未完范围另批实施。
 3. 审阅verification_contract并记录实际测试和未覆盖项；统一治理刷新／检查、严格校验、registry与相关浏览器回归。
 4. 最终head通过必过CI并正常合并后，核网站／服务精确版本、匿名／客户／IT、手机与下载回执，据实更新本交接。
