@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.13.114。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.13.115。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2684。
+在册文件：2687。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 436 |
-| 运行代码 | 382 |
+| 运行代码 | 383 |
 | 现行规范 | 15 |
 | 项目配置 | 779 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 30 |
-| 配套说明 | 240 |
-| 测试 | 235 |
+| 配套说明 | 241 |
+| 测试 | 236 |
 
 ## 在册记录集合
 
@@ -2717,6 +2717,7 @@
 | [docs/handoff/research-flow-recovery-20261009.md](handoff/research-flow-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/research-pr-backlog-20261009.md](handoff/research-pr-backlog-20261009.md) | 配套说明 |
 | [docs/handoff/research-remediation-r3-r4-20261011.md](handoff/research-remediation-r3-r4-20261011.md) | 配套说明 |
+| [docs/handoff/research-snapshot-recovery-20261013.md](handoff/research-snapshot-recovery-20261013.md) | 配套说明 |
 | [docs/handoff/research-throughput-20261008.md](handoff/research-throughput-20261008.md) | 配套说明 |
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
@@ -3729,6 +3730,7 @@
 | `src/inresearch/delivery/reading_packet.py` | 运行代码 |
 | `src/inresearch/delivery/report.py` | 运行代码 |
 | `src/inresearch/delivery/runtime_summary.py` | 运行代码 |
+| `src/inresearch/delivery/snapshot_delta.py` | 运行代码 |
 | `src/inresearch/delivery/snapshot_overlay.py` | 运行代码 |
 | `src/inresearch/delivery/source_publication.py` | 运行代码 |
 | `src/inresearch/interfaces/__init__.py` | 运行代码 |
@@ -4085,6 +4087,7 @@
 | `tests/unit/test_site_tracking.py` | 测试 |
 | `tests/unit/test_site_tracking_sources.py` | 测试 |
 | `tests/unit/test_site_workspace.py` | 测试 |
+| `tests/unit/test_snapshot_delta.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_source_batch.py` | 测试 |
 | `tests/unit/test_source_publication.py` | 测试 |

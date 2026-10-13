@@ -140,6 +140,25 @@ def receive_snapshot(root, payload, destination=None):
     root = Path(root)
     destination = Path(destination or os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))
     with locked(destination):
+        delta_count = None
+        if isinstance(payload, dict) and payload.get('operation') in ('candidate-manifest-v1', 'candidate-delta-v1'):
+            from inresearch.delivery import snapshot_delta
+            previous_snapshot = research.read_json(destination, {})
+            if payload['operation'] == 'candidate-manifest-v1':
+                if set(payload) != {'operation'}:
+                    raise ValueError('invalid candidate manifest request')
+                return snapshot_delta.manifest(previous_snapshot)
+            delta_count = len(payload.get('document_ids', [])) if isinstance(payload.get('document_ids'), list) else None
+            if payload.get('base_generated') != previous_snapshot.get('generated'):
+                incoming = payload.get('snapshot')
+                if (not isinstance(incoming, dict) or not previous_snapshot.get('generated')
+                        or incoming.get('generated') != previous_snapshot['generated']):
+                    raise Rejected('candidate delta base changed; refresh manifest before retry', 409)
+                # A committed batch may lose its HTTP ACK. Reconstruct the same
+                # candidate and let the existing exact semantic replay check
+                # decide; changed content at this version still rejects below.
+                payload = {**payload, 'base_generated': previous_snapshot['generated']}
+            payload = snapshot_delta.merge(previous_snapshot, payload)
         snapshot = research.candidate_snapshot(payload,
             research.read_json(root / 'framework/research_graph.json'),
             research.read_json(root / 'framework/research_questions.json'))
@@ -169,11 +188,17 @@ def receive_snapshot(root, payload, destination=None):
                     snapshot['received_at'] = previous['received_at']
                     runtime_summary.write_control(destination, snapshot, root=root)
                 runtime_summary.recover_control(destination)
-                return {'ok': True, 'received_at': previous['received_at'],
-                        'documents': len(snapshot['knowledge']['documents']), 'replayed': True}
+                result = {'ok': True, 'received_at': previous['received_at'],
+                          'documents': len(snapshot['knowledge']['documents']), 'replayed': True}
+                if delta_count is not None:
+                    result.update(generated=snapshot['generated'], applied_documents=delta_count)
+                return result
             raise Rejected('stale or conflicting snapshot', 409)
         try:
             runtime_summary.install_snapshot(destination, snapshot, root=root)
         except runtime_summary.SnapshotInstallFailed as exc:
             raise Rejected(str(exc), 503) from exc
-    return {'ok': True, 'received_at': snapshot['received_at'], 'documents': len(snapshot['knowledge']['documents'])}
+    result = {'ok': True, 'received_at': snapshot['received_at'], 'documents': len(snapshot['knowledge']['documents'])}
+    if delta_count is not None:
+        result.update(generated=snapshot['generated'], applied_documents=delta_count)
+    return result

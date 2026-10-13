@@ -96,8 +96,19 @@ class ReaderRetryJobTests(unittest.TestCase):
         self.assertFalse((self.reader.data/'catalog/reader-job-retries').exists())
         self.assertEqual(before,{t:self.table(t) for t in before})
 
+    def test_recorded_timeout_can_retry_online_without_losing_attempts_or_chunks(self):
+        with self.reader.transaction():
+            self.reader.conn.execute("UPDATE jobs SET error_code='model_cli_timeout' WHERE revision_id=? AND stage='read' AND chunk=63", (self.doc['revision_id'],))
+            self.reader.conn.execute("UPDATE reading_runs SET error_code='model_cli_timeout' WHERE revision_id=?", (self.doc['revision_id'],))
+        result=self.call(error_code='model_cli_timeout')
+        self.assertEqual(result['status'],'applied')
+        job=self.reader.conn.execute("SELECT attempts,state FROM jobs WHERE revision_id=? AND stage='read' AND chunk=63",(self.doc['revision_id'],)).fetchone()
+        self.assertEqual((job['attempts'],job['state']),(3,'pending'))
+        self.assertEqual(self.reader.doc(self.doc['doc_id'])['chunks_read'],62)
+        self.assertEqual(self.call(error_code='model_cli_timeout')['status'],'already_applied')
+
     def test_bad_inputs_and_nonwhitelisted_errors_reject_without_audit(self):
-        for bad in ({'stage':'triage'},{'error_code':'model_cli_timeout'},{'expected_attempts':True},
+        for bad in ({'stage':'triage'},{'error_code':'model_output_invalid'},{'expected_attempts':True},
                     {'doc_id':'doc-invalid'},{'request_id':'../unsafe'},{'by':' '},{'reason':' padded '}):
             with self.subTest(bad=bad),self.assertRaises(ReaderError):self.call(**bad)
         self.assertFalse((self.reader.data/'catalog/reader-job-retries').exists())
