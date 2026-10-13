@@ -196,7 +196,7 @@ const {mkdirSync}=require('node:fs');
    assert.equal(await page.locator('.dc-news-list article').count(),3,'highlight keeps news conditions unchanged');
   }
   await page.locator('#company-chips [data-company=""]').click();assert.equal(await page.locator('.site-point.dimmed').count(),0);
-  await page.goto(base+'/industry.html');await page.locator('#filters select[name=c] option[value="microsoft"]').waitFor({state:'attached'});
+  await page.goto(base+'/industry.html?c=microsoft');await page.locator('#filters select[name=c] option[value="microsoft"]').waitFor({state:'attached'});
   await page.locator('#filters select[name=c]').selectOption('microsoft');
   await page.waitForFunction(()=>window.industryFilter?.company==='microsoft');
   const api=await (await page.request.get(base+'/api/industry?c=microsoft&stage=construction')).json();
@@ -211,7 +211,7 @@ const {mkdirSync}=require('node:fs');
   await projectLink.click();await page.locator('#detail h2').first().waitFor();
   assert.ok(await page.getByRole('heading',{name:'来源与核验'}).isVisible());
   assert.ok(await page.getByRole('heading',{name:'进展时间线'}).isVisible());
-  await page.getByRole('link',{name:'← 返回同条件项目列表'}).click();
+  await page.getByRole('link',{name:'← 返回同条件园区名录'}).click();
   assert.equal(new URL(page.url()).searchParams.get('stage'),'construction');
   await page.goto(base+'/projects.html?country=CN&province='+encodeURIComponent('河北'));
   await page.locator('#project-rows tbody tr').first().waitFor();
@@ -322,7 +322,7 @@ const {mkdirSync}=require('node:fs');
   await page.getByRole('button',{name:'精细底图暂不可用 · 点击重试'}).click();
   await page.locator('.admin1-boundaries').waitFor();
   assert.equal(await page.locator('.site-point').first().getAttribute('data-id'),preservedMarker,'state retries preserve project markers');
-  await page.goto(base+'/industry.html');await page.locator('#world-map .site-point').first().waitFor();
+  await page.goto(base+'/projects.html?view=map');await page.locator('#world-map .site-point').first().waitFor();
   await page.locator('#news-selection').selectOption('all');await page.getByRole('link',{name:'未精选的线索',exact:true}).waitFor();
   assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
   await page.locator('#news-selection').selectOption('selected');
@@ -514,6 +514,7 @@ const {mkdirSync}=require('node:fs');
   }
   await page.goto(base+'/project.html?site=fi-salo-atnorth-fin05');
   await page.getByRole('button',{name:'重试新闻同步',exact:true}).waitFor();
+  await page.getByText('十二角度检查清单与待补项',{exact:true}).click();
   assert.equal(await page.locator('#project-dossier tbody tr').count(),12,'all project angles are visible, including unknown roles');
   assert.equal(await page.getByRole('link',{name:'查看观测与来源 →',exact:true}).getAttribute('href'),'#site-observation-timeline','daily adoption links to delivered observations and sources');
   assert.equal(await page.locator('#detail a[href^="/supply.html"]').count(),0,'delivery project never exposes internal source-workflow links');
@@ -589,7 +590,7 @@ const {mkdirSync}=require('node:fs');
   const mapBox=await page.locator('#world-map').boundingBox();
   await page.mouse.move(mapBox.x+mapBox.width*.4,mapBox.y+mapBox.height*.8);await page.mouse.down();await page.mouse.move(mapBox.x+mapBox.width*.4+60,mapBox.y+mapBox.height*.8+20);await page.mouse.up();
   assert.notEqual(await page.locator('#world-map').getAttribute('viewBox'),'0 0 1000 490');await page.locator('#zoom-reset').click();
-  await page.goto(base+'/industry.html');await page.locator('#filters select[name=region] option').nth(1).waitFor({state:'attached'});
+  await page.goto(base+'/industry.html?region=north-america');await page.locator('#filters select[name=region] option').nth(1).waitFor({state:'attached'});
   const region=await page.locator('#filters select[name=region] option').nth(1).getAttribute('value');
   await page.locator('#filters select[name=region]').selectOption(region);
   await page.waitForFunction(region=>window.industryFilter?.region===region,region);
@@ -604,7 +605,7 @@ const {mkdirSync}=require('node:fs');
    await page.locator(`#filters select[name=${key}]`).selectOption('');
    await page.waitForFunction(key=>document.querySelector('#filters').elements[key].value==='' && !document.querySelector('#load-status').textContent,key);
   }
-  await page.locator('#market-band a').first().click();await page.locator('#capacity').waitFor();
+  await page.locator('.local-nav a[href="/market.html"]').first().click();await page.locator('#capacity').waitFor();
   await page.goBack();await page.waitForFunction(region=>window.industryFilter?.region===region,region);
   // Archived ordinary registrations have no webpage URL, stage or C3 adoption.
   // They must still render complete details and appear on the reader homepage.

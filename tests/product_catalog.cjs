@@ -45,7 +45,7 @@ const {chromium}=require('playwright');
   await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
   await page.locator('.ui-account-menu > summary').click();
   assert.deepEqual(await page.locator('.ui-account-panel a').allTextContents(),['个人信息','修改密码','退出登录']);
-  assert.equal(await page.locator('.ui-navigation-delivery [data-nav-section]').count(),6);
+  assert.equal(await page.locator('.ui-navigation-delivery [data-nav-section]').count(),7);
   assert.equal(await page.locator('.ui-navigation-backstage [data-nav-section]').count(),6);
   assert.equal(await page.locator('.ui-account-panel .ui-management-link,.ui-account-panel .ui-admin-link').count(),0);
   await page.keyboard.press('Escape');

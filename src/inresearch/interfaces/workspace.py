@@ -67,6 +67,8 @@ def resolve(root, page):
             for entry in entries:
                 if entry['id'] == section:
                     return {'area': area, 'section': section, 'view': view_id or None}
+    if parts.path == '/industry.html' and any(query.get(k) for k in ('c','region','country','province','city','address','stage','relation','role','scope','q')):
+        return {'area': 'delivery', 'section': 'campuses', 'view': 'directory'}
     if parts.path == '/tasks.html' and parts.fragment == 'work-packages':
         return {'area': 'backstage', 'section': 'production', 'view': 'tasks'}
     if parts.path == '/ops.html':
@@ -89,7 +91,7 @@ def navigation(root, role, user, page='/'):
     active = resolve(root, page)
     nav = permitted(root, role)
     if active == {'area': 'public', 'section': 'home', 'view': None} and nav['delivery']:
-        active = {'area': 'delivery', 'section': 'industry', 'view': 'projects'}
+        active = {'area': 'delivery', 'section': 'campuses', 'view': 'directory'}
     if role == 'customer' and urlsplit(page).path == '/tasks.html':
         active = {'area': 'public', 'section': 'tasks', 'view': None}
     kind = 'anonymous' if role == 'reader' else 'customer' if role == 'customer' else 'team'
@@ -238,6 +240,12 @@ def view(root, role, user, query):
         result['links'] = [_link('项目动态与建设计划', '/projects.html?view=pipeline'), _link('地图新闻与更新', '/')]
     elif section_id == 'overview':
         tasks = _tasks(root, user, role)
+        geographic = _industry(root).get('geographic_analysis', {})
+        blocks.append(_table('园区登记与覆盖', [('name', '独立计量'), ('value', '记录数')], [
+            {'name': label, 'value': geographic.get(key)} for key, label in
+            [('place_records','地点登记（非全球唯一园区总数）'),('cluster_records','跨园区集群'),
+             ('portfolio_records','组合计划'),('unlocated_records','地点未定位')]],
+            '登记、工作包、阅读和研究采用分别计数，不能相加成完成率。'))
         plan = _plan(root)
         if view_id == 'analysis':
             rows = [{'name': key, 'count': count} for key, count in Counter(r['status'] for r in tasks).items()]
@@ -283,6 +291,9 @@ def view(root, role, user, query):
                 {'name': '普通来源登记', 'description': '稳定对象身份、来源、结构与历史进入持续登记；独立数据发布不授予研究支持。'},
                 {'name': '研究阅读与采用', 'description': '阅读、提取、审核和正式采用分别留痕，保留当前审核要求。'},
                 {'name': '交付投影', 'description': '网页、搜索和下载按账号权限及字段分发资格读取同一正式记录。'},
+                {'name': '通用数据中心', 'description': '类型分类树、3账／4问／5变量／6来源；解释结构、运行与情景。'},
+                {'name': '全球真实园区', 'description': '稳定地点身份、分期、地理与现场角色；普通登记及地区统计独立于模型目标。'},
+                {'name': '两者连接', 'description': '有范围／时点／来源的实际配置与指标关联；尚未实现自动现场配置或模型填参。'},
                 {'name': '运行与部署', 'description': '应用代码部署与普通数据发布分别核对；实际环境回执进入运行管理。'}]))
             result['links'] = [_link('数据与服务运行观测', '/ops.html#ops-health')]
             if role == 'admin':
@@ -291,9 +302,14 @@ def view(root, role, user, query):
         if view_id == 'projects':
             data = _industry(root)
             rows = [{'name': r['name'], 'country': r.get('country'), 'status': r.get('stage_label') or r.get('status'),
+                     'site_id': r['site_id'], 'scope': (r.get('geography') or {}).get('identity_scope'),
+                     'province': (r.get('geography') or {}).get('province'), 'city': (r.get('geography') or {}).get('city'),
+                     'location': '已定位' if r.get('coordinates') else '缺坐标',
+                     'registration': r.get('registration_status'),
                      'href': '/project.html?' + urlencode({'site': r['site_id']})} for r in data['rows']]
-            blocks.append(_table('园区与项目登记', [('name', '对象'), ('country', '国家'), ('status', '阶段')], rows,
-                                 '读取现行登记投影，包含运行增量；补录应绑定具体对象并保留历史。'))
+            blocks.append(_table('园区与项目登记', [('name', '对象'), ('site_id', '稳定ID'), ('scope', '登记范围'), ('country', '国家'), ('province', '省州'), ('city', '城市'), ('status', '阶段'), ('location', '定位'), ('registration', '来源登记')], rows,
+                                 '读取同一运行登记；集群、组合与地点范围分开，不按名称或近似坐标自动合并。补录绑定具体对象并保留来源及历史。'))
+            result['links'] = [_link('园区名录', '/projects.html'), _link('地区分析', '/regions.html'), _link('普查团队任务', '/tasks.html#work-packages')]
         elif view_id == 'statistics':
             rows = json.loads(workspace_path('data/prices.json', root).read_text())['records']
             blocks.append(_table('已登记报价系列', [('series_id', '系列'), ('as_of', '信息日期'), ('value', '值'), ('unit', '单位'), ('source_url', '来源')], rows))
@@ -324,6 +340,17 @@ def view(root, role, user, query):
             blocks.append(_table('对象来源记录', [('name', '记录'), ('object', '对象'), ('metric', '字段'), ('time', '时间'), ('status', '登记／审核状态')], rows,
                                  '来源登记与正式研究支持分别表达；原件及私有定位不经客户搜索分发。'))
         else:
+            data = _industry(root)
+            gaps = [{'name': p['name'], 'site_id': p['site_id'],
+                     'gap': '；'.join(label for missing, label in [
+                         (not p.get('coordinates'), '缺坐标／地理精度'),
+                         (not p.get('capacity_known') and not p.get('capacity_ranged'), 'IT容量未披露'),
+                         (not p.get('participants'), '主体角色待补'),
+                         (not p.get('verified_date'), '人工核实日期未登记'),
+                         ((p.get('geography') or {}).get('identity_scope') == 'cluster', '集群尚未拆到物理园区')] if missing),
+                     'href': '/project.html?' + urlencode({'site': p['site_id']})} for p in data['rows']]
+            blocks.append(_table('园区身份与数据缺口', [('name','对象'),('site_id','稳定ID'),('gap','已知缺口')],
+                                 [r for r in gaps if r['gap']], '缺项不等于信息为零或不存在；普通登记不强制研究审核。'))
             records = list(read_rows(workspace_path('data/raw/site-feedback/requests.jsonl', root)))
             blocks.append(_table('反馈与待处理问题', [('title', '反馈'), ('created_at', '收到时间'), ('context', '页面'), ('status', '状态')], records))
             result['links'] = [_link('现行数据质量检查', '/ops.html#ops-quality')]
@@ -340,7 +367,7 @@ def view(root, role, user, query):
             result['links'] = [_link('节点研究工作台', '/research-workbench.html?col=4'), _link('材料与结果匹配', '/supply.html#matching'), _link('执行与日志', '/ops.html#ops-history')]
             if view_id == 'adoption':
                 result['links'].append(_link('历史兼容研究结论', '/report.html?legacy=1'))
-            result['summary'] = '阅读与提取结果按原件和版本追溯。' if view_id == 'reading' else '研究审核与采用保持独立流程；普通信息登记不经过此研究审核门槛。'
+            result['summary'] = '阅读与提取结果按原件和版本追溯。' if view_id == 'reading' else '园区普通登记不经过研究审核；用于结论或模型时分别核对象、主体、分期、时间与来源支持范围。'
     elif section_id == 'operations':
         blocks.append(_table('当前部署观测', [('name', '字段'), ('value', '值')], [
             {'name': '运行环境', 'value': os.environ.get('INRESEARCH_ENVIRONMENT')},

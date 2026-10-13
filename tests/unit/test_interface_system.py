@@ -110,7 +110,7 @@ class InterfaceContractTests(unittest.TestCase):
         # role-filtered source, separate from template identity.
         navigation = json.loads((ROOT/'framework/site_navigation.json').read_text())
         self.assertEqual([x['label'] for x in navigation['navigation']['delivery']],
-                         ['行业总览','数据中心研究','企业与产品','技术图册','成本与收益','研究报告'])
+                         ['行业总览','全球园区','数据中心研究','企业与产品','技术图册','成本与收益','研究报告'])
         self.assertEqual([x['label'] for x in navigation['navigation']['backstage']],
                          ['工作总览','研究生产','内容与数据','建设进展','系统架构','运行管理'])
         self.assertIn('/api/navigation', shell)

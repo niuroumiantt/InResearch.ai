@@ -193,7 +193,8 @@ def retry_job(data_root, *, doc_id, revision_id, stage, chunk_index, error_code,
     _require(stage in ('read', 'triage', 'synthesize') and type(chunk_index) is int
              and (chunk_index >= 0 if stage == 'read' else chunk_index == 0),
              'retry_invalid_stage_or_chunk')
-    _require(error_code in ERRORS and type(expected_attempts) is int and expected_attempts >= 1,
+    allowed_error = error_code in ERRORS or (stage == 'triage' and error_code == 'model_output_invalid')
+    _require(allowed_error and type(expected_attempts) is int and expected_attempts >= 1,
              'retry_invalid_error_or_attempts')
     _require(re.fullmatch(r'[a-f0-9]{24}', expected_recipe or '')
              and re.fullmatch(r'[a-f0-9]{64}', expected_recipe_sha256 or ''), 'retry_invalid_recipe')

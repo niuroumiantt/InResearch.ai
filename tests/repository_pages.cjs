@@ -61,7 +61,8 @@ const ready = new Promise((resolve, reject)=>{
    if(name==='inresearchrepo') {
      assert.equal(await page.locator('.audit-section').count(),6);
      assert.ok((await page.locator('#audit-demand').innerText()).includes('未接入'));
-     assert.equal(await page.locator('.audit-map article').count(),6);
+     assert.equal(await page.locator('.audit-map:not(#research-perspectives) article').count(),6);
+     assert.deepEqual(await page.locator('#research-perspectives h3').allTextContents(),['通用数据中心','全球真实园区','两者怎样连接']);
      await page.locator('summary').filter({hasText:'源码检查快照与出处'}).click();
    }
    assert.ok((await page.locator('.repo-wrap').innerText()).includes('最近检测与结果'));

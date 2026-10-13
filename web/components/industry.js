@@ -4,16 +4,16 @@
 const $=id=>document.getElementById(id), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safe=v=>{try{const u=new URL(v);return ['http:','https:'].includes(u.protocol)&&!u.username&&!u.password?u.href:'';}catch{return '';}};
 const num=v=>Number(v).toLocaleString('en-US',{maximumFractionDigits:2}), gw=v=>num(v/1000), money=v=>v>=1000?'$'+num(v/1000)+'T':'$'+num(v)+'B';
-const path=location.pathname, isProject=path==='/project.html', isMarket=path==='/market.html', isList=path==='/projects.html', isCompany=path==='/industry.html';
+const path=location.pathname, isProject=path==='/project.html', isMarket=path==='/market.html', isList=path==='/projects.html', isRegions=path==='/regions.html', isCompany=path==='/industry.html';
 const isHome=['/','/index.html'].includes(path);
 // These aliases share the reader shell and its optional cached font reuse.
-const isReader=isHome||isProject||isMarket||isList||isCompany;
+const isReader=isHome||isProject||isMarket||isList||isRegions||isCompany;
 if(isHome)document.body.classList.add('industry-home');
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
 let detailGeo=null;
 const adminTiles=new Map(),detailLoads=new Map(),detailFailures=new Set();
 let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false, mapSignature='';
-const keys=['c','region','stage','relation','scope','role','site','country','province','address'];
+const keys=['c','region','stage','relation','scope','role','site','country','province','city','address','q'];
 let fontCacheQueued=false,fontCacheStarted=false;
 function useCachedFonts(){
  const link=$('home-fonts');
@@ -154,7 +154,7 @@ function projectDossier(p){
  return `<section class="detail-card" id="project-dossier"><h2>完整园区档案 · 逐项补齐</h2><p>消息先登记到事件线索，逐项核验后补充本档案。一个主体可承担多个角色，各角色可由不同主体承担；缺项保留待查。</p><div class="table-wrap"><table><thead><tr><th>独立角度</th><th>已有登记</th><th>需要继续核实</th></tr></thead><tbody>${rows.map(([label,value,gap])=>`<tr><th>${label}</th><td>${value}</td><td>${gap}</td></tr>`).join('')}</tbody></table></div><p><a href="${esc(url('/projects.html',{view:'pipeline'}))}">查看相关消息与待核验线索 →</a></p></section>`;
 }
 function sourceLink(source,label){const href=safe(source);return href?`<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`:esc(label);}
-function selection(){return {company:params.get('c')||'',region:params.get('region')||'',country:data?.filters?.country||'',province:data?.filters?.province||'',address:data?.filters?.address||'',site:params.get('site')||'',scope:params.get('scope')||'',relation:params.get('relation')||'',role:params.get('role')||'',siteIds:data?.rows.filter(p=>!p.portfolio).map(p=>p.site_id)||[]};}
+function selection(){return {company:params.get('c')||'',region:params.get('region')||'',country:data?.filters?.country||'',province:data?.filters?.province||'',address:data?.filters?.address||'',city:data?.filters?.city||'',q:data?.filters?.q||'',site:params.get('site')||'',scope:params.get('scope')||'',relation:params.get('relation')||'',role:params.get('role')||'',siteIds:data?.rows.filter(p=>!p.portfolio).map(p=>p.site_id)||[]};}
 function select(changes){for(const [k,v] of Object.entries(changes))v?params.set(k,v):params.delete(k);history.pushState(null,'',url(path));load();}
 window.addEventListener('popstate',()=>{params=new URLSearchParams(location.search);load();});
 $('filters')?.addEventListener('submit',e=>e.preventDefault());
@@ -167,16 +167,16 @@ window.addEventListener('inresearch:locate-news',e=>{const row=rawRecords().find
 if($('news-selection'))$('news-selection').onchange=e=>{document.querySelector('[data-datacenter-news]').dataset.newsSelection=e.target.value;window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...selection(),redraw:true}}));};
 function filters(){
  if(!$('filters'))return;
- if(isList&&!$('geographic-filters')){
+ if((isList||isRegions)&&!$('geographic-filters')){
   const form=document.createElement('form');form.id='geographic-filters';form.className='geographic-filters';
-  form.innerHTML=[['country','国家'],['province','省／州'],['address','区域地址']].map(([key,label])=>`<label>${label}<select name="${key}" aria-label="${label}"></select></label>`).join('');
+  form.innerHTML=[['country','国家'],['province','省／州'],['city','城市'],['address','区域地址']].map(([key,label])=>`<label>${label}<select name="${key}" aria-label="${label}"></select></label>`).join('');
   form.onsubmit=e=>e.preventDefault();
-  form.onchange=e=>select({[e.target.name]:e.target.value,site:'',...(e.target.name==='country'?{province:'',address:''}:e.target.name==='province'?{address:''}:{})});
-  $('project-rows').before(form);
+  form.onchange=e=>select({[e.target.name]:e.target.value,site:'',...(e.target.name==='country'?{province:'',city:'',address:''}:e.target.name==='province'?{city:'',address:''}:{})});
+  (isRegions?$('regions-detail'):$('project-rows')).before(form);
  }
- if(isList){
+ if(isList||isRegions){
   const facets=data.geographic_filters||{};
-  for(const [key,values] of [['country',facets.countries],['province',facets.provinces],['address',facets.addresses]]){
+  for(const [key,values] of [['country',facets.countries],['province',facets.provinces],['city',facets.cities],['address',facets.addresses]]){
    const el=$('geographic-filters').elements[key];
    el.innerHTML='<option value="">全部</option>'+(values||[]).map(v=>`<option value="${esc(v)}">${esc(key==='country'?countryName(v):v)}</option>`).join('');
    el.value=params.get(key)||'';
@@ -193,7 +193,7 @@ function renderStats(){
  if(!$('stats'))return;
  const noDisclosures=data.totals.sites>0&&data.totals.sites===data.totals.unknown,hasRanges=!!data.totals.ranged_sites;
  const labels={operating:'样本 · 已投运',construction:'样本 · 建设中',planning:'样本 · 筹备机会',unknown:'样本 · 容量未披露'};
- $('stats').innerHTML=Object.entries(labels).map(([s,label])=>`<a class="stat-link ${params.get('stage')===s?'active':''}" href="${esc(url('/projects.html',{stage:s,site:''}))}"><span>${label} ↗${s!=='unknown'&&data.totals.estimated?.[s]?` · 含参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span><strong>${s==='unknown'?data.totals.unknown:noDisclosures||hasRanges&&!data.totals[s]?'—':gw(data.totals[s])}<small>${s==='unknown'?'项':'GW'}</small></strong><span>${s==='planning'?'含官宣、选址、电力与审批阶段':s==='unknown'?'仍在地图与明细中保留':s==='operating'?'已通电 / 满载，按分期计量':'已有开工 / 机电施工记录'}${s!=='unknown'&&data.totals.estimated?.[s]?` · 其中参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span></a>`).join('');
+ $('stats').innerHTML=Object.entries(labels).map(([s,label])=>`<a class="stat-link ${params.get('stage')===s?'active':''}" href="${esc(url('/projects.html',{stage:s,site:'',view:''}))}"><span>${label} ↗${s!=='unknown'&&data.totals.estimated?.[s]?` · 含参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span><strong>${s==='unknown'?data.totals.unknown:noDisclosures||hasRanges&&!data.totals[s]?'—':gw(data.totals[s])}<small>${s==='unknown'?'项':'GW'}</small></strong><span>${s==='planning'?'含官宣、选址、电力与审批阶段':s==='unknown'?'仍在地图与明细中保留':s==='operating'?'已通电 / 满载，按分期计量':'已有开工 / 机电施工记录'}${s!=='unknown'&&data.totals.estimated?.[s]?` · 其中参考估算 ${gw(data.totals.estimated[s])} GW`:''}</span></a>`).join('');
  $('basis').textContent=`地图样本 ${data.totals.sites} 条项目记录，非全球总量 · 已知值合计：建设 + 筹备 ${gw(data.totals.construction+data.totals.planning)} GW${hasRanges?`；另有 ${data.totals.ranged_sites} 项容量以区间披露，见地图与明细，未计入确定值合计`:""} · 来源核对日期 ${data.coverage.oldest_verified}—${data.coverage.latest_verified}，非统一年末存量。点击数字查看明细与来源。`;
 }
 function renderMarket(){
@@ -422,7 +422,7 @@ function renderTable(){
  const body=sorted.map(p=>{
   const g=p.geography||{};
   const siteNotes=[p.stage_label,g.identity_scope==='cluster'?'集群记录，尚未拆到唯一地块':'',p.portfolio?'组合记录，不计总量':'',p.duplicate_of?'重复记录，不计总量':'',!p.coordinates?'未精确定位':'',p.disputed?'来源有争议':''].filter(Boolean).map(esc).join('；');
-  return `<tr><td>${esc(countryName(p.country))}</td><td>${esc(g.province)}</td><td>${esc(g.regional_address||p.location)}</td><td><a href="${esc(siteURL(p))}">${esc(p.name)}</a>${tableNote(`<p>${siteNotes}</p>`,`${p.name}的状态与地点边界`)}</td><td>${tableParticipant(p,['developer','builder','designer','owner','land_owner'])}</td><td>${tableParticipant(p,['tenant','end_user','operator'])}</td><td class="num">${tableCapacity(p,'planned')}</td><td class="num">${tableCapacity(p,'operating')}</td><td>${tableInformationTime(p)}</td><td>${esc(capacityReviewDate(p))}</td></tr>`;
+  return `<tr><td>${esc(countryName(p.country))}</td><td>${esc(g.province)}</td><td>${esc(g.regional_address||p.location)}</td><td><a href="${esc(siteURL(p))}">${esc(p.name)}</a>${g.identity_scope==='cluster'?'<small>跨园区集群</small>':p.portfolio?'<small>组合计划，不计地点容量</small>':'<small>地点登记，边界待逐项核实</small>'}${tableNote(`<p>${siteNotes}</p>`,`${p.name}的状态与地点边界`)}</td><td>${tableParticipant(p,['developer','builder','designer','owner','land_owner'])}</td><td>${tableParticipant(p,['tenant','end_user','operator'])}</td><td class="num">${tableCapacity(p,'planned')}</td><td class="num">${tableCapacity(p,'operating')}</td><td>${tableInformationTime(p)}</td><td>${esc(capacityReviewDate(p))}</td></tr>`;
  }).join('');
  $('project-rows').innerHTML=rows.length?`<div class="table-wrap"><table><thead><tr><th>国家</th><th>省／州</th><th>区域地址</th><th>园区</th><th>开发／建设</th><th>运营／使用</th><th class="num">规划 IT 容量</th><th class="num">已投运 IT 容量</th><th>信息时间</th><th>最后核实日期</th></tr></thead><tbody>${body}</tbody></table></div><dialog id="project-note"><button type="button" class="note-close" aria-label="关闭备注">×</button><h3></h3><div class="note-body"></div></dialog>`:'<p class="empty">没有匹配的项目。可放宽筛选；容量缺失不代表没有项目。</p>';
  const dialog=$('project-note');
@@ -438,10 +438,28 @@ function renderTable(){
  }
 }
 function renderDetail(){
- const p=data.detail;if(!isProject)return;if(!p){$('page-title').textContent='项目详情';$('detail').innerHTML='<p class="empty">请从 <a href="/projects.html">项目列表</a> 选择一个园区。</p>';return;}
- $('page-title').textContent=p.name;$('page-description').textContent=`${p.location} · ${p.stage_label} · ${p.registration_status==='unverified'?'基础登记待查':'核验 '+(p.verified_date||'日期未登记')}`;
- $('detail').innerHTML=`<p><a href="${esc(url('/projects.html',{site:''}))}">← 返回同条件项目列表</a></p><div class="detail-grid"><div>${capacityEstimate(p)}${projectDossier(p)}<div class="detail-card"><h2>项目与分期</h2>${p.duplicate_of?`<p>重复记录，已退出聚合。<a href="${esc(url('/project.html',{site:p.duplicate_of}))}">查看主记录 →</a><br>${esc(p.deduplication_note)}</p>`:''}${(p.duplicate_records||[]).map(a=>`<p>${esc(a.note)} <a href="${esc(url('/project.html',{site:a.site_id}))}">查看保留记录 →</a></p>`).join('')}<dl><dt>开发建设</dt><dd>${p.developer.map(companyLink).join('、')||'未登记'}</dd><dt>使用 / 租用</dt><dd>${p.tenant.map(companyLink).join('、')||'待核验（尚未登记）'}</dd><dt>国家 / 区域 / 地点</dt><dd>${projectGeography(p)}</dd><dt>IT 容量</dt><dd>${esc(capacityText(p))}</dd><dt>设施总功率</dt><dd>${p.quantity_fields?.capacity_facility_mw!=null?esc(quantityText(p.quantity_fields.capacity_facility_mw))+'（不与 IT 容量相加）':p.capacity_facility_mw?num(p.capacity_facility_mw)+' MW（不与 IT 容量相加）':'未披露'}</dd><dt>电力进展</dt><dd>${esc(p.power_status||'未登记')}</dd><dt>位置</dt><dd>${p.coordinates?esc(p.coordinates.join(', '))+'（登记坐标）':'仅有地区信息，未落精确坐标'}</dd></dl>${rangeNotes(p)}${participantProfiles(p)}${p.phases.map(x=>`<p><span class="badge">${esc(x.label)}</span>${num(x.mw)} MW</p>`).join('')}<p class="basis">${esc(p.notes||'')}</p>${p.adoption?`<h3>本批材料已用于此项目</h3><p>${esc(p.adoption.scope)}</p><p>已采用字段：${esc(p.adoption.fields.join('、'))}</p><p><a href="#site-observation-timeline">查看观测与来源 →</a></p>${p.adoption.assertions.filter(x=>x.value!=null).map(x=>`<p>${num(x.value)} ${esc(x.unit)} · ${esc(({it:'IT容量',grid:'供电容量',facility:'设施功率'})[x.basis]||x.basis)} · ${esc(x.phase)}</p><blockquote>${esc(x.quote)}</blockquote>`).join('')}`:''}${p.disputed?'<p>此项目有来源争议，请对照下列原始依据。</p>':''}${p.portfolio?'<p>组合型记录，仅供参考，不计入园区合计。</p>':''}</div></div><div><div class="detail-card"><h2>进展时间线</h2><ol class="timeline">${p.history.map(h=>`<li><time>${esc(h.date)}</time>${sourceLink(h.source_url,h.status+' · 查看当时来源')}</li>`).join('')||'<li>尚无已登记的历史事件。</li>'}</ol></div><div class="detail-card"><h2>来源与核验</h2>${p.sources.map(s=>`<p>${sourceLink(s.url,s.note||(safe(s.url)?new URL(s.url).hostname:'归档来源 · 链接未登记'))}<br><span class="basis">${esc(s.grade)} · ${esc(s.date||'日期未登记')}</span></p>`).join('')||'<p>暂无可公开的来源链接。</p>'}</div></div></div>`;
- $('detail').querySelector('.detail-grid > div')?.insertAdjacentHTML('beforeend',resourceMetrics(p));
+ const p=data.detail;if(!isProject)return;
+ const related=$('pipeline-section');if(related)$('detail').before(related);
+ if(!p){$('page-title').textContent='园区详情';$('detail').innerHTML='<p class="empty">请从 <a href="/projects.html">园区名录</a> 选择一个登记对象。</p>';return;}
+ const scope=p.geography?.identity_scope||'registered_site';
+ const scopeLabel=scope==='portfolio'?'组合计划（不计地点容量）':scope==='cluster'?'跨园区集群（不等于一个物理园区）':'地点登记（物理边界仍须逐项核实）';
+ const module=(id,title,body)=>`<section class="detail-card campus-module" id="campus-${id}" data-campus-module="${id}"><h2>${title}</h2>${body}</section>`;
+ $('page-title').textContent=p.name;
+ $('page-description').textContent=`${p.location||'位置待补'} · ${p.stage_label} · ${p.registration_status==='unverified'?'基础登记待查':'核验 '+(p.verified_date||'日期未登记')}`;
+ const aliases=(p.aliases||[]).map(esc).join('、')||'未登记';
+ const duplicate=p.duplicate_of?`<p>重复记录，已退出聚合。<a href="/project.html?site=${encodeURIComponent(p.duplicate_of)}">查看主记录 →</a><br>${esc(p.deduplication_note)}</p>`:'';
+ const retained=(p.duplicate_records||[]).map(a=>`<p>${esc(a.note)} <a href="/project.html?site=${encodeURIComponent(a.site_id)}">查看保留记录 →</a></p>`).join('');
+ const adopted=p.adoption?`<details open><summary>本批材料已用于此项目</summary><p>${esc(p.adoption.scope)}</p><p>已采用字段：${esc(p.adoption.fields.join('、'))}</p>${p.adoption.assertions.filter(x=>x.value!=null).map(x=>`<p>${num(x.value)} ${esc(x.unit)} · ${esc(({it:'IT容量',grid:'供电容量',facility:'设施功率'})[x.basis]||x.basis)} · ${esc(x.phase)}</p><blockquote>${esc(x.quote)}</blockquote>`).join('')}</details>`:'';
+ const sections=[
+ module('overview','园区概况与位置',`<dl><dt>稳定ID</dt><dd>${esc(p.site_id)}</dd><dt>登记范围</dt><dd>${esc(scopeLabel)}</dd><dt>别名</dt><dd>${aliases}</dd><dt>国家 / 区域 / 地点</dt><dd>${projectGeography(p)||'未登记'}</dd><dt>位置</dt><dd>${p.coordinates?esc(p.coordinates.join(', '))+'（登记坐标）':'仅有地区信息，未落精确坐标'}</dd><dt>坐标依据与精度</dt><dd>${esc(p.geography?.coordinate_source?.precision||'未登记精度；不据坐标推定园区边界')}</dd></dl>${duplicate}${retained}<p>${esc(p.notes||'')}</p>${p.disputed?'<p>此项目有来源争议，请对照历史与原始依据。</p>':''}`),
+ module('phases','分期、楼栋与容量',`<h3>项目与分期</h3><dl><dt>规划 IT 容量</dt><dd>${esc(plannedCapacity(p))}</dd><dt>已投运 IT 容量</dt><dd>${esc(stageCapacity(p,'operating'))}</dd><dt>IT 容量</dt><dd>${esc(capacityText(p))}</dd><dt>设施总功率</dt><dd>${p.quantity_fields?.capacity_facility_mw!=null?esc(quantityText(p.quantity_fields.capacity_facility_mw))+'（不与 IT 容量相加）':p.capacity_facility_mw?num(p.capacity_facility_mw)+' MW（不与 IT 容量相加）':'未披露'}</dd></dl>${p.phases.map(x=>`<p><span class="badge">${esc(x.label)}</span>${num(x.mw)} MW</p>`).join('')}${rangeNotes(p)}${capacityEstimate(p)}<p class="basis">阶段容量不是楼栋清单。未披露的分期／楼栋边界留空；规划总量与分期、IT与接电容量不重复相加。</p>`),
+ module('participants','参与主体与关系',`${participantRoles(p)}${participantProfiles(p)}<p>企业资料：${[...new Set((p.participants||[]).flatMap(r=>r.company_ids))].filter(id=>id!=='multiple').map(id=>`<a href="/product-catalog.html?c=${encodeURIComponent(id)}">${esc(name(id))}</a>`).join('、')||'主体待补'}</p><p class="basis">土地与产权、开发、设计、总包、运营、直接租户与最终使用方分别登记；同一公司可兼多职，未知的范围与期限不推断。企业详情与园区关系分别维护。</p>`),
+ module('resources','电、水、网络与许可',`<dl><dt>电力进展</dt><dd>${esc(p.power_status||p.utility||'未登记')}</dd><dt>水源与冷却</dt><dd>按已披露水电指标查看；供应主体、许可与现场方案待逐项补齐。</dd><dt>网络连接</dt><dd>未披露的运营商、路线、合同与带宽保持未知。</dd><dt>许可与约束</dt><dd>建设阶段不证明审批齐备；批准机关、容量、适用分期与期限须有独立来源。</dd></dl>${resourceMetrics(p)}<p class="basis">发电、PPA、接入申请、接电合同与实际送电分别记录。</p>`),
+ module('equipment','设备配置与运行',`<p>现场设备型号、数量和工况尚未形成完整配置映射；不从通用图册补造现场安装。</p><nav class="local-nav"><a href="/node.html?col=1">了解通用组成 →</a><a href="/node.html?col=2">了解运行机制 →</a><a href="/bom.html">通用技术图册 →</a></nav><p class="basis">以上为通用知识入口，不表示本园区使用这些配置。</p>`),
+ module('economics','投资与经济分析',`<p>${(p.participants||[]).filter(r=>['investor','lender','borrower','guarantor','lessor'].includes(r.role)).map(r=>esc(r.label)+'：'+r.company_ids.map(companyLink).join('、')).join('<br>')||'投资、融资与合同金额尚未登记完整。'}</p><p>分析前确定业主／运营商／租户、分期和时间边界。集团投资不向本园区摊分；未披露价格与运行数据保持未知。</p><a href="/ledger.html?view=basis">进入统一成本与收益模型 →</a><p class="basis">当前打开通用情景，不自动填入园区参数，也不代表本园区已完成可行性分析。</p>`),
+ module('history','变化历史与来源',`<p><a href="#site-observation-timeline">查看观测与来源 →</a></p><div id="campus-linked-news"></div><h3>进展时间线</h3><ol class="timeline">${p.history.map(h=>`<li><time>${esc(h.date)}</time>${sourceLink(h.source_url,h.status+' · 查看当时来源')}</li>`).join('')||'<li>尚无已登记的历史事件。</li>'}</ol><h3>来源与核验</h3>${p.sources.map(x=>`<p>${sourceLink(x.url,x.note||(safe(x.url)?new URL(x.url).hostname:'归档来源 · 链接未登记'))}<br><span class="basis">${esc(x.grade)} · ${esc(x.date||'日期未登记')}</span></p>`).join('')||'<p>暂无可公开的来源链接。</p>'}${capacityProvenance(p)}${adopted}<details><summary>十二角度检查清单与待补项</summary>${projectDossier(p)}</details>`)
+ ];
+ $('detail').innerHTML=`<p><a href="${esc(url('/projects.html',{site:''}))}">← 返回同条件园区名录</a></p><nav class="local-nav" aria-label="园区档案章节">${['overview','phases','participants','resources','equipment','economics','history'].map((id,i)=>`<a href="#campus-${id}">${['概况','分期容量','主体关系','资源许可','设备运行','经济分析','历史来源'][i]}</a>`).join('')}</nav><div class="campus-dossier">${sections.join('')}</div>`;
 }
 function renderTrends(){
  if(isHome)return;
@@ -459,7 +477,7 @@ function renderPipeline(){
  const stages={reported:'消息称',announced:'已官宣',construction:'报道已开工',operating:'报道已投运',reviewing:'重新评审',paused:'暂停',cancelled:'取消'};
  const labels={lead:'新闻线索',reviewing:'重新评审',paused:'暂停',cancelled:'取消',linked:'已关联项目'},filter=selection();
  let rows=news.pipeline?.records||[];
- rows=rows.filter(r=>(!filter.company||(r.company_ids||[]).includes(filter.company))&&(!filter.site||r.site_id===filter.site)&&(!(filter.region||filter.scope||filter.role||filter.relation)||filter.siteIds.includes(r.site_id))&&($('lead-state').value==='all'||(!['paused','cancelled'].includes(r.state))));
+ rows=rows.filter(r=>(!filter.company||(r.company_ids||[]).includes(filter.company))&&(!filter.site||r.site_id===filter.site)&&(!(filter.region||filter.scope||filter.role||filter.relation||filter.country||filter.province||filter.city||filter.address||filter.q)||filter.siteIds.includes(r.site_id))&&($('lead-state').value==='all'||(!['paused','cancelled'].includes(r.state))));
  const groups=['reported','announced','construction','reviewing'];
  $('pipeline-summary').innerHTML=`<div><p class="eyebrow">LIVE PIPELINE</p><h2>新闻里的建设机会</h2><p class="basis">${news.reader?.stale?'快照延迟':'随新闻同步更新'} · ${news.pipeline?.available?(news.pipeline.truncated?'近期快讯与已接收日报事件':'新闻事件组，非唯一园区'):'等待阅读服务快照'}</p></div><div class="pipeline-stages">${groups.map(stage=>`<a href="${esc(url('/projects.html',{view:'pipeline',lead_stage:stage,site:''}))}"><strong>${news.pipeline?.available?rows.filter(r=>(r.reported_stage||'reported')===stage).length:'—'}</strong><span>${stages[stage]} ↗</span></a>`).join('')}</div><a href="${esc(url('/projects.html',{view:'pipeline',site:''}))}">全部动态 →</a>`;
  if(params.get('lead_stage'))rows=rows.filter(r=>(r.reported_stage||'reported')===params.get('lead_stage'));
@@ -526,7 +544,7 @@ function renderTracking(){
   $('daily-freshness').textContent='按最近补充排列，标注信息发生时间；历史补录不代表今日发生，估算与预测分别标明。';
  }
  if(isProject&&data.detail){const p=data.detail;
-  $('detail').insertAdjacentHTML('beforeend',`<section class="detail-card" id="site-observation-timeline"><h2>站点观测时间线</h2><p>物理站点 ${esc(p.site_id)} · 运行状态 ${esc(({active:'活跃',paused:'暂停',cancelled:'取消',closed:'关闭'})[p.lifecycle]||p.lifecycle)}</p>${p.tracking?.conflicts?.length?'<p role="status">同口径记录存在分歧，历史与来源均保留；基础登记按时间展示当前参考，不表示争议已解决。</p>':''}<ol class="timeline">${(p.observations||[]).map(timelineItem).join('')||'<li>尚未登记有有效时点的独立观测；上方保留历史登记。</li>'}</ol></section>`);
+  ($('campus-history')||$('detail')).insertAdjacentHTML('beforeend',`<section class="detail-card" id="site-observation-timeline"><h2>站点观测时间线</h2><p>物理站点 ${esc(p.site_id)} · 运行状态 ${esc(({active:'活跃',paused:'暂停',cancelled:'取消',closed:'关闭'})[p.lifecycle]||p.lifecycle)}</p>${p.tracking?.conflicts?.length?'<p role="status">同口径记录存在分歧，历史与来源均保留；基础登记按时间展示当前参考，不表示争议已解决。</p>':''}<ol class="timeline">${(p.observations||[]).map(timelineItem).join('')||'<li>尚未登记有有效时点的独立观测；上方保留历史登记。</li>'}</ol></section>`);
  }
 }
 let updateSignature='';
@@ -582,15 +600,48 @@ if(isHome){
  $('home-updates').addEventListener('focusout',()=>requestAnimationFrame(()=>{if(!$('home-updates').matches(':focus-within'))$('update-viewport').scrollLeft=0;}));
  window.addEventListener('resize',resizeUpdates);
 }
+function renderCampusViews(){
+ if(!$('regions-detail'))return;
+ $('regions-detail').hidden=!isRegions;
+ if(isRegions){
+  const analysis=data.geographic_analysis||{},level=params.get('level')||'country';
+  const labels={region:'区域',country:'国家',province:'省／州',city:'城市'};
+  const groups=(analysis.groups||[]).filter(g=>g.level===level);
+  const value=(g,stage)=>g.known_records?num(g.totals[stage])+' MW':'未披露确定值';
+  $('regions-detail').innerHTML=`<h2>同口径地区比较</h2><p>${esc(analysis.basis||'地区数据尚未取得')}</p><p>${analysis.place_records??'—'} 条地点记录 · ${analysis.cluster_records??'—'} 条集群 · ${analysis.portfolio_records??'—'} 条组合计划 · ${analysis.unlocated_records??'—'} 条地点记录未定位。登记范围不代表全球完整覆盖。</p><label>比较层级 <select id="region-level">${Object.entries(labels).map(([k,v])=>`<option value="${k}" ${k===level?'selected':''}>${v}</option>`).join('')}</select></label><div class="table-wrap"><table id="region-comparison"><thead><tr><th>地区 / 登记范围</th><th>地点记录</th><th>已投运确定值</th><th>在建确定值</th><th>筹备确定值</th><th>区间 / 未知记录</th><th>集群 / 组合</th><th>来源状态</th></tr></thead><tbody>${groups.map(g=>`<tr data-region="${esc(JSON.stringify(g.filters))}"><th><a href="${esc(url('/projects.html',{...g.filters,view:'',site:''}))}">${esc(Object.entries(g.filters).map(([k,v])=>k==='country'?countryName(v):v).join(' · '))}</a></th><td>${g.totals.sites}</td><td>${value(g,'operating')}</td><td>${value(g,'construction')}</td><td>${value(g,'planning')}</td><td>${g.totals.ranged_sites} / ${g.totals.unknown}</td><td>${g.cluster_records} / ${g.portfolio_records}</td><td>${g.unverified_records} 条基础登记待查；${g.totals.estimated_sites} 条含估算</td></tr>`).join('')||'<tr><td colspan="8">该范围没有此层级的明确地点，未推测补齐。</td></tr>'}</tbody></table></div><details id="regional-ranges"><summary>容量区间原值与对应对象</summary>${groups.flatMap(g=>g.ranges||[]).map(r=>`<p><a href="/project.html?site=${encodeURIComponent(r.site_id)}">${esc(r.name)}</a> · ${esc(data.stages[r.stage]||r.stage)} · ${esc(quantityText(r))} · ${esc((r.assumptions||[]).join('；'))}</p>`).join('')||'<p>当前范围没有登记的容量区间。</p>'}</details><p class="basis">同一层级横向比较；不同层级不能再相加。统计只使用本站已登记对象，机构全球估算另见<a href="/market.html">市场规模</a>。</p>`;
+  $('region-level').onchange=e=>select({level:e.target.value});
+ }
+ if(isList){
+  const tools=$('campus-directory-tools');tools.hidden=false;
+  tools.innerHTML=`<nav class="local-nav" aria-label="名录视图"><a href="${esc(url(path,{view:''}))}" ${!params.get('view')?'aria-current="page"':''}>列表</a><a href="${esc(url(path,{view:'map'}))}" ${params.get('view')==='map'?'aria-current="page"':''}>地图</a><a href="${esc(url(path,{view:'pipeline'}))}">项目线索</a><a href="${esc(url('/regions.html',{view:'',site:''}))}">地区分析 →</a></nav><form id="campus-search" role="search"><label>园区名称、别名或ID <input name="q" maxlength="160" value="${esc(params.get('q')||'')}"></label><button>查找</button></form><p class="basis">名录包括地点与明确集群；组合计划和新闻线索不能当作唯一园区。保留原始ID和边界，未知不补零。</p>`;
+  $('atlas-tools').before(tools);$('campus-search').onsubmit=e=>{e.preventDefault();select({q:new FormData(e.target).get('q'),site:''});};
+  $('atlas-layout').hidden=params.get('view')!=='map';$('project-list').hidden=['pipeline','map'].includes(params.get('view'));
+ }
+ const overview=isCompany&&!keys.some(k=>params.get(k));
+ $('industry-entry').hidden=!overview;
+ if(overview){
+  for(const id of ['atlas-tools','pipeline-summary','project-list','leaders-section','trends-section'])$(id).hidden=true;
+  $('atlas-layout').hidden=false;$('atlas-layout').classList.add('industry-summary');$('atlas-layout').querySelector('.atlas-panel').hidden=true;
+  $('research-updates').hidden=false;
+ }
+ if(isRegions){for(const id of ['atlas-layout','project-list','leaders-section','trends-section','market-band','pipeline-summary','pipeline-section','research-updates'])$(id).hidden=true;}
+ if(isProject){
+  const section=$('pipeline-section');section.hidden=false;section.querySelector('h2').textContent='关联园区消息与线索';
+  ($('campus-linked-news')||$('campus-history')).append(section);
+ }
+}
 function render(){
  filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();renderDaily();renderTracking();renderObjectUpdates();renderUpdates();
- if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球布局、项目规模与有来源的最新动态。';}
+ if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isRegions?'地区分析':isList?'园区名录':isHome?'全球数据中心':'行业总览';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球布局、项目规模与有来源的最新动态。';}
  if($('coverage'))$('coverage').textContent=`${data.totals.sites} 条已追踪项目记录 · 含园区与集群，非全球普查\n核验日期 ${data.coverage.oldest_verified||'—'} — ${data.coverage.latest_verified||'—'}`;
- const hidden=isProject||isMarket;
+ const hidden=isProject||isMarket||isRegions;
  for(const id of ['daily-pulse','research-arrivals'])if($(id))$(id).hidden=!isHome;
  for(const id of ['atlas-tools','atlas-layout','project-list','leaders-section','trends-section'])if($(id))$(id).hidden=hidden;
  if($('detail'))$('detail').hidden=!isProject;if($('market-detail'))$('market-detail').hidden=!isMarket;$('market-band').hidden=isProject;if($('pipeline-section'))$('pipeline-section').hidden=!(isList||isProject);if($('project-list'))$('project-list').hidden=!isList||params.get('view')==='pipeline';if($('pipeline-summary'))$('pipeline-summary').hidden=hidden||isList;
  if(isList){$('atlas-layout').hidden=true;$('leaders-section').hidden=true;$('trends-section').hidden=true;$('market-band').hidden=true;}
+ if(isCompany&&!keys.some(k=>params.get(k)))$('page-description').textContent='行业规模、机构预测与最新动态；具体园区与地区数据进入全球园区。';
+ if(isRegions)$('page-description').textContent='按同一统计边界比较已登记地点；缺失地理、容量与来源范围明确显示。';
+ renderCampusViews();
  document.title=$('page-title').textContent+' · inresearch.ai';
  window.industryFilter=selection();window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:selection()}));queueCachedFonts();
 }

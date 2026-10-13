@@ -151,7 +151,7 @@ with tempfile.TemporaryDirectory() as temporary:
       await customerPage.locator('input[name=password]').fill('Only-test-private-site-8391');
       await Promise.all([customerPage.waitForURL(base + '/'), customerPage.locator('form button').click()]);
       await customerPage.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
-      assert.equal(await customerPage.locator('.ui-navigation-delivery [data-nav-section]').count(),6);
+      assert.equal(await customerPage.locator('.ui-navigation-delivery [data-nav-section]').count(),7);
       assert.equal(await customerPage.locator('.ui-navigation-backstage,.ui-footer-runtime').count(),0);
       const customerHeaders = {Cookie:(await customer.cookies()).map(cookie => cookie.name + '=' + cookie.value).join('; ')};
       const customerNavigation = await (await customer.request.get(base + '/api/navigation?page=/ledger.html?view=cost',{headers:customerHeaders})).json();
@@ -224,7 +224,7 @@ with tempfile.TemporaryDirectory() as temporary:
       await adminPage.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
       await adminPage.goto(base + '/ops.html');
       await adminPage.locator('.ui-navigation-backstage [data-nav-section=operations] > summary').waitFor();
-      assert.equal(await adminPage.locator('.ui-navigation-delivery [data-nav-section]').count(),6);
+      assert.equal(await adminPage.locator('.ui-navigation-delivery [data-nav-section]').count(),7);
       assert.equal(await adminPage.locator('.ui-navigation-backstage [data-nav-section]').count(),6);
       assert.equal(await adminPage.locator('.ui-navigation-backstage [data-nav-section=operations] > summary').getAttribute('aria-current'),'page');
       await checkAccount(adminPage, 'admin', 'admin');

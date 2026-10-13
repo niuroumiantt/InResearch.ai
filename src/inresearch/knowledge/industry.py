@@ -103,6 +103,7 @@ def project(row):
     result['registration_status'] = 'unverified' if any(v.get('registration_status') == 'unverified' for v in row['tracking']['fields'].values()) else 'reviewed'
     result['tracking'] = row['tracking']
     result['geography'] = site_register.geography(row)
+    result['aliases'] = list(row.get('aliases') or [])
     result['participants'] = site_register.participants(row)
     result['capacity_register'] = site_register.capacities(row)
     from . import site_metrics
@@ -178,6 +179,50 @@ def totals(rows):
             'portfolios_excluded': sum(p['portfolio'] for p in rows)}
 
 
+def geographic_analysis(rows):
+    """Geographic cohorts of registered places, never an inferred global census.
+
+    Explicit clusters and portfolios remain visible as separate record counts.
+    Capacity uses the existing calculator; source ranges have no midpoint.
+    """
+    records = [p for p in rows if not p.get('duplicate_of')]
+    places = [p for p in records if not p['portfolio'] and
+              p.get('geography', {}).get('identity_scope') != 'cluster']
+    place_ids = {p['site_id'] for p in places}
+    groups = []
+    for level in ('region', 'country', 'province', 'city'):
+        buckets = {}
+        for p in records:
+            geography = p.get('geography') or {}
+            values = {'region': p.get('region'), 'country': p.get('country'),
+                      'province': geography.get('province'), 'city': geography.get('city')}
+            if not values[level]:
+                continue
+            keys = {'region': ('region',), 'country': ('country',),
+                    'province': ('country', 'province'),
+                    'city': ('country', 'province', 'city')}[level]
+            identity = tuple((k, values[k]) for k in keys if values[k])
+            buckets.setdefault(identity, []).append(p)
+        for identity, members in sorted(buckets.items()):
+            eligible = [p for p in members if p['site_id'] in place_ids]
+            groups.append({'level': level, 'name': dict(identity)[level],
+                           'filters': dict(identity), 'totals': totals(eligible),
+                           'record_count': len(members),
+                           'cluster_records': sum(p.get('geography', {}).get('identity_scope') == 'cluster' for p in members),
+                           'portfolio_records': sum(p['portfolio'] for p in members),
+                           'known_records': sum(p['capacity_known'] for p in eligible),
+                           'unverified_records': sum(p.get('registration_status') == 'unverified' for p in eligible),
+                           'ranges': [{'site_id': p['site_id'], 'name': p['name'], **r}
+                                      for p in eligible if p.get('lifecycle', 'active') == 'active'
+                                      for r in p.get('capacity_ranges', [])]})
+    return {'groups': groups, 'record_count': len(records), 'place_records': len(places),
+            'cluster_records': sum(p.get('geography', {}).get('identity_scope') == 'cluster' for p in records),
+            'portfolio_records': sum(p['portfolio'] for p in records),
+            'unlocated_records': sum(p['coordinates'] is None for p in places),
+            'missing_country': sum(not p.get('country') for p in places),
+            'basis': '地点记录按已登记ID去重，不等于已完成物理边界核实的全球唯一园区数；明确集群与组合记录单列，不计地区地点容量。未知地点不推测；只汇总活跃记录的确定IT MW，区间原样单列。'}
+
+
 def market(root):
     rows = json.loads((Path(root)/'data/prices.json').read_text())['records']
     series = []
@@ -227,8 +272,9 @@ def capacity_audit(rows, records):
 
 def snapshot(root, params=None):
     root = Path(root); params = params or {}
-    if set(params) - {'c', 'region', 'stage', 'relation', 'scope', 'role', 'site', 'overview', 'country', 'province', 'address'}: raise ValueError('unknown filter')
+    if set(params) - {'c', 'region', 'stage', 'relation', 'scope', 'role', 'site', 'overview', 'country', 'province', 'city', 'address', 'q'}: raise ValueError('unknown filter')
     if params.get('overview','') not in ('','0','1'): raise ValueError('invalid overview')
+    if len(params.get('q', '')) > 160: raise ValueError('search too long')
     overview=params.get('overview')=='1'
     params={k:v for k,v in params.items() if k!='overview'}
     for k, allowed in {'stage': {'', *STAGES, 'unknown'}, 'relation': {'', 'developer', 'tenant'},
@@ -261,7 +307,9 @@ def snapshot(root, params=None):
                 and (not params.get('region') or p['region'] == params['region'])
                 and (not params.get('country') or p['country'] == params['country'])
                 and (not params.get('province') or p['geography']['province'] == params['province'])
+                and (not params.get('city') or p['geography'].get('city') == params['city'])
                 and (not params.get('address') or p['geography']['regional_address'] == params['address'])
+                and (not params.get('q') or params['q'].casefold() in ' '.join([p['name'] or '', p['site_id'], *p.get('aliases', [])]).casefold())
                 and (not params.get('scope') or p['ai_tagged'])
                 and (not params.get('role') or any(set(by_id.get(i, {}).get('roles') or []) & ROLE_GROUPS[params['role']] for i in ids)))
     cohort = [p for p in all_rows if matches(p)]
@@ -294,6 +342,10 @@ def snapshot(root, params=None):
         'countries': sorted({p['country'] for p in all_rows if p['country']}),
         'provinces': sorted({p['geography']['province'] for p in all_rows
                             if p['geography']['province'] and (not params.get('country') or p['country'] == params['country'])}),
+        'cities': sorted({p['geography'].get('city') for p in all_rows
+                          if p['geography'].get('city')
+                          and (not params.get('country') or p['country'] == params['country'])
+                          and (not params.get('province') or p['geography']['province'] == params['province'])}),
         'addresses': sorted({p['geography']['regional_address'] for p in all_rows
                             if p['geography']['regional_address']
                             and (not params.get('country') or p['country'] == params['country'])
@@ -323,6 +375,7 @@ def snapshot(root, params=None):
             'tracking': tracking, 'geographic_filters': geographic_filters,
             'research_updates': public_updates(root, company=params.get('c'), runtime=runtime),
             'leaders': leaders, 'regions': [{'id': r, 'name': REGIONS.get(r, r)} for r in sorted({p['region'] for p in all_rows})],
+            'geographic_analysis': {} if overview else geographic_analysis(rows),
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
             'capacity_audit': audit,
             'stages': STAGES, 'company': next((c for c in companies if c['company_id']==params.get('c')),None),
