@@ -12,7 +12,7 @@ if(qaDir) require('node:fs').mkdirSync(qaDir,{recursive:true});
       const context = await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
       const page = await context.newPage(), errors=[];
       page.on('pageerror',error=>errors.push(error.message));
-      const active = role==='intern'?{area:'backstage',section:'production',view:'tasks'}:{area:'delivery',section:'industry',view:'projects'};
+      const active = role==='intern'?{area:'backstage',section:'production',view:'tasks'}:{area:'delivery',section:'campuses',view:'directory'};
       const data = projection(role, active);
       const navigationRequests=[];
       await page.route('**/api/navigation?*',route=>{navigationRequests.push(new URL(route.request().url()).searchParams.get('page'));return route.fulfill({json:data});});
@@ -87,7 +87,7 @@ if(qaDir) require('node:fs').mkdirSync(qaDir,{recursive:true});
         assert.equal(navigationRequests.at(-1),'/ledger.html?view=cost#cost','in-page query navigation refreshes registered location');
         data.active=active;
         await page.evaluate(()=>history.back()); await page.waitForURL(base+'/');
-        await page.locator('.ui-navigation-delivery [data-nav-section=industry] > summary[aria-current=page]').waitFor();
+        await page.locator('.ui-navigation-delivery [data-nav-section=campuses] > summary[aria-current=page]').waitFor();
         assert.equal(navigationRequests.at(-1),'/','browser history refreshes active navigation');
       }
       if(['admin','member'].includes(role)) {
@@ -115,7 +115,7 @@ if(qaDir) require('node:fs').mkdirSync(qaDir,{recursive:true});
       console.log('PASS shared navigation '+role+' desktop/mobile/footer/theme/brand');
     }
     const context=await browser.newContext(),page=await context.newPage(); let succeed=false;
-    await page.route('**/api/navigation?*',route=>succeed?route.fulfill({json:projection('customer',{area:'delivery',section:'industry',view:'projects'})}):route.fulfill({status:503,body:'unavailable'}));
+    await page.route('**/api/navigation?*',route=>succeed?route.fulfill({json:projection('customer',{area:'delivery',section:'campuses',view:'directory'})}):route.fulfill({status:503,body:'unavailable'}));
     await page.goto(base+'/');await page.locator('#ui-navigation-error').waitFor();
     assert.equal(await page.locator('.ui-navigation-backstage').count(),0,'failed identity never displays internal navigation');
     succeed=true;await page.locator('#ui-navigation-error').click();await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();

@@ -36,7 +36,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    const navState=await page.evaluate(()=>fetch('/api/navigation?'+new URLSearchParams({page:location.pathname+location.search})).then(response=>response.json()));
    if(navState.navigation[navState.active.area]?.some(item=>item.id===navState.active.section)){const active=page.locator('.ui-navigation-'+navState.active.area+' [data-nav-section="'+navState.active.section+'"]');assert.equal(await active.count(),1,file+' registered primary section');assert.equal(await active.evaluate(node=>node.matches('[aria-current=page]')||!!node.querySelector(':scope > summary[aria-current=page]')),true,file+' active primary navigation');}else if(navState.active.section){assert.deepEqual(navState.active,{area:'public',section:'tasks',view:null},file+' only the public task page sits outside signed-in business navigation');}
    assert.equal(await page.locator('.ui-navigation a[href="/login"], .ui-navigation a[href="/account"], .ui-navigation .ui-admin-link').count(),0,file+' business navigation only');
-   if(file==='index.html'){await page.locator('.ui-account-menu > summary').waitFor();assert.equal(await page.locator('.ui-navigation-delivery [data-nav-section]').count(),6);assert.equal(await page.locator('.ui-navigation-backstage [data-nav-section]').count(),6);assert.equal(await page.locator('.ui-account-panel .ui-management-link').count(),0,'account menu contains account actions only');}
+   if(file==='index.html'){await page.locator('.ui-account-menu > summary').waitFor();assert.equal(await page.locator('.ui-navigation-delivery [data-nav-section]').count(),7);assert.equal(await page.locator('.ui-navigation-backstage [data-nav-section]').count(),6);assert.equal(await page.locator('.ui-account-panel .ui-management-link').count(),0,'account menu contains account actions only');}
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') {await page.locator('#catalog-title').waitFor();assert.match(page.url(),/product-catalog.html/);}
    if(file==='report.html') {await page.locator('#cover').waitFor();assert.equal(await page.locator('section.chapter').count(),4);}
@@ -45,7 +45,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    if(file==='ledger.html')await page.locator('#model-app:not([aria-busy])').waitFor();
    const settledUrl=page.url();
    // Shared fonts: the bundled Inter + Noto Sans SC stack applies to the body of every application page.
-   const cacheFontId=file==='ops.html'?'ops-fonts':['index.html','industry.html','projects.html','project.html','market.html'].includes(file)?'home-fonts':null;
+   const cacheFontId=file==='ops.html'?'ops-fonts':['index.html','industry.html','projects.html','project.html','market.html','regions.html'].includes(file)?'home-fonts':null;
    if(cacheFontId)await page.waitForFunction(id=>['cached','fallback'].includes(document.getElementById(id).dataset.fonts),cacheFontId);
    const fonts=await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').map(f=>f.family)});
    if(cacheFontId)assert.ok(fonts.every(f=>['Inter','Noto Sans SC'].includes(f)),file+' reuses cached shared fonts or system fallback');

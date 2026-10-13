@@ -12,7 +12,7 @@ from urllib.parse import parse_qs, urlsplit
 from inresearch.workflow.product_catalog import COMPANIES
 
 # 目录三项 + 账本，及它们的子页（爆炸图的 3D、芯片级镜头与规格库入口）。
-INTERN_RESEARCH_PAGES = ('/', '/industry.html', '/projects.html', '/project.html', '/market.html', '/index.html', '/node.html', '/ledger.html', '/bom.html', '/bom3d.html', '/rack3d.html', '/server-plan.html', '/campus-plan.html', '/facility-atlas.html', '/power-atlas.html', '/thermal-atlas.html', '/compute-atlas.html', '/control-atlas.html', '/cross-scale-atlas.html', '/network-atlas.html', '/storage-atlas.html', '/memory-atlas.html', '/rack-atlas.html', '/rack-exploded.html', '/chip-atlas.html',
+INTERN_RESEARCH_PAGES = ('/', '/industry.html', '/projects.html', '/project.html', '/regions.html', '/market.html', '/index.html', '/node.html', '/ledger.html', '/bom.html', '/bom3d.html', '/rack3d.html', '/server-plan.html', '/campus-plan.html', '/facility-atlas.html', '/power-atlas.html', '/thermal-atlas.html', '/compute-atlas.html', '/control-atlas.html', '/cross-scale-atlas.html', '/network-atlas.html', '/storage-atlas.html', '/memory-atlas.html', '/rack-atlas.html', '/rack-exploded.html', '/chip-atlas.html',
                 '/product-catalog.html', '/compute-catalog.html', '/report.html',
                 '/research/data-centers-2026.html',
                 '/research/data-centers-2026-us.html',
