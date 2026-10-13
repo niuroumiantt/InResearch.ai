@@ -93,9 +93,9 @@ if (host) {
     for(const item of displayedItems(data)){
       if(host.dataset.newsSelection==='selected'&&item.editorial_pick!==true)continue;
       if(industryFilter.company&&!(item.object_ids||[]).includes('actor:'+industryFilter.company))continue;
-      if(industryFilter.region||industryFilter.site||industryFilter.scope||industryFilter.role||industryFilter.relation){
+      if(industryFilter.region||industryFilter.site||industryFilter.scope||industryFilter.role||industryFilter.relation||industryFilter.country||industryFilter.province||industryFilter.city||industryFilter.address||industryFilter.q){
         const raw=item.raw;
-        const matched=raw&&((industryFilter.site&&raw.site_id===industryFilter.site)||(!industryFilter.site&&industryFilter.siteIds?.includes(raw.site_id))||(!industryFilter.site&&!industryFilter.scope&&!industryFilter.role&&!industryFilter.relation&&raw.region===industryFilter.region))
+        const matched=raw&&((industryFilter.site&&raw.site_id===industryFilter.site)||(!industryFilter.site&&industryFilter.siteIds?.includes(raw.site_id))||(!industryFilter.site&&!industryFilter.scope&&!industryFilter.role&&!industryFilter.relation&&!industryFilter.country&&!industryFilter.province&&!industryFilter.city&&!industryFilter.address&&!industryFilter.q&&raw.region===industryFilter.region))
           ||(data.pipeline?.records||[]).some(p=>p.site_id&&(industryFilter.site?p.site_id===industryFilter.site:industryFilter.siteIds?.includes(p.site_id))&&(p.events||[]).some(e=>e.url===item.url));
         if(!matched)continue;
       }

@@ -33,6 +33,7 @@ def build(root, table):
     html+='</div><p class="audit-legend">以上来自带版本的源码快照。下方动态对账读取当前运行回执和正式支持链，分别标时；不等于已有答案，不将 sourced 标签作为所有情景均可使用的证明。</p><div id="research-health" class="audit-live" aria-live="polite">正在核对问题闭环与供料回执；尚未取得的运行值显示 —。</div></section>'
     html+=section('architecture','01 · 研究产品决定架构','交付目录、证据与回答；以问题闭环衡量研究，以来源与条件衡量数据')
     html+='<p>现行框架：一棵树 · 三级账 · 四问四段 · 五类变量 · 六队 · 一个节点模板。分别组织对象、账本、研究步骤、数据需求和来源责任。</p>'
+    html+='<div class="audit-map" id="research-perspectives"><article><h3>通用数据中心</h3><p>类型、系统、部件与运行机制。保留三级账、四问四段、五类变量和六队，形成通用解释与情景模型。</p><a href="/node.html">进入通用研究 →</a></article><article><h3>全球真实园区</h3><p>稳定地点身份、分期、主体角色与时间历史。普查工作包发现对象，普通信息可先登记、缺项后补。</p><a href="/projects.html">园区名录 →</a> · <a href="/regions.html">地区分析 →</a></article><article><h3>两者怎样连接</h3><p>将有范围、时间和来源的配置与指标关联到通用类型及模型输入。通用示意不证明现场安装；当前未贯通自动配置或园区填参。</p></article></div>'
     html+=table(['产品','当前可提供','完成标准'],[
         ['来源与产品目录','原厂产品、参数原表、版本和缺口检索','型号/配置/来源可回查；目录覆盖有明确分母'],
         ['证据与研究陈述','定位原文、条件、争议及审核链','逐项支持链成立；多个陈述不能自动拼成答案'],
@@ -80,7 +81,7 @@ def build(root, table):
     html+='<p><a href="/bom.html">爆炸图 →</a> · <a href="/node.html">研究节点 →</a> · <a href="/ledger.html">账本与情景 →</a></p></section>'
     html+=section('demand','03 · 目标合同驱动供料，运行回执单独对账','目标是待满足的需求；两个 repo 接入不表示六类来源已经齐备')
     html+=table(['供应能力','接入','目标','缺','已交付','有来源登记','含假设'],[[p['team'],'已接入' if p['connected'] else '未接入',p['targets'],p['statuses'].get('needed',0),p['statuses'].get('delivered',0),p['statuses'].get('sourced',0),p['statuses'].get('assumed',0)] for p in health['providers']])
-    html+=f'<div class="audit-callout">{health["questions"]["targets_without_exact_question"]} 条目标尚无已审核的研究用途。question_ids 为支持或线索用途，可跨变量类；同格候选只供检索，不是语义证明。人工细化任务必须绑定目标行，不能产生第二套独立采集轴。</div>'
+    html+=f'<div class="audit-callout">{health["questions"]["targets_without_exact_question"]} 条目标尚无已审核的研究用途。question_ids 为支持或线索用途，可跨变量类；同格候选只供检索，不是语义证明。模型变量采集的人工细化绑定目标行；全球园区普查按地区／对象工作包组织，一般信息可不绑定模型目标。</div>'
     html+='<details><summary>供料合同：要什么、交什么、不能据此推断什么</summary>'+table(['合同','最小交付内容','能力边界'],[[k,'、'.join(v['fields']),v['acceptance']+' 不证明：'+v['does_not_prove']] for k,v in target_doc['request_contract']['profiles'].items()])+'</details>'
     html+='<p>原厂额定功率与现场实耗分开；inews 负责发现与事件指针；统计、财报、报价、运行实证由相应来源能力承担。先补关键输入的来源与负责人，不为“六队”数量创建空 repo。<a href="/supply.html#targets">查看和细化目标 →</a></p>'
     requirements=[(t,r) for t in targets for r in t['request'].get('requirements',[])]

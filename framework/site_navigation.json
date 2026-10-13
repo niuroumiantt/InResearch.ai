@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.13.116",
+  "version": "2026.10.13.117",
   "public_navigation": [
     {
       "id": "home",
@@ -20,11 +20,6 @@
         "href": "/industry.html",
         "children": [
           {
-            "id": "projects",
-            "label": "全球项目",
-            "href": "/industry.html"
-          },
-          {
             "id": "market",
             "label": "市场规模",
             "href": "/market.html"
@@ -33,6 +28,28 @@
             "id": "updates",
             "label": "行业动态",
             "href": "/workspace.html?section=industry&view=updates"
+          }
+        ],
+        "roles": [
+          "admin",
+          "member",
+          "customer"
+        ]
+      },
+      {
+        "id": "campuses",
+        "label": "全球园区",
+        "href": "/projects.html",
+        "children": [
+          {
+            "id": "directory",
+            "label": "园区名录",
+            "href": "/projects.html"
+          },
+          {
+            "id": "regions",
+            "label": "地区分析",
+            "href": "/regions.html"
           }
         ],
         "roles": [
@@ -367,6 +384,22 @@
   "page_rules": [
     {
       "paths": [
+        "/regions.html"
+      ],
+      "area": "delivery",
+      "section": "campuses",
+      "view": "regions"
+    },
+    {
+      "paths": [
+        "/industry.html"
+      ],
+      "area": "delivery",
+      "section": "industry",
+      "view": null
+    },
+    {
+      "paths": [
         "/research-workbench.html"
       ],
       "area": "backstage",
@@ -411,13 +444,12 @@
     },
     {
       "paths": [
-        "/industry.html",
         "/projects.html",
         "/project.html"
       ],
       "area": "delivery",
-      "section": "industry",
-      "view": "projects"
+      "section": "campuses",
+      "view": "directory"
     },
     {
       "paths": [
@@ -735,7 +767,8 @@
         "/bom.html",
         "/node.html",
         "/bom3d.html",
-        "/rack3d.html"
+        "/rack3d.html",
+        "/regions.html"
       ],
       "data": [
         "/data/companies.json",

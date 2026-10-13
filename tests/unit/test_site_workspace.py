@@ -15,12 +15,15 @@ ROOT = Path(__file__).resolve().parents[2]
 class SiteWorkspaceTests(unittest.TestCase):
     def test_directory_counts_and_distinct_delivery_domains(self):
         doc = workspace.manifest(ROOT)
-        self.assertEqual([len(doc['navigation'][a]) for a in ('delivery','backstage')], [6,6])
-        self.assertEqual([sum(len(s['children']) for s in doc['navigation'][a]) for a in ('delivery','backstage')], [14,20])
+        self.assertEqual([len(doc['navigation'][a]) for a in ('delivery','backstage')], [7,6])
+        self.assertEqual([sum(len(s['children']) for s in doc['navigation'][a]) for a in ('delivery','backstage')], [15,20])
         self.assertEqual(doc['navigation']['delivery'][-1]['children'], [])
         self.assertEqual(doc['navigation']['backstage'][0]['children'], [])
         self.assertEqual(workspace.resolve(ROOT,'/product-catalog.html?c=nvidia')['section'],'companies')
         self.assertEqual(workspace.resolve(ROOT,'/compute-atlas.html')['section'],'atlas')
+        for path in ('/projects.html','/project.html?site=stable-id','/regions.html','/industry.html?region=north-america'):
+            self.assertEqual(workspace.resolve(ROOT,path)['section'],'campuses')
+        self.assertEqual(workspace.resolve(ROOT,'/industry.html')['section'],'industry')
 
     def test_roles_filter_both_navigation_and_direct_workspace(self):
         public = workspace.navigation(ROOT,'reader','', '/')
@@ -28,7 +31,7 @@ class SiteWorkspaceTests(unittest.TestCase):
         self.assertFalse(public['search']['enabled'])
         self.assertEqual(public['footer']['groups'], [])
         customer = workspace.navigation(ROOT,'customer','customer-one','/workspace.html?section=companies&view=companies')
-        self.assertEqual(len(customer['navigation']['delivery']),6)
+        self.assertEqual(len(customer['navigation']['delivery']),7)
         self.assertEqual(customer['navigation']['backstage'],[])
         self.assertEqual(customer['search']['scopes'],['delivery'])
         self.assertIsNone(customer['footer']['runtime'])
