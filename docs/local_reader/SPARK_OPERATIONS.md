@@ -530,7 +530,7 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 既有可信操作员`receive-snapshot` CLI可用于一次性私有归档接收；它与HTTP共用业务校验、原子锁与source/control回执。恢复时冻结源SHA并保留旧candidate快照，接收、当前批次完整阅读计数及实际HTTP显示另验，不把新接收当正式采用。不得另起常驻publisher与既有队列竞争。
 
-模型CLI达到进程预算时，读取其有界stderr末尾，只将明确的断流/请求网络超时/配额信号归为暂态等待；没有证据的长推理仍是model_cli_timeout，不能无限重试。日志仅保存分类与摘要，不保留正文/凭据。先核真实活动进程的模型与relay配置，最小请求对比网络后再修复配置；不盲增推理时限。已失败read任务可经现有retry-job显式CAS恢复model_cli_failed或model_cli_timeout，核当前revision、原件、配方、分块、错误和次数，保留attempts/available、已完成分块和审计；不绕过worker生命周期锁或重启Reader批量清空尝试。
+模型CLI达到进程预算时，读取stderr前4KiB及末8KiB、stdout末64KiB内完整换行的error/turn.failed JSONL事件。截断的行、普通模型正文及超大单行不能作为故障证据；明确断流/请求网络超时/配额才归暂态等待，认证失败单列，没有证据的长推理仍是model_cli_timeout，不能无限重试。日志仅保存分类、摘要、真实stdout/stderr bytes、截断标记、终止事件数及进程超时标记，不保留正文/凭据。先核真实活动进程的模型与relay配置，最小请求对比网络后再修复配置；不盲增推理时限。已失败read任务可经现有retry-job显式CAS恢复model_cli_failed或model_cli_timeout，核当前revision、原件、配方、分块、错误和次数，保留attempts/available、已完成分块和审计；不绕过worker生命周期锁或重启Reader批量清空尝试。
 
 
 ### 非read阶段超时的在线恢复（2026-10-13）
@@ -539,3 +539,9 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 
 在已确认接收端部署candidate-delta-v1后，可设置发布器私有`READER_PUBLISH_INCREMENTAL=1`，对所有大小的快照强制使用已验收的250篇/16MiB分批协议，避免CDN拒绝大POST；缺省0仍保留全量兼容，非法值在打开Reader前拒绝。该开关不提高HTTP/分批预算，不改变认证、接收业务校验或原件保留；旧接收端不支持时明确失败。逐批真实ACK与整个剩余清单完成分开计量。
+
+### Relay凭据轮换与生产增量验收
+
+轮换只处理私有relay token，不改模型身份、并发、原件或研究采用。先在内存比较当前token与实际进程环境，输出消费者PID/服务及匹配布尔值；禁止输出完整launchctl/systemctl环境、plist凭据、请求头或原始上游错误。保存0600配置和SQLite一致备份；审核服务须自然空闲，Reader使用现有SIGINT退出并等待工作线程完成，确认运行任务与relay子进程为零后替换凭据。新token以安全随机数生成，经SSH stdin传递，私有token和消费者环境文件同目录原子替换为0600。M5 LaunchAgent通过shell builtin读取私有token文件并exec原程序，不在plist或argv内放token值。只重启原服务，保留模型/并发/配方/次数/成功缓存。分别在M5 loopback及Spark隧道向推理端点发送无模型执行的无效请求：旧token须401，新token须通过认证后因身份缺失409；再核客户端实际环境匹配及正常工作调用。旧备份中的token此后已撤销，备份仍私有保留。
+
+生产增量须先核当前receiver的真实manifest协议，再让唯一既有publisher按私有开关运行；不得另起常驻发布者。保留前后manifest、逐批ACK、Spark发布状态和网站HTTPS运行投影，确认未发送文档保留、变更SHA匹配、整个剩余清单完成及接收时点一致；候选接收不计正式采用。断线、超时、CAS冲突或网站发布滞后保留失败实测，不以夹具、服务启动或源码标签宣称生产验收通过。凭据轮换、源码CI/部署与候选数据接收分别留私有回执；暂停的定时汇报不因维护自动恢复。

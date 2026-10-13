@@ -70,6 +70,62 @@ class FailureTests(unittest.TestCase):
             self.assertEqual(gap_counts(data,[row],{}),{'complete_with_gaps':1,'unread_gap_pages':2})
             with self.assertRaises(IntegrityError):gap_counts(data,[{**row,'report_sha256':'bad'}],{})
 
+    def test_timeout_stdout_terminal_events_classify_transport_quota_and_auth(self):
+        import subprocess
+        profile=models.ModelProfile(backend='codex_cli',url='',model='gpt-6.1-sol',command='codex')
+        for detail,expected in [('stream disconnected PRIVATE-TOKEN','model_relay_unavailable'),
+                                ('HTTP 429 PRIVATE-DOCUMENT','model_quota_wait'),
+                                ('HTTP 401 unauthorized PRIVATE-TOKEN','model_cli_authentication_failed')]:
+            def timeout(command,**kw):
+                kw['stdout'].write(json.dumps({'type':'error','message':detail}).encode()+b'\n')
+                raise subprocess.TimeoutExpired(command,600)
+            with mock.patch.object(codex_inference.subprocess,'run',side_effect=timeout):
+                with self.assertRaises(models.InferenceError) as caught:
+                    models.JsonModelClient(profile).generate('system','private data')
+            self.assertEqual(caught.exception.code,expected)
+            self.assertTrue(caught.exception.diagnostics['process_timeout'])
+            self.assertEqual(caught.exception.diagnostics['terminal_events'],1)
+            self.assertNotIn('PRIVATE-',json.dumps(caught.exception.diagnostics))
+
+    def test_timeout_ignores_model_text_partial_json_and_oversize_records(self):
+        import io
+        cases=[json.dumps({'type':'item.completed','item':{'type':'agent_message',
+                    'text':'HTTP 429 stream disconnected PRIVATE-DOCUMENT'}}).encode()+b'\n',
+               b'{"type":"error","message":"HTTP 429"}',
+               json.dumps({'type':'error','message':'HTTP 429 '+('x'*100000)}).encode()+b'\n']
+        for raw in cases:
+            exc=codex_inference.timeout_failure(io.BytesIO(raw),io.BytesIO(),600)
+            self.assertEqual(exc.code,'model_cli_timeout')
+            self.assertEqual(str(exc),'model_cli_timeout')
+            self.assertEqual(exc.diagnostics['terminal_events'],0)
+            self.assertEqual(exc.diagnostics['failure_kind'],'unclassified')
+            self.assertNotIn('PRIVATE-',json.dumps(exc.diagnostics))
+
+    def test_timeout_reads_bounded_slices_and_finds_error_after_large_output(self):
+        import io
+        class Bounded(io.BytesIO):
+            def read(self,size=-1):
+                self.assert_bounded(size)
+                return super().read(size)
+            def assert_bounded(self,size):
+                if not 0<=size<=65536:raise AssertionError('unbounded diagnostic read')
+        stdout=Bounded(b'x'*200000+b'\n'+b'{"type":"turn.failed","error":{"message":"HTTP 503"}}\n')
+        stderr=Bounded(b'warning\n'*20000)
+        exc=codex_inference.timeout_failure(stdout,stderr,601.23456)
+        self.assertEqual(exc.code,'model_relay_unavailable')
+        self.assertTrue(exc.diagnostics['stdout_truncated'])
+        self.assertTrue(exc.diagnostics['stderr_truncated'])
+        self.assertEqual(exc.diagnostics['terminal_events'],1)
+        self.assertEqual(exc.diagnostics['elapsed_seconds'],601.235)
+
+    def test_timeout_stderr_head_survives_long_warning_tail(self):
+        import io
+        exc=codex_inference.timeout_failure(io.BytesIO(),
+            io.BytesIO(b'HTTP 401 unauthorized PRIVATE-TOKEN\n'+b'warning\n'*3000),600)
+        self.assertEqual(exc.code,'model_cli_authentication_failed')
+        self.assertTrue(exc.diagnostics['stderr_truncated'])
+        self.assertNotIn('PRIVATE-',json.dumps(exc.diagnostics))
+
 
 class RescueTests(unittest.TestCase):
     def setUp(self):
