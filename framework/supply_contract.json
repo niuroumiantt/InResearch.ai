@@ -1,5 +1,5 @@
 {
-  "version": "1.16",
+  "version": "1.17",
   "effective_at": "2026-10-15",
   "phase": "planning_live",
   "operating_plan": {
@@ -623,7 +623,8 @@
     "enabled_providers": [
       "fetchstat",
       "fetchfilings",
-      "fetchreports"
+      "fetchreports",
+      "fetchquotes"
     ],
     "sources": {
       "fetchstat": [
@@ -646,6 +647,13 @@
           "native_id": "DOI:10.71468/P1WC7Q:2024",
           "url": "https://bies.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report"
         }
+      ],
+      "fetchquotes": [
+        {
+          "source_id": "fetchquotes-lambda-bootstrap",
+          "native_id": "Lambda-instances-pricing",
+          "url": "https://lambda.ai/pricing"
+        }
       ]
     },
     "receiver": "manage.py collector-receive",
@@ -654,6 +662,6 @@
     "automatic_adoption": false,
     "automatic_model_parameters": false,
     "scheduled": false,
-    "phase": "stat_filings_reports_single_source_file_import_live"
+    "phase": "stat_filings_reports_live_quotes_ready_receipt_pending"
   }
 }

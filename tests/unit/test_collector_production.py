@@ -74,7 +74,7 @@ class CollectorProductionTests(unittest.TestCase):
         native.write_bytes(original);self.assertEqual(self.receive()['candidate_rows'],1)
 
     def test_other_teams_and_unregistered_source_do_not_enter_catalog(self):
-        other=example.build(self.root/'other','fetchquotes')
+        other=example.build(self.root/'other','fetchstat' if self.provider != 'fetchstat' else 'fetchfilings')
         with self.assertRaisesRegex(ValueError,'not_enabled'):production.receive(other,self.data)
         p=self.package/'manifest.json';manifest=json.loads(p.read_text());manifest['items'][0]['url']='https://unregistered.example/data';p.write_text(json.dumps(manifest))
         with self.assertRaisesRegex(ValueError,'not_registered'):self.receive()
@@ -141,5 +141,8 @@ class FilingsProductionTests(CollectorProductionTests):
 
 class ReportsProductionTests(CollectorProductionTests):
     provider = "fetchreports"
+
+class QuotesProductionTests(CollectorProductionTests):
+    provider = "fetchquotes"
 
 if __name__=='__main__':unittest.main()
