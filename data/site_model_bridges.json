@@ -1,7 +1,7 @@
 {
-  "schema_version": 6,
-  "version": "2026.10.14.5",
-  "mapping_version": "site-model-bridge-v6",
+  "schema_version": 7,
+  "version": "2026.10.14.6",
+  "mapping_version": "site-model-bridge-v7",
   "sites": [
     {
       "site_id": "us-tx-abilene",
@@ -279,21 +279,21 @@
         }
       ],
       "review": {
-        "id": "abilene-income-return-review-20261014",
+        "id": "abilene-sec-table-review-20261014",
         "reviewed_at": "2026-10-14",
-        "input_sha256": "e4125311b043dcece147a63dc515e694f899eacd03638609f69cd279b1d64cdb",
-        "result_sha256": "94744b384d56a3ff45dde1a48951f9c87edc18a9d2620ecb635ebf170913f526",
+        "input_sha256": "1443b5727560dcaa4c0fc40c5f0bd1d67ec30ef9595d747cd6e1f91956aa7077",
+        "result_sha256": "9c6f27eefb28daadc6fce60f43703ebde91c67ded25edc9dddc1eafd66e37181",
         "checklist_version": "2026.10.13.2",
         "checklist_sha256": "3ae336b5fdf1215bd9ab3ea681341c6a64ed0818eab5101eae4d8ddfbe3d76a9",
-        "inventory_units": 269,
+        "inventory_units": 371,
         "item_counts": {
           "anomaly": 3,
-          "candidate": 244,
+          "candidate": 350,
           "excluded": 4,
           "existing_observation": 2,
           "not_applicable": 0,
-          "not_checked": 16,
-          "unknown": 42,
+          "not_checked": 12,
+          "unknown": 45,
           "unread_attachment": 0
         },
         "report_exhaustive": "not_certified",
@@ -596,7 +596,7 @@
             "status": "checked",
             "sha256": "ccce1da1ee6f6627483c9385edf65ec94d682cc1bfc2efa8a677d4210b3aa444",
             "text_sha256": "ccce1da1ee6f6627483c9385edf65ec94d682cc1bfc2efa8a677d4210b3aa444",
-            "checked_scope": "web工具转录L378-402租约注释；表格图片、完整报告未核；SHA只绑定转录，不是原HTML；本轮再核冻结转录L359-384及L400-412成本/租约/融资相关文字，原HTML和图片仍未取",
+            "checked_scope": "该前阶段转录的读取范围：web工具转录L378-402租约注释；表格图片、完整报告未核；SHA只绑定转录，不是原HTML；本轮再核冻结转录L359-384及L400-412成本/租约/融资相关文字，原HTML和图片仍未取；.127已另取并核八张原表，读到的图表以sec-table-*来源登记为准，原HTML仍未冻结。",
             "retrieved_at": "2026-10-14",
             "capture_kind": "web_tool_extract"
           },
@@ -807,7 +807,7 @@
             "status": "checked",
             "sha256": "15707fc39bdf6e4f67ac01cf74903a86ffc75bdfeda1fb1b39f140e28cedc488",
             "text_sha256": "15707fc39bdf6e4f67ac01cf74903a86ffc75bdfeda1fb1b39f140e28cedc488",
-            "checked_scope": "财报附注1/2/4/5/6及审计日、随后事项文字（工具转录）；20页财报的图表2/4/6/8/10/11/12/14/15/16/17/18/20未读取，原HTML未取得。审计2026-03-12；财报期间2025-01-01至12-31。",
+            "checked_scope": "该前阶段转录的读取范围：财报附注1/2/4/5/6及审计日、随后事项文字（工具转录）；20页财报的图表2/4/6/8/10/11/12/14/15/16/17/18/20未读取，原HTML未取得。审计2026-03-12；财报期间2025-01-01至12-31。；.127已另取并核八张原表，读到的图表以sec-table-*来源登记为准，原HTML仍未冻结。",
             "retrieved_at": "2026-10-14T01:13:28.299Z",
             "capture_kind": "web_tool_extract"
           },
@@ -820,6 +820,86 @@
             "checked_scope": "申报索引头：报告期20251231、FILED AS OF20260313；不是租约原件或2026新租约",
             "retrieved_at": "2026-10-14T01:13:42.220Z",
             "capture_kind": "web_tool_extract"
+          },
+          {
+            "id": "sec-table-operations",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_6.jpg",
+            "status": "checked",
+            "sha256": "5f0ca908f4f08efd493852ecda57c672d289126d30416b842475ac21ae8f8863",
+            "text_sha256": "45377aeea24e1ca7066ebc1935ed6a005f071b7d2265af252dd4f9308508dfc7",
+            "checked_scope": "同版DC1财报第5页 operations；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.160235+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
+          },
+          {
+            "id": "sec-table-cashflow",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_10.jpg",
+            "status": "checked",
+            "sha256": "a23ab9521de0b1a33bf94fc66c8eb3fe54ff0eca756dde974ab70115e09123a1",
+            "text_sha256": "4bd939d83750ece819122c6113f14e6f2cd473c16eac35ee3e5c2ff996c31215",
+            "checked_scope": "同版DC1财报第7页 cashflow；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.160707+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
+          },
+          {
+            "id": "sec-table-debt",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_15.jpg",
+            "status": "checked",
+            "sha256": "df741c74a8b59b124264824ba1b2bf9c4959e99dc760813bc72e424937445922",
+            "text_sha256": "4d8e92fd955a6d2206c03b42c3e7d5fef9e24e8db460de60907fc31db784c936",
+            "checked_scope": "同版DC1财报第16页 debt；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.160925+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
+          },
+          {
+            "id": "sec-table-minimum-rent",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_17.jpg",
+            "status": "checked",
+            "sha256": "f090fcf09c33e97529d82a65f685dfb2c37420f459d9d701cc5d50670e699fcf",
+            "text_sha256": "bc85aee540f19b1eb63384e093d25741c20391af4de8f72c07b16c146beff8f9",
+            "checked_scope": "同版DC1财报第18页 minimum-rent；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.161099+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
+          },
+          {
+            "id": "sec-table-net-assets",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_2.jpg",
+            "status": "checked",
+            "sha256": "50dd29ec5b7bad83db0fdea42561df788b596e9c9486d9bd458555f7ec475b8a",
+            "text_sha256": "d592e54bb5685a52fd5ab2ffa4e2548751305fe212905829c8e8b17779af86ae",
+            "checked_scope": "同版DC1财报第3页 net-assets；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.161294+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
+          },
+          {
+            "id": "sec-table-equity-changes",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_8.jpg",
+            "status": "checked",
+            "sha256": "4efed6568504c28223a77d16fb86a2873a42190725e00bba8bd5ea652b1d2569",
+            "text_sha256": "53740679c409c9755caa86ecac384228ca7203c4739b21b268593d9b4b7efb4e",
+            "checked_scope": "同版DC1财报第6页 equity-changes；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.162800+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
+          },
+          {
+            "id": "sec-table-fair-value-rollforward",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_14.jpg",
+            "status": "checked",
+            "sha256": "9baa085c9d005e0ce9ebf5d179857891daff6b6144cc896e8c85bc1d9b2bbe0b",
+            "text_sha256": "6bc0e483d5f3375f30611a60f6780590a693a16e433e5069fc1c0f94088bcd91",
+            "checked_scope": "同版DC1财报第16页 fair-value-rollforward；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.163054+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
+          },
+          {
+            "id": "sec-table-ground-lease",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_16.jpg",
+            "status": "checked",
+            "sha256": "c939f6639bdd97c867e097c4a618f994110f183cf7406d45cfad84f97f810986",
+            "text_sha256": "29df903e8f9d98f4ecb6b2a647285f8ef3e294dde02cdaa1a9b271c4c0e5ee84",
+            "checked_scope": "同版DC1财报第17页 ground-lease；原表全部行列/符号/期间视觉核对，转录为定向字段；非租约原件，不认证现金逐笔到账。八表同一财报，不算八份独立证据。",
+            "retrieved_at": "2026-10-14T02:17:35.163236+00:00",
+            "capture_kind": "original_image_bytes_via_browser_downloadMedia"
           }
         ],
         "items": [
@@ -1581,7 +1661,7 @@
             "state": "not_checked",
             "source_id": "sec-dc1-extract",
             "locator": "原HTML及转录外表格图",
-            "reason": "已留curl失败回执；只有web工具转录SHA，不能作为原HTML冻结或全表读取回执"
+            "reason": "原HTML当时未取且本轮仍未保存原HTML；本轮仅补读八张同版原表图片，余图/租约原件仍未核；旧请求失败回执保持。"
           },
           {
             "id": "cost-current-value",
@@ -1965,7 +2045,7 @@
             "state": "candidate",
             "source_id": "income-sec-extract",
             "locator": "附注/审计工具转录 L359",
-            "reason": "建设贷款上限22.88亿，SOFR+2.5%等分支；2028到期，实际提用/利息/对冲/现金日序列未核，不填debt_rate或LTC。"
+            "reason": "旧附注披露建设贷款上限22.88亿、浮息/利差与2028到期；本轮另读原债务/现金表补清2025期末本金、年度现金提用和本金结息，日序列/完整费用及当前四栋用途仍未核。"
           },
           {
             "id": "income-interest",
@@ -2229,7 +2309,7 @@
             "state": "unknown",
             "source_id": null,
             "locator": "",
-            "reason": "完整租约、发票、应收/预收与现金表未取；不足以重建2025部分年或2026实收"
+            "reason": "四张目标财表现已补读，但间接现金流没有单列租金到账；应收混有租户装修代垫、租金预收等，逐笔合同/计提/开票/实收仍不能唯一对应。"
           },
           {
             "id": "income-unknown-denominator",
@@ -2285,39 +2365,71 @@
             "state": "unknown",
             "source_id": null,
             "locator": "",
-            "reason": "完整资产/权益CF、债务提用/还本/对冲/再融资、税、残值与退出均未齐"
+            "reason": "四表补读提供年度财务/债务/股本候选，但仍缺逐笔租金、合同/资产范围、股东瀑布、完整融资/再融资与退出现金流；实际IRR/NPV/DSCR仍未知。"
           },
           {
             "id": "income-unread-image_6",
-            "label": "2025经营收入/费用表未读取",
-            "state": "not_checked",
-            "source_id": "income-sec-extract",
-            "locator": "源HTML图片 image_6.jpg",
-            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+            "label": "2025经营收入/费用表已补读",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表image_6.jpg全表",
+            "reason": "替代上一稿未读取状态：本轮通过浏览器保存原图并逐表视觉复核；旧失败请求/未读版本留上一稿，内容候选未自动采用。",
+            "followup": {
+              "status": "source_content_checked",
+              "conclusion": "仅补清同版原表内容；不等于逐笔现金到账或模型用途认证",
+              "at": "2026-10-14",
+              "item_ids": [
+                "sec-operations-rental_income"
+              ]
+            }
           },
           {
             "id": "income-unread-image_10",
-            "label": "2025现金流表未读取",
-            "state": "not_checked",
-            "source_id": "income-sec-extract",
-            "locator": "源HTML图片 image_10.jpg",
-            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+            "label": "2025现金流表已补读",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表image_10.jpg全表",
+            "reason": "替代上一稿未读取状态：本轮通过浏览器保存原图并逐表视觉复核；旧失败请求/未读版本留上一稿，内容候选未自动采用。",
+            "followup": {
+              "status": "source_content_checked",
+              "conclusion": "仅补清同版原表内容；不等于逐笔现金到账或模型用途认证",
+              "at": "2026-10-14",
+              "item_ids": [
+                "sec-cashflow-net_assets_change_operations"
+              ]
+            }
           },
           {
             "id": "income-unread-image_17",
-            "label": "未来最低租金表未读取",
-            "state": "not_checked",
-            "source_id": "income-sec-extract",
-            "locator": "源HTML图片 image_17.jpg",
-            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+            "label": "未来最低租金表已补读",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表image_17.jpg全表",
+            "reason": "替代上一稿未读取状态：本轮通过浏览器保存原图并逐表视觉复核；旧失败请求/未读版本留上一稿，内容候选未自动采用。",
+            "followup": {
+              "status": "source_content_checked",
+              "conclusion": "仅补清同版原表内容；不等于逐笔现金到账或模型用途认证",
+              "at": "2026-10-14",
+              "item_ids": [
+                "sec-minimum-rent-2026"
+              ]
+            }
           },
           {
             "id": "income-unread-image_15",
-            "label": "实际债务余额表未读取",
-            "state": "not_checked",
-            "source_id": "income-sec-extract",
-            "locator": "源HTML图片 image_15.jpg",
-            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+            "label": "实际债务余额表已补读",
+            "state": "candidate",
+            "source_id": "sec-table-debt",
+            "locator": "原表image_15.jpg全表",
+            "reason": "替代上一稿未读取状态：本轮通过浏览器保存原图并逐表视觉复核；旧失败请求/未读版本留上一稿，内容候选未自动采用。",
+            "followup": {
+              "status": "source_content_checked",
+              "conclusion": "仅补清同版原表内容；不等于逐笔现金到账或模型用途认证",
+              "at": "2026-10-14",
+              "item_ids": [
+                "sec-debt-outstanding_principal"
+              ]
+            }
           },
           {
             "id": "income-unread-image_18",
@@ -2334,6 +2446,846 @@
             "source_id": "income-oracle-calendar-extract",
             "locator": "工具只返回导航",
             "reason": "保留工具版本；财年范围另据实际季度报表表头，不当FAQ已读。"
+          },
+          {
+            "id": "sec-operations-rental_income",
+            "label": "operations：rental_income",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 rental_income；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-other_income",
+            "label": "operations：other_income",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 other_income；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-total_investment_income",
+            "label": "operations：total_investment_income",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 total_investment_income；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-property_operating_expenses",
+            "label": "operations：property_operating_expenses",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 property_operating_expenses；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-ground_rent_expense",
+            "label": "operations：ground_rent_expense",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 ground_rent_expense；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-general_and_administrative",
+            "label": "operations：general_and_administrative",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 general_and_administrative；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-interest_expense",
+            "label": "operations：interest_expense",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 interest_expense；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-total_expenses",
+            "label": "operations：total_expenses",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 total_expenses；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-net_investment_income",
+            "label": "operations：net_investment_income",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 net_investment_income；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-unrealized_loss_derivative",
+            "label": "operations：unrealized_loss_derivative",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 unrealized_loss_derivative；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-unrealized_gain_right_of_use",
+            "label": "operations：unrealized_gain_right_of_use",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 unrealized_gain_right_of_use；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-unrealized_loss_lease_liability",
+            "label": "operations：unrealized_loss_lease_liability",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 unrealized_loss_lease_liability；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-unrealized_gain_loss_real_estate",
+            "label": "operations：unrealized_gain_loss_real_estate",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 unrealized_gain_loss_real_estate；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-total_net_unrealized_gain_loss",
+            "label": "operations：total_net_unrealized_gain_loss",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 total_net_unrealized_gain_loss；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-operations-net_assets_change_operations",
+            "label": "operations：net_assets_change_operations",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "原表 net_assets_change_operations；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-net_assets_change_operations",
+            "label": "cashflow：net_assets_change_operations",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 net_assets_change_operations；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-unrealized_loss_derivative_adjustment",
+            "label": "cashflow：unrealized_loss_derivative_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 unrealized_loss_derivative_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-unrealized_gain_right_of_use_adjustment",
+            "label": "cashflow：unrealized_gain_right_of_use_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 unrealized_gain_right_of_use_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-unrealized_loss_lease_liability_adjustment",
+            "label": "cashflow：unrealized_loss_lease_liability_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 unrealized_loss_lease_liability_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-unrealized_real_estate_adjustment",
+            "label": "cashflow：unrealized_real_estate_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 unrealized_real_estate_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-additions_real_estate",
+            "label": "cashflow：additions_real_estate",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 additions_real_estate；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-accounts_receivable_adjustment",
+            "label": "cashflow：accounts_receivable_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 accounts_receivable_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-other_assets_adjustment",
+            "label": "cashflow：other_assets_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 other_assets_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-accounts_payable_adjustment",
+            "label": "cashflow：accounts_payable_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 accounts_payable_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-unearned_rental_income_adjustment",
+            "label": "cashflow：unearned_rental_income_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 unearned_rental_income_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-other_liabilities_adjustment",
+            "label": "cashflow：other_liabilities_adjustment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 other_liabilities_adjustment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-net_cash_used_operating",
+            "label": "cashflow：net_cash_used_operating",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 net_cash_used_operating；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-construction_loan_cash_proceeds",
+            "label": "cashflow：construction_loan_cash_proceeds",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 construction_loan_cash_proceeds；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-financing_costs_cash_payment",
+            "label": "cashflow：financing_costs_cash_payment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 financing_costs_cash_payment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-bridge_loan_proceeds",
+            "label": "cashflow：bridge_loan_proceeds",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 bridge_loan_proceeds；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-bridge_loan_payment",
+            "label": "cashflow：bridge_loan_payment",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 bridge_loan_payment；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-contributions",
+            "label": "cashflow：contributions",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 contributions；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-distributions",
+            "label": "cashflow：distributions",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 distributions；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-net_cash_provided_financing",
+            "label": "cashflow：net_cash_provided_financing",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 net_cash_provided_financing；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-net_change_cash_all",
+            "label": "cashflow：net_change_cash_all",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 net_change_cash_all；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-cash_all_beginning",
+            "label": "cashflow：cash_all_beginning",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 cash_all_beginning；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-cash_all_ending",
+            "label": "cashflow：cash_all_ending",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 cash_all_ending；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-cash_unrestricted_ending",
+            "label": "cashflow：cash_unrestricted_ending",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 cash_unrestricted_ending；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-cash_restricted_ending",
+            "label": "cashflow：cash_restricted_ending",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 cash_restricted_ending；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-change_accrued_capital_expenditures",
+            "label": "cashflow：change_accrued_capital_expenditures",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 change_accrued_capital_expenditures；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-change_accrued_tenant_improvement_costs",
+            "label": "cashflow：change_accrued_tenant_improvement_costs",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 change_accrued_tenant_improvement_costs；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-interest_settled_in_principal",
+            "label": "cashflow：interest_settled_in_principal",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 interest_settled_in_principal；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-ground_lease_non_cash_amortization",
+            "label": "cashflow：ground_lease_non_cash_amortization",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 ground_lease_non_cash_amortization；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-cash_interest_excluding_capitalized",
+            "label": "cashflow：cash_interest_excluding_capitalized",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 cash_interest_excluding_capitalized；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-cashflow-cash_interest_capitalized_in_caption",
+            "label": "cashflow：cash_interest_capitalized_in_caption",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "原表 cash_interest_capitalized_in_caption；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-real_estate_fair_value",
+            "label": "net-assets：real_estate_fair_value",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 real_estate_fair_value；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-real_estate_cost_caption",
+            "label": "net-assets：real_estate_cost_caption",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 real_estate_cost_caption；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-right_of_use_asset",
+            "label": "net-assets：right_of_use_asset",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 right_of_use_asset；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-cash",
+            "label": "net-assets：cash",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 cash；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-restricted_cash",
+            "label": "net-assets：restricted_cash",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 restricted_cash；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-accounts_receivable",
+            "label": "net-assets：accounts_receivable",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 accounts_receivable；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-other_assets",
+            "label": "net-assets：other_assets",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 other_assets；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-total_assets",
+            "label": "net-assets：total_assets",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 total_assets；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-construction_loan",
+            "label": "net-assets：construction_loan",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 construction_loan；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-accounts_payable",
+            "label": "net-assets：accounts_payable",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 accounts_payable；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-lease_liability",
+            "label": "net-assets：lease_liability",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 lease_liability；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-derivative_liability",
+            "label": "net-assets：derivative_liability",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 derivative_liability；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-unearned_rental_income",
+            "label": "net-assets：unearned_rental_income",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 unearned_rental_income；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-other_liabilities",
+            "label": "net-assets：other_liabilities",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 other_liabilities；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-total_liabilities",
+            "label": "net-assets：total_liabilities",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 total_liabilities；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-net-assets-net_assets",
+            "label": "net-assets：net_assets",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "原表 net_assets；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-equity-changes-net_investment_income",
+            "label": "equity-changes：net_investment_income",
+            "state": "candidate",
+            "source_id": "sec-table-equity-changes",
+            "locator": "原表 net_investment_income；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-equity-changes-net_unrealized_gain_loss",
+            "label": "equity-changes：net_unrealized_gain_loss",
+            "state": "candidate",
+            "source_id": "sec-table-equity-changes",
+            "locator": "原表 net_unrealized_gain_loss；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-equity-changes-operations_change",
+            "label": "equity-changes：operations_change",
+            "state": "candidate",
+            "source_id": "sec-table-equity-changes",
+            "locator": "原表 operations_change；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-equity-changes-contributions",
+            "label": "equity-changes：contributions",
+            "state": "candidate",
+            "source_id": "sec-table-equity-changes",
+            "locator": "原表 contributions；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-equity-changes-distributions",
+            "label": "equity-changes：distributions",
+            "state": "candidate",
+            "source_id": "sec-table-equity-changes",
+            "locator": "原表 distributions；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-equity-changes-capital_transactions_change",
+            "label": "equity-changes：capital_transactions_change",
+            "state": "candidate",
+            "source_id": "sec-table-equity-changes",
+            "locator": "原表 capital_transactions_change；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-equity-changes-ending_net_assets",
+            "label": "equity-changes：ending_net_assets",
+            "state": "candidate",
+            "source_id": "sec-table-equity-changes",
+            "locator": "原表 ending_net_assets；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-debt-outstanding_principal",
+            "label": "debt：outstanding_principal",
+            "state": "candidate",
+            "source_id": "sec-table-debt",
+            "locator": "原表 outstanding_principal；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-debt-fair_value",
+            "label": "debt：fair_value",
+            "state": "candidate",
+            "source_id": "sec-table-debt",
+            "locator": "原表 fair_value；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-debt-weighted_average_interest_rate",
+            "label": "debt：weighted_average_interest_rate",
+            "state": "candidate",
+            "source_id": "sec-table-debt",
+            "locator": "原表 weighted_average_interest_rate；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-fair-value-rollforward-opening_real_estate_fair_value",
+            "label": "fair-value-rollforward：opening_real_estate_fair_value",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "原表 opening_real_estate_fair_value；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-fair-value-rollforward-real_estate_accounting_additions",
+            "label": "fair-value-rollforward：real_estate_accounting_additions",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "原表 real_estate_accounting_additions；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-fair-value-rollforward-real_estate_unrealized_gain",
+            "label": "fair-value-rollforward：real_estate_unrealized_gain",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "原表 real_estate_unrealized_gain；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-fair-value-rollforward-ending_real_estate_fair_value",
+            "label": "fair-value-rollforward：ending_real_estate_fair_value",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "原表 ending_real_estate_fair_value；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-fair-value-rollforward-loan_principal_additions",
+            "label": "fair-value-rollforward：loan_principal_additions",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "原表 loan_principal_additions；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-fair-value-rollforward-ground_lease_non_cash_amortization",
+            "label": "fair-value-rollforward：ground_lease_non_cash_amortization",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "原表 ground_lease_non_cash_amortization；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-minimum-rent-2026",
+            "label": "minimum-rent：2026",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表 2026；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-minimum-rent-2027",
+            "label": "minimum-rent：2027",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表 2027；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-minimum-rent-2028",
+            "label": "minimum-rent：2028",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表 2028；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-minimum-rent-2029",
+            "label": "minimum-rent：2029",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表 2029；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-minimum-rent-2030",
+            "label": "minimum-rent：2030",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表 2030；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-minimum-rent-thereafter",
+            "label": "minimum-rent：thereafter",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表 thereafter；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-minimum-rent-total",
+            "label": "minimum-rent：total",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "原表 total；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-ground-lease-remaining_lease_years",
+            "label": "ground-lease：remaining_lease_years",
+            "state": "candidate",
+            "source_id": "sec-table-ground-lease",
+            "locator": "原表 remaining_lease_years；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-ground-lease-discount_rate",
+            "label": "ground-lease：discount_rate",
+            "state": "candidate",
+            "source_id": "sec-table-ground-lease",
+            "locator": "原表 discount_rate；2025/2024列或最低租金期间列",
+            "reason": "直接视觉转录原表行列；金额USD（不是千美元），括号为负，破折号保留null；财报主体DC1首两栋，未正式采用或填模型。"
+          },
+          {
+            "id": "sec-recon-rental-residual",
+            "label": "扣除附加租金后的会计余项",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "租金收入行；附加租金在财报文字附注5",
+            "reason": "租金总收入应先扣附注附加租金12046759；下方独立扣项仅作会计余项，不认定基本现金租金。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-investment-income",
+            "label": "总投资收入",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "收入两项及合计",
+            "reason": "租金与其他收入分列；均非租金现金收款。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-net-investment-income",
+            "label": "净投资收益",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "收入/四费用与净投资收益",
+            "reason": "不是NOI、实际分红或项目IRR；利息费用含会计计提，不能当现金利息。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-operations-assets",
+            "label": "经营所致净资产增加",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "净投资收益及未实现估值变动",
+            "reason": "含464992590未实现净收益，583807594不是租金现金或分红。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-operating-cash",
+            "label": "来源经营活动现金流合计",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "经营活动11行及合计",
+            "reason": "原表按投资公司列经营现金流，包含房地产投资增加−1673236604；不能直接当算力运营亏损或租金实收。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-financing-cash",
+            "label": "筹资活动现金流合计",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "筹资活动各行及合计",
+            "reason": "现金借款、股本流量分列；不是运营收入。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-cash-close",
+            "label": "现金及受限现金期末余额",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "现金期初/两类净流量/期末",
+            "reason": "含128210477受限现金，不能全部当可分配现金。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-debt-close",
+            "label": "债务本金：现金提用加非现金转息",
+            "state": "candidate",
+            "source_id": "sec-table-debt",
+            "locator": "债务期初/期末与现金流补充",
+            "reason": "459267908＋1547248312＋19344751=2025860971；附注滚动的1566593063含非现金利息，不是纯现金提用。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-receivable-close",
+            "label": "混合应收账款滚动",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "应收期初/期末与现金流/非现金装修变动",
+            "reason": "49866956＋50597341−34603566=65860731，能代数闭合；分租金/装修/其他账龄及收款分配仍未知，不能把34603566全部当租金回收。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-equity-contributions",
+            "label": "2025股本投入流量",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "2025投入与附注1累计差额",
+            "reason": "年度58393774与累计余额差相等；DC1与LonghornJV之间，不按7.7%认定Crusoe投入。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-equity-distributions",
+            "label": "2025股本分配流量",
+            "state": "candidate",
+            "source_id": "sec-table-cashflow",
+            "locator": "2025分配与附注1累计差额",
+            "reason": "年度62107676与累计余额差相等；投资人收到分红/本金比例和上层瀑布未知。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-minimum-total",
+            "label": "未来最低租金表合计",
+            "state": "candidate",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "2026–2030/其后/合计",
+            "reason": "截至2025末未来最低合同租金合计，非未来实收、全租期已收、折现价值或收入现值。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-capital-additions",
+            "label": "房地产账面增加的跨表对照",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "滚动表新增与现金流/非现金补充",
+            "reason": "算术1474006072，滚动表1474006071，相差1美元；不强行取整或修源，明细/舍入原因未知。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-payable-close",
+            "label": "应付余额的跨表对照",
+            "state": "candidate",
+            "source_id": "sec-table-net-assets",
+            "locator": "应付余额及现金/非现金变动",
+            "reason": "计算131696493，原表131696492，相差1美元；原数均保留。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-recon-ground-amortization",
+            "label": "地租非现金摊销跨表对照",
+            "state": "candidate",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "现金流补充729280与滚动表729279",
+            "reason": "1美元差异待来源明细，不能自行称已修复；15.23%是地租计量折现率，不是项目WACC。；仅显式常数算术复核，非源公式重算、实际现金认证或自动填参。"
+          },
+          {
+            "id": "sec-property-reimbursement-gap",
+            "label": "物业费用与转付类别范围差",
+            "state": "candidate",
+            "source_id": "sec-table-operations",
+            "locator": "Property operating expenses与附注5",
+            "reason": "12171536−12046759=124777美元；完整物业费用不等于附注中的转付类别，不能因此假定NOI100%；费用明细/可转付范围待查。"
+          },
+          {
+            "id": "sec-unknown-rent-receipts",
+            "label": "真实租金收款仍不能唯一分拆",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "现金流表未单列租金到账；混合应收与装修代垫、预收租金、减免/各厅起租与GAAP时点未齐。"
+          },
+          {
+            "id": "sec-unknown-interest-reconciliation",
+            "label": "会计利息与实际利息支付分解未知",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "经营表利息25533598，非资本化付息行破折号、脚注资本化现金利息85310832、本金结息19344751；完整费用摊销/资本化/应付/支付对账未取得。"
+          },
+          {
+            "id": "sec-unknown-contract-calendar",
+            "label": "各厅合同付款日历仍未知",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "未来2026最低租金249622560不同于首年单价年化244728000；4厅是否同日起租、修订/免租/按天计费未取。"
           }
         ],
         "derivations": [
@@ -2673,6 +3625,316 @@
               "仅该会计转付类别；不是全公司利润或NOI",
               "费用转付有收付时差、应收与信用风险，现金利润未知"
             ]
+          },
+          {
+            "id": "sec-relation-rental-residual",
+            "output_item_id": "sec-recon-rental-residual",
+            "input_item_ids": [
+              "sec-operations-rental_income",
+              "income-reimbursement"
+            ],
+            "source_id": "sec-table-operations",
+            "locator": "租金收入行；附加租金在财报文字附注5",
+            "formula": "154211721−12046759=142164962 USD（会计余项，非实收）",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "租金总收入应先扣附注附加租金12046759；下方独立扣项仅作会计余项，不认定基本现金租金。"
+            ]
+          },
+          {
+            "id": "sec-relation-investment-income",
+            "output_item_id": "sec-recon-investment-income",
+            "input_item_ids": [
+              "sec-operations-rental_income",
+              "sec-operations-other_income"
+            ],
+            "source_id": "sec-table-operations",
+            "locator": "收入两项及合计",
+            "formula": "(154211721) + (3266611) = 157478332",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "租金与其他收入分列；均非租金现金收款。"
+            ]
+          },
+          {
+            "id": "sec-relation-net-investment-income",
+            "output_item_id": "sec-recon-net-investment-income",
+            "input_item_ids": [
+              "sec-operations-total_investment_income",
+              "sec-operations-property_operating_expenses",
+              "sec-operations-ground_rent_expense",
+              "sec-operations-general_and_administrative",
+              "sec-operations-interest_expense"
+            ],
+            "source_id": "sec-table-operations",
+            "locator": "收入/四费用与净投资收益",
+            "formula": "(157478332) + (-12171536) + (-400000) + (-558194) + (-25533598) = 118815004",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "不是NOI、实际分红或项目IRR；利息费用含会计计提，不能当现金利息。"
+            ]
+          },
+          {
+            "id": "sec-relation-operations-assets",
+            "output_item_id": "sec-recon-operations-assets",
+            "input_item_ids": [
+              "sec-operations-net_investment_income",
+              "sec-operations-unrealized_loss_derivative",
+              "sec-operations-unrealized_gain_right_of_use",
+              "sec-operations-unrealized_loss_lease_liability",
+              "sec-operations-unrealized_gain_loss_real_estate"
+            ],
+            "source_id": "sec-table-operations",
+            "locator": "净投资收益及未实现估值变动",
+            "formula": "(118815004) + (-33138832) + (8332257) + (-8332257) + (498131422) = 583807594",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "含464992590未实现净收益，583807594不是租金现金或分红。"
+            ]
+          },
+          {
+            "id": "sec-relation-operating-cash",
+            "output_item_id": "sec-recon-operating-cash",
+            "input_item_ids": [
+              "sec-cashflow-net_assets_change_operations",
+              "sec-cashflow-unrealized_loss_derivative_adjustment",
+              "sec-cashflow-unrealized_gain_right_of_use_adjustment",
+              "sec-cashflow-unrealized_loss_lease_liability_adjustment",
+              "sec-cashflow-unrealized_real_estate_adjustment",
+              "sec-cashflow-additions_real_estate",
+              "sec-cashflow-accounts_receivable_adjustment",
+              "sec-cashflow-other_assets_adjustment",
+              "sec-cashflow-accounts_payable_adjustment",
+              "sec-cashflow-unearned_rental_income_adjustment",
+              "sec-cashflow-other_liabilities_adjustment"
+            ],
+            "source_id": "sec-table-cashflow",
+            "locator": "经营活动11行及合计",
+            "formula": "(583807594) + (33138832) + (-8332257) + (8332257) + (-498131422) + (-1673236604) + (34603566) + (-4235720) + (-19971881) + (25757050) + (76645301) = -1441623284",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "原表按投资公司列经营现金流，包含房地产投资增加−1673236604；不能直接当算力运营亏损或租金实收。"
+            ]
+          },
+          {
+            "id": "sec-relation-financing-cash",
+            "output_item_id": "sec-recon-financing-cash",
+            "input_item_ids": [
+              "sec-cashflow-construction_loan_cash_proceeds",
+              "sec-cashflow-financing_costs_cash_payment",
+              "sec-cashflow-bridge_loan_proceeds",
+              "sec-cashflow-bridge_loan_payment",
+              "sec-cashflow-contributions",
+              "sec-cashflow-distributions"
+            ],
+            "source_id": "sec-table-cashflow",
+            "locator": "筹资活动各行及合计",
+            "formula": "(1547248312) + (0) + (0) + (0) + (58393774) + (-62107676) = 1543534410",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "现金借款、股本流量分列；不是运营收入。"
+            ]
+          },
+          {
+            "id": "sec-relation-cash-close",
+            "output_item_id": "sec-recon-cash-close",
+            "input_item_ids": [
+              "sec-cashflow-cash_all_beginning",
+              "sec-cashflow-net_cash_used_operating",
+              "sec-cashflow-net_cash_provided_financing"
+            ],
+            "source_id": "sec-table-cashflow",
+            "locator": "现金期初/两类净流量/期末",
+            "formula": "(56479368) + (-1441623284) + (1543534410) = 158390494",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "含128210477受限现金，不能全部当可分配现金。"
+            ]
+          },
+          {
+            "id": "sec-relation-debt-close",
+            "output_item_id": "sec-recon-debt-close",
+            "input_item_ids": [
+              "sec-debt-outstanding_principal",
+              "sec-cashflow-construction_loan_cash_proceeds",
+              "sec-cashflow-interest_settled_in_principal"
+            ],
+            "source_id": "sec-table-debt",
+            "locator": "债务期初/期末与现金流补充",
+            "formula": "(459267908) + (1547248312) + (19344751) = 2025860971",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "459267908＋1547248312＋19344751=2025860971；附注滚动的1566593063含非现金利息，不是纯现金提用。"
+            ]
+          },
+          {
+            "id": "sec-relation-receivable-close",
+            "output_item_id": "sec-recon-receivable-close",
+            "input_item_ids": [
+              "sec-net-assets-accounts_receivable",
+              "sec-cashflow-change_accrued_tenant_improvement_costs",
+              "sec-cashflow-accounts_receivable_adjustment"
+            ],
+            "source_id": "sec-table-net-assets",
+            "locator": "应收期初/期末与现金流/非现金装修变动",
+            "formula": "(49866956) + (50597341) + (-34603566) = 65860731",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "49866956＋50597341−34603566=65860731，能代数闭合；分租金/装修/其他账龄及收款分配仍未知，不能把34603566全部当租金回收。"
+            ]
+          },
+          {
+            "id": "sec-relation-equity-contributions",
+            "output_item_id": "sec-recon-equity-contributions",
+            "input_item_ids": [
+              "sec-cashflow-contributions"
+            ],
+            "source_id": "sec-table-cashflow",
+            "locator": "2025投入与附注1累计差额",
+            "formula": "(58393774) = 58393774",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "年度58393774与累计余额差相等；DC1与LonghornJV之间，不按7.7%认定Crusoe投入。"
+            ]
+          },
+          {
+            "id": "sec-relation-equity-distributions",
+            "output_item_id": "sec-recon-equity-distributions",
+            "input_item_ids": [
+              "sec-cashflow-distributions"
+            ],
+            "source_id": "sec-table-cashflow",
+            "locator": "2025分配与附注1累计差额",
+            "formula": "(62107676) = 62107676",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "年度62107676与累计余额差相等；投资人收到分红/本金比例和上层瀑布未知。"
+            ]
+          },
+          {
+            "id": "sec-relation-minimum-total",
+            "output_item_id": "sec-recon-minimum-total",
+            "input_item_ids": [
+              "sec-minimum-rent-2026",
+              "sec-minimum-rent-2027",
+              "sec-minimum-rent-2028",
+              "sec-minimum-rent-2029",
+              "sec-minimum-rent-2030",
+              "sec-minimum-rent-thereafter"
+            ],
+            "source_id": "sec-table-minimum-rent",
+            "locator": "2026–2030/其后/合计",
+            "formula": "(249622560) + (257111237) + (264824574) + (272769311) + (280952390) + (3158562488) = 4483842560",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "截至2025末未来最低合同租金合计，非未来实收、全租期已收、折现价值或收入现值。"
+            ]
+          },
+          {
+            "id": "sec-relation-capital-additions",
+            "output_item_id": "sec-recon-capital-additions",
+            "input_item_ids": [
+              "sec-cashflow-additions_real_estate",
+              "sec-cashflow-change_accrued_capital_expenditures",
+              "sec-cashflow-interest_settled_in_principal"
+            ],
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "滚动表新增与现金流/非现金补充",
+            "formula": "(1673236604) + (-218575283) + (19344751) = 1474006072",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "算术1474006072，滚动表1474006071，相差1美元；不强行取整或修源，明细/舍入原因未知。"
+            ]
+          },
+          {
+            "id": "sec-relation-payable-close",
+            "output_item_id": "sec-recon-payable-close",
+            "input_item_ids": [
+              "sec-net-assets-accounts_payable",
+              "sec-cashflow-accounts_payable_adjustment",
+              "sec-cashflow-change_accrued_capital_expenditures"
+            ],
+            "source_id": "sec-table-net-assets",
+            "locator": "应付余额及现金/非现金变动",
+            "formula": "(370243657) + (-19971881) + (-218575283) = 131696493",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "计算131696493，原表131696492，相差1美元；原数均保留。"
+            ]
+          },
+          {
+            "id": "sec-relation-ground-amortization",
+            "output_item_id": "sec-recon-ground-amortization",
+            "input_item_ids": [
+              "sec-cashflow-ground_lease_non_cash_amortization"
+            ],
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "现金流补充729280与滚动表729279",
+            "formula": "(729280) = 729280",
+            "scope": "DC1同版2025/2024财表常数对账；不套当前四栋模型",
+            "review_state": "candidate",
+            "relationship_kind": "financial_statement_arithmetic_not_cash_adoption",
+            "assumptions": [
+              "使用视觉核对的原表数，不补改源差异",
+              "源破折号仅为表内加总按0表示，未知实收保持null",
+              "1美元差异待来源明细，不能自行称已修复；15.23%是地租计量折现率，不是项目WACC。"
+            ]
           }
         ],
         "limitations": [
@@ -2697,11 +3959,14 @@
           "交易顾问只取得工具转录，原HTML下载exit56；其八栋/300MW发电范围是历史交易候选，未证明现场额定值/实支；与350/360.5MW版本差异保留。",
           "收入/回报仅首两栋DC1文字附注和运营链定向核对；租约原件、SEC表图仍未取得/读取。不同主体及合同/会计/现金期间不可混用。",
           "首年单价年化244728000美元是候选算术标尺，不是当前四栋收入、2025/2026实收或Oracle/OpenAI收益；不用159亿美元估算作实际回报分母。",
-          "最新Oracle公司级收入/RPO、客户预付/自供GPU不是Abilene收入或资产归属；未填任何新参数或关闭原三异常。"
+          "最新Oracle公司级收入/RPO、客户预付/自供GPU不是Abilene收入或资产归属；未填任何新参数或关闭原三异常。",
+          "四张目标原表及四张辅助原表已通过浏览器保存/视觉核对；原HTML未冻结，完整租约和其余图仍未读。手工转录不是图内嵌文本，原图SHA和转录SHA分别保留。",
+          "会计/借款/股本及现金期末有局部算术闭合；租金真实收款、合同日历和利息费用到现金支付的分解仍未知。新原图不赋予模型填参资格。",
+          "1美元源表差异原值保留，物业完整费用与转付类别差124777为待查范围差，不强行修源或称全账一致；原三异常持续保留。"
         ],
-        "previous_review_sha256": "9f453680802fa871fb09d524b5fcc63a91a54ded3537d510b6590d34de0bd130"
+        "previous_review_sha256": "ed31f46247b7c91a05d13261e9a62809462dc83ee3009c93bc2bb1112ebcad76"
       },
-      "review_sha256": "ed31f46247b7c91a05d13261e9a62809462dc83ee3009c93bc2bb1112ebcad76",
+      "review_sha256": "5f2b98b73b8f02d90433068925ecbb6f28c5b2e0f384a7d05246578962aaaf04",
       "expected_observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
       "blockers": [
         {
@@ -3349,7 +4614,7 @@
         "wacc": {
           "kind": "analysis_choice",
           "actual_state": "not_site_observation",
-          "note": "研究口径或前瞻判断；不是待采集的确定现场事实；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，原稿未读债务/现金表；本轮原表已补读，日序列/完整费用与用途仍待核。 当前计算值仍参考/假设，非现场合同采用。；SEC原表已补核2025限定主体数据，不自动替换当前四栋情景参考/假设。",
           "source_ref": {
             "path": "assumptions.wacc"
           }
@@ -3429,7 +4694,7 @@
         "noi_margin": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知；收入回报复核：NNN费用转付和gross类别净额不证明NOI100%；融资/空置/信用风险另列。 当前计算值仍参考/假设，非现场合同采用。",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：NNN费用转付和gross类别净额不证明NOI100%；融资/空置/信用风险另列。 当前计算值仍参考/假设，非现场合同采用。；SEC原表已补核2025限定主体数据，不自动替换当前四栋情景参考/假设。",
           "source_ref": {
             "path": "assumptions.noi_margin"
           }
@@ -3437,7 +4702,7 @@
         "shell_ltc": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，原稿未读债务/现金表；本轮原表已补读，日序列/完整费用与用途仍待核。 当前计算值仍参考/假设，非现场合同采用。；SEC原表已补核2025限定主体数据，不自动替换当前四栋情景参考/假设。",
           "source_ref": {
             "path": "assumptions.shell_ltc"
           }
@@ -3445,7 +4710,7 @@
         "debt_rate": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，原稿未读债务/现金表；本轮原表已补读，日序列/完整费用与用途仍待核。 当前计算值仍参考/假设，非现场合同采用。；SEC原表已补核2025限定主体数据，不自动替换当前四栋情景参考/假设。",
           "source_ref": {
             "path": "assumptions.debt_rate"
           }
@@ -3453,7 +4718,7 @@
         "residual_share": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，原稿未读债务/现金表；本轮原表已补读，日序列/完整费用与用途仍待核。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.residual_share"
           }
@@ -4238,25 +5503,27 @@
         "id": "abilene-income-return-v1",
         "reviewed_at": "2026-10-14",
         "status": "candidate_only_no_parameter_fill",
-        "previous_review_sha256": "9f453680802fa871fb09d524b5fcc63a91a54ded3537d510b6590d34de0bd130",
+        "previous_review_sha256": "ed31f46247b7c91a05d13261e9a62809462dc83ee3009c93bc2bb1112ebcad76",
         "scope_separation": "租约及财报属于DC1首两栋；当前模型是四栋421MW物理估算，主体未定。不得直接套用租金/借款/权益到当前模型。",
         "actors": [
           {
             "id": "dc1",
             "label": "Abilene DC 1, LLC",
             "role": "首两栋项目出租/开发公司",
-            "revenue": "基本租金、附加租金费用转付；公开条款单价已读，完整收入表未读",
+            "revenue": "2025会计租金收入154211721、其他收入3266611；首年合同单价年化为另一口径，实际租金到账仍未知",
             "costs": "设施/电站建设、融资、地租和部分租户装修代垫；租期物业费用向租户转付",
             "period": "2025自然年财报；B1/B2各自起租年度",
             "boundary": "首两栋八厅及电站；不等于Crusoe全公司或四栋421MW。支出、公允价值与返还代垫分列。",
             "source_ids": [
-              "income-sec-extract"
+              "income-sec-extract",
+              "sec-table-operations"
             ],
             "evidence_ids": [
               "income-scope",
               "income-accrual",
               "income-opex",
-              "income-ti"
+              "income-ti",
+              "sec-operations-rental_income"
             ],
             "status": "candidate_scope_not_adopted"
           },
@@ -4282,7 +5549,7 @@
             "id": "jv-equity",
             "label": "Longhorn JV及其股东",
             "role": "DC1持有层与权益投资人",
-            "revenue": "股权分配/处置收益；CrusoeAbilene7.7%、BOREC92.3%为2025末持有比例候选",
+            "revenue": "股权分配/处置收益；CrusoeAbilene7.7%、BOREC92.3%为2025末持有比例候选；已补核DC1向LonghornJV的2025年度分配62107676，终端股东各自收到多少仍未知",
             "costs": "出资、上层融资/税/管理费；优先分配和追补未知",
             "period": "建设至运营/退出的带日期权益现金流",
             "boundary": "股本累计分配可含资本返还，不是经营利润；不能按持股比例推算Crusoe实际分红或股东IRR。",
@@ -4408,7 +5675,7 @@
             "income-building-base",
             "income-annual-base"
           ],
-          "note": "244728000=2×12×(4×2475000+297000)，使用两栋各自首年单价的统一年化标尺；不是同一自然年实收、2025部分年收入或2026当前档位。周年分栋，租约修订/减免/收付未知；租约原件与最低租金表未取得。"
+          "note": "244728000=2×12×(4×2475000+297000)，使用两栋各自首年单价的统一年化标尺；不是同一自然年实收、2025部分年收入或2026当前档位。周年分栋，租约修订/减免/收付未知；最低租金表已补读，租约原件仍未取得；会计收入与实际收款分解未贯通。"
         },
         "records": [
           {
@@ -4635,7 +5902,7 @@
             "actual_value": null,
             "automatic_fill": false,
             "ready_for_human_review": false,
-            "reason": "NNN费用转付和gross类别净额不证明NOI100%；融资/空置/信用风险另列。",
+            "reason": "完整物业费用12171536大于附注转付12046759；净投资收益118815004另含G&A/利息等。不能用转付类别净额推NOI100%。",
             "next_action": "补完整经营表和不可转付费用、收付与应收；先区分NOI/税前利润。",
             "evidence_ids": [
               "income-opex",
@@ -4657,11 +5924,14 @@
             "actual_value": null,
             "automatic_fill": false,
             "ready_for_human_review": false,
-            "reason": "贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。",
-            "next_action": "取实际draw/还本/利息、对冲/费用、再融资/残值和主体资本结构。",
+            "reason": "2025原债务表本金2025860971、加权平均利率6.73%已读；与现金提用/本金结息局部闭合，不是当前四栋的LTC/综合合同利率或WACC。",
+            "next_action": "补逐笔提用/付息/对冲/费用和再融资、残值/股东资本结构；不得直接填当前模型。",
             "evidence_ids": [
               "income-loan",
-              "income-interest"
+              "income-interest",
+              "sec-debt-outstanding_principal",
+              "sec-debt-weighted_average_interest_rate",
+              "sec-recon-debt-close"
             ]
           },
           {
@@ -4764,8 +6034,8 @@
             "id": "income-unknown-rent-cash",
             "label": "租金实收与日序列",
             "status": "unknown",
-            "reason": "完整租约、发票、应收/预收与现金表未取；不足以重建2025部分年或2026实收",
-            "next_action": "先读财报图片，再对齐计提、合同应付、开票、到账和减免/滞纳/调整日期"
+            "reason": "经营租金154211721为会计收入；应收含租户装修代垫，49,866,956＋50,597,341−34,603,566＝65,860,731只闭合混合应收。预收租金25,757,050另列；无租金/装修分户开票/核销/收款，不能唯一分拆租金实收，也不能确认Oracle/OpenAI或Lancium收到多少。",
+            "next_action": "取租金/装修回收分户明细、完整租约修订、逐厅起租及开票/核销/到账；当前留未知。"
           },
           {
             "id": "income-unknown-denominator",
@@ -4813,7 +6083,7 @@
             "id": "income-unknown-returns",
             "label": "各主体真实回报",
             "status": "unknown",
-            "reason": "完整资产/权益CF、债务提用/还本/对冲/再融资、税、残值与退出均未齐",
+            "reason": "已读年度财务/债务/股本现金流候选，但完整带日期净现金流、股东瀑布/再融资/退出仍未齐；实际回报仍未知。",
             "next_action": "按主体构建含建设期的带日期现金流，再分别算项目/权益IRR、NPV、DSCR；未齐留null"
           }
         ],
@@ -4852,7 +6122,7 @@
           "actual_dscr": null,
           "actual_noi_usd": null,
           "automatic_fill": false,
-          "reason": "需先固定主体/资产/阶段/时点，列建设至退出现金流：项目FCF含运营收付、资本支出、营运资金、税和残值；权益CF另含出资/融资/还本息及分红瀑布。项目IRR、权益IRR、NPV与DSCR使用相应分母/期间，不用会计估值变动或融资上限替实付。244728000/15948322000跨主体/两栋四栋/合同年实际成本，不是回报率。"
+          "reason": "需先固定主体/资产/阶段/时点，列建设至退出现金流：项目FCF含运营收付、资本支出、营运资金、税和残值；权益CF另含出资/融资/还本息及分红瀑布。项目IRR、权益IRR、NPV与DSCR使用相应分母/期间，不用会计估值变动或融资上限替实付。244728000/15948322000跨主体/两栋四栋/合同年实际成本，不是回报率。 四张目标表已补读，年度股本/债务能局部对应；这仍不替代租金实际收款分解和完整带日期权益现金流。"
         },
         "unobtained_assets": [
           {
@@ -4865,30 +6135,34 @@
           {
             "id": "income-sec-operations",
             "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_6.jpg",
-            "status": "not_obtained",
+            "status": "previous_failure_image_now_checked",
             "curl_exit": 56,
-            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+            "reason": "旧失败请求仍保存；本轮同一SEC表图通过浏览器取得并视觉核对，来源SHA见后续原表。不能将旧失败称本轮未读。",
+            "followup_source_id": "sec-table-operations"
           },
           {
             "id": "income-sec-cashflow",
             "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_10.jpg",
-            "status": "not_obtained",
+            "status": "previous_failure_image_now_checked",
             "curl_exit": 56,
-            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+            "reason": "旧失败请求仍保存；本轮同一SEC表图通过浏览器取得并视觉核对，来源SHA见后续原表。不能将旧失败称本轮未读。",
+            "followup_source_id": "sec-table-cashflow"
           },
           {
             "id": "income-sec-minimum-rent",
             "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_17.jpg",
-            "status": "not_obtained",
+            "status": "previous_failure_image_now_checked",
             "curl_exit": 56,
-            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+            "reason": "旧失败请求仍保存；本轮同一SEC表图通过浏览器取得并视觉核对，来源SHA见后续原表。不能将旧失败称本轮未读。",
+            "followup_source_id": "sec-table-minimum-rent"
           },
           {
             "id": "income-sec-debt",
             "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_15.jpg",
-            "status": "not_obtained",
+            "status": "previous_failure_image_now_checked",
             "curl_exit": 56,
-            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+            "reason": "旧失败请求仍保存；本轮同一SEC表图通过浏览器取得并视觉核对，来源SHA见后续原表。不能将旧失败称本轮未读。",
+            "followup_source_id": "sec-table-debt"
           },
           {
             "id": "income-sec-highlights",
@@ -4920,13 +6194,1564 @@
           }
         ],
         "limitations": [
-          "SEC原HTML和财务图片未取得；本轮工具读取附注与申报头有各自SHA，只绑定转录版本。原版20页相关财表仍未读，财报表格数值不靠推算补造。",
+          "SEC原HTML仍未冻结；本轮已补读八张原表图，余图及image_18回报摘要仍未读。来源工具转录、图像和人工视觉转录SHA分开，不冒充完整原件已穷尽。",
           "租约原件、2026修订和Oracle/OpenAI园区专属商业/结算合同未取得；未读/未知不是自动0。",
           "不同主体收支先分列；汇总生态资金流须抵销同一笔租金/电款/开发费，不能将房东、Oracle、OpenAI收入相加当园区利润。",
           "候选未获人类确认或模型用途认证；新租期/递增也不自动填；原三异常与容量/算力/成本共享链保留。"
         ]
       },
-      "income_review_sha256": "7d9901d7961fbb4fca6c39d7a98a388a2a07fa263c61225cfe151ee2092017a6"
+      "income_review_sha256": "0b86dc5db812986fdc78ace1df374771867cd79f5a4532b4f262913bcf7baef5",
+      "sec_table_review": {
+        "id": "abilene-sec-table-reconciliation-v1",
+        "reviewed_at": "2026-10-14",
+        "status": "source_checked_candidates_no_parameter_fill",
+        "previous_review_sha256": "ed31f46247b7c91a05d13261e9a62809462dc83ee3009c93bc2bb1112ebcad76",
+        "previous_income_review_sha256": "7d9901d7961fbb4fca6c39d7a98a388a2a07fa263c61225cfe151ee2092017a6",
+        "scope": "Abilene DC1首两栋及电站，2025自然年/2024成立起期间；不套四栋421MW情景",
+        "issuer": "Abilene DC 1, LLC",
+        "accession": "0001944366-26-000020",
+        "financial_as_of": "2025-12-31",
+        "audit_date": "2026-03-12",
+        "filed_date": "2026-03-13",
+        "tables": [
+          {
+            "id": "operations",
+            "label": "经营表",
+            "source_id": "sec-table-operations",
+            "printed_page": 5,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": true,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "id": "rental_income",
+                "year2025": 154211721,
+                "year2024": null,
+                "evidence_id": "sec-operations-rental_income"
+              },
+              {
+                "id": "other_income",
+                "year2025": 3266611,
+                "year2024": null,
+                "evidence_id": "sec-operations-other_income"
+              },
+              {
+                "id": "total_investment_income",
+                "year2025": 157478332,
+                "year2024": null,
+                "evidence_id": "sec-operations-total_investment_income"
+              },
+              {
+                "id": "property_operating_expenses",
+                "year2025": 12171536,
+                "year2024": null,
+                "evidence_id": "sec-operations-property_operating_expenses"
+              },
+              {
+                "id": "ground_rent_expense",
+                "year2025": 400000,
+                "year2024": 1400000,
+                "evidence_id": "sec-operations-ground_rent_expense"
+              },
+              {
+                "id": "general_and_administrative",
+                "year2025": 558194,
+                "year2024": null,
+                "evidence_id": "sec-operations-general_and_administrative"
+              },
+              {
+                "id": "interest_expense",
+                "year2025": 25533598,
+                "year2024": 1818031,
+                "evidence_id": "sec-operations-interest_expense"
+              },
+              {
+                "id": "total_expenses",
+                "year2025": 38663328,
+                "year2024": 3218031,
+                "evidence_id": "sec-operations-total_expenses"
+              },
+              {
+                "id": "net_investment_income",
+                "year2025": 118815004,
+                "year2024": -3218031,
+                "evidence_id": "sec-operations-net_investment_income"
+              },
+              {
+                "id": "unrealized_loss_derivative",
+                "year2025": -33138832,
+                "year2024": -1079975,
+                "evidence_id": "sec-operations-unrealized_loss_derivative"
+              },
+              {
+                "id": "unrealized_gain_right_of_use",
+                "year2025": 8332257,
+                "year2024": 5485400,
+                "evidence_id": "sec-operations-unrealized_gain_right_of_use"
+              },
+              {
+                "id": "unrealized_loss_lease_liability",
+                "year2025": -8332257,
+                "year2024": -5485400,
+                "evidence_id": "sec-operations-unrealized_loss_lease_liability"
+              },
+              {
+                "id": "unrealized_gain_loss_real_estate",
+                "year2025": 498131422,
+                "year2024": -35000000,
+                "evidence_id": "sec-operations-unrealized_gain_loss_real_estate"
+              },
+              {
+                "id": "total_net_unrealized_gain_loss",
+                "year2025": 464992590,
+                "year2024": -36079975,
+                "evidence_id": "sec-operations-total_net_unrealized_gain_loss"
+              },
+              {
+                "id": "net_assets_change_operations",
+                "year2025": 583807594,
+                "year2024": -39298006,
+                "evidence_id": "sec-operations-net_assets_change_operations"
+              }
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "cashflow",
+            "label": "现金流表",
+            "source_id": "sec-table-cashflow",
+            "printed_page": 7,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": true,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "id": "net_assets_change_operations",
+                "year2025": 583807594,
+                "year2024": -39298006,
+                "evidence_id": "sec-cashflow-net_assets_change_operations"
+              },
+              {
+                "id": "unrealized_loss_derivative_adjustment",
+                "year2025": 33138832,
+                "year2024": 1079975,
+                "evidence_id": "sec-cashflow-unrealized_loss_derivative_adjustment"
+              },
+              {
+                "id": "unrealized_gain_right_of_use_adjustment",
+                "year2025": -8332257,
+                "year2024": -5485400,
+                "evidence_id": "sec-cashflow-unrealized_gain_right_of_use_adjustment"
+              },
+              {
+                "id": "unrealized_loss_lease_liability_adjustment",
+                "year2025": 8332257,
+                "year2024": 5485400,
+                "evidence_id": "sec-cashflow-unrealized_loss_lease_liability_adjustment"
+              },
+              {
+                "id": "unrealized_real_estate_adjustment",
+                "year2025": -498131422,
+                "year2024": 35000000,
+                "evidence_id": "sec-cashflow-unrealized_real_estate_adjustment"
+              },
+              {
+                "id": "additions_real_estate",
+                "year2025": -1673236604,
+                "year2024": -947949219,
+                "evidence_id": "sec-cashflow-additions_real_estate"
+              },
+              {
+                "id": "accounts_receivable_adjustment",
+                "year2025": 34603566,
+                "year2024": null,
+                "evidence_id": "sec-cashflow-accounts_receivable_adjustment"
+              },
+              {
+                "id": "other_assets_adjustment",
+                "year2025": -4235720,
+                "year2024": -28150558,
+                "evidence_id": "sec-cashflow-other_assets_adjustment"
+              },
+              {
+                "id": "accounts_payable_adjustment",
+                "year2025": -19971881,
+                "year2024": 399909,
+                "evidence_id": "sec-cashflow-accounts_payable_adjustment"
+              },
+              {
+                "id": "unearned_rental_income_adjustment",
+                "year2025": 25757050,
+                "year2024": null,
+                "evidence_id": "sec-cashflow-unearned_rental_income_adjustment"
+              },
+              {
+                "id": "other_liabilities_adjustment",
+                "year2025": 76645301,
+                "year2024": 3173375,
+                "evidence_id": "sec-cashflow-other_liabilities_adjustment"
+              },
+              {
+                "id": "net_cash_used_operating",
+                "year2025": -1441623284,
+                "year2024": -975744524,
+                "evidence_id": "sec-cashflow-net_cash_used_operating"
+              },
+              {
+                "id": "construction_loan_cash_proceeds",
+                "year2025": 1547248312,
+                "year2024": 459267908,
+                "evidence_id": "sec-cashflow-construction_loan_cash_proceeds"
+              },
+              {
+                "id": "financing_costs_cash_payment",
+                "year2025": null,
+                "year2024": -53996154,
+                "evidence_id": "sec-cashflow-financing_costs_cash_payment"
+              },
+              {
+                "id": "bridge_loan_proceeds",
+                "year2025": null,
+                "year2024": 300000000,
+                "evidence_id": "sec-cashflow-bridge_loan_proceeds"
+              },
+              {
+                "id": "bridge_loan_payment",
+                "year2025": null,
+                "year2024": -300000000,
+                "evidence_id": "sec-cashflow-bridge_loan_payment"
+              },
+              {
+                "id": "contributions",
+                "year2025": 58393774,
+                "year2024": 868453049,
+                "evidence_id": "sec-cashflow-contributions"
+              },
+              {
+                "id": "distributions",
+                "year2025": -62107676,
+                "year2024": -241500911,
+                "evidence_id": "sec-cashflow-distributions"
+              },
+              {
+                "id": "net_cash_provided_financing",
+                "year2025": 1543534410,
+                "year2024": 1032223892,
+                "evidence_id": "sec-cashflow-net_cash_provided_financing"
+              },
+              {
+                "id": "net_change_cash_all",
+                "year2025": 101911126,
+                "year2024": 56479368,
+                "evidence_id": "sec-cashflow-net_change_cash_all"
+              },
+              {
+                "id": "cash_all_beginning",
+                "year2025": 56479368,
+                "year2024": null,
+                "evidence_id": "sec-cashflow-cash_all_beginning"
+              },
+              {
+                "id": "cash_all_ending",
+                "year2025": 158390494,
+                "year2024": 56479368,
+                "evidence_id": "sec-cashflow-cash_all_ending"
+              },
+              {
+                "id": "cash_unrestricted_ending",
+                "year2025": 30180017,
+                "year2024": 20982076,
+                "evidence_id": "sec-cashflow-cash_unrestricted_ending"
+              },
+              {
+                "id": "cash_restricted_ending",
+                "year2025": 128210477,
+                "year2024": 35497292,
+                "evidence_id": "sec-cashflow-cash_restricted_ending"
+              },
+              {
+                "id": "change_accrued_capital_expenditures",
+                "year2025": -218575283,
+                "year2024": 344307799,
+                "evidence_id": "sec-cashflow-change_accrued_capital_expenditures"
+              },
+              {
+                "id": "change_accrued_tenant_improvement_costs",
+                "year2025": 50597341,
+                "year2024": 25535948,
+                "evidence_id": "sec-cashflow-change_accrued_tenant_improvement_costs"
+              },
+              {
+                "id": "interest_settled_in_principal",
+                "year2025": 19344751,
+                "year2024": null,
+                "evidence_id": "sec-cashflow-interest_settled_in_principal"
+              },
+              {
+                "id": "ground_lease_non_cash_amortization",
+                "year2025": 729280,
+                "year2024": null,
+                "evidence_id": "sec-cashflow-ground_lease_non_cash_amortization"
+              },
+              {
+                "id": "cash_interest_excluding_capitalized",
+                "year2025": null,
+                "year2024": 1818031,
+                "evidence_id": "sec-cashflow-cash_interest_excluding_capitalized"
+              },
+              {
+                "id": "cash_interest_capitalized_in_caption",
+                "year2025": 85310832,
+                "year2024": 6106433,
+                "evidence_id": "sec-cashflow-cash_interest_capitalized_in_caption"
+              }
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "debt",
+            "label": "债务表",
+            "source_id": "sec-table-debt",
+            "printed_page": 16,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": true,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "id": "outstanding_principal",
+                "year2025": 2025860971,
+                "year2024": 459267908,
+                "evidence_id": "sec-debt-outstanding_principal"
+              },
+              {
+                "id": "fair_value",
+                "year2025": 2025860971,
+                "year2024": 459267908,
+                "evidence_id": "sec-debt-fair_value"
+              },
+              {
+                "id": "weighted_average_interest_rate",
+                "year2025": 0.0673,
+                "year2024": 0.0695,
+                "evidence_id": "sec-debt-weighted_average_interest_rate"
+              }
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "minimum-rent",
+            "label": "未来最低租金表",
+            "source_id": "sec-table-minimum-rent",
+            "printed_page": 18,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": true,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "period": "2026",
+                "value": 249622560,
+                "evidence_id": "sec-minimum-rent-2026"
+              },
+              {
+                "period": "2027",
+                "value": 257111237,
+                "evidence_id": "sec-minimum-rent-2027"
+              },
+              {
+                "period": "2028",
+                "value": 264824574,
+                "evidence_id": "sec-minimum-rent-2028"
+              },
+              {
+                "period": "2029",
+                "value": 272769311,
+                "evidence_id": "sec-minimum-rent-2029"
+              },
+              {
+                "period": "2030",
+                "value": 280952390,
+                "evidence_id": "sec-minimum-rent-2030"
+              },
+              {
+                "period": "thereafter",
+                "value": 3158562488,
+                "evidence_id": "sec-minimum-rent-thereafter"
+              },
+              {
+                "period": "total",
+                "value": 4483842560,
+                "evidence_id": "sec-minimum-rent-total"
+              }
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "net-assets",
+            "label": "净资产表",
+            "source_id": "sec-table-net-assets",
+            "printed_page": 3,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": false,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "id": "real_estate_fair_value",
+                "year2025": 3283390665,
+                "year2024": 1311253172,
+                "evidence_id": "sec-net-assets-real_estate_fair_value"
+              },
+              {
+                "id": "real_estate_cost_caption",
+                "year2025": 2820259244,
+                "year2024": 1346253172,
+                "evidence_id": "sec-net-assets-real_estate_cost_caption"
+              },
+              {
+                "id": "right_of_use_asset",
+                "year2025": 88420072,
+                "year2024": 80817094,
+                "evidence_id": "sec-net-assets-right_of_use_asset"
+              },
+              {
+                "id": "cash",
+                "year2025": 30180017,
+                "year2024": 20982076,
+                "evidence_id": "sec-net-assets-cash"
+              },
+              {
+                "id": "restricted_cash",
+                "year2025": 128210477,
+                "year2024": 35497292,
+                "evidence_id": "sec-net-assets-restricted_cash"
+              },
+              {
+                "id": "accounts_receivable",
+                "year2025": 65860731,
+                "year2024": 49866956,
+                "evidence_id": "sec-net-assets-accounts_receivable"
+              },
+              {
+                "id": "other_assets",
+                "year2025": 8055270,
+                "year2024": 3819551,
+                "evidence_id": "sec-net-assets-other_assets"
+              },
+              {
+                "id": "total_assets",
+                "year2025": 3604117232,
+                "year2024": 1502236141,
+                "evidence_id": "sec-net-assets-total_assets"
+              },
+              {
+                "id": "construction_loan",
+                "year2025": 2025860971,
+                "year2024": 459267908,
+                "evidence_id": "sec-net-assets-construction_loan"
+              },
+              {
+                "id": "accounts_payable",
+                "year2025": 131696492,
+                "year2024": 370243657,
+                "evidence_id": "sec-net-assets-accounts_payable"
+              },
+              {
+                "id": "lease_liability",
+                "year2025": 88420072,
+                "year2024": 80817094,
+                "evidence_id": "sec-net-assets-lease_liability"
+              },
+              {
+                "id": "derivative_liability",
+                "year2025": 34218807,
+                "year2024": 1079975,
+                "evidence_id": "sec-net-assets-derivative_liability"
+              },
+              {
+                "id": "unearned_rental_income",
+                "year2025": 25757050,
+                "year2024": null,
+                "evidence_id": "sec-net-assets-unearned_rental_income"
+              },
+              {
+                "id": "other_liabilities",
+                "year2025": 130416016,
+                "year2024": 3173375,
+                "evidence_id": "sec-net-assets-other_liabilities"
+              },
+              {
+                "id": "total_liabilities",
+                "year2025": 2436369408,
+                "year2024": 914582009,
+                "evidence_id": "sec-net-assets-total_liabilities"
+              },
+              {
+                "id": "net_assets",
+                "year2025": 1167747824,
+                "year2024": 587654132,
+                "evidence_id": "sec-net-assets-net_assets"
+              }
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "equity-changes",
+            "label": "权益变动表",
+            "source_id": "sec-table-equity-changes",
+            "printed_page": 6,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": false,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "id": "net_investment_income",
+                "year2025": 118815004,
+                "year2024": -3218031,
+                "evidence_id": "sec-equity-changes-net_investment_income"
+              },
+              {
+                "id": "net_unrealized_gain_loss",
+                "year2025": 464992590,
+                "year2024": -36079975,
+                "evidence_id": "sec-equity-changes-net_unrealized_gain_loss"
+              },
+              {
+                "id": "operations_change",
+                "year2025": 583807594,
+                "year2024": -39298006,
+                "evidence_id": "sec-equity-changes-operations_change"
+              },
+              {
+                "id": "contributions",
+                "year2025": 58393774,
+                "year2024": 868453049,
+                "evidence_id": "sec-equity-changes-contributions"
+              },
+              {
+                "id": "distributions",
+                "year2025": -62107676,
+                "year2024": -241500911,
+                "evidence_id": "sec-equity-changes-distributions"
+              },
+              {
+                "id": "capital_transactions_change",
+                "year2025": -3713902,
+                "year2024": 626952138,
+                "evidence_id": "sec-equity-changes-capital_transactions_change"
+              },
+              {
+                "id": "ending_net_assets",
+                "year2025": 1167747824,
+                "year2024": 587654132,
+                "evidence_id": "sec-equity-changes-ending_net_assets"
+              }
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "fair-value-rollforward",
+            "label": "公允价值滚动表",
+            "source_id": "sec-table-fair-value-rollforward",
+            "printed_page": 16,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": false,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "id": "opening_real_estate_fair_value",
+                "year2025": 1311253172,
+                "year2024": null,
+                "evidence_id": "sec-fair-value-rollforward-opening_real_estate_fair_value"
+              },
+              {
+                "id": "real_estate_accounting_additions",
+                "year2025": 1474006071,
+                "year2024": 1346253172,
+                "evidence_id": "sec-fair-value-rollforward-real_estate_accounting_additions"
+              },
+              {
+                "id": "real_estate_unrealized_gain",
+                "year2025": 498131422,
+                "year2024": -35000000,
+                "evidence_id": "sec-fair-value-rollforward-real_estate_unrealized_gain"
+              },
+              {
+                "id": "ending_real_estate_fair_value",
+                "year2025": 3283390665,
+                "year2024": 1311253172,
+                "evidence_id": "sec-fair-value-rollforward-ending_real_estate_fair_value"
+              },
+              {
+                "id": "loan_principal_additions",
+                "year2025": 1566593063,
+                "year2024": 459267908,
+                "evidence_id": "sec-fair-value-rollforward-loan_principal_additions"
+              },
+              {
+                "id": "ground_lease_non_cash_amortization",
+                "year2025": 729279,
+                "year2024": null,
+                "evidence_id": "sec-fair-value-rollforward-ground_lease_non_cash_amortization"
+              }
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "ground-lease",
+            "label": "地租剩余期/折现率表",
+            "source_id": "sec-table-ground-lease",
+            "printed_page": 17,
+            "status": "source_image_checked_candidate",
+            "currency": "USD",
+            "primary_target": false,
+            "transcription_kind": "manual_visual_transcription_not_embedded_text",
+            "rows": [
+              {
+                "id": "remaining_lease_years",
+                "year2025": 13.4,
+                "evidence_id": "sec-ground-lease-remaining_lease_years"
+              },
+              {
+                "id": "discount_rate",
+                "year2025": 0.1523,
+                "evidence_id": "sec-ground-lease-discount_rate"
+              }
+            ],
+            "automatic_fill": false
+          }
+        ],
+        "summary": [
+          {
+            "id": "rental-income",
+            "label": "2025租金会计收入",
+            "value_usd": 154211721,
+            "nature": "reported_accrual_income",
+            "source_id": "sec-table-operations",
+            "evidence_id": "sec-operations-rental_income",
+            "note": "包含附注附加租金，不是实际到账。"
+          },
+          {
+            "id": "rental-book-residual",
+            "label": "扣附加租金后的会计余项",
+            "value_usd": 142164962,
+            "nature": "derived_residual_not_cash",
+            "source_id": "sec-table-operations",
+            "evidence_id": "sec-recon-rental-residual",
+            "note": "154211721−12046759；不自动认定基本现金租金。"
+          },
+          {
+            "id": "net-investment-income",
+            "label": "2025净投资收益",
+            "value_usd": 118815004,
+            "nature": "reported_investment_income_not_noi",
+            "source_id": "sec-table-operations",
+            "evidence_id": "sec-operations-net_investment_income",
+            "note": "扣会计费用后数，不是物业NOI或现金分配。"
+          },
+          {
+            "id": "operating-cash",
+            "label": "2025原表经营现金流",
+            "value_usd": -1441623284,
+            "nature": "reported_cashflow_includes_real_estate_additions",
+            "source_id": "sec-table-cashflow",
+            "evidence_id": "sec-cashflow-net_cash_used_operating",
+            "note": "包含房地产投资增加−1673236604，不能当算力运营亏损。"
+          },
+          {
+            "id": "cash-ending",
+            "label": "2025末现金及受限现金",
+            "value_usd": 158390494,
+            "nature": "reported_cash_balance",
+            "source_id": "sec-table-cashflow",
+            "evidence_id": "sec-cashflow-cash_all_ending",
+            "note": "含受限128210477；不全是可分配现金。"
+          },
+          {
+            "id": "loan-cash",
+            "label": "2025建设贷款现金提用",
+            "value_usd": 1547248312,
+            "nature": "reported_cash_borrowing",
+            "source_id": "sec-table-cashflow",
+            "evidence_id": "sec-cashflow-construction_loan_cash_proceeds",
+            "note": "与19,344,751非现金本金结息分开。"
+          },
+          {
+            "id": "loan-ending",
+            "label": "2025末建设贷款本金",
+            "value_usd": 2025860971,
+            "nature": "reported_debt_balance",
+            "source_id": "sec-table-debt",
+            "evidence_id": "sec-debt-outstanding_principal",
+            "note": "不是贷款上限2,288,000,000或现金实支。"
+          },
+          {
+            "id": "minimum-2026",
+            "label": "2026未来最低租金",
+            "value_usd": 249622560,
+            "nature": "future_contractual_minimum_not_receipt",
+            "source_id": "sec-table-minimum-rent",
+            "evidence_id": "sec-minimum-rent-2026",
+            "note": "截至2025末列未来付款；不是2026实收或2025会计收入。"
+          },
+          {
+            "id": "minimum-total",
+            "label": "未来最低租金合计",
+            "value_usd": 4483842560,
+            "nature": "future_contractual_minimum_not_discounted_value",
+            "source_id": "sec-table-minimum-rent",
+            "evidence_id": "sec-minimum-rent-total",
+            "note": "2026至其后合计，不是全部已收租金或折现价值。"
+          }
+        ],
+        "reconciliations": [
+          {
+            "id": "rental-residual",
+            "label": "扣除附加租金后的会计余项",
+            "source_id": "sec-table-operations",
+            "locator": "租金收入行；附加租金在财报文字附注5",
+            "terms": [
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-rental_income",
+                "field": "rental_income",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 154211721
+              },
+              {
+                "source_id": "income-sec-extract",
+                "evidence_id": "income-reimbursement",
+                "field": "additional_rent_in_note5",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": 12046759
+              }
+            ],
+            "result_usd": 142164962,
+            "reported_usd": null,
+            "difference_usd": null,
+            "status": "derived_category_residual_not_cash",
+            "note": "租金总收入应先扣附注附加租金12046759；下方独立扣项仅作会计余项，不认定基本现金租金。",
+            "evidence_ids": [
+              "sec-operations-rental_income",
+              "sec-recon-rental-residual",
+              "income-reimbursement"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "investment-income",
+            "label": "总投资收入",
+            "source_id": "sec-table-operations",
+            "locator": "收入两项及合计",
+            "terms": [
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-rental_income",
+                "field": "rental_income",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 154211721
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-other_income",
+                "field": "other_income",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 3266611
+              }
+            ],
+            "result_usd": 157478332,
+            "reported_usd": 157478332,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "租金与其他收入分列；均非租金现金收款。",
+            "evidence_ids": [
+              "sec-operations-rental_income",
+              "sec-operations-other_income",
+              "sec-recon-investment-income"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "net-investment-income",
+            "label": "净投资收益",
+            "source_id": "sec-table-operations",
+            "locator": "收入/四费用与净投资收益",
+            "terms": [
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-total_investment_income",
+                "field": "total_investment_income",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 157478332
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-property_operating_expenses",
+                "field": "property_operating_expenses",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": 12171536
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-ground_rent_expense",
+                "field": "ground_rent_expense",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": 400000
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-general_and_administrative",
+                "field": "general_and_administrative",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": 558194
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-interest_expense",
+                "field": "interest_expense",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": 25533598
+              }
+            ],
+            "result_usd": 118815004,
+            "reported_usd": 118815004,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "不是NOI、实际分红或项目IRR；利息费用含会计计提，不能当现金利息。",
+            "evidence_ids": [
+              "sec-operations-total_investment_income",
+              "sec-operations-property_operating_expenses",
+              "sec-operations-ground_rent_expense",
+              "sec-operations-general_and_administrative",
+              "sec-operations-interest_expense",
+              "sec-recon-net-investment-income"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "operations-assets",
+            "label": "经营所致净资产增加",
+            "source_id": "sec-table-operations",
+            "locator": "净投资收益及未实现估值变动",
+            "terms": [
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-net_investment_income",
+                "field": "net_investment_income",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 118815004
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-unrealized_loss_derivative",
+                "field": "unrealized_loss_derivative",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -33138832
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-unrealized_gain_right_of_use",
+                "field": "unrealized_gain_right_of_use",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 8332257
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-unrealized_loss_lease_liability",
+                "field": "unrealized_loss_lease_liability",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -8332257
+              },
+              {
+                "source_id": "sec-table-operations",
+                "evidence_id": "sec-operations-unrealized_gain_loss_real_estate",
+                "field": "unrealized_gain_loss_real_estate",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 498131422
+              }
+            ],
+            "result_usd": 583807594,
+            "reported_usd": 583807594,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "含464992590未实现净收益，583807594不是租金现金或分红。",
+            "evidence_ids": [
+              "sec-operations-net_investment_income",
+              "sec-operations-unrealized_loss_derivative",
+              "sec-operations-unrealized_gain_right_of_use",
+              "sec-operations-unrealized_loss_lease_liability",
+              "sec-operations-unrealized_gain_loss_real_estate",
+              "sec-recon-operations-assets"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "operating-cash",
+            "label": "来源经营活动现金流合计",
+            "source_id": "sec-table-cashflow",
+            "locator": "经营活动11行及合计",
+            "terms": [
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-net_assets_change_operations",
+                "field": "net_assets_change_operations",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 583807594
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-unrealized_loss_derivative_adjustment",
+                "field": "unrealized_loss_derivative_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 33138832
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-unrealized_gain_right_of_use_adjustment",
+                "field": "unrealized_gain_right_of_use_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -8332257
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-unrealized_loss_lease_liability_adjustment",
+                "field": "unrealized_loss_lease_liability_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 8332257
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-unrealized_real_estate_adjustment",
+                "field": "unrealized_real_estate_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -498131422
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-additions_real_estate",
+                "field": "additions_real_estate",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -1673236604
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-accounts_receivable_adjustment",
+                "field": "accounts_receivable_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 34603566
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-other_assets_adjustment",
+                "field": "other_assets_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -4235720
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-accounts_payable_adjustment",
+                "field": "accounts_payable_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -19971881
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-unearned_rental_income_adjustment",
+                "field": "unearned_rental_income_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 25757050
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-other_liabilities_adjustment",
+                "field": "other_liabilities_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 76645301
+              }
+            ],
+            "result_usd": -1441623284,
+            "reported_usd": -1441623284,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "原表按投资公司列经营现金流，包含房地产投资增加−1673236604；不能直接当算力运营亏损或租金实收。",
+            "evidence_ids": [
+              "sec-cashflow-net_assets_change_operations",
+              "sec-cashflow-unrealized_loss_derivative_adjustment",
+              "sec-cashflow-unrealized_gain_right_of_use_adjustment",
+              "sec-cashflow-unrealized_loss_lease_liability_adjustment",
+              "sec-cashflow-unrealized_real_estate_adjustment",
+              "sec-cashflow-additions_real_estate",
+              "sec-cashflow-accounts_receivable_adjustment",
+              "sec-cashflow-other_assets_adjustment",
+              "sec-cashflow-accounts_payable_adjustment",
+              "sec-cashflow-unearned_rental_income_adjustment",
+              "sec-cashflow-other_liabilities_adjustment",
+              "sec-recon-operating-cash"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "financing-cash",
+            "label": "筹资活动现金流合计",
+            "source_id": "sec-table-cashflow",
+            "locator": "筹资活动各行及合计",
+            "terms": [
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-construction_loan_cash_proceeds",
+                "field": "construction_loan_cash_proceeds",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 1547248312
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-financing_costs_cash_payment",
+                "field": "financing_costs_cash_payment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": null
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-bridge_loan_proceeds",
+                "field": "bridge_loan_proceeds",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": null
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-bridge_loan_payment",
+                "field": "bridge_loan_payment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": null
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-contributions",
+                "field": "contributions",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 58393774
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-distributions",
+                "field": "distributions",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -62107676
+              }
+            ],
+            "result_usd": 1543534410,
+            "reported_usd": 1543534410,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "现金借款、股本流量分列；不是运营收入。",
+            "evidence_ids": [
+              "sec-cashflow-construction_loan_cash_proceeds",
+              "sec-cashflow-financing_costs_cash_payment",
+              "sec-cashflow-bridge_loan_proceeds",
+              "sec-cashflow-bridge_loan_payment",
+              "sec-cashflow-contributions",
+              "sec-cashflow-distributions",
+              "sec-recon-financing-cash"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "cash-close",
+            "label": "现金及受限现金期末余额",
+            "source_id": "sec-table-cashflow",
+            "locator": "现金期初/两类净流量/期末",
+            "terms": [
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-cash_all_beginning",
+                "field": "cash_all_beginning",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 56479368
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-net_cash_used_operating",
+                "field": "net_cash_used_operating",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -1441623284
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-net_cash_provided_financing",
+                "field": "net_cash_provided_financing",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 1543534410
+              }
+            ],
+            "result_usd": 158390494,
+            "reported_usd": 158390494,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "含128210477受限现金，不能全部当可分配现金。",
+            "evidence_ids": [
+              "sec-cashflow-cash_all_beginning",
+              "sec-cashflow-net_cash_used_operating",
+              "sec-cashflow-net_cash_provided_financing",
+              "sec-recon-cash-close"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "debt-close",
+            "label": "债务本金：现金提用加非现金转息",
+            "source_id": "sec-table-debt",
+            "locator": "债务期初/期末与现金流补充",
+            "terms": [
+              {
+                "source_id": "sec-table-debt",
+                "evidence_id": "sec-debt-outstanding_principal",
+                "field": "outstanding_principal",
+                "period": "year2024",
+                "sign": 1,
+                "source_value_usd": 459267908
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-construction_loan_cash_proceeds",
+                "field": "construction_loan_cash_proceeds",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 1547248312
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-interest_settled_in_principal",
+                "field": "interest_settled_in_principal",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 19344751
+              }
+            ],
+            "result_usd": 2025860971,
+            "reported_usd": 2025860971,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "459267908＋1547248312＋19344751=2025860971；附注滚动的1566593063含非现金利息，不是纯现金提用。",
+            "evidence_ids": [
+              "sec-debt-outstanding_principal",
+              "sec-cashflow-construction_loan_cash_proceeds",
+              "sec-cashflow-interest_settled_in_principal",
+              "sec-recon-debt-close"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "receivable-close",
+            "label": "混合应收账款滚动",
+            "source_id": "sec-table-net-assets",
+            "locator": "应收期初/期末与现金流/非现金装修变动",
+            "terms": [
+              {
+                "source_id": "sec-table-net-assets",
+                "evidence_id": "sec-net-assets-accounts_receivable",
+                "field": "accounts_receivable",
+                "period": "year2024",
+                "sign": 1,
+                "source_value_usd": 49866956
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-change_accrued_tenant_improvement_costs",
+                "field": "change_accrued_tenant_improvement_costs",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 50597341
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-accounts_receivable_adjustment",
+                "field": "accounts_receivable_adjustment",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": 34603566
+              }
+            ],
+            "result_usd": 65860731,
+            "reported_usd": 65860731,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "49866956＋50597341−34603566=65860731，能代数闭合；分租金/装修/其他账龄及收款分配仍未知，不能把34603566全部当租金回收。",
+            "evidence_ids": [
+              "sec-net-assets-accounts_receivable",
+              "sec-cashflow-change_accrued_tenant_improvement_costs",
+              "sec-cashflow-accounts_receivable_adjustment",
+              "sec-recon-receivable-close"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "equity-contributions",
+            "label": "2025股本投入流量",
+            "source_id": "sec-table-cashflow",
+            "locator": "2025投入与附注1累计差额",
+            "terms": [
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-contributions",
+                "field": "contributions",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 58393774
+              }
+            ],
+            "result_usd": 58393774,
+            "reported_usd": 58393774,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "年度58393774与累计余额差相等；DC1与LonghornJV之间，不按7.7%认定Crusoe投入。",
+            "evidence_ids": [
+              "sec-cashflow-contributions",
+              "sec-recon-equity-contributions"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "equity-distributions",
+            "label": "2025股本分配流量",
+            "source_id": "sec-table-cashflow",
+            "locator": "2025分配与附注1累计差额",
+            "terms": [
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-distributions",
+                "field": "distributions",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": -62107676
+              }
+            ],
+            "result_usd": 62107676,
+            "reported_usd": 62107676,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "年度62107676与累计余额差相等；投资人收到分红/本金比例和上层瀑布未知。",
+            "evidence_ids": [
+              "sec-cashflow-distributions",
+              "sec-recon-equity-distributions"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "minimum-total",
+            "label": "未来最低租金表合计",
+            "source_id": "sec-table-minimum-rent",
+            "locator": "2026–2030/其后/合计",
+            "terms": [
+              {
+                "source_id": "sec-table-minimum-rent",
+                "evidence_id": "sec-minimum-rent-2026",
+                "field": "2026",
+                "period": "value",
+                "sign": 1,
+                "source_value_usd": 249622560
+              },
+              {
+                "source_id": "sec-table-minimum-rent",
+                "evidence_id": "sec-minimum-rent-2027",
+                "field": "2027",
+                "period": "value",
+                "sign": 1,
+                "source_value_usd": 257111237
+              },
+              {
+                "source_id": "sec-table-minimum-rent",
+                "evidence_id": "sec-minimum-rent-2028",
+                "field": "2028",
+                "period": "value",
+                "sign": 1,
+                "source_value_usd": 264824574
+              },
+              {
+                "source_id": "sec-table-minimum-rent",
+                "evidence_id": "sec-minimum-rent-2029",
+                "field": "2029",
+                "period": "value",
+                "sign": 1,
+                "source_value_usd": 272769311
+              },
+              {
+                "source_id": "sec-table-minimum-rent",
+                "evidence_id": "sec-minimum-rent-2030",
+                "field": "2030",
+                "period": "value",
+                "sign": 1,
+                "source_value_usd": 280952390
+              },
+              {
+                "source_id": "sec-table-minimum-rent",
+                "evidence_id": "sec-minimum-rent-thereafter",
+                "field": "thereafter",
+                "period": "value",
+                "sign": 1,
+                "source_value_usd": 3158562488
+              }
+            ],
+            "result_usd": 4483842560,
+            "reported_usd": 4483842560,
+            "difference_usd": 0,
+            "status": "arithmetic_match_not_adoption",
+            "note": "截至2025末未来最低合同租金合计，非未来实收、全租期已收、折现价值或收入现值。",
+            "evidence_ids": [
+              "sec-minimum-rent-2026",
+              "sec-minimum-rent-2027",
+              "sec-minimum-rent-2028",
+              "sec-minimum-rent-2029",
+              "sec-minimum-rent-2030",
+              "sec-minimum-rent-thereafter",
+              "sec-recon-minimum-total"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "capital-additions",
+            "label": "房地产账面增加的跨表对照",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "滚动表新增与现金流/非现金补充",
+            "terms": [
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-additions_real_estate",
+                "field": "additions_real_estate",
+                "period": "year2025",
+                "sign": -1,
+                "source_value_usd": -1673236604
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-change_accrued_capital_expenditures",
+                "field": "change_accrued_capital_expenditures",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -218575283
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-interest_settled_in_principal",
+                "field": "interest_settled_in_principal",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 19344751
+              }
+            ],
+            "result_usd": 1474006072,
+            "reported_usd": 1474006071,
+            "difference_usd": 1,
+            "status": "source_difference_unresolved",
+            "note": "算术1474006072，滚动表1474006071，相差1美元；不强行取整或修源，明细/舍入原因未知。",
+            "evidence_ids": [
+              "sec-cashflow-additions_real_estate",
+              "sec-cashflow-change_accrued_capital_expenditures",
+              "sec-cashflow-interest_settled_in_principal",
+              "sec-recon-capital-additions"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "payable-close",
+            "label": "应付余额的跨表对照",
+            "source_id": "sec-table-net-assets",
+            "locator": "应付余额及现金/非现金变动",
+            "terms": [
+              {
+                "source_id": "sec-table-net-assets",
+                "evidence_id": "sec-net-assets-accounts_payable",
+                "field": "accounts_payable",
+                "period": "year2024",
+                "sign": 1,
+                "source_value_usd": 370243657
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-accounts_payable_adjustment",
+                "field": "accounts_payable_adjustment",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -19971881
+              },
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-change_accrued_capital_expenditures",
+                "field": "change_accrued_capital_expenditures",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": -218575283
+              }
+            ],
+            "result_usd": 131696493,
+            "reported_usd": 131696492,
+            "difference_usd": 1,
+            "status": "source_difference_unresolved",
+            "note": "计算131696493，原表131696492，相差1美元；原数均保留。",
+            "evidence_ids": [
+              "sec-net-assets-accounts_payable",
+              "sec-cashflow-accounts_payable_adjustment",
+              "sec-cashflow-change_accrued_capital_expenditures",
+              "sec-recon-payable-close"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "ground-amortization",
+            "label": "地租非现金摊销跨表对照",
+            "source_id": "sec-table-fair-value-rollforward",
+            "locator": "现金流补充729280与滚动表729279",
+            "terms": [
+              {
+                "source_id": "sec-table-cashflow",
+                "evidence_id": "sec-cashflow-ground_lease_non_cash_amortization",
+                "field": "ground_lease_non_cash_amortization",
+                "period": "year2025",
+                "sign": 1,
+                "source_value_usd": 729280
+              }
+            ],
+            "result_usd": 729280,
+            "reported_usd": 729279,
+            "difference_usd": 1,
+            "status": "source_difference_unresolved",
+            "note": "1美元差异待来源明细，不能自行称已修复；15.23%是地租计量折现率，不是项目WACC。",
+            "evidence_ids": [
+              "sec-cashflow-ground_lease_non_cash_amortization",
+              "sec-recon-ground-amortization"
+            ],
+            "automatic_fill": false
+          }
+        ],
+        "issues": [
+          {
+            "id": "capital-additions",
+            "label": "房地产账面增加的跨表对照",
+            "status": "source_difference_unresolved",
+            "difference_usd": 1,
+            "reason": "算术1474006072，滚动表1474006071，相差1美元；不强行取整或修源，明细/舍入原因未知。",
+            "evidence_ids": [
+              "sec-cashflow-additions_real_estate",
+              "sec-cashflow-change_accrued_capital_expenditures",
+              "sec-cashflow-interest_settled_in_principal",
+              "sec-recon-capital-additions"
+            ],
+            "next_action": "取得财报底稿/明细或来源更正后按版本记录；当前不修源、不填参"
+          },
+          {
+            "id": "payable-close",
+            "label": "应付余额的跨表对照",
+            "status": "source_difference_unresolved",
+            "difference_usd": 1,
+            "reason": "计算131696493，原表131696492，相差1美元；原数均保留。",
+            "evidence_ids": [
+              "sec-net-assets-accounts_payable",
+              "sec-cashflow-accounts_payable_adjustment",
+              "sec-cashflow-change_accrued_capital_expenditures",
+              "sec-recon-payable-close"
+            ],
+            "next_action": "取得财报底稿/明细或来源更正后按版本记录；当前不修源、不填参"
+          },
+          {
+            "id": "ground-amortization",
+            "label": "地租非现金摊销跨表对照",
+            "status": "source_difference_unresolved",
+            "difference_usd": 1,
+            "reason": "1美元差异待来源明细，不能自行称已修复；15.23%是地租计量折现率，不是项目WACC。",
+            "evidence_ids": [
+              "sec-cashflow-ground_lease_non_cash_amortization",
+              "sec-recon-ground-amortization"
+            ],
+            "next_action": "取得财报底稿/明细或来源更正后按版本记录；当前不修源、不填参"
+          },
+          {
+            "id": "property-reimbursement-scope",
+            "label": "完整物业费用与转付类别范围",
+            "status": "scope_difference_unresolved",
+            "difference_usd": 124777,
+            "reason": "物业运营费用12171536与附注转付12046759差124777；地租400000另列。缺逐项费用归类/转付明细，不能假定NOI100%或将差额一概当错账。",
+            "evidence_ids": [
+              "sec-property-reimbursement-gap",
+              "income-reimbursement",
+              "sec-operations-property_operating_expenses"
+            ],
+            "next_action": "取得物业费用/地租/保险税费和可转付明细，对齐同类及已付/未付，避免重复算。"
+          }
+        ],
+        "debt_terms": {
+          "borrower": "Abilene DC1 LLC",
+          "maturity": "2028-01-09",
+          "terms": "Interest Only",
+          "extension_options": "Two 1-year extension options；行权条件/发生与否未核",
+          "rate_kind": "weighted_average_reported_in_year_end_debt_table_not_current_all_in_contract_rate"
+        },
+        "cash_bridge": {
+          "status": "partial_statement_arithmetic_only_rent_receipts_unknown",
+          "actual_rent_receipts_usd": null,
+          "actual_oracle_openai_payment_usd": null,
+          "actual_lancium_power_payment_usd": null,
+          "automatic_fill": false,
+          "reason": "经营租金154211721为会计收入；应收含租户装修代垫，49,866,956＋50,597,341−34,603,566＝65,860,731只闭合混合应收。预收租金25,757,050另列；无租金/装修分户开票/核销/收款，不能唯一分拆租金实收，也不能确认Oracle/OpenAI或Lancium收到多少。",
+          "interest_note": "会计利息25,533,598；非资本化现金付息行原表破折号，脚注另列资本化现金利息85,310,832；本金结息19,344,751。不能说全部付息为0；费用摊销/资本化/应付/现金完整分解仍未知。",
+          "contract_calendar_note": "2026最低租金249,622,560与首年单价年化244,728,000不同期间；逐厅起租、免租/修订与日计费未知，不能强行拟合2025会计收入或实收。",
+          "entity_note": "DC1→LonghornJV年度投入58,393,774/分配62,107,676能与累计余额差对应；不确认Crusoe/BOREC各自分红/本金返还或OCI/OpenAI服务收入。"
+        },
+        "prior_unread_item_ids": [
+          "income-unread-image_6",
+          "income-unread-image_10",
+          "income-unread-image_15",
+          "income-unread-image_17"
+        ],
+        "remaining_unread": [
+          "SEC原始HTML未冻结；本轮以浏览器保存原表图，不能将转录摘要冒充原HTML摘要",
+          "image_4/11/12/13/18及其它未列图未逐表复核，财务回报摘要image_18仍未读",
+          "完整租约及修订、逐厅起租/发票/收款/费用/利息台账、上层股东现金瀑布仍未取得"
+        ],
+        "limitations": [
+          "八张表同一份DC1财报，不作为八份独立证据；原图SHA和人工转录SHA分别绑定。",
+          "表内/跨表算术闭合不认证银行逐笔收付；1美元差异及费用范围差保留，不重算或修补来源。",
+          "本次只补核原表，所有金额为来源内容候选；未记录人类批准、现场/模型用途采用，经济输入不变。"
+        ]
+      },
+      "sec_table_review_sha256": "833ebfdff1c22ac1a03eefa934c7bf691650a5f91c59aaf0369fce4d1fd2d6cf"
     }
   ]
 }

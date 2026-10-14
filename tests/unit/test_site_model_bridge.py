@@ -61,7 +61,7 @@ class SiteModelBridgeTests(unittest.TestCase):
 
     def test_review_versions_and_private_paths(self):
         out=bridge.project(ROOT,self.projects,'us-tx-abilene')
-        self.assertEqual(len(out['review']['derivations']),19)
+        self.assertEqual(len(out['review']['derivations']),34)
         self.assertEqual(len(out['blockers']),3)
         self.assertEqual(out['review']['item_counts']['anomaly'],3)
         self.assertEqual(out['review']['report_exhaustive'],'not_certified')
@@ -295,9 +295,9 @@ class SiteModelBridgeTests(unittest.TestCase):
             self.assertIn(out['parameter_basis'][key]['actual_state'],{'unknown','not_site_observation'})
             self.assertNotEqual(out['parameter_basis'][key]['kind'],'observation')
         self.assertTrue(all(inc['return_gate'][k] is None for k in ['actual_project_irr','actual_equity_irr','actual_npv_usd','actual_dscr','actual_noi_usd']))
-        self.assertTrue(any(x['id']=='income-sec-minimum-rent' and x['status']=='not_obtained' for x in inc['unobtained_assets']))
+        self.assertTrue(any(x['id']=='income-sec-minimum-rent' and x['status']=='previous_failure_image_now_checked' for x in inc['unobtained_assets']))
         self.assertEqual(len(out['blockers']),3)
-        self.assertTrue(any(x['id']=='income-unread-image_17' and x['state']=='not_checked' for x in out['review']['items']))
+        self.assertTrue(any(x['id']=='income-unread-image_17' and x['state']=='candidate' for x in out['review']['items']))
 
     def test_income_deep_projection_excludes_private_contract_and_future_fields(self):
         item=copy.deepcopy(self.doc['sites'][0]);inc=item['income_review']
@@ -308,3 +308,54 @@ class SiteModelBridgeTests(unittest.TestCase):
         for forbidden in ['contract_path','raw_text','bank_account','internal_approval','internal_model','/Users/private/']:
             self.assertNotIn(forbidden,json.dumps(out))
         self.assertEqual(out['income_review']['lease_reference']['annualized_base_first_year_rates_usd'],244728000)
+
+
+    def test_sec_tables_original_images_and_partial_reading_are_explicit(self):
+        out=bridge.project(ROOT,self.projects,'us-tx-abilene');sec=out['sec_table_review']
+        self.assertEqual(len(sec['tables']),8)
+        self.assertEqual({t['id'] for t in sec['tables'] if t['primary_target']},{'operations','cashflow','debt','minimum-rent'})
+        sources={s['id']:s for s in out['review']['sources']}
+        self.assertTrue(all(sources[t['source_id']]['capture_kind']=='original_image_bytes_via_browser_downloadMedia' for t in sec['tables']))
+        self.assertTrue(all(not t['automatic_fill'] for t in sec['tables']))
+        states={e['id']:e['state'] for e in out['review']['items']}
+        self.assertTrue(all(states[k]=='candidate' for k in sec['prior_unread_item_ids']))
+        self.assertEqual(states['income-unread-image_18'],'not_checked')
+        self.assertEqual(sec['debt_terms']['borrower'],'Abilene DC1 LLC')
+        self.assertEqual(sec['debt_terms']['maturity'],'2028-01-09')
+        self.assertIn('原始HTML',sec['remaining_unread'][0])
+
+    def test_sec_local_arithmetic_does_not_identify_rent_receipts_or_erase_differences(self):
+        sec=self.doc['sites'][0]['sec_table_review'];rows={r['id']:r for r in sec['reconciliations']}
+        self.assertEqual(rows['debt-close']['result_usd'],459267908+1547248312+19344751)
+        self.assertEqual(rows['debt-close']['reported_usd'],2025860971)
+        self.assertEqual(rows['receivable-close']['result_usd'],49866956+50597341-34603566)
+        self.assertEqual(rows['rental-residual']['result_usd'],142164962)
+        self.assertEqual(rows['rental-residual']['status'],'derived_category_residual_not_cash')
+        self.assertEqual(rows['minimum-total']['result_usd'],4483842560)
+        self.assertEqual(rows['operating-cash']['result_usd'],-1441623284)
+        self.assertEqual({r['difference_usd'] for r in rows.values() if r['status']=='source_difference_unresolved'},{1})
+        self.assertEqual(len(sec['issues']),4)
+        self.assertEqual(sec['issues'][-1]['difference_usd'],124777)
+        self.assertIsNone(sec['cash_bridge']['actual_rent_receipts_usd'])
+        self.assertIsNone(sec['cash_bridge']['actual_oracle_openai_payment_usd'])
+        self.assertFalse(sec['cash_bridge']['automatic_fill'])
+        self.assertEqual(len(self.doc['sites'][0]['blockers']),3)
+
+    def test_sec_rejects_receipt_inference_false_closure_and_changed_source_terms(self):
+        for change,error in [('cash','cash_not_identifiable'),('difference','unresolved_difference'),('term','term_not_source_row'),('adopt','table_not_adopted'),('unread','partial_reading')]:
+            doc=copy.deepcopy(self.doc);item=doc['sites'][0];sec=item['sec_table_review']
+            if change=='cash':sec['cash_bridge']['actual_rent_receipts_usd']=214572337
+            elif change=='difference':next(x for x in sec['reconciliations'] if x['id']=='capital-additions')['status']='arithmetic_match_not_adoption'
+            elif change=='term':sec['reconciliations'][0]['terms'][0]['source_value_usd']+=1
+            elif change=='adopt':sec['tables'][0]['automatic_fill']=True
+            else:sec['prior_unread_item_ids'].append('income-unread-image_18')
+            item['sec_table_review_sha256']=bridge.digest(sec)
+            with self.assertRaisesRegex(ValueError,error):bridge.validate(doc,self.projects,self.spec)
+
+    def test_sec_projection_excludes_private_original_and_ledger_paths(self):
+        item=copy.deepcopy(self.doc['sites'][0]);sec=item['sec_table_review']
+        sec['tables'][0]['path']='/Users/private/original.jpg';sec['tables'][0]['rows'][0]['raw_ocr']='private'
+        sec['cash_bridge']['bank_account']='secret';sec['reconciliations'][0]['terms'][0]['private_ledger']='private'
+        out=bridge._public(item,bridge.BRIDGE)
+        for key in ['raw_ocr','bank_account','private_ledger','/Users/private/']:self.assertNotIn(key,json.dumps(out))
+        self.assertIsNone(out['sec_table_review']['cash_bridge']['actual_rent_receipts_usd'])

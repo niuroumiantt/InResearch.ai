@@ -252,12 +252,79 @@ def _income(item, sources, evidence, spec):
             or any(u['status']!='unknown' or not u.get('next_action') for u in income['unknowns'])):
         raise ValueError('bridge_income_return_unknown')
     for asset in income['unobtained_assets']:
-        if not _url(asset['url']) or asset['status'] != 'not_obtained' or not asset['curl_exit']:
+        if not _url(asset['url']) or asset['status'] not in {'not_obtained','previous_failure_image_now_checked'} or not asset['curl_exit']:
             raise ValueError('bridge_income_unread_asset')
+        if asset['status']=='previous_failure_image_now_checked':
+            source=sources.get(asset.get('followup_source_id'))
+            if not source or source['url']!=asset['url'] or source['capture_kind']!='original_image_bytes_via_browser_downloadMedia':
+                raise ValueError('bridge_income_unread_followup')
+
+
+def _sec_tables(item, sources, evidence):
+    review=item['sec_table_review']
+    if digest(review)!=item['sec_table_review_sha256'] or review['status']!='source_checked_candidates_no_parameter_fill':
+        raise ValueError('bridge_sec_review_changed')
+    if review['issuer']!='Abilene DC 1, LLC' or review['accession']!='0001944366-26-000020' or review['financial_as_of']!='2025-12-31':
+        raise ValueError('bridge_sec_entity_period')
+    tables={t['id']:t for t in review['tables']}
+    targets={'operations','cashflow','debt','minimum-rent'}
+    if len(tables)!=len(review['tables']) or {t['id'] for t in tables.values() if t['primary_target']}!=targets:
+        raise ValueError('bridge_sec_table_identity')
+    for table in tables.values():
+        if (table['automatic_fill'] is not False or table['status']!='source_image_checked_candidate'
+                or table['transcription_kind']!='manual_visual_transcription_not_embedded_text'
+                or table['source_id'] not in sources
+                or sources[table['source_id']]['capture_kind']!='original_image_bytes_via_browser_downloadMedia'):
+            raise ValueError('bridge_sec_table_not_adopted')
+        for row in table['rows']:
+            if row['evidence_id'] not in evidence or evidence[row['evidence_id']]['source_id']!=table['source_id']:
+                raise ValueError('bridge_sec_table_evidence')
+            for key in ['year2025','year2024','value']:
+                v=row.get(key)
+                if v is not None and (type(v) not in (int,float) or not math.isfinite(v)):
+                    raise ValueError('bridge_sec_table_number')
+    fields={(t['source_id'],r['evidence_id']):r for t in tables.values() for r in t['rows']}
+    for row in review['reconciliations']:
+        if (row['automatic_fill'] is not False or row['source_id'] not in sources
+                or not row['evidence_ids'] or not set(row['evidence_ids'])<=evidence.keys()):
+            raise ValueError('bridge_sec_reconciliation_evidence')
+        total=0
+        for term in row['terms']:
+            v=term['source_value_usd']
+            if (term['sign'] not in {-1,1} or term['evidence_id'] not in evidence
+                    or term['source_id']!=evidence[term['evidence_id']]['source_id']
+                    or (v is not None and (type(v) not in (int,float) or not math.isfinite(v)))):
+                raise ValueError('bridge_sec_reconciliation_term')
+            if term['source_id'].startswith('sec-table-'):
+                raw=fields.get((term['source_id'],term['evidence_id']))
+                if not raw or raw.get('id',raw.get('period'))!=term['field'] or raw.get(term['period'])!=v:
+                    raise ValueError('bridge_sec_term_not_source_row')
+            elif (term['evidence_id']!='income-reimbursement' or v!=12046759 or term['source_id']!='income-sec-extract'):
+                raise ValueError('bridge_sec_term_not_source_row')
+            total+=(v or 0)*term['sign']
+        diff=total-row['reported_usd'] if row['reported_usd'] is not None else None
+        if row['result_usd']!=total or row['difference_usd']!=diff:
+            raise ValueError('bridge_sec_reconciliation_arithmetic')
+        if (row['status']=='arithmetic_match_not_adoption' and diff!=0
+                or row['status']=='source_difference_unresolved' and (diff is None or diff==0)
+                or row['status']=='derived_category_residual_not_cash' and row['reported_usd'] is not None
+                or row['status'] not in {'arithmetic_match_not_adoption','source_difference_unresolved','derived_category_residual_not_cash'}):
+            raise ValueError('bridge_sec_unresolved_difference')
+    cash=review['cash_bridge']
+    if (cash['status']!='partial_statement_arithmetic_only_rent_receipts_unknown' or cash['automatic_fill'] is not False
+            or any(cash[k] is not None for k in ['actual_rent_receipts_usd','actual_oracle_openai_payment_usd','actual_lancium_power_payment_usd'])):
+        raise ValueError('bridge_sec_cash_not_identifiable')
+    if (any(evidence[i]['state']!='candidate' for i in review['prior_unread_item_ids'])
+            or evidence['income-unread-image_18']['state']!='not_checked' or not review['remaining_unread']):
+        raise ValueError('bridge_sec_partial_reading')
+    for issue in review['issues']:
+        if (issue['status'] not in {'source_difference_unresolved','scope_difference_unresolved'}
+                or not issue['next_action'] or not issue['evidence_ids'] or not set(issue['evidence_ids'])<=evidence.keys()):
+            raise ValueError('bridge_sec_issue_not_resolved')
 
 
 def validate(doc, projects, spec):
-    if doc.get('schema_version') != 6 or not doc.get('version') or not doc.get('mapping_version'):
+    if doc.get('schema_version') != 7 or not doc.get('version') or not doc.get('mapping_version'):
         raise ValueError('bridge_version')
     sites = {r['site_id']: r for r in projects}
     seen = set()
@@ -283,6 +350,7 @@ def validate(doc, projects, spec):
         _energy(item, sources, evidence, spec)
         _cost(item, sources, evidence, spec)
         _income(item, sources, evidence, spec)
+        _sec_tables(item, sources, evidence)
         ids = set()
         for claim in item['configurations'] + item['economic_candidates']:
             if claim['id'] in ids or claim['status'] != 'candidate':
@@ -415,7 +483,18 @@ INCOME = {**_fields('id reviewed_at status previous_review_sha256 scope_separati
     'unknowns': [_fields('id label status reason next_action')],
     'cashflow_periods': [_fields('label period basis')],
     'return_gate': _fields('status actual_project_irr actual_equity_irr actual_npv_usd actual_dscr actual_noi_usd automatic_fill reason'),
-    'unobtained_assets': [_fields('id url status curl_exit reason')], 'limitations':[None]}
+    'unobtained_assets': [_fields('id url status curl_exit reason followup_source_id')], 'limitations':[None]}
+
+SEC_TABLES = {**_fields('id reviewed_at status previous_review_sha256 previous_income_review_sha256 scope issuer accession financial_as_of audit_date filed_date'),
+    'tables':[{**_fields('id label source_id printed_page status currency primary_target transcription_kind automatic_fill'),
+               'rows':[_fields('id year2025 year2024 period value evidence_id')]}],
+    'summary':[_fields('id label value_usd nature source_id evidence_id note')],
+    'reconciliations':[{**_fields('id label source_id locator result_usd reported_usd difference_usd status note automatic_fill'),
+        'terms':[_fields('source_id evidence_id field period sign source_value_usd')],'evidence_ids':[None]}],
+    'issues':[{**_fields('id label status difference_usd reason next_action'),'evidence_ids':[None]}],
+    'debt_terms':_fields('borrower maturity terms extension_options rate_kind'),
+    'cash_bridge':_fields('status actual_rent_receipts_usd actual_oracle_openai_payment_usd actual_lancium_power_payment_usd automatic_fill reason interest_note contract_calendar_note entity_note'),
+    'prior_unread_item_ids':[None], 'remaining_unread':[None], 'limitations':[None]}
 
 BRIDGE = {
     **_fields('site_id observation_id expected_it_mw review_sha256 expected_observation_sha256 document_review_sha256'),
@@ -426,6 +505,7 @@ BRIDGE = {
     'energy_review': ENERGY, 'energy_review_sha256': None,
     'cost_review': COST, 'cost_review_sha256': None,
     'income_review': INCOME, 'income_review_sha256': None,
+    'sec_table_review': SEC_TABLES, 'sec_table_review_sha256': None,
     'coverage': [_fields('angle item state destination reason')],
     'blockers': [{**_fields('id status label reason automatic_fill'), 'evidence_ids': [None],
                   'blocked_targets': [None], 'exception_rule_ids': [None]}],

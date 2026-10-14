@@ -229,7 +229,7 @@
   function bridgeCompatible(next){if(bridgeApplied)next.demand_rate=bridge.energy_review.billing.demand_rate_override;return next;}
   function annualEnergy(){return {...energyCase(values),period:structuredClone(bridge.energy_review.period),energy_review_sha256:bridge.energy_review_sha256};}
   function bridgeSnapshot(){
-    return {schema:'site-model-scenario-v6',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
+    return {schema:'site-model-scenario-v7',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
       bridge_version:bridge.version,mapping_version:bridge.mapping_version,data_sha256:bridge.data_sha256,observation_sha256:bridge.observation_sha256,
       model_id:spec.model_id,model_as_of:spec.as_of,model_source_sha256:bridge.model_source_sha256,model_spec:structuredClone(spec),revision:basisRevision,
       capacity_source:structuredClone(bridge.capacity_source),rules:structuredClone(bridge.rules),review_sha256:bridge.review_sha256,
@@ -238,6 +238,7 @@
       inputs:structuredClone(values),input_basis:structuredClone(inputBasis),
       configurations:structuredClone(bridge.configurations),economic_candidates:structuredClone(bridge.economic_candidates),
       unknowns:structuredClone(bridge.unknowns),coverage:structuredClone(bridge.coverage),annual_energy:annualEnergy(),
+      sec_table_review:structuredClone(bridge.sec_table_review),sec_table_review_sha256:bridge.sec_table_review_sha256,
       income_review:structuredClone(bridge.income_review),income_review_sha256:bridge.income_review_sha256,
       cost_review:structuredClone(bridge.cost_review),cost_review_sha256:bridge.cost_review_sha256,energy_review:structuredClone(bridge.energy_review),energy_review_sha256:bridge.energy_review_sha256,energy_sensitivity:energySensitivity(values,bridge.energy_review.sensitivity),
       readiness:{status:'scenario_only',project_feasibility:'not_verified'},results:run(values,spec)};
@@ -275,6 +276,22 @@
     for(const row of cost.unknowns)box.append(make('h3','',row.label.replace(/未知$/,'')+' · 未知'),make('p','',row.reason),make('p','note','下一步：'+row.next_action));
     box.append(make('p','note',cost.mapping.reason),make('p','note',cost.limitations.join(' ')),make('p','note','成本表固定引用来源421MW规模，不随当前用户情景改参；不能作为现场分期结算。'),make('p','note','成本复核摘要 '+bridge.cost_review_sha256+'；本次未更改IT/设施/土地/自备发电的模型取值。'));host.append(box);
   }
+  function bridgeSecTablesReview(host){
+    const review=bridge.sec_table_review,box=make('details');box.id='bridge-sec-tables';
+    box.append(make('summary','','SEC四表已补读：合同、会计与现金对账（候选，不填参）'),make('p','',review.scope),make('p','note','八张原表属于同一份财报；全表视觉核对、定向字段人工转录，原图和转录各有SHA，不算八份独立证据。'));
+    for(const row of review.summary)box.append(make('p','',row.label+'：'+money(row.value_usd)),make('p','note',row.note));
+    box.append(make('h3','','租金实际收款：仍未知'),make('p','',review.cash_bridge.reason),make('p','note',review.cash_bridge.contract_calendar_note),make('p','note',review.cash_bridge.interest_note),make('p','note',review.cash_bridge.entity_note));
+    for(const t of review.tables){const card=make('details');card.dataset.secTable=t.id;card.append(make('summary','',t.label+' · 原表第'+t.printed_page+'页 · 已补读/候选'));
+      const format=(row,v)=>v===null||v===undefined?'—（原表）':/rate/.test(row.id||'')?(v*100).toFixed(2)+'%':/years/.test(row.id||'')?v+'年':Number(v).toLocaleString('en-US');
+      const wrap=make('div','tscroll'),table=make('table'),head=make('tr');['原表字段（金额USD，非千美元）','2025／期间','2024成立起'].forEach(x=>head.append(make('th','',x)));table.append(head);
+      for(const row of t.rows){const tr=make('tr');[row.id||row.period,format(row,row.value??row.year2025),format(row,row.year2024)].forEach(x=>tr.append(make('td','',x)));table.append(tr);}wrap.append(table);card.append(wrap);
+      const source=bridge.review.sources.find(x=>x.id===t.source_id),a=make('a','','SEC原表图');a.href=source.url;a.target='_blank';a.rel='noopener';card.append(a,make('p','note','原图 SHA256 '+source.sha256+'；人工转录 SHA256 '+source.text_sha256));box.append(card);
+    }
+    const checks=make('details');checks.id='bridge-sec-reconciliations';checks.append(make('summary','','局部算术对应与保留差异'));
+    for(const row of review.reconciliations){const card=make('section');card.dataset.secReconciliation=row.id;card.append(make('h3','',row.label+' · '+(row.status==='arithmetic_match_not_adoption'?'算术相符':row.status==='source_difference_unresolved'?'源差异待查':'会计余项，非实收')),make('p','',row.terms.map(t=>(t.sign===-1?'−':'+')+' '+(t.source_value_usd??'—（表内按0）')).join(' ')+' = '+row.result_usd.toLocaleString('en-US')),make('p','note',row.note));checks.append(card);}box.append(checks);
+    for(const issue of review.issues)box.append(make('p','',issue.label+' · 待查：'+issue.reason));
+    box.append(make('p','note','未读/未取：'+review.remaining_unread.join('；')),make('p','note',review.limitations.join(' ')),make('p','note','旧成本/收入稿中的未读描述为当时状态；本轮补核上述表，其余未知保留。SEC复核摘要 '+bridge.sec_table_review_sha256+'；本次经济输入保持。'));host.append(box);
+  }
   function bridgeIncomeReview(host){
     const income=bridge.income_review,lease=income.lease_reference,box=make('details');box.id='bridge-income-review';
     box.append(make('summary','','收入与回报：主体、合同与现金期间（候选，不填参）'),make('p','',income.scope_separation),make('p','note',lease.note));
@@ -289,7 +306,7 @@
     for(const row of income.cashflow_periods)box.append(make('p','note',row.label+'：'+row.period+'；'+row.basis));
     box.append(make('h3','','实际项目／权益IRR、NPV、DSCR与NOI：未知'),make('p','',income.return_gate.reason));
     for(const row of income.unknowns)box.append(make('p','',row.label+' · 未知：'+row.reason),make('p','note','下一步：'+row.next_action));
-    const source=bridge.review.sources.find(x=>x.id===lease.source_id),a=make('a','','首两栋财报租约注释（工具读取版本；原表图未取得）');a.href=source.url;a.target='_blank';a.rel='noopener';box.append(a,make('p','note','来源转录 SHA256 '+source.sha256+'；审计 '+lease.audit_date+'，申报 '+lease.filed_date+'，财报截至 '+lease.financial_as_of));
+    const source=bridge.review.sources.find(x=>x.id===lease.source_id),a=make('a','','首两栋财报租约注释（工具读取版本；本轮已补读原表见SEC面板）');a.href=source.url;a.target='_blank';a.rel='noopener';box.append(a,make('p','note','来源转录 SHA256 '+source.sha256+'；审计 '+lease.audit_date+'，申报 '+lease.filed_date+'，财报截至 '+lease.financial_as_of));
     box.append(make('p','note',income.limitations.join(' ')),make('p','note','下方通用模型收入/回报仍按当前参考和假设计算，不代表上述任一主体实绩。首两栋候选不随当前情景改参；本次没有覆盖租期、递增、单价、利用率或融资输入。收入复核摘要 '+bridge.income_review_sha256));host.append(box);
   }
   function bridgeDocuments(host){
@@ -367,7 +384,7 @@
         ['收入、合同与实绩','首两栋租约有候选；当前四栋实绩未知','候选／假设／未知','租期、递增和首年租金仅限DC1首两栋，当前模型不自动填参']]){const row=make('tr');cells.forEach((x,i)=>{const td=make('td','',x);td.dataset.label=['参数','建议取值','资料身份','适用边界'][i];row.append(td);});t.append(row);}table.append(t);host.append(table);
       const provenance=make('details');provenance.append(make('summary','','已有容量估算的原始来源与版本'));
       for(const source of bridge.capacity_source.sources){const link=make('a','',source.url||'来源');if(source.url)link.href=source.url;provenance.append(link);}
-      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeEnergyEvidence(host);bridgeCostReview(host);bridgeIncomeReview(host);bridgeDependencies(host);bridgeDocuments(host);bridgeEvidence(host);
+      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeEnergyEvidence(host);bridgeCostReview(host);bridgeSecTablesReview(host);bridgeIncomeReview(host);bridgeDependencies(host);bridgeDocuments(host);bridgeEvidence(host);
       const apply=make('button','','确认生成园区年度用电情景');apply.id='bridge-apply';apply.type='button';
       apply.onclick=()=>{const next=withPreset(spec,'baseline');next.site='us_texas';applyTable(next,'site',spec);Object.assign(next,bridge.demo_assumptions,{it_mw:bridge.expected_it_mw,demand_rate:bridge.energy_review.billing.demand_rate_override});
         if(!confirmBridgeChange(next,'重新应用园区情景'))return;
