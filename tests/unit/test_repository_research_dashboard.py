@@ -31,7 +31,7 @@ class ResearchDashboardTests(unittest.TestCase):
             if url.startswith('/'):self.assertIn(urlsplit(url).path,routes)
             elif url.startswith('#'):self.assertIn(url[1:],links.ids+['material-board'])
         self.assertIn('不等于已有答案',html)
-        self.assertIn('未接入',html)
+        self.assertIn('Lambda 1x H100 SXM公开标价单源；非成交；币种/地区未知',html)
         self.assertIn('已交付目标',html)
         self.assertIn('Microsoft FY2025现金PP&E单源；受控文件交付；未启用调度',html)
         self.assertNotIn('两个 repo 接入',html)
@@ -39,7 +39,12 @@ class ResearchDashboardTests(unittest.TestCase):
             root=Path(tmp)
             for p in ('framework/tco_targets.json','framework/bom.json','framework/research_questions.json','framework/supply_contract.json','data/research_knowledge.json','data/datacenter_model.json','framework/research_graph.json','framework/observation_checklist.json','data/site_model_bridges.json'):
                 dst=root/p;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes((ROOT/p).read_bytes())
-            p=root/'framework/tco_targets.json';v=json.loads(p.read_text());v['targets']=[];p.write_text(json.dumps(v))
+            p=root/'framework/tco_targets.json';v=json.loads(p.read_text())
+            for row in v['targets']:
+                if row['team']=='fetchquotes':row['team_state']='not_connected'
+            p.write_text(json.dumps(v))
+            self.assertIn('未接入',dashboard.build(root,table),'explicit disconnected fixture remains honest')
+            v['targets']=[];p.write_text(json.dumps(v))
             changed=dashboard.build(root,table)
             self.assertNotEqual(changed,html)
             self.assertIn('<strong>0</strong>资料目标',changed)
@@ -59,11 +64,12 @@ class ResearchDashboardTests(unittest.TestCase):
         checks=json.loads((ROOT/'framework/observation_checklist.json').read_text())
         for angle in checks['angles']:
             for check in angle['checks']:self.assertIn('data-check-id="'+check['id']+'"',tasks)
-        self.assertEqual(tasks.count('已接通现有入口'),5)
+        self.assertEqual(tasks.count('已接通现有入口'),6)
         self.assertIn('EIA单源；受控文件交付；未启用调度',tasks)
         self.assertIn('Microsoft FY2025现金PP&amp;E单源；受控文件交付；未启用调度',tasks)
-        self.assertEqual(tasks.count('生产接收未接通'),1)
+        self.assertEqual(tasks.count('生产接收未接通'),0)
         self.assertIn('LBNL发布页与方法摘要单源；PDF未读；受控文件交付；未启用调度',tasks)
+        self.assertIn('Lambda 1x H100 SXM公开标价单源；非成交；币种/地区未知；受控文件交付；未启用调度',tasks)
         self.assertEqual(render(ROOT),(ROOT/'web/pages/tasks.html').read_text())
 
     def test_daily_archive_contains_all_real_control_room_dependencies(self):

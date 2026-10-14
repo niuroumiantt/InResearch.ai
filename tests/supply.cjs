@@ -132,10 +132,24 @@ const base=process.env.UI_BASE_URL;
   const quote=quoteTarget.request.requirements.find(r=>r.model_input==='refresh_cost_factor');
   await page.locator('#demand-target').selectOption(quoteTarget.id);
   await page.locator('#requirement').selectOption(quote.id);
-  assert.match(await page.locator('#requirement-note').innerText(),/fetchquotes.*渠道未接通/);
+  assert.match(await page.locator('#requirement-note').innerText(),/fetchquotes.*渠道已接通/);
   assert.equal(await page.locator('[data-scope-field]').count(),quote.scope_fields.length);
-  assert.equal(await page.locator('#provider option').count(),1,'unconnected quote source can save a demand but cannot dispatch');
+  assert.equal(await page.locator('#provider option').count(),2,'connected quote channel can plan a request without adopting prices');
   assert.deepEqual(await page.locator('#question option').evaluateAll(options=>options.map(o=>o.value).filter(Boolean)).then(v=>v.sort()),quote.question_ids.toSorted());
+  // Explicit disconnected-policy fixture preserves the guard after all real channels connect.
+  const disconnected=structuredClone(original);
+  for(const t of disconnected.target_registry.records)for(const r of t.request?.requirements||[])if(r.id===quote.id)r.team_state='not_connected';
+  await page.unroute('**/api/supply');
+  await page.route('**/api/supply',route=>route.fulfill({json:disconnected}));
+  await page.reload(); // A hash-only goto would keep the old in-memory API snapshot.
+  await page.getByRole('button',{name:'研究需求',exact:true}).click();
+  await page.locator('#demand-target').selectOption(quoteTarget.id);
+  await page.locator('#requirement').selectOption(quote.id);
+  assert.match(await page.locator('#requirement-note').innerText(),/fetchquotes.*渠道未接通/);
+  assert.equal(await page.locator('#provider option').count(),1,'explicitly disconnected policy cannot dispatch');
+  await page.unroute('**/api/supply');
+  await page.route('**/api/supply',route=>route.fulfill({json:original}));
+  await page.reload();
   await page.getByRole('button',{name:'交付与验收',exact:true}).click();
   assert.match(await page.locator('#list').innerText(),/等待第一份交付包/);
   await page.getByRole('heading',{name:'跨产品资料检索',exact:true}).waitFor();
