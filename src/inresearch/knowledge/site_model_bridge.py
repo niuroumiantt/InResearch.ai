@@ -183,8 +183,81 @@ def _cost(item, sources, evidence, spec):
         raise ValueError('bridge_cost_no_parameter_adoption')
 
 
+def _income(item, sources, evidence, spec):
+    income = item['income_review']
+    if digest(income) != item['income_review_sha256'] or income['status'] != 'candidate_only_no_parameter_fill':
+        raise ValueError('bridge_income_review_changed')
+    def refs(row, plural=False):
+        source_ids = row['source_ids'] if plural else [row['source_id']]
+        if (not source_ids or not set(source_ids) <= sources.keys() or not row['evidence_ids']
+                or not set(row['evidence_ids']) <= evidence.keys()):
+            raise ValueError('bridge_income_evidence')
+    actors = {a['id']: a for a in income['actors']}
+    if len(actors) != len(income['actors']) or not {'dc1','crusoe-affiliate','jv-equity','oracle','openai','lancium'} <= actors.keys():
+        raise ValueError('bridge_income_actor_identity')
+    for actor in actors.values():
+        refs(actor, True)
+        if (actor['status'] != 'candidate_scope_not_adopted'
+                or not all(actor.get(k) for k in ['role','revenue','costs','period','boundary'])):
+            raise ValueError('bridge_income_actor_scope')
+    lease = income['lease_reference']
+    refs(lease)
+    if (lease['current_421mw_scope_applicable'] is not False or lease['automatic_fill'] is not False
+            or lease['contract_it_mw'] is not None or lease['actual_annual_cash_rent_usd'] is not None
+            or lease['tenant_legal_name'] is not None
+            or lease['tenant_identity_status'] != 'unnamed_in_sec_oracle_operational_link_candidate'
+            or lease['amount_basis'] != 'contract_first_lease_year_rate_annualization_not_actual_receipt'
+            or lease['escalation_basis'] != 'each_building_rent_commencement_anniversary'):
+        raise ValueError('bridge_income_lease_not_current_actual')
+    if (lease['buildings'] != 2 or lease['halls_per_building'] != 4 or lease['lease_years'] != 15
+            or lease['annual_escalation'] != .03 or lease['currency'] != 'USD'
+            or lease['financial_as_of'] != '2025-12-31' or lease['audit_date'] != '2026-03-12'
+            or lease['filed_date'] != '2026-03-13' or lease['filed_date_source_id'] not in sources
+            or lease['starts'] != [{'building':'B1','rent_commencement':'2025-03-18'},
+                                   {'building':'B2','rent_commencement':'2025-07-01'}]):
+        raise ValueError('bridge_income_lease_scope_period')
+    per_building = lease['halls_per_building']*lease['monthly_hall_rent_usd']+lease['monthly_core_rent_per_building_usd']
+    if (lease['monthly_hall_rent_usd'] != 2475000 or lease['monthly_core_rent_per_building_usd'] != 297000
+            or lease['monthly_base_per_building_usd'] != per_building
+            or lease['annualized_base_first_year_rates_usd'] != per_building*lease['buildings']*12):
+        raise ValueError('bridge_income_lease_arithmetic')
+    natures = {'reported_accrual_reimbursement','reported_accrual_expense','reported_paid_undated',
+               'reported_capitalized_incurred','cumulative_equity_contributions','cumulative_equity_distributions'}
+    for row in income['records']:
+        refs(row)
+        if (row['actor_id'] not in actors or row['nature'] not in natures or row['status'] != 'candidate'
+                or row['automatic_fill'] is not False or not row.get('period') or not row.get('boundary')
+                or type(row['reported_usd']) not in (int,float) or not math.isfinite(row['reported_usd']) or row['reported_usd'] < 0):
+            raise ValueError('bridge_income_cash_nature')
+    params = income['parameters']
+    if len({p['id'] for p in params}) != len(params):
+        raise ValueError('bridge_income_parameter_identity')
+    for row in params:
+        if (row['automatic_fill'] is not False or row['actual_value'] is not None
+                or row['state'] not in {'unknown','candidate'} or not row['parameter_ids']
+                or not set(row['parameter_ids']) <= spec['inputs'].keys()
+                or not row['evidence_ids'] or not set(row['evidence_ids']) <= evidence.keys()
+                or row['ready_for_human_review'] != (row['state']=='candidate')
+                or (row['state']=='unknown' and row['candidate_value'] is not None)
+                or not all(row.get(k) for k in ['reason','next_action','unit'])):
+            raise ValueError('bridge_income_parameter_not_adopted')
+    by_id = {p['id']:p for p in params}
+    if (by_id['term']['candidate_value'] != lease['lease_years'] or by_id['escalator']['candidate_value'] != lease['annual_escalation']
+            or by_id['rent-unit']['state'] != 'unknown' or by_id['compute']['state'] != 'unknown'):
+        raise ValueError('bridge_income_parameter_scope')
+    gate = income['return_gate']
+    if (gate['automatic_fill'] is not False or gate['status'] != 'blocked_missing_scoped_dated_cashflows'
+            or any(gate[k] is not None for k in ['actual_project_irr','actual_equity_irr','actual_npv_usd','actual_dscr','actual_noi_usd'])
+            or not gate.get('reason') or not income['cashflow_periods']
+            or any(u['status']!='unknown' or not u.get('next_action') for u in income['unknowns'])):
+        raise ValueError('bridge_income_return_unknown')
+    for asset in income['unobtained_assets']:
+        if not _url(asset['url']) or asset['status'] != 'not_obtained' or not asset['curl_exit']:
+            raise ValueError('bridge_income_unread_asset')
+
+
 def validate(doc, projects, spec):
-    if doc.get('schema_version') != 5 or not doc.get('version') or not doc.get('mapping_version'):
+    if doc.get('schema_version') != 6 or not doc.get('version') or not doc.get('mapping_version'):
         raise ValueError('bridge_version')
     sites = {r['site_id']: r for r in projects}
     seen = set()
@@ -209,6 +282,7 @@ def validate(doc, projects, spec):
         sources, evidence = _review(item)
         _energy(item, sources, evidence, spec)
         _cost(item, sources, evidence, spec)
+        _income(item, sources, evidence, spec)
         ids = set()
         for claim in item['configurations'] + item['economic_candidates']:
             if claim['id'] in ids or claim['status'] != 'candidate':
@@ -332,6 +406,17 @@ COST = {**_fields('id reviewed_at status previous_review_sha256 included exclude
         'unknowns': [_fields('id label status reason next_action')],
         'mapping': {**_fields('automatic_fill actual_it_capex_per_kw actual_facility_capex_per_mw actual_land_per_mw actual_btm_capex_per_mw reason'), 'blocked_targets':[None]},
         'previous_cost_derivation': DERIVATION, 'limitations': [None]}
+INCOME = {**_fields('id reviewed_at status previous_review_sha256 scope_separation'),
+    'actors': [{**_fields('id label role revenue costs period boundary status'),'source_ids':[None],'evidence_ids':[None]}],
+    'lease_reference': {**_fields('id scope source_id locator financial_as_of audit_date filed_date filed_date_source_id contract_signed buildings halls_per_building monthly_hall_rent_usd monthly_core_rent_per_building_usd monthly_base_per_building_usd annualized_base_first_year_rates_usd lease_years annual_escalation escalation_basis currency amount_basis contract_it_mw actual_annual_cash_rent_usd tenant_legal_name tenant_identity_status current_421mw_scope_applicable automatic_fill note'),
+        'starts':[_fields('building rent_commencement')],'evidence_ids':[None]},
+    'records': [{**_fields('id label actor_id reported_usd nature period boundary source_id locator status automatic_fill'),'evidence_ids':[None]}],
+    'parameters': [{**_fields('id label state candidate_value unit actual_value automatic_fill ready_for_human_review reason next_action'),'parameter_ids':[None],'evidence_ids':[None]}],
+    'unknowns': [_fields('id label status reason next_action')],
+    'cashflow_periods': [_fields('label period basis')],
+    'return_gate': _fields('status actual_project_irr actual_equity_irr actual_npv_usd actual_dscr actual_noi_usd automatic_fill reason'),
+    'unobtained_assets': [_fields('id url status curl_exit reason')], 'limitations':[None]}
+
 BRIDGE = {
     **_fields('site_id observation_id expected_it_mw review_sha256 expected_observation_sha256 document_review_sha256'),
     'scope': _fields('id label effective_at physical_scope included excluded actor accounting_basis'),
@@ -340,6 +425,7 @@ BRIDGE = {
     'demo_assumptions': _fields('load_factor pue'),
     'energy_review': ENERGY, 'energy_review_sha256': None,
     'cost_review': COST, 'cost_review_sha256': None,
+    'income_review': INCOME, 'income_review_sha256': None,
     'coverage': [_fields('angle item state destination reason')],
     'blockers': [{**_fields('id status label reason automatic_fill'), 'evidence_ids': [None],
                   'blocked_targets': [None], 'exception_rule_ids': [None]}],

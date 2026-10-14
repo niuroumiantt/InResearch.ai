@@ -1,7 +1,7 @@
 {
-  "schema_version": 5,
-  "version": "2026.10.14.4",
-  "mapping_version": "site-model-bridge-v5",
+  "schema_version": 6,
+  "version": "2026.10.14.5",
+  "mapping_version": "site-model-bridge-v6",
   "sites": [
     {
       "site_id": "us-tx-abilene",
@@ -184,7 +184,8 @@
         "PUE、WUE及统计期间",
         "园区适用电量费、需量费和水价",
         "批准容量原件、冗余与共享设备",
-        "主体对应投资、租赁、融资和收入合同"
+        "主体对应投资、租赁、融资和收入合同",
+        "首两栋租期/涨租/基本租金仅候选；Oracle/OpenAI专属收费、完整租约/实收/IT归属及分主体回报未知，当前四栋模型不自动填参。"
       ],
       "rules": [
         {
@@ -278,21 +279,21 @@
         }
       ],
       "review": {
-        "id": "abilene-capital-cost-review-20261014",
+        "id": "abilene-income-return-review-20261014",
         "reviewed_at": "2026-10-14",
-        "input_sha256": "6ca69d0d90cd89d1653d19a38a5d891f72ac4be159d0252b1164ab1c6e12c742",
-        "result_sha256": "6615158953c09da5410af8fb0580aec2ce899f04b2321727c0991bc3cb913629",
+        "input_sha256": "e4125311b043dcece147a63dc515e694f899eacd03638609f69cd279b1d64cdb",
+        "result_sha256": "94744b384d56a3ff45dde1a48951f9c87edc18a9d2620ecb635ebf170913f526",
         "checklist_version": "2026.10.13.2",
         "checklist_sha256": "3ae336b5fdf1215bd9ab3ea681341c6a64ed0818eab5101eae4d8ddfbe3d76a9",
-        "inventory_units": 224,
+        "inventory_units": 269,
         "item_counts": {
           "anomaly": 3,
-          "candidate": 208,
-          "excluded": 1,
+          "candidate": 244,
+          "excluded": 4,
           "existing_observation": 2,
           "not_applicable": 0,
-          "not_checked": 10,
-          "unknown": 33,
+          "not_checked": 16,
+          "unknown": 42,
           "unread_attachment": 0
         },
         "report_exhaustive": "not_certified",
@@ -726,8 +727,99 @@
             "sha256": "7df8c40c411bf72d5b7a959d48affdcbb31fff2de1d037257c41066ba5f75cca",
             "text_sha256": "7df8c40c411bf72d5b7a959d48affdcbb31fff2de1d037257c41066ba5f75cca",
             "checked_scope": "工具转录2025-05-22首段：八栋32厅及300MW自备发电交易范围；原HTML未取，余段未逐项核",
-            "capture_kind": "web_tool_extract",
-            "retrieved_at": "2026-10-14"
+            "retrieved_at": "2026-10-14",
+            "capture_kind": "web_tool_extract"
+          },
+          {
+            "id": "income-oracle-abilene",
+            "url": "https://www.oracle.com/data-centers/abilene/",
+            "status": "checked",
+            "sha256": "acd028ca74a7915c6db436479498b079c2d28b2495455cf07709a1d2324552b9",
+            "text_sha256": "535b332cda002a760c0ce876923581ce40f4b6e07073a1ec2e150541b4e52664",
+            "checked_scope": "收入/费用/主体范围相关正文；其他段落、链接和底层合同未穷尽",
+            "retrieved_at": "2026-10-14T01:12:33.660214+00:00",
+            "capture_kind": "original_bytes"
+          },
+          {
+            "id": "income-crusoe-live",
+            "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-flagship-abilene-data-center-is-live",
+            "status": "checked",
+            "sha256": "31600f292fd261634cdc4946f9cfaf9a132b750b2ff35ca9e13d07981ba4173e",
+            "text_sha256": "172f6cc65b6bef1ff17b76ee1c682084979537bd7fa443d26d5d9363d38dbe2e",
+            "checked_scope": "收入/费用/主体范围相关正文；其他段落、链接和底层合同未穷尽",
+            "mirror_of": "crusoe-live",
+            "retrieved_at": "2026-10-14T01:12:34.795350+00:00",
+            "capture_kind": "original_bytes"
+          },
+          {
+            "id": "income-oracle-fy26",
+            "url": "https://www.oracle.com/news/announcement/q4fy26-earnings-release-2026-06-10/",
+            "status": "checked",
+            "sha256": "2bbbc8d1d7ae68688cfdb655e29669dc4762653d472642b17ae0e81eb05e1b83",
+            "text_sha256": "7b95696ad22936df0ee4a2e1c8f37182af40c480bedce0c1c919d42587d735be",
+            "checked_scope": "2026-06-10全年公司级IaaS/RPO和客户预付/自供GPU说明；不推定Abilene资产归属或合同",
+            "retrieved_at": "2026-10-14T01:12:34.192469+00:00",
+            "capture_kind": "original_bytes"
+          },
+          {
+            "id": "income-openai-extract",
+            "url": "https://openai.com/index/stargate-advances-with-partnership-with-oracle/",
+            "status": "checked",
+            "sha256": "0d6f6c34da5f0bcb6ad0d1e4ce8c68bab127bf3cff81d1afab9c657c9d90d425",
+            "text_sha256": "0d6f6c34da5f0bcb6ad0d1e4ce8c68bab127bf3cff81d1afab9c657c9d90d425",
+            "checked_scope": "收入/费用/主体范围相关正文；其他段落、链接和底层合同未穷尽",
+            "retrieved_at": "2026-10-14T01:13:34.310Z",
+            "capture_kind": "web_tool_extract"
+          },
+          {
+            "id": "income-openai-sites-extract",
+            "url": "https://openai.com/index/five-new-stargate-sites/",
+            "status": "checked",
+            "sha256": "aa2867f39c640d9b96a3a983e00a70f123821476af3cfc2f1369811a138663b7",
+            "text_sha256": "aa2867f39c640d9b96a3a983e00a70f123821476af3cfc2f1369811a138663b7",
+            "checked_scope": "收入/费用/主体范围相关正文；其他段落、链接和底层合同未穷尽",
+            "retrieved_at": "2026-10-14T01:13:37.797Z",
+            "capture_kind": "web_tool_extract"
+          },
+          {
+            "id": "income-oracle-calendar-extract",
+            "url": "https://investor.oracle.com/faq/default.aspx",
+            "status": "checked",
+            "sha256": "45de865478958fa397fec51e2a8f9a0820363e52eb119b2359a911057b813adf",
+            "text_sha256": "45de865478958fa397fec51e2a8f9a0820363e52eb119b2359a911057b813adf",
+            "checked_scope": "工具只返回FAQ导航，未返回财年正文；没有据此采纳日期",
+            "retrieved_at": "2026-10-14T01:14:32.612Z",
+            "capture_kind": "web_tool_extract"
+          },
+          {
+            "id": "income-oracle-q1-extract",
+            "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx",
+            "status": "checked",
+            "sha256": "29379d090e8fb677a0ec8554f4872c8f144befc70e8055330768cb45b9cad015",
+            "text_sha256": "29379d090e8fb677a0ec8554f4872c8f144befc70e8055330768cb45b9cad015",
+            "checked_scope": "2026-09-10最新Q1FY27公司级收入/RPO、表头截至August31季度及May31上一财年末；其余表项未逐行复核，不分配到园区",
+            "retrieved_at": "2026-10-14T01:14:28.401Z",
+            "capture_kind": "web_tool_extract"
+          },
+          {
+            "id": "income-sec-extract",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/exhibit993-2025abelinedc1l.htm",
+            "status": "checked",
+            "sha256": "15707fc39bdf6e4f67ac01cf74903a86ffc75bdfeda1fb1b39f140e28cedc488",
+            "text_sha256": "15707fc39bdf6e4f67ac01cf74903a86ffc75bdfeda1fb1b39f140e28cedc488",
+            "checked_scope": "财报附注1/2/4/5/6及审计日、随后事项文字（工具转录）；20页财报的图表2/4/6/8/10/11/12/14/15/16/17/18/20未读取，原HTML未取得。审计2026-03-12；财报期间2025-01-01至12-31。",
+            "retrieved_at": "2026-10-14T01:13:28.299Z",
+            "capture_kind": "web_tool_extract"
+          },
+          {
+            "id": "income-sec-header-extract",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/0001944366-26-000020-index-headers.html",
+            "status": "checked",
+            "sha256": "bc68da19dae08c7e93823e2465172af4b6479ca4e5d73d7f41b269e1cba650f7",
+            "text_sha256": "bc68da19dae08c7e93823e2465172af4b6479ca4e5d73d7f41b269e1cba650f7",
+            "checked_scope": "申报索引头：报告期20251231、FILED AS OF20260313；不是租约原件或2026新租约",
+            "retrieved_at": "2026-10-14T01:13:42.220Z",
+            "capture_kind": "web_tool_extract"
           }
         ],
         "items": [
@@ -1810,6 +1902,438 @@
             "source_id": "cost-jv-adviser-extract",
             "locator": "原HTML/工具转录身份边界",
             "reason": "原HTML请求exit56；只保存web工具转录及其SHA，不是原网页字节冻结"
+          },
+          {
+            "id": "income-scope",
+            "label": "项目公司范围",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L159",
+            "reason": "Abilene DC1首两栋/八厅及在建电站；不是四栋421MW或八栋总账。"
+          },
+          {
+            "id": "income-tenant",
+            "label": "单一匿名承租人",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L159",
+            "reason": "2024-10-11签约、100%出租；附注未直接命名Oracle，跨源关联保留候选。"
+          },
+          {
+            "id": "income-owner",
+            "label": "项目公司与合资层级",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L161",
+            "reason": "DC1由LonghornJV全资持有；项目租金不全部归Crusoe运营公司。"
+          },
+          {
+            "id": "income-equity",
+            "label": "合资权益比例",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L409",
+            "reason": "2025末CrusoeAbilene/BORECLonghorn比例；交易时92.26%及期末四舍五入比例分别保留。非利润分配/分期现金流瀑布。"
+          },
+          {
+            "id": "income-accrual",
+            "label": "租金会计政策",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L170",
+            "reason": "租金收入按可收回性及不可取消期间计提；会计收入、发票、合同应收和实收不同。"
+          },
+          {
+            "id": "income-opex",
+            "label": "租户费用责任",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L183",
+            "reason": "租约期间租户承担披露的物业运营费用/资本性费用，项目公司gross列示；空置/违约/融资责任不因此消失。"
+          },
+          {
+            "id": "income-ti",
+            "label": "租户装修代付",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L199",
+            "reason": "项目公司替租户支付部分装修和管理费可全额报销；应收应付/代垫不是全部自有CapEx或净利润。"
+          },
+          {
+            "id": "income-loan",
+            "label": "债务条款",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L359",
+            "reason": "建设贷款上限22.88亿，SOFR+2.5%等分支；2028到期，实际提用/利息/对冲/现金日序列未核，不填debt_rate或LTC。"
+          },
+          {
+            "id": "income-interest",
+            "label": "资本化利息费用",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L214",
+            "reason": "2025/2024附注所列资本化利息及贷款取得费用原值保留；不是当前年度现金利息，更不是加在估算CapEx外的独立支出。"
+          },
+          {
+            "id": "income-ground-start",
+            "label": "地租开始日期",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L379",
+            "reason": "Lancium土地租赁自2024-05-31开始；不同于楼栋租金开始或IT投运。"
+          },
+          {
+            "id": "income-ground-term",
+            "label": "地租与购买权",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L380",
+            "reason": "法律初始20年+五次15年选项；2039-05-31后1美元购买权，财务假定行权确定15年。不是模型五次续约事实或购买成本1美元。"
+          },
+          {
+            "id": "income-ground-rate",
+            "label": "地租计费规则",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L381",
+            "reason": "施工初始月租20万美元；首厅完成后按已送电/调试MW、最低20万；MW单位费率未披露。"
+          },
+          {
+            "id": "income-ground-actual",
+            "label": "2025已确认地租费用",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L382",
+            "reason": "2025会计费用40万美元是披露原值；不以20万×12覆盖；分期支付/预付和租赁负债现金表未取，不能当全年实际现金。"
+          },
+          {
+            "id": "income-reservation",
+            "label": "地租供电预留",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L383",
+            "reason": "一次性3500万美元与土地/供电预留协议相关；租户退租时预留机制适用，费用/责任按合同核，不当整园区土地价。"
+          },
+          {
+            "id": "income-power",
+            "label": "电力直接付款",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L383",
+            "reason": "租户向Lancium直接付电力月款；电价/账单/法人/转售利润未知，Oracle关系候选未认证。"
+          },
+          {
+            "id": "income-start-b1",
+            "label": "B1起租",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L400",
+            "reason": "B1起租2025-03-18；不是实际IT负载/起算年度容量。"
+          },
+          {
+            "id": "income-start-b2",
+            "label": "B2起租",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L400",
+            "reason": "B2起租2025-07-01；租金年分别按各自周年，不能全园区Jan1递增。"
+          },
+          {
+            "id": "income-term",
+            "label": "楼栋租期",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L401",
+            "reason": "首两栋各自起租15年；与地租会计15年及当前模型运营期不同，不给后六栋套同条款。"
+          },
+          {
+            "id": "income-hall-rent",
+            "label": "首年厅租金",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L401",
+            "reason": "首个租赁年度每数据厅月租247.5万美元；不是每GPU小时/托管每kW报价。"
+          },
+          {
+            "id": "income-core-rent",
+            "label": "首年核心租金",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L401",
+            "reason": "首个租赁年度每栋网络核心月租29.7万美元；不要按每厅再收一次。"
+          },
+          {
+            "id": "income-escalator",
+            "label": "楼栋周年递增",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L401",
+            "reason": "每栋起租周年3%递增；当前2026年适用档位需分栋/期间，原基准年化不是当前实收。"
+          },
+          {
+            "id": "income-reimbursement",
+            "label": "2025费用转付",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L402",
+            "reason": "2025附加租金收入及物业运营费用均12046759美元；gross转付不等于纯利润或含电算力收入。"
+          },
+          {
+            "id": "income-dev-total",
+            "label": "开发管理费合同",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L410",
+            "reason": "Crusoe关联方开发管理费总约1300万美元；项目公司资本化成本/关联方收入，不是Crusoe全园区租金或股权收益。"
+          },
+          {
+            "id": "income-dev-incurred",
+            "label": "2025开发费计提",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L411",
+            "reason": "2025 incurred661.7万与paid900万分列；后者可能结清以前应付款，不把两项再加。"
+          },
+          {
+            "id": "income-dev-paid",
+            "label": "2025开发费支付",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L411",
+            "reason": "2025披露支付900万；支付日期和收款法人及收款方收入确认未取得。"
+          },
+          {
+            "id": "income-contributions",
+            "label": "累计股本投入",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L162",
+            "reason": "2025/2024末累计投入；不是年度费用或逐笔现金投资，不按2025末余额直接算股东IRR。"
+          },
+          {
+            "id": "income-distributions",
+            "label": "累计股本分配",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L162",
+            "reason": "2025/2024末累计分配；可能包含资本返还/融资回收，不能称经营利润或按7.7%直接分给Crusoe。"
+          },
+          {
+            "id": "income-audit-date",
+            "label": "财报审计时点",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注/审计工具转录 L73",
+            "reason": "2025财报审计和可发行日期2026-03-12；截至2025-12-31，不确认2026-10最新合同。"
+          },
+          {
+            "id": "income-filed-date",
+            "label": "申报版本日期",
+            "state": "candidate",
+            "source_id": "income-sec-header-extract",
+            "locator": "FILED AS OF DATE",
+            "reason": "SEC申报日2026-03-13，与审计日/报告期/起租日分别保留。"
+          },
+          {
+            "id": "income-oci-role",
+            "label": "OCI运营与OpenAI工作负载",
+            "state": "candidate",
+            "source_id": "income-openai-extract",
+            "locator": "2025-07-22正文",
+            "reason": "OpenAI官方称Oracle交付机柜并开始训练/推理；支持运营链，不披露GPU最终产权、收费、付款或净收益。"
+          },
+          {
+            "id": "income-oracle-link",
+            "label": "Oracle/Crusoe运营关联",
+            "state": "candidate",
+            "source_id": "income-crusoe-live",
+            "locator": "2025-09-30首段",
+            "reason": "首期在OCI运行，公司名与财报匿名承租人的法律同一性仍需签署租约/实体资料。"
+          },
+          {
+            "id": "income-multi-sites",
+            "label": "跨园区容量不可分配收入",
+            "state": "excluded",
+            "source_id": "income-openai-sites-extract",
+            "locator": "2025-09-23正文",
+            "reason": "4.5GW及多站点计划不是Abilene收入/合同量；附近扩展范围与原八栋分别保留。"
+          },
+          {
+            "id": "income-oracle-company-annual",
+            "label": "Oracle全年公司数不填园区",
+            "state": "excluded",
+            "source_id": "income-oracle-fy26",
+            "locator": "FY2026 IaaS/RPO/财务正文",
+            "reason": "FY2026公司IaaS收入181亿美元；不是Abilene项目收入，不按容量比例分摊。"
+          },
+          {
+            "id": "income-gpu-funding",
+            "label": "客户预付或自供GPU安排",
+            "state": "candidate",
+            "source_id": "income-oracle-fy26",
+            "locator": "Remaining Performance Obligations",
+            "reason": "部分全球AI合同由客户预付或自供GPU；不能认定Abilene全部设备为Oracle投资，也不能用159亿作为其实际回报分母。"
+          },
+          {
+            "id": "income-oracle-company-quarter",
+            "label": "最新公司季度/RPO不填园区",
+            "state": "excluded",
+            "source_id": "income-oracle-q1-extract",
+            "locator": "2026-09-10 Q1FY27截至Aug31",
+            "reason": "最新Q1FY27公司RPO6640亿/季度IaaS74亿等仅公司级；RPO不是园区当期收入/实收，不做容量或GPU分摊。"
+          },
+          {
+            "id": "income-fiscal-period",
+            "label": "Oracle财年期间",
+            "state": "candidate",
+            "source_id": "income-oracle-q1-extract",
+            "locator": "报表表头与注释",
+            "reason": "FY27Q1是截至2026-08-31三个月；上一财年末May31,2026；不同于DC1自然年2025、楼栋租赁年度和固定421MW假设年。"
+          },
+          {
+            "id": "income-building-base",
+            "label": "首年每栋月基本租金",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注5 L400-402算术复核",
+            "reason": "4×2475000+297000=10197000美元/月，只是合同条款算术。"
+          },
+          {
+            "id": "income-annual-base",
+            "label": "两栋首年单价年化基本租金",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注5 L400-402算术复核",
+            "reason": "2×12×10197000=244728000美元/年；混合各自首年单价的统一标尺，不是实际同一自然年应收/实收；2026已不同周年档位。"
+          },
+          {
+            "id": "income-gross-net",
+            "label": "费用转付类别净额",
+            "state": "candidate",
+            "source_id": "income-sec-extract",
+            "locator": "附注5 L400-402算术复核",
+            "reason": "12046759收入−12046759物业费用=0仅对应披露的转付类别；不表示物业NOI100%、全公司利润0或免运营费用。"
+          },
+          {
+            "id": "income-unknown-tenant-identity",
+            "label": "承租人法律同一性",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "SEC匿名承租人与Oracle品牌运营关联；签署主体/担保方/转租/修订未取"
+          },
+          {
+            "id": "income-unknown-rent-cash",
+            "label": "租金实收与日序列",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "完整租约、发票、应收/预收与现金表未取；不足以重建2025部分年或2026实收"
+          },
+          {
+            "id": "income-unknown-denominator",
+            "label": "租金单位功率分母",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "首两栋租赁关键ITMW/付费容量及计费口径未取；421MW属于四栋估算"
+          },
+          {
+            "id": "income-unknown-oracle-revenue",
+            "label": "Oracle园区算力收费",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "OpenAI专属合同价、最低承诺/预付/返利/SLA、GPU小时和收入确认未知"
+          },
+          {
+            "id": "income-unknown-oracle-assets",
+            "label": "Oracle设备成本及现金分期",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "全球客户预付/自供GPU安排不是Abilene归属证明；IT采购/折旧/利息/更新/共享服务分摊未知"
+          },
+          {
+            "id": "income-unknown-openai-revenue",
+            "label": "OpenAI园区归因收入",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "ChatGPT/API全公司收入不能归因到此园区；训练/推理份额、吞吐、价税/免费服务和变现率未知"
+          },
+          {
+            "id": "income-unknown-ground-energy",
+            "label": "Lancium地租与供电净收益",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "MW地租费率、实际供电价/成本/利润/当前结算法人及备用费用未知"
+          },
+          {
+            "id": "income-unknown-crusoe-return",
+            "label": "Crusoe及股东收益",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "开发费收款实体和费用、股东资本/分红日序列及优先/追补瀑布未知"
+          },
+          {
+            "id": "income-unknown-returns",
+            "label": "各主体真实回报",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "完整资产/权益CF、债务提用/还本/对冲/再融资、税、残值与退出均未齐"
+          },
+          {
+            "id": "income-unread-image_6",
+            "label": "2025经营收入/费用表未读取",
+            "state": "not_checked",
+            "source_id": "income-sec-extract",
+            "locator": "源HTML图片 image_6.jpg",
+            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+          },
+          {
+            "id": "income-unread-image_10",
+            "label": "2025现金流表未读取",
+            "state": "not_checked",
+            "source_id": "income-sec-extract",
+            "locator": "源HTML图片 image_10.jpg",
+            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+          },
+          {
+            "id": "income-unread-image_17",
+            "label": "未来最低租金表未读取",
+            "state": "not_checked",
+            "source_id": "income-sec-extract",
+            "locator": "源HTML图片 image_17.jpg",
+            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+          },
+          {
+            "id": "income-unread-image_15",
+            "label": "实际债务余额表未读取",
+            "state": "not_checked",
+            "source_id": "income-sec-extract",
+            "locator": "源HTML图片 image_15.jpg",
+            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+          },
+          {
+            "id": "income-unread-image_18",
+            "label": "财务回报摘要未读取",
+            "state": "not_checked",
+            "source_id": "income-sec-extract",
+            "locator": "源HTML图片 image_18.jpg",
+            "reason": "本轮原图请求curl56失败；文字注释不代替图表，旧未读项仍保留，不填其中未知数字。"
+          },
+          {
+            "id": "income-unread-faq",
+            "label": "FAQ财年正文未返回",
+            "state": "not_checked",
+            "source_id": "income-oracle-calendar-extract",
+            "locator": "工具只返回导航",
+            "reason": "保留工具版本；财年范围另据实际季度报表表头，不当FAQ已读。"
           }
         ],
         "derivations": [
@@ -2090,6 +2614,65 @@
               "八栋预测总值，非增量或实支",
               "843是页面精度；不是当前IT或批准容量"
             ]
+          },
+          {
+            "id": "income-building-base",
+            "output_item_id": "income-building-base",
+            "input_item_ids": [
+              "income-scope",
+              "income-hall-rent",
+              "income-core-rent"
+            ],
+            "source_id": "income-sec-extract",
+            "locator": "附注5 L400-402",
+            "formula": "4 halls×2475000 USD/month +297000 USD/month=10197000 USD/month",
+            "scope": "Abilene DC1首两栋各自首个租赁年度单价标尺；非421MW模型",
+            "review_state": "candidate",
+            "relationship_kind": "contract_arithmetic_not_cash_receipt",
+            "assumptions": [
+              "每栋四厅，一个网络核心；首个租赁年度",
+              "实际发票/收款及租约修订未知"
+            ]
+          },
+          {
+            "id": "income-annual-base",
+            "output_item_id": "income-annual-base",
+            "input_item_ids": [
+              "income-building-base",
+              "income-scope",
+              "income-start-b1",
+              "income-start-b2",
+              "income-escalator"
+            ],
+            "source_id": "income-sec-extract",
+            "locator": "附注5 L400-402",
+            "formula": "2 buildings×12 months×10197000=244728000 USD/year",
+            "scope": "Abilene DC1首两栋各自首个租赁年度单价标尺；非421MW模型",
+            "review_state": "candidate",
+            "relationship_kind": "contract_arithmetic_not_cash_receipt",
+            "assumptions": [
+              "两栋均按各自首年单价，未递增的统一年化标尺",
+              "不同起租日期，不等于2025/2026合同应收或现金；未分配到后六栋",
+              "未包含附加租金、电力、算力收入；租赁IT分母未知"
+            ]
+          },
+          {
+            "id": "income-pass-through-net",
+            "output_item_id": "income-gross-net",
+            "input_item_ids": [
+              "income-reimbursement",
+              "income-opex"
+            ],
+            "source_id": "income-sec-extract",
+            "locator": "附注5 L400-402",
+            "formula": "12046759 revenue−12046759 property operating expenses=0 USD in disclosed pass-through category",
+            "scope": "Abilene DC1首两栋各自首个租赁年度单价标尺；非421MW模型",
+            "review_state": "candidate",
+            "relationship_kind": "contract_arithmetic_not_cash_receipt",
+            "assumptions": [
+              "仅该会计转付类别；不是全公司利润或NOI",
+              "费用转付有收付时差、应收与信用风险，现金利润未知"
+            ]
           }
         ],
         "limitations": [
@@ -2111,11 +2694,14 @@
           "成本链在当前冻结页与公布CSV分项间算术闭合；不执行源工作簿公式，不认证历史/后端版本或现场账目。",
           "CSV分项合计与总计取整、原生缓存与整数IT容量精度分别保留；不能按38B近似系数强行覆盖15.9B。",
           "实际采购、结算、土地权利及分期实支仍未知；JV/贷款/估算申报/公允价值/资本支出不是同一量；三异常仍保留。",
-          "交易顾问只取得工具转录，原HTML下载exit56；其八栋/300MW发电范围是历史交易候选，未证明现场额定值/实支；与350/360.5MW版本差异保留。"
+          "交易顾问只取得工具转录，原HTML下载exit56；其八栋/300MW发电范围是历史交易候选，未证明现场额定值/实支；与350/360.5MW版本差异保留。",
+          "收入/回报仅首两栋DC1文字附注和运营链定向核对；租约原件、SEC表图仍未取得/读取。不同主体及合同/会计/现金期间不可混用。",
+          "首年单价年化244728000美元是候选算术标尺，不是当前四栋收入、2025/2026实收或Oracle/OpenAI收益；不用159亿美元估算作实际回报分母。",
+          "最新Oracle公司级收入/RPO、客户预付/自供GPU不是Abilene收入或资产归属；未填任何新参数或关闭原三异常。"
         ],
-        "previous_review_sha256": "f1f2abd299b9bf4a2d20fb2ba123a35bb6730e85b4b1be83143a6c74401ace7b"
+        "previous_review_sha256": "9f453680802fa871fb09d524b5fcc63a91a54ded3537d510b6590d34de0bd130"
       },
-      "review_sha256": "9f453680802fa871fb09d524b5fcc63a91a54ded3537d510b6590d34de0bd130",
+      "review_sha256": "ed31f46247b7c91a05d13261e9a62809462dc83ee3009c93bc2bb1112ebcad76",
       "expected_observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
       "blockers": [
         {
@@ -2563,7 +3149,7 @@
         "it_capex_per_kw": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知；资本成本复核分项是通用模型候选，不自动作为本园区采购/结算/权利费用。",
+          "note": "通用计算假设；Abilene现场值未知；资本成本复核分项是通用模型候选，不自动作为本园区采购/结算/权利费用。；收入回报复核：全球客户预付/自供GPU说明不证明本园区归属；159亿通用成本不是任一主体现金投资。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.it_capex_per_kw"
           }
@@ -2603,7 +3189,7 @@
         "gpu_utilization": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：合同价/付费小时/最低承诺/预付/返利未知；物理IT负载与GPU忙碌不等付费利用。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.gpu_utilization"
           }
@@ -2611,7 +3197,7 @@
         "facility_mode": {
           "kind": "scenario_choice",
           "actual_state": "unknown",
-          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份；收入回报复核：DC1出租/Oracle运营/OpenAI使用为分主体链；不能把六方账合成当前物理情景。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.facility_mode"
           }
@@ -2667,7 +3253,7 @@
         "shell_rent_per_mw": {
           "kind": "generic_reference",
           "actual_state": "unknown",
-          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核",
+          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核；收入回报复核：知道厅/核心租金，缺同租约计费IT功率和服务范围；不除421/1200或规划206MW。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "regions.us_texas.shell_rent_per_mw"
           }
@@ -2675,7 +3261,7 @@
         "colo_rate": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：知道厅/核心租金，缺同租约计费IT功率和服务范围；不除421/1200或规划206MW。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.colo_rate"
           }
@@ -2763,7 +3349,7 @@
         "wacc": {
           "kind": "analysis_choice",
           "actual_state": "not_site_observation",
-          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.wacc"
           }
@@ -2771,7 +3357,7 @@
         "business_model": {
           "kind": "scenario_choice",
           "actual_state": "unknown",
-          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份；收入回报复核：DC1出租/Oracle运营/OpenAI使用为分主体链；不能把六方账合成当前物理情景。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.business_model"
           }
@@ -2779,7 +3365,7 @@
         "price_gpu_hour": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：合同价/付费小时/最低承诺/预付/返利未知；物理IT负载与GPU忙碌不等付费利用。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.price_gpu_hour"
           }
@@ -2787,7 +3373,7 @@
         "price_colo_kw_month": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：知道厅/核心租金，缺同租约计费IT功率和服务范围；不除421/1200或规划206MW。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.price_colo_kw_month"
           }
@@ -2827,7 +3413,7 @@
         "lease_term": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：只支持DC1首两栋租约候选；通用模型当前四栋/主体未对齐。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.lease_term"
           }
@@ -2835,7 +3421,7 @@
         "escalator": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：3%作用于各栋起租周年，不是电价涨幅或全园区Jan1涨租。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.escalator"
           }
@@ -2843,7 +3429,7 @@
         "noi_margin": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：NNN费用转付和gross类别净额不证明NOI100%；融资/空置/信用风险另列。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.noi_margin"
           }
@@ -2851,7 +3437,7 @@
         "shell_ltc": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.shell_ltc"
           }
@@ -2859,7 +3445,7 @@
         "debt_rate": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.debt_rate"
           }
@@ -2867,7 +3453,7 @@
         "residual_share": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.residual_share"
           }
@@ -2891,7 +3477,7 @@
         "rent_price": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：合同价/付费小时/最低承诺/预付/返利未知；物理IT负载与GPU忙碌不等付费利用。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.rent_price"
           }
@@ -2899,7 +3485,7 @@
         "tokens_per_gpu_sec": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：理论FP算力不能直接转token；训练/推理/免费用量与产品收入归因未知。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.tokens_per_gpu_sec"
           }
@@ -2907,7 +3493,7 @@
         "price_per_m_tokens": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：理论FP算力不能直接转token；训练/推理/免费用量与产品收入归因未知。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.price_per_m_tokens"
           }
@@ -2915,7 +3501,7 @@
         "monetized_share": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：理论FP算力不能直接转token；训练/推理/免费用量与产品收入归因未知。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.monetized_share"
           }
@@ -2923,7 +3509,7 @@
         "renewal_options": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：地租20年+五次15年不能复制给数据厅租约；行权概率非事实。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.renewal_options"
           }
@@ -2931,7 +3517,7 @@
         "renewal_years": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：地租20年+五次15年不能复制给数据厅租约；行权概率非事实。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.renewal_years"
           }
@@ -2939,7 +3525,7 @@
         "renewal_probability": {
           "kind": "analysis_choice",
           "actual_state": "not_site_observation",
-          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实；收入回报复核：地租20年+五次15年不能复制给数据厅租约；行权概率非事实。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.renewal_probability"
           }
@@ -2947,7 +3533,7 @@
         "price_change": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：合同价/付费小时/最低承诺/预付/返利未知；物理IT负载与GPU忙碌不等付费利用。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.price_change"
           }
@@ -2955,7 +3541,7 @@
         "compute_ltc": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：全球客户预付/自供GPU说明不证明本园区归属；159亿通用成本不是任一主体现金投资。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.compute_ltc"
           }
@@ -2963,7 +3549,7 @@
         "compute_debt_rate": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：全球客户预付/自供GPU说明不证明本园区归属；159亿通用成本不是任一主体现金投资。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.compute_debt_rate"
           }
@@ -2995,7 +3581,7 @@
         "util_year1": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：合同价/付费小时/最低承诺/预付/返利未知；物理IT负载与GPU忙碌不等付费利用。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.util_year1"
           }
@@ -3003,7 +3589,7 @@
         "util_year2": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "通用计算假设；Abilene现场值未知",
+          "note": "通用计算假设；Abilene现场值未知；收入回报复核：合同价/付费小时/最低承诺/预付/返利未知；物理IT负载与GPU忙碌不等付费利用。 当前计算值仍参考/假设，非现场合同采用。",
           "source_ref": {
             "path": "assumptions.util_year2"
           }
@@ -3647,7 +4233,700 @@
           "note": "原始参考跨2024土地、2025服务器/市场与2026工程资料；报告发表日/表更新日/源材料年份/报价与付款日不同，未认证统一不变价、税费或实际采购时点。"
         }
       },
-      "cost_review_sha256": "999bc66005ba1730c3e15f380609159cd21866679e6debafe79e69ee4649bab0"
+      "cost_review_sha256": "999bc66005ba1730c3e15f380609159cd21866679e6debafe79e69ee4649bab0",
+      "income_review": {
+        "id": "abilene-income-return-v1",
+        "reviewed_at": "2026-10-14",
+        "status": "candidate_only_no_parameter_fill",
+        "previous_review_sha256": "9f453680802fa871fb09d524b5fcc63a91a54ded3537d510b6590d34de0bd130",
+        "scope_separation": "租约及财报属于DC1首两栋；当前模型是四栋421MW物理估算，主体未定。不得直接套用租金/借款/权益到当前模型。",
+        "actors": [
+          {
+            "id": "dc1",
+            "label": "Abilene DC 1, LLC",
+            "role": "首两栋项目出租/开发公司",
+            "revenue": "基本租金、附加租金费用转付；公开条款单价已读，完整收入表未读",
+            "costs": "设施/电站建设、融资、地租和部分租户装修代垫；租期物业费用向租户转付",
+            "period": "2025自然年财报；B1/B2各自起租年度",
+            "boundary": "首两栋八厅及电站；不等于Crusoe全公司或四栋421MW。支出、公允价值与返还代垫分列。",
+            "source_ids": [
+              "income-sec-extract"
+            ],
+            "evidence_ids": [
+              "income-scope",
+              "income-accrual",
+              "income-opex",
+              "income-ti"
+            ],
+            "status": "candidate_scope_not_adopted"
+          },
+          {
+            "id": "crusoe-affiliate",
+            "label": "Crusoe开发管理关联方",
+            "role": "项目服务商",
+            "revenue": "1300万美元开发管理费合同；2025项目公司披露支付900万、计提661.7万",
+            "costs": "服务成本/工资/分包和关联方所得税未知",
+            "period": "开发期合同/2025计提和付款分别保留",
+            "boundary": "具体收款法人和其会计收入未核；不将该款加到项目公司净收益或当全部Crusoe收入。",
+            "source_ids": [
+              "income-sec-extract"
+            ],
+            "evidence_ids": [
+              "income-dev-total",
+              "income-dev-incurred",
+              "income-dev-paid"
+            ],
+            "status": "candidate_scope_not_adopted"
+          },
+          {
+            "id": "jv-equity",
+            "label": "Longhorn JV及其股东",
+            "role": "DC1持有层与权益投资人",
+            "revenue": "股权分配/处置收益；CrusoeAbilene7.7%、BOREC92.3%为2025末持有比例候选",
+            "costs": "出资、上层融资/税/管理费；优先分配和追补未知",
+            "period": "建设至运营/退出的带日期权益现金流",
+            "boundary": "股本累计分配可含资本返还，不是经营利润；不能按持股比例推算Crusoe实际分红或股东IRR。",
+            "source_ids": [
+              "income-sec-extract"
+            ],
+            "evidence_ids": [
+              "income-owner",
+              "income-equity",
+              "income-contributions",
+              "income-distributions"
+            ],
+            "status": "candidate_scope_not_adopted"
+          },
+          {
+            "id": "oracle",
+            "label": "Oracle／OCI（租户法律同一性待核）",
+            "role": "算力运营/服务链",
+            "revenue": "向OpenAI等提供服务的园区专属合同收费/确认收入未知",
+            "costs": "候选关联的物业基本租金、转付运营费用和Lancium电款；IT采购/自供/预付归属、刷新、运营与融资未知",
+            "period": "楼栋租赁年度、OCI服务期和Oracle截至May31财年分开",
+            "boundary": "官方运营关联支持链条，SEC匿名租户未直接命名；全球RPO/收入不按容量摊到Abilene。",
+            "source_ids": [
+              "income-sec-extract",
+              "income-openai-extract",
+              "income-oracle-fy26",
+              "income-oracle-q1-extract"
+            ],
+            "evidence_ids": [
+              "income-tenant",
+              "income-oci-role",
+              "income-gpu-funding",
+              "income-oracle-company-quarter"
+            ],
+            "status": "candidate_scope_not_adopted"
+          },
+          {
+            "id": "openai",
+            "label": "OpenAI",
+            "role": "训练/推理工作负载使用方",
+            "revenue": "产品/API收入及此园区可归因份额未知；训练不是直接按token出售",
+            "costs": "OCI合同费、预付/自供GPU是否适用、网络/软件/研究成本均待合同",
+            "period": "服务履约/预付结算/产品计量期间；不同于楼栋起租日",
+            "boundary": "理论峰值算力不能当付费利用率或token吞吐；公司收入不能视作园区算力收入。",
+            "source_ids": [
+              "income-openai-extract",
+              "income-openai-sites-extract"
+            ],
+            "evidence_ids": [
+              "income-oci-role",
+              "income-multi-sites"
+            ],
+            "status": "candidate_scope_not_adopted"
+          },
+          {
+            "id": "lancium",
+            "label": "Lancium及相关供电主体（法人待核）",
+            "role": "土地/供电安排",
+            "revenue": "地租/一次性预留款相关权利、电力月款；全额电款不是毛利",
+            "costs": "土地/供电采购、并网/能源/运营责任和分期利润未知",
+            "period": "地租自2024-05-31，楼栋使用/供电期间另核",
+            "boundary": "每MW地租单价/实际电价未知；$1购买选项不等于土地购价；不得与Oracle/Landlord现金重复加总。",
+            "source_ids": [
+              "income-sec-extract"
+            ],
+            "evidence_ids": [
+              "income-ground-start",
+              "income-ground-term",
+              "income-ground-rate",
+              "income-ground-actual",
+              "income-reservation",
+              "income-power"
+            ],
+            "status": "candidate_scope_not_adopted"
+          }
+        ],
+        "lease_reference": {
+          "id": "dc1-first-two-buildings-2025-disclosure",
+          "scope": "Abilene DC1首两栋、每栋四厅和一个网络核心；不是当前421MW所选四栋",
+          "source_id": "income-sec-extract",
+          "locator": "附注1/5/6；L159、400-412",
+          "financial_as_of": "2025-12-31",
+          "audit_date": "2026-03-12",
+          "filed_date": "2026-03-13",
+          "filed_date_source_id": "income-sec-header-extract",
+          "contract_signed": "2024-10-11",
+          "starts": [
+            {
+              "building": "B1",
+              "rent_commencement": "2025-03-18"
+            },
+            {
+              "building": "B2",
+              "rent_commencement": "2025-07-01"
+            }
+          ],
+          "buildings": 2,
+          "halls_per_building": 4,
+          "monthly_hall_rent_usd": 2475000,
+          "monthly_core_rent_per_building_usd": 297000,
+          "monthly_base_per_building_usd": 10197000,
+          "annualized_base_first_year_rates_usd": 244728000,
+          "lease_years": 15,
+          "annual_escalation": 0.03,
+          "escalation_basis": "each_building_rent_commencement_anniversary",
+          "currency": "USD",
+          "amount_basis": "contract_first_lease_year_rate_annualization_not_actual_receipt",
+          "contract_it_mw": null,
+          "actual_annual_cash_rent_usd": null,
+          "tenant_legal_name": null,
+          "tenant_identity_status": "unnamed_in_sec_oracle_operational_link_candidate",
+          "current_421mw_scope_applicable": false,
+          "automatic_fill": false,
+          "evidence_ids": [
+            "income-scope",
+            "income-tenant",
+            "income-start-b1",
+            "income-start-b2",
+            "income-term",
+            "income-hall-rent",
+            "income-core-rent",
+            "income-escalator",
+            "income-building-base",
+            "income-annual-base"
+          ],
+          "note": "244728000=2×12×(4×2475000+297000)，使用两栋各自首年单价的统一年化标尺；不是同一自然年实收、2025部分年收入或2026当前档位。周年分栋，租约修订/减免/收付未知；租约原件与最低租金表未取得。"
+        },
+        "records": [
+          {
+            "id": "additional-rent",
+            "label": "附加租金/费用转付",
+            "actor_id": "dc1",
+            "reported_usd": 12046759,
+            "nature": "reported_accrual_reimbursement",
+            "period": "2025-01-01至2025-12-31",
+            "boundary": "收入与物业费用均此数；对应类别净额0不表示全公司NOI100%或实际收到/支付相等。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-reimbursement",
+              "income-gross-net"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          },
+          {
+            "id": "ground-rent",
+            "label": "已确认地租费用",
+            "actor_id": "dc1",
+            "reported_usd": 400000,
+            "nature": "reported_accrual_expense",
+            "period": "2025自然年",
+            "boundary": "最低20万月租不是此会计金额的全年现金替代；租赁本金/利息/预付现金表未知。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-ground-actual",
+              "income-ground-rate"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          },
+          {
+            "id": "development-paid",
+            "label": "项目向开发关联方支付",
+            "actor_id": "crusoe-affiliate",
+            "reported_usd": 9000000,
+            "nature": "reported_paid_undated",
+            "period": "2025自然年",
+            "boundary": "披露已付总额，逐日/收款法人/收款方收入与成本未知；不是全园区净收益。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-dev-paid"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          },
+          {
+            "id": "development-incurred",
+            "label": "项目开发费计提",
+            "actor_id": "dc1",
+            "reported_usd": 6617000,
+            "nature": "reported_capitalized_incurred",
+            "period": "2025自然年",
+            "boundary": "资本化成本；不与900万支付再加一次，也不当运营费用。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-dev-incurred"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          },
+          {
+            "id": "equity-in-2025",
+            "label": "累计股本投入 2025",
+            "actor_id": "jv-equity",
+            "reported_usd": 926846823,
+            "nature": "cumulative_equity_contributions",
+            "period": "截至2025-12-31",
+            "boundary": "累计总额不是逐期现金流；可能含资本返还/融资回收，不能直接计算年度回报或按股权比例分摊。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-contributions"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          },
+          {
+            "id": "equity-in-2024",
+            "label": "累计股本投入 2024",
+            "actor_id": "jv-equity",
+            "reported_usd": 868453049,
+            "nature": "cumulative_equity_contributions",
+            "period": "截至2024-12-31",
+            "boundary": "累计总额不是逐期现金流；可能含资本返还/融资回收，不能直接计算年度回报或按股权比例分摊。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-contributions"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          },
+          {
+            "id": "equity-out-2025",
+            "label": "累计股本分配 2025",
+            "actor_id": "jv-equity",
+            "reported_usd": 303608587,
+            "nature": "cumulative_equity_distributions",
+            "period": "截至2025-12-31",
+            "boundary": "累计总额不是逐期现金流；可能含资本返还/融资回收，不能直接计算年度回报或按股权比例分摊。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-distributions"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          },
+          {
+            "id": "equity-out-2024",
+            "label": "累计股本分配 2024",
+            "actor_id": "jv-equity",
+            "reported_usd": 241500911,
+            "nature": "cumulative_equity_distributions",
+            "period": "截至2024-12-31",
+            "boundary": "累计总额不是逐期现金流；可能含资本返还/融资回收，不能直接计算年度回报或按股权比例分摊。",
+            "source_id": "income-sec-extract",
+            "locator": "财报附注；逐项定位见证据ID",
+            "evidence_ids": [
+              "income-distributions"
+            ],
+            "status": "candidate",
+            "automatic_fill": false
+          }
+        ],
+        "parameters": [
+          {
+            "id": "term",
+            "label": "首两栋租期",
+            "parameter_ids": [
+              "lease_term"
+            ],
+            "state": "candidate",
+            "candidate_value": 15,
+            "unit": "years",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": true,
+            "reason": "只支持DC1首两栋租约候选；通用模型当前四栋/主体未对齐。",
+            "next_action": "核原租约修订、对应实体和范围后，仅在独立出租方情景人工采用。",
+            "evidence_ids": [
+              "income-term",
+              "income-start-b1",
+              "income-start-b2"
+            ]
+          },
+          {
+            "id": "escalator",
+            "label": "分栋周年涨租",
+            "parameter_ids": [
+              "escalator"
+            ],
+            "state": "candidate",
+            "candidate_value": 0.03,
+            "unit": "fraction/year",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": true,
+            "reason": "3%作用于各栋起租周年，不是电价涨幅或全园区Jan1涨租。",
+            "next_action": "核生效/修订和分栋日历；当前模型仍原假设。",
+            "evidence_ids": [
+              "income-escalator"
+            ]
+          },
+          {
+            "id": "rent-unit",
+            "label": "单位功率租金/报价",
+            "parameter_ids": [
+              "shell_rent_per_mw",
+              "price_colo_kw_month",
+              "colo_rate"
+            ],
+            "state": "unknown",
+            "candidate_value": null,
+            "unit": "scope-aligned ITkW or ITMW",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": false,
+            "reason": "知道厅/核心租金，缺同租约计费IT功率和服务范围；不除421/1200或规划206MW。",
+            "next_action": "取租约容量/服务附表和单价、税/电/网络包含项。",
+            "evidence_ids": [
+              "income-annual-base",
+              "income-scope"
+            ]
+          },
+          {
+            "id": "role",
+            "label": "资产持有与商业模式",
+            "parameter_ids": [
+              "facility_mode",
+              "business_model"
+            ],
+            "state": "candidate",
+            "candidate_value": null,
+            "unit": "conceptual_role_only",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": true,
+            "reason": "DC1出租/Oracle运营/OpenAI使用为分主体链；不能把六方账合成当前物理情景。",
+            "next_action": "先建独立主体范围后再选通用模型分支；无自动模式变更。",
+            "evidence_ids": [
+              "income-owner",
+              "income-oci-role",
+              "income-tenant"
+            ]
+          },
+          {
+            "id": "noi",
+            "label": "物业NOI与运营利润",
+            "parameter_ids": [
+              "noi_margin"
+            ],
+            "state": "unknown",
+            "candidate_value": null,
+            "unit": "fraction",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": false,
+            "reason": "NNN费用转付和gross类别净额不证明NOI100%；融资/空置/信用风险另列。",
+            "next_action": "补完整经营表和不可转付费用、收付与应收；先区分NOI/税前利润。",
+            "evidence_ids": [
+              "income-opex",
+              "income-gross-net"
+            ]
+          },
+          {
+            "id": "debt",
+            "label": "融资及折现",
+            "parameter_ids": [
+              "shell_ltc",
+              "debt_rate",
+              "wacc",
+              "residual_share"
+            ],
+            "state": "unknown",
+            "candidate_value": null,
+            "unit": "scope-specific",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": false,
+            "reason": "贷款上限及SOFR+利差/对冲不是实际LTC或综合利率，未读债务/现金表。",
+            "next_action": "取实际draw/还本/利息、对冲/费用、再融资/残值和主体资本结构。",
+            "evidence_ids": [
+              "income-loan",
+              "income-interest"
+            ]
+          },
+          {
+            "id": "renewal",
+            "label": "楼栋续租及选项",
+            "parameter_ids": [
+              "renewal_options",
+              "renewal_years",
+              "renewal_probability"
+            ],
+            "state": "unknown",
+            "candidate_value": null,
+            "unit": "years/options/probability",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": false,
+            "reason": "地租20年+五次15年不能复制给数据厅租约；行权概率非事实。",
+            "next_action": "取楼栋租约选项和终止条款；概率仍分析假设。",
+            "evidence_ids": [
+              "income-ground-term",
+              "income-term"
+            ]
+          },
+          {
+            "id": "compute",
+            "label": "OCI算力收入与费用",
+            "parameter_ids": [
+              "price_gpu_hour",
+              "rent_price",
+              "gpu_utilization",
+              "util_year1",
+              "util_year2",
+              "price_change"
+            ],
+            "state": "unknown",
+            "candidate_value": null,
+            "unit": "USD/GPUh and paid usage",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": false,
+            "reason": "合同价/付费小时/最低承诺/预付/返利未知；物理IT负载与GPU忙碌不等付费利用。",
+            "next_action": "取园区分摊合同和已履约服务计量/结算，区分固定与按量。",
+            "evidence_ids": [
+              "income-oci-role",
+              "income-oracle-company-quarter"
+            ]
+          },
+          {
+            "id": "tokens",
+            "label": "OpenAI变现与吞吐",
+            "parameter_ids": [
+              "tokens_per_gpu_sec",
+              "price_per_m_tokens",
+              "monetized_share"
+            ],
+            "state": "unknown",
+            "candidate_value": null,
+            "unit": "token/s and USD/Mtoken",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": false,
+            "reason": "理论FP算力不能直接转token；训练/推理/免费用量与产品收入归因未知。",
+            "next_action": "取任务类型、实测吞吐与收费归因；原精度异常未解不作推导。",
+            "evidence_ids": [
+              "income-oci-role",
+              "precision-conflict"
+            ]
+          },
+          {
+            "id": "it-finance",
+            "label": "IT设备资金归属与融资",
+            "parameter_ids": [
+              "it_capex_per_kw",
+              "compute_ltc",
+              "compute_debt_rate"
+            ],
+            "state": "unknown",
+            "candidate_value": null,
+            "unit": "actor-specific",
+            "actual_value": null,
+            "automatic_fill": false,
+            "ready_for_human_review": false,
+            "reason": "全球客户预付/自供GPU说明不证明本园区归属；159亿通用成本不是任一主体现金投资。",
+            "next_action": "补资产/采购/租赁、预付结算和客户供货明细、更新及担保。",
+            "evidence_ids": [
+              "income-gpu-funding",
+              "cost-current-replay"
+            ]
+          }
+        ],
+        "unknowns": [
+          {
+            "id": "income-unknown-tenant-identity",
+            "label": "承租人法律同一性",
+            "status": "unknown",
+            "reason": "SEC匿名承租人与Oracle品牌运营关联；签署主体/担保方/转租/修订未取",
+            "next_action": "取签署租约/修订、租户实体和担保清单"
+          },
+          {
+            "id": "income-unknown-rent-cash",
+            "label": "租金实收与日序列",
+            "status": "unknown",
+            "reason": "完整租约、发票、应收/预收与现金表未取；不足以重建2025部分年或2026实收",
+            "next_action": "先读财报图片，再对齐计提、合同应付、开票、到账和减免/滞纳/调整日期"
+          },
+          {
+            "id": "income-unknown-denominator",
+            "label": "租金单位功率分母",
+            "status": "unknown",
+            "reason": "首两栋租赁关键ITMW/付费容量及计费口径未取；421MW属于四栋估算",
+            "next_action": "取附表中可交付/计费ITkW、范围、共同设施和服务包含项；不得用421/1200/206直接除租金"
+          },
+          {
+            "id": "income-unknown-oracle-revenue",
+            "label": "Oracle园区算力收费",
+            "status": "unknown",
+            "reason": "OpenAI专属合同价、最低承诺/预付/返利/SLA、GPU小时和收入确认未知",
+            "next_action": "取同园区合同/账单及已交付服务记录，区分固定承诺/按量/租用硬件/托管"
+          },
+          {
+            "id": "income-unknown-oracle-assets",
+            "label": "Oracle设备成本及现金分期",
+            "status": "unknown",
+            "reason": "全球客户预付/自供GPU安排不是Abilene归属证明；IT采购/折旧/利息/更新/共享服务分摊未知",
+            "next_action": "取设备产权/采购/租赁和资金方协议、付款/验收、IT更新和设施/能源账"
+          },
+          {
+            "id": "income-unknown-openai-revenue",
+            "label": "OpenAI园区归因收入",
+            "status": "unknown",
+            "reason": "ChatGPT/API全公司收入不能归因到此园区；训练/推理份额、吞吐、价税/免费服务和变现率未知",
+            "next_action": "先分研究训练与付费推理，再核工作负载、计量和收费归因；不由理论算力直接算token收入"
+          },
+          {
+            "id": "income-unknown-ground-energy",
+            "label": "Lancium地租与供电净收益",
+            "status": "unknown",
+            "reason": "MW地租费率、实际供电价/成本/利润/当前结算法人及备用费用未知",
+            "next_action": "取地租计费附表、供电合同/账单、能源成本与供电预留责任；不能把20万月最低当全年地租"
+          },
+          {
+            "id": "income-unknown-crusoe-return",
+            "label": "Crusoe及股东收益",
+            "status": "unknown",
+            "reason": "开发费收款实体和费用、股东资本/分红日序列及优先/追补瀑布未知",
+            "next_action": "分开项目公司、Crusoe关联服务公司、LonghornJV及各投资人；取管理费成本和权益现金流"
+          },
+          {
+            "id": "income-unknown-returns",
+            "label": "各主体真实回报",
+            "status": "unknown",
+            "reason": "完整资产/权益CF、债务提用/还本/对冲/再融资、税、残值与退出均未齐",
+            "next_action": "按主体构建含建设期的带日期现金流，再分别算项目/权益IRR、NPV、DSCR；未齐留null"
+          }
+        ],
+        "cashflow_periods": [
+          {
+            "label": "合同/修订签署",
+            "period": "2024-10-11；现有修订未知",
+            "basis": "承诺/合同，不是收到现金"
+          },
+          {
+            "label": "楼栋租金年度",
+            "period": "B1自2025-03-18；B2自2025-07-01，各自周年",
+            "basis": "15年楼栋租约候选；不推出每月实际收付"
+          },
+          {
+            "label": "财务报告期",
+            "period": "2025自然年；2024为成立2024-05-28起",
+            "basis": "会计计提、已付总额、累计出资/分配分别保留"
+          },
+          {
+            "label": "Oracle最新财季",
+            "period": "FY27Q1，截至2026-08-31三个月；上一财年末2026-05-31",
+            "basis": "公司级披露，不分配园区"
+          },
+          {
+            "label": "模型情景期间",
+            "period": "2026-07-28四栋快照规模×8760小时假设年",
+            "basis": "既有通用情景，非上述租约年度或任一主体账"
+          }
+        ],
+        "return_gate": {
+          "status": "blocked_missing_scoped_dated_cashflows",
+          "actual_project_irr": null,
+          "actual_equity_irr": null,
+          "actual_npv_usd": null,
+          "actual_dscr": null,
+          "actual_noi_usd": null,
+          "automatic_fill": false,
+          "reason": "需先固定主体/资产/阶段/时点，列建设至退出现金流：项目FCF含运营收付、资本支出、营运资金、税和残值；权益CF另含出资/融资/还本息及分红瀑布。项目IRR、权益IRR、NPV与DSCR使用相应分母/期间，不用会计估值变动或融资上限替实付。244728000/15948322000跨主体/两栋四栋/合同年实际成本，不是回报率。"
+        },
+        "unobtained_assets": [
+          {
+            "id": "income-sec",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/exhibit993-2025abelinedc1l.htm",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-sec-operations",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_6.jpg",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-sec-cashflow",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_10.jpg",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-sec-minimum-rent",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_17.jpg",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-sec-debt",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_15.jpg",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-sec-highlights",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/image_18.jpg",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-openai-oracle",
+            "url": "https://openai.com/index/stargate-advances-with-partnership-with-oracle/",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-oracle-q1fy27",
+            "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          },
+          {
+            "id": "income-oracle-fiscal-calendar",
+            "url": "https://investor.oracle.com/faq/default.aspx",
+            "status": "not_obtained",
+            "curl_exit": 56,
+            "reason": "请求失败回执本地保留；网页转录不冒充该原件或表图已读取"
+          }
+        ],
+        "limitations": [
+          "SEC原HTML和财务图片未取得；本轮工具读取附注与申报头有各自SHA，只绑定转录版本。原版20页相关财表仍未读，财报表格数值不靠推算补造。",
+          "租约原件、2026修订和Oracle/OpenAI园区专属商业/结算合同未取得；未读/未知不是自动0。",
+          "不同主体收支先分列；汇总生态资金流须抵销同一笔租金/电款/开发费，不能将房东、Oracle、OpenAI收入相加当园区利润。",
+          "候选未获人类确认或模型用途认证；新租期/递增也不自动填；原三异常与容量/算力/成本共享链保留。"
+        ]
+      },
+      "income_review_sha256": "7d9901d7961fbb4fca6c39d7a98a388a2a07fa263c61225cfe151ee2092017a6"
     }
   ]
 }

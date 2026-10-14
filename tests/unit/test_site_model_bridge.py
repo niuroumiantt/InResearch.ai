@@ -61,7 +61,7 @@ class SiteModelBridgeTests(unittest.TestCase):
 
     def test_review_versions_and_private_paths(self):
         out=bridge.project(ROOT,self.projects,'us-tx-abilene')
-        self.assertEqual(len(out['review']['derivations']),16)
+        self.assertEqual(len(out['review']['derivations']),19)
         self.assertEqual(len(out['blockers']),3)
         self.assertEqual(out['review']['item_counts']['anomaly'],3)
         self.assertEqual(out['review']['report_exhaustive'],'not_certified')
@@ -251,3 +251,60 @@ class SiteModelBridgeTests(unittest.TestCase):
         out=bridge._public(changed,bridge.BRIDGE);self.assertNotIn('/Users/',json.dumps(out));self.assertNotIn('secret',out['cost_review']['mapping']);self.assertNotIn('file_path',out['cost_review']['previous_cost_derivation'])
         self.assertEqual(out['cost_review']['previous_cost_derivation']['id'],'cost-from-it-scale')
         self.assertEqual({r['target'] for r in out['rules']},{'it_mw','site'})
+
+
+    def test_income_scoped_lease_arithmetic_is_not_actual_or_current_four_buildings(self):
+        out=bridge.project(ROOT,self.projects,'us-tx-abilene');income=out['income_review'];lease=income['lease_reference']
+        self.assertEqual(lease['monthly_base_per_building_usd'],4*2475000+297000)
+        self.assertEqual(lease['annualized_base_first_year_rates_usd'],244728000)
+        self.assertEqual(lease['lease_years'],15);self.assertEqual(lease['annual_escalation'],.03)
+        self.assertIsNone(lease['tenant_legal_name']);self.assertIsNone(lease['contract_it_mw'])
+        self.assertIsNone(lease['actual_annual_cash_rent_usd']);self.assertFalse(lease['current_421mw_scope_applicable'])
+        self.assertEqual(lease['starts'][0]['rent_commencement'],'2025-03-18')
+        self.assertEqual(lease['starts'][1]['rent_commencement'],'2025-07-01')
+        self.assertIsNone(out['scope']['actor']);self.assertEqual(out['expected_it_mw'],421)
+        self.assertEqual({r['target'] for r in out['rules']},{'it_mw','site'})
+        self.assertEqual({a['id'] for a in income['actors']},{'dc1','crusoe-affiliate','jv-equity','oracle','openai','lancium'})
+        self.assertTrue(any(e['id']=='income-oracle-company-quarter' and e['state']=='excluded' for e in out['review']['items']))
+
+    def test_income_rejects_cross_scope_actual_fill_and_return_inference_even_if_rehashed(self):
+        for change,error in [('scope','lease_not_current_actual'),('tenant','lease_not_current_actual'),('actual','lease_not_current_actual'),
+                             ('rate','lease_arithmetic'),('fill','parameter_not_adopted'),('cash','cash_nature'),('return','return_unknown'),
+                             ('adopt','parameter_not_adopted'),('period','lease_scope_period')]:
+            changed=copy.deepcopy(self.doc);item=changed['sites'][0];inc=item['income_review'];lease=inc['lease_reference']
+            if change=='scope':lease['current_421mw_scope_applicable']=True
+            elif change=='tenant':lease['tenant_legal_name']='Oracle Corporation'
+            elif change=='actual':lease['actual_annual_cash_rent_usd']=244728000
+            elif change=='rate':lease['annualized_base_first_year_rates_usd']/=2
+            elif change=='fill':inc['parameters'][0]['automatic_fill']=True
+            elif change=='cash':inc['records'][0]['nature']='actual_profit'
+            elif change=='return':inc['return_gate']['actual_equity_irr']=244728000/15948322000
+            elif change=='adopt':inc['parameters'][0]['actual_value']=15
+            else:lease['starts'][0]['rent_commencement']='2026-07-28'
+            item['income_review_sha256']=bridge.digest(inc)
+            with self.assertRaisesRegex(ValueError,error):bridge.validate(changed,self.projects,self.spec)
+
+    def test_income_cash_basis_missing_tables_and_parameter_assumptions_remain_explicit(self):
+        out=bridge.project(ROOT,self.projects,'us-tx-abilene');inc=out['income_review'];records={r['id']:r for r in inc['records']}
+        self.assertEqual(records['additional-rent']['nature'],'reported_accrual_reimbursement')
+        self.assertEqual(records['additional-rent']['reported_usd'],12046759)
+        self.assertEqual(records['development-paid']['reported_usd'],9000000)
+        self.assertEqual(records['development-incurred']['reported_usd'],6617000)
+        self.assertTrue(all(p['actual_value'] is None and not p['automatic_fill'] for p in inc['parameters']))
+        for key in ['lease_term','escalator','price_gpu_hour','rent_price','noi_margin','wacc']:
+            self.assertIn(out['parameter_basis'][key]['actual_state'],{'unknown','not_site_observation'})
+            self.assertNotEqual(out['parameter_basis'][key]['kind'],'observation')
+        self.assertTrue(all(inc['return_gate'][k] is None for k in ['actual_project_irr','actual_equity_irr','actual_npv_usd','actual_dscr','actual_noi_usd']))
+        self.assertTrue(any(x['id']=='income-sec-minimum-rent' and x['status']=='not_obtained' for x in inc['unobtained_assets']))
+        self.assertEqual(len(out['blockers']),3)
+        self.assertTrue(any(x['id']=='income-unread-image_17' and x['state']=='not_checked' for x in out['review']['items']))
+
+    def test_income_deep_projection_excludes_private_contract_and_future_fields(self):
+        item=copy.deepcopy(self.doc['sites'][0]);inc=item['income_review']
+        inc['actors'][0]['contract_path']='/Users/private/lease';inc['lease_reference']['raw_text']='private excerpt'
+        inc['records'][0]['bank_account']='secret';inc['parameters'][0]['internal_approval']='secret'
+        inc['return_gate']['internal_model']={'path':'/private/finance'};inc['unobtained_assets'][0]['path']='/Users/private/attachment'
+        out=bridge._public(item,bridge.BRIDGE)
+        for forbidden in ['contract_path','raw_text','bank_account','internal_approval','internal_model','/Users/private/']:
+            self.assertNotIn(forbidden,json.dumps(out))
+        self.assertEqual(out['income_review']['lease_reference']['annualized_base_first_year_rates_usd'],244728000)
