@@ -1,6 +1,6 @@
 # 物理模型、研究关系与协作 v2
 
-> CURRENT · 2026-09-28。规则归属与替代关系见 framework/CURRENT.md。
+> CURRENT · 更新至2026-10-14。规则归属与替代关系见 framework/CURRENT.md。
 
 > 2026-09-06 用户采用生效。依据：[研究架构 v2](../docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)。旧的五尺度 BOM（bom.json 的 S1–S5：园区、建筑、机房、机柜、部件，2026-09-28 起不再称"层"，ID 由 L1–L5 改为 S1–S5）保留兼容身份，不能作为空间、装配、供应链与商业活动的唯一分类。
 

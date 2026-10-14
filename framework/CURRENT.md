@@ -79,7 +79,7 @@
 
 | 主题 | 唯一现行规范源 | 机器实现或配套入口 |
 |---|---|---|
-| 研究架构（一棵树、三级账、四问四段、五类变量、六队、一个模板） | [00 研究框架总览 v3](00_overview.md) | bom.json、site_rights.json、research_graph.json、research_questions.json、dashboard_rules.json、node.html |
+| 研究架构（对象与证据；通用模型与真实园区） | [00 研究框架 v4](00_overview.md) | bom.json、site_rights.json、research_graph.json、research_questions.json、dashboard_rules.json、node.html |
 | 数据口径与核验 | [01 口径手册](01_data_standards.md) | data_contract.json；inresearch.knowledge.validate、inresearch.knowledge.verify、inresearch.knowledge.facts、inresearch.knowledge.registry |
 | 知识与版本 | [02 知识格式](02_knowledge_format.md) | research_knowledge.json、兼容 Finding、inresearch.delivery.export |
 | 骨架、部件、站点权利与产品映射 | [03 对象与协作](03_bom_and_collaboration.md) | 稳定部件 ID、系统与链路、建设阶段、站点权利、产品线目录 |
@@ -119,7 +119,7 @@
 - 当前规范、兼容研究记录、资料候选、设计依据、历史审计和生成物分别标识；打开文档页会显示身份。
 - 旧决策、旧全景和旧 reader 指令已移入 `docs/archive/2026-09-06/`。原路径保留当前说明或转向，避免旧链接继续发出操作指令。
 - 在册清单覆盖 Git 源码与记录；不枚举百度网盘、Spark 原件、运行数据库、密钥或本机忽略文件。Spark 资料以内容身份和 SQLite 台账计量，网页候选以收到的快照计量，不能拿源码行数代替。
-- 两组六个一级及其二级、页面归属和身份边界见05「目录」与site_navigation.json；“一个模板”只指节点页，主体／stage／对象三条判据见03「三条判据」；兼容层退役日历在 `current_state.json` 的 `compat_retirements`，`governance --check` 过期即报错。
+- 交付七个一级、后台六个一级及其二级、页面归属和身份边界见05「目录」与site_navigation.json；“一个模板”只指节点页，主体／stage／对象三条判据见03「三条判据」；兼容层退役日历在 `current_state.json` 的 `compat_retirements`，`governance --check` 过期即报错。
 - 12 页架构 PDF 与 5 页数据中心经济模型指导（`docs/guides/model-governance-2026-09-27`，三级四段五类六队，快照原文仍写"五层"）是已采用设计的交付快照；持续变更的执行规则以这里登记的现行文档为准。2026-09-28 起"五层"改称"五类变量"（见 06 采集规范），快照本身不改。
 
 主规范保留稳定文件名及最后更新日期；新讨论/评审/交付快照文件名以日期开头，必要时加时间。当前状态决定执行依据，日期不授予覆盖权。
