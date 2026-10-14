@@ -2,6 +2,7 @@ import io
 import os
 import tempfile
 import unittest
+import uuid
 from unittest.mock import patch
 from inresearch.materials import inbox as m
 
@@ -14,11 +15,50 @@ class IntakeTests(unittest.TestCase):
             self.assertEqual(a['sha256'],b['sha256'])
             self.assertEqual(a['name'],'报告.txt')
             with self.assertRaises(ValueError):m.acknowledge(a['id'],'wrong')
+            with self.assertRaises(PermissionError):m.acknowledge(a['id'],a['sha256'])
+            self.assertEqual(m.pending(),[])
+            a=m.mutate({'id':a['id'],'sha256':a['sha256'],'expected_revision':0,
+                'operation_id':str(uuid.uuid4()),'action':'approve'},'admin','admin')
+            self.assertEqual(len(m.pending()),1)
             self.assertEqual(m.acknowledge(a['id'],a['sha256'])['status'],'archived')
+            self.assertEqual(m.load(b['id'])['status'],'pending_approval')
+    def test_public_receipt_owner_and_feedback_gate(self):
+        with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {'INRESEARCH_INTAKE_ROOT':d,'INRESEARCH_MATERIAL_APPROVER':'owner'}):
+            a,token=m.receive(io.BytesIO(b'raw'),3,{'name':'test.xlsx','submitter':'employee'},'anonymous',public=True)
+            self.assertNotIn('receipt_hash',a)
+            self.assertEqual(m.receipt_view(a['id'],token)['id'],a['id'])
+            with self.assertRaises(PermissionError):m.receipt_view(a['id'],'wrong')
+            self.assertEqual(m.snapshot('some-user','member')['items'],[])
+            self.assertEqual(m.snapshot('anonymous','member')['items'],[])
+            base={'id':a['id'],'sha256':a['sha256'],'expected_revision':0,'operation_id':str(uuid.uuid4())}
+            with self.assertRaises(PermissionError):m.mutate({**base,'action':'feedback','result':'revision_required','text':'fix'},'analysis-worker','worker',worker=True)
+            with self.assertRaises(PermissionError):m.mutate({**base,'action':'approve'},'other-admin','admin')
+            approved=m.mutate({**base,'action':'approve'},'owner','admin')
+            self.assertEqual(approved['status'],'approved')
+            self.assertNotIn('receipt_hash',m.pending()[0])
+            with self.assertRaises(m.Conflict):m.mutate({**base,'operation_id':str(uuid.uuid4()),'action':'reject','note':'x'},'owner','admin')
+            feedback=m.mutate({'id':a['id'],'sha256':a['sha256'],'expected_revision':1,
+                'operation_id':str(uuid.uuid4()),'action':'feedback','result':'revision_required','text':'补齐来源'},'analysis-worker','worker',worker=True)
+            self.assertEqual(feedback['feedback'][0]['text'],'补齐来源')
+            self.assertEqual(m.receipt_view(a['id'],token)['feedback'][0]['result'],'revision_required')
     def test_partial_not_visible(self):
         with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {'INRESEARCH_INTAKE_ROOT':d}):
             with self.assertRaises(ValueError):m.receive(io.BytesIO(b'x'),5,{},'tester')
             self.assertEqual(m.records(),[])
             with self.assertRaises(ValueError):m.record_path('../escape')
             with self.assertRaises(ValueError):m.receive(io.BytesIO(),m.MAX_BYTES+1,{},'tester')
+    def test_legacy_archive_and_changed_bytes_never_enter_worker(self):
+        with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {'INRESEARCH_INTAKE_ROOT':d}):
+            old=m.receive(io.BytesIO(b'old'),3,{'name':'legacy.txt'},'tester')
+            path=m.record_path(old['id'])/'record.json'
+            record=m.load(old['id']);record['status']='archived';m.atomic(path,record)
+            self.assertEqual(m.pending(),[])
+            with self.assertRaises(PermissionError):m.worker_record(old['id'])
+            new=m.receive(io.BytesIO(b'new'),3,{'name':'changed.txt'},'tester')
+            operation={'id':new['id'],'sha256':new['sha256'],'expected_revision':0,
+                'operation_id':str(uuid.uuid4()),'action':'approve'}
+            first=m.mutate(operation,'admin','admin')
+            self.assertEqual(m.mutate(operation,'admin','admin')['revision'],first['revision'])
+            (m.record_path(new['id'])/'content').write_bytes(b'bad')
+            with self.assertRaises(ValueError):m.worker_record(new['id'])
 if __name__=='__main__':unittest.main()
