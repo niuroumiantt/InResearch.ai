@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2726。
+在册文件：2727。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 252 |
+| 配套说明 | 253 |
 | 测试 | 243 |
 
 ## 在册记录集合
@@ -2784,6 +2784,7 @@
 | [docs/handoff/stock-sn5600-20261012.md](handoff/stock-sn5600-20261012.md) | 配套说明 |
 | [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
+| [docs/handoff/task-upload-approval.md](handoff/task-upload-approval.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/technical-atlas-20261010.md](handoff/technical-atlas-20261010.md) | 配套说明 |
 | [docs/handoff/technical-atlas-m4-20261009.md](handoff/technical-atlas-m4-20261009.md) | 配套说明 |
