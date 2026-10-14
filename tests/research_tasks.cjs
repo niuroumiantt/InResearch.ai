@@ -59,7 +59,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal((await anonymous.request.get(base+'/api/intake-worker/content/'+publicRecord.id,{headers:workerHeaders})).status(),200);
     await admin.locator('#upload-owner [data-id="'+publicRecord.id+'"] .owner-feedback textarea').fill('补齐来源与工作表定位');
     await admin.locator('#upload-owner [data-id="'+publicRecord.id+'"] .owner-feedback button').click();
-    await admin.locator('#upload-owner [data-id="'+publicRecord.id+'"] .upload-feedback summary').waitFor();
+    await admin.waitForFunction(id=>document.querySelector('#upload-owner [data-id="'+id+'"] .upload-feedback summary')?.textContent.includes('1 条'),publicRecord.id);
     await anonymous.locator('#upload-refresh').click();
     await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('1 条'));
     assert.equal(await anonymous.locator('#upload-own-list .upload-feedback').getAttribute('open'),null);
