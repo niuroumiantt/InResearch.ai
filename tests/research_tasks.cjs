@@ -30,7 +30,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.txt',mimeType:'text/plain',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
     await anonymous.locator('#upload-submit').click();
-    await anonymous.waitForFunction(()=>document.querySelector('#upload-message')?.textContent.length>0);
+    await anonymous.waitForFunction(()=>/已收到文件/.test(document.querySelector('#upload-message')?.textContent || ''));
     assert.match(await anonymous.locator('#upload-message').innerText(),/已收到文件/);
     await anonymous.locator('#upload-own-list .upload-card').waitFor();
     const publicRecord = JSON.parse(readFileSync(join(directory,'intake',readdirSync(join(directory,'intake'))[0],'record.json'),'utf8'));
