@@ -164,7 +164,27 @@
     return {status:'scenario_only',project_feasibility:'not_verified',capacity_basis:a.energy_quota_mw>0?'scenario_limit_not_approval':'unknown_or_unset',unverified_inputs:Object.keys(spec.input_governance||{}).filter(k=>!['sourced','input'].includes(spec.evidence?.[k]?.status)).sort(),scope:'Global source registration does not validate preset overrides or project/workload applicability.'};
   }
   const run=(a,spec)=>({inputs:a,ledgers:ledgers(a,spec),lifecycle:lifecycle(a,spec),inverse:inverse(a,spec),grid:grid(a,spec),sensitivity:sensitivity(a,spec),readiness:readiness(a,spec)});
-  const ENGINE={HOURS,CATS,compute,ledgers,lifecycle,inverse,grid,sensitivity,run,withPreset,applyTable,capex,crf,irr,effectiveMw};
+  // Energy audit scenarios share model inputs but do not infer site measurements.
+  function energyCase(a,capacityHours=HOURS){
+    const fields=['it_mw','energy_quota_mw','load_factor','pue','power_price','demand_rate'];
+    if(fields.some(k=>typeof a[k]!=='number'||!Number.isFinite(a[k]))||a.it_mw<=0||a.energy_quota_mw<0||a.load_factor<0||a.load_factor>1||a.pue<1||a.power_price<0||a.demand_rate!==0||!Number.isFinite(capacityHours)||capacityHours<=0||capacityHours>HOURS)throw Error('年度用电代理情景输入或收费口径无效');
+    const mw=effectiveMw(a),itKwh=mw*1000*a.load_factor*capacityHours,facilityKwh=itKwh*a.pue;
+    return {effective_it_mw:mw,average_it_mw_over_capacity_time:mw*a.load_factor,it_kwh:itKwh,facility_kwh:facilityKwh,proxy_cost_usd:facilityKwh*a.power_price,
+      hours:HOURS,capacity_equivalent_hours:capacityHours,capacity_profile:capacityHours===HOURS?'constant_snapshot_assumption':'hypothetical_half_capacity_time',
+      price_basis:'retail_average_proxy',actual_grid_purchase_kwh:null,actual_site_bill_usd:null,ramp_applied:false,status:'scenario_only',
+      formula:'effective_it_mw * 1000 * load_factor * capacity_equivalent_hours * period_pue; proxy_cost = facility_kwh * retail_average_proxy_price',
+      input_ids:['it_mw','energy_quota_mw','load_factor','pue','power_price'],supply_assumption:'all_facility_energy_priced_as_grid_proxy',demand_added_usd:0};
+  }
+  function energySensitivity(a,config){
+    const base=energyCase(a),one=[],combined=[];
+    for(const [key,list] of [['load_factor',config.load_factors],['pue',config.pues],['power_price',config.prices]])for(const value of list)one.push({driver:key,value,inputs:{...a,[key]:value},...energyCase({...a,[key]:value})});
+    for(const load_factor of config.load_factors)for(const pue of config.pues)for(const power_price of config.prices){const inputs={...a,load_factor,pue,power_price};combined.push({inputs,...energyCase(inputs)});}
+    const timing=config.capacity_equivalent_hours.map(hours=>({...energyCase(a,hours),capacity_hours_assumption:hours}));
+    return {status:config.status,note:config.note,base,one_at_a_time:one,combined,capacity_timing:timing,
+      dependency:'Each row uses the current effective IT MW and explicit assumptions; source candidates are never promoted; no model ramp multiplier.',
+      non_additive:'One-at-a-time effects hold other current values fixed; combined corners are analyst scenarios, not measured bounds or probabilities.'};
+  }
+  const ENGINE={HOURS,CATS,compute,ledgers,lifecycle,inverse,grid,sensitivity,run,withPreset,applyTable,capex,crf,irr,effectiveMw,energyCase,energySensitivity};
   if(typeof module!=='undefined'&&module.exports){module.exports=ENGINE;return;}
   window.InresearchModel=ENGINE;
 
@@ -203,16 +223,13 @@
   function bridgeChanged(before,origin,overwritten=[]){
     if(!bridgeApplied)return;
     for(const id of Object.keys(spec.inputs))if(overwritten.includes(id)||!same(before[id],values[id]))inputBasis[id]={kind:origin,actual_state:'unknown',note:'用户或预设设置；原园区观察保持'};
+    inputBasis.demand_rate=structuredClone(bridge.parameter_basis.demand_rate);
     basisRevision++;
   }
-  function annualEnergy(){
-    const facilityKwh=effectiveMw(values)*1000*values.load_factor*values.pue*HOURS;
-    return {effective_it_mw:effectiveMw(values),facility_kwh:facilityKwh,energy_charge_usd:facilityKwh*values.power_price,hours:HOURS,
-      formula:'min(it_mw, positive scenario energy_quota_mw if set) * 1000 * load_factor * pue * 8760',
-      input_ids:['it_mw','energy_quota_mw','load_factor','pue','power_price'],status:'scenario_only',excludes:['demand charges','other contract charges']};
-  }
+  function bridgeCompatible(next){if(bridgeApplied)next.demand_rate=bridge.energy_review.billing.demand_rate_override;return next;}
+  function annualEnergy(){return {...energyCase(values),period:structuredClone(bridge.energy_review.period),energy_review_sha256:bridge.energy_review_sha256};}
   function bridgeSnapshot(){
-    return {schema:'site-model-scenario-v3',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
+    return {schema:'site-model-scenario-v4',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
       bridge_version:bridge.version,mapping_version:bridge.mapping_version,data_sha256:bridge.data_sha256,observation_sha256:bridge.observation_sha256,
       model_id:spec.model_id,model_as_of:spec.as_of,model_source_sha256:bridge.model_source_sha256,model_spec:structuredClone(spec),revision:basisRevision,
       capacity_source:structuredClone(bridge.capacity_source),rules:structuredClone(bridge.rules),review_sha256:bridge.review_sha256,
@@ -221,7 +238,29 @@
       inputs:structuredClone(values),input_basis:structuredClone(inputBasis),
       configurations:structuredClone(bridge.configurations),economic_candidates:structuredClone(bridge.economic_candidates),
       unknowns:structuredClone(bridge.unknowns),coverage:structuredClone(bridge.coverage),annual_energy:annualEnergy(),
+      energy_review:structuredClone(bridge.energy_review),energy_review_sha256:bridge.energy_review_sha256,energy_sensitivity:energySensitivity(values,bridge.energy_review.sensitivity),
       readiness:{status:'scenario_only',project_feasibility:'not_verified'},results:run(values,spec)};
+  }
+  function bridgeEnergyEvidence(host){
+    const energy=bridge.energy_review,box=make('details');box.id='bridge-energy-checks';
+    box.append(make('summary','','年度用电：四项适用性核对'),make('p','note',energy.period.note));
+    for(const row of energy.checks){const card=make('section');card.dataset.energyCheck=row.id;
+      card.append(make('h3','',row.label+' · '+(row.actual_state==='existing_estimate'?'已有容量估算；期间范围待补':'现场未知')),
+        make('p','',row.known),make('p','',row.candidate),make('p','note','缺口：'+row.missing),make('p','note','下一步：'+row.next_action));
+      for(const id of row.source_ids){const source=bridge.review.sources.find(x=>x.id===id),link=make('a','',id);link.href=source.url;link.target='_blank';link.rel='noopener';card.append(link,make('p','note','SHA256 '+source.sha256+' · '+source.checked_scope));}box.append(card);
+    }
+    box.append(make('p','note',energy.period.formula),make('p','note',energy.period.pue_formula),make('p','note',energy.billing.note),make('p','note',energy.billing.supply_assumption));host.append(box);
+  }
+  function bridgeEnergySensitivity(host){
+    const config=bridge.energy_review.sensitivity,sens=energySensitivity(values,config),box=make('details');box.id='bridge-energy-sensitivity';box.open=true;
+    box.append(make('summary','','负载、期间PUE、电价与容量时间：敏感性情景'),make('p','note',config.note),make('p','note','以下随当前有效IT规模更新。单项比较固定其余当前输入；组合比较同时改变三项。表内均为假设年，不推断实际自然年用电，也不给真实用电上下界。'));
+    function table(host,headers,rows){const wrap=make('div','tscroll'),t=make('table');const head=make('tr');headers.forEach(x=>head.append(make('th','',x)));t.append(head);for(const cells of rows){const tr=make('tr');cells.forEach(x=>tr.append(make('td','',String(x))));t.append(tr);}wrap.append(t);host.append(wrap);}
+    table(box,['单项变化（其他不变）','取值','设施用电（TWh）','代理费用'],sens.one_at_a_time.map(row=>[{load_factor:'平均IT负载',pue:'期间PUE假设',power_price:'零售代理价'}[row.driver],row.driver==='load_factor'?(row.value*100)+'%':row.value,(row.facility_kwh/1e9).toFixed(3),money(row.proxy_cost_usd)]));
+    const corners=make('details');corners.append(make('summary','',`展开${sens.combined.length}组联合情景`));
+    table(corners,['IT负载','PUE假设','代理价（$/kWh）','TWh','代理费用'],sens.combined.map(row=>[(row.inputs.load_factor*100)+'%',row.inputs.pue,row.inputs.power_price,(row.facility_kwh/1e9).toFixed(3),money(row.proxy_cost_usd)]));box.append(corners);
+    table(box,['容量时间假设（非真实投运日期）','TWh','代理费用'],sens.capacity_timing.map(row=>[row.capacity_equivalent_hours+'等效小时',(row.facility_kwh/1e9).toFixed(3),money(row.proxy_cost_usd)]));
+    box.append(make('p','note','4380等效小时只表示容量×时间积分为固定规模全年的一半；不是把平均IT负载再减半。通用模型的ramp_year1/2未进入此表，下方生命周期按自己的情景口径计算。'));
+    host.append(box);
   }
   function bridgeDocuments(host){
     const box=make('details');box.id='bridge-document-checks';
@@ -260,11 +299,12 @@
     if(!bridge)return;
     const result=byId('bridge-result');result.replaceChildren();
     if(!bridgeApplied){result.textContent='尚未应用：当前模型仍为通用情景。确认后使用固定容量估算，其余输入逐项标明参考或假设。';return;}
-    if(invalidInputs.size){result.textContent='输入无效，暂停情景结果与导出：'+[...invalidInputs].map(id=>spec.inputs[id].label).join('、');return;}
+    if(invalidInputs.size||values.demand_rate!==0){result.textContent='输入无效，暂停情景结果与导出：'+[...invalidInputs].map(id=>spec.inputs[id].label).join('、');return;}
     const energy=annualEnergy();
-    result.append(make('h3','','年度用电情景'),make('p','',`设施用电 ${(energy.facility_kwh/1e9).toFixed(3)} 十亿 kWh；电量费用 ${money(energy.energy_charge_usd)}。未含需量费及其他合同收费。`),
-      make('p','',`容量 ${values.it_mw} MW（计算 ${energy.effective_it_mw} MW） · 平均IT负载 ${(values.load_factor*100).toFixed(1)}% · PUE ${values.pue} · 电量单价 $${values.power_price}/kWh · ${HOURS}小时。`),
-      make('p','note','这是所选估算规模的年度情景。421MW沿GPU配置模型推导，证据并不独立；不是园区实际年度账单。成本、收入与回报视图共用此输入表，现场未知保持未知；利润、回报及合同未核验。批准容量未知，未设置时计算不施加该约束。'));
+    result.append(make('h3','','固定快照规模的年化用电情景'),make('p','',`IT用电 ${(energy.it_kwh/1e9).toFixed(3)} TWh；设施用电 ${(energy.facility_kwh/1e9).toFixed(3)} TWh；平均零售代理费用 ${money(energy.proxy_cost_usd)}。`),
+      make('p','',`容量 ${values.it_mw} MW（计算 ${energy.effective_it_mw} MW） · 平均IT负载 ${(values.load_factor*100).toFixed(1)}% · 期间PUE假设 ${values.pue} · 平均零售代理价 $${values.power_price}/kWh · ${HOURS}小时。`),
+      make('p','note','421MW沿GPU配置模型推导，证据并不独立。此处固定快照规模计算365天，不是2026自然年实耗；实际IT负载、期间PUE、购电份额与账单未知。采用平均零售代理口径，未叠加Oncor需量费；0不表示园区需量费为零。下方通用模型energy项目承载此代理费用，生命周期另含其显式爬坡假设；不是已核验园区账目。'));
+    bridgeEnergySensitivity(result);
     const list=make('details');list.append(make('summary','','全部输入依据与当前取值'));
     for(const id of Object.keys(spec.inputs))list.append(make('p','',`${spec.inputs[id].label}：${values[id]} · ${BASIS_LABEL[inputBasis[id]?.kind]||'未知'} · ${inputBasis[id]?.note||''}`));result.append(list);
     const download=make('button','','导出本次情景与依据（JSON）');download.type='button';download.id='bridge-export';
@@ -286,9 +326,9 @@
       for(const cells of [
         ['参数','建议取值','资料身份','适用边界'],
         ['IT容量',bridge.expected_it_mw+' MW','已有记录 · 配置模型估算',bridge.capacity_source.effective_at+'；共用GPU假设，非独立实测；固定观察 '+bridge.observation_id],
-        ['地区／电量单价','得州／$'+spec.regions.us_texas.power_price+'/kWh','地区参考 · 现场未知','预设不是园区合同、税费或等待期'],
+        ['地区／平均零售代理价','得州／$'+spec.regions.us_texas.power_price+'/kWh','2026-07月度地区参考 · 现场未知','含多种收费的统计平均；不叠加Oncor需量费，不是园区合同'],
         ['平均IT负载率',(bridge.demo_assumptions.load_factor*100)+'%','情景假设 · 现场未知','仅作年度演示'],
-        ['PUE',String(bridge.demo_assumptions.pue),'情景假设 · 现场未知','不由冷源或公司设计范围反推'],
+        ['期间PUE假设',String(bridge.demo_assumptions.pue),'情景假设 · 现场未知','不由冷源或公司设计范围反推'],
         ['GPU、冷源、发电、资本成本','保留原数及推导','候选 · 不自动填参','范围、时间、主体与用途未对齐'],
         ['来源三项异常','已复核，仍阻断相关用途','异常 · 不自动填参','#REF!、精度说明冲突、整数配置推导'],
         ['接入／批准容量约束','未设置（计算值0）','现场未知 · 未设置约束','0不表示批准0MW或无限容量'],
@@ -297,9 +337,9 @@
         ['现场收入、合同与实绩','未知','未知','计算用值另标假设，不补造事实']]){const row=make('tr');cells.forEach((x,i)=>{const td=make('td','',x);td.dataset.label=['参数','建议取值','资料身份','适用边界'][i];row.append(td);});t.append(row);}table.append(t);host.append(table);
       const provenance=make('details');provenance.append(make('summary','','已有容量估算的原始来源与版本'));
       for(const source of bridge.capacity_source.sources){const link=make('a','',source.url||'来源');if(source.url)link.href=source.url;provenance.append(link);}
-      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeDependencies(host);bridgeDocuments(host);bridgeEvidence(host);
+      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeEnergyEvidence(host);bridgeDependencies(host);bridgeDocuments(host);bridgeEvidence(host);
       const apply=make('button','','确认生成园区年度用电情景');apply.id='bridge-apply';apply.type='button';
-      apply.onclick=()=>{const next=withPreset(spec,'baseline');next.site='us_texas';applyTable(next,'site',spec);Object.assign(next,bridge.demo_assumptions,{it_mw:bridge.expected_it_mw});
+      apply.onclick=()=>{const next=withPreset(spec,'baseline');next.site='us_texas';applyTable(next,'site',spec);Object.assign(next,bridge.demo_assumptions,{it_mw:bridge.expected_it_mw,demand_rate:bridge.energy_review.billing.demand_rate_override});
         if(!confirmBridgeChange(next,'重新应用园区情景'))return;
         values=next;activePreset='';bridgeApplied=true;basisRevision++;inputBasis=bridgeProvenance(next,'assumption');
         inputBasis=structuredClone(bridge.parameter_basis);
@@ -309,7 +349,7 @@
     }catch(error){bridge=null;host.textContent='园区参数预览不可用：'+error.message+'。当前保持通用情景。';}
   }
 
-  function applyPreset(id){const next=withPreset(spec,id);if(!confirmBridgeChange(next,"切换预设"))return;const before={...values};values=next;bridgeChanged(before,"assumption",Object.keys(spec.inputs));activePreset=id;byId('preset-note').textContent=(spec.presets[id]&&spec.presets[id].note)||'';renderInputs();render();}
+  function applyPreset(id){const next=bridgeCompatible(withPreset(spec,id));if(!confirmBridgeChange(next,"切换预设"))return;const before={...values};values=next;bridgeChanged(before,"assumption",Object.keys(spec.inputs));activePreset=id;byId('preset-note').textContent=(spec.presets[id]&&spec.presets[id].note)||'';renderInputs();render();}
   function renderPresets(){
     const host=byId('presets');host.replaceChildren();let group='';
     for(const [id,p] of Object.entries(spec.presets)){if(p.group!==group){group=p.group;host.append(make('span','preset-group',group));}const b=make('button','',p.label);b.type='button';b.dataset.id=id;b.title=p.note||'';b.addEventListener('click',()=>applyPreset(id));host.append(b);}
@@ -322,7 +362,7 @@
     host.append(make('b','',r.label||values.site),make('span','',`${gate} · 门槛等待 ${values.gate_wait_years} 年 · 审批 ${values.permit_months} 个月 · 建设 ${values.construction_years} 年`),
       make('span','',values.energy_quota_mw>0?`情景容量上限 ${values.energy_quota_mw} MW（不是批准值）`:'批准容量未知／未设置；计算不施加此上限'),make('span','',`电价 $${num(values.power_price,4)}/kWh · 需量 $${num(values.demand_rate,1)}/kW·月 · 土地 ${num(values.land_per_mw,2)} $M/MW`),
       make('span',g.size?'gap-count':'', g.size?`缺 ${g.size} 项：${[...g].map(k=>spec.inputs[k]?spec.inputs[k].label:k).join('、')}`:'表内来源登记齐全；地区与预设适用性仍须核验'));
-    host.title=r.source||'';
+    host.title=bridgeApplied?bridge.energy_review.billing.note:(r.source||'');
   }
   function renderInputs(){
     invalidInputs.clear();
@@ -331,13 +371,13 @@
       const box=make('details','input-group');box.dataset.group=group.id;box.open=group.id in openState?openState[group.id]:gi<2;
       const sum=make('summary');sum.append(make('b','',group.label),make('small','',group.hint));box.append(sum);
       for(const id of group.inputs){
-        const cfg=spec.inputs[id],ev=spec.evidence[id]||{status:'needed'},row=make('div','input-row'),label=make('label');label.htmlFor='input-'+id;
+        const cfg=(bridgeApplied&&id==='pue')?{...spec.inputs[id],label:'期间PUE假设'}:(bridgeApplied&&id==='power_price')?{...spec.inputs[id],label:'平均零售代理价'}:spec.inputs[id],ev=spec.evidence[id]||{status:'needed'},row=make('div','input-row'),label=make('label');label.htmlFor='input-'+id;
         const badge=make('i','badge '+STATUS[ev.status][1]);badge.title=STATUS[ev.status][0]+(ev.note?'：'+ev.note:'');
         label.append(badge,make('span','',cfg.label));if(g.has(id))label.append(make('em','gap','缺'));if(cfg.note)label.append(make('small','',cfg.note));
         const holder=make('div','input-box');
         if(cfg.type==='select'){const sel=make('select');sel.id='input-'+id;const opts=cfg.options?Object.entries(spec[cfg.options]).map(([k,v])=>[k,v.label]):cfg.choices;for(const [v,l] of opts){const o=make('option','',l);o.value=v;sel.append(o);}sel.value=values[id];
-          sel.addEventListener('change',()=>{const before={...values},next={...values,[id]:sel.value};if(cfg.options)applyTable(next,id,spec);if(!confirmBridgeChange(next,'切换'+cfg.label)){sel.value=values[id];return;}values=next;bridgeChanged(before,'user_assumption',[id,...(cfg.options?Object.keys(spec[cfg.options][values[id]]):[])]);activePreset='';byId('preset-note').textContent='';renderInputs();render();});holder.append(sel);}
-        else{const input=make('input');input.type='number';input.id='input-'+id;input.min=cfg.min;input.max=cfg.max;input.step=cfg.step;input.value=cfg.display==='percent'?Math.round(values[id]*10000)/100:values[id];
+          sel.addEventListener('change',()=>{const before={...values},next={...values,[id]:sel.value};if(cfg.options)applyTable(next,id,spec);bridgeCompatible(next);if(!confirmBridgeChange(next,'切换'+cfg.label)){sel.value=values[id];return;}values=next;bridgeChanged(before,'user_assumption',[id,...(cfg.options?Object.keys(spec[cfg.options][values[id]]):[])]);activePreset='';byId('preset-note').textContent='';renderInputs();render();});holder.append(sel);}
+        else{const input=make('input');input.type='number';input.id='input-'+id;input.min=cfg.min;input.max=cfg.max;input.step=cfg.step;if(bridgeApplied&&id==='demand_rate'){input.disabled=true;input.title=bridge.energy_review.billing.note;}input.value=cfg.display==='percent'?Math.round(values[id]*10000)/100:values[id];
           input.addEventListener('input',()=>{if(input.value.trim()===''||!input.validity.valid){invalidInputs.add(id);input.setAttribute('aria-invalid','true');render();return;}const raw=Number(input.value);if(!Number.isFinite(raw))return;invalidInputs.delete(id);input.removeAttribute('aria-invalid');const before={...values};values[id]=cfg.display==='percent'?raw/100:cfg.step===1?Math.round(raw):raw;bridgeChanged(before,'user_assumption',[id]);activePreset='';byId('preset-note').textContent='';render();});holder.append(input,make('span','',cfg.unit));}
         row.append(label,holder);box.append(row);
       }
@@ -506,7 +546,7 @@
     event.preventDefault();if(legacy)showView(legacy);else showColumn(requested);const menu=anchor.closest('details');if(menu)menu.open=false;
   }
   function render(){
-    byId('model-error').hidden=!invalidInputs.size;byId('model-error').textContent=invalidInputs.size?'输入无效；下方保留上次有效计算，修正后再计算与导出。':'';byId('copy-results').disabled=!!invalidInputs.size;
+    byId('model-error').hidden=!invalidInputs.size;byId('model-error').textContent=invalidInputs.size?'输入无效；下方保留上次有效计算，修正后再计算与导出。':'';byId('copy-results').disabled=!!invalidInputs.size||(bridgeApplied&&values.demand_rate!==0);
     const r=run(values,spec);markPreset();renderRegion();projectLine(r);renderLifecycle(r);renderLedgers(r);renderUnit(r);renderInverse(r);renderGaps();bridgeRender();
     byId('copy-results').onclick=()=>{const c=r.ledgers.compute,l=r.lifecycle;const txt=JSON.stringify({site_scenario:bridgeApplied?bridgeSnapshot():null,model_id:spec.model_id,as_of:spec.as_of,preset:activePreset||null,assumptions:values,levelised:l.levelised,per_kw_month:l.per_kw_month,per_gpu_hour:l.per_gpu_hour,roic:c.roic,revenue:c.revenue,nopat:c.nopat,annualised:c.annualised,unit_cost:c.unit_cost,inverse:r.inverse},null,2);const btn=byId('copy-results');const done=()=>{btn.textContent='已复制';setTimeout(()=>btn.textContent='复制假设与结果',1500);};(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt).then(done):Promise.reject()).catch(()=>{const ta=document.createElement('textarea');ta.value=txt;document.body.append(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}ta.remove();});};
   }

@@ -170,3 +170,47 @@ class SiteModelBridgeTests(unittest.TestCase):
         self.assertEqual(replay['GPU合计']['value'],100800+100800)
         self.assertEqual(replay['所选四栋算力估算']['status'],'precision_unresolved')
         self.assertIn('未贯通',self.doc['sites'][0]['dependency_notice']['cost_limit'])
+
+    def test_energy_review_preserves_unknowns_and_snapshot_period(self):
+        out=bridge.project(ROOT,self.projects,'us-tx-abilene');energy=out['energy_review']
+        self.assertEqual(energy['period']['snapshot_date'],out['scope']['effective_at'])
+        self.assertIsNone(energy['period']['actual_start'])
+        self.assertEqual(energy['period']['capacity_profile_state'],'unknown')
+        self.assertEqual({c['id']:c['actual_state'] for c in energy['checks']},
+                         {'capacity_range':'existing_estimate','average_it_load':'unknown','period_pue':'unknown','applicable_price':'unknown'})
+        self.assertTrue(all(not c['automatic_fill'] for c in energy['checks']))
+        self.assertEqual(out['review']['item_counts']['anomaly'],3)
+        self.assertIn('energy-rep-candidate',next(c for c in energy['checks'] if c['id']=='applicable_price')['evidence_ids'])
+        self.assertEqual(next(s for s in out['review']['sources'] if s['id']=='sec-dc1-extract')['capture_kind'],'web_tool_extract')
+        self.assertEqual(out['energy_review_sha256'],bridge.digest(energy))
+        sources={s['id']:s for s in out['review']['sources']}
+        self.assertEqual(sources['mortenson-grid']['mirror_of'],'mortenson')
+        self.assertEqual(sources['mortenson-grid']['sha256'],sources['mortenson']['sha256'])
+        for field,value,error in [('status','measured','review_changed')]:
+            changed=copy.deepcopy(self.doc);item=changed['sites'][0];item['energy_review'][field]=value
+            item['energy_review_sha256']=bridge.digest(item['energy_review'])
+            with self.assertRaisesRegex(ValueError,error):bridge.validate(changed,self.projects,self.spec)
+        for change,error in [('period','energy_period'),('candidate','energy_not_measured'),('source','energy_evidence')]:
+            changed=copy.deepcopy(self.doc);item=changed['sites'][0];e=item['energy_review']
+            if change=='period':e['period']['actual_start']='2026-01-01'
+            elif change=='candidate':e['checks'][1]['actual_state']='measured'
+            else:e['checks'][0]['source_ids']=['missing']
+            item['energy_review_sha256']=bridge.digest(e)
+            with self.assertRaisesRegex(ValueError,error):bridge.validate(changed,self.projects,self.spec)
+
+    def test_energy_proxy_rejects_double_count_and_false_bounds(self):
+        for change,error in [('demand','energy_double_count'),('probability','sensitivity_identity'),('bounds','sensitivity_bounds')]:
+            changed=copy.deepcopy(self.doc);item=changed['sites'][0];e=item['energy_review']
+            if change=='demand':e['billing']['demand_rate_override']=3.8
+            elif change=='probability':e['sensitivity']['status']='confidence_interval'
+            else:e['sensitivity']['load_factors']=[.5,.7,1.2]
+            item['energy_review_sha256']=bridge.digest(e)
+            with self.assertRaisesRegex(ValueError,error):bridge.validate(changed,self.projects,self.spec)
+        b=self.doc['sites'][0]['parameter_basis']['demand_rate']
+        self.assertEqual(b['kind'],'analysis_choice');self.assertEqual(b['actual_state'],'unknown')
+
+    def test_energy_public_projection_drops_unregistered_nested_metadata(self):
+        changed=copy.deepcopy(self.doc['sites'][0]);e=changed['energy_review']
+        e['private']='/Users/private/source';e['checks'][0]['private']='/Users/private/contract';e['billing']['secret']='contract';e['period']['local_path']='private'
+        out=bridge._public(changed,bridge.BRIDGE)
+        self.assertNotIn('/Users/',json.dumps(out));self.assertNotIn('secret',out['energy_review']['billing']);self.assertNotIn('local_path',out['energy_review']['period'])

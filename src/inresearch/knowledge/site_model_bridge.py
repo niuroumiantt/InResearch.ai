@@ -94,8 +94,45 @@ def _review(item):
     return sources, evidence
 
 
+def _energy(item, sources, evidence, spec):
+    energy = item['energy_review']
+    if digest(energy) != item['energy_review_sha256'] or energy['status'] != 'local_scenario_only':
+        raise ValueError('bridge_energy_review_changed')
+    rows = energy['checks']
+    expected = {'capacity_range': 'existing_estimate', 'average_it_load': 'unknown',
+                'period_pue': 'unknown', 'applicable_price': 'unknown'}
+    if len(rows) != 4 or {c['id']: c['actual_state'] for c in rows} != expected:
+        raise ValueError('bridge_energy_not_measured')
+    for row in rows:
+        if (row['automatic_fill'] is not False or not all(row.get(k) for k in ('known','candidate','missing','next_action'))
+                or not row['source_ids'] or not set(row['source_ids']) <= sources.keys()
+                or not row['evidence_ids'] or not set(row['evidence_ids']) <= evidence.keys()
+                or not row['parameter_ids'] or not set(row['parameter_ids']) <= spec['inputs'].keys()):
+            raise ValueError('bridge_energy_evidence')
+    period = energy['period']
+    if (period['mode'] != 'constant_snapshot_annualization' or period['hours'] != 8760
+            or period['snapshot_date'] != item['scope']['effective_at'] or period['scope_id'] != item['scope']['id']
+            or period['actual_start'] is not None or period['actual_end'] is not None
+            or period['capacity_profile_state'] != 'unknown'):
+        raise ValueError('bridge_energy_period')
+    billing = energy['billing']
+    if (billing['mode'] != 'retail_average_proxy' or billing['demand_rate_override'] != 0
+            or billing['applicability'] != 'unknown' or item['parameter_basis']['demand_rate']['kind'] != 'analysis_choice'):
+        raise ValueError('bridge_energy_double_count')
+    sensitivity = energy['sensitivity']
+    if sensitivity['status'] != 'analyst_scenarios_not_probability_bounds' or not sensitivity.get('note'):
+        raise ValueError('bridge_energy_sensitivity_identity')
+    bounds = {'load_factors': (0, 1), 'pues': (1, spec['inputs']['pue']['max']),
+              'prices': (0, spec['inputs']['power_price']['max']), 'capacity_equivalent_hours': (1, 8760)}
+    for key, (lo, hi) in bounds.items():
+        values = sensitivity[key]
+        if (not 2 <= len(values) <= 5 or values != sorted(set(values))
+                or any(type(v) not in (int,float) or not math.isfinite(v) or not lo <= v <= hi for v in values)):
+            raise ValueError('bridge_energy_sensitivity_bounds')
+
+
 def validate(doc, projects, spec):
-    if doc.get('schema_version') != 3 or not doc.get('version') or not doc.get('mapping_version'):
+    if doc.get('schema_version') != 4 or not doc.get('version') or not doc.get('mapping_version'):
         raise ValueError('bridge_version')
     sites = {r['site_id']: r for r in projects}
     seen = set()
@@ -118,6 +155,7 @@ def validate(doc, projects, spec):
         if not 0 < item['expected_it_mw'] <= spec['inputs']['it_mw']['max']:
             raise ValueError('bridge_capacity_bounds')
         sources, evidence = _review(item)
+        _energy(item, sources, evidence, spec)
         ids = set()
         for claim in item['configurations'] + item['economic_candidates']:
             if claim['id'] in ids or claim['status'] != 'candidate':
@@ -215,7 +253,7 @@ def _fields(keys):
     return dict.fromkeys(keys.split())
 
 
-SOURCE = {**_fields('id url status sha256 text_sha256 checked_scope total_pages remaining_pages mirror_of'),
+SOURCE = {**_fields('id url status sha256 text_sha256 checked_scope total_pages remaining_pages mirror_of retrieved_at capture_kind'),
           'text_review_pages': [None], 'visual_review_pages': [None]}
 DERIVATION = {**_fields('id output_item_id source_id locator formula scope review_state relationship_kind'),
               'input_item_ids': [None], 'assumptions': [None]}
@@ -224,12 +262,19 @@ EVIDENCE = {**_fields('id label state source_id locator reason observation_id'),
 CLAIM = {**_fields('id label content status measurement_kind effective_at scope source_url locator node value unit note'),
          'quantity': _fields('value unit'), 'relations': _fields('shared redundancy included_in'),
          'evidence_ids': [None], 'missing': [None]}
+ENERGY_CHECK = {**_fields('id label actual_state known candidate missing next_action automatic_fill'),
+                'evidence_ids': [None], 'source_ids': [None], 'parameter_ids': [None]}
+ENERGY = {**_fields('id reviewed_at status'), 'checks': [ENERGY_CHECK],
+          'period': _fields('mode snapshot_date scope_id hours actual_start actual_end capacity_profile_state note formula pue_formula'),
+          'billing': _fields('mode demand_rate_override note supply_assumption price_period price_release_date applicability'),
+          'sensitivity': {**_fields('status note'), 'load_factors': [None], 'pues': [None], 'prices': [None], 'capacity_equivalent_hours': [None]}}
 BRIDGE = {
     **_fields('site_id observation_id expected_it_mw review_sha256 expected_observation_sha256 document_review_sha256'),
     'scope': _fields('id label effective_at physical_scope included excluded actor accounting_basis'),
     'configurations': [CLAIM], 'economic_candidates': [CLAIM], 'unknowns': [None],
     'rules': [{**_fields('id target kind source_field conditions value'), 'evidence_ids': [None], 'dependency_derivation_ids': [None], **_fields('entry_method evidence_independence')}],
     'demo_assumptions': _fields('load_factor pue'),
+    'energy_review': ENERGY, 'energy_review_sha256': None,
     'coverage': [_fields('angle item state destination reason')],
     'blockers': [{**_fields('id status label reason automatic_fill'), 'evidence_ids': [None],
                   'blocked_targets': [None], 'exception_rule_ids': [None]}],

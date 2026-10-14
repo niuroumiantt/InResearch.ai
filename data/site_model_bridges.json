@@ -1,7 +1,7 @@
 {
-  "schema_version": 3,
-  "version": "2026.10.14.2",
-  "mapping_version": "site-model-bridge-v3",
+  "schema_version": 4,
+  "version": "2026.10.14.3",
+  "mapping_version": "site-model-bridge-v4",
   "sites": [
     {
       "site_id": "us-tx-abilene",
@@ -278,21 +278,21 @@
         }
       ],
       "review": {
-        "id": "abilene-dependency-review-20261014",
+        "id": "abilene-energy-review-20261014",
         "reviewed_at": "2026-10-14",
-        "input_sha256": "4baf86a045df81de4165738939281244c7ef801c80b31189793b5c6b180708cc",
-        "result_sha256": "1ba8a4a9e19aa570441b37ac692715637cc425c96f3209b5d36d581732f2b3cb",
+        "input_sha256": "62188098de64515af065ce63f4dfdfb78a7ccb6ab46f8c9413b7c67c3b3d84a3",
+        "result_sha256": "42e58da0cb9a7d960b39a88a772047a25960ddc130a9581558e177d9a7b130c8",
         "checklist_version": "2026.10.13.2",
         "checklist_sha256": "3ae336b5fdf1215bd9ab3ea681341c6a64ed0818eab5101eae4d8ddfbe3d76a9",
-        "inventory_units": 169,
+        "inventory_units": 189,
         "item_counts": {
           "anomaly": 3,
-          "candidate": 160,
-          "excluded": 0,
+          "candidate": 175,
+          "excluded": 1,
           "existing_observation": 2,
           "not_applicable": 0,
-          "not_checked": 4,
-          "unknown": 23,
+          "not_checked": 8,
+          "unknown": 28,
           "unread_attachment": 0
         },
         "report_exhaustive": "not_certified",
@@ -460,6 +460,144 @@
               1
             ],
             "remaining_pages": "not_individually_reviewed"
+          },
+          {
+            "id": "crusoe-live",
+            "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-flagship-abilene-data-center-is-live",
+            "status": "checked",
+            "sha256": "31600f292fd261634cdc4946f9cfaf9a132b750b2ff35ca9e13d07981ba4173e",
+            "text_sha256": "172f6cc65b6bef1ff17b76ee1c682084979537bd7fa443d26d5d9363d38dbe2e",
+            "checked_scope": "能耗相关正文／表头与注释，导航／其余链接未逐项研究",
+            "retrieved_at": "2026-10-14T00:25:40.411593+00:00"
+          },
+          {
+            "id": "crusoe-plan",
+            "url": "https://www.crusoe.ai/resources/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts",
+            "status": "checked",
+            "sha256": "bdb06156e604a2f856b6a0dae7c8aee237277efbf36067daa048de0860de1100",
+            "text_sha256": "fb699e9d528680a76093db0c159a49ea4f4d0ab8b723f908e470d9958148c4bd",
+            "checked_scope": "能耗相关正文／表头与注释，导航／其余链接未逐项研究",
+            "retrieved_at": "2026-10-14T00:25:41.836015+00:00"
+          },
+          {
+            "id": "mortenson-grid",
+            "url": "https://www.mortenson.com/projects/abilene-data-center-development",
+            "status": "checked",
+            "sha256": "171b183bd51a9a5abf8dc70518411dc4d7fcf376c2abc359af022d311afa656d",
+            "text_sha256": "3742d4f7dd8839ccafed7a34254e6bd7494daa22e795562c2003f8e2ebe41777",
+            "checked_scope": "能耗相关正文／表头与注释，导航／其余链接未逐项研究",
+            "retrieved_at": "2026-10-14T00:25:44.420947+00:00",
+            "mirror_of": "mortenson"
+          },
+          {
+            "id": "oracle-energy",
+            "url": "https://www.oracle.com/data-centers/abilene/",
+            "status": "checked",
+            "sha256": "95380cd024cb3667af80cad4e3805e74bc8344eec87916590f302aedc2664537",
+            "text_sha256": "535b332cda002a760c0ce876923581ce40f4b6e07073a1ec2e150541b4e52664",
+            "checked_scope": "能耗相关正文／表头与注释，导航／其余链接未逐项研究",
+            "retrieved_at": "2026-10-14T00:25:45.642559+00:00"
+          },
+          {
+            "id": "crusoe-design-2025",
+            "url": "https://www.crusoe.ai/resources/blog/crusoes-2025-impact-report",
+            "status": "checked",
+            "sha256": "a54df1be1f53b5084627cceea848dd49e1bd06c24036d1aab997ef36ddf749e6",
+            "text_sha256": "dfd45a98a94299bf6bb3bb7223acece9f384f6fce646abde93a4cf92287bb8c7",
+            "checked_scope": "能耗相关正文／表头与注释，导航／其余链接未逐项研究",
+            "retrieved_at": "2026-10-14T00:25:47.001129+00:00"
+          },
+          {
+            "id": "doe-pue",
+            "url": "https://www.energy.gov/cmei/femp/cooling-water-efficiency-opportunities-federal-data-centers",
+            "status": "checked",
+            "sha256": "0042e072cfd4c580e404ec8dbe27146d7938281697156562b550fb69ef6486cb",
+            "text_sha256": "b0dde6c69e0f2f843d43a858b6f4a9ecdf749c3636306c6fe77c4cfe4b3f8f9d",
+            "checked_scope": "能耗相关正文／表头与注释，导航／其余链接未逐项研究",
+            "retrieved_at": "2026-10-14T00:25:48.352713+00:00"
+          },
+          {
+            "id": "eia-tx-jul2026",
+            "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=table_5_06_a",
+            "status": "checked",
+            "sha256": "bfe18fff4c92d4ce3e80a00c59b1dcc115f01db2a9e3ef31ed9c9d95d6dded2d",
+            "text_sha256": "474db0407d133057090e264694d89098242ab5a853b422007d5d05271472a457",
+            "checked_scope": "能耗相关正文／表头与注释，导航／其余链接未逐项研究",
+            "retrieved_at": "2026-10-14T00:25:49.813618+00:00"
+          },
+          {
+            "id": "eia-price-definition",
+            "url": "https://www.eia.gov/electricity/monthly/pdf/technotes.pdf",
+            "status": "checked",
+            "sha256": "2fa21cc63ae513336a49f2c851f5de49d972fc543e8c36e3cdaefdd0952440c1",
+            "text_sha256": "4a99e33e1cfc050df6a95130973cf1ca852234d738067d42bee7396afe772b05",
+            "checked_scope": "PDF文本7,13；视觉7；其余29页未逐页研究",
+            "total_pages": 31,
+            "text_review_pages": [
+              7,
+              13
+            ],
+            "visual_review_pages": [
+              7
+            ],
+            "remaining_pages": "not_individually_reviewed",
+            "retrieved_at": "2026-10-14T00:25:52.548483+00:00"
+          },
+          {
+            "id": "crusoe-impact-2025",
+            "url": "https://cdn.prod.website-files.com/6855c1aa175582ee23e0aa19/6aa975443d2a8405e214f067_Crusoe_2025_Impact%20Report2_web_optimized.pdf",
+            "status": "checked",
+            "sha256": "38ca3db4c94206be9e8b2ee1e3b5fa1239b00948c50b3ac0e102e6d7f1773619",
+            "text_sha256": "a7e27e5fc3bff6104b4195c0a41eee027ce65b7bfecb4988fc21afa86bc93f61",
+            "checked_scope": "PDF文本8,16,21,31,62；视觉16,21,62；其余65页未逐页研究",
+            "total_pages": 70,
+            "text_review_pages": [
+              8,
+              16,
+              21,
+              31,
+              62
+            ],
+            "visual_review_pages": [
+              16,
+              21,
+              62
+            ],
+            "remaining_pages": "not_individually_reviewed",
+            "retrieved_at": "2026-10-14T00:26:17.401124+00:00"
+          },
+          {
+            "id": "puc-rep",
+            "url": "https://interchange.puc.texas.gov/Documents/57474_1_1451227.PDF",
+            "status": "checked",
+            "sha256": "bc856b9ee426975d848bad0236ca5632b6baaec62d16b85a4aed82bbb3551834",
+            "text_sha256": "93a5d8c23a4ce60c68094ba320dd997a230a97e9cb77ed98a452e3d0726c8168",
+            "checked_scope": "PDF文本1,2,3,12,16；视觉2,16；其余11页未逐页核",
+            "total_pages": 16,
+            "text_review_pages": [
+              1,
+              2,
+              3,
+              12,
+              16
+            ],
+            "visual_review_pages": [
+              2,
+              16
+            ],
+            "remaining_pages": "not_individually_reviewed",
+            "retrieved_at": "2026-10-14T00:31:35.571373+00:00",
+            "capture_kind": "original_bytes"
+          },
+          {
+            "id": "sec-dc1-extract",
+            "url": "https://www.sec.gov/Archives/edgar/data/1944366/000194436626000020/exhibit993-2025abelinedc1l.htm",
+            "status": "checked",
+            "sha256": "ccce1da1ee6f6627483c9385edf65ec94d682cc1bfc2efa8a677d4210b3aa444",
+            "text_sha256": "ccce1da1ee6f6627483c9385edf65ec94d682cc1bfc2efa8a677d4210b3aa444",
+            "checked_scope": "web工具转录L378-402租约注释；表格图片、完整报告未核；SHA只绑定转录，不是原HTML",
+            "retrieved_at": "2026-10-14",
+            "capture_kind": "web_tool_extract"
           }
         ],
         "items": [
@@ -1022,6 +1160,206 @@
             "source_id": "permit-transfer",
             "locator": "PDF p5-331",
             "reason": "完整原件已取得，仅核前四页；其余仍未检查"
+          },
+          {
+            "id": "energy-live",
+            "label": "首两栋通电与首批机柜交付",
+            "state": "candidate",
+            "source_id": "crusoe-live",
+            "locator": "正文建设段，2025-09-30",
+            "reason": "披露首两栋一年内通电及早期训练／推理；没有逐月IT容量、电表或负载率"
+          },
+          {
+            "id": "energy-plan",
+            "label": "八栋及1.2GW规划范围",
+            "state": "candidate",
+            "source_id": "crusoe-plan",
+            "locator": "正文首段，2025-03-18",
+            "reason": "设施总功率规划，不能覆盖421MW某日IT估算或作为全年负载"
+          },
+          {
+            "id": "energy-grid",
+            "label": "变电站容量及AEP协作",
+            "state": "candidate",
+            "source_id": "mortenson-grid",
+            "locator": "Project Overview / Key Takeaways",
+            "reason": "变电站工程额定规模；不证明零售商、合同/费率表或所选日期批准负荷"
+          },
+          {
+            "id": "energy-grid-aep",
+            "label": "AEP工程协作关系",
+            "state": "candidate",
+            "source_id": "mortenson-grid",
+            "locator": "Key Takeaways",
+            "reason": "工程协作不是园区购电合同，不能选定Oncor或AEP某张零售费率表"
+          },
+          {
+            "id": "energy-supply",
+            "label": "直接ERCOT连接与燃气备用用途",
+            "state": "candidate",
+            "source_id": "oracle-energy",
+            "locator": "Energy 两项",
+            "reason": "园区电力路径披露；实际市电/自发电/储能/削峰电量份额未知"
+          },
+          {
+            "id": "energy-backup",
+            "label": "燃气备用用途",
+            "state": "candidate",
+            "source_id": "oracle-energy",
+            "locator": "Energy 第二项",
+            "reason": "备用用途描述，不等于只运行零小时；不得把设备MW按8760小时当购电或发电实绩"
+          },
+          {
+            "id": "energy-pue-blog",
+            "label": "首期园区年度化设计PUE披露",
+            "state": "candidate",
+            "source_id": "crusoe-design-2025",
+            "locator": "Building responsibly，2026-05-28",
+            "reason": "设计范围1.2–1.4；不同于旧公司目标1.2–1.3，也不同于峰值换算1.4，均非期间实测"
+          },
+          {
+            "id": "energy-pue-report",
+            "label": "Abilene图解的设计PUE及备用规模",
+            "state": "candidate",
+            "source_id": "crusoe-impact-2025",
+            "locator": "PDF p16",
+            "reason": "图中设计PUE1.2–1.4及350MW长期燃气备用；350与申请360.5MW不同范围/额定值未调和；不是IT功率或供电电量"
+          },
+          {
+            "id": "energy-psr",
+            "label": "2026新建项目设计目标",
+            "state": "candidate",
+            "source_id": "crusoe-impact-2025",
+            "locator": "PDF p31",
+            "reason": "2026起新项目规范，不自动适用于既有Abilene所选运行部分"
+          },
+          {
+            "id": "energy-company-purchases",
+            "label": "组织购电量未分配园区",
+            "state": "excluded",
+            "source_id": "crusoe-impact-2025",
+            "locator": "PDF p62 GRI302-1",
+            "reason": "组织范围未按Abilene拆分，不能作为园区IT/设施电量或据此反算负载"
+          },
+          {
+            "id": "energy-pue-definition",
+            "label": "年度PUE的能源比定义",
+            "state": "candidate",
+            "source_id": "doe-pue",
+            "locator": "Low-Cost/No-Cost章节公式",
+            "reason": "通用方法；同范围同期间能量比，不认证现场值，也不能用月PUE简单平均"
+          },
+          {
+            "id": "energy-price-reference",
+            "label": "得州2026年7月工业平均零售价",
+            "state": "candidate",
+            "source_id": "eia-tx-jul2026",
+            "locator": "Table5.6.A Texas行；Industrial July2026；表头和注释",
+            "reason": "7.07美分/kWh；2026-09-24发布，初步月度统计，非园区合同、全年价格或纯电量价"
+          },
+          {
+            "id": "energy-price-method",
+            "label": "零售价收入含多种收费",
+            "state": "candidate",
+            "source_id": "eia-price-definition",
+            "locator": "PDF p7；同义方法p13",
+            "reason": "收入除销售电量的统计平均含需量等收费；不得再直接叠加Oncor需量参考"
+          },
+          {
+            "id": "energy-capacity-profile-unknown",
+            "label": "所选范围逐月可用IT容量未知",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "旧时间线是模型估算，缺逐栋实际投运/退役与同范围月度容量；不能求实际2026总用电"
+          },
+          {
+            "id": "energy-it-load-unknown",
+            "label": "平均IT电力负载未知",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "本轮检索官方投运/能源页与报告相关页，未见同范围期间IT电表；不声称全部公开资料不存在"
+          },
+          {
+            "id": "energy-period-pue-unknown",
+            "label": "期间实测PUE未知",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "设计披露、峰值换算和设备资料均未提供相同期间设施/IT双电量"
+          },
+          {
+            "id": "energy-contract-unknown",
+            "label": "适用供电费率与主体未知",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "有ERCOT/AEP工程信息但未取得合同、ESI-ID、供电/输配电主体、费率类别及账单"
+          },
+          {
+            "id": "energy-grid-share-unknown",
+            "label": "购电与自发电分配未知",
+            "state": "unknown",
+            "source_id": null,
+            "locator": "",
+            "reason": "园区总用电不能直接等同市电购入；备用/削峰实际小时与储能流量未知"
+          },
+          {
+            "id": "energy-report-remaining",
+            "label": "2025报告其余65页未逐页研究",
+            "state": "not_checked",
+            "source_id": "crusoe-impact-2025",
+            "locator": "PDF其余页",
+            "reason": "完整70页已取得；仅本次列定五页文本与三页图像定向复核"
+          },
+          {
+            "id": "energy-method-remaining",
+            "label": "EIA技术注释其余29页未逐页研究",
+            "state": "not_checked",
+            "source_id": "eia-price-definition",
+            "locator": "PDF其余页",
+            "reason": "只核定价方法页7和13；其余未逐页研究"
+          },
+          {
+            "id": "energy-rep-candidate",
+            "label": "历史REP及客户声明",
+            "state": "candidate",
+            "source_id": "puc-rep",
+            "locator": "PDF物理页1-3,12,16；2024-12-19提交，所称变更2025-01-01",
+            "reason": "Option2证书10329客户变更申请列Abilene DC1；客户声明已签零售供电≥1MW。是准入门槛声明，不是1MW园区容量、实际电量或2026合同有效性"
+          },
+          {
+            "id": "energy-power-payer",
+            "label": "首两栋租户向Lancium支付电力费用的披露",
+            "state": "candidate",
+            "source_id": "sec-dc1-extract",
+            "locator": "web工具L383，财报注释5（2025-12-31口径）",
+            "reason": "只核工具转录；财报范围首两栋。支付关系不能等同REP法律主体、价格条款、付费电量或所选421MW全范围"
+          },
+          {
+            "id": "energy-rent-dates",
+            "label": "两栋起租日不等于投运容量曲线",
+            "state": "candidate",
+            "source_id": "sec-dc1-extract",
+            "locator": "web工具L400，财报注释5",
+            "reason": "起租与energized/可用/IT电力负载不同；不按起租日自动积算年度IT能耗"
+          },
+          {
+            "id": "energy-rep-remaining",
+            "label": "REP附件其余11页未逐页研究",
+            "state": "not_checked",
+            "source_id": "puc-rep",
+            "locator": "PDF其余页",
+            "reason": "完整16页已取，仅核五页文本/两页图像"
+          },
+          {
+            "id": "energy-sec-original-unobtained",
+            "label": "SEC原HTML/表格图片未取得复核",
+            "state": "not_checked",
+            "source_id": "sec-dc1-extract",
+            "locator": "原HTML及转录外表格图",
+            "reason": "已留curl失败回执；只有web工具转录SHA，不能作为原HTML冻结或全表读取回执"
           }
         ],
         "derivations": [
@@ -1257,11 +1595,15 @@
           "421MW、GPU数量与算力共用配置假设；固定引用记录不等于来源证据独立",
           "官方37589-ac与已有许可附件字节同一，不多算一份独立证据；后续37589-tc只核前四页",
           "本轮原件内容核对可进入人工复核，但不冒充人类确认、现场安装／投运、最终许可或模型用途采用",
-          "成本链只确认方法依赖；159亿美元的精确系数／版本和舍入未贯通"
+          "成本链只确认方法依赖；159亿美元的精确系数／版本和舍入未贯通",
+          "第三步定向核对九份新增原件，不是全报告穷尽研究；无实测IT电量、期间PUE、逐月容量或合同取得回执；所有新增项未正式采用。",
+          "原三异常、官方镜像身份、旧版本与候选推导保留；新设计/额定容量不替换旧观察。",
+          "另核PUC历史REP及SEC租约线索；SEC原HTML下载失败，只有明确标记的工具转录，表格图片/原HTML未核。历史供电/支付关系不确认2026所选全范围合同。",
+          "Mortenson重取页面SHA与此前mortenson原件一致，新增定向阅读范围不多计一份独立证据。"
         ],
-        "previous_review_sha256": "5c79b3ab4d1906c0fc85dfe90336f9f682670fec495f57f1234b4636abcfc555"
+        "previous_review_sha256": "78ddf6651b7a58b533d550b43ff69a722a7771cdc316c90672c9727d303f3d3f"
       },
-      "review_sha256": "78ddf6651b7a58b533d550b43ff69a722a7771cdc316c90672c9727d303f3d3f",
+      "review_sha256": "f1f2abd299b9bf4a2d20fb2ba123a35bb6730e85b4b1be83143a6c74401ace7b",
       "expected_observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
       "blockers": [
         {
@@ -1621,17 +1963,17 @@
         "power_price": {
           "kind": "regional_reference",
           "actual_state": "unknown",
-          "note": "地区费率参考；供应方、客户类别、合同与期间适用性未知",
+          "note": "2026-07得州工业平均零售代理价，非纯电量合同价；初步月度统计恒定年化，现场分类/合同/季节/发电分配未知。",
           "source_ref": {
-            "path": "regions.us_texas.power_price"
+            "path": "site_model_bridges.energy_review.applicable_price"
           }
         },
         "demand_rate": {
-          "kind": "regional_reference",
+          "kind": "analysis_choice",
           "actual_state": "unknown",
-          "note": "地区费率参考；供应方、客户类别、合同与期间适用性未知",
+          "note": "地区平均零售价是收入/电量，已含需量等多项收费；本地代理费用不叠加Oncor3.8。计算0是避免重复计费的研究口径，不表示实际需量费为0。",
           "source_ref": {
-            "path": "regions.us_texas.demand_rate"
+            "path": "site_model_bridges.energy_review.billing"
           }
         },
         "power_escalation": {
@@ -1685,7 +2027,7 @@
         "pue": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "本次演示显式假设；不是现场实绩或公司设计范围的认证",
+          "note": "1.28为期间能源比假设；新设计1.2–1.4及旧公司设计1.2–1.3保留，非本园区期间实测；源峰值比1.4不能自动填入。",
           "source_ref": {
             "path": "demo_assumptions.pue"
           }
@@ -1717,7 +2059,7 @@
         "load_factor": {
           "kind": "assumption",
           "actual_state": "unknown",
-          "note": "本次演示显式假设；不是现场实绩或公司设计范围的认证",
+          "note": "70%为可用容量时间上的平均IT电力负载假设；现场IT电量未知，不等于GPU忙碌率或付费率，不重复扣爬坡。",
           "source_ref": {
             "path": "demo_assumptions.load_factor"
           }
@@ -2226,7 +2568,165 @@
             "path": "assumptions.roic_basis"
           }
         }
-      }
+      },
+      "energy_review": {
+        "id": "abilene-annual-energy-v1",
+        "reviewed_at": "2026-10-14",
+        "status": "local_scenario_only",
+        "checks": [
+          {
+            "id": "capacity_range",
+            "label": "容量范围",
+            "actual_state": "existing_estimate",
+            "known": "固定引用2026-07-28的421MW IT估算，保留共享GPU依赖；不换成1.2GW规划或1GW变电站额定值。",
+            "candidate": "首两栋通电与2025-06首批机柜交付；工程方200MW/138kV至1GW/345kV变电站、AEP协作；均是时间/工程候选。",
+            "missing": "逐栋可用IT容量、实际投运/停运日期、共享设施分摊和全年容量曲线未知。",
+            "next_action": "先补逐栋投运和IT容量台账，再按各时段积分；不能把相邻Microsoft园区并入。",
+            "evidence_ids": [
+              "body-it",
+              "energy-live",
+              "energy-grid",
+              "energy-plan",
+              "energy-capacity-profile-unknown"
+            ],
+            "source_ids": [
+              "crusoe-live",
+              "mortenson-grid",
+              "crusoe-plan"
+            ],
+            "parameter_ids": [
+              "it_mw",
+              "energy_quota_mw"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "average_it_load",
+            "label": "平均IT负载",
+            "actual_state": "unknown",
+            "known": "未取得所选范围期间IT电量；70%继续为演示假设。",
+            "candidate": "早期训练/推理是用途披露；GPU利用率、付费率、峰值算力及许可8760小时都不能作为IT电力负载。",
+            "missing": "同范围各时段IT电表、容量分母、停机/限电/上架过程未知。",
+            "next_action": "取得IT馈线/PDU逐小时或15分钟电量；L=IT电量/(1000×Σ可用IT容量MW×小时)，不要再重复扣投运比例。",
+            "evidence_ids": [
+              "energy-live",
+              "energy-it-load-unknown"
+            ],
+            "source_ids": [
+              "crusoe-live"
+            ],
+            "parameter_ids": [
+              "load_factor"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "period_pue",
+            "label": "期间PUE",
+            "actual_state": "unknown",
+            "known": "所选期间设施/IT双电量未知；1.28继续为演示假设，不是认证值。",
+            "candidate": "2025报告p16及2026-05-28博客给Abilene年度化设计1.2–1.4；旧公司1.2–1.3保留；2026新建项目1.1–1.25另列。",
+            "missing": "同范围、同起止期间、同能源边界实测PUE未知；设计/峰值比均不替代。",
+            "next_action": "取得设施与IT双电量及计量点；期间PUE=Σ设施电量/ΣIT电量，月比率按IT电量加权，不能简单平均。",
+            "evidence_ids": [
+              "energy-pue-blog",
+              "energy-pue-report",
+              "energy-psr",
+              "energy-pue-definition",
+              "energy-period-pue-unknown"
+            ],
+            "source_ids": [
+              "crusoe-design-2025",
+              "crusoe-impact-2025",
+              "doe-pue"
+            ],
+            "parameter_ids": [
+              "pue"
+            ],
+            "automatic_fill": false
+          },
+          {
+            "id": "applicable_price",
+            "label": "适用电价",
+            "actual_state": "unknown",
+            "known": "EIA得州2026-07工业平均零售价7.07美分，发布2026-09-24；属于初步月度地区统计。",
+            "candidate": "Oracle披露ERCOT直接连接与燃气备用；工程方披露AEP协作；均不确认零售商或合同。 PUC2024-12-19申请：Lancium QSE I, LLC（Option2/10329）新增Abilene DC1客户，称2025-01-01变更；SEC财报工具转录列首两栋租户向Lancium付电力费，原HTML未取。",
+            "missing": "历史REP/支付关系已有候选；但所选2026范围合同主体/有效期、ESI-ID、服务电压、费率、需量/4CP、附加税费及能源分配仍未知。",
+            "next_action": "先追PUC批准及后续客户变更，向Lancium QSE I/租户/园区取同期间合同和账单；核首两栋与所选四栋关系、支付方与供电方差别。",
+            "evidence_ids": [
+              "energy-price-reference",
+              "energy-price-method",
+              "energy-supply",
+              "energy-backup",
+              "energy-contract-unknown",
+              "energy-grid-share-unknown",
+              "energy-company-purchases",
+              "energy-rep-candidate",
+              "energy-power-payer",
+              "energy-sec-original-unobtained"
+            ],
+            "source_ids": [
+              "eia-tx-jul2026",
+              "eia-price-definition",
+              "oracle-energy",
+              "mortenson-grid",
+              "crusoe-impact-2025",
+              "puc-rep",
+              "sec-dc1-extract"
+            ],
+            "parameter_ids": [
+              "power_price",
+              "demand_rate"
+            ],
+            "automatic_fill": false
+          }
+        ],
+        "period": {
+          "mode": "constant_snapshot_annualization",
+          "snapshot_date": "2026-07-28",
+          "scope_id": "abilene-20260728-estimated-operating",
+          "hours": 8760,
+          "actual_start": null,
+          "actual_end": null,
+          "capacity_profile_state": "unknown",
+          "note": "把所选快照IT规模固定运行一个365天假设年；不是2026自然年、不是7月28日起实际未来一年预测。容量爬坡与IT电力负载不同，不重复打折。",
+          "formula": "E_IT=1000×Σ(C_IT,t×L_t×Δt); E_facility=E_IT×PUE_period",
+          "pue_formula": "PUE_period=ΣE_facility,t/ΣE_IT,t；不是月PUE的简单平均"
+        },
+        "billing": {
+          "mode": "retail_average_proxy",
+          "demand_rate_override": 0,
+          "note": "地区平均零售价是收入/电量，已含需量等多项收费；本地代理费用不叠加Oncor3.8。计算0是避免重复计费的研究口径，不表示实际需量费为0。",
+          "supply_assumption": "假设全部设施耗电均按购电代理价计费；实际市电/自发电/储能份额未知，燃气成本未重建。",
+          "price_period": "2026-07",
+          "price_release_date": "2026-09-24",
+          "applicability": "unknown"
+        },
+        "sensitivity": {
+          "status": "analyst_scenarios_not_probability_bounds",
+          "load_factors": [
+            0.5,
+            0.7,
+            0.9
+          ],
+          "pues": [
+            1.2,
+            1.28,
+            1.4
+          ],
+          "prices": [
+            0.05,
+            0.0707,
+            0.1
+          ],
+          "capacity_equivalent_hours": [
+            4380,
+            8760
+          ],
+          "note": "负载50/70/90%、代理价5/7.07/10美分为分析情景；PUE1.2/1.28/1.4借设计披露观察影响，非实测区间、上下限保证或置信区间。4380小时只是容量时间积分减半的对照，非实际半年投运；不将通用ramp_year1再乘一遍。"
+        }
+      },
+      "energy_review_sha256": "c06a10d7ad44a7d5595942e6be3c95ab37d2b41dc43fdb12248dd0084fd6c6e7"
     }
   ]
 }
