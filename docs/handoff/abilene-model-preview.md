@@ -79,3 +79,11 @@
 - `python3 manage.py observation-audit --input <audit-input.json> --output <新结果.json> --html <新结果.html>`；禁止覆盖原件。检验读取边界与去向不证明研究采用。
 - `python3 manage.py validate --strict`、`registry`、`governance --check`；相关单元与`node tests/run_browser.cjs site_model_bridge economics_navigation datacenter_cost datacenter_economics datacenter_tco global_campuses`。
 - 本机Playwright：`NODE_PATH=/Users/m5/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules`。需要临时loopback的测试使用允许socket的本地执行。
+
+## 研究架构v4与发布阶段（2026-10-14）
+
+用户已明确授权将此前本地成果上线，替代本文件各历史阶段的暂不上线限制，并强调通用模型为主体、Abilene仅参考。当前独立分支合入375470f5主线的来源归类与年份修正；保留主工作区及原件不动。
+
+现行架构00以对象与证据组织，保留经济三账，重写问题提示，五类兼容，十二视图可扩展，六队按真实来源履约。架构页增加两线共用证据、模型反馈、登记与研究分流图；任务页58检查、提问与来源交付同源生成，下载同步，帮助与节点解释同步。七个交付一级入口和原ID／URL不变；园区详情→参数预览→统一模型与导出闭环，候选和原三异常不自动填参。
+
+阶段实施/测试与待核范围见治理.128；实际PR、完整CI、网站投影及Spark版本另留发布回执，不能把本段当作已部署证明。

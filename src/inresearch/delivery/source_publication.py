@@ -102,7 +102,16 @@ def companies(root, runtime=None):
     runtime = state(root) if runtime is None else runtime
     identities = _objects({'version':1, 'objects':base['objects'], 'records':[]},
                           {'objects':runtime['objects'], 'records':[]})['objects']
-    for obj in identities.values():
+    notes = {}
+    for rows in (base['records'], runtime['records']):
+        for row in rows:
+            if not row.get('registration_correction'): continue
+            if row['id'] in notes and notes[row['id']] != row:
+                raise ValueError('immutable_record_collision')
+            notes.setdefault(row['id'], row)
+    held = ledger.quarantined_objects({'records':notes.values()})
+    for object_id, obj in identities.items():
+        if object_id in held: continue
         if obj['type'] == 'company' and obj['identity']['company_id'] not in known:
             ident = obj['identity']['company_id']
             doc['records'].append({'company_id':ident,'name':obj['name'],'name_cn':None,

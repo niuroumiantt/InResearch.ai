@@ -91,6 +91,44 @@ def archived_source_valid(source):
         archive['receipts'], key=lambda r: observation_time.bounds(r['received_at'])[0])['received_at']
 
 
+def quarantined_objects(doc):
+    """Latest append-only identity hold; original records and IDs remain intact."""
+    held = set()
+    for row in doc['records']:
+        note = row.get('registration_correction') or {}
+        if note.get('action') == 'quarantine_identity': held.add(row['object_id'])
+        elif note.get('action') == 'release_identity': held.discard(row['object_id'])
+    return held
+
+
+def _check_registration_correction(row, seen, corrected):
+    note = row.get('registration_correction')
+    if 'registration_correction' not in row: return
+    if (not isinstance(note, dict) or set(note) != {'of', 'action', 'reason'}
+            or note.get('action') not in {'reclassify', 'quarantine_identity', 'release_identity'}
+            or not isinstance(note.get('reason'), str) or not note['reason'].strip()):
+        raise ValueError('ordinary_registration_correction_required')
+    old = seen.get(note.get('of'))
+    immutable = ('object_id', 'value', 'unit', 'kind', 'effective_at', 'valid_until',
+                 'period_start', 'period_end', 'assumptions', 'source')
+    if (row.get('registration', {}).get('status') != 'unverified' or not old
+            or old.get('registration', {}).get('status') != 'unverified'
+            or any(row.get(k) != old.get(k) for k in immutable)):
+        raise ValueError('ordinary_correction_must_preserve_source_value_identity_and_clocks')
+    if note['action'] == 'reclassify':
+        if (note['of'] in corrected or old.get('registration_correction', {}).get('action') in
+                {'quarantine_identity', 'release_identity'} or
+                all(row.get(k) == old.get(k) for k in ('metric', 'scope'))):
+            raise ValueError('current_ordinary_classification_required')
+        corrected.add(note['of'])
+    else:
+        if any(row.get(k) != old.get(k) for k in ('metric', 'scope')):
+            raise ValueError('identity_hold_cannot_reclassify')
+        was_held = row['object_id'] in quarantined_objects({'records':list(seen.values())})
+        if was_held != (note['action'] == 'release_identity'):
+            raise ValueError('identity_hold_state_changed')
+
+
 def check(doc, root=None):
     if doc.get('version') != 1 or not isinstance(doc.get('objects'), dict) or not isinstance(doc.get('records'), list):
         raise ValueError('invalid_object_observation_ledger')
@@ -104,7 +142,7 @@ def check(doc, root=None):
             raise ValueError('registered_unique_company_required')
         if identity(obj) != ident:
             raise ValueError('object_registry_key_mismatch')
-    seen, revised = {}, set()
+    seen, revised, corrected = {}, set(), set()
     for row in doc['records']:
         check_claim(row)
         ordinary = row.get('registration', {}).get('status') == 'unverified'
@@ -127,6 +165,7 @@ def check(doc, root=None):
         observation_time.precision(source.get('published_at'))
         if source.get('first_received_at') is not None and observation_time.precision(source['first_received_at']) != 'timestamp':
             raise ValueError('actual_first_receipt_required')
+        _check_registration_correction(row, seen, corrected)
         revision = row.get('revision')
         if revision:
             old = seen.get(revision.get('of'))
@@ -137,6 +176,9 @@ def check(doc, root=None):
                 raise ValueError('scoped_owner_revision_required')
             revised.add(revision['of'])
         seen[row['id']] = row
+    held = quarantined_objects(doc)
+    if any(r['object_id'] in held and r.get('registration', {}).get('status') != 'unverified' for r in doc['records']):
+        raise ValueError('ordinary_identity_hold_cannot_hide_reviewed_research')
     return doc
 
 
@@ -157,10 +199,15 @@ def current(doc, today=None):
     from datetime import date
     today = today or date.today().isoformat()
     replaced = {r['revision']['of'] for r in doc['records'] if r.get('revision')}
+    replaced.update(r['registration_correction']['of'] for r in doc['records']
+                    if r.get('registration_correction', {}).get('action') == 'reclassify')
+    held = quarantined_objects(doc)
     positions = {r['id']: i for i, r in enumerate(doc['records'])}
     groups = {}
     for r in doc['records']:
-        if r['id'] in replaced or r.get('revision', {}).get('action') == 'withdraw': continue
+        if (r['id'] in replaced or r['object_id'] in held
+                or r.get('registration_correction', {}).get('action') in {'quarantine_identity','release_identity'}
+                or r.get('revision', {}).get('action') == 'withdraw'): continue
         key = digest({k:r.get(k) for k in ('object_id','metric','scope','unit')})
         g = groups.setdefault(key, {'current': [], 'conflicts': [], 'other': []})
         clock = selection_clock(r)[0] if r.get('registration') else r.get('effective_at')
@@ -195,15 +242,20 @@ def public_records(root, company=None, object_id=None, kind=None, runtime=None):
     if not doc['records']: return []
     fields = publication_contract(root)['public']
     conflicts = {i for g in current(doc) for i in g['conflicts']}
+    held = quarantined_objects(doc)
     result = []
     for row in sorted(doc['records'], key=lambda r: observation_time.bounds(r['recorded_at'])[0], reverse=True):
         obj = doc['objects'][row['object_id']]
+        correction = row.get('registration_correction') or {}
+        if obj['id'] in held or correction.get('action') in {'quarantine_identity','release_identity'}: continue
         if company and obj['identity'].get('company_id') != company: continue
         if object_id and obj['id'] != object_id: continue
         if kind and obj['type'] != kind: continue
         ordinary = row.get('registration', {}).get('status') == 'unverified'
         if not ordinary and row['review'].get('public_fields_reviewed') is not True: continue
         item = {k:copy.deepcopy(row.get(k)) for k in fields['record_fields']}
+        if correction.get('action') == 'reclassify':
+            item['revision'] = {k:correction[k] for k in fields['revision_fields']}
         if item.get('revision'):
             item['revision'] = {k:item['revision'].get(k) for k in fields['revision_fields']}
         item.update(object={k:copy.deepcopy(obj.get(k)) for k in fields['object_fields']},
@@ -218,8 +270,10 @@ def public_records(root, company=None, object_id=None, kind=None, runtime=None):
 
 def public_updates(root, limit=36, company=None, runtime=None):
     rows = public_records(root, company=company) if runtime is None else public_records(root, company=company, runtime=runtime)
+    replaced = {r['revision']['of'] for r in rows if r.get('revision')}
     result, counts = [], {}
     for row in rows:
+        if row['id'] in replaced: continue
         ident = row['object_id']
         if counts.get(ident, 0) >= 2: continue
         counts[ident] = counts.get(ident, 0) + 1

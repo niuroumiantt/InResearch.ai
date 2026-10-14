@@ -35,12 +35,30 @@ class ResearchDashboardTests(unittest.TestCase):
         self.assertIn('已交付目标',html)
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp)
-            for p in ('framework/tco_targets.json','framework/bom.json','framework/research_questions.json','framework/supply_contract.json','data/research_knowledge.json','data/datacenter_model.json','framework/research_graph.json'):
+            for p in ('framework/tco_targets.json','framework/bom.json','framework/research_questions.json','framework/supply_contract.json','data/research_knowledge.json','data/datacenter_model.json','framework/research_graph.json','framework/observation_checklist.json','data/site_model_bridges.json'):
                 dst=root/p;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes((ROOT/p).read_bytes())
             p=root/'framework/tco_targets.json';v=json.loads(p.read_text());v['targets']=[];p.write_text(json.dumps(v))
             changed=dashboard.build(root,table)
             self.assertNotEqual(changed,html)
             self.assertIn('<strong>0</strong>资料目标',changed)
+
+    def test_current_architecture_and_task_coverage_reproduce_from_contracts(self):
+        sys.path.insert(0,str(ROOT/'scripts'))
+        from research_architecture_view import overview,task_coverage
+        from sync_research_architecture import render
+        html=overview(ROOT)
+        self.assertIn('三账：成本、收入、回报',html)
+        self.assertIn('不决定通用模型的研究范围',html)
+        self.assertIn('architecture-model-loop',html)
+        self.assertIn('基础登记',html)
+        self.assertIn('不再等同',html)
+        tasks=task_coverage(ROOT)
+        checks=json.loads((ROOT/'framework/observation_checklist.json').read_text())
+        for angle in checks['angles']:
+            for check in angle['checks']:self.assertIn('data-check-id="'+check['id']+'"',tasks)
+        self.assertEqual(tasks.count('已接通现有入口'),2)
+        self.assertEqual(tasks.count('生产接收未接通'),4)
+        self.assertEqual(render(ROOT),(ROOT/'web/pages/tasks.html').read_text())
 
     def test_daily_archive_contains_all_real_control_room_dependencies(self):
         def module(name):

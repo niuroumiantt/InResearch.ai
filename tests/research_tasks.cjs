@@ -56,6 +56,10 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await page.locator('[data-example="'+sampleId+'"]').waitFor();
     assert.match(await page.locator('.example-execution').innerText(),/private-sample-host/);
     assert.equal(await page.locator('.angle-grid article').count(),12);
+    assert.equal(await page.locator('[data-check-id]').count(),58);
+    assert.equal(await page.locator('.arch-question').count(),4);
+    assert.equal(await page.locator('[data-provider]').count(),6);
+    assert.match(await page.locator('#research-lines').innerText(),/通用数据中心研究/);
     assert.match(await page.locator('.mission-scale').innerText(),/待校准/);
     assert.match(await page.locator('#register-stats').innerText(),/参与统计项目记录/);
     assert.match(await page.locator('#register-basis').innerText(),/参考估算.*区间/);
@@ -97,6 +101,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.ok(brief.includes('\n\n## 工作包'), 'task brief uses real newlines');
     assert.ok(!brief.includes('\\n'), 'task brief has no escaped newline sequences');
     assert.match(brief,/task-intern/);
+    assert.match(brief,/对象与空间范围/);assert.match(brief,/不表示永久穷尽/);assert.match(brief,/通用模型变量/);
     const [templateDownload] = await Promise.all([page.waitForEvent('download'),page.locator('#download-template').click()]);
     const template = JSON.parse(readFileSync(await templateDownload.path(),'utf8'));
     assert.equal(template.contract,'fetchdata-handoff/1');

@@ -107,7 +107,7 @@ def source_note(meta):
 def inresearch_sources():
     return [('inresearch', ROOT, p) for p in ('src/inresearch/README.md',
         'scripts/sync_repo_pages.py','scripts/repository_checks.py','scripts/daily_repository_pages.py','web/assets/material-flow.js','web/assets/material-flow.css',
-        'scripts/repository_research_dashboard.py','src/inresearch/knowledge/research_readiness.py',
+        'scripts/repository_research_dashboard.py','scripts/research_architecture_view.py','framework/00_overview.md','framework/observation_checklist.json','data/site_model_bridges.json','framework/site_navigation.json','src/inresearch/knowledge/research_readiness.py',
     'framework/research_demand_review.json','src/inresearch/knowledge/target_request_contract.py',
     'src/inresearch/knowledge/research_gaps.py',
     'data/datacenter_model.json','framework/research_graph.json','framework/bom.json','framework/tco_targets.json',

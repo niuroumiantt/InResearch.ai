@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.127。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.128。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2708。
+在册文件：2712。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,14 +15,14 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 444 |
-| 运行代码 | 386 |
+| 历史快照 | 445 |
+| 运行代码 | 388 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 244 |
+| 配套说明 | 245 |
 | 测试 | 241 |
 
 ## 在册记录集合
@@ -1794,7 +1794,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 57 |
+| `framework/current_state.json` | policies | 58 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -2095,6 +2095,7 @@
 | [docs/archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md](archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md) | 历史快照 |
 | [docs/archive/2026-10-12/framework__05_interface_system__before_private_tasks.md](archive/2026-10-12/framework__05_interface_system__before_private_tasks.md) | 历史快照 |
 | [docs/archive/2026-10-12/framework__05_interface_system__before_public_tasks.md](archive/2026-10-12/framework__05_interface_system__before_public_tasks.md) | 历史快照 |
+| [docs/archive/2026-10-14/framework__00_before_object_evidence.md](archive/2026-10-14/framework__00_before_object_evidence.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/README.md](archive/local-materials-20261010/original23-new-protocol-validation/README.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 历史快照 |
@@ -2745,6 +2746,7 @@
 | [docs/handoff/publication-throughput-recovery-20261009.md](handoff/publication-throughput-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
 | [docs/handoff/reading-adoption-first-batch-20261007.md](handoff/reading-adoption-first-batch-20261007.md) | 配套说明 |
+| [docs/handoff/relay-incremental-20261013.md](handoff/relay-incremental-20261013.md) | 配套说明 |
 | [docs/handoff/repository-daily-refresh-20261008.md](handoff/repository-daily-refresh-20261008.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/research-append-ci-20261010.md](handoff/research-append-ci-20261010.md) | 配套说明 |
@@ -3729,7 +3731,9 @@
 | `scripts/repository_checks.py` | 运行代码 |
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |
+| `scripts/research_architecture_view.py` | 运行代码 |
 | `scripts/sync_repo_pages.py` | 运行代码 |
+| `scripts/sync_research_architecture.py` | 运行代码 |
 | `scripts/validate_collector_handoff.py` | 运行代码 |
 | `scripts/verify_data_center_publication.py` | 运行代码 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |

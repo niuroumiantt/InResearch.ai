@@ -3,6 +3,9 @@ from collections import Counter
 from html import escape
 import json
 import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from research_architecture_view import STYLE as ARCHITECTURE_STYLE
 
 STYLE = """<style>
 .audit-hero{margin:28px 0;padding:26px 0;border-top:3px solid var(--accent);border-bottom:1px solid var(--line)}
@@ -12,7 +15,7 @@ STYLE = """<style>
 .audit-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}.audit-map article{padding:18px;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);min-width:0}.audit-map h3{margin:0 0 8px;font-size:16px}.audit-map p{margin:5px 0}.audit-section code,.audit-section td{overflow-wrap:anywhere}.audit-section details{padding:14px 0}.audit-section summary{cursor:pointer;font-weight:600}.audit-callout{border-left:3px solid var(--accent);padding:8px 18px;margin:18px 0}.audit-legend{font-size:13px;color:var(--muted)}
 .audit-diagram{margin:20px 0;overflow:auto;border:1px solid var(--line);padding:16px}.audit-diagram svg{display:block;width:100%;min-width:660px;height:auto;color:var(--text)}.audit-diagram rect{fill:var(--card);stroke:var(--line)}.audit-diagram text{fill:currentColor;font-family:var(--ui-font);font-size:15px}.audit-diagram path{fill:none;stroke:var(--accent);stroke-width:2}.audit-live{border:1px solid var(--line);padding:16px;margin:18px 0}.audit-live:empty{display:none}
 @media(max-width:700px){.audit-metrics{grid-template-columns:1fr 1fr}.audit-map{grid-template-columns:1fr}.audit-hero h2{font-size:27px}.audit-hero{padding:18px 0}}
-</style>"""
+</style>""" + ARCHITECTURE_STYLE
 
 
 def build(root, table):
@@ -32,8 +35,9 @@ def build(root, table):
     for value,label,note in metrics:html+=f'<article><strong>{value:,}</strong>{escape(label)}<br><span>{escape(note)}</span></article>'
     html+='</div><p class="audit-legend">以上来自带版本的源码快照。下方动态对账读取当前运行回执和正式支持链，分别标时；不等于已有答案，不将 sourced 标签作为所有情景均可使用的证明。</p><div id="research-health" class="audit-live" aria-live="polite">正在核对问题闭环与供料回执；尚未取得的运行值显示 —。</div></section>'
     html+=section('architecture','01 · 研究产品决定架构','交付目录、证据与回答；以问题闭环衡量研究，以来源与条件衡量数据')
-    html+='<p>现行框架：一棵树 · 三级账 · 四问四段 · 五类变量 · 六队 · 一个节点模板。分别组织对象、账本、研究步骤、数据需求和来源责任。</p>'
-    html+='<div class="audit-map" id="research-perspectives"><article><h3>通用数据中心</h3><p>类型、系统、部件与运行机制。保留三级账、四问四段、五类变量和六队，形成通用解释与情景模型。</p><a href="/node.html">进入通用研究 →</a></article><article><h3>全球真实园区</h3><p>稳定地点身份、分期、主体角色与时间历史。普查工作包发现对象，普通信息可先登记、缺项后补。</p><a href="/projects.html">园区名录 →</a> · <a href="/regions.html">地区分析 →</a></article><article><h3>两者怎样连接</h3><p>将有范围、时间和来源的配置与指标关联到通用类型及模型输入。通用示意不证明现场安装；当前未贯通自动配置或园区填参。</p></article></div>'
+    from research_architecture_view import overview
+    html+=overview(root)
+    html+='<div class="audit-map" id="research-perspectives"><article><h3>通用数据中心</h3><p>类型、系统、部件与运行机制。研究结构、规律与适用条件，形成通用解释与情景模型。</p><a href="/node.html">进入通用研究 →</a></article><article><h3>全球真实园区</h3><p>稳定地点身份、分期、主体角色与时间历史。普查工作包发现对象，普通信息可先登记、缺项后补。</p><a href="/projects.html">园区名录 →</a> · <a href="/regions.html">地区分析 →</a></article><article><h3>两者怎样连接</h3><p>将有范围、时间和来源的配置与指标关联到通用类型及模型输入。通用示意不证明现场安装；Abilene已提供候选配置映射、参数预览与确认后的浏览器情景，实际数据缺口继续保留。</p></article></div>'
     html+=table(['产品','当前可提供','完成标准'],[
         ['来源与产品目录','原厂产品、参数原表、版本和缺口检索','型号/配置/来源可回查；目录覆盖有明确分母'],
         ['证据与研究陈述','定位原文、条件、争议及审核链','逐项支持链成立；多个陈述不能自动拼成答案'],
@@ -47,17 +51,17 @@ def build(root, table):
     html+='''<figure class="audit-diagram">
 <svg viewBox="0 0 960 270" role="img" aria-labelledby="research-map-title research-map-desc">
 <title id="research-map-title">研究定义、供应交付与证据闭环</title>
-<desc id="research-map-desc">分类骨架生成带范围的目标合同。供应交付经来源验收保存原件，再形成候选，经采用审核形成正式研究和服务。服务中的未支持问题与过期输入回到需求。</desc>
+<desc id="research-map-desc">模型变量由骨架形成目标合同，园区普查可独立发现对象。供应交付经来源验收保存原件，基础登记与研究采用分开。服务中的未支持问题与过期输入回到需求。</desc>
 <defs>
 <marker id="research-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
 <path d="M0 0L10 5L0 10"/>
 </marker>
 </defs>
 <rect x="15" y="20" width="210" height="68" rx="5"/>
-<text x="30" y="47">骨架 × 问题 × 模型输入</text>
-<text x="30" y="70">类型与项目实例分开</text>
+<text x="30" y="47">问题／模型需求或园区普查</text>
+<text x="30" y="70">身份、范围与用途分开</text>
 <rect x="275" y="20" width="210" height="68" rx="5"/>
-<text x="290" y="47">目标合同 → 供应任务</text>
+<text x="290" y="47">目标行或普查工作包</text>
 <text x="290" y="70">字段 / 范围 / 条件 / 缺口</text>
 <rect x="535" y="20" width="185" height="68" rx="5"/>
 <text x="550" y="47">来源验收 → SHA 原件</text>
@@ -72,7 +76,7 @@ def build(root, table):
 <text x="145" y="174">未支持问题 / 过期输入 / 来源冲突</text>
 <text x="15" y="253">分类树解释组成；功能关系解释连接；模型依赖解释影响；证据链解释为什么相信。</text>
 </svg>
-<figcaption>箭头表达引用、交付和反馈关系；各阶段的文件、陈述与问题数量不能相除作为统一完成率。</figcaption>
+<figcaption>图示研究采用分支；普通信息可先基础登记，见上图。各阶段的文件、陈述与问题数量不能相除作为统一完成率。</figcaption>
 </figure>'''
     html+=table(['表示法','应怎样改进','验证边界'],[
         ['分类与爆炸图','保留五系统、稳定 ID 与类型；通过节点进入目标合同','不从通用示意推断型号、现场数量与容量'],
@@ -102,7 +106,7 @@ def build(root, table):
         ['Acquisition / SQLite + blobs','新闻、产品资料、交付与观察；按来源和目标检索','运行接收不自动写 Git；重复字节追加来源观察'],
         ['Review / SQLite + 审计产物','候选去向、尝试、核验与发布状态','失败审计保留；跨库提交不能假装分布式事务'],
         ['AWS 产品目录 / 公司 SQLite','产品/来源/版本/规格原表；检索、比较、导出','结构化接收不授予正式研究采用'],
-        ['Git / JSON + Markdown','经审阅的研究、模型、声明与代码；可版本化发布','正式版本只读；候选、数据库、账号和原件不进 Git']])
+        ['Git / JSON + Markdown','经审阅的研究、模型、声明与代码；可版本化发布','正式版本只读；经审阅的候选投影显式标候选，原件、数据库和账号不进Git']])
     html+='<p>数据库文件小不表示原件被压缩或处理完成。需以 SQLite 一致快照、原件独立副本和实际恢复验证闭合可靠性；备份目录存在只证明有文件。下面运行实测保留时间、WAL/SHM 和目录包含关系。</p></section>'
     html+=section('engineering','06 · 验收跟随风险，工程投入跟随研究瓶颈','现行 CI：validate 与 browser (core)；研究答案和备份恢复各有业务验收')
     html+='<p>有界研究追加走研究链路，代码、规则、旧事实与未知影响保持完整回归。按同来源和未改上下文汇总实质变更；运行心跳不制造 PR。区分预算阻塞、runner 等待、实际执行和版本变更导致的重复验收。</p>'
