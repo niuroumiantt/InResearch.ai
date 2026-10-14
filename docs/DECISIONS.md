@@ -1,5 +1,12 @@
 # 决策记录
 
+## 2026-10-14：fetchfilings登记来源接收准备
+
+fetchfilings新增Microsoft官方FY2025年报的精确来源白名单，与fetchstat分别锁定目录、来源身份和ACK；候选不入Reader、不采用、不填参。38项合同/恢复测试通过；用户已明确授权源码版本包和公开年报包传往既有AWS/Spark；真实生产ACK待部署后验证，connection仍为not_connected。
+
+保留旧MSFT-AR2025、原交付与观测ID、源码版本和未知披露时间。公司年度现金PP&E支出不等于园区成本，负数现金流不自动转为正资本预算。fetchreports/fetchquotes保持关闭；接通状态须真实回执后更新。
+
+
 ## 2026-10-14：fetchstat单源受控生产接收已验
 
 fetchstat已用真实EIA原件完成AWS采集、Spark永久候选接收、受控截断拒绝/完整重试和同包零增量重放；旧ID/版本/原信封及首次接收保留，采用/Reader入队/填参0。接通范围仅EIA单源受控文件交付，调度未启用，其他三队仍未接通。

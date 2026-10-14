@@ -1,5 +1,5 @@
 {
-  "version": "1.12",
+  "version": "1.13",
   "effective_at": "2026-10-14",
   "phase": "planning_live",
   "operating_plan": {
@@ -583,7 +583,8 @@
     "contract": "fetchdata-handoff/1",
     "transport": "controlled_ssh_file_import",
     "enabled_providers": [
-      "fetchstat"
+      "fetchstat",
+      "fetchfilings"
     ],
     "sources": {
       "fetchstat": [
@@ -591,6 +592,13 @@
           "source_id": "fetchstat-eia-bootstrap",
           "native_id": "EPM-5.6.B",
           "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b"
+        }
+      ],
+      "fetchfilings": [
+        {
+          "source_id": "fetchfilings-microsoft-bootstrap",
+          "native_id": "MSFT-AR2025",
+          "url": "https://www.microsoft.com/investor/reports/ar25/index.html"
         }
       ]
     },
@@ -600,6 +608,6 @@
     "automatic_adoption": false,
     "automatic_model_parameters": false,
     "scheduled": false,
-    "phase": "fetchstat_single_source_file_import_live"
+    "phase": "fetchstat_live_fetchfilings_ready_receipt_pending"
   }
 }
