@@ -2,7 +2,7 @@
 
 > CURRENT · 2026-09-28。规则归属与替代关系见 framework/CURRENT.md。本文替代 v2（五视角 P/F/V/D/R、15 个兼容模块、按尺度分组的浏览目录），旧文归档于 `docs/archive/2026-09-28/framework__00_overview.md`，不再作为执行依据。
 
-> 2026-09-28 用户采用。依据：[对照清单](../docs/reviews/2026-09-28/alignment/AUDIT.md)、[目录与页面框架 v3 提案](../docs/reviews/2026-09-28/site/PROPOSAL.md)、[模型 v3 提案](../docs/reviews/2026-09-28/model/PROPOSAL.md)。本文只定义唯一逻辑与各部分的归属；细则在各自的规范里。
+> 2026-09-28 用户采用。依据：[对照清单](../../reviews/2026-09-28/alignment/AUDIT.md)、[目录与页面框架 v3 提案](../../reviews/2026-09-28/site/PROPOSAL.md)、[模型 v3 提案](../../reviews/2026-09-28/model/PROPOSAL.md)。本文只定义唯一逻辑与各部分的归属；细则在各自的规范里。
 
 ## 项目交付什么
 
@@ -12,12 +12,12 @@ inresearch.ai 交付一件东西：**一座 AI 数据中心，可以被追问到
 
 | # | 逻辑 | 一句话 | 唯一规范源 | 机器登记 |
 |---|---|---|---|---|
-| 1 | **一棵树（骨架）** | 数据中心 → 五个系统（设施、水与散热、电、IT设施、控制与软件）→ IT 分计算、存储、网络，存储再分内存与持久存储 → 系统内按能量流链路 → 61 个部件 + 软件 + 基型；园区之外并列六条站点权利；尺度、旧模块、尺寸都是部件属性，不是任何树的第一层 | [03 对象与协作](03_bom_and_collaboration.md) | `bom.json`（systems、chain、chain_order、stage）、`site_rights.json` |
-| 3 | **三级账** | 成本、收入、回报，来自唯一的统一经济模型；回报是账的输出不是一列；一个账本页，四个视图，三种问法（正算、反算、情景网格） | [05 界面规范](05_interface_system.md)「统一经济模型与账本」 | `data/datacenter_model.json`、`knowledge/economics.py` |
-| 4 | **四问 · 四段** | 四问：它值多少 / 它由什么组成 / 它怎么影响账 / 数据从哪来、缺什么。四段：采集 → 事实 → 规则 → 视图；四问就是四段倒序 | [05 界面规范](05_interface_system.md)「数据中心节点页」「目录」 | `dashboard_rules.json` → `data/dashboard.json` |
-| 5 | **五类变量** | 1 构成、2 运行、3 价格、4 时间、5 主体。正交，无先后，一条数据只属一类；每个模型输入、每条目标行、每张登记表的记录都打这五类之一 | [06 采集规范](06_acquisition.md) | `datacenter_model.json` 的 `groups` 与 `evidence.variable_class`；登记表的 `variable_class` 列 |
-| 6 | **六队** | 采集按来源机制分六队（fetchspec、inews、fetchstat、fetchfilings、fetchreports、fetchquotes）；模型变量采集以目标表为唯一任务书，由规则层生成；全球园区普查按地区／对象工作包组织，普通信息可不绑定模型目标 | [06 采集规范](06_acquisition.md) | `supply_contract.json`、`tco_targets.json`（生成） |
-| — | **一个模板** | `node.html` 是 dashboard 的唯一模板：任一节点 × 五列 × 四问；根节点三级账在上；目录是四问的全局视图，节点页是四问的局部视图 | [05 界面规范](05_interface_system.md) | `interface_manifest.json`、`web/routes.json` |
+| 1 | **一棵树（骨架）** | 数据中心 → 五个系统（设施、水与散热、电、IT设施、控制与软件）→ IT 分计算、存储、网络，存储再分内存与持久存储 → 系统内按能量流链路 → 61 个部件 + 软件 + 基型；园区之外并列六条站点权利；尺度、旧模块、尺寸都是部件属性，不是任何树的第一层 | [03 对象与协作](../../../framework/03_bom_and_collaboration.md) | `bom.json`（systems、chain、chain_order、stage）、`site_rights.json` |
+| 3 | **三级账** | 成本、收入、回报，来自唯一的统一经济模型；回报是账的输出不是一列；一个账本页，四个视图，三种问法（正算、反算、情景网格） | [05 界面规范](../../../framework/05_interface_system.md)「统一经济模型与账本」 | `data/datacenter_model.json`、`knowledge/economics.py` |
+| 4 | **四问 · 四段** | 四问：它值多少 / 它由什么组成 / 它怎么影响账 / 数据从哪来、缺什么。四段：采集 → 事实 → 规则 → 视图；四问就是四段倒序 | [05 界面规范](../../../framework/05_interface_system.md)「数据中心节点页」「目录」 | `dashboard_rules.json` → `data/dashboard.json` |
+| 5 | **五类变量** | 1 构成、2 运行、3 价格、4 时间、5 主体。正交，无先后，一条数据只属一类；每个模型输入、每条目标行、每张登记表的记录都打这五类之一 | [06 采集规范](../../../framework/06_acquisition.md) | `datacenter_model.json` 的 `groups` 与 `evidence.variable_class`；登记表的 `variable_class` 列 |
+| 6 | **六队** | 采集按来源机制分六队（fetchspec、inews、fetchstat、fetchfilings、fetchreports、fetchquotes）；模型变量采集以目标表为唯一任务书，由规则层生成；全球园区普查按地区／对象工作包组织，普通信息可不绑定模型目标 | [06 采集规范](../../../framework/06_acquisition.md) | `supply_contract.json`、`tco_targets.json`（生成） |
+| — | **一个模板** | `node.html` 是 dashboard 的唯一模板：任一节点 × 五列 × 四问；根节点三级账在上；目录是四问的全局视图，节点页是四问的局部视图 | [05 界面规范](../../../framework/05_interface_system.md) | `interface_manifest.json`、`web/routes.json` |
 
 四种读法不是新轴，是五列的横向展开：**建**（时间列 + 主体列，从站点权利起按建设阶段排）、**拆**（构成列 + 价格列，爆炸图是它的视觉形式）、**运**（运行列，运营支出在账本四本账里）、**账**（价格列 + 三级账）。
 
@@ -46,7 +46,7 @@ inresearch.ai 交付一件东西：**一座 AI 数据中心，可以被追问到
 
 ## 框架变更
 
-新增对象、关系、列、队或页面先修改声明与校验，再改实现；边界变更须有理由、来源、受影响节点、旧新 ID 映射、版本、生效日期与复核记录。旧资料身份与阅读结果保留。历史沿革见 `docs/archive/`；当前规则归属与替代记录见 [CURRENT](CURRENT.md)。
+新增对象、关系、列、队或页面先修改声明与校验，再改实现；边界变更须有理由、来源、受影响节点、旧新 ID 映射、版本、生效日期与复核记录。旧资料身份与阅读结果保留。历史沿革见 `docs/archive/`；当前规则归属与替代记录见 [CURRENT](../../../framework/CURRENT.md)。
 
 ## 行业总览入口（2026-10-02）
 
