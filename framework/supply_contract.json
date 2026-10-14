@@ -1,5 +1,5 @@
 {
-  "version": "1.13",
+  "version": "1.14",
   "effective_at": "2026-10-14",
   "phase": "planning_live",
   "operating_plan": {
@@ -203,24 +203,42 @@
         3
       ],
       "acceptance": "报告期、分部口径、原件、修订与附件",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchfilings/blob/main/README.md",
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchfilings-production.md",
         "local_migration_entry": "docs/guides/fetchdata/README.md"
       },
       "code_layout": {
         "repository": "fetchdata",
         "module": "src/fetchdata/collectors/fetchfilings",
-        "phase": "local_only",
+        "phase": "production_file_import_live",
         "legacy_repository": "https://github.com/niuroumiantt/fetchfilings",
-        "production_switched": false
+        "production_switched": true,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "connection_scope": "Microsoft FY2025现金PP&E单源；受控文件交付；未启用调度",
+      "host_default": "aws",
+      "repository_role": "legacy_history_only",
+      "production_guide": "docs/guides/fetchdata/fetchfilings-production.md",
+      "connection_verification": {
+        "verified_on": "2026-10-14",
+        "receiver_revision": "4ee6c353259b334652de38d00a68fd9f9970d0b0",
+        "registered_source_ids": [
+          "fetchfilings-microsoft-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false
       }
     },
     {
@@ -608,6 +626,6 @@
     "automatic_adoption": false,
     "automatic_model_parameters": false,
     "scheduled": false,
-    "phase": "fetchstat_live_fetchfilings_ready_receipt_pending"
+    "phase": "fetchstat_fetchfilings_single_source_file_import_live"
   }
 }
