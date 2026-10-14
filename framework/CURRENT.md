@@ -1,6 +1,8 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.14.132
+> CURRENT · 基准版本 2026.10.14.133
+
+2026-10-14：fetchfilings已用Microsoft官方FY2025年报完成AWS真实采集、Spark永久候选接收、受控截断拒绝/完整重试与同包零增量重放；旧ID、版本、原信封和首次接收保留。仅Microsoft年度现金PP&E单源受控文件交付，未启用调度；候选不入Reader、不采用、不填参；fetchreports/fetchquotes仍未接通。
 
 2026-10-14：fetchfilings新增Microsoft官方FY2025年报的精确来源白名单，与fetchstat分别锁定目录、来源身份和ACK；候选不入Reader、不采用、不填参。38项合同/恢复测试通过；用户已明确授权源码版本包和公开年报包传往既有AWS/Spark；真实生产ACK待部署后验证，connection仍为not_connected。
 

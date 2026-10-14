@@ -29,7 +29,7 @@ class ObservationAuditTests(unittest.TestCase):
         self.assertEqual(c['architecture']['legacy_variable_views']['role'],'compatibility_display_only')
         self.assertTrue(c['not_a_dispatch_axis'])
         self.assertTrue(all(x['applies_to']==['generic_dc','site'] for a in c['angles'] for x in a['checks']))
-        self.assertEqual(next(a for a in c['angles'] if a['id']=='configuration')['provider_status']['fetchfilings'],'not_connected')
+        self.assertEqual(next(a for a in c['angles'] if a['id']=='configuration')['provider_status']['fetchfilings'],'receiver_live_file_import')
 
     def test_partial_audit_never_adopts_or_certifies_exhaustive(self):
         result=audit.audit(ROOT,self.data)
