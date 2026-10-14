@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>任务 · 点亮全球数据中心 · inresearch.ai</title>
 <script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
-<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/research-tasks.css"><!-- RESEARCH_ARCHITECTURE_STYLE -->
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/research-tasks.css"><link rel="stylesheet" href="/assets/task-uploads.css"><!-- RESEARCH_ARCHITECTURE_STYLE -->
 <style>
 .arch-figure{margin:22px 0;padding:20px;border:1px solid var(--ui-line);background:var(--ui-soft);color:var(--ui-ink);box-sizing:border-box}
 .arch-figure *{box-sizing:border-box}.arch-figure figcaption{font-size:12px;color:var(--ui-muted);margin-top:14px;line-height:1.7}
@@ -20,10 +20,24 @@
 <main class="mission-page">
   <div class="mission-topline"><span>团队任务 / 全球数据中心普查</span><span>任务公开 · 登录分配与协作</span></div>
   <section class="mission-hero" aria-labelledby="mission-title">
-    <div><p class="mission-eyebrow"><span class="priority">P1</span> 园区普查 · 当前重点</p><h1 id="mission-title">点亮全球<br>已有数据中心。</h1><p class="mission-intro">从一份原件，找到一个园区。把地点、主体、客户、容量与用电连起来，持续补齐世界的数据中心地图，并与通用结构和模型连接。</p><p class="mission-scale">90+ GW 是本次摸底的待校准目标。先查清存量与统计口径，再衡量地图覆盖。</p><div class="mission-actions"><a class="primary-button" href="#work-packages">分配工作包 <span aria-hidden="true">↗</span></a><button id="download-brief" type="button">下载任务书 ↓</button></div></div>
+    <div><p class="mission-eyebrow"><span class="priority">P1</span> 园区普查 · 当前重点</p><h1 id="mission-title">点亮全球<br>已有数据中心。</h1><p class="mission-intro">从一份原件，找到一个园区。把地点、主体、客户、容量与用电连起来，持续补齐世界的数据中心地图，并与通用结构和模型连接。</p><p class="mission-scale">90+ GW 是本次摸底的待校准目标。先查清存量与统计口径，再衡量地图覆盖。</p><div class="mission-actions"><a class="primary-button" href="#upload">直接上传作业 <span aria-hidden="true">↗</span></a><a href="#work-packages">查看工作包 ↗</a><button id="download-brief" type="button">下载任务书 ↓</button></div></div>
     <aside class="mission-summary" aria-label="当前台账进度"><p class="mission-eyebrow">网站当前项目台账</p><div id="register-stats" class="register-stats"><p>正在读取…</p></div><p id="register-basis" class="small muted">沿用地图的去重与容量投影。项目记录含跨园区集群，不等于全球唯一物理园区普查；基础登记、研究核验与实际发布回执分别计量。</p><a href="/industry.html">查看地图与园区台账 →</a></aside>
   </section>
-  <nav class="mission-nav" aria-label="任务页目录"><a href="#work-packages">01 团队分工</a><a href="#data-angles">02 要找什么</a><a href="#source-map">03 去哪里找</a><a href="#delivery">04 如何交付</a><a href="#worked-example">05 真实交付样例</a></nav>
+  <nav class="mission-nav" aria-label="任务页目录"><a href="#upload">上传作业</a><a href="#work-packages">01 团队分工</a><a href="#data-angles">02 要找什么</a><a href="#source-map">03 去哪里找</a><a href="#delivery">04 如何交付</a><a href="#worked-example">05 真实交付样例</a></nav>
+  <section id="upload" class="mission-section task-upload" aria-labelledby="upload-title">
+    <div class="section-heading"><div><p class="mission-eyebrow">提交 / 审批 / 反馈</p><h2 id="upload-title">上传作业与查看反馈</h2></div></div>
+    <p>任何人都可以直接上传，无需登录。上传后请保存回执；负责人批准这份文件后，研究端才会分析验收。新版本请重新上传，重新审批。</p>
+    <form id="task-upload-form" class="task-upload-form">
+      <label>文件 <input name="file" type="file" required></label>
+      <div class="task-upload-pair"><label>提交人称呼 <input name="submitter" maxlength="120" autocomplete="name" placeholder="便于负责人识别"></label><label>对应工作包 <select name="package_id" id="upload-package"><option value="">未指定工作包</option></select></label></div>
+      <label>资料来源 <input name="source" maxlength="2000" placeholder="公开网址、出处或取得方式"></label>
+      <label>说明 <textarea name="upload_note" maxlength="4000" rows="3" placeholder="本版改动、工作范围、待查问题"></textarea></label>
+      <div class="task-upload-actions"><button id="upload-submit" type="submit" class="primary-button">上传文件</button><span>每份最多 64 MiB</span></div>
+      <p id="upload-message" role="status" aria-live="polite"></p>
+    </form>
+    <div class="task-upload-records"><div class="section-heading"><h3>本浏览器的提交与反馈</h3><button type="button" id="upload-refresh">刷新状态</button></div><p class="small muted">回执只保存在这个浏览器。换设备时，可输入上传成功后显示的文件编号和回执码。</p><form id="upload-receipt-form" class="task-receipt-form"><label>文件编号 <input name="id" maxlength="32" placeholder="32位编号"></label><label>回执码 <input name="receipt" maxlength="128" placeholder="上传成功时生成"></label><button type="submit">添加回执</button></form><p id="receipt-message" role="status" aria-live="polite"></p><div id="upload-own-list"></div></div>
+    <div id="upload-owner" class="task-upload-owner" hidden><div class="section-heading"><h3>负责人审批与验收反馈</h3><button type="button" id="upload-owner-refresh">刷新待审</button></div><p>请核对原件和摘要后批准。批准只允许研究端分析；是否正式入库仍按研究验收与发布流程决定。</p><p id="owner-message" role="status" aria-live="polite"></p><div id="upload-owner-list"></div></div>
+  </section>
   <section id="research-lines" class="mission-section" aria-labelledby="research-lines-title"><h2 id="research-lines-title">两条研究线，共用证据，按用途连接</h2>
 <figure class="arch-figure" aria-label="通用模型与园区普查如何协作"><div class="arch-columns"><div class="arch-node"><h3>通用数据中心研究</h3><p>从结构、规律和模型缺口出发，模型变量任务绑定既有目标行。</p><a href="/node.html">研究节点 →</a> · <a href="/supply.html#targets">模型采集目标 →</a></div><div class="arch-node"><h3>全球真实园区</h3><p>先发现具名地点，再补分期、资产、角色与变化；一般信息可以没有模型目标。</p><a href="/projects.html">园区名录 →</a> · <a href="#work-packages">普查工作包 ↓</a></div></div><div class="arch-arrow">↓ 共用观察定义、源版本和证据；按用途核验适用性 ↓</div><div class="arch-node arch-common"><h3>带边界的配置映射 → 参数预览 → 人工确认的情景</h3><p>已有资料、候选、假设、未知分别标明；异常阻断相关自动填参。浏览器情景不写回正式资料。</p><a href="/project.html?site=us-tx-abilene#campus-equipment">Abilene配置映射 →</a> · <a href="/ledger.html?view=basis&amp;site=us-tx-abilene&amp;scope=abilene-20260728-estimated-operating">模型与复核结果 →</a></div><figcaption>园区普查与模型采集协作开展；工作包完成、研究采用和实际上线分别计量。交付研究入口按账号权限打开。</figcaption></figure></section>
   <section id="work-packages" class="mission-section" aria-labelledby="packages-title">
@@ -81,4 +95,4 @@
   <footer class="mission-footer"><span>采集到一条就交一条 · 缺项后补 · 原件和历史始终保留</span><a href="/doc.html?f=framework/03_bom_and_collaboration.md">现行园区信息清单 →</a></footer>
 </main>
 <dialog id="package-dialog" aria-labelledby="package-dialog-title"><form id="package-form"><div class="dialog-heading"><h2 id="package-dialog-title">分配工作包</h2><button type="button" id="close-package" aria-label="关闭工作包">×</button></div><input type="hidden" name="package_id"><label>工作包名称<input name="title" required maxlength="180"></label><label>国家 / 地区范围<input name="region" required maxlength="200"></label><label>具体对象、字段与时间范围<textarea name="scope" required maxlength="3000" rows="3"></textarea></label><label>来源方向<textarea name="sources" required maxlength="2000" rows="2"></textarea></label><div class="form-pair"><label>实际负责人<input name="assignee" maxlength="100" placeholder="填写成员登录名或负责人"></label><label>截止日期<input name="due" type="date"></label></div><div class="form-pair"><label>执行机器<input name="machine" maxlength="200" placeholder="例如 m5 / m4 / macmini"></label><label>实际模型 / 版本<input name="model" maxlength="200" placeholder="未知留空；无模型可填“未使用”"></label></div><label>协调状态<select name="status"><option value="unassigned">待分配</option><option value="ready">待开始</option><option value="in_progress">进行中</option><option value="blocked">受阻</option><option value="delivered">已交付</option></select></label><label>交付地址 / 接收回执<input name="delivery_pointer" maxlength="2000" placeholder="私有材料包路径、共享地址或真实接收回执"></label><label>备注 / 缺项 / 阻塞原因<textarea name="note" maxlength="3000" rows="2"></textarea></label><p id="package-message" class="small" role="status" aria-live="polite"></p><div class="dialog-footer"><span class="small muted">保存到服务端台账，所有成员共享。</span><button id="save-package" class="primary-button" type="submit">保存工作包</button></div></form></dialog>
-<script src="/assets/research-tasks.js"></script></body></html>
+<script src="/assets/research-tasks.js"></script><script src="/assets/task-uploads.js"></script></body></html>

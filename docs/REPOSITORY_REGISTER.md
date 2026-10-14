@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2722。
+在册文件：2724。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 391 |
+| 运行代码 | 393 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
@@ -4618,6 +4618,7 @@
 | `web/components/supply.js` | 运行代码 |
 | `web/components/system-atlas.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |
+| `web/components/task-uploads.js` | 运行代码 |
 | `web/components/tasks-board.js` | 运行代码 |
 | `web/components/technical-atlas.css` | 运行代码 |
 | `web/components/technical-atlas.js` | 运行代码 |
@@ -4697,4 +4698,5 @@
 | `web/themes/research-tasks.css` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |
+| `web/themes/task-uploads.css` | 运行代码 |
 | `web/themes/workspace.css` | 运行代码 |

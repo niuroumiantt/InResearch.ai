@@ -15,7 +15,7 @@
         const row = document.createElement('div');row.className='row';
         const title = document.createElement('strong');title.textContent=item.name;
         const detail = document.createElement('div');detail.className='muted';
-        detail.textContent=`${item.status === 'archived' ? 'Spark 已归档' : '网站已接收 · 等待 Spark'} · ${new Date(item.created*1000).toLocaleString()} · ${item.topic || '未指定话题'} · ${item.id.slice(0,8)}`;
+        detail.textContent=`${({archived:'研究端已接收',approved:'已批准 · 待研究端接收',rejected:'已退回'})[item.status] || '待负责人审批'} · ${new Date(item.created*1000).toLocaleString()} · ${item.topic || '未指定话题'} · ${item.id.slice(0,8)}`;
         row.append(title,detail);$('mi-records').append(row);
       }
       if(!data.items.length) $('mi-records').textContent='还没有提交资料。';
@@ -39,7 +39,7 @@
         if(file===pending[0] && text.trim()) $('mi-text').value='';
         files=files.filter(f=>f!==file);show();
       }
-      $('mi-files').value='';$('mi-status').textContent=`已接收 ${completed} 份资料，等待 Spark 归档。`;
+      $('mi-files').value='';$('mi-status').textContent=`已接收 ${completed} 份资料，等待负责人批准。`;
     }catch(err){$('mi-status').textContent=`已接收 ${completed} 份。${err.message}；未成功的内容已保留，可重试。`;}
     finally{$('mi-submit').disabled=false;refresh();}
   };

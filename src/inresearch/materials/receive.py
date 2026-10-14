@@ -28,6 +28,9 @@ def main():
     with request('pending') as response:
         items = json.load(response)['items']
     for item in items:
+        from inresearch.materials.inbox import require_approved
+        # Defense in depth: an old server/list can never authorize new analysis.
+        require_approved(item)
         import re
         key = item['id']
         if not re.fullmatch('[a-f0-9]{32}', key):

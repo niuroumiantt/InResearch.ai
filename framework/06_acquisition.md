@@ -289,7 +289,9 @@ inews 的研究 feed 提供事件卡、原件指针与来源 URL，不交换编�
 
 全站资料提交入口是采集页的「收件箱」标签（`supply.html#inbox`，原 materials.html 并入），接收粘贴文字、截图和多种文件，每份最多 64 MiB。私有持久队列逻辑路径为 data/.material-intake，由 storage.layout 解析；主机路径 /srv/inresearch.ai/data/.material-intake、容器路径 /runtime/data/.material-intake；不进 Git、不提供静态下载。完整接收后登记 SHA256、来源、话题、备注和提交者。原文及备注是研究输入，不授予操作权限。
 
-Spark 每分钟以 reader 专用凭据经 HTTPS 拉取，校验大小和哈希，永久保存至 ~/.local/share/inresearch.ai/web-submissions/<submission_id>/original，元数据保存为 receipt.json，再将原名副本投递 raw-materials/web-<submission_id>/。回执仅表示 Spark 已归档，不等于已阅读或正式采用；Office 和压缩包能力仍按阅读标准。离线时保留网站队列，不自动删除。大批量仍按 Spark 手册直传，以上副本不代替独立备份。
+2026-10-14：`tasks.html` 同用私有收件根，开放匿名上传，但不开放全量列表和原件；每次提交生成独立随机回执，数据库只留其摘要。指定负责人以内部身份批准原件 SHA 后，Spark 接收服务才可列出、领取和校验；旧记录不因状态名或已归档字样取得批准权，重复字节的新提交也不继承批准。退回原因与后续验收反馈单独按文件记录、带时间显示给回执持有人。采集页既有内部上传也需同样批准门槛。
+
+Spark 每分钟以 reader 专用凭据经 HTTPS 仅拉取已批准文件，下载前再次核批准身份、记录 SHA、实际字节数和哈希，永久保存至 ~/.local/share/inresearch.ai/web-submissions/<submission_id>/original，元数据保存为 receipt.json，再将原名副本投递 raw-materials/web-<submission_id>/。回执仅表示 Spark 已归档，不等于已阅读或正式采用；Office 和压缩包能力仍按阅读标准。离线时保留网站队列，不自动删除。大批量仍按 Spark 手册直传，以上副本不代替独立备份。
 
 接收服务 deploy/spark-reader/inresearch-material-intake.* 从 Spark 的同版源码包执行 `python3 ~/code/inresearch.ai/manage.py receive`；不再安装两个独立 Python 文件。更新源码包和重启实际服务须核对部署版本，不能仅凭 unit 文件存在声称 Spark 已换版。
 
