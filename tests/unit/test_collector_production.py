@@ -79,6 +79,15 @@ class CollectorProductionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'not_registered'):self.receive()
         self.assertEqual(self.counts()['observations'],0)
 
+    def test_archive_sync_failure_never_acknowledges_and_intact_retry_succeeds(self):
+        from inresearch.materials import collector_receive
+        with patch.object(collector_receive,'sync_directory',side_effect=OSError('controlled fsync failure')):
+            with self.assertRaises(OSError):self.receive()
+        self.assertEqual(self.counts()['observations'],0)
+        with sqlite3.connect(self.ledger()) as db:
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM deliveries').fetchone()[0],0)
+        self.assertEqual(self.receive()['status'],'received_candidate_unreviewed')
+
     def test_cli_rejects_changed_or_dirty_receiver_before_reception(self):
         import contextlib
         import io

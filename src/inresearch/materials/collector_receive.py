@@ -8,10 +8,12 @@ import fcntl
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import shutil
 import sqlite3
 import tempfile
+from inresearch.storage.files import sync_directory
 
 ROOT = Path(__file__).resolve().parents[3]
 spec = importlib.util.spec_from_file_location('handoff_local_validator', ROOT/'scripts/validate_collector_handoff.py')
@@ -156,8 +158,20 @@ def _receive(package, sandbox_root, *, store=sandbox, production=False, guard=No
                         target = Path(pending)/'package'
                         shutil.copytree(stage, target)
                         target.rename(archive)
+                if production:
+                    # Commit arrival only after the immutable package is on disk.
+                    for path in archive.rglob('*'):
+                        if path.is_file():
+                            with path.open('rb') as stream:
+                                os.fsync(stream.fileno())
+                    directories = [archive] + [p for p in archive.rglob('*') if p.is_dir()]
+                    for directory in sorted(directories, key=lambda p: len(p.parts), reverse=True):
+                        sync_directory(directory)
+                    sync_directory(archive.parent)
                 db.execute('INSERT INTO deliveries VALUES(?,?,?,?)', (provider,delivery,fingerprint,canonical(receipt)))
                 db.commit()
+                if production:
+                    sync_directory(root)
                 return {**receipt, 'replayed': False, 'current_receive_counts': counts}
 
 

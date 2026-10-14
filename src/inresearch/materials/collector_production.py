@@ -10,14 +10,13 @@ import fcntl
 import json
 import os
 from pathlib import Path
-import shutil
 import sqlite3
 import subprocess
 
 from inresearch.adapters.acquisition import Collector, hash_file, encoded
 from inresearch.materials.artifacts import private_dir
 from inresearch.materials.collector_receive import _receive, inventory, canonical
-from inresearch.storage.files import locked
+from inresearch.storage.files import locked, sync_directory
 from inresearch.paths import project_root
 
 ROOT = project_root()
@@ -50,7 +49,10 @@ def production_store(path):
         if not marker.exists():
             if any(p.name != '.receiver.lock' for p in root.iterdir()):
                 raise ValueError('collector_store_unmarked')
-            marker.write_text(MARKER)
+            with marker.open('x') as output:
+                output.write(MARKER); output.flush(); os.fsync(output.fileno())
+            sync_directory(root)
+            sync_directory(root.parent)
         if marker.is_symlink() or marker.read_text() != MARKER:
             raise ValueError('collector_store_wrong_mode')
         for name in ('receipts.sqlite3','packages'):
@@ -124,6 +126,10 @@ def materialize(data, package, manifest, rows):
                 # Retain the source's native bytes; no Reader raw-materials handoff.
                 os.link(blob, original)
             if hash_file(original) != item['sha256']: raise ValueError('collector_projection_corrupt')
+            with blob.open('rb') as stream:
+                os.fsync(stream.fileno())
+            for directory in (original.parent,original.parent.parent,original.parent.parent.parent,blob.parent,blob.parent.parent):
+                sync_directory(directory)
         return len(manifest['items'])
     try:
         return collector.run(PROVIDER,apply)
@@ -169,6 +175,7 @@ def receive(package, data_root):
             recovered_after_pending=arrival['replayed'])
         with sqlite3.connect(root/'receipts.sqlite3') as db:
             db.execute('INSERT INTO production_acks VALUES(?,?,?)', (PROVIDER,manifest['delivery_id'],canonical(receipt)))
+        sync_directory(root)
         return {**receipt,'replayed':False,'current_receive_counts':arrival['current_receive_counts']}
 
 
