@@ -146,7 +146,7 @@ flowchart LR
 
 2026-10-14用户授权只推进fetchstat受控生产接收，替代该队此前“仅本地、不部署”限制。公开新fetchdata仓库创建被自动审批拒绝，本轮使用私有Git包在已有AWS/Spark部署，不公开新仓库；其他三队保持本地及not_connected，不安装调度。AWS只执行已登记EIA来源；Spark经collector-receive接入既有acquisition候选台账和originals。来源白名单由supply_contract.collector_reception统一登记；CLI不开放HTTP、不冒充Fetchspec、不自动进入Reader/采用/填参。
 
-生产到达日志与完成ACK分开：先冻结/校验/持久保留原包与首次有效到达，再归档原件并核对共享候选台账、原始来源版本和投影，全部成立才返回received_candidate_unreviewed。部分失败保留到达/失败run，原包重试补齐，不重复建身份；同包重放不刷新首次接收/归档完成。缺失投影可恢复，已存字节损坏须停下核实，不能覆盖修源。候选JSONL的旧ID、证据、单位/范围、有效/披露/取得时间、修订和推导保留。当前单来源严格整包验收，生产逐项隔离/更多来源/自动传输与调度另验；代码就绪不证明实际接通或171/17缺口已完成。实际生产ACK确认前connection仍not_connected。详见docs/guides/fetchdata/fetchstat-production.md。
+生产到达日志与完成ACK分开：先冻结/校验/持久保留原包与首次有效到达，再归档原件并核对共享候选台账、原始来源版本和投影，全部成立才返回received_candidate_unreviewed。部分失败保留到达/失败run，原包重试补齐，不重复建身份；同包重放不刷新首次接收/归档完成。缺失投影可恢复，已存字节损坏须停下核实，不能覆盖修源。候选JSONL的旧ID、证据、单位/范围、有效/披露/取得时间、修订和推导保留。当前单来源严格整包验收，生产逐项隔离/更多来源/自动传输与调度另验；代码就绪不证明实际接通或171/17缺口已完成。真实AWS交付和Spark接收已验：受控截断副本拒绝后完整重试成功，同包重放零新增、首次时钟不变；正式数据/模型SHA守恒。fetchstat现登记receiver_live_file_import，仅EIA单源受控文件交付，未启用调度，其他三队仍not_connected；不把接通计作全部统计目标完成。详见docs/guides/fetchdata/fetchstat-production.md。
 
 原scripts/receive_collector_local.py继续仅接受明确sandbox-root，不追认历史生产接收。生产回执不授予正式研究采用或模型适用性。
 

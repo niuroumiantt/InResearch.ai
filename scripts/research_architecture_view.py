@@ -70,6 +70,8 @@ def task_coverage(root):
     for p in s['observation_delivery']['profiles']:
         connection=by_id[p['provider_id']]['connection']
         state='已接通现有入口' if connection.startswith('receiver_live') or connection=='feed_v1_consumed' else '生产接收未接通；离线交付与验包可用'
-        html+='<div class="arch-node" data-provider="'+p['provider_id']+'"><h4>'+p['provider_id']+'</h4><p>'+state+'</p><ul>'+''.join('<li>'+escape(x)+'</li>' for x in p['deliver'])+'</ul><p><small>'+escape(p['limit'])+'</small></p></div>'
+        scope=by_id[p['provider_id']].get('connection_scope')
+        if scope: state+='；'+scope
+        html+='<div class="arch-node" data-provider="'+p['provider_id']+'"><h4>'+p['provider_id']+'</h4><p>'+escape(state)+'</p><ul>'+''.join('<li>'+escape(x)+'</li>' for x in p['deliver'])+'</ul><p><small>'+escape(p['limit'])+'</small></p></div>'
     html+='</div><p class="arch-limit">每篇报告都查信息去向：正文、计算表、图与附件 → 原件版本和定位 → 直接声明或推导依赖 → 已有资料／候选／假设／未知／异常／未检查／不适用及理由 → 对象、问题或待补资料。一次阅读或同链推导不算独立证据。</p>'
     return html

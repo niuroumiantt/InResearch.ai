@@ -35,3 +35,19 @@ GitHub完整CI、受保护合并、Spark真实ACK/故障恢复及网站版本另
 `/Users/m5/.local/state/inresearch.ai/fetchstat-production-20261014/`：源码bundle、真实采集回执和AWS原包副本。
 AWS：~/.local/share/fetchdata/fetchstat，日志~/.local/state/fetchdata/fetchstat。
 Spark：~/.local/share/inresearch.ai/acquisition/incoming/fetchstat/production-transfer；正式ACK目录acquisition/collectors/fetchstat。
+
+## 生产验收完成回执
+
+fetchstat已用真实EIA原件完成AWS采集、Spark永久候选接收、受控截断拒绝/完整重试和同包零增量重放；旧ID/版本/原信封及首次接收保留，采用/Reader入队/填参0。接通范围仅EIA单源受控文件交付，调度未启用，其他三队仍未接通。
+
+PR913受保护合并f95380316db757b70041585adc7fff7d618f7366；最终head23eb7e0b全部23项检查成功。
+生产首次接收2026-10-14T08:53:17.911537+00:00；同包重放首收/完成时间不变。
+旧delivery_id=fetchstat-2d71d12585023e9506bf0bba-v1；旧观测ID、原collector_revision和取得日期全部保留。
+Spark实际归档1来源身份/1版本/1候选，重复零增量；受控截断故障副本仍保留。
+5个正式项目/对象/价格/模型/园区桥接文件前后SHA相同；未入Reader、采用或填参。
+任务页与架构解释将按这一实际状态同步；后续状态PR仍需完整CI、受保护合并与实际网站/架构投影核对。
+私有完整回执：/Users/m5/.local/share/inresearch.ai/fetchstat-production-20261014/spark-audit/。
+
+状态展示收尾：本地完整2663项单元回归及research_tasks/supply/repository_pages三项隔离浏览器场景通过。
+生成目标仅26父行及3参数需求的连接元数据变化；看板经济账户输出逐字不变。
+已根据真实接通状态把未连接派工守卫测试改为仍未接通的fetchreports，全部选择/范围/归属/拒绝断言保留。

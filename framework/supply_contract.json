@@ -1,5 +1,5 @@
 {
-  "version": "1.11",
+  "version": "1.12",
   "effective_at": "2026-10-14",
   "phase": "planning_live",
   "operating_plan": {
@@ -150,28 +150,43 @@
         5
       ],
       "acceptance": "地域、单位、统计期、方法、费率生效日与数据修订",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchstat/blob/main/README.md",
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchstat-production.md",
         "local_migration_entry": "docs/guides/fetchdata/README.md"
       },
       "code_layout": {
         "repository": "fetchdata",
         "module": "src/fetchdata/collectors/fetchstat",
-        "phase": "production_preparation",
+        "phase": "production_file_import_live",
         "legacy_repository": "https://github.com/niuroumiantt/fetchstat",
-        "production_switched": false,
+        "production_switched": true,
         "distribution": "private_git_bundle_to_existing_aws_and_spark"
       },
       "host_default": "aws",
-      "production_guide": "docs/guides/fetchdata/fetchstat-production.md"
+      "production_guide": "docs/guides/fetchdata/fetchstat-production.md",
+      "connection_scope": "EIA单源；受控文件交付；未启用调度",
+      "repository_role": "legacy_history_only",
+      "connection_verification": {
+        "verified_on": "2026-10-14",
+        "receiver_revision": "f95380316db757b70041585adc7fff7d618f7366",
+        "registered_source_ids": [
+          "fetchstat-eia-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false
+      }
     },
     {
       "id": "fetchfilings",
@@ -585,6 +600,6 @@
     "automatic_adoption": false,
     "automatic_model_parameters": false,
     "scheduled": false,
-    "phase": "receiver_ready_pending_production_receipt"
+    "phase": "fetchstat_single_source_file_import_live"
   }
 }
