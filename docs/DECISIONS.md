@@ -1,5 +1,9 @@
 # 决策记录
 
+## 2026-10-15：fetchreports真实单源候选接收完成
+
+fetchreports已验LBNL官方发布页/方法摘要单源AWS真实采集、Spark永久候选接收、截断拒绝/完整重试及重复零增量；三个旧版与本次新版并存，不多计独立证据。PDF正文/表图/附件未读，信息有效时间未知；不入Reader、不采用、不填参，不安装调度；fetchquotes仍未接通。
+
 ## 2026-10-14：fetchreports发布页单源接收准备
 
 用户在fetchfilings验收后要求继续fetchreports生产接通；先登记LBNL报告官方发布页与方法摘要单源，PDF正文/图表/附件未读，不自动采用或填参。实际生产ACK另验，fetchquotes保持关闭。

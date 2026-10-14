@@ -59,10 +59,11 @@ class ResearchDashboardTests(unittest.TestCase):
         checks=json.loads((ROOT/'framework/observation_checklist.json').read_text())
         for angle in checks['angles']:
             for check in angle['checks']:self.assertIn('data-check-id="'+check['id']+'"',tasks)
-        self.assertEqual(tasks.count('已接通现有入口'),4)
+        self.assertEqual(tasks.count('已接通现有入口'),5)
         self.assertIn('EIA单源；受控文件交付；未启用调度',tasks)
         self.assertIn('Microsoft FY2025现金PP&amp;E单源；受控文件交付；未启用调度',tasks)
-        self.assertEqual(tasks.count('生产接收未接通'),2)
+        self.assertEqual(tasks.count('生产接收未接通'),1)
+        self.assertIn('LBNL发布页与方法摘要单源；PDF未读；受控文件交付；未启用调度',tasks)
         self.assertEqual(render(ROOT),(ROOT/'web/pages/tasks.html').read_text())
 
     def test_daily_archive_contains_all_real_control_room_dependencies(self):

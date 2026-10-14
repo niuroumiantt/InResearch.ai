@@ -1,6 +1,6 @@
 {
-  "version": "1.15",
-  "effective_at": "2026-10-14",
+  "version": "1.16",
+  "effective_at": "2026-10-15",
   "phase": "planning_live",
   "operating_plan": {
     "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
@@ -256,24 +256,44 @@
         5
       ],
       "acceptance": "全文、作者、方法、图表、引用位置与版本",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchreports/blob/main/README.md",
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchreports-production.md",
         "local_migration_entry": "docs/guides/fetchdata/README.md"
       },
       "code_layout": {
         "repository": "fetchdata",
         "module": "src/fetchdata/collectors/fetchreports",
-        "phase": "local_only",
+        "phase": "production_file_import_live",
         "legacy_repository": "https://github.com/niuroumiantt/fetchreports",
-        "production_switched": false
+        "production_switched": true,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "connection_scope": "LBNL发布页与方法摘要单源；PDF未读；受控文件交付；未启用调度",
+      "host_default": "aws",
+      "repository_role": "legacy_history_only",
+      "production_guide": "docs/guides/fetchdata/fetchreports-production.md",
+      "connection_verification": {
+        "verified_on": "2026-10-14",
+        "receiver_revision": "94ac5cd9f25cd2a2049bec53282967b352809226",
+        "registered_source_ids": [
+          "fetchreports-lbnl-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "retained_legacy_versions": 3,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false,
+        "pdf_fulltext_read": false
       }
     },
     {
@@ -634,6 +654,6 @@
     "automatic_adoption": false,
     "automatic_model_parameters": false,
     "scheduled": false,
-    "phase": "stat_filings_live_reports_ready_receipt_pending"
+    "phase": "stat_filings_reports_single_source_file_import_live"
   }
 }

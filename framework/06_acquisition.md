@@ -8,7 +8,7 @@
 
 ### 六队共同的信息接入原则（2026-10-11）
 
-inews、fetchspec、单源受控接通的fetchstat/fetchfilings及尚未接通的fetchreports/fetchquotes都区分“来源交付 → 唯一对象匹配 → 逐条审核/历史追加 → 按需关联研究用途”。模型用途或研究问题不是有来源信息入库的前置条件。已知字段可单独交付，缺项不阻断无关字段；接收仍不等于采用。园区按物理站点；规格按厂商/产品型号/版本；公司及财务按法人/报告期；统计按地区/指标/口径/期间；报价按产品配置/市场/报价方/时点识别。无法唯一匹配先保留线索，不按近似名字或同城合并。主体本身与其角色、指标及状态的有效时间分开；同范围、同口径、同有效时点的分歧并列标注，新的不同时间记录不自动称为冲突，也不能凭接收较晚覆盖。
+inews、fetchspec、单源受控接通的fetchstat/fetchfilings及单源受控接通的fetchreports及尚未接通的fetchquotes都区分“来源交付 → 唯一对象匹配 → 逐条审核/历史追加 → 按需关联研究用途”。模型用途或研究问题不是有来源信息入库的前置条件。已知字段可单独交付，缺项不阻断无关字段；接收仍不等于采用。园区按物理站点；规格按厂商/产品型号/版本；公司及财务按法人/报告期；统计按地区/指标/口径/期间；报价按产品配置/市场/报价方/时点识别。无法唯一匹配先保留线索，不按近似名字或同城合并。主体本身与其角色、指标及状态的有效时间分开；同范围、同口径、同有效时点的分歧并列标注，新的不同时间记录不自动称为冲突，也不能凭接收较晚覆盖。
 
 免研究需求通道覆盖既有园区/已接收日报及公司、产品、统计和报价的独立条目；后四类由 object-extract / object-review prepare|apply 核原件与原生定位，按01的身份、时间和C3合同追加至 data/object_observations.json。通用写入能力、各类型真实样本、四队连接、采用与上线分别验收，不冒充模型输入已验证。
 
@@ -144,9 +144,9 @@ flowchart LR
 
 本地迁移已验收，旧四仓库/提交/标签/交付/原件/数据库不删除、不归档、不搬动。origins.json建立旧provider+collector_revision到旧仓库和新模块追溯；provider/source/native/item/observation/delivery旧ID保持。新包记录实际新源码，已知旧包用history-root只读返回，不以新时间/版本重造旧ID信封；同SHA复查仍登记实际采集事件及代码/取得时钟。
 
-2026-10-14用户先授权fetchstat、后授权fetchfilings受控生产接收，分别替代两队此前“仅本地、不部署”限制。公开新fetchdata仓库创建被自动审批拒绝，本轮使用私有Git包在已有AWS/Spark部署，不公开新仓库；fetchreports/fetchquotes保持本地及not_connected，不安装调度。AWS只执行各队已登记EIA和Microsoft来源；Spark经collector-receive接入既有acquisition候选台账和originals。来源白名单由supply_contract.collector_reception统一登记；CLI不开放HTTP、不冒充Fetchspec、不自动进入Reader/采用/填参。
+2026-10-14用户先授权fetchstat、后授权fetchfilings受控生产接收，分别替代两队此前“仅本地、不部署”限制。公开新fetchdata仓库创建被自动审批拒绝，本轮使用私有Git包在已有AWS/Spark部署，不公开新仓库；fetchreports已验LBNL发布页摘要单源，fetchquotes保持本地及not_connected，不安装调度。AWS只执行各队已登记EIA和Microsoft来源；Spark经collector-receive接入既有acquisition候选台账和originals。来源白名单由supply_contract.collector_reception统一登记；CLI不开放HTTP、不冒充Fetchspec、不自动进入Reader/采用/填参。
 
-生产到达日志与完成ACK分开：先冻结/校验/持久保留原包与首次有效到达，再归档原件并核对共享候选台账、原始来源版本和投影，全部成立才返回received_candidate_unreviewed。部分失败保留到达/失败run，原包重试补齐，不重复建身份；同包重放不刷新首次接收/归档完成。缺失投影可恢复，已存字节损坏须停下核实，不能覆盖修源。候选JSONL的旧ID、证据、单位/范围、有效/披露/取得时间、修订和推导保留。当前单来源严格整包验收，生产逐项隔离/更多来源/自动传输与调度另验；代码就绪不证明实际接通或171/17缺口已完成。真实AWS交付和Spark接收已验：受控截断副本拒绝后完整重试成功，同包重放零新增、首次时钟不变；正式数据/模型SHA守恒。fetchstat现登记receiver_live_file_import，仅EIA单源受控文件交付，未启用调度，fetchfilings已完成Microsoft官方年度现金PP&E单源同等生产验收，fetchreports/fetchquotes仍not_connected；不把接通计作全部统计目标完成。详见docs/guides/fetchdata/fetchstat-production.md。
+生产到达日志与完成ACK分开：先冻结/校验/持久保留原包与首次有效到达，再归档原件并核对共享候选台账、原始来源版本和投影，全部成立才返回received_candidate_unreviewed。部分失败保留到达/失败run，原包重试补齐，不重复建身份；同包重放不刷新首次接收/归档完成。缺失投影可恢复，已存字节损坏须停下核实，不能覆盖修源。候选JSONL的旧ID、证据、单位/范围、有效/披露/取得时间、修订和推导保留。当前单来源严格整包验收，生产逐项隔离/更多来源/自动传输与调度另验；代码就绪不证明实际接通或171/17缺口已完成。真实AWS交付和Spark接收已验：受控截断副本拒绝后完整重试成功，同包重放零新增、首次时钟不变；正式数据/模型SHA守恒。fetchstat现登记receiver_live_file_import，仅EIA单源受控文件交付，未启用调度，fetchfilings已完成Microsoft官方年度现金PP&E单源同等生产验收，fetchreports已验LBNL发布页摘要单源，fetchquotes仍not_connected；不把接通计作全部统计目标完成。详见docs/guides/fetchdata/fetchstat-production.md。
 
 原scripts/receive_collector_local.py继续仅接受明确sandbox-root，不追认历史生产接收。生产回执不授予正式研究采用或模型适用性。
 
@@ -172,7 +172,7 @@ inews.today 同时是采集队与媒体产品，拆成两条线，共享一个�
 | 层 | 责任与正式状态归属 |
 |---|---|
 | inews.today | 采集线：数据中心及 AI 产业生态新闻发现、聚类、打标与事件 feed（不翻译）；编辑线：配额选簇、正文、全文翻译与新闻产品。新闻数据库、编辑记录与账号由 inews 自己管理 |
-| 采集分队 | fetchspec 负责厂商规格；fetchstat、fetchfilings、fetchreports、fetchquotes 在fetchdata的四个独立模块按来源登记采集（统计/披露已验单源受控接收，报告/报价仍未生产接通），模型派工另按目标清单、保存原件与版本、交付及补交 |
+| 采集分队 | fetchspec 负责厂商规格；fetchstat、fetchfilings、fetchreports、fetchquotes 在fetchdata的四个独立模块按来源登记采集（统计/披露及报告发布页已验单源受控接收，报价仍未生产接通），模型派工另按目标清单、保存原件与版本、交付及补交 |
 | inresearch.ai | 五类变量目标清单与供应任务、接收与资料验收，研究侧原件与结构化数据、对象、问题、证据、口径、深读、采用与交付；本身不爬取，内置 SEC/GPU 采集器已退役 |
 | AWS | 新闻产品和研究网页；研究网页显示 Spark 的派生状态，不把网页按钮直接变成模型长任务 |
 | Spark | 交付原件的永久归档、采集台账、reader 台账、研究模型阅读、提取与翻译产物；不执行采集 |
@@ -443,3 +443,10 @@ fetchspec交规格／接口／工况，不认证现场安装；inews交原事件
 fetchfilings已用Microsoft官方FY2025年报完成AWS真实采集、Spark永久候选接收、受控截断拒绝/完整重试与同包零增量重放；旧ID、版本、原信封和首次接收保留。仅Microsoft年度现金PP&E单源受控文件交付，未启用调度；候选不入Reader、不采用、不填参；fetchreports/fetchquotes仍未接通。
 
 负数集团现金PP&E、报告期和未知披露日按原包保留，不能分摊到园区或转为模型资本成本。生产版本/完整回执见docs/guides/fetchdata/fetchfilings-production.md及交接；覆盖/采用/调度分开登记。
+
+
+### fetchreports生产验收范围
+
+fetchreports已验LBNL官方发布页/方法摘要单源AWS真实采集、Spark永久候选接收、截断拒绝/完整重试及重复零增量；三个旧版与本次新版并存，不多计独立证据。PDF正文/表图/附件未读，信息有效时间未知；不入Reader、不采用、不填参，不安装调度；fetchquotes仍未接通。
+
+旧包completeness只指网页完整取得，不能据此声称PDF完整取得/阅读。三版同DOI候选并列，不自动互相覆盖或关联模型。操作与私有回执见docs/guides/fetchdata/fetchreports-production.md。

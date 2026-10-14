@@ -56,10 +56,10 @@ class ResearchDemandTests(unittest.TestCase):
         self.assertTrue(all(l['relation'] == 'lead_for' for l in news))
 
     def test_mixed_request_requires_selection_scope_and_connected_channel(self):
-        # fetchstat now has a verified file-reception channel; keep this guard
+        # stat, filings and report metadata now have reception channels; keep this guard
         # on a genuinely disconnected provider rather than a historical name.
-        target, r = self.requests['tokens_per_gpu_sec']
-        base = dict(action='create', target_id=target['id'], title='吞吐研究条件', scope='方法及测试原文',
+        target, r = self.requests['refresh_cost_factor']
+        base = dict(action='create', target_id=target['id'], title='设备更新报价条件', scope='配置与费用原文',
                     acceptance=r['acceptance'], expected_revision=0, question_id=r['question_ids'][0])
         def mutate(**changes):
             return supply.mutate(ROOT, dict(base, operation_id=str(uuid.uuid4()), **changes), 'reviewer')
