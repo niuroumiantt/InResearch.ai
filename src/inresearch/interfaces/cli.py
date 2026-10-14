@@ -49,6 +49,7 @@ COMMANDS = {
     'research-publish': 'inresearch.workflow.research_publish',
     'material-retention': 'inresearch.materials.retention',
     'fetchspec-receive': 'inresearch.materials.fetchspec_receive',
+    'collector-receive': 'inresearch.materials.collector_production',
     'publish-pilot-progress': 'inresearch.delivery.publish_pilot_progress',
 }
 

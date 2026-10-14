@@ -1,20 +1,12 @@
 # 开发步骤、验收指标与交还清单
 
-## 已建立的独立仓库
+## 本地单仓库四模块
 
-fetchstat、fetchfilings、fetchreports、fetchquotes各一个仓库，入口及命令见[员工启动包](README.md)。每仓库：collector.py（下载/原件/打包）、adapter.py（固定字段）、helpers.py（原生解析）、sources.json（来源/日历）、validate_handoff.py（交换合同校验）、docs（任务/合同/真实验收）、tests（离线验收）。第一版核心只用Python标准库，不执行网页脚本、不调用模型。合同共用、部署独立；不得另造网站或冒充Fetchspec供应方。
+2026-10-14起按一个fetchdata源码仓库、四独立模块实施；[员工入口](README.md)给出本机命令。共享core、contracts；collectors/<team>/adapter.py及config/<team>/sources.json独立，旧四provider身份保持。run/verify/release明确team，不按同名adapter全局导入。Python标准库，不执行网页脚本或调用模型，不直接写研究正式库。
 
-源码在 `~/code/<repo>`，运行数据在 `~/.local/share/<repo>/`，日志在 `~/.local/state/<repo>/`。已有Spark原件仍留原址，只读复用。本次是每队一个真实来源及一条候选的小闭环；生产接收、自动调度、多源并发和大文件流式扩批尚未验收。
+下载上限20MiB、30秒超时和三次有界重试沿用；同模块/数据根加单写锁，不同模块独立运行。新环境使用fetchdata/<team>数据与状态根，历史目录不迁移。release固定完整源码提交、公共核心、合同、模块和配置摘要；回滚不删新收下的原件和回执。
 
-```sh
-python3 collector.py check-config
-python3 collector.py run
-python3 collector.py run --existing /授权原件.html --provenance /真实原件台账记录
-python3 collector.py verify /实际交付目录
-python3 -m unittest discover -s tests -v
-```
-
-每次请求限时30秒、最多3次、有界退避、20MiB上限、HTTPS来源域名限制。内容寻址保存版本；重放保留原包和首次取得记录。当前同仓库单进程运行，条件请求/分页/大文件/跨进程锁由扩展适配器另验，不能声称已具备整站采集。研究接收URL和凭据须真实联调，不能编造。按以下完整场景逐步补齐，已通过范围见各仓库 `docs/BOOTSTRAP_ACCEPTANCE.json`。
+本地接收器明确sandbox-root，冻结验证包后存原字节/候选/首次接收，重放不新增、不刷新首次接收；相同ID内容变更拒绝。该时间仅为本地接收，不追认历史生产接收。当前严格整包验收坏候选拒绝，生产逐项隔离/补交、自动传输、调度、分页/大文件/通用PDF提取和来源扩展另验。本轮没有上线或修改正式研究数据。
 
 ## 公共内核验收场景
 

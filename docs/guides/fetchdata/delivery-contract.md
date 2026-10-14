@@ -1,6 +1,6 @@
 # 四队共同交付规范
 
-版本 `fetchdata-handoff/1`。这是员工与研究端联调的**候选交换格式**，不是现有 Fetchspec 接收 API 的请求格式。现有接收器限制 `provider_id=fetchspec`；四队不得改名冒充它。正式接收适配由研究端负责人实现并验收，员工先按本文交包、离线验包。供应主合同仍是 [supply_contract.json](../../../framework/supply_contract.json)。
+版本 `fetchdata-handoff/1`。2026-10-14源码维护改为单fetchdata四模块，旧provider/ID和包版本不改；显式本地沙箱接收不等于生产接通。这是员工与研究端联调的**候选交换格式**，不是现有 Fetchspec 接收 API 的请求格式。现有接收器限制 `provider_id=fetchspec`；四队不得改名冒充它。正式接收适配由研究端负责人实现并验收，员工先按本文交包、离线验包。供应主合同仍是 [supply_contract.json](../../../framework/supply_contract.json)。
 
 ## 文件格式：保留原件，另交结构化信息
 
