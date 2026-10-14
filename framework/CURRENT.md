@@ -1,6 +1,8 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.14.128
+> CURRENT · 基准版本 2026.10.14.129
+
+2026-10-14：用户授权本地实施一个fetchdata仓库、四个独立采集模块，替代四仓库分别维护公共内核；对象／来源／证据统一信封，供应方ID、旧提交与交付历史保留。显式本地沙箱接收与生产接通分开；本轮不推送、不部署、不安装调度，不自动采用或填参。
 
 2026-10-14：用户现已授权本轮发布，替代此前阶段“暂不上线”的执行限制。研究框架v4以通用模型为主体，真实园区检验适用，Abilene仅贯通校验；保留成本／收入／回报三账，问题模板、检索、覆盖与来源执行分责。架构页、任务页、目录解释与候选复核／参数预览同步。旧ID、链接及正式事实保持；候选、假设、未知、未读与异常不自动采用。实际完整CI、受保护合并、网站／运行架构投影／Spark回执见本阶段交接。
 
@@ -88,7 +90,7 @@
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
 | 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（14张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
 | 全站目录、身份、页眉页脚、字体与外观 | [05 界面规范](05_interface_system.md) | site_navigation.json（机器导航／页面归属）、web/components/site-shell.js、web/themes、web/assets/fonts、interface_manifest.json（界面／资源验收） |
-| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、六仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
+| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（来源分工、fetchdata四独立模块及本地阶段状态）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |

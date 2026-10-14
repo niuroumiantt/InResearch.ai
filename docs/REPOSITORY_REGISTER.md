@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.128。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.129。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2712。
+在册文件：2716。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 388 |
+| 运行代码 | 390 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 245 |
-| 测试 | 241 |
+| 配套说明 | 246 |
+| 测试 | 242 |
 
 ## 在册记录集合
 
@@ -2704,6 +2704,7 @@
 | [docs/handoff/evidence-followup-20261007.md](handoff/evidence-followup-20261007.md) | 配套说明 |
 | [docs/handoff/evidence-gaps-20261007.md](handoff/evidence-gaps-20261007.md) | 配套说明 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
+| [docs/handoff/fetchdata-unified-local.md](handoff/fetchdata-unified-local.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | `docs/handoff/github-sync-20261010-audit.json` | 项目配置 |
 | [docs/handoff/github-sync-20261010.md](handoff/github-sync-20261010.md) | 配套说明 |
@@ -3728,6 +3729,7 @@
 | `scripts/export_inews_research.cjs` | 项目配置 |
 | `scripts/export_site_model_preview.py` | 运行代码 |
 | `scripts/publish_repository_pages.py` | 运行代码 |
+| `scripts/receive_collector_local.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |
@@ -3835,6 +3837,7 @@
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
 | `src/inresearch/materials/__init__.py` | 运行代码 |
 | `src/inresearch/materials/artifacts.py` | 运行代码 |
+| `src/inresearch/materials/collector_receive.py` | 运行代码 |
 | `src/inresearch/materials/daily_bundle.py` | 运行代码 |
 | `src/inresearch/materials/daily_events.py` | 运行代码 |
 | `src/inresearch/materials/daily_research.py` | 运行代码 |
@@ -4005,6 +4008,7 @@
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
 | `tests/unit/test_collector_handoff.py` | 测试 |
+| `tests/unit/test_collector_receive.py` | 测试 |
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_company_window.py` | 测试 |
 | `tests/unit/test_compute_catalog.py` | 测试 |
