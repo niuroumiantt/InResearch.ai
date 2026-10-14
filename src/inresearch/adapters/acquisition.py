@@ -24,7 +24,7 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError
 
 ROOT = project_root()
-SOURCES = ('inews', 'sec', 'gpu', 'fetchspec', 'fetchreports', 'fetchstat', 'fetchfilings')
+SOURCES = ('inews', 'sec', 'gpu', 'fetchspec', 'fetchreports', 'fetchstat', 'fetchfilings', 'fetchquotes')
 ACTIVE_SOURCES = ('inews', 'fetchspec')
 # Retired 2026-09-28: collection moved out of inresearch; rows remain for history only.
 RETIRED_SOURCES = ('sec', 'gpu')
