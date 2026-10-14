@@ -12,4 +12,6 @@ fetchquotes已验Lambda公开报价单源AWS真实取得、Spark永久候选接�
 
 完整目标JSON比较只变46处报价连接/到期元数据，全部采用状态与经济看板root.account保持。未接通派工/展示测试改用隔离断开策略，真实报价连接需求仅写planned且不执行采集/填参；其余权限/旧链接/上传审批断言保留。
 
-最终本地完整回归2695项通过（Python3.12）；统一采集仓库15项通过；真实Chrome的research_tasks、supply、repository_pages三组通过，含手机/权限/旧链接/上传审批。最终PR全部CI、实际网站镜像/运行架构投影与Spark重放仍以私有release-status.json和final-verification.json为准。源码/原件/包/失败日志及本地分支保留。
+最终本地完整回归2695项通过（Python3.12）；统一采集仓库15项通过；真实Chrome的dashboard、research_tasks、supply、repository_pages四组通过，含手机/权限/旧链接/上传审批。最终PR全部CI、实际网站镜像/运行架构投影与Spark重放仍以私有release-status.json和final-verification.json为准。源码/原件/包/失败日志及本地分支保留。
+
+工作台根节点六队接通后不再预设有待建队行；隔离断开目标并展开原有明细，仍核断开行显示待建队且隐藏原到期日期，恢复后实际状态为已连接。旧IT/客户交付一致、物理层级与图片下载权限断言完整保留。
