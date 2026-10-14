@@ -50,6 +50,7 @@ class ResearchDashboardTests(unittest.TestCase):
         self.assertIn('三账：成本、收入、回报',html)
         self.assertIn('不决定通用模型的研究范围',html)
         self.assertIn('architecture-model-loop',html)
+        self.assertIn('/project.html?site=us-tx-abilene#campus-equipment',html)
         self.assertIn('基础登记',html)
         self.assertIn('不再等同',html)
         tasks=task_coverage(ROOT)

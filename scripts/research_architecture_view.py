@@ -51,7 +51,7 @@ def overview(root):
 <div class="arch-arrow">以上同链结果不能互相充当独立验证；原三项异常继续阻断相关自动填参</div>
 <div class="arch-columns"><div class="arch-node"><span class="arch-tag">另一个范围：DC1首两栋</span><h3>合同租金 → 会计收入 ↔ 现金收付</h3><p>租约、年度经营、现金流、债务和未来最低租金分别核对。八张已读表来自同版财报；租金实际收款仍无法唯一拆出。</p></div><div class="arch-node"><span class="arch-tag">不跨范围填参</span><h3>Crusoe / Oracle / OpenAI 分账</h3><p>两栋租金不套四栋421MW，集团披露不分摊园区；未来承诺不是实收，贷款不是建设实支。</p><p>实际NOI、项目及权益回报保持未知。</p></div></div>
 <div class="arch-arrow">↓ 仅已登记容量、地点参考与显式用户假设可经确认生成情景；经济候选不填参 ↓</div>
-<div class="arch-node arch-common"><h3>已提供：现场配置候选映射 → 参数预览 → 可复算情景导出</h3><p>保留83项输入依据、来源版本、推导关系、未读项和异常；不写回园区正式资料。</p><a href="/project.html?site=us-tx-abilene#equipment">查看园区配置 →</a> · <a href="/ledger.html?view=basis&amp;site=us-tx-abilene&amp;scope=abilene-20260728-estimated-operating">查看参数与全部复核结果 →</a></div>
+<div class="arch-node arch-common"><h3>已提供：现场配置候选映射 → 参数预览 → 可复算情景导出</h3><p>保留83项输入依据、来源版本、推导关系、未读项和异常；不写回园区正式资料。</p><a href="/project.html?site=us-tx-abilene#campus-equipment">查看园区配置 →</a> · <a href="/ledger.html?view=basis&amp;site=us-tx-abilene&amp;scope=abilene-20260728-estimated-operating">查看参数与全部复核结果 →</a></div>
 <figcaption>当前桥接版本：'''+escape(str(bridge['version']))+'''。点击情景确认只批准本次浏览器试算，不是人类审核采用或现场真实性认证。</figcaption></figure></details>'''
     return html
 
