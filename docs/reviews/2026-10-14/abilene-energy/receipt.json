@@ -1,0 +1,219 @@
+{
+  "version": "2026.10.14.124",
+  "status": "local_step_3_verified_not_published",
+  "site_id": "us-tx-abilene",
+  "scope": {
+    "id": "abilene-20260728-estimated-operating",
+    "label": "2026年7月28日聚合运行容量估算",
+    "effective_at": "2026-07-28",
+    "physical_scope": "whole_site",
+    "included": "原Stargate／Lancium园区来源估算的运行部分，无法逐栋分配",
+    "excluded": "相邻园区、未确认运行部分及2026年11月预测",
+    "actor": null,
+    "accounting_basis": "物理成本情景；不代表任一企业账目"
+  },
+  "previous_phase_receipt": "docs/reviews/2026-10-14/abilene-dependencies/receipt.json",
+  "bridge_version": "2026.10.14.3",
+  "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+  "observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+  "review_sha256": "f1f2abd299b9bf4a2d20fb2ba123a35bb6730e85b4b1be83143a6c74401ace7b",
+  "energy_review_sha256": "c06a10d7ad44a7d5595942e6be3c95ab37d2b41dc43fdb12248dd0084fd6c6e7",
+  "audit_input_sha256": "62188098de64515af065ce63f4dfdfb78a7ccb6ab46f8c9413b7c67c3b3d84a3",
+  "audit_result_sha256": "42e58da0cb9a7d960b39a88a772047a25960ddc130a9581558e177d9a7b130c8",
+  "inventory_units": 189,
+  "item_counts": {
+    "anomaly": 3,
+    "candidate": 175,
+    "excluded": 1,
+    "existing_observation": 2,
+    "not_applicable": 0,
+    "not_checked": 8,
+    "unknown": 28,
+    "unread_attachment": 0
+  },
+  "source_entries": 24,
+  "distinct_snapshot_sha256": 22,
+  "mirrors": [
+    {
+      "id": "permit-official",
+      "mirror_of": "permit"
+    },
+    {
+      "id": "mortenson-grid",
+      "mirror_of": "mortenson"
+    }
+  ],
+  "new_captures": {
+    "original_bytes": 10,
+    "web_tool_extract": 1,
+    "sec_original_download": "curl_exit_56_not_obtained"
+  },
+  "energy_inputs_status": {
+    "capacity_range": "existing_estimate",
+    "average_it_load": "unknown",
+    "period_pue": "unknown",
+    "applicable_price": "unknown"
+  },
+  "annual_scenario": {
+    "effective_it_mw": 421,
+    "average_it_mw_over_capacity_time": 294.7,
+    "it_kwh": 2581572000,
+    "facility_kwh": 3304412160,
+    "proxy_cost_usd": 233621939.71199998,
+    "hours": 8760,
+    "capacity_equivalent_hours": 8760,
+    "capacity_profile": "constant_snapshot_assumption",
+    "price_basis": "retail_average_proxy",
+    "actual_grid_purchase_kwh": null,
+    "actual_site_bill_usd": null,
+    "ramp_applied": false,
+    "status": "scenario_only",
+    "formula": "effective_it_mw * 1000 * load_factor * capacity_equivalent_hours * period_pue; proxy_cost = facility_kwh * retail_average_proxy_price",
+    "input_ids": [
+      "it_mw",
+      "energy_quota_mw",
+      "load_factor",
+      "pue",
+      "power_price"
+    ],
+    "supply_assumption": "all_facility_energy_priced_as_grid_proxy",
+    "demand_added_usd": 0,
+    "period": {
+      "mode": "constant_snapshot_annualization",
+      "snapshot_date": "2026-07-28",
+      "scope_id": "abilene-20260728-estimated-operating",
+      "hours": 8760,
+      "actual_start": null,
+      "actual_end": null,
+      "capacity_profile_state": "unknown",
+      "note": "把所选快照IT规模固定运行一个365天假设年；不是2026自然年、不是7月28日起实际未来一年预测。容量爬坡与IT电力负载不同，不重复打折。",
+      "formula": "E_IT=1000×Σ(C_IT,t×L_t×Δt); E_facility=E_IT×PUE_period",
+      "pue_formula": "PUE_period=ΣE_facility,t/ΣE_IT,t；不是月PUE的简单平均"
+    },
+    "energy_review_sha256": "c06a10d7ad44a7d5595942e6be3c95ab37d2b41dc43fdb12248dd0084fd6c6e7"
+  },
+  "sensitivity": {
+    "one_at_a_time": 9,
+    "combined": 27,
+    "capacity_timing": 2,
+    "status": "analyst_scenarios_not_probability_bounds"
+  },
+  "model_changes": {
+    "formal_projects_changed": false,
+    "general_model_changed": false,
+    "local_demand_rate": 0,
+    "meaning": "analysis choice to prevent double counting, actual site demand charges unknown"
+  },
+  "checks": {
+    "unit": 89,
+    "browser_suites": [
+      "site_model_bridge",
+      "economics_navigation",
+      "datacenter_cost",
+      "datacenter_economics",
+      "datacenter_tco",
+      "global_campuses"
+    ],
+    "strict": "0 warnings",
+    "registry": "valid",
+    "offline": "same real component, confirm, export/replay, four tabs, 1440/390/320 light/dark, no HTTP",
+    "governance": "2026.10.14.124",
+    "focused_report": "1440/390/320, no page overflow/errors/HTTP; screenshot reviewed"
+  },
+  "formal_adoptions": 0,
+  "human_confirmations": 0,
+  "model_parameters_verified": 0,
+  "published": false,
+  "limitations": [
+    "两份PDF完整字节已取得并核相关页，但64／312页未逐页深读；余页和原影像仍待查",
+    "源XLSX只读取公式文本及缓存值，不执行公式、宏、外部链接或导出DUMMYFUNCTION",
+    "原网页、CSV、PDF、XLSX不同版本分别保存，不覆盖旧SHA或既有容量观察",
+    "源公司设计、研究方整数配置和估算、实际部署必须分开；不自行纠正源型号单位",
+    "来源数值及推导候选不等于独立现场证据；所有新增正式采用、模型认证、发布均为零",
+    "观察视图可扩展且交叉，不宣称十二项互斥或全行业永远穷尽；旧五列为兼容投影",
+    "来源队只登记研究侧交付要求，不代表外部采集器接通或任务已执行",
+    "421MW、GPU数量与算力共用配置假设；固定引用记录不等于来源证据独立",
+    "官方37589-ac与已有许可附件字节同一，不多算一份独立证据；后续37589-tc只核前四页",
+    "本轮原件内容核对可进入人工复核，但不冒充人类确认、现场安装／投运、最终许可或模型用途采用",
+    "成本链只确认方法依赖；159亿美元的精确系数／版本和舍入未贯通",
+    "第三步定向核对九份新增原件，不是全报告穷尽研究；无实测IT电量、期间PUE、逐月容量或合同取得回执；所有新增项未正式采用。",
+    "原三异常、官方镜像身份、旧版本与候选推导保留；新设计/额定容量不替换旧观察。",
+    "另核PUC历史REP及SEC租约线索；SEC原HTML下载失败，只有明确标记的工具转录，表格图片/原HTML未核。历史供电/支付关系不确认2026所选全范围合同。",
+    "Mortenson重取页面SHA与此前mortenson原件一致，新增定向阅读范围不多计一份独立证据。"
+  ],
+  "artifacts": [
+    {
+      "file": "audit-input.json",
+      "sha256": "841a3c938762947c30e170405602ed72cb8bbcad2a7b98d407e8d94486dae17e"
+    },
+    {
+      "file": "audit-result.json",
+      "sha256": "42e58da0cb9a7d960b39a88a772047a25960ddc130a9581558e177d9a7b130c8"
+    },
+    {
+      "file": "audit-result.html",
+      "sha256": "fbdc9854f7cbf5d3c7e09ebb65b3631d254a7e557ccedb52efdd319a5f71b0e8"
+    },
+    {
+      "file": "energy-review.json",
+      "sha256": "e42810a66307ab35c838f0f67aa48fd29d61ee4710840dac406b7210972f7059"
+    },
+    {
+      "file": "result.html",
+      "sha256": "16c7bef41c920e8acb073ee997091593021b1f4121a736ca720c3820c4992263"
+    },
+    {
+      "file": "source-receipts.json",
+      "sha256": "bf9f336ae511ac33e2995d25464577c612f6bec16294ee47d321208d49f9dcd1"
+    },
+    {
+      "file": "report-receipt.json",
+      "sha256": "44240805dbceb693d42886dd27dc82758c4ca034eef074e1a37c9d7b75d77030"
+    },
+    {
+      "file": "extra-source-receipts.json",
+      "sha256": "65dccb4d09901d53d743f1e384667046cc8d9d8dac975d9ad60448fe314138bb"
+    },
+    {
+      "file": "search-scope.json",
+      "sha256": "d15e0aa1aec12f7780fe41f99a9e5903b8a2f800b1a1b52b77471dc0d9588247"
+    },
+    {
+      "file": "model-preview-v3-20261014/preview.html",
+      "sha256": "93a273ae9843b230be78e5b25e69aa770e6c7f0747afe86011bd103b23d18b45"
+    },
+    {
+      "file": "model-preview-v3-20261014/scenario.json",
+      "sha256": "bc63d5432251516e65d1c8ce3b607f7dcea7fa1d3149821c758d183043e6ddb7"
+    },
+    {
+      "file": "model-preview-v3-20261014/preview-desktop.png",
+      "sha256": "99094510c16fd3b351f4bc970f27e7515ad099c996ecaff68db09bbf0ba4721a"
+    },
+    {
+      "file": "model-preview-v3-20261014/preview-mobile.png",
+      "sha256": "bc5760c370a2e0444ee496e269b6f22938ad71eba812df93c60d2a0213a6a97e"
+    },
+    {
+      "file": "model-preview-v3-20261014/preview-dark.png",
+      "sha256": "6e6ad0e69b1ebd7d0e520b89047b82c56a079c4c4a9a9fb1d1fef3095d68194b"
+    },
+    {
+      "file": "model-preview-v3-20261014/energy-checks.png",
+      "sha256": "d3581ddf350c0be5a25c0de8cb7e7e6e4c6d51819198717c695d1b02dabf4a3d"
+    },
+    {
+      "file": "model-preview-v3-20261014/energy-results.png",
+      "sha256": "d8c4fd93b568506e375f8befcb7252e11eeb593d7ca040b9dabafe2b1342d262"
+    },
+    {
+      "file": "result-desktop.png",
+      "sha256": "537e1ddcbe2f64a4eeba8a95bcd638230be57362644bc5c8bc168f0239bcf187"
+    },
+    {
+      "file": "result-mobile.png",
+      "sha256": "608e9944b5225cecaee03ee74c47aaab788116a3bb4a25cca2f16065c45ed1c3"
+    }
+  ],
+  "capture_scope_note": "Selected artifact hashes, not a full inventory of local originals or runtime files"
+}

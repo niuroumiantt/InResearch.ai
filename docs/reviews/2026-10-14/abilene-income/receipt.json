@@ -1,0 +1,178 @@
+{
+  "version": "2026.10.14.126",
+  "status": "local_income_return_review_verified_not_published",
+  "previous_phase_receipt": "docs/reviews/2026-10-14/abilene-cost/receipt.json",
+  "site_id": "us-tx-abilene",
+  "scope": {
+    "id": "abilene-20260728-estimated-operating",
+    "label": "2026年7月28日聚合运行容量估算",
+    "effective_at": "2026-07-28",
+    "physical_scope": "whole_site",
+    "included": "原Stargate／Lancium园区来源估算的运行部分，无法逐栋分配",
+    "excluded": "相邻园区、未确认运行部分及2026年11月预测",
+    "actor": null,
+    "accounting_basis": "物理成本情景；不代表任一企业账目"
+  },
+  "bridge_version": "2026.10.14.5",
+  "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+  "observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+  "review_sha256": "ed31f46247b7c91a05d13261e9a62809462dc83ee3009c93bc2bb1112ebcad76",
+  "income_review_sha256": "7d9901d7961fbb4fca6c39d7a98a388a2a07fa263c61225cfe151ee2092017a6",
+  "cost_review_sha256": "999bc66005ba1730c3e15f380609159cd21866679e6debafe79e69ee4649bab0",
+  "energy_review_sha256": "c06a10d7ad44a7d5595942e6be3c95ab37d2b41dc43fdb12248dd0084fd6c6e7",
+  "audit_input_sha256": "e4125311b043dcece147a63dc515e694f899eacd03638609f69cd279b1d64cdb",
+  "audit_result_sha256": "94744b384d56a3ff45dde1a48951f9c87edc18a9d2620ecb635ebf170913f526",
+  "inventory_units": 269,
+  "item_counts": {
+    "anomaly": 3,
+    "candidate": 244,
+    "excluded": 4,
+    "existing_observation": 2,
+    "not_applicable": 0,
+    "not_checked": 16,
+    "unknown": 42,
+    "unread_attachment": 0
+  },
+  "source_entries": 46,
+  "distinct_snapshot_sha256": 43,
+  "new_captures": {
+    "original_html": 3,
+    "web_tool_extract": 6,
+    "navigation_only_extracts": 1,
+    "failed_original_requests": 9,
+    "sec_original_and_table_images": "not_obtained",
+    "source_contract": "not_obtained",
+    "reader_extract_sha_is_original_html_sha": false
+  },
+  "derivations": 19,
+  "income_result": {
+    "lease_scope": "DC1 first two buildings, not current four-building421MW estimate",
+    "monthly_base_per_building_usd": 10197000,
+    "annualized_base_first_year_rates_usd": 244728000,
+    "amount_basis": "contract_first_lease_year_rate_annualization_not_actual_receipt",
+    "lease_years_candidate": 15,
+    "annual_escalator_candidate": 0.03,
+    "starts": [
+      {
+        "building": "B1",
+        "rent_commencement": "2025-03-18"
+      },
+      {
+        "building": "B2",
+        "rent_commencement": "2025-07-01"
+      }
+    ],
+    "tenant_legal_name": null,
+    "contract_it_mw": null,
+    "actual_annual_cash_rent_usd": null,
+    "actual_returns": {
+      "status": "blocked_missing_scoped_dated_cashflows",
+      "actual_project_irr": null,
+      "actual_equity_irr": null,
+      "actual_npv_usd": null,
+      "actual_dscr": null,
+      "actual_noi_usd": null,
+      "automatic_fill": false,
+      "reason": "需先固定主体/资产/阶段/时点，列建设至退出现金流：项目FCF含运营收付、资本支出、营运资金、税和残值；权益CF另含出资/融资/还本息及分红瀑布。项目IRR、权益IRR、NPV与DSCR使用相应分母/期间，不用会计估值变动或融资上限替实付。244728000/15948322000跨主体/两栋四栋/合同年实际成本，不是回报率。"
+    },
+    "candidate_parameter_check_rows": 10,
+    "automatic_new_parameter_fill": false
+  },
+  "preserved": {
+    "old_site_id_and_urls": true,
+    "pinned421_observation": true,
+    "unresolved_anomalies": 3,
+    "projects_and_datacenter_model_unchanged": true,
+    "prior_previews_and_originals": true,
+    "source_formula_execution": false,
+    "formal_adoptions": 0,
+    "human_confirmations": 0,
+    "model_use_certifications": 0,
+    "published": false
+  },
+  "local_artifacts": [
+    {
+      "kind": "income-review-20261014/result.html",
+      "sha256": "aeb9b267ef71320843c98ffc423797bccdb03bba20158bc7b207a0976c879451"
+    },
+    {
+      "kind": "income-review-20261014/audit-input.json",
+      "sha256": "f5d3c827de5c7f305fcdb907739388110a96be3dbab34b1a28006298669a028f"
+    },
+    {
+      "kind": "income-review-20261014/audit-result.json",
+      "sha256": "94744b384d56a3ff45dde1a48951f9c87edc18a9d2620ecb635ebf170913f526"
+    },
+    {
+      "kind": "income-review-20261014/income-review.json",
+      "sha256": "fd4336c7bbf679ae98e79dce77bc6b7eb2d155711fd440b75a41996eb49dbfae"
+    },
+    {
+      "kind": "income-review-20261014/source-receipts.json",
+      "sha256": "92279dbd9638ec1420f1775f9514d6545a8212f078784809a54b46a921d89f80"
+    },
+    {
+      "kind": "income-review-20261014/extra-source-receipts.json",
+      "sha256": "ad98b372fa86c0b36916dd59a2229f1fbb06e6ded67c20cb212c2e46c6fb5596"
+    },
+    {
+      "kind": "model-preview-v5-20261014/preview.html",
+      "sha256": "2ab22beb01010b799ff421252f027eaa79952887a42cf3e0d74eacc6ae93f905"
+    },
+    {
+      "kind": "model-preview-v5-20261014/scenario.json",
+      "sha256": "43488aaf51833afcd33af97d564cf8841d69c12872458b9862483f15c6b0f6ee"
+    },
+    {
+      "kind": "income-review-20261014/result-desktop.png",
+      "sha256": "184bca21b0f015c040d8ab333a583ef407557dc0dc36ecf4d0103c57c0af5809"
+    },
+    {
+      "kind": "income-review-20261014/result-mobile.png",
+      "sha256": "f7d0e7a530f8043150025df24fda786badcc1d7c94928ebb987d0607d6268bcf"
+    },
+    {
+      "kind": "model-preview-v5-20261014/income-review-desktop.png",
+      "sha256": "3b5a2e3273d7b15c6c8e4c93aae9982224f5e0b59b7ba6cb15a76de22fa863f2"
+    },
+    {
+      "kind": "model-preview-v5-20261014/income-review-mobile.png",
+      "sha256": "1a07c4be408957f580ae493ac5a086db1d15ab2d52f9625b10ec0cbd52332305"
+    }
+  ],
+  "validation": {
+    "focused_unit_tests": {
+      "passed": 34
+    },
+    "full_related_unit_tests": {
+      "passed": 96,
+      "status": "passed"
+    },
+    "related_browser_suites": {
+      "passed": 6
+    },
+    "offline_real_component": {
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "light_dark": true,
+      "http_requests": 0,
+      "export": true,
+      "income_candidates_do_not_change_model_inputs": true
+    },
+    "result_report": {
+      "widths": [
+        1440,
+        390,
+        320
+      ],
+      "light_dark": true,
+      "http_requests": 0
+    },
+    "strict_registry_governance": "passed",
+    "full_ci_or_production": false
+  },
+  "capture_scope_note": "Selected local artifact hashes; not a complete inventory of originals, attachments, private contracts, cloud files or runtime data."
+}

@@ -403,6 +403,13 @@ def main():
     except (OSError, ValueError, KeyError, TypeError) as exc:
         err(f"nodes: 无法派生登记表两列: {exc}")
 
+    # Site-model bridge is a candidate ledger; it grants no fact/model adoption.
+    try:
+        from inresearch.knowledge import site_model_bridge
+        site_model_bridge.load(ROOT, load('projects'))
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        err(f'site_model_bridge: {exc}')
+
     # 汇总
     print(f"记录数: projects={len(projects)} companies={len(companies)} prices={len(prices)} "
           f"policies={len(policies)} contracts={len(contracts)} sources={len(sources)} "

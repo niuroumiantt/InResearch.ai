@@ -1,0 +1,343 @@
+{
+  "version": "2026.10.14.127",
+  "status": "local_sec_tables_verified_not_published",
+  "previous_phase_receipt": "docs/reviews/2026-10-14/abilene-income/receipt.json",
+  "site_id": "us-tx-abilene",
+  "bridge_version": "2026.10.14.6",
+  "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+  "observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+  "review_sha256": "5f2b98b73b8f02d90433068925ecbb6f28c5b2e0f384a7d05246578962aaaf04",
+  "sec_table_review_sha256": "833ebfdff1c22ac1a03eefa934c7bf691650a5f91c59aaf0369fce4d1fd2d6cf",
+  "income_review_sha256": "0b86dc5db812986fdc78ace1df374771867cd79f5a4532b4f262913bcf7baef5",
+  "audit_input_sha256": "1443b5727560dcaa4c0fc40c5f0bd1d67ec30ef9595d747cd6e1f91956aa7077",
+  "audit_result_sha256": "9c6f27eefb28daadc6fce60f43703ebde91c67ded25edc9dddc1eafd66e37181",
+  "inventory_units": 371,
+  "item_counts": {
+    "anomaly": 3,
+    "candidate": 350,
+    "excluded": 4,
+    "existing_observation": 2,
+    "not_applicable": 0,
+    "not_checked": 12,
+    "unknown": 45,
+    "unread_attachment": 0
+  },
+  "derivations": 34,
+  "source_entries": 54,
+  "distinct_snapshot_sha256": 51,
+  "new_captures": {
+    "original_table_images": 8,
+    "same_primary_filing": true,
+    "independent_documents": 1,
+    "raw_html_obtained": false,
+    "source_text": "manual visual transcription with distinct hash, not embedded original text",
+    "unverified_aborted_bundle": "no verified output used; individual downloadMedia originals acquired"
+  },
+  "table_sources": [
+    {
+      "id": "operations",
+      "source_id": "sec-table-operations",
+      "printed_page": 5,
+      "primary_target": true,
+      "sha256": "5f0ca908f4f08efd493852ecda57c672d289126d30416b842475ac21ae8f8863",
+      "text_sha256": "45377aeea24e1ca7066ebc1935ed6a005f071b7d2265af252dd4f9308508dfc7"
+    },
+    {
+      "id": "cashflow",
+      "source_id": "sec-table-cashflow",
+      "printed_page": 7,
+      "primary_target": true,
+      "sha256": "a23ab9521de0b1a33bf94fc66c8eb3fe54ff0eca756dde974ab70115e09123a1",
+      "text_sha256": "4bd939d83750ece819122c6113f14e6f2cd473c16eac35ee3e5c2ff996c31215"
+    },
+    {
+      "id": "debt",
+      "source_id": "sec-table-debt",
+      "printed_page": 16,
+      "primary_target": true,
+      "sha256": "df741c74a8b59b124264824ba1b2bf9c4959e99dc760813bc72e424937445922",
+      "text_sha256": "4d8e92fd955a6d2206c03b42c3e7d5fef9e24e8db460de60907fc31db784c936"
+    },
+    {
+      "id": "minimum-rent",
+      "source_id": "sec-table-minimum-rent",
+      "printed_page": 18,
+      "primary_target": true,
+      "sha256": "f090fcf09c33e97529d82a65f685dfb2c37420f459d9d701cc5d50670e699fcf",
+      "text_sha256": "bc85aee540f19b1eb63384e093d25741c20391af4de8f72c07b16c146beff8f9"
+    },
+    {
+      "id": "net-assets",
+      "source_id": "sec-table-net-assets",
+      "printed_page": 3,
+      "primary_target": false,
+      "sha256": "50dd29ec5b7bad83db0fdea42561df788b596e9c9486d9bd458555f7ec475b8a",
+      "text_sha256": "d592e54bb5685a52fd5ab2ffa4e2548751305fe212905829c8e8b17779af86ae"
+    },
+    {
+      "id": "equity-changes",
+      "source_id": "sec-table-equity-changes",
+      "printed_page": 6,
+      "primary_target": false,
+      "sha256": "4efed6568504c28223a77d16fb86a2873a42190725e00bba8bd5ea652b1d2569",
+      "text_sha256": "53740679c409c9755caa86ecac384228ca7203c4739b21b268593d9b4b7efb4e"
+    },
+    {
+      "id": "fair-value-rollforward",
+      "source_id": "sec-table-fair-value-rollforward",
+      "printed_page": 16,
+      "primary_target": false,
+      "sha256": "9baa085c9d005e0ce9ebf5d179857891daff6b6144cc896e8c85bc1d9b2bbe0b",
+      "text_sha256": "6bc0e483d5f3375f30611a60f6780590a693a16e433e5069fc1c0f94088bcd91"
+    },
+    {
+      "id": "ground-lease",
+      "source_id": "sec-table-ground-lease",
+      "printed_page": 17,
+      "primary_target": false,
+      "sha256": "c939f6639bdd97c867e097c4a618f994110f183cf7406d45cfad84f97f810986",
+      "text_sha256": "29df903e8f9d98f4ecb6b2a647285f8ef3e294dde02cdaa1a9b271c4c0e5ee84"
+    }
+  ],
+  "accounting_and_cash_results": [
+    {
+      "id": "rental-income",
+      "label": "2025租金会计收入",
+      "value_usd": 154211721,
+      "nature": "reported_accrual_income",
+      "source_id": "sec-table-operations",
+      "evidence_id": "sec-operations-rental_income",
+      "note": "包含附注附加租金，不是实际到账。"
+    },
+    {
+      "id": "rental-book-residual",
+      "label": "扣附加租金后的会计余项",
+      "value_usd": 142164962,
+      "nature": "derived_residual_not_cash",
+      "source_id": "sec-table-operations",
+      "evidence_id": "sec-recon-rental-residual",
+      "note": "154211721−12046759；不自动认定基本现金租金。"
+    },
+    {
+      "id": "net-investment-income",
+      "label": "2025净投资收益",
+      "value_usd": 118815004,
+      "nature": "reported_investment_income_not_noi",
+      "source_id": "sec-table-operations",
+      "evidence_id": "sec-operations-net_investment_income",
+      "note": "扣会计费用后数，不是物业NOI或现金分配。"
+    },
+    {
+      "id": "operating-cash",
+      "label": "2025原表经营现金流",
+      "value_usd": -1441623284,
+      "nature": "reported_cashflow_includes_real_estate_additions",
+      "source_id": "sec-table-cashflow",
+      "evidence_id": "sec-cashflow-net_cash_used_operating",
+      "note": "包含房地产投资增加−1673236604，不能当算力运营亏损。"
+    },
+    {
+      "id": "cash-ending",
+      "label": "2025末现金及受限现金",
+      "value_usd": 158390494,
+      "nature": "reported_cash_balance",
+      "source_id": "sec-table-cashflow",
+      "evidence_id": "sec-cashflow-cash_all_ending",
+      "note": "含受限128210477；不全是可分配现金。"
+    },
+    {
+      "id": "loan-cash",
+      "label": "2025建设贷款现金提用",
+      "value_usd": 1547248312,
+      "nature": "reported_cash_borrowing",
+      "source_id": "sec-table-cashflow",
+      "evidence_id": "sec-cashflow-construction_loan_cash_proceeds",
+      "note": "与19,344,751非现金本金结息分开。"
+    },
+    {
+      "id": "loan-ending",
+      "label": "2025末建设贷款本金",
+      "value_usd": 2025860971,
+      "nature": "reported_debt_balance",
+      "source_id": "sec-table-debt",
+      "evidence_id": "sec-debt-outstanding_principal",
+      "note": "不是贷款上限2,288,000,000或现金实支。"
+    },
+    {
+      "id": "minimum-2026",
+      "label": "2026未来最低租金",
+      "value_usd": 249622560,
+      "nature": "future_contractual_minimum_not_receipt",
+      "source_id": "sec-table-minimum-rent",
+      "evidence_id": "sec-minimum-rent-2026",
+      "note": "截至2025末列未来付款；不是2026实收或2025会计收入。"
+    },
+    {
+      "id": "minimum-total",
+      "label": "未来最低租金合计",
+      "value_usd": 4483842560,
+      "nature": "future_contractual_minimum_not_discounted_value",
+      "source_id": "sec-table-minimum-rent",
+      "evidence_id": "sec-minimum-rent-total",
+      "note": "2026至其后合计，不是全部已收租金或折现价值。"
+    }
+  ],
+  "cash_receipts": {
+    "status": "partial_statement_arithmetic_only_rent_receipts_unknown",
+    "actual_rent_receipts_usd": null,
+    "actual_oracle_openai_payment_usd": null,
+    "actual_lancium_power_payment_usd": null,
+    "automatic_fill": false,
+    "reason": "经营租金154211721为会计收入；应收含租户装修代垫，49,866,956＋50,597,341−34,603,566＝65,860,731只闭合混合应收。预收租金25,757,050另列；无租金/装修分户开票/核销/收款，不能唯一分拆租金实收，也不能确认Oracle/OpenAI或Lancium收到多少。",
+    "interest_note": "会计利息25,533,598；非资本化现金付息行原表破折号，脚注另列资本化现金利息85,310,832；本金结息19,344,751。不能说全部付息为0；费用摊销/资本化/应付/现金完整分解仍未知。",
+    "contract_calendar_note": "2026最低租金249,622,560与首年单价年化244,728,000不同期间；逐厅起租、免租/修订与日计费未知，不能强行拟合2025会计收入或实收。",
+    "entity_note": "DC1→LonghornJV年度投入58,393,774/分配62,107,676能与累计余额差对应；不确认Crusoe/BOREC各自分红/本金返还或OCI/OpenAI服务收入。"
+  },
+  "reconciliation_issues": [
+    {
+      "id": "capital-additions",
+      "label": "房地产账面增加的跨表对照",
+      "status": "source_difference_unresolved",
+      "difference_usd": 1,
+      "reason": "算术1474006072，滚动表1474006071，相差1美元；不强行取整或修源，明细/舍入原因未知。",
+      "evidence_ids": [
+        "sec-cashflow-additions_real_estate",
+        "sec-cashflow-change_accrued_capital_expenditures",
+        "sec-cashflow-interest_settled_in_principal",
+        "sec-recon-capital-additions"
+      ],
+      "next_action": "取得财报底稿/明细或来源更正后按版本记录；当前不修源、不填参"
+    },
+    {
+      "id": "payable-close",
+      "label": "应付余额的跨表对照",
+      "status": "source_difference_unresolved",
+      "difference_usd": 1,
+      "reason": "计算131696493，原表131696492，相差1美元；原数均保留。",
+      "evidence_ids": [
+        "sec-net-assets-accounts_payable",
+        "sec-cashflow-accounts_payable_adjustment",
+        "sec-cashflow-change_accrued_capital_expenditures",
+        "sec-recon-payable-close"
+      ],
+      "next_action": "取得财报底稿/明细或来源更正后按版本记录；当前不修源、不填参"
+    },
+    {
+      "id": "ground-amortization",
+      "label": "地租非现金摊销跨表对照",
+      "status": "source_difference_unresolved",
+      "difference_usd": 1,
+      "reason": "1美元差异待来源明细，不能自行称已修复；15.23%是地租计量折现率，不是项目WACC。",
+      "evidence_ids": [
+        "sec-cashflow-ground_lease_non_cash_amortization",
+        "sec-recon-ground-amortization"
+      ],
+      "next_action": "取得财报底稿/明细或来源更正后按版本记录；当前不修源、不填参"
+    },
+    {
+      "id": "property-reimbursement-scope",
+      "label": "完整物业费用与转付类别范围",
+      "status": "scope_difference_unresolved",
+      "difference_usd": 124777,
+      "reason": "物业运营费用12171536与附注转付12046759差124777；地租400000另列。缺逐项费用归类/转付明细，不能假定NOI100%或将差额一概当错账。",
+      "evidence_ids": [
+        "sec-property-reimbursement-gap",
+        "income-reimbursement",
+        "sec-operations-property_operating_expenses"
+      ],
+      "next_action": "取得物业费用/地租/保险税费和可转付明细，对齐同类及已付/未付，避免重复算。"
+    }
+  ],
+  "old_unread_superseded": [
+    "income-unread-image_6",
+    "income-unread-image_10",
+    "income-unread-image_15",
+    "income-unread-image_17"
+  ],
+  "remaining_unread": [
+    "SEC原始HTML未冻结；本轮以浏览器保存原表图，不能将转录摘要冒充原HTML摘要",
+    "image_4/11/12/13/18及其它未列图未逐表复核，财务回报摘要image_18仍未读",
+    "完整租约及修订、逐厅起租/发票/收款/费用/利息台账、上层股东现金瀑布仍未取得"
+  ],
+  "preserved": {
+    "formal_projects_and_general_model_unchanged": true,
+    "all_economic_inputs_unchanged": true,
+    "old_site_id_urls_and_previous_artifacts": true,
+    "original_unresolved_anomalies": 3,
+    "new_dollar_source_differences": 3,
+    "new_property_scope_difference_usd": 124777,
+    "automatic_new_parameter_fill": false,
+    "formal_adoptions": 0,
+    "human_confirmations": 0,
+    "model_use_certifications": 0,
+    "published": false
+  },
+  "checks": {
+    "focused_unit": 38,
+    "related_unit": 100,
+    "browser_suites_passed": 6,
+    "strict_registry_governance": "passed",
+    "offline_component": "all inputs unchanged, export/numeric replay, 1440/390/320 light/dark, zero HTTP",
+    "result_and_requested_diagram": "1440/390/320 light/dark, no overflow/HTTP, screenshots reviewed",
+    "full_ci_production": false
+  },
+  "capture_scope_note": "Selected artifact hashes, not a complete inventory of originals, private contracts or runtime data.",
+  "artifacts": [
+    {
+      "file": "sec-tables-review-20261014/source-receipts.json",
+      "sha256": "1a400779d96252de8ec3e11ecdd8e30bb2ac8beb10fe363c595a89cb05fa7136"
+    },
+    {
+      "file": "sec-tables-review-20261014/visual-transcription.json",
+      "sha256": "dd8453f139ae5f1c0db55db3901d9bda684c2eb7373a9d08081fb3b46d1c2af7"
+    },
+    {
+      "file": "sec-tables-review-20261014/audit-input.json",
+      "sha256": "e10b45ea2a160ee47316896d4b4e5eff0b748108b97c7801373e3a6bbcb26a88"
+    },
+    {
+      "file": "sec-tables-review-20261014/audit-result.json",
+      "sha256": "9c6f27eefb28daadc6fce60f43703ebde91c67ded25edc9dddc1eafd66e37181"
+    },
+    {
+      "file": "sec-tables-review-20261014/sec-table-review.json",
+      "sha256": "ed75af1d968cefe413fc6929f745074276865684058963eaa52bdfd6b95060e9"
+    },
+    {
+      "file": "sec-tables-review-20261014/result.html",
+      "sha256": "5d583f70ce31cb942c4ef797eaebd8ac7d023d4f6106128aad4cdbd079eb3213"
+    },
+    {
+      "file": "sec-tables-review-20261014/connection-diagram.html",
+      "sha256": "b54d3d35d91ae22e5374c377bb9577e3e97cc22a0758d24f50237d16e20b6757"
+    },
+    {
+      "file": "sec-tables-review-20261014/result-desktop.png",
+      "sha256": "36950f2357e3d31e0c266757f94e9f0c5f603737c06cdb11a3370b8f8b518d57"
+    },
+    {
+      "file": "sec-tables-review-20261014/result-mobile.png",
+      "sha256": "db549d16552044a0dd2b865e289c0ca77f93690a0271c0d7cac6ff3068740cd7"
+    },
+    {
+      "file": "sec-tables-review-20261014/connection-diagram-desktop.png",
+      "sha256": "f8c00566d36d4e1dc8de2e37b2e430b65c0b13b3b350d7c17f4a00b5a2afce32"
+    },
+    {
+      "file": "model-preview-v6-20261014/preview.html",
+      "sha256": "c43c06cd4b909e8c76712a9c6e9b2b9c8a46e52f339c7cb3b88140ee4cef7429"
+    },
+    {
+      "file": "model-preview-v6-20261014/scenario.json",
+      "sha256": "8e9da3ed44f3421c95735005a1412c150ce9c20549577f943f7f0c89667536c5"
+    },
+    {
+      "file": "model-preview-v6-20261014/sec-review-desktop.png",
+      "sha256": "db5c78b49c29cc6d1aeb4d49ce4c64218d696314df8dd70333d8ea2e97d7386a"
+    },
+    {
+      "file": "model-preview-v6-20261014/sec-review-mobile.png",
+      "sha256": "fb83982fba57cb42af2e72f9105443658584c06d74d1b91c5eaa099cc857404c"
+    }
+  ]
+}

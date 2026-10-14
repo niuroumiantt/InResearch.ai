@@ -1,0 +1,153 @@
+{
+  "version": "2026.10.14.122",
+  "status": "local_verified_not_published",
+  "site_id": "us-tx-abilene",
+  "scope": {
+    "id": "abilene-20260728-estimated-operating",
+    "label": "2026年7月28日聚合运行容量估算",
+    "effective_at": "2026-07-28",
+    "physical_scope": "whole_site",
+    "included": "原Stargate／Lancium园区来源估算的运行部分，无法逐栋分配",
+    "excluded": "相邻园区、未确认运行部分及2026年11月预测",
+    "actor": null,
+    "accounting_basis": "物理成本情景；不代表任一企业账目"
+  },
+  "bridge_version": "2026.10.14.1",
+  "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+  "observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+  "review_sha256": "5c79b3ab4d1906c0fc85dfe90336f9f682670fec495f57f1234b4636abcfc555",
+  "review_input_sha256": "5fb850656bdbee0d83de0ad54fb8012b019574c5331a2e77f44732d36680462b",
+  "review_result_sha256": "4d9c4a393bd2c375675369b420addfc2265e6a55560b45d338249bf1349a2dab",
+  "model_source_sha256": "135691968bf72c46d11335237449798e820ed397f7e443ded1640c3a475f4791",
+  "inputs_used": {
+    "it_mw": 421,
+    "load_factor": 0.7,
+    "pue": 1.28,
+    "power_price": 0.0707,
+    "energy_quota_mw": 0
+  },
+  "input_basis": {
+    "it_mw": {
+      "kind": "observation",
+      "actual_state": "existing_estimate",
+      "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+      "observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+      "rule_id": "it-capacity-v1",
+      "note": "固定观察；421MW第三方估算，非实测"
+    },
+    "load_factor": {
+      "kind": "assumption",
+      "actual_state": "unknown",
+      "note": "本次演示显式假设，非现场实绩",
+      "source_ref": {
+        "bridge_version": "2026.10.14.1",
+        "path": "demo_assumptions.load_factor"
+      }
+    },
+    "pue": {
+      "kind": "assumption",
+      "actual_state": "unknown",
+      "note": "本次演示显式假设，非现场实绩",
+      "source_ref": {
+        "bridge_version": "2026.10.14.1",
+        "path": "demo_assumptions.pue"
+      }
+    },
+    "power_price": {
+      "kind": "regional_reference",
+      "actual_state": "unknown",
+      "note": "得州参考；本园区适用值未知",
+      "source_ref": {
+        "model_source_sha256": "135691968bf72c46d11335237449798e820ed397f7e443ded1640c3a475f4791",
+        "path": "regions.us_texas.power_price"
+      }
+    },
+    "energy_quota_mw": {
+      "kind": "regional_reference",
+      "actual_state": "unknown",
+      "note": "得州参考；本园区适用值未知",
+      "source_ref": {
+        "model_source_sha256": "135691968bf72c46d11335237449798e820ed397f7e443ded1640c3a475f4791",
+        "path": "regions.us_texas.energy_quota_mw"
+      }
+    }
+  },
+  "annual_energy": {
+    "effective_it_mw": 421,
+    "facility_kwh": 3304412160,
+    "energy_charge_usd": 233621939.71199998,
+    "hours": 8760,
+    "formula": "min(it_mw, positive scenario energy_quota_mw if set) * 1000 * load_factor * pue * 8760",
+    "input_ids": [
+      "it_mw",
+      "energy_quota_mw",
+      "load_factor",
+      "pue",
+      "power_price"
+    ],
+    "status": "scenario_only",
+    "excludes": [
+      "demand charges",
+      "other contract charges"
+    ]
+  },
+  "derivations": [
+    "gpu-integer-configuration",
+    "it-from-hardware",
+    "performance-from-hardware",
+    "turbines-to-building",
+    "cost-from-it-scale"
+  ],
+  "blockers": [
+    {
+      "id": "table-ref-error",
+      "status": "confirmed_source_error",
+      "automatic_fill": false
+    },
+    {
+      "id": "precision-conflict",
+      "status": "confirmed_internal_inconsistency",
+      "automatic_fill": false
+    },
+    {
+      "id": "source-label-check",
+      "status": "clarified_derivation_not_literal_disclosure",
+      "automatic_fill": false
+    }
+  ],
+  "formal_adoptions": 0,
+  "model_parameters_verified": 0,
+  "published": false,
+  "validation": {
+    "unit_tests": 81,
+    "unit_tests_passed": true,
+    "browser_suites": [
+      "site_model_bridge",
+      "economics_navigation",
+      "datacenter_cost",
+      "datacenter_economics",
+      "datacenter_tco",
+      "global_campuses"
+    ],
+    "offline_real_component": "confirmed, editable, same state across views, export, 1440/390/320, light/dark, no HTTP requests",
+    "strict_warnings": 0,
+    "registry": "valid",
+    "final_head_ci": "not_run",
+    "production": "not_deployed",
+    "governance": "2026.10.14.122 verified, 2703 files; semantic coverage partial"
+  },
+  "artifacts_sha256": {
+    "preview-dark.png": "fa0c784e63c01831ec7a83ad34304d4d919ef2dc6abca304e50cb928ddbad8a9",
+    "preview-desktop.png": "fdf0f7acb96735c1debef30180811c6812ceaacf32cd41579bbfd25bb8dfae6e",
+    "preview-mobile.png": "635efc92175e9794b3add55a7d6e25ee23eeed8dcf349f4f809aa7bab97706a6",
+    "preview.html": "f84f515d9e5de7a5990017cb6359117024bf9adc0fa79bf0a79cf6f8d1fe4b3a",
+    "scenario.json": "797780d4f18e4b4ea1fa472675d54ecfebcf052a91dceb0be4d1165665bc31fe"
+  },
+  "limitations": [
+    "421MW is an adopted third-party estimate, not actual measured load.",
+    "Texas rate is regional reference; load/PUE are explicit scenario assumptions.",
+    "Financial results remain assumptions; energy charge excludes demand and other contract charges.",
+    "Candidates, three blockers, five candidate derivations, PDF remaining pages and imagery do not grant model applicability.",
+    "Local checks do not establish production deployment."
+  ]
+}

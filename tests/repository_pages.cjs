@@ -60,6 +60,13 @@ const ready = new Promise((resolve, reject)=>{
    }
    if(name==='inresearchrepo') {
      assert.equal(await page.locator('.audit-section').count(),6);
+     assert.match(await page.locator('#architecture-tools').innerText(),/经济分析/);
+     await page.locator('#architecture-legacy summary').click();
+     assert.match(await page.locator('#architecture-legacy').innerText(),/成本、收入、回报/);
+     assert.equal(await page.locator('#architecture-model-loop').isVisible(),true);
+     assert.equal(await page.locator('#architecture-abilene').isVisible(),false);
+     await page.locator('#architecture-example summary').click();
+     assert.match(await page.locator('#architecture-abilene').innerText(),/实际NOI/);
      assert.ok((await page.locator('#audit-demand').innerText()).includes('未接入'));
      assert.equal(await page.locator('.audit-map:not(#research-perspectives) article').count(),6);
      assert.deepEqual(await page.locator('#research-perspectives h3').allTextContents(),['通用数据中心','全球真实园区','两者怎样连接']);
