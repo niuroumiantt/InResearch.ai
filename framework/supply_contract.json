@@ -1,5 +1,5 @@
 {
-  "version": "1.14",
+  "version": "1.15",
   "effective_at": "2026-10-14",
   "phase": "planning_live",
   "operating_plan": {
@@ -602,7 +602,8 @@
     "transport": "controlled_ssh_file_import",
     "enabled_providers": [
       "fetchstat",
-      "fetchfilings"
+      "fetchfilings",
+      "fetchreports"
     ],
     "sources": {
       "fetchstat": [
@@ -618,6 +619,13 @@
           "native_id": "MSFT-AR2025",
           "url": "https://www.microsoft.com/investor/reports/ar25/index.html"
         }
+      ],
+      "fetchreports": [
+        {
+          "source_id": "fetchreports-lbnl-bootstrap",
+          "native_id": "DOI:10.71468/P1WC7Q:2024",
+          "url": "https://bies.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report"
+        }
       ]
     },
     "receiver": "manage.py collector-receive",
@@ -626,6 +634,6 @@
     "automatic_adoption": false,
     "automatic_model_parameters": false,
     "scheduled": false,
-    "phase": "fetchstat_fetchfilings_single_source_file_import_live"
+    "phase": "stat_filings_live_reports_ready_receipt_pending"
   }
 }

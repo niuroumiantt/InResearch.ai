@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.134。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.135。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2724。
+在册文件：2726。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 250 |
+| 配套说明 | 252 |
 | 测试 | 243 |
 
 ## 在册记录集合
@@ -1798,7 +1798,7 @@
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
-| `framework/current_state.json` | operational_guides | 14 |
+| `framework/current_state.json` | operational_guides | 15 |
 | `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/current_state.json` | compat_retirements | 7 |
 | `framework/dashboard_rules.json` | honesty | 5 |
@@ -2671,6 +2671,7 @@
 | [docs/guides/fetchdata/fetchfilings-company-disclosures.md](guides/fetchdata/fetchfilings-company-disclosures.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchfilings-production.md](guides/fetchdata/fetchfilings-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-market-prices.md](guides/fetchdata/fetchquotes-market-prices.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchreports-production.md](guides/fetchdata/fetchreports-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-research-publications.md](guides/fetchdata/fetchreports-research-publications.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-production.md](guides/fetchdata/fetchstat-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-statistics.md](guides/fetchdata/fetchstat-statistics.md) | 配套说明 |
@@ -2708,6 +2709,7 @@
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchdata-unified-local.md](handoff/fetchdata-unified-local.md) | 配套说明 |
 | [docs/handoff/fetchfilings-production.md](handoff/fetchfilings-production.md) | 配套说明 |
+| [docs/handoff/fetchreports-production.md](handoff/fetchreports-production.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/fetchstat-production.md](handoff/fetchstat-production.md) | 配套说明 |
 | `docs/handoff/github-sync-20261010-audit.json` | 项目配置 |
