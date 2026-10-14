@@ -1,7 +1,7 @@
 {
-  "schema_version": 2,
-  "version": "2026.10.14.1",
-  "mapping_version": "site-model-bridge-v2",
+  "schema_version": 3,
+  "version": "2026.10.14.2",
+  "mapping_version": "site-model-bridge-v3",
   "sites": [
     {
       "site_id": "us-tx-abilene",
@@ -192,14 +192,19 @@
           "target": "it_mw",
           "kind": "observation",
           "source_field": "capacity_it_mw",
-          "conditions": "固定观察ID、日期、whole_site范围和421MW估算值一致；不使用最新总量或预测",
+          "conditions": "固定观察ID、日期、whole_site范围和421MW估算值一致；不使用最新总量或预测；仅保留原规模情景，不把已登记估算当作独立验证或实测",
           "evidence_ids": [
             "body-it"
           ],
-          "independent_of": [
+          "entry_method": "pinned_observation_without_recalculation",
+          "evidence_independence": "shared_upstream_assumptions",
+          "dependency_derivation_ids": [
             "gpu-integer-configuration",
             "it-from-hardware",
-            "performance-from-hardware"
+            "facility-from-hardware",
+            "current-facility-from-buildings",
+            "current-it-from-configuration",
+            "rounded-observation-explanation"
           ]
         },
         {
@@ -220,7 +225,7 @@
           "item": "421MW已采用估算",
           "state": "adopted",
           "destination": "确认后it_mw",
-          "reason": "固定原观察ID与版本；仍为第三方估算，不是实测"
+          "reason": "保留原观察和估算身份；本轮追到与GPU共用的配置假设，不能视为独立验证"
         },
         {
           "angle": "容量／时间",
@@ -273,20 +278,20 @@
         }
       ],
       "review": {
-        "id": "abilene-recheck-20261013",
-        "reviewed_at": "2026-10-13",
-        "input_sha256": "5fb850656bdbee0d83de0ad54fb8012b019574c5331a2e77f44732d36680462b",
-        "result_sha256": "4d9c4a393bd2c375675369b420addfc2265e6a55560b45d338249bf1349a2dab",
+        "id": "abilene-dependency-review-20261014",
+        "reviewed_at": "2026-10-14",
+        "input_sha256": "4baf86a045df81de4165738939281244c7ef801c80b31189793b5c6b180708cc",
+        "result_sha256": "1ba8a4a9e19aa570441b37ac692715637cc425c96f3209b5d36d581732f2b3cb",
         "checklist_version": "2026.10.13.2",
         "checklist_sha256": "3ae336b5fdf1215bd9ab3ea681341c6a64ed0818eab5101eae4d8ddfbe3d76a9",
-        "inventory_units": 150,
+        "inventory_units": 169,
         "item_counts": {
           "anomaly": 3,
-          "candidate": 142,
+          "candidate": 160,
           "excluded": 0,
           "existing_observation": 2,
           "not_applicable": 0,
-          "not_checked": 3,
+          "not_checked": 4,
           "unknown": 23,
           "unread_attachment": 0
         },
@@ -352,11 +357,13 @@
             "status": "checked",
             "sha256": "666eb551cc87b0bb2fd271a49acd63a9fc126fdff951fa7f1bc1c43d9ef3f9f5",
             "text_sha256": "1334f6e41fd1db6d62a3acb12301f046facbbd61caebe6717b83a3e06c2a93d5",
-            "checked_scope": "全文文本检索；相关文本页1,2,149,150,151,152,157；视觉页149、157",
+            "checked_scope": "相关文本页1,2,145,146,149,150,151,152,157；视觉页149、157；原件312页未逐页研究",
             "total_pages": 312,
             "text_review_pages": [
               1,
               2,
+              145,
+              146,
               149,
               150,
               151,
@@ -408,6 +415,51 @@
             "sha256": "54c7252b6aff1c9b46e14087b03e1d214e16d58b5bca3d26dc5a1566a75c63c5",
             "text_sha256": "fd57b9065be35ab69435dd37df91dbc897e1aaf34ce942047e7147795a0f124e",
             "checked_scope": "Timeline!L17；Calculations!B4/B11/B12/B13/B18/B21/C4/C16/C21；Parameters!B26/E26/H26及依赖索引；其余仅提取，不声称语义全审"
+          },
+          {
+            "id": "permit-official",
+            "url": "https://www.tceq.texas.gov/assets/public/permitting/air/reports/applications/37589-ac.pdf",
+            "status": "checked",
+            "sha256": "666eb551cc87b0bb2fd271a49acd63a9fc126fdff951fa7f1bc1c43d9ef3f9f5",
+            "text_sha256": "1334f6e41fd1db6d62a3acb12301f046facbbd61caebe6717b83a3e06c2a93d5",
+            "checked_scope": "相关文本页1,2,145,146,149,150,151,152,157；视觉页149、157；原件312页未逐页研究",
+            "total_pages": 312,
+            "text_review_pages": [
+              1,
+              2,
+              145,
+              146,
+              149,
+              150,
+              151,
+              152,
+              157
+            ],
+            "visual_review_pages": [
+              149,
+              157
+            ],
+            "remaining_pages": "not_individually_reviewed",
+            "mirror_of": "permit"
+          },
+          {
+            "id": "permit-transfer",
+            "url": "https://www.tceq.texas.gov/assets/public/permitting/air/reports/applications/37589-tc.pdf",
+            "status": "checked",
+            "sha256": "9dceff11cbf5c3b0626f5cb110e67749055f7790a41d3749f2d2b5f6cbe2689f",
+            "text_sha256": "dc0d5750f0832c964881a3ece26c2c3e1c3415e3277731b41a66cf0c7ea8a46c",
+            "checked_scope": "331页原件仅文本页1-4及视觉页1；其余327页未逐页审阅",
+            "total_pages": 331,
+            "text_review_pages": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "visual_review_pages": [
+              1
+            ],
+            "remaining_pages": "not_individually_reviewed"
           }
         ],
         "items": [
@@ -478,11 +530,11 @@
             "reason": "原表存在公式错误；不执行或猜补，不采用错误值",
             "followup": {
               "status": "confirmed_source_error",
-              "conclusion": "已核原生Timeline!L17：公式自身含失效引用；不填值、不修来源。",
+              "conclusion": "失效引用在预测行L17的每GW IT成本；仅阻断该项及其下游，不能据此否定全部成本记录。",
               "item_ids": [
                 "native-ref-error"
               ],
-              "at": "2026-10-13"
+              "at": "2026-10-14"
             }
           },
           {
@@ -526,11 +578,12 @@
             "reason": "计算行出现FP16，而正文展示8-bit；可能涉及换算或标签，未核原公式前不选一个覆盖另一个",
             "followup": {
               "status": "confirmed_internal_inconsistency",
-              "conclusion": "已追到8-bit参数与FP16文字说明；冲突仍未得到来源澄清。",
+              "conclusion": "八栋峰值规格与所选四栋计算分开；8-bit／FP16冲突仍保留，任何结果均不转实测吞吐。",
               "item_ids": [
-                "native-performance-formula"
+                "native-performance-formula",
+                "native-current-compute"
               ],
-              "at": "2026-10-13"
+              "at": "2026-10-14"
             }
           },
           {
@@ -542,13 +595,23 @@
             "reason": "数量表标公司披露，Calculations又解释按整数NVL72配置取50400；未读影响报告前不能认定该精确值为公司原文",
             "followup": {
               "status": "clarified_derivation_not_literal_disclosure",
-              "conclusion": "原PDF给设计上限且计数单位有歧义；50400来自研究方整柜取整，不作为公司逐字披露或已部署值。",
+              "conclusion": "取整假设也进入421.344MW和算力链；与GPU数量不是独立证据。原421MW观察保留，旧网页与本轮工作簿版本差异仍明确。",
               "item_ids": [
                 "impact-gpu-wording",
-                "native-integer-gpu"
+                "native-integer-gpu",
+                "native-current-it-power",
+                "native-current-compute"
               ],
-              "at": "2026-10-13"
+              "at": "2026-10-14"
             }
+          },
+          {
+            "id": "permit-unread",
+            "label": "许可申请：原未读项现已取得并局部核验",
+            "state": "candidate",
+            "source_id": "permit",
+            "locator": "PDF selected pages",
+            "reason": "完整原件已取得，相关页已核；不声称其余页已读或现场事实已采用"
           },
           {
             "id": "unknown-capacity.3",
@@ -721,12 +784,28 @@
             "reason": "第18页为公司设计平均目标，不是Abilene期间实测；不能拿来认证情景PUE1.28"
           },
           {
+            "id": "permit-identity",
+            "label": "申请主体、场所名称及监管身份",
+            "state": "candidate",
+            "source_id": "permit",
+            "locator": "PDF p1/149/157",
+            "reason": "申请文件及源链接形成待核对象连接；Longhorn／Ludicrous别名、申请主体和园区产权／运营角色分别核对，不新造公司ID"
+          },
+          {
             "id": "permit-turbines",
             "label": "发电机组与满建成范围",
             "state": "candidate",
             "source_id": "permit",
             "locator": "PDF p149",
             "reason": "第149页列五台38MW及五台34.1MW，算术合计360.5MW为发电额定描述；不是园区已运行IT或批准接入容量"
+          },
+          {
+            "id": "permit-generators",
+            "label": "柴油备用设备、工况及排放",
+            "state": "candidate",
+            "source_id": "permit",
+            "locator": "PDF p149",
+            "reason": "第149页有分组功率、运行小时与排放类型；按申请和满建成范围登记，不当现役设备清单"
           },
           {
             "id": "permit-plan",
@@ -791,6 +870,158 @@
             "source_id": "native-workbook",
             "locator": "Calculations!B13/C13",
             "reason": "申请机组数值能核到，均分两栋仍为来源假设；不等于每栋可用容量或实际负载"
+          },
+          {
+            "id": "native-rack-chip-count",
+            "label": "单柜72颗为参考配置",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Calculations!B3",
+            "reason": "参考柜的器件数量，不证明现场柜数"
+          },
+          {
+            "id": "native-rack-power",
+            "label": "参考整柜额定功率0.132MW",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Parameters!E5",
+            "reason": "GB200参考额定值，不能自动套B300或现场平均功耗"
+          },
+          {
+            "id": "native-it-overhead-factor",
+            "label": "IT开销系数1.14",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Parameters!E4",
+            "reason": "研究方基于参考架构选择；非现场计量"
+          },
+          {
+            "id": "native-peak-pue",
+            "label": "来源峰值容量比例1.4",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Parameters!E3/B3",
+            "reason": "转换峰值IT和设施容量，不是年度能耗PUE1.28"
+          },
+          {
+            "id": "native-operating-buildings",
+            "label": "所选日期四栋运行估计",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Timeline!D16",
+            "reason": "来源估计运行栋数；不等于逐栋验收或计量证明"
+          },
+          {
+            "id": "native-planned-buildings",
+            "label": "算力总式使用八栋",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Calculations!B6",
+            "reason": "全建成假设，不是所选日期四栋运行估计"
+          },
+          {
+            "id": "native-performance-parameter",
+            "label": "来源8-bit规格参数5E15",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Parameters!B26/E26/H26",
+            "reason": "参数标签与FP16说明冲突保留，不认证计算精度"
+          },
+          {
+            "id": "native-b200-count",
+            "label": "B200数量100800沿取整配置推导",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Chip quantities!C3/E3",
+            "reason": "2×50400；公司披露标签不把取整推导变成逐字披露"
+          },
+          {
+            "id": "native-b300-count",
+            "label": "B300数量100800为估计",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Chip quantities!C4/D4/E4/H4",
+            "reason": "2×50400；型号也由建筑／冷源和销售时间推测"
+          },
+          {
+            "id": "native-current-gpu-count",
+            "label": "所选四栋GPU合计201600的算术复现",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Chip quantities!C3/C4",
+            "reason": "两项100800相加；同用50400假设，不是独立清点"
+          },
+          {
+            "id": "native-facility-per-building",
+            "label": "每栋设施峰值功率147.4704MW",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Calculations!B12/B18",
+            "reason": "由GPU配置IT功率再乘峰值比例1.4，不是独立设施测量"
+          },
+          {
+            "id": "native-current-facility-power",
+            "label": "所选四栋设施功率589.8816MW",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Timeline!D16/F16",
+            "reason": "四栋×每栋估算；不能拿来独立验证GPU数量"
+          },
+          {
+            "id": "native-current-it-power",
+            "label": "原生表421.344MW与已有421MW对应",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Timeline!E16/F16",
+            "reason": "复核版本由配置推得421.344，显示为421；旧观察网页SHA不同，未证明旧版公式逐字相同"
+          },
+          {
+            "id": "native-current-compute",
+            "label": "所选日期1.008E21 OP/s来源估算",
+            "state": "candidate",
+            "source_id": "native-workbook",
+            "locator": "Timeline!G16",
+            "reason": "八栋理论算力按四栋分配；精度冲突未解，不是实际吞吐"
+          },
+          {
+            "id": "permit-initial-application",
+            "label": "2025-01-23首次申请与主体",
+            "state": "candidate",
+            "source_id": "permit",
+            "locator": "PDF p145-146",
+            "reason": "该版本明确为首次申请且称运行前提交；不证明最终批准或当前状态"
+          },
+          {
+            "id": "permit-official-mirror",
+            "label": "官方原件与已有附件字节同一",
+            "state": "candidate",
+            "source_id": "permit-official",
+            "locator": "同一SHA的312页申请原件",
+            "reason": "TCEQ官方37589-ac与Drive附件SHA一致，只计一份证据"
+          },
+          {
+            "id": "permit-process-scope",
+            "label": "设备流程图指向DC1和DC2",
+            "state": "candidate",
+            "source_id": "permit",
+            "locator": "PDF p151-152",
+            "reason": "图中有标准许可／PBR编号；不等于全园区Title V已签发或并网批准"
+          },
+          {
+            "id": "permit-transfer-content",
+            "label": "2025年行政变更申请及历史生效日",
+            "state": "candidate",
+            "source_id": "permit-transfer",
+            "locator": "PDF p1-4",
+            "reason": "信函2025-08-29；称2025-06-24变更，涉及工作草稿许可04721，不能直接覆盖土地产权、当前运营方或批准状态"
+          },
+          {
+            "id": "permit-transfer-remaining",
+            "label": "后续行政变更附件其余327页未逐页审阅",
+            "state": "not_checked",
+            "source_id": "permit-transfer",
+            "locator": "PDF p5-331",
+            "reason": "完整原件已取得，仅核前四页；其余仍未检查"
           }
         ],
         "derivations": [
@@ -815,8 +1046,9 @@
             "output_item_id": "native-it-overheads",
             "input_item_ids": [
               "native-integer-gpu",
-              "parameters-row-3",
-              "parameters-row-4"
+              "native-rack-chip-count",
+              "native-rack-power",
+              "native-it-overhead-factor"
             ],
             "source_id": "native-workbook",
             "locator": "Calculations!B11",
@@ -832,7 +1064,8 @@
             "output_item_id": "native-performance-formula",
             "input_item_ids": [
               "native-integer-gpu",
-              "parameters-row-24"
+              "native-planned-buildings",
+              "native-performance-parameter"
             ],
             "source_id": "native-workbook",
             "locator": "Calculations!B21",
@@ -870,20 +1103,165 @@
             "locator": "Capital cost model",
             "formula": "IT capacity times source unit-capacity cost model; not actual spend",
             "assumptions": [
-              "通用单位成本与现场组成、价格、币值时点和主体不完全对齐"
+              "通用单位成本与现场组成、价格、币值时点和主体不完全对齐",
+              "159亿美元为正文报告值；冻结方法页的38B/GW与421.344MW不能精确复现该数，原币值／系数版本与舍入口径未贯通，不强行拟合"
             ],
             "scope": "来源园区成本估算",
-            "review_state": "candidate"
+            "review_state": "candidate",
+            "relationship_kind": "methodological_dependency_not_exact_replay"
+          },
+          {
+            "id": "b200-count-from-configuration",
+            "output_item_id": "native-b200-count",
+            "input_item_ids": [
+              "native-integer-gpu"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Chip quantities!C3",
+            "formula": "2*Calculations!B4",
+            "assumptions": [
+              "两栋数量仍为来源配置推导"
+            ],
+            "scope": "来源B200数量",
+            "review_state": "candidate",
+            "relationship_kind": "source_formula_candidate"
+          },
+          {
+            "id": "b300-count-from-configuration",
+            "output_item_id": "native-b300-count",
+            "input_item_ids": [
+              "native-integer-gpu"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Chip quantities!C4",
+            "formula": "2*Calculations!B4",
+            "assumptions": [
+              "B300型号与数量均有推测条件"
+            ],
+            "scope": "来源B300数量",
+            "review_state": "candidate",
+            "relationship_kind": "source_formula_candidate"
+          },
+          {
+            "id": "current-gpu-count",
+            "output_item_id": "native-current-gpu-count",
+            "input_item_ids": [
+              "native-b200-count",
+              "native-b300-count"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Chip quantities!C3/C4",
+            "formula": "100800 + 100800 = 201600",
+            "assumptions": [
+              "本地只作显式常数算术，不执行源工作簿"
+            ],
+            "scope": "所选日期四栋",
+            "review_state": "candidate",
+            "relationship_kind": "source_formula_candidate"
+          },
+          {
+            "id": "facility-from-hardware",
+            "output_item_id": "native-facility-per-building",
+            "input_item_ids": [
+              "native-it-overheads",
+              "native-peak-pue"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Calculations!B12/B18",
+            "formula": "105.336 * 1.4 = 147.4704 MW",
+            "assumptions": [
+              "峰值容量比例不是年度PUE"
+            ],
+            "scope": "每栋参考配置",
+            "review_state": "candidate",
+            "relationship_kind": "source_formula_candidate"
+          },
+          {
+            "id": "current-facility-from-buildings",
+            "output_item_id": "native-current-facility-power",
+            "input_item_ids": [
+              "native-operating-buildings",
+              "native-facility-per-building"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Timeline!F16",
+            "formula": "4 * 147.4704 = 589.8816 MW",
+            "assumptions": [
+              "运行栋数仍为来源估计"
+            ],
+            "scope": "四栋估计运行范围",
+            "review_state": "candidate",
+            "relationship_kind": "source_formula_candidate"
+          },
+          {
+            "id": "current-it-from-configuration",
+            "output_item_id": "native-current-it-power",
+            "input_item_ids": [
+              "native-current-facility-power",
+              "native-peak-pue"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Timeline!E16",
+            "formula": "589.8816 / 1.4 = 421.344 MW",
+            "assumptions": [
+              "共用GPU取整配置；不作为独立现场测量"
+            ],
+            "scope": "四栋估计运行范围",
+            "review_state": "candidate",
+            "relationship_kind": "source_formula_candidate"
+          },
+          {
+            "id": "rounded-observation-explanation",
+            "output_item_id": "body-it",
+            "input_item_ids": [
+              "native-current-it-power"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Timeline!E16 versus existing observation",
+            "formula": "421.344 rounded to 421 matches the recorded estimate",
+            "assumptions": [
+              "既有观察的网页SHA与本轮工作簿不同；旧版公式尚未取得，保留版本差异",
+              "此关系为候选解释，既有观察不重新采用、不改值"
+            ],
+            "scope": "跨版本估算解释",
+            "review_state": "candidate",
+            "relationship_kind": "cross_version_explanation_candidate"
+          },
+          {
+            "id": "current-compute-from-buildings",
+            "output_item_id": "native-current-compute",
+            "input_item_ids": [
+              "native-performance-formula",
+              "native-planned-buildings",
+              "native-operating-buildings"
+            ],
+            "source_id": "native-workbook",
+            "locator": "Timeline!G16",
+            "formula": "2.016E21 / 8 * 4 = 1.008E21 OP/s",
+            "assumptions": [
+              "精度、稀疏性与混合代际条件未解；不是实测吞吐"
+            ],
+            "scope": "四栋估计运行范围",
+            "review_state": "candidate",
+            "relationship_kind": "source_formula_candidate"
           }
         ],
         "limitations": [
-          "只投影与模型预览有关的复核条目；完整150个显式资料单元留在本地审计。",
-          "PDF相关页已核，余页未逐页阅读；原影像未逐张检查。",
-          "推导只登记关系与条件，不在此执行来源工作簿公式。",
-          "复核不是新事实采用或模型用途认证。"
-        ]
+          "两份PDF完整字节已取得并核相关页，但64／312页未逐页深读；余页和原影像仍待查",
+          "源XLSX只读取公式文本及缓存值，不执行公式、宏、外部链接或导出DUMMYFUNCTION",
+          "原网页、CSV、PDF、XLSX不同版本分别保存，不覆盖旧SHA或既有容量观察",
+          "源公司设计、研究方整数配置和估算、实际部署必须分开；不自行纠正源型号单位",
+          "来源数值及推导候选不等于独立现场证据；所有新增正式采用、模型认证、发布均为零",
+          "观察视图可扩展且交叉，不宣称十二项互斥或全行业永远穷尽；旧五列为兼容投影",
+          "来源队只登记研究侧交付要求，不代表外部采集器接通或任务已执行",
+          "421MW、GPU数量与算力共用配置假设；固定引用记录不等于来源证据独立",
+          "官方37589-ac与已有许可附件字节同一，不多算一份独立证据；后续37589-tc只核前四页",
+          "本轮原件内容核对可进入人工复核，但不冒充人类确认、现场安装／投运、最终许可或模型用途采用",
+          "成本链只确认方法依赖；159亿美元的精确系数／版本和舍入未贯通"
+        ],
+        "previous_review_sha256": "5c79b3ab4d1906c0fc85dfe90336f9f682670fec495f57f1234b4636abcfc555"
       },
-      "review_sha256": "5c79b3ab4d1906c0fc85dfe90336f9f682670fec495f57f1234b4636abcfc555",
+      "review_sha256": "78ddf6651b7a58b533d550b43ff69a722a7771cdc316c90672c9727d303f3d3f",
       "expected_observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
       "blockers": [
         {
@@ -894,7 +1272,7 @@
           ],
           "status": "confirmed_source_error",
           "label": "来源公式失效",
-          "reason": "Timeline!L17原生公式含#REF!；不猜修复值。",
+          "reason": "L17预测行的每GW IT成本含#REF!；保留源错误，不扩大为全部成本失效。",
           "blocked_targets": [
             "it_capex_per_kw",
             "shell_capex_per_mw"
@@ -909,7 +1287,7 @@
           ],
           "status": "confirmed_internal_inconsistency",
           "label": "算力精度不一致",
-          "reason": "Calculations!B21使用8-bit参数，C21称FP16；不转实测吞吐。",
+          "reason": "八栋／四栋与8-bit／FP16分开；仍不转实测吞吐或利用率。",
           "blocked_targets": [
             "gpus_per_mw",
             "gpu_utilization"
@@ -921,11 +1299,13 @@
           "evidence_ids": [
             "source-label-check",
             "impact-gpu-wording",
-            "native-integer-gpu"
+            "native-integer-gpu",
+            "native-current-it-power",
+            "native-current-gpu-count"
           ],
           "status": "clarified_derivation_not_literal_disclosure",
           "label": "披露与取整推导分开",
-          "reason": "原PDF给设计上限且单位有歧义；50400为整数NVL72配置选择，不证明实际安装。",
+          "reason": "50400取整假设进入GPU、容量、算力及成本链，不能相互独立验证；固定421MW仅保留原规模情景。",
           "blocked_targets": [
             "gpus_per_mw",
             "it_mw"
@@ -935,7 +1315,918 @@
             "it-capacity-v1"
           ]
         }
-      ]
+      ],
+      "dependency_notice": {
+        "status": "shared_upstream_assumptions",
+        "summary": "GPU数量、421MW、算力和模型成本共用配置假设；不能互相作为独立证据。固定观察引用不等于来源证据独立。",
+        "shared_item_ids": [
+          "native-integer-gpu",
+          "impact-gpu-wording"
+        ],
+        "capacity_item_id": "body-it",
+        "gpu_item_id": "native-current-gpu-count",
+        "compute_item_id": "native-current-compute",
+        "cost_item_id": "body-capex",
+        "version_limit": "本轮工作簿421.344MW可对应原记录421MW；原观察网页SHA不同，未取得旧版工作簿，不认证跨版本公式完全同一。",
+        "cost_limit": "159亿美元保留为正文报告估算；精确单位成本系数、模型版本与舍入尚未贯通，不强行拟合。",
+        "replays": [
+          {
+            "label": "GPU合计",
+            "expression": "100800 + 100800",
+            "value": 201600,
+            "unit": "颗",
+            "status": "arithmetic_only"
+          },
+          {
+            "label": "每栋IT估算",
+            "expression": "50400 / 72 * 0.132 * 1.14",
+            "value": 105.336,
+            "unit": "MW",
+            "status": "arithmetic_only"
+          },
+          {
+            "label": "每栋设施峰值估算",
+            "expression": "105.336 * 1.4",
+            "value": 147.4704,
+            "unit": "MW",
+            "status": "arithmetic_only"
+          },
+          {
+            "label": "所选四栋IT估算",
+            "expression": "4 * 147.4704 / 1.4",
+            "value": 421.344,
+            "unit": "MW",
+            "status": "arithmetic_only"
+          },
+          {
+            "label": "全建成八栋算力估算",
+            "expression": "8 * 50400 * 5E15",
+            "value": 2.016e+21,
+            "unit": "OP/s",
+            "status": "precision_unresolved"
+          },
+          {
+            "label": "所选四栋算力估算",
+            "expression": "2.016E21 / 8 * 4",
+            "value": 1.008e+21,
+            "unit": "OP/s",
+            "status": "precision_unresolved"
+          }
+        ]
+      },
+      "document_checks": [
+        {
+          "id": "design-cooling",
+          "label": "液冷与风冷冷源设计",
+          "source_id": "impact",
+          "locator": "PDF p19/26",
+          "statement": "报告描述直接芯片液冷、风冷冷水机组及闭环零蒸发设计。",
+          "scope": "document_statement",
+          "boundary": "确认公司设计描述；不确认实际比例、整园区零耗水、实测PUE或WUE。",
+          "evidence_ids": [
+            "impact-cooling-design"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "design-plan",
+          "label": "园区规划与历史送电预期",
+          "source_id": "impact",
+          "locator": "PDF p19",
+          "statement": "报告列1.2GW计划、八栋约400万平方英尺及2025年206MW预期。",
+          "scope": "document_statement",
+          "boundary": "是该版本的规划／历史预期；不补成所选2026日期已投运IT或批准容量。",
+          "evidence_ids": [
+            "impact-design-capacity"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "design-pue",
+          "label": "公司设计PUE范围",
+          "source_id": "impact",
+          "locator": "PDF p18",
+          "statement": "报告列公司设计平均PUE1.2—1.3。",
+          "scope": "company_design",
+          "boundary": "公司范围的设计说明，不认证Abilene年度PUE1.28。",
+          "evidence_ids": [
+            "impact-generic-pue"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "design-gpu-wording",
+          "label": "GPU计数原文与单位歧义",
+          "source_id": "impact",
+          "locator": "PDF p19",
+          "statement": "原报告的每栋设计上限使用GB200 NVL72型号措辞，单位歧义仍保留。",
+          "scope": "document_statement",
+          "boundary": "原件内容已核对；不自行改写为精确GPU或机柜数量。",
+          "evidence_ids": [
+            "impact-gpu-wording"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "permit-application",
+          "label": "首次申请及申请主体",
+          "source_id": "permit-official",
+          "locator": "PDF p145-146",
+          "statement": "2025-01-23首次申请列Abilene DC 1 LLC及Longhorn，称运行前提交。",
+          "scope": "document_statement",
+          "boundary": "仅确认该版本申请内容与历史身份；不是最终批准、土地产权或当前运营身份。",
+          "evidence_ids": [
+            "permit-initial-application",
+            "permit-official-mirror"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "permit-turbines-content",
+          "label": "燃气机组配置",
+          "source_id": "permit",
+          "locator": "PDF p149",
+          "statement": "满建成描述列5台38MW与5台34.1MW，额定合计360.5MW。",
+          "scope": "document_statement",
+          "boundary": "不确认已安装／运行数量、IT容量、并网批准或负载；两栋均分仍是来源假设。",
+          "evidence_ids": [
+            "permit-turbines"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "permit-diesel-content",
+          "label": "柴油备用设备分组",
+          "source_id": "permit",
+          "locator": "PDF p149",
+          "statement": "文件按功率和年运行小时上限列柴油机组及18个油箱。",
+          "scope": "document_statement",
+          "boundary": "保留分组和上限，不当实际设备清点或实际运行时长。",
+          "evidence_ids": [
+            "permit-generators"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "permit-process-content",
+          "label": "设备许可与园区范围分开",
+          "source_id": "permit",
+          "locator": "PDF p151-152",
+          "statement": "流程图指向Data Center 1 & 2，并列设备标准许可177263／PBR177262。",
+          "scope": "document_statement",
+          "boundary": "确认文件所称；不由此认定全园区Title V或并网许可已批准。",
+          "evidence_ids": [
+            "permit-process-scope"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "drawing-building2",
+          "label": "BLDG2建筑场地图",
+          "source_id": "permit",
+          "locator": "PDF p157 / B2-A101 / 2024-08-30",
+          "statement": "图名LUDICROUS BLDG 2，设计地址617 FM2404，约484960平方英尺；A/B/C/D为翼区。",
+          "scope": "one_building_design",
+          "boundary": "四个翼区不是四栋；设计图不是竣工图，设备符号不当已安装清单；产权关联仍待核。",
+          "evidence_ids": [
+            "permit-plan"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        },
+        {
+          "id": "permit-transfer-content",
+          "label": "后续行政变更申请",
+          "source_id": "permit-transfer",
+          "locator": "PDF p1-4",
+          "statement": "2025-08-29信函称2025-06-24变更；表格列Abilene Data Center Campus Master Association与RN112029061。",
+          "scope": "document_statement",
+          "boundary": "仅确认工作草稿许可相关行政变更申请；收件章不是批准，不能直接改写土地所有者或当前角色；余页未审。",
+          "evidence_ids": [
+            "permit-transfer-content"
+          ],
+          "checked_at": "2026-10-14",
+          "checked_by": "Codex（代理原件核对）",
+          "status": "source_content_checked",
+          "ready_for_human_review": true,
+          "actual_site_verified": false,
+          "model_eligible": false
+        }
+      ],
+      "document_review_sha256": "b985ef63312a3a4f58d06140d2ed46b0a9be2112c1c3a13478cbafe2053f20c3",
+      "parameter_basis": {
+        "it_mw": {
+          "kind": "observation",
+          "actual_state": "existing_estimate",
+          "note": "固定421MW来源估算；共用GPU配置假设，不是独立现场证据",
+          "source_ref": {
+            "path": "pinned_observation"
+          },
+          "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+          "observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+          "rule_id": "it-capacity-v1"
+        },
+        "redundancy": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.redundancy"
+          }
+        },
+        "construction_years": {
+          "kind": "generic_reference",
+          "actual_state": "unknown",
+          "note": "通用建设周期参考2年；不是本园区实际建设时长",
+          "source_ref": {
+            "path": "regions.us_texas.construction_years"
+          }
+        },
+        "horizon_years": {
+          "kind": "analysis_choice",
+          "actual_state": "not_site_observation",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "source_ref": {
+            "path": "assumptions.horizon_years"
+          }
+        },
+        "ramp_year1": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.ramp_year1"
+          }
+        },
+        "ramp_year2": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.ramp_year2"
+          }
+        },
+        "site": {
+          "kind": "location_reference",
+          "actual_state": "known_geography",
+          "note": "已登记得州地点，仅建议地区表；不证明其余参数适用",
+          "source_ref": {
+            "path": "registered_site.country/province"
+          }
+        },
+        "power_price": {
+          "kind": "regional_reference",
+          "actual_state": "unknown",
+          "note": "地区费率参考；供应方、客户类别、合同与期间适用性未知",
+          "source_ref": {
+            "path": "regions.us_texas.power_price"
+          }
+        },
+        "demand_rate": {
+          "kind": "regional_reference",
+          "actual_state": "unknown",
+          "note": "地区费率参考；供应方、客户类别、合同与期间适用性未知",
+          "source_ref": {
+            "path": "regions.us_texas.demand_rate"
+          }
+        },
+        "power_escalation": {
+          "kind": "historical_reference",
+          "actual_state": "unknown",
+          "note": "通用历史／趋势参考用于未来情景；未来涨幅不是已知现场事实",
+          "source_ref": {
+            "path": "regions.us_texas.power_escalation"
+          }
+        },
+        "land_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.land_per_mw"
+          }
+        },
+        "labor_index": {
+          "kind": "generic_reference",
+          "actual_state": "unknown",
+          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核",
+          "source_ref": {
+            "path": "regions.us_texas.labor_index"
+          }
+        },
+        "property_tax_rate": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.property_tax_rate"
+          }
+        },
+        "water_price": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.water_price"
+          }
+        },
+        "cooling": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.cooling"
+          }
+        },
+        "pue": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "本次演示显式假设；不是现场实绩或公司设计范围的认证",
+          "source_ref": {
+            "path": "demo_assumptions.pue"
+          }
+        },
+        "wue": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.wue"
+          }
+        },
+        "it_class": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.it_class"
+          }
+        },
+        "it_capex_per_kw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.it_capex_per_kw"
+          }
+        },
+        "load_factor": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "本次演示显式假设；不是现场实绩或公司设计范围的认证",
+          "source_ref": {
+            "path": "demo_assumptions.load_factor"
+          }
+        },
+        "it_refresh_years": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.it_refresh_years"
+          }
+        },
+        "refresh_cost_factor": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.refresh_cost_factor"
+          }
+        },
+        "gpus_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.gpus_per_mw"
+          }
+        },
+        "gpu_utilization": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.gpu_utilization"
+          }
+        },
+        "facility_mode": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.facility_mode"
+          }
+        },
+        "capex_building": {
+          "kind": "generic_reference",
+          "actual_state": "unknown",
+          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核",
+          "source_ref": {
+            "path": "regions.us_texas.capex_building"
+          }
+        },
+        "capex_electrical": {
+          "kind": "generic_reference",
+          "actual_state": "unknown",
+          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核",
+          "source_ref": {
+            "path": "regions.us_texas.capex_electrical"
+          }
+        },
+        "capex_mechanical": {
+          "kind": "generic_reference",
+          "actual_state": "unknown",
+          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核",
+          "source_ref": {
+            "path": "regions.us_texas.capex_mechanical"
+          }
+        },
+        "capex_fitout": {
+          "kind": "generic_reference",
+          "actual_state": "unknown",
+          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核",
+          "source_ref": {
+            "path": "regions.us_texas.capex_fitout"
+          }
+        },
+        "soft_cost_pct": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.soft_cost_pct"
+          }
+        },
+        "contingency_pct": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.contingency_pct"
+          }
+        },
+        "shell_rent_per_mw": {
+          "kind": "generic_reference",
+          "actual_state": "unknown",
+          "note": "区域／通用造价或指数参考；现场资产、计价期与适用性未核",
+          "source_ref": {
+            "path": "regions.us_texas.shell_rent_per_mw"
+          }
+        },
+        "colo_rate": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.colo_rate"
+          }
+        },
+        "fte_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.fte_per_mw"
+          }
+        },
+        "cost_per_fte": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.cost_per_fte"
+          }
+        },
+        "maint_pct_facility": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.maint_pct_facility"
+          }
+        },
+        "maint_pct_it": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.maint_pct_it"
+          }
+        },
+        "software_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.software_per_mw"
+          }
+        },
+        "insurance_pct": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.insurance_pct"
+          }
+        },
+        "bandwidth_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.bandwidth_per_mw"
+          }
+        },
+        "other_opex_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.other_opex_per_mw"
+          }
+        },
+        "opex_escalation": {
+          "kind": "historical_reference",
+          "actual_state": "unknown",
+          "note": "通用历史／趋势参考用于未来情景；未来涨幅不是已知现场事实",
+          "source_ref": {
+            "path": "assumptions.opex_escalation"
+          }
+        },
+        "decommission_pct": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.decommission_pct"
+          }
+        },
+        "wacc": {
+          "kind": "analysis_choice",
+          "actual_state": "not_site_observation",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "source_ref": {
+            "path": "assumptions.wacc"
+          }
+        },
+        "business_model": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.business_model"
+          }
+        },
+        "price_gpu_hour": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.price_gpu_hour"
+          }
+        },
+        "price_colo_kw_month": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.price_colo_kw_month"
+          }
+        },
+        "accelerator_share": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.accelerator_share"
+          }
+        },
+        "shell_capex_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.shell_capex_per_mw"
+          }
+        },
+        "btm_capex_per_mw": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.btm_capex_per_mw"
+          }
+        },
+        "tax": {
+          "kind": "statutory_reference",
+          "actual_state": "unknown",
+          "note": "模型法定税率参考；主体、税基和减免适用性未核",
+          "source_ref": {
+            "path": "regions.us_texas.tax"
+          }
+        },
+        "lease_term": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.lease_term"
+          }
+        },
+        "escalator": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.escalator"
+          }
+        },
+        "noi_margin": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.noi_margin"
+          }
+        },
+        "shell_ltc": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.shell_ltc"
+          }
+        },
+        "debt_rate": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.debt_rate"
+          }
+        },
+        "residual_share": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.residual_share"
+          }
+        },
+        "chip_gross_margin": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.chip_gross_margin"
+          }
+        },
+        "compute_source": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.compute_source"
+          }
+        },
+        "rent_price": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.rent_price"
+          }
+        },
+        "tokens_per_gpu_sec": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.tokens_per_gpu_sec"
+          }
+        },
+        "price_per_m_tokens": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.price_per_m_tokens"
+          }
+        },
+        "monetized_share": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.monetized_share"
+          }
+        },
+        "renewal_options": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.renewal_options"
+          }
+        },
+        "renewal_years": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.renewal_years"
+          }
+        },
+        "renewal_probability": {
+          "kind": "analysis_choice",
+          "actual_state": "not_site_observation",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "source_ref": {
+            "path": "assumptions.renewal_probability"
+          }
+        },
+        "price_change": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.price_change"
+          }
+        },
+        "compute_ltc": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.compute_ltc"
+          }
+        },
+        "compute_debt_rate": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.compute_debt_rate"
+          }
+        },
+        "capex_basis": {
+          "kind": "analysis_choice",
+          "actual_state": "not_site_observation",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "source_ref": {
+            "path": "assumptions.capex_basis"
+          }
+        },
+        "energy_quota_mw": {
+          "kind": "unknown_unset",
+          "actual_state": "unknown",
+          "note": "现场约束未知／未设置；0只让计算不施加此上限，不表示批准0MW或无限容量",
+          "source_ref": {
+            "path": "regions.us_texas.energy_quota_mw"
+          }
+        },
+        "tenancy": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.tenancy"
+          }
+        },
+        "util_year1": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.util_year1"
+          }
+        },
+        "util_year2": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.util_year2"
+          }
+        },
+        "price_path": {
+          "kind": "analysis_choice",
+          "actual_state": "not_site_observation",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "source_ref": {
+            "path": "assumptions.price_path"
+          }
+        },
+        "gate": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.gate"
+          }
+        },
+        "gate_wait_years": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "作者假设0年；不表示现场没有接入排队",
+          "source_ref": {
+            "path": "regions.us_texas.gate_wait_years"
+          }
+        },
+        "permit_months": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "情景审批期12个月；不是该园区实际审批记录",
+          "source_ref": {
+            "path": "regions.us_texas.permit_months"
+          }
+        },
+        "bot_term_years": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.bot_term_years"
+          }
+        },
+        "bot_service_rate": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "通用计算假设；Abilene现场值未知",
+          "source_ref": {
+            "path": "assumptions.bot_service_rate"
+          }
+        },
+        "tenant_credit": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "模型分支选择；不认定本园区实际配置、合同或主体身份",
+          "source_ref": {
+            "path": "assumptions.tenant_credit"
+          }
+        },
+        "target_roic": {
+          "kind": "analysis_choice",
+          "actual_state": "not_site_observation",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "source_ref": {
+            "path": "assumptions.target_roic"
+          }
+        },
+        "roic_basis": {
+          "kind": "analysis_choice",
+          "actual_state": "not_site_observation",
+          "note": "研究口径或前瞻判断；不是待采集的确定现场事实",
+          "source_ref": {
+            "path": "assumptions.roic_basis"
+          }
+        }
+      }
     }
   ]
 }

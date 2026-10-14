@@ -41,7 +41,7 @@ class SiteModelBridgeTests(unittest.TestCase):
         changed=copy.deepcopy(self.doc);item=changed['sites'][0]
         next(e for e in item['review']['items'] if e['id']=='body-it')['observation_id']='wrong-observation'
         item['review_sha256']=bridge.digest(item['review'])
-        with self.assertRaisesRegex(ValueError,'rule_targets'):bridge.validate(changed,self.projects,self.spec)
+        with self.assertRaisesRegex(ValueError,'derivation_output'):bridge.validate(changed,self.projects,self.spec)
         self.assertEqual(out['economic_candidates'][0]['value'],15900000000)
         self.assertTrue(all(c['state'] in {'adopted','candidate','excluded','unknown','not_checked'} for c in out['coverage']))
 
@@ -61,7 +61,7 @@ class SiteModelBridgeTests(unittest.TestCase):
 
     def test_review_versions_and_private_paths(self):
         out=bridge.project(ROOT,self.projects,'us-tx-abilene')
-        self.assertEqual(len(out['review']['derivations']),5)
+        self.assertEqual(len(out['review']['derivations']),13)
         self.assertEqual(len(out['blockers']),3)
         self.assertEqual(out['review']['item_counts']['anomaly'],3)
         self.assertEqual(out['review']['report_exhaustive'],'not_certified')
@@ -105,6 +105,11 @@ class SiteModelBridgeTests(unittest.TestCase):
         self.assertNotIn('private',projected)
         self.assertNotIn('internal_note',projected['configurations'][0]['relations'])
         self.assertNotIn('machine',projected['review']['items'][0])
+        changed_doc=copy.deepcopy(self.doc);changed_doc['sites'][0]['parameter_basis']['pue']['private_note']='private'
+        changed_doc['sites'][0]['parameter_basis']['pue']['source_ref']['machine']='private'
+        with patch.object(bridge,'load',return_value=changed_doc):out=bridge.project(ROOT,self.projects,'us-tx-abilene')
+        self.assertNotIn('private_note',out['parameter_basis']['pue'])
+        self.assertNotIn('machine',out['parameter_basis']['pue']['source_ref'])
 
     def test_invalid_mapping_keeps_site_readable_without_filling(self):
         with patch.object(bridge,'project',side_effect=ValueError('private path must not escape')):
@@ -114,3 +119,54 @@ class SiteModelBridgeTests(unittest.TestCase):
         self.assertIn('重新复核',out['detail']['model_bridge_error'])
         self.assertNotIn('private path',json.dumps(out))
         self.assertFalse(bridge._url('https://example.com/file?token=secret'))
+
+    def test_shared_dependencies_cannot_be_declared_independent(self):
+        site=self.doc['sites'][0]
+        self.assertEqual(site['dependency_notice']['status'],'shared_upstream_assumptions')
+        self.assertNotIn('independent_of',site['rules'][0])
+        changed=copy.deepcopy(self.doc);changed['sites'][0]['rules'][0]['independent_of']=['gpu-integer-configuration']
+        with self.assertRaisesRegex(ValueError,'false_independence'):bridge.validate(changed,self.projects,self.spec)
+        changed=copy.deepcopy(self.doc);item=changed['sites'][0]
+        next(d for d in item['review']['derivations'] if d['id']=='current-it-from-configuration')['input_item_ids']=['permit-turbines']
+        item['review_sha256']=bridge.digest(item['review'])
+        with self.assertRaisesRegex(ValueError,'shared_dependencies'):bridge.validate(changed,self.projects,self.spec)
+
+    def test_source_content_checks_never_adopt_site_or_model(self):
+        item=self.doc['sites'][0]
+        self.assertEqual(len(item['document_checks']),10)
+        self.assertTrue(all(d['status']=='source_content_checked' and not d['actual_site_verified'] and not d['model_eligible'] for d in item['document_checks']))
+        changed=copy.deepcopy(self.doc);item=changed['sites'][0];item['document_checks'][0]['model_eligible']=True
+        item['document_review_sha256']=bridge.digest(item['document_checks'])
+        with self.assertRaisesRegex(ValueError,'content_not_site_adoption'):bridge.validate(changed,self.projects,self.spec)
+        self.assertIn('四个翼区不是四栋',next(d for d in self.doc['sites'][0]['document_checks'] if d['id']=='drawing-building2')['boundary'])
+
+    def test_parameter_labels_cover_inputs_without_false_facts(self):
+        item=self.doc['sites'][0];basis=item['parameter_basis']
+        self.assertEqual(set(basis),set(self.spec['inputs']))
+        self.assertEqual(basis['energy_quota_mw']['kind'],'unknown_unset')
+        self.assertEqual(basis['gate_wait_years']['kind'],'assumption')
+        self.assertEqual(basis['permit_months']['kind'],'assumption')
+        self.assertEqual(basis['construction_years']['kind'],'generic_reference')
+        self.assertEqual(basis['it_class']['kind'],'scenario_choice')
+        changed=copy.deepcopy(self.doc);changed['sites'][0]['parameter_basis']['energy_quota_mw']['kind']='regional_reference'
+        with self.assertRaisesRegex(ValueError,'parameter_semantics'):bridge.validate(changed,self.projects,self.spec)
+        changed=copy.deepcopy(self.doc);changed['sites'][0]['parameter_basis']['pue']['actual_state']='existing_estimate'
+        with self.assertRaisesRegex(ValueError,'false_site_fact'):bridge.validate(changed,self.projects,self.spec)
+
+    def test_official_mirror_is_one_source_and_version_gap_stays_visible(self):
+        item=self.doc['sites'][0];sources={s['id']:s for s in item['review']['sources']}
+        self.assertEqual(sources['permit-official']['sha256'],sources['permit']['sha256'])
+        self.assertIn('旧版工作簿',item['dependency_notice']['version_limit'])
+        self.assertEqual(sources['permit-transfer']['remaining_pages'],'not_individually_reviewed')
+        changed=copy.deepcopy(self.doc);item=changed['sites'][0]
+        next(s for s in item['review']['sources'] if s['id']=='permit-official')['sha256']='0'*64
+        item['review_sha256']=bridge.digest(item['review'])
+        with self.assertRaisesRegex(ValueError,'source_mirror'):bridge.validate(changed,self.projects,self.spec)
+
+    def test_arithmetic_replays_are_not_source_formula_execution(self):
+        from decimal import Decimal as D
+        replay={row['label']:row for row in self.doc['sites'][0]['dependency_notice']['replays']}
+        self.assertEqual(D(str(replay['所选四栋IT估算']['value'])),D(4)*D(50400)/D(72)*D('.132')*D('1.14'))
+        self.assertEqual(replay['GPU合计']['value'],100800+100800)
+        self.assertEqual(replay['所选四栋算力估算']['status'],'precision_unresolved')
+        self.assertIn('未贯通',self.doc['sites'][0]['dependency_notice']['cost_limit'])

@@ -189,7 +189,7 @@
 
   let bridge=null,bridgeApplied=false,inputBasis={},basisRevision=0;
   const invalidInputs=new Set();
-  const BASIS_LABEL={observation:'已有资料 · 第三方估算',regional_reference:'地区参考 · 现场未知',assumption:'情景假设 · 现场未知',user_assumption:'用户假设 · 现场未知',unknown:'未知'};
+  const BASIS_LABEL={observation:'已有记录 · 第三方估算（配置模型）',location_reference:'已登记地点 · 地区选择',regional_reference:'地区费率参考 · 适用性未知',generic_reference:'通用参考 · 现场未知',historical_reference:'历史参考 · 未来假设',statutory_reference:'法定参考 · 适用性未知',assumption:'情景假设 · 现场未知',scenario_choice:'情景分支 · 现场未知',analysis_choice:'研究口径／判断',unknown_unset:'现场未知 · 未设置约束',user_assumption:'用户假设 · 现场未知',unknown:'未知'};
   const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
   function bridgeProvenance(next,origin){
     return Object.fromEntries(Object.keys(spec.inputs).map(id=>[id,{kind:origin,actual_state:'unknown',note:'计算取值不是本园区事实',source_ref:{model_source_sha256:bridge.model_source_sha256,path:'assumptions.'+id}}]));
@@ -212,15 +212,34 @@
       input_ids:['it_mw','energy_quota_mw','load_factor','pue','power_price'],status:'scenario_only',excludes:['demand charges','other contract charges']};
   }
   function bridgeSnapshot(){
-    return {schema:'site-model-scenario-v2',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
+    return {schema:'site-model-scenario-v3',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
       bridge_version:bridge.version,mapping_version:bridge.mapping_version,data_sha256:bridge.data_sha256,observation_sha256:bridge.observation_sha256,
       model_id:spec.model_id,model_as_of:spec.as_of,model_source_sha256:bridge.model_source_sha256,model_spec:structuredClone(spec),revision:basisRevision,
       capacity_source:structuredClone(bridge.capacity_source),rules:structuredClone(bridge.rules),review_sha256:bridge.review_sha256,
       review:structuredClone(bridge.review),blockers:structuredClone(bridge.blockers),
+      dependency_notice:structuredClone(bridge.dependency_notice),document_checks:structuredClone(bridge.document_checks),document_review_sha256:bridge.document_review_sha256,initial_input_basis:structuredClone(bridge.parameter_basis),
       inputs:structuredClone(values),input_basis:structuredClone(inputBasis),
       configurations:structuredClone(bridge.configurations),economic_candidates:structuredClone(bridge.economic_candidates),
       unknowns:structuredClone(bridge.unknowns),coverage:structuredClone(bridge.coverage),annual_energy:annualEnergy(),
       readiness:{status:'scenario_only',project_feasibility:'not_verified'},results:run(values,spec)};
+  }
+  function bridgeDocuments(host){
+    const box=make('details');box.id='bridge-document-checks';
+    box.append(make('summary','',`设计、许可和图纸：${bridge.document_checks.length}项原件内容已核对，可人工复核`),make('p','note','以下为代理完成的原件内容核对；未记录人类批准，未确认现场安装、投运、最终许可或模型用途。'));
+    for(const d of bridge.document_checks){const card=make('section');card.dataset.documentCheck=d.id;
+      card.append(make('h3','',d.label+' · 原件内容已核对'),make('p','',d.statement),make('p','note',d.boundary));
+      const source=bridge.review.sources.find(x=>x.id===d.source_id),link=make('a','',d.source_id+' · '+d.locator);link.href=source.url;link.target='_blank';link.rel='noopener';card.append(link,make('p','note',d.checked_at+' · '+d.checked_by+' · SHA256 '+source.sha256));box.append(card);
+    }host.append(box);
+  }
+  function bridgeDependencies(host){
+    const n=bridge.dependency_notice;
+    const notice=make('p','note',n.summary);notice.id='bridge-dependency-notice';host.append(notice,make('p','note',n.version_limit));
+    const box=make('details');box.id='bridge-dependencies';box.append(make('summary','','GPU → 容量／算力 → 成本：共用假设与算术复现'));
+    for(const row of n.replays)box.append(make('p','',`${row.label}：${row.expression} = ${row.value} ${row.unit} · ${row.status==='precision_unresolved'?'精度未解决':'仅算术复现，不是现场验证'}`));
+    box.append(make('p','note',n.cost_limit),make('p','note','原表峰值容量比例1.4与本次年度PUE1.28是假设用途不同的两个值，不能互换。'));
+    const label=id=>bridge.review.items.find(x=>x.id===id)?.label||id;
+    for(const d of bridge.review.derivations)box.append(make('p','',d.input_item_ids.map(label).join(' + ')+' → '+label(d.output_item_id)+'（候选关系）'),make('p','note',d.id+' · '+d.locator+' · '+d.formula+'；'+d.assumptions.join('；')));
+    host.append(box);
   }
   function bridgeEvidence(host){
     const pending=make('details');pending.append(make('summary','','候选、异常与来源推导（不自动填参）'));
@@ -229,10 +248,10 @@
       for(const id of c.evidence_ids){const fact=bridge.review.items.find(e=>e.id===id),source=bridge.review.sources.find(e=>e.id===fact.source_id),link=make('a','',id+' · '+fact.locator);link.href=source.url;link.target='_blank';link.rel='noopener';pending.append(link,make('p','note','原件 SHA256 '+source.sha256));}
     }
     for(const b of bridge.blockers)pending.append(make('h3','',b.label+' · 阻止自动填参'),make('p','',b.reason+' 影响：'+b.blocked_targets.map(id=>spec.inputs[id].label).join('、')));
-    for(const d of bridge.review.derivations)pending.append(make('p','',d.id+'：'+d.input_item_ids.join(' + ')+' → '+d.output_item_id+'（候选）'),make('p','note',d.locator+' · '+d.formula+' · '+d.scope+'；'+d.assumptions.join('；')));
+    pending.append(make('p','note','共用依赖与版本边界见上方来源链；不把派生值互相当成独立验证。'));
     pending.append(make('p','',bridge.review.limitations.join(' ')));host.append(pending);
     const sources=make('details');sources.append(make('summary','','全部复核来源、版本与阅读范围'));
-    for(const source of bridge.review.sources){const link=make('a','',source.id);link.href=source.url;link.target='_blank';link.rel='noopener';sources.append(link,make('p','note',source.sha256+' · '+source.checked_scope));}
+    for(const source of bridge.review.sources){const link=make('a','',source.id);link.href=source.url;link.target='_blank';link.rel='noopener';sources.append(link,make('p','note',source.sha256+' · '+source.checked_scope+(source.mirror_of?' · 与'+source.mirror_of+'为同一原件镜像，不是独立证据':'')));}
     sources.append(make('p','note','复核输入 '+bridge.review.input_sha256+'；清单 '+bridge.review.checklist_version+'；复核摘要 '+bridge.review_sha256));host.append(sources);
     const unknown=make('details');unknown.append(make('summary','','现场未知与未检查项'));
     for(const e of bridge.review.items.filter(e=>['unknown','not_checked'].includes(e.state)))unknown.append(make('p','',e.label+' · '+(e.state==='unknown'?'未知':'未检查')+'；'+e.reason));host.append(unknown);
@@ -245,7 +264,7 @@
     const energy=annualEnergy();
     result.append(make('h3','','年度用电情景'),make('p','',`设施用电 ${(energy.facility_kwh/1e9).toFixed(3)} 十亿 kWh；电量费用 ${money(energy.energy_charge_usd)}。未含需量费及其他合同收费。`),
       make('p','',`容量 ${values.it_mw} MW（计算 ${energy.effective_it_mw} MW） · 平均IT负载 ${(values.load_factor*100).toFixed(1)}% · PUE ${values.pue} · 电量单价 $${values.power_price}/kWh · ${HOURS}小时。`),
-      make('p','note','这是所选规模的年度情景，不是园区实际年度账单。成本、收入与回报视图共用此输入表，现场未知保持未知；利润、回报及合同未核验。批准容量未知，未设置时计算不施加该约束。'));
+      make('p','note','这是所选估算规模的年度情景。421MW沿GPU配置模型推导，证据并不独立；不是园区实际年度账单。成本、收入与回报视图共用此输入表，现场未知保持未知；利润、回报及合同未核验。批准容量未知，未设置时计算不施加该约束。'));
     const list=make('details');list.append(make('summary','','全部输入依据与当前取值'));
     for(const id of Object.keys(spec.inputs))list.append(make('p','',`${spec.inputs[id].label}：${values[id]} · ${BASIS_LABEL[inputBasis[id]?.kind]||'未知'} · ${inputBasis[id]?.note||''}`));result.append(list);
     const download=make('button','','导出本次情景与依据（JSON）');download.type='button';download.id='bridge-export';
@@ -266,26 +285,26 @@
       const table=make('div','tscroll');const t=make('table','bridge-parameter-table');
       for(const cells of [
         ['参数','建议取值','资料身份','适用边界'],
-        ['IT容量',bridge.expected_it_mw+' MW','已有资料 · 第三方估算',bridge.capacity_source.effective_at+'；非实测，固定观察 '+bridge.observation_id],
+        ['IT容量',bridge.expected_it_mw+' MW','已有记录 · 配置模型估算',bridge.capacity_source.effective_at+'；共用GPU假设，非独立实测；固定观察 '+bridge.observation_id],
         ['地区／电量单价','得州／$'+spec.regions.us_texas.power_price+'/kWh','地区参考 · 现场未知','预设不是园区合同、税费或等待期'],
         ['平均IT负载率',(bridge.demo_assumptions.load_factor*100)+'%','情景假设 · 现场未知','仅作年度演示'],
         ['PUE',String(bridge.demo_assumptions.pue),'情景假设 · 现场未知','不由冷源或公司设计范围反推'],
         ['GPU、冷源、发电、资本成本','保留原数及推导','候选 · 不自动填参','范围、时间、主体与用途未对齐'],
         ['来源三项异常','已复核，仍阻断相关用途','异常 · 不自动填参','#REF!、精度说明冲突、整数配置推导'],
-        ['现场批准容量、收入、实绩','未知','未知','计算用值另标假设，不补造事实']]){const row=make('tr');cells.forEach((x,i)=>{const td=make('td','',x);td.dataset.label=['参数','建议取值','资料身份','适用边界'][i];row.append(td);});t.append(row);}table.append(t);host.append(table);
+        ['接入／批准容量约束','未设置（计算值0）','现场未知 · 未设置约束','0不表示批准0MW或无限容量'],
+        ['建设／等待／审批','2年／0年／12个月','通用周期参考／作者假设／情景假设','均不是本园区实际进度记录'],
+        ['默认设备／冷却分支','GB300／液冷分支','情景选择 · 现场未知','不认定园区实际代际和冷却比例'],
+        ['现场收入、合同与实绩','未知','未知','计算用值另标假设，不补造事实']]){const row=make('tr');cells.forEach((x,i)=>{const td=make('td','',x);td.dataset.label=['参数','建议取值','资料身份','适用边界'][i];row.append(td);});t.append(row);}table.append(t);host.append(table);
       const provenance=make('details');provenance.append(make('summary','','已有容量估算的原始来源与版本'));
       for(const source of bridge.capacity_source.sources){const link=make('a','',source.url||'来源');if(source.url)link.href=source.url;provenance.append(link);}
-      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeEvidence(host);
+      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeDependencies(host);bridgeDocuments(host);bridgeEvidence(host);
       const apply=make('button','','确认生成园区年度用电情景');apply.id='bridge-apply';apply.type='button';
       apply.onclick=()=>{const next=withPreset(spec,'baseline');next.site='us_texas';applyTable(next,'site',spec);Object.assign(next,bridge.demo_assumptions,{it_mw:bridge.expected_it_mw});
         if(!confirmBridgeChange(next,'重新应用园区情景'))return;
         values=next;activePreset='';bridgeApplied=true;basisRevision++;inputBasis=bridgeProvenance(next,'assumption');
-        const regionGaps=new Set(spec.regions.us_texas.gaps||[]);
-        for(const id of Object.keys(spec.regions.us_texas))if(id in spec.inputs)inputBasis[id]={kind:regionGaps.has(id)?'assumption':'regional_reference',actual_state:'unknown',note:regionGaps.has(id)?'地区预设亦缺来源；只作计算假设':'得州参考；本园区适用值未知',source_ref:{model_source_sha256:bridge.model_source_sha256,path:'regions.us_texas.'+id}};
-        inputBasis.site={kind:'regional_reference',actual_state:'known_geography',note:'已登记得州地点，仅建议地区表'};
-        for(const id of Object.keys(bridge.demo_assumptions))inputBasis[id]={kind:'assumption',actual_state:'unknown',note:'本次演示显式假设，非现场实绩',source_ref:{bridge_version:bridge.version,path:'demo_assumptions.'+id}};
-        inputBasis.it_mw={kind:'observation',actual_state:'existing_estimate',observation_id:bridge.observation_id,observation_sha256:bridge.observation_sha256,rule_id:'it-capacity-v1',note:`固定观察；${bridge.expected_it_mw}MW第三方估算，非实测`};
-        byId('preset-note').textContent='园区情景：已有容量估算＋地区参考＋显式假设；候选与异常未自动填参。';renderInputs();render();};
+        inputBasis=structuredClone(bridge.parameter_basis);
+        for(const basis of Object.values(inputBasis))basis.source_ref={...basis.source_ref,model_source_sha256:bridge.model_source_sha256,bridge_version:bridge.version};
+        byId('preset-note').textContent='园区情景：已有配置模型估算＋适用性未核的参考＋显式假设；共用依赖、候选与异常保留。';renderInputs();render();};
       host.append(apply);const result=make('div');result.id='bridge-result';host.append(result);bridgeRender();
     }catch(error){bridge=null;host.textContent='园区参数预览不可用：'+error.message+'。当前保持通用情景。';}
   }

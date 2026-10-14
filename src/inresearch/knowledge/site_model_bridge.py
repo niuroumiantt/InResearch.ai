@@ -47,7 +47,10 @@ def _review(item):
                 or not d.get('locator') or d['output_item_id'] not in evidence
                 or not d['input_item_ids'] or not set(d['input_item_ids']) <= evidence.keys()):
             raise ValueError('bridge_derivation')
-        if d['output_item_id'] in outputs or evidence[d['output_item_id']]['state'] != 'candidate':
+        state=evidence[d['output_item_id']]['state']
+        old_record_explanation=(state=='existing_observation' and d.get('relationship_kind')=='cross_version_explanation_candidate'
+                                and evidence[d['output_item_id']].get('observation_id')==item['observation_id'])
+        if d['output_item_id'] in outputs or (state!='candidate' and not old_record_explanation):
             raise ValueError('bridge_derivation_output')
         outputs[d['output_item_id']] = d['input_item_ids']
     def visit(node, active):
@@ -65,11 +68,34 @@ def _review(item):
     # Each declared unresolved/clarified anomaly must have a model-use decision.
     if {e['id'] for e in evidence.values() if e['state'] == 'anomaly'} != {b['id'] for b in item['blockers']}:
         raise ValueError('bridge_missing_blocker')
+    for source in sources.values():
+        if source.get('mirror_of') and (source['mirror_of'] not in sources or sources[source['mirror_of']]['sha256']!=source['sha256']):
+            raise ValueError('bridge_source_mirror')
+    notice=item['dependency_notice']
+    def ancestors(node):
+        result=set()
+        for child in outputs.get(node,[]):
+            result.add(child);result.update(ancestors(child))
+        return result
+    endpoints=[notice[k] for k in ['capacity_item_id','gpu_item_id','compute_item_id','cost_item_id']]
+    if (not notice['shared_item_ids'] or notice['status']!='shared_upstream_assumptions' or not set(endpoints)<=evidence.keys()
+            or not set(notice['shared_item_ids']) <= set.intersection(*(ancestors(node) for node in endpoints))):
+        raise ValueError('bridge_shared_dependencies')
+    documents=item['document_checks']
+    if not documents or digest(documents)!=item['document_review_sha256'] or len({d['id'] for d in documents})!=len(documents):
+        raise ValueError('bridge_document_review_changed')
+    for d in documents:
+        if (d['source_id'] not in sources or d['status']!='source_content_checked'
+                or d['actual_site_verified'] is not False or d['model_eligible'] is not False
+                or d['ready_for_human_review'] is not True or not d.get('boundary') or not d.get('checked_by')
+                or not d.get('locator') or not d.get('evidence_ids') or not set(d['evidence_ids']) <= evidence.keys()
+                or any(sources[evidence[e]['source_id']]['sha256']!=sources[d['source_id']]['sha256'] for e in d['evidence_ids'])):
+            raise ValueError('bridge_document_content_not_site_adoption')
     return sources, evidence
 
 
 def validate(doc, projects, spec):
-    if doc.get('schema_version') != 2 or not doc.get('version') or not doc.get('mapping_version'):
+    if doc.get('schema_version') != 3 or not doc.get('version') or not doc.get('mapping_version'):
         raise ValueError('bridge_version')
     sites = {r['site_id']: r for r in projects}
     seen = set()
@@ -116,6 +142,30 @@ def validate(doc, projects, spec):
                 or rules[0]['evidence_ids'] != ['body-it'] or evidence['body-it']['state'] != 'existing_observation'
                 or evidence['body-it'].get('observation_id') != item['observation_id']):
             raise ValueError('bridge_rule_targets')
+        capacity_rule=rules[0]
+        if ('independent_of' in capacity_rule or capacity_rule.get('evidence_independence')!='shared_upstream_assumptions'
+                or capacity_rule.get('entry_method')!='pinned_observation_without_recalculation'
+                or not set(capacity_rule.get('dependency_derivation_ids',[])) <= {d['id'] for d in item['review']['derivations']}
+                or 'rounded-observation-explanation' not in capacity_rule.get('dependency_derivation_ids',[])):
+            raise ValueError('bridge_false_independence')
+        basis=item['parameter_basis']
+        allowed={'observation','location_reference','regional_reference','generic_reference','historical_reference',
+                 'statutory_reference','assumption','scenario_choice','analysis_choice','unknown_unset'}
+        if set(basis)!=set(spec['inputs']):
+            raise ValueError('bridge_parameter_basis_coverage')
+        for key,row in basis.items():
+            if row['kind'] not in allowed or not row.get('note') or row['actual_state'] not in {'unknown','existing_estimate','known_geography','not_site_observation'}:
+                raise ValueError('bridge_parameter_basis')
+            if (key!='it_mw' and row['kind']=='observation') or (key not in {'it_mw','site'} and row['actual_state'] not in {'unknown','not_site_observation'}):
+                raise ValueError('bridge_false_site_fact')
+            path=row.get('source_ref',{}).get('path','')
+            if not path or path.startswith('/') or '..' in path.split('/'):
+                raise ValueError('bridge_private_basis_path')
+        required={'it_mw':'observation','site':'location_reference','energy_quota_mw':'unknown_unset',
+                  'gate_wait_years':'assumption','permit_months':'assumption','construction_years':'generic_reference',
+                  'pue':'assumption','load_factor':'assumption'}
+        if any(basis[k]['kind']!=kind for k,kind in required.items()):
+            raise ValueError('bridge_parameter_semantics')
         for b in item['blockers']:
             if not set(b['blocked_targets']) <= spec['inputs'].keys():
                 raise ValueError('bridge_blocker_target')
@@ -165,9 +215,9 @@ def _fields(keys):
     return dict.fromkeys(keys.split())
 
 
-SOURCE = {**_fields('id url status sha256 text_sha256 checked_scope total_pages remaining_pages'),
+SOURCE = {**_fields('id url status sha256 text_sha256 checked_scope total_pages remaining_pages mirror_of'),
           'text_review_pages': [None], 'visual_review_pages': [None]}
-DERIVATION = {**_fields('id output_item_id source_id locator formula scope review_state'),
+DERIVATION = {**_fields('id output_item_id source_id locator formula scope review_state relationship_kind'),
               'input_item_ids': [None], 'assumptions': [None]}
 EVIDENCE = {**_fields('id label state source_id locator reason observation_id'), 'observation_ids': [None],
             'followup': {**_fields('status conclusion at'), 'item_ids': [None]}}
@@ -175,15 +225,18 @@ CLAIM = {**_fields('id label content status measurement_kind effective_at scope 
          'quantity': _fields('value unit'), 'relations': _fields('shared redundancy included_in'),
          'evidence_ids': [None], 'missing': [None]}
 BRIDGE = {
-    **_fields('site_id observation_id expected_it_mw review_sha256 expected_observation_sha256'),
+    **_fields('site_id observation_id expected_it_mw review_sha256 expected_observation_sha256 document_review_sha256'),
     'scope': _fields('id label effective_at physical_scope included excluded actor accounting_basis'),
     'configurations': [CLAIM], 'economic_candidates': [CLAIM], 'unknowns': [None],
-    'rules': [{**_fields('id target kind source_field conditions value'), 'evidence_ids': [None], 'independent_of': [None]}],
+    'rules': [{**_fields('id target kind source_field conditions value'), 'evidence_ids': [None], 'dependency_derivation_ids': [None], **_fields('entry_method evidence_independence')}],
     'demo_assumptions': _fields('load_factor pue'),
     'coverage': [_fields('angle item state destination reason')],
     'blockers': [{**_fields('id status label reason automatic_fill'), 'evidence_ids': [None],
                   'blocked_targets': [None], 'exception_rule_ids': [None]}],
-    'review': {**_fields('id reviewed_at input_sha256 result_sha256 checklist_version checklist_sha256 inventory_units report_exhaustive'),
+    'dependency_notice': {**_fields('status summary capacity_item_id gpu_item_id compute_item_id cost_item_id version_limit cost_limit'),
+                          'shared_item_ids':[None], 'replays':[_fields('label expression value unit status')]},
+    'document_checks':[{**_fields('id label source_id locator statement scope boundary checked_at checked_by status ready_for_human_review actual_site_verified model_eligible'),'evidence_ids':[None]}],
+    'review': {**_fields('id reviewed_at input_sha256 result_sha256 checklist_version checklist_sha256 inventory_units report_exhaustive previous_review_sha256'),
                'item_counts': _fields('anomaly candidate excluded existing_observation not_applicable not_checked unknown unread_attachment'),
                'sources': [SOURCE], 'items': [EVIDENCE], 'derivations': [DERIVATION], 'limitations': [None]}}
 
@@ -196,6 +249,8 @@ def project(root, projects, site_id):
     if not item:
         return None
     out = _public(item, BRIDGE)
+    basis_shape={**_fields('kind actual_state note observation_id observation_sha256 rule_id'),'source_ref':_fields('path')}
+    out['parameter_basis']={key:_public(value,basis_shape) for key,value in item['parameter_basis'].items()}
     site = next(s for s in projects if s['site_id'] == site_id)
     obs = next(o for o in site['observations'] if o['id'] == item['observation_id'])
     out.update(version=doc['version'], mapping_version=doc['mapping_version'], data_sha256=digest(item),
@@ -203,6 +258,8 @@ def project(root, projects, site_id):
     out['model_source_sha256'] = hashlib.sha256((Path(root)/'data/datacenter_model.json').read_bytes()).hexdigest()
     out['capacity_source'] = {'observation_id': obs['id'], 'kind': obs['kind'],
                               'effective_at': obs['effective_at'], 'basis': obs['basis'],
+                              'evidence_independence':'shared_upstream_assumptions',
+                              'lineage_note':item['dependency_notice']['summary'],
                               'sources': [_public(v, _fields('url date grade note')) for v in obs.get('sources', [])],
                               'source_versions': [s['source_sha256'] for s in obs.get('source_versions', [])]}
     out['readiness'] = {'status': 'scenario_only', 'project_feasibility': 'not_verified'}
