@@ -1,5 +1,5 @@
 {
-  "version": "1.10",
+  "version": "1.11",
   "effective_at": "2026-10-14",
   "phase": "planning_live",
   "operating_plan": {
@@ -165,10 +165,13 @@
       "code_layout": {
         "repository": "fetchdata",
         "module": "src/fetchdata/collectors/fetchstat",
-        "phase": "local_only",
+        "phase": "production_preparation",
         "legacy_repository": "https://github.com/niuroumiantt/fetchstat",
-        "production_switched": false
-      }
+        "production_switched": false,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "host_default": "aws",
+      "production_guide": "docs/guides/fetchdata/fetchstat-production.md"
     },
     {
       "id": "fetchfilings",
@@ -560,5 +563,28 @@
     ],
     "execution": "连接状态复用providers.connection；未接通只登记待办，不制造planned、due或success。补采仍复用既有任务及requirement，普通发现目标可空。",
     "responsibility": "采集端交原件、定位、源声明和可解释缺项；研究端负责对象匹配、语义审核、推导与采用；一份原件可复用但字节身份不重复计证据。"
+  },
+  "collector_reception": {
+    "contract": "fetchdata-handoff/1",
+    "transport": "controlled_ssh_file_import",
+    "enabled_providers": [
+      "fetchstat"
+    ],
+    "sources": {
+      "fetchstat": [
+        {
+          "source_id": "fetchstat-eia-bootstrap",
+          "native_id": "EPM-5.6.B",
+          "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b"
+        }
+      ]
+    },
+    "receiver": "manage.py collector-receive",
+    "candidate_only": true,
+    "reader_enqueue": false,
+    "automatic_adoption": false,
+    "automatic_model_parameters": false,
+    "scheduled": false,
+    "phase": "receiver_ready_pending_production_receipt"
   }
 }

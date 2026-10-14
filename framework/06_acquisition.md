@@ -142,9 +142,13 @@ flowchart LR
 
 用户于2026-10-14明确采用一个fetchdata仓库、四个独立模块，替代2026-10-11四仓库分别维护公共代码的安排。inews.today与fetchspec不迁入。公共核心统一研究对象线索、来源原生身份、原件SHA、证据定位/上下文、口径/时间及修订/冲突关系；各模块保留专业提取、配置、执行机、数据根、凭据与日历，不强制同进程或同时发布。对象匹配、逐条采用及模型填参仍由研究端独立审核。
 
-本轮仅本地迁移源码与兼容验证。旧四仓库/提交/标签/交付/原件/数据库不删除、不归档、不搬动；origins.json建立旧provider+collector_revision到旧仓库和新模块的追溯。provider/source/native/item/observation/delivery旧ID保持；新包记录实际新源码版本，已知旧包通过显式history-root只读返回，不用新时间/版本重建旧ID信封。采集事件时钟独立于原件内容身份；同SHA复查仍记录尝试，不刷新旧接收。
+本地迁移已验收，旧四仓库/提交/标签/交付/原件/数据库不删除、不归档、不搬动。origins.json建立旧provider+collector_revision到旧仓库和新模块追溯；provider/source/native/item/observation/delivery旧ID保持。新包记录实际新源码，已知旧包用history-root只读返回，不以新时间/版本重造旧ID信封；同SHA复查仍登记实际采集事件及代码/取得时钟。
 
-交换格式保持fetchdata-handoff/1。scripts/receive_collector_local.py必须明确sandbox-root，在带专用标记的隔离目录冻结/校验包、保存候选及真实本地首次接收回执；同包幂等，ID碰撞或篡改拒绝，不覆盖历史。当前严格本地验收整包拒绝坏候选，未实现生产逐项隔离/补交策略；不得把此沙箱当Spark正式资料目录或Fetchspec接收API。本地首次接收不能倒推生产历史；既有来源/有效/披露时间及推导/修订关系原样保留。connection=not_connected和scheduled=false保持。本轮不推送、部署、安装服务或定时器；171项需求及17参数不因此完成。员工现行入口见docs/guides/fetchdata/README.md。
+2026-10-14用户授权只推进fetchstat受控生产接收，替代该队此前“仅本地、不部署”限制。公开新fetchdata仓库创建被自动审批拒绝，本轮使用私有Git包在已有AWS/Spark部署，不公开新仓库；其他三队保持本地及not_connected，不安装调度。AWS只执行已登记EIA来源；Spark经collector-receive接入既有acquisition候选台账和originals。来源白名单由supply_contract.collector_reception统一登记；CLI不开放HTTP、不冒充Fetchspec、不自动进入Reader/采用/填参。
+
+生产到达日志与完成ACK分开：先冻结/校验/持久保留原包与首次有效到达，再归档原件并核对共享候选台账、原始来源版本和投影，全部成立才返回received_candidate_unreviewed。部分失败保留到达/失败run，原包重试补齐，不重复建身份；同包重放不刷新首次接收/归档完成。缺失投影可恢复，已存字节损坏须停下核实，不能覆盖修源。候选JSONL的旧ID、证据、单位/范围、有效/披露/取得时间、修订和推导保留。当前单来源严格整包验收，生产逐项隔离/更多来源/自动传输与调度另验；代码就绪不证明实际接通或171/17缺口已完成。实际生产ACK确认前connection仍not_connected。详见docs/guides/fetchdata/fetchstat-production.md。
+
+原scripts/receive_collector_local.py继续仅接受明确sandbox-root，不追认历史生产接收。生产回执不授予正式研究采用或模型适用性。
 
 目标清单 `tco_targets.json` 自 2026-09-28 起由 `python3 manage.py targets --refresh` 生成，不手写：因子树登记的抓取条目各成一行，每个部件按自己的价格、供应商名单、交期各成一行（非成熟部件再加新闻事件行），站点权利按登记的变量类各成一行；改需求改因子树、部件表或权利表，不直接改清单。六队共同规则：模型需求派工只来自目标清单；一般来源发现、存量复用和唯一对象信息交付不以关联目标为前提，按本节来源归属及对象先入库规则执行。数字进观测候选、规格进参照候选、文本进材料档案再提取，正式采用另审。现有 Fetchspec 包及接收器只用于 Fetchspec；四队待建渠道的员工候选交换格式、源码要求和联调边界见[四队任务包](../docs/guides/fetchdata/README.md)，不得把离线验包当正式接收。模型任务写"披露类型 × 出版方类别 × 日历"，公司只是实例。供应中心实时投影 Fetchspec 目标，NVIDIA 产品规格库另显示其中点名 NVIDIA 的目标与部件数量；产品目录、目标和正式事实三种身份不得混同。**来源归属**：每个来源只属一个队、一台主执行机、一个日历；两队需要同一来源时由拥有方抓原件，另一方引用交付包；换主机等于结束旧任务、开新任务；接收端仍按 SHA 与来源身份去重。执行机沿用下节：API、EDGAR、RSS、固定表格与免费 PDF 由 AWS 持续采集，登录门户、注册下载与需浏览器渲染的价目页由 macmini 辅助，Spark 只做提取与模型分析。
 

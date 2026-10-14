@@ -69,7 +69,7 @@ def sandbox(path):
         yield root
 
 
-def receive(package, sandbox_root):
+def _receive(package, sandbox_root, *, store=sandbox, production=False, guard=None):
     package = Path(package).expanduser()
     if package.is_symlink():
         raise ValueError('package root symlink rejected')
@@ -90,8 +90,10 @@ def receive(package, sandbox_root):
         manifest = json.loads((stage/'manifest.json').read_text())
         rows = [r for _, r in validator._rows(stage, 'observations.jsonl')]
         provider, delivery = manifest['provider_id'], manifest['delivery_id']
+        if guard is not None:
+            guard(manifest)
         fingerprint = digest(canonical(before).encode())
-        with sandbox(sandbox_root) as root:
+        with store(sandbox_root) as root:
             with sqlite3.connect(root/'receipts.sqlite3', timeout=10) as db:
                 db.executescript('''
                   CREATE TABLE IF NOT EXISTS deliveries(
@@ -138,10 +140,11 @@ def receive(package, sandbox_root):
                         db.execute('INSERT INTO observations VALUES(?,?,?,?)', (provider,row['observation_id'],payload,received))
                         counts['new_candidates'] += 1
                     db.execute('INSERT INTO delivery_observations VALUES(?,?,?)', (provider,delivery,row['observation_id']))
-                receipt = {'receipt_contract': 'collector-local-receipt/1', 'local_only': True,
+                receipt = {'receipt_contract': 'collector-production-arrival/1' if production else 'collector-local-receipt/1',
+                    'local_only': not production,
                     'provider_id': provider, 'delivery_id': delivery, 'package_sha256': fingerprint,
                     'collector_revision': manifest['collector_revision'], 'first_received_at': received,
-                    'candidate_rows': len(rows), 'status': 'candidate_unreviewed', 'counts': counts,
+                    'candidate_rows': len(rows), 'status': 'candidate_archive_pending' if production else 'candidate_unreviewed', 'counts': counts,
                     'formal_adoption': False, 'model_parameters_written': 0, 'published': False}
                 archive.parent.mkdir(mode=0o700, exist_ok=True)
                 if archive.exists():
@@ -156,3 +159,7 @@ def receive(package, sandbox_root):
                 db.execute('INSERT INTO deliveries VALUES(?,?,?,?)', (provider,delivery,fingerprint,canonical(receipt)))
                 db.commit()
                 return {**receipt, 'replayed': False, 'current_receive_counts': counts}
+
+
+def receive(package, sandbox_root):
+    return _receive(package, sandbox_root)
