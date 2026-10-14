@@ -157,7 +157,7 @@ def pending():
 
 def snapshot(actor, role):
     owner = can_approve(actor, role)
-    items = [r for r in records() if owner or r['user'] == actor]
+    items = [r for r in records() if owner or (not r.get('receipt_hash') and r['user'] == actor)]
     # Audit request bodies are internal; employees see decisions and feedback only.
     return {'items': [public_view(r) for r in items[:200]],
             'can_approve': owner, 'can_upload': role in ('admin', 'member', 'intern'),

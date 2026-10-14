@@ -92,6 +92,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await page.context().addCookies([{name:'hub_session',value:config.cookies['task-member'].split('=')[1],url:base}]);
     const errors = [];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'/tasks.html');
+    assert.equal((await page.request.get(base+'/api/materials/content/'+publicRecord.id)).status(),404);
     await page.locator('#package-rows tr').nth(5).waitFor();
     await page.locator('[data-example="'+sampleId+'"]').waitFor();
     assert.match(await page.locator('.example-execution').innerText(),/private-sample-host/);

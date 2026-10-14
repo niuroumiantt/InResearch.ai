@@ -29,6 +29,7 @@ class IntakeTests(unittest.TestCase):
             self.assertEqual(m.receipt_view(a['id'],token)['id'],a['id'])
             with self.assertRaises(PermissionError):m.receipt_view(a['id'],'wrong')
             self.assertEqual(m.snapshot('some-user','member')['items'],[])
+            self.assertEqual(m.snapshot('anonymous','member')['items'],[])
             base={'id':a['id'],'sha256':a['sha256'],'expected_revision':0,'operation_id':str(uuid.uuid4())}
             with self.assertRaises(PermissionError):m.mutate({**base,'action':'feedback','result':'revision_required','text':'fix'},'analysis-worker','worker',worker=True)
             with self.assertRaises(PermissionError):m.mutate({**base,'action':'approve'},'other-admin','admin')

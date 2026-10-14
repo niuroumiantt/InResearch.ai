@@ -370,7 +370,7 @@ class Handler(SimpleHTTPRequestHandler):
                     return self._json(200, material_intake.snapshot(actor, role))
                 key = self._norm_path().removeprefix('/api/materials/content/')
                 record = material_intake.load(key)
-                if record['user'] != actor and not material_intake.can_approve(actor, role):
+                if not material_intake.can_approve(actor, role) and (record.get('receipt_hash') or record['user'] != actor):
                     return self._json(404, {'ok': False, 'error': 'not found'})
                 path = material_intake.record_path(key) / 'content'
                 self.send_response(200)
@@ -827,7 +827,7 @@ class Handler(SimpleHTTPRequestHandler):
                 if self.headers.get('X-Requested-With') != 'task-upload':
                     return self._json(403, {'ok': False, 'error': 'invalid request'})
                 raw_metadata = self.headers.get('X-Material-Metadata', '{}')
-                if len(raw_metadata) > 8192:
+                if len(raw_metadata) > 65536:
                     raise ValueError('metadata too large')
                 metadata = json.loads(unquote(raw_metadata))
                 if not isinstance(metadata, dict):
