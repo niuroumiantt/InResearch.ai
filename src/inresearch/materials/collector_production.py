@@ -1,4 +1,4 @@
-"""Receive the explicitly enabled fetchstat source into permanent candidate storage.
+"""Receive the explicitly enabled collector sources into permanent candidate storage.
 
 SSH/file ingress only. No HTTP listener, crawler, Reader enqueue or adoption.
 The immutable arrival journal survives failed projections; ACK follows verified
@@ -15,22 +15,21 @@ import subprocess
 
 from inresearch.adapters.acquisition import Collector, hash_file, encoded
 from inresearch.materials.artifacts import private_dir
-from inresearch.materials.collector_receive import _receive, inventory, canonical
+from inresearch.materials.collector_receive import _receive, inventory, canonical, validator
 from inresearch.storage.files import locked, sync_directory
 from inresearch.paths import project_root
 
 ROOT = project_root()
-PROVIDER = 'fetchstat'
 MARKER = 'inresearch-collector-production/1\n'
 
 
 def authorize(manifest):
     contract = json.loads((ROOT/'framework/supply_contract.json').read_text())
     policy = contract.get('collector_reception', {})
-    if (manifest['provider_id'] != PROVIDER
-            or PROVIDER not in policy.get('enabled_providers', [])):
+    provider = manifest['provider_id']
+    if provider not in policy.get('enabled_providers', []):
         raise ValueError('collector_provider_not_enabled')
-    allowed = policy.get('sources', {}).get(PROVIDER, [])
+    allowed = policy.get('sources', {}).get(provider, [])
     for item in manifest['items']:
         if (item['access_scope'] != 'public'
                 or not any(item['source_id'] == source['source_id']
@@ -88,7 +87,7 @@ def verified(data, manifest, rows):
                 if path.is_symlink(): raise ValueError('collector_projection_symlink')
                 if not path.is_file(): return False
                 if hash_file(path) != item['sha256']: raise ValueError('collector_projection_corrupt')
-            found = db.execute('SELECT id FROM items WHERE source=? AND source_key=?', (PROVIDER,source_key(item))).fetchone()
+            found = db.execute('SELECT id FROM items WHERE source=? AND source_key=?', (manifest['provider_id'],source_key(item))).fetchone()
             if not found: return False
             observation = db.execute('SELECT request_json FROM observations WHERE item_id=? AND sha256=?', (found[0],item['sha256'])).fetchone()
             if not observation: return False
@@ -102,11 +101,11 @@ def materialize(data, package, manifest, rows):
     def apply():
         for item, blob, original in projections(data, manifest):
             key = source_key(item)
-            old = collector.db.execute('SELECT id FROM items WHERE source=? AND source_key=?', (PROVIDER,key)).fetchone()
+            old = collector.db.execute('SELECT id FROM items WHERE source=? AND source_key=?', (manifest['provider_id'],key)).fetchone()
             if old:
                 ident = old['id']
             else:
-                ident = collector.item(PROVIDER,key,'collector_document',item['url'],item['title'],
+                ident = collector.item(manifest['provider_id'],key,'collector_document',item['url'],item['title'],
                     {'source_id':item['source_id'],'native_id':item['source_item_id'],
                      'supplier_item_id':item['item_id'],'first_delivery_id':manifest['delivery_id'],
                      'acceptance':'candidate_unreviewed','source_version_history':'observations.request_json'})
@@ -132,7 +131,7 @@ def materialize(data, package, manifest, rows):
                 sync_directory(directory)
         return len(manifest['items'])
     try:
-        return collector.run(PROVIDER,apply)
+        return collector.run(manifest['provider_id'],apply)
     finally:
         collector.close()
 
@@ -145,17 +144,28 @@ def receive(package, data_root):
     catalog = data/'acquisition/catalog.sqlite'
     if not catalog.is_file() or catalog.is_symlink():
         raise ValueError('collector_existing_acquisition_catalog_required')
-    root = data/'acquisition/collectors'/PROVIDER
+    # Select a bounded registered provider before constructing any storage path.
+    # The frozen snapshot must still match this choice to reject manifest races.
+    incoming = validator._json(Path(package).expanduser().resolve(), 'manifest.json')
+    provider = incoming['provider_id']
+    if provider not in validator.TEAMS:
+        raise ValueError('collector_provider_not_enabled')
+    authorize(incoming)
+    def guard(manifest):
+        if manifest['provider_id'] != provider:
+            raise ValueError('collector_provider_changed_during_snapshot')
+        authorize(manifest)
+    root = data/'acquisition/collectors'/provider
     root.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
     if root.is_symlink(): raise ValueError('collector_store_symlink')
-    with locked(root.parent/(PROVIDER+'-production')):
-        arrival = _receive(package,root,store=production_store,production=True,guard=authorize)
+    with locked(root.parent/(provider+'-production')):
+        arrival = _receive(package,root,store=production_store,production=True,guard=guard)
         frozen = root/'packages'/arrival['package_sha256']
         manifest = json.loads((frozen/'manifest.json').read_text())
         rows = [json.loads(x) for x in (frozen/'observations.jsonl').read_text().splitlines()]
         with sqlite3.connect(root/'receipts.sqlite3') as db:
             db.execute('CREATE TABLE IF NOT EXISTS production_acks(provider TEXT,id TEXT,receipt TEXT,PRIMARY KEY(provider,id))')
-            previous = db.execute('SELECT receipt FROM production_acks WHERE provider=? AND id=?', (PROVIDER,manifest['delivery_id'])).fetchone()
+            previous = db.execute('SELECT receipt FROM production_acks WHERE provider=? AND id=?', (provider,manifest['delivery_id'])).fetchone()
         complete = verified(data,manifest,rows)
         repaired = False
         if not complete:
@@ -174,7 +184,7 @@ def receive(package, data_root):
             source_policy_sha256=hash_file(ROOT/'framework/supply_contract.json'),
             recovered_after_pending=arrival['replayed'])
         with sqlite3.connect(root/'receipts.sqlite3') as db:
-            db.execute('INSERT INTO production_acks VALUES(?,?,?)', (PROVIDER,manifest['delivery_id'],canonical(receipt)))
+            db.execute('INSERT INTO production_acks VALUES(?,?,?)', (provider,manifest['delivery_id'],canonical(receipt)))
         sync_directory(root)
         return {**receipt,'replayed':False,'current_receive_counts':arrival['current_receive_counts']}
 

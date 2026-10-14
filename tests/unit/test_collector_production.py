@@ -10,20 +10,21 @@ from tests.unit.test_collector_handoff import example
 
 
 class CollectorProductionTests(unittest.TestCase):
+    provider = "fetchstat"
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
         self.root=Path(self.tmp.name).resolve();self.data=self.root/'data'
         c=Collector(self.data);c.close()
-        self.package=example.build(self.root/'input','fetchstat')
+        self.package=example.build(self.root/'input',self.provider)
         self.policy=self.root/'policy';(self.policy/'framework').mkdir(parents=True)
         manifest=json.loads((self.package/'manifest.json').read_text());item=manifest['items'][0]
-        policy={'collector_reception':{'enabled_providers':['fetchstat'],'sources':{'fetchstat':[{
+        policy={'collector_reception':{'enabled_providers':[self.provider],'sources':{self.provider:[{
             'source_id':item['source_id'],'native_id':item['source_item_id'],'url':item['url']}]}}}
         (self.policy/'framework/supply_contract.json').write_text(json.dumps(policy))
         self.patcher=patch.object(production,'ROOT',self.policy);self.patcher.start();self.addCleanup(self.patcher.stop)
 
     def receive(self):return production.receive(self.package,self.data)
-    def ledger(self):return self.data/'acquisition/collectors/fetchstat/receipts.sqlite3'
+    def ledger(self):return self.data/'acquisition/collectors'/self.provider/'receipts.sqlite3'
     def counts(self):
         with sqlite3.connect(self.data/'acquisition/catalog.sqlite') as db:
             return {t:db.execute('SELECT COUNT(*) FROM '+t).fetchone()[0] for t in ('items','observations','runs')}
@@ -73,7 +74,7 @@ class CollectorProductionTests(unittest.TestCase):
         native.write_bytes(original);self.assertEqual(self.receive()['candidate_rows'],1)
 
     def test_other_teams_and_unregistered_source_do_not_enter_catalog(self):
-        other=example.build(self.root/'other','fetchfilings')
+        other=example.build(self.root/'other','fetchreports')
         with self.assertRaisesRegex(ValueError,'not_enabled'):production.receive(other,self.data)
         p=self.package/'manifest.json';manifest=json.loads(p.read_text());manifest['items'][0]['url']='https://unregistered.example/data';p.write_text(json.dumps(manifest))
         with self.assertRaisesRegex(ValueError,'not_registered'):self.receive()
@@ -103,5 +104,39 @@ class CollectorProductionTests(unittest.TestCase):
             stored=json.loads(db.execute('SELECT request_json FROM observations').fetchone()[0])
         self.assertEqual(stored['item'],manifest['items'][0]);self.assertEqual(stored['observations'],rows)
         self.assertEqual(stored['collector_revision'],manifest['collector_revision'])
+
+class FilingsProductionTests(CollectorProductionTests):
+    provider = "fetchfilings"
+
+    def test_enabled_providers_keep_separate_roots_and_catalog_identity(self):
+        other=example.build(self.root/'stat','fetchstat')
+        policy=json.loads((self.policy/'framework/supply_contract.json').read_text())
+        item=json.loads((other/'manifest.json').read_text())['items'][0]
+        policy['collector_reception']['enabled_providers'].append('fetchstat')
+        policy['collector_reception']['sources']['fetchstat']=[{
+            'source_id':item['source_id'],'native_id':item['source_item_id'],'url':item['url']}]
+        (self.policy/'framework/supply_contract.json').write_text(json.dumps(policy))
+        first=self.receive();stat=production.receive(other,self.data)
+        self.assertEqual(self.counts()['observations'],2)
+        self.assertEqual(self.receive()['first_received_at'],first['first_received_at'])
+        self.assertEqual(production.receive(other,self.data)['first_received_at'],stat['first_received_at'])
+        with sqlite3.connect(self.data/'acquisition/catalog.sqlite') as db:
+            self.assertEqual({r[0] for r in db.execute('SELECT source FROM items')},{'fetchstat','fetchfilings'})
+        # Even an enabled team cannot receive another team's registered source.
+        manifest=json.loads((self.package/'manifest.json').read_text())
+        manifest['provider_id']='fetchstat'
+        policy['collector_reception']['sources']['fetchstat'][0]['source_id']='fetchstat-only-source'
+        (self.policy/'framework/supply_contract.json').write_text(json.dumps(policy))
+        with self.assertRaisesRegex(ValueError,'not_registered'):production.authorize(manifest)
+
+    def test_provider_change_after_initial_selection_is_rejected_before_storage(self):
+        manifest=json.loads((self.package/'manifest.json').read_text())
+        changed={**manifest,'provider_id':'fetchstat'}
+        def raced(package, root, **kwargs):
+            kwargs['guard'](changed)
+        with patch.object(production,'_receive',side_effect=raced):
+            with self.assertRaisesRegex(ValueError,'changed_during_snapshot'):self.receive()
+        self.assertFalse(self.ledger().exists())
+        self.assertEqual(self.counts()['observations'],0)
 
 if __name__=='__main__':unittest.main()
