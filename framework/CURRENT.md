@@ -1,6 +1,8 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.14.133
+> CURRENT · 基准版本 2026.10.14.134
+
+2026-10-14：用户在fetchfilings验收后要求继续fetchreports生产接通；先登记LBNL报告官方发布页与方法摘要单源，PDF正文/图表/附件未读，不自动采用或填参。实际生产ACK另验，fetchquotes保持关闭。
 
 2026-10-14：fetchfilings已用Microsoft官方FY2025年报完成AWS真实采集、Spark永久候选接收、受控截断拒绝/完整重试与同包零增量重放；旧ID、版本、原信封和首次接收保留。仅Microsoft年度现金PP&E单源受控文件交付，未启用调度；候选不入Reader、不采用、不填参；fetchreports/fetchquotes仍未接通。
 

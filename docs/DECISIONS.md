@@ -1,5 +1,11 @@
 # 决策记录
 
+## 2026-10-14：fetchreports发布页单源接收准备
+
+用户在fetchfilings验收后要求继续fetchreports生产接通；先登记LBNL报告官方发布页与方法摘要单源，PDF正文/图表/附件未读，不自动采用或填参。实际生产ACK另验，fetchquotes保持关闭。
+
+保留旧DOI、source/item/observation/delivery ID、两版字节与旧采集提交。发布日期不代替信息有效时间；研究方方法与自有核验分开，同源跨版本不多计独立证据。
+
 ## 2026-10-14：fetchfilings真实候选接收已验
 
 fetchfilings已用Microsoft官方FY2025年报完成AWS真实采集、Spark永久候选接收、受控截断拒绝/完整重试与同包零增量重放；旧ID、版本、原信封和首次接收保留。仅Microsoft年度现金PP&E单源受控文件交付，未启用调度；候选不入Reader、不采用、不填参；fetchreports/fetchquotes仍未接通。
