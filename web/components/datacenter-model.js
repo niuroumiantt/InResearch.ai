@@ -229,7 +229,7 @@
   function bridgeCompatible(next){if(bridgeApplied)next.demand_rate=bridge.energy_review.billing.demand_rate_override;return next;}
   function annualEnergy(){return {...energyCase(values),period:structuredClone(bridge.energy_review.period),energy_review_sha256:bridge.energy_review_sha256};}
   function bridgeSnapshot(){
-    return {schema:'site-model-scenario-v4',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
+    return {schema:'site-model-scenario-v5',site_id:bridge.site_id,scope:structuredClone(bridge.scope),created_at:new Date().toISOString(),
       bridge_version:bridge.version,mapping_version:bridge.mapping_version,data_sha256:bridge.data_sha256,observation_sha256:bridge.observation_sha256,
       model_id:spec.model_id,model_as_of:spec.as_of,model_source_sha256:bridge.model_source_sha256,model_spec:structuredClone(spec),revision:basisRevision,
       capacity_source:structuredClone(bridge.capacity_source),rules:structuredClone(bridge.rules),review_sha256:bridge.review_sha256,
@@ -238,7 +238,7 @@
       inputs:structuredClone(values),input_basis:structuredClone(inputBasis),
       configurations:structuredClone(bridge.configurations),economic_candidates:structuredClone(bridge.economic_candidates),
       unknowns:structuredClone(bridge.unknowns),coverage:structuredClone(bridge.coverage),annual_energy:annualEnergy(),
-      energy_review:structuredClone(bridge.energy_review),energy_review_sha256:bridge.energy_review_sha256,energy_sensitivity:energySensitivity(values,bridge.energy_review.sensitivity),
+      cost_review:structuredClone(bridge.cost_review),cost_review_sha256:bridge.cost_review_sha256,energy_review:structuredClone(bridge.energy_review),energy_review_sha256:bridge.energy_review_sha256,energy_sensitivity:energySensitivity(values,bridge.energy_review.sensitivity),
       readiness:{status:'scenario_only',project_feasibility:'not_verified'},results:run(values,spec)};
   }
   function bridgeEnergyEvidence(host){
@@ -261,6 +261,18 @@
     table(box,['容量时间假设（非真实投运日期）','TWh','代理费用'],sens.capacity_timing.map(row=>[row.capacity_equivalent_hours+'等效小时',(row.facility_kwh/1e9).toFixed(3),money(row.proxy_cost_usd)]));
     box.append(make('p','note','4380等效小时只表示容量×时间积分为固定规模全年的一半；不是把平均IT负载再减半。通用模型的ramp_year1/2未进入此表，下方生命周期按自己的情景口径计算。'));
     host.append(box);
+  }
+  function bridgeCostReview(host){
+    const cost=bridge.cost_review,box=make('details');box.id='bridge-cost-review';
+    box.append(make('summary','','159亿美元资本成本：系数、范围和分期核对（候选，不填参）'),make('p','',cost.headline.note),make('p','note',cost.valuation_basis.note),make('p','note',cost.coefficient.precision_note));
+    const wrap=make('div','tscroll'),table=make('table'),head=make('tr');['源模型分项','美元/ITkW','按421MW缩放（十亿美元）','现场实支','边界'].forEach(x=>head.append(make('th','',x)));table.append(head);
+    for(const c of cost.components){const tr=make('tr');tr.dataset.costComponent=c.id;[c.label,c.unit_cost_usd_per_it_kw,(c.scaled_estimate_usd/1e9).toFixed(6),'未知',c.note].forEach(x=>tr.append(make('td','',String(x))));table.append(tr);}wrap.append(table);box.append(wrap,make('p','',`分项合计：${cost.coefficient.component_sum}美元/ITkW × 421000kW = $${cost.headline.embedded_usd.toLocaleString('en-US')}；源显示159亿美元。`),make('p','note',cost.included),make('p','note',cost.excluded_or_separate),make('p','note',cost.phase_boundary));
+    const cases=make('details');cases.append(make('summary','','一／二／四／八栋来源序列的算术对应'));
+    for(const c of cost.cases)cases.append(make('p','',`${c.effective_at} · ${c.buildings_estimated}栋估算／预测 · ${c.it_mw}MW × 1000 × ${cost.coefficient.component_sum} = $${c.source_embedded_cost_usd.toLocaleString('en-US')} · 非现场实支`));box.append(cases);
+    const records=make('details');records.id='bridge-cost-site-records';records.append(make('summary','','分期申报、合资、融资与土地权利：分别保留'));
+    for(const row of cost.site_records){const source=bridge.review.sources.find(x=>x.id===row.source_id),a=make('a','',row.label+' · '+row.locator);a.href=source.url;a.target='_blank';a.rel='noopener';records.append(a,make('p','',money(row.reported_usd)+' · '+({announced_financing:'合资／融资公告',filing_estimated_cost:'工程申报估算',lease_reservation_term:'租约／预留条款',loan_limit:'贷款可借上限'}[row.nature])+' · '+row.scope+' · 来源日期 '+row.source_record_date),make('p','note',row.boundary));}box.append(records);
+    for(const row of cost.unknowns)box.append(make('h3','',row.label.replace(/未知$/,'')+' · 未知'),make('p','',row.reason),make('p','note','下一步：'+row.next_action));
+    box.append(make('p','note',cost.mapping.reason),make('p','note',cost.limitations.join(' ')),make('p','note','成本表固定引用来源421MW规模，不随当前用户情景改参；不能作为现场分期结算。'),make('p','note','成本复核摘要 '+bridge.cost_review_sha256+'；本次未更改IT/设施/土地/自备发电的模型取值。'));host.append(box);
   }
   function bridgeDocuments(host){
     const box=make('details');box.id='bridge-document-checks';
@@ -337,7 +349,7 @@
         ['现场收入、合同与实绩','未知','未知','计算用值另标假设，不补造事实']]){const row=make('tr');cells.forEach((x,i)=>{const td=make('td','',x);td.dataset.label=['参数','建议取值','资料身份','适用边界'][i];row.append(td);});t.append(row);}table.append(t);host.append(table);
       const provenance=make('details');provenance.append(make('summary','','已有容量估算的原始来源与版本'));
       for(const source of bridge.capacity_source.sources){const link=make('a','',source.url||'来源');if(source.url)link.href=source.url;provenance.append(link);}
-      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeEnergyEvidence(host);bridgeDependencies(host);bridgeDocuments(host);bridgeEvidence(host);
+      provenance.append(make('p','note',bridge.capacity_source.source_versions.join('；')+'；观察摘要 '+bridge.observation_sha256));host.append(provenance);bridgeEnergyEvidence(host);bridgeCostReview(host);bridgeDependencies(host);bridgeDocuments(host);bridgeEvidence(host);
       const apply=make('button','','确认生成园区年度用电情景');apply.id='bridge-apply';apply.type='button';
       apply.onclick=()=>{const next=withPreset(spec,'baseline');next.site='us_texas';applyTable(next,'site',spec);Object.assign(next,bridge.demo_assumptions,{it_mw:bridge.expected_it_mw,demand_rate:bridge.energy_review.billing.demand_rate_override});
         if(!confirmBridgeChange(next,'重新应用园区情景'))return;

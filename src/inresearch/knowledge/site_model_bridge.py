@@ -131,8 +131,60 @@ def _energy(item, sources, evidence, spec):
             raise ValueError('bridge_energy_sensitivity_bounds')
 
 
+def _cost(item, sources, evidence, spec):
+    cost = item['cost_review']
+    if digest(cost) != item['cost_review_sha256'] or cost['status'] != 'candidate_only_no_parameter_fill':
+        raise ValueError('bridge_cost_review_changed')
+    valuation = cost['valuation_basis']
+    if valuation['currency'] != 'USD' or valuation['constant_dollar_basis'] != 'unknown' or valuation['tax_fees_basis'] != 'unknown':
+        raise ValueError('bridge_cost_valuation_unknown')
+    headline = cost['headline']
+    if (headline['source_id'] not in sources or headline['actual_cost_usd'] is not None
+            or headline['basis'] != 'operating_capacity_scaled_generic_capex'):
+        raise ValueError('bridge_cost_not_actual')
+    coefficient = cost['coefficient']
+    components = cost['components']
+    if (len(components) != 5 or {c['id'] for c in components} != {'servers','network','facility','land','utility'}
+            or coefficient['unit'] != 'USD/ITkW' or coefficient['reference_it_mw'] != 1000
+            or coefficient['applied_page_it_mw'] != item['expected_it_mw']):
+        raise ValueError('bridge_cost_scope')
+    for row in components:
+        unit = row['unit_cost_usd_per_it_kw']
+        if (type(unit) not in (int,float) or not math.isfinite(unit) or unit <= 0
+                or row['actual_cost_usd'] is not None or row['status'] != 'candidate_model_allocation'
+                or row['source_id'] not in sources or not row.get('workbook_locator')
+                or not row['evidence_ids'] or not set(row['evidence_ids']) <= evidence.keys()
+                or row['scaled_estimate_usd'] != unit*item['expected_it_mw']*1000):
+            raise ValueError('bridge_cost_component')
+    total = sum(c['unit_cost_usd_per_it_kw'] for c in components)
+    if (coefficient['component_sum'] != total or coefficient['csv_component_sum_million_usd'] != total
+            or headline['embedded_usd'] != total*item['expected_it_mw']*1000
+            or headline['displayed_usd'] != round(headline['embedded_usd']/1e9,1)*1e9
+            or coefficient['csv_total_million_usd'] != round(coefficient['workbook_cached_total_usd']/1e6)):
+        raise ValueError('bridge_cost_precision_reconciliation')
+    cases = cost['cases']
+    if len({c['id'] for c in cases}) != len(cases) or not any(c['id']=='current' and c['it_mw']==item['expected_it_mw'] for c in cases):
+        raise ValueError('bridge_cost_cases')
+    for case in cases:
+        if (case['actual_cost_usd'] is not None or case['status'] != 'candidate_arithmetic_match'
+                or case['source_id'] not in sources or case['source_embedded_cost_usd'] != case['it_mw']*1000*total
+                or case['replayed_cost_usd'] != case['source_embedded_cost_usd']):
+            raise ValueError('bridge_cost_case_not_actual')
+    for row in cost['site_records']:
+        if (row['status'] != 'candidate' or row['automatic_fill'] is not False or row['source_id'] not in sources
+                or row['nature'] not in {'announced_financing','filing_estimated_cost','lease_reservation_term','loan_limit'}
+                or not row.get('scope') or not row.get('boundary') or not row['evidence_ids']
+                or not set(row['evidence_ids']) <= evidence.keys()):
+            raise ValueError('bridge_cost_record_nature')
+    mapping = cost['mapping']
+    if (mapping['automatic_fill'] is not False or set(mapping['blocked_targets']) != {'it_capex_per_kw','shell_capex_per_mw','land_per_mw','btm_capex_per_mw'}
+            or any(mapping[k] is not None for k in ['actual_it_capex_per_kw','actual_facility_capex_per_mw','actual_land_per_mw','actual_btm_capex_per_mw'])
+            or any(u['status']!='unknown' or not u.get('next_action') for u in cost['unknowns'])):
+        raise ValueError('bridge_cost_no_parameter_adoption')
+
+
 def validate(doc, projects, spec):
-    if doc.get('schema_version') != 4 or not doc.get('version') or not doc.get('mapping_version'):
+    if doc.get('schema_version') != 5 or not doc.get('version') or not doc.get('mapping_version'):
         raise ValueError('bridge_version')
     sites = {r['site_id']: r for r in projects}
     seen = set()
@@ -156,6 +208,7 @@ def validate(doc, projects, spec):
             raise ValueError('bridge_capacity_bounds')
         sources, evidence = _review(item)
         _energy(item, sources, evidence, spec)
+        _cost(item, sources, evidence, spec)
         ids = set()
         for claim in item['configurations'] + item['economic_candidates']:
             if claim['id'] in ids or claim['status'] != 'candidate':
@@ -268,6 +321,17 @@ ENERGY = {**_fields('id reviewed_at status'), 'checks': [ENERGY_CHECK],
           'period': _fields('mode snapshot_date scope_id hours actual_start actual_end capacity_profile_state note formula pue_formula'),
           'billing': _fields('mode demand_rate_override note supply_assumption price_period price_release_date applicability'),
           'sensitivity': {**_fields('status note'), 'load_factors': [None], 'pues': [None], 'prices': [None], 'capacity_equivalent_hours': [None]}}
+COST_COMPONENT = {**_fields('id label status unit_cost_usd_per_it_kw scaled_estimate_usd workbook_cached_1gw_usd workbook_locator source_id actual_cost_usd note'), 'evidence_ids': [None]}
+COST = {**_fields('id reviewed_at status previous_review_sha256 included excluded_or_separate phase_boundary'),
+        'valuation_basis': _fields('currency study_date csv_upfront_updated workbook_retrieved_at constant_dollar_basis tax_fees_basis note'),
+        'headline': _fields('displayed_usd embedded_usd source_id locator basis actual_cost_usd note'),
+        'coefficient': _fields('unit component_sum csv_total_million_usd csv_component_sum_million_usd workbook_cached_total_usd reference_it_mw applied_page_it_mw native_capacity_it_mw precision_note native_capacity_at_component_coefficient_usd rounded_capacity_at_native_total_usd approximate_38b_at_native_capacity_usd'),
+        'components': [COST_COMPONENT],
+        'cases': [_fields('id effective_at buildings_estimated it_mw source_embedded_cost_usd replayed_cost_usd status scope source_id locator actual_cost_usd')],
+        'site_records': [{**_fields('id label source_id locator reported_usd nature scope boundary status automatic_fill source_record_date date_kind planned_start planned_completion'), 'evidence_ids':[None]}],
+        'unknowns': [_fields('id label status reason next_action')],
+        'mapping': {**_fields('automatic_fill actual_it_capex_per_kw actual_facility_capex_per_mw actual_land_per_mw actual_btm_capex_per_mw reason'), 'blocked_targets':[None]},
+        'previous_cost_derivation': DERIVATION, 'limitations': [None]}
 BRIDGE = {
     **_fields('site_id observation_id expected_it_mw review_sha256 expected_observation_sha256 document_review_sha256'),
     'scope': _fields('id label effective_at physical_scope included excluded actor accounting_basis'),
@@ -275,6 +339,7 @@ BRIDGE = {
     'rules': [{**_fields('id target kind source_field conditions value'), 'evidence_ids': [None], 'dependency_derivation_ids': [None], **_fields('entry_method evidence_independence')}],
     'demo_assumptions': _fields('load_factor pue'),
     'energy_review': ENERGY, 'energy_review_sha256': None,
+    'cost_review': COST, 'cost_review_sha256': None,
     'coverage': [_fields('angle item state destination reason')],
     'blockers': [{**_fields('id status label reason automatic_fill'), 'evidence_ids': [None],
                   'blocked_targets': [None], 'exception_rule_ids': [None]}],

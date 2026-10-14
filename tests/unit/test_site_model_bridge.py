@@ -61,7 +61,7 @@ class SiteModelBridgeTests(unittest.TestCase):
 
     def test_review_versions_and_private_paths(self):
         out=bridge.project(ROOT,self.projects,'us-tx-abilene')
-        self.assertEqual(len(out['review']['derivations']),13)
+        self.assertEqual(len(out['review']['derivations']),16)
         self.assertEqual(len(out['blockers']),3)
         self.assertEqual(out['review']['item_counts']['anomaly'],3)
         self.assertEqual(out['review']['report_exhaustive'],'not_certified')
@@ -169,7 +169,7 @@ class SiteModelBridgeTests(unittest.TestCase):
         self.assertEqual(D(str(replay['所选四栋IT估算']['value'])),D(4)*D(50400)/D(72)*D('.132')*D('1.14'))
         self.assertEqual(replay['GPU合计']['value'],100800+100800)
         self.assertEqual(replay['所选四栋算力估算']['status'],'precision_unresolved')
-        self.assertIn('未贯通',self.doc['sites'][0]['dependency_notice']['cost_limit'])
+        self.assertIn('算术闭合',self.doc['sites'][0]['dependency_notice']['cost_limit']);self.assertIn('未认证',self.doc['sites'][0]['dependency_notice']['cost_limit'])
 
     def test_energy_review_preserves_unknowns_and_snapshot_period(self):
         out=bridge.project(ROOT,self.projects,'us-tx-abilene');energy=out['energy_review']
@@ -214,3 +214,40 @@ class SiteModelBridgeTests(unittest.TestCase):
         e['private']='/Users/private/source';e['checks'][0]['private']='/Users/private/contract';e['billing']['secret']='contract';e['period']['local_path']='private'
         out=bridge._public(changed,bridge.BRIDGE)
         self.assertNotIn('/Users/',json.dumps(out));self.assertNotIn('secret',out['energy_review']['billing']);self.assertNotIn('local_path',out['energy_review']['period'])
+
+    def test_cost_precision_reconciles_page_not_native_capacity_or_total_row(self):
+        out=bridge.project(ROOT,self.projects,'us-tx-abilene');cost=out['cost_review'];coef=cost['coefficient']
+        self.assertEqual(coef['component_sum'],37882)
+        self.assertEqual(sum(c['scaled_estimate_usd'] for c in cost['components']),15948322000)
+        self.assertEqual(cost['headline']['displayed_usd'],15900000000)
+        self.assertEqual(coef['csv_total_million_usd'],37883)
+        self.assertNotEqual(coef['native_capacity_at_component_coefficient_usd'],cost['headline']['embedded_usd'])
+        self.assertEqual(coef['approximate_38b_at_native_capacity_usd'],16011072000)
+        self.assertIsNone(cost['headline']['actual_cost_usd'])
+        self.assertEqual(cost['previous_cost_derivation']['relationship_kind'],'methodological_dependency_not_exact_replay')
+        self.assertTrue(all(c['source_embedded_cost_usd']==c['it_mw']*1000*37882 for c in cost['cases']))
+        changed=copy.deepcopy(self.doc);item=changed['sites'][0];item['cost_review']['coefficient']['component_sum']=37883;item['cost_review_sha256']=bridge.digest(item['cost_review'])
+        with self.assertRaisesRegex(ValueError,'cost_precision_reconciliation'):bridge.validate(changed,self.projects,self.spec)
+
+    def test_cost_source_categories_and_financing_never_become_actuals(self):
+        cost=self.doc['sites'][0]['cost_review']
+        self.assertTrue(all(c['actual_cost_usd'] is None for c in cost['components']))
+        self.assertTrue(all(not c['automatic_fill'] for c in cost['site_records']))
+        self.assertEqual(len(cost['site_records']),8)
+        self.assertIn('软件',next(c for c in cost['components'] if c['id']=='network')['note'])
+        for change,error in [('actual','cost_component'),('fill','no_parameter_adoption'),('unblock','no_parameter_adoption'),('valuation','valuation_unknown'),('finance','record_nature'),('case','case_not_actual')]:
+            changed=copy.deepcopy(self.doc);item=changed['sites'][0];cost=item['cost_review']
+            if change=='actual':cost['components'][0]['actual_cost_usd']=cost['components'][0]['scaled_estimate_usd']
+            elif change=='fill':cost['mapping']['actual_land_per_mw']=.172
+            elif change=='unblock':cost['mapping']['blocked_targets']=[]
+            elif change=='valuation':cost['valuation_basis']['constant_dollar_basis']='2026'
+            elif change=='finance':cost['site_records'][0]['nature']='actual_capex'
+            else:cost['cases'][0]['actual_cost_usd']=cost['cases'][0]['source_embedded_cost_usd']
+            item['cost_review_sha256']=bridge.digest(cost)
+            with self.assertRaisesRegex(ValueError,error):bridge.validate(changed,self.projects,self.spec)
+
+    def test_cost_nested_projection_preserves_history_without_private_paths(self):
+        changed=copy.deepcopy(self.doc['sites'][0]);c=changed['cost_review'];c['components'][0]['contract_path']='/Users/private/contract';c['mapping']['secret']='internal';c['previous_cost_derivation']['file_path']='private'
+        out=bridge._public(changed,bridge.BRIDGE);self.assertNotIn('/Users/',json.dumps(out));self.assertNotIn('secret',out['cost_review']['mapping']);self.assertNotIn('file_path',out['cost_review']['previous_cost_derivation'])
+        self.assertEqual(out['cost_review']['previous_cost_derivation']['id'],'cost-from-it-scale')
+        self.assertEqual({r['target'] for r in out['rules']},{'it_mw','site'})
