@@ -27,6 +27,7 @@ def build(root, table):
     knowledge=read('data/research_knowledge.json');model=read('data/datacenter_model.json')
     health=summarize(target_doc,questions,knowledge,model,read('framework/research_graph.json'))
     counts=Counter(t['status'] for t in targets)
+    provider_contracts={p['id']:p for p in read('framework/supply_contract.json')['providers']}
     labels=[('architecture','01 研究产品与架构'),('skeleton','02 骨架与图'),('demand','03 需求与供料'),('gates','04 数据门槛'),('storage','05 存储与服务'),('engineering','06 工程与发布')]
     def section(key,title,note):return f'<section id="audit-{key}" class="audit-section"><h2>{title}<small>{note}</small></h2>'
     html='<section class="audit-hero"><div class="audit-kicker">INRESEARCH / RESEARCH CONTROL ROOM</div><h2>现在能回答什么，<br>下一步该补什么。</h2><p>从一个研究问题，到可追溯的回答。目录、材料、证据与模型各有用途；用问题闭环和关键输入决定下一步，把供料、审核与上线的阻塞留在同一张工作面。</p><nav class="audit-nav" aria-label="本页审查目录">'
@@ -83,8 +84,8 @@ def build(root, table):
         ['功能关系','供电/冷却/数据/控制另用有方向、带端口和工况的关系','先有官方贯通样例再扩展；不由画线自动生成工程事实'],
         ['配置与成本','父项含价、子件计价、冗余与共享设备分别登记','同一物理件不重复累计；最长采购交期不等于项目关键路径']])
     html+='<p><a href="/bom.html">爆炸图 →</a> · <a href="/node.html">研究节点 →</a> · <a href="/ledger.html">账本与情景 →</a></p></section>'
-    html+=section('demand','03 · 目标合同驱动供料，运行回执单独对账','目标是待满足的需求；两个 repo 接入不表示六类来源已经齐备')
-    html+=table(['供应能力','接入','目标','缺','已交付','有来源登记','含假设'],[[p['team'],'已接入' if p['connected'] else '未接入',p['targets'],p['statuses'].get('needed',0),p['statuses'].get('delivered',0),p['statuses'].get('sourced',0),p['statuses'].get('assumed',0)] for p in health['providers']])
+    html+=section('demand','03 · 目标合同驱动供料，运行回执单独对账','目标是待满足的需求；接收通道接通不表示来源覆盖或研究采用完成')
+    html+=table(['供应能力','接入','接通范围','目标','缺','已交付','有来源登记','含假设'],[[p['team'],'已接入' if p['connected'] else '未接入',provider_contracts.get(p['team'],{}).get('connection_scope','现有通道，覆盖另查回执' if p['connected'] else '生产未接通，离线候选可交付'),p['targets'],p['statuses'].get('needed',0),p['statuses'].get('delivered',0),p['statuses'].get('sourced',0),p['statuses'].get('assumed',0)] for p in health['providers']])
     html+=f'<div class="audit-callout">{health["questions"]["targets_without_exact_question"]} 条目标尚无已审核的研究用途。question_ids 为支持或线索用途，可跨变量类；同格候选只供检索，不是语义证明。模型变量采集的人工细化绑定目标行；全球园区普查按地区／对象工作包组织，一般信息可不绑定模型目标。</div>'
     html+='<details><summary>供料合同：要什么、交什么、不能据此推断什么</summary>'+table(['合同','最小交付内容','能力边界'],[[k,'、'.join(v['fields']),v['acceptance']+' 不证明：'+v['does_not_prove']] for k,v in target_doc['request_contract']['profiles'].items()])+'</details>'
     html+='<p>原厂额定功率与现场实耗分开；inews 负责发现与事件指针；统计、财报、报价、运行实证由相应来源能力承担。先补关键输入的来源与负责人，不为“六队”数量创建空 repo。<a href="/supply.html#targets">查看和细化目标 →</a></p>'
