@@ -2,7 +2,7 @@
 
 当前范围为fetchreports-lbnl-bootstrap／DOI:10.71468/P1WC7Q:2024，官方发布页HTML与方法摘要候选。HTML completeness=complete只表示这份网页取得完整，不表示整份PDF已取得/读完。PDF正文、表图、计算数据和附件未读，不冒充缺失或已验。
 
-AWS用已固定干净fetchdata提交实际下载，旧两版包先保存在history-root/deliveries；相同SHA返回原信封，实际取得另记acquisitions.jsonl。不同SHA另留版本，不自动覆盖。Spark用同一生产接收器的provider独立锁、到达日志和ACK，精确白名单在supply_contract登记。
+AWS用已固定干净fetchdata提交实际下载，所有旧版包先保存在history-root/deliveries；相同SHA返回原信封，实际取得另记acquisitions.jsonl。不同SHA另留版本，不自动覆盖。Spark用同一生产接收器的provider独立锁、到达日志和ACK，精确白名单在supply_contract登记。
 
 ```sh
 python3 fetchdata.py run --team fetchreports --history-root /绝对路径/旧队数据根
