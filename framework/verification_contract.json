@@ -1,6 +1,6 @@
 {
-  "version": "2026.10.13.123",
-  "reviewed_at": "2026-10-13",
+  "version": "2026.10.14.124",
+  "reviewed_at": "2026-10-14",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "3039c0cefc2f2fe0c30e50ac9c266c9904b140bf8ea54dfb9dea51db7640f080",
@@ -18,7 +18,7 @@
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "b1020fb9ef25952ee5484119f94a33ee08967aa41bb25281c22e1e63cac25c73",
     "framework/00_overview.md": "a69be5c86fc95060a015df573b31f2a694502ce433059aaae0ea852455ac8541",
-    "framework/01_data_standards.md": "86822cddf5fed831a3a6a93f173eccc910890a48d203290375387d206dca0516",
+    "framework/01_data_standards.md": "06c787afb9ad85ee3c5b954270a2b2fee368f7afc7712b6e2e034aa2d7099fe7",
     "framework/02_knowledge_format.md": "e62d2145139460d0e6d71e8ea0f1d5438d76cf4f9714bba8a280312d9e4a66df",
     "framework/03_bom_and_collaboration.md": "b6b32ebfb173448ded2a0c873f93c0c3b4fa892445d9b4bf1b7a92395ad0a7e5",
     "framework/04_reading_scoring_standard.md": "50b6a9d367379c1e36f6a593ba2d131172a70c7d618894a8376c0cb1c3260e71",
@@ -27,7 +27,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
     "framework/09_software_contracts.md": "a5f21f5ab4ccf7afff5289d9cea1e27ff151c6831fe29ca65adfb336573a6f25",
-    "framework/CURRENT.md": "d4f4b65a6943fa63282f617259bbf28f5ad678de7fe7db5378eb043ecef447a1",
+    "framework/CURRENT.md": "2938423bc2e7e10974cfcfbdfd1e2f70ea8cd2d95060173a750108b65b150298",
     "framework/data_contract.json": "4c27cb06b82c5bba4d71d89eddb75c4d1dea98bb78d0c33591f3e6bec0cfd633",
     "framework/interface_manifest.json": "bef16ba9c1881b80107484eb9b6cd4ea26b833b9cc37909adaddd899f5409c78",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "69f3b8caf6b54ce6fdce7ad73f33ae9f818462129120d1e8e4cc430263dfbd01",
+    "framework/current_state.json": "3c4f9367594018912f0480ea889db270f3e1b3fcea37ca7f98296483013b4ae4",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "ce19f7138e9727e6e55c45789df874befa93365db3fa399f1d5f270a9b07db6f",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "1e38f39a6e891f25b08924ac92a58f083857a3f754e29992616c760d5c4d1836",
     "src/inresearch/adapters/html_document.py": "ece18751831c38a47683873898d0b8e476bba0dc04b33378da888ee64f08864e",
-    "docs/DECISIONS.md": "5b3b166d0770613bbc14b2d9336e180689c30b37b7e9aafd8874f0ad7adb9c90",
+    "docs/DECISIONS.md": "ddf78523858c3ca7c45372995b7f066cdbdf04efb5cbefb42a0621cfe5447054",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -807,7 +807,7 @@
     "docs/guides/fetchdata/examples/make_sample.py": "c1afbca9b4e3fefe6cf707e28ea273a194aa2e845a92d052b0a00d2d9d383bf3",
     "framework/research_publication.json": "df6a947d7ae4c3a49670a1265626c63a6f1ca7ef863387e097a545e817d454a5",
     "docs/guides/OBJECT_OBSERVATIONS.md": "1b9962bae1dab0acb2174c1fb600e2e4d642906934a7a8c94c6c90db380cbf3a",
-    "src/inresearch/knowledge/object_observations.py": "dc8142d774c3dca251ed457e9e7bfa681df780081ef16b1e447064f9355b9367",
+    "src/inresearch/knowledge/object_observations.py": "a344512af583fac60cf3920366e184fd2c6a7937b39f738667fe4b7cd8d5c18a",
     "src/inresearch/workflow/object_review.py": "b3cc6957866f7f619fdb0c253e1197c9bfdf0e2e1df9b021d8d97188513e33ff",
     "src/inresearch/workflow/stock_objects.py": "a0b74faea72f4ff3b4814a54f9d1a1ae7a4ea289ba12d69b662284af600a67bf",
     "src/inresearch/materials/fetchspec_receive.py": "a5245b294ad900b30c9ef9d8d14a66614e5fb641e6e53403b8a5c45e75375bdb",
@@ -819,10 +819,10 @@
     "tests/unit/test_xlsx_document.py": "81ad43737c6e6808deb4b916424ed89ab7c094ab69546f86e7c9f9527aafd252",
     "src/inresearch/knowledge/site_register.py": "20c01d459ca8406b84c54d4ee2663605da8ac41b15d2fcc6b10be4483497ce37",
     "src/inresearch/workflow/targeted_research.py": "c0f529cdeb41fdf79fcb93c387493e8f163f0cd0aa32f93474d670f7ee3644be",
-    "src/inresearch/workflow/source_statements.py": "71a09e603f6df4c07e7921c8f37fd59e764355525724aa0521ca742c81f332dc",
+    "src/inresearch/workflow/source_statements.py": "ae0712c1fc04d76891433c5e98b7eb2aa76e856f3ab7836c540e82ea208ce061",
     "tests/unit/test_source_statements.py": "a584ff83d83430051d676bf4120ac3c66b85975dd575cfe2fc16960b083ff32a",
-    "tests/unit/test_source_publication.py": "ca13c4c053d79e2c48380a006315296cd9a01517f42b63e18c9af3cfcd938659",
-    "src/inresearch/delivery/source_publication.py": "1fdbfe257bc17afe4873d62bdac85d091c3a270d5f6e9e4a8b48b8eeefc95d79",
+    "tests/unit/test_source_publication.py": "44345741a923b58a2c9ef29d63c51106b2573b8b5c4554719b45af1d29e3e66e",
+    "src/inresearch/delivery/source_publication.py": "036e307ee0dc95224f9070173c803045e055daa65b9b38f9bb1adcf6167cf49a",
     "src/inresearch/interfaces/auth.py": "f743a1614340215b1dfaf17806711d66f3667fd0153f8af44b1430b4f654807c",
     "web/robots.txt": "4a4e072385a690f4a436fe6a739ca70bbab5cf1a12e47104134d185d6a587cac",
     "framework/research_task_plan.json": "10d9f717f7dafc1de42c8e9969cf0d731101c0bed1bd1109213cdd9c5e338817",
@@ -924,7 +924,7 @@
       "policy": "data-20260906",
       "scope": "project",
       "source": "framework/01_data_standards.md",
-      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选、来源冲突并列与分发受限的对外阻断；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；2026-10-07中天新增复审：独立项目入库增加已登记地点及未知容量/坐标计数，IT总量及Frontier去重不变；行业审计期望值随126项项目更新。；2026-10-09具名A复审：新增/补充代理review须实际by、delegate一致、非空granted_by/granted_at/reference及固定scope；授权允许实际日期精度或带时区时间且不虚构时刻，日期/时间不得晚于相应审核精度；替代旧结论/放宽分发仅A-owner，普通A-owner/B-reviewer保持；失效代理支持链重开、接收候选不能自授；adopted API的陈述/回答/支持证据保留实际代理和五项最小委托，私有附加字段不出站。；2026-10-09对象审核复审：版本化目录冻结和显式IDs/理由（允许空），陈述/新证据应用审核后归属；抽样精确绑定拟采用记录，旧审计与已应用重放保留、未发布旧context真实失效、目录遵守原预算/分批。技术补审只严格收窄对象集合，完整before及compact SHA、原审核与实际具名A并存，其他字段零变化；坏history/授权阻断闭包，真实HTTP仅出最小补审不含完整before/私有字段。；2026-10-11容量原文资格复核：Citadel/Dulles未披露投运IT，不计入已知或投运IT；完整旧记录和三篇真实发布日期留存。原状态和其他项目未全库复核。；继承估算有标签保留，合理小幅数值不被取整或拒绝，估算份额分列且缺失有效时点不以核验日期替代。；2026-10-11首页替代复审：登记项目、采用字段与raw来源资料分别标识；168条已公开项目记载保持原文容量/角色/阶段/日期/来源，零site合并和零正式GW累加；国家资料标记明确粒度且无几何留未定位。北京时间发表/接收日期独立，未知运行投影不填零，截断计数披露；公司固定七家及来源提及高亮。首页overview有界压缩且保留完整API，新闻不等待whoami、刷新复用底图/项目DOM；文件变化使公开缓存失效。物理匹配的已验证acquisition投影不因curated研究增量消失，研究采用路径原校验保留，损坏源/控制视图不回退巨库。公开容量白名单拒绝原件引文/私有字段；320/390手机、三个桌面完整地图、明暗/键盘/浮窗/定位与1,000MW→1GW报道说明。；合并#686复审：首页摘要保留421/422历史参考IT及独立estimated份额，浮窗/明细/公司可见估算性质、时点缺口与待补条件，容量短摘要不带原件SHA或私有支持字段。；真实有界生产新闻输入复审：规范化/词边界预编译保持Unicode、中英文公司/国家匹配语义与完整投影逐字相等；首页不读取未展示的正式知识或计算采集回流，full接口保持原失败与计量行为。; Reviewed stable physical site identity, append-only scoped observations and latest-effective-day projection, preserve unknown/month precision, isolate forecasts and same-time disagreements, atomic IT capacity bundle, explicit rounding/derivation, actor updates, inactive supply separation and stale-age display instead of site-age validation failure.; Integrated the latest global/daily homepage without dropping raw/publication layers, scoped adoption metrics and lightweight overview; news identity uses current actors, known reviewed-site updates need no repeated new-project phase identity, and changed-source readiness requires new semantic review.；.87合并复审：仅capacity_assessment更新同样触发完整IT容量束要求，拒绝部分束且原200MW投运基线不变。；重新核验支持原件的SHA/相对定位/实际复核日期与历史输入同一性分别登记；owner精确12条after及完整before绑定原提案SHA，原提案状态保留，区间公开、主体/推导/预测边界更正不提升grade/depth/as_of；非法再核验元数据由实际fact契约拒绝。；2026.10.11.90复审：本次明确替代旧时间精度限制：有效/披露/首次有记录接收/审核/写入独立且重放不改首次时钟；跨台账按UTC最早、未知不补造，原文发布日期按真实页定位复算。原生区间/单位不取中点，年/月时间范围能确定先后才选择，性质或有效期不同不可被同值抹平；分期不累加全站，具体owner修订链严格。真实Abilene新观测保留完整旧档案，843预测不计当前。；地图导出、指标运行投影与新闻关联项目复用当前观测；区间不排名、不取中点，指标单值小计明确覆盖缺口，不改已发布模型定义。；上线前UI复审：未给阶段容量显示未披露，显式零保留；Reader采用链接观测与公开来源，不虚构日报事件ID；既有日报链接继续使用真实事件ID。；2026-10-11逐条采用复审：条目采用独立于全文完成；局部支持只认确切页码/上下文SHA，综合答案完整覆盖门槛保持。园区身份不由同名/同城推断，角色可兼任，规划与投运独立，水电为可选有期间边界的原生区间。；本批Abilene基线复审：仅增加既有描述Texas/Abilene的明确地理分量，由独立补录审计精确限定；旧容量、时间、来源和原历史审计均保持。；2026-10-11对象先入库复审：既有唯一园区字段/范围封印、真实来源/SHA/逐页引文/C3/CAS及重放保留，object_excerpt目标明确为空，不访问模型目标清单；日报已验证既有身份和原文即可就绪，不等待研究关联。伪造对象/字段/范围/支持及无绑定空目标拒绝，正式答案全覆盖规则保持。六队共同原则不证明四队交付或其他对象写入器已迁移。；2026.10.11.96复审：四类唯一对象的源优先观测采用不访问研究目标，真实原件SHA/原生值/页上下文和独立时间冻结；实际C3、CAS、抽样、无写重放、区间/冲突/owner修订核验。公开字段清单由首页及分页API共用，只计公开资格记录，原件引文/接收/审核审计不出站；未知/重复参数拒绝，私有账本匿名隔离；会员权益未接通，不复用内部member。Fetchspec空目标接收不刷新首次接收，声明目标仍核归属。；2026.10.11.99复审内联srcdoc：只选择归档HTML中第N个iframe[srcdoc]，不执行脚本/不取外部frame，原字节SHA、相关文本上下文SHA、逐条引文、定位/大小/空片段拒绝经新增行为测试。原JSON/PDF通道、C3、CAS、首次接收、无写重放和公开字段边界保持。；2026-10-12实际审阅：原生XLSX逐条采用：xlsx:sheet:N:cell:C2:context:A1:E3精确定位，冻结表名、原始单元格/类型、日期系统、合并表头与脚注上下文；不执行公式/宏、不访问外链，选中公式缓存或错误值拒绝。提取保留原始值，数字等值复验不改单位或拆分组合型号；具名C3、来源身份、首次接收、CAS、无写重放和公开字段清单保持。此能力不证明三份HBM汇总已核实或采用。；归档原件凭实际导入台账可逐条采用，URL可空，路径摘要/接收时间冻结，公开投影不泄露归档元数据。；首次物理园区冻结身份及来源引文、目标可空、未知容量/时间留空，重复身份与基线历史注入拒绝；后续重放保留首次时钟。；普通园区来源登记不做真假核验、不需要C3/全文/目标/专用凭证/网页URL；唯一ID、原件引用、三种时间、先登记待查、最新展示与历史保留、按条失败隔离和幂等重放。；首次未经核验园区阶段/核实日期可空，不默认L1/L2；无URL归档source_statement结构与实际来源一致。; .109 explicit review: ordinary typed source registration without C3; persistent atomic data-only publication without PR/CI/image rebuild; stable identity, immutable history, replay, public allowlist and actual HTTP receipts. Code releases retain protected checks.; .110 explicitly reviewed: omit reviewed legacy baselines from ordinary export, preserve their verified date, and render typed source updates on company pages. Explicit .112 review: anonymous homepage and tasks; authenticated remaining pages and writes preserve roles. Task top-level and package-field allowlists hide private coordination. Read-only actual example metadata grants no execution; absent/pending/broken states are honest. Public artifact access requires explicit grant, safe no-symlink path walking, frozen bytes, size and SHA; metadata and downloads have private no-store cookie-aware responses. Source-backed reported coordinates retain precision and immutable identity; registration and publication replay do not mutate clocks. Same-bundle runtime companies validate before site roles and reject code/runtime/batch identity collisions atomically. Historical actors and unknown IT capacity do not imply current tenancy or known GW.；2026-10-12批量准备复审：最多500条连续普通类型记录共用锁和一次原子写入；逐项身份/依赖/结构失败隔离，来源字节与接收凭据在提交前重验，来源中途变化整块无写；混合园区记录保持输入顺序，旧记录/首次时钟和重放保持。",
+      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选、来源冲突并列与分发受限的对外阻断；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；2026-10-07中天新增复审：独立项目入库增加已登记地点及未知容量/坐标计数，IT总量及Frontier去重不变；行业审计期望值随126项项目更新。；2026-10-09具名A复审：新增/补充代理review须实际by、delegate一致、非空granted_by/granted_at/reference及固定scope；授权允许实际日期精度或带时区时间且不虚构时刻，日期/时间不得晚于相应审核精度；替代旧结论/放宽分发仅A-owner，普通A-owner/B-reviewer保持；失效代理支持链重开、接收候选不能自授；adopted API的陈述/回答/支持证据保留实际代理和五项最小委托，私有附加字段不出站。；2026-10-09对象审核复审：版本化目录冻结和显式IDs/理由（允许空），陈述/新证据应用审核后归属；抽样精确绑定拟采用记录，旧审计与已应用重放保留、未发布旧context真实失效、目录遵守原预算/分批。技术补审只严格收窄对象集合，完整before及compact SHA、原审核与实际具名A并存，其他字段零变化；坏history/授权阻断闭包，真实HTTP仅出最小补审不含完整before/私有字段。；2026-10-11容量原文资格复核：Citadel/Dulles未披露投运IT，不计入已知或投运IT；完整旧记录和三篇真实发布日期留存。原状态和其他项目未全库复核。；继承估算有标签保留，合理小幅数值不被取整或拒绝，估算份额分列且缺失有效时点不以核验日期替代。；2026-10-11首页替代复审：登记项目、采用字段与raw来源资料分别标识；168条已公开项目记载保持原文容量/角色/阶段/日期/来源，零site合并和零正式GW累加；国家资料标记明确粒度且无几何留未定位。北京时间发表/接收日期独立，未知运行投影不填零，截断计数披露；公司固定七家及来源提及高亮。首页overview有界压缩且保留完整API，新闻不等待whoami、刷新复用底图/项目DOM；文件变化使公开缓存失效。物理匹配的已验证acquisition投影不因curated研究增量消失，研究采用路径原校验保留，损坏源/控制视图不回退巨库。公开容量白名单拒绝原件引文/私有字段；320/390手机、三个桌面完整地图、明暗/键盘/浮窗/定位与1,000MW→1GW报道说明。；合并#686复审：首页摘要保留421/422历史参考IT及独立estimated份额，浮窗/明细/公司可见估算性质、时点缺口与待补条件，容量短摘要不带原件SHA或私有支持字段。；真实有界生产新闻输入复审：规范化/词边界预编译保持Unicode、中英文公司/国家匹配语义与完整投影逐字相等；首页不读取未展示的正式知识或计算采集回流，full接口保持原失败与计量行为。; Reviewed stable physical site identity, append-only scoped observations and latest-effective-day projection, preserve unknown/month precision, isolate forecasts and same-time disagreements, atomic IT capacity bundle, explicit rounding/derivation, actor updates, inactive supply separation and stale-age display instead of site-age validation failure.; Integrated the latest global/daily homepage without dropping raw/publication layers, scoped adoption metrics and lightweight overview; news identity uses current actors, known reviewed-site updates need no repeated new-project phase identity, and changed-source readiness requires new semantic review.；.87合并复审：仅capacity_assessment更新同样触发完整IT容量束要求，拒绝部分束且原200MW投运基线不变。；重新核验支持原件的SHA/相对定位/实际复核日期与历史输入同一性分别登记；owner精确12条after及完整before绑定原提案SHA，原提案状态保留，区间公开、主体/推导/预测边界更正不提升grade/depth/as_of；非法再核验元数据由实际fact契约拒绝。；2026.10.11.90复审：本次明确替代旧时间精度限制：有效/披露/首次有记录接收/审核/写入独立且重放不改首次时钟；跨台账按UTC最早、未知不补造，原文发布日期按真实页定位复算。原生区间/单位不取中点，年/月时间范围能确定先后才选择，性质或有效期不同不可被同值抹平；分期不累加全站，具体owner修订链严格。真实Abilene新观测保留完整旧档案，843预测不计当前。；地图导出、指标运行投影与新闻关联项目复用当前观测；区间不排名、不取中点，指标单值小计明确覆盖缺口，不改已发布模型定义。；上线前UI复审：未给阶段容量显示未披露，显式零保留；Reader采用链接观测与公开来源，不虚构日报事件ID；既有日报链接继续使用真实事件ID。；2026-10-11逐条采用复审：条目采用独立于全文完成；局部支持只认确切页码/上下文SHA，综合答案完整覆盖门槛保持。园区身份不由同名/同城推断，角色可兼任，规划与投运独立，水电为可选有期间边界的原生区间。；本批Abilene基线复审：仅增加既有描述Texas/Abilene的明确地理分量，由独立补录审计精确限定；旧容量、时间、来源和原历史审计均保持。；2026-10-11对象先入库复审：既有唯一园区字段/范围封印、真实来源/SHA/逐页引文/C3/CAS及重放保留，object_excerpt目标明确为空，不访问模型目标清单；日报已验证既有身份和原文即可就绪，不等待研究关联。伪造对象/字段/范围/支持及无绑定空目标拒绝，正式答案全覆盖规则保持。六队共同原则不证明四队交付或其他对象写入器已迁移。；2026.10.11.96复审：四类唯一对象的源优先观测采用不访问研究目标，真实原件SHA/原生值/页上下文和独立时间冻结；实际C3、CAS、抽样、无写重放、区间/冲突/owner修订核验。公开字段清单由首页及分页API共用，只计公开资格记录，原件引文/接收/审核审计不出站；未知/重复参数拒绝，私有账本匿名隔离；会员权益未接通，不复用内部member。Fetchspec空目标接收不刷新首次接收，声明目标仍核归属。；2026.10.11.99复审内联srcdoc：只选择归档HTML中第N个iframe[srcdoc]，不执行脚本/不取外部frame，原字节SHA、相关文本上下文SHA、逐条引文、定位/大小/空片段拒绝经新增行为测试。原JSON/PDF通道、C3、CAS、首次接收、无写重放和公开字段边界保持。；2026-10-12实际审阅：原生XLSX逐条采用：xlsx:sheet:N:cell:C2:context:A1:E3精确定位，冻结表名、原始单元格/类型、日期系统、合并表头与脚注上下文；不执行公式/宏、不访问外链，选中公式缓存或错误值拒绝。提取保留原始值，数字等值复验不改单位或拆分组合型号；具名C3、来源身份、首次接收、CAS、无写重放和公开字段清单保持。此能力不证明三份HBM汇总已核实或采用。；归档原件凭实际导入台账可逐条采用，URL可空，路径摘要/接收时间冻结，公开投影不泄露归档元数据。；首次物理园区冻结身份及来源引文、目标可空、未知容量/时间留空，重复身份与基线历史注入拒绝；后续重放保留首次时钟。；普通园区来源登记不做真假核验、不需要C3/全文/目标/专用凭证/网页URL；唯一ID、原件引用、三种时间、先登记待查、最新展示与历史保留、按条失败隔离和幂等重放。；首次未经核验园区阶段/核实日期可空，不默认L1/L2；无URL归档source_statement结构与实际来源一致。; .109 explicit review: ordinary typed source registration without C3; persistent atomic data-only publication without PR/CI/image rebuild; stable identity, immutable history, replay, public allowlist and actual HTTP receipts. Code releases retain protected checks.; .110 explicitly reviewed: omit reviewed legacy baselines from ordinary export, preserve their verified date, and render typed source updates on company pages. Explicit .112 review: anonymous homepage and tasks; authenticated remaining pages and writes preserve roles. Task top-level and package-field allowlists hide private coordination. Read-only actual example metadata grants no execution; absent/pending/broken states are honest. Public artifact access requires explicit grant, safe no-symlink path walking, frozen bytes, size and SHA; metadata and downloads have private no-store cookie-aware responses. Source-backed reported coordinates retain precision and immutable identity; registration and publication replay do not mutate clocks. Same-bundle runtime companies validate before site roles and reject code/runtime/batch identity collisions atomically. Historical actors and unknown IT capacity do not imply current tenancy or known GW.；2026-10-12批量准备复审：最多500条连续普通类型记录共用锁和一次原子写入；逐项身份/依赖/结构失败隔离，来源字节与接收凭据在提交前重验，来源中途变化整块无写；混合园区记录保持输入顺序，旧记录/首次时钟和重放保持。；2026-10-14复审：普通类型来源归类更正只改metric/scope，原值、单位、性质、身份、原件与信息时钟保持，旧行不改不删；重复重放零写、旧归类只能更正一次。显式身份隔离/恢复过滤运行公司名录和读者字段，不允许普通隔离隐藏正式研究；同一公开白名单与C3/园区边界保持。",
       "tests": [
         "tests/unit/test_research.py::ResearchTests.test_invalid_C3_review_never_closes_question",
         "tests/unit/test_research.py::ResearchTests.test_C_archive_cannot_close_and_valid_B_reopens_then_closes",
@@ -1184,7 +1184,11 @@
         "tests/unit/test_source_batch.py::SourceBatchTests.test_duplicate_company_name_cannot_create_second_id_and_old_records_are_unchanged",
         "tests/unit/test_source_batch.py::SourceBatchTests.test_bounded_chunks_and_mixed_site_order_preserve_dependencies",
         "tests/unit/test_object_current_scaling.py::CurrentOrderingTests.test_same_clock_selects_later_append_and_retains_conflict_without_mutation",
-        "tests/unit/test_object_current_scaling.py::CurrentOrderingTests.test_many_independent_objects_keep_append_order_for_each_tied_history"
+        "tests/unit/test_object_current_scaling.py::CurrentOrderingTests.test_many_independent_objects_keep_append_order_for_each_tied_history",
+        "tests/unit/test_source_publication.py::SourcePublicationTests.test_ordinary_reclassification_is_append_only_replayable_and_not_C3",
+        "tests/unit/test_source_publication.py::SourcePublicationTests.test_ordinary_correction_cannot_change_value_source_identity_or_clocks",
+        "tests/unit/test_source_publication.py::SourcePublicationTests.test_identity_hold_release_preserve_audit_but_filter_runtime_directory_and_public_rows",
+        "tests/unit/test_source_publication.py::SourcePublicationTests.test_hold_cannot_hide_reviewed_research_or_reclassify_and_missing_target_is_rejected"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
@@ -1226,7 +1230,8 @@
         "此入口不证明520份表格已采用、新物理园区已创建、目录路径表述等于原件发行者或购买资料可整体公开。",
         "首次园区实际存量采用与上线另验；归档无URL园区和按条失败隔离未实现，不由合成用例证明。",
         "来源登记不证明真实性或模型支持；其他对象v3入口、全库存量处理及实际上线另验。",
-        "The local source, behavior and browser checks do not establish production deployment or successful installation of the real SG3 package. Collection, actual receiver catalog, source registration, persistent publication and public map/download receipts are independent private runtime evidence. No global completeness, current complete tenant list, IT MW, full-reading C3 or survey-grade coordinates is claimed."
+        "The local source, behavior and browser checks do not establish production deployment or successful installation of the real SG3 package. Collection, actual receiver catalog, source registration, persistent publication and public map/download receipts are independent private runtime evidence. No global completeness, current complete tenant list, IT MW, full-reading C3 or survey-grade coordinates is claimed.",
+        "本地及CI夹具不证明已发布的归类错误或身份已纠正；Spark与网站代码、具名追加回执、完整旧记录保持及真实投影须另验。身份隔离不自动合并或推断正确法人，不扩展园区坐标权限。"
       ]
     },
     {
