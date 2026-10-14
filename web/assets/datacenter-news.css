@@ -32,3 +32,6 @@
 .dc-news[data-news-presentation="headlines"] .dc-news-meta{flex:none}
 @media(min-width:1001px){.dc-news[data-news-presentation="headlines"] .dc-news-headlines-scroll>.dc-news-list{position:absolute;inset:0}}
 @media(max-width:1000px){.dc-news[data-news-presentation="headlines"] .dc-news-headlines-scroll{flex:none}.dc-news[data-news-presentation="headlines"] .dc-news-headlines-scroll>.dc-news-list{position:static;max-height:340px}}
+
+/* Owner-confirmed daily links, independent of raw news and research adoption. */
+.dc-news-dailies{margin:6px 0 10px;max-height:160px;overflow:auto}.dc-news .dc-news-daily{display:block;padding:8px 10px;margin:4px 0;border-left:3px solid transparent}.dc-news .dc-news-daily-pinned{border-left-color:var(--accent,#0f62fe);background:var(--panel-soft,#f5f7fa)}.dc-news .dc-news-daily-highlight{font-weight:650}.dc-news .dc-news-daily-pinned small{display:block;color:var(--accent,#0f62fe);margin:0 0 4px}

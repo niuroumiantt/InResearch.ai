@@ -1,3 +1,7 @@
+# Daily news publication supplement (2026-10-14)
+
+Version 2026.10.14.124 adds owner-confirmed authored daily links and durable pin/highlight rotation, retaining history and independent research adoption. Operational source: docs/local_reader/EDITORIAL_DELIVERY.md. Deployment and named live publication require separate receipts.
+
 # 当前研究与执行基准
 
 2026-10-13：初筛年份生成schema采用模型服务可编译的普通分支与锚点，移除不受支持的前瞻；本地对锚定pattern执行完整字符串匹配，仍拒绝年份区间、完整日期与尾换行。原出版年语义、ID、原件、次数、成功缓存和C3边界不变。

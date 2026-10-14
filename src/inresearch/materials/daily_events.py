@@ -63,7 +63,7 @@ def parse(path, root, original_name=None, source_path=None):
                                       'urls':list(dict.fromkeys(re.findall(r'https?://[^\s<>\]]+',segment)))}
     events=[]
     for index,heading in enumerate(parser.headings):
-        if re.search(r'点评|跨市场|来源|参考|Sources|本期|目录',heading['title'],re.I): break
+        if re.search(r'今日小结|点评|跨市场|来源|参考|Sources|本期|目录',heading['title'],re.I): break
         end=parser.headings[index+1]['start'] if index+1<len(parser.headings) else len(parser.parts)
         body=''.join(parser.parts[heading['end']:end]).strip()
         before=''.join(parser.parts[:heading['start']]).strip().split('\n')[-3:]

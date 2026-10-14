@@ -11,7 +11,8 @@ if (host) {
   const scroll=headlines?document.createElement('div'):null;
   if(scroll){scroll.className='dc-news-headlines-scroll';scroll.append(list);}
   if(!headlines){const timezone=document.createElement('span');timezone.className='dc-news-timezone';timezone.textContent='北京时间';heading.append(timezone);}
-  host.replaceChildren(...(headlines?[meta,scroll]:[heading,meta,list]));
+  const dailies=document.createElement('section');dailies.className='dc-news-dailies';dailies.hidden=true;dailies.setAttribute('aria-label','格洛可日报');
+  host.replaceChildren(...(headlines?[meta,dailies,scroll]:[heading,meta,dailies,list]));
   const dateFormat=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'});
   const timeFormat=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
   const timestamp=item=>typeof item.published_at==='number'&&Number.isFinite(item.published_at)&&!Number.isNaN(new Date(item.published_at).getTime())?item.published_at:0;
@@ -75,6 +76,19 @@ if (host) {
     return [...byURL.values()].sort((a,b)=>timestamp(b)-timestamp(a));
   }
   function render(data){
+    const dailyRows=[];
+    if(!['company','region','site','scope','role','relation','country','province','city','address','q'].some(k=>industryFilter[k])){
+      for(const item of data.daily_publications||[]){
+        if(!/^https:\/\/(www\.)?inews\.today\/c\/[1-9][0-9]*$/.test(item.url||'')||typeof item.title!=='string')continue;
+        const row=document.createElement('article');row.className=item.pinned?'dc-news-daily dc-news-daily-pinned':'dc-news-daily';
+        const link=document.createElement('a');link.href=item.url;link.textContent=item.title;link.target='_blank';link.rel='noopener noreferrer';
+        if(item.highlight===true)link.className='dc-news-daily-highlight';
+        if(item.pinned===true){const badge=document.createElement('small');badge.textContent='日报 · 置顶';row.append(badge);}
+        row.append(link);dailyRows.push(row);
+      }
+    }
+    dailies.replaceChildren(...dailyRows);dailies.hidden=!dailyRows.length;
+
     const feed=data.feed,raw=(data.raw_atlas?.records||[]).filter(r=>r.origin!=='research_publication');
     if((!feed||['awaiting_sync','not_initialized','not_connected'].includes(feed.status))&&!raw.length){
       meta.hidden=false;meta.textContent=feed?.status==='not_connected'?'新闻源尚未连接':isHome?'暂无可显示的近期报道，项目与研究资料仍可浏览。':data.reader?.status==='not_connected'?'尚未连接阅读服务':data.reader?.status==='degraded'?'新闻快照暂不可用，请稍后重试。':feed?.status==='not_initialized'?'新闻尚未初始化':'等待新闻同步';

@@ -3,14 +3,15 @@ const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
 (async()=>{const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});try{
  const page=await browser.newPage({viewport:{width:1280,height:900}});const errors=[];let fullRequests=0;page.on('pageerror',e=>errors.push(e.message));
- await page.route('**/api/news',r=>r.fulfill({json:{reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[{title:'Datacenter opens',title_zh:'数据中心开业',publisher:'Example',published_at:Date.parse('2026-09-06T02:30:00Z'),url:'https://example.com/news',category:'数据中心'},{title:'unsafe',url:'javascript:alert(1)'},...Array.from({length:15},(_,i)=>({title:'Data center '+i,title_zh:'数据中心 '+i,url:'https://example.com/'+i,published_at:Date.parse(i===0?'2026-09-05T16:10:00Z':'2026-09-05T15:50:00Z')}))]}}}));
+ await page.route('**/api/news',r=>r.fulfill({json:{daily_publications:[{title:'Confirmed current daily',report_date:'2026-10-14',url:'https://inews.today/c/101',pinned:true,highlight:true},{title:'Previous daily retained',report_date:'2026-10-13',url:'https://inews.today/c/100',pinned:false,highlight:false}],reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[{title:'Datacenter opens',title_zh:'数据中心开业',publisher:'Example',published_at:Date.parse('2026-09-06T02:30:00Z'),url:'https://example.com/news',category:'数据中心'},{title:'unsafe',url:'javascript:alert(1)'},...Array.from({length:15},(_,i)=>({title:'Data center '+i,title_zh:'数据中心 '+i,url:'https://example.com/'+i,published_at:Date.parse(i===0?'2026-09-05T16:10:00Z':'2026-09-05T15:50:00Z')}))]}}}));
  await page.route('**/api/research',r=>{fullRequests++;return r.fulfill({status:500,body:'unexpected full snapshot'});});
  for(const file of ['research-workbench.html']){  // 2026-09-28：管理页不再重复新闻时间线
  await page.goto((process.env.UI_BASE_URL||'http://127.0.0.1:8882')+'/'+file);
  await page.getByRole('link',{name:'数据中心开业',exact:true}).waitFor();
- assert.equal(await page.locator('.dc-news a').count(),16);
+ assert.equal(await page.locator('.dc-news-list a').count(),16);
+ assert.equal(await page.locator('.dc-news-daily').count(),2);assert.equal(await page.locator('.dc-news-daily-pinned').count(),1);assert.equal(await page.locator('.dc-news-daily-highlight').count(),1);assert.equal(await page.locator('.dc-news-daily-pinned a').textContent(),'Confirmed current daily');assert.equal(await page.getByRole('link',{name:'Previous daily retained',exact:true}).getAttribute('href'),'https://inews.today/c/100');
  assert.ok(await page.locator('.dc-news-list').evaluate(el=>el.scrollHeight>el.clientHeight));
- assert.equal(await page.locator('.dc-news details').count(),0);assert.equal(await page.locator('.dc-news small').first().textContent(),'example.com');assert.equal(await page.getByText('Datacenter opens',{exact:true}).count(),0);
+ assert.equal(await page.locator('.dc-news details').count(),0);assert.equal(await page.locator('.dc-news-list small').first().textContent(),'example.com');assert.equal(await page.getByText('Datacenter opens',{exact:true}).count(),0);
  assert.deepEqual(await page.locator('.dc-news-day').allTextContents(),['2026-09-06','2026-09-05']);
  assert.deepEqual((await page.locator('.dc-news-time').allTextContents()).slice(0,3),['10:30','00:10','23:50']);
  assert.equal(await page.locator('.dc-news-time').first().getAttribute('datetime'),'2026-09-06T02:30:00.000Z');

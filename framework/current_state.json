@@ -1,6 +1,6 @@
 {
-  "version": "2026.10.13.123",
-  "effective_at": "2026-10-13",
+  "version": "2026.10.14.124",
+  "effective_at": "2026-10-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -4863,6 +4863,25 @@
         "tests/global_campuses.cjs",
         "tests/unit/test_geographic_analysis.py"
       ]
+    },
+    {
+      "id": "daily-publication-20261014",
+      "topic": "daily-publication",
+      "scope": "confirmed-authored-news",
+      "status": "current",
+      "effective_at": "2026-10-14",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "supersedes": [],
+      "reason": "Owner-confirmed daily links, audited pin rotation and history retention; research adoption remains independent.",
+      "implementations": [
+        "src/inresearch/workflow/daily_publications.py",
+        "src/inresearch/knowledge/registry.py",
+        "web/components/datacenter-news.js",
+        "web/assets/datacenter-news.css",
+        "src/inresearch/materials/daily_events.py",
+        "tests/unit/test_daily_publications.py"
+      ],
+      "implementation_revision": "2026.10.14.124"
     }
   ],
   "entrypoints": [
