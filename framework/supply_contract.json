@@ -1,5 +1,5 @@
 {
-  "version": "1.17",
+  "version": "1.18",
   "effective_at": "2026-10-15",
   "phase": "planning_live",
   "operating_plan": {
@@ -310,24 +310,45 @@
         5
       ],
       "acceptance": "配置、币种、地区、采样时间与全部费用；报价不等于成交",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchquotes/blob/main/README.md",
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchquotes-production.md",
         "local_migration_entry": "docs/guides/fetchdata/README.md"
       },
       "code_layout": {
         "repository": "fetchdata",
         "module": "src/fetchdata/collectors/fetchquotes",
-        "phase": "local_only",
+        "phase": "production_file_import_live",
         "legacy_repository": "https://github.com/niuroumiantt/fetchquotes",
-        "production_switched": false
+        "production_switched": true,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "connection_scope": "Lambda 1x H100 SXM公开标价单源；非成交；币种/地区未知；受控文件交付；未启用调度",
+      "host_default": "aws",
+      "repository_role": "legacy_history_only",
+      "production_guide": "docs/guides/fetchdata/fetchquotes-production.md",
+      "connection_verification": {
+        "verified_on": "2026-10-15",
+        "receiver_revision": "87a82c4fbeb0306863730780a9a2b0facecdb581",
+        "registered_source_ids": [
+          "fetchquotes-lambda-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "retained_legacy_versions": 1,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false,
+        "transaction_verified": false,
+        "currency_code_verified": false
       }
     },
     {
@@ -662,6 +683,6 @@
     "automatic_adoption": false,
     "automatic_model_parameters": false,
     "scheduled": false,
-    "phase": "stat_filings_reports_live_quotes_ready_receipt_pending"
+    "phase": "four_modules_single_source_file_import_live"
   }
 }

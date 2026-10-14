@@ -56,28 +56,52 @@ class ResearchDemandTests(unittest.TestCase):
         self.assertTrue(all(l['relation'] == 'lead_for' for l in news))
 
     def test_mixed_request_requires_selection_scope_and_connected_channel(self):
-        # stat, filings and report metadata now have reception channels; keep this guard
-        # on a genuinely disconnected provider rather than a historical name.
+        # All six real channels are connected. Explicitly disconnect a cloned
+        # target policy to keep the dispatch guard without falsifying live state.
         target, r = self.requests['refresh_cost_factor']
         base = dict(action='create', target_id=target['id'], title='设备更新报价条件', scope='配置与费用原文',
                     acceptance=r['acceptance'], expected_revision=0, question_id=r['question_ids'][0])
         def mutate(**changes):
-            return supply.mutate(ROOT, dict(base, operation_id=str(uuid.uuid4()), **changes), 'reviewer')
+            return supply.mutate(fixture, dict(base, operation_id=str(uuid.uuid4()), **changes), 'reviewer')
+        with tempfile.TemporaryDirectory() as tmp:
+            fixture = Path(tmp)/'source'; runtime = Path(tmp)/'runtime'
+            (fixture/'framework').mkdir(parents=True)
+            for name in ('supply_contract.json','tco_targets.json','research_questions.json','storage_contract.json'):
+                (fixture/'framework'/name).write_bytes((ROOT/'framework'/name).read_bytes())
+            targets = load('framework/tco_targets.json')
+            for row in targets['targets']:
+                for requirement in row.get('request',{}).get('requirements',[]):
+                    if requirement['id']==r['id']:requirement['team_state']='not_connected'
+            (fixture/'framework/tco_targets.json').write_text(json.dumps(targets))
+            with patch.dict(os.environ, {'INRESEARCH_RUNTIME_ROOT': str(runtime)}):
+                with self.assertRaisesRegex(ValueError, 'requirement_id'):
+                    mutate()
+                with self.assertRaisesRegex(ValueError, '字段缺失'):
+                    mutate(requirement_id=r['id'])
+                scope = {f: '未知，待取得项目原文' for f in r['scope_fields']}
+                with self.assertRaisesRegex(ValueError, '供应方与主执行机'):
+                    mutate(requirement_id=r['id'], scope_values=scope, provider_id='fetchspec', execution_mode='continuous', execution_host='macmini')
+                with self.assertRaisesRegex(ValueError, '尚未接通'):
+                    mutate(requirement_id=r['id'], scope_values=scope, provider_id=r['source_team'], execution_mode='continuous', execution_host=r['host'])
+                mutate(requirement_id=r['id'], scope_values=scope)
+                state = supply.read(fixture)
+                self.assertEqual(state['revision'], 1)
+                self.assertFalse(state['tasks'])
+                self.assertEqual(state['demands'][0]['requirement_id'], r['id'])
+
+    def test_connected_quote_request_is_only_a_plan_and_does_not_fill_model(self):
+        target, r = self.requests['refresh_cost_factor']
+        self.assertEqual(r['team_state'],'connected')
+        before = (ROOT/'data/datacenter_model.json').read_bytes()
         with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {'INRESEARCH_RUNTIME_ROOT': tmp}):
-            with self.assertRaisesRegex(ValueError, 'requirement_id'):
-                mutate()
-            with self.assertRaisesRegex(ValueError, '字段缺失'):
-                mutate(requirement_id=r['id'])
-            scope = {f: '未知，待取得项目原文' for f in r['scope_fields']}
-            with self.assertRaisesRegex(ValueError, '供应方与主执行机'):
-                mutate(requirement_id=r['id'], scope_values=scope, provider_id='fetchspec', execution_mode='continuous', execution_host='macmini')
-            with self.assertRaisesRegex(ValueError, '尚未接通'):
-                mutate(requirement_id=r['id'], scope_values=scope, provider_id=r['source_team'], execution_mode='continuous', execution_host=r['host'])
-            mutate(requirement_id=r['id'], scope_values=scope)
-            state = supply.read(ROOT)
-            self.assertEqual(state['revision'], 1)
-            self.assertFalse(state['tasks'])
-            self.assertEqual(state['demands'][0]['requirement_id'], r['id'])
+            supply.mutate(ROOT,dict(action='create',operation_id=str(uuid.uuid4()),expected_revision=0,
+                target_id=target['id'],requirement_id=r['id'],question_id=r['question_ids'][0],
+                title='报价条件复核',scope='配置与费用原文',acceptance=r['acceptance'],
+                scope_values={f:'未知，待原文核实' for f in r['scope_fields']},
+                provider_id='fetchquotes',execution_mode='continuous',execution_host=r['host']),'reviewer')
+            task=supply.read(ROOT)['tasks'][0]
+            self.assertEqual(task['status'],'planned')
+        self.assertEqual((ROOT/'data/datacenter_model.json').read_bytes(),before)
 
     def test_legacy_mixed_demand_cannot_gain_task_and_reviewed_cross_link_can(self):
         target, r = self.requests['tokens_per_gpu_sec']
