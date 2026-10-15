@@ -1,16 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.15.6。
-
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.15.4。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.15.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2735。
-
-在册文件：2732。
+在册文件：2742。
 
 | 身份 | 文件数 |
 |---|---|
@@ -20,16 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 398 |
+| 运行代码 | 399 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 255 |
-
-| 配套说明 | 257 |
-| 测试 | 244 |
+| 配套说明 | 259 |
+| 测试 | 246 |
 
 ## 在册记录集合
 
@@ -2680,6 +2674,7 @@
 | [docs/guides/fetchdata/fetchquotes-production.md](guides/fetchdata/fetchquotes-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-production.md](guides/fetchdata/fetchreports-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-research-publications.md](guides/fetchdata/fetchreports-research-publications.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchstat-outbox.md](guides/fetchdata/fetchstat-outbox.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-production.md](guides/fetchdata/fetchstat-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-statistics.md](guides/fetchdata/fetchstat-statistics.md) | 配套说明 |
 | [docs/guides/fetchdata/implementation-and-acceptance.md](guides/fetchdata/implementation-and-acceptance.md) | 配套说明 |
@@ -2721,6 +2716,7 @@
 | [docs/handoff/fetchquotes-production.md](handoff/fetchquotes-production.md) | 配套说明 |
 | [docs/handoff/fetchreports-production.md](handoff/fetchreports-production.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
+| [docs/handoff/fetchstat-outbox.md](handoff/fetchstat-outbox.md) | 配套说明 |
 | [docs/handoff/fetchstat-production.md](handoff/fetchstat-production.md) | 配套说明 |
 | `docs/handoff/github-sync-20261010-audit.json` | 项目配置 |
 | [docs/handoff/github-sync-20261010.md](handoff/github-sync-20261010.md) | 配套说明 |
@@ -3742,6 +3738,7 @@
 | `scripts/cards_verify.py` | 运行代码 |
 | `scripts/ci-requirements.txt` | 项目配置 |
 | `scripts/ci_scope.py` | 运行代码 |
+| `scripts/collector_gateway.py` | 运行代码 |
 | `scripts/daily_repository_pages.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
 | `scripts/export_site_model_preview.py` | 运行代码 |
@@ -4030,6 +4027,7 @@
 | `tests/unit/test_collector_handoff.py` | 测试 |
 | `tests/unit/test_collector_lookup.py` | 测试 |
 | `tests/unit/test_collector_production.py` | 测试 |
+| `tests/unit/test_collector_production_lookup.py` | 测试 |
 | `tests/unit/test_collector_receive.py` | 测试 |
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_company_window.py` | 测试 |

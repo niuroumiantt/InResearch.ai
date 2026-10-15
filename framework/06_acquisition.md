@@ -466,3 +466,7 @@ Lambda 1x H100 SXM公开标价单源；非成交；币种/地区未知；受控�
 fetchdata新增显式acquire/enqueue/dispatch/reconcile/status/resume，作业键/尝试ID与旧交付/来源/候选ID分离。冻结并核字节后入队，发送意图先持久记录；接收ACK需与实际只读回执对账，不接收手填JSON冒充成功。ACK不明先查，未收才同包重试，交付重试不重新抓来源；重试预算与人工恢复、损坏隔离分开。原披露/有效/采样/取得/首次接收及恢复确认分别保留，中断发送结束时间未知。source_transient、access_required、source_schema、transport_security、integrity_conflict、local_storage、busy等分类不凭错误次数覆盖原件。
 
 InResearch的本地receipt lookup仅核collector-local-receipt/1、原包指纹/身份及来源/候选台账，不创建或修复存储、不刷新旧时钟，没有HTTP路由或生产采用入口。现有四队生产受控单源接收及scheduled=false保持；新增本地代码不证明自动生产交付。步骤与未覆盖见docs/guides/fetchdata/local-operations.md。
+
+### fetchstat生产待交付与ACK核验
+
+用户授权先接通fetchstat已登记EIA单源的AWS持久队列至Spark，仅手动单次执行；四队本地能力保留，其它队不切换生产队列。scheduled=false、不扩来源、不入Reader/采用/模型保持。固定SSH命令和精确主机身份限制来源与接收版本；生产ACK必须与只读完成台账、冻结包、候选及永久原件交叉核对。pending到达不算完成，查询错误不算未收；ACK不明先查，已收只确认，未收才预算内同包重试；原时间/旧ID/版本/历史保持。具体权限、步骤与实机验收条件见docs/guides/fetchdata/fetchstat-outbox.md。代码准备不等于接通；实际网络准入、专用身份、受保护部署和回执独立验收。
