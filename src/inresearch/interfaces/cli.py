@@ -38,6 +38,7 @@ COMMANDS = {
     'coverage': 'inresearch.knowledge.coverage', 'reading-queue': 'inresearch.workflow.reading_queue', 'workorders': 'inresearch.workflow.workorders',
     'submissions': 'inresearch.workflow.submissions', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.project_capacity_map',
     'daily-receive': 'inresearch.materials.daily_bundle',
+    'observation-audit': 'inresearch.workflow.observation_audit',
     'object-extract': 'inresearch.workflow.stock_objects',
     'source-statements': 'inresearch.workflow.source_statements',
     'source-publish': 'inresearch.delivery.source_publication',
@@ -48,6 +49,7 @@ COMMANDS = {
     'research-publish': 'inresearch.workflow.research_publish',
     'material-retention': 'inresearch.materials.retention',
     'fetchspec-receive': 'inresearch.materials.fetchspec_receive',
+    'collector-receive': 'inresearch.materials.collector_production',
     'publish-pilot-progress': 'inresearch.delivery.publish_pilot_progress',
 }
 

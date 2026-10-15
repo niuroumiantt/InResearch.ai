@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.14.124。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.15.8。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2693。
+在册文件：2744。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 436 |
-| 运行代码 | 384 |
+| 历史快照 | 445 |
+| 运行代码 | 400 |
 | 现行规范 | 15 |
-| 项目配置 | 779 |
+| 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 30 |
-| 配套说明 | 243 |
-| 测试 | 239 |
+| 在册数据/索引 | 31 |
+| 配套说明 | 259 |
+| 测试 | 247 |
 
 ## 在册记录集合
 
@@ -66,6 +66,7 @@
 | `data/schema/project.schema.json` | required | 7 |
 | `data/schema/source.schema.json` | required | 5 |
 | `data/schema/submission.schema.json` | required | 4 |
+| `data/site_model_bridges.json` | sites | 1 |
 | `data/sources.json` | records | 74 |
 | `docs/CN_PROJECT_ARCHIVES.csv` | rows | 40 |
 | `docs/LIBRARY_SCORES.csv` | rows | 13664 |
@@ -1763,14 +1764,41 @@
 | `docs/reviews/2026-10-11/stock-expansion/batch.json` | sources | 17 |
 | `docs/reviews/2026-10-11/stock-expansion/batch.json` | held | 3 |
 | `docs/reviews/2026-10-11/stock-pdf-expansion/batch.json` | sources | 3 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-audit-receipt.json` | limitations | 7 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-audit-receipt.json` | sources | 10 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | limitations | 7 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | sources | 11 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | anomaly_followups | 3 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | derivations | 5 |
+| `docs/reviews/2026-10-14/abilene-cost/receipt.json` | candidate_component_allocations | 5 |
+| `docs/reviews/2026-10-14/abilene-cost/receipt.json` | scoped_phase_records | 8 |
+| `docs/reviews/2026-10-14/abilene-cost/receipt.json` | limitations | 24 |
+| `docs/reviews/2026-10-14/abilene-cost/receipt.json` | artifacts | 20 |
+| `docs/reviews/2026-10-14/abilene-dependencies/receipt.json` | derivations | 13 |
+| `docs/reviews/2026-10-14/abilene-dependencies/receipt.json` | document_checks | 10 |
+| `docs/reviews/2026-10-14/abilene-dependencies/receipt.json` | source_versions | 13 |
+| `docs/reviews/2026-10-14/abilene-dependencies/receipt.json` | limitations | 11 |
+| `docs/reviews/2026-10-14/abilene-energy/receipt.json` | mirrors | 2 |
+| `docs/reviews/2026-10-14/abilene-energy/receipt.json` | limitations | 15 |
+| `docs/reviews/2026-10-14/abilene-energy/receipt.json` | artifacts | 18 |
+| `docs/reviews/2026-10-14/abilene-income/receipt.json` | local_artifacts | 12 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | derivations | 5 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | blockers | 3 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | limitations | 5 |
+| `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | table_sources | 8 |
+| `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | accounting_and_cash_results | 9 |
+| `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | reconciliation_issues | 4 |
+| `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | old_unread_superseded | 4 |
+| `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | remaining_unread | 3 |
+| `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | artifacts | 14 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 58 |
+| `framework/current_state.json` | policies | 60 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
-| `framework/current_state.json` | operational_guides | 12 |
+| `framework/current_state.json` | operational_guides | 17 |
 | `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/current_state.json` | compat_retirements | 7 |
 | `framework/dashboard_rules.json` | honesty | 5 |
@@ -1779,12 +1807,15 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 56 |
+| `framework/interface_manifest.json` | static_pages | 57 |
 | `framework/interface_manifest.json` | public_pages | 2 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
+| `framework/observation_checklist.json` | source_requirements | 10 |
+| `framework/observation_checklist.json` | angles | 12 |
+| `framework/observation_checklist.json` | question_templates | 4 |
 | `framework/research_demand_review.json` | requirements | 17 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
 | `framework/research_graph.json` | objects | 354 |
@@ -1794,13 +1825,13 @@
 | `framework/site_implementation.json` | milestones | 8 |
 | `framework/site_implementation.json` | releases | 0 |
 | `framework/site_navigation.json` | public_navigation | 2 |
-| `framework/site_navigation.json` | page_rules | 27 |
+| `framework/site_navigation.json` | page_rules | 28 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 26 |
 | `framework/tco_targets.json` | principles | 4 |
 | `framework/tco_targets.json` | targets | 351 |
-| `framework/verification_contract.json` | policies | 18 |
+| `framework/verification_contract.json` | policies | 19 |
 | `framework/visual_atlas.json` | references | 14 |
 | `framework/visual_atlas_migration.json` | states | 5 |
 | `framework/visual_atlas_migration.json` | items | 39 |
@@ -1981,6 +2012,7 @@
 | `data/schema/project.schema.json` | 在册数据/索引 |
 | `data/schema/source.schema.json` | 在册数据/索引 |
 | `data/schema/submission.schema.json` | 在册数据/索引 |
+| `data/site_model_bridges.json` | 在册数据/索引 |
 | `data/sources.json` | 在册数据/索引 |
 | `deploy/Dockerfile` | 项目配置 |
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
@@ -2063,6 +2095,7 @@
 | [docs/archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md](archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md) | 历史快照 |
 | [docs/archive/2026-10-12/framework__05_interface_system__before_private_tasks.md](archive/2026-10-12/framework__05_interface_system__before_private_tasks.md) | 历史快照 |
 | [docs/archive/2026-10-12/framework__05_interface_system__before_public_tasks.md](archive/2026-10-12/framework__05_interface_system__before_public_tasks.md) | 历史快照 |
+| [docs/archive/2026-10-14/framework__00_before_object_evidence.md](archive/2026-10-14/framework__00_before_object_evidence.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/README.md](archive/local-materials-20261010/original23-new-protocol-validation/README.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 历史快照 |
@@ -2636,14 +2669,21 @@
 | [docs/guides/fetchdata/examples/README.md](guides/fetchdata/examples/README.md) | 配套说明 |
 | `docs/guides/fetchdata/examples/make_sample.py` | 运行代码 |
 | [docs/guides/fetchdata/fetchfilings-company-disclosures.md](guides/fetchdata/fetchfilings-company-disclosures.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchfilings-production.md](guides/fetchdata/fetchfilings-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-market-prices.md](guides/fetchdata/fetchquotes-market-prices.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchquotes-production.md](guides/fetchdata/fetchquotes-production.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchreports-production.md](guides/fetchdata/fetchreports-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-research-publications.md](guides/fetchdata/fetchreports-research-publications.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchstat-outbox.md](guides/fetchdata/fetchstat-outbox.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchstat-production.md](guides/fetchdata/fetchstat-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-statistics.md](guides/fetchdata/fetchstat-statistics.md) | 配套说明 |
 | [docs/guides/fetchdata/implementation-and-acceptance.md](guides/fetchdata/implementation-and-acceptance.md) | 配套说明 |
+| [docs/guides/fetchdata/local-operations.md](guides/fetchdata/local-operations.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
+| [docs/handoff/abilene-model-preview.md](handoff/abilene-model-preview.md) | 配套说明 |
 | [docs/handoff/archived-site-registration-20261012.md](handoff/archived-site-registration-20261012.md) | 配套说明 |
 | [docs/handoff/bom-classification-20261010.md](handoff/bom-classification-20261010.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
@@ -2652,6 +2692,7 @@
 | `docs/handoff/ci-impact-routing.svg` | 项目配置 |
 | [docs/handoff/ci-impact-scoping-20261010.md](handoff/ci-impact-scoping-20261010.md) | 配套说明 |
 | [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
+| [docs/handoff/collector-outbox-local.md](handoff/collector-outbox-local.md) | 配套说明 |
 | [docs/handoff/company-catalog-map-20261007.md](handoff/company-catalog-map-20261007.md) | 配套说明 |
 | [docs/handoff/company-category-navigation-20261007.md](handoff/company-category-navigation-20261007.md) | 配套说明 |
 | [docs/handoff/company-page-20261007.md](handoff/company-page-20261007.md) | 配套说明 |
@@ -2670,7 +2711,13 @@
 | [docs/handoff/evidence-followup-20261007.md](handoff/evidence-followup-20261007.md) | 配套说明 |
 | [docs/handoff/evidence-gaps-20261007.md](handoff/evidence-gaps-20261007.md) | 配套说明 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
+| [docs/handoff/fetchdata-unified-local.md](handoff/fetchdata-unified-local.md) | 配套说明 |
+| [docs/handoff/fetchfilings-production.md](handoff/fetchfilings-production.md) | 配套说明 |
+| [docs/handoff/fetchquotes-production.md](handoff/fetchquotes-production.md) | 配套说明 |
+| [docs/handoff/fetchreports-production.md](handoff/fetchreports-production.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
+| [docs/handoff/fetchstat-outbox.md](handoff/fetchstat-outbox.md) | 配套说明 |
+| [docs/handoff/fetchstat-production.md](handoff/fetchstat-production.md) | 配套说明 |
 | `docs/handoff/github-sync-20261010-audit.json` | 项目配置 |
 | [docs/handoff/github-sync-20261010.md](handoff/github-sync-20261010.md) | 配套说明 |
 | [docs/handoff/global-campuses.md](handoff/global-campuses.md) | 配套说明 |
@@ -2696,6 +2743,7 @@
 | [docs/handoff/navigation-auth-shell.md](handoff/navigation-auth-shell.md) | 配套说明 |
 | [docs/handoff/news-research-matching-20261006.md](handoff/news-research-matching-20261006.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
+| [docs/handoff/observation-coverage.md](handoff/observation-coverage.md) | 配套说明 |
 | [docs/handoff/ocr-gap-rescue-four-20261007.md](handoff/ocr-gap-rescue-four-20261007.md) | 配套说明 |
 | [docs/handoff/ops-dashboard-20261007.md](handoff/ops-dashboard-20261007.md) | 配套说明 |
 | [docs/handoff/ops-loading-fix-20261008.md](handoff/ops-loading-fix-20261008.md) | 配套说明 |
@@ -2742,6 +2790,7 @@
 | [docs/handoff/stock-sn5600-20261012.md](handoff/stock-sn5600-20261012.md) | 配套说明 |
 | [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
+| [docs/handoff/task-upload-approval.md](handoff/task-upload-approval.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/technical-atlas-20261010.md](handoff/technical-atlas-20261010.md) | 配套说明 |
 | [docs/handoff/technical-atlas-m4-20261009.md](handoff/technical-atlas-m4-20261009.md) | 配套说明 |
@@ -3341,6 +3390,14 @@
 | `docs/reviews/2026-10-11/research-remediation/temporal-observation-samples.json` | 历史快照 |
 | `docs/reviews/2026-10-11/stock-expansion/batch.json` | 历史快照 |
 | `docs/reviews/2026-10-11/stock-pdf-expansion/batch.json` | 历史快照 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-audit-receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-14/abilene-cost/receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-14/abilene-dependencies/receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-14/abilene-energy/receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-14/abilene-income/receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -3382,6 +3439,7 @@
 | [framework/modules/M13_有效算力与软件.md](../framework/modules/M13_有效算力与软件.md) | 配套说明 |
 | [framework/modules/M14_中国板块.md](../framework/modules/M14_中国板块.md) | 配套说明 |
 | [framework/modules/M15_情景与监测.md](../framework/modules/M15_情景与监测.md) | 配套说明 |
+| `framework/observation_checklist.json` | 项目配置 |
 | `framework/part_fetch.json` | 项目配置 |
 | `framework/repository_manifest.json` | 生成物 |
 | `framework/research_demand_review.json` | 项目配置 |
@@ -3680,13 +3738,18 @@
 | `scripts/cards_verify.py` | 运行代码 |
 | `scripts/ci-requirements.txt` | 项目配置 |
 | `scripts/ci_scope.py` | 运行代码 |
+| `scripts/collector_gateway.py` | 运行代码 |
 | `scripts/daily_repository_pages.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
+| `scripts/export_site_model_preview.py` | 运行代码 |
 | `scripts/publish_repository_pages.py` | 运行代码 |
+| `scripts/receive_collector_local.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |
+| `scripts/research_architecture_view.py` | 运行代码 |
 | `scripts/sync_repo_pages.py` | 运行代码 |
+| `scripts/sync_research_architecture.py` | 运行代码 |
 | `scripts/validate_collector_handoff.py` | 运行代码 |
 | `scripts/verify_data_center_publication.py` | 运行代码 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
@@ -3777,6 +3840,7 @@
 | `src/inresearch/knowledge/research_gaps.py` | 运行代码 |
 | `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
 | `src/inresearch/knowledge/site_metrics.py` | 运行代码 |
+| `src/inresearch/knowledge/site_model_bridge.py` | 运行代码 |
 | `src/inresearch/knowledge/site_quantity.py` | 运行代码 |
 | `src/inresearch/knowledge/site_register.py` | 运行代码 |
 | `src/inresearch/knowledge/site_timeline.py` | 运行代码 |
@@ -3787,6 +3851,8 @@
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
 | `src/inresearch/materials/__init__.py` | 运行代码 |
 | `src/inresearch/materials/artifacts.py` | 运行代码 |
+| `src/inresearch/materials/collector_production.py` | 运行代码 |
+| `src/inresearch/materials/collector_receive.py` | 运行代码 |
 | `src/inresearch/materials/daily_bundle.py` | 运行代码 |
 | `src/inresearch/materials/daily_events.py` | 运行代码 |
 | `src/inresearch/materials/daily_research.py` | 运行代码 |
@@ -3808,7 +3874,9 @@
 | `src/inresearch/materials/receive.py` | 运行代码 |
 | `src/inresearch/materials/records.py` | 运行代码 |
 | `src/inresearch/materials/retention.py` | 运行代码 |
+| `src/inresearch/materials/review_worker.py` | 运行代码 |
 | `src/inresearch/materials/source_provenance.py` | 运行代码 |
+| `src/inresearch/materials/task_analysis.py` | 运行代码 |
 | `src/inresearch/materials/text_similarity.py` | 运行代码 |
 | `src/inresearch/materials/triage.py` | 运行代码 |
 | `src/inresearch/paths.py` | 运行代码 |
@@ -3837,6 +3905,7 @@
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
 | `src/inresearch/workflow/news_marks.py` | 运行代码 |
 | `src/inresearch/workflow/object_review.py` | 运行代码 |
+| `src/inresearch/workflow/observation_audit.py` | 运行代码 |
 | `src/inresearch/workflow/operations.py` | 运行代码 |
 | `src/inresearch/workflow/pilot_progress.py` | 运行代码 |
 | `src/inresearch/workflow/product_catalog.py` | 运行代码 |
@@ -3927,6 +3996,7 @@
 | `tests/server_plan.cjs` | 测试 |
 | `tests/shared_part_preview.cjs` | 测试 |
 | `tests/shared_part_preview_spin.cjs` | 测试 |
+| `tests/site_model_bridge.cjs` | 测试 |
 | `tests/site_navigation.cjs` | 测试 |
 | `tests/site_workspace.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
@@ -3956,6 +4026,10 @@
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
 | `tests/unit/test_collector_handoff.py` | 测试 |
+| `tests/unit/test_collector_lookup.py` | 测试 |
+| `tests/unit/test_collector_production.py` | 测试 |
+| `tests/unit/test_collector_production_lookup.py` | 测试 |
+| `tests/unit/test_collector_receive.py` | 测试 |
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_company_window.py` | 测试 |
 | `tests/unit/test_compute_catalog.py` | 测试 |
@@ -4031,6 +4105,7 @@
 | `tests/unit/test_object_current_scaling.py` | 测试 |
 | `tests/unit/test_object_mapping_review.py` | 测试 |
 | `tests/unit/test_object_review.py` | 测试 |
+| `tests/unit/test_observation_audit.py` | 测试 |
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
@@ -4089,6 +4164,7 @@
 | `tests/unit/test_scale_atlas_assets.py` | 测试 |
 | `tests/unit/test_shared_part_preview_assets.py` | 测试 |
 | `tests/unit/test_site_metrics.py` | 测试 |
+| `tests/unit/test_site_model_bridge.py` | 测试 |
 | `tests/unit/test_site_timeline.py` | 测试 |
 | `tests/unit/test_site_tracking.py` | 测试 |
 | `tests/unit/test_site_tracking_sources.py` | 测试 |
@@ -4104,6 +4180,7 @@
 | `tests/unit/test_system_atlas_assets.py` | 测试 |
 | `tests/unit/test_target_dispatch.py` | 测试 |
 | `tests/unit/test_targeted_research.py` | 测试 |
+| `tests/unit/test_task_analysis.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
 | `tests/unit/test_tco_targets.py` | 测试 |
 | `tests/unit/test_text_similarity.py` | 测试 |
@@ -4558,6 +4635,8 @@
 | `web/components/supply.js` | 运行代码 |
 | `web/components/system-atlas.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |
+| `web/components/task-reviews.js` | 运行代码 |
+| `web/components/task-uploads.js` | 运行代码 |
 | `web/components/tasks-board.js` | 运行代码 |
 | `web/components/technical-atlas.css` | 运行代码 |
 | `web/components/technical-atlas.js` | 运行代码 |
@@ -4624,6 +4703,7 @@
 | `web/pages/server-plan.html` | 运行代码 |
 | `web/pages/storage-atlas.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
+| `web/pages/task-reviews.html` | 运行代码 |
 | `web/pages/tasks.html` | 运行代码 |
 | `web/pages/thermal-atlas.html` | 运行代码 |
 | `web/pages/workspace.html` | 运行代码 |
@@ -4637,4 +4717,6 @@
 | `web/themes/research-tasks.css` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |
+| `web/themes/task-reviews.css` | 运行代码 |
+| `web/themes/task-uploads.css` | 运行代码 |
 | `web/themes/workspace.css` | 运行代码 |

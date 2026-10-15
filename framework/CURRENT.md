@@ -1,14 +1,65 @@
 # Daily news publication supplement (2026-10-14)
 
-Version 2026.10.14.124 adds owner-confirmed authored daily links and durable pin/highlight rotation, retaining history and independent research adoption. Operational source: docs/local_reader/EDITORIAL_DELIVERY.md. Deployment and named live publication require separate receipts.
+Version 2026.10.15.8 adds owner-confirmed authored daily links and durable pin/highlight rotation, retaining history and independent research adoption. Operational source: docs/local_reader/EDITORIAL_DELIVERY.md. Deployment and named live publication require separate receipts.
 
 # 当前研究与执行基准
+
+> CURRENT · 基准版本 2026.10.15.8
+
+2026-10-15：fetchstat AWS持久队列到Spark生产ACK对账准备：固定SSH命令、精确主机/来源身份、只读核完成归档，不定时/扩源/采用/填参；网络准入与真实回执另验。保留四队本地作业验收与旧ID/版本/历史。
+
+2026-10-15：已批准的 v6 原件在 Spark 第 12 批遇到模型输出长度上限；现行审核保留原生单元格和 184 批断点，仅对输出截断批次递归缩分并在各子组成功后推进原批次。失败内容不成为候选或上线依据；生产运行续跑与最终报告另验。
+
+2026-10-15：任务页的匿名提交与员工回执留在 `/tasks.html#upload`；负责人审批、分析进度和上线报告改由后台“研究生产 → 作业审批”的独立工作台承载。公开页给指定负责人显眼入口，后台列出待确认／分析中／已有报告与单份原件详情；角色和指定负责人权限仍由服务端控制。原分析与发布准入标准不变。
+
+2026-10-15：任务页负责人改用明确的“确认并分析（合格条目自动上线）”授权；旧批准记录不追溯触发。Spark 本机模型分批审核原生 Excel，网站逐项核对同 SHA 原件、单元格、单位、唯一园区和既有非空值。只有合格的普通来源信息走持久 source-publish 自动追加并核读者投影，标“基础登记待查”；正式研究 C3 及模型参数仍各按原链路。后台显示上线与未上线报告，员工回执按时间折叠显示逐格修改任务书；失败不得称已上线。
+
+2026-10-15：用户授权先本地落实四队错误分类、作业台账、待交付队列和ACK对账；复用原四源与旧ID/信封/来源版本。仅手动本地沙箱，先查持久回执再同包重试，不启用定时、不扩来源、不部署，不入Reader、不采用或填参。
+
+2026-10-15：fetchquotes已验Lambda公开报价单源AWS真实取得、Spark永久候选接收、截断拒绝/完整重试及重复零增量。此次字节与旧包相同，保留旧ID/信封/采样时间，本次下载另记；公开标价不是成交，币种代码/地区/库存/实际费用未知。不入Reader、不采用、不填参、不装调度。
+
+2026-10-15：用户接受fetchreports验收后授权fetchquotes生产接通；先启用Lambda公开1x H100 SXM报价单源白名单。报价不是成交，币种代码/地区/库存未知；不入Reader、不采用、不填参、不装调度。真实交付和恢复回执待验。
+
+2026-10-15：fetchreports已验LBNL官方发布页/方法摘要单源AWS真实采集、Spark永久候选接收、截断拒绝/完整重试及重复零增量；三个旧版与本次新版并存，不多计独立证据。PDF正文/表图/附件未读，信息有效时间未知；不入Reader、不采用、不填参，不安装调度；fetchquotes仍未接通。
+
+2026-10-14：用户在fetchfilings验收后要求继续fetchreports生产接通；先登记LBNL报告官方发布页与方法摘要单源，PDF正文/图表/附件未读，不自动采用或填参。实际生产ACK另验，fetchquotes保持关闭。
+
+2026-10-14：任务页开放匿名上传原件，无需员工登录；每份生成独立回执供提交人查看审批状态和带时间的折叠反馈。指定负责人按原件 SHA 批准后，研究端才能领取和分析；新文件重审，退回或未批文件不能入队。分析验收与正式研究采用、入库发布另行核定。
+
+2026-10-14：fetchfilings已用Microsoft官方FY2025年报完成AWS真实采集、Spark永久候选接收、受控截断拒绝/完整重试与同包零增量重放；旧ID、版本、原信封和首次接收保留。仅Microsoft年度现金PP&E单源受控文件交付，未启用调度；候选不入Reader、不采用、不填参；fetchreports/fetchquotes仍未接通。
+
+2026-10-14：fetchfilings新增Microsoft官方FY2025年报的精确来源白名单，与fetchstat分别锁定目录、来源身份和ACK；候选不入Reader、不采用、不填参。38项合同/恢复测试通过；用户已明确授权源码版本包和公开年报包传往既有AWS/Spark；真实生产ACK待部署后验证，connection仍为not_connected。
+
+2026-10-14：fetchstat已用真实EIA原件完成AWS采集、Spark永久候选接收、受控截断拒绝/完整重试和同包零增量重放；旧ID/版本/原信封及首次接收保留，采用/Reader入队/填参0。接通范围仅EIA单源受控文件交付，调度未启用，其他三队仍未接通。
+
+2026-10-14：用户授权只推进fetchstat生产接通：AWS取得已登记公开来源，Spark既有候选归档；不可变到达日志、来源白名单、核验后ACK、重复无写与失败恢复。其他队不启用，不自动采用/填参，不安装调度；实际生产接收回执另验。
+
+2026-10-14：用户授权本地实施一个fetchdata仓库、四个独立采集模块，替代四仓库分别维护公共内核；对象／来源／证据统一信封，供应方ID、旧提交与交付历史保留。显式本地沙箱接收与生产接通分开；本轮不推送、不部署、不安装调度，不自动采用或填参。
+
+2026-10-14：用户现已授权本轮发布，替代此前阶段“暂不上线”的执行限制。研究框架v4以通用模型为主体，真实园区检验适用，Abilene仅贯通校验；保留成本／收入／回报三账，问题模板、检索、覆盖与来源执行分责。架构页、任务页、目录解释与候选复核／参数预览同步。旧ID、链接及正式事实保持；候选、假设、未知、未读与异常不自动采用。实际完整CI、受保护合并、网站／运行架构投影／Spark回执见本阶段交接。
+
+2026-10-14：Abilene SEC四表及四辅助表本地补读：原图/人工转录分开绑定，同版财报不多计独立证据。年度借款/股本/现金余额能局部对应，混合应收与装修代垫不能唯一拆出租金实收；合同/会计/现金期间分开。三处1美元源差及物业费用范围差保留，四条旧未读状态被内容候选替代、余图/租约仍未知；原三异常及经济输入不变，暂不上线。
+
+2026-10-14：Abilene收入与回报本地复核：按项目公司/开发关联方/JV股东/Oracle/OpenAI/Lancium分账及期间；首两栋15年/周年3%与首年单价年化244728000美元仅候选，不套当前四栋421MW。gross转付、资本化/支付和累计股本分别保留；原租约/表图、算力合同/IT归属及实际回报未知，候选不自动填参，三异常不关闭。规范05与脱敏回执见交接；暂不上线。
+
+2026-10-14：Abilene资本成本本地复核：当前页15948322000美元=421MW×1000×CSV分项系数37882，显示159亿美元；原生容量/缓存、概括系数、分项/总计取整分开保留。通用IT/设施/土地/公用工程拆分为候选；合资/贷款/局部申报/租约不混为实支，实际采购/结算/分期未知，三异常不自动填参。规范05、回执见交接；暂不上线。
+
+2026-10-14：Abilene第三步本地年度用电核对：容量时间、IT电力负载、期间PUE和合同电价分别登记；新增设计／投运／供电关系候选，不把设计或公司电量当现场实测。EIA平均零售代理价不再叠加Oncor需量费，计算0标研究口径；9单项／27联合与容量时间对照可复算，原三异常和未知保留。原件与SEC工具转录身份分开；规范05、阶段回执见交接，暂不上线。
+
+2026-10-14：Abilene前两步本地完成：替代“独立原容量”表述，登记GPU／421MW／算力／成本共用依赖及跨版本限制；十项设计／申请／图纸原件内容核对可人工复核，未确认现场或模型用途。83输入细化标签，三异常、候选、未知、余页与旧版本保留；官方申请镜像同SHA不多计证据。规范05，阶段回执见docs/handoff/abilene-model-preview.md；暂不上线。
+
+2026-10-14：恢复Abilene本地模型参数预览：固定421MW原容量估算，确认后生成年度用电情景；候选、假设、未知、三异常及五条推导独立保留。现场未知不晋级、异常不自动填参；规范见05，结果与复算见docs/handoff/abilene-model-preview.md。未推送／合并／上线。
+
+2026-10-13：用户要求不拘数字重审架构；00／03替代数字总纲、五类正交独占及四问倒序。问题模板与来源队研究侧交付要求已登记，可扩展覆盖检查与局部互斥分开；旧界面代码只兼容，未上线。Abilene两PDF完整取得并核相关页，三异常保留复核与推导关系，模型预览待结果交付后继续。
+
+2026-10-13：新增十二角度58项跨通用／园区的离线观察清单及报告去向审计，复用问题、字段与六队；Abilene候选、未知、异常及未读附件保留，零新采用、零模型验证、暂不上线。现行执行见03／06；3／4／5／6不替换。
+
+2026-10-14：普通类型对象支持保留原件、值、身份及信息时钟的追加技术归类更正；姓名边界不明可显式隔离／恢复，原历史保留，正式研究不可被普通隔离隐藏。现行入口01；代码部署、真实更正与展示另验。
 
 2026-10-13：初筛年份生成schema采用模型服务可编译的普通分支与锚点，移除不受支持的前瞻；本地对锚定pattern执行完整字符串匹配，仍拒绝年份区间、完整日期与尾换行。原出版年语义、ID、原件、次数、成功缓存和C3边界不变。
 
 2026-10-13：初筛classification.year仅指原文明确披露的单一年份；未知留unknown，资料涉及的年份区间进入后续陈述，不猜出版年。生成schema与提示词对齐原单年校验，Codex本地结构校验执行pattern；原ID、原件、次数、成功缓存和候选/C3边界保持。
 
-> CURRENT · 基准版本 2026.10.13.123
 
 2026-10-13：候选manifest响应支持有界gzip及原未压缩兼容；清单小请求可显式选择同一receiver的可信HTTPS读取入口，delta保持原写入入口和generated CAS。传输/解压上限、原重试预算、认证不变。CDN拒绝gzip POST与origin慢链路须分别核实，唯一publisher完成真实增量与网站ACK后才计验收。唯一运行入口为SPARK_OPERATIONS。
 
@@ -16,9 +67,9 @@ Version 2026.10.14.124 adds owner-confirmed authored daily links and durable pin
 
 2026-10-13：失败初筛的model_output_invalid可经具名、原件/配方/次数CAS重新执行一次；原结果校验保持，成功缓存拒绝覆盖，read/synthesize输出错误不扩大准入。现行入口见SPARK_OPERATIONS；代码部署与实际恢复分别验收。
 
-2026-10-13：用户接受并授权全球园区独立一级（园区名录、地区分析），交付现为七一级／十五二级；详情七模块、后台六／二十保持并补齐对象关联。此条替代下述六／十四目录数量及全球项目旧归属；来源与统计边界按05，进展见docs/handoff/global-campuses.md。
+2026-10-13：用户接受并授权全球园区独立一级（园区名录、地区分析），交付现为七一级／十五二级；详情七模块。当时后台六／二十，现由上方 2026-10-15 作业审批入口调整为六／二十一。此条替代下述六／十四目录数量及全球项目旧归属；来源与统计边界按05，进展见docs/handoff/global-campuses.md。
 
-2026-10-13：用户接受并授权分阶段实施交付六个一级／十四个二级、后台六个一级／二十个二级，以及匿名／客户只读／IT页眉页脚。旧七项混合导航与账户菜单后台业务入口由05现行目录替代；site_navigation.json为唯一机器导航登记，接口菜单、聚合页、辅助页及搜索按实际角色服务端授权。普通信息登记与研究审核、本地情景与正式模型保持分离。接受规则、源码、测试与实际部署分别登记，进度见[目录与登录外壳交接](../docs/handoff/navigation-auth-shell.md)。
+2026-10-13：用户当时接受并授权分阶段实施交付六个一级／十四个二级、后台六个一级／二十个二级；后续全球园区与作业审批调整后的现行数量以上文及05为准。旧七项混合导航与账户菜单后台业务入口由05现行目录替代；site_navigation.json为唯一机器导航登记，接口菜单、聚合页、辅助页及搜索按实际角色服务端授权。普通信息登记与研究审核、本地情景与正式模型保持分离。接受规则、源码、测试与实际部署分别登记，进度见[目录与登录外壳交接](../docs/handoff/navigation-auth-shell.md)。
 
 
 
@@ -62,7 +113,7 @@ Version 2026.10.14.124 adds owner-confirmed authored daily links and durable pin
 
 | 主题 | 唯一现行规范源 | 机器实现或配套入口 |
 |---|---|---|
-| 研究架构（一棵树、三级账、四问四段、五类变量、六队、一个模板） | [00 研究框架总览 v3](00_overview.md) | bom.json、site_rights.json、research_graph.json、research_questions.json、dashboard_rules.json、node.html |
+| 研究架构（对象与证据；通用模型与真实园区） | [00 研究框架 v4](00_overview.md) | bom.json、site_rights.json、research_graph.json、research_questions.json、dashboard_rules.json、node.html |
 | 数据口径与核验 | [01 口径手册](01_data_standards.md) | data_contract.json；inresearch.knowledge.validate、inresearch.knowledge.verify、inresearch.knowledge.facts、inresearch.knowledge.registry |
 | 知识与版本 | [02 知识格式](02_knowledge_format.md) | research_knowledge.json、兼容 Finding、inresearch.delivery.export |
 | 骨架、部件、站点权利与产品映射 | [03 对象与协作](03_bom_and_collaboration.md) | 稳定部件 ID、系统与链路、建设阶段、站点权利、产品线目录 |
@@ -71,7 +122,7 @@ Version 2026.10.14.124 adds owner-confirmed authored daily links and durable pin
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
 | 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（14张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
 | 全站目录、身份、页眉页脚、字体与外观 | [05 界面规范](05_interface_system.md) | site_navigation.json（机器导航／页面归属）、web/components/site-shell.js、web/themes、web/assets/fonts、interface_manifest.json（界面／资源验收） |
-| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、六仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
+| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（来源分工、fetchdata四独立模块及本地阶段状态）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
@@ -102,7 +153,7 @@ Version 2026.10.14.124 adds owner-confirmed authored daily links and durable pin
 - 当前规范、兼容研究记录、资料候选、设计依据、历史审计和生成物分别标识；打开文档页会显示身份。
 - 旧决策、旧全景和旧 reader 指令已移入 `docs/archive/2026-09-06/`。原路径保留当前说明或转向，避免旧链接继续发出操作指令。
 - 在册清单覆盖 Git 源码与记录；不枚举百度网盘、Spark 原件、运行数据库、密钥或本机忽略文件。Spark 资料以内容身份和 SQLite 台账计量，网页候选以收到的快照计量，不能拿源码行数代替。
-- 两组六个一级及其二级、页面归属和身份边界见05「目录」与site_navigation.json；“一个模板”只指节点页，主体／stage／对象三条判据见03「三条判据」；兼容层退役日历在 `current_state.json` 的 `compat_retirements`，`governance --check` 过期即报错。
+- 交付七个一级、后台六个一级及其二级、页面归属和身份边界见05「目录」与site_navigation.json；“一个模板”只指节点页，主体／stage／对象三条判据见03「三条判据」；兼容层退役日历在 `current_state.json` 的 `compat_retirements`，`governance --check` 过期即报错。
 - 12 页架构 PDF 与 5 页数据中心经济模型指导（`docs/guides/model-governance-2026-09-27`，三级四段五类六队，快照原文仍写"五层"）是已采用设计的交付快照；持续变更的执行规则以这里登记的现行文档为准。2026-09-28 起"五层"改称"五类变量"（见 06 采集规范），快照本身不改。
 
 主规范保留稳定文件名及最后更新日期；新讨论/评审/交付快照文件名以日期开头，必要时加时间。当前状态决定执行依据，日期不授予覆盖权。

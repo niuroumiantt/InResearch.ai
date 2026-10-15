@@ -18,7 +18,7 @@ def digest(value):
     return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True,allow_nan=False,separators=(',',':')).encode()).hexdigest()
 
 
-def apply(root, data, statement):
+def apply(root, data, statement, *, resolve=None):
     root,data=Path(root),Path(data)
     if isinstance(statement, dict) and 'object' in statement:
         return apply_object(root, data, statement)
@@ -34,7 +34,7 @@ def apply(root, data, statement):
     sha=evidence.get('sha256')
     # Byte identity and actual receiver provenance are technical bookkeeping,
     # not a semantic verdict about the source's claims.
-    _,url,first,archive=source(data,sha,with_provenance=True)
+    _,url,first,archive=(resolve(sha) if resolve else source(data,sha,with_provenance=True))
     published=evidence.get('published_at');effective=statement.get('effective_at')
     for stamp in (published,effective):observation_time.precision(stamp)
     stamp=datetime.now(timezone.utc).isoformat()
@@ -127,6 +127,8 @@ def _object_statement(statement, resolve):
                   'locator':evidence['locator'],'quote':evidence['quote'],
                   'context_sha256':digest({'locator':evidence['locator'],'quote':evidence['quote']}),
                   'published_at':evidence.get('published_at'),'first_received_at':first})
+    if statement.get('registration_correction') is not None:
+        native['registration_correction'] = copy.deepcopy(statement['registration_correction'])
     key = 'source-object-'+digest(native)
     stamp = datetime.now(timezone.utc).isoformat()
     native.update(id=key,recorded_at=stamp,reviewed_at=None,
@@ -179,7 +181,9 @@ def _object_batch(root, data, statements):
                     if obj['type'] != 'company' and cid in company_objects:
                         dependency = company_objects[cid]
                         objects[dependency['id']] = dependency
-                    ledger.check({'version':1,'objects':objects,'records':[native]}, root)
+                    dependencies = ([r for r in doc['records'] if r['object_id'] == obj['id']]
+                                    if native.get('registration_correction') else [])
+                    ledger.check({'version':1,'objects':objects,'records':dependencies+[native]}, root)
                     doc['objects'][obj['id']] = copy.deepcopy(obj)
                     doc['records'].append(native)
                     records[key] = native

@@ -24,7 +24,21 @@ const {chromium}=require('playwright');const assert=require('assert');
  assert.equal(await page.locator('#matrix td.cell.sourced .c').filter({hasText:/部件数|供应商数|权利条目|持有方/}).count(),0,'no count cell is painted green');
  assert.match(await page.locator('#p2 .cov').last().innerText(),/已交付、未成序列.*只有登记数/,'legend names the four states plus registered');
  await page.locator('#targets table tbody tr').first().waitFor({state:'attached'});
- assert.ok((await page.locator('#targets td').filter({hasText:'待建队'}).count())>0,'rows owned by teams not yet connected show 待建队 instead of a due date');
+ assert.equal(await page.locator('#targets td').filter({hasText:'待建队'}).count(),0,'all six actual channels are connected; scope is not adoption');
+ // Preserve the disconnected deadline guard with an explicit isolated target policy.
+ const disconnectedTargets=await (await page.request.get(base+'/data/tco_targets.json')).json();
+ const disconnectedQuote=disconnectedTargets.targets.find(t=>t.team==='fetchquotes');assert.ok(disconnectedQuote);
+ const previousDue=disconnectedQuote.next_due;assert.ok(previousDue);
+ disconnectedQuote.team_state='not_connected';disconnectedQuote.next_due=null;
+ await page.route('**/data/tco_targets.json*',route=>route.fulfill({json:disconnectedTargets}));
+ await page.reload();await page.locator('#targets table tbody tr').first().waitFor({state:'attached'});
+ await page.locator('#targets > details > summary').click();
+ const disconnectedRow=page.locator('#targets table tbody tr').filter({has:page.getByText(disconnectedQuote.id,{exact:true})});
+ assert.match(await disconnectedRow.innerText(),/待建队/,'disconnected target has no due date');
+ assert.ok(!(await disconnectedRow.innerText()).includes(previousDue),'old due date is not shown for a disconnected target');
+ await page.unroute('**/data/tco_targets.json*');
+ await page.reload();await page.locator('#targets table tbody tr').first().waitFor({state:'attached'});
+ assert.equal(await page.locator('#targets td').filter({hasText:'待建队'}).count(),0,'restored live policy remains connected');
  assert.ok((await page.locator('#targets td').filter({hasText:'人工登记'}).count())>0,'sourced rows say whether the series came from the registry');
  assert.match(await page.locator('#q4').innerText(),/已交付未成序列 \d+.*归待建队/,'root q4 counts delivered and not-connected rows');
  for(const [id,count] of [['it',3],['storage-group',2]]) {

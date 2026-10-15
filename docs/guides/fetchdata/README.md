@@ -1,42 +1,30 @@
-# 四队员工启动包：四个独立仓库
+# 四队员工启动包：一个仓库、四个独立模块
 
-2026-10-11：按用户明确决定，替代一个fetchdata仓库四目录的方案。各仓库已经可运行，不要求员工先重建公共框架。这个文档目录与fetchdata-handoff/1合同名仅为兼容路径。
+2026-10-14采用fetchdata单仓库四模块，替代四独立仓库分别维护公共代码。四模块本地实现已验收；fetchstat已完成EIA单源受控生产交付/接收/重放与故障恢复，未启用调度；其余三队随后亦已验各一来源受控接收，未启用调度。旧仓库和全部历史保留。唯一采集规范是framework/06_acquisition.md，本页为操作入口。
 
-| 员工 | 仓库及可直接执行的说明 | 目的 | 已跑通的第一个样本 |
+| 供应方ID（不变） | 新模块 | 现有来源能力与限制 | 旧源码/历史 |
 |---|---|---|---|
-| A | [fetchstat](https://github.com/niuroumiantt/fetchstat#readme) | 地域统计、费率、规则及生效时间 | EIA Texas工业YTD电价，1条 |
-| B | [fetchfilings](https://github.com/niuroumiantt/fetchfilings#readme) | 法人披露、经营、财务及项目关系 | Microsoft FY2025现金PP&E支出，1条 |
-| C | [fetchreports](https://github.com/niuroumiantt/fetchreports#readme) | 研究测量、估算、方法、区间与版本 | LBNL官方发布页方法信息，1条；PDF下载403，数值未提取 |
-| D | [fetchquotes](https://github.com/niuroumiantt/fetchquotes#readme) | 配置、地区、条件和时点的公开报价 | Lambda 1x H100 SXM，1条；币种代码/地区留未知 |
+| fetchstat | collectors/fetchstat | EIA Texas工业YTD电价，非园区合同价 | [旧仓库](https://github.com/niuroumiantt/fetchstat) |
+| fetchfilings | collectors/fetchfilings | Microsoft FY2025现金PP&E，非园区分配 | [旧仓库](https://github.com/niuroumiantt/fetchfilings) |
+| fetchreports | collectors/fetchreports | LBNL发布页方法；未宣称PDF数值提取 | [旧仓库](https://github.com/niuroumiantt/fetchreports) |
+| fetchquotes | collectors/fetchquotes | Lambda H100公开报价；币种代码/地区未知 | [旧仓库](https://github.com/niuroumiantt/fetchquotes) |
 
-四仓库已按用户明确选择公开，使用标准Ubuntu托管Actions；原件、运行库和凭据保持私有。每个仓库包含README、docs/TEAM_TASK.md、docs/DELIVERY_CONTRACT.md、真实冒烟摘要、标准库采集器、适配器和测试。真实原件不在Git。
-
-## 第一次交付
-
-各员工克隆自己的仓库，运行：
-
+**[m5，本地fetchdata源码]**
 ```sh
-python3 collector.py check-config
+cd /Users/m5/code/fetchdata
+python3 fetchdata.py check-config --team fetchstat
 python3 -m unittest discover -s tests -v
-python3 collector.py run
-python3 collector.py verify /命令输出的实际package目录
+python3 fetchdata.py release --team fetchstat
 ```
 
-先交一个真实原件、一条人工核对的候选、校验与重放结果即可。后续再扩来源和指标；本目录旧任务书里的较大样本数字是扩展方向，不是首包门槛。每队8项离线测试与一次真实采集/重放已经通过，GitHub检查另取实际回执。
+run/verify/release均必须指定team，各模块独立配置和数据/状态根。run的existing+provenance只读复用原件；history-root只读查找已知旧交付，保持其版本和字节。新环境数据在~/.local/share/fetchdata/<team>，日志在~/.local/state/fetchdata/<team>；旧目录不自动搬动。固定完整测试提交+team可独立发布和回滚，本轮不安装任何调度。
 
-## 交还内容
+公共核心管对象/来源/证据信封和技术校验；专业提取归模块，身份核实、研究采用、模型用途和正式发布归研究端。原件、运行库、凭据保持私有。未知不填零，冲突不覆盖，来源版本、原单位、范围、推导及独立时钟保留。
 
-1. 源码PR、提交SHA、来源配置与运行说明。
-2. 私有包：原生HTML/PDF/JSON/CSV等原件、manifest.json、SHA256SUMS、observations.jsonl、errors.jsonl、run-report.json。不要求同一信息收齐所有格式。
-3. 测试结果、真实样本核对、重复/修订/缺失/冲突/访问受阻清单。
-4. 研究接收/采用/上线回执，取得前明确待联调，不用离线成功冒充。
+本地接收入口scripts/receive_collector_local.py只接明确隔离的sandbox-root，保存candidate_unreviewed回执；重复无新增，碰撞/篡改拒绝。此入口不连接正式库、网站、Spark队列或Fetchspec API。fetchstat/fetchfilings/fetchreports/fetchquotes分别已通过独立provider生产入口与真实ACK验证各一来源的受控文件接收；报告仅发布页摘要、报价仅公开标价，不表示全文覆盖/实际成交或自动调度。正式采用/模型自动填参0。
 
-来源身份与唯一对象线索先行，研究目标可空。未知字段不填零，不明身份不硬配；首次接收由研究端记录，供应方只交实际取得/复用凭据。同口径冲突并列保留。采集和固定字段提取不调用模型。
+完整字段见[共同交付规范](delivery-contract.md)，验收与未覆盖见[开发与验收](implementation-and-acceptance.md)。本地源码迁移、版本与验收交接见[阶段记录](../../handoff/fetchdata-unified-local.md)。
 
-## 存量资料与节奏
+fetchstat生产阶段见[受控交付与恢复](fetchstat-production.md)；其他三队生产单源范围见各自指南，源侧取得和研究采用分开。
 
-第一步运行已有适配器；第二步加一个来源或指标；第三步联调研究接收，之后指定执行机和调度。不要把整库复制到员工机器。授权端按只读索引筛SHA和原件，员工用 `--existing` + `--provenance` 复用本适配器对应资料，无历史下载时间留空。原件不搬动或删除。
-
-正式采用不等全文阅读或模型用途：原件SHA/字段定位/关键上下文可核，唯一对象确认，逐条审核即可追加。报告全文深读和模型支持是另一个工作，不阻挡已核字段。四队尚未生产接通、未安装周期任务，171项未接通需求不能因建仓库而改为已完成。
-
-完整合同：[共同交付规范](delivery-contract.md)。运行骨架及验收：[开发与验收](implementation-and-acceptance.md)。本批81条存量正式采用及公开字段入口见[对象观测指南](../OBJECT_OBSERVATIONS.md)。
+新增[本地作业/待交付/ACK对账](local-operations.md)，仅隔离本地执行，不改变上述生产状态。

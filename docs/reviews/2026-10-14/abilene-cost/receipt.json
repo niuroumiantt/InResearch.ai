@@ -1,0 +1,323 @@
+{
+  "version": "2026.10.14.125",
+  "status": "local_capital_cost_review_verified_not_published",
+  "previous_phase_receipt": "docs/reviews/2026-10-14/abilene-energy/receipt.json",
+  "site_id": "us-tx-abilene",
+  "scope": {
+    "id": "abilene-20260728-estimated-operating",
+    "label": "2026年7月28日聚合运行容量估算",
+    "effective_at": "2026-07-28",
+    "physical_scope": "whole_site",
+    "included": "原Stargate／Lancium园区来源估算的运行部分，无法逐栋分配",
+    "excluded": "相邻园区、未确认运行部分及2026年11月预测",
+    "actor": null,
+    "accounting_basis": "物理成本情景；不代表任一企业账目"
+  },
+  "bridge_version": "2026.10.14.4",
+  "observation_id": "30103f2fd01b810c-b03dfa2fe924b039",
+  "observation_sha256": "f7c2a9e4cc38939c7ad23682dbec497c0755252f8a47f52d008dee4497c2eab5",
+  "review_sha256": "9f453680802fa871fb09d524b5fcc63a91a54ded3537d510b6590d34de0bd130",
+  "cost_review_sha256": "999bc66005ba1730c3e15f380609159cd21866679e6debafe79e69ee4649bab0",
+  "energy_review_sha256": "c06a10d7ad44a7d5595942e6be3c95ab37d2b41dc43fdb12248dd0084fd6c6e7",
+  "audit_input_sha256": "6ca69d0d90cd89d1653d19a38a5d891f72ac4be159d0252b1164ab1c6e12c742",
+  "audit_result_sha256": "6615158953c09da5410af8fb0580aec2ce899f04b2321727c0991bc3cb913629",
+  "inventory_units": 224,
+  "item_counts": {
+    "anomaly": 3,
+    "candidate": 208,
+    "excluded": 1,
+    "existing_observation": 2,
+    "not_applicable": 0,
+    "not_checked": 10,
+    "unknown": 33,
+    "unread_attachment": 0
+  },
+  "source_entries": 37,
+  "distinct_snapshot_sha256": 35,
+  "new_captures": {
+    "original_bytes": 12,
+    "web_tool_extract": 1,
+    "adviser_original": "curl_exit56_not_obtained",
+    "sec_original": "previously_not_obtained_reader_extract_only"
+  },
+  "derivations": 16,
+  "previous_cost_derivation_preserved": {
+    "id": "cost-from-it-scale",
+    "output_item_id": "body-capex",
+    "input_item_ids": [
+      "body-it",
+      "method-capex"
+    ],
+    "source_id": "method",
+    "locator": "Capital cost model",
+    "formula": "IT capacity times source unit-capacity cost model; not actual spend",
+    "assumptions": [
+      "通用单位成本与现场组成、价格、币值时点和主体不完全对齐",
+      "159亿美元为正文报告值；冻结方法页的38B/GW与421.344MW不能精确复现该数，原币值／系数版本与舍入口径未贯通，不强行拟合"
+    ],
+    "scope": "来源园区成本估算",
+    "review_state": "candidate",
+    "relationship_kind": "methodological_dependency_not_exact_replay"
+  },
+  "cost_result": {
+    "status": "source_arithmetic_reconciliation_only",
+    "unit": "USD/ITkW",
+    "rounded_component_sum": 37882,
+    "applied_it_mw": 421,
+    "embedded_usd": 15948322000,
+    "displayed_usd": 15900000000,
+    "csv_independently_rounded_total_million_usd": 37883,
+    "workbook_cached_total_usd": 37882501901,
+    "actual_site_capex_usd": null,
+    "backend_or_historical_algorithm_certified": false,
+    "source_formulas_executed": false
+  },
+  "candidate_component_allocations": [
+    {
+      "id": "servers",
+      "unit_cost_usd_per_it_kw": 21188,
+      "scaled_estimate_usd": 8920148000,
+      "actual_cost_usd": null
+    },
+    {
+      "id": "network",
+      "unit_cost_usd_per_it_kw": 4925,
+      "scaled_estimate_usd": 2073425000,
+      "actual_cost_usd": null
+    },
+    {
+      "id": "facility",
+      "unit_cost_usd_per_it_kw": 11433,
+      "scaled_estimate_usd": 4813293000,
+      "actual_cost_usd": null
+    },
+    {
+      "id": "land",
+      "unit_cost_usd_per_it_kw": 172,
+      "scaled_estimate_usd": 72412000,
+      "actual_cost_usd": null
+    },
+    {
+      "id": "utility",
+      "unit_cost_usd_per_it_kw": 164,
+      "scaled_estimate_usd": 69044000,
+      "actual_cost_usd": null
+    }
+  ],
+  "scoped_phase_records": [
+    {
+      "id": "jv-first",
+      "nature": "announced_financing",
+      "reported_usd": 3400000000,
+      "source_record_date": "2024-10-15",
+      "date_kind": "company_announcement"
+    },
+    {
+      "id": "jv-expanded",
+      "nature": "announced_financing",
+      "reported_usd": 15000000000,
+      "source_record_date": "2025-05-21",
+      "date_kind": "company_announcement"
+    },
+    {
+      "id": "cost-tabs-b1-shell",
+      "nature": "filing_estimated_cost",
+      "reported_usd": 292000000,
+      "source_record_date": "2024-07-22",
+      "date_kind": "registration_date"
+    },
+    {
+      "id": "cost-tabs-b1-ti",
+      "nature": "filing_estimated_cost",
+      "reported_usd": 140000000,
+      "source_record_date": "2024-09-04",
+      "date_kind": "registration_date"
+    },
+    {
+      "id": "cost-tabs-b2-shell",
+      "nature": "filing_estimated_cost",
+      "reported_usd": 292000000,
+      "source_record_date": "2024-09-03",
+      "date_kind": "registration_date"
+    },
+    {
+      "id": "cost-tabs-b2-ti",
+      "nature": "filing_estimated_cost",
+      "reported_usd": 384000000,
+      "source_record_date": "2024-12-16",
+      "date_kind": "registration_date"
+    },
+    {
+      "id": "land-reservation",
+      "nature": "lease_reservation_term",
+      "reported_usd": 35000000,
+      "source_record_date": "2025-12-31",
+      "date_kind": "financial_statement_as_of"
+    },
+    {
+      "id": "construction-loan",
+      "nature": "loan_limit",
+      "reported_usd": 2288000000,
+      "source_record_date": "2025-12-31",
+      "date_kind": "financial_statement_as_of"
+    }
+  ],
+  "actual_cost_inputs": {
+    "automatic_fill": false,
+    "actual_it_capex_per_kw": null,
+    "actual_facility_capex_per_mw": null,
+    "actual_land_per_mw": null,
+    "actual_btm_capex_per_mw": null,
+    "blocked_targets": [
+      "it_capex_per_kw",
+      "shell_capex_per_mw",
+      "land_per_mw",
+      "btm_capex_per_mw"
+    ],
+    "reason": "系数/分项来自通用模型，现场采购/结算/权利及分期边界未对齐；原三异常持续保留，不自动填参。"
+  },
+  "valuation_basis": {
+    "currency": "USD",
+    "study_date": "2026-05-14",
+    "csv_upfront_updated": "2026-05-19",
+    "workbook_retrieved_at": "2026-10-14",
+    "constant_dollar_basis": "unknown",
+    "tax_fees_basis": "unknown",
+    "note": "原始参考跨2024土地、2025服务器/市场与2026工程资料；报告发表日/表更新日/源材料年份/报价与付款日不同，未认证统一不变价、税费或实际采购时点。"
+  },
+  "changes": {
+    "formal_projects_changed": false,
+    "general_model_changed": false,
+    "cost_inputs_unchanged": true,
+    "old_ids_urls_and_accepted_previews_retained": true
+  },
+  "checks": {
+    "unit": 92,
+    "browser_suites": [
+      "site_model_bridge",
+      "economics_navigation",
+      "datacenter_cost",
+      "datacenter_economics",
+      "datacenter_tco",
+      "global_campuses"
+    ],
+    "strict": "0 warnings",
+    "registry": "valid",
+    "governance": "2026.10.14.125",
+    "offline": "same real component, confirms, exports/replays, unchanged four cost inputs, 1440/390/320 light/dark, zero HTTP",
+    "focused_result": "1440/390/320 widths, no page overflow/errors/network; screenshots reviewed"
+  },
+  "formal_adoptions": 0,
+  "human_confirmations": 0,
+  "model_parameters_verified": 0,
+  "published": false,
+  "limitations": [
+    "两份PDF完整字节已取得并核相关页，但64／312页未逐页深读；余页和原影像仍待查",
+    "源XLSX只读取公式文本及缓存值，不执行公式、宏、外部链接或导出DUMMYFUNCTION",
+    "原网页、CSV、PDF、XLSX不同版本分别保存，不覆盖旧SHA或既有容量观察",
+    "源公司设计、研究方整数配置和估算、实际部署必须分开；不自行纠正源型号单位",
+    "来源数值及推导候选不等于独立现场证据；所有新增正式采用、模型认证、发布均为零",
+    "观察视图可扩展且交叉，不宣称十二项互斥或全行业永远穷尽；旧五列为兼容投影",
+    "来源队只登记研究侧交付要求，不代表外部采集器接通或任务已执行",
+    "421MW、GPU数量与算力共用配置假设；固定引用记录不等于来源证据独立",
+    "官方37589-ac与已有许可附件字节同一，不多算一份独立证据；后续37589-tc只核前四页",
+    "本轮原件内容核对可进入人工复核，但不冒充人类确认、现场安装／投运、最终许可或模型用途采用",
+    "成本链只确认方法依赖；159亿美元的精确系数／版本和舍入未贯通",
+    "第三步定向核对九份新增原件，不是全报告穷尽研究；无实测IT电量、期间PUE、逐月容量或合同取得回执；所有新增项未正式采用。",
+    "原三异常、官方镜像身份、旧版本与候选推导保留；新设计/额定容量不替换旧观察。",
+    "另核PUC历史REP及SEC租约线索；SEC原HTML下载失败，只有明确标记的工具转录，表格图片/原HTML未核。历史供电/支付关系不确认2026所选全范围合同。",
+    "Mortenson重取页面SHA与此前mortenson原件一致，新增定向阅读范围不多计一份独立证据。",
+    "成本链在当前冻结页与公布CSV分项间算术闭合；不执行源工作簿公式，不认证历史/后端版本或现场账目。",
+    "CSV分项合计与总计取整、原生缓存与整数IT容量精度分别保留；不能按38B近似系数强行覆盖15.9B。",
+    "实际采购、结算、土地权利及分期实支仍未知；JV/贷款/估算申报/公允价值/资本支出不是同一量；三异常仍保留。",
+    "交易顾问只取得工具转录，原HTML下载exit56；其八栋/300MW发电范围是历史交易候选，未证明现场额定值/实支；与350/360.5MW版本差异保留。",
+    "原生表只读取公式与缓存，不执行Google导出兼容式；源厂商报价、市场统计和其余单元未逐项核验。",
+    "源网络分项混含服务/存储/软件；通用GB200系统和全市电场景不等同B200/B300现场或有燃气备用的园区。",
+    "当前页/CSV数值复现，不认证来源后端实现与更早原观察对应成本版本。",
+    "SEC仅冻结工具转录；原HTML与财务图片未取得，不把财报文本转录当完整原件。",
+    "交易顾问只取得工具转录，原HTML下载exit56；其八栋/300MW发电范围是历史交易候选，未证明现场额定值/实支；与350/360.5MW版本差异保留。"
+  ],
+  "capture_scope_note": "Selected artifact hashes; not a full inventory of originals, attachments or runtime files.",
+  "artifacts": [
+    {
+      "file": "audit-input.json",
+      "sha256": "87e25c9003e80dae22e0106287f69d6c116b24b1da04a03681829a561261221f"
+    },
+    {
+      "file": "audit-result.json",
+      "sha256": "6615158953c09da5410af8fb0580aec2ce899f04b2321727c0991bc3cb913629"
+    },
+    {
+      "file": "audit-result.html",
+      "sha256": "e6a5646906fe844c477a4553f9db070871108c67c773ea1fe6e346500b1f32a6"
+    },
+    {
+      "file": "cost-review.json",
+      "sha256": "f4838784c43b0053a441578fb3f8793a90836831d00d3c20bc9627d7116cd37b"
+    },
+    {
+      "file": "result.html",
+      "sha256": "faa766e54c599f49779c89e2834271e3b7e54548b8ea1270ca0dd21db60b4427"
+    },
+    {
+      "file": "source-receipts.json",
+      "sha256": "b815767509be415dde9141f2425442ea23e5a8a9a71e3ef0af4708af580517a4"
+    },
+    {
+      "file": "csv-receipts.json",
+      "sha256": "c27cc885438b08d6fd550371a7bb972c28af03e084bd2b980190ecea947a9b30"
+    },
+    {
+      "file": "derivative-receipt.json",
+      "sha256": "0c7d65fa905bd80b921051f08522a1aa84d48c9f97eac89b472e4a838f696e95"
+    },
+    {
+      "file": "adviser-receipt.json",
+      "sha256": "756d484e15e160ae21ea99e6082d768ac54ddaf24ddacfcc8f1397c4818b725b"
+    },
+    {
+      "file": "body-embedded-props.json",
+      "sha256": "773fb55b1e4944b651ef2331163224839c5e68cc05bd7c2ad4361471d06a343f"
+    },
+    {
+      "file": "cost-workbook-cells.json",
+      "sha256": "ae2a8eeecd4c62050788c9eac2c97415ccac943c248ec6da3c5845a12575c639"
+    },
+    {
+      "file": "result-desktop.png",
+      "sha256": "47baa69816fd8e672d6e3e18c094b6d992037d1974a2303c3a9b966f5e6818c9"
+    },
+    {
+      "file": "result-mobile.png",
+      "sha256": "c2badbd637d8c8e13847e50c458e461ee38b09105382f593f7a46210a545e97c"
+    },
+    {
+      "file": "model-preview-v4-20261014/preview.html",
+      "sha256": "3bb05ccad33798e7f87de32b5b8b27541d193463c8cec838287d7826a93ac76d"
+    },
+    {
+      "file": "model-preview-v4-20261014/scenario.json",
+      "sha256": "a2811872d0e818e25dd3d8ac91816788f1555cce4f1fbe00d0ada45660edbc1d"
+    },
+    {
+      "file": "model-preview-v4-20261014/preview-desktop.png",
+      "sha256": "66d8552dd118559ecdd6ce6622cd95c8ae6f0e34c02efee4dd8a3604be4f4416"
+    },
+    {
+      "file": "model-preview-v4-20261014/preview-mobile.png",
+      "sha256": "f506adffdf1d18f0377bd76be94ece6077a4977865b81f6325be87c808092e5c"
+    },
+    {
+      "file": "model-preview-v4-20261014/preview-dark.png",
+      "sha256": "e8a449a6f4bc28ff3e5f00a202c94cfbe2aa88c51a872d922f05d3d10a1e4742"
+    },
+    {
+      "file": "model-preview-v4-20261014/cost-review.png",
+      "sha256": "42689f35cd96a6d527633d4722963df98b03aab7a60ec7e69e209f501b59733d"
+    },
+    {
+      "file": "model-preview-v4-20261014/energy-results.png",
+      "sha256": "9e60c6be29d026cec3f777f952245a394d3cb45a9b298883d9a334d9437cce3d"
+    }
+  ]
+}

@@ -15,7 +15,7 @@
 | 推理适配 | 根据角色配置调用模型，核对能力、预算和实际身份 | `src/inresearch/adapters/models.py`、`deploy/models.json` |
 | 操作界面 | 网页、CLI 接入相同用例；主题与导航共用基础 | `src/inresearch/interfaces/http.py`、`web/components`、`web/themes` |
 
-唯一逻辑（见 [00 研究框架总览](framework/00_overview.md)）：一棵树（骨架）、三级账、四问四段、五类变量、六队、一个模板。M01–M15 只是兼容属性 `legacy_module`；`research/Mxx.md` 的结论只作成果页的专题目录，不再是知识中心。兼容 Finding 不自动取得骨架节点证据的 C3 资格。
+研究框架v4（见 [00 研究框架总览](framework/00_overview.md)）：两条研究线，共用证据，按用途连接。骨架看组成，关系连现实，证据撑判断，模型算影响。成本／收入／回报是经济模块；提问、检索、覆盖与来源执行分别管理，Abilene只是贯通校验样例。M01–M15 只是兼容属性 `legacy_module`；`research/Mxx.md` 的结论只作成果页的专题目录，不再是知识中心。兼容 Finding 不自动取得骨架节点证据的 C3 资格。
 
 ## 模型和客户端
 
@@ -40,7 +40,7 @@ python3 manage.py serve
 
 | 路径 | 用途 |
 |---|---|
-| `framework/00_overview.md` | 唯一逻辑：一棵树、三级账、四问四段、五类变量、六队、一个模板 |
+| `framework/00_overview.md` | 现行研究架构：对象、关系、观察与证据；通用模型与真实园区按用途连接 |
 | `framework/01_data_standards.md` | 数据口径与核验纪律 |
 | `framework/02_knowledge_format.md` | 文档、证据、陈述、采用与兼容 Finding |
 | `framework/current_state.json` | 唯一现行规则、替代关系与影响路径 |

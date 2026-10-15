@@ -29,7 +29,7 @@ def _view_signature(root):
     paths = [root / path for path in (
         'data/projects.json', 'data/companies.json', 'data/object_observations.json',
         'data/prices.json', 'data/facts.json', 'framework/research_publication.json',
-        'framework/storage_contract.json')]
+        'framework/storage_contract.json', 'data/site_model_bridges.json', 'data/datacenter_model.json', 'framework/bom.json')]
     paths.append(workspace_path('data/raw/source-publication/registry.json', root))
     result = [date.today().isoformat()]
     for path in paths:
@@ -319,6 +319,14 @@ def snapshot(root, params=None):
             or not p['capacity_known'] and not p['capacity_ranged'] and bucket(p['status']) == stage)]
     detail = next((p for p in all_records if p['site_id'] == params.get('site')), None)
     if params.get('site') and detail is None: raise LookupError('project not found')
+    if detail is not None and not overview:
+        from . import site_model_bridge
+        detail = copy.deepcopy(detail)
+        try:
+            detail['model_bridge'] = site_model_bridge.project(root, raw_rows, detail['site_id'])
+        except (OSError, ValueError, KeyError, TypeError):
+            detail['model_bridge'] = None
+            detail['model_bridge_error'] = '映射版本与当前资料不一致，请重新复核；未填入任何园区参数'
     leaders = []
     for c in companies:
         related = [p for p in cohort if c['company_id'] in p['developer'] + p['tenant'] and not p['portfolio']]

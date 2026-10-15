@@ -54,7 +54,7 @@ class DemandBindingTests(unittest.TestCase):
         self.assertFalse((self.data / 'raw-materials').exists())
         objective = research_match.reading_objective(self.data, self.root, self.item['sha256'])
         requested = objective['explicit_research_requests'][0]
-        self.assertEqual((requested['source_team'], requested['team_state']), ('fetchreports', 'not_connected'))
+        self.assertEqual((requested['source_team'], requested['team_state']), ('fetchreports', 'connected'))
         self.assertEqual(requested['requirement_id'], self.request['requirement_id'])
         self.assertEqual(requested['scope_values'], self.request['scope_values'])
         self.assertEqual(requested['relationship'], 'requested_reading_only')

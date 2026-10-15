@@ -1,6 +1,6 @@
 {
-  "version": "1.8",
-  "effective_at": "2026-10-11",
+  "version": "1.18",
+  "effective_at": "2026-10-15",
   "phase": "planning_live",
   "operating_plan": {
     "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
@@ -150,16 +150,42 @@
         5
       ],
       "acceptance": "地域、单位、统计期、方法、费率生效日与数据修订",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchstat/blob/main/README.md"
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchstat-production.md",
+        "local_migration_entry": "docs/guides/fetchdata/README.md"
+      },
+      "code_layout": {
+        "repository": "fetchdata",
+        "module": "src/fetchdata/collectors/fetchstat",
+        "phase": "production_file_import_live",
+        "legacy_repository": "https://github.com/niuroumiantt/fetchstat",
+        "production_switched": true,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "host_default": "aws",
+      "production_guide": "docs/guides/fetchdata/fetchstat-production.md",
+      "connection_scope": "EIA单源；受控文件交付；未启用调度",
+      "repository_role": "legacy_history_only",
+      "connection_verification": {
+        "verified_on": "2026-10-14",
+        "receiver_revision": "f95380316db757b70041585adc7fff7d618f7366",
+        "registered_source_ids": [
+          "fetchstat-eia-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false
       }
     },
     {
@@ -177,16 +203,42 @@
         3
       ],
       "acceptance": "报告期、分部口径、原件、修订与附件",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchfilings/blob/main/README.md"
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchfilings-production.md",
+        "local_migration_entry": "docs/guides/fetchdata/README.md"
+      },
+      "code_layout": {
+        "repository": "fetchdata",
+        "module": "src/fetchdata/collectors/fetchfilings",
+        "phase": "production_file_import_live",
+        "legacy_repository": "https://github.com/niuroumiantt/fetchfilings",
+        "production_switched": true,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "connection_scope": "Microsoft FY2025现金PP&E单源；受控文件交付；未启用调度",
+      "host_default": "aws",
+      "repository_role": "legacy_history_only",
+      "production_guide": "docs/guides/fetchdata/fetchfilings-production.md",
+      "connection_verification": {
+        "verified_on": "2026-10-14",
+        "receiver_revision": "4ee6c353259b334652de38d00a68fd9f9970d0b0",
+        "registered_source_ids": [
+          "fetchfilings-microsoft-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false
       }
     },
     {
@@ -204,16 +256,44 @@
         5
       ],
       "acceptance": "全文、作者、方法、图表、引用位置与版本",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchreports/blob/main/README.md"
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchreports-production.md",
+        "local_migration_entry": "docs/guides/fetchdata/README.md"
+      },
+      "code_layout": {
+        "repository": "fetchdata",
+        "module": "src/fetchdata/collectors/fetchreports",
+        "phase": "production_file_import_live",
+        "legacy_repository": "https://github.com/niuroumiantt/fetchreports",
+        "production_switched": true,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "connection_scope": "LBNL发布页与方法摘要单源；PDF未读；受控文件交付；未启用调度",
+      "host_default": "aws",
+      "repository_role": "legacy_history_only",
+      "production_guide": "docs/guides/fetchdata/fetchreports-production.md",
+      "connection_verification": {
+        "verified_on": "2026-10-14",
+        "receiver_revision": "94ac5cd9f25cd2a2049bec53282967b352809226",
+        "registered_source_ids": [
+          "fetchreports-lbnl-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "retained_legacy_versions": 3,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false,
+        "pdf_fulltext_read": false
       }
     },
     {
@@ -230,16 +310,45 @@
         5
       ],
       "acceptance": "配置、币种、地区、采样时间与全部费用；报价不等于成交",
-      "connection": "not_connected",
+      "connection": "receiver_live_file_import",
       "bootstrap": {
         "collector_smoke_passed": true,
         "real_originals": 1,
         "candidate_rows": 1,
         "offline_valid": true,
         "replay_verified": true,
-        "research_received": false,
+        "research_received": true,
         "scheduled": false,
-        "employee_entry": "https://github.com/niuroumiantt/fetchquotes/blob/main/README.md"
+        "employee_entry": "https://github.com/niuroumiantt/InResearch.ai/blob/main/docs/guides/fetchdata/fetchquotes-production.md",
+        "local_migration_entry": "docs/guides/fetchdata/README.md"
+      },
+      "code_layout": {
+        "repository": "fetchdata",
+        "module": "src/fetchdata/collectors/fetchquotes",
+        "phase": "production_file_import_live",
+        "legacy_repository": "https://github.com/niuroumiantt/fetchquotes",
+        "production_switched": true,
+        "distribution": "private_git_bundle_to_existing_aws_and_spark"
+      },
+      "connection_scope": "Lambda 1x H100 SXM公开标价单源；非成交；币种/地区未知；受控文件交付；未启用调度",
+      "host_default": "aws",
+      "repository_role": "legacy_history_only",
+      "production_guide": "docs/guides/fetchdata/fetchquotes-production.md",
+      "connection_verification": {
+        "verified_on": "2026-10-15",
+        "receiver_revision": "87a82c4fbeb0306863730780a9a2b0facecdb581",
+        "registered_source_ids": [
+          "fetchquotes-lambda-bootstrap"
+        ],
+        "private_receipt_retained": true,
+        "repeat_no_new_records": true,
+        "controlled_transport_recovery": true,
+        "retained_legacy_versions": 1,
+        "automatic_adoption": false,
+        "automatic_model_parameters": false,
+        "scheduled": false,
+        "transaction_verified": false,
+        "currency_code_verified": false
       }
     },
     {
@@ -453,5 +562,127 @@
       "collection_line": "求广：发现 → 闸门 → 打标（事件类型、研究角度、层标签）→ 事件 feed；默认不翻译",
       "editorial_line": "求精：从打标池按配额选簇 → 取正文 → 全文翻译 → 发布；挑选在先，翻译在后，翻译只花在被挑出的对象上"
     }
+  },
+  "observation_delivery": {
+    "version": "2026.10.13.1",
+    "scope": "research_side_requirements_only",
+    "wire_protocol_changed": false,
+    "common": [
+      "source_identity_and_byte_version",
+      "native_format_and_completeness",
+      "locator_and_selected_context",
+      "object_scope_and_identity_uncertainty",
+      "raw_value_unit_time_conditions",
+      "assertion_vs_derivation_and_dependencies",
+      "document_sheet_figure_attachment_inventory",
+      "access_and_distribution_scope",
+      "retrieval_outcome_reason_next_action",
+      "existing_question_or_optional_discovery_link"
+    ],
+    "profiles": [
+      {
+        "provider_id": "fetchspec",
+        "deliver": [
+          "产品型号与版本原件",
+          "额定性能、接口、工况及效率曲线",
+          "参考配置、PCN和交期披露"
+        ],
+        "limit": "产品规格不认证现场安装、数量或实测效率"
+      },
+      {
+        "provider_id": "inews",
+        "deliver": [
+          "原文链接及已有feed事件身份",
+          "园区发现、建设、交付、合同、故障及社区线索",
+          "事件对象、信息时间、已知字段与缺项"
+        ],
+        "limit": "沿原feed协议接收，不要求新闻伪装原件包；线索不直接关闭研究问题"
+      },
+      {
+        "provider_id": "fetchstat",
+        "deliver": [
+          "公共统计与地域总体口径",
+          "费率、资源、规划、许可及接入原件",
+          "批准条件、期间、修订、附件与缺失说明"
+        ],
+        "limit": "公共费率和地区均值不自动适用于园区；申请不等于批准"
+      },
+      {
+        "provider_id": "fetchfilings",
+        "deliver": [
+          "具名法人、报告期及披露原件",
+          "投资、合同、融资、经营、人员和环境表",
+          "主体／资产边界、未来承诺及脚注"
+        ],
+        "limit": "集团值不向园区分摊；计划不作实际完成"
+      },
+      {
+        "provider_id": "fetchreports",
+        "deliver": [
+          "报告正文、方法、表图、数据集及附件目录",
+          "原始数据与研究方估算分离",
+          "公式输入、单位、精度、假设、误差、局限及引用线索"
+        ],
+        "limit": "来源研究结论与自有审核分开；同链推导不算多份独立证据"
+      },
+      {
+        "provider_id": "fetchquotes",
+        "deliver": [
+          "报价方、配置、市场、时点及计费基础",
+          "价格、税费、附加费、合同条件和数量约束",
+          "报价、合约、成交或账单性质及可比条件"
+        ],
+        "limit": "公开报价不证明真实成交或园区合同价格"
+      }
+    ],
+    "execution": "连接状态复用providers.connection；未接通只登记待办，不制造planned、due或success。补采仍复用既有任务及requirement，普通发现目标可空。",
+    "responsibility": "采集端交原件、定位、源声明和可解释缺项；研究端负责对象匹配、语义审核、推导与采用；一份原件可复用但字节身份不重复计证据。"
+  },
+  "collector_reception": {
+    "contract": "fetchdata-handoff/1",
+    "transport": "controlled_ssh_file_import",
+    "enabled_providers": [
+      "fetchstat",
+      "fetchfilings",
+      "fetchreports",
+      "fetchquotes"
+    ],
+    "sources": {
+      "fetchstat": [
+        {
+          "source_id": "fetchstat-eia-bootstrap",
+          "native_id": "EPM-5.6.B",
+          "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b"
+        }
+      ],
+      "fetchfilings": [
+        {
+          "source_id": "fetchfilings-microsoft-bootstrap",
+          "native_id": "MSFT-AR2025",
+          "url": "https://www.microsoft.com/investor/reports/ar25/index.html"
+        }
+      ],
+      "fetchreports": [
+        {
+          "source_id": "fetchreports-lbnl-bootstrap",
+          "native_id": "DOI:10.71468/P1WC7Q:2024",
+          "url": "https://bies.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report"
+        }
+      ],
+      "fetchquotes": [
+        {
+          "source_id": "fetchquotes-lambda-bootstrap",
+          "native_id": "Lambda-instances-pricing",
+          "url": "https://lambda.ai/pricing"
+        }
+      ]
+    },
+    "receiver": "manage.py collector-receive",
+    "candidate_only": true,
+    "reader_enqueue": false,
+    "automatic_adoption": false,
+    "automatic_model_parameters": false,
+    "scheduled": false,
+    "phase": "four_modules_single_source_file_import_live"
   }
 }

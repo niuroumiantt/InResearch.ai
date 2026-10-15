@@ -36,6 +36,7 @@ READER_ASSETS = ('/assets/theme-state.js', '/assets/site-skin.js', '/assets/site
                  '/assets/industry.css', '/assets/datacenter-news.js', '/assets/datacenter-news.css',
                  '/assets/world.geo.json', '/assets/world-detail.geo.json',
                  '/assets/research-tasks.js', '/assets/research-tasks.css',
+                 '/assets/task-uploads.js', '/assets/task-uploads.css',
                  *('/assets/map-admin1-' + str(i) + '.geo.json' for i in range(12)))
 READER_PREFIXES = ('/assets/fonts/',)
 READER_AUTH = ('/login',)

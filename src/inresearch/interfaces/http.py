@@ -15,6 +15,7 @@ from inresearch.interfaces import repository_pages
 import os
 import json
 import re
+import shutil
 from inresearch.interfaces import auth as auth
 from inresearch.interfaces import public
 from inresearch.materials import inbox as material_intake
@@ -46,7 +47,7 @@ import time
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as BaseThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlencode, urlsplit
+from urllib.parse import parse_qs, unquote, urlencode, urlsplit, quote
 
 
 class ThreadingHTTPServer(BaseThreadingHTTPServer):
@@ -195,7 +196,7 @@ class Handler(SimpleHTTPRequestHandler):
             return None
         # Infrastructure diagrams contain private host/network information.
         # These pages require a real admin session even in local development.
-        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() == '/admin/company.html':
+        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() in ('/admin/company.html', '/task-reviews.html'):
             user = auth.session_user(self.headers.get('Cookie'))
             if not user:
                 self._redirect('/login')
@@ -285,7 +286,9 @@ class Handler(SimpleHTTPRequestHandler):
                 self._norm_path().startswith('/api/') or self._norm_path() in public.CUSTOMER_PROJECTED_DATA):
             return self._get()
         # Dynamic public mechanisms must implement the same HEAD gate as GET.
-        if (self._norm_path() in ('/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/research-task-examples', *public.HOME_DATA_API)
+        if (self._norm_path() in ('/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/materials', '/api/research-task-examples', *public.HOME_DATA_API)
+                or self._norm_path().startswith('/api/materials/content/')
+                or self._norm_path().startswith('/api/intake-worker/')
                 or self._norm_path().startswith('/api/research-task-examples/')
                 or self._norm_path() in ('/api/navigation', '/api/workspace', '/api/site-search', '/data/companies.json', '/research.html')):
             return self._get()
@@ -333,23 +336,57 @@ class Handler(SimpleHTTPRequestHandler):
             if not self.intake_worker():
                 return
             if self.path == '/api/intake-worker/pending':
-                return self._json(200, {'items': [r for r in material_intake.records() if r['status'] == 'queued'][:20]})
+                return self._json(200, {'items': material_intake.pending()[:20]})
+            if self.path == '/api/intake-worker/analysis-pending':
+                return self._json(200, {'items': material_intake.analysis_pending()[:10]})
             try:
+                if self.path.startswith('/api/intake-worker/record/'):
+                    key = self.path.removeprefix('/api/intake-worker/record/')
+                    return self._json(200, {'item': material_intake.worker_record(key)})
+                if not self.path.startswith('/api/intake-worker/content/'):
+                    return self._json(404, {'ok': False})
                 key = self.path.removeprefix('/api/intake-worker/content/')
+                material_intake.worker_record(key)
                 path = material_intake.record_path(key) / 'content'
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/octet-stream')
                 self.send_header('Content-Length', str(path.stat().st_size))
                 self.end_headers()
                 with path.open('rb') as f:
-                    import shutil
-                    shutil.copyfileobj(f, self.wfile)
+                    if self.command != 'HEAD':
+                        shutil.copyfileobj(f, self.wfile)
                 return
+            except PermissionError:
+                return self._json(403, {'ok': False, 'error': '文件尚未经负责人批准'})
             except (ValueError, OSError):
                 return self._json(404, {'ok': False})
         user = self._gate()
         if user is None:
             return
+        if self._norm_path() == '/api/materials' or self._norm_path().startswith('/api/materials/content/'):
+            role, actor = self._role(user), user or material_intake.approver()
+            if role not in ('admin', 'member', 'intern'):
+                return self._json(403, {'ok': False, 'error': '请使用内部团队账号'})
+            try:
+                if self._norm_path() == '/api/materials':
+                    return self._json(200, material_intake.snapshot(actor, role))
+                key = self._norm_path().removeprefix('/api/materials/content/')
+                record = material_intake.load(key)
+                if not material_intake.can_approve(actor, role) and (record.get('receipt_hash') or record['user'] != actor):
+                    return self._json(404, {'ok': False, 'error': 'not found'})
+                path = material_intake.record_path(key) / 'content'
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/octet-stream')
+                self.send_header('X-Content-Type-Options', 'nosniff')
+                self.send_header('Content-Disposition', "attachment; filename*=UTF-8''" + quote(record['name'], safe=''))
+                self.send_header('Content-Length', str(path.stat().st_size))
+                self.end_headers()
+                if self.command != 'HEAD':
+                    with path.open('rb') as stream:
+                        shutil.copyfileobj(stream, self.wfile)
+                return
+            except (OSError, ValueError, TypeError):
+                return self._json(404, {'ok': False, 'error': '文件暂不可用'})
         if self._norm_path() in repository_pages.ALIASES:
             return self._redirect(repository_pages.ALIASES[self._norm_path()])
         if self._norm_path() == '/data/companies.json':
@@ -547,8 +584,6 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200,acquisition.product_documents(data_root,**filters,**page))
             except (ValueError,TypeError):
                 return self._json(400, {'ok':False,'error':'invalid_product_document_filter'})
-        if self.path == "/api/materials":
-            return self._json(200, {"items": material_intake.records()[:200]})
         if urlsplit(self.path).path in ('/api/ops', '/api/ops/log'):
             if self._role(user) != 'admin':
                 return self._json(403, {'ok': False, 'error': '仅管理员可查看运行诊断与日志'})
@@ -750,7 +785,6 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(404, {'ok': False, 'error': '样例产物未安装或未登记'})
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(409, {'ok': False, 'error': '样例产物缺失或内容已变化，不能下载'})
-            from urllib.parse import quote
             self.send_response(200)
             self.send_header('Content-Type', 'application/octet-stream')
             self.send_header('Content-Length', str(len(artifact['body'])))
@@ -769,6 +803,8 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
+        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt'):
+            return self._post()
         # Machine receivers authenticate independently below. A customer cookie
         # never turns those endpoints into customer write capabilities.
         customer = auth.session_user(self.headers.get('Cookie'))
@@ -781,6 +817,34 @@ class Handler(SimpleHTTPRequestHandler):
         return self._post()
 
     def _post(self):
+        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt'):
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if self.path.endswith('/receipt'):
+                    if not 0 < size <= 4096:
+                        raise ValueError('invalid receipt request')
+                    payload = json.loads(self.rfile.read(size))
+                    item = material_intake.receipt_view(payload['id'], payload['receipt'])
+                    return self._json(200, {'ok': True, 'item': item})
+                if self.headers.get('X-Requested-With') != 'task-upload':
+                    return self._json(403, {'ok': False, 'error': 'invalid request'})
+                raw_metadata = self.headers.get('X-Material-Metadata', '{}')
+                if len(raw_metadata) > 65536:
+                    raise ValueError('metadata too large')
+                metadata = json.loads(unquote(raw_metadata))
+                if not isinstance(metadata, dict):
+                    raise ValueError('invalid metadata')
+                package_id = metadata.get('package_id', '')
+                if package_id:
+                    packages = research_tasks.read(ROOT)['packages']
+                    if not any(p['id'] == package_id for p in packages):
+                        raise ValueError('工作包不存在，请刷新后选择')
+                item, receipt = material_intake.receive(self.rfile, size, metadata, 'anonymous', public=True)
+                return self._json(201, {'ok': True, 'item': item, 'receipt': receipt})
+            except PermissionError:
+                return self._json(404, {'ok': False, 'error': '回执无效'})
+            except (ValueError, KeyError, OSError, TypeError) as error:
+                return self._json(400, {'ok': False, 'error': str(error)[:200]})
         if self.path == '/api/intake-worker/ack':
             if not self.intake_worker():
                 return
@@ -791,8 +855,53 @@ class Handler(SimpleHTTPRequestHandler):
                 payload = json.loads(self.rfile.read(size))
                 material_intake.acknowledge(payload['id'], payload['sha256'])
                 return self._json(200, {'ok': True})
-            except (ValueError, KeyError, OSError):
+            except (ValueError, KeyError, OSError, PermissionError):
                 return self._json(400, {'ok': False})
+        if self.path == '/api/intake-worker/feedback':
+            if not self.intake_worker():
+                return
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 128 * 1024:
+                    raise ValueError('invalid size')
+                payload = json.loads(self.rfile.read(size))
+                item = material_intake.mutate(payload, 'analysis-worker', 'worker', worker=True)
+                return self._json(200, {'ok': True, 'item': item})
+            except PermissionError as error:
+                return self._json(403, {'ok': False, 'error': str(error)})
+            except material_intake.Conflict as error:
+                return self._json(409, {'ok': False, 'error': str(error)})
+            except (ValueError, KeyError, OSError, TypeError) as error:
+                return self._json(400, {'ok': False, 'error': str(error)[:200]})
+        if self.path == '/api/intake-worker/analysis':
+            if not self.intake_worker():
+                return
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 1024 * 1024:
+                    raise ValueError('analysis payload too large')
+                from inresearch.materials import task_analysis
+                result = task_analysis.complete(ROOT, json.loads(self.rfile.read(size)))
+                return self._json(200, {'ok': True, 'report': result['report']})
+            except PermissionError as error:
+                return self._json(403, {'ok': False, 'error': str(error)[:200]})
+            except material_intake.Conflict as error:
+                return self._json(409, {'ok': False, 'error': str(error)[:200]})
+            except (ValueError, KeyError, OSError, TypeError, ArithmeticError) as error:
+                return self._json(400, {'ok': False, 'error': str(error)[:200]})
+        if self.path == '/api/intake-worker/analysis-progress':
+            if not self.intake_worker():
+                return
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 4096:
+                    raise ValueError('invalid size')
+                payload = json.loads(self.rfile.read(size))
+                item = material_intake.set_analysis_progress(payload['id'], payload['sha256'],
+                    payload['completed'], payload['total'], payload.get('state','running'))
+                return self._json(200, {'ok': True, 'item': item})
+            except (ValueError, KeyError, OSError, TypeError, PermissionError) as error:
+                return self._json(400, {'ok': False, 'error': str(error)[:200]})
         if self.path.startswith('/api/product-catalog/'):
             company = self.path.removeprefix('/api/product-catalog/')
             if company not in product_catalog.COMPANIES:
@@ -801,22 +910,41 @@ class Handler(SimpleHTTPRequestHandler):
                 receiver=lambda root, payload: product_catalog.receive(root, payload, company))
         if self.path == '/api/pilot-progress/nvidia':
             return self.api_nvidia_pilot_progress()
-        if self.path == '/api/materials':
+        if self.path in ('/api/materials', '/api/materials/review'):
             user = self._gate()
             if user is None:
                 return
-            if user and auth.user_role(user) == 'intern':
-                return self._json(403, {'ok': False, 'error': '需要内部成员权限'})
+            role, actor = self._role(user), user or material_intake.approver()
+            if role not in ('admin', 'member', 'intern'):
+                return self._json(403, {'ok': False, 'error': '请使用内部团队账号'})
             if self.headers.get('X-Requested-With') != 'material-intake':
                 return self._json(403, {'ok': False, 'error': 'invalid request'})
             try:
                 size = int(self.headers.get('Content-Length', 0))
+                if self.path == '/api/materials/review':
+                    if not 0 < size <= 128 * 1024:
+                        raise ValueError('invalid size')
+                    payload = json.loads(self.rfile.read(size))
+                    item = material_intake.mutate(payload, actor, role)
+                    return self._json(200, {'ok': True, 'item': item})
                 metadata = json.loads(unquote(self.headers.get('X-Material-Metadata', '{}')))
                 if not isinstance(metadata, dict):
                     raise ValueError('invalid metadata')
-                result = material_intake.receive(self.rfile, size, metadata, user or 'local')
+                package_id = metadata.get('package_id', '')
+                if package_id:
+                    packages = research_tasks.read(ROOT)['packages']
+                    package = next((p for p in packages if p['id'] == package_id), None)
+                    if package is None:
+                        raise ValueError('工作包不存在，请刷新后选择')
+                    if role == 'intern' and package['assignee'] != actor:
+                        raise PermissionError('只能提交分配给自己的工作包')
+                result = material_intake.receive(self.rfile, size, metadata, actor)
                 return self._json(201, {'ok': True, 'item': result})
-            except (ValueError, OSError) as exc:
+            except PermissionError as exc:
+                return self._json(403, {'ok': False, 'error': str(exc)})
+            except material_intake.Conflict as exc:
+                return self._json(409, {'ok': False, 'error': str(exc)})
+            except (ValueError, OSError, TypeError) as exc:
                 return self._json(400, {'ok': False, 'error': str(exc)[:200]})
         if self.path == "/api/reader-snapshot":
             return self.api_reader_snapshot()

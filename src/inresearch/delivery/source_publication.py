@@ -102,7 +102,16 @@ def companies(root, runtime=None):
     runtime = state(root) if runtime is None else runtime
     identities = _objects({'version':1, 'objects':base['objects'], 'records':[]},
                           {'objects':runtime['objects'], 'records':[]})['objects']
-    for obj in identities.values():
+    notes = {}
+    for rows in (base['records'], runtime['records']):
+        for row in rows:
+            if not row.get('registration_correction'): continue
+            if row['id'] in notes and notes[row['id']] != row:
+                raise ValueError('immutable_record_collision')
+            notes.setdefault(row['id'], row)
+    held = ledger.quarantined_objects({'records':notes.values()})
+    for object_id, obj in identities.items():
+        if object_id in held: continue
         if obj['type'] == 'company' and obj['identity']['company_id'] not in known:
             ident = obj['identity']['company_id']
             doc['records'].append({'company_id':ident,'name':obj['name'],'name_cn':None,
@@ -139,6 +148,24 @@ def install(root, payload):
             or sum(len(s.get('observations', [])) for s in payload['sites']) > 5000):
         raise ValueError('bounded_source_publication_required')
     key = digest(payload)
+    # An approved anonymous upload is a private receiver source, not a public
+    # URL. Recheck its actual bytes and owner approval at the publication edge.
+    from inresearch.materials import inbox as material_intake
+    for site in payload['sites']:
+        for row in site.get('observations', []):
+            for ref in row.get('adoption', {}).get('document_refs', []):
+                archive = ref.get('archive') or {}
+                if archive.get('kind') != 'approved_task_upload':
+                    continue
+                received = material_intake.worker_record(archive['submission_id'])
+                from datetime import datetime as _datetime, timezone as _timezone
+                created = _datetime.fromtimestamp(received['created'], _timezone.utc).isoformat()
+                approved = _datetime.fromtimestamp(received['approval']['at'], _timezone.utc).isoformat()
+                if (received['sha256'] != ref['source_sha256']
+                        or archive['sha256'] != received['sha256']
+                        or archive['received_at'] != created
+                        or archive['approved_at'] != approved):
+                    raise ValueError('approved_task_upload_provenance_changed')
     path = workspace_path(PATH, root)
     with locked(path):
         previous = state(root)

@@ -187,6 +187,85 @@ class SourcePublicationTests(unittest.TestCase):
                      source={'sha256':self.sha,'locator':'original:paragraph:1','quote':'Original source','published_at':None})
                 for kind,identity in native]
 
+    def correction(self, action='reclassify', target=None):
+        claim = self.claims()[0]
+        if not target:
+            target = intake.apply(self.root,self.data,claim)['statement_id']
+        claim['registration_correction'] = {'of':target,'action':action,'reason':'Technical source classification correction'}
+        if action == 'reclassify': claim['metric'] = 'reported_product_capability'
+        return claim
+
+    def test_ordinary_reclassification_is_append_only_replayable_and_not_C3(self):
+        claim = self.correction()
+        before = copy.deepcopy(ledger.load(self.root)['records'][0])
+        receipt = intake.apply(self.root,self.data,claim)
+        doc = ledger.check(ledger.load(self.root))
+        self.assertEqual(doc['records'][0],before)
+        self.assertIsNone(doc['records'][1]['reviewed_at'])
+        self.assertEqual(ledger.current(doc,'2026-10-12')[0]['current'][0]['metric'],'reported_product_capability')
+        self.assertEqual(len(ledger.public_page(self.root,{})['records']),2)
+        updates = ledger.public_updates(self.root)['changes']
+        self.assertEqual(len(updates),1)
+        self.assertEqual(updates[0]['revision']['of'],before['id'])
+        self.assertNotIn('registration_correction',updates[0])
+        frozen = (self.root/ledger.PATH).read_bytes()
+        self.assertEqual(intake.apply(self.root,self.data,claim)['state'],'already_registered')
+        self.assertEqual((self.root/ledger.PATH).read_bytes(),frozen)
+        payload = publication.bundle(self.root)
+        (self.root/ledger.PATH).unlink()
+        self.assertEqual(publication.install(self.root,payload)['new_records'],2)
+        self.assertEqual(publication.install(self.root,payload)['new_records'],0)
+        self.assertEqual(ledger.public_updates(self.root)['changes'][0]['id'],receipt['statement_id'])
+
+    def test_ordinary_correction_cannot_change_value_source_identity_or_clocks(self):
+        claim = self.correction()
+        before = (self.root/ledger.PATH).read_bytes()
+        for field,value in [('value',9),('unit','MW'),('kind','measured'),('effective_at','2024'),
+                            ('valid_until','2030'),('period_start','2024'),('assumptions',['guess'])]:
+            bad = copy.deepcopy(claim);bad[field] = value
+            with self.subTest(field=field), self.assertRaises(ValueError):intake.apply(self.root,self.data,bad)
+            self.assertEqual((self.root/ledger.PATH).read_bytes(),before)
+        bad = copy.deepcopy(claim);bad['source']['quote'] = 'Changed native quote'
+        with self.assertRaises(ValueError):intake.apply(self.root,self.data,bad)
+        bad = copy.deepcopy(claim);bad['object'] = ledger.object_record('company',{'company_id':'other'},'Other')
+        with self.assertRaises(ValueError):intake.apply(self.root,self.data,bad)
+        self.assertEqual((self.root/ledger.PATH).read_bytes(),before)
+
+    def test_identity_hold_release_preserve_audit_but_filter_runtime_directory_and_public_rows(self):
+        claim = self.correction('quarantine_identity')
+        old = copy.deepcopy(ledger.load(self.root)['records'][0])
+        held = intake.apply(self.root,self.data,claim)
+        self.assertEqual(ledger.load(self.root)['records'][0],old)
+        self.assertEqual(ledger.public_page(self.root,{})['records'],[])
+        self.assertEqual(publication.companies(self.root)['records'],[])
+        self.assertEqual(ledger.current(ledger.load(self.root)),[])
+        payload = publication.bundle(self.root)
+        (self.root/ledger.PATH).unlink()
+        publication.install(self.root,payload)
+        self.assertEqual(ledger.public_page(self.root,{})['records'],[])
+        self.assertEqual(publication.companies(self.root)['records'],[])
+        (self.root/ledger.PATH).write_text(json.dumps({'version':1,'objects':payload['objects'],'records':payload['records']}))
+        release = self.correction('release_identity',held['statement_id'])
+        intake.apply(self.root,self.data,release)
+        self.assertEqual(len(ledger.public_page(self.root,{})['records']),1)
+        self.assertEqual(len(publication.companies(self.root)['records']),1)
+        self.assertEqual(ledger.load(self.root)['records'][0],old)
+
+    def test_hold_cannot_hide_reviewed_research_or_reclassify_and_missing_target_is_rejected(self):
+        claim = self.correction('quarantine_identity')
+        bad = copy.deepcopy(claim);bad['metric']='other'
+        with self.assertRaises(ValueError):intake.apply(self.root,self.data,bad)
+        bad = copy.deepcopy(claim);bad['registration_correction']['of']='missing'
+        with self.assertRaises(ValueError):intake.apply(self.root,self.data,bad)
+        doc = ledger.load(self.root);reviewed = copy.deepcopy(doc['records'][0])
+        reviewed.pop('registration');reviewed['id']='reviewed';reviewed['review']={'public_fields_reviewed':True};reviewed['reviewed_at']=reviewed['recorded_at']
+        intake.apply(self.root,self.data,claim);doc=ledger.load(self.root);doc['records'].append(reviewed)
+        with patch('inresearch.knowledge.object_observations.review_valid',return_value=True), self.assertRaisesRegex(ValueError,'cannot_hide_reviewed'):
+            ledger.check(doc)
+        doc = ledger.load(self.root);doc['records'][0]=reviewed;doc['records'][1]['registration_correction']['of']='reviewed'
+        with patch('inresearch.knowledge.object_observations.review_valid',return_value=True), self.assertRaisesRegex(ValueError,'preserve_source_value'):
+            ledger.check(doc)
+
     def test_four_types_register_publish_replay_and_share_allowlist(self):
         claims=self.claims()
         for claim in claims: self.assertFalse(intake.apply(self.root,self.data,claim)['truth_checked'])

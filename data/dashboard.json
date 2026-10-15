@@ -352,7 +352,7 @@
    "assumed": 12,
    "delivered": 39,
    "needed": 271,
-   "not_connected": 171
+   "not_connected": 0
   }
  },
  "systems": {
@@ -11041,6 +11041,13 @@
   ],
   "due_targets": [
    {
+    "id": "F.capital.base_rates",
+    "team": "fetchstat",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
     "id": "F.capital.news",
     "team": "inews",
     "next_due": "2026-10-05",
@@ -11060,6 +11067,13 @@
     "next_due": "2026-10-05",
     "status": "needed",
     "variable_class": 5
+   },
+   {
+    "id": "F.revenue.tokens.token.price_throughput",
+    "team": "fetchquotes",
+    "next_due": "2026-10-05",
+    "status": "assumed",
+    "variable_class": 3
    },
    {
     "id": "P.ai-asic.news",
@@ -11305,22 +11319,8 @@
     "next_due": "2026-10-05",
     "status": "needed",
     "variable_class": 5
-   },
-   {
-    "id": "P.switch-asic.news",
-    "team": "inews",
-    "next_due": "2026-10-05",
-    "status": "needed",
-    "variable_class": 5
-   },
-   {
-    "id": "P.transformer.news",
-    "team": "inews",
-    "next_due": "2026-10-05",
-    "status": "needed",
-    "variable_class": 5
    }
   ],
-  "due_total": 50
+  "due_total": 188
  }
 }
