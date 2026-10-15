@@ -168,8 +168,8 @@ class TaskAnalysisTests(unittest.TestCase):
             first = task_analysis.complete(self.root,self.payload([self.candidate()]))
         site_id = first['report']['published'][0]['site_id']
 
-        def submit(sheet, name):
-            body = workbook_bytes(sheet=sheet)
+        def submit(sheet, name, body=None):
+            body = body if body is not None else workbook_bytes(sheet=sheet)
             item, _ = inbox.receive(io.BytesIO(body),len(body),
                 {'name':name,'submitter':'员工乙','project_name':'中国园区普查',
                  'package_id':'dc-census-cn'},'anonymous',public=True)
@@ -178,7 +178,9 @@ class TaskAnalysisTests(unittest.TestCase):
             inbox.acknowledge(item['id'],item['sha256'])
             return item
 
-        fresh = submit(SHEET.replace('待核实','新核验依据已附'),'第二次.xlsx')
+        fresh_sheet = SHEET.replace('待核实','新核验依据已附')
+        fresh_bytes = workbook_bytes(sheet=fresh_sheet)
+        fresh = submit(fresh_sheet, '第二次.xlsx', body=fresh_bytes)
         with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
             second = task_analysis.complete(self.root,self.payload([self.candidate(site_id=site_id)],fresh))
         self.assertEqual(second['report']['publication']['new_records'],1)
@@ -194,7 +196,8 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertEqual(index[0]['current_fields']['capacity_planned_it_mw']['recorded_at'],
                          second['report']['published'][0]['model_checked_at'])
 
-        duplicate = submit(SHEET.replace('待核实','新核验依据已附'),'同原件重传.xlsx')
+        duplicate = submit(fresh_sheet, '同原件重传.xlsx', body=fresh_bytes)
+        self.assertEqual(duplicate['sha256'], fresh['sha256'])
         held = task_analysis.complete(self.root,self.payload([self.candidate(site_id=site_id)],duplicate))
         self.assertEqual(held['report']['published'],[])
         self.assertEqual(held['report']['held'][0]['classification'],'duplicate')
