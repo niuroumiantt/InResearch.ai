@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15.5",
+  "version": "2026.10.15.6",
   "reviewed_at": "2026-10-15",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -22,12 +22,12 @@
     "framework/02_knowledge_format.md": "e62d2145139460d0e6d71e8ea0f1d5438d76cf4f9714bba8a280312d9e4a66df",
     "framework/03_bom_and_collaboration.md": "89c65384f1a92b4765f54c66b3e62bce4b145aa486f2d1dfbcc799de1f1867d0",
     "framework/04_reading_scoring_standard.md": "8320c8c8ba076f3d9a735d02cc7414af9542aa41c77f11ea8d2ffb7636e65a93",
-    "framework/05_interface_system.md": "bfd05ee1f2a2f4942b4133972e75bbdcbcde708c98c86e1d8b608356ee3a3608",
+    "framework/05_interface_system.md": "e50f734ef33d7a91f8900605070106227104a68acb493ff20479f90ac3adf65e",
     "framework/06_acquisition.md": "9f2dba71eb4e92bfe95fcdc6382d1ab3a064cf4b6e7feef9db9b711f6fa06098",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
     "framework/09_software_contracts.md": "52cbed6cee9ea6d181f65cb8f0e9f6fb4dca82dc656af1874b21f785687ffe8e",
-    "framework/CURRENT.md": "18e6dfc245515138e0ae1fd396fe414c7c1f51c0f873188b3c202505204482c6",
+    "framework/CURRENT.md": "db4fe73d8af13cc4148f15cdfd46153abf9ab598d48e2b28694d006999286450",
     "framework/data_contract.json": "4c27cb06b82c5bba4d71d89eddb75c4d1dea98bb78d0c33591f3e6bec0cfd633",
     "framework/interface_manifest.json": "65d9987cd6f31c10ba4cc80239a265e984c8e4cc2b76998b3961b5f2f568aeaa",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "11c1502bcd88c30af40c77c582cf636534d6ca5127ed6f26c876e3392d1e3555",
+    "framework/current_state.json": "b4912ac7ae73129ea4be40e5b35d635e31f037eff5517f256d79721d9d9b4964",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "ce19f7138e9727e6e55c45789df874befa93365db3fa399f1d5f270a9b07db6f",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "1e38f39a6e891f25b08924ac92a58f083857a3f754e29992616c760d5c4d1836",
     "src/inresearch/adapters/html_document.py": "ece18751831c38a47683873898d0b8e476bba0dc04b33378da888ee64f08864e",
-    "docs/DECISIONS.md": "ddd82c844d2303052660cdf543d6887c9cd3856623e9ecd944a1928f41db483f",
+    "docs/DECISIONS.md": "848ddc5cb62750acef29aa0d70497a6df6ecc1320e3d5e7b44bb6a44c7ac64d1",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -895,9 +895,9 @@
     "docs/guides/fetchdata/fetchquotes-production.md": "5e2ed30f67d740044f50793805a715bb60b99fd6a2a0893a862e279ffb6f3421",
     "docs/handoff/fetchquotes-production.md": "50e2808183053e9a1ad0fe8ea487aecb9720f5f905aa077e0c1040e4e7849ca1",
     "src/inresearch/materials/receive.py": "23f34e2d15af518ceaeb6bae31b599a0aa65905c2109b74c7bdbe2b7bd024061",
-    "src/inresearch/materials/review_worker.py": "596299f92c186c825d4d0cabeecc85b1c65a5d5ae087f3264620fad8e17da2e7",
+    "src/inresearch/materials/review_worker.py": "a03f0f24d4a380a4905c34c8580b762ea1a4c63e6b22f684a69ea4700f3bc624",
     "src/inresearch/materials/task_analysis.py": "19a67b7dffc089d8512398522436afcb62e3e28083fecbf7709a6e92576fe33a",
-    "tests/unit/test_task_analysis.py": "7140ca97a1367100f5da66f99725bc4a602409b7c5d15b612be12ab653bfba71",
+    "tests/unit/test_task_analysis.py": "ed2be0b641b9dd560a9461724086c96f1c5370b15116d6423e79e08cd628dd19",
     "deploy/spark-reader/inresearch-material-intake.service": "5ac271f71c6b9a91bc0b28370bf6e10d6c01f98719e2413a1e041fa6a764c06a",
     "web/pages/task-reviews.html": "28ed0bc8a3ceb55baaec8e4d1b9c18d4c571e45b910b2d44fd65ee3eebe75ab7",
     "web/components/task-reviews.js": "4f63a1ef67ef7b990e3a6166e617b5ab4b30f227a2ca300154d7e56db6632e6d",
@@ -3888,18 +3888,19 @@
       "policy": "task-upload-auto-analysis-20261015",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "仅负责人明确点击确认并分析后，批准 SHA 对应的已归档 XLSX 才能由 Spark 本机模型逐批审核；旧 approve 不追溯授权。模型输出不是发布凭证，网站复验原件字节、原生工作表及单元格、精确值与单位、唯一物理园区、字段白名单、已有非空值和真实批准来源时钟。只有合格普通来源经持久发布器追加且行业读者投影可查后计上线；不写正式 C3 或模型参数。后台报告含模型身份、发布条目与未发布原因，员工回执只见默认折叠的带时间逐格修改任务书；重放不重复写入或反馈。公开任务页只保留匿名上传与本人回执；指定负责人从醒目入口及后台导航进入独立审批工作台，服务端强制管理员页面权限，列表和操作仍只给指定负责人。",
+      "checked_requirement": "仅负责人明确点击确认并分析后，批准 SHA 对应的已归档 XLSX 才能由 Spark 本机模型逐批审核；旧 approve 不追溯授权。模型输出不是发布凭证，网站复验原件字节、原生工作表及单元格、精确值与单位、唯一物理园区、字段白名单、已有非空值和真实批准来源时钟。只有合格普通来源经持久发布器追加且行业读者投影可查后计上线；不写正式 C3 或模型参数。后台报告含模型身份、发布条目与未发布原因，员工回执只见默认折叠的带时间逐格修改任务书；重放不重复写入或反馈。公开任务页只保留匿名上传与本人回执；指定负责人从醒目入口及后台导航进入独立审批工作台，服务端强制管理员页面权限，列表和操作仍只给指定负责人。模型输出截断时只对当前原生单元格批次递归缩分，子组全部有效且模型身份一致后推进原批次断点；失败输出不进入候选或发布。",
       "tests": [
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_only_new_explicit_action_reaches_analysis_queue",
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_one_native_candidate_publishes_and_report_stays_owner_only",
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_mismatched_native_value_is_held_without_publication",
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_retry_after_publication_before_report_recovers_without_duplicate",
+        "tests/unit/test_task_analysis.py::ReviewWorkerBatchTests.test_output_limited_chunk_splits_without_dropping_cells",
         "tests/unit/test_material_intake.py::IntakeTests.test_public_receipt_owner_and_feedback_gate",
         "tests/research_tasks.cjs"
       ],
       "not_verified": [
         "合成单元测试和本地浏览器场景不证明真实员工工作簿已由 Spark 完整审核、生产持久发布成功或公网园区详情可见；需分别保存服务、模型、发布器、网站实际回执。审批工作台的合成桌面／手机场景不替代真实管理员账号、公网页面和真实文件状态验收。",
-        "本机模型建议只是普通来源基础登记候选，不证明来源陈述真实、全表无遗漏、C3 正式研究采用或模型参数适用。超过有界批次／候选／反馈容量的文件需拆分；生产延迟与长期吞吐另测。"
+        "本机模型建议只是普通来源基础登记候选，不证明来源陈述真实、全表无遗漏、C3 正式研究采用或模型参数适用。超过有界批次／候选／反馈容量的文件需拆分；生产延迟与长期吞吐另测。合成缩分测试不证明真实 v6 第12批已越过，也不证明 184 批全部完成或最终报告可回传。"
       ]
     }
   ]
