@@ -960,7 +960,8 @@ def build_news(root=ROOT, *, company_id=None, limit=80, overview=False):
     raw=raw_atlas.build(root,feed,leads,received_at=reader.get('received_at'),
                         available=(isinstance(feed,dict) and feed.get('status') not in ('not_initialized','awaiting_sync')) or isinstance(pipeline,dict),
                         truncated=feed_truncated or (bool(pipeline.get('truncated')) if isinstance(pipeline,dict) else False))
-    out=dict(schema_version=1,feed=feed,pipeline={'records':leads,'available':pipeline is not None,
+    from inresearch.workflow.daily_publications import projection as published_dailies
+    out=dict(schema_version=1,daily_publications=published_dailies(root),feed=feed,pipeline={'records':leads,'available':pipeline is not None,
                 'daily_visible':sum(r.get('origin')=='daily_html' for r in leads),
                 'total':pipeline.get('total') if isinstance(pipeline,dict) else None,'progress':progress,
                 'truncated':bool(pipeline.get('truncated')) if isinstance(pipeline,dict) else False},raw_atlas=raw,
@@ -984,7 +985,8 @@ def cached_news(root=ROOT, *, company_id=None, limit=80, overview=False):
     from inresearch.workflow.news_marks import marks_path
     from inresearch.knowledge.raw_atlas import local_date
     root=Path(root); source=source_path(root)
-    paths=[source,control_path(source),prepared_control_path(source),
+    from inresearch.workflow.daily_publications import database as daily_database
+    paths=[daily_database(root),source,control_path(source),prepared_control_path(source),
            root/'data/projects.json',root/'data/companies.json',root/'web/assets/world.geo.json',
            root/'docs/research/2026-10-11/data-centers/project-ledger.json']
     if not overview:

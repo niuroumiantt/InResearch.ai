@@ -49,3 +49,9 @@
 北京时间15:09已核对M5唯一既有发送worker切到inews源码 `7696230350f302c0732c5f1c6b3449da307a4b14`，实际执行脚本字节与该提交一致。原服务身份、队列、接收端repo参数、日志及状态路径保留；4个队列文件和1个既有接收回执的完整字节SHA均未改变，旧安装配置已备份、旧源码保留可回滚。真实watch轮次退出0，返回 `received=0`、`errors=[]`，之后正常空闲；这是既有队列重放/去重验证，不表示新增文章送达或新的研究采用。Spark专栏接收timer/service未修改。
 
 生产入口实际使用Python3.9.6；发送器和迁移安装器另在Python3.12.14完成16项限定回归。inews PR271/272已合并，但其GitHub检查失败且未见实际步骤，不能据此声称inews整仓CI通过。本仓删除变更仍须最终head完整CI；新文章制作、真实新增发送、全文阅读、C3和网站采用继续按各自实际回执验收。完整安装参数、哈希清单和回滚位置仅保存在私有运行回执。
+
+## Owner-confirmed daily news publication (2026-10-14)
+
+inews owns article production and the public column. After exact owner confirmation, InResearch presents a full-article link in its news section. The newest successful daily is pinned and highlighted; older dailies remain available. Use `python3 -m inresearch.workflow.daily_publications --input METADATA --html CONFIRMED_HTML --confirmed-sha SHA256 --actor ACTOR --root ROOT`. The owner-operated command verifies the HTML SHA and the live inews article title before an audited SQLite transaction in the existing private logs runtime directory. Failed validation preserves the prior pin; retries are idempotent and late older reports cannot replace the latest pin. No HTTP write endpoint is added.
+
+`/api/news` exposes only the publication title/date/public URL/version and pin/highlight state. Publication state is separate from Spark snapshots, originals, reading, C3 and formal capacity adoption. Homepage caches include the publication database version. The daily section parser stops at the summary heading, preventing an extra news event. Production publishing and live receipt checks are separate from source tests. Writing rules remain exclusively in inews.today.

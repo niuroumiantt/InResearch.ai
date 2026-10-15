@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15.15",
+  "version": "2026.10.15.16",
   "reviewed_at": "2026-10-15",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -27,7 +27,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
     "framework/09_software_contracts.md": "52cbed6cee9ea6d181f65cb8f0e9f6fb4dca82dc656af1874b21f785687ffe8e",
-    "framework/CURRENT.md": "378f95920e51a4937c78c33c3b92348eedfa6fe2a279ae7eff92c20bb427a9c7",
+    "framework/CURRENT.md": "642f7253483bb49c26f655c09fe9391f0108b7234c4395728af37c737becf122",
     "framework/data_contract.json": "4c27cb06b82c5bba4d71d89eddb75c4d1dea98bb78d0c33591f3e6bec0cfd633",
     "framework/interface_manifest.json": "65d9987cd6f31c10ba4cc80239a265e984c8e4cc2b76998b3961b5f2f568aeaa",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -37,9 +37,9 @@
     "src/inresearch/adapters/reader_model.py": "5a281a1256fe514e25c75d6eb3aea8e9ef756f3db3d35e1118181a5686e5b91a",
     "src/inresearch/delivery/backup.py": "c567713fc5585ab79581cb316d12fc1947931ff73a19cfbc79da5a6de48ba71e",
     "src/inresearch/knowledge/news_observations.py": "d4821479d7de6d6b492e15bd7a3195007ca91fea6c3b6a2aea35c18c40f5a2d3",
-    "src/inresearch/knowledge/registry.py": "dc0841237ecd033144885123bc9815efb5b4b9f17c11f4b5e4208b6d86c5871b",
+    "src/inresearch/knowledge/registry.py": "7da24a2155bb971a8703e6b3feb23d953c10962616ca59b251159836eddd8e50",
     "src/inresearch/materials/daily_bundle.py": "5dedf3331f208b06ff212224845ebfbf36ba3daddd82238748aa15ee0841aa7d",
-    "src/inresearch/materials/daily_events.py": "ff08f61801ee172f21269aae03442900b7f25a058f589332cfa47cf45b8a2a59",
+    "src/inresearch/materials/daily_events.py": "504612e5f654bd945c4a683828c80691b655f1fca567dbaac07e7da87f749d34",
     "src/inresearch/materials/daily_research.py": "641f8c6e51472a1d93e72ba472f4f55e6040901168a72a2c723cb323ed39b820",
     "src/inresearch/materials/daily_sources.py": "f719e0d4592abfcb3b914d278bef4c246538ba61ec407e4ac0d31b1cca56a216",
     "src/inresearch/workflow/daily_dispatch.py": "a2020fd901d4971803e920861199bb009b213014f39a33e09ff0e88ec51984f2",
@@ -54,7 +54,7 @@
     "tests/container_storage.py": "c52fb64846cb6e1bf92cfe0b80cf609e4da70873436ef46c8d964629df3c46d7",
     "tests/datacenter_cost.cjs": "54f68f0813f67097b2ae45fe0058e56950c509e4bde5e4f25e520c325dde511f",
     "tests/datacenter_economics.cjs": "af86e4597c7f2fe58ca9c490c8e2679a73f62f54764c113d72c7509ab269e973",
-    "tests/datacenter_news.cjs": "a7f5aa17138dacd131d433ea8225e227d567c39243524705ba0df4497168a1b0",
+    "tests/datacenter_news.cjs": "825afdf65f4a8fe1faa62d22be9cc14d1e0e350e00ac141a5b5390d7f8263de5",
     "tests/datacenter_tco.cjs": "4192ea29c40dd89c19a0315581b432a73a1af6d2067f4980994b419df29d167b",
     "tests/industry.cjs": "7e582c11901be6a55bb755af459bf6e79f7477aa0dc362230610fa7d24b339cb",
     "tests/model_assets.cjs": "143b6f43ed694100d8d321c21942155c7df01fec4f0234d65c5d68d2e31b02f5",
@@ -127,7 +127,7 @@
     "tests/unit/test_reading_revisions.py": "11159514736025f8532fde946401a726cd1c7fb08fb731d5c3195e34707f1c93",
     "tests/unit/test_report_model.py": "d4e81a2f27fb5a98cf4dff2292257cba53e7c451cefef7a3c13ee796d23ff426",
     "tests/unit/test_repository_pages.py": "f5cf584d645ad999a59ffc9bb5f6a9569fd1ed247850e5864ed165b0a9dead56",
-    "tests/unit/test_research.py": "b31b126079c3fe802eb63e90ad872731cce865369f208460b70beb3334866185",
+    "tests/unit/test_research.py": "f1481c8863efb69b8c9d36e74cf3754354f4518bd73447e28c2978458c79bcc5",
     "tests/unit/test_research_match.py": "caaef30f9ffa97ef7365110edff298ceb992407d59b5889108753edce47fda13",
     "tests/unit/test_research_navigation.py": "3eb2ee5b1321212b34d5ba61296079e01d5098b6597ab34cbeddb14f00525e20",
     "tests/unit/test_snapshot_overlay.py": "3c1e1f242bf69aa2014687b66798ab3ffb905b6767984c7828466549d0238418",
@@ -156,7 +156,7 @@
     "tests/unit/test_project_review.py": "9bb404a09f40adb766c198e298a805a0f2504b30500f4dbbcf7c49267a1a9bd1",
     "tests/unit/test_material_retention.py": "ab976fc068dda7d885cba4eb0a74e8397c4f09b8eedf529ac0cbbe8459e6fee1",
     "web/components/industry.js": "1f985daf0b6d1d0984e15eda707f18990a15cf98efdf1eea00d79b63652d5632",
-    "web/components/datacenter-news.js": "378701fbfcfbe5e72349e2a119cf78a06798511f9b07a3d2103b8e9f8c87eb06",
+    "web/components/datacenter-news.js": "b7a0030e55eedbd472214957841fd692e9db6722924a041d2457dcc7382269a9",
     "web/pages/index.html": "595de0c44d5c703b202b47fdd663a4460d983e370ad66457603d958dbf6c37e5",
     "tests/dashboard.cjs": "e69ac49df0b7f4bc48d398c836197bb2de36c96f8facc69b7ab95c7e029136bf",
     "tests/unit/test_fetchspec_backflow.py": "68ec43f58d6bb99bec692015e77f24dd3922e869710fc90c488c6f0477a791cd",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "18512ccfa9d65d06b07736728d0d042cfb02d0bf9d25130d5e1afbf97fae56b4",
+    "framework/current_state.json": "b31ecd42129a601c2563f2002aa898e54b390b71f3032f460101d672b36e2cda",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "ce19f7138e9727e6e55c45789df874befa93365db3fa399f1d5f270a9b07db6f",
@@ -268,7 +268,7 @@
     "src/inresearch/materials/source_provenance.py": "40c263a85fc22dc126f7ccac5bdd388a040740dce46b1fa76e3fa1ae29e5bdb2",
     "src/inresearch/workflow/research_sources.py": "178b2d6481e3481a95751d84334e4393ab8eb8959b860d35d524cf62845a4cb7",
     "tests/unit/test_research_sources.py": "6ef21a1f1555c9a0374749a5b34780c20737af2d4f2c6f1e316f6a22db15bae9",
-    "docs/local_reader/EDITORIAL_DELIVERY.md": "5172bceabcadcbcd81d955ff790ca8c42a8df4ad39aab86d241f8b00115f3ae2",
+    "docs/local_reader/EDITORIAL_DELIVERY.md": "e0eae25c38918bdd934cb2d173e5576935b73375d07581840a8c761e6ec243e5",
     "src/inresearch/adapters/editorial_sync.py": "f83b68b3d553f221a15f201171d92e54cc06642b8bda11d7a9565ae5fecfc9f4",
     "deploy/spark-reader/inresearch-editorial.service": "ea2da560f225d7ee824a418543d490b29addbfa9dc7a5128345ca6b90a413106",
     "deploy/spark-reader/inresearch-editorial.timer": "8905022423e3690969919f705240b464174df4c5bba45ec98353bde31664208e",
@@ -765,7 +765,7 @@
     "src/inresearch/delivery/runtime_summary.py": "ce513ac7b3a68835ca43d36760d29be5fa63d789d8493158b87cd16feb998261",
     "tests/unit/test_homepage_raw_atlas.py": "56cc5e4832d45f55038af4fc2c6c867857f15416e22dcd0d94384fee6772b602",
     "web/themes/industry.css": "6e42cfe887b016949791d2a2d33175413782ec27812c0be4c077b80df7b36bc7",
-    "web/assets/datacenter-news.css": "0a7b82b42c780dd8efed0cb68b3ae93da993b2ac6db4cf4c566a50cd623d19d2",
+    "web/assets/datacenter-news.css": "ccf0e3093426ef322fd531f4e139a24eb29644de6464c030a376b2ae0d3eb596",
     "src/inresearch/materials/demand_bindings.py": "2cb840396c2d7569225ef95d77664d3345ebe22b9f8c6a4e530d690fa6f5b53d",
     "tests/unit/test_demand_bindings.py": "f233753f6d3f0f927573bc4d5d4bc67c355d81d0d79f5d5318b5fe6508873e7a",
     "src/inresearch/workflow/reader_priority.py": "8d1ae2b820516872aade1b726c1d30a8791be2df27e119a5998be7867c4fa9fb",
@@ -914,7 +914,9 @@
     "tests/unit/test_collector_production_lookup.py": "69a1acdc5e0e4529d3411db95c002e0d4a2b76f1fb0208fa528418a3bd1d9012",
     "docs/guides/fetchdata/fetchstat-outbox.md": "fb7752a7cc585410d8e7f854c9caac4b5b3fc467f009b47c6c72779f99d11aa8",
     "docs/handoff/fetchstat-outbox.md": "7318e55b1cc66a0671e0f28dc69c5d921badcf1ea48f5a7f70a8458051ddbd29",
-    "docs/REPOSITORY_REGISTER.md": "7d3fb951582ae604ef4e3042f31872fe67f0eaa47159b3c6c731a3d4276bc434"
+    "docs/REPOSITORY_REGISTER.md": "13a32dcfed2443dbfa580b67908baabbeec9db7df9c1111498877e6317dd840b",
+    "src/inresearch/workflow/daily_publications.py": "0fc6644a312585d79fc50674b6e2c50b5007e1b269f64571791d9d76a4141713",
+    "tests/unit/test_daily_publications.py": "e8fecc3917a76b1089f74b7f18e9808fd0ca5fb18b62b64342858c53f3af2d0b"
   },
   "policies": [
     {
@@ -3955,6 +3957,21 @@
         "Codex CLI 建议只是普通来源基础登记候选，不证明来源陈述真实、全表无遗漏、C3正式研究采用或模型参数适用；大型XLSX抽样只形成修改建议，不证明全表逐格核对。非XLSX正文提取或抽样反馈不证明扫描PDF/图片/附件全部读完；这些格式的来源绑定自动发布未覆盖。回执验证证明持有关系，不证明匿名填写姓名对应现实中的同一人；真实员工多轮任务执行效果须依据各轮原件和反馈核对；本轮模型核对时间不等于外部事实核验日期。目标园区条数尚待初步去重摸底，90+GW行业目标与已发布园区容量尚不具备直接可比的完成率；长期吞吐、真实v5/v6最终网站回执另验。",
         "本次仅修正有界抽样的定位约束与可见范围，不证明真实v5/v6未覆盖单元格已交给Codex CLI、完成逐格审阅或自动发布；后续需按现行任务和台账分批审核并取得真实回执。",
         "确定性同字节夹具只验证重复／新来源分流；真实员工在不同日期提交的原件若字节不同，仍须按来源版本和核查依据逐条审核，不由夹具推定重复。"
+      ]
+    },
+    {
+      "policy": "daily-publication-20261014",
+      "scope": "confirmed-authored-news",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "checked_requirement": "Exact SHA confirmation and approved public URL; atomic, idempotent pin rotation retains history and ignores stale promotions. No research adoption. Summary is not a news event. Browser fixture verifies a single pinned highlighted daily and an intact historical link in the news section.",
+      "tests": [
+        "tests/unit/test_daily_publications.py::DailyPublicationsTests.test_confirmed_publications_rotate_only_after_success_and_keep_history",
+        "tests/unit/test_daily_publications.py::DailyPublicationsTests.test_no_arbitrary_urls_or_private_metadata",
+        "tests/unit/test_daily_publications.py::DailyPublicationsTests.test_summary_is_not_an_eleventh_news_event",
+        "tests/datacenter_news.cjs"
+      ],
+      "not_verified": [
+        "Source tests do not prove deployment, a named public article, source adoption or WeChat paste."
       ]
     }
   ]
