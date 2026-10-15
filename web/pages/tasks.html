@@ -25,8 +25,9 @@
   </section>
   <nav class="mission-nav" aria-label="任务页目录"><a href="#upload">上传作业</a><a href="#work-packages">01 团队分工</a><a href="#data-angles">02 要找什么</a><a href="#source-map">03 去哪里找</a><a href="#delivery">04 如何交付</a><a href="#worked-example">05 真实交付样例</a></nav>
   <section id="upload" class="mission-section task-upload" aria-labelledby="upload-title">
-    <div class="section-heading"><div><p class="mission-eyebrow">提交 / 审批 / 反馈</p><h2 id="upload-title">上传作业与查看反馈</h2></div></div>
-    <p>任何人都可以直接上传，无需登录。上传后请保存回执；负责人点击“确认并分析”后，研究端审核原件，符合条件的基础信息自动上线。分析完成后，本次修改任务书按时间显示在下方，默认折叠。新版本请重新上传、重新确认。</p>
+    <div id="upload-owner-shortcut" class="upload-owner-shortcut" hidden><div><strong>管理员作业审批</strong><p id="upload-owner-shortcut-count">正在读取待确认文件…</p></div><a class="primary-button" href="/task-reviews.html">进入审批工作台 →</a></div>
+    <div class="section-heading"><div><p class="mission-eyebrow">员工提交</p><h2 id="upload-title">上传作业</h2></div></div>
+    <p>无需登录即可上传。请保存成功页面显示的回执码；审批、分析进度和逐格修改任务书会显示在本页的提交记录中。修改后的版本请重新上传。</p>
     <form id="task-upload-form" class="task-upload-form">
       <label>文件 <input name="file" type="file" required></label>
       <div class="task-upload-pair"><label>提交人称呼 <input name="submitter" maxlength="120" autocomplete="name" placeholder="便于负责人识别"></label><label>对应工作包 <select name="package_id" id="upload-package"><option value="">未指定工作包</option></select></label></div>
@@ -35,8 +36,7 @@
       <div class="task-upload-actions"><button id="upload-submit" type="submit" class="primary-button">上传文件</button><span>每份最多 64 MiB</span></div>
       <p id="upload-message" role="status" aria-live="polite"></p>
     </form>
-    <div class="task-upload-records"><div class="section-heading"><h3>本浏览器的提交与反馈</h3><button type="button" id="upload-refresh">刷新状态</button></div><p class="small muted">回执只保存在这个浏览器。换设备时，可输入上传成功后显示的文件编号和回执码。</p><form id="upload-receipt-form" class="task-receipt-form"><label>文件编号 <input name="id" maxlength="32" placeholder="32位编号"></label><label>回执码 <input name="receipt" maxlength="128" placeholder="上传成功时生成"></label><button type="submit">添加回执</button></form><p id="receipt-message" role="status" aria-live="polite"></p><div id="upload-own-list"></div></div>
-    <div id="upload-owner" class="task-upload-owner" hidden><div class="section-heading"><h3>负责人确认、自动分析与上线报告</h3><button type="button" id="upload-owner-refresh">刷新待审</button></div><p>请先核对原件及 SHA，再点击“确认并分析”。系统只自动登记能回查原生单元格、身份明确且不覆盖既有值的普通来源信息，并在实际读者投影可查后列出上线报告；冲突与缺项进入员工修改任务书。旧版“批准分析”记录须重新点击新按钮，不会追溯自动上线。</p><p id="owner-message" role="status" aria-live="polite"></p><div id="upload-owner-list"></div></div>
+    <div class="task-upload-records"><div class="section-heading"><h3>我的提交与反馈</h3><button type="button" id="upload-refresh">刷新状态</button></div><div id="upload-own-list"></div><details class="upload-receipt-recovery"><summary>换设备查看反馈？凭回执码找回</summary><p class="small muted">回执只保存在上传时使用的浏览器。换设备时，输入上传成功后显示的文件编号和回执码。</p><form id="upload-receipt-form" class="task-receipt-form"><label>文件编号 <input name="id" maxlength="32" placeholder="32位编号"></label><label>回执码 <input name="receipt" maxlength="128" placeholder="上传成功时生成"></label><button type="submit">添加回执</button></form><p id="receipt-message" role="status" aria-live="polite"></p></details></div>
   </section>
   <section id="research-lines" class="mission-section" aria-labelledby="research-lines-title"><h2 id="research-lines-title">两条研究线，共用证据，按用途连接</h2>
 <figure class="arch-figure" aria-label="通用模型与园区普查如何协作"><div class="arch-columns"><div class="arch-node"><h3>通用数据中心研究</h3><p>从结构、规律和模型缺口出发，模型变量任务绑定既有目标行。</p><a href="/node.html">研究节点 →</a> · <a href="/supply.html#targets">模型采集目标 →</a></div><div class="arch-node"><h3>全球真实园区</h3><p>先发现具名地点，再补分期、资产、角色与变化；一般信息可以没有模型目标。</p><a href="/projects.html">园区名录 →</a> · <a href="#work-packages">普查工作包 ↓</a></div></div><div class="arch-arrow">↓ 共用观察定义、源版本和证据；按用途核验适用性 ↓</div><div class="arch-node arch-common"><h3>带边界的配置映射 → 参数预览 → 人工确认的情景</h3><p>已有资料、候选、假设、未知分别标明；异常阻断相关自动填参。浏览器情景不写回正式资料。</p><a href="/project.html?site=us-tx-abilene#campus-equipment">Abilene配置映射 →</a> · <a href="/ledger.html?view=basis&amp;site=us-tx-abilene&amp;scope=abilene-20260728-estimated-operating">模型与复核结果 →</a></div><figcaption>园区普查与模型采集协作开展；工作包完成、研究采用和实际上线分别计量。交付研究入口按账号权限打开。</figcaption></figure></section>

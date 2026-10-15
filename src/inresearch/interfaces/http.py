@@ -196,7 +196,7 @@ class Handler(SimpleHTTPRequestHandler):
             return None
         # Infrastructure diagrams contain private host/network information.
         # These pages require a real admin session even in local development.
-        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() == '/admin/company.html':
+        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() in ('/admin/company.html', '/task-reviews.html'):
             user = auth.session_user(self.headers.get('Cookie'))
             if not user:
                 self._redirect('/login')

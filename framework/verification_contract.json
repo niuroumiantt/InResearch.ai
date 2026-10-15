@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15.4",
+  "version": "2026.10.15.5",
   "reviewed_at": "2026-10-15",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -22,14 +22,14 @@
     "framework/02_knowledge_format.md": "e62d2145139460d0e6d71e8ea0f1d5438d76cf4f9714bba8a280312d9e4a66df",
     "framework/03_bom_and_collaboration.md": "89c65384f1a92b4765f54c66b3e62bce4b145aa486f2d1dfbcc799de1f1867d0",
     "framework/04_reading_scoring_standard.md": "8320c8c8ba076f3d9a735d02cc7414af9542aa41c77f11ea8d2ffb7636e65a93",
-    "framework/05_interface_system.md": "9e1d97c00e567993e51e6c5d035bc1d8d2f163a775a7309876c0449d9c0b2934",
+    "framework/05_interface_system.md": "bfd05ee1f2a2f4942b4133972e75bbdcbcde708c98c86e1d8b608356ee3a3608",
     "framework/06_acquisition.md": "9f2dba71eb4e92bfe95fcdc6382d1ab3a064cf4b6e7feef9db9b711f6fa06098",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
     "framework/09_software_contracts.md": "52cbed6cee9ea6d181f65cb8f0e9f6fb4dca82dc656af1874b21f785687ffe8e",
-    "framework/CURRENT.md": "7f7069d0640e1ad13c4dd26f3cf0e4211d771e3b36886afaee52b63a8cd0daee",
+    "framework/CURRENT.md": "18e6dfc245515138e0ae1fd396fe414c7c1f51c0f873188b3c202505204482c6",
     "framework/data_contract.json": "4c27cb06b82c5bba4d71d89eddb75c4d1dea98bb78d0c33591f3e6bec0cfd633",
-    "framework/interface_manifest.json": "bef16ba9c1881b80107484eb9b6cd4ea26b833b9cc37909adaddd899f5409c78",
+    "framework/interface_manifest.json": "65d9987cd6f31c10ba4cc80239a265e984c8e4cc2b76998b3961b5f2f568aeaa",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "6a35d640fed5182f2d4e74e910e3903b5171e0415f9a4061c3a35acb056a2109",
     "framework/tco_targets.json": "ce08f672ccc1d225f93c175ec16ded23647d37e8b0ad24d9bd6cf96bf5c38c08",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "377bea8eb848c1c2232aab39a88d98abeba31553b174df80877112564413e476",
+    "framework/current_state.json": "11c1502bcd88c30af40c77c582cf636534d6ca5127ed6f26c876e3392d1e3555",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "ce19f7138e9727e6e55c45789df874befa93365db3fa399f1d5f270a9b07db6f",
@@ -189,8 +189,8 @@
     "src/inresearch/delivery/reader_export.py": "8930587dd3f89e91587ae450c5de725298b84866b746617a0ac308cd610324de",
     "tests/unit/test_research_progress.py": "4921949079387e1c79e704221db6aea87245bcbd22a9c84fc7de70f76621fb6e",
     "tests/unit/test_research_publication_merge.py": "c55d779f4bc268141a0263756236bf693d37a716a9bfc3d1934ae22bd58349b7",
-    "src/inresearch/interfaces/http.py": "a6ade5a7b1ee970bd64502433515b8b3626b2ea1bbc81c738fd2b59168825bcd",
-    "web/routes.json": "8a9cc188a8611264bc9aa9572e9f515d44f323862be86eb9a9f3f43f31d9d6c3",
+    "src/inresearch/interfaces/http.py": "70192c2271f53e3f59bae942c0abfff17d23873dde4acd20ef07744cdbe727d1",
+    "web/routes.json": "29fb09e2f382d2e6d8f84ccda8a90b6e2b50f6f2bbcd02bd8b4090b08fb4bf27",
     "web/components/site-shell.js": "99db425f82bdbc916059dcb890ccbac602c61614e84ca25655f83924d6754161",
     "web/components/company-home.js": "f2f136f326bcb7d48a25d4767b6e6b09329c90783dc108d1de8ea71abe15a402",
     "web/components/company-overview.js": "561b11ff9f66cd4f12b586efe540b707776b7d86a4f0be2ab52b087fa367d745",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "1e38f39a6e891f25b08924ac92a58f083857a3f754e29992616c760d5c4d1836",
     "src/inresearch/adapters/html_document.py": "ece18751831c38a47683873898d0b8e476bba0dc04b33378da888ee64f08864e",
-    "docs/DECISIONS.md": "48ae9e2c9a270c9af2baa9b2e0bee3222b234bcd20d5ccdcce9770769bfb4bfb",
+    "docs/DECISIONS.md": "ddd82c844d2303052660cdf543d6887c9cd3856623e9ecd944a1928f41db483f",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -828,8 +828,8 @@
     "framework/research_task_plan.json": "10d9f717f7dafc1de42c8e9969cf0d731101c0bed1bd1109213cdd9c5e338817",
     "src/inresearch/workflow/research_tasks.py": "21c5784da8647d79041aebd39df660fe6e1d72c29f78a5fe7095c02846a9ccb5",
     "tests/unit/test_research_tasks.py": "2eb1373845cdb55299259c383468f3e38b4490aad00701f9c1c6a56e04e31db8",
-    "tests/research_tasks.cjs": "bd3a8dc21d407dc43cc8a4f712d5cd46a355b6d28216544db0d867dc9d204aaa",
-    "web/pages/tasks.html": "1893ec5671b22646b33800d346507aa618ee441806a1bdcb26b17132a1819f1b",
+    "tests/research_tasks.cjs": "876cc97830bedab2e41b1c50cada5f323c45ecd6e0a35c16cfbf0fbe914d6d46",
+    "web/pages/tasks.html": "db7c221409a2430ab5905486cbf7d8f2eff8712e402636a8dd1e34531f600110",
     "web/components/research-tasks.js": "070d243b25ba217b25e9a2310e0ac4f8307ce0d862973d64c03073cfd57238ce",
     "web/themes/research-tasks.css": "d45931b5e23eff61297812bfbf9381995a0fa19bd6f8b330a5620c6c89c844dd",
     "src/inresearch/workflow/research_task_examples.py": "2dcc4663113ca9737ef5a11d8638b0f5236cbc1b71c31015f54eb86e47775169",
@@ -841,10 +841,10 @@
     "web/assets/brand/inresearch-ai/wordmark-primary.svg": "c17c9d33c788e5d1a455f78812d283269c1e0ba2bd989e45f4013f7ed62e3055",
     "src/inresearch/delivery/snapshot_delta.py": "09535306997c628ff9f2713d30abb3f5a77ec2a1d4c17ed82157989eeab9efdc",
     "tests/unit/test_snapshot_delta.py": "cfb742e8cb772fa00cde933192e23358a4846563a083be006a7a267f31b26dce",
-    "framework/site_navigation.json": "cf4e2332a8b722a1079e24702f1a466a5f7327c0b7926def57debd9bf9189990",
+    "framework/site_navigation.json": "fe5cfbe9c727571e74483723dd17c7a8342d6e1dd4693adb88b58ea7ea26e0fc",
     "framework/site_implementation.json": "c374548626e5c59339e603c45ca6be731d7178ad28fbdf307db772f379f9176c",
     "src/inresearch/interfaces/workspace.py": "00b21c28ff9e65308b6c68da49cc15ca551bacb5b2dcc8eae98a0b8343f8355c",
-    "tests/unit/test_site_workspace.py": "a687321e62ab0df8565a558b00168448a551b025937593becc65858661f2a176",
+    "tests/unit/test_site_workspace.py": "7fb50498e77a12a309c93b7e4ddb7a9da093812ea3d2537f097d0286ed3e17c7",
     "tests/unit/test_customer_access.py": "05cecb886b8282432e4f8d6bff73bd3beb031d51d5ff702de5997c0d3dd7c63b",
     "tests/site_navigation.cjs": "ece80b130c01d5be24f3332d908023aab5fb9fe5baeb4635801931548b93be57",
     "tests/site_workspace.cjs": "aea69ad58337ccf39d7da4d437e9a573514ac1bc4ad8ed4cf7fbb0cbb1fcc89a",
@@ -887,8 +887,8 @@
     "docs/guides/fetchdata/fetchfilings-production.md": "7b64e5e241157f0f6b80ac2fdec148a9be2cda8ddb4c303459d1c16f28302e44",
     "docs/handoff/fetchfilings-production.md": "e86eed076155e2b000d0c51c1b2d52cec3f4c80d7fb6dcda88df14ecaf7d5408",
     "tests/unit/test_material_intake.py": "a7096ef6177362741ffc19ddc7dda0d2fe36bba8ba7f721bcaaacbf80c19dcdc",
-    "web/components/task-uploads.js": "6e2e7abaf11615791c66510df2995b3ab6ad8f6159e16e0455f91e99787bae71",
-    "web/themes/task-uploads.css": "d09ed684c4b289c50b0d5da869fcb4a43807e550969a9c6cf0309247d8ec597d",
+    "web/components/task-uploads.js": "768ae59e33535436700a38c6fd9bdede8e199de2ea2a0efffdf48cbc5a89f75f",
+    "web/themes/task-uploads.css": "f5182e1a4581e48f569249e89e1b4c967ae296f97d7477b9745c1fc95e78a0ef",
     "src/inresearch/materials/inbox.py": "695653ecfec80c12502102d2cccfd98b26954d9c88ca386fd056cbaf9f1b8446",
     "docs/guides/fetchdata/fetchreports-production.md": "eb9056348790cfc52d702a3f9ea03243358432c2ba9250a9a5afcebced25c355",
     "docs/handoff/fetchreports-production.md": "d01e599ed73a6a880917cf09258274ee0ec375725bca8442e3cc16d6eaf2e22b",
@@ -898,7 +898,10 @@
     "src/inresearch/materials/review_worker.py": "596299f92c186c825d4d0cabeecc85b1c65a5d5ae087f3264620fad8e17da2e7",
     "src/inresearch/materials/task_analysis.py": "19a67b7dffc089d8512398522436afcb62e3e28083fecbf7709a6e92576fe33a",
     "tests/unit/test_task_analysis.py": "7140ca97a1367100f5da66f99725bc4a602409b7c5d15b612be12ab653bfba71",
-    "deploy/spark-reader/inresearch-material-intake.service": "5ac271f71c6b9a91bc0b28370bf6e10d6c01f98719e2413a1e041fa6a764c06a"
+    "deploy/spark-reader/inresearch-material-intake.service": "5ac271f71c6b9a91bc0b28370bf6e10d6c01f98719e2413a1e041fa6a764c06a",
+    "web/pages/task-reviews.html": "28ed0bc8a3ceb55baaec8e4d1b9c18d4c571e45b910b2d44fd65ee3eebe75ab7",
+    "web/components/task-reviews.js": "4f63a1ef67ef7b990e3a6166e617b5ab4b30f227a2ca300154d7e56db6632e6d",
+    "web/themes/task-reviews.css": "b577e4f78fb6d2dad03c69a86188e7ac602850ac51613e254e1b58628ef8de9f"
   },
   "policies": [
     {
@@ -3885,7 +3888,7 @@
       "policy": "task-upload-auto-analysis-20261015",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "仅负责人明确点击确认并分析后，批准 SHA 对应的已归档 XLSX 才能由 Spark 本机模型逐批审核；旧 approve 不追溯授权。模型输出不是发布凭证，网站复验原件字节、原生工作表及单元格、精确值与单位、唯一物理园区、字段白名单、已有非空值和真实批准来源时钟。只有合格普通来源经持久发布器追加且行业读者投影可查后计上线；不写正式 C3 或模型参数。后台报告含模型身份、发布条目与未发布原因，员工回执只见默认折叠的带时间逐格修改任务书；重放不重复写入或反馈。",
+      "checked_requirement": "仅负责人明确点击确认并分析后，批准 SHA 对应的已归档 XLSX 才能由 Spark 本机模型逐批审核；旧 approve 不追溯授权。模型输出不是发布凭证，网站复验原件字节、原生工作表及单元格、精确值与单位、唯一物理园区、字段白名单、已有非空值和真实批准来源时钟。只有合格普通来源经持久发布器追加且行业读者投影可查后计上线；不写正式 C3 或模型参数。后台报告含模型身份、发布条目与未发布原因，员工回执只见默认折叠的带时间逐格修改任务书；重放不重复写入或反馈。公开任务页只保留匿名上传与本人回执；指定负责人从醒目入口及后台导航进入独立审批工作台，服务端强制管理员页面权限，列表和操作仍只给指定负责人。",
       "tests": [
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_only_new_explicit_action_reaches_analysis_queue",
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_one_native_candidate_publishes_and_report_stays_owner_only",
@@ -3895,7 +3898,7 @@
         "tests/research_tasks.cjs"
       ],
       "not_verified": [
-        "合成单元测试和本地浏览器场景不证明真实员工工作簿已由 Spark 完整审核、生产持久发布成功或公网园区详情可见；需分别保存服务、模型、发布器、网站实际回执。",
+        "合成单元测试和本地浏览器场景不证明真实员工工作簿已由 Spark 完整审核、生产持久发布成功或公网园区详情可见；需分别保存服务、模型、发布器、网站实际回执。审批工作台的合成桌面／手机场景不替代真实管理员账号、公网页面和真实文件状态验收。",
         "本机模型建议只是普通来源基础登记候选，不证明来源陈述真实、全表无遗漏、C3 正式研究采用或模型参数适用。超过有界批次／候选／反馈容量的文件需拆分；生产延迟与长期吞吐另测。"
       ]
     }
