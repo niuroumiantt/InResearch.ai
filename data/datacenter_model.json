@@ -1,10 +1,10 @@
 {
   "schema_version": 3,
-  "model_id": "datacenter-unified-model-v3-20260928",
-  "as_of": "2026-09-28",
+  "model_id": "datacenter-unified-model-v3-20261016",
+  "as_of": "2026-10-16",
   "currency": "USD",
   "status": "illustrative_research_model",
-  "summary": "统一经济模型 v3：一个模型、一份输入表、三种问法、四本账输出。输入按五类变量分组（构成、运行、价格、时间、主体），每个数带证据状态；引擎正算（逐年现金流与平准化成本、四本账、每有效设备小时全成本）、反算（目标 ROIC 需要的收入、单价、利用率或造价上限）、情景网格（造价/GW × 单价 × 利用率 → ROIC）。参数为研究假设，地区与代际预设只作起点；三家机构的数字只作校准。",
+  "summary": "统一经济模型 v3：一个模型、一份输入表、三种问法、四本账输出。输入按五类变量分组（构成、运行、价格、时间、主体），每个数带证据状态；引擎正算（所得税前未融资逐年收支与平准化成本、四本账、每付费GPU小时全成本）、反算（目标 ROIC 需要的收入、单价、利用率或造价上限）、情景网格（造价/GW × 单价 × 利用率 → ROIC）。参数为研究假设，地区与代际预设只作起点；三家机构的数字只作校准。 2026-10-16修订审批时间轴、独立期限及亏损税盾默认；不构成完整项目融资引擎。",
   "assumptions": {
     "it_mw": 100,
     "redundancy": "n_plus_1",
@@ -88,7 +88,12 @@
     "bot_service_rate": 0.1,
     "tenant_credit": "investment_grade",
     "target_roic": 0.15,
-    "roic_basis": "total_capex"
+    "roic_basis": "total_capex",
+    "permit_timing": "sequential",
+    "it_depreciation_years": 5,
+    "compute_debt_years": 5,
+    "shell_debt_years": 15,
+    "loss_tax_shield": "unavailable"
   },
   "groups": [
     {
@@ -177,8 +182,10 @@
         "gate",
         "gate_wait_years",
         "permit_months",
+        "permit_timing",
         "horizon_years",
         "it_refresh_years",
+        "it_depreciation_years",
         "power_escalation",
         "opex_escalation",
         "decommission_pct",
@@ -188,7 +195,9 @@
         "bot_term_years",
         "renewal_options",
         "renewal_years",
-        "renewal_probability"
+        "renewal_probability",
+        "compute_debt_years",
+        "shell_debt_years"
       ]
     },
     {
@@ -203,6 +212,7 @@
         "tenant_credit",
         "wacc",
         "tax",
+        "loss_tax_shield",
         "property_tax_rate",
         "target_roic",
         "roic_basis",
@@ -375,11 +385,12 @@
       "display": "percent"
     },
     "it_refresh_years": {
-      "label": "IT 更新周期 / 折旧年限",
+      "label": "IT 实际更新周期",
       "unit": "年",
       "min": 1,
       "max": 15,
-      "step": 1
+      "step": 1,
+      "note": "物理更换与资本回收周期；独立于会计折旧和贷款期限，默认5年仍是情景假设"
     },
     "refresh_cost_factor": {
       "label": "更新时造价比例",
@@ -398,13 +409,13 @@
       "note": "0 = 非 GPU 负载"
     },
     "gpu_utilization": {
-      "label": "稳态付费利用率",
+      "label": "稳态付费GPU小时覆盖率",
       "unit": "%",
       "min": 1,
       "max": 100,
       "step": 1,
       "display": "percent",
-      "note": "第 3 年起；已售 GPU 小时 ÷ 全年小时"
+      "note": "计费覆盖GPU小时 ÷ 全部GPU可服务小时；不等于忙碌率、MFU、机柜占用或在运/合同电力比"
     },
     "facility_mode": {
       "label": "设施持有方式",
@@ -717,7 +728,8 @@
       "unit": "token/s",
       "min": 1,
       "max": 100000,
-      "step": 10
+      "step": 10,
+      "note": "工作负载吞吐情景；token=付费GPU小时×变现份额×3600×此吞吐，须另核模型/精度/上下文/并发/SLA，不表示实测交付量"
     },
     "price_per_m_tokens": {
       "label": "每百万 token 价格",
@@ -728,12 +740,13 @@
       "note": "输入输出混合均价"
     },
     "monetized_share": {
-      "label": "用于收费推理的 GPU 占比",
+      "label": "付费GPU小时的推理变现份额",
       "unit": "%",
       "min": 0,
       "max": 100,
       "step": 1,
-      "display": "percent"
+      "display": "percent",
+      "note": "用于token情景的付费小时份额；不自动等于繁忙小时或有效计算MFU"
     },
     "renewal_options": {
       "label": "续约期权个数",
@@ -783,7 +796,7 @@
       "max": 30,
       "step": 0.1,
       "display": "percent",
-      "note": "按 IT 折旧年限等额还本付息"
+      "note": "按独立的GPU贷款摊还期等额还本付息；不使用会计折旧年限"
     },
     "capex_basis": {
       "label": "造价拆分方式",
@@ -814,20 +827,22 @@
       "note": "切换会重置稳态付费利用率"
     },
     "util_year1": {
-      "label": "第 1 年付费利用率",
+      "label": "首年付费GPU小时覆盖率",
       "unit": "%",
       "min": 0,
       "max": 100,
       "step": 5,
-      "display": "percent"
+      "display": "percent",
+      "note": "计费覆盖爬坡情景；高盛产能利用率仅为原参考，不认证GPU计费覆盖"
     },
     "util_year2": {
-      "label": "第 2 年付费利用率",
+      "label": "次年付费GPU小时覆盖率",
       "unit": "%",
       "min": 0,
       "max": 100,
       "step": 5,
-      "display": "percent"
+      "display": "percent",
+      "note": "计费覆盖爬坡情景；高盛产能利用率仅为原参考，不认证GPU计费覆盖"
     },
     "price_path": {
       "label": "单价路径",
@@ -863,7 +878,7 @@
       "min": 0,
       "max": 48,
       "step": 1,
-      "note": "拿地到开工的审批时间，只进交付周期，不进现金流"
+      "note": "审批真正进入付款、首收和折现时点；可选择与门槛等待顺序或并行，施工须等两者完成"
     },
     "bot_term_years": {
       "label": "BOT 服务合同期",
@@ -882,10 +897,10 @@
       "display": "percent"
     },
     "tenant_credit": {
-      "label": "承租人信用",
+      "label": "壳层融资信用预设",
       "type": "select",
       "options": "tenant_credits",
-      "note": "切换会重置壳层债务利率"
+      "note": "只重置壳层debt_rate；不重置GPU贷款compute_debt_rate，不认证任一借款主体信用"
     },
     "target_roic": {
       "label": "目标 ROIC",
@@ -909,6 +924,60 @@
           "平均年资本开支 = 总额 ÷ 建设年数（高盛）"
         ]
       ]
+    },
+    "it_depreciation_years": {
+      "label": "IT 会计折旧年限",
+      "unit": "年",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "note": "直线折旧，累计不超过初始IT可折旧基础；不决定实际更换或债务期限"
+    },
+    "compute_debt_years": {
+      "label": "GPU 贷款摊还期",
+      "unit": "年",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "note": "简化固定利率等额本息；测算期末未偿本金从股权退出收支扣除"
+    },
+    "shell_debt_years": {
+      "label": "壳层贷款摊还期",
+      "unit": "年",
+      "min": 1,
+      "max": 40,
+      "step": 1,
+      "note": "独立于租约期限；测算期末未偿本金从股权退出收支扣除"
+    },
+    "permit_timing": {
+      "label": "审批与门槛等待关系",
+      "type": "select",
+      "choices": [
+        [
+          "sequential",
+          "顺序：审批期 + 门槛等待"
+        ],
+        [
+          "parallel_with_gate",
+          "并行：取审批与门槛等待较长者"
+        ]
+      ],
+      "note": "并行只指审批与门槛等待，均结束后才施工；不假设等待期土地预付、利息或其他持有成本"
+    },
+    "loss_tax_shield": {
+      "label": "亏损税盾可用性",
+      "type": "select",
+      "choices": [
+        [
+          "unavailable",
+          "未证实可用：亏损不产生当期税收利益"
+        ],
+        [
+          "usable",
+          "明确可当期使用：情景计入亏损抵税"
+        ]
+      ],
+      "note": "可用性须有同主体同期间依据；不模拟亏损结转、资格审核或实际退税到账"
     }
   },
   "evidence": {
@@ -1039,16 +1108,16 @@
     },
     "load_factor": {
       "status": "sourced",
-      "note": "8×H100 节点实测平均功率 ≤ TDP 的 76%，模型预测约 72%（gpu-node-avg-power-share-of-tdp-h100）；GPU 占服务器功率 66%",
+      "note": "8×H100 节点实测平均功率 ≤ TDP 的 76%，模型预测约 72%（gpu-node-avg-power-share-of-tdp-h100）；GPU 占服务器功率 66%；H100等参考硬件与其运行条件不能认证B300/GB300现场平均负载",
       "fetch_kind": "report",
       "fetch_what": "集群平均功率对铭牌功率比值的实测",
       "variable_class": 2
     },
     "it_refresh_years": {
-      "status": "sourced",
-      "note": "超大规模厂商 5–6 年折旧（10-K）",
+      "status": "assumed",
+      "note": "保留原5年研究情景；原10-K会计折旧年限迁入it_depreciation_years，不能证明实际IT更换日期",
       "fetch_kind": "report",
-      "fetch_what": "10-K 折旧年限变更",
+      "fetch_what": "设备实际投产、迁移与更换批次及经济寿命",
       "variable_class": 4
     },
     "refresh_cost_factor": {
@@ -1066,10 +1135,10 @@
       "variable_class": 1
     },
     "gpu_utilization": {
-      "status": "sourced",
-      "note": "研报出租算例 75%；Epoch 1 GW TCO 取 71%；万国数据 2026Q2 利用率 79.2%、世纪互联批发 70.1%、零售 64%（cn-idc-utilization-*）；SemiAnalysis：批发 >70%、零售 ~60%",
+      "status": "assumed",
+      "note": "研报出租算例 75%；Epoch 1 GW TCO 取 71%；万国数据 2026Q2 利用率 79.2%、世纪互联批发 70.1%、零售 64%（cn-idc-utilization-*）；SemiAnalysis：批发 >70%、零售 ~60%；保留原情景数值与引用痕迹：机柜占用、已投运/合同电力及超大规模产能利用率均不是付费GPU小时/可用GPU小时，不能作为本字段已证实的计费覆盖。",
       "fetch_kind": "report",
-      "fetch_what": "集群实际利用率研究",
+      "fetch_what": "同硬件/合同/期间的已计费GPU小时、可服务小时与计费分母",
       "variable_class": 2
     },
     "facility_mode": {
@@ -1399,18 +1468,18 @@
       "variable_class": 2
     },
     "util_year1": {
-      "status": "sourced",
-      "note": "高盛 2026-09-24 Exhibit 7：利用率 2028/29/30 = 60/80/85%",
+      "status": "assumed",
+      "note": "高盛 2026-09-24 Exhibit 7：利用率 2028/29/30 = 60/80/85%；保留原情景数值与引用痕迹：机柜占用、已投运/合同电力及超大规模产能利用率均不是付费GPU小时/可用GPU小时，不能作为本字段已证实的计费覆盖。",
       "variable_class": 2,
       "fetch_kind": "report",
-      "fetch_what": "超大规模厂商产能利用率披露"
+      "fetch_what": "同硬件/合同/期间的已计费GPU小时、可服务小时与计费分母"
     },
     "util_year2": {
-      "status": "sourced",
-      "note": "同 util_year1",
+      "status": "assumed",
+      "note": "同 util_year1；保留原情景数值与引用痕迹：机柜占用、已投运/合同电力及超大规模产能利用率均不是付费GPU小时/可用GPU小时，不能作为本字段已证实的计费覆盖。",
       "variable_class": 2,
       "fetch_kind": "report",
-      "fetch_what": "同上"
+      "fetch_what": "同硬件/合同/期间的已计费GPU小时、可服务小时与计费分母"
     },
     "price_path": {
       "status": "input",
@@ -1467,6 +1536,37 @@
     "roic_basis": {
       "status": "input",
       "note": "回报分母口径：总资本开支（摩根士丹利）或平均年资本开支（高盛）",
+      "variable_class": 5
+    },
+    "it_depreciation_years": {
+      "status": "sourced",
+      "note": "超大规模厂商 5–6 年折旧（10-K）；原会计寿命来源迁入本字段，不证明现场实际更换日期",
+      "fetch_kind": "report",
+      "fetch_what": "10-K 折旧年限变更",
+      "variable_class": 4
+    },
+    "compute_debt_years": {
+      "status": "assumed",
+      "note": "原模型按IT5年期摊还的情景迁入独立字段；未取得本项目贷款摊还表",
+      "fetch_kind": "data",
+      "fetch_what": "借款主体、贷款本金与合同摊还表",
+      "variable_class": 4
+    },
+    "shell_debt_years": {
+      "status": "assumed",
+      "note": "原模型按15年租期摊还的情景迁入独立字段；未取得本项目贷款摊还表",
+      "fetch_kind": "data",
+      "fetch_what": "借款主体、贷款本金与合同摊还表",
+      "variable_class": 4
+    },
+    "permit_timing": {
+      "status": "input",
+      "note": "用户选择顺序或并行情景；必须核查真实关键路径后方可视为项目事实",
+      "variable_class": 4
+    },
+    "loss_tax_shield": {
+      "status": "input",
+      "note": "默认无当期亏损税收利益；选择可用仅是显式情景，不认证税务资格",
       "variable_class": 5
     }
   },
@@ -1662,7 +1762,7 @@
       "shell_capex_per_mw": 16,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0.51,
-      "source": "研报 IT 230 亿美元/GW 与 410,256 颗/GW；更新周期按超大规模厂商 5–6 年折旧；摩根士丹利 2026-09《AI 指南》p22、p26–27：每 GW 410,256 颗、IT 230 亿、非 IT 160 亿美元",
+      "source": "研报 IT 230 亿美元/GW 与 410,256 颗/GW；会计折旧参考超大规模厂商 5–6 年；实际更新与贷款摊还各按5年独立情景；摩根士丹利 2026-09《AI 指南》p22、p26–27：每 GW 410,256 颗、IT 230 亿、非 IT 160 亿美元；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
       "evidence_class": "预测估算",
       "density_basis": {
         "rack_kw": 142,
@@ -1672,7 +1772,9 @@
         "source": "NVIDIA NVL72 AI Factory 参考架构：GB300 NVL72 整柜最高 142 kW、72 颗 Blackwell Ultra GPU；密度取研报每 GW 410,256 颗，与 142 kW ÷ 72 ÷ 81% 份额一致（410.7）",
         "url": "https://docs.nvidia.com/enterprise-reference-architectures/nvl72-ai-factory/latest/components.html",
         "evidence_class": "已披露事实 + 预测估算"
-      }
+      },
+      "it_depreciation_years": 5,
+      "compute_debt_years": 5
     },
     "gb200": {
       "label": "GB200 NVL72（2025）",
@@ -1683,7 +1785,7 @@
       "shell_capex_per_mw": 16,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0.51,
-      "source": "总额 350 亿美元/GW 来自研报 p22；IT/非 IT 拆分为作者估算；密度按 140 kW ÷ 72 ÷ 81% 折算",
+      "source": "总额 350 亿美元/GW 来自研报 p22；IT/非 IT 拆分为作者估算；密度按 140 kW ÷ 72 ÷ 81% 折算；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
       "evidence_class": "作者说明性计算",
       "density_basis": {
         "rack_kw": 140,
@@ -1693,7 +1795,9 @@
         "source": "GB200 NVL72 整柜 TDP 140 kW（库内事实 data/facts.json，《绿色数据中心行业洞察（2026）》）；SemiAnalysis 实际功率密度约 125 kW 为另一口径",
         "url": "",
         "evidence_class": "已披露事实 + 作者折算"
-      }
+      },
+      "it_depreciation_years": 5,
+      "compute_debt_years": 5
     },
     "h100": {
       "label": "H100 HGX（2023）",
@@ -1704,7 +1808,7 @@
       "shell_capex_per_mw": 12,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0.51,
-      "source": "作者估算：IT 约 3.5 万美元/GPU 含网络；非 IT 按风冷代际 1,200 万美元/MW；密度由 DGX H100 10.2 kW 折算",
+      "source": "作者估算：IT 约 3.5 万美元/GPU 含网络；非 IT 按风冷代际 1,200 万美元/MW；密度由 DGX H100 10.2 kW 折算；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
       "evidence_class": "作者说明性计算",
       "density_basis": {
         "rack_kw": 10.2,
@@ -1714,7 +1818,9 @@
         "source": "NVIDIA DGX H100 用户指南：系统最大功耗 10.2 kW、8 颗 H100；按 10.2 kW ÷ 8 ÷ 81% 折算",
         "url": "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html",
         "evidence_class": "已披露事实 + 作者折算"
-      }
+      },
+      "it_depreciation_years": 5,
+      "compute_debt_years": 5
     },
     "vera_rubin": {
       "label": "Vera Rubin NVL72（2026H2）",
@@ -1725,7 +1831,7 @@
       "shell_capex_per_mw": 16,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0.51,
-      "source": "总额 490 亿美元/GW 来自研报 p22；IT/非 IT 拆分为作者估算；密度取 NVIDIA 产品页口径",
+      "source": "总额 490 亿美元/GW 来自研报 p22；IT/非 IT 拆分为作者估算；密度取 NVIDIA 产品页口径；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
       "evidence_class": "作者说明性计算",
       "density_basis": {
         "rack_kw": null,
@@ -1735,7 +1841,9 @@
         "source": "NVIDIA Vera Rubin NVL72 产品页：72 颗 Rubin GPU、36 颗 Vera CPU；‘100 MW AI 工厂对应 4 万颗 GPU’直接给出 400 颗/MW；第三方称机柜约 190 kW，折算约 307 颗/MW，两者口径未统一",
         "url": "https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72",
         "evidence_class": "已披露事实（厂商口径）"
-      }
+      },
+      "it_depreciation_years": 5,
+      "compute_debt_years": 5
     },
     "rubin_ultra": {
       "label": "Rubin Ultra NVL576（2027H2）",
@@ -1746,7 +1854,7 @@
       "shell_capex_per_mw": 16,
       "btm_capex_per_mw": 3,
       "accelerator_share": 0.51,
-      "source": "全包 500 亿美元/GW 含表后电力 30 亿来自研报 p22、p64；IT/非 IT 拆分为作者估算；密度由 600 kW 机柜折算",
+      "source": "全包 500 亿美元/GW 含表后电力 30 亿来自研报 p22、p64；IT/非 IT 拆分为作者估算；密度由 600 kW 机柜折算；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
       "evidence_class": "作者说明性计算",
       "density_basis": {
         "rack_kw": 600,
@@ -1756,7 +1864,9 @@
         "source": "NVIDIA GTC 2025 公布 Kyber NVL576 机柜约 600 kW、144 颗四芯片 Rubin Ultra 封装（DCD、Tom's Hardware 报道）；按 600 kW ÷ 144 ÷ 81% 折算",
         "url": "https://www.tomshardware.com/pc-components/gpus/nvidia-shows-off-rubin-ultra-with-600-000-watt-kyber-racks-and-infrastructure-coming-in-2027",
         "evidence_class": "已披露事实 + 作者折算"
-      }
+      },
+      "it_depreciation_years": 5,
+      "compute_debt_years": 5
     },
     "tpuv7": {
       "label": "TPUv7 Ironwood（自研 ASIC）",
@@ -1767,7 +1877,7 @@
       "shell_capex_per_mw": 16,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0.51,
-      "source": "总额 270 亿美元/GW 来自研报 p22；IT/非 IT 拆分为作者估算；无公开租赁市场",
+      "source": "总额 270 亿美元/GW 来自研报 p22；IT/非 IT 拆分为作者估算；无公开租赁市场；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
       "evidence_class": "作者说明性计算",
       "density_basis": {
         "rack_kw": null,
@@ -1777,7 +1887,9 @@
         "source": "谷歌 2025-04-09 博客：Ironwood pod 9,216 颗液冷芯片、ICI 网络‘spanning nearly 10 MW’；按 9,216 ÷ 10 MW × 81% 折算（pod 功率视作加速器机柜口径）",
         "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/ironwood-tpu-age-of-inference/",
         "evidence_class": "已披露事实 + 作者折算"
-      }
+      },
+      "it_depreciation_years": 5,
+      "compute_debt_years": 5
     },
     "trainium3": {
       "label": "Trainium3（自研 ASIC）",
@@ -1788,7 +1900,7 @@
       "shell_capex_per_mw": 16,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0.51,
-      "source": "总额 210 亿美元/GW 来自研报 p22；密度沿用 GB300 假设，无公开租赁市场",
+      "source": "总额 210 亿美元/GW 来自研报 p22；密度沿用 GB300 假设，无公开租赁市场；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
       "evidence_class": "作者说明性计算",
       "density_basis": {
         "rack_kw": null,
@@ -1798,7 +1910,9 @@
         "source": "未取得机柜功率公开数据（Trn3 UltraServer 两柜 144 芯片）；密度沿用 GB300 假设，待核验",
         "url": "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trn3-arch.html",
         "evidence_class": "作者说明性计算"
-      }
+      },
+      "it_depreciation_years": 5,
+      "compute_debt_years": 5
     },
     "cpu_cloud": {
       "label": "通用云服务器（CPU）",
@@ -1809,8 +1923,10 @@
       "shell_capex_per_mw": 12,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0,
-      "source": "作者假设",
-      "evidence_class": "作者假设"
+      "source": "作者假设；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
+      "evidence_class": "作者假设",
+      "it_depreciation_years": 6,
+      "compute_debt_years": 6
     },
     "enterprise": {
       "label": "企业混合负载",
@@ -1821,20 +1937,22 @@
       "shell_capex_per_mw": 12,
       "btm_capex_per_mw": 0,
       "accelerator_share": 0,
-      "source": "作者假设",
-      "evidence_class": "作者假设"
+      "source": "作者假设；实际更换、会计折旧与贷款摊还是分别登记的情景，型号选择不认证现场寿命或融资合同",
+      "evidence_class": "作者假设",
+      "it_depreciation_years": 6,
+      "compute_debt_years": 6
     }
   },
   "tenancies": {
     "wholesale": {
       "label": "批发（超大规模 / 大客户整栋）",
       "gpu_utilization": 0.75,
-      "source": "研报出租算例 75%；万国数据 79.2%、世纪互联批发 70.1%；SemiAnalysis：批发 >70%"
+      "source": "研报出租算例 75%；万国数据 79.2%、世纪互联批发 70.1%；SemiAnalysis：批发 >70%；历史机柜占用参考的分母不同，此处GPU计费覆盖仍为情景假设，不作直接换算"
     },
     "retail": {
       "label": "零售（机柜级多租户）",
       "gpu_utilization": 0.6,
-      "source": "世纪互联零售 64%；SemiAnalysis：零售 ~60%"
+      "source": "世纪互联零售 64%；SemiAnalysis：零售 ~60%；历史机柜占用参考的分母不同，此处GPU计费覆盖仍为情景假设，不作直接换算"
     }
   },
   "price_paths": {
@@ -1880,7 +1998,7 @@
       "label": "基准 · AI 自建 · 北弗吉尼亚",
       "group": "基准",
       "changes": {},
-      "note": "唯一基准：每个数取有登记来源的值（决定 1）。液冷 PUE 1.18、弗州工业电价 10.07 美分、需量 14.5、土地 1.2、GB300 代际、按部件拆造价、稳态利用率 75%、爬坡 60/80%、多年期锁价、电力门槛、总资本开支口径。"
+      "note": "唯一研究基准：已有来源参考与显式情景假设分别标注；计费覆盖和实际更新等参数尚未核验。液冷 PUE 1.18、弗州工业电价 10.07 美分、需量 14.5、土地 1.2、GB300 代际、按部件拆造价、稳态利用率 75%、爬坡 60/80%、多年期锁价、电力门槛、总资本开支口径；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "ms_hyperscaler_gb300": {
       "label": "校准 · 摩根士丹利 1GW GB300 出租",
@@ -1915,9 +2033,11 @@
         "roic_basis": "total_capex",
         "gate_wait_years": 0,
         "permit_months": 0,
-        "decommission_pct": 0
+        "decommission_pct": 0,
+        "it_depreciation_years": 5,
+        "compute_debt_years": 5
       },
-      "note": "摩根士丹利 2026-09《AI 指南》1GW GB300 出租算例按 100MW 折算：IT 230 亿、非 IT 160 亿/GW，410,256 颗/GW，租金 8.5 美元、利用率 75%、IT 5 年/非 IT 15 年直线折旧、税率 21%；「能源及其他 2 亿/GW·年」拆为电费（0.08 美元/kWh、PUE 1.25、负载 70%）与其他运营 1.39。校验：收入 22.9 亿、NOPAT 12.1 亿、ROIC 31%（每 GW，总资本开支口径）。",
+      "note": "摩根士丹利 2026-09《AI 指南》1GW GB300 出租算例按 100MW 折算：IT 230 亿、非 IT 160 亿/GW，410,256 颗/GW，租金 8.5 美元、利用率 75%、IT 5 年/非 IT 15 年直线折旧、税率 21%；「能源及其他 2 亿/GW·年」拆为电费（0.08 美元/kWh、PUE 1.25、负载 70%）与其他运营 1.39。校验：收入 22.9 亿、NOPAT 12.1 亿、ROIC 31%（每 GW，总资本开支口径）；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。",
       "check": {
         "revenue_per_gw": 22900000000.0,
         "nopat_per_gw": 12100000000.0,
@@ -1959,9 +2079,11 @@
         "price_change": 0,
         "target_roic": 0.15,
         "roic_basis": "avg_annual_capex",
-        "decommission_pct": 0
+        "decommission_pct": 0,
+        "it_depreciation_years": 5,
+        "compute_debt_years": 5
       },
-      "note": "高盛 2026-09-24《Sizing the AI Economy》：424 亿/GW（算力 70% 五年折旧、壳 30% 十五年），运营 8.36 亿/GW·年（含电，Epoch 基础加 10% 通胀），税率 21%，利用率 60/80/85% 爬坡；ROIC = NOPAT ÷ 两年平均年资本开支，阈值 15%。校验（反算）：每 GW 满负荷需收入 11.6 亿，EBIT 利润率 34.7%、NOPAT 利润率 27.4%。",
+      "note": "高盛 2026-09-24《Sizing the AI Economy》：424 亿/GW（算力 70% 五年折旧、壳 30% 十五年），运营 8.36 亿/GW·年（含电，Epoch 基础加 10% 通胀），税率 21%，利用率 60/80/85% 爬坡；ROIC = NOPAT ÷ 两年平均年资本开支，阈值 15%。校验（反算）：每 GW 满负荷需收入 11.6 亿，EBIT 利润率 34.7%、NOPAT 利润率 27.4%；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。",
       "check": {
         "required_revenue_per_gw": 11600000000.0,
         "ebit_margin": 0.347,
@@ -2003,9 +2125,11 @@
         "business_model": "self_use",
         "gate_wait_years": 0,
         "permit_months": 0,
-        "decommission_pct": 0
+        "decommission_pct": 0,
+        "it_depreciation_years": 5,
+        "compute_debt_years": 5
       },
-      "note": "2026-09-14 单账本成本模型的研究基准：设备 3.5 亿（服务器 30 + 网络 5）、设施 13 亿（建设 12 + 接入 1）、土地 0.5 亿，5 万台参考设备、有效设备时间 65%，资本按恒定更新年化。校验：年化全成本 1,167,777,119.40 美元，每有效设备小时 4.10 美元。",
+      "note": "2026-09-14 单账本成本模型的研究基准：设备 3.5 亿（服务器 30 + 网络 5）、设施 13 亿（建设 12 + 接入 1）、土地 0.5 亿，5 万台参考设备、有效设备时间 65%，资本按恒定更新年化。校验：年化全成本 1,167,777,119.40 美元，每有效设备小时 4.10 美元；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。",
       "check": {
         "annualised": 1167777119.4,
         "unit_cost": 4.1
@@ -2016,7 +2140,8 @@
       "group": "地区",
       "changes": {
         "site": "us_texas"
-      }
+      },
+      "note": "；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "ai_inner_mongolia_bot": {
       "label": "AI · 内蒙古 · BOT · 芯片门槛",
@@ -2025,7 +2150,7 @@
         "site": "cn_inner_mongolia",
         "facility_mode": "bot"
       },
-      "note": "SemiAnalysis 口径：业主持地与壳，机电由合作方持有并按 8–10 年服务合同回收；芯片门槛，12 个月交付，审批 3–6 个月。"
+      "note": "SemiAnalysis 口径：业主持地与壳，机电由合作方持有并按 8–10 年服务合同回收；芯片门槛，12 个月交付，审批 3–6 个月；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "ai_johor_lease": {
       "label": "AI 租壳 · 柔佛（数据缺）",
@@ -2035,7 +2160,7 @@
         "facility_mode": "lease",
         "shell_rent_per_mw": 1.2
       },
-      "note": "柔佛除电价外尚无价格库序列，地区预设的其余数字为作者占位并标缺。"
+      "note": "柔佛除电价外尚无价格库序列，地区预设的其余数字为作者占位并标缺；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "neocloud_h100_2026": {
       "label": "新兴云 H100 租壳（2026 合约价）",
@@ -2051,7 +2176,7 @@
         "compute_debt_rate": 0.11,
         "wacc": 0.11
       },
-      "note": "H100 一年期合约指数 2026-04 区间 2.10–2.70 中值；租壳 190 万美元/MW·年为已披露带电壳合同的期均值；IT 资本开支为作者估算。租金路径按年 −10%（H100 合约指数 2023–2025 年均降幅量级）；60% GPU 抵押债务、11% 利率为新兴云项目债量级的作者假设。"
+      "note": "H100 一年期合约指数 2026-04 区间 2.10–2.70 中值；租壳 190 万美元/MW·年为已披露带电壳合同的期均值；IT 资本开支为作者估算。租金路径按年 −10%（H100 合约指数 2023–2025 年均降幅量级）；60% GPU 抵押债务、11% 利率为新兴云项目债量级的作者假设；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "shell_three_net": {
       "label": "带电壳三净租约（矿企转型）",
@@ -2068,9 +2193,10 @@
         "tenant_credit": "investment_grade",
         "renewal_options": 3,
         "renewal_years": 5,
-        "renewal_probability": 0.5
+        "renewal_probability": 0.5,
+        "shell_debt_years": 15
       },
-      "note": "造价 1,000 万美元/IT MW（TeraWulf、Cipher 公告 800–1,100 万）；租金取 Hut 8、Cipher、TeraWulf 已披露合同期均值约 190 万美元/MW·年；三净；85% 项目融资、利率参照 Hut 8 River Bend 6.58% 票据。三个 5 年续约期权按 50% 概率加权。"
+      "note": "造价 1,000 万美元/IT MW（TeraWulf、Cipher 公告 800–1,100 万）；租金取 Hut 8、Cipher、TeraWulf 已披露合同期均值约 190 万美元/MW·年；三净；85% 项目融资、利率参照 Hut 8 River Bend 6.58% 票据。三个 5 年续约期权按 50% 概率加权；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "china_colo_gds": {
       "label": "中国托管（万国数据口径）",
@@ -2087,9 +2213,10 @@
         "shell_ltc": 0.6,
         "debt_rate": 0.04,
         "power_price": 0.07,
-        "residual_share": 0.5
+        "residual_share": 0.5,
+        "shell_debt_years": 10
       },
-      "note": "万国数据 2026Q2 电话会：在建资本开支约 2,000 万元/MW、在手订单 EBITDA 220 万元/MW·年，按 7.2 元/美元折算（作者假设）；EBITDA 视作 NOI；杠杆与利率为作者假设。成本收益率约 11%。10 年租期后按壳层投资 50% 计残值（作者假设）。"
+      "note": "万国数据 2026Q2 电话会：在建资本开支约 2,000 万元/MW、在手订单 EBITDA 220 万元/MW·年，按 7.2 元/美元折算（作者假设）；EBITDA 视作 NOI；杠杆与利率为作者假设。成本收益率约 11%。10 年租期后按壳层投资 50% 计残值（作者假设）；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "model_api_own": {
       "label": "模型 API · 自有基础设施",
@@ -2099,7 +2226,7 @@
         "tokens_per_gpu_sec": 2000,
         "price_per_m_tokens": 1.57
       },
-      "note": "吞吐与 token 价格为作者反推，使每 GW 收入约 304 亿美元，与研报 p28–29 一致；成本为自有算力的运营支出与折旧。校验：NOPAT 约 180 亿、ROIC 约 46%（每 GW）。"
+      "note": "吞吐与 token 价格为作者反推，使每 GW 收入约 304 亿美元，与研报 p28–29 一致；成本为自有算力的运营支出与折旧。校验：NOPAT 约 180 亿、ROIC 约 46%（每 GW）；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "model_api_rent": {
       "label": "模型 API · 租用算力",
@@ -2110,7 +2237,7 @@
         "price_per_m_tokens": 2.09,
         "rent_price": 10.35
       },
-      "note": "研报 p30–31：收入约 405 亿、算力租金 279 亿美元/GW；token 价格与租金单价由总量反推。校验：NOPAT 约 100 亿、NOPAT 利润率约 25%。"
+      "note": "研报 p30–31：收入约 405 亿、算力租金 279 亿美元/GW；token 价格与租金单价由总量反推。校验：NOPAT 约 100 亿、NOPAT 利润率约 25%；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     },
     "colo_wholesale_texas": {
       "label": "批发托管 · 得州 · 风液混合",
@@ -2120,7 +2247,8 @@
         "cooling": "hybrid",
         "it_class": "enterprise",
         "business_model": "colo"
-      }
+      },
+      "note": "；期限迁移：会计折旧、IT实际更新与贷款摊还数值分别保留旧算例情景，彼此不自动联动。"
     }
   },
   "grid": {
@@ -2408,7 +2536,7 @@
     },
     {
       "series_id": "benchmark-gb300-nvl72-tco-hour",
-      "label": "GB300 NVL72 每有效 GPU·小时全成本",
+      "label": "GB300 NVL72 每付费 GPU·小时全成本",
       "group": "造价与资本开支"
     },
     {
@@ -2474,7 +2602,7 @@
     "calibration": "摩根士丹利《AI 指南》2026-09；高盛《Sizing the AI Economy》2026-09-24；SemiAnalysis《China Datacenter Model》2026-09-25。原件不入库，见 docs/reviews/2026-09-28/model/PROPOSAL.md 与 docs/research/2026-09-27/datacenter-profit/",
     "prices": "data/prices.json（页面按 series_id 取最新时点）"
   },
-  "model_note": "正算：等待期与建设期后逐年计费（负载爬坡与利用率爬坡分开：前者进电费与需量，后者进收入）、IT 按更新周期重置、电价与运营涨幅、期末退役；全部现金流按折现率折现，平准化为年成本，再除以容量、IT 电量或付费 GPU 小时。稳态账本取第 3 年起的一个完整年：直线折旧、税后 NOPAT，ROIC 分母按口径取总资本开支或平均年资本开支；资本回收按资本成本率年化后加运营支出得到每有效设备小时全成本。反算：目标 ROIC → 需要的 NOPAT → EBIT → 收入，再折成单价、利用率或造价上限。持有方式：自建自持、BOT（业主持地与壳，机电由合作方按服务合同回收）、租带电壳、托管。能耗配额 > 0 时可建容量取 min(IT 容量, 配额)。不含融资结构对 ROIC 的影响；杠杆只进 IRR。",
+  "model_note": "生命周期为所得税前、未融资的年度期末成本与收入收支：审批与门槛等待可显式顺序或并行，两者结束才施工；不足整年的阶段按真实年分数折现。等待期持有成本、营运资本、所得税、提款还本与处置收入未建模。稳态账本展示直线折旧及简化税后NOPAT，实际IT更新、会计折旧与贷款摊还各自独立；默认亏损不产生即时税收利益，仅显式可用税盾情景例外。资产期与股权IRR为运营期简化试算，未包含建设及完整项目融资；资产期末IT及设施剩余账面价值加土地仅作退出价值假设，非市场成交或实际回款。股权收支扣除期末未偿贷款本金，不以贷款账面净额替代。能耗配额、地区与机构校准仍仅为已登记范围内的研究情景。 付费GPU小时仅为计费覆盖口径，不代表实际繁忙时长、MFU或有效训练/推理；token结果为工作负载吞吐情景。",
   "input_governance": {
     "energy_quota_mw": {
       "value_kind": "project_authority",
@@ -2778,6 +2906,132 @@
       ],
       "priority": 2,
       "request_key": "bot_service_rate"
+    },
+    "it_refresh_years": {
+      "value_kind": "lifecycle_estimate",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "refresh_cost",
+        "lifecycle_cashflow",
+        "asset_period_return"
+      ],
+      "scope_fields": [
+        "hardware",
+        "configuration",
+        "in_service_date",
+        "replacement_date",
+        "period",
+        "economic_life",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "it_refresh_years"
+    },
+    "compute_debt_years": {
+      "value_kind": "contract_derivation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "compute_debt_service",
+        "compute_equity_return"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "period",
+        "principal_basis",
+        "draw_date",
+        "maturity",
+        "amortization_schedule",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "compute_debt_years"
+    },
+    "shell_debt_years": {
+      "value_kind": "contract_derivation",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "shell_debt_service",
+        "landlord_equity_return"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "period",
+        "principal_basis",
+        "draw_date",
+        "maturity",
+        "amortization_schedule",
+        "boundary"
+      ],
+      "priority": 2,
+      "request_key": "shell_debt_years"
+    },
+    "gpu_utilization": {
+      "value_kind": "scenario_assumption",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "compute_revenue",
+        "compute_return",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "hardware",
+        "period",
+        "phase",
+        "numerator",
+        "denominator",
+        "billing_basis",
+        "boundary"
+      ],
+      "priority": 1,
+      "request_key": "gpu_utilization"
+    },
+    "util_year1": {
+      "value_kind": "scenario_assumption",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "compute_revenue",
+        "compute_return",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "hardware",
+        "period",
+        "phase",
+        "numerator",
+        "denominator",
+        "billing_basis",
+        "boundary"
+      ],
+      "priority": 1,
+      "request_key": "util_year1"
+    },
+    "util_year2": {
+      "value_kind": "scenario_assumption",
+      "decision_owner": "research",
+      "affected_outputs": [
+        "compute_revenue",
+        "compute_return",
+        "lifecycle_cashflow"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "hardware",
+        "period",
+        "phase",
+        "numerator",
+        "denominator",
+        "billing_basis",
+        "boundary"
+      ],
+      "priority": 1,
+      "request_key": "util_year2"
     }
   },
   "input_governance_note": "17项为当前未验证输入；不覆盖全部预设不确定性。正数配额是情景上限，零是未知/未设上限，均不证明取得许可；计算结果属于带假设的情景。"

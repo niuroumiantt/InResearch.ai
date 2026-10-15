@@ -145,15 +145,15 @@
       <h2>基准与口径</h2>
       <p class="q">四个栏目共用上方的当前情景与左侧输入。切换栏目保持当前假设；调整只用于本地试算，不改正式研究。基准只有一个，校准算例用于复现已登记数字，不是多个正式基准。</p>
       <dl class="basis-definitions">
-        <dt>生命周期与平准化</dt><dd>按等待、建设与运营逐年计算现金流，折现得到TCO现值，再平准化为年成本。适合查看完整周期和每单位服务成本。</dd>
-        <dt>稳态单位成本</dt><dd>资本按资本成本率年化，加稳态运营费用，再除以有效设备小时。它与生命周期折现使用同一份输入，但不是同一种年成本公式，不能混加或直接等同。</dd>
-        <dt>收入与回报</dt><dd>四本账按稳态一年、折旧和税后NOPAT展示。ROIC随所选资本分母变化；每小时盈余已扣资本回收，不等于会计利润。</dd>
+        <dt>生命周期与平准化</dt><dd>按审批、门槛等待、建设与运营的实际时间计算所得税前、未融资的成本及收入收支，折现得到TCO现值，再平准化为年成本。不含所得税、提款还本、营运资本、等待期持有成本或处置收入。</dd>
+        <dt>稳态单位成本</dt><dd>资本按资本成本率年化，加稳态运营费用，再除以付费GPU小时。它与生命周期折现使用同一份输入，但不是同一种年成本公式，不能混加或直接等同。</dd>
+        <dt>收入与回报</dt><dd>四本账按稳态一年、会计折旧和简化税后NOPAT展示；亏损默认不产生当期税收利益。实际IT更新、会计折旧与贷款摊还各有期限。资产期及股权IRR只作运营期简化试算，未包含建设和完整项目融资。</dd>
         <dt>情景与适用范围</dt><dd>地区、主体及校准预设均是在同一输入表上改值。来源状态不自动证明现场适用性，情景上限不代表取得审批或设备交付。</dd>
       </dl>
       <p><a href="/guide.html?view=method">查看方法与口径说明 →</a></p>
       <section id="calibration">
     <h2>校准锚<small>同一份输入表复现三家的数字；它们是校准，不是基准</small></h2>
-    <div class="q">摩根士丹利回答"满配一年挣多少"，高盛回答"要 15% 回报需要多少收入"，我们 09-14 的基准回答"每有效设备小时全成本"。三个预设各自复现登记值，说明一个引擎能回答三种问法。</div>
+    <div class="q">摩根士丹利回答"满配一年挣多少"，高盛回答"要 15% 回报需要多少收入"，我们 09-14 的基准原称"每有效设备小时全成本"（参考设备计费覆盖口径）。三个预设各自复现登记值，说明一个引擎能回答三种问法。</div>
     <div class="tscroll"><div id="calibration-table"></div></div>
   </section>
 
@@ -169,16 +169,16 @@
       </div>
 
       <div class="view on" id="view-lifecycle">
-        <p class="q">等待期与建设期后逐年现金流，折现为 TCO 现值，平准化为年成本，再按每 MW·年、每 kW·月、每 IT kWh、每付费 GPU 小时给出。</p>
+        <p class="q">审批与门槛等待按所选顺序或并行关系进入时间轴；建设后逐年计算所得税前、未融资的成本和收入，折现为TCO现值并平准化。税率与杠杆不会改变这组TCO结果。</p>
         <div class="kpis"><div class="tile" id="kpi-lev"></div><div class="tile" id="kpi-mw"></div><div class="tile" id="kpi-kw"></div><div class="tile" id="kpi-kwh"></div><div class="tile" id="kpi-gpu"></div><div class="tile" id="kpi-capex"></div></div>
         <h3>成本结构</h3><div id="structure"></div><div class="legend" id="structure-legend"></div>
-        <h3>逐年现金流</h3><div id="timeline"></div><div class="note" id="timeline-note"></div>
+        <h3>所得税前、未融资的逐期收支</h3><div id="timeline"></div><div class="note" id="timeline-note"></div>
         <h3>成本表</h3><div class="tscroll" id="cost-table"></div>
         <h3>资本开支 $M/MW</h3><div id="capex-bars"></div><div class="note" id="capex-note"></div>
       </div>
 
       <div class="view" id="view-ledgers">
-        <p class="q">同一个项目，四本账：芯片厂商、壳层出租方、算力运营方、模型方。稳态一年，直线折旧，税后 NOPAT；回报分母按口径切换。</p>
+        <p class="q">同一个项目，四本账：芯片厂商、壳层出租方、算力运营方、模型方。稳态一年，直线折旧，简化税后NOPAT；亏损税盾仅在显式可用情景计入。回报分母按口径切换，股权退出收支扣除未偿本金。</p>
         <div class="kpis"><div class="tile" id="kpi-chip"></div><div class="tile" id="kpi-shell"></div><div class="tile" id="kpi-compute"></div><div class="tile" id="kpi-model"></div></div>
         <h3>算力方利润瀑布</h3><div id="waterfall"></div><div class="note" id="waterfall-note"></div>
         <h3>资本开支去向</h3><div id="capex-stack"></div>
@@ -187,8 +187,8 @@
       </div>
 
       <div class="view" id="view-unit">
-        <p class="q">把资源、设施、设备、任务与资本回收对齐：资本按资本成本率年化，加稳态运营，除以有效设备小时。</p>
-        <div class="kpis"><div class="tile"><small>年化全成本</small><strong id="cost-total"></strong></div><div class="tile"><small>每有效设备小时</small><strong id="cost-per-hour"></strong></div><div class="tile"><small>资本开支</small><strong id="metric-capex"></strong></div><div class="tile"><small>年用电</small><strong id="metric-energy"></strong></div><div class="tile"><small>年用水</small><strong id="metric-water"></strong></div><div class="tile"><small>有效设备小时</small><strong id="metric-hours"></strong></div></div>
+        <p class="q">把资源、设施、设备、任务与资本回收对齐：资本按资本成本率年化，加稳态运营，除以付费GPU小时。</p>
+        <div class="kpis"><div class="tile"><small>年化全成本</small><strong id="cost-total"></strong></div><div class="tile"><small>每付费GPU小时</small><strong id="cost-per-hour"></strong></div><div class="tile"><small>资本开支</small><strong id="metric-capex"></strong></div><div class="tile"><small>年用电</small><strong id="metric-energy"></strong></div><div class="tile"><small>年用水</small><strong id="metric-water"></strong></div><div class="tile"><small>付费GPU小时</small><strong id="metric-hours"></strong></div></div>
         <div class="note" id="cost-line"></div>
         <div class="tscroll" id="unit-table"></div>
         <h3>收益参照</h3>

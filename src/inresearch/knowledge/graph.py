@@ -48,7 +48,13 @@ CLASS_KEYWORDS = [
     (('谁', '厂商', '供应商', '份额', '持有', '格局', '竞争', '客户', '买家', '主体', '集中度', '玩家', '阵营', '进入者', '租户'), 5),
     (('PUE', 'WUE', '利用率', '效率', '功耗', '运行', '故障', '负载', '上架', '爬坡', '吞吐', '可用性', '能耗', '用电量'), 2),
 ]
-QUESTION_CLASS_OVERRIDES = {}
+# Reviewed legacy query cells stay stable when a question gains financial scope
+# words such as "revenue". The class is a compatibility index, not an exclusive
+# assignment of the full question to a single subject.
+QUESTION_CLASS_OVERRIDES = {
+    'M03-Q01': 4, 'M03-Q03': 1, 'M03-Q04': 5, 'M11-Q05': 5,
+    'M13-Q01': 2, 'M13-Q03': 3, 'M13-Q07': 2, 'M13-Q08': 1, 'M13-Q09': 2,
+}
 
 
 def _load(root, rel):
@@ -183,7 +189,9 @@ def build(root=ROOT):
         if legacy_ids or q.get('legacy_object_ids'):
             rec['legacy_object_ids'] = sorted(set(q.get('legacy_object_ids', [])) | set(legacy_ids))
         retagged.append(rec)
-    qdoc = {**questions, 'version': VERSION, 'updated': bom.get('updated'), 'records': retagged,
+    # Retagging nodes must not roll back separately reviewed question content.
+    qdoc = {**questions, 'version': max(VERSION, questions.get('version', VERSION)),
+            'updated': max(bom.get('updated', ''), questions.get('updated', '')), 'records': retagged,
             'policy': 'ID 固定；每条问题挂骨架节点（node）与变量类（variable_class），object_ids 只允许骨架 ID，旧 ID 留在 legacy_object_ids；'
                       'module_id 改 legacy_module。对象专属问题不通过同模块材料或父节点材料自动关闭。'}
     return graph, qdoc

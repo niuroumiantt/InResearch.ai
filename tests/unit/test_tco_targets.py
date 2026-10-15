@@ -32,7 +32,7 @@ class TcoTargetListTests(unittest.TestCase):
         cls.hosts = {p['host'] for p in contract['execution_policy'].values() if isinstance(p, dict) and 'host' in p}
 
     def test_file_is_generated_from_its_inputs(self):
-        built = targets_mod.build(ROOT, self.doc['updated'])
+        built = targets_mod.build(ROOT)
         self.assertEqual(targets_mod.render(built), (ROOT / targets_mod.TARGETS).read_text(encoding='utf-8'),
                          'framework/tco_targets.json is stale; run python3 manage.py targets --refresh')
 
@@ -42,6 +42,78 @@ class TcoTargetListTests(unittest.TestCase):
         implicit = targets_mod.build(ROOT)
         explicit = targets_mod.build(ROOT, bom['schedule_updated'])
         self.assertEqual({r['id']:r['next_due'] for r in implicit['targets']}, {r['id']:r['next_due'] for r in explicit['targets']})
+
+    def test_explicit_calendar_override_still_changes_implicit_deadlines(self):
+        implicit = targets_mod.build(ROOT)
+        override = targets_mod.build(ROOT, '2030-01-01')
+        self.assertEqual(override['updated'], '2030-01-01')
+        before = next(t for t in implicit['targets'] if t['id'] == 'P.gpu.operation')
+        after = next(t for t in override['targets'] if t['id'] == before['id'])
+        self.assertNotEqual(before['next_due'], after['next_due'])
+        self.assertEqual(after['next_due'], '2030-04-01')
+
+    def test_capacity_occupancy_and_compute_metrics_are_not_paid_gpu_inputs(self):
+        targets = {t['id']: t for t in self.targets}
+        paid = targets['F.revenue.utilization.utilization.disclosure']
+        proxies = [targets['F.revenue.utilization.' + suffix]
+                   for suffix in ('capacity.pipeline', 'rack.occupancy', 'physical.trace')]
+        self.assertFalse(paid['series'])
+        self.assertIn('gpu_utilization', paid['model_inputs'])
+        for target in proxies:
+            self.assertEqual(target['model_inputs'], [], target['id'])
+            self.assertEqual(target['feeds_primary'], [], target['id'])
+            self.assertNotEqual(target['status'], 'sourced', target['id'])
+        self.assertIn('neocloud-active-to-contracted-power-coreweave', proxies[0]['series'])
+        self.assertIn('cn-idc-utilization-rate-gds', proxies[1]['series'])
+        self.assertIn('gpu-cluster-utilization-median-acme-kalos', proxies[2]['series'])
+        for target in proxies:
+            self.assertTrue(target['request']['question_ids'])
+            self.assertIn('denominator', target['request']['required_fields'])
+
+    def test_financial_collection_contracts_are_enforced_dispatch_requests(self):
+        from inresearch.knowledge.target_request_contract import COLLECTION_FIELDS, resolve_request
+        for target in self.targets:
+            if not target.get('collection_contract'):
+                continue
+            contract = target['collection_contract']
+            self.assertEqual(contract, target['request']['collection_contract'])
+            self.assertTrue(COLLECTION_FIELDS <= set(target['request']['required_fields']))
+            self.assertEqual(contract['value_types'], ['actual', 'forecast', 'assumption', 'unknown'])
+            if not target['request']['requirements']:
+                resolved = resolve_request(target)
+                self.assertEqual(resolved['scope_fields'], contract['scope_fields'])
+                self.assertEqual(resolved['acceptance'], contract['acceptance'])
+                self.assertTrue(set(contract['question_ids']) <= set(resolved['question_ids']))
+        news = next(t for t in self.targets if t['id'] == 'F.capital.finance_risk.news')
+        self.assertIn('operations_incident', news['event_types'])
+        self.assertEqual(news['event_object_ids'], [])
+        self.assertTrue(all(l['relation'] == 'lead_for' for l in news['request']['question_links']))
+
+    def test_incomplete_collection_contracts_and_unregistered_event_objects_fail(self):
+        import copy
+        from inresearch.knowledge.target_request_contract import validate_collection_contract, attach_contracts
+        questions = load('framework/research_questions.json')['records']
+        question_by_id = {q['id']: q for q in questions}
+        original = next(t for t in self.targets if t['id'] == 'F.capital.cashflow.capex')
+        for field in ('source_sha256', 'locator', 'context', 'denominator', 'value_type', 'dependencies'):
+            bad = copy.deepcopy(original)
+            bad['collection_contract']['fields'].remove(field)
+            with self.assertRaises(ValueError, msg=field):
+                validate_collection_contract(bad, question_by_id)
+        bad = copy.deepcopy(original)
+        bad['collection_contract']['question_ids'] = ['not-registered']
+        with self.assertRaisesRegex(ValueError, 'unregistered collection question'):
+            validate_collection_contract(bad, question_by_id)
+        bad = copy.deepcopy(original)
+        bad['collection_contract']['value_types'] = ['actual']
+        with self.assertRaisesRegex(ValueError, 'actual, forecast'):
+            validate_collection_contract(bad, question_by_id)
+        rows = copy.deepcopy(self.targets)
+        news = next(t for t in rows if t['id'] == 'F.capital.finance_risk.news')
+        news['event_object_ids'] = ['part:not-a-registered-part']
+        with self.assertRaisesRegex(ValueError, 'unregistered skeleton objects'):
+            attach_contracts(rows, questions, load('framework/research_demand_review.json'),
+                             self.provider_rows, self.doc['mechanisms'])
 
     def test_ids_unique_and_fields_complete(self):
         ids = [t['id'] for t in self.targets]

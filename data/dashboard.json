@@ -1,6 +1,6 @@
 {
  "version": "1.0",
- "updated": "2026-10-10",
+ "updated": "2026-10-16",
  "title": "数据中心 dashboard 快照",
  "stages": [
   {
@@ -44,9 +44,9 @@
  "generated_from": {
   "rules": "1.0",
   "bom": "2.3",
-  "targets": "2.3.0",
-  "factors": "1.3.0",
-  "model_as_of": "2026-09-28"
+  "targets": "2.4.0",
+  "factors": "1.4.0",
+  "model_as_of": "2026-10-16"
  },
  "columns": {
   "1": "构成",
@@ -75,9 +75,9 @@
      "value": 11.049,
      "evidence": {
       "sourced": 40,
-      "assumed": 13,
-      "input": 4,
-      "inputs": 58
+      "assumed": 14,
+      "input": 5,
+      "inputs": 60
      }
     },
     {
@@ -87,8 +87,8 @@
      "note": "GPU 数 × 8,760 × 付费利用率 × 单价",
      "value": 22.911,
      "evidence": {
-      "sourced": 8,
-      "assumed": 2,
+      "sourced": 5,
+      "assumed": 5,
       "input": 6,
       "inputs": 16
      }
@@ -100,10 +100,10 @@
      "note": "NOPAT ÷ 投入资本",
      "value": 0.303,
      "evidence": {
-      "sourced": 54,
-      "assumed": 16,
-      "input": 12,
-      "inputs": 83
+      "sourced": 51,
+      "assumed": 22,
+      "input": 14,
+      "inputs": 88
      }
     }
    ],
@@ -147,7 +147,7 @@
       "label": "IT 容量",
       "value": 100,
       "unit": "MW",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "it_mw"
@@ -157,7 +157,7 @@
       "label": "GPU 数",
       "value": 41025.6,
       "unit": "颗",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_output",
        "key": "gpus"
@@ -167,7 +167,7 @@
       "label": "芯片代际",
       "value": "gb300",
       "unit": null,
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "it_class"
@@ -179,7 +179,7 @@
      "sourced": 4,
      "assumed": 2,
      "delivered": 0,
-     "needed": 1
+     "needed": 2
     }
    },
    "2": {
@@ -188,7 +188,7 @@
       "label": "PUE",
       "value": 1.18,
       "unit": null,
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "pue"
@@ -198,7 +198,7 @@
       "label": "IT 负载率",
       "value": 70.0,
       "unit": "%",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "load_factor"
@@ -208,7 +208,7 @@
       "label": "付费利用率",
       "value": 75.0,
       "unit": "%",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "gpu_utilization"
@@ -217,10 +217,10 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 7,
-     "assumed": 1,
+     "sourced": 6,
+     "assumed": 5,
      "delivered": 0,
-     "needed": 2
+     "needed": 1
     }
    },
    "3": {
@@ -229,7 +229,7 @@
       "label": "每 MW 资本开支",
       "value": 39.2,
       "unit": "$M/MW",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_output",
        "key": "capex_per_mw"
@@ -239,7 +239,7 @@
       "label": "每 MW 年成本",
       "value": 11.049,
       "unit": "$M/MW·年",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_output",
        "key": "cost_per_mw"
@@ -249,7 +249,7 @@
       "label": "GPU 小时租金",
       "value": 8.5,
       "unit": "$/GPU·h",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "price_gpu_hour"
@@ -261,7 +261,7 @@
      "sourced": 12,
      "assumed": 4,
      "delivered": 0,
-     "needed": 2
+     "needed": 4
     }
    },
    "4": {
@@ -270,7 +270,7 @@
       "label": "IT 寿命",
       "value": 5,
       "unit": "年",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "it_refresh_years"
@@ -280,7 +280,7 @@
       "label": "非 IT 寿命",
       "value": 15,
       "unit": "年",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "horizon_years"
@@ -299,10 +299,10 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 4,
-     "assumed": 2,
+     "sourced": 3,
+     "assumed": 4,
      "delivered": 0,
-     "needed": 3
+     "needed": 6
     }
    },
    "5": {
@@ -311,7 +311,7 @@
       "label": "设施获得方式",
       "value": "own",
       "unit": null,
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "facility_mode"
@@ -321,7 +321,7 @@
       "label": "壳层杠杆 LTC",
       "value": 85.0,
       "unit": "%",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "shell_ltc"
@@ -331,7 +331,7 @@
       "label": "WACC",
       "value": 8.0,
       "unit": "%",
-      "as_of": "2026-09-28",
+      "as_of": "2026-10-16",
       "source": {
        "type": "model_input",
        "key": "wacc"
@@ -340,18 +340,18 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 2,
-     "assumed": 1,
+     "sourced": 1,
+     "assumed": 2,
      "delivered": 0,
-     "needed": 6
+     "needed": 8
     }
    }
   },
   "targets": {
-   "sourced": 29,
-   "assumed": 12,
+   "sourced": 26,
+   "assumed": 19,
    "delivered": 39,
-   "needed": 271,
+   "needed": 278,
    "not_connected": 0
   }
  },
@@ -1310,7 +1310,7 @@
        "label": "每 MW 造价",
        "value": 11.73,
        "unit": "$M/MW",
-       "as_of": "2026-09-28",
+       "as_of": "2026-10-16",
        "source": {
         "type": "sum_share",
         "key": "it_capex_per_kw × accelerator_share"
@@ -2310,7 +2310,7 @@
        "label": "每 MW 造价（子系统之和）",
        "value": 11.73,
        "unit": "$M/MW",
-       "as_of": "2026-09-28",
+       "as_of": "2026-10-16",
        "source": {
         "type": "sum",
         "key": "children"
@@ -2521,7 +2521,7 @@
       "label": "权利条目",
       "value": 6,
       "unit": "条",
-      "as_of": "2026-10-10",
+      "as_of": "2026-10-16",
       "source": {
        "type": "count",
        "key": "rights"
@@ -2573,7 +2573,7 @@
       "label": "登记持有方",
       "value": 2,
       "unit": "家",
-      "as_of": "2026-10-10",
+      "as_of": "2026-10-16",
       "source": {
        "type": "count",
        "key": "companies"
@@ -10112,7 +10112,7 @@
        "label": "持有方",
        "value": 0,
        "unit": "家",
-       "as_of": "2026-10-10",
+       "as_of": "2026-10-16",
        "source": {
         "type": "site_rights",
         "key": "companies"
@@ -10174,7 +10174,7 @@
        "label": "持有方",
        "value": 0,
        "unit": "家",
-       "as_of": "2026-10-10",
+       "as_of": "2026-10-16",
        "source": {
         "type": "site_rights",
         "key": "companies"
@@ -10236,7 +10236,7 @@
        "label": "持有方",
        "value": 2,
        "unit": "家",
-       "as_of": "2026-10-10",
+       "as_of": "2026-10-16",
        "source": {
         "type": "site_rights",
         "key": "companies"
@@ -10304,7 +10304,7 @@
        "label": "持有方",
        "value": 0,
        "unit": "家",
-       "as_of": "2026-10-10",
+       "as_of": "2026-10-16",
        "source": {
         "type": "site_rights",
         "key": "companies"
@@ -10366,7 +10366,7 @@
        "label": "持有方",
        "value": 0,
        "unit": "家",
-       "as_of": "2026-10-10",
+       "as_of": "2026-10-16",
        "source": {
         "type": "site_rights",
         "key": "companies"
@@ -10428,7 +10428,7 @@
        "label": "持有方",
        "value": 0,
        "unit": "家",
-       "as_of": "2026-10-10",
+       "as_of": "2026-10-16",
        "source": {
         "type": "site_rights",
         "key": "companies"
@@ -10726,7 +10726,8 @@
    "model_inputs": [
     "it_refresh_years",
     "horizon_years",
-    "decommission_pct"
+    "decommission_pct",
+    "it_depreciation_years"
    ]
   },
   {
@@ -10897,7 +10898,8 @@
    "model_inputs": [
     "tax",
     "it_refresh_years",
-    "property_tax_rate"
+    "property_tax_rate",
+    "loss_tax_shield"
    ]
   },
   {
@@ -10918,7 +10920,9 @@
     "residual_share",
     "tenant_credit",
     "target_roic",
-    "roic_basis"
+    "roic_basis",
+    "compute_debt_years",
+    "shell_debt_years"
    ]
   },
   {
@@ -10948,7 +10952,8 @@
     "construction_years",
     "gate",
     "gate_wait_years",
-    "permit_months"
+    "permit_months",
+    "permit_timing"
    ]
   }
  ],
@@ -11321,6 +11326,6 @@
     "variable_class": 5
    }
   ],
-  "due_total": 188
+  "due_total": 201
  }
 }

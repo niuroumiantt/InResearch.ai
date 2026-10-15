@@ -1,8 +1,8 @@
 {
-  "version": "1.3.0",
-  "updated": "2026-09-28",
+  "version": "1.4.0",
+  "updated": "2026-10-16",
   "title": "数据中心经济模型因子树",
-  "note": "经济模型的骨架：收入侧与成本侧的最小可变因子。每个因子指向它汇总的爆炸图部件（framework/bom.json，2026-09-28 起为 2.0）与站点权利（framework/site_rights.json，site_rights 字段）、读取的价格库序列（data/prices.json）、对应的研究问题（framework/research_questions.json）、进入统一经济模型的输入键（data/datacenter_model.json，字段 model_inputs）以及定向抓取目标。因子树只定义结构与归属，不保存数值；数值在价格库与模型假设里。fetch.kind 取 product / news / data / report。 v1.1.0（2026-09-28）：fetch 条目升级为完整抓取目标（slug、变量类、数据类别、机制、队、序列、TCO 模型输入键 tco_inputs、实例、到期、敏感度），原手写的 43 条目标清单行迁入对应因子；目标清单 framework/tco_targets.json 改为由 manage.py targets 生成。 v1.2.0（2026-09-28）：三个模型合成一个，model_inputs 与 tco_inputs 合并为 model_inputs（统一模型的键：generation→it_class、utilization→gpu_utilization、gpu_price→price_gpu_hour、power_load→load_factor、it_life→it_refresh_years、shell_life→horizon_years、it_capex_per_mw→it_capex_per_kw），fetch 条目同名；v3 新增的 14 个输入挂到对应因子。",
+  "note": "经济模型的骨架：收入侧与成本侧的最小可变因子。每个因子指向它汇总的爆炸图部件（framework/bom.json，2026-09-28 起为 2.0）与站点权利（framework/site_rights.json，site_rights 字段）、读取的价格库序列（data/prices.json）、对应的研究问题（framework/research_questions.json）、进入统一经济模型的输入键（data/datacenter_model.json，字段 model_inputs）以及定向抓取目标。因子树只定义结构与归属，不保存数值；数值在价格库与模型假设里。fetch.kind 取 product / news / data / report。 v1.1.0（2026-09-28）：fetch 条目升级为完整抓取目标（slug、变量类、数据类别、机制、队、序列、TCO 模型输入键 tco_inputs、实例、到期、敏感度），原手写的 43 条目标清单行迁入对应因子；目标清单 framework/tco_targets.json 改为由 manage.py targets 生成。 v1.2.0（2026-09-28）：三个模型合成一个，model_inputs 与 tco_inputs 合并为 model_inputs（统一模型的键：generation→it_class、utilization→gpu_utilization、gpu_price→price_gpu_hour、power_load→load_factor、it_life→it_refresh_years、shell_life→horizon_years、it_capex_per_mw→it_capex_per_kw），fetch 条目同名；v3 新增的 14 个输入挂到对应因子。 2026-10-16：在既有因子内补合同、利润到现金桥、债务/租约期限与集中度采集；collection_contract 明确原件定位、期间/单位/分母、actual/forecast/assumption、推导依赖与用途边界。电力管线、机柜上架率、GPU物理利用率与付费小时分开；旧序列/证据不删除。新增采集角度不启用来源或调度、不采用事实或填参；schedule_updated 独立保留原排期。",
   "formulas": {
     "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",
     "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一",
@@ -16,7 +16,179 @@
       "parent": null,
       "unit": "$/年",
       "formula": "gpus × 8760 × utilization × price",
-      "model_inputs": []
+      "model_inputs": [],
+      "fetch": [
+        {
+          "kind": "data",
+          "slug": "contracts.revenue_cash",
+          "what": "TCV、RPO、递延收入、预付款、开票、收入与现金回款的合同桥",
+          "sources": [
+            "regulatory_filing",
+            "revenue_note",
+            "material_contract"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 4,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave S-1/424B/10-K收入附注及合同附件",
+            "可比GPU云原始披露"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "订单、RPO、递延收入、现金及会计收入互不等同；预付款不新增利润，也不能减CapEx后又计全额未来收款。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M03-Q01",
+              "M13-Q03",
+              "M11-Q05"
+            ],
+            "source_types": [
+              "regulatory_filing",
+              "revenue_note",
+              "material_contract"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "contract",
+              "tcv",
+              "rpo",
+              "backlog_definition",
+              "deferred_revenue",
+              "prepayment",
+              "invoice_schedule",
+              "revenue_schedule",
+              "cash_receipt_schedule",
+              "refund_rights",
+              "variable_consideration",
+              "resale_rights"
+            ],
+            "scope_fields": [
+              "entity",
+              "contract",
+              "period_start",
+              "period_end",
+              "currency"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "RPO是否扣可变对价、包含已开票及未开票须按原定义；预付款到帐与之后抵扣发票分别记录；可退预付款/有保底收益按条款区分融资属性。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "订单、RPO、递延收入、现金及会计收入互不等同；预付款不新增利润，也不能减CapEx后又计全额未来收款。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "data",
+          "slug": "service.acceptance",
+          "what": "交付、客户验收、起租起费、SLA抵扣和退款的时间与损失",
+          "sources": [
+            "regulatory_filing",
+            "material_contract",
+            "service_level_agreement"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 4,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave交付延误和service credits披露",
+            "可比运营商重大合同附件"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "take-or-pay不能自动豁免供应方交付/验收/SLA义务；名义通电不证明可收费。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M03-Q01",
+              "M13-Q09"
+            ],
+            "source_types": [
+              "regulatory_filing",
+              "material_contract",
+              "service_level_agreement"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "contract",
+              "site",
+              "promised_delivery",
+              "actual_delivery",
+              "commissioning_date",
+              "acceptance_date",
+              "billing_start",
+              "sla_credit",
+              "refund",
+              "termination_rights",
+              "power_constraint"
+            ],
+            "scope_fields": [
+              "entity",
+              "contract",
+              "site",
+              "period_start",
+              "period_end"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "按合同区分到货、接电、调试、验收与计费；记录延误时已付设备/租金/利息及SLA扣减的确认和现金时点。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "take-or-pay不能自动豁免供应方交付/验收/SLA义务；名义通电不证明可收费。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        }
+      ],
+      "questions": [
+        "M03-Q01",
+        "M13-Q03",
+        "M11-Q05",
+        "M13-Q09"
+      ]
     },
     {
       "id": "revenue.gpus",
@@ -78,7 +250,65 @@
           "model_inputs": [
             "gpus_per_mw",
             "it_class"
-          ]
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M06-Q01",
+              "M06-Q02",
+              "M13-Q08"
+            ],
+            "source_types": [
+              "vendor_datasheet",
+              "reference_design",
+              "vendor_test_report"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "hardware",
+              "configuration",
+              "workload",
+              "precision",
+              "gpu_count",
+              "rack_power",
+              "rated_or_measured",
+              "cooling_boundary",
+              "network_storage_boundary",
+              "throughput",
+              "test_condition",
+              "software_version"
+            ],
+            "scope_fields": [
+              "hardware",
+              "configuration",
+              "workload",
+              "precision",
+              "denominator"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "单GPU/整机/整柜分母、精度/稀疏和额定/实测功率分开；配套网络/存储/液冷与软件版本保留。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "原厂峰值不能证明客户工作负载实测、MFU、现场能耗、可计费产能或采购成交价。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         }
       ]
     },
@@ -89,7 +319,14 @@
       "parent": "revenue",
       "unit": "%",
       "questions": [
-        "M13-Q01"
+        "M13-Q01",
+        "M03-Q01",
+        "M03-Q02",
+        "M13-Q07",
+        "M13-Q10",
+        "M13-Q05",
+        "M13-Q08",
+        "M13-Q09"
       ],
       "model_inputs": [
         "gpu_utilization",
@@ -101,18 +338,71 @@
       "fetch": [
         {
           "kind": "report",
-          "what": "集群实际利用率的公开研究与公司披露（已售 GPU 小时 ÷ 可用小时）",
+          "what": "付费变现与收费推理占比的公开研究；行业假设与公司计费证据分开",
           "sources": [
             "SemiAnalysis",
             "公司财报电话会",
             "学术实测"
           ],
-          "cadence": "季度"
+          "cadence": "季度",
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M13-Q03",
+              "M12-Q05"
+            ],
+            "source_types": [
+              "analyst_model",
+              "industry_research"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "workload",
+              "paid_inference_share",
+              "billing_coverage",
+              "prepayment_assumption",
+              "payback_definition"
+            ],
+            "scope_fields": [
+              "entity",
+              "workload",
+              "period_start",
+              "period_end",
+              "denominator"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "研究模型的付费变现比例、回本定义与假设逐项拆出，禁止把物理利用率或供电管线变成付费率。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "研报预测不作为已实现经营事实或设备实测。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          },
+          "model_inputs": [
+            "monetized_share",
+            "tenancy"
+          ]
         },
         {
           "kind": "data",
           "slug": "utilization.disclosure",
-          "what": "季报运营指标、集群实测",
+          "what": "GPU计费小时、可收费承诺容量与可用小时；计费覆盖、物理忙碌与MFU分别披露",
           "sources": [
             "托管运营商、新兴云、学术"
           ],
@@ -121,30 +411,309 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave及可比GPU云10-K/10-Q运营及收入附注"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 5,
+          "notes": "本行只寻GPU计费口径；CoreWeave在运/合同电力比、GDS/VNET机柜上架率及trace已分行保留，不作gpu_utilization的替代证据。",
+          "model_inputs": [
+            "gpu_utilization",
+            "util_year1",
+            "util_year2"
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M13-Q01",
+              "M13-Q07",
+              "M13-Q10"
+            ],
+            "source_types": [
+              "regulatory_filing",
+              "operator_disclosure"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "hardware",
+              "workload",
+              "available_gpu_hours",
+              "billed_gpu_hours",
+              "committed_gpu_hours",
+              "physical_busy_hours",
+              "mfu",
+              "take_or_pay"
+            ],
+            "scope_fields": [
+              "entity",
+              "period_start",
+              "period_end",
+              "metric_definition",
+              "denominator"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "逐项给计费小时/可用GPU小时分母；take-or-pay承诺覆盖与实际使用分开；保留爬坡/稳态和测量窗口。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "在运/合同电力比、机柜上架率、物理忙碌或MFU均不能直接证明GPU付费利用率。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "data",
+          "slug": "capacity.pipeline",
+          "what": "在运、合同、接电及可计费电力容量管线，逐阶段对齐",
+          "sources": [
+            "regulatory_filing",
+            "operator_capacity_disclosure"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 4,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [
+            "neocloud-active-to-contracted-power-coreweave"
+          ],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave 10-K/10-Q容量与交付风险章节"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "在运/合同电力比只描述容量管线，不代表GPU计费、机柜上架或物理忙碌。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M03-Q01",
+              "M03-Q02"
+            ],
+            "source_types": [
+              "regulatory_filing",
+              "operator_capacity_disclosure"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "capacity_stage",
+              "power_basis",
+              "active_power",
+              "contracted_power",
+              "energized_power",
+              "commissioned_power",
+              "billable_power",
+              "delivery_date"
+            ],
+            "scope_fields": [
+              "entity",
+              "as_of",
+              "capacity_stage",
+              "power_basis"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "对齐同一法人/园区范围和时点的容量；逐项标明IT或设施/接入功率、合同或实际、投运与验收里程碑；比值依赖两端原值。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "在运/合同电力比只描述容量管线，不代表GPU计费、机柜上架或物理忙碌。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "data",
+          "slug": "rack.occupancy",
+          "what": "托管机柜利用率、上架率和入驻率的原始口径",
+          "sources": [
+            "operator_annual_report",
+            "operator_supplement"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 2,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [
+            "cn-idc-utilization-rate-gds",
+            "cn-idc-utilization-rate-wholesale-vnet"
+          ],
+          "planned_series": [],
+          "instances": [
+            "GDS 20-F",
+            "VNET 20-F及季度运营补充"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "机柜上架与入驻率不代表GPU计费利用率、GPU实际负载或MFU。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M13-Q07",
+              "M13-Q10"
+            ],
+            "source_types": [
+              "operator_annual_report",
+              "operator_supplement"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "installed_racks",
+              "occupied_racks",
+              "contracted_capacity",
+              "move_in_capacity"
+            ],
+            "scope_fields": [
+              "entity",
+              "period_start",
+              "period_end",
+              "denominator"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "原样保留运营商机柜/面积/容量利用率的分子分母与入驻、交付、计费定义。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "机柜上架与入驻率不代表GPU计费利用率、GPU实际负载或MFU。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "report",
+          "slug": "physical.trace",
+          "what": "集群物理忙碌、MFU及利用率假设的独立实证/方法",
+          "sources": [
+            "research_paper",
+            "dataset_methodology",
+            "analyst_model"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 2,
+          "data_class": "observation",
+          "mechanism": "pdf_free",
+          "team": "fetchreports",
           "series": [
             "ai-dc-utilization-assumption-epoch",
-            "neocloud-active-to-contracted-power-coreweave",
-            "cn-idc-utilization-rate-gds",
-            "cn-idc-utilization-rate-wholesale-vnet",
             "gpu-cluster-utilization-median-acme-kalos",
             "gpu-cluster-p90-utilization-alibaba-pai"
           ],
           "planned_series": [],
           "instances": [
-            "GDS 20-F",
-            "VNET 20-F",
-            "CoreWeave 10-Q",
-            "Epoch AI",
-            "集群 trace 论文"
+            "ACME/Kalos集群trace",
+            "Alibaba PAI论文",
+            "Epoch AI方法说明"
           ],
           "next_due": "2026-11-15",
-          "sensitivity_rank": 5,
-          "notes": "",
-          "model_inputs": [
-            "gpu_utilization",
-            "util_year1",
-            "util_year2"
-          ]
+          "sensitivity_rank": 2,
+          "notes": "trace不能证明付费小时；样本百分位、平均值与作者假设不能互相替代。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M13-Q01",
+              "M13-Q05",
+              "M13-Q08",
+              "M13-Q09"
+            ],
+            "source_types": [
+              "research_paper",
+              "dataset_methodology",
+              "analyst_model"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "hardware",
+              "workload",
+              "physical_busy_hours",
+              "mfu",
+              "checkpoint_overhead",
+              "availability",
+              "sample_coverage",
+              "measurement_method"
+            ],
+            "scope_fields": [
+              "entity",
+              "hardware",
+              "workload",
+              "period_start",
+              "period_end",
+              "metric_definition",
+              "denominator"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "区分实测、样本统计与作者利用率假设；MFU保留有效FLOPs与理论峰值/精度/稀疏条件，故障与checkpoint单列。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "trace不能证明付费小时；样本百分位、平均值与作者假设不能互相替代。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         }
       ]
     },
@@ -210,7 +779,68 @@
           "model_inputs": [
             "price_gpu_hour",
             "price_change"
-          ]
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M13-Q02",
+              "M13-Q11",
+              "M13-Q12"
+            ],
+            "source_types": [
+              "cloud_price_page",
+              "market_quote",
+              "index_methodology"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "hardware",
+              "configuration",
+              "country",
+              "contract_term",
+              "quote_or_transaction",
+              "on_demand_or_reserved",
+              "take_or_pay",
+              "minimum_quantity",
+              "prepayment",
+              "gpu_count",
+              "availability",
+              "storage_network_fees",
+              "tax",
+              "sla"
+            ],
+            "scope_fields": [
+              "hardware",
+              "configuration",
+              "country",
+              "as_of",
+              "currency",
+              "contract_term"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "GPU-hour/offer-hour、按需/可中断/长约、最低卡数、预付、地区及含费范围对齐；指数保留样本/方法/修订。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "公开标价不证明长约成交、净收入或有效计算单位成本。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         }
       ]
     },
@@ -590,7 +1220,66 @@
           "notes": "",
           "model_inputs": [
             "power_price"
-          ]
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M04-Q02",
+              "M04-Q11"
+            ],
+            "source_types": [
+              "official_tariff",
+              "utility_rate_schedule",
+              "regulatory_order"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "country",
+              "utility",
+              "customer_class",
+              "effective_date",
+              "energy_rate",
+              "demand_kw_basis",
+              "demand_charge",
+              "capacity_charge",
+              "time_of_use",
+              "minimum_bill",
+              "tax",
+              "fuel_adjustment",
+              "connection_fee",
+              "water_fee"
+            ],
+            "scope_fields": [
+              "country",
+              "utility",
+              "customer_class",
+              "effective_date",
+              "currency"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "电量费、最大需量/保留容量费、最低账单、时段、附加税费与一次性接入分别采；有效期与客户类别明确。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "地区均价不证明具体站点适用费率、税惠、水权或接入完成。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         },
         {
           "kind": "data",
@@ -657,7 +1346,66 @@
           "notes": "近期任务：电价拆能量与线路两部分",
           "model_inputs": [
             "demand_rate"
-          ]
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M04-Q02",
+              "M04-Q11"
+            ],
+            "source_types": [
+              "official_tariff",
+              "utility_rate_schedule",
+              "regulatory_order"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "country",
+              "utility",
+              "customer_class",
+              "effective_date",
+              "energy_rate",
+              "demand_kw_basis",
+              "demand_charge",
+              "capacity_charge",
+              "time_of_use",
+              "minimum_bill",
+              "tax",
+              "fuel_adjustment",
+              "connection_fee",
+              "water_fee"
+            ],
+            "scope_fields": [
+              "country",
+              "utility",
+              "customer_class",
+              "effective_date",
+              "currency"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "电量费、最大需量/保留容量费、最低账单、时段、附加税费与一次性接入分别采；有效期与客户类别明确。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "地区均价不证明具体站点适用费率、税惠、水权或接入完成。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         },
         {
           "kind": "data",
@@ -926,7 +1674,8 @@
         "shell-lease-rent-per-it-mw-year"
       ],
       "questions": [
-        "M11-Q11"
+        "M11-Q11",
+        "M11-Q13"
       ],
       "model_inputs": [
         "shell_rent_per_mw",
@@ -1034,6 +1783,88 @@
             "bot_term_years",
             "bot_service_rate"
           ]
+        },
+        {
+          "kind": "data",
+          "slug": "lease.obligations",
+          "what": "已开始与未开始租赁、租金传递及GPU/客户合同期限错配",
+          "sources": [
+            "lease_note",
+            "material_lease_contract",
+            "commitment_note"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 4,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave/DLR/EQIX租赁附注及重大租约"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "未开始租约不是当前经营容量；不同折现/范围的承诺金额不可直接相加为债务。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M11-Q11",
+              "M11-Q13"
+            ],
+            "source_types": [
+              "lease_note",
+              "material_lease_contract",
+              "commitment_note"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "contract",
+              "accounting_boundary",
+              "commencement",
+              "lease_end",
+              "lease_type",
+              "undiscounted_payments",
+              "lease_liability",
+              "uncommenced_commitments",
+              "construction_cost_pass_through",
+              "lessee_owned_equipment",
+              "renewal",
+              "restoration",
+              "customer_contract_end",
+              "debt_maturity"
+            ],
+            "scope_fields": [
+              "entity",
+              "contract",
+              "as_of",
+              "accounting_boundary"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "已确认租赁负债、未折现现金付款、未开始租赁及另行设备承诺分开；租金费用与负债偿付避免重复；与客户合同、债期、经济寿命逐期对齐。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "未开始租约不是当前经营容量；不同折现/范围的承诺金额不可直接相加为债务。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         }
       ]
     },
@@ -1113,7 +1944,8 @@
       "model_inputs": [
         "it_refresh_years",
         "horizon_years",
-        "decommission_pct"
+        "decommission_pct",
+        "it_depreciation_years"
       ],
       "fetch": [
         {
@@ -1127,7 +1959,7 @@
         {
           "kind": "data",
           "slug": "useful_life.notes",
-          "what": "固定资产附注与估计变更",
+          "what": "会计折旧寿命、变更影响、经济寿命、实际更换与减值触发的独立口径",
           "sources": [
             "超大规模云、REIT、新兴云"
           ],
@@ -1153,9 +1985,65 @@
           "sensitivity_rank": 7,
           "notes": "",
           "model_inputs": [
-            "it_refresh_years",
+            "it_depreciation_years",
             "horizon_years"
-          ]
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M11-Q09",
+              "M11-Q14",
+              "M13-Q03"
+            ],
+            "source_types": [
+              "pp_and_e_note",
+              "accounting_estimate_change",
+              "impairment_note"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "hardware",
+              "accounting_boundary",
+              "depreciation_years",
+              "estimate_change_date",
+              "earnings_effect",
+              "economic_life",
+              "replacement_date",
+              "residual_value",
+              "impairment_trigger",
+              "asset_retirement"
+            ],
+            "scope_fields": [
+              "entity",
+              "hardware",
+              "period_start",
+              "period_end",
+              "accounting_boundary"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "折旧年限与估计变更影响按资产分类；实际更新和经济寿命需独立证据；减值方法、触发和退出成本分别保存。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "会计折旧年限不证明实际更换周期、可续租寿命或二手残值；无重大减值不代表无经济贬值。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         },
         {
           "kind": "data",
@@ -1277,7 +2165,67 @@
           "notes": "代际价格曲线与残值",
           "model_inputs": [
             "refresh_cost_factor"
-          ]
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M13-Q06",
+              "M11-Q09",
+              "M13-Q03"
+            ],
+            "source_types": [
+              "market_quote",
+              "completed_transaction",
+              "reseller_offer"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "hardware",
+              "configuration",
+              "country",
+              "quote_or_transaction",
+              "new_or_used",
+              "condition",
+              "warranty",
+              "gpu_count",
+              "server_network_cooling_included",
+              "tax",
+              "shipping",
+              "quantity",
+              "lead_time",
+              "fees"
+            ],
+            "scope_fields": [
+              "hardware",
+              "configuration",
+              "country",
+              "as_of",
+              "currency"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "单卡、整机、整柜与租用服务不可混比；分别保留成色/保修/卡数/配套/税运/数量与挂牌或成交。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "挂牌不证明成交/库存，二手报价不自动等于项目到期可回收残值。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         }
       ]
     },
@@ -1745,7 +2693,8 @@
       "model_inputs": [
         "tax",
         "it_refresh_years",
-        "property_tax_rate"
+        "property_tax_rate",
+        "loss_tax_shield"
       ],
       "fetch": [
         {
@@ -1800,7 +2749,8 @@
           "notes": "动产税与用电税已抓到，待进入模型规则段",
           "model_inputs": [
             "property_tax_rate",
-            "tax"
+            "tax",
+            "loss_tax_shield"
           ]
         }
       ]
@@ -1813,7 +2763,18 @@
       "unit": "%",
       "formula": "资本成本率、债务比例、利率决定盈亏平衡价、杠杆 IRR 与 DSCR",
       "questions": [
-        "M11-Q13"
+        "M11-Q13",
+        "M03-Q03",
+        "M13-Q03",
+        "M11-Q12",
+        "M11-Q02",
+        "M03-Q04",
+        "M11-Q05",
+        "M11-Q06",
+        "M11-Q07",
+        "M03-Q01",
+        "M11-Q03",
+        "M13-Q09"
       ],
       "model_inputs": [
         "wacc",
@@ -1824,7 +2785,9 @@
         "residual_share",
         "tenant_credit",
         "target_roic",
-        "roic_basis"
+        "roic_basis",
+        "compute_debt_years",
+        "shell_debt_years"
       ],
       "fetch": [
         {
@@ -1840,7 +2803,7 @@
         {
           "kind": "data",
           "slug": "debt.terms",
-          "what": "债务附注、信贷协议附件、ABS 说明书",
+          "what": "逐笔债务、供应商融资与偿债时点、可用授信、受限现金及现金分配条款",
           "sources": [
             "REIT、新兴云、证券化发行人"
           ],
@@ -1866,14 +2829,84 @@
           ],
           "next_due": "2026-11-15",
           "sensitivity_rank": 8,
-          "notes": "",
+          "notes": "票面、有效与现金利息/资本化利息分开；授信总额不等于可提款额度；按债期检验设备寿命、租约和合同到期错配。",
           "model_inputs": [
             "wacc",
             "shell_ltc",
             "debt_rate",
             "compute_ltc",
-            "compute_debt_rate"
-          ]
+            "compute_debt_rate",
+            "compute_debt_years",
+            "shell_debt_years"
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M11-Q03",
+              "M11-Q07",
+              "M11-Q10",
+              "M11-Q13"
+            ],
+            "source_types": [
+              "debt_note",
+              "credit_agreement",
+              "oem_financing_note",
+              "restricted_cash_note"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "contract",
+              "principal_basis",
+              "draw_date",
+              "maturity",
+              "amortization_schedule",
+              "coupon",
+              "effective_rate",
+              "floating_base",
+              "spread",
+              "cash_interest",
+              "capitalized_interest",
+              "fees",
+              "undrawn_commitment",
+              "letters_of_credit",
+              "restricted_cash",
+              "cash_waterfall",
+              "covenants",
+              "collateral",
+              "guarantee",
+              "hedge"
+            ],
+            "scope_fields": [
+              "entity",
+              "contract",
+              "period_start",
+              "period_end",
+              "principal_basis"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "按融资工具记录提款条件、本金摊还、利率/费用、抵押/担保和分配约束；现金、应计及资本化利息分别列示，与财报合计核对。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "低票面利率不等于低全成本；总现金/总授信不等于可分配资金；GPU抵押不保证无追索或可再融资。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         },
         {
           "kind": "data",
@@ -1923,7 +2956,65 @@
           "notes": "",
           "model_inputs": [
             "wacc"
-          ]
+          ],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M11-Q03",
+              "M11-Q07",
+              "M11-Q13",
+              "M13-Q03"
+            ],
+            "source_types": [
+              "rating_presale",
+              "rating_methodology",
+              "analyst_model"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "contract",
+              "accounting_boundary",
+              "base_case",
+              "stress_case",
+              "dscr_definition",
+              "cash_waterfall",
+              "gpu_price_path",
+              "residual_assumption",
+              "customer_default",
+              "refinancing_assumption",
+              "forecast_horizon"
+            ],
+            "scope_fields": [
+              "entity",
+              "contract",
+              "period_start",
+              "period_end",
+              "accounting_boundary"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "模型预测、评级压力与公司实际分别记录；DSCR分子/分母、回本与IRR的CapEx/预付/利息/税/残值依赖可复算。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "研究/评级假设不因晚于财报就覆盖实绩，模型预测不自动填参。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
         },
         {
           "kind": "report",
@@ -1953,6 +3044,414 @@
             "residual_share",
             "target_roic"
           ]
+        },
+        {
+          "kind": "data",
+          "slug": "cashflow.capex",
+          "what": "现金CapEx、资产增加、CIP、应付设备及OEM融资的三表桥",
+          "sources": [
+            "cash_flow_statement",
+            "pp_and_e_note",
+            "noncash_investing_disclosure",
+            "oem_financing_note"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 1,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave及可比运营商三表、PP&E/OEM/应付采购附注"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "现金CapEx与非现金设备新增/负债不可直接相加；现金CapEx低不代表未形成未来支付义务。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M03-Q03",
+              "M11-Q13",
+              "M13-Q03"
+            ],
+            "source_types": [
+              "cash_flow_statement",
+              "pp_and_e_note",
+              "noncash_investing_disclosure",
+              "oem_financing_note"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "accounting_boundary",
+              "cash_ppe",
+              "accrual_additions",
+              "noncash_additions",
+              "cip_open",
+              "cip_close",
+              "equipment_payable_open",
+              "equipment_payable_close",
+              "oem_financing",
+              "capitalized_interest",
+              "capitalized_software",
+              "maintenance_or_growth"
+            ],
+            "scope_fields": [
+              "entity",
+              "period_start",
+              "period_end",
+              "currency",
+              "accounting_boundary"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "用期初、当期新增、支付/融资结算、期末滚动桥解释现金购置与资产增加；识别融资租赁、并购、内部软件和利息，未知拆分留空。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "现金CapEx与非现金设备新增/负债不可直接相加；现金CapEx低不代表未形成未来支付义务。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "data",
+          "slug": "performance.bridge",
+          "what": "毛利、Adjusted EBITDA、EBIT、净利、CFO与项目/股东回本的同口径桥",
+          "sources": [
+            "income_statement",
+            "cash_flow_statement",
+            "non_gaap_reconciliation",
+            "unit_economics_definition"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 3,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave S-1/最终招股书/10-K及可比运营商利润与现金披露"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "表观毛利率、EBITDA或扣预付款的设备回收期不能替代全项目现金、股东IRR或已实现盈利。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M11-Q12",
+              "M13-Q03",
+              "M11-Q02"
+            ],
+            "source_types": [
+              "income_statement",
+              "cash_flow_statement",
+              "non_gaap_reconciliation",
+              "unit_economics_definition"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "accounting_boundary",
+              "gross_profit",
+              "gpu_depreciation_classification",
+              "adjusted_ebitda",
+              "ebit",
+              "net_income",
+              "cfo",
+              "cash_capex",
+              "stock_compensation",
+              "capitalized_costs",
+              "payback_definition",
+              "prepayment_treatment",
+              "excluded_cip",
+              "equity_dilution"
+            ],
+            "scope_fields": [
+              "entity",
+              "period_start",
+              "period_end",
+              "currency",
+              "accounting_boundary"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "保留GAAP/非GAAP调节、GPU折旧费用归类及SBC/利息/税；回本记录分母、预付款处理、CIP和债务服务排除项；跨版本逐期对照。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "表观毛利率、EBITDA或扣预付款的设备回收期不能替代全项目现金、股东IRR或已实现盈利。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "data",
+          "slug": "customer.credit",
+          "what": "客户收入/应收/RPO集中度与关联融资的分别口径",
+          "sources": [
+            "customer_concentration_note",
+            "risk_factors",
+            "related_party_note",
+            "material_contract"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 5,
+          "data_class": "observation",
+          "mechanism": "edgar",
+          "team": "fetchfilings",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "CoreWeave集中度、应收及客户/股东合同附注"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "未来合同结构改善不能证明当期收入/应收集中度下降；供应商入股不自动证明循环交易。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M03-Q04",
+              "M11-Q05"
+            ],
+            "source_types": [
+              "customer_concentration_note",
+              "risk_factors",
+              "related_party_note",
+              "material_contract"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "concentration_basis",
+              "customer",
+              "revenue_share",
+              "receivable_share",
+              "rpo_share",
+              "customer_funding",
+              "credit_support",
+              "guarantee",
+              "investment_relationship",
+              "default_exposure"
+            ],
+            "scope_fields": [
+              "entity",
+              "period_start",
+              "period_end",
+              "concentration_basis"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "分别记录已实现收入、期末应收、未来RPO的分母和客户身份；合并客户/关联方、供货投资及资金关系须有原文。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "未来合同结构改善不能证明当期收入/应收集中度下降；供应商入股不自动证明循环交易。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "data",
+          "slug": "fx.observation",
+          "what": "收入、采购、运营与偿债币种及官方汇率/套保基准",
+          "sources": [
+            "central_bank_fx_release",
+            "official_market_rate"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 3,
+          "data_class": "observation",
+          "mechanism": "api",
+          "team": "fetchstat",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "马来西亚国家银行MYR/USD及适用官方统计"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "官方即期不证明项目可执行远期价、套保成本或税务资格。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M11-Q06",
+              "M11-Q07"
+            ],
+            "source_types": [
+              "central_bank_fx_release",
+              "official_market_rate"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "country",
+              "quote_convention",
+              "base_currency",
+              "quote_currency",
+              "fx_rate",
+              "effective_date",
+              "hedging_basis"
+            ],
+            "scope_fields": [
+              "entity",
+              "country",
+              "currency",
+              "as_of",
+              "quote_convention"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "逐币种原值及汇率方向、采样日、付款/收入期间分开；收入和成本的汇兑转换保留各自时点，套保另有真实合同。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "官方即期不证明项目可执行远期价、套保成本或税务资格。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          }
+        },
+        {
+          "kind": "news",
+          "slug": "finance_risk.news",
+          "what": "融资、合同、延误、退款、故障、资产退出与税费变化的新闻线索",
+          "sources": [
+            "company_news",
+            "industry_news"
+          ],
+          "cadence": "按报告期或事件；执行仍服从现行来源准入",
+          "variable_class": 5,
+          "data_class": "material",
+          "mechanism": "rss",
+          "team": "inews",
+          "series": [],
+          "planned_series": [],
+          "instances": [
+            "inews既有数据中心feed；事件卡回到披露/原合同/原始报告"
+          ],
+          "next_due": "2026-11-15",
+          "sensitivity_rank": 2,
+          "notes": "新闻标签仅lead，不证明财务事实、正式交付、合同履约或财务参数。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。",
+          "model_inputs": [],
+          "collection_contract": {
+            "version": 1,
+            "question_ids": [
+              "M03-Q01",
+              "M03-Q04",
+              "M11-Q03",
+              "M11-Q13",
+              "M13-Q03",
+              "M13-Q09"
+            ],
+            "source_types": [
+              "company_news",
+              "industry_news"
+            ],
+            "fields": [
+              "source_sha256",
+              "locator",
+              "context",
+              "entity",
+              "metric_definition",
+              "period_start",
+              "period_end",
+              "as_of",
+              "currency",
+              "unit",
+              "denominator",
+              "value_type",
+              "reported_or_derived",
+              "derivation",
+              "dependencies",
+              "missing_fields",
+              "event_type",
+              "event_id",
+              "event_date",
+              "origin_pointer",
+              "event_objects"
+            ],
+            "scope_fields": [
+              "entity",
+              "as_of",
+              "event_type"
+            ],
+            "value_types": [
+              "actual",
+              "forecast",
+              "assumption",
+              "unknown"
+            ],
+            "acceptance": "仅登记事件及原始出处指针；发布时间、事件时间及推测影响分开，按来源机制转给现有对应队。 原文未披露留 missing_fields；原件SHA、页/表/脚注或原生单元格及相邻上下文必须可复核；实际、预测、假设及原报/派生分开，派生值列公式和各输入来源/定位/期间，不混加不同口径。",
+            "does_not_prove": "新闻标签仅lead，不证明财务事实、正式交付、合同履约或财务参数。 交付仅补证据缺口；不代表新来源获准、调度启用、全文已读、正式采用、闭题或模型参数已验证。"
+          },
+          "event_types": [
+            "financing",
+            "lease_contract",
+            "project_milestone",
+            "lead_time_supply",
+            "operations_incident",
+            "tax_regulation",
+            "product_price_change"
+          ],
+          "event_object_ids": []
         }
       ]
     },
@@ -1980,7 +3479,8 @@
         "construction_years",
         "gate",
         "gate_wait_years",
-        "permit_months"
+        "permit_months",
+        "permit_timing"
       ],
       "fetch": [
         {
@@ -2075,10 +3575,12 @@
           "sensitivity_rank": 3,
           "notes": "审批期进 permit_months；中国 3–6 个月可与施工重叠，美国 12–13 个月不能",
           "model_inputs": [
-            "permit_months"
+            "permit_months",
+            "permit_timing"
           ]
         }
       ]
     }
-  ]
+  ],
+  "schedule_updated": "2026-09-28"
 }

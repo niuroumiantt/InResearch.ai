@@ -16,16 +16,41 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  await page.getByRole('button',{name:'校准 · 摩根士丹利 1GW GB300 出租'}).click();
  assert.equal(await page.locator('#kpi-compute strong').textContent(),'30.9%');
  assert.ok((await page.locator('#kpi-compute .sub').textContent()).includes('$3.57/h'));
- assert.ok((await page.locator('#waterfall-note').textContent()).includes('ROIC 30.9%'));
+ assert.ok((await page.locator('#waterfall-note').textContent()).includes('ROIC 30.9%'));assert.doesNotMatch(await page.locator('#waterfall-note').textContent(),/\$[0-9.MB,]+ 付费 GPU 小时/);
  assert.ok((await page.locator('#capex-stack svg rect').count())>=3);assert.equal(await page.locator('#ledger-table tbody tr').count(),4);
+ // Independent accounting and loan terms affect their own outputs, without silently changing replacement.
+ assert.match(await page.locator('#kpi-compute .sub').textContent(),/简化税后资产期 IRR/);
+ await page.locator('#input-it_depreciation_years').evaluate(el=>el.closest('details').open=true);
+ await page.locator('#input-it_depreciation_years').fill('2');
+ assert.equal(await page.locator('#input-it_refresh_years').inputValue(),'5');
+ assert.equal(await page.locator('#input-compute_debt_years').inputValue(),'5');
+ assert.match(await page.locator('#waterfall-note').textContent(),/IT会计折旧 2 年，实际更新 5 年/);
+ assert.match(await page.locator('#waterfall-note').textContent(),/亏损不产生当期税收利益/);
+ await page.locator('#input-loss_tax_shield').evaluate(el=>el.closest('details').open=true);
+ await page.locator('#input-loss_tax_shield').selectOption('usable');
+ assert.match(await page.locator('#waterfall-note').textContent(),/显式采用当期可用亏损税盾情景/);
+ await page.getByRole('button',{name:'校准 · 摩根士丹利 1GW GB300 出租'}).click();
+ await page.locator('#input-compute_ltc').evaluate(el=>el.closest('details').open=true);
+ await page.locator('#input-compute_ltc').fill('60');
+ const oldROIC=await page.locator('#kpi-compute strong').textContent();
+ await page.locator('#input-compute_debt_years').evaluate(el=>el.closest('details').open=true);
+ await page.locator('#input-compute_debt_years').fill('8');
+ assert.equal(await page.locator('#kpi-compute strong').textContent(),oldROIC);
+ assert.equal(await page.locator('#input-it_depreciation_years').inputValue(),'5');
+ assert.equal(await page.locator('#input-it_refresh_years').inputValue(),'5');
+ const computeRow=await page.locator('#ledger-table tbody tr').nth(2).textContent();
+ assert.match(computeRow,/摊还8年/);assert.match(computeRow,/退出偿还本金 \$/);
+ await page.getByRole('button',{name:'校准 · 摩根士丹利 1GW GB300 出租'}).click();
  // Denominator switch: Goldman's average annual capex doubles the ROIC of the same year
- await page.locator('#model-inputs details[data-group=actor] summary').click();await page.locator('#input-roic_basis').selectOption('avg_annual_capex');assert.equal(await page.locator('#kpi-compute strong').textContent(),'61.7%');
+ await page.locator('#input-roic_basis').evaluate(el=>el.closest('details').open=true);await page.locator('#input-roic_basis').selectOption('avg_annual_capex');assert.equal(await page.locator('#kpi-compute strong').textContent(),'61.7%');
  assert.ok((await page.locator('#kpi-compute small').textContent()).includes('平均年资本开支'));
  // Model company on rented compute and the landlord ledger stay on the same input table
  await page.getByRole('button',{name:'模型 API · 租用算力'}).click();assert.match(await page.locator('#kpi-model strong').textContent(),/^\d+\.\d%$/);
  await page.getByRole('button',{name:'带电壳三净租约（矿企转型）'}).click();assert.match(await page.locator('#kpi-shell strong').textContent(),/^\d+\.\d%$/);
+ assert.match(await page.locator('#split').textContent(),/内部算力（并入模型方）.*不另计利润/);assert.match(await page.locator('#split').textContent(),/不能把四种指标相加/);
  assert.ok((await page.locator('#kpi-shell .sub').textContent()).includes('DSCR'));
- if(process.env.UI_QA_DIR){fs.mkdirSync(process.env.UI_QA_DIR,{recursive:true});await page.screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-ledgers-desktop.png'),fullPage:true});}
+ if(process.env.UI_QA_DIR){fs.mkdirSync(process.env.UI_QA_DIR,{recursive:true});await page.screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-ledgers-desktop.png'),fullPage:true});await page.locator('#view-ledgers').screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-ledgers-result-desktop.png')});}
  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ if(process.env.UI_QA_DIR)await page.locator('#view-ledgers').screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-ledgers-result-mobile.png')});
  assert.deepEqual(errors,[]);console.log('PASS ledger four-ledger view: calibration anchors, MS 31%, denominator switch, model and shell presets, mobile');
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exit(1)});

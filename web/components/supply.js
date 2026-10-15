@@ -199,7 +199,7 @@
   function selectedRequest(){
     const target=data?.target_registry?.records.find(t=>t.id===$('demand-target').value);
     const request=target?.request?.requirements?.find(r=>r.id===$('requirement').value);
-    return request || (target&&!target.request?.requirement_required?{source_team:target.team,host:target.host,team_state:target.team_state,question_ids:target.request?.question_ids||[],scope_fields:[]}:null);
+    return request || (target&&!target.request?.requirement_required?{source_team:target.team,host:target.host,team_state:target.team_state,question_ids:target.request?.question_ids||[],scope_fields:target.request?.collection_contract?.scope_fields||[],acceptance:target.request?.collection_contract?.acceptance}:null);
   }
   function bindRequirement(){
     const r=selectedRequest(), old=$('provider').value, question=$('question').value;

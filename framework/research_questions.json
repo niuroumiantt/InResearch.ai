@@ -1,6 +1,6 @@
 {
-  "version": "3.0.0",
-  "updated": "2026-10-10",
+  "version": "3.1.0",
+  "updated": "2026-10-16",
   "records": [
     {
       "id": "M01-Q01",
@@ -326,17 +326,21 @@
     },
     {
       "id": "M03-Q01",
-      "text": "大额算力合同（>$1B 或 >100MW）的清单、期限、金额、交付节奏？",
+      "text": "大额算力合同（>$1B 或 >100MW）的期限、金额与交付节奏如何兑现？分别跟踪TCV、backlog/RPO定义、预付款/退款/抵扣、验收与计费、收入和现金，不把take-or-pay当无条件回款。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 1,
@@ -349,17 +353,21 @@
     },
     {
       "id": "M03-Q02",
-      "text": "AI 实验室的算力需求预测 vs 已锁定容量的缺口？",
+      "text": "AI实验室的需求预测、已锁定容量与实际可收费容量缺口多大？合同/在运/接电/调试/验收容量及IT/设施功率口径分别记录，预测与实绩分开。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 2,
@@ -372,17 +380,21 @@
     },
     {
       "id": "M03-Q03",
-      "text": "超大规模厂 Capex 指引与实际执行的差异（每季度财报核验）？",
+      "text": "超大规模厂与新兴云的CapEx指引、现金购置、应计新增、设备应付/OEM融资与CIP如何按季度桥接？现金CapEx与非现金新增不能直接相加，维护/增长拆分未披露须留空。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 3,
@@ -395,17 +407,21 @@
     },
     {
       "id": "M03-Q04",
-      "text": "需求方集中度风险：前五大租户占比？循环交易（供应商入股客户）的规模？",
+      "text": "客户收入、应收与RPO集中度分别多高？客户信用、预付款/担保、供应商或投资方关联关系如何传导风险？未来合同分散预测与实际收入集中度分开。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 4,
@@ -1660,17 +1676,21 @@
     },
     {
       "id": "M11-Q02",
-      "text": "公开市场 comps：EV/MW、EV/EBITDA、增速溢价的横截面与时间序列？",
+      "text": "公开市场comps：EV/MW、EV/EBITDA与增速溢价在同口径下如何比较？GPU折旧归类、非GAAP调节、租赁债务/租金及已在运或合同MW分母分别对齐。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 2,
@@ -1683,17 +1703,21 @@
     },
     {
       "id": "M11-Q03",
-      "text": "新型融资工具（GPU 抵押贷、算力 ABS、供应商融资）的规模、利差、违约信号？",
+      "text": "GPU抵押贷、算力ABS和供应商融资的规模、提款条件、全成本与违约信号？按工具保留票面/有效/现金利息、浮息/费用/资本化、抵押/追索、约束与现金waterfall。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 3,
@@ -1729,17 +1753,21 @@
     },
     {
       "id": "M11-Q05",
-      "text": "循环交易（芯片商投资客户、云厂预付）在资金链中的占比与风险传导路径？",
+      "text": "芯片商投资客户、云厂预付与可退存款在资金链中的规模及风险传导？按合同区分收入预付、实质债务、股权/客户激励和关联交易，不因名称或供应商入股直接认定循环交易。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 5,
@@ -1775,17 +1803,21 @@
     },
     {
       "id": "M11-Q07",
-      "text": "融资结构与资本成本",
+      "text": "融资结构与资本成本如何影响可分配现金？逐笔本金摊还/到期、授信可用额/保函、受限现金、分配约束、浮息/套保与币种错配如何与经营回款对齐？",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 7,
@@ -1821,17 +1853,21 @@
     },
     {
       "id": "M11-Q09",
-      "text": "折旧年限与残值假设",
+      "text": "会计折旧寿命、实际更新周期、可收费经济寿命与退出残值分别是什么？代际降价、续租/转用、减值、拆除恢复和配套改造按资产批次验证。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 9,
@@ -1844,17 +1880,21 @@
     },
     {
       "id": "M11-Q10",
-      "text": "GPU 抵押融资",
+      "text": "GPU抵押融资的资产与客户合同支持条件、抵押折扣、追索/担保、提款和摊还安排？设备经济寿命、客户合同、贷款到期与长期机房租约错配如何形成再融资风险？",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 10,
@@ -2051,17 +2091,21 @@
     },
     {
       "id": "M13-Q01",
-      "text": "训练/推理集群的实际利用率区间（公开研究 + 渠道信息）？",
+      "text": "训练/推理集群的GPU计费小时、承诺覆盖、物理忙碌与MFU各是多少？按可用小时/理论算力等原始分母、工作负载和爬坡/稳态分开；机柜上架率和在运/合同电力比不作GPU付费率。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 1,
@@ -2097,17 +2141,21 @@
     },
     {
       "id": "M13-Q03",
-      "text": "租价与硬件折旧的隐含回本周期——Neocloud 商业模式是否自洽？",
+      "text": "Neocloud的设备回收、项目现金回本与股东IRR是否自洽？复核预付款是否扣初始投入及抵扣后续收款、CIP/利息/税/更新/残值排除项，区分预期与实际、EBITDA回收与股东现金。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 3,
@@ -2143,17 +2191,21 @@
     },
     {
       "id": "M13-Q05",
-      "text": "调度编排层（K8s 生态、Slurm、专有栈）对利用率提升的量化贡献？",
+      "text": "K8s、Slurm或专有调度栈对物理忙碌、MFU、可用性和GPU计费的量化贡献各是多少？同工作负载/软硬件版本及测量窗口比较，禁止用单项提升代替全部经济改善。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 5,
@@ -2166,17 +2218,21 @@
     },
     {
       "id": "M13-Q06",
-      "text": "二手 GPU 市场价格与流量——泡沫退潮的最早显性信号之一？",
+      "text": "二手GPU/整机/整柜成交价格、数量及成色保修如何随代际变化？挂牌与成交、税运/网络液冷配套分开；项目到期可实现残值和迁移/拆除成本另验。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 6,
@@ -2189,17 +2245,21 @@
     },
     {
       "id": "M13-Q07",
-      "text": "中国智算中心的真实利用率",
+      "text": "中国智算中心机柜上架、容量入驻、GPU计费、GPU物理忙碌与MFU的真实口径各是什么？不以机柜或电力容量比例替代GPU计费率。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 7,
@@ -2212,17 +2272,21 @@
     },
     {
       "id": "M13-Q08",
-      "text": "MFU 实测而非标称",
+      "text": "工作负载MFU实测是多少？保留精度/稀疏、理论峰值、有效计算分子、硬件/软件版本及测量窗口；标称吞吐、忙碌率与付费利用率分开。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 8,
@@ -2235,17 +2299,21 @@
     },
     {
       "id": "M13-Q09",
-      "text": "集群故障率与 checkpoint 开销",
+      "text": "集群故障、checkpoint与供电/网络/液冷约束如何损失有效计算和收入？实测不可用时长、SLA credits、退款/终止及验收/计费延后分别记录。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 9,
@@ -2258,17 +2326,21 @@
     },
     {
       "id": "M13-Q10",
-      "text": "GPU 利用率的月度时序——现有证据全是截面值，无法判断 <30% 是稳态还是爬坡期，而这直接决定「中国智算过剩」成不成立",
+      "text": "GPU计费、物理忙碌与机柜/容量利用率各自的月度时序怎样变化？按同对象/分母识别爬坡或稳态，unknown与预测保留，避免用截面<30%推定全行业长期过剩。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围和可复查推导；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
-        "counterevidence"
+        "counterevidence",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "legacy-module",
       "legacy_index": 10,
@@ -9647,18 +9719,22 @@
     },
     {
       "id": "M11-Q12",
-      "text": "同一 GW 级 AI 数据中心的利润在芯片、壳层、算力出租、模型四层之间如何分配？租金或芯片价格变动时利润在层间怎样转移？",
+      "text": "同一AI数据中心在芯片、壳层、算力出租、模型层之间怎样分配利润与现金？毛利、GPU折旧、Adjusted EBITDA、EBIT、净利、CFO和股东回报按同期间/范围调节，避免将公司口径直接当项目净利。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
         "counterevidence",
-        "reproducible_calculation"
+        "reproducible_calculation",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "study-feedback",
       "study": "docs/research/2026-09-27/datacenter-profit/",
@@ -9673,18 +9749,22 @@
     },
     {
       "id": "M11-Q13",
-      "text": "超大规模厂商未开始租赁承诺（微软 3,291 亿美元、Meta 2,790 亿美元等）与表外算力/电力采购承诺如何计入资本成本与 ROIC？评级机构的调整后债务口径与公司口径差多少？",
+      "text": "已确认租赁、未开始租赁、设备/电力承诺与债务如何计入资本成本、流动性和ROIC？按折现/未折现、是否起租及付款期区分，租金费用与租赁偿付避免双算，并检验客户/租约/债期错配。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
         "counterevidence",
-        "reproducible_calculation"
+        "reproducible_calculation",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "study-feedback",
       "study": "docs/research/2026-09-27/datacenter-profit/",
@@ -9697,18 +9777,22 @@
     },
     {
       "id": "M11-Q14",
-      "text": "服务器折旧年限差异（亚马逊 5 年、Meta 5.5 年、Alphabet/甲骨文 6 年、微软 2–6 年）对每 GW NOPAT 与 ROIC 的影响能否量化？年限延长带来的利润有多少是会计而非现金？",
+      "text": "服务器与设施折旧年限及其变更对NOPAT/ROIC的影响多少？逐期保留会计估计、费用归类与利润影响，跟实际更新、可收费寿命和现金支出分开。",
       "object_ids": [
         "root"
       ],
       "status": "open",
-      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "acceptance": "须有原件定位及表头/脚注上下文、对象/范围、报告期间与信息时点、单位/币种/分母；actual/forecast/assumption与原报/派生分开，推导列公式及各输入出处，冲突/未披露保留。仅经既有C3采用审核的回答才能关闭；本次细化不关闭问题或改写旧证据。",
       "evidence_requirements": [
         "primary_source",
         "locator",
         "scope",
         "counterevidence",
-        "reproducible_calculation"
+        "reproducible_calculation",
+        "period",
+        "unit_currency_denominator",
+        "actual_forecast_assumption",
+        "derivation_dependencies"
       ],
       "origin": "study-feedback",
       "study": "docs/research/2026-09-27/datacenter-profit/",

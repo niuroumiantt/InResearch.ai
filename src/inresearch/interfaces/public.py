@@ -71,7 +71,7 @@ opex_escalation decommission_pct wacc business_model price_gpu_hour price_colo_k
 btm_capex_per_mw tax lease_term escalator noi_margin shell_ltc debt_rate residual_share chip_gross_margin compute_source
 rent_price tokens_per_gpu_sec price_per_m_tokens monetized_share renewal_options renewal_years renewal_probability
 price_change compute_ltc compute_debt_rate capex_basis energy_quota_mw tenancy util_year1 util_year2 price_path gate
-gate_wait_years permit_months bot_term_years bot_service_rate tenant_credit target_roic roic_basis'''.split())
+gate_wait_years permit_months permit_timing it_depreciation_years compute_debt_years shell_debt_years loss_tax_shield bot_term_years bot_service_rate tenant_credit target_roic roic_basis'''.split())
 
 
 def allowed(path, query=''):
