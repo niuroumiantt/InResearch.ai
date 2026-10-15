@@ -119,6 +119,17 @@ const base=process.env.UI_BASE_URL;
   assert.equal(await page.locator('#provider option').nth(1).getAttribute('value'),'fetchspec');
   await page.locator('#execution-mode').selectOption('assisted');
   assert.equal(await page.locator('#execution-mode').inputValue(),'assisted');
+  const financial=original.target_registry.records.find(t=>t.id==='F.capital.cashflow.capex');
+  await page.locator('#demand-target').selectOption(financial.id);
+  assert.equal(await page.locator('[data-scope-field]').count(),financial.request.collection_contract.scope_fields.length);
+  assert.match(await page.locator('#requirement-note').innerText(),/期初.*期末.*定位/);
+  assert.deepEqual(await page.locator('#question option').evaluateAll(options=>options.map(o=>o.value).filter(Boolean)).then(v=>v.sort()),financial.request.question_ids.toSorted());
+  for(const field of financial.request.collection_contract.scope_fields){
+   const input=page.locator(`[data-scope-field="${field}"]`);
+   assert.equal(await input.evaluate(e=>e.required),true,'new financial requests require a scoped collection window');
+   await input.fill('未知，待原件核对');
+   assert.equal(await input.evaluate(e=>e.checkValidity()),true,'unknown remains an explicit gap, not a guessed model value');
+  }
   const mixed=original.target_registry.records.find(t=>t.request.requirements.some(r=>r.model_input==='tokens_per_gpu_sec'));
   const throughput=mixed.request.requirements.find(r=>r.model_input==='tokens_per_gpu_sec');
   await page.locator('#demand-target').selectOption(mixed.id);

@@ -7,6 +7,7 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
 (async()=>{const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL||undefined,headless:true});try{
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'/cost.html');await page.locator('#cost-total').waitFor();await page.waitForFunction(()=>document.getElementById('cost-total').textContent!=='');
+ assert.ok((await page.locator('#cost-line').textContent()).includes('付费GPU小时'));assert.ok((await page.locator('#cost-line').textContent()).includes('未乘MFU'));assert.doesNotMatch(await page.locator('#cost-line').textContent(),/\$[0-9.MB,]+ 付费GPU小时/);
  assert.ok(await page.locator('#view-unit.on').isVisible(),'the retired cost address opens the ledger on the unit-cost view');
  // Our 2026-09-14 baseline reproduces on the unified input table
  await page.getByRole('button',{name:'校准 · 我们的 2026-09-14 全成本基准'}).click();

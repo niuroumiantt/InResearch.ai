@@ -119,8 +119,12 @@ def build(root=ROOT, as_of=None):
                 card_targets.setdefault(c['target_id'], []).append(c)
     price_targets = {r['target_id'] for r in prices if r.get('target_id')}
     hosts = {k: v['host'] for k, v in contract['execution_policy'].items() if isinstance(v, dict) and 'host' in v}
+    explicit_as_of = as_of
     as_of = as_of or max(factors_doc.get('updated', ''), bom.get('schedule_updated', bom.get('updated', '')))
-    base_day = dt.date.fromisoformat(as_of)
+    # Definition edits do not silently reschedule existing collection work.
+    schedule_day = explicit_as_of or max(factors_doc.get('schedule_updated', factors_doc.get('updated', '')),
+                                         bom.get('schedule_updated', bom.get('updated', '')))
+    base_day = dt.date.fromisoformat(schedule_day)
 
     factors = {f['id']: f for f in factors_doc['factors']}
     part_factors, right_factors = {}, {}
@@ -192,6 +196,9 @@ def build(root=ROOT, as_of=None):
             'sensitivity_rank': kw['sensitivity_rank'], 'notes': kw.get('notes', ''), 'curated': kw.get('curated', False),
             'chain': kw.get('chain'), 'chain_order': kw.get('chain_order'), 'stage': kw.get('stage'),
         }
+        for key in ('collection_contract', 'event_types', 'event_object_ids'):
+            if key in kw:
+                out[key] = kw[key]
         return out
 
     targets = []
@@ -202,14 +209,15 @@ def build(root=ROOT, as_of=None):
             slug = entry.get('slug') or entry['kind']
             targets.append(row(
                 id=f"F.{f['id']}.{slug}", variable_class=d['variable_class'], origin='factor', kind=entry['kind'], factor_ids=[f['id']],
-                model_inputs=list(entry.get('model_inputs') or f.get('model_inputs') or []),
+                model_inputs=list(entry['model_inputs'] if 'model_inputs' in entry else f.get('model_inputs') or []),
                 series=list(entry.get('series') or []), planned_series=list(entry.get('planned_series') or []),
                 indicators=list(entry.get('indicators') or []), data_class=d['data_class'],
                 disclosure_type=entry.get('disclosure_type') or entry['what'],
                 publisher_category=entry.get('publisher_category') or '、'.join(entry['sources']),
                 instances=list(entry.get('instances') or entry['sources']), mechanism=d['mechanism'], team=d['team'],
                 calendar=entry.get('calendar') or entry['cadence'], next_due=entry.get('next_due'),
-                sensitivity_rank=entry.get('sensitivity_rank', 3), notes=entry.get('notes', entry['what'])))
+                sensitivity_rank=entry.get('sensitivity_rank', 3), notes=entry.get('notes', entry['what']),
+                **{k: entry[k] for k in ('collection_contract', 'event_types', 'event_object_ids') if k in entry}))
     # 2. part targets: data classes a part has by construction; rows walk each system's chain from upstream
     systems = bom.get('systems', {})
     def sys_rank(p):
@@ -301,7 +309,7 @@ def build(root=ROOT, as_of=None):
         by_status[t['status']] += 1
     teams = sorted({t['team'] for t in targets})
     return {
-        'version': '2.3.0', 'updated': as_of, 'title': '五类变量目标清单',
+        'version': '2.4.0', 'updated': as_of, 'title': '五类变量目标清单',
         'note': ('六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：'
                  '因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；'
                  '每个物理部件按"自己的价格、供应商名单、交期"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；'

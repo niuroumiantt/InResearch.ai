@@ -4930,6 +4930,46 @@
           "source_ref": {
             "path": "assumptions.roic_basis"
           }
+        },
+        "permit_timing": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "审批与门槛等待的顺序/并行关系沿用通用研究情景；未取得本园区同主体/合同/期间依据，不由既有财报候选自动填参",
+          "source_ref": {
+            "path": "assumptions.permit_timing"
+          }
+        },
+        "it_depreciation_years": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "IT会计折旧年限沿用通用研究情景；未取得本园区同主体/合同/期间依据，不由既有财报候选自动填参",
+          "source_ref": {
+            "path": "assumptions.it_depreciation_years"
+          }
+        },
+        "compute_debt_years": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "GPU贷款摊还期沿用通用研究情景；未取得本园区同主体/合同/期间依据，不由既有财报候选自动填参",
+          "source_ref": {
+            "path": "assumptions.compute_debt_years"
+          }
+        },
+        "shell_debt_years": {
+          "kind": "assumption",
+          "actual_state": "unknown",
+          "note": "壳层贷款摊还期沿用通用研究情景；未取得本园区同主体/合同/期间依据，不由既有财报候选自动填参",
+          "source_ref": {
+            "path": "assumptions.shell_debt_years"
+          }
+        },
+        "loss_tax_shield": {
+          "kind": "scenario_choice",
+          "actual_state": "unknown",
+          "note": "当期亏损税盾可用性沿用通用研究情景；未取得本园区同主体/合同/期间依据，不由既有财报候选自动填参",
+          "source_ref": {
+            "path": "assumptions.loss_tax_shield"
+          }
         }
       },
       "energy_review": {

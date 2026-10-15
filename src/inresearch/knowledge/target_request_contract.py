@@ -1,6 +1,15 @@
 """Versioned requests derived from target identities; no collection or adoption."""
 
 COMMON = ['target_id', 'source_url', 'publisher', 'observed_at', 'access_scope', 'missing_fields']
+COLLECTION_FIELDS = {
+    'source_sha256', 'locator', 'context', 'entity', 'metric_definition',
+    'period_start', 'period_end', 'as_of', 'currency', 'unit', 'denominator',
+    'value_type', 'reported_or_derived', 'derivation', 'dependencies', 'missing_fields',
+}
+VALUE_TYPES = ['actual', 'forecast', 'assumption', 'unknown']
+EVENT_TYPES = {'financing', 'lease_contract', 'project_milestone', 'tariff_power_policy',
+               'lead_time_supply', 'onsite_power_grid', 'tax_regulation',
+               'operations_incident', 'transaction_valuation', 'product_price_change'}
 PROFILES = {
     'vendor_spec': {'fields': COMMON + ['product_id', 'configuration', 'source_sha256', 'locator', 'native_parameter', 'value', 'unit', 'condition'],
         'acceptance': '原厂型号与配置可定位；原文参数、单位、脚注与条件保留。没有规格的目录条目只交身份与缺口。',
@@ -28,6 +37,41 @@ def target_node(row):
     return 'root'
 
 
+def validate_collection_contract(row, question_by_id):
+    """A registered collection angle must be specific enough to dispatch and audit.
+
+    Unknown values are delivered as explicit gaps. Registration never certifies a
+    value or enables a source, collector, timer, Reader run or model parameter.
+    """
+    contract = row.get('collection_contract')
+    if contract is not None:
+        if not isinstance(contract, dict) or contract.get('version') != 1:
+            raise ValueError(f"{row['id']}: unsupported collection contract")
+        for key in ('fields', 'scope_fields', 'source_types', 'question_ids'):
+            values = contract.get(key)
+            if not isinstance(values, list) or not values or any(not isinstance(v, str) or not v.strip() for v in values) or len(values) != len(set(values)):
+                raise ValueError(f"{row['id']}: collection contract requires distinct {key}")
+        if not COLLECTION_FIELDS <= set(contract['fields']):
+            raise ValueError(f"{row['id']}: collection contract lacks original locator, financial caliber or derivation fields")
+        if not set(contract['scope_fields']) <= set(contract['fields']):
+            raise ValueError(f"{row['id']}: collection scope fields must be requested fields")
+        if any(qid not in question_by_id for qid in contract['question_ids']):
+            raise ValueError(f"{row['id']}: unregistered collection question")
+        if contract.get('value_types') != VALUE_TYPES:
+            raise ValueError(f"{row['id']}: actual, forecast and assumption must remain distinct")
+        if not contract.get('acceptance') or not contract.get('does_not_prove'):
+            raise ValueError(f"{row['id']}: collection acceptance and limits are required")
+    if 'event_types' in row:
+        events = row['event_types']
+        if row['team'] != 'inews' or not isinstance(events, list) or not events or len(events) != len(set(events)) or not set(events) <= EVENT_TYPES:
+            raise ValueError(f"{row['id']}: event_types must use registered news lead types")
+    if 'event_object_ids' in row:
+        objects = row['event_object_ids']
+        if row['team'] != 'inews' or not isinstance(objects, list) or len(objects) != len(set(objects)) or any(not isinstance(v, str) or not v.startswith(('part:', 'site:')) for v in objects) or (objects and not row.get('event_types')):
+            raise ValueError(f"{row['id']}: event_object_ids must be explicit object IDs")
+    return contract
+
+
 def attach_contracts(targets, questions, review, providers, mechanisms):
     definitions = {r['model_input']: r for r in review.get('requirements', [])}
     if len(definitions) != len(review.get('requirements', [])):
@@ -40,10 +84,14 @@ def attach_contracts(targets, questions, review, providers, mechanisms):
         if not fields or len(fields) != len(set(fields)) or not definition['question_ids']:
             raise ValueError('Parameter demand requires distinct scope fields and reviewed questions')
     question_by_id = {q['id']: q for q in questions}
+    registered_nodes = {target_node(row) for row in targets}
     by_cell = {}
     for question in questions:
         by_cell.setdefault((question.get('node'), question.get('variable_class')), []).append(question['id'])
     for row in targets:
+        collection = validate_collection_contract(row, question_by_id)
+        if set(row.get('event_object_ids', [])) - registered_nodes:
+            raise ValueError(f"{row['id']}: event_object_ids refer to unregistered skeleton objects")
         profile = ('event_lead' if row['team'] == 'inews' else
                    'vendor_operation' if row['team'] == 'fetchspec' and row['id'].endswith('.operation') else
                    'vendor_spec' if row['team'] == 'fetchspec' else
@@ -54,6 +102,10 @@ def attach_contracts(targets, questions, review, providers, mechanisms):
         links = [{'question_id': q['id'], 'relation': rule['relation'], 'reason': rule['reason']}
                  for q in questions if q.get('node') == node and node != 'root'
                  and any(q['id'].endswith('-' + suffix) for suffix in rule.get('suffixes', []))]
+        if collection:
+            links.extend({'question_id': qid, 'relation': 'lead_for' if row['team'] == 'inews' else 'supports',
+                          'reason': collection['acceptance']}
+                         for qid in collection['question_ids'])
         requirements = []
         for key in row.get('feeds_primary', []):
             if key not in definitions:
@@ -85,6 +137,9 @@ def attach_contracts(targets, questions, review, providers, mechanisms):
                 'reviewed_at': review.get('reviewed_at'),
                 'disposition': 'reviewed_support_links' if links else 'question_not_registered' if not any(q.get('node') == node for q in questions) else 'purpose_review_required',
                 'reason': '支持材料或线索的用途已登记；不表示回答、采用或闭题。' if links else '尚无经审核的用途关联；保留缺口，研究端审定问题和用途后再派工。'}}
+        if collection:
+            row['request']['collection_contract'] = collection
+            row['request']['required_fields'] = list(dict.fromkeys(COMMON + collection['fields']))
 
 
 def resolve_request(target, requirement_id=None):
@@ -98,6 +153,9 @@ def resolve_request(target, requirement_id=None):
         return selected
     if requirement_id:
         raise ValueError('参数级需求不属于所选目标行')
+    collection = request.get('collection_contract', {})
     return {'source_team': target['team'], 'host': target['host'],
             'team_state': target.get('team_state'), 'question_ids': request.get('question_ids', []),
-            'scope_fields': []}
+            'scope_fields': collection.get('scope_fields', []),
+            'required_fields': request.get('required_fields', []),
+            'acceptance': collection.get('acceptance')}

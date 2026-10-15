@@ -30,8 +30,8 @@ class ResearchDemandTests(unittest.TestCase):
         self.assertEqual(set(self.requests), set(self.model['input_governance']))
         self.assertEqual(self.requests['tokens_per_gpu_sec'][1]['mechanism'], 'api')
         self.assertEqual(self.requests['water_price'][1]['mechanism'], 'table')
-        self.assertEqual(len(self.requests), 17)
-        self.assertEqual(len({t['id'] for t, r in self.requests.values()}), 9)
+        self.assertEqual(len(self.requests), 23)
+        self.assertEqual(len({t['id'] for t, r in self.requests.values()}), 10)
         for key, (t, r) in self.requests.items():
             self.assertIn(key, t['feeds_primary'])
             self.assertEqual(r['id'], t['id'] + '::' + key)
@@ -39,9 +39,31 @@ class ResearchDemandTests(unittest.TestCase):
             self.assertTrue(r['scope_fields'] and r['question_ids'] and r['acceptance'])
         expected = {'energy_quota_mw': 'fetchstat', 'gate_wait_years': 'fetchstat',
                     'tokens_per_gpu_sec': 'fetchreports', 'refresh_cost_factor': 'fetchquotes',
-                    'bot_service_rate': 'fetchfilings', 'renewal_probability': 'fetchfilings'}
+                    'bot_service_rate': 'fetchfilings', 'renewal_probability': 'fetchfilings',
+                    'it_refresh_years': 'fetchreports', 'compute_debt_years': 'fetchfilings',
+                    'shell_debt_years': 'fetchfilings', 'gpu_utilization': 'fetchfilings',
+                    'util_year1': 'fetchfilings', 'util_year2': 'fetchfilings'}
         for key, team in expected.items():
             self.assertEqual(self.requests[key][1]['source_team'], team)
+
+    def test_new_financial_request_scope_is_required_and_unknown_is_preserved(self):
+        target = next(t for t in self.targets if t['id'] == 'F.capital.cashflow.capex')
+        before = (ROOT/'data/datacenter_model.json').read_bytes()
+        request = target_request_contract.resolve_request(target)
+        self.assertIn('accounting_boundary', request['scope_fields'])
+        with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {'INRESEARCH_RUNTIME_ROOT': tmp}):
+            payload = dict(action='create', operation_id=str(uuid.uuid4()), expected_revision=0,
+                target_id=target['id'], title='原件现金和设备应付桥', scope='同法人同报告期',
+                acceptance='保留未披露拆分，不猜新增或现金支付', question_id='M03-Q03')
+            with self.assertRaisesRegex(ValueError, '字段缺失'):
+                supply.mutate(ROOT, payload, 'reviewer')
+            scope = {f: '未知，待原件确认' for f in request['scope_fields']}
+            supply.mutate(ROOT, dict(payload, scope_values=scope), 'reviewer')
+            demand = supply.read(ROOT)['demands'][0]
+            self.assertEqual(demand['scope_values'], scope)
+            self.assertEqual(demand['registered_acceptance'], request['acceptance'])
+            self.assertFalse(supply.read(ROOT)['tasks'])
+        self.assertEqual((ROOT/'data/datacenter_model.json').read_bytes(), before)
 
     def test_cross_variable_support_and_news_lead_are_explicit_not_answers(self):
         questions = {q['id']: q for q in load('framework/research_questions.json')['records']}

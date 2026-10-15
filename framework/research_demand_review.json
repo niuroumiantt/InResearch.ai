@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "reviewed_at": "2026-10-11",
+  "version": "2.1.0",
+  "reviewed_at": "2026-10-16",
   "status": "adopted_for_demand_definition_not_evidence_adoption",
   "authority": "细化现行目标；不增设采集任务轴，不修改正式证据或模型值。",
   "requirements": [
@@ -447,6 +447,186 @@
       "priority": 2,
       "mechanism": "edgar",
       "profile": "research_material"
+    },
+    {
+      "model_input": "it_refresh_years",
+      "source_team": "fetchreports",
+      "decision_owner": "research",
+      "value_kind": "lifecycle_estimate",
+      "question_ids": [
+        "M11-Q09",
+        "M13-Q03"
+      ],
+      "scope_fields": [
+        "hardware",
+        "configuration",
+        "in_service_date",
+        "replacement_date",
+        "period",
+        "economic_life",
+        "boundary"
+      ],
+      "deliverable": "同一资产批次实际投运/更换和经济寿命资料，不以会计折旧年限填实际更新周期",
+      "acceptance": "会计寿命只支持折旧；实物更换/续租/转用须有原文或明确标记的情景区间，无证据保留assumed。",
+      "affected_outputs": [
+        "refresh_cost",
+        "lifecycle_cashflow",
+        "asset_period_return"
+      ],
+      "priority": 2,
+      "mechanism": "pdf_free",
+      "profile": "research_material"
+    },
+    {
+      "model_input": "compute_debt_years",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "contract_derivation",
+      "question_ids": [
+        "M11-Q07",
+        "M11-Q10"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "period",
+        "principal_basis",
+        "draw_date",
+        "maturity",
+        "amortization_schedule",
+        "boundary"
+      ],
+      "deliverable": "算力设备逐笔融资提款、到期及摊还期，不由设备更新年限推定",
+      "acceptance": "按合同本金基数、日期、摊还和到期核期；分期/OEM/非标准气球还款不自动等价为统一等额本息年期，模型仍为情景。",
+      "affected_outputs": [
+        "compute_debt_service",
+        "compute_equity_return"
+      ],
+      "priority": 2,
+      "mechanism": "edgar",
+      "profile": "observation"
+    },
+    {
+      "model_input": "shell_debt_years",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "contract_derivation",
+      "question_ids": [
+        "M11-Q07",
+        "M11-Q13"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "period",
+        "principal_basis",
+        "draw_date",
+        "maturity",
+        "amortization_schedule",
+        "boundary"
+      ],
+      "deliverable": "壳层逐笔融资提款、到期及摊还期，不由租期或模型期限推定",
+      "acceptance": "壳层债期、客户租约、建设期和资产寿命独立；不同摊还结构保留，不能仅由长期租约证明长期债期。",
+      "affected_outputs": [
+        "shell_debt_service",
+        "landlord_equity_return"
+      ],
+      "priority": 2,
+      "mechanism": "edgar",
+      "profile": "observation"
+    },
+    {
+      "model_input": "gpu_utilization",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "scenario_assumption",
+      "question_ids": [
+        "M13-Q01",
+        "M13-Q10"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "hardware",
+        "period",
+        "phase",
+        "numerator",
+        "denominator",
+        "billing_basis",
+        "boundary"
+      ],
+      "deliverable": "同硬件/合同/期间的已计费GPU小时、可服务小时和分母；区分爬坡与稳态",
+      "acceptance": "计费覆盖、承诺覆盖、机柜上架、在运/合同电力比、物理忙碌和MFU不可互换；原文未披露计费分母时保留assumed，不由行业TCO或公司容量比补值。",
+      "affected_outputs": [
+        "compute_revenue",
+        "compute_return",
+        "lifecycle_cashflow"
+      ],
+      "priority": 1,
+      "mechanism": "edgar",
+      "profile": "observation"
+    },
+    {
+      "model_input": "util_year1",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "scenario_assumption",
+      "question_ids": [
+        "M13-Q01",
+        "M13-Q10"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "hardware",
+        "period",
+        "phase",
+        "numerator",
+        "denominator",
+        "billing_basis",
+        "boundary"
+      ],
+      "deliverable": "同硬件/合同/期间的已计费GPU小时、可服务小时和分母；区分爬坡与稳态",
+      "acceptance": "计费覆盖、承诺覆盖、机柜上架、在运/合同电力比、物理忙碌和MFU不可互换；原文未披露计费分母时保留assumed，不由行业TCO或公司容量比补值。",
+      "affected_outputs": [
+        "compute_revenue",
+        "compute_return",
+        "lifecycle_cashflow"
+      ],
+      "priority": 1,
+      "mechanism": "edgar",
+      "profile": "observation"
+    },
+    {
+      "model_input": "util_year2",
+      "source_team": "fetchfilings",
+      "decision_owner": "research",
+      "value_kind": "scenario_assumption",
+      "question_ids": [
+        "M13-Q01",
+        "M13-Q10"
+      ],
+      "scope_fields": [
+        "entity",
+        "contract",
+        "hardware",
+        "period",
+        "phase",
+        "numerator",
+        "denominator",
+        "billing_basis",
+        "boundary"
+      ],
+      "deliverable": "同硬件/合同/期间的已计费GPU小时、可服务小时和分母；区分爬坡与稳态",
+      "acceptance": "计费覆盖、承诺覆盖、机柜上架、在运/合同电力比、物理忙碌和MFU不可互换；原文未披露计费分母时保留assumed，不由行业TCO或公司容量比补值。",
+      "affected_outputs": [
+        "compute_revenue",
+        "compute_return",
+        "lifecycle_cashflow"
+      ],
+      "priority": 1,
+      "mechanism": "edgar",
+      "profile": "observation"
     }
   ],
   "question_link_rules": {

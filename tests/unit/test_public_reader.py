@@ -47,6 +47,16 @@ class PublicViewTests(unittest.TestCase):
         self.assertEqual(economics.compute(economics.with_preset(view, 'baseline'), view)['roic'],
                          economics.compute(economics.with_preset(spec, 'baseline'), spec)['roic'])
 
+    def test_customer_model_preserves_every_registered_control_without_internal_demands(self):
+        spec = json.loads((ROOT / 'data/datacenter_model.json').read_text())
+        view = public.customer_model(spec)
+        self.assertEqual(set(view['assumptions']), set(spec['assumptions']))
+        self.assertEqual(set(view['inputs']), set(spec['inputs']))
+        for key in ['permit_timing', 'it_depreciation_years', 'compute_debt_years', 'shell_debt_years', 'loss_tax_shield']:
+            self.assertEqual(view['assumptions'][key], spec['assumptions'][key])
+        self.assertNotIn('input_governance', view)
+        self.assertFalse(any('fetch_what' in row for row in view['evidence'].values()))
+
 
 class PublicReaderHTTPTests(unittest.TestCase):
     """Real server on the repository root with login required; the session is faked per role."""

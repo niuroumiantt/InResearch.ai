@@ -26,6 +26,35 @@ class Graph3Tests(unittest.TestCase):
         self.assertEqual(load(graph_mod.QUESTIONS), self.questions, 'framework/research_questions.json is stale; run python3 manage.py graph --refresh')
         self.assertEqual(graph_mod.validate(self.graph, self.bom), [])
 
+    def test_retagging_preserves_reviewed_question_content_version_and_date(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            fixture = Path(tmp)
+            for rel in ('framework/bom.json', 'framework/site_rights.json', 'data/companies.json'):
+                destination = fixture / rel
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_bytes((ROOT / rel).read_bytes())
+            source = load(graph_mod.QUESTIONS)
+            source['version'] = '3.1.0'
+            source['updated'] = '2030-01-01'
+            source['records'][0]['text'] = '已审问题内容，不由骨架重生成覆盖。'
+            source['records'][0]['node'] = 'part:not-current'
+            (fixture / graph_mod.QUESTIONS).write_text(json.dumps(source))
+            _, questions = graph_mod.build(fixture)
+            self.assertEqual(questions['version'], source['version'])
+            self.assertEqual(questions['updated'], source['updated'])
+            self.assertEqual([q['id'] for q in questions['records']], [q['id'] for q in source['records']])
+            self.assertEqual(questions['records'][0]['text'], source['records'][0]['text'])
+            self.assertEqual(questions['records'][0]['status'], source['records'][0]['status'])
+            self.assertNotEqual(questions['records'][0]['node'], 'part:not-current')
+
+    def test_financial_scope_words_do_not_move_reviewed_legacy_query_cells(self):
+        expected = {'M03-Q01': 4, 'M03-Q03': 1, 'M03-Q04': 5, 'M11-Q05': 5,
+                    'M13-Q01': 2, 'M13-Q03': 3, 'M13-Q07': 2, 'M13-Q08': 1, 'M13-Q09': 2}
+        questions = {q['id']: q for q in self.questions['records']}
+        for qid, cell in expected.items():
+            self.assertEqual(questions[qid]['variable_class'], cell, qid)
+
     def test_objects_are_exactly_the_skeleton(self):
         kinds = {}
         for o in self.graph['objects']:

@@ -148,6 +148,10 @@ class SiteModelBridgeTests(unittest.TestCase):
         self.assertEqual(basis['permit_months']['kind'],'assumption')
         self.assertEqual(basis['construction_years']['kind'],'generic_reference')
         self.assertEqual(basis['it_class']['kind'],'scenario_choice')
+        for key in ['permit_timing','it_depreciation_years','compute_debt_years','shell_debt_years','loss_tax_shield']:
+            self.assertEqual(basis[key]['actual_state'],'unknown')
+            self.assertIn(basis[key]['kind'], {'assumption','scenario_choice'})
+            self.assertIn('不由既有财报候选自动填参',basis[key]['note'])
         changed=copy.deepcopy(self.doc);changed['sites'][0]['parameter_basis']['energy_quota_mw']['kind']='regional_reference'
         with self.assertRaisesRegex(ValueError,'parameter_semantics'):bridge.validate(changed,self.projects,self.spec)
         changed=copy.deepcopy(self.doc);changed['sites'][0]['parameter_basis']['pue']['actual_state']='existing_estimate'

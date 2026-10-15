@@ -854,7 +854,8 @@ def build_backflow(root=ROOT, team='fetchspec'):
     empty = {'received_items': 0, 'companies': [], 'last_received_at': None, 'parameter_observations': 0}
     by_target = {row['id']: {'status': row.get('status'), **received.get(row['id'], empty)} for row in rows}
     fields = ('id', 'team', 'part_id', 'site_right_id', 'factor_id', 'variable_class',
-              'stage', 'status', 'disclosure_type', 'publisher_category', 'mechanism', 'calendar', 'notes', 'model_inputs')
+              'stage', 'status', 'disclosure_type', 'publisher_category', 'mechanism', 'calendar', 'notes', 'model_inputs',
+              'collection_contract', 'event_types', 'event_object_ids')
     requirements = [{key: row.get(key) for key in fields} for row in rows]
     return dict(schema_version=1, team=team, generated_at=datetime.now(timezone.utc).isoformat(),
                 targets_sha256=hashlib.sha256(raw).hexdigest(), records=requirements, by_target=by_target,

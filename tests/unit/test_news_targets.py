@@ -39,6 +39,19 @@ class NewsTargetIdsTest(unittest.TestCase):
         plain = json.loads(b.fetch([b.page([b.row()])]).payload_json)['articles'][0]
         self.assertIsNone(plain['target_ids'])
 
+    def test_new_finance_target_is_received_as_a_lead_without_widening_identity(self):
+        b = self.base
+        target = 'F.capital.finance_risk.news'
+        row = b.row()
+        row['target_ids'] = [target]
+        projection = b.fetch([b.page([row])])
+        self.assertEqual(json.loads(projection.payload_json)['articles'][0]['target_ids'], [target])
+        self.assertEqual(acquisition.import_news(b.collector, projection), 1)
+        metadata = json.loads(b.collector.db.execute('SELECT metadata FROM items').fetchone()[0])
+        self.assertEqual(metadata['match_status'], 'candidate')
+        self.assertEqual(metadata['target_ids'], [target])
+        self.assertEqual(feed(b.root)['by_target'], {target: 1})
+
 
 if __name__ == '__main__':
     unittest.main()

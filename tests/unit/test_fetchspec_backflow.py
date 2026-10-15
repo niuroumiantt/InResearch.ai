@@ -70,6 +70,22 @@ class BackflowEndpointTest(unittest.TestCase):
         self.assertFalse(public.allowed('/api/targets/backflow'))
         self.assertIn('/api/targets/backflow', public.INTERN_RESEARCH_API)
 
+    def test_finance_collection_contract_and_news_selectors_survive_online_projection(self):
+        self.publish({})
+        source = json.loads((self.base.root/'framework/tco_targets.json').read_text())
+        original = {r['id']: r for r in source['targets']}
+        for team, target in [('inews', 'F.capital.finance_risk.news'),
+                             ('fetchfilings', 'F.capital.cashflow.capex')]:
+            code, body = self.base.request('GET', '/api/targets/backflow?team=' + team)
+            self.assertEqual((code, body['schema_version']), (200, 1))
+            row = next(r for r in body['records'] if r['id'] == target)
+            self.assertEqual(row['collection_contract'], original[target]['collection_contract'])
+            self.assertNotIn('source_file', row)
+            if team == 'inews':
+                self.assertEqual(row['event_types'], original[target]['event_types'])
+                self.assertEqual(row['event_object_ids'], [])
+            self.assertEqual(body['by_target'][target]['received_items'], 0)
+
 
 class ReceiverObservationsAndProjectionTest(unittest.TestCase):
     def setUp(self):

@@ -12,7 +12,7 @@ spec for its tables:
 
     compute(a, spec)    steady-state operator ledger (one full year at the steady utilization)
     ledgers(a, spec)    the four ledgers: chip vendor, landlord, compute operator, model company
-    lifecycle(a, spec)  yearly cash flow over wait + construction + horizon, PV, levelised and unit costs
+    lifecycle(a, spec)  pre-income-tax unfinanced schedule over permits + wait + construction + horizon
     inverse(a, spec)    given the target ROIC: required revenue, price, utilization or capex ceiling
     grid(a, spec)       capex/GW × price × utilization → ROIC, with the two report anchors
     run(a, spec)        everything above in one dict
@@ -38,9 +38,15 @@ def crf(r, n):
     return 1 / n if r == 0 else r * (1 + r) ** n / ((1 + r) ** n - 1)
 
 
-def irr(flows):
+def irr(flows, times=None):
+    """Annual IRR; optional elapsed-year times retain fractional schedule periods."""
+    times = list(range(len(flows))) if times is None else times
+    if len(times) != len(flows):
+        raise ValueError('IRR cash flows and times must have equal lengths')
+    # A common shift does not change IRR; normalize to avoid extreme exponents during long waits.
+    origin = min(times) if times else 0
     def npv(r):
-        return sum(f / (1 + r) ** t for t, f in enumerate(flows))
+        return sum(f / (1 + r) ** (t - origin) for f, t in zip(flows, times))
     lo, hi = -0.99, 10.0
     if npv(lo) * npv(hi) > 0:
         return None
@@ -51,6 +57,29 @@ def irr(flows):
         else:
             lo = mid
     return (lo + hi) / 2
+
+
+def income_tax(a, taxable):
+    """Simplified current-period tax; losses yield no immediate benefit unless explicitly usable.
+
+    This scenario switch does not model tax-loss carryforwards, eligibility or refund timing.
+    """
+    base = taxable if a['loss_tax_shield'] == 'usable' else max(0.0, taxable)
+    return base * a['tax']
+
+
+def depreciation(basis, life, year):
+    """Straight-line annual charge, capped at the remaining depreciable basis."""
+    return basis * max(0.0, min(1.0, life - year)) / life
+
+
+def debt_payment(balance, rate, payment, active, final_period=False):
+    """Annual service and principal; settle the full contractual balance at maturity."""
+    if not active or balance <= 0:
+        return 0.0, 0.0, balance
+    interest = balance * rate
+    principal = balance if final_period else min(balance, max(0.0, payment - interest))
+    return interest + principal, interest, max(0.0, balance - principal)
 
 
 def apply_table(a, key, spec):
@@ -172,39 +201,44 @@ def compute(a, spec=None):
     land = cap['land'] * mw * 1e6
     invested = it_capex + facility_capex + land
     it_life, shell_life = a['it_refresh_years'], a['horizon_years']
-    dep_it = it_capex / it_life
+    dep_it = it_capex / a['it_depreciation_years']
     dep_shell = facility_capex / shell_life
     revenue, opex = y['revenue'], y['opex']
     ebitda = revenue - opex
     ebit = ebitda - dep_it - dep_shell
-    nopat = ebit * (1 - a['tax'])
+    nopat = ebit - income_tax(a, ebit)
     denominator = _roic_denominator(a, invested)
     capital_charge = it_capex * crf(a['wacc'], it_life) + facility_capex * crf(a['wacc'], shell_life) + land * a['wacc']
     annualised = capital_charge + opex
     paid_hours = y['gpu_hours']
     unit_cost = annualised / paid_hours if paid_hours else None
     cash = nopat + dep_it + dep_shell
-    # project cash flows over one IT life with the price path and the shell's residual, as the 2026-09-27 ledger did
-    residual = facility_capex * max(0.0, 1 - it_life / shell_life) + land
+    # Simplified operating-period cash flows; terminal book values are scenario exit assumptions.
+    residual = (facility_capex * max(0.0, 1 - it_life / shell_life)
+                + it_capex * max(0.0, 1 - it_life / a['it_depreciation_years']) + land)
     debt = it_capex * a['compute_ltc']
-    ads = debt * crf(a['compute_debt_rate'], it_life) if debt else 0.0
+    ads = debt * crf(a['compute_debt_rate'], a['compute_debt_years']) if debt else 0.0
     equity = invested - debt
     flows, lev_flows, revenue_path, balance = [-invested], [-equity], [], debt
+    dep_path, service_path, interest_path = [], [], []
     for t in range(it_life):
         rev_t = revenue * (1 + a['price_change']) ** t
         revenue_path.append(rev_t)
-        ebit_t = rev_t - opex - dep_it - dep_shell
-        flows.append(ebit_t * (1 - a['tax']) + dep_it + dep_shell)
-        interest = balance * a['compute_debt_rate']
-        principal = ads - interest if debt else 0.0
-        balance -= principal
-        lev_flows.append(rev_t - opex - ads - max(0.0, ebit_t - interest) * a['tax'])
+        dep_t = depreciation(it_capex, a['it_depreciation_years'], t) + depreciation(facility_capex, shell_life, t)
+        dep_path.append(dep_t)
+        ebit_t = rev_t - opex - dep_t
+        flows.append(rev_t - opex - income_tax(a, ebit_t))
+        service, interest, balance = debt_payment(balance, a['compute_debt_rate'], ads, t < a['compute_debt_years'],
+                                                  t + 1 >= a['compute_debt_years'])
+        service_path.append(service)
+        interest_path.append(interest)
+        lev_flows.append(rev_t - opex - service - income_tax(a, ebit_t - interest))
     flows[-1] += residual
-    lev_flows[-1] += residual
+    lev_flows[-1] += residual - balance
     price = a['price_gpu_hour'] if a['business_model'] == 'gpu_rental' else None
     per_mw = lambda v: v / mw / 1e6 if mw else None
     return dict(
-        mw=mw, gpus=mw * a['gpus_per_mw'], paid_hours=paid_hours, revenue=revenue, energy=y['energy'],
+        mw=mw, gpus=mw * a['gpus_per_mw'], paid_hours=paid_hours, paid_hours_basis='billed_coverage_not_mfu', revenue=revenue, energy=y['energy'],
         other=y['other'], facility_cost=y['lease'], opex=opex, opex_by=dict((k, y[k]) for k in OPEX_CATS),
         ebitda=ebitda, dep_it=dep_it, dep_shell=dep_shell, ebit=ebit, nopat=nopat,
         it_capex=it_capex, facility_capex=facility_capex, land=land, invested=invested,
@@ -216,6 +250,10 @@ def compute(a, spec=None):
         coverage=revenue / annualised if annualised else None,
         payback=invested / cash if cash > 0 else None, irr=irr(flows), debt=debt, equity=equity, debt_service=ads,
         irr_levered=irr(lev_flows) if equity > 0 else None, revenue_path=revenue_path,
+        asset_cashflows=flows, equity_cashflows=lev_flows, depreciation_path=dep_path,
+        debt_service_path=service_path, interest_path=interest_path, debt_principal_at_exit=balance, debt_principal_basis='outstanding_contractual_principal_not_net_carrying_amount',
+        cashflow_basis='simplified_after_income_tax_asset_and_equity_period', terminal_book_value_assumption=residual,
+        terminal_value_basis='remaining_asset_book_value_plus_land_assumption_not_market_price',
         capex_total=invested, annual_cost=opex + dep_it + dep_shell + (ebit - nopat),
         capex_per_mw=per_mw(invested), revenue_per_mw=per_mw(revenue),
         cost_per_mw=per_mw(opex + dep_it + dep_shell + (ebit - nopat)), nopat_per_mw=per_mw(nopat),
@@ -241,29 +279,32 @@ def ledgers(a, spec=None):
     nois = [r * a['noi_margin'] for r in rents]
     noi = rent * a['noi_margin']
     debt = invested * a['shell_ltc']
-    ads = debt * crf(a['debt_rate'], term) if debt else 0.0
+    ads = debt * crf(a['debt_rate'], a['shell_debt_years']) if debt else 0.0
     equity = invested - debt
     residual = shell_capex * a['residual_share']
     unlev = [-invested] + nois
     unlev[-1] += residual
-    lev = [-equity] + [n - ads for n in nois]
-    lev[-1] += residual
-    dep_s = shell_capex / a['horizon_years']
-    bal, after_tax = debt, [-equity]
-    for n in nois:
-        interest = bal * a['debt_rate']
-        principal = ads - interest if debt else 0.0
-        bal -= principal
-        after_tax.append(n - ads - max(0.0, n - dep_s - interest) * a['tax'])
-    after_tax[-1] += residual
+    lev, after_tax, service_path = [-equity], [-equity], []
+    bal = debt
+    for t, n in enumerate(nois):
+        service, interest, bal = debt_payment(bal, a['debt_rate'], ads, t < a['shell_debt_years'],
+                                              t + 1 >= a['shell_debt_years'])
+        service_path.append(service)
+        dep_t = depreciation(shell_capex, a['horizon_years'], t)
+        lev.append(n - service)
+        after_tax.append(n - service - income_tax(a, n - dep_t - interest))
+    lev[-1] += residual - bal
+    after_tax[-1] += residual - bal
     opt_years = a['renewal_options'] * a['renewal_years']
     opt_rents = [rent * (1 + a['escalator']) ** (term + t) for t in range(opt_years)]
     with_opt = [-invested] + nois + [r * a['noi_margin'] * a['renewal_probability'] for r in opt_rents]
     with_opt[-1] += residual
-    tax_y1 = max(0.0, noi - dep_s - debt * a['debt_rate']) * a['tax']
+    tax_y1 = income_tax(a, noi - shell_capex / a['horizon_years'] - debt * a['debt_rate'])
     shell = dict(invested=invested, rent_y1=rent, noi_y1=noi, yield_on_cost=noi / invested if invested else None,
                  contract_value=sum(rents), contract_value_with_options=sum(rents) + sum(opt_rents),
                  option_years=opt_years, debt=debt, equity=equity, debt_service=ads,
+                 debt_service_path=service_path, debt_principal_at_exit=bal, debt_principal_basis='outstanding_contractual_principal_not_net_carrying_amount',
+                 equity_cashflows_before_tax=lev, equity_cashflows_after_tax=after_tax,
                  dscr=noi / ads if ads else None, cash_on_cash=(noi - ads) / equity if equity > 0 else None,
                  cash_on_cash_after_tax=(noi - ads - tax_y1) / equity if equity > 0 else None, tax_y1=tax_y1,
                  payback=invested / noi if noi > 0 else None, irr_unlevered=irr(unlev),
@@ -278,8 +319,8 @@ def ledgers(a, spec=None):
     else:
         m_cost, m_invested = m_hours * a['rent_price'], 0.0
     m_ebit = m_revenue - m_cost
-    m_nopat = m_ebit * (1 - a['tax'])
-    model = dict(tokens=tokens, revenue=m_revenue, cost=m_cost, ebit=m_ebit, nopat=m_nopat,
+    m_nopat = m_ebit - income_tax(a, m_ebit)
+    model = dict(token_basis='illustrative_billed_hours_times_share_and_throughput_not_measured', tokens=tokens, revenue=m_revenue, cost=m_cost, ebit=m_ebit, nopat=m_nopat,
                  nopat_margin=m_nopat / m_revenue if m_revenue else None,
                  revenue_per_gpu_hour=m_revenue / m_hours if m_hours else None, invested=m_invested,
                  roic=m_nopat / m_invested if m_invested else None)
@@ -295,33 +336,44 @@ def ledgers(a, spec=None):
 
 
 def lifecycle(a, spec=None):
-    """Yearly cash flow: gate wait → construction → operating horizon, discounted and levelised."""
+    """Pre-income-tax, unfinanced cost/revenue schedule; annual settlement with exact stage times.
+
+    Permits are sequential with the gate wait or explicitly parallel with it. Neither mode
+    permits construction before both finish. Waiting-period carrying costs are not assumed.
+    """
     cap = capex(a, spec)
     mw = effective_mw(a)
     it_kw = mw * 1000
     C, W, H = a['construction_years'], a['gate_wait_years'], a['horizon_years']
-    P = W + C
+    permit = a['permit_months'] / 12
+    if a['permit_timing'] not in ('sequential', 'parallel_with_gate'):
+        raise ValueError('Unknown permit timing')
+    prebuild = max(W, permit) if a['permit_timing'] == 'parallel_with_gate' else W + permit
+    lead = prebuild + C
     it_capex = 0.0 if a['business_model'] == 'colo' else a['it_capex_per_kw'] * it_kw
     facility_capex = (cap['facility'] + cap['land']) * mw * 1e6
     years = []
-    for y in range(P + H):
+    waiting = math.ceil(prebuild)
+    def row_at(phase, year, start, end):
         row = {k: 0.0 for k in CATS}
-        row.update(year=y - P + 1, it_kwh=0.0, gpu_hours=0.0, revenue=0.0)
-        if y < P:
-            if y >= W:
-                row['capex_facility'] = facility_capex / C
-            row['opex'] = 0.0
-            years.append(row)
-            continue
-        t = y - P
+        row.update(phase=phase, year=year, start_year=start, end_year=end,
+                   duration_years=end - start, it_kwh=0.0, gpu_hours=0.0, revenue=0.0)
+        return row
+    for t in range(waiting):
+        years.append(row_at('wait', t - waiting - C + 1, t, min(t + 1, prebuild)))
+    for t in range(C):
+        row = row_at('construction', t - C + 1, prebuild + t, prebuild + t + 1)
+        row['capex_facility'] = facility_capex / C
+        years.append(row)
+    for t in range(H):
+        row = row_at('operation', t + 1, lead + t, lead + t + 1)
         ramp = a['ramp_year1'] if t == 0 else a['ramp_year2'] if t == 1 else 1.0
         util = a['util_year1'] if t == 0 else a['util_year2'] if t == 1 else a['gpu_utilization']
-        op = _opyear(a, cap, mw, ramp, util, (1 + a['power_escalation']) ** t, (1 + a['opex_escalation']) ** t,
-                     (1 + a['price_change']) ** t, t < a['bot_term_years'])
-        row.update(op)
+        row.update(_opyear(a, cap, mw, ramp, util, (1 + a['power_escalation']) ** t, (1 + a['opex_escalation']) ** t,
+                          (1 + a['price_change']) ** t, t < a['bot_term_years']))
         if t == 0:
             row['capex_it'] = it_capex
-        elif a['it_refresh_years'] and t % a['it_refresh_years'] == 0 and t < H:
+        elif a['it_refresh_years'] and t % a['it_refresh_years'] == 0:
             row['capex_it'] = it_capex * a['refresh_cost_factor']
         if t == H - 1:
             row['decommission'] = cap['facility'] * mw * 1e6 * a['decommission_pct']
@@ -332,21 +384,25 @@ def lifecycle(a, spec=None):
         r['opex'] = r['total'] - r['capex']
         r['net'] = r['revenue'] - r['total']
     rate = a['wacc']
-    disc = lambda y: 1 / (1 + rate) ** (y + 1)
-    pv = {k: sum(r[k] * disc(i) for i, r in enumerate(years)) for k in CATS}
+    disc = lambda time: 1 / (1 + rate) ** time
+    pv = {k: sum(r[k] * disc(r['end_year']) for r in years) for k in CATS}
     pv_total = sum(pv.values())
     nominal_total = sum(r['total'] for r in years)
-    pv_it_kwh = sum(r['it_kwh'] * disc(i) for i, r in enumerate(years))
-    pv_gpu_hours = sum(r['gpu_hours'] * disc(i) for i, r in enumerate(years))
-    pv_revenue = sum(r['revenue'] * disc(i) for i, r in enumerate(years))
-    annuity = sum(disc(P + t) for t in range(H))
+    pv_it_kwh = sum(r['it_kwh'] * disc(r['end_year']) for r in years)
+    pv_gpu_hours = sum(r['gpu_hours'] * disc(r['end_year']) for r in years)
+    pv_revenue = sum(r['revenue'] * disc(r['end_year']) for r in years)
+    annuity = sum(disc(lead + t + 1) for t in range(H))
     levelised = pv_total / annuity
     lev = {k: pv[k] / annuity for k in CATS}
     facility_levelised = levelised - sum(lev[k] for k in IT_ONLY)
     out = dict(
         years=years, pv=pv, pv_total=pv_total, nominal_total=nominal_total, pv_revenue=pv_revenue,
-        npv=pv_revenue - pv_total, irr=irr([r['net'] for r in years]), annuity=annuity, levelised=levelised, lev=lev,
-        facility_levelised=facility_levelised, lead_years=P, lead_months=P * 12 + a['permit_months'],
+        npv=pv_revenue - pv_total, irr=irr([r['net'] for r in years], [r['end_year'] for r in years]),
+        cashflow_basis='before_income_tax_unfinanced', settlement_basis='period_end', gpu_hours_basis='billed_coverage_not_mfu',
+        excluded_cashflows=['income_tax', 'debt_draws', 'debt_service', 'working_capital', 'waiting_carrying_costs', 'asset_disposals'],
+        annuity=annuity, levelised=levelised, lev=lev,
+        facility_levelised=facility_levelised, lead_years=lead, lead_months=lead * 12,
+        preconstruction_years=prebuild, permit_timing=a['permit_timing'],
         capex_per_mw=dict(cap['hard'], btm=cap['btm'], soft=cap['soft'], contingency=cap['contingency'],
                           land=cap['land'], facility=cap['facility'], partner=cap['partner'], it=cap['it']),
         facility_capex=facility_capex, it_capex=it_capex,

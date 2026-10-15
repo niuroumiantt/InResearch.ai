@@ -19,6 +19,17 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  assert.ok((await page.locator('#benchmark-compare .bench-verdict').textContent()).includes('市场价高于成本'));
  assert.ok((await page.locator('#timeline-note').textContent()).includes('利用率爬坡 60%/80%'),'revenue-side utilization ramp is separate from the load ramp');
  assert.ok((await page.locator('#kpi-capex .sub').textContent()).includes('拿地到投运 48 个月'),'permit + gate wait + construction');
+ // The permit control changes real schedule timing, including fractional years and overlap.
+ assert.match(await page.locator('#kpi-capex .sub').textContent(),/税前未融资 IRR/);
+ assert.match(await page.locator('#view-lifecycle > .q').textContent(),/所得税前、未融资/);
+ await page.locator('#input-permit_months').evaluate(el=>el.closest('details').open=true);
+ await page.locator('#input-permit_months').fill('3');
+ assert.match(await page.locator('#kpi-capex .sub').textContent(),/拿地到投运 39 个月/);
+ assert.match(await page.locator('#timeline-note').textContent(),/首个运营年从第 3.25 年开始/);
+ await page.locator('#input-permit_timing').selectOption('parallel_with_gate');
+ assert.match(await page.locator('#kpi-capex .sub').textContent(),/拿地到投运 36 个月/);
+ assert.match(await page.locator('#timeline-note').textContent(),/审批与门槛等待并行/);
+ await page.getByRole('button',{name:'恢复基准'}).click();
  // Region switch resets the sourced site numbers and marks the gaps
  await page.locator('#input-site').selectOption('us_texas');
  assert.equal(await page.locator('#input-power_price').inputValue(),'0.0707');assert.equal(await page.locator('#presets button.active').count(),0);
@@ -39,6 +50,6 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  await page.getByRole('button',{name:'恢复基准'}).click();assert.equal(await page.locator('#kpi-kw strong').textContent(),'$851');
  if(process.env.UI_QA_DIR){fs.mkdirSync(process.env.UI_QA_DIR,{recursive:true});await page.screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-lifecycle-desktop.png'),fullPage:true});}
  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
- if(process.env.UI_QA_DIR)await page.screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-lifecycle-mobile.png'),fullPage:true});
+ if(process.env.UI_QA_DIR){await page.screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-lifecycle-mobile.png'),fullPage:true});await page.locator('#view-lifecycle').screenshot({path:path.join(process.env.UI_QA_DIR,'ledger-lifecycle-result-mobile.png')});}
  assert.deepEqual(errors,[]);console.log('PASS ledger lifecycle view: baseline, regions and gaps, BOT and chip gate, capex basis, colo benchmark, mobile');
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exit(1)});
