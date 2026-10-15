@@ -859,10 +859,11 @@ class Handler(SimpleHTTPRequestHandler):
                 if not isinstance(metadata, dict):
                     raise ValueError('invalid metadata')
                 package_id = metadata.get('package_id', '')
-                if package_id:
-                    packages = research_tasks.read(ROOT)['packages']
-                    if not any(p['id'] == package_id for p in packages):
-                        raise ValueError('工作包不存在，请刷新后选择')
+                if not isinstance(package_id, str) or not package_id:
+                    raise ValueError('请选择所属工作包')
+                packages = research_tasks.read(ROOT)['packages']
+                if not any(p['id'] == package_id for p in packages):
+                    raise ValueError('工作包不存在，请刷新后选择')
                 item, receipt = material_intake.receive(self.rfile, size, metadata, 'anonymous', public=True)
                 return self._json(201, {'ok': True, 'item': item, 'receipt': receipt})
             except PermissionError:

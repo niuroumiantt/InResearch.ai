@@ -9,11 +9,16 @@
   const revealAnchor = () => {
     const id = decodeURIComponent(location.hash.slice(1));
     if (!id) return;
-    document.getElementById(id)?.closest('details.mission-reference')?.setAttribute('open','');
+    if (id === 'upload') $('upload-form-details').open = true;
+    let element = document.getElementById(id);
+    while (element) {
+      if (element instanceof HTMLDetailsElement) element.open = true;
+      element = element.parentElement;
+    }
   };
   window.addEventListener('hashchange', revealAnchor);
   revealAnchor();
-  let state = null, pending = null, editing = null, editingRevision = null;
+  let state = null, pending = null, editing = null, editingRevision = null, selectedPackageId = null;
   const canEdit = item => state && (state.can_create || (state.role === 'intern' && String(item.assignee || '').split(/[,，、;；\n]+/).map(name => name.trim()).includes(state.actor)));
   const value = name => form.elements.namedItem(name);
 
@@ -50,6 +55,7 @@
     const formatCount = value => new Intl.NumberFormat('zh-CN').format(value);
     $('mission-site-progress').max = Math.max(1,target || 1);
     $('mission-site-progress').value = target ? Math.min(published,target) : 0;
+    $('mission-site-progress').hidden = !target;
     $('mission-site-progress').setAttribute('aria-label', target
       ? `模型审阅后已上线 ${published} 个去重园区，暂定目标 ${target} 个`
       : `模型审阅后已上线 ${published} 个去重园区；园区目标待初步研究后设定`);
@@ -74,7 +80,62 @@
     const items = state.packages.filter(p => !filter || p.status === filter);
     $('package-rows').innerHTML = items.map(p => `<tr data-package="${esc(p.id)}"><td data-label="工作包"><strong class="package-name">${esc(p.title)}</strong><span class="package-region">${esc(p.region)}</span><p class="package-scope">${esc(p.scope)}</p><details><summary>${state.public_view?'来源方向':'来源方向与备注'}</summary><p>${esc(p.sources)}</p>${p.note?`<p>${esc(p.note)}</p>`:''}</details></td><td data-label="参与成员">${esc(state.public_view?'登录后可见':p.assignee || '待分配')}</td><td data-label="机器 / 模型">${state.public_view?'<span class="muted">登录后可见</span>':`${esc(p.machine || '待确认')}<br><span class="muted">${esc(p.model || '模型未登记')}</span>`}</td><td data-label="截止日">${esc(state.public_view?'登录后可见':p.due || '待安排')}</td><td data-label="协调状态"><span class="package-status ${esc(p.status)}">${esc(statuses[p.status] || p.status)}</span></td><td data-label="交付 / 操作">${state.public_view?'<a href="/login">登录协作 →</a>':p.delivery_pointer?`<details><summary>交付指针</summary><p class="delivery-pointer">${esc(p.delivery_pointer)}</p></details>`:'<span class="muted">尚无交付指针</span>'}${canEdit(p)?`<button type="button" data-edit="${esc(p.id)}">${state.can_create?'分配 / 更新':'更新我的进度'}</button>`:''}</td></tr>`).join('') || '<tr><td colspan="6">这个状态下暂无工作包。</td></tr>';
     $('package-rows').querySelectorAll('[data-edit]').forEach(button=>button.addEventListener('click',()=>openPackage(button.dataset.edit)));
+    renderPackageWorkspace();
   }
+
+  const packageTime = value => value ? new Date(value * 1000).toLocaleString('zh-CN',
+    {timeZone:'Asia/Shanghai',hour12:false}) + '（北京时间）' : '尚无已完成审阅';
+
+  function renderPackageWorkspace() {
+    const packages = state.packages;
+    const fromHash = location.hash.startsWith('#package-') ? location.hash.slice(9) : '';
+    let remembered = '';
+    try { remembered = localStorage.getItem('inresearch-active-package-v1') || ''; } catch { /* Optional preference. */ }
+    if (!packages.some(p=>p.id === selectedPackageId)) {
+      selectedPackageId = [fromHash, remembered, 'dc-census-cn', packages[0]?.id]
+        .find(id=>packages.some(p=>p.id === id));
+    }
+    const current = packages.find(p=>p.id === selectedPackageId);
+    if (!current) return;
+    const tabs = $('package-tabs');
+    tabs.innerHTML = packages.map(p=>`<button type="button" role="tab" data-package-tab="${esc(p.id)}" aria-controls="package-active-panel" aria-selected="${p.id === current.id}" tabindex="${p.id === current.id ? 0 : -1}">${esc(p.title)}</button>`).join('');
+    tabs.querySelectorAll('[data-package-tab]').forEach(button=>button.addEventListener('click',()=>{
+      selectedPackageId = button.dataset.packageTab;
+      try { localStorage.setItem('inresearch-active-package-v1',selectedPackageId); } catch { /* Optional preference. */ }
+      history.replaceState(null,'','#package-'+selectedPackageId);
+      renderPackageWorkspace();
+    }));
+    const progress = state.package_progress?.[current.id] || {};
+    const task = progress.current_task || {version:1,scope:current.scope,next_action:'按当前工作包范围，先找具名园区及可回查来源。'};
+    $('package-current-meta').textContent = `当前共同任务 v${task.version} · ${task.updated_at ? '更新于 '+packageTime(task.updated_at) : '尚无完成审阅的材料'}`;
+    $('package-current-title').textContent = current.title;
+    $('package-current-scope').textContent = task.scope || current.scope;
+    $('package-current-next').textContent = `下一步：${task.next_action}`;
+    $('package-published-sites').textContent = new Intl.NumberFormat('zh-CN').format(progress.published_sites ?? 0);
+    $('package-progress-note').textContent = `暂定目标待初步盘点 · ${progress.published_statements ?? 0} 条来源陈述已上线 · ${progress.reviewed_files ?? 0} 份材料已审阅`;
+    const events = progress.events || [];
+    $('package-timeline').innerHTML = events.length ? events.map(event=>{
+      const status = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
+        event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
+        event.outcome === 'source_error' ? '原件需修订' : '已确认，待分析';
+      return `<details class="package-event"><summary><time>${esc(packageTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填）</strong><span>提交 ${esc(event.material)}</span><em>${esc(status)}</em></summary><div class="package-event-body"><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p><p>团队反馈：${esc(event.feedback)}</p>${event.next_action ? `<p>下一步：${esc(event.next_action)}</p>` : ''}</div></details>`;
+    }).join('') : '<p class="package-empty">这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。</p>';
+    window.activeResearchPackageId = current.id;
+    window.dispatchEvent(new CustomEvent('research-package-selected',{detail:{packageId:current.id}}));
+  }
+
+  $('package-upload-action').addEventListener('click',()=>{
+    $('upload-form-details').open = true;
+    $('upload').scrollIntoView({behavior:'smooth',block:'start'});
+    $('upload-package').focus({preventScroll:true});
+  });
+  $('package-refresh').addEventListener('click',load);
+  window.addEventListener('research-package-requested',event=>{
+    if (!state?.packages.some(p=>p.id === event.detail?.packageId)) return;
+    selectedPackageId = event.detail.packageId;
+    history.replaceState(null,'','#package-'+selectedPackageId);
+    renderPackageWorkspace();
+  });
 
   $('mission-target-form').addEventListener('submit', async event => {
     event.preventDefault();
