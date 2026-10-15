@@ -110,6 +110,11 @@ class ResearchTaskTests(unittest.TestCase):
         public=json.dumps(result,ensure_ascii=False)
         for private in ('PRIVATE','private-company-name','unapproved-file','secret.pdf','乙','丙'):
             self.assertNotIn(private,public)
+        newer={**approved,'id':'newer-upload','created':150,'submitter':'乙',
+               'analysis_reports':[{'at':190,'report':{'published':[], 'held':[], 'findings':[]}}]}
+        ordered=tasks.package_workflow(package,[approved,newer],{'cn-a'})['events']
+        self.assertEqual([(event['submitter'],event['received_at']) for event in ordered],
+                         [('乙',150),('甲',100)])
 
     def test_shared_task_version_advances_for_scope_or_completed_review(self):
         package=next(p for p in tasks.plan(self.root)['packages'] if p['id']=='dc-census-cn')

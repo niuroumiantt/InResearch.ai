@@ -178,7 +178,9 @@ def package_workflow(package, records, visible_sites=(), task_edits=()):
             'scope':package['scope'],
             'next_action':latest_event['next_action'] if latest_event and not scope_changed_after_review else
                            '按当前工作包范围，先找具名物理园区和可回查来源；未知项明确留空。'}
-    events.sort(key=lambda row:row['last_activity_at'] or 0, reverse=True)
+    # The team asks for the latest submitted version first. A slower review of
+    # an older file must not move that old submission above a newer upload.
+    events.sort(key=lambda row:(row['received_at'] or 0, row['_record_id']), reverse=True)
     for event in events:
         del event['_record_id']
     return {'published_sites':len(sites), 'published_statements':len(statements),
