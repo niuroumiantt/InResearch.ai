@@ -27,18 +27,20 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.goto(base+'/tasks.html');
     await anonymous.locator('#package-rows tr').nth(5).waitFor();
     assert.equal(await anonymous.locator('#upload-submit').isVisible(),true);
-    await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.txt',mimeType:'text/plain',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
+    await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.bin',mimeType:'application/octet-stream',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
+    await anonymous.locator('#task-upload-form [name="project_name"]').fill('合成测试项目');
     await anonymous.route('**/api/task-uploads', route => route.fulfill({status:403,contentType:'text/html',body:'<!DOCTYPE html><p>Blocked by CDN</p>'}));
     await anonymous.locator('#upload-submit').click();
-    await anonymous.waitForFunction(()=>/HTTP 403/.test(document.querySelector('#upload-message')?.textContent || ''));
-    assert.match(await anonymous.locator('#upload-message').innerText(),/文件未进入审批/);
-    assert.equal(await anonymous.locator('#task-upload-form [name="file"]').evaluate(input => input.files.length),1);
+    await anonymous.waitForFunction(()=>/网站安全防护拦截/.test(document.querySelector('#upload-message')?.textContent || ''));
+    assert.match(await anonymous.locator('#upload-message').innerText(),/网站安全防护拦截/);
+    assert.equal(await anonymous.locator('#task-upload-form [name="file"]').evaluate(input => input.files.length),0);
     assert.equal(await anonymous.evaluate(()=>localStorage.getItem('inresearch-task-upload-receipts-v1')),null);
     await anonymous.unroute('**/api/task-uploads');
+    await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.bin',mimeType:'application/octet-stream',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
     await anonymous.locator('#upload-submit').click();
-    await anonymous.waitForFunction(()=>/已收到文件/.test(document.querySelector('#upload-message')?.textContent || ''));
-    assert.match(await anonymous.locator('#upload-message').innerText(),/已收到文件/);
+    await anonymous.waitForFunction(()=>/1 份附件已收到/.test(document.querySelector('#upload-message')?.textContent || ''));
+    assert.match(await anonymous.locator('#upload-message').innerText(),/1 份附件已收到/);
     await anonymous.locator('#upload-own-list .upload-card').waitFor();
     const publicRecord = JSON.parse(readFileSync(join(directory,'intake',readdirSync(join(directory,'intake'))[0],'record.json'),'utf8'));
     assert.equal(publicRecord.status,'pending_approval');
@@ -82,7 +84,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await admin.locator('.owner-feedback textarea').fill('补齐来源与工作表定位');
     await admin.locator('.owner-feedback button').click();
     await admin.waitForFunction(()=>document.querySelector('.review-feedback summary')?.textContent.includes('1 条'));
-    const xlsxResponse=await anonymous.request.post(base+'/api/task-uploads',{data:Buffer.from('SYNTHETIC XLSX UI FIXTURE'),headers:{'Content-Type':'application/octet-stream','X-Requested-With':'task-upload','X-Material-Metadata':encodeURIComponent(JSON.stringify({name:'synthetic-workbook.xlsx',submitter:'另一位访客'}))}});
+    const xlsxResponse=await anonymous.request.post(base+'/api/task-uploads',{data:Buffer.from('SYNTHETIC XLSX UI FIXTURE'),headers:{'Content-Type':'application/octet-stream','X-Requested-With':'task-upload','X-Material-Metadata':encodeURIComponent(JSON.stringify({name:'synthetic-workbook.xlsx',submitter:'另一位访客',project_name:'合成园区项目'}))}});
     assert.equal(xlsxResponse.status(),201);
     const xlsx=(await xlsxResponse.json()).item;
     await admin.locator('#review-refresh').click();
@@ -98,6 +100,19 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.locator('#upload-own-list .upload-feedback summary').click();
     assert.match(await anonymous.locator('#upload-own-list .upload-feedback').innerText(),/北京时间.*补齐来源与工作表定位/s);
     await admin.close();
+    await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
+    await anonymous.locator('#task-upload-form [name="project_name"]').fill('合成测试项目');
+    await anonymous.locator('#task-upload-form [name="file"]').setInputFiles([
+      {name:'source.pdf',mimeType:'application/pdf',buffer:Buffer.from('%PDF-1.4 synthetic')},
+      {name:'notes.txt',mimeType:'text/plain',buffer:Buffer.from('source notes')}]);
+    await anonymous.locator('#upload-submit').click();
+    await anonymous.waitForFunction(()=>/2 份附件已收到/.test(document.querySelector('#upload-message')?.textContent || ''));
+    assert.equal(await anonymous.locator('#upload-own-list .upload-person-group').count(),1);
+    assert.equal(await anonymous.locator('#upload-own-list .upload-card').count(),3);
+    const batchRecords=readdirSync(join(directory,'intake')).map(id=>JSON.parse(readFileSync(join(directory,'intake',id,'record.json'),'utf8'))).filter(r=>['source.pdf','notes.txt'].includes(r.name));
+    assert.equal(batchRecords.length,2);
+    assert.equal(batchRecords[0].batch_id,batchRecords[1].batch_id);
+    assert.equal(batchRecords[0].project_name,'合成测试项目');
     await anonymous.waitForFunction(()=>document.querySelector('#examples-status').textContent.includes('尚未安装'));
     assert.equal(await anonymous.locator('#new-package').isVisible(),false);
     assert.match(await anonymous.locator('#task-role-note').innerText(),/登录后可见/);
@@ -133,8 +148,16 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await page.locator('[data-check-id]').count(),58);
     assert.equal(await page.locator('.arch-question').count(),4);
     assert.equal(await page.locator('[data-provider]').count(),6);
+    assert.equal(await page.locator('#research-context').evaluate(el => el.open),false);
+    await page.locator('#research-context > summary').click();
     assert.match(await page.locator('#research-lines').innerText(),/通用数据中心研究/);
     assert.match(await page.locator('.mission-scale').innerText(),/待校准/);
+    assert.match(await page.locator('#mission-progress-value').innerText(),/0 个园区已上线/);
+    assert.match(await page.locator('#mission-progress-detail').innerText(),/暂定目标待初步盘点/);
+    assert.match(await page.locator('#mission-target-basis').innerText(),/90\+ GW.*不计算容量完成率/);
+    assert.equal(await page.locator('#mission-target-form').isVisible(),false);
+    assert.equal(await page.locator('#mission-existing-register').evaluate(el => el.open),false);
+    await page.locator('#mission-existing-register > summary').click();
     assert.match(await page.locator('#register-stats').innerText(),/参与统计项目记录/);
     assert.match(await page.locator('#register-basis').innerText(),/参考估算.*区间/);
     assert.equal(await page.locator('#package-rows .package-status.delivered').count(),0);
@@ -176,6 +199,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.ok(!brief.includes('\\n'), 'task brief has no escaped newline sequences');
     assert.match(brief,/task-intern/);
     assert.match(brief,/对象与空间范围/);assert.match(brief,/不表示永久穷尽/);assert.match(brief,/通用模型变量/);
+    await page.locator('#research-methods > summary').click();
     const [templateDownload] = await Promise.all([page.waitForEvent('download'),page.locator('#download-template').click()]);
     const template = JSON.parse(readFileSync(await templateDownload.path(),'utf8'));
     assert.equal(template.contract,'fetchdata-handoff/1');
@@ -240,6 +264,24 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.locator('[data-stage="originals"] .example-warning').waitFor();
     assert.equal((await anonymous.request.get(base+'/api/research-task-examples/'+sampleId+'/files/original')).status(),409);
     assert.equal(await anonymous.locator('[data-stage="originals"] a[download]').count(),0);
+
+    const owner = await browser.newPage();
+    await owner.context().addCookies([{name:'hub_session',value:config.cookies['task-admin'].slice(config.cookies['task-admin'].indexOf('=')+1),url:base}]);
+    await owner.goto(base+'/tasks.html');
+    await owner.locator('#package-rows tr').nth(5).waitFor();
+    assert.equal(await owner.locator('#mission-target-form').isVisible(),true);
+    await owner.locator('#mission-target-form [name="target_site_count"]').fill('250');
+    await owner.locator('#mission-target-form [name="target_site_basis"]').fill('初步盘点去重的运营商园区清单');
+    await owner.locator('#mission-target-form button').click();
+    await owner.waitForFunction(()=>document.querySelector('#mission-target-message')?.textContent.includes('目标已保存'));
+    assert.match(await owner.locator('#mission-progress-detail').innerText(),/暂定目标 250 · 0%/);
+    assert.match(await owner.locator('#mission-target-basis').innerText(),/初步盘点去重的运营商园区清单/);
+    const targetLedger=JSON.parse(readFileSync(join(directory,'runtime/data/raw/research-tasks/ledger.json'),'utf8'));
+    assert.equal(targetLedger.target_site_count,250);
+    assert.equal(targetLedger.target_site_basis,'初步盘点去重的运营商园区清单');
+    await anonymous.reload();
+    await anonymous.locator('#package-rows tr').nth(5).waitFor();
+    assert.match(await anonymous.locator('#mission-progress-detail').innerText(),/暂定目标 250 · 0%/);
 
     assert.deepEqual(errors,[]);
     console.log('PASS public task privacy, real-byte example downloads, unknowns/evidence/pending states, changed-file rejection, persisted assignment, concurrent-edit protection, own intern delivery and 4 responsive widths');
