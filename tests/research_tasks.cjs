@@ -111,6 +111,42 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await anonymous.locator('#upload-own-list .upload-feedback').getAttribute('open'),null);
     await anonymous.locator('#upload-own-list .upload-feedback summary').click();
     assert.match(await anonymous.locator('#upload-own-list .upload-feedback').innerText(),/北京时间.*补齐来源与工作表定位/s);
+    const sampleScope={mode:'sampled_native_cells',total_sheets:1,total_nonblank_rows:41,total_nonblank_cells:328,
+      excerpted_rows:4,excerpted_cells:32,prefix_only_cells:1,not_excerpted_cells:296,
+      not_fully_seen_cells:297,excerpt_character_limit:90};
+    const xlsxPath=join(directory,'intake',xlsx.id,'record.json');
+    const sampledRecord=JSON.parse(readFileSync(xlsxPath,'utf8'));
+    const sampledAt=Date.now()/1000;
+    sampledRecord.analysis_reports=[{id:randomUUID(),at:sampledAt,sha256:xlsx.sha256,
+      employee_task:'抽样反馈；研究端继续审核未覆盖单元格。',
+      report:{summary:'仅抽样评价',published:[],held:[],findings:[],publication:{state:'nothing_eligible'},
+        review_scope:{...sampleScope,reviewed_locators:[['Forecast 2025e','A1']]}}}];
+    sampledRecord.feedback=[{id:randomUUID(),by:'analysis-worker',at:sampledAt,sha256:xlsx.sha256,
+      result:'sampled_incomplete',text:'抽样反馈；研究端继续审核未覆盖单元格。'}];
+    sampledRecord.analysis_scope=sampleScope;
+    sampledRecord.analysis_state='sampled_incomplete';
+    sampledRecord.analysis_progress={state:'sampled_incomplete',completed:1,total:1,at:sampledAt};
+    sampledRecord.revision++;
+    writeFileSync(xlsxPath,JSON.stringify(sampledRecord));
+    await admin.locator('#review-refresh').click();
+    await admin.locator('.review-filters [data-filter="done"]').click();
+    await admin.locator('.review-queue-item[data-id="'+xlsx.id+'"]').click();
+    await admin.waitForFunction(()=>document.querySelector('#review-detail-content')?.textContent.includes('抽样反馈已出 · 全表审核未完成'));
+    assert.match(await admin.locator('#review-detail-content').innerText(),/328.*32.*297.*0 条上线/s);
+    assert.equal(await admin.locator('#review-detail-content .review-report').getAttribute('open'),null);
+    const xlsxReceipt=(await xlsxResponse.json()).receipt;
+    await anonymous.evaluate(row=>{
+      const key='inresearch-task-upload-receipts-v1';
+      localStorage.setItem(key,JSON.stringify([row,...JSON.parse(localStorage.getItem(key)||'[]')]));
+    },{id:xlsx.id,receipt:xlsxReceipt});
+    await anonymous.locator('#upload-refresh').click();
+    await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('仅抽样反馈，全表待审'));
+    assert.match(await anonymous.locator('#upload-own-list').innerText(),/32\/328.*297.*0 条上线/s);
+    assert.equal(await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator('.upload-feedback').getAttribute('open'),null);
+    await anonymous.evaluate(id=>{
+      const key='inresearch-task-upload-receipts-v1';
+      localStorage.setItem(key,JSON.stringify(JSON.parse(localStorage.getItem(key)||'[]').filter(row=>row.id!==id)));
+    },xlsx.id);
     await admin.close();
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
     await anonymous.locator('#task-upload-form [name="project_name"]').fill('合成测试项目');

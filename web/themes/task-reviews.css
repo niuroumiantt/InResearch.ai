@@ -74,6 +74,11 @@
 .review-integrity summary, .review-manual summary, .review-feedback summary, .review-report summary { cursor: pointer; padding: 14px 0; font-weight: 600; }
 .review-integrity p, .review-metadata { color: var(--ui-muted); font-size: 11px; overflow-wrap: anywhere; }
 .review-decision, .review-progress, .review-rejected { padding: 21px; background: var(--ui-soft); border-left: 3px solid var(--ui-ink); margin-top: 24px; }
+.review-sampled { padding: 21px; margin-top: 24px; border: 1px solid #c7a76b; border-left: 4px solid #9a6b26; background: #f7f0e1; color: #463719; }
+.review-sampled h3 { margin: 0 0 7px; font-size: 17px; }
+.review-sampled p { margin: 0 0 9px; }
+.review-sampled p:last-child { margin-bottom: 0; }
+.review-scope-note { padding: 11px 13px; background: #f7f0e1; border-left: 3px solid #9a6b26; color: #463719; }
 .review-decision h3, .review-progress h3, .review-rejected h3, .review-reports h3 { font-size: 17px; font-weight: 600; margin: 0 0 7px; }
 .review-decision p, .review-progress p, .review-rejected p { margin: 0 0 13px; }
 .review-decision label, .owner-feedback label { display: grid; gap: 7px; font-size: 12px; font-weight: 600; }
@@ -100,5 +105,6 @@ html[data-ui-theme=dark] .review-state-pending { background: #51452e; color: #e6
 html[data-ui-theme=dark] .review-state-working { background: #233d4a; color: #b1d0df; }
 html[data-ui-theme=dark] .review-state-done { background: #2d4538; color: #bdd4b6; }
 html[data-ui-theme=dark] .review-state-rejected { background: #563a35; color: #efc8c0; }
+html[data-ui-theme=dark] .review-sampled, html[data-ui-theme=dark] .review-scope-note { background: #3d3424; color: #e9d6ac; border-color: #a88a58; }
 @media (max-width: 950px) { .review-layout { grid-template-columns: minmax(245px, 310px) minmax(0, 1fr); gap: 12px; } .review-queue-item { padding: 13px 15px !important; } .review-queue-head, .review-filters, .review-task-group-head { padding-left: 15px; padding-right: 15px; } .review-search-label { padding: 0 15px; } }
 @media (max-width: 700px) { .review-workspace { margin-top: 18px; padding: 0 16px; } .review-header { display: block; padding-top: 20px; } .review-header-actions { margin-top: 17px; } .review-overview { grid-template-columns: repeat(4, minmax(0, 1fr)); } .review-overview div { padding: 12px 8px; text-align: center; } .review-overview strong { font-size: 24px; } .review-overview span { font-size: 10px; } .review-layout { grid-template-columns: 1fr; } .review-queue { position: static; max-height: 370px; } .review-detail { min-height: 0; padding: 20px 17px; } .review-detail-head { display: block; } .review-download { margin-top: 14px; } .review-facts { gap: 12px; } .review-report summary { display: block; } .review-report summary strong { display: block; margin-top: 2px; } .review-decision-actions button { width: 100%; } .review-workspace input, .review-workspace textarea, .review-workspace select, .review-workspace button { min-height: 43px; } }

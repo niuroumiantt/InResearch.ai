@@ -265,13 +265,24 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
         record.setdefault('analysis_reports', []).append({'id':analysis_id, 'at':now,
             'sha256':sha, 'report':owner_report, 'employee_task':employee_task})
         published = owner_report.get('published', [])
+        scope = owner_report.get('review_scope')
+        scope = scope if isinstance(scope, dict) else {}
+        sampled = scope.get('mode') == 'sampled_native_cells'
+        if sampled:
+            if published:
+                raise ValueError('sampled analysis cannot publish')
+            record['analysis_scope'] = {key: scope[key] for key in (
+                'mode', 'total_sheets', 'total_nonblank_rows', 'total_nonblank_cells',
+                'excerpted_rows', 'excerpted_cells', 'prefix_only_cells',
+                'not_excerpted_cells', 'not_fully_seen_cells', 'excerpt_character_limit')}
         record.setdefault('feedback', []).append({'id':analysis_id, 'by':'analysis-worker',
             'at':now, 'sha256':sha,
-            'result':'accepted' if published and not owner_report.get('held') and not owner_report.get('findings') else 'revision_required',
+            'result':('sampled_incomplete' if sampled else 'accepted' if published and not owner_report.get('held')
+                      and not owner_report.get('findings') else 'revision_required'),
             'text':employee_task})
-        record['analysis_state'] = 'completed'
+        record['analysis_state'] = 'sampled_incomplete' if sampled else 'completed'
         total = record.get('analysis_progress', {}).get('total', 0)
-        record['analysis_progress'] = {'state':'completed', 'completed':total,
+        record['analysis_progress'] = {'state':'sampled_incomplete' if sampled else 'completed', 'completed':total,
                                        'total':total, 'at':now}
         record['revision'] = record.get('revision', 0) + 1
         atomic(path, record)
