@@ -482,3 +482,8 @@ InResearch的本地receipt lookup仅核collector-local-receipt/1、原包指纹/
 ### fetchstat生产待交付与ACK核验
 
 用户授权先接通fetchstat已登记EIA单源的AWS持久队列至Spark，仅手动单次执行；四队本地能力保留，其它队不切换生产队列。scheduled=false、不扩来源、不入Reader/采用/模型保持。固定SSH命令和精确主机身份限制来源与接收版本；生产ACK必须与只读完成台账、冻结包、候选及永久原件交叉核对。pending到达不算完成，查询错误不算未收；ACK不明先查，已收只确认，未收才预算内同包重试；原时间/旧ID/版本/历史保持。具体权限、步骤与实机验收条件见docs/guides/fetchdata/fetchstat-outbox.md。代码准备不等于接通；实际网络准入、专用身份、受保护部署和回执独立验收。
+
+
+### fetchfilings生产队列与网关版本隔离
+
+用户授权fetchfilings既有Microsoft单源的AWS持久队列与Spark只读ACK对账；两队独立固定命令/协议/密钥与固定版本运行检出，旧ID/版本/历史保持；真实交付/重复/ACK丢失/恢复另验，不定时/扩源/采用/填参。 网关由专用固定入口决定provider，不能由请求选择另一队；仅stat与filings开放只读完成ACK查询。Spark运行检出按部署提交固定，与主站/Reader主检出分开；版本升级另行复核队列绑定和当前源码。详见docs/guides/fetchdata/fetchfilings-outbox.md；功能就绪不证明真实接通。

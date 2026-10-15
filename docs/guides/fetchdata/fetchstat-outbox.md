@@ -11,7 +11,7 @@
 AWS通过Tailscale访问Spark的SSH，不开放公网监听。AWS持有新的fetchstat专用密钥；Spark authorized_keys须同时限定AWS精确IP、restrict及固定命令：
 
 ```text
-from="100.103.118.69",restrict,command="/usr/bin/timeout 100 /usr/bin/python3 /home/spark/code/inresearch.ai/scripts/collector_gateway.py" <专用公钥>
+from="100.103.118.69",restrict,command="/usr/bin/timeout 100 /usr/bin/python3 /home/spark/.worktrees/inresearch.ai/collector-fetchstat-3c0d2834/scripts/collector_gateway.py" <专用公钥>
 ```
 
 不复制现有管理员私钥，不授予交互shell、转发或任意scp。服务端只接受SSH_ORIGINAL_COMMAND=fetchstat-gateway-v1，协议fetchstat-ssh-gateway/1。请求仅含固定操作、fetchstat身份、旧交付ID、部署版本及有上限的文件字节；不能指定服务端命令、磁盘路径或数据库。来源仍按supply_contract白名单验证。源码必须干净且与请求版本完全一致。
@@ -42,3 +42,5 @@ Spark只读查询在既有provider外层锁下核生产ACK、到达日志、不�
 5. 核对旧ID、原来源字节、原首次接收/归档完成、候选增量、Reader/采用/模型0、无调度及其它队未切换新通道。
 
 网络ACL、专用身份、源码上线和真实ACK均须实机回执；单元测试不证明已完成生产接通，也不证明长期无人值守或硬件断电恢复。
+
+2026-10-16：stat原队列已验真实交付、重复、ACK丢失/进程退出与历史ACK恢复，详见docs/handoff/fetchstat-outbox.md。运行源码固定3c0d2834，主检出升级不改变网关HEAD；只更换专用密钥固定命令路径，不修改原队列目标绑定。
