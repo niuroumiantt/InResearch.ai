@@ -8,10 +8,11 @@ while data mutation rules live in workflow.commands.
 
 from inresearch.paths import project_root
 from inresearch.storage.layout import initialize_runtime, workspace_path
-from inresearch.storage.files import CommitUncertain
+from inresearch.storage.files import CommitUncertain, locked
 from inresearch.interfaces.static import source_path
 from inresearch.interfaces import pages
 from inresearch.interfaces import repository_pages
+import hashlib
 import os
 import json
 import re
@@ -19,6 +20,7 @@ import shutil
 from inresearch.interfaces import auth as auth
 from inresearch.interfaces import public
 from inresearch.materials import inbox as material_intake
+from inresearch.materials import review_context
 from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import operations
@@ -38,6 +40,7 @@ from inresearch.knowledge import registry as research
 from inresearch.knowledge import graph as graph_mod
 from inresearch.delivery import report as report_model
 from inresearch.delivery import source_publication
+from inresearch.knowledge import site_timeline
 import posixpath
 import sqlite3
 import subprocess as subprocess
@@ -58,6 +61,14 @@ class ThreadingHTTPServer(BaseThreadingHTTPServer):
 
 ROOT = project_root()
 PY = sys.executable
+
+
+def _review_site_index(records):
+    return review_context.site_index(records)
+
+
+def _shared_review_progress(records, package_id):
+    return review_context.shared_progress(records, package_id)
 
 TASKS = {
     "collect":    ("兼容历史简报", ["manage.py", "historical-brief"], 600),
@@ -338,7 +349,20 @@ class Handler(SimpleHTTPRequestHandler):
             if self.path == '/api/intake-worker/pending':
                 return self._json(200, {'items': material_intake.pending()[:20]})
             if self.path == '/api/intake-worker/analysis-pending':
-                return self._json(200, {'items': material_intake.analysis_pending()[:10]})
+                task_state = research_tasks.read(ROOT)
+                mission = research_tasks.plan(ROOT)['mission']
+                source_state = source_publication.state(ROOT)
+                registered = source_publication.projects(ROOT, runtime=source_state)['records']
+                site_index = _review_site_index(registered)
+                task_records = material_intake.records()
+                items = []
+                for item in material_intake.analysis_pending()[:10]:
+                    item['assigned_task'] = review_context.assigned_task(
+                        item, task_state, mission, site_index, task_records,
+                        source_publication.digest(source_state))
+                    item['known_sites'] = site_index[:500]
+                    items.append(item)
+                return self._json(200, {'items': items})
             try:
                 if self.path.startswith('/api/intake-worker/record/'):
                     key = self.path.removeprefix('/api/intake-worker/record/')
@@ -889,6 +913,26 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(409, {'ok': False, 'error': str(error)[:200]})
             except (ValueError, KeyError, OSError, TypeError, ArithmeticError) as error:
                 return self._json(400, {'ok': False, 'error': str(error)[:200]})
+        if self.path in ('/api/intake-worker/analysis-part', '/api/intake-worker/analysis-commit'):
+            if not self.intake_worker():
+                return
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 6500:
+                    raise ValueError('analysis part request too large')
+                from inresearch.materials import task_analysis
+                payload = json.loads(self.rfile.read(size))
+                if self.path.endswith('/analysis-part'):
+                    task_analysis.stage_part(payload)
+                    return self._json(200, {'ok': True})
+                result = task_analysis.complete_staged(ROOT, payload)
+                return self._json(200, {'ok': True, 'report': result['report']})
+            except PermissionError as error:
+                return self._json(403, {'ok': False, 'error': str(error)[:200]})
+            except material_intake.Conflict as error:
+                return self._json(409, {'ok': False, 'error': str(error)[:200]})
+            except (ValueError, KeyError, OSError, TypeError, ArithmeticError) as error:
+                return self._json(400, {'ok': False, 'error': str(error)[:200]})
         if self.path == '/api/intake-worker/analysis-progress':
             if not self.intake_worker():
                 return
@@ -925,7 +969,15 @@ class Handler(SimpleHTTPRequestHandler):
                     if not 0 < size <= 128 * 1024:
                         raise ValueError('invalid size')
                     payload = json.loads(self.rfile.read(size))
-                    item = material_intake.mutate(payload, actor, role)
+                    if isinstance(payload, dict) and payload.get('action') == 'assign_package':
+                        # Analysis commits hold this lock while checking the current
+                        # task and publishing. Binding changes must use the same order.
+                        with locked(research_tasks.ledger_path(ROOT)):
+                            valid_ids = {p['id'] for p in research_tasks.read(ROOT)['packages']}
+                            item = material_intake.mutate(payload, actor, role,
+                                                          valid_package_ids=valid_ids)
+                    else:
+                        item = material_intake.mutate(payload, actor, role)
                     return self._json(200, {'ok': True, 'item': item})
                 metadata = json.loads(unquote(self.headers.get('X-Material-Metadata', '{}')))
                 if not isinstance(metadata, dict):

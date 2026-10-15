@@ -103,11 +103,18 @@ with tempfile.TemporaryDirectory() as temporary:
         if (method === 'HEAD') assert.equal((await tasks.body()).length, 0);
         else {
           const projection = await tasks.json();
-          assert.deepEqual(Object.keys(projection).sort(), ['actor', 'can_create', 'map_register', 'mission', 'packages', 'public_view', 'revision', 'role', 'version'].sort());
+          assert.deepEqual(Object.keys(projection).sort(), ['actor', 'can_create', 'map_register', 'mission', 'packages', 'public_view', 'revision', 'role', 'site_progress', 'target_site_basis', 'target_site_count', 'target_site_set_at', 'version'].sort());
           assert.equal(projection.role, 'reader');
           assert.equal(projection.actor, '');
           assert.equal(projection.public_view, true);
           assert.equal(projection.can_create, false);
+          assert.equal(projection.site_progress.target, projection.target_site_count);
+          assert.equal(projection.site_progress.target_basis, projection.target_site_basis);
+          assert.equal(projection.site_progress.target_set_at, projection.target_site_set_at);
+          assert.ok(projection.target_site_count === null || (Number.isInteger(projection.target_site_count) && projection.target_site_count > 0));
+          for (const key of ['published_sites', 'reviewed_reports', 'published_statements']) {
+            assert.ok(Number.isInteger(projection.site_progress[key]) && projection.site_progress[key] >= 0, key);
+          }
           assert.ok(projection.packages.length > 0);
           for (const item of projection.packages) {
             assert.deepEqual(Object.keys(item).sort(), ['id', 'title', 'region', 'scope', 'sources', 'status'].sort());
