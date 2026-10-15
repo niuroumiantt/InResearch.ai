@@ -103,7 +103,7 @@ with tempfile.TemporaryDirectory() as temporary:
         if (method === 'HEAD') assert.equal((await tasks.body()).length, 0);
         else {
           const projection = await tasks.json();
-          assert.deepEqual(Object.keys(projection).sort(), ['actor', 'can_create', 'map_register', 'mission', 'packages', 'public_view', 'revision', 'role', 'site_progress', 'target_site_basis', 'target_site_count', 'target_site_set_at', 'version'].sort());
+          assert.deepEqual(Object.keys(projection).sort(), ['actor', 'can_create', 'map_register', 'mission', 'package_progress', 'packages', 'public_view', 'revision', 'role', 'site_progress', 'target_site_basis', 'target_site_count', 'target_site_set_at', 'version'].sort());
           assert.equal(projection.role, 'reader');
           assert.equal(projection.actor, '');
           assert.equal(projection.public_view, true);
@@ -119,11 +119,21 @@ with tempfile.TemporaryDirectory() as temporary:
           for (const item of projection.packages) {
             assert.deepEqual(Object.keys(item).sort(), ['id', 'title', 'region', 'scope', 'sources', 'status'].sort());
           }
+          assert.deepEqual(Object.keys(projection.package_progress).sort(), projection.packages.map(item => item.id).sort());
+          for (const packageId of Object.keys(projection.package_progress)) {
+            const work = projection.package_progress[packageId];
+            assert.ok(Number.isInteger(work.published_sites) && work.published_sites >= 0);
+            assert.ok(Number.isInteger(work.current_task.version) && work.current_task.version >= 1);
+            for (const event of work.events) {
+              assert.deepEqual(Object.keys(event).sort(), ['received_at','reviewed_at','last_activity_at','submitter','material','outcome','feedback','next_action','published_statements','held','findings'].sort());
+            }
+          }
         }
       }
       assert.equal((await context.request.post(base + '/api/research-tasks', {headers:{'X-Requested-With':'research-tasks'},data:{}})).status(), 401);
       await home.goto(base + '/tasks.html');
       assert.equal(new URL(home.url()).pathname, '/tasks.html');
+      await home.locator('#work-packages > summary').click();
       await home.locator('#package-rows tr').first().waitFor();
       assert.equal(await home.locator('#new-package').isVisible(), false);
       assert.equal(await home.locator('#package-rows [data-edit]').count(), 0);
