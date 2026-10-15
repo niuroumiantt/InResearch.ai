@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.13.117",
+  "version": "2026.10.15.118",
   "public_navigation": [
     {
       "id": "home",
@@ -197,6 +197,14 @@
               "admin",
               "member",
               "intern"
+            ]
+          },
+          {
+            "id": "task_reviews",
+            "label": "作业审批",
+            "href": "/task-reviews.html",
+            "roles": [
+              "admin"
             ]
           },
           {
@@ -612,6 +620,14 @@
       "area": "delivery",
       "section": "reports",
       "view": null
+    },
+    {
+      "paths": [
+        "/task-reviews.html"
+      ],
+      "area": "backstage",
+      "section": "production",
+      "view": "task_reviews"
     },
     {
       "paths": [

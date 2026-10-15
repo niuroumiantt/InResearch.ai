@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15.4",
+  "version": "2026.10.15.5",
   "effective_at": "2026-10-15",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -5028,11 +5028,15 @@
         "src/inresearch/delivery/source_publication.py",
         "web/pages/tasks.html",
         "web/components/task-uploads.js",
+        "web/pages/task-reviews.html",
+        "web/components/task-reviews.js",
+        "web/themes/task-reviews.css",
+        "framework/site_navigation.json",
         "tests/unit/test_task_analysis.py",
         "tests/research_tasks.cjs"
       ],
       "supersedes": [],
-      "reason": "用户明确要求单份原件确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工逐格可执行任务书。旧审批不追溯授权，正式研究采用及模型参数保持原边界。"
+      "reason": "用户明确要求单份原件确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工逐格可执行任务书。旧审批不追溯授权，正式研究采用及模型参数保持原边界。2026-10-15 页面职责调整：匿名任务页只留提交与回执，管理员通过研究生产目录进入独立审批工作台；服务端角色与指定负责人权限不变。"
     }
   ],
   "entrypoints": [
