@@ -65,18 +65,52 @@ class ProductionLookupTests(unittest.TestCase):
     def test_gateway_actual_frozen_package_replay_and_lookup(self):
         import base64
         manifest=json.loads((self.package/'manifest.json').read_text())
-        request=dict(protocol=gateway.PROTOCOL,provider='fetchstat',delivery=manifest['delivery_id'],action='deliver',receiver_revision='a'*40,
+        request=dict(protocol=gateway.PROVIDERS[self.provider],provider=self.provider,delivery=manifest['delivery_id'],action='deliver',receiver_revision='a'*40,
             files={k:base64.b64encode((self.package/k).read_bytes()).decode() for k in production.inventory(self.package)})
-        first=gateway.execute(request,self.data)['receipt'];again=gateway.execute(request,self.data)['receipt']
+        first=gateway.execute(request,self.data,self.provider)['receipt'];again=gateway.execute(request,self.data,self.provider)['receipt']
         self.assertEqual(first['first_received_at'],again['first_received_at']);self.assertTrue(again['replayed'])
         del request['files'];request['action']='lookup'
-        result=gateway.execute(request,self.data);self.assertTrue(result['found'])
+        result=gateway.execute(request,self.data,self.provider);self.assertTrue(result['found'])
         self.assertEqual(result['receipt']['archive_completed_at'],first['archive_completed_at'])
 
     def test_gateway_rejects_path_escape_extra_files_and_other_teams(self):
-        request=dict(protocol=gateway.PROTOCOL,provider='fetchstat',delivery='x',action='deliver',receiver_revision='a'*40,
+        request=dict(protocol=gateway.PROVIDERS[self.provider],provider=self.provider,delivery='x',action='deliver',receiver_revision='a'*40,
                      files={str(x):'' for x in range(5)})
         request['files']['../escape']=''
-        with self.assertRaises(ValueError):gateway.execute(request,self.data)
+        with self.assertRaises(ValueError):gateway.execute(request,self.data,self.provider)
         request['provider']='fetchquotes'
-        with self.assertRaisesRegex(ValueError,'scope_invalid'):gateway.execute(request,self.data)
+        with self.assertRaisesRegex(ValueError,'scope_invalid'):gateway.execute(request,self.data,self.provider)
+
+
+class FilingsProductionLookupTests(ProductionLookupTests):
+    provider='fetchfilings'
+
+    # Explicit names keep the governance AST map linked to both provider runs.
+
+    def test_lookup_does_not_initialize_missing_store(self):return super().test_lookup_does_not_initialize_missing_store()
+
+    def test_completed_lookup_is_read_only_and_preserves_original_clocks(self):return super().test_completed_lookup_is_read_only_and_preserves_original_clocks()
+
+    def test_pending_arrival_is_not_completed_ack(self):return super().test_pending_arrival_is_not_completed_ack()
+
+    def test_missing_projection_stays_unknown_without_repair(self):return super().test_missing_projection_stays_unknown_without_repair()
+
+    def test_corrupt_archive_never_confirms(self):return super().test_corrupt_archive_never_confirms()
+
+    def test_forged_ack_never_confirms(self):return super().test_forged_ack_never_confirms()
+
+    def test_changed_candidate_ledger_never_confirms(self):return super().test_changed_candidate_ledger_never_confirms()
+
+    def test_other_provider_refused(self):return super().test_other_provider_refused()
+
+    def test_gateway_actual_frozen_package_replay_and_lookup(self):return super().test_gateway_actual_frozen_package_replay_and_lookup()
+
+    def test_gateway_rejects_path_escape_extra_files_and_other_teams(self):return super().test_gateway_rejects_path_escape_extra_files_and_other_teams()
+
+    def test_fixed_gateway_does_not_accept_sibling_provider_or_protocol(self):
+        request=dict(protocol=gateway.PROTOCOL,provider='fetchstat',delivery='x',action='lookup',receiver_revision='a'*40)
+        with self.assertRaisesRegex(ValueError,'scope_invalid'):gateway.execute(request,self.data,'fetchfilings')
+        request['provider']='fetchfilings'
+        with self.assertRaisesRegex(ValueError,'scope_invalid'):gateway.execute(request,self.data,'fetchfilings')
+        request['protocol']=gateway.PROVIDERS['fetchfilings']
+        with self.assertRaisesRegex(ValueError,'scope_invalid'):gateway.execute(request,self.data,'fetchstat')
