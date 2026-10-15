@@ -2,7 +2,7 @@
 
 No HTTP route, production storage, object matching, adoption or model writes.
 """
-from contextlib import contextmanager
+from contextlib import contextmanager, closing
 from datetime import datetime, timezone
 import fcntl
 import hashlib
@@ -177,3 +177,60 @@ def _receive(package, sandbox_root, *, store=sandbox, production=False, guard=No
 
 def receive(package, sandbox_root):
     return _receive(package, sandbox_root)
+
+
+def lookup_receipt(sandbox_root, provider, delivery):
+    """Read-only ACK reconciliation, verified against the immutable local archive.
+
+    Does not initialize a sandbox, enqueue a reader, repair data or refresh clocks.
+    """
+    root = Path(sandbox_root).expanduser()
+    if (not root.is_absolute() or root.is_symlink() or provider not in validator.TEAMS
+            or not isinstance(delivery,str) or not 1 <= len(delivery) <= 1000):
+        raise ValueError('invalid local receipt lookup')
+    root = root.resolve()
+    if root == ROOT or ROOT in root.parents:
+        raise ValueError('sandbox must be outside source checkout')
+    if not root.exists():
+        return None
+    for name in ('SANDBOX','.sandbox.lock','receipts.sqlite3','packages'):
+        if (root/name).is_symlink():raise ValueError('sandbox storage symlink rejected')
+    if not (root/'SANDBOX').is_file() or (root/'SANDBOX').read_text()!=MARKER:
+        raise ValueError('not a collector sandbox')
+    with (root/'.sandbox.lock').open('rb') as lock:
+        fcntl.flock(lock, fcntl.LOCK_SH | fcntl.LOCK_NB)
+        database=root/'receipts.sqlite3'
+        if not database.exists():return None
+        with closing(sqlite3.connect(database.as_uri()+'?mode=ro',uri=True,timeout=5)) as db:
+            old=db.execute('SELECT fingerprint,receipt FROM deliveries WHERE provider=? AND id=?',(provider,delivery)).fetchone()
+            if not old:return None
+            fingerprint, raw=old
+            if not isinstance(fingerprint,str) or len(fingerprint)!=64 or set(fingerprint)-set('0123456789abcdef') or len(raw.encode())>1024*1024:
+                raise ValueError('invalid stored receipt identity')
+            receipt=json.loads(raw)
+            archive=root/'packages'/fingerprint
+            if archive.is_symlink() or digest(canonical(inventory(archive)).encode())!=fingerprint:
+                raise ValueError('received archive changed; no ACK reconciliation')
+            if not validator.validate(archive)['offline_valid']:
+                raise ValueError('received archive invalid')
+            manifest=json.loads((archive/'manifest.json').read_text())
+            rows=[row for _,row in validator._rows(archive,'observations.jsonl')]
+            expected={'receipt_contract':'collector-local-receipt/1','local_only':True,
+                      'provider_id':provider,'delivery_id':delivery,'package_sha256':fingerprint,
+                      'collector_revision':manifest['collector_revision'],'candidate_rows':len(rows),
+                      'status':'candidate_unreviewed','formal_adoption':False,'model_parameters_written':0,'published':False}
+            if (manifest['provider_id']!=provider or manifest['delivery_id']!=delivery or
+                    any(type(receipt.get(k))!=type(v) or receipt.get(k)!=v for k,v in expected.items())):
+                raise ValueError('stored receipt identity or authority mismatch')
+            links=[r[0] for r in db.execute('SELECT observation FROM delivery_observations WHERE provider=? AND delivery=?',(provider,delivery))]
+            if sorted(links)!=sorted(row['observation_id'] for row in rows):raise ValueError('candidate links changed')
+            for row in rows:
+                saved=db.execute('SELECT payload FROM observations WHERE provider=? AND id=?',(provider,row['observation_id'])).fetchone()
+                if not saved or saved[0]!=canonical(row):raise ValueError('candidate ledger changed')
+            for item in manifest['items']:
+                saved=db.execute('SELECT payload FROM items WHERE provider=? AND id=?',(provider,item['item_id'])).fetchone()
+                identity={k:v for k,v in item.items() if k not in ('retrieved_at','reused_at','provenance_id')}
+                if not saved or saved[0]!=canonical(identity):raise ValueError('source ledger changed')
+                if not db.execute('SELECT 1 FROM originals WHERE sha=?',(item['sha256'],)).fetchone():raise ValueError('original ledger changed')
+            return {**receipt,'lookup_only':True,
+                    'current_receive_counts':{'new_originals':0,'new_source_items':0,'new_candidates':0}}

@@ -1,6 +1,6 @@
 # 四队员工启动包：一个仓库、四个独立模块
 
-2026-10-14采用fetchdata单仓库四模块，替代四独立仓库分别维护公共代码。四模块本地实现已验收；fetchstat已完成EIA单源受控生产交付/接收/重放与故障恢复，未启用调度；其余三队未接通。旧仓库和全部历史保留。唯一采集规范是framework/06_acquisition.md，本页为操作入口。
+2026-10-14采用fetchdata单仓库四模块，替代四独立仓库分别维护公共代码。四模块本地实现已验收；fetchstat已完成EIA单源受控生产交付/接收/重放与故障恢复，未启用调度；其余三队随后亦已验各一来源受控接收，未启用调度。旧仓库和全部历史保留。唯一采集规范是framework/06_acquisition.md，本页为操作入口。
 
 | 供应方ID（不变） | 新模块 | 现有来源能力与限制 | 旧源码/历史 |
 |---|---|---|---|
@@ -25,4 +25,6 @@ run/verify/release均必须指定team，各模块独立配置和数据/状态根
 
 完整字段见[共同交付规范](delivery-contract.md)，验收与未覆盖见[开发与验收](implementation-and-acceptance.md)。本地源码迁移、版本与验收交接见[阶段记录](../../handoff/fetchdata-unified-local.md)。
 
-fetchstat生产阶段见[受控交付与恢复](fetchstat-production.md)；其他三队不启用，源侧取得和研究采用分开。
+fetchstat生产阶段见[受控交付与恢复](fetchstat-production.md)；其他三队生产单源范围见各自指南，源侧取得和研究采用分开。
+
+新增[本地作业/待交付/ACK对账](local-operations.md)，仅隔离本地执行，不改变上述生产状态。
