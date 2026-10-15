@@ -10,6 +10,12 @@
   const receipts = () => { try { const rows = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(rows) ? rows.slice(0,100) : []; } catch { return []; } };
   const save = rows => localStorage.setItem(key, JSON.stringify(rows.slice(0,100)));
   let knownItems = [];
+  let selectedPackageId = window.activeResearchPackageId || '';
+  window.addEventListener('research-package-selected',event=>{
+    selectedPackageId = event.detail?.packageId || '';
+    if ([...$('upload-package').options].some(option=>option.value === selectedPackageId))
+      $('upload-package').value = selectedPackageId;
+  });
   const feedback = item => `<details class="upload-feedback"><summary>分析验收反馈 · ${(item.feedback || []).length} 条</summary>${(item.feedback || []).length ? item.feedback.map(row => `<article><small>${esc(time(row.at))} · ${esc(results[row.result] || row.result)}</small><p>${esc(row.text)}</p></article>`).join('') : '<p>尚未登记分析验收反馈。</p>'}</details>`;
   const progress = item => item.analysis_progress ? `<p class="small">自动分析：${esc(item.analysis_progress.state === 'source_error' ? '原件需修正，请查看反馈并重新提交' : item.analysis_progress.state === 'sampled_incomplete' ? '仅抽样反馈，全表待审' : item.analysis_progress.state === 'blocked' ? '暂时受阻，研究端会重试' : item.analysis_progress.state === 'completed' ? '已完成' : '进行中')} · ${esc(item.analysis_progress.completed ?? 0)}/${esc(item.analysis_progress.total ?? '?')} 批 · ${esc(time(item.analysis_progress.at))}</p>` : '';
   const scope = item => item.analysis_scope?.mode === 'sampled_native_cells' ? `<p class="upload-sampled" role="status">仅 ${esc(item.analysis_scope.excerpted_cells)}/${esc(item.analysis_scope.total_nonblank_cells)} 个非空单元格片段交给模型，${esc(item.analysis_scope.not_fully_seen_cells)} 个未完整审阅；本次 0 条上线不代表全表无合格条目。请展开下方反馈查看下一步。</p>` : '';
@@ -45,18 +51,25 @@
       if (!response.ok) return;
       const data = await response.json();
       $('upload-package').insertAdjacentHTML('beforeend', data.packages.map(p => `<option value="${esc(p.id)}">${esc(p.title)} · ${esc(p.region)}</option>`).join(''));
-    } catch { /* The upload still works without a package selection. */ }
+      selectedPackageId = window.activeResearchPackageId || selectedPackageId;
+      if (data.packages.some(p=>p.id === selectedPackageId)) $('upload-package').value = selectedPackageId;
+    } catch { $('upload-message').textContent = '工作包暂不可用，请刷新页面后再提交。'; }
   }
+  $('upload-package').addEventListener('change',event=>{
+    if (event.target.value) window.dispatchEvent(new CustomEvent('research-package-requested',
+      {detail:{packageId:event.target.value}}));
+  });
   $('task-upload-form').addEventListener('submit', async event => {
     event.preventDefault();
     const form = event.currentTarget, files = [...form.elements.file.files];
     if (!files.length) return;
     const submitter = form.elements.submitter.value.trim(), projectName = form.elements.project_name.value.trim();
-    if (!submitter || !projectName) { $('upload-message').textContent = '请填写提交人姓名和项目名称。'; return; }
+    if (!submitter || !projectName) { $('upload-message').textContent = '请填写提交人姓名和本次材料主题。'; return; }
+    if (!form.elements.package_id.value) { $('upload-message').textContent = '请先选择所属工作包。'; return; }
     if (files.length > 20) { $('upload-message').textContent = '一次最多提交 20 份附件。'; return; }
     if (files.some(file => file.size < 1 || file.size > 64 * 1024 * 1024)) { $('upload-message').textContent = '每份附件须为 1 字节至 64 MiB。'; return; }
     const batchId = crypto.randomUUID(), common = {submitter,project_name:projectName,batch_id:batchId,package_id:form.elements.package_id.value,source:form.elements.source.value.trim(),note:form.elements.upload_note.value.trim()};
-    const prior = knownItems.filter(item => item.submitter?.trim() === submitter && item.project_name?.trim() === projectName).sort((a,b)=>(b.created||0)-(a.created||0))[0];
+    const prior = knownItems.filter(item => item.package_id === common.package_id && item.submitter?.trim() === submitter && item.project_name?.trim() === projectName).sort((a,b)=>(b.created||0)-(a.created||0))[0];
     const continuation = prior ? receipts().find(row => row.id === prior.id) : null;
     $('upload-submit').disabled = true;
     const saved = [], failed = [];
@@ -76,6 +89,7 @@
       }
       $('upload-message').innerHTML = `${saved.length} 份附件已收到，等待负责人确认。${saved.map(row => `<br>${esc(row.name)} · 编号 <code>${esc(row.id)}</code> · 回执码 <code class="upload-receipt-code">${esc(row.receipt)}</code>`).join('')}${failed.length ? `<br>${esc(failed.length+' 份未确认收到，请只重选这些文件提交：'+failed.join('；'))}` : ''}`;
       form.elements.file.value = '';
+      if (saved.length) $('my-submissions').open = true;
       await refreshOwn(); await refreshOwnerShortcut();
     } catch (error) { $('upload-message').textContent = error.message; }
     finally { $('upload-submit').disabled = false; }

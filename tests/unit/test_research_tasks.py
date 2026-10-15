@@ -85,6 +85,50 @@ class ResearchTaskTests(unittest.TestCase):
             tasks.mutate(self.root,missing_basis,'owner','admin')
         self.assertFalse(tasks.ledger_path(self.root).exists())
 
+    def test_package_handoff_uses_approved_reports_without_leaking_private_feedback(self):
+        package=next(p for p in tasks.plan(self.root)['packages'] if p['id']=='dc-census-cn')
+        approved={'id':'approved-file','package_id':package['id'],'status':'archived',
+                  'sha256':'approved-sha','approval':{'by':'owner','at':110,'sha256':'approved-sha'},
+                  'created':100,'submitter':'甲','name':'private-company-name.xlsx',
+                  'analysis_reports':[{'at':200,'report':{
+                      'published':[{'site_id':'cn-a','statement_id':'source-a'}],
+                      'held':[{'reason':'PRIVATE HELD REASON'}],
+                      'findings':[{'issue':'PRIVATE CELL FINDING'}]},
+                      'employee_task':'PRIVATE RECEIPT-ONLY TASK'}]}
+        unapproved={'id':'unapproved-file','package_id':package['id'],'status':'pending_approval',
+                    'sha256':'unapproved-sha','created':300,'submitter':'乙',
+                    'name':'secret.pdf','analysis_reports':[]}
+        other={**approved,'id':'other-package','package_id':'dc-census-na','submitter':'丙'}
+        result=tasks.package_workflow(package,[approved,unapproved,other],{'cn-a'})
+        self.assertEqual((result['published_sites'],result['published_statements']),(1,1))
+        self.assertEqual((result['reviewed_files'],result['confirmed_files']),(1,1))
+        self.assertEqual(result['current_task']['version'],2)
+        self.assertEqual((result['events'][0]['received_at'],result['events'][0]['reviewed_at']),(100,200))
+        self.assertEqual(result['events'][0]['submitter'],'甲')
+        self.assertIn('其他未上线 1 条',result['events'][0]['feedback'])
+        self.assertIn('先补未上线条目的园区身份',result['current_task']['next_action'])
+        public=json.dumps(result,ensure_ascii=False)
+        for private in ('PRIVATE','private-company-name','unapproved-file','secret.pdf','乙','丙'):
+            self.assertNotIn(private,public)
+        newer={**approved,'id':'newer-upload','created':150,'submitter':'乙',
+               'analysis_reports':[{'at':190,'report':{'published':[], 'held':[], 'findings':[]}}]}
+        ordered=tasks.package_workflow(package,[approved,newer],{'cn-a'})['events']
+        self.assertEqual([(event['submitter'],event['received_at']) for event in ordered],
+                         [('乙',150),('甲',100)])
+
+    def test_shared_task_version_advances_for_scope_or_completed_review(self):
+        package=next(p for p in tasks.plan(self.root)['packages'] if p['id']=='dc-census-cn')
+        base=tasks.read(self.root)
+        self.assertEqual(tasks.package_workflow(package,[])['current_task']['version'],1)
+        status={'package_id':package['id'],'before':{**package},'after':{**package,'status':'ready'},
+                'at':'2026-10-15T10:00:00+00:00'}
+        scope={'package_id':package['id'],'before':{**package},'after':{**package,'scope':'补来源'},
+               'at':'2026-10-15T11:00:00+00:00'}
+        base['operations']=[status,scope]
+        edits=tasks.package_task_edits(base,package['id'])
+        self.assertEqual(len(edits),1)
+        self.assertEqual(tasks.package_workflow(package,[],task_edits=edits)['current_task']['version'],2)
+
     def test_durable_update_replay_and_audit(self):
         request = self.request()
         result = tasks.mutate(self.root, request, 'editor', 'member')

@@ -69,6 +69,125 @@ def read(root):
     return state
 
 
+def package_task_edits(state, package_id):
+    """Only changes to the common task brief advance its shared version."""
+    result = []
+    for operation in state.get('operations', []):
+        if operation.get('package_id') != package_id:
+            continue
+        before, after = operation.get('before'), operation.get('after')
+        if not isinstance(before, dict) or not isinstance(after, dict):
+            continue
+        if any(before.get(key) != after.get(key)
+               for key in ('title', 'region', 'scope', 'sources')):
+            try:
+                result.append(datetime.fromisoformat(operation['at']).timestamp())
+            except (KeyError, TypeError, ValueError):
+                result.append(0)
+    return result
+
+
+def package_workflow(package, records, visible_sites=(), task_edits=()):
+    """A public, package-scoped handoff made only from owner-approved records.
+
+    Raw files, personal revision instructions and model prose stay behind their
+    existing owner/receipt gates. The shared next action is server-authored from
+    the verified outcome, so a later worker never inherits an upload's claims.
+    """
+    from inresearch.materials import inbox
+    visible = set(visible_sites)
+    events, sites, statements, completed = [], set(), set(), []
+    for record in records:
+        if record.get('package_id') != package['id']:
+            continue
+        try:
+            inbox.require_approved(record)
+        except (PermissionError, KeyError, TypeError):
+            continue
+        reports = [row for row in record.get('analysis_reports', [])
+                   if isinstance(row, dict) and isinstance(row.get('report'), dict)]
+        latest = max(reports, key=lambda row: row.get('at') or 0, default=None)
+        report = latest['report'] if latest else {}
+        published = [row for row in report.get('published', []) if isinstance(row, dict)]
+        held = [row for row in report.get('held', []) if isinstance(row, dict)]
+        findings = [row for row in report.get('findings', []) if isinstance(row, dict)]
+        scope = report.get('review_scope') or {}
+        sampled = isinstance(scope, dict) and scope.get('mode') == 'sampled_native_cells'
+        for entry in reports:
+            completed.append((entry.get('at') or 0, record.get('id', ''), entry))
+            for row in entry['report'].get('published', []):
+                if not isinstance(row, dict):
+                    continue
+                if isinstance(row.get('site_id'), str) and row['site_id'] in visible:
+                    sites.add(row['site_id'])
+                if isinstance(row.get('statement_id'), str) and row['statement_id']:
+                    statements.add(row['statement_id'])
+        if sampled:
+            feedback = ('抽样反馈、全表待审；已定位问题请按个人回执修订，'
+                        '未完整审阅的内容仍需按当前任务继续提交较小证据包。')
+            next_action = ('先补齐唯一园区身份、地点、字段口径、时点和来源定位；'
+                           '将尚未完整审阅的大表拆成可核查的小包。')
+            outcome = 'sampled_incomplete'
+        elif latest:
+            reconfirmed = sum(row.get('registration_kind') == 'reconfirmation' for row in published)
+            duplicate = sum(row.get('classification') == 'duplicate' for row in held)
+            conflicts = sum(row.get('classification') == 'conflict' for row in held)
+            feedback = (f'本轮新登记 {len(published)-reconfirmed} 条、同值再次核验 {reconfirmed} 条；'
+                        f'无增量重复 {duplicate} 条、冲突 {conflicts} 条、'
+                        f'其他未上线 {len(held)-duplicate-conflicts} 条、定位问题 {len(findings)} 处。'
+                        '逐项修改要求请凭本人回执查看。')
+            next_action = ('先核对冲突双方的原件、来源时点和园区/容量口径；'
+                           '继续补未覆盖园区与分期。') if conflicts else (
+                           '先补未上线条目的园区身份、来源、时点与口径；'
+                           '继续补未覆盖园区与分期。') if len(held) > duplicate or findings else (
+                           '本轮合格来源已登记；继续补本工作包尚未覆盖的具名园区、'
+                           '分期和可回查来源，提交前对照最新台账。')
+            outcome = 'reviewed'
+        else:
+            progress = record.get('analysis_progress') or {}
+            outcome = ('source_error' if progress.get('state') == 'source_error' else
+                       'blocked' if progress.get('state') == 'blocked' else 'awaiting_review')
+            feedback = ('原件处理失败；提交者请按个人回执查看修订要求。' if outcome == 'source_error' else
+                        '分析暂时受阻，原件已保留，研究端将重试。' if outcome == 'blocked' else
+                        '负责人已确认原件；分析尚未完成。')
+            next_action = ''
+        submitter = re.sub(r'[\x00-\x1f\x7f]+', ' ', str(record.get('submitter') or '未留姓名')).strip()[:120]
+        name = str(record.get('name') or '')
+        kind = {'.xlsx':'Excel 表格', '.xls':'Excel 表格', '.csv':'CSV 数据',
+                '.tsv':'TSV 数据', '.pdf':'PDF 文档', '.docx':'Word 文档',
+                '.txt':'文本资料', '.md':'Markdown 文档', '.json':'JSON 数据',
+                '.html':'网页资料', '.htm':'网页资料'}.get(Path(name).suffix.lower(), '附件')
+        received_at = record.get('created') if isinstance(record.get('created'), (int, float)) else None
+        reviewed_at = latest.get('at') if latest else None
+        events.append({'_record_id':record.get('id', ''),
+                       'received_at':received_at, 'reviewed_at':reviewed_at,
+                       'last_activity_at':reviewed_at or (record.get('approval') or {}).get('at') or received_at,
+                       'submitter':submitter, 'material':kind, 'outcome':outcome,
+                       'feedback':feedback, 'next_action':next_action,
+                       'published_statements':len(published), 'held':len(held),
+                       'findings':len(findings)})
+    completed.sort(key=lambda row:(row[0], row[1]))
+    latest_completed = completed[-1] if completed else None
+    latest_event = next((row for row in events if row['_record_id'] == latest_completed[1]
+                         and row['reviewed_at'] == latest_completed[0]
+                         and row['reviewed_at'] is not None), None) if latest_completed else None
+    scope_changed_after_review = bool(task_edits and max(task_edits) >
+                                      (latest_completed[0] if latest_completed else 0))
+    task = {'version':len(completed) + len(task_edits) + 1,
+            'updated_at':max([latest_completed[0] if latest_completed else 0, *task_edits]) or None,
+            'scope':package['scope'],
+            'next_action':latest_event['next_action'] if latest_event and not scope_changed_after_review else
+                           '按当前工作包范围，先找具名物理园区和可回查来源；未知项明确留空。'}
+    # The team asks for the latest submitted version first. A slower review of
+    # an older file must not move that old submission above a newer upload.
+    events.sort(key=lambda row:(row['received_at'] or 0, row['_record_id']), reverse=True)
+    for event in events:
+        del event['_record_id']
+    return {'published_sites':len(sites), 'published_statements':len(statements),
+            'reviewed_files':len(completed), 'confirmed_files':len(events),
+            'target':None, 'current_task':task, 'events':events[:50]}
+
+
 def snapshot(root, actor='', role='reader'):
     state = read(root)
     # Use exactly the map's existing projection and deduplication rules. These are
@@ -76,7 +195,8 @@ def snapshot(root, actor='', role='reader'):
     from inresearch.knowledge import industry
     view = industry.cached_snapshot(root, {'overview': '1'})
     from inresearch.materials import inbox
-    reports = [entry for record in inbox.records()
+    records = inbox.records()
+    reports = [entry for record in records
                for entry in record.get('analysis_reports', [])
                if isinstance(entry, dict) and isinstance(entry.get('report'), dict)]
     published_rows = [row for entry in reports for row in entry['report'].get('published', [])
@@ -91,6 +211,9 @@ def snapshot(root, actor='', role='reader'):
                        if isinstance(row.get('site_id'), str) and row['site_id'] in visible_sites}
     published_statements = {row['statement_id'] for row in published_rows
                             if isinstance(row.get('statement_id'), str) and row['statement_id']}
+    package_progress = {package['id']:package_workflow(package, records, visible_sites,
+                                                        package_task_edits(state, package['id']))
+                        for package in state['packages']}
     projection = {k: v for k, v in state.items() if k != 'operations'}
     if role == 'reader':
         projection = {k: state[k] for k in ('version', 'revision')}
@@ -100,6 +223,7 @@ def snapshot(root, actor='', role='reader'):
         projection['packages'] = [{k: p.get(k) for k in ('id', 'title', 'region', 'scope', 'sources', 'status')}
                                   for p in state['packages']]
     return {**projection, 'mission': plan(root)['mission'],
+            'package_progress':package_progress,
             'site_progress': {'target': state.get('target_site_count'),
                               'target_basis': state.get('target_site_basis', ''),
                               'target_set_at': state.get('target_site_set_at', ''),

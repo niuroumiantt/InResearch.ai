@@ -62,6 +62,9 @@ def assigned_task(record, task_state, mission, index, task_records, source_state
     package_id = package['id'] if package else None
     index_sha = hashlib.sha256(json.dumps(index, ensure_ascii=False,
         sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    shared_task = (research_tasks.package_workflow(
+        package, task_records, task_edits=research_tasks.package_task_edits(task_state, package_id))['current_task']
+                   if package else None)
     return {
         'task_revision': task_state['revision'],
         'mission_title': mission['title'], 'mission_goal': mission['goal'],
@@ -72,6 +75,7 @@ def assigned_task(record, task_state, mission, index, task_records, source_state
         'package': ({key: package.get(key) for key in
                      ('id', 'title', 'region', 'scope', 'sources')} if package else None),
         'shared_progress': shared_progress(task_records, package_id),
+        'shared_next_task': shared_task,
         'previous_system_task': inbox.previous_system_task(record),
         'continuity': ('verified_receipt' if record.get('continuation_of')
                        else 'new_or_unlinked'),
