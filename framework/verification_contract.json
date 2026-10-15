@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15.13",
+  "version": "2026.10.15.15",
   "reviewed_at": "2026-10-15",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -22,12 +22,12 @@
     "framework/02_knowledge_format.md": "e62d2145139460d0e6d71e8ea0f1d5438d76cf4f9714bba8a280312d9e4a66df",
     "framework/03_bom_and_collaboration.md": "89c65384f1a92b4765f54c66b3e62bce4b145aa486f2d1dfbcc799de1f1867d0",
     "framework/04_reading_scoring_standard.md": "8320c8c8ba076f3d9a735d02cc7414af9542aa41c77f11ea8d2ffb7636e65a93",
-    "framework/05_interface_system.md": "afc264f9aa3e4537a0da114903ab4a7f5e7856b95b143302968c7014970bb934",
+    "framework/05_interface_system.md": "ab5cf9dbba527b5af56467467356d11d101a24fe910edff73bf20c96099ee871",
     "framework/06_acquisition.md": "199a70d5e29863ad5725fa3001ec3928ac928418a30cc220c87de8bd90ba3bb0",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
     "framework/09_software_contracts.md": "52cbed6cee9ea6d181f65cb8f0e9f6fb4dca82dc656af1874b21f785687ffe8e",
-    "framework/CURRENT.md": "2de14f1e1392cf5219594f35bdcf40c65a94e4c7fb0d2a777db1bb9a21e87e6b",
+    "framework/CURRENT.md": "378f95920e51a4937c78c33c3b92348eedfa6fe2a279ae7eff92c20bb427a9c7",
     "framework/data_contract.json": "4c27cb06b82c5bba4d71d89eddb75c4d1dea98bb78d0c33591f3e6bec0cfd633",
     "framework/interface_manifest.json": "65d9987cd6f31c10ba4cc80239a265e984c8e4cc2b76998b3961b5f2f568aeaa",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "391dc4e17358879a5ce78ee929c482cba430ef439cf9adfa8d4c5dd662bc9db0",
+    "framework/current_state.json": "18512ccfa9d65d06b07736728d0d042cfb02d0bf9d25130d5e1afbf97fae56b4",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "ce19f7138e9727e6e55c45789df874befa93365db3fa399f1d5f270a9b07db6f",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "1e38f39a6e891f25b08924ac92a58f083857a3f754e29992616c760d5c4d1836",
     "src/inresearch/adapters/html_document.py": "ece18751831c38a47683873898d0b8e476bba0dc04b33378da888ee64f08864e",
-    "docs/DECISIONS.md": "c72f5ce941ff4caf7cd8be54331a9c8dab69cdbbdd98b24cbaa83e93f34d1b16",
+    "docs/DECISIONS.md": "bab460df879038c8d2bdd2682b30cc094d28fbf666001cc8722c7fe85b90b66d",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -828,7 +828,7 @@
     "framework/research_task_plan.json": "10d9f717f7dafc1de42c8e9969cf0d731101c0bed1bd1109213cdd9c5e338817",
     "src/inresearch/workflow/research_tasks.py": "8388a9f465ecee9e5ed863dde2be22e61b0502bb5966339e0a70cf40af0dceea",
     "tests/unit/test_research_tasks.py": "375ead9215224dbaa8c4b35e85e79383b96708209f0e660eca100848cffee44b",
-    "tests/research_tasks.cjs": "1e99549af2f371e3502313453e2529490d5b0a53e7964de450fd22f768fe377a",
+    "tests/research_tasks.cjs": "e47041c38b7d0f1aa469625178c13678613f10b1c75cbc94e8eaf41585694c5f",
     "web/pages/tasks.html": "be83c1948cd3b2c6301373ad47335aa1714de48d239bb891833fe2c750705ca3",
     "web/components/research-tasks.js": "4f2975cd4b5b1f14eec1f5e78d5aa2bc558143b5f61cb7a94d313006885a8df6",
     "web/themes/research-tasks.css": "387e79b7974b36d69f8f12f4f07c1dcea41941006301a5bc6c21f0005789ad5c",
@@ -887,23 +887,23 @@
     "docs/guides/fetchdata/fetchfilings-production.md": "7b64e5e241157f0f6b80ac2fdec148a9be2cda8ddb4c303459d1c16f28302e44",
     "docs/handoff/fetchfilings-production.md": "e86eed076155e2b000d0c51c1b2d52cec3f4c80d7fb6dcda88df14ecaf7d5408",
     "tests/unit/test_material_intake.py": "21dfcd068322fb3cc47b491d5b8b6db95825853a53c5f4641417a0446621ffc5",
-    "web/components/task-uploads.js": "a0f158734716d0312b4cd43cc3b04ac99f50d9563b58ee0588ff68ff6b032b25",
-    "web/themes/task-uploads.css": "0162620458378909af200b41f9aaac35b331887853f643ab321cce9ea395da70",
-    "src/inresearch/materials/inbox.py": "dd80c2c1b73b17fc6b3f41e64b7839eb39f6b99e787af6bee524f228c4ccca56",
+    "web/components/task-uploads.js": "bd9277112f63b3d6c68203f2786a1ec9e6dfad37741b053aee1319947e0a970d",
+    "web/themes/task-uploads.css": "b8746242172c93ae9cd9a85f0b96b31ecea23ce7a71da3a57b3d5fb9c924979a",
+    "src/inresearch/materials/inbox.py": "aad8c32d3fe79f94581a55e30784fe432c02dc12d9276577ed7c226010177ae8",
     "docs/guides/fetchdata/fetchreports-production.md": "eb9056348790cfc52d702a3f9ea03243358432c2ba9250a9a5afcebced25c355",
     "docs/handoff/fetchreports-production.md": "d01e599ed73a6a880917cf09258274ee0ec375725bca8442e3cc16d6eaf2e22b",
     "docs/guides/fetchdata/fetchquotes-production.md": "5e2ed30f67d740044f50793805a715bb60b99fd6a2a0893a862e279ffb6f3421",
     "docs/handoff/fetchquotes-production.md": "50e2808183053e9a1ad0fe8ea487aecb9720f5f905aa077e0c1040e4e7849ca1",
     "src/inresearch/materials/receive.py": "23f34e2d15af518ceaeb6bae31b599a0aa65905c2109b74c7bdbe2b7bd024061",
-    "src/inresearch/materials/review_worker.py": "ed44b83ae8626abc5a85334b31d726634131cf8d01030cfb5f95b2b94b41855a",
+    "src/inresearch/materials/review_worker.py": "b3bc84a7727c3cdd44ea6a1564af0441a1dced64dfbb93c11a34b587c981eae7",
     "src/inresearch/materials/review_context.py": "5119aed5257006959583cea556765e087b8694606df3cda37059db2401e150ba",
-    "src/inresearch/materials/task_analysis.py": "01c195f4e45f50150226270d253c197efb1d4989e2e20b0d1972ddfc18ee0d3f",
-    "tests/unit/test_task_analysis.py": "d14d5d6c1a6dfdeb8d3e9424e27dfe80ec6dc960b6ecc5c6788f45ba9198eb93",
+    "src/inresearch/materials/task_analysis.py": "74032615ad3905a30e7a6d6358b080bf23fb8e2b5200d37f3997acb0aa242e47",
+    "tests/unit/test_task_analysis.py": "e72a44297d99d37d1d944f6c29320435bae4a1398393ce324b5a8167bf6dfe89",
     "tests/unit/test_task_review_races.py": "0ff0bc4f5ed179ca1e13d120c2aa18db3de39c3fddb055543b94b38857ce9b86",
     "deploy/spark-reader/inresearch-material-intake.service": "5ac271f71c6b9a91bc0b28370bf6e10d6c01f98719e2413a1e041fa6a764c06a",
     "web/pages/task-reviews.html": "30f8155c912b6ebb28408f64fc71ffe29e4f8e6e793246c1476b95c0fab3d363",
-    "web/components/task-reviews.js": "4e511f06989ef2ebb9058e85ce3d9f78285afa792ec9b74d7f8f8cd02f83b047",
-    "web/themes/task-reviews.css": "dec2bac0239d3cffec099a23fc68b80c2314605f3df864b600e2ea232f705215",
+    "web/components/task-reviews.js": "0616f7dbde02fcd67e8d340a8101d2cb5c0e81c3f3dd63ca998a8695cce2cbdb",
+    "web/themes/task-reviews.css": "d0fbb78316c8f87dd2edd8f1e557cb686cdcdf42b23d5bcecac52cc49451d7e6",
     "scripts/receive_collector_local.py": "07081b247d6087f180e4e978256dc4a201d8c9227bfc32e8509568d94d4da1e7",
     "src/inresearch/materials/collector_receive.py": "e1852b52c6c1d39614682ee72577e35a6de38eeb111d72cbada7d7cc027ac8d2",
     "docs/guides/fetchdata/local-operations.md": "56fc8814b681ab32a8f4851aca1b50ed438eec2a3f464f3ed34f01894d90fbed",
@@ -914,7 +914,7 @@
     "tests/unit/test_collector_production_lookup.py": "69a1acdc5e0e4529d3411db95c002e0d4a2b76f1fb0208fa528418a3bd1d9012",
     "docs/guides/fetchdata/fetchstat-outbox.md": "fb7752a7cc585410d8e7f854c9caac4b5b3fc467f009b47c6c72779f99d11aa8",
     "docs/handoff/fetchstat-outbox.md": "7318e55b1cc66a0671e0f28dc69c5d921badcf1ea48f5a7f70a8458051ddbd29",
-    "docs/REPOSITORY_REGISTER.md": "0fadc1b738ddc4b9824a1b58b96781bbf8ed6d41a0f69ec309a96d7470abfc4d"
+    "docs/REPOSITORY_REGISTER.md": "7d3fb951582ae604ef4e3042f31872fe67f0eaa47159b3c6c731a3d4276bc434"
   },
   "policies": [
     {
@@ -3919,7 +3919,7 @@
       "policy": "task-upload-auto-analysis-20261015",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "匿名上传姓名与自定义项目名必填，同次最多20份附件、每份独立SHA和回执；后台以工作包组织审核、同名仅辅助查找且不作为身份凭据，回执不能串看。附件、员工说明和自填项目名只是待核原材料，不取得任务定义权或验收权。每次审核使用服务器当前有效项目任务、工作包与数据要求并记录任务版本；仅旧回执持有资格由服务端验证且明确关联后，才读上一轮系统发出的修改任务，对照本轮原件逐项写已改、未改、新问题及下一步，未验证时不得因同名读取他人的上下文。同一工作包可按明确登录名列表分配多人并行，各成员凭自己账号更新同一任务；匿名填写姓名不授予工作包权限；后交材料须比对当前工作包版本、最新已上线数据库及同任务先前可复验成果。同一物理园区、字段、范围和单位下的同值若有独立新来源或带核查依据的新原件版本，可按正式规则追加来源陈述并保留来源版本与本轮模型核对时间；原文明示的外部事实核验日期另存，未知留空，模型核对及上传日期均不得冒充。一个月后同值复核需可复验、带核查依据的新原件或记录；同一原件、同一字段仅重交且无独立新证据标无增量重复；相异值保留双方来源和定位列冲突，按正式发布规则决定且不自动覆盖；范围或容量口径不可比先标待核。反馈分别列新增、再次核验、无增量重复、冲突和未完成，下一步优先未完成的工作包缺口；姓名不是主要审核轴。仅负责人明确点击确认并分析后，批准SHA对应的已归档原件才可经私有中继由Codex CLI审核；旧approve不追溯授权。大型XLSX的全表程序计数与明确抽样模型审阅分开，抽样不产生自动上线候选。可提取正文的非XLSX材料生成带覆盖范围和定位的员工反馈，不因模型意见自动发布事实；不能提取的附件不声称已分析。模型输出不是发布凭证，可完整核验的XLSX候选须由网站复验原件字节、原生工作表及单元格、精确值与单位、唯一物理园区、字段白名单、已有非空值和真实批准来源时钟。只有合格普通来源经持久发布器追加且行业读者投影可查后计上线；不写正式C3或模型参数。后台报告含CLI请求身份、实际未回传身份、发布条目与未发布原因，员工回执只见默认折叠的带时间修改任务书；重放不重复写入或反馈。指定负责人从后台独立审批工作台核对原件SHA并操作，服务端强制管理员页面和指定负责人权限。小型XLSX模型输出截断时仅缩分当前原生单元格批次且保持断点一致；v5/v6旧Spark断点不与Codex结果混算。大报告私有分片回传验证总摘要及幂等重放，不放宽边缘WAF。任务首页园区进度只统计经模型审阅和网站实际发布、当前读者台账仍可见且排除跨园区组合的去重物理园区；目标条数未定时不显示百分比，管理员设定时必须填写初研依据并留时间。累计审核报告数与去重已发布来源陈述数是次级计数，不冒充园区条数。90+GW只作待校准探索目标，规划、投运、IT/设施等容量口径不混算、不伪造覆盖率；下一阶段质量指标在确定分母前不声称完成率。工作包、提交、反馈与发布各有独立状态。未绑定可核对地理范围的现行工作包只给反馈；新物理园区自动登记暂限中国大陆工作包且原件地点明确大陆省级行政区，已有园区更新须符合工作包登记区域。发布提交时服务端在锁内复验包含完整来源发布状态摘要的最新任务／上下文哈希，来源发布状态用比较交换拒绝并发变化；过期候选保存原件后按最新状态重审。已持久发布但报告／反馈回写中断时凭 outbox 和同一批次恢复，核对读者投影而不二次发布。畸形、无法提取或超处理上限原件终态需修订、标记未进入模型审核并继续处理后续文件。 负责人可在报告生成前把旧提交绑定现行工作包；变更与发布提交共用任务锁、保留原批准和原件SHA，并使旧任务上下文失效；有报告、错误终态或待恢复发布事务时拒绝。",
+      "checked_requirement": "匿名上传姓名与自定义项目名必填，同次最多20份附件、每份独立SHA和回执；后台以工作包组织审核、同名仅辅助查找且不作为身份凭据，回执不能串看。附件、员工说明和自填项目名只是待核原材料，不取得任务定义权或验收权。每次审核使用服务器当前有效项目任务、工作包与数据要求并记录任务版本；仅旧回执持有资格由服务端验证且明确关联后，才读上一轮系统发出的修改任务，对照本轮原件逐项写已改、未改、新问题及下一步，未验证时不得因同名读取他人的上下文。同一工作包可按明确登录名列表分配多人并行，各成员凭自己账号更新同一任务；匿名填写姓名不授予工作包权限；后交材料须比对当前工作包版本、最新已上线数据库及同任务先前可复验成果。同一物理园区、字段、范围和单位下的同值若有独立新来源或带核查依据的新原件版本，可按正式规则追加来源陈述并保留来源版本与本轮模型核对时间；原文明示的外部事实核验日期另存，未知留空，模型核对及上传日期均不得冒充。一个月后同值复核需可复验、带核查依据的新原件或记录；同一原件、同一字段仅重交且无独立新证据标无增量重复；相异值保留双方来源和定位列冲突，按正式发布规则决定且不自动覆盖；范围或容量口径不可比先标待核。反馈分别列新增、再次核验、无增量重复、冲突和未完成，下一步优先未完成的工作包缺口；姓名不是主要审核轴。仅负责人明确点击确认并分析后，批准SHA对应的已归档原件才可经私有中继由Codex CLI审核；旧approve不追溯授权。大型XLSX的全表程序计数与明确抽样模型审阅分开，抽样不产生自动上线候选。可提取正文的非XLSX材料生成带覆盖范围和定位的员工反馈，不因模型意见自动发布事实；不能提取的附件不声称已分析。模型输出不是发布凭证，可完整核验的XLSX候选须由网站复验原件字节、原生工作表及单元格、精确值与单位、唯一物理园区、字段白名单、已有非空值和真实批准来源时钟。只有合格普通来源经持久发布器追加且行业读者投影可查后计上线；不写正式C3或模型参数。后台报告含CLI请求身份、实际未回传身份、发布条目与未发布原因，员工回执只见默认折叠的带时间修改任务书；重放不重复写入或反馈。指定负责人从后台独立审批工作台核对原件SHA并操作，服务端强制管理员页面和指定负责人权限。小型XLSX模型输出截断时仅缩分当前原生单元格批次且保持断点一致；v5/v6旧Spark断点不与Codex结果混算。大报告私有分片回传验证总摘要及幂等重放，不放宽边缘WAF。任务首页园区进度只统计经模型审阅和网站实际发布、当前读者台账仍可见且排除跨园区组合的去重物理园区；目标条数未定时不显示百分比，管理员设定时必须填写初研依据并留时间。累计审核报告数与去重已发布来源陈述数是次级计数，不冒充园区条数。90+GW只作待校准探索目标，规划、投运、IT/设施等容量口径不混算、不伪造覆盖率；下一阶段质量指标在确定分母前不声称完成率。工作包、提交、反馈与发布各有独立状态。未绑定可核对地理范围的现行工作包只给反馈；新物理园区自动登记暂限中国大陆工作包且原件地点明确大陆省级行政区，已有园区更新须符合工作包登记区域。发布提交时服务端在锁内复验包含完整来源发布状态摘要的最新任务／上下文哈希，来源发布状态用比较交换拒绝并发变化；过期候选保存原件后按最新状态重审。已持久发布但报告／反馈回写中断时凭 outbox 和同一批次恢复，核对读者投影而不二次发布。畸形、无法提取或超处理上限原件终态需修订、标记未进入模型审核并继续处理后续文件。 负责人可在报告生成前把旧提交绑定现行工作包；变更与发布提交共用任务锁、保留原批准和原件SHA，并使旧任务上下文失效；有报告、错误终态或待恢复发布事务时拒绝。 大型XLSX抽样逐格问题只能引用模型实际看到的原生工作表／单元格定位，截断值仅能按前90字片段评价；报告保存全表非空格数、摘录定位与格数、前缀格数和未完整交模型格数。提交时网站从批准原件重算范围，拒绝越界发现和任何抽样发布候选；员工与负责人在默认折叠报告外也能看到“抽样反馈、全表待审”，0条上线不被解释为全表无合格条目。员工按当前工作包补较小且可定位的证据包，原件保留，研究端继续审核未覆盖内容。 同一原件重交的回归须实际复用同一组XLSX字节并断言SHA相同，防止ZIP打包时间戳使测试偶发将不同字节误作重复原件。",
       "tests": [
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_only_new_explicit_action_reaches_analysis_queue",
         "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_one_native_candidate_publishes_and_report_stays_owner_only",
@@ -3947,11 +3947,14 @@
         "tests/unit/test_task_review_races.py::TaskReviewRaceTests.test_analysis_rejects_task_hash_from_previous_system_state",
         "tests/unit/test_task_review_races.py::TaskReviewRaceTests.test_worker_archives_stale_delivery_and_next_run_refreshes_task",
         "tests/research_tasks.cjs",
-        "tests/unit/test_material_intake.py::IntakeTests.test_owner_assigns_current_package_to_legacy_active_review_without_changing_approval"
+        "tests/unit/test_material_intake.py::IntakeTests.test_owner_assigns_current_package_to_legacy_active_review_without_changing_approval",
+        "tests/unit/test_task_analysis.py::TaskAnalysisTests.test_large_workbook_finding_scope_is_rechecked_and_reported_as_incomplete"
       ],
       "not_verified": [
         "合成单元测试和本地浏览器场景不证明真实员工工作簿已由 Codex 按报告标示范围审核、生产持久发布成功或公网园区详情可见；需分别保存服务、模型、发布器、网站实际回执；真实超限附件的终态员工反馈也须公网验收。审批工作台的合成桌面／手机场景不替代真实管理员账号、公网页面和真实文件状态验收。",
-        "Codex CLI 建议只是普通来源基础登记候选，不证明来源陈述真实、全表无遗漏、C3正式研究采用或模型参数适用；大型XLSX抽样只形成修改建议，不证明全表逐格核对。非XLSX正文提取或抽样反馈不证明扫描PDF/图片/附件全部读完；这些格式的来源绑定自动发布未覆盖。回执验证证明持有关系，不证明匿名填写姓名对应现实中的同一人；真实员工多轮任务执行效果须依据各轮原件和反馈核对；本轮模型核对时间不等于外部事实核验日期。目标园区条数尚待初步去重摸底，90+GW行业目标与已发布园区容量尚不具备直接可比的完成率；长期吞吐、真实v5/v6最终网站回执另验。"
+        "Codex CLI 建议只是普通来源基础登记候选，不证明来源陈述真实、全表无遗漏、C3正式研究采用或模型参数适用；大型XLSX抽样只形成修改建议，不证明全表逐格核对。非XLSX正文提取或抽样反馈不证明扫描PDF/图片/附件全部读完；这些格式的来源绑定自动发布未覆盖。回执验证证明持有关系，不证明匿名填写姓名对应现实中的同一人；真实员工多轮任务执行效果须依据各轮原件和反馈核对；本轮模型核对时间不等于外部事实核验日期。目标园区条数尚待初步去重摸底，90+GW行业目标与已发布园区容量尚不具备直接可比的完成率；长期吞吐、真实v5/v6最终网站回执另验。",
+        "本次仅修正有界抽样的定位约束与可见范围，不证明真实v5/v6未覆盖单元格已交给Codex CLI、完成逐格审阅或自动发布；后续需按现行任务和台账分批审核并取得真实回执。",
+        "确定性同字节夹具只验证重复／新来源分流；真实员工在不同日期提交的原件若字节不同，仍须按来源版本和核查依据逐条审核，不由夹具推定重复。"
       ]
     }
   ]

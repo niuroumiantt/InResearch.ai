@@ -278,25 +278,50 @@ def digest_book(book, budget=35000):
     return digest
 
 
+def digest_scope(book, digest):
+    """Record exactly which native values, or 90-character prefixes, reached the model."""
+    native = {sheet['name']: sheet['cells'] for sheet in book.sheets}
+    locators = []
+    truncated = 0
+    for excerpt in digest['excerpts']:
+        for address in excerpt['cells']:
+            locators.append([excerpt['sheet'], address])
+            if len(str(native[excerpt['sheet']][address]['value'])) > 90:
+                truncated += 1
+    total = sum(sheet['nonblank_cells'] for sheet in digest['sheets'])
+    return {'mode': 'sampled_native_cells',
+            'total_sheets': len(digest['sheets']),
+            'total_nonblank_rows': sum(sheet['rows'] for sheet in digest['sheets']),
+            'total_nonblank_cells': total,
+            'excerpted_rows': len(digest['excerpts']),
+            'excerpted_cells': len(locators),
+            'prefix_only_cells': truncated,
+            'not_excerpted_cells': total-len(locators),
+            'not_fully_seen_cells': total-len(locators)+truncated,
+            'excerpt_character_limit': 90,
+            'reviewed_locators': locators}
+
+
 def digest_proposal(item, book, task, known, client, progress_path=None, on_progress=None):
     """Large workbooks get an honest targeted review; no sampled fact is published."""
     if on_progress:on_progress(0,1,0,0)
     if progress_path:atomic(progress_path,{'sha256':item['sha256'],
         'task_sha256':task_provenance(task)['sha256'],'mode':'sampled_digest','next':0,'total':1})
     digest=digest_book(book)
+    scope=digest_scope(book,digest)
     prompt=json.dumps({'task':task,'known_sites':known,'workbook_digest':digest,
        'instructions':'程序已读取全表计数，但模型只看 excerpts。按系统本轮任务与可用的上轮修改任务，'
-                      '在已见片段内区分已改、未改、新发现；未抽样到的上轮事项标未检查。给出最多30条有明确工作表和单元格的问题；'
+                      '每格最多只看到原值前90字；仅能引用 excerpts 中的工作表和单元格，在已见片段内区分已改、未改、新发现；'
+                      '未抽样到的上轮事项标未检查。给出最多30条有明确工作表和单元格的问题；'
                       '说明下一版修改优先级与逐项入库标准。不能声称逐格审阅；不能从抽样摘要发布事实，candidates 必须为空。'},
                       ensure_ascii=False,separators=(',',':'))
     result=client.generate(SYSTEM,prompt,json_schema=SCHEMA)
-    native={sheet['name']:sheet['cells'] for sheet in book.sheets}
+    allowed={(sheet,cell) for sheet,cell in scope['reviewed_locators']}
     findings=[]
     for finding in result['findings'][:30]:
-        match=re.match(r'^\$?([A-Z]{1,3})\$?([1-9][0-9]*)',str(finding.get('cell','')).strip())
+        match=re.fullmatch(r'\$?([A-Z]{1,3})\$?([1-9][0-9]*)',str(finding.get('cell','')).strip())
         cell=match[1]+match[2] if match else ''
-        if (finding.get('sheet') in native and cell in native[finding['sheet']]
-                and native[finding['sheet']][cell]['value'] not in ('',None)
+        if ((finding.get('sheet'),cell) in allowed
                 and finding.get('priority') in ('P0','P1','P2')):
             findings.append({**finding,'cell':cell})
     if on_progress:on_progress(1,1,0,0)
@@ -305,10 +330,12 @@ def digest_proposal(item, book, task, known, client, progress_path=None, on_prog
                                       'model':result.get('_model')})
     return {'id':item['id'],'sha256':item['sha256'],
         'analysis_id':analysis_identity(item,task),
-        'summary':'程序核对全部工作表行数和非空格；模型只审阅列明的原生单元格抽样，未逐格审阅。'
+        'summary':f"程序统计 {scope['total_nonblank_cells']} 个非空单元格；模型仅见 "
+                  f"{scope['excerpted_cells']} 个单元格片段（其中 {scope['prefix_only_cells']} 个只见前90字），"
+                  f"尚有 {scope['not_fully_seen_cells']} 个单元格未完整交模型；全表审核未完成，不能据此判定无合格条目。"
                   +result['summary'][:3400],
         'findings':findings,'candidates':[],'model':result['_model'],
-        'task_provenance':task_provenance(task)}
+        'task_provenance':task_provenance(task),'review_scope':scope}
 
 
 def document_lines(original, suffix):
