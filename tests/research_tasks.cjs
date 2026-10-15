@@ -119,6 +119,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
       {name:'notes.txt',mimeType:'text/plain',buffer:Buffer.from('source notes')}]);
     await anonymous.locator('#upload-submit').click();
     await anonymous.waitForFunction(()=>/2 份附件已收到/.test(document.querySelector('#upload-message')?.textContent || ''));
+    await anonymous.waitForFunction(()=>document.querySelectorAll('#upload-own-list .upload-card').length === 3);
     assert.equal(await anonymous.locator('#upload-own-list .upload-person-group').count(),1);
     assert.equal(await anonymous.locator('#upload-own-list .upload-card').count(),3);
     const batchRecords=readdirSync(join(directory,'intake')).map(id=>JSON.parse(readFileSync(join(directory,'intake',id,'record.json'),'utf8'))).filter(r=>['source.pdf','notes.txt'].includes(r.name));
