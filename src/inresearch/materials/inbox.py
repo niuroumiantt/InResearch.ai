@@ -74,6 +74,10 @@ def receive(stream, size, metadata, user, *, public=False):
 
 def public_view(record):
     """Never expose receipt verifiers or operation bodies in an API response."""
+    return {k: v for k, v in record.items() if k not in ('receipt_hash', 'operations', 'analysis_reports')}
+
+
+def owner_view(record):
     return {k: v for k, v in record.items() if k not in ('receipt_hash', 'operations')}
 
 
@@ -155,13 +159,88 @@ def pending():
     return result
 
 
+def analysis_pending():
+    """Only an archived, owner-approved XLSX can enter automatic review."""
+    result = []
+    for record in records():
+        if (record.get('status') != 'archived' or not record.get('analysis_requested_at')
+                or record.get('analysis_reports') or not record['name'].lower().endswith('.xlsx')):
+            continue
+        try:
+            require_approved(record)
+        except PermissionError:
+            continue
+        result.append(public_view(record))
+    return result
+
+
 def snapshot(actor, role):
     owner = can_approve(actor, role)
     items = [r for r in records() if owner or (not r.get('receipt_hash') and r['user'] == actor)]
     # Audit request bodies are internal; employees see decisions and feedback only.
-    return {'items': [public_view(r) for r in items[:200]],
+    return {'items': [(owner_view(r) if owner else public_view(r)) for r in items[:200]],
             'can_approve': owner, 'can_upload': role in ('admin', 'member', 'intern'),
             'approver': approver() if owner else None}
+
+
+def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
+    """Append one immutable analysis receipt and one public employee task.
+
+    The caller must have completed publication checks first. A retry with the
+    same analysis ID is harmless; a changed source cannot inherit this report.
+    """
+    if not isinstance(analysis_id, str) or not re.fullmatch(r'[a-f0-9-]{36}', analysis_id):
+        raise ValueError('analysis_id required')
+    uuid.UUID(analysis_id)
+    if (not isinstance(owner_report, dict) or len(json.dumps(owner_report, ensure_ascii=False)) > 100000
+            or not isinstance(employee_task, str) or not employee_task.strip()
+            or len(employee_task) > 20000):
+        raise ValueError('analysis report or employee task invalid')
+    path = record_path(key) / 'record.json'
+    with locked(path):
+        record = json.loads(path.read_text())
+        require_approved(record)
+        if record['sha256'] != sha:
+            raise Conflict('analysis source changed')
+        existing = next((r for r in record.get('analysis_reports', []) if r['id'] == analysis_id), None)
+        if existing:
+            if existing['report'] != owner_report or existing['employee_task'] != employee_task:
+                raise Conflict('analysis replay changed')
+            return owner_view(record)
+        now = time.time()
+        record.setdefault('analysis_reports', []).append({'id':analysis_id, 'at':now,
+            'sha256':sha, 'report':owner_report, 'employee_task':employee_task})
+        published = owner_report.get('published', [])
+        record.setdefault('feedback', []).append({'id':analysis_id, 'by':'analysis-worker',
+            'at':now, 'sha256':sha,
+            'result':'accepted' if published and not owner_report.get('held') and not owner_report.get('findings') else 'revision_required',
+            'text':employee_task})
+        record['analysis_state'] = 'completed'
+        total = record.get('analysis_progress', {}).get('total', 0)
+        record['analysis_progress'] = {'state':'completed', 'completed':total,
+                                       'total':total, 'at':now}
+        record['revision'] = record.get('revision', 0) + 1
+        atomic(path, record)
+    return owner_view(record)
+
+
+def set_analysis_progress(key, sha, completed, total, state='running'):
+    if (type(completed) is not int or type(total) is not int or not 0 <= completed <= total <= 200
+            or state not in ('running', 'blocked')):
+        raise ValueError('invalid analysis progress')
+    path = record_path(key) / 'record.json'
+    with locked(path):
+        record = json.loads(path.read_text())
+        require_approved(record)
+        if (record['sha256'] != sha or not record.get('analysis_requested_at')
+                or record['status'] != 'archived'):
+            raise PermissionError('analysis not requested for this source')
+        if record.get('analysis_reports'):
+            return public_view(record)
+        record['analysis_progress'] = {'state':state, 'completed':completed,
+                                       'total':total, 'at':time.time()}
+        atomic(path, record)
+    return public_view(record)
 
 
 def mutate(payload, actor, role, *, worker=False):
@@ -192,7 +271,7 @@ def mutate(payload, actor, role, *, worker=False):
             raise Conflict('文件版本或状态已变化，请刷新后重试')
         now = time.time()
         before = record['status']
-        if action in ('approve', 'reject'):
+        if action in ('approve', 'approve_and_analyze', 'reject'):
             if before not in ('pending_approval', 'queued') or record.get('approval'):
                 raise Conflict('该文件已处理；新版文件须重新上传批准')
             note = payload.get('note', '')
@@ -200,9 +279,11 @@ def mutate(payload, actor, role, *, worker=False):
                 raise ValueError('审批备注最多4000字')
             if action == 'reject' and not note.strip():
                 raise ValueError('请填写退回原因')
-            record.update(status='approved' if action == 'approve' else 'rejected',
+            if action == 'approve_and_analyze' and not record['name'].lower().endswith('.xlsx'):
+                raise ValueError('自动分析目前仅支持 .xlsx')
+            record.update(status='approved' if action in ('approve', 'approve_and_analyze') else 'rejected',
                           decision={'by':actor, 'at':now, 'action':action, 'note':note})
-            if action == 'approve':
+            if action in ('approve', 'approve_and_analyze'):
                 # Verify the exact bytes before granting any analysis permission.
                 content = path.parent / 'content'
                 digest = hashlib.sha256()
@@ -212,6 +293,15 @@ def mutate(payload, actor, role, *, worker=False):
                 if content.stat().st_size != record['size'] or digest.hexdigest() != record['sha256']:
                     raise ValueError('原件内容已变化，不能批准')
                 record['approval'] = {'by':actor, 'at':now, 'sha256':record['sha256']}
+                if action == 'approve_and_analyze':
+                    record['analysis_requested_at'] = now
+        elif action == 'start_analysis':
+            require_approved(record)
+            if not record['name'].lower().endswith('.xlsx'):
+                raise ValueError('自动分析目前仅支持 .xlsx')
+            if before != 'archived' or record.get('analysis_requested_at'):
+                raise Conflict('分析已启动，或研究端尚未接收')
+            record['analysis_requested_at'] = now
         elif action == 'feedback':
             require_approved(record)
             text, result = payload.get('text'), payload.get('result')

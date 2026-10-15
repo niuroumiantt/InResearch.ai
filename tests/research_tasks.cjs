@@ -58,7 +58,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await admin.goto(base+'/tasks.html');
     await admin.locator('#upload-owner [data-id="'+publicRecord.id+'"]').waitFor();
     await admin.locator('#upload-owner [data-id="'+publicRecord.id+'"] [data-action="approve"]').click();
-    await admin.waitForFunction(id=>document.querySelector('#upload-owner [data-id="'+id+'"]')?.textContent.includes('已批准'),publicRecord.id);
+    await admin.waitForFunction(id=>document.querySelector('#upload-owner [data-id="'+id+'"]')?.textContent.includes('已确认'),publicRecord.id);
     const readyItems=(await (await anonymous.request.get(base+'/api/intake-worker/pending',{headers:workerHeaders})).json()).items;
     assert.equal(readyItems.length,1);
     assert.equal(readyItems[0].id,publicRecord.id);

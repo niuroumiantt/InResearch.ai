@@ -18,7 +18,7 @@ def digest(value):
     return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True,allow_nan=False,separators=(',',':')).encode()).hexdigest()
 
 
-def apply(root, data, statement):
+def apply(root, data, statement, *, resolve=None):
     root,data=Path(root),Path(data)
     if isinstance(statement, dict) and 'object' in statement:
         return apply_object(root, data, statement)
@@ -34,7 +34,7 @@ def apply(root, data, statement):
     sha=evidence.get('sha256')
     # Byte identity and actual receiver provenance are technical bookkeeping,
     # not a semantic verdict about the source's claims.
-    _,url,first,archive=source(data,sha,with_provenance=True)
+    _,url,first,archive=(resolve(sha) if resolve else source(data,sha,with_provenance=True))
     published=evidence.get('published_at');effective=statement.get('effective_at')
     for stamp in (published,effective):observation_time.precision(stamp)
     stamp=datetime.now(timezone.utc).isoformat()
