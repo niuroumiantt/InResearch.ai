@@ -97,6 +97,36 @@ def batches(book):
     return result
 
 
+def review_chunk(client, task, known, chunk):
+    """Retry an output-limited batch as smaller cell groups, without moving its checkpoint."""
+    prompt=json.dumps({'task':task,'known_cn_sites':known,'worksheet':chunk,
+        'output':{'summary':'本批评价','findings':[{'sheet':'工作表名','cell':'A1','priority':'P0/P1/P2',
+            'issue':'问题','action':'具体修改','acceptance':'完成判据'}],
+            'candidates':[{'site_id':'已有站点ID或空串','site_name':'原文名称','name_locator':'名称定位',
+                'location':'原文地点','location_locator':'地点定位','field':'name/status/utility/power_status/notes/容量字段',
+                'value':'原文值或数字','unit':'MW/GW或空串','unit_locator':'单位定位或空串','locator':'值定位'}]},
+        'rules':'没有明确单元格和唯一园区的行只写问题，不提发布候选。locator 原样复制。'
+                '文本值须原文照抄；容量须原文数字和明示单位；新园区必须有名称和地点单元格。'},ensure_ascii=False)
+    try:
+        result=client.generate(SYSTEM,prompt,think=False,json_schema=SCHEMA)
+    except models.InferenceError as error:
+        cells=chunk['cells']
+        if error.code!='model_output_truncated' or len(cells)<2:
+            raise
+        midpoint=len(cells)//2
+        left=review_chunk(client,task,known,{**chunk,'cells':cells[:midpoint]})
+        right=review_chunk(client,task,known,{**chunk,'cells':cells[midpoint:]})
+        if left.get('_model',{}).get('actual')!=right.get('_model',{}).get('actual'):
+            raise ValueError('model_identity_changed_during_review')
+        result={'summary':left['summary']+'；'+right['summary'],
+            'findings':left['findings']+right['findings'],
+            'candidates':left['candidates']+right['candidates'],'_model':left['_model']}
+    if (not isinstance(result.get('summary'),str) or not isinstance(result.get('findings'),list)
+            or not isinstance(result.get('candidates'),list)):
+        raise ValueError('model_analysis_shape_invalid')
+    return result
+
+
 def proposal(item, original, progress_path=None, max_new_batches=10):
     require_approved(item)
     if not item['name'].lower().endswith('.xlsx'):
@@ -125,17 +155,7 @@ def proposal(item, original, progress_path=None, max_new_batches=10):
         raise ValueError('analysis_checkpoint_source_changed')
     for index in range(state['next'],min(len(chunks),state['next']+max_new_batches)):
         chunk=chunks[index]
-        prompt=json.dumps({'task':task,'known_cn_sites':known,'worksheet':chunk,
-            'output':{'summary':'本批评价','findings':[{'sheet':'工作表名','cell':'A1','priority':'P0/P1/P2',
-                'issue':'问题','action':'具体修改','acceptance':'完成判据'}],
-                'candidates':[{'site_id':'已有站点ID或空串','site_name':'原文名称','name_locator':'名称定位',
-                    'location':'原文地点','location_locator':'地点定位','field':'name/status/utility/power_status/notes/容量字段',
-                    'value':'原文值或数字','unit':'MW/GW或空串','unit_locator':'单位定位或空串','locator':'值定位'}]},
-            'rules':'没有明确单元格和唯一园区的行只写问题，不提发布候选。locator 原样复制。'
-                    '文本值须原文照抄；容量须原文数字和明示单位；新园区必须有名称和地点单元格。'},ensure_ascii=False)
-        result=client.generate(SYSTEM,prompt,think=False,json_schema=SCHEMA)
-        if not isinstance(result.get('summary'),str) or not isinstance(result.get('findings'),list) or not isinstance(result.get('candidates'),list):
-            raise ValueError('model_analysis_shape_invalid')
+        result=review_chunk(client,task,known,chunk)
         if state['model'] is None:state['model']=result.get('_model')
         elif result.get('_model',{}).get('actual')!=state['model'].get('actual'):
             raise ValueError('model_identity_changed_during_review')

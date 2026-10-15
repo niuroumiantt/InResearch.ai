@@ -9,8 +9,9 @@ import unittest
 import uuid
 from unittest.mock import patch
 
+from inresearch.adapters import models
 from inresearch.delivery import source_publication
-from inresearch.materials import inbox, task_analysis
+from inresearch.materials import inbox, review_worker, task_analysis
 from inresearch.paths import project_root
 from tests.unit.test_xlsx_document import workbook_bytes
 
@@ -105,6 +106,26 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertEqual(len(recovered['report']['published']),1)
         self.assertEqual(len(inbox.load(self.item['id'])['feedback']),1)
         self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),1)
+
+
+class ReviewWorkerBatchTests(unittest.TestCase):
+    def test_output_limited_chunk_splits_without_dropping_cells(self):
+        class Client:
+            calls=[]
+            def generate(self, system, prompt, **kwargs):
+                cells=json.loads(prompt)['worksheet']['cells']
+                self.calls.append([cell['cell'] for cell in cells])
+                if len(cells)>2:
+                    raise models.InferenceError('model_output_truncated')
+                return {'summary':'已检查','findings':[{'cell':cell['cell']} for cell in cells],
+                        'candidates':[],'_model':{'actual':'local-test-model'}}
+        chunk={'sheet':'测试','sheet_index':1,'cells':[{'cell':f'A{i}','value':str(i)} for i in range(1,9)]}
+        client=Client()
+        result=review_worker.review_chunk(client,{'title':'测试'},[],chunk)
+        self.assertEqual([row['cell'] for row in result['findings']],[f'A{i}' for i in range(1,9)])
+        self.assertEqual(len(client.calls),7)
+        self.assertEqual(result['_model']['actual'],'local-test-model')
+        self.assertEqual(len(chunk['cells']),8)
 
 
 if __name__=='__main__': unittest.main()
