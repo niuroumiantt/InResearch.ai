@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15.3",
+  "version": "2026.10.15.4",
   "effective_at": "2026-10-15",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -5008,6 +5008,31 @@
         "tests/global_campuses.cjs",
         "tests/unit/test_geographic_analysis.py"
       ]
+    },
+    {
+      "id": "task-upload-auto-analysis-20261015",
+      "topic": "task-upload-auto-analysis",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-10-15",
+      "source": "framework/05_interface_system.md",
+      "implementations": [
+        "src/inresearch/materials/inbox.py",
+        "src/inresearch/materials/receive.py",
+        "deploy/spark-reader/inresearch-material-intake.service",
+        "src/inresearch/materials/review_worker.py",
+        "src/inresearch/materials/task_analysis.py",
+        "src/inresearch/interfaces/http.py",
+        "src/inresearch/knowledge/object_observations.py",
+        "src/inresearch/workflow/source_statements.py",
+        "src/inresearch/delivery/source_publication.py",
+        "web/pages/tasks.html",
+        "web/components/task-uploads.js",
+        "tests/unit/test_task_analysis.py",
+        "tests/research_tasks.cjs"
+      ],
+      "supersedes": [],
+      "reason": "用户明确要求单份原件确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工逐格可执行任务书。旧审批不追溯授权，正式研究采用及模型参数保持原边界。"
     }
   ],
   "entrypoints": [
@@ -5119,5 +5144,5 @@
       "retire_after": "2026-12-31"
     }
   ],
-  "updated": "2026-10-14"
+  "updated": "2026-10-15"
 }
