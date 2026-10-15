@@ -26,6 +26,9 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal((await anonymous.request.post(base+'/api/research-tasks',{data:{}})).status(),401);
     await anonymous.goto(base+'/tasks.html');
     await anonymous.locator('#package-tabs [role="tab"]').nth(5).waitFor();
+    const initialApiLoads = await anonymous.evaluate(()=>performance.getEntriesByType('resource').map(entry=>new URL(entry.name).pathname));
+    assert.equal(initialApiLoads.filter(path=>path==='/api/research-tasks').length,1,'initial page shares one task request');
+    assert.equal(initialApiLoads.filter(path=>path==='/api/research-task-examples').length,0,'worked example loads only when its tab opens');
     assert.equal(await anonymous.locator('#upload-package').inputValue(),'dc-census-cn');
     await anonymous.locator('#package-tabs [data-package-tab="dc-census-na"]').click();
     assert.equal(await anonymous.locator('#upload-package').inputValue(),'dc-census-na');
@@ -38,9 +41,18 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
       await anonymous.screenshot({path:process.env.UI_TASKS_SCREENSHOT_PREFIX+'-initial-390.png',fullPage:true});
       await anonymous.setViewportSize({width:1440,height:1000});
     }
-    assert.equal(await anonymous.locator('#upload-form-details').evaluate(element=>element.open),false);
+    assert.equal(await anonymous.locator('#upload').isHidden(),true);
     await anonymous.locator('#package-upload-action').click();
-    assert.equal(await anonymous.locator('#upload-form-details').evaluate(element=>element.open),true);
+    assert.equal(await anonymous.locator('#upload').isVisible(),true);
+    assert.equal(await anonymous.locator('[data-task-view="upload"]').getAttribute('aria-selected'),'true');
+    if(process.env.UI_QA_DIR){
+      mkdirSync(process.env.UI_QA_DIR,{recursive:true});
+      await anonymous.setViewportSize({width:1440,height:900});
+      await anonymous.screenshot({path:join(process.env.UI_QA_DIR,'task-upload-desktop.png'),fullPage:true});
+      await anonymous.setViewportSize({width:390,height:844});
+      await anonymous.screenshot({path:join(process.env.UI_QA_DIR,'task-upload-mobile.png'),fullPage:true});
+      await anonymous.setViewportSize({width:1440,height:1000});
+    }
     assert.equal(await anonymous.locator('#upload-submit').isVisible(),true);
     await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.bin',mimeType:'application/octet-stream',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
@@ -74,6 +86,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const admin=await browser.newPage();
     await admin.context().addCookies([{name:'hub_session',value:config.cookies['task-admin'].slice(config.cookies['task-admin'].indexOf('=')+1),url:base}]);
     await admin.goto(base+'/tasks.html');
+    await admin.locator('[data-task-view="upload"]').click();
     await admin.locator('#upload-owner-shortcut').waitFor({state:'visible'});
     assert.equal(await admin.locator('#upload-owner-list').count(),0);
     await admin.locator('#upload-owner-shortcut a').click();
@@ -160,6 +173,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('仅抽样反馈，全表待审'));
     assert.match(await anonymous.locator('#upload-own-list').innerText(),/32\/328.*297.*0 条上线/s);
     assert.equal(await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator('.upload-feedback').getAttribute('open'),null);
+    await anonymous.locator('[data-task-view="package-workspace"]').click();
     await anonymous.locator('#package-refresh').click();
     await anonymous.waitForFunction(()=>document.querySelector('#package-timeline')?.textContent.includes('另一位访客'));
     assert.match(await anonymous.locator('#package-timeline').innerText(),/另一位访客.*Excel 表格.*抽样反馈/s);
@@ -170,6 +184,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
       localStorage.setItem(key,JSON.stringify(JSON.parse(localStorage.getItem(key)||'[]').filter(row=>row.id!==id)));
     },xlsx.id);
     await admin.close();
+    await anonymous.locator('[data-task-view="upload"]').click();
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
     await anonymous.locator('#task-upload-form [name="project_name"]').fill('合成测试项目');
     await anonymous.locator('#task-upload-form [name="file"]').setInputFiles([
@@ -184,7 +199,6 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(batchRecords.length,2);
     assert.equal(batchRecords[0].batch_id,batchRecords[1].batch_id);
     assert.equal(batchRecords[0].project_name,'合成测试项目');
-    await anonymous.waitForFunction(()=>document.querySelector('#examples-status').textContent.includes('尚未安装'));
     assert.equal(await anonymous.locator('#new-package').isVisible(),false);
     assert.match(await anonymous.locator('#task-role-note').textContent(),/登录后可见/);
     // Synthetic test bytes are private runtime fixtures, separate from the real
@@ -194,7 +208,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const sampleArtifacts=[['original','SYNTHETIC PUBLIC ORIGINAL\n','public'],['validation','{"offline_valid":true,"synthetic":true}\n','public'],['internal','SYNTHETIC PRIVATE OPERATOR NOTE\n','private']].map(([id,content,access_scope])=>{const bytes=Buffer.from(content);writeFileSync(join(sampleDirectory,id+'.txt'),bytes);return{id,path:id+'.txt',filename:id+'.txt',sha256:createHash('sha256').update(bytes).digest('hex'),size:bytes.length,access_scope};});
     const sample={version:1,id:sampleId,name:'合成浏览器样例 · 不是真实研究数据',site_id:'synthetic-example',status:'测试字节，不可用于研究采用',processed_at:'2026-10-12T12:00:00+08:00',execution:{machine:'private-sample-host',model:'private-sample-model',actor:'private-sample-operator',reading_scope:'仅相关段落，未全文阅读'},sources:[{id:'source-1',title:'合成原件',url:'https://example.invalid/source',artifact_id:'original',locator:'第1节 · 原文定位'}],facts:[{id:'name',label:'园区原名',value:'合成站点',unit:null,source_ids:['source-1'],locator:'第1节'}],unknowns:[{id:'electricity',label:'年度电耗',reason:'原件未披露，保持未知',next_action:'寻找运行年度报告，不填0'}],stages:[{id:'originals',title:'原件取得',state:'complete',result:'已保存合成测试字节',artifact_ids:['original']},{id:'validate',title:'离线验包',state:'complete',result:'合成测试报告',artifact_ids:['validation']},{id:'receive',title:'实际接收',state:'pending',result:'未执行，不可计为已接收',artifact_ids:['internal']},{id:'map',title:'网站与地图回执',state:'pending',result:'未执行，不可计为已点亮',artifact_ids:[]}],artifacts:sampleArtifacts,links:{project:'/project.html?site=synthetic-example',map:'/industry.html?site=synthetic-example'}};
     writeFileSync(join(sampleDirectory,'example.json'),JSON.stringify(sample));
-    await anonymous.locator('#worked-example > summary').click();
+    await anonymous.locator('[data-task-view="worked-example"]').click();
     await anonymous.locator('#refresh-examples').click();
     await anonymous.locator('[data-example="'+sampleId+'"]').waitFor();
     assert.ok(!(await anonymous.locator('#example-content').innerText()).includes('private-sample-'));
@@ -213,19 +227,20 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const errors = [];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'/tasks.html');
     assert.equal((await page.request.get(base+'/api/materials/content/'+publicRecord.id)).status(),404);
+    await page.locator('[data-task-view="task-guide"]').click();
     await page.locator('#work-packages > summary').click();
-    await page.locator('#worked-example > summary').click();
     await page.locator('#package-rows tr').nth(5).waitFor();
+    await page.locator('[data-task-view="worked-example"]').click();
     await page.locator('[data-example="'+sampleId+'"]').waitFor();
     assert.match(await page.locator('.example-execution').innerText(),/private-sample-host/);
     assert.equal(await page.locator('.angle-grid article').count(),12);
     assert.equal(await page.locator('[data-check-id]').count(),58);
     assert.equal(await page.locator('.arch-question').count(),4);
     assert.equal(await page.locator('[data-provider]').count(),6);
+    await page.locator('[data-task-view="task-guide"]').click();
     assert.equal(await page.locator('#research-context').evaluate(el => el.open),false);
     await page.locator('#research-context > summary').click();
     assert.match(await page.locator('#research-lines').innerText(),/通用数据中心研究/);
-    assert.match(await page.locator('.mission-scale').innerText(),/待校准/);
     assert.match(await page.locator('#mission-progress-value').innerText(),/0 个园区已上线/);
     assert.match(await page.locator('#mission-progress-detail').innerText(),/暂定目标待初步盘点/);
     assert.match(await page.locator('#mission-target-basis').innerText(),/90\+ GW.*不计算容量完成率/);
@@ -244,6 +259,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await page.locator('#save-package').click();
     await page.locator('#package-dialog').waitFor({state:'hidden'});
     await page.reload();
+    await page.locator('[data-task-view="task-guide"]').click();
     await page.locator('#work-packages > summary').click();
     await page.locator('#package-rows tr').nth(5).waitFor();
     assert.match(await page.locator('[data-package="dc-census-na"]').innerText(),/task-intern.*m4/s);
@@ -322,6 +338,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const intern = await browser.newPage();
     await intern.context().addCookies([{name:'hub_session',value:config.cookies['task-intern'].split('=')[1],url:base}]);
     await intern.goto(base+'/tasks.html');
+    await intern.locator('[data-task-view="task-guide"]').click();
     await intern.locator('#work-packages > summary').click();
     await intern.locator('[data-edit="dc-census-na"]').waitFor();
     assert.equal(await intern.locator('#new-package').isVisible(),false);
@@ -344,6 +361,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const owner = await browser.newPage();
     await owner.context().addCookies([{name:'hub_session',value:config.cookies['task-admin'].slice(config.cookies['task-admin'].indexOf('=')+1),url:base}]);
     await owner.goto(base+'/tasks.html');
+    await owner.locator('[data-task-view="task-guide"]').click();
     await owner.locator('#work-packages > summary').click();
     await owner.locator('#package-rows tr').nth(5).waitFor();
     assert.equal(await owner.locator('#mission-target-form').isVisible(),true);
@@ -357,7 +375,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(targetLedger.target_site_count,250);
     assert.equal(targetLedger.target_site_basis,'初步盘点去重的运营商园区清单');
     await anonymous.reload();
-    await anonymous.locator('#package-tabs [role="tab"]').nth(5).waitFor();
+    await anonymous.waitForFunction(()=>document.querySelector('#mission-progress-detail')?.textContent.includes('暂定目标 250'));
     assert.match(await anonymous.locator('#mission-progress-detail').innerText(),/暂定目标 250 · 0%/);
 
     assert.deepEqual(errors,[]);

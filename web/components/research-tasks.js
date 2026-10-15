@@ -6,18 +6,33 @@
   const statuses = {unassigned:'待分配',ready:'待开始',in_progress:'进行中',blocked:'受阻',delivered:'已交付'};
   const fields = ['title','region','scope','sources','assignee','machine','model','due','status','delivery_pointer','note'];
   const form = $('package-form');
-  const revealAnchor = () => {
-    const id = decodeURIComponent(location.hash.slice(1));
-    if (!id) return;
-    if (id === 'upload') $('upload-form-details').open = true;
-    let element = document.getElementById(id);
-    while (element) {
-      if (element instanceof HTMLDetailsElement) element.open = true;
-      element = element.parentElement;
-    }
+  const viewForHash = hash => {
+    const id = decodeURIComponent(String(hash || '').replace(/^#/,''));
+    if (id === 'upload' || id === 'my-submissions' || id === 'worked-example') return id;
+    if (id === 'research-methods' || id === 'research-context' || id === 'work-packages') return 'task-guide';
+    return 'package-workspace';
   };
-  window.addEventListener('hashchange', revealAnchor);
-  revealAnchor();
+  const showTaskView = (view, updateHash = true) => {
+    const allowed = new Set(['package-workspace','upload','my-submissions','worked-example','task-guide']);
+    if (!allowed.has(view)) view = 'package-workspace';
+    document.querySelectorAll('[data-task-panel]').forEach(panel => {
+      panel.hidden = panel.dataset.taskPanel !== view;
+    });
+    document.querySelectorAll('[data-task-view]').forEach(button => {
+      const active = button.dataset.taskView === view;
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
+    });
+    window.activeResearchTaskView = view;
+    document.body.dataset.activeTaskView = view;
+    if (updateHash) history.replaceState(null,'','#' + (view === 'task-guide' ? 'research-methods' : view));
+    window.dispatchEvent(new CustomEvent('research-task-view',{detail:{view}}));
+    if (view === 'worked-example') loadExamples();
+  };
+  document.querySelectorAll('[data-task-view]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskView)));
+  document.querySelectorAll('[data-task-view-request]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskViewRequest)));
+  window.addEventListener('research-task-view-requested',event=>showTaskView(event.detail?.view));
+  window.addEventListener('hashchange',()=>showTaskView(viewForHash(location.hash),false));
   let state = null, pending = null, editing = null, editingRevision = null, selectedPackageId = null;
   const canEdit = item => state && (state.can_create || (state.role === 'intern' && String(item.assignee || '').split(/[,，、;；\n]+/).map(name => name.trim()).includes(state.actor)));
   const value = name => form.elements.namedItem(name);
@@ -28,6 +43,8 @@
       const response = await fetch('/api/research-tasks', {cache:'no-store'});
       if (!response.ok) throw Error(response.status === 401 ? '请登录后查看任务' : '任务台账暂不可用，请刷新重试');
       state = await response.json();
+      window.researchTasksState = state;
+      window.dispatchEvent(new CustomEvent('research-tasks-loaded',{detail:state}));
       $('new-package').hidden = !state.can_create;
       $('task-role-note').textContent = state.can_create ? '内部成员可以新增、分配和更新工作包；多人协作可用逗号分隔成员登录名，各成员可更新自己的状态、交付与备注。' : state.role === 'intern' ? '实习生成员可查看全部分工；只可更新包含自己登录名的工作包状态、交付与备注。范围、参与成员、机器与模型由内部成员维护。' : '任务方向、协调状态和公开样例可直接查看；实际参与成员、机器、模型、备注和交付指针登录后可见。';
       render(); renderRegister();
@@ -125,8 +142,7 @@
   }
 
   $('package-upload-action').addEventListener('click',()=>{
-    $('upload-form-details').open = true;
-    $('upload').scrollIntoView({behavior:'smooth',block:'start'});
+    showTaskView('upload');
     $('upload-package').focus({preventScroll:true});
   });
   $('package-refresh').addEventListener('click',load);
@@ -245,12 +261,15 @@
     const extra = sample.artifacts.filter(a=>!used.has(a.id));
     return `<article class="worked-example-card" data-example="${esc(sample.id)}"><header class="example-heading"><div><p class="mission-eyebrow">真实园区 · ${esc(sample.id)}</p><h3>${esc(sample.name)}</h3><p>${esc(sample.status)} · 处理记录 ${esc(sample.processed_at || '时间未登记')}</p></div><div class="example-links">${sample.links.project?`<a href="${esc(sample.links.project)}">查看园区档案${authenticated?'':'（登录）'} →</a>`:''}${sample.links.map?`<a href="${esc(sample.links.map)}">在地图定位${authenticated?'':'（登录）'} →</a>`:''}</div></header><dl class="example-facts">${facts}</dl><div class="example-execution"><strong>本次实际执行</strong><span>${authenticated?`机器 ${esc(execution.machine || '未登记')} · 模型 ${esc(execution.model || '未使用或未登记')} · 操作者 ${esc(execution.actor || '未登记')}`:'登录后查看实际机器、模型与操作者。'}</span><span>阅读范围：${esc(execution.reading_scope || '未登记，不据此认定全文阅读')}</span></div><div class="example-stages">${stages}</div>${extra.length?`<details class="example-stage"><summary><strong>其他交付产物</strong></summary><ul class="example-artifacts example-stage-body">${extra.map(artifactRow).join('')}</ul></details>`:''}<div class="example-unknowns"><h4>本例仍然不知道什么</h4>${sample.unknowns.length?sample.unknowns.map(row=>`<article><strong>${esc(row.label)}</strong><p>${esc(row.reason)}</p><small>下一步：${esc(row.next_action)}</small></article>`).join(''):'<p class="small muted">未登记缺项清单，不据此声称信息完整。</p>'}</div><details class="example-source-list"><summary>原文出处与证据定位 · ${sample.sources.length} 项</summary>${sample.sources.map(s=>`<article id="example-${esc(sample.id)}-source-${esc(s.id)}"><strong>${esc(s.id)} · ${esc(s.title)}</strong>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">访问原始出处 ↗</a>`:''}<p>${esc(s.locator || '定位未登记')}</p>${s.artifact_id?`<ul class="example-artifacts">${artifactRow(artifacts[s.artifact_id])}</ul>`:''}</article>`).join('')}</details></article>`;
   }
-  async function loadExamples() {
+  let examplesLoaded = false;
+  async function loadExamples(force = false) {
+    if (examplesLoaded && !force) return;
     $('examples-status').textContent = '正在读取真实样例…';
     try {
       const response = await fetch('/api/research-task-examples',{cache:'no-store'});
       if (!response.ok) throw Error('样例包暂不可用，请刷新或联系负责人修复。');
       const data = await response.json();
+      examplesLoaded = true;
       if (!data.examples.length) {
         $('examples-status').textContent = '真实样例尚未安装。';
         $('example-content').innerHTML = '<div class="example-empty">目前没有可回查的真实样例包。原件、候选和真实回执安装后会逐步显示；这里不会用模板或假数据填成已完成。</div>';
@@ -263,7 +282,7 @@
       $('example-content').innerHTML = '<div class="example-empty">无法读取真实样例，请重试。已有样例不因暂时失败被重建或标为完成。</div>';
     }
   }
-  $('refresh-examples').addEventListener('click',loadExamples);
+  $('refresh-examples').addEventListener('click',()=>loadExamples(true));
   $('example-content').addEventListener('click',event=>{
     const link = event.target.closest('a[href^="#example-"]');
     if (!link) return;
@@ -273,8 +292,8 @@
     const drawer = target.closest('details'); if (drawer) drawer.open = true;
     target.scrollIntoView({block:'start'}); target.tabIndex = -1; target.focus({preventScroll:true});
   });
-  $('refresh-tasks').addEventListener('click',()=>{load();loadExamples();});
+  $('refresh-tasks').addEventListener('click',load);
   $('package-filter').addEventListener('change',()=> {if(state)render();});
+  showTaskView(viewForHash(location.hash),false);
   load();
-  loadExamples();
 })();
