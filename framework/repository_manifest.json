@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15.3",
+  "version": "2026.10.15.4",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -632,8 +632,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 331437,
-      "sha256": "a544705601bfc02c7b61d82e68c2d7d0d0d2cfcf8b35eb83cc2c50e06efe91da",
+      "bytes": 332025,
+      "sha256": "b083f684f7646c3d1188dbf2b6936cb377fd09e8b920fd55845581f64dadb26b",
       "collections": []
     },
     {
@@ -10742,8 +10742,8 @@
     {
       "path": "docs/guides/fetchdata/README.md",
       "role": "supporting_document",
-      "bytes": 2933,
-      "sha256": "217eebffede6e1941842176c094aba99b6ce19630b15ecf9d113f0ae4a2462d3",
+      "bytes": 3125,
+      "sha256": "0da05a744b84c4622bd38166c33aca1c27444f22da33100a894aae5243547aab",
       "collections": []
     },
     {
@@ -10828,6 +10828,13 @@
       "role": "supporting_document",
       "bytes": 4956,
       "sha256": "276909c1178d8faececb199c2246a64ba15d01b4d3423f0ad326e0b52f36489c",
+      "collections": []
+    },
+    {
+      "path": "docs/guides/fetchdata/local-operations.md",
+      "role": "supporting_document",
+      "bytes": 1772,
+      "sha256": "56fc8814b681ab32a8f4851aca1b50ed438eec2a3f464f3ed34f01894d90fbed",
       "collections": []
     },
     {
@@ -10919,6 +10926,13 @@
       "role": "supporting_document",
       "bytes": 3028,
       "sha256": "726f3c40b2dcbddc8be615a83c783e08f0ed63d9635fdfb9c200b5782a8fbe42",
+      "collections": []
+    },
+    {
+      "path": "docs/handoff/collector-outbox-local.md",
+      "role": "supporting_document",
+      "bytes": 785,
+      "sha256": "5839ec78ff91c75fe69741c48a7c3464b460beac9e045a59351b83bdff1c33b6",
       "collections": []
     },
     {
@@ -19272,8 +19286,8 @@
     {
       "path": "framework/06_acquisition.md",
       "role": "normative",
-      "bytes": 92813,
-      "sha256": "456a4d421073585c2643959b9c5100ea408a64954a7956e6107b65f34784b216",
+      "bytes": 94169,
+      "sha256": "69950f99c8ef91a0506941a50065a6c92289c865c237f7c161f2404c5fc02ef9",
       "collections": []
     },
     {
@@ -19307,8 +19321,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 25653,
-      "sha256": "ebc1e4fb44e0c3e85af5eb3bcda1bd7439989282b3f20cf1333c676650c1de28",
+      "bytes": 25948,
+      "sha256": "862217348a6c83572a7da750ff6a64a2f18dc0f029ab05247cf668772513bf62",
       "collections": []
     },
     {
@@ -19334,8 +19348,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 300886,
-      "sha256": "4dd5a5c8f10b975ed6cbb700719f0a9b8cd94849464f4917c3e74b006814dfd3",
+      "bytes": 301043,
+      "sha256": "961c9cacdcf0e82c6225b62cd12148d32a5863cf6a4b7085b01f912cece1eabd",
       "collections": [
         {
           "name": "policies",
@@ -19355,7 +19369,7 @@
         },
         {
           "name": "operational_guides",
-          "count": 16
+          "count": 17
         },
         {
           "name": "retired_scan_snapshots",
@@ -19764,8 +19778,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 639012,
-      "sha256": "b0c8d0cb43c586df8f0c2752eebfc4d89de67dd567498c578f24c654659415de",
+      "bytes": 640917,
+      "sha256": "7eebb17ebf74b5990894a41f680cfb0876937124fd275d9c7ece90f5ca1d72ac",
       "collections": [
         {
           "name": "policies",
@@ -22308,8 +22322,8 @@
     {
       "path": "scripts/receive_collector_local.py",
       "role": "implementation",
-      "bytes": 972,
-      "sha256": "cc7a80b54ca87b53c9e2aff48600b12726e21acb48cc959818a79b1458d31919",
+      "bytes": 1797,
+      "sha256": "07081b247d6087f180e4e978256dc4a201d8c9227bfc32e8509568d94d4da1e7",
       "collections": []
     },
     {
@@ -23071,8 +23085,8 @@
     {
       "path": "src/inresearch/materials/collector_receive.py",
       "role": "implementation",
-      "bytes": 9737,
-      "sha256": "ec32fcf815a410a2d91c3e72e3b583b989e54a28e307459be733372901395d14",
+      "bytes": 13889,
+      "sha256": "e1852b52c6c1d39614682ee72577e35a6de38eeb111d72cbada7d7cc027ac8d2",
       "collections": []
     },
     {
@@ -24263,6 +24277,13 @@
       "role": "test",
       "bytes": 5663,
       "sha256": "9a47bb475f882e407c5c413e6340953728bad8cda88beb3b2f346e6214c06912",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_collector_lookup.py",
+      "role": "test",
+      "bytes": 3259,
+      "sha256": "1891671f85b87b362f125d7325a57a45c3d2462fb58ed054c8466e66eac05f70",
       "collections": []
     },
     {
@@ -29220,7 +29241,7 @@
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 31,
-    "supporting_document": 255,
-    "test": 243
+    "supporting_document": 257,
+    "test": 244
   }
 }
