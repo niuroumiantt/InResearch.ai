@@ -225,12 +225,25 @@ def _identity(book, candidate, existing):
     return site_id, identity
 
 
-def _employee_task(record, summary, findings, held, published):
+def _employee_task(record, summary, findings, held, published, review_scope=None):
     reconfirmed = sum(row.get('registration_kind') == 'reconfirmation' for row in published)
     lines = [f"本版修改任务书｜{record['name']}",
              f"文件编号：{record['id']}；原件 SHA256：{record['sha256']}",
              '本次评价：'+summary.strip()[:1200],
              f'已自动登记 {len(published)} 条来源陈述，其中 {reconfirmed} 条与原值一致并留下本轮核对记录；以下问题请在下一版修正。']
+    if review_scope and review_scope.get('mode') == 'sampled_native_cells':
+        lines.append(
+            f"审阅范围：原件共 {review_scope['total_nonblank_cells']} 个非空单元格，"
+            f"模型仅见 {review_scope['excerpted_cells']} 个定位片段，其中 "
+            f"{review_scope['prefix_only_cells']} 个只见前90字；"
+            f"{review_scope['not_fully_seen_cells']} 个单元格未完整交给模型。"
+            '这是抽样反馈，不是全表验收；本次没有从该工作簿自动上线任何事实，'
+            '也不能把未指出的问题视作已通过。')
+        lines.append(
+            '下一步任务：先按下面列出的定位问题补齐证据；按当前系统工作包尚未完成的园区和字段，'
+            '把可核对的内容分成较小的主题材料包。每条列明唯一物理园区名称与省市地点、'
+            '字段原值及单位、IT／设施／供电及分期口径、披露或核验时点、来源链接或原件定位。'
+            '保留本次原始工作簿与 SHA，不把它重传当作全表已审核；研究端仍须依据最新任务和台账继续审核未覆盖单元格。')
     details = []
     for row in held:
         if row.get('classification') == 'duplicate':
@@ -379,7 +392,7 @@ def _complete_with_task_lock(root, payload):
     """Install eligible rows, verify the reader projection, then append reports."""
     required={'id','sha256','analysis_id','summary','findings','candidates','model'}
     if (not isinstance(payload,dict) or not required <= set(payload)
-            or set(payload)-required-{'task_provenance'}
+            or set(payload)-required-{'task_provenance','review_scope'}
             or 'task_provenance' in payload and not _task_provenance(payload['task_provenance'])):
         raise ValueError('analysis_payload_required')
     key, sha = payload['id'], payload['sha256']
@@ -392,6 +405,8 @@ def _complete_with_task_lock(root, payload):
         raise ValueError('analysis_id_required') from exc
     record = inbox.worker_record(key)
     if Path(record['name']).suffix.lower() != '.xlsx':
+        if 'review_scope' in payload:
+            raise ValueError('unexpected_review_scope')
         return complete_document(root, payload, record)
     if (record['sha256'] != sha or not record.get('analysis_requested_at')
             or record['status'] != 'archived' or Path(record['name']).suffix.lower() != '.xlsx'):
@@ -426,6 +441,18 @@ def _complete_with_task_lock(root, payload):
         native = Path(td) / 'source.xlsx'
         shutil.copyfile(source_path, native)
         book = Workbook(native)
+        sampled_scope = None
+        if sum(len(sheet['cells']) for sheet in book.sheets) > 300:
+            from inresearch.materials.review_worker import digest_book, digest_scope
+            sampled_scope = digest_scope(book, digest_book(book))
+            if payload.get('review_scope') != sampled_scope or payload['candidates']:
+                raise ValueError('sampled_review_scope_required_no_publication')
+            allowed = {(sheet, cell) for sheet, cell in sampled_scope['reviewed_locators']}
+            if any(not isinstance(f, dict) or (f.get('sheet'), f.get('cell')) not in allowed
+                   for f in payload['findings']):
+                raise ValueError('sampled_finding_outside_excerpt')
+        elif 'review_scope' in payload:
+            raise ValueError('unexpected_review_scope')
         from inresearch.knowledge import site_register
         existing_doc = source_publication.projects(root, runtime=runtime_state)
         existing = {r['site_id']:r for r in existing_doc['records']}
@@ -523,7 +550,7 @@ def _complete_with_task_lock(root, payload):
             findings.append({k:f[k] for k in ('sheet','cell','priority','issue','action','acceptance')})
         for row in installed:
             row['url'] = '/project.html?site=' + row['site_id']
-        task = _employee_task(record, payload['summary'], findings, held, installed)
+        task = _employee_task(record, payload['summary'], findings, held, installed, sampled_scope)
         grouped = {}
         final_doc = json.loads((work/'data/projects.json').read_text())
         initial_ids = {r['site_id'] for r in existing_doc['records']}
@@ -540,7 +567,8 @@ def _complete_with_task_lock(root, payload):
             report = {'summary':payload['summary'],'model':payload['model'],
                       'publication':None,'published':installed,'held':held,
                       'findings':findings,'source_sha256':sha,'input_sha256':input_sha256,
-                      'task_provenance':payload.get('task_provenance')}
+                      'task_provenance':payload.get('task_provenance'),
+                      **({'review_scope':sampled_scope} if sampled_scope else {})}
             write_json(_analysis_outbox(key, payload['analysis_id']),
                        {'input_sha256':input_sha256,'publication_batch':batch,
                         'published':installed,'report':report,'employee_task':task})
@@ -561,6 +589,7 @@ def _complete_with_task_lock(root, payload):
         report = {'summary':payload['summary'],'model':payload['model'],
                   'publication':publication,'published':installed,'held':held,
                   'findings':findings,'source_sha256':sha,'input_sha256':input_sha256,
-                  'task_provenance':payload.get('task_provenance')}
+                  'task_provenance':payload.get('task_provenance'),
+                  **({'review_scope':sampled_scope} if sampled_scope else {})}
         result = inbox.finish_analysis(key, sha, payload['analysis_id'], report, task)
         return {'report':report,'item':result}

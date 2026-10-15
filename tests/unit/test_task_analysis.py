@@ -168,8 +168,8 @@ class TaskAnalysisTests(unittest.TestCase):
             first = task_analysis.complete(self.root,self.payload([self.candidate()]))
         site_id = first['report']['published'][0]['site_id']
 
-        def submit(sheet, name):
-            body = workbook_bytes(sheet=sheet)
+        def submit(sheet, name, body=None):
+            body = body if body is not None else workbook_bytes(sheet=sheet)
             item, _ = inbox.receive(io.BytesIO(body),len(body),
                 {'name':name,'submitter':'员工乙','project_name':'中国园区普查',
                  'package_id':'dc-census-cn'},'anonymous',public=True)
@@ -178,7 +178,9 @@ class TaskAnalysisTests(unittest.TestCase):
             inbox.acknowledge(item['id'],item['sha256'])
             return item
 
-        fresh = submit(SHEET.replace('待核实','新核验依据已附'),'第二次.xlsx')
+        fresh_sheet = SHEET.replace('待核实','新核验依据已附')
+        fresh_bytes = workbook_bytes(sheet=fresh_sheet)
+        fresh = submit(fresh_sheet, '第二次.xlsx', body=fresh_bytes)
         with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
             second = task_analysis.complete(self.root,self.payload([self.candidate(site_id=site_id)],fresh))
         self.assertEqual(second['report']['publication']['new_records'],1)
@@ -194,7 +196,8 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertEqual(index[0]['current_fields']['capacity_planned_it_mw']['recorded_at'],
                          second['report']['published'][0]['model_checked_at'])
 
-        duplicate = submit(SHEET.replace('待核实','新核验依据已附'),'同原件重传.xlsx')
+        duplicate = submit(fresh_sheet, '同原件重传.xlsx', body=fresh_bytes)
+        self.assertEqual(duplicate['sha256'], fresh['sha256'])
         held = task_analysis.complete(self.root,self.payload([self.candidate(site_id=site_id)],duplicate))
         self.assertEqual(held['report']['published'],[])
         self.assertEqual(held['report']['held'][0]['classification'],'duplicate')
@@ -283,6 +286,75 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertIn('line:1',inbox.receipt_view(item['id'],receipt)['feedback'][0]['text'])
         with self.assertRaisesRegex(ValueError,'bounded_model_analysis_required'):
             task_analysis.complete(self.root,{**payload,'candidates':[self.candidate()]})
+
+    def test_large_workbook_finding_scope_is_rechecked_and_reported_as_incomplete(self):
+        namespace='http://schemas.openxmlformats.org/spreadsheetml/2006/main'
+        rows=[]
+        for number in range(1,42):
+            cells=[]
+            for column in 'ABCDEFGH':
+                value=('x'*110 if column == 'A' and number == 1 else
+                       '待核来源' if column == 'A' and number == 5 else
+                       f'原始值{column}{number}')
+                cells.append(f'<c r="{column}{number}" t="inlineStr"><is><t>{value}</t></is></c>')
+            rows.append(f'<row r="{number}">{"".join(cells)}</row>')
+        body=workbook_bytes(sheet=f'<worksheet xmlns="{namespace}"><sheetData>{"".join(rows)}</sheetData></worksheet>')
+        item,receipt=inbox.receive(io.BytesIO(body),len(body),
+            {'name':'大工作簿.xlsx','submitter':'员工甲','project_name':'中国园区普查',
+             'package_id':'dc-census-cn'},'anonymous',public=True)
+        inbox.mutate({'id':item['id'],'sha256':item['sha256'],'expected_revision':0,
+            'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(item['id'],item['sha256'])
+        model={'backend':'codex_cli','requested':'gpt-6.1-sol','actual':None,
+            'executor':'codex-cli','identity_source':'explicit_cli_request_not_provider_reported',
+            'prompt_sha256':'a'*64,'input_sha256':'b'*64}
+        finding=lambda cell: {'sheet':'Forecast 2025e','cell':cell,'priority':'P1',
+            'issue':'需要核对','action':'补来源','acceptance':'能回查原件'}
+        class Client:
+            def generate(self, system, prompt, **kwargs):
+                self.digest=json.loads(prompt)['workbook_digest']
+                return {'summary':'仅评价已见片段','findings':[
+                    finding('A1'),finding('G20'),finding('A1extra')],
+                    'candidates':[], '_model':model}
+        client=Client()
+        current_task,known_sites=review_context.current(self.root,item)
+        approved={**inbox.load(item['id']),'assigned_task':current_task,
+                  'known_sites':known_sites}
+        with patch('inresearch.materials.review_worker.local_client',return_value=client):
+            payload=review_worker.proposal(approved,inbox.record_path(item['id'])/'content')
+        scope=payload['review_scope']
+        self.assertEqual(scope['total_nonblank_cells'],328)
+        self.assertEqual(scope['excerpted_cells'],32)
+        self.assertEqual(scope['prefix_only_cells'],1)
+        self.assertEqual(scope['not_fully_seen_cells'],297)
+        self.assertEqual([row['cell'] for row in payload['findings']],['A1'])
+        self.assertIn(['Forecast 2025e','A1'],scope['reviewed_locators'])
+        self.assertNotIn(['Forecast 2025e','G20'],scope['reviewed_locators'])
+        self.assertEqual(len(client.digest['excerpts']),4)
+        with self.assertRaisesRegex(ValueError,'sampled_review_scope_required'):
+            task_analysis.complete(self.root,{**payload,'candidates':[self.candidate()]})
+        with self.assertRaisesRegex(ValueError,'sampled_finding_outside_excerpt'):
+            task_analysis.complete(self.root,{**payload,'findings':[finding('G20')]})
+        with self.assertRaisesRegex(ValueError,'sampled_review_scope_required'):
+            task_analysis.complete(self.root,{**payload,'review_scope':{**scope,'excerpted_cells':33}})
+        with self.assertRaisesRegex(inbox.Conflict,'analysis_task_context_changed'):
+            task_analysis.complete(self.root,{**payload,
+                'task_provenance':{**payload['task_provenance'],'sha256':'f'*64}})
+        self.assertFalse(inbox.load(item['id']).get('analysis_reports'))
+        self.assertEqual(source_publication.projects(self.root)['records'],[])
+        result=task_analysis.complete(self.root,payload)
+        self.assertEqual(result['report']['review_scope'],scope)
+        self.assertEqual(result['report']['published'],[])
+        self.assertIn('继续审核未覆盖单元格',result['item']['feedback'][0]['text'])
+        own=inbox.receipt_view(item['id'],receipt)
+        self.assertNotIn('analysis_reports',own)
+        self.assertEqual(own['analysis_progress']['state'],'sampled_incomplete')
+        self.assertEqual(own['feedback'][0]['result'],'sampled_incomplete')
+        self.assertEqual(own['analysis_scope']['not_fully_seen_cells'],297)
+        self.assertNotIn('reviewed_locators',own['analysis_scope'])
+        replay=task_analysis.complete(self.root,payload)
+        self.assertEqual(replay['report'],result['report'])
+        self.assertEqual(len(inbox.load(item['id'])['feedback']),1)
 
 
 class ReviewWorkerBatchTests(unittest.TestCase):
