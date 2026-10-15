@@ -12,6 +12,7 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+import uuid
 
 from inresearch.adapters.xlsx_document import Workbook, coordinates, matches_value
 from inresearch.delivery import source_publication
@@ -73,6 +74,11 @@ def _identity(book, candidate, existing):
             raise ValueError('园区 ID 不存在或不是唯一物理园区')
         if name not in [row['name'], *(row.get('aliases') or [])]:
             raise ValueError('园区名称与已登记身份不符')
+        location = candidate.get('location')
+        if (not isinstance(location, str) or not location.strip()
+                or location != _native(book, candidate.get('location_locator'))
+                or location not in (row.get('location'), row.get('street_address'))):
+            raise ValueError('已有园区地点与原文或登记身份不一致')
         return site_id, None
     location = candidate.get('location')
     if (not isinstance(location, str) or len(location) < 3 or len(location) > 200
@@ -124,6 +130,13 @@ def complete(root, payload):
     if not isinstance(payload, dict) or set(payload) != {'id','sha256','analysis_id','summary','findings','candidates','model'}:
         raise ValueError('analysis_payload_required')
     key, sha = payload['id'], payload['sha256']
+    if (not isinstance(payload['analysis_id'], str)
+            or not re.fullmatch(r'[a-f0-9-]{36}', payload['analysis_id'])):
+        raise ValueError('analysis_id_required')
+    try:
+        uuid.UUID(payload['analysis_id'])
+    except ValueError as exc:
+        raise ValueError('analysis_id_required') from exc
     record = inbox.worker_record(key)
     if (record['sha256'] != sha or not record.get('analysis_requested_at')
             or record['status'] != 'archived' or Path(record['name']).suffix.lower() != '.xlsx'):
