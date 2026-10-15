@@ -29,6 +29,13 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await anonymous.locator('#upload-submit').isVisible(),true);
     await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.txt',mimeType:'text/plain',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
+    await anonymous.route('**/api/task-uploads', route => route.fulfill({status:403,contentType:'text/html',body:'<!DOCTYPE html><p>Blocked by CDN</p>'}));
+    await anonymous.locator('#upload-submit').click();
+    await anonymous.waitForFunction(()=>/HTTP 403/.test(document.querySelector('#upload-message')?.textContent || ''));
+    assert.match(await anonymous.locator('#upload-message').innerText(),/文件未进入审批/);
+    assert.equal(await anonymous.locator('#task-upload-form [name="file"]').evaluate(input => input.files.length),1);
+    assert.equal(await anonymous.evaluate(()=>localStorage.getItem('inresearch-task-upload-receipts-v1')),null);
+    await anonymous.unroute('**/api/task-uploads');
     await anonymous.locator('#upload-submit').click();
     await anonymous.waitForFunction(()=>/已收到文件/.test(document.querySelector('#upload-message')?.textContent || ''));
     assert.match(await anonymous.locator('#upload-message').innerText(),/已收到文件/);

@@ -42,7 +42,14 @@
     $('upload-submit').disabled = true; $('upload-message').textContent = '正在上传原件…';
     try {
       const response = await fetch('/api/task-uploads', {method:'POST',headers:{'Content-Type':'application/octet-stream','X-Requested-With':'task-upload','X-Material-Metadata':encodeURIComponent(JSON.stringify(metadata))},body:file});
-      const result = await response.json();
+      const type = response.headers.get('Content-Type') || '';
+      if (!type.includes('application/json')) {
+        const detail = response.status === 403 ? '上传被网站安全防护拦截，文件未进入审批。请联系负责人。' : '上传服务暂不可用，请稍后重试。';
+        throw Error(`${detail}（HTTP ${response.status}）`);
+      }
+      let result;
+      try { result = await response.json(); }
+      catch { throw Error('上传响应异常，请先向负责人核对是否已收到文件，避免重复提交。'); }
       if (!response.ok) throw Error(result.error || '上传失败');
       save([{id:result.item.id,receipt:result.receipt},...receipts().filter(row => row.id !== result.item.id)]);
       $('upload-message').innerHTML = `已收到文件，等待负责人审批。文件编号 <code>${esc(result.item.id)}</code>；回执码 <code class="upload-receipt-code">${esc(result.receipt)}</code>。请保存回执码，换设备查看反馈时需要它。`;
