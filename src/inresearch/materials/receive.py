@@ -89,7 +89,11 @@ def main():
         with request('ack', {'id': key, 'sha256': item['sha256']}) as response:
             if not json.load(response).get('ok'):
                 raise ValueError('ack failed')
-    print(json.dumps({'received': len(items)}))
+    # Only files with an explicit owner start_analysis/approve_and_analyze
+    # marker enter the model-and-publication job. Older approvals stay inert.
+    from inresearch.materials import review_worker
+    reviewed = review_worker.run(archive, request)
+    print(json.dumps({'received': len(items), 'analyzed': reviewed}))
 
 if __name__ == '__main__':
     main()

@@ -16,7 +16,7 @@ class SiteWorkspaceTests(unittest.TestCase):
     def test_directory_counts_and_distinct_delivery_domains(self):
         doc = workspace.manifest(ROOT)
         self.assertEqual([len(doc['navigation'][a]) for a in ('delivery','backstage')], [7,6])
-        self.assertEqual([sum(len(s['children']) for s in doc['navigation'][a]) for a in ('delivery','backstage')], [15,20])
+        self.assertEqual([sum(len(s['children']) for s in doc['navigation'][a]) for a in ('delivery','backstage')], [15,21])
         self.assertEqual(doc['navigation']['delivery'][-1]['children'], [])
         self.assertEqual(doc['navigation']['backstage'][0]['children'], [])
         self.assertEqual(workspace.resolve(ROOT,'/product-catalog.html?c=nvidia')['section'],'companies')

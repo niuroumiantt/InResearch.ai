@@ -3,6 +3,7 @@ Description=Archive website research submissions on Spark
 After=network-online.target
 [Service]
 Type=oneshot
+EnvironmentFile=-%h/.config/inresearch.ai/reader.env
 ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py receive
 UMask=0077
 NoNewPrivileges=yes

@@ -72,6 +72,15 @@ def load(root, runtime=None):
 
 def archived_source_valid(source):
     archive = source.get('archive')
+    if isinstance(archive, dict) and archive.get('kind') == 'approved_task_upload':
+        return (source.get('url') is None and set(archive) ==
+                {'kind', 'submission_id', 'sha256', 'received_at', 'approved_at'}
+                and isinstance(archive['submission_id'], str)
+                and re.fullmatch('[a-f0-9]{32}', archive['submission_id']) is not None
+                and archive['sha256'] == source.get('sha256')
+                and observation_time.precision(archive['received_at']) == 'timestamp'
+                and observation_time.precision(archive['approved_at']) == 'timestamp'
+                and source.get('first_received_at') == archive['received_at'])
     if (source.get('url') is not None or not isinstance(archive, dict)
             or set(archive) != {'kind', 'doc_id', 'receipts'}
             or archive['kind'] != 'catalog_import'

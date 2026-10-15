@@ -196,7 +196,7 @@ class Handler(SimpleHTTPRequestHandler):
             return None
         # Infrastructure diagrams contain private host/network information.
         # These pages require a real admin session even in local development.
-        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() == '/admin/company.html':
+        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() in ('/admin/company.html', '/task-reviews.html'):
             user = auth.session_user(self.headers.get('Cookie'))
             if not user:
                 self._redirect('/login')
@@ -337,6 +337,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return
             if self.path == '/api/intake-worker/pending':
                 return self._json(200, {'items': material_intake.pending()[:20]})
+            if self.path == '/api/intake-worker/analysis-pending':
+                return self._json(200, {'items': material_intake.analysis_pending()[:10]})
             try:
                 if self.path.startswith('/api/intake-worker/record/'):
                     key = self.path.removeprefix('/api/intake-worker/record/')
@@ -870,6 +872,35 @@ class Handler(SimpleHTTPRequestHandler):
             except material_intake.Conflict as error:
                 return self._json(409, {'ok': False, 'error': str(error)})
             except (ValueError, KeyError, OSError, TypeError) as error:
+                return self._json(400, {'ok': False, 'error': str(error)[:200]})
+        if self.path == '/api/intake-worker/analysis':
+            if not self.intake_worker():
+                return
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 1024 * 1024:
+                    raise ValueError('analysis payload too large')
+                from inresearch.materials import task_analysis
+                result = task_analysis.complete(ROOT, json.loads(self.rfile.read(size)))
+                return self._json(200, {'ok': True, 'report': result['report']})
+            except PermissionError as error:
+                return self._json(403, {'ok': False, 'error': str(error)[:200]})
+            except material_intake.Conflict as error:
+                return self._json(409, {'ok': False, 'error': str(error)[:200]})
+            except (ValueError, KeyError, OSError, TypeError, ArithmeticError) as error:
+                return self._json(400, {'ok': False, 'error': str(error)[:200]})
+        if self.path == '/api/intake-worker/analysis-progress':
+            if not self.intake_worker():
+                return
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 4096:
+                    raise ValueError('invalid size')
+                payload = json.loads(self.rfile.read(size))
+                item = material_intake.set_analysis_progress(payload['id'], payload['sha256'],
+                    payload['completed'], payload['total'], payload.get('state','running'))
+                return self._json(200, {'ok': True, 'item': item})
+            except (ValueError, KeyError, OSError, TypeError, PermissionError) as error:
                 return self._json(400, {'ok': False, 'error': str(error)[:200]})
         if self.path.startswith('/api/product-catalog/'):
             company = self.path.removeprefix('/api/product-catalog/')
