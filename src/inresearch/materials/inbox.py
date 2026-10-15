@@ -304,7 +304,7 @@ def set_analysis_progress(key, sha, completed, total, state='running'):
     return public_view(record)
 
 
-def mutate(payload, actor, role, *, worker=False):
+def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
     if not isinstance(payload, dict):
         raise ValueError('object required')
     action = payload.get('action')
@@ -356,6 +356,19 @@ def mutate(payload, actor, role, *, worker=False):
                 record['approval'] = {'by':actor, 'at':now, 'sha256':record['sha256']}
                 if action == 'approve_and_analyze':
                     record['analysis_requested_at'] = now
+        elif action == 'assign_package':
+            if set(payload) != {'id', 'sha256', 'expected_revision', 'operation_id', 'action', 'package_id'}:
+                raise ValueError('工作包绑定请求字段无效')
+            package_id = payload['package_id']
+            if (not isinstance(package_id, str) or not 1 <= len(package_id) <= 100
+                    or package_id not in (valid_package_ids or ())):
+                raise ValueError('请选择当前有效的系统工作包')
+            if (before == 'rejected' or record.get('analysis_reports')
+                    or (record.get('analysis_progress') or {}).get('state') == 'source_error'
+                    or any((path.parent / 'analysis-outbox').glob('*.json'))):
+                raise Conflict('文件已有分析结果、待恢复发布事务或已终止，不能修改工作包')
+            previous_package_id = record.get('package_id', '')
+            record['package_id'] = package_id
         elif action == 'start_analysis':
             require_approved(record)
             if not reviewable(record['name']):
@@ -375,7 +388,10 @@ def mutate(payload, actor, role, *, worker=False):
         else:
             raise ValueError('unknown material action')
         record['revision'] = record.get('revision', 0) + 1
-        record.setdefault('operations', []).append({'id':operation, 'by':actor, 'at':now,
-            'before':before, 'after':record['status'], 'request':payload})
+        audit = {'id':operation, 'by':actor, 'at':now,
+                 'before':before, 'after':record['status'], 'request':payload}
+        if action == 'assign_package':
+            audit.update(before_package_id=previous_package_id, after_package_id=package_id)
+        record.setdefault('operations', []).append(audit)
         atomic(path, record)
     return public_view(record)

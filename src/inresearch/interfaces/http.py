@@ -8,7 +8,7 @@ while data mutation rules live in workflow.commands.
 
 from inresearch.paths import project_root
 from inresearch.storage.layout import initialize_runtime, workspace_path
-from inresearch.storage.files import CommitUncertain
+from inresearch.storage.files import CommitUncertain, locked
 from inresearch.interfaces.static import source_path
 from inresearch.interfaces import pages
 from inresearch.interfaces import repository_pages
@@ -969,7 +969,15 @@ class Handler(SimpleHTTPRequestHandler):
                     if not 0 < size <= 128 * 1024:
                         raise ValueError('invalid size')
                     payload = json.loads(self.rfile.read(size))
-                    item = material_intake.mutate(payload, actor, role)
+                    if isinstance(payload, dict) and payload.get('action') == 'assign_package':
+                        # Analysis commits hold this lock while checking the current
+                        # task and publishing. Binding changes must use the same order.
+                        with locked(research_tasks.ledger_path(ROOT)):
+                            valid_ids = {p['id'] for p in research_tasks.read(ROOT)['packages']}
+                            item = material_intake.mutate(payload, actor, role,
+                                                          valid_package_ids=valid_ids)
+                    else:
+                        item = material_intake.mutate(payload, actor, role)
                     return self._json(200, {'ok': True, 'item': item})
                 metadata = json.loads(unquote(self.headers.get('X-Material-Metadata', '{}')))
                 if not isinstance(metadata, dict):

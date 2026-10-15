@@ -19,7 +19,7 @@
   };
   const stateText = {pending:'待确认',working:'分析中',done:'已有反馈',rejected:'已退回',other:'已接收'};
   const stateLabel = item => item.analysis_progress?.state === 'source_error' ? '需修正原件' : stateText[state(item)];
-  let items = [], selected = '', filter = 'pending', initialized = false, packageNames = new Map();
+  let items = [], selected = '', filter = 'pending', initialized = false, packageNames = new Map(), packageRows = [];
   const taskGroup = item => {
     if (item.package_id) return {key:`package:${item.package_id}`, title:packageNames.get(item.package_id) || item.package_id, kind:'系统工作包', linked:true};
     const title = item.project_name?.trim();
@@ -56,13 +56,20 @@
     return '';
   }
 
+  function packageAssignmentHtml(item) {
+    if (item.status === 'rejected' || (item.analysis_reports || []).length || item.analysis_progress?.state === 'source_error') return '';
+    if (!packageRows.length) return '<section class="review-decision"><h3>系统工作包</h3><p>暂时无法读取当前工作包，请刷新后再绑定。</p></section>';
+    const options = packageRows.map(row => `<option value="${esc(row.id)}"${row.id === item.package_id ? ' selected' : ''}>${esc(row.title)} · ${esc(row.region)} · ${esc(row.id)}</option>`).join('');
+    return `<section class="review-decision"><h3>系统工作包</h3><p>由负责人核对原件与现行任务后指定；员工填写的项目名不能代替系统工作包。${item.analysis_requested_at ? '这份文件已启动分析；更改绑定后，研究端须按最新任务和已上线数据重新核对，旧候选不能直接发布。' : ''}</p><form class="owner-package"><label>对应工作包<select name="package_id" required><option value=""${packageNames.has(item.package_id) ? '' : ' selected'}>请选择当前系统工作包</option>${options}</select></label><button type="submit">${item.package_id ? '保存工作包绑定' : '绑定工作包'}</button></form></section>`;
+  }
+
   function detailHtml(item) {
     const status = state(item);
     const group = taskGroup(item);
     const taskRows = items.filter(row => row.id !== item.id && sameTask(item,row)).sort((a,b) => b.created - a.created).slice(0,12);
     const nameRows = items.filter(row => row.id !== item.id && row.submitter?.trim() && row.submitter.trim() === item.submitter?.trim() && !sameTask(item,row)).sort((a,b) => b.created - a.created).slice(0,8);
     return `<div class="review-detail-head"><div><p class="review-eyebrow">${esc(group.kind)} / ${esc(group.title)} · 文件 ${esc(item.id.slice(0,8))}</p><h2 id="review-detail-title">${esc(item.name)}</h2><span class="review-state review-state-${status}">${stateLabel(item)}</span></div><a class="review-download" href="/api/materials/content/${esc(item.id)}" download>下载原件核对 ↓</a></div>
-      ${actionsHtml(item)}
+      ${packageAssignmentHtml(item)}${actionsHtml(item)}
       <dl class="review-facts"><div><dt>任务归属</dt><dd>${esc(group.title)}${group.linked ? '' : '（待确认）'}</dd></div><div><dt>提交人</dt><dd>${esc(item.submitter || '未留称呼')}</dd></div><div><dt>员工自填项目名</dt><dd>${esc(item.project_name || '旧提交 · 未填写')}</dd></div><div><dt>上传时间</dt><dd>${esc(time(item.created))}</dd></div><div><dt>对应工作包编号</dt><dd>${esc(item.package_id || '未指定')}</dd></div><div><dt>文件大小</dt><dd>${esc(size(item.size))}</dd></div></dl>
       <section class="review-related"><h3>${group.linked ? '本工作包的其他提交' : '同名自填项目的其他提交'}</h3><p class="review-metadata">${group.linked ? '跨提交人查看同一系统工作包的记录。' : '员工自填项目名仅帮助查找，不能单独证明属于同一系统任务。'}审阅时请核对最新任务与已上线数据。</p>${taskRows.map(row => `<button type="button" data-related-id="${esc(row.id)}"><span>${esc(time(row.created))} · ${esc(row.submitter || '未留称呼')} · ${esc(row.name)}</span><span class="review-state review-state-${state(row)}">${stateLabel(row)}</span></button>`).join('') || '<p>目前没有其他相关提交。</p>'}</section>
       ${nameRows.length ? `<details class="review-name-history"><summary>同名提交人的其他项目 · ${nameRows.length} 份</summary><p class="review-metadata">姓名只作查找线索，不用于确认身份或任务归属。</p>${nameRows.map(row => `<button type="button" data-related-id="${esc(row.id)}">${esc(time(row.created))} · ${esc(taskGroup(row).title)} · ${esc(row.name)}</button>`).join('')}</details>` : ''}
@@ -103,7 +110,8 @@
       const data = await response.json();
       if (!data.can_approve) throw Error('当前账号不是指定审批人，无法查看或处理作业。');
       const taskData = await tasks;
-      if (taskData?.packages) packageNames = new Map(taskData.packages.map(row => [row.id,row.title]));
+      packageRows = Array.isArray(taskData?.packages) ? taskData.packages : [];
+      packageNames = new Map(packageRows.map(row => [row.id,row.title]));
       items = data.items || [];
       if (!initialized) {
         const requested = items.find(item => item.id === selected);
@@ -122,7 +130,7 @@
     if (!(response.headers.get('Content-Type') || '').includes('application/json')) throw Error(`审批请求未到达应用，请刷新重试或联系管理员（HTTP ${response.status}）`);
     const result = await response.json();
     if (!response.ok) throw Error(result.error || '操作失败，请刷新列表');
-    $('review-message').textContent = action === 'feedback' ? '反馈已登记，员工可通过回执查看。' : action === 'reject' ? '文件已退回。' : ['approve_and_analyze','start_analysis'].includes(action) ? '已确认分析。合格条目上线后将显示报告。' : '已批准接收。';
+    $('review-message').textContent = action === 'assign_package' ? '已绑定系统工作包；已启动的分析会按最新任务重新核对。' : action === 'feedback' ? '反馈已登记，员工可通过回执查看。' : action === 'reject' ? '文件已退回。' : ['approve_and_analyze','start_analysis'].includes(action) ? '已确认分析。合格条目上线后将显示报告。' : '已批准接收。';
     filter = 'all'; selected = item.id;
     await refresh();
     const updated = items.find(row => row.id === item.id);
@@ -143,10 +151,13 @@
     catch (error) { $('review-message').textContent = error.message; button.disabled = false; }
   });
   $('review-detail-content').addEventListener('submit', async event => {
-    const form = event.target; if (!form.matches('.owner-feedback')) return;
+    const form = event.target; if (!form.matches('.owner-feedback, .owner-package')) return;
     event.preventDefault(); const item = items.find(row => row.id === selected); if (!item) return;
     const button = form.querySelector('button'); button.disabled = true;
-    try { await review(item,'feedback',{result:form.elements.result.value,text:form.elements.text.value.trim()}); }
+    try {
+      if (form.matches('.owner-package')) await review(item,'assign_package',{package_id:form.elements.package_id.value});
+      else await review(item,'feedback',{result:form.elements.result.value,text:form.elements.text.value.trim()});
+    }
     catch (error) { $('review-message').textContent = error.message; button.disabled = false; }
   });
   $('review-filters').addEventListener('click', event => {

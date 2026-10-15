@@ -47,6 +47,58 @@ class IntakeTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'姓名和项目名称'):
                 m.receive(io.BytesIO(b'x'),1,{'name':'a.txt','submitter':'员工甲'},'anonymous',public=True)
             self.assertEqual(m.records(),[])
+    def test_owner_assigns_current_package_to_legacy_active_review_without_changing_approval(self):
+        with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {
+                'INRESEARCH_INTAKE_ROOT':d,'INRESEARCH_MATERIAL_APPROVER':'owner'}):
+            item,_=m.receive(io.BytesIO(b'raw'),3,
+                {'name':'legacy.xlsx','submitter':'员工甲','project_name':'旧项目'},'anonymous',public=True)
+            original_sha=item['sha256']
+            request={'id':item['id'],'sha256':original_sha,'expected_revision':0,
+                     'operation_id':str(uuid.uuid4()),'action':'assign_package',
+                     'package_id':'dc-census-cn'}
+            valid={'dc-census-cn','dc-census-eu'}
+            with self.assertRaises(PermissionError):
+                m.mutate(request,'other-admin','admin',valid_package_ids=valid)
+            with self.assertRaises(ValueError):
+                m.mutate(request,'owner','admin',valid_package_ids={'dc-census-eu'})
+            assigned=m.mutate(request,'owner','admin',valid_package_ids=valid)
+            self.assertEqual(assigned['package_id'],'dc-census-cn')
+            self.assertEqual(assigned['sha256'],original_sha)
+            self.assertNotIn('approval',assigned)
+            self.assertEqual(m.mutate(request,'owner','admin',valid_package_ids=valid)['revision'],1)
+            audit=m.load(item['id'])['operations'][0]
+            self.assertEqual((audit['before_package_id'],audit['after_package_id']),('', 'dc-census-cn'))
+            approved=m.mutate({'id':item['id'],'sha256':original_sha,'expected_revision':1,
+                'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+            m.acknowledge(item['id'],original_sha)
+            before=m.load(item['id'])
+            changed=m.mutate({'id':item['id'],'sha256':original_sha,
+                'expected_revision':before['revision'],'operation_id':str(uuid.uuid4()),
+                'action':'assign_package','package_id':'dc-census-eu'},
+                'owner','admin',valid_package_ids=valid)
+            self.assertEqual(changed['package_id'],'dc-census-eu')
+            self.assertEqual(changed['approval'],approved['approval'])
+            self.assertEqual(changed['analysis_requested_at'],approved['analysis_requested_at'])
+            self.assertEqual(changed['sha256'],original_sha)
+            outbox=m.record_path(item['id'])/'analysis-outbox'
+            outbox.mkdir()
+            pending=outbox/'pending.json'
+            pending.write_text('{}')
+            with self.assertRaises(m.Conflict):
+                m.mutate({'id':item['id'],'sha256':original_sha,
+                    'expected_revision':changed['revision'],'operation_id':str(uuid.uuid4()),
+                    'action':'assign_package','package_id':'dc-census-cn'},
+                    'owner','admin',valid_package_ids=valid)
+            pending.unlink()
+            m.finish_analysis(item['id'],original_sha,str(uuid.uuid4()),
+                {'published':[],'held':[],'findings':[]},'下一版任务')
+            current=m.load(item['id'])
+            with self.assertRaises(m.Conflict):
+                m.mutate({'id':item['id'],'sha256':original_sha,
+                    'expected_revision':current['revision'],'operation_id':str(uuid.uuid4()),
+                    'action':'assign_package','package_id':'dc-census-cn'},
+                    'owner','admin',valid_package_ids=valid)
+            self.assertEqual(m.load(item['id'])['package_id'],'dc-census-eu')
     def test_unreviewable_original_ends_queue_after_visible_repair_task(self):
         with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {
                 'INRESEARCH_INTAKE_ROOT':d,'INRESEARCH_MATERIAL_APPROVER':'owner'}):
@@ -70,6 +122,12 @@ class IntakeTests(unittest.TestCase):
             self.assertEqual(m.receipt_view(item['id'],receipt)['feedback'][0]['text'],'重新导出有效工作簿')
             with self.assertRaises(m.Conflict):
                 m.set_analysis_progress(item['id'],item['sha256'],0,1,'running')
+            current=m.load(item['id'])
+            with self.assertRaises(m.Conflict):
+                m.mutate({'id':item['id'],'sha256':item['sha256'],
+                    'expected_revision':current['revision'],'operation_id':str(uuid.uuid4()),
+                    'action':'assign_package','package_id':'dc-census-cn'},
+                    'owner','admin',valid_package_ids={'dc-census-cn'})
     def test_previous_system_task_requires_verified_receipt_chain(self):
         with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {'INRESEARCH_INTAKE_ROOT':d,'INRESEARCH_MATERIAL_APPROVER':'owner'}):
             first,token=m.receive(io.BytesIO(b'raw'),3,

@@ -457,3 +457,16 @@ fetchreports已验LBNL官方发布页/方法摘要单源AWS真实采集、Spark�
 fetchquotes已验Lambda公开报价单源AWS真实取得、Spark永久候选接收、截断拒绝/完整重试及重复零增量。此次字节与旧包相同，保留旧ID/信封/采样时间，本次下载另记；公开标价不是成交，币种代码/地区/库存/实际费用未知。不入Reader、不采用、不填参、不装调度。
 
 Lambda 1x H100 SXM公开标价单源；非成交；币种/地区未知；受控文件交付；未启用调度。同字节复查不生成新报价观测；采集事件、旧采样与来源有效期分开。$/GPU-hour是GPU租用服务标价，不是GPU采购价或合同实际收入，适用税费另计。完整步骤与私有回执见docs/guides/fetchdata/fetchquotes-production.md。
+
+
+### 四队本地作业与交付可靠性
+
+用户授权先本地落实四队错误分类、作业台账、待交付队列和ACK对账；复用原四源与旧ID/信封/来源版本。仅手动本地沙箱，先查持久回执再同包重试，不启用定时、不扩来源、不部署，不入Reader、不采用或填参。
+
+fetchdata新增显式acquire/enqueue/dispatch/reconcile/status/resume，作业键/尝试ID与旧交付/来源/候选ID分离。冻结并核字节后入队，发送意图先持久记录；接收ACK需与实际只读回执对账，不接收手填JSON冒充成功。ACK不明先查，未收才同包重试，交付重试不重新抓来源；重试预算与人工恢复、损坏隔离分开。原披露/有效/采样/取得/首次接收及恢复确认分别保留，中断发送结束时间未知。source_transient、access_required、source_schema、transport_security、integrity_conflict、local_storage、busy等分类不凭错误次数覆盖原件。
+
+InResearch的本地receipt lookup仅核collector-local-receipt/1、原包指纹/身份及来源/候选台账，不创建或修复存储、不刷新旧时钟，没有HTTP路由或生产采用入口。现有四队生产受控单源接收及scheduled=false保持；新增本地代码不证明自动生产交付。步骤与未覆盖见docs/guides/fetchdata/local-operations.md。
+
+### fetchstat生产待交付与ACK核验
+
+用户授权先接通fetchstat已登记EIA单源的AWS持久队列至Spark，仅手动单次执行；四队本地能力保留，其它队不切换生产队列。scheduled=false、不扩来源、不入Reader/采用/模型保持。固定SSH命令和精确主机身份限制来源与接收版本；生产ACK必须与只读完成台账、冻结包、候选及永久原件交叉核对。pending到达不算完成，查询错误不算未收；ACK不明先查，已收只确认，未收才预算内同包重试；原时间/旧ID/版本/历史保持。具体权限、步骤与实机验收条件见docs/guides/fetchdata/fetchstat-outbox.md。代码准备不等于接通；实际网络准入、专用身份、受保护部署和回执独立验收。
