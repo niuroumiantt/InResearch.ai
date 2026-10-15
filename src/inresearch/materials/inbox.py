@@ -14,6 +14,10 @@ import uuid
 from inresearch.storage.files import locked, sync_directory
 
 MAX_BYTES = 64 * 1024 * 1024
+REVIEWABLE_SUFFIXES = frozenset({'.xlsx', '.txt', '.md', '.csv', '.tsv', '.json', '.html', '.htm', '.pdf', '.docx'})
+
+def reviewable(name):
+    return Path(name).suffix.lower() in REVIEWABLE_SUFFIXES
 
 def root():
     return Path(os.environ.get('INRESEARCH_INTAKE_ROOT', workspace_path('data/.material-intake')))
@@ -30,6 +34,24 @@ def atomic(path, data):
 def receive(stream, size, metadata, user, *, public=False):
     if not 0 < size <= MAX_BYTES:
         raise ValueError('单份资料须为 1 字节至 64 MiB')
+    submitter = str(metadata.get('submitter', '')).strip()
+    project_name = str(metadata.get('project_name', '')).strip()
+    if public and (not submitter or not project_name):
+        raise ValueError('请填写提交人姓名和项目名称')
+    if len(submitter) > 120 or len(project_name) > 180:
+        raise ValueError('提交人姓名或项目名称过长')
+    continuation_id = str(metadata.get('continuation_id', '')).strip()
+    continuation_receipt = str(metadata.get('continuation_receipt', '')).strip()
+    if continuation_id or continuation_receipt:
+        if not public or not continuation_id or not continuation_receipt:
+            raise ValueError('连续提交须提供上一份有效回执')
+        previous = receipt_view(continuation_id, continuation_receipt)
+        if (previous.get('submitter', '').strip() != submitter
+                or previous.get('project_name', '').strip() != project_name):
+            raise ValueError('连续提交须与上一份的姓名和项目一致')
+    batch_id = str(metadata.get('batch_id', ''))
+    if batch_id and not re.fullmatch(r'[a-f0-9-]{36}', batch_id):
+        raise ValueError('提交批次编号无效')
     root().mkdir(parents=True, exist_ok=True, mode=0o700)
     if shutil.disk_usage(root()).free < size + 1024**3:
         raise ValueError('接收空间不足，请稍后重试')
@@ -62,7 +84,8 @@ def receive(stream, size, metadata, user, *, public=False):
     record = dict(id=key, name=name, size=size, sha256=digest.hexdigest(), user=user,
                   topic=str(metadata.get('topic', ''))[:300], source=str(metadata.get('source', ''))[:2000],
                   note=str(metadata.get('note', ''))[:4000],
-                  submitter=str(metadata.get('submitter', ''))[:120],
+                  submitter=submitter, project_name=project_name, batch_id=batch_id,
+                  continuation_of=continuation_id or None,
                   package_id=str(metadata.get('package_id', ''))[:100],
                   created=time.time(), status='pending_approval', revision=0,
                   feedback=[], operations=[])
@@ -160,11 +183,13 @@ def pending():
 
 
 def analysis_pending():
-    """Only an archived, owner-approved XLSX can enter automatic review."""
+    """Only archived, owner-approved supported originals can enter automatic review."""
     result = []
     for record in records():
         if (record.get('status') != 'archived' or not record.get('analysis_requested_at')
-                or record.get('analysis_reports') or not record['name'].lower().endswith('.xlsx')):
+                or record.get('analysis_reports')
+                or (record.get('analysis_progress') or {}).get('state') == 'source_error'
+                or not reviewable(record['name'])):
             continue
         try:
             require_approved(record)
@@ -172,6 +197,35 @@ def analysis_pending():
             continue
         result.append(public_view(record))
     return result
+
+
+def previous_system_task(record):
+    """Follow only a receipt-verified chain; a matching anonymous name is not proof."""
+    seen={record['id']}
+    prior=record.get('continuation_of')
+    for _ in range(100):
+        if not prior or prior in seen:break
+        seen.add(prior)
+        try:previous=load(prior)
+        except (ValueError, OSError, json.JSONDecodeError):break
+        if (previous.get('submitter', '').strip() != record.get('submitter', '').strip()
+                or previous.get('project_name', '').strip() != record.get('project_name', '').strip()):
+            break
+        reports=previous.get('analysis_reports') or []
+        if reports:
+            latest=max(reports,key=lambda row:row.get('at',0))
+            task=latest.get('employee_task','')
+            if isinstance(task,str) and task.strip():
+                return {'submission_id':previous['id'],'at':latest.get('at'),
+                        'task':task[:12000],'kind':'analysis_task'}
+        feedback=[row for row in previous.get('feedback',[])
+                  if row.get('by') in ('analysis-worker',approver()) and isinstance(row.get('text'),str)]
+        if feedback:
+            latest=max(feedback,key=lambda row:row.get('at',0))
+            return {'submission_id':previous['id'],'at':latest.get('at'),
+                    'task':latest['text'][:12000],'kind':'owner_feedback'}
+        prior=previous.get('continuation_of')
+    return None
 
 
 def snapshot(actor, role):
@@ -226,7 +280,7 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
 
 def set_analysis_progress(key, sha, completed, total, state='running'):
     if (type(completed) is not int or type(total) is not int or not 0 <= completed <= total <= 200
-            or state not in ('running', 'blocked')):
+            or state not in ('running', 'blocked', 'source_error')):
         raise ValueError('invalid analysis progress')
     path = record_path(key) / 'record.json'
     with locked(path):
@@ -237,13 +291,20 @@ def set_analysis_progress(key, sha, completed, total, state='running'):
             raise PermissionError('analysis not requested for this source')
         if record.get('analysis_reports'):
             return public_view(record)
+        if ((record.get('analysis_progress') or {}).get('state') == 'source_error'
+                and state != 'source_error'):
+            raise Conflict('原件需修复并重新提交，不能恢复旧分析')
+        if (state == 'source_error' and not any(
+                row.get('by') == 'analysis-worker' and row.get('result') == 'revision_required'
+                for row in record.get('feedback', []))):
+            raise ValueError('原件错误须先登记可见的修改任务')
         record['analysis_progress'] = {'state':state, 'completed':completed,
                                        'total':total, 'at':time.time()}
         atomic(path, record)
     return public_view(record)
 
 
-def mutate(payload, actor, role, *, worker=False):
+def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
     if not isinstance(payload, dict):
         raise ValueError('object required')
     action = payload.get('action')
@@ -279,8 +340,8 @@ def mutate(payload, actor, role, *, worker=False):
                 raise ValueError('审批备注最多4000字')
             if action == 'reject' and not note.strip():
                 raise ValueError('请填写退回原因')
-            if action == 'approve_and_analyze' and not record['name'].lower().endswith('.xlsx'):
-                raise ValueError('自动分析目前仅支持 .xlsx')
+            if action == 'approve_and_analyze' and not reviewable(record['name']):
+                raise ValueError('该文件格式暂不支持自动分析，请单独批准并人工查看')
             record.update(status='approved' if action in ('approve', 'approve_and_analyze') else 'rejected',
                           decision={'by':actor, 'at':now, 'action':action, 'note':note})
             if action in ('approve', 'approve_and_analyze'):
@@ -295,10 +356,23 @@ def mutate(payload, actor, role, *, worker=False):
                 record['approval'] = {'by':actor, 'at':now, 'sha256':record['sha256']}
                 if action == 'approve_and_analyze':
                     record['analysis_requested_at'] = now
+        elif action == 'assign_package':
+            if set(payload) != {'id', 'sha256', 'expected_revision', 'operation_id', 'action', 'package_id'}:
+                raise ValueError('工作包绑定请求字段无效')
+            package_id = payload['package_id']
+            if (not isinstance(package_id, str) or not 1 <= len(package_id) <= 100
+                    or package_id not in (valid_package_ids or ())):
+                raise ValueError('请选择当前有效的系统工作包')
+            if (before == 'rejected' or record.get('analysis_reports')
+                    or (record.get('analysis_progress') or {}).get('state') == 'source_error'
+                    or any((path.parent / 'analysis-outbox').glob('*.json'))):
+                raise Conflict('文件已有分析结果、待恢复发布事务或已终止，不能修改工作包')
+            previous_package_id = record.get('package_id', '')
+            record['package_id'] = package_id
         elif action == 'start_analysis':
             require_approved(record)
-            if not record['name'].lower().endswith('.xlsx'):
-                raise ValueError('自动分析目前仅支持 .xlsx')
+            if not reviewable(record['name']):
+                raise ValueError('该文件格式暂不支持自动分析')
             if before != 'archived' or record.get('analysis_requested_at'):
                 raise Conflict('分析已启动，或研究端尚未接收')
             record['analysis_requested_at'] = now
@@ -314,7 +388,10 @@ def mutate(payload, actor, role, *, worker=False):
         else:
             raise ValueError('unknown material action')
         record['revision'] = record.get('revision', 0) + 1
-        record.setdefault('operations', []).append({'id':operation, 'by':actor, 'at':now,
-            'before':before, 'after':record['status'], 'request':payload})
+        audit = {'id':operation, 'by':actor, 'at':now,
+                 'before':before, 'after':record['status'], 'request':payload}
+        if action == 'assign_package':
+            audit.update(before_package_id=previous_package_id, after_package_id=package_id)
+        record.setdefault('operations', []).append(audit)
         atomic(path, record)
     return public_view(record)

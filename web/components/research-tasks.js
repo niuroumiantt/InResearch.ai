@@ -6,8 +6,15 @@
   const statuses = {unassigned:'待分配',ready:'待开始',in_progress:'进行中',blocked:'受阻',delivered:'已交付'};
   const fields = ['title','region','scope','sources','assignee','machine','model','due','status','delivery_pointer','note'];
   const form = $('package-form');
+  const revealAnchor = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return;
+    document.getElementById(id)?.closest('details.mission-reference')?.setAttribute('open','');
+  };
+  window.addEventListener('hashchange', revealAnchor);
+  revealAnchor();
   let state = null, pending = null, editing = null, editingRevision = null;
-  const canEdit = item => state && (state.can_create || (state.role === 'intern' && item.assignee === state.actor));
+  const canEdit = item => state && (state.can_create || (state.role === 'intern' && String(item.assignee || '').split(/[,，、;；\n]+/).map(name => name.trim()).includes(state.actor)));
   const value = name => form.elements.namedItem(name);
 
   async function load() {
@@ -17,7 +24,7 @@
       if (!response.ok) throw Error(response.status === 401 ? '请登录后查看任务' : '任务台账暂不可用，请刷新重试');
       state = await response.json();
       $('new-package').hidden = !state.can_create;
-      $('task-role-note').textContent = state.can_create ? '内部成员可以新增、分配和更新工作包；负责人使用成员登录名，实习生成员可更新自己的状态、交付与备注。' : state.role === 'intern' ? '实习生成员可查看全部分工；只可更新分配给自己登录名的工作包状态、交付与备注。范围、负责人、机器与模型由内部成员维护。' : '任务方向、协调状态和公开样例可直接查看；实际负责人、机器、模型、备注和交付指针登录后可见。';
+      $('task-role-note').textContent = state.can_create ? '内部成员可以新增、分配和更新工作包；多人协作可用逗号分隔成员登录名，各成员可更新自己的状态、交付与备注。' : state.role === 'intern' ? '实习生成员可查看全部分工；只可更新包含自己登录名的工作包状态、交付与备注。范围、参与成员、机器与模型由内部成员维护。' : '任务方向、协调状态和公开样例可直接查看；实际参与成员、机器、模型、备注和交付指针登录后可见。';
       render(); renderRegister();
       $('tasks-status').textContent = `服务端台账 · 版本 ${state.revision} · ${state.packages.length} 个工作包。${state.public_view?'公开只读视图；登录后可查看实际分工并协作。':'机器与模型按实际执行填写，未分配不默认运行。'}`;
     } catch (error) {
@@ -37,12 +44,53 @@
 
   function render() {
     const count = s => state.packages.filter(p => p.status === s).length;
+    const total = state.packages.length, delivered = count('delivered');
+    const published = state.site_progress?.published_sites ?? 0;
+    const target = state.site_progress?.target;
+    const formatCount = value => new Intl.NumberFormat('zh-CN').format(value);
+    $('mission-site-progress').max = Math.max(1,target || 1);
+    $('mission-site-progress').value = target ? Math.min(published,target) : 0;
+    $('mission-site-progress').setAttribute('aria-label', target
+      ? `模型审阅后已上线 ${published} 个去重园区，暂定目标 ${target} 个`
+      : `模型审阅后已上线 ${published} 个去重园区；园区目标待初步研究后设定`);
+    $('mission-progress-value').textContent = `${formatCount(published)} 个园区已上线`;
+    $('mission-progress-detail').textContent = target ? `暂定目标 ${formatCount(target)} · ${Math.round(published / target * 100)}%` : '暂定目标待初步盘点';
+    $('mission-progress-basis').textContent = state.site_progress?.basis || '按实际发布回执计数；同园区多字段只计一次。';
+    $('mission-reviewed-reports').textContent = formatCount(state.site_progress?.reviewed_reports ?? 0);
+    $('mission-published-statements').textContent = formatCount(state.site_progress?.published_statements ?? 0);
+    $('mission-site-target').textContent = target ? `${formatCount(target)} 个园区` : '待初步盘点';
+    const basis = state.site_progress?.target_basis;
+    const setAt = state.site_progress?.target_set_at;
+    const date = setAt ? new Date(setAt).toLocaleDateString('zh-CN',{timeZone:'Asia/Shanghai'}) : '';
+    $('mission-target-basis').textContent = `${target ? `园区暂定目标依据：${basis || '未登记'}${date ? ` · ${date} 设定` : ''}。` : ''}90+ GW 仅是待校准摸底参考；容量须区分 IT / 设施及已投运 / 在建 / 规划，当前不计算容量完成率。`;
+    $('mission-package-detail').textContent = `工作包 ${delivered}/${total} 已交付 · ${count('in_progress')} 进行中 · ${count('blocked')} 受阻（仅协作状态）`;
+    $('mission-target-form').hidden = state.role !== 'admin';
+    if (state.role === 'admin') {
+      $('mission-target-form').elements.target_site_count.value = target || '';
+      $('mission-target-form').elements.target_site_basis.value = basis || '';
+    }
     $('package-counts').innerHTML = [[count('unassigned'),'待分配'],[count('ready')+count('in_progress'),'待开始 / 进行中'],[count('blocked'),'受阻'],[count('delivered'),'已交付']].map(([n,label])=>`<span><strong>${n}</strong>${label}</span>`).join('');
     const filter = $('package-filter').value;
     const items = state.packages.filter(p => !filter || p.status === filter);
-    $('package-rows').innerHTML = items.map(p => `<tr data-package="${esc(p.id)}"><td data-label="工作包"><strong class="package-name">${esc(p.title)}</strong><span class="package-region">${esc(p.region)}</span><p class="package-scope">${esc(p.scope)}</p><details><summary>${state.public_view?'来源方向':'来源方向与备注'}</summary><p>${esc(p.sources)}</p>${p.note?`<p>${esc(p.note)}</p>`:''}</details></td><td data-label="负责人">${esc(state.public_view?'登录后可见':p.assignee || '待分配')}</td><td data-label="机器 / 模型">${state.public_view?'<span class="muted">登录后可见</span>':`${esc(p.machine || '待确认')}<br><span class="muted">${esc(p.model || '模型未登记')}</span>`}</td><td data-label="截止日">${esc(state.public_view?'登录后可见':p.due || '待安排')}</td><td data-label="协调状态"><span class="package-status ${esc(p.status)}">${esc(statuses[p.status] || p.status)}</span></td><td data-label="交付 / 操作">${state.public_view?'<a href="/login">登录协作 →</a>':p.delivery_pointer?`<details><summary>交付指针</summary><p class="delivery-pointer">${esc(p.delivery_pointer)}</p></details>`:'<span class="muted">尚无交付指针</span>'}${canEdit(p)?`<button type="button" data-edit="${esc(p.id)}">${state.can_create?'分配 / 更新':'更新我的进度'}</button>`:''}</td></tr>`).join('') || '<tr><td colspan="6">这个状态下暂无工作包。</td></tr>';
+    $('package-rows').innerHTML = items.map(p => `<tr data-package="${esc(p.id)}"><td data-label="工作包"><strong class="package-name">${esc(p.title)}</strong><span class="package-region">${esc(p.region)}</span><p class="package-scope">${esc(p.scope)}</p><details><summary>${state.public_view?'来源方向':'来源方向与备注'}</summary><p>${esc(p.sources)}</p>${p.note?`<p>${esc(p.note)}</p>`:''}</details></td><td data-label="参与成员">${esc(state.public_view?'登录后可见':p.assignee || '待分配')}</td><td data-label="机器 / 模型">${state.public_view?'<span class="muted">登录后可见</span>':`${esc(p.machine || '待确认')}<br><span class="muted">${esc(p.model || '模型未登记')}</span>`}</td><td data-label="截止日">${esc(state.public_view?'登录后可见':p.due || '待安排')}</td><td data-label="协调状态"><span class="package-status ${esc(p.status)}">${esc(statuses[p.status] || p.status)}</span></td><td data-label="交付 / 操作">${state.public_view?'<a href="/login">登录协作 →</a>':p.delivery_pointer?`<details><summary>交付指针</summary><p class="delivery-pointer">${esc(p.delivery_pointer)}</p></details>`:'<span class="muted">尚无交付指针</span>'}${canEdit(p)?`<button type="button" data-edit="${esc(p.id)}">${state.can_create?'分配 / 更新':'更新我的进度'}</button>`:''}</td></tr>`).join('') || '<tr><td colspan="6">这个状态下暂无工作包。</td></tr>';
     $('package-rows').querySelectorAll('[data-edit]').forEach(button=>button.addEventListener('click',()=>openPackage(button.dataset.edit)));
   }
+
+  $('mission-target-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    if (state?.role !== 'admin') return;
+    const target = Number(event.currentTarget.elements.target_site_count.value);
+    const basis = event.currentTarget.elements.target_site_basis.value.trim();
+    if (!Number.isInteger(target) || target < 1 || target > 1000000 || basis.length < 5 || basis.length > 500) return;
+    const message = $('mission-target-message'); message.textContent = '正在保存…';
+    try {
+      const response = await fetch('/api/research-tasks',{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'research-tasks'},
+        body:JSON.stringify({action:'set_target',expected_revision:state.revision,operation_id:crypto.randomUUID(),target_site_count:target,target_site_basis:basis})});
+      const result = await response.json();
+      if (!response.ok) throw Error(result.error || '目标保存失败');
+      await load(); message.textContent = '目标已保存。';
+    } catch (error) { message.textContent = error.message; }
+  });
 
   function openPackage(id = null) {
     if (!state) return;
@@ -94,7 +142,7 @@
 
   $('download-brief').addEventListener('click',()=> {
     if (!state) { $('tasks-status').textContent = '请先刷新并成功读取服务端任务台账，再下载任务书。'; return; }
-    const brief = `# ${state.mission.title}\n\n研究方向：两条研究线，共用证据，按用途连接。通用模型变量绑定既有目标行；园区普查允许先发现登记，按用途建立证据映射。\n优先级：P1\n任务建立：2026-10-12\n\n${state.mission.goal}\n\n${state.mission.scale_note}\n\n## 工作包（服务端台账版本 ${state.revision}）\n\n` + state.packages.map(p=>`### ${p.title}\n\n- ID：${p.id}\n- 范围：${p.region}；${p.scope}\n- 来源：${p.sources}\n- 负责人：${state.public_view ? '登录后可见' : p.assignee || '待分配'}\n- 机器 / 模型：${state.public_view ? '登录后可见' : p.machine || '待确认'} / ${state.public_view ? '登录后可见' : p.model || '未登记'}\n- 截止日：${state.public_view ? '登录后可见' : p.due || '待安排'}\n- 状态：${statuses[p.status]}\n- 交付指针：${state.public_view ? '登录后可见' : p.delivery_pointer || '尚无'}\n- 备注：${state.public_view ? '登录后可见' : p.note || '无'}\n`).join('\n') + `\n## 每条资料怎么交\n\n保留原生 PDF/HTML/Office/CSV/API 原响应，不改字节。交 manifest.json、SHA256SUMS、originals/、observations.jsonl、errors.jsonl、run-report.json。OCR/文本/JSON 作为 derived/ 增补，带 derived_from_sha256、页码、实际工具与版本、漏页及未读图片。\n\n共用检查清单（版本 ${$('observation-coverage').dataset.version}）：${Array.from(document.querySelectorAll('[data-angle]')).map(el=>el.dataset.angle+'：'+el.textContent.trim()).join('；')}。视图允许交叉扩展，当前数量不表示永久穷尽；未检查、不适用及已查未取得分别说明。\n\n每条候选一个对象、指标和证据范围，保留原值/单位、口径、有效与披露时间、原文引句、页/表/行列和上下文。IT、设施、接电、发电、合同 MW 分开；年度电耗 MWh 另记。缺项保持 null，已知一条即可交，不把全园区与分期重复相加。\n\n候选交换契约：fetchdata-handoff/1。一般信息 target_ids 可为空；研究端映射后按唯一身份和原件追加来源登记，标记基础登记待查。正式结论/答案/模型输入按 C3。采集、原件接收、阅读、登记及实际上线分别留回执；工作包已交付不表示已采用。\n\n完整字段与离线验包：https://inresearch.ai/doc.html?f=docs/guides/fetchdata/delivery-contract.md\n`;
+    const brief = `# ${state.mission.title}\n\n研究方向：两条研究线，共用证据，按用途连接。通用模型变量绑定既有目标行；园区普查允许先发现登记，按用途建立证据映射。\n优先级：P1\n任务建立：2026-10-12\n\n${state.mission.goal}\n\n${state.mission.scale_note}\n\n## 工作包（服务端台账版本 ${state.revision}）\n\n` + state.packages.map(p=>`### ${p.title}\n\n- ID：${p.id}\n- 范围：${p.region}；${p.scope}\n- 来源：${p.sources}\n- 参与成员：${state.public_view ? '登录后可见' : p.assignee || '待分配'}\n- 机器 / 模型：${state.public_view ? '登录后可见' : p.machine || '待确认'} / ${state.public_view ? '登录后可见' : p.model || '未登记'}\n- 截止日：${state.public_view ? '登录后可见' : p.due || '待安排'}\n- 状态：${statuses[p.status]}\n- 交付指针：${state.public_view ? '登录后可见' : p.delivery_pointer || '尚无'}\n- 备注：${state.public_view ? '登录后可见' : p.note || '无'}\n`).join('\n') + `\n## 每条资料怎么交\n\n保留原生 PDF/HTML/Office/CSV/API 原响应，不改字节。交 manifest.json、SHA256SUMS、originals/、observations.jsonl、errors.jsonl、run-report.json。OCR/文本/JSON 作为 derived/ 增补，带 derived_from_sha256、页码、实际工具与版本、漏页及未读图片。\n\n共用检查清单（版本 ${$('observation-coverage').dataset.version}）：${Array.from(document.querySelectorAll('[data-angle]')).map(el=>el.dataset.angle+'：'+el.textContent.trim()).join('；')}。视图允许交叉扩展，当前数量不表示永久穷尽；未检查、不适用及已查未取得分别说明。\n\n每条候选一个对象、指标和证据范围，保留原值/单位、口径、有效与披露时间、原文引句、页/表/行列和上下文。IT、设施、接电、发电、合同 MW 分开；年度电耗 MWh 另记。缺项保持 null，已知一条即可交，不把全园区与分期重复相加。\n\n候选交换契约：fetchdata-handoff/1。一般信息 target_ids 可为空；研究端映射后按唯一身份和原件追加来源登记，标记基础登记待查。正式结论/答案/模型输入按 C3。采集、原件接收、阅读、登记及实际上线分别留回执；工作包已交付不表示已采用。\n\n完整字段与离线验包：https://inresearch.ai/doc.html?f=docs/guides/fetchdata/delivery-contract.md\n`;
     download('全球数据中心普查-任务书.md',brief,'text/markdown;charset=utf-8');
   });
 

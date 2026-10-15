@@ -136,7 +136,7 @@ def bundle(root):
     return {'version': 1, 'sites': sites, 'objects': {i:doc['objects'][i] for i in ids}, 'records': records}
 
 
-def install(root, payload):
+def install(root, payload, *, expected_state_sha=None):
     """Atomic, idempotent append with no network, model or factual verification."""
     from inresearch.knowledge import object_observations as ledger, site_timeline, site_register
     started = time.monotonic()
@@ -172,6 +172,8 @@ def install(root, payload):
         if key in previous['receipts']:
             return {**previous['receipts'][key], 'state':'already_published', 'new_records':0,
                     'seconds':round(time.monotonic()-started,6)}
+        if expected_state_sha is not None and digest(previous) != expected_state_sha:
+            raise ValueError('source_publication_context_changed')
         updated = copy.deepcopy(previous)
         # Validate the combined typed identities before using company IDs in a
         # site's roles. Runtime and same-batch ordinary companies share one

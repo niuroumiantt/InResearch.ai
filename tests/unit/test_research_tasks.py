@@ -40,6 +40,51 @@ class ResearchTaskTests(unittest.TestCase):
         self.assertFalse(tasks.ledger_path(self.root).exists())
         self.assertIn('待校准', tasks.plan(self.root)['mission']['scale_note'])
 
+    def test_site_progress_counts_actual_published_unique_sites_against_admin_target(self):
+        request={'action':'set_target','expected_revision':0,'operation_id':str(uuid.uuid4()),
+                 'target_site_count':250,'target_site_basis':'按去重的运营商地点清单初步盘点'}
+        with self.assertRaises(tasks.Forbidden):
+            tasks.mutate(self.root,request,'editor','member')
+        tasks.mutate(self.root,request,'owner','admin')
+        self.assertEqual(tasks.read(self.root)['target_site_count'],250)
+        self.assertEqual(tasks.read(self.root)['target_site_basis'],request['target_site_basis'])
+        projection={'capacity_audit':{'sites':9},'basis':'map','coverage':{},'rows':[
+            {'site_id':'site-a','portfolio':False},{'site_id':'site-b','portfolio':False},
+            {'site_id':'site-portfolio','portfolio':True}]}
+        records=[{'analysis_reports':[{'report':{'published':[
+            {'site_id':'site-a','field':'name','statement_id':'s1'},
+            {'site_id':'site-a','field':'notes','statement_id':'s2'},
+            {'site_id':'site-b','field':'name','statement_id':'s3'},
+            {'site_id':'site-portfolio','field':'name','statement_id':'s4'},
+            {'site_id':'removed-site','field':'name','statement_id':'s5'}]}}]},
+            {'analysis_reports':[{'report':{'published':[
+            {'site_id':'site-a','field':'name','statement_id':'s1'}]}}]}]
+        with patch('inresearch.knowledge.industry.cached_snapshot',return_value=projection), \
+             patch('inresearch.materials.inbox.records',return_value=records):
+            public=tasks.snapshot(self.root,role='reader')
+        self.assertEqual(public['site_progress']['published_sites'],2)
+        self.assertEqual(public['site_progress']['target'],250)
+        self.assertEqual(public['site_progress']['target_basis'],request['target_site_basis'])
+        self.assertTrue(public['site_progress']['target_set_at'])
+        self.assertEqual(public['site_progress']['reviewed_reports'],2)
+        self.assertEqual(public['site_progress']['published_statements'],5)
+        self.assertNotIn('analysis_reports',public)
+
+    def test_target_remains_unset_until_research_basis_is_entered(self):
+        projection={'capacity_audit':{'sites':0},'basis':'map','coverage':{},'rows':[]}
+        with patch('inresearch.knowledge.industry.cached_snapshot',return_value=projection), \
+             patch('inresearch.materials.inbox.records',return_value=[]):
+            public=tasks.snapshot(self.root,role='reader')
+        self.assertIsNone(public['site_progress']['target'])
+        self.assertEqual(public['site_progress']['published_sites'],0)
+        self.assertEqual(public['site_progress']['published_statements'],0)
+        self.assertEqual(public['site_progress']['reviewed_reports'],0)
+        missing_basis={'action':'set_target','expected_revision':0,'operation_id':str(uuid.uuid4()),
+                       'target_site_count':250}
+        with self.assertRaises(ValueError):
+            tasks.mutate(self.root,missing_basis,'owner','admin')
+        self.assertFalse(tasks.ledger_path(self.root).exists())
+
     def test_durable_update_replay_and_audit(self):
         request = self.request()
         result = tasks.mutate(self.root, request, 'editor', 'member')
@@ -86,6 +131,19 @@ class ResearchTaskTests(unittest.TestCase):
             tasks.mutate(self.root, self.request(action='create'), 'alice', 'intern')
         with self.assertRaises(tasks.Forbidden):
             tasks.mutate(self.root, self.request(), 'reader', 'reader')
+
+    def test_multiple_assigned_members_share_one_package_without_name_based_upload_identity(self):
+        tasks.mutate(self.root, self.request(assignee='alice, bob、carol'), 'editor', 'member')
+        self.assertEqual(tasks.assigned_members(tasks.read(self.root)['packages'][0]['assignee']),
+                         {'alice','bob','carol'})
+        update = self.request(expected_revision=1,status='delivered',
+                              delivery_pointer='private/shared/receipt.json')
+        for key in ('assignee','machine','model'):
+            update.pop(key)
+        with self.assertRaises(tasks.Forbidden):
+            tasks.mutate(self.root,update,'dave','intern')
+        tasks.mutate(self.root,update,'bob','intern')
+        self.assertEqual(tasks.read(self.root)['packages'][0]['status'],'delivered')
 
     def test_delivery_requires_pointer_and_does_not_allow_adoption_status(self):
         for changes in ({'status': 'delivered'}, {'status': 'adopted'},
