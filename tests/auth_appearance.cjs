@@ -133,7 +133,7 @@ with tempfile.TemporaryDirectory() as temporary:
       assert.equal((await context.request.post(base + '/api/research-tasks', {headers:{'X-Requested-With':'research-tasks'},data:{}})).status(), 401);
       await home.goto(base + '/tasks.html');
       assert.equal(new URL(home.url()).pathname, '/tasks.html');
-      await home.locator('[data-task-view="task-guide"]').click();
+      await home.locator('[data-task-view="task-home"]').click();
       await home.locator('#work-packages > summary').click();
       await home.locator('#package-rows tr').first().waitFor();
       assert.equal(await home.locator('#new-package').isVisible(), false);
