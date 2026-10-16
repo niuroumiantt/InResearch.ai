@@ -6,13 +6,23 @@
 
 现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.33。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
 
-## 当前继续点：AH-FY-JZ最终输出截断，整批暂受阻（2026-10-17）
+## 当前继续点：.33已部署并精确恢复，等待AH-FY-JZ真实最终结果（2026-10-17）
 
-当前独立分支`codex/campus-adjudication-delta`基于main `90fa3742a714c939eaabb46cd3443ce64391bb8f`；网站与Spark已运行该已合并交接版本，模型实现仍为.32。05:16只读核查确认v6同一attempt `9c1503ab-4c07-4197-848c-e59cb3af898e`、revision7、phase=full，服务器仍仅1/117完整包及81/10272归属格，首包来源回执有效，没有新增正式报告或发布。
+继续前先读本机持久状态`/Users/m5/.local/state/inresearch.ai/campus-full-review-20261017/progress.json`的最新阶段、更新时间与证据路径，再核当前服务器报告／来源回执；旧修复字段与下方失败段仅为历史，不按临时`/tmp`文件或旧错误重复恢复。当前有效完成仍为v6 **1/117包、81/10272归属格**，四份合计1/507包；首UCLOUD普通名称来源有效，AH-FY-JZ尚无新正式综合报告或完成回执。
+
+PR960已通过23/23项CI及本地完整2905项单元测试，合并`df19949deb6dd009b832cf8ee420f4c59a02396b`已部署到网站与Spark。网站实际镜像`sha256:e242ab23a58ef1d3be508849a5a36e5d0a6c26c91478618c05e01f2b6e9eba4c`为healthy；本次恢复前后既有Reader／research-review进程PID `2847498/2847499`保持。规范仍为.33，最终差量输出已上线，不能据部署成功推定本包最终生成或发布成功。
+
+同一attempt `9c1503ab-4c07-4197-848c-e59cb3af898e`的AH-FY-JZ包`5cf9f021e48c8fa7c042f921bfd7f1e2e9fb34123f558e7d2a6e22297ae764aa`已完成精确final-only恢复：原8个成功阅读窗口保持，原截断响应与状态按原字节封存在Spark持久目录`/home/spark/.local/share/inresearch.ai/web-submissions/3369d9b62769470095424016a3a62dcb/full-review/9c1503ab-4c07-4197-848c-e59cb3af898e/adjudication-recovery-history/1792187008475310677/`。不新建attempt、不重读窗口、不改首包或其他任务，也不赋予其他未绑定结果自动重放资格。最近GPU为80°C／95%利用率，按既有门禁等待资源空闲；等待不增加完成数，不停止其他任务。8/8是原生阅读窗口，服务器8/9步骤还含最后综合。
+
+本阶段持久证据及31意见逐条预复核位于`/Users/m5/.local/state/inresearch.ai/campus-full-review-20261017/adjudication-delta-repair/`。其中`campus-ahfy-31-findings-review.json`与`campus-ahfy-crawl-instructions-draft.txt`仅基于真实窗口的预复核：官方URL已有登记但本次外部访问失败，不能当作政府正文已核；8项聚合补证任务不是新的正式模型报告。取得真实最终报告后，先对账31条原问题、新增跨窗问题及published／held候选，再导出正式补证指令和核对网站投影。未获回执前保持本包未完成；后续仍按v6→dahai→national→v5顺序，保留普通来源、C3及地图定位的不同验收边界。
+
+## AH-FY-JZ最终输出截断与.33修复准备（阶段历史，2026-10-17）
+
+该阶段独立分支`codex/campus-adjudication-delta`基于main `90fa3742a714c939eaabb46cd3443ce64391bb8f`；当时网站与Spark运行该已合并交接版本，模型实现仍为.32。05:16只读核查确认v6同一attempt `9c1503ab-4c07-4197-848c-e59cb3af898e`、revision7、phase=full，服务器仍仅1/117完整包及81/10272归属格，首包来源回执有效，没有新增正式报告或发布。
 
 后续AH-FY-JZ包`5cf9f021e48c8fa7c042f921bfd7f1e2e9fb34123f558e7d2a6e22297ae764aa`已保存8/8原生阅读窗口。完整最终输入包含31条findings与7条候选，实际8951 tokens通过预算，但响应重复输出原问题，达到4096输出上限而截断；服务器遥测为8/9步骤，最后一步是综合，不能误称9个原生窗。Spark状态`model_output_truncated`、operator_required=true，失败计数1；这是真实新阻塞，不能归因首包历史504。该包尚无有效综合、proposal或网站完成回执。证据为私有`/private/tmp/campus-heartbeat-20261017-0516-server.json`、同前缀`-spark.json`及`/private/tmp/campus-ahfy-truncated-response.txt`。
 
-本次.33只改最终输出为1至600字符的非空白summary／原问题索引全集reviewed_finding_ids／新增跨窗问题new_findings／accept_candidates；完整输入与原阅读问题全部保留。最终配方`campus-adjudication-delta-v1`单独绑定system/schema/request/完整reading inventory/findings/candidates及配方自身摘要，旧final不得混用；原reading配方、8窗缓存、32K／4096、GPU门槛不变。新增5项测试已逐条审阅，并独立运行worker40、receiver16与token30共86项通过（Python3.12，1.370秒）：验证31条原问题逐字保留、8窗原字节不重读、索引全集、旧配方及各摘要失配拒绝、截断审计在状态丢失后仍禁止重放。完整CI、部署与正式同包综合仍待实证，不称修复已完成。
+本次.33只改最终输出为1至600字符的非空白summary／原问题索引全集reviewed_finding_ids／新增跨窗问题new_findings／accept_candidates；完整输入与原阅读问题全部保留。最终配方`campus-adjudication-delta-v1`单独绑定system/schema/request/完整reading inventory/findings/candidates及配方自身摘要，旧final不得混用；原reading配方、8窗缓存、32K／4096、GPU门槛不变。新增5项测试已逐条审阅，并独立运行worker40、receiver16与token30共86项通过（Python3.12，1.370秒）：验证31条原问题逐字保留、8窗原字节不重读、索引全集、旧配方及各摘要失配拒绝、截断审计在状态丢失后仍禁止重放。当时完整CI、部署与正式同包综合仍待实证；后续部署及精确恢复见上方当前继续点，正式同包结果仍待回执。
 
 真实原件的无生成重建也已完成：同SHA XLSX复算229原生格与8个窗口，parts/system/reading schema摘要与原冻结状态相同；新final中所有证据字段逐值等于旧请求，31条问题与7候选完整，只有instructions及final_recipe_version改变。该核验模型调用数为0，不计综合成功或新增完成包；私有证明为`/private/tmp/campus-ahfy-delta-request-proof.json`，新请求SHA为`0fe610141b6f7f63948656f320063e610f35dc908a699b61bd2af90f01f56c20`。
 
