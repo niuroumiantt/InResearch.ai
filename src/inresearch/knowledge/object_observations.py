@@ -228,7 +228,16 @@ def current(doc, today=None):
     for g in groups.values():
         candidates = g['current']
         clock = lambda r: selection_clock(r)[0] if r.get('registration') else r.get('effective_at')
-        latest = [r for r in candidates if not any(observation_time.definitely_after(clock(n), clock(r)) for n in candidates)]
+        # A row is superseded exactly when any candidate's lower time bound is
+        # later than its upper bound.  Comparing every pair made a large
+        # ordinary-source group quadratic (the production ledger now has tens
+        # of thousands of rows).  The greatest lower bound answers the same
+        # question once for the whole group while preserving unknown and
+        # coarse-precision clocks as incomparable.
+        timed = [(row, observation_time.bounds(clock(row))) for row in candidates]
+        greatest_lower = max((bounds[0] for _, bounds in timed if bounds[0] is not None), default=None)
+        latest = [row for row, bounds in timed
+                  if greatest_lower is None or bounds[1] is None or greatest_lower <= bounds[1]]
         if latest and all(r.get('registration') for r in latest):
             latest.sort(key=lambda r: (observation_time.bounds(clock(r))[0], observation_time.bounds(r['recorded_at'])[0], positions[r['id']]), reverse=True)
         g['current'] = latest[:1] if latest and all(r.get('registration') for r in latest) else latest
