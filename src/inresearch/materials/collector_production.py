@@ -192,7 +192,7 @@ def receive(package, data_root):
 
 def lookup_receipt(data_root, provider, delivery):
     """Verify a completed production ACK without creating, repairing or retiming data."""
-    if provider not in ('fetchstat','fetchfilings') or not isinstance(delivery,str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,200}',delivery):
+    if provider not in ('fetchstat','fetchfilings','fetchreports') or not isinstance(delivery,str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,200}',delivery):
         raise ValueError('collector_lookup_scope_invalid')
     data=Path(data_root).expanduser()
     if not data.is_absolute() or data.is_symlink():raise ValueError('collector_absolute_data_root_required')

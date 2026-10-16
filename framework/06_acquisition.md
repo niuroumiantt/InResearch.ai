@@ -486,4 +486,9 @@ InResearch的本地receipt lookup仅核collector-local-receipt/1、原包指纹/
 
 ### fetchfilings生产队列与网关版本隔离
 
-用户授权fetchfilings既有Microsoft单源的AWS持久队列与Spark只读ACK对账；两队独立固定命令/协议/密钥与固定版本运行检出，旧ID/版本/历史保持；真实交付/重复/ACK丢失/恢复另验，不定时/扩源/采用/填参。 网关由专用固定入口决定provider，不能由请求选择另一队；仅stat与filings开放只读完成ACK查询。Spark运行检出按部署提交固定，与主站/Reader主检出分开；版本升级另行复核队列绑定和当前源码。详见docs/guides/fetchdata/fetchfilings-outbox.md；功能就绪不证明真实接通。
+用户授权fetchfilings既有Microsoft单源的AWS持久队列与Spark只读ACK对账；两队独立固定命令/协议/密钥与固定版本运行检出，旧ID/版本/历史保持；真实交付/重复/ACK丢失/恢复另验，不定时/扩源/采用/填参。 网关由专用固定入口决定provider，不能由请求选择另一队；stat与filings按各自固定入口开放只读完成ACK查询；reports接通见下节。Spark运行检出按部署提交固定，与主站/Reader主检出分开；版本升级另行复核队列绑定和当前源码。详见docs/guides/fetchdata/fetchfilings-outbox.md；功能就绪不证明真实接通。
+
+
+### fetchreports生产队列与报告范围
+
+用户授权fetchreports既有LBNL发布页摘要单源的AWS持久队列与Spark只读完成ACK对账；三队独立固定入口/协议/密钥/版本，四个旧HTML版本及ID/信封/交付历史保持；真实交付/重复/ACK丢失/恢复另验，不定时、不扩源、不入Reader、不采用或填参，PDF正文/表图/附件未读保持。 通用字节/回执核心共用，固定reports入口拒绝跨provider/协议请求。只读完成ACK与原时间保持；最新旧包故障对账不覆盖其它旧版本。当前quotes队列未启用。详见docs/guides/fetchdata/fetchreports-outbox.md，真实实机回执独立保存。
