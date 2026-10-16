@@ -59,7 +59,7 @@ class ResearchTaskTests(unittest.TestCase):
             {'site_id':'removed-site','field':'name','statement_id':'s5'}]}}]},
             {'analysis_reports':[{'report':{'published':[
             {'site_id':'site-a','field':'name','statement_id':'s1'}]}}]}]
-        with patch('inresearch.knowledge.industry.cached_snapshot',return_value=projection), \
+        with patch('inresearch.knowledge.industry.cached_task_progress',return_value=projection), \
              patch('inresearch.materials.inbox.records',return_value=records):
             public=tasks.snapshot(self.root,role='reader')
         self.assertEqual(public['site_progress']['published_sites'],2)
@@ -72,7 +72,7 @@ class ResearchTaskTests(unittest.TestCase):
 
     def test_target_remains_unset_until_research_basis_is_entered(self):
         projection={'capacity_audit':{'sites':0},'basis':'map','coverage':{},'rows':[]}
-        with patch('inresearch.knowledge.industry.cached_snapshot',return_value=projection), \
+        with patch('inresearch.knowledge.industry.cached_task_progress',return_value=projection), \
              patch('inresearch.materials.inbox.records',return_value=[]):
             public=tasks.snapshot(self.root,role='reader')
         self.assertIsNone(public['site_progress']['target'])
@@ -210,9 +210,9 @@ class ResearchTaskTests(unittest.TestCase):
         tasks.mutate(self.root, self.request(), 'editor', 'member')
         projection = {'capacity_audit': {'sites': 9, 'operating': 150},
                       'basis': 'existing map basis', 'coverage': {'label': '非全球普查'}}
-        with patch('inresearch.knowledge.industry.snapshot', return_value=projection) as source:
+        with patch('inresearch.knowledge.industry.task_progress_snapshot', return_value=projection) as source:
             view = tasks.snapshot(self.root, 'alice', 'intern')
-        source.assert_called_once_with(self.root, {'overview': '1'})
+        source.assert_called_once_with(self.root)
         self.assertEqual(view['map_register']['counts'], projection['capacity_audit'])
         self.assertEqual(view['map_register']['publication_ack'], 'not_checked')
         self.assertNotIn('operations', view)

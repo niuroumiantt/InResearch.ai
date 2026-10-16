@@ -67,6 +67,53 @@ def cached_snapshot(root, params=None):
     return copy.deepcopy(entry[1])
 
 
+def task_progress_snapshot(root):
+    """Build the task-page map receipt from site histories alone.
+
+    Company observations and public update prose do not affect the physical
+    site count or capacity audit shown on the task page.  Keeping them out of
+    this projection prevents the small progress API from parsing and validating
+    the full source-statement ledger.
+    """
+    root = Path(root)
+    from inresearch.delivery import source_publication
+    site_runtime = source_publication.site_state(root)
+    runtime = {'version': 1, 'sites': site_runtime['sites'], 'objects': {},
+               'records': [], 'receipts': {}}
+    raw_rows = source_publication.projects(root, runtime=runtime)['records']
+    all_records = [project(row) for row in raw_rows]
+    rows = [row for row in all_records if not row.get('duplicate_of')]
+    dates = sorted(row['verified_date'] for row in rows if row.get('verified_date'))
+    return {
+        'rows': [{'site_id': row['site_id'], 'portfolio': row['portfolio']} for row in rows],
+        'capacity_audit': capacity_audit(rows, all_records),
+        'coverage': {'label': '已追踪项目 · 非全球普查',
+                     'oldest_verified': dates[0] if dates else None,
+                     'latest_verified': dates[-1] if dates else None},
+        'basis': ('仅汇总已披露 IT 负载的确定值 MW，容量区间单列且不取中点；'
+                  '公司视图为相关园区容量，并非持有或租用份额。组合记录不参加容量合计。'),
+    }
+
+
+def cached_task_progress(root):
+    """Cache the lightweight task projection with the same input invalidation."""
+    root = Path(root).resolve()
+    key = (str(root), (('__task_progress__', '1'),))
+    with _view_lock:
+        signature = _view_signature(root)
+        entry = _views.get(key)
+        if entry is None or entry[0] != signature:
+            value = task_progress_snapshot(root)
+            if _view_signature(root) != signature:
+                raise OSError('industry_inputs_changed_during_projection')
+            entry = (signature, value)
+            _views[key] = entry
+            while len(_views) > 8:
+                _views.popitem(last=False)
+        _views.move_to_end(key)
+    return copy.deepcopy(entry[1])
+
+
 def public_url(value):
     if not isinstance(value, str): return None
     try:
