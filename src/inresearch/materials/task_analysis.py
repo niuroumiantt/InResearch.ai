@@ -307,6 +307,18 @@ def _prior_source(row, selected, value):
             'source_url': ref.get('source_url') if str(ref.get('source_url') or '').startswith(('https://','http://')) else None}
 
 
+def _is_unbacked_notes_placeholder(row, field, value, selected):
+    """Treat the publisher's initial notes label as empty until a source states it."""
+    if field != 'notes' or value != '基础登记待查':
+        return False
+    if isinstance(selected, dict) and selected.get('observation_id'):
+        return False
+    # A historical source observation makes even a placeholder-looking value
+    # an actual statement. Only the synthetic baseline label has no field entry.
+    return not any(field in (entry.get('fields') or {})
+                   for entry in row.get('observations', []))
+
+
 def _analysis_outbox(key, analysis_id):
     return inbox.record_path(key) / 'analysis-outbox' / (analysis_id + '.json')
 
@@ -542,7 +554,8 @@ def _complete_with_task_lock(root, payload, *, expected_task=None, expected_sour
                         if not replay:
                             classification = 'duplicate'
                             raise ValueError('同一原件已登记该字段，且没有新的核验依据；请提交新的来源版本或有据可查的复核记录')
-                    if old not in (None, '', [], {}):
+                    if (old not in (None, '', [], {})
+                            and not _is_unbacked_notes_placeholder(current_row, field, old, selected)):
                         if old == value:
                             registration_kind = 'reconfirmation' if not same_source else 'replay'
                         else:

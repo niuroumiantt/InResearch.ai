@@ -5,22 +5,32 @@ upload API. Originals remain at the source; only projections reach public APIs.
 """
 import argparse
 import copy
+from collections import OrderedDict
 from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
 import sys
 import time
+import threading
 
-from inresearch.storage.files import locked, write_json
+from inresearch.storage import json_stream
+from inresearch.storage.files import iter_json_bytes, locked, write_json_streaming
 from inresearch.storage.layout import workspace_path
 
 PATH = 'data/raw/source-publication/registry.json'
 
+_site_context_cache = OrderedDict()
+_site_context_lock = threading.Lock()
+
 
 def digest(value):
-    return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
-                                    separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+    # Preserve the complete canonical CAS/receipt identity without allocating
+    # a ledger-sized string and its UTF-8 copy at the same time.
+    result = hashlib.sha256()
+    for block in iter_json_bytes(value, sort_keys=True):
+        result.update(block)
+    return result.hexdigest()
 
 
 def _strict_pairs(items):
@@ -48,13 +58,57 @@ def empty():
 
 def state(root):
     path = workspace_path(PATH, root)
-    return strict_json(path.read_text()) if path.exists() else empty()
+    if not path.exists():
+        return empty()
+    with path.open(encoding='utf-8') as stream:
+        return json_stream.load(stream, decoder=_STRICT_DECODER)
+
+
+
+def _site_context_signature(root):
+    path = workspace_path(PATH, root)
+    name = str(path.resolve())
+    try:
+        stat = path.stat()
+    except FileNotFoundError:
+        return (name, None)
+    return (name, stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns, stat.st_ctime_ns)
+
+
+def site_context(root):
+    """Small site projection plus the full publication-state CAS identity.
+
+    Only the small projection and full digest survive a build. One builder and
+    at most four roots bound transient work and retained state. Atomic replace,
+    in-place changes, removal, and runtime-path changes all invalidate the entry.
+    """
+    key = str(Path(root).resolve())
+    with _site_context_lock:
+        signature = _site_context_signature(root)
+        cached = _site_context_cache.get(key)
+        if cached is not None and cached[0] == signature:
+            _site_context_cache.move_to_end(key)
+            return copy.deepcopy(cached[1]), cached[2]
+        _site_context_cache.pop(key, None)
+        for _ in range(3):
+            before = _site_context_signature(root)
+            runtime = state(root)
+            state_sha = digest(runtime)
+            if before != _site_context_signature(root):
+                del runtime
+                continue
+            projection = {'version': runtime['version'], 'sites': runtime['sites']}
+            _site_context_cache[key] = (before, projection, state_sha)
+            while len(_site_context_cache) > 4:
+                _site_context_cache.popitem(last=False)
+            return copy.deepcopy(projection), state_sha
+    raise ValueError('source_publication_context_changed_during_read')
 
 
 def site_state(root):
     """Read the small leading site projection without parsing unrelated claims.
 
-    ``write_json`` preserves the registry's top-level order, where ``version``
+    ``write_json_streaming`` preserves the registry's top-level order, where ``version``
     and ``sites`` precede the much larger object-record ledger.  The task page
     only needs published site histories.  Decode those two values strictly and
     stop before objects/records so a progress request does not parse tens of
@@ -153,13 +207,16 @@ def projects(root, runtime=None):
 
 
 def _objects(doc, runtime):
-    doc = copy.deepcopy(doc)
+    # _merge_rows already detaches the entire history. Copying it here first
+    # only creates another full ledger while the second copy is being built.
+    result = {key: value if key == 'records' else copy.deepcopy(value)
+              for key, value in doc.items()}
     for ident, obj in runtime['objects'].items():
-        if ident in doc['objects'] and doc['objects'][ident] != obj:
+        if ident in result['objects'] and result['objects'][ident] != obj:
             raise ValueError('immutable_object_identity_collision')
-        doc['objects'][ident] = copy.deepcopy(obj)
-    doc['records'] = _merge_rows(doc['records'], runtime['records'])
-    return doc
+        result['objects'][ident] = copy.deepcopy(obj)
+    result['records'] = _merge_rows(doc['records'], runtime['records'])
+    return result
 
 
 def objects(root, doc):
@@ -248,7 +305,10 @@ def install(root, payload, *, expected_state_sha=None):
                     'seconds':round(time.monotonic()-started,6)}
         if expected_state_sha is not None and digest(previous) != expected_state_sha:
             raise ValueError('source_publication_context_changed')
-        updated = copy.deepcopy(previous)
+        # Records are read-only until _merge_rows detaches them below. Avoid
+        # retaining a second history copy throughout identity validation.
+        updated = {name: value if name == 'records' else copy.deepcopy(value)
+                   for name, value in previous.items()}
         # Validate the combined typed identities before using company IDs in a
         # site's roles. Runtime and same-batch ordinary companies share one
         # directory; neither an unreferenced identity nor a malformed claim is
@@ -339,7 +399,7 @@ def install(root, payload, *, expected_state_sha=None):
                    'published_at':datetime.now(timezone.utc).isoformat(), 'truth_checked':False,
                    'seconds':round(time.monotonic()-started,6)}
         updated['receipts'][key] = receipt
-        write_json(path, updated)
+        write_json_streaming(path, updated)
     return receipt
 
 

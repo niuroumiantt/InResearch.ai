@@ -1,5 +1,6 @@
 """Independent data releases preserve identity, history and the public boundary."""
 import copy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -318,3 +319,300 @@ class SourcePublicationTests(unittest.TestCase):
         receipt=publication.install(self.root,payload)
         self.assertEqual(receipt['new_records'],0)
         self.assertEqual(publication.projects(self.root)['records'][0]['verified_date'],'2024-01-01')
+
+
+    def test_streamed_digest_matches_legacy_canonical_identity(self):
+        values = [None, {}, [], {'z': '中文\\\"\n😀'*20000, 'a': [True, False, None, -0.0, 1.5]},
+                  {3: 'three', 1: 'one'},
+                  {'version': 1, 'sites': {}, 'objects': {'company:x': {'name': '原名'}},
+                   'records': [{'id': str(index), 'quote': '原文\n'*100} for index in range(300)],
+                   'receipts': {'batch': {'state': 'published'}}}]
+        for value in values:
+            with self.subTest(kind=type(value).__name__):
+                old = hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
+                    separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+                self.assertEqual(publication.digest(value), old)
+        for value in [float('nan'), float('inf'),
+                      {'records': ['边界'*40000, {'invalid': float('-inf')}]}]:
+            with self.subTest(nonfinite=True), self.assertRaises(ValueError):
+                publication.digest(value)
+
+    def test_streamed_digest_retains_full_state_cas_and_bounded_encoding_memory(self):
+        import tracemalloc
+        state = {'version': 1, 'sites': {}, 'objects': {},
+                 'records': [{'id': str(index), 'quote': '原文'*2048} for index in range(500)],
+                 'receipts': {}}
+        before = publication.digest(state)
+        for key, value in [('sites', {'a': {}}), ('objects', {'b': {}}),
+                           ('records', []), ('receipts', {'other': {'state': 'published'}})]:
+            self.assertNotEqual(publication.digest(dict(state, **{key: value})), before)
+        def peak(call):
+            tracemalloc.start()
+            try:
+                result = call()
+                return result, tracemalloc.get_traced_memory()[1]
+            finally:
+                tracemalloc.stop()
+        expected, legacy_peak = peak(lambda: hashlib.sha256(json.dumps(state, ensure_ascii=False,
+            sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest())
+        actual, streamed_peak = peak(lambda: publication.digest(state))
+        self.assertEqual(actual, expected)
+        self.assertLess(streamed_peak, legacy_peak // 8)
+
+    def test_object_merge_keeps_nested_inputs_detached_and_conflicts_atomic(self):
+        doc = {'version': 1, 'objects': {'a': {'name': 'A', 'nested': ['old']}},
+               'records': [{'id': 'old', 'source': {'quote': ['original']}}],
+               'extra': {'nested': ['metadata']}}
+        runtime = {'objects': {'b': {'name': 'B', 'nested': ['new']}},
+                   'records': [{'id': 'new', 'source': {'quote': ['addition']}}]}
+        before, additions = copy.deepcopy(doc), copy.deepcopy(runtime)
+        merged = publication._objects(doc, runtime)
+        self.assertEqual(list(merged), list(doc))
+        self.assertEqual([row['id'] for row in merged['records']], ['old', 'new'])
+        merged['objects']['a']['nested'].append('changed')
+        merged['objects']['b']['nested'].append('changed')
+        for row in merged['records']: row['source']['quote'].append('changed')
+        merged['extra']['nested'].append('changed')
+        self.assertEqual(doc, before)
+        self.assertEqual(runtime, additions)
+        for bad in [{'objects': {'a': {'name': 'changed'}}, 'records': []},
+                    {'objects': {}, 'records': [{'id': 'old', 'source': {'quote': ['changed']}}]}]:
+            with self.assertRaisesRegex(ValueError, 'collision'):
+                publication._objects(doc, bad)
+        self.assertEqual(doc, before)
+
+    def test_streamed_install_preserves_legacy_receipt_cas_prefix_and_replay(self):
+        from inresearch.storage import files
+        intake.apply(self.root, self.data, self.item)
+        payload = publication.bundle(self.root)
+        (self.root/'data/projects.json').write_text(json.dumps({'records': []}))
+        before = copy.deepcopy(payload)
+        old_digest = lambda value: hashlib.sha256(json.dumps(value, ensure_ascii=False,
+            sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+        with patch.object(publication, 'write_json_streaming', wraps=files.write_json_streaming) as write:
+            receipt = publication.install(self.root, payload, expected_state_sha=old_digest(publication.empty()))
+        write.assert_called_once()
+        self.assertEqual(receipt['batch_id'], old_digest(payload))
+        path = Path(self.runtime.name)/publication.PATH
+        raw = path.read_bytes()
+        self.assertTrue(raw.startswith(b'{"version":1,"sites":'))
+        self.assertEqual(publication.site_state(self.root)['sites'], publication.state(self.root)['sites'])
+        self.assertEqual(publication.install(self.root, payload)['state'], 'already_published')
+        self.assertEqual(path.read_bytes(), raw)
+        self.assertEqual(payload, before)
+        with self.assertRaisesRegex(ValueError, 'source_publication_context_changed'):
+            publication.install(self.root, {'version': 1, 'sites': [], 'objects': {}, 'records': []},
+                                expected_state_sha=old_digest(publication.empty()))
+        self.assertEqual(path.read_bytes(), raw)
+
+    def test_streamed_install_encoding_failure_keeps_prior_registry_and_payload(self):
+        from inresearch.storage import files
+        intake.apply(self.root, self.data, self.item)
+        payload = publication.bundle(self.root)
+        (self.root/'data/projects.json').write_text(json.dumps({'records': []}))
+        path = Path(self.runtime.name)/publication.PATH
+        files.write_json(path, publication.empty())
+        raw, before = path.read_bytes(), copy.deepcopy(payload)
+        def interrupted(value):
+            yield b'{"version":1,'
+            raise OSError('simulated_stream_encoding_failure')
+        with patch.object(files, 'iter_json_bytes', side_effect=interrupted):
+            with self.assertRaisesRegex(OSError, 'simulated_stream_encoding_failure'):
+                publication.install(self.root, payload)
+        self.assertEqual(path.read_bytes(), raw)
+        self.assertEqual(payload, before)
+        self.assertFalse(list(path.parent.glob('.registry.json.tmp-*')))
+        self.assertEqual(publication.install(self.root, payload)['new_records'], 1)
+
+
+    def test_streamed_state_preserves_complete_strict_ledger_across_chunks(self):
+        path = Path(self.runtime.name)/publication.PATH
+        path.parent.mkdir(parents=True)
+        body = {'version': 1, 'sites': {}, 'objects': {},
+                'records': [{'id': str(index), 'quote': '中文原句\n😀'*100}
+                            for index in range(500)], 'receipts': {'last': {'state': 'published'}}}
+        raw = json.dumps(body, ensure_ascii=False, separators=(',', ':'))
+        path.write_text(raw, encoding='utf-8')
+        self.assertGreater(len(raw), 65536)
+        self.assertEqual(publication.state(self.root), body)
+        self.assertEqual(publication.digest(publication.state(self.root)), publication.digest(body))
+        # Invalid content after several input blocks must still be rejected;
+        # full-state CAS cannot use a valid prefix or silently drop late keys.
+        for invalid in [raw[:-1] + ',"sites":{}}',
+                        raw.replace('"last":{"state":"published"}',
+                                    '"last":{"state":"published","state":"other"}'),
+                        raw.replace('"last":{"state":"published"}', '"last":NaN'),
+                        raw[:-3], raw + '{}']:
+            path.write_text(invalid, encoding='utf-8')
+            with self.subTest(tail=invalid[-80:]), self.assertRaises(ValueError):
+                publication.state(self.root)
+
+
+    def test_install_keeps_previous_state_and_payload_immutable(self):
+        from inresearch.storage import files
+        payload = self.company_payload()
+        publication.install(self.root, payload)
+        previous = publication.state(self.root)
+        incoming = self.relabel_company(payload, 'second-company', 'Second company')
+        before, addition = copy.deepcopy(previous), copy.deepcopy(incoming)
+        with patch.object(publication, 'state', return_value=previous), \
+             patch.object(publication, 'write_json_streaming', wraps=files.write_json_streaming) as write:
+            self.assertEqual(publication.install(self.root, incoming)['new_records'], 1)
+        saved = write.call_args.args[1]
+        self.assertEqual(len(saved['records']), 2)
+        saved['records'][0]['source']['quote'] = 'changed saved old history'
+        saved['records'][1]['source']['quote'] = 'changed saved addition'
+        saved['objects'][next(iter(saved['objects']))]['name'] = 'changed saved identity'
+        self.assertEqual(previous, before)
+        self.assertEqual(incoming, addition)
+
+
+    def isolate_site_context_cache(self):
+        from collections import OrderedDict
+        cache = patch.object(publication, '_site_context_cache', OrderedDict())
+        cache.start()
+        self.addCleanup(cache.stop)
+
+    def test_site_context_keeps_full_digest_and_independent_small_projection(self):
+        from inresearch.storage.files import write_json_streaming
+        self.isolate_site_context_cache()
+        projection, full_sha = publication.site_context(self.root)
+        self.assertEqual(projection, {'version': 1, 'sites': {}})
+        self.assertEqual(full_sha, publication.digest(publication.empty()))
+        self.assertNotEqual(full_sha, publication.digest(projection))
+        full = publication.empty()
+        full['sites'] = {'a': {'observations': [{'nested': ['original']}]}}
+        full['records'] = [{'private': 'unrelated complete history'}]
+        full['receipts'] = {'receipt': {'state': 'published'}}
+        write_json_streaming(Path(self.runtime.name)/publication.PATH, full)
+        projection, full_sha = publication.site_context(self.root)
+        self.assertEqual(full_sha, publication.digest(full))
+        self.assertEqual(set(projection), {'version', 'sites'})
+        projection['sites']['a']['observations'][0]['nested'].append('changed')
+        with patch.object(publication, 'state', side_effect=AssertionError('warm context reparsed')):
+            next_projection, next_sha = publication.site_context(self.root)
+        self.assertEqual(next_projection['sites'], full['sites'])
+        self.assertEqual(next_sha, full_sha)
+        cached = next(iter(publication._site_context_cache.values()))
+        self.assertEqual(set(cached[1]), {'version', 'sites'})
+        self.assertNotIn('unrelated complete history', json.dumps(cached))
+
+    def test_site_context_invalidates_atomic_inplace_removal_and_runtime_path(self):
+        import os
+        from inresearch.storage.files import write_json_streaming
+        self.isolate_site_context_cache()
+        path = Path(self.runtime.name)/publication.PATH
+        full = publication.empty()
+        full['records'] = [{'value': 11}]
+        write_json_streaming(path, full)
+        _, before = publication.site_context(self.root)
+        stat = path.stat()
+        full['records'][0]['value'] = 22
+        write_json_streaming(path, full)
+        os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns))
+        self.assertEqual(path.stat().st_size, stat.st_size)
+        self.assertNotEqual(path.stat().st_ino, stat.st_ino)
+        _, replaced = publication.site_context(self.root)
+        self.assertNotEqual(replaced, before)
+        stat = path.stat()
+        full['records'][0]['value'] = 33
+        path.write_text(json.dumps(full, ensure_ascii=False, separators=(',', ':')) + '\n')
+        os.utime(path, ns=(stat.st_atime_ns, stat.st_mtime_ns))
+        self.assertEqual(path.stat().st_ino, stat.st_ino)
+        self.assertEqual(path.stat().st_size, stat.st_size)
+        self.assertEqual(path.stat().st_mtime_ns, stat.st_mtime_ns)
+        self.assertNotEqual(publication.site_context(self.root)[1], replaced)
+        path.unlink()
+        self.assertEqual(publication.site_context(self.root)[1], publication.digest(publication.empty()))
+        write_json_streaming(path, full)
+        self.assertEqual(publication.site_context(self.root)[1], publication.digest(full))
+        with tempfile.TemporaryDirectory() as other, patch.dict('os.environ', {'INRESEARCH_RUNTIME_ROOT': other}):
+            self.assertEqual(publication.site_context(self.root)[1], publication.digest(publication.empty()))
+        self.assertEqual(publication.site_context(self.root)[1], publication.digest(full))
+
+    def test_site_context_has_four_root_lru_bound(self):
+        self.isolate_site_context_cache()
+        with tempfile.TemporaryDirectory() as directory, \
+             patch.dict('os.environ', {'INRESEARCH_RUNTIME_ROOT': ''}), \
+             patch.object(publication, 'state', wraps=publication.state) as read:
+            roots = [Path(directory)/str(n) for n in range(5)]
+            for root in roots: publication.site_context(root)
+            self.assertEqual(read.call_count, 5)
+            self.assertEqual(len(publication._site_context_cache), 4)
+            publication.site_context(roots[-1])
+            self.assertEqual(read.call_count, 5)
+            publication.site_context(roots[0])
+            self.assertEqual(read.call_count, 6)
+            self.assertEqual(len(publication._site_context_cache), 4)
+
+    def test_site_context_concurrent_callers_share_one_builder(self):
+        from concurrent.futures import ThreadPoolExecutor
+        from threading import Event
+        self.isolate_site_context_cache()
+        entered, release = Event(), Event()
+        original = publication.state
+        def read(root):
+            entered.set()
+            if not release.wait(5): raise AssertionError('builder release timed out')
+            return original(root)
+        with patch.object(publication, 'state', side_effect=read) as count, ThreadPoolExecutor(max_workers=6) as pool:
+            jobs = [pool.submit(publication.site_context, self.root) for _ in range(6)]
+            try:
+                self.assertTrue(entered.wait(5))
+                self.assertEqual(count.call_count, 1)
+            finally:
+                release.set()
+            results = [job.result(timeout=5) for job in jobs]
+            self.assertEqual(count.call_count, 1)
+        self.assertTrue(all(result == results[0] for result in results))
+        self.assertEqual(len({id(result[0]) for result in results}), 6)
+
+    def test_site_context_discards_unstable_reads_and_never_caches_failure(self):
+        from inresearch.storage.files import write_json_streaming
+        self.isolate_site_context_cache()
+        path = Path(self.runtime.name)/publication.PATH
+        full = publication.empty()
+        write_json_streaming(path, full)
+        original, reads = publication.state, []
+        def change_once(root):
+            value = original(root)
+            reads.append(1)
+            if len(reads) == 1:
+                full['receipts']['new'] = {'state': 'published'}
+                write_json_streaming(path, full)
+            return value
+        with patch.object(publication, 'state', side_effect=change_once):
+            self.assertEqual(publication.site_context(self.root)[1], publication.digest(full))
+        self.assertEqual(len(reads), 2)
+        publication._site_context_cache.clear()
+        def always_change(root):
+            value = original(root)
+            full['receipts'][str(len(full['receipts']))] = {'state': 'published'}
+            write_json_streaming(path, full)
+            return value
+        with patch.object(publication, 'state', side_effect=always_change) as changed:
+            with self.assertRaisesRegex(ValueError, 'context_changed_during_read'):
+                publication.site_context(self.root)
+            self.assertEqual(changed.call_count, 3)
+        self.assertEqual(len(publication._site_context_cache), 0)
+        path.write_text('{"version":1,"sites":{},"sites":{}}')
+        with self.assertRaisesRegex(ValueError, 'duplicate_json_key'):
+            publication.site_context(self.root)
+        self.assertEqual(len(publication._site_context_cache), 0)
+        write_json_streaming(path, full)
+        self.assertEqual(publication.site_context(self.root)[1], publication.digest(full))
+
+    def test_review_context_uses_cached_full_digest_but_respects_explicit_runtime(self):
+        from inresearch.materials import review_context
+        self.isolate_site_context_cache()
+        runtime = publication.empty()
+        runtime['records'] = [{'unrelated': 'full digest still includes this'}]
+        from inresearch.storage.files import write_json_streaming
+        write_json_streaming(Path(self.runtime.name)/publication.PATH, runtime)
+        with patch.object(review_context.research_tasks, 'read', return_value={'revision': 1, 'packages': []}), \
+             patch.object(review_context.research_tasks, 'plan', return_value={'mission': {'title': 'T', 'goal': 'G'}}):
+            task, index = review_context.current(self.root, {}, task_records=[])
+            self.assertEqual(task['source_state_sha256'], publication.digest(runtime))
+            with patch.object(publication, 'site_context', side_effect=AssertionError('explicit runtime ignored')):
+                direct_task, direct_index = review_context.current(self.root, {}, runtime=runtime, task_records=[])
+            self.assertEqual((direct_task, direct_index), (task, index))
