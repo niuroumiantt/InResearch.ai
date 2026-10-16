@@ -45,16 +45,15 @@
       return `<section class="upload-person-group"><h4>${esc(group.name)}</h4>${items.map(item => typeof item === 'string' ? item : `<p class="small muted upload-project-name">${esc(item.project_name || '旧提交 · 未填写项目')}</p>${ownCard(item)}`).join('')}</section>`;
     }).join('');
   }
-  async function loadPackages() {
-    try {
-      const response = await fetch('/api/research-tasks', {cache:'no-store'});
-      if (!response.ok) return;
-      const data = await response.json();
-      $('upload-package').insertAdjacentHTML('beforeend', data.packages.map(p => `<option value="${esc(p.id)}">${esc(p.title)} · ${esc(p.region)}</option>`).join(''));
-      selectedPackageId = window.activeResearchPackageId || selectedPackageId;
-      if (data.packages.some(p=>p.id === selectedPackageId)) $('upload-package').value = selectedPackageId;
-    } catch { $('upload-message').textContent = '工作包暂不可用，请刷新页面后再提交。'; }
+  function loadPackages(data) {
+    if (!Array.isArray(data?.packages)) return;
+    const select = $('upload-package'), before = select.value;
+    select.innerHTML = '<option value="">选择工作包</option>' + data.packages.map(p => `<option value="${esc(p.id)}">${esc(p.title)} · ${esc(p.region)}</option>`).join('');
+    selectedPackageId = window.activeResearchPackageId || selectedPackageId || before;
+    if (data.packages.some(p=>p.id === selectedPackageId)) select.value = selectedPackageId;
   }
+  window.addEventListener('research-tasks-loaded',event=>loadPackages(event.detail));
+  if (window.researchTasksState) loadPackages(window.researchTasksState);
   $('upload-package').addEventListener('change',event=>{
     if (event.target.value) window.dispatchEvent(new CustomEvent('research-package-requested',
       {detail:{packageId:event.target.value}}));
@@ -68,7 +67,7 @@
     if (!form.elements.package_id.value) { $('upload-message').textContent = '请先选择所属工作包。'; return; }
     if (files.length > 20) { $('upload-message').textContent = '一次最多提交 20 份附件。'; return; }
     if (files.some(file => file.size < 1 || file.size > 64 * 1024 * 1024)) { $('upload-message').textContent = '每份附件须为 1 字节至 64 MiB。'; return; }
-    const batchId = crypto.randomUUID(), common = {submitter,project_name:projectName,batch_id:batchId,package_id:form.elements.package_id.value,source:form.elements.source.value.trim(),note:form.elements.upload_note.value.trim()};
+    const batchId = crypto.randomUUID(), common = {submitter,project_name:projectName,batch_id:batchId,package_id:form.elements.package_id.value};
     const prior = knownItems.filter(item => item.package_id === common.package_id && item.submitter?.trim() === submitter && item.project_name?.trim() === projectName).sort((a,b)=>(b.created||0)-(a.created||0))[0];
     const continuation = prior ? receipts().find(row => row.id === prior.id) : null;
     $('upload-submit').disabled = true;
@@ -89,7 +88,8 @@
       }
       $('upload-message').innerHTML = `${saved.length} 份附件已收到，等待负责人确认。${saved.map(row => `<br>${esc(row.name)} · 编号 <code>${esc(row.id)}</code> · 回执码 <code class="upload-receipt-code">${esc(row.receipt)}</code>`).join('')}${failed.length ? `<br>${esc(failed.length+' 份未确认收到，请只重选这些文件提交：'+failed.join('；'))}` : ''}`;
       form.elements.file.value = '';
-      if (saved.length) $('my-submissions').open = true;
+      $('upload-file-label').textContent = '选择附件 · 可多选';
+      if (saved.length) window.dispatchEvent(new CustomEvent('research-task-view-requested',{detail:{view:'my-submissions'}}));
       await refreshOwn(); await refreshOwnerShortcut();
     } catch (error) { $('upload-message').textContent = error.message; }
     finally { $('upload-submit').disabled = false; }
@@ -114,6 +114,15 @@
       $('upload-owner-shortcut-count').textContent = pending ? `${pending} 份文件待确认。审批与上线报告已移到独立工作台。` : '审批与上线报告已移到独立工作台。';
     } catch { /* Anonymous uploading remains usable when the owner inbox is unavailable. */ }
   }
+  $('task-upload-form').elements.file.addEventListener('change',event=>{
+    const files = [...event.target.files];
+    $('upload-file-label').textContent = files.length ? (files.length === 1 ? files[0].name : `已选 ${files.length} 份附件`) : '选择附件 · 可多选';
+  });
+  const activateView = view => {
+    if (view === 'upload') refreshOwnerShortcut();
+    if (view === 'my-submissions') refreshOwn();
+  };
+  window.addEventListener('research-task-view',event=>activateView(event.detail?.view));
   $('upload-refresh').addEventListener('click',refreshOwn);
-  loadPackages(); refreshOwn(); refreshOwnerShortcut();
+  activateView(window.activeResearchTaskView || '');
 })();
