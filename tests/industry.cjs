@@ -103,7 +103,7 @@ const {mkdirSync}=require('node:fs');
   ]},pipeline:{available:true,records:[{id:'lead-one',title:'微软项目长期线索',state:'lead',company_ids:['microsoft'],site_id:'us-va-boydton',reported_stage:'reported',match_method:'name_and_actor',first_seen:'2026-09-01',events:[{title_zh:'原始报道',url:'https://example.com/ms'}]}]}}}));
   await page.goto(base+'/');await page.locator('#company-chips [data-company="microsoft"]').waitFor();
   await page.getByRole('heading',{name:'全球数据中心',exact:true}).waitFor();
-  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(250, 249, 246)');
+  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(246, 245, 242)');
   await page.getByRole('link',{name:'微软项目精选',exact:true}).waitFor();
   assert.equal(await page.getByRole('link',{name:'未精选的线索',exact:true}).count(),1,'homepage defaults to all daily news');
   for(const id of ['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba'])assert.equal(await page.locator('#company-chips [data-company="'+id+'"]').count(),1,'explicit company shortcut '+id);
@@ -204,7 +204,7 @@ const {mkdirSync}=require('node:fs');
   await page.waitForFunction(()=>document.querySelector('#list-title')?.textContent.startsWith('建设中'));
   assert.equal(await page.locator('#home-fonts').getAttribute('media'),'not all','project list shares the reader cache-only font rule');
   await page.waitForFunction(()=>['cached','fallback'].includes(document.getElementById('home-fonts').dataset.fonts));
-  assert.ok(await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').every(f=>['Inter','Noto Sans SC'].includes(f.family));}),'project aliases reuse only available shared fonts');
+  assert.ok(await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').every(f=>['Source Serif 4','Inter','Noto Sans SC'].includes(f.family));}),'project aliases reuse only available shared fonts');
   assert.equal(await page.locator('#project-rows tbody tr').count(),api.rows.length);
   assert.deepEqual(await page.locator('#project-rows thead th').allInnerTexts(),['国家','省／州','区域地址','园区','开发／建设','运营／使用','规划 IT 容量','已投运 IT 容量','信息时间','最后核实日期']);
   const projectLink=page.locator('#project-rows tbody tr td:nth-child(4) a').first();
@@ -329,7 +329,7 @@ const {mkdirSync}=require('node:fs');
   await page.waitForFunction(()=>document.querySelector('[data-news-count]').textContent.includes('精选 2 条'));
   for(const mode of ['dark','light']){
    await setAppearance(page, mode);
-   assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),mode==='dark'?'rgb(27, 28, 25)':'rgb(250, 249, 246)');
+   assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),mode==='dark'?'rgb(16, 24, 32)':'rgb(246, 245, 242)');
    for(const width of [390,768,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),mode+' '+width);}
   }
   await page.setViewportSize({width:390,height:844});

@@ -6,7 +6,11 @@
 
   // Brand every image shown in the site without altering the source artwork or
   // downloaded originals. The observer also covers atlas images mounted later.
-  const WATERMARK_SRC = '/assets/brand/inresearch-ai/wordmark-primary.svg';
+  const LOGO_LIGHT_SRC = '/assets/brand/inresearch-ai/wordmark-primary.svg';
+  const LOGO_DARK_SRC = '/assets/brand/inresearch-ai/wordmark-reverse.svg';
+  // Images use the standalone signature icon as a quiet provenance mark. The
+  // full wordmark remains reserved for the site header and formal materials.
+  const WATERMARK_SRC = '/assets/brand/inresearch-ai/icon-orange.svg';
   const WATERMARK_EXCLUDE = new Set(['ui-brand-watermark', 'ui-icon', 'favicon']);
   function shouldBrandImage(node) {
     if (!(node instanceof Element) || !['IMG', 'CANVAS'].includes(node.tagName)) return false;
@@ -72,6 +76,8 @@
     menu.append(summary, panel); return menu;
   }
   function apply(state = getState()) {
+    const logo = document.querySelector('.ui-brand-logo');
+    if (logo) logo.src = state.resolved === 'dark' ? LOGO_DARK_SRC : LOGO_LIGHT_SRC;
     const summary = document.getElementById('ui-appearance');
     if (summary) { summary.title = '外观：' + MODES[state.mode]; summary.setAttribute('aria-label', summary.title); summary.dataset.uiMode = state.mode; }
     document.querySelectorAll('[data-ui-mode-choice]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.uiModeChoice === state.mode)));

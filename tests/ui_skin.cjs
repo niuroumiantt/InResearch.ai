@@ -12,7 +12,7 @@ const {chromium} = require('playwright');
 const base = process.env.UI_BASE_URL || 'http://127.0.0.1:8878';
 const manifest = require('../framework/interface_manifest.json');
 const dir = process.env.UI_QA_DIR;
-const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
+const BG = {light:'rgb(246, 245, 242)', dark:'rgb(16, 24, 32)'};
 (async () => {
  const browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined, headless:true, args:['--enable-unsafe-swiftshader'],
    ...(process.env.UI_BROWSER_EXECUTABLE ? {executablePath:process.env.UI_BROWSER_EXECUTABLE} : {})});
@@ -44,13 +44,14 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    // Ledger boot canonicalizes its view hash after fetching the model.
    if(file==='ledger.html')await page.locator('#model-app:not([aria-busy])').waitFor();
    const settledUrl=page.url();
-   // Shared fonts: the bundled Inter + Noto Sans SC stack applies to the body of every application page.
+   // Shared fonts: Source Serif 4 drives Latin, numbers and ASCII punctuation;
+   // FangSong remains the CJK fallback required by the brand system.
    const cacheFontId=file==='ops.html'?'ops-fonts':['index.html','industry.html','projects.html','project.html','market.html','regions.html'].includes(file)?'home-fonts':null;
    if(cacheFontId)await page.waitForFunction(id=>['cached','fallback'].includes(document.getElementById(id).dataset.fonts),cacheFontId);
    const fonts=await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').map(f=>f.family)});
-   if(cacheFontId)assert.ok(fonts.every(f=>['Inter','Noto Sans SC'].includes(f)),file+' reuses cached shared fonts or system fallback');
-   else assert.ok(fonts.includes('Inter')&&fonts.includes('Noto Sans SC'),file+' bundled fonts loaded: '+fonts.join(','));
-   assert.match((await measure()).font,/^Inter, "Noto Sans SC"/,file+' body font stack');
+   if(cacheFontId)assert.ok(fonts.every(f=>['Source Serif 4','Inter','Noto Sans SC'].includes(f)),file+' reuses cached brand fonts or system fallback');
+   else assert.ok(fonts.includes('Source Serif 4'),file+' bundled brand fonts loaded: '+fonts.join(','));
+   assert.match((await measure()).font,/^"Source Serif 4", FangSong/,file+' body font stack');
    for (const mode of ['light','dark']) {
      await setAppearance(page, mode);
      const state=await measure(); assert.equal(state.theme,mode);assert.equal(state.bar,1);
