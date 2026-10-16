@@ -6,10 +6,13 @@ it never truncates evidence, changes context, or starts a tokenizer process.
 """
 import hashlib
 import json
+import os
 from pathlib import Path
 import pwd
 import re
 import stat
+import subprocess
+import tempfile
 import urllib.error
 import urllib.request
 
@@ -134,10 +137,105 @@ def _model_identity(base):
             "show_sha256": digest(show)}
 
 
+def _system_ollama_service():
+    """Read only the host system manager, with no caller-selected bus or host."""
+    keys = ("Id", "LoadState", "ActiveState", "SubState", "User", "Group", "MainPID",
+            "ControlGroup", "Delegate", "DynamicUser", "PrivateUsers")
+    try:
+        # A file bounds memory even if the local manager returns malformed output.
+        with tempfile.TemporaryFile() as output:
+            result = subprocess.run(["/usr/bin/systemctl", "--system", "--no-pager",
+                "--no-ask-password", "show", "ollama.service", "--property="+",".join(keys)],
+                stdin=subprocess.DEVNULL, stdout=output, stderr=subprocess.DEVNULL,
+                timeout=3, check=False, env={"PATH": "/usr/bin:/bin", "LC_ALL": "C",
+                                            "SYSTEMD_PAGER": "cat", "SYSTEMD_COLORS": "0"})
+            if result.returncode != 0 or output.tell() > 8192:
+                raise ValueError("system manager output")
+            output.seek(0)
+            lines = output.read(8193).decode().splitlines()
+        fields = {}
+        for line in lines:
+            key, value = line.split("=", 1)
+            if key not in keys or key in fields:
+                raise ValueError("system manager property")
+            fields[key] = value
+        if set(fields) != set(keys):
+            raise ValueError("system manager properties missing")
+        expected = {"Id": "ollama.service", "LoadState": "loaded", "ActiveState": "active",
+            "SubState": "running", "User": "ollama", "Group": "ollama",
+            "ControlGroup": "/system.slice/ollama.service", "Delegate": "no",
+            "DynamicUser": "no", "PrivateUsers": "no"}
+        if any(fields[key] != value for key, value in expected.items()):
+            raise ValueError("system service identity")
+        if not fields["MainPID"].isascii() or not fields["MainPID"].isdigit() or int(fields["MainPID"]) <= 1:
+            raise ValueError("system service PID")
+        return fields
+    except (OSError, ValueError, UnicodeError, subprocess.SubprocessError):
+        raise InferenceError("campus_token_runner_unverified") from None
+
+
+def _uid_map(path):
+    rows = [tuple(int(part) for part in line.split()) for line in path.read_text().splitlines()]
+    if not rows or any(len(row) != 3 or min(row) < 0 or row[2] == 0 for row in rows):
+        raise ValueError("invalid UID map")
+    return rows
+
+
+def _namespace_runner_binding(process, expected_uid, uid_rows):
+    """Prove service parentage when PrivateTmp's user namespace masks host UIDs.
+
+    An overflow UID alone never establishes account identity. This deliberately
+    supports only the observed single-user namespace and non-delegated host
+    ollama service, not arbitrary user namespaces or service descendants.
+    """
+    try:
+        caller = os.getuid()
+        mapping = _uid_map(PROC/"self/uid_map")
+        overflow = int((PROC/"sys/kernel/overflowuid").read_text().strip())
+        if (caller <= 0 or caller == expected_uid or mapping != [(caller, caller, 1)]
+                or overflow <= 0 or overflow in (caller, expected_uid)
+                or len(uid_rows) != 1 or any(int(value) != overflow for value in uid_rows[0])):
+            raise ValueError("namespace does not mask the host account")
+        service = _system_ollama_service()
+        parent = PROC/service["MainPID"]
+        def snapshot(item):
+            status = item.joinpath("status").read_text()
+            credentials = re.findall(r"^Uid:\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*$",
+                                     status, re.MULTILINE)
+            ppid = re.findall(r"^PPid:\s+(\d+)\s*$", status, re.MULTILINE)
+            fields = item.joinpath("stat").read_text().rsplit(")", 1)[1].split()
+            cgroup = item.joinpath("cgroup").read_text().splitlines()
+            target_map = _uid_map(item/"uid_map")
+            if (len(credentials) != 1 or any(int(value) != overflow for value in credentials[0])
+                    or len(ppid) != 1 or fields[1] != ppid[0]
+                    or cgroup != ["0::"+service["ControlGroup"]]
+                    or target_map != [(0, 4294967295, 4294967295)]
+                    or not fields[19].isdigit()):
+                raise ValueError("unbound service process")
+            command = item.joinpath("cmdline").read_bytes()
+            if (not command or (item == parent and
+                    [part for part in command.split(b"\0") if part] != [b"/usr/local/bin/ollama", b"serve"])):
+                raise ValueError("unverified service command")
+            return {"pid": int(item.name), "ppid": int(ppid[0]),
+                "starttime": fields[19], "cmdline_sha256": hashlib.sha256(command).hexdigest(),
+                "uid_map": target_map, "cgroup": cgroup[0], "observed_uids": [overflow]*4}
+        snapshots = [snapshot(process), snapshot(parent)]
+        repeated = [snapshot(process), snapshot(parent)]
+        if service != _system_ollama_service() or snapshots != repeated:
+            raise ValueError("service or process identity changed during observation")
+        if snapshots[0]["ppid"] != int(service["MainPID"]) or snapshots[1]["ppid"] != 1:
+            raise ValueError("runner is not the direct system service child")
+        return {"method": "system_service_parent_in_user_namespace", "caller_uid": caller,
+            "self_uid_map": mapping, "overflow_uid": overflow, "observed_uids": [overflow]*4,
+            "service": service, "runner_process": snapshots[0], "service_process": snapshots[1]}
+    except (OSError, ValueError, IndexError, UnicodeError):
+        raise InferenceError("campus_token_runner_unverified") from None
+
+
 def _runner_identity(model):
     # The intake user cannot read another account's /proc/<pid>/exe. Bind the
-    # fixed command path and all Linux credentials to the local ollama account;
-    # no sudo, permission changes, or permissive fallback.
+    # fixed command path and credentials, or strict host service parentage when
+    # the existing service user namespace masks host UIDs. No privilege changes.
     expected_uid = pwd.getpwnam("ollama").pw_uid
     if type(expected_uid) is not int or expected_uid <= 0:
         raise InferenceError("campus_token_runner_unverified")
@@ -158,17 +256,25 @@ def _runner_identity(model):
                 return args[args.index(key)+1]
             uid_rows = re.findall(r"^Uid:\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*$",
                                   (process/"status").read_text(), re.MULTILINE)
-            if len(uid_rows) != 1 or any(int(value) != expected_uid for value in uid_rows[0]):
-                raise InferenceError("campus_token_runner_unverified")
+            if len(uid_rows) == 1 and all(int(value) == expected_uid for value in uid_rows[0]):
+                uid_binding = {"method": "direct_process_uid", "observed_uids": [expected_uid]*4}
+            else:
+                uid_binding = _namespace_runner_binding(process, expected_uid, uid_rows)
             port = int(option("--port"))
             context = int(option("-c"))
             if (option("--host") != "127.0.0.1" or not 1 <= port <= 65535
                     or context <= 0 or int(option("-np")) != 1):
                 raise InferenceError("campus_token_runner_unverified")
             start = (process/"stat").read_text().rsplit(")", 1)[1].split()[19]
+            command_sha = hashlib.sha256(raw).hexdigest()
+            if uid_binding["method"] == "system_service_parent_in_user_namespace":
+                bound = uid_binding["runner_process"]
+                if (bound["pid"] != int(process.name) or bound["starttime"] != start
+                        or bound["cmdline_sha256"] != command_sha):
+                    raise InferenceError("campus_token_runner_unverified")
             matching.append({"pid": int(process.name), "starttime": start, "port": port,
                              "uid": expected_uid, "account": "ollama", "context": context,
-                             "cmdline_sha256": hashlib.sha256(raw).hexdigest()})
+                             "uid_binding": uid_binding, "cmdline_sha256": command_sha})
         except (OSError, UnicodeDecodeError):
             continue
     if not matching:

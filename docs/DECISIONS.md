@@ -1,5 +1,13 @@
 # 决策记录
 
+## 2026-10-17：正式intake用户命名空间中的服务身份核验
+
+PR957已合并并部署到网站与Spark；v2完整输入在SSH环境下精确计量8059 tokens通过，但正式intake仍在分词实例身份门禁受阻。经同一systemd单元临时追踪，失败点为`_runner_identity`预期ollama宿主UID996、实际四种UID均显示65534；只读命名空间快照显示调用方仅有1001→1001、长度1的UID映射，未映射宿主账号只能显示实际overflow UID。这是正式运行环境与SSH环境的身份表示差异，不能据此认定runner属于错误用户，也不能直接接受65534。
+
+版本2026.10.16.32补充.31分词期服务身份核验：直接可见宿主UID的路径保持；仅在严格单UID自映射、ollama宿主UID不在映射内时，结合实际overflow值、固定root system manager的`ollama.service`、User/Group=ollama、loaded/active/running、非Delegate、非DynamicUser及非PrivateUsers，验证固定MainPID直属runner、精确服务cgroup、父子命令／启动时钟与UID映射，并在分词操作前后重复核对。身份方法进入proof v2；任何缺项、变化或矛盾仍失败关闭，不增加升权、不关闭PrivateTmp、不扩大模型或调用权限。
+
+原分词／生成绑定分离、完整模板、32768上下文／4096输出／1024预留、禁止截断滑移、GPU门槛和7个成功阅读窗口保持。真实诊断经历一次GPU等待后捕获具体守卫失败；临时trace已撤回，原ExecStart恢复，原件与缓存未改，仍0最终综合产物／0服务器完成包／0正式发布回执。本次夹具、源码或SSH计量不能代替正式同单元运行与网站回执验收。
+
 ## 2026-10-17：分词实例与生成模型分离
 
 PR956已部署精确token预算，但正式最终综合在debug返回后遇到同GGUF被其他调用合法切为16K，原跨请求同PID／32K实例约束导致阻塞。Ollama 0.33.3的调度引用只保护当前API请求；请求结束后可卸载或重载runner，不能以debug、tokenize与completion共用PID证明模型执行。依据为[固定版本调度源码](https://github.com/ollama/ollama/blob/v0.33.3/server/sched.go)的请求结束及引用释放逻辑。
