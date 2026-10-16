@@ -42,6 +42,19 @@ class SourcePublicationTests(unittest.TestCase):
         self.assertFalse((self.root/'data/raw/source-publication/registry.json').exists())
         self.assertFalse((self.data/'original.txt').is_symlink())
         self.assertTrue((self.data/'original.txt').exists())
+        with patch.object(publication, 'strict_json', side_effect=AssertionError('full registry parsed')):
+            site_projection = publication.site_state(self.root)
+        self.assertEqual(site_projection['version'], 1)
+        self.assertEqual(list(site_projection['sites']), ['named-campus'])
+
+    def test_site_projection_rejects_malformed_or_reordered_prefix(self):
+        path = Path(self.runtime.name) / publication.PATH
+        path.parent.mkdir(parents=True)
+        for body in ('{"sites":{},"version":1}', '{"version":2,"sites":{}}',
+                     '{"version":1,"sites":{"a":1,"a":2},"objects":{}}'):
+            path.write_text(body)
+            with self.subTest(body=body), self.assertRaises(ValueError):
+                publication.site_state(self.root)
 
     def test_initial_coordinate_identity_reaches_runtime_map_and_cannot_move(self):
         from inresearch.knowledge.industry import project

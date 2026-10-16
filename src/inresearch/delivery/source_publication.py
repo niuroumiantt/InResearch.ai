@@ -23,15 +23,23 @@ def digest(value):
                                     separators=(',', ':'), allow_nan=False).encode()).hexdigest()
 
 
+def _strict_pairs(items):
+    value = {}
+    for key, item in items:
+        if key in value: raise ValueError('duplicate_json_key')
+        value[key] = item
+    return value
+
+
+def _nonfinite(_):
+    raise ValueError('nonfinite_json')
+
+
+_STRICT_DECODER = json.JSONDecoder(object_pairs_hook=_strict_pairs, parse_constant=_nonfinite)
+
+
 def strict_json(text):
-    def pairs(items):
-        value = {}
-        for key, item in items:
-            if key in value: raise ValueError('duplicate_json_key')
-            value[key] = item
-        return value
-    return json.loads(text, object_pairs_hook=pairs,
-                      parse_constant=lambda _: (_ for _ in ()).throw(ValueError('nonfinite_json')))
+    return _STRICT_DECODER.decode(text)
 
 
 def empty():
@@ -41,6 +49,72 @@ def empty():
 def state(root):
     path = workspace_path(PATH, root)
     return strict_json(path.read_text()) if path.exists() else empty()
+
+
+def site_state(root):
+    """Read the small leading site projection without parsing unrelated claims.
+
+    ``write_json`` preserves the registry's top-level order, where ``version``
+    and ``sites`` precede the much larger object-record ledger.  The task page
+    only needs published site histories.  Decode those two values strictly and
+    stop before objects/records so a progress request does not parse tens of
+    thousands of unrelated statements.
+    """
+    path = workspace_path(PATH, root)
+    if not path.exists():
+        return {'version': 1, 'sites': {}}
+    buffer = ''
+    position = 0
+    eof = False
+    with path.open(encoding='utf-8') as stream:
+        def fill():
+            nonlocal buffer, eof
+            block = stream.read(65536)
+            if block:
+                buffer += block
+            else:
+                eof = True
+
+        def skip_space():
+            nonlocal position
+            while True:
+                while position < len(buffer) and buffer[position].isspace():
+                    position += 1
+                if position < len(buffer) or eof:
+                    return
+                fill()
+
+        def expect(character):
+            nonlocal position
+            skip_space()
+            if position >= len(buffer) or buffer[position] != character:
+                raise ValueError('source_publication_prefix_invalid')
+            position += 1
+
+        def decode_value():
+            nonlocal position
+            while True:
+                skip_space()
+                try:
+                    value, position = _STRICT_DECODER.raw_decode(buffer, position)
+                    return value
+                except json.JSONDecodeError as exc:
+                    if eof:
+                        raise ValueError('source_publication_prefix_invalid') from exc
+                    fill()
+
+        fill()
+        expect('{')
+        version_key = decode_value()
+        expect(':')
+        version = decode_value()
+        expect(',')
+        sites_key = decode_value()
+        expect(':')
+        sites = decode_value()
+    if version_key != 'version' or version != 1 or sites_key != 'sites' or not isinstance(sites, dict):
+        raise ValueError('source_publication_prefix_invalid')
+    return {'version': 1, 'sites': sites}
 
 
 def _merge_rows(old, new):

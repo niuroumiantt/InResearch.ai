@@ -193,7 +193,7 @@ def snapshot(root, actor='', role='reader'):
     # Use exactly the map's existing projection and deduplication rules. These are
     # observed database totals, not a claim about worldwide coverage or live ACK.
     from inresearch.knowledge import industry
-    view = industry.cached_snapshot(root, {'overview': '1'})
+    view = industry.cached_task_progress(root)
     from inresearch.materials import inbox
     records = inbox.records()
     reports = [entry for record in records
