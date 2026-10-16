@@ -21,7 +21,8 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
   try {
     const config = await ready, base = 'http://127.0.0.1:'+config.port;
     browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});
-    const anonymous = await browser.newPage();
+    const anonymousContext = await browser.newContext();
+    const anonymous = await anonymousContext.newPage();
     assert.equal((await anonymous.request.get(base+'/api/research-tasks')).status(),200);
     assert.equal((await anonymous.request.post(base+'/api/research-tasks',{data:{}})).status(),401);
     await anonymous.goto(base+'/tasks.html');
@@ -126,6 +127,27 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
       await anonymous.setViewportSize({width:1440,height:1000});
     }
     assert.equal(await anonymous.locator('#upload-submit').isVisible(),true);
+    const picker = anonymous.locator('#task-upload-form [name="file"]');
+    await picker.setInputFiles({name:'first-directory.txt',mimeType:'text/plain',buffer:Buffer.from('first selection')});
+    await picker.setInputFiles({name:'second-directory.txt',mimeType:'text/plain',buffer:Buffer.from('second selection')});
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),2,'separate picker selections accumulate');
+    const dropped = await anonymous.evaluateHandle(()=>{const data=new DataTransfer();data.items.add(new File(['dropped evidence'],'dropped.txt',{type:'text/plain'}));return data;});
+    await anonymous.locator('#upload-drop-zone').dispatchEvent('drop',{dataTransfer:dropped});
+    await dropped.dispose();
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),3,'dragged files append to picker selections');
+    if(process.env.UI_QA_DIR) {
+      for(const width of [1440,390]) {await anonymous.setViewportSize({width,height:1000});await anonymous.locator('#task-upload-form').screenshot({path:join(process.env.UI_QA_DIR,'task-pending-queue-'+width+'.png')});}
+      await anonymous.setViewportSize({width:1440,height:1000});
+    }
+    await anonymous.locator('#upload-pending-files li').filter({hasText:'second-directory.txt'}).locator('button').click();
+    assert.deepEqual(await anonymous.locator('#upload-pending-files li>span').allTextContents(),['first-directory.txt','dropped.txt']);
+    await anonymous.locator('#upload-clear-files').click();
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),0);
+    await picker.setInputFiles(Array.from({length:20},(_,i)=>({name:`limit-${i}.txt`,mimeType:'text/plain',buffer:Buffer.from('bounded fixture')})));
+    await picker.setInputFiles({name:'over-limit.txt',mimeType:'text/plain',buffer:Buffer.from('too many')});
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),20,'overflow selection preserves the existing queue');
+    assert.match(await anonymous.locator('#upload-message').innerText(),/最多提交 20/);
+    await anonymous.locator('#upload-clear-files').click();
     await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.bin',mimeType:'application/octet-stream',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
     await anonymous.locator('#task-upload-form [name="project_name"]').fill('合成测试项目');
@@ -136,12 +158,14 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await anonymous.locator('#task-upload-form [name="file"]').evaluate(input => input.files.length),0);
     assert.equal(await anonymous.evaluate(()=>localStorage.getItem('inresearch-task-upload-receipts-v1')),null);
     await anonymous.unroute('**/api/task-uploads');
-    await anonymous.locator('#task-upload-form [name="file"]').setInputFiles({name:'synthetic-submission.bin',mimeType:'application/octet-stream',buffer:Buffer.from('UNTRUSTED SYNTHETIC SUBMISSION')});
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),1,'failed files stay queued without selecting them again');
     await anonymous.locator('#upload-submit').click();
     await anonymous.waitForFunction(()=>/1 份附件已收到/.test(document.querySelector('#upload-message')?.textContent || ''));
     assert.match(await anonymous.locator('#upload-message').innerText(),/1 份附件已收到/);
     await anonymous.locator('#upload-own-list .upload-card').waitFor();
-    const publicRecord = JSON.parse(readFileSync(join(directory,'intake',readdirSync(join(directory,'intake'))[0],'record.json'),'utf8'));
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),0,'successful files leave the pending queue');
+    assert.equal(await anonymous.locator('#upload-own-list .upload-card').evaluate(el=>el.open),false,'personal timeline defaults to one collapsed row');
+    const publicRecord = JSON.parse(readFileSync(join(directory,'intake',readdirSync(join(directory,'intake')).find(id=>/^[a-f0-9]{32}$/.test(id)),'record.json'),'utf8'));
     assert.equal(publicRecord.status,'pending_approval');
     assert.equal(publicRecord.user,'anonymous');
     assert.equal((await anonymous.request.get(base+'/api/intake-worker/content/'+publicRecord.id)).status(),401);
@@ -199,6 +223,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const activeBefore=JSON.parse(readFileSync(join(directory,'intake',xlsx.id,'record.json'),'utf8'));
     const invalidPackage=await admin.request.post(base+'/api/materials/review',{headers:{'X-Requested-With':'material-intake'},data:{id:xlsx.id,sha256:xlsx.sha256,expected_revision:activeBefore.revision,operation_id:randomUUID(),action:'assign_package',package_id:'employee-made-up'}});
     assert.equal(invalidPackage.status(),400,'only a current server work package can be assigned');
+    await admin.locator('#review-detail-content .review-package>summary').click();
     await admin.locator('#review-detail-content .owner-package select').selectOption('dc-census-cn');
     await admin.locator('#review-detail-content .owner-package button').click();
     await admin.waitForFunction(()=>document.querySelector('#review-message')?.textContent.includes('已绑定系统工作包'));
@@ -211,6 +236,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.locator('#upload-refresh').click();
     await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('1 条'));
     assert.equal(await anonymous.locator('#upload-own-list .upload-feedback').getAttribute('open'),null);
+    await anonymous.locator('#upload-own-list .upload-card>summary').click();
     await anonymous.locator('#upload-own-list .upload-feedback summary').click();
     assert.match(await anonymous.locator('#upload-own-list .upload-feedback').innerText(),/北京时间.*补齐来源与工作表定位/s);
     const [feedbackDownload]=await Promise.all([anonymous.waitForEvent('download'),anonymous.locator('#upload-own-list [data-download-feedback]').click()]);
@@ -249,6 +275,8 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     },{id:xlsx.id,receipt:xlsxReceipt});
     await anonymous.locator('#upload-refresh').click();
     await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('仅抽样反馈，全表待审'));
+    assert.match(await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator(':scope>summary').innerText(),/抽样反馈 · 全表待审/);
+    await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator(':scope>summary').click();
     assert.match(await anonymous.locator('#upload-own-list').innerText(),/32\/328.*297.*0 条上线/s);
     assert.equal(await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator('.upload-feedback').getAttribute('open'),null);
     await anonymous.locator('[data-task-view="submission-progress"]').click();
@@ -291,17 +319,200 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
     await anonymous.locator('#task-upload-form [name="project_name"]').fill('合成测试项目');
     await anonymous.locator('#task-upload-form [name="file"]').setInputFiles([
-      {name:'source.pdf',mimeType:'application/pdf',buffer:Buffer.from('%PDF-1.4 synthetic')},
+      {name:'source.txt',mimeType:'text/plain',buffer:Buffer.from('source evidence')},
       {name:'notes.txt',mimeType:'text/plain',buffer:Buffer.from('source notes')}]);
-    await anonymous.locator('#upload-submit').click();
+    let lostUploadResponse=false, releaseSecondUpload, secondUploadWaiting;
+    const secondUploadSeen=new Promise(resolve=>{secondUploadWaiting=resolve;});
+    const secondUploadHold=new Promise(resolve=>{releaseSecondUpload=resolve;});
+    await anonymous.route('**/api/task-uploads',async route=>{
+      const metadata=JSON.parse(decodeURIComponent(route.request().headers()['x-material-metadata']));
+      if(metadata.batch_index===0 && !lostUploadResponse){
+        lostUploadResponse=true;
+        const response=await route.fetch(); assert.equal(response.status(),201);
+        await route.abort('failed');
+      } else if(metadata.batch_index===1) { secondUploadWaiting(); await secondUploadHold; await route.continue(); }
+      else await route.continue();
+    });
+    await anonymous.locator('#task-upload-form').evaluate(form=>{form.requestSubmit();form.requestSubmit();});
+    await secondUploadSeen;
+    const peer=await anonymous.context().newPage();
+    await peer.goto(base+'/tasks.html');
+    await peer.locator('[data-task-view="submission-progress"]').click();
+    await peer.locator('#upload-recover-incomplete').waitFor();
+    const activePending=JSON.parse(await peer.evaluate(()=>localStorage.getItem('inresearch-task-upload-pending-batches-v1')))[0];
+    assert.equal(activePending.upload_complete,false);
+    assert.ok(activePending.batch_token,'another tab preserves the recovery secret during an active upload');
+    const activeStatus=await (await peer.request.post(base+'/api/task-uploads/batch-status',{data:{batch_id:activePending.batch_id,batch_token:activePending.batch_token}})).json();
+    assert.equal(activeStatus.batch.sealed,false,'refreshing another tab never seals an active partial upload');
+    assert.equal(activeStatus.items.length,1);
+    releaseSecondUpload(); await peer.close();
     await anonymous.waitForFunction(()=>/2 份附件已收到/.test(document.querySelector('#upload-message')?.textContent || ''));
+    await anonymous.waitForFunction(()=>!document.querySelector('#upload-submit').disabled);
+    await anonymous.unroute('**/api/task-uploads');
+    assert.equal(lostUploadResponse,true);
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),0,'status recovery removes a received attachment after its upload response was lost');
     await anonymous.waitForFunction(()=>document.querySelectorAll('#upload-own-list .upload-card').length === 3);
     assert.equal(await anonymous.locator('#upload-own-list .upload-person-group').count(),1);
     assert.equal(await anonymous.locator('#upload-own-list .upload-card').count(),3);
-    const batchRecords=readdirSync(join(directory,'intake')).map(id=>JSON.parse(readFileSync(join(directory,'intake',id,'record.json'),'utf8'))).filter(r=>['source.pdf','notes.txt'].includes(r.name));
+    const batchRecords=readdirSync(join(directory,'intake')).filter(id=>/^[a-f0-9]{32}$/.test(id)).map(id=>JSON.parse(readFileSync(join(directory,'intake',id,'record.json'),'utf8'))).filter(r=>['source.txt','notes.txt'].includes(r.name));
     assert.equal(batchRecords.length,2);
+    assert.equal(new Set(batchRecords.map(row=>row.batch_id)).size,1,'rapid duplicate submit events create only one upload batch');
     assert.equal(batchRecords[0].batch_id,batchRecords[1].batch_id);
     assert.equal(batchRecords[0].project_name,'合成测试项目');
+    const batchReceipts=JSON.parse(await anonymous.evaluate(()=>localStorage.getItem('inresearch-task-upload-receipts-v1'))).filter(row=>batchRecords.some(item=>item.id===row.id));
+    const sealedReceipt=await (await anonymous.request.post(base+'/api/task-uploads/receipt',{data:batchReceipts[0]})).json();
+    assert.equal(sealedReceipt.item.upload_batch.sealed,true,'successful uploads finish their exact receipt batch');
+    assert.equal(sealedReceipt.item.upload_batch.received,2);
+    assert.equal(sealedReceipt.item.upload_batch.expected,2);
+    const batchAdmin=await browser.newPage({viewport:{width:1440,height:1000}});
+    await batchAdmin.context().addCookies([{name:'hub_session',value:config.cookies['task-admin'].slice(config.cookies['task-admin'].indexOf('=')+1),url:base}]);
+    await batchAdmin.goto(base+'/task-reviews.html?id='+batchRecords[0].id);
+    const batchApprove=batchAdmin.locator('[data-batch-action="approve_and_analyze"]');
+    await batchApprove.waitFor();
+    assert.match(await batchApprove.innerText(),/确认本批 2 份并联合分析/);
+    if(process.env.UI_QA_DIR) {await batchAdmin.evaluate(()=>scrollTo(0,0));await batchAdmin.screenshot({path:join(process.env.UI_QA_DIR,'task-batch-approval-1440.png'),fullPage:true});}
+    await batchApprove.click();
+    await batchAdmin.waitForFunction(()=>document.querySelector('#review-detail-content')?.textContent.includes('正在分析'));
+    const batchPending=(await (await anonymous.request.get(base+'/api/intake-worker/pending',{headers:workerHeaders})).json()).items.filter(row=>batchRecords.some(item=>item.id===row.id));
+    assert.equal(batchPending.length,2);
+    assert.ok(batchPending[0].review_batch_id);
+    assert.equal(batchPending[0].review_batch_id,batchPending[1].review_batch_id,'one approval releases one exact review batch');
+    for(const item of batchPending) assert.equal((await anonymous.request.post(base+'/api/intake-worker/ack',{headers:workerHeaders,data:{id:item.id,sha256:item.sha256}})).status(),200);
+    const analysisMembers=(await (await anonymous.request.get(base+'/api/intake-worker/analysis-pending',{headers:workerHeaders})).json()).items.filter(row=>row.review_batch_id===batchPending[0].review_batch_id);
+    assert.equal(analysisMembers.length,2);
+    assert.deepEqual(new Set(analysisMembers[0].review_batch_members.map(row=>row.id)),new Set(batchRecords.map(row=>row.id)));
+    await batchAdmin.locator('.review-related>summary').click();
+    await batchAdmin.locator('[data-related-id="'+publicRecord.id+'"]').click();
+    assert.equal(await batchAdmin.locator('[data-filter="all"]').getAttribute('aria-pressed'),'true','related-file navigation synchronizes the all filter');
+
+    // Ten real uploads exercise compact timelines and persistent seal recovery.
+    await anonymous.locator('#task-upload-form [name="file"]').setInputFiles(Array.from({length:10},(_,i)=>({name:`dense-${i}-园区原始来源与地点证据.txt`,mimeType:'text/plain',buffer:Buffer.from(`Synthetic evidence ${i}`)})));
+    await anonymous.route('**/api/task-uploads/batch',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({ok:false,error:'synthetic seal outage'})}));
+    await anonymous.locator('#upload-submit').click();
+    await anonymous.waitForFunction(()=>document.querySelector('#upload-message')?.textContent.includes('10 份附件已收到'));
+    await anonymous.waitForFunction(()=>!document.querySelector('#upload-submit').disabled);
+    await anonymous.locator('#upload-retry-batches').waitFor();
+    assert.match(await anonymous.locator('#upload-message').innerText(),/批次提交尚未完成/);
+    assert.equal(await anonymous.locator('#upload-pending-files li').count(),0,'received files are retained by receipt and never re-uploaded for seal retry');
+    const pendingSeals=JSON.parse(await anonymous.evaluate(()=>localStorage.getItem('inresearch-task-upload-pending-batches-v1')));
+    assert.equal(pendingSeals.length,1);
+    assert.equal(pendingSeals[0].items.length,10);
+    const denseIds=pendingSeals[0].items.map(row=>row.id);
+    await batchAdmin.goto(base+'/task-reviews.html?id='+denseIds[0]);
+    await batchAdmin.locator('[data-batch-action="approve_and_analyze"]').waitFor();
+    assert.equal(await batchAdmin.locator('[data-batch-action="approve_and_analyze"]').isDisabled(),true,'unsealed uploads cannot be jointly approved');
+    await anonymous.unroute('**/api/task-uploads/batch');
+    await anonymous.locator('#upload-retry-batches').click();
+    await anonymous.waitForFunction(()=>JSON.parse(localStorage.getItem('inresearch-task-upload-pending-batches-v1')||'[]').length===0);
+    assert.ok(!(await anonymous.locator('#upload-message').innerText()).includes('批次提交尚未完成'),'successful seal recovery clears the stale incomplete message');
+    await batchAdmin.locator('#review-refresh').click();
+    await batchAdmin.waitForFunction(()=>!document.querySelector('[data-batch-action="approve_and_analyze"]')?.disabled);
+    const denseOwner=(await (await batchAdmin.request.get(base+'/api/materials')).json()).items.filter(item=>denseIds.includes(item.id));
+    const recoveryPayload={operation_id:randomUUID(),action:'approve_and_analyze',note:'synthetic interrupted approval',items:denseOwner.map(item=>({id:item.id,sha256:item.sha256,expected_revision:item.revision}))};
+    // Interrupt a real isolated approval after its first durable member write.
+    execFileSync(process.env.PYTHON || 'python3',['-c',`import sys,json
+sys.path.insert(0,'src')
+from pathlib import Path
+from inresearch.materials import inbox,batch_review
+original=inbox.atomic
+count=0
+def interrupted(path,state):
+ global count
+ if Path(path).name=='record.json':
+  count+=1
+  if count==2: raise OSError('synthetic approval interruption')
+ return original(path,state)
+inbox.atomic=interrupted
+try: batch_review.approve(json.loads(sys.argv[1]),'task-admin','admin')
+except OSError: pass
+else: raise AssertionError('approval was not interrupted')
+`,JSON.stringify(recoveryPayload)],{cwd:root,env:environment});
+    const preparedMembers=(await (await batchAdmin.request.get(base+'/api/materials')).json()).items.filter(item=>denseIds.includes(item.id));
+    const preparedMember=preparedMembers.find(item=>item.review_batch_recovery);
+    assert.ok(preparedMember);
+    assert.equal((await (await anonymous.request.get(base+'/api/intake-worker/pending',{headers:workerHeaders})).json()).items.some(item=>denseIds.includes(item.id)),false,'partial approval releases no batch member');
+    await batchAdmin.goto(base+'/task-reviews.html?id='+preparedMember.id);
+    await batchAdmin.locator('[data-batch-action="approve_and_analyze"]').waitFor();
+    assert.equal(await batchAdmin.locator('[data-batch-action="approve_and_analyze"]').innerText(),'恢复本批确认');
+    if(process.env.UI_QA_DIR) await batchAdmin.locator('.review-detail').screenshot({path:join(process.env.UI_QA_DIR,'task-batch-approval-recovery.png')});
+    const recoveryRequest=batchAdmin.waitForRequest(request=>new URL(request.url()).pathname==='/api/materials/review-batch');
+    await batchAdmin.locator('[data-batch-action="approve_and_analyze"]').click();
+    assert.deepEqual((await recoveryRequest).postDataJSON(),recoveryPayload,'the recovery button replays the original exact operation and members');
+    await batchAdmin.waitForFunction(()=>document.querySelector('#review-message')?.textContent.includes('本批 10 份已确认'));
+    await anonymous.locator('#upload-refresh').click();
+    await anonymous.locator('#package-refresh').click();
+    await anonymous.waitForFunction(()=>document.querySelectorAll('#package-timeline .package-event').length>=10);
+    for(const width of [1440,390,320]) {
+      await anonymous.setViewportSize({width,height:1000});
+      const density=await anonymous.evaluate(ids=>{
+        const own=ids.map(id=>document.querySelector(`.upload-card[data-submission-id="${id}"]`));
+        const team=[...document.querySelectorAll('#package-timeline .package-event')].slice(0,10);
+        return {overflow:document.documentElement.scrollWidth>innerWidth+1,
+          own:own.map(el=>({open:el.open,height:el.getBoundingClientRect().height,summary:el.querySelector(':scope>summary').getBoundingClientRect().height})),
+          team:team.map(el=>({open:el.open,height:el.getBoundingClientRect().height})),
+          ranges:[6,10].map(count=>team[count-1].getBoundingClientRect().bottom-team[0].getBoundingClientRect().top)};
+      },denseIds);
+      assert.equal(density.overflow,false,'compact timelines fit '+width);
+      assert.ok(density.own.every(row=>!row.open && row.height<=44 && row.summary<=43),'personal records stay one-line rows at '+width);
+      assert.ok(density.team.every(row=>!row.open && row.height<=44),'public records stay one-line rows at '+width);
+      assert.ok(density.ranges[0]<=6*44 && density.ranges[1]<=10*44,'six and ten public records remain compact at '+width);
+      if(process.env.UI_QA_DIR) {await anonymous.evaluate(()=>scrollTo(0,0));await anonymous.screenshot({path:join(process.env.UI_QA_DIR,'task-timeline-density-'+width+'.png'),fullPage:true});}
+    }
+    await anonymous.setViewportSize({width:1440,height:1000});
+    await batchAdmin.locator('[data-filter="all"]').click();
+    await batchAdmin.locator('.review-queue').scrollIntoViewIfNeeded();
+    const filterY=(await batchAdmin.locator('#review-filters').boundingBox()).y;
+    await batchAdmin.locator('#review-queue-list').evaluate(el=>{el.scrollTop=el.scrollHeight;});
+    assert.ok(Math.abs((await batchAdmin.locator('#review-filters').boundingBox()).y-filterY)<1,'list scrolling keeps search and filters stationary');
+    assert.equal(await batchAdmin.locator('#review-search').isVisible(),true);
+    const operatorPath=join(directory,'intake',denseIds[0],'record.json');
+    const operatorRecord=JSON.parse(readFileSync(operatorPath,'utf8'));
+    operatorRecord.analysis_progress={state:'blocked',error_code:'joint_model_output_invalid_requires_operator',completed:0,total:1,at:Date.now()/1000};
+    operatorRecord.revision++; writeFileSync(operatorPath,JSON.stringify(operatorRecord));
+    await anonymous.locator('#upload-refresh').click();
+    await anonymous.waitForFunction(id=>document.querySelector(`.upload-card[data-submission-id="${id}"]>summary`)?.textContent.includes('定位校验受阻，需人工复核'),denseIds[0]);
+    const operatorCard=anonymous.locator('.upload-card[data-submission-id="'+denseIds[0]+'"]');
+    await operatorCard.locator(':scope>summary').click();
+    assert.ok(!(await operatorCard.innerText()).includes('研究端会重试'),'a model localization gate never promises an automatic retry');
+
+    // Old upload batches have no batch_total/seal; prior approvals remain independent.
+    const legacyBatchId=randomUUID(), legacy=[];
+    for(const name of ['legacy-approved.txt','legacy-pending.txt']) {
+      const response=await anonymous.request.post(base+'/api/task-uploads',{data:Buffer.from('Synthetic legacy source '+name),headers:{'Content-Type':'application/octet-stream','X-Requested-With':'task-upload','X-Material-Metadata':encodeURIComponent(JSON.stringify({name,submitter:'旧批测试',project_name:'旧版部分批准',package_id:'dc-census-cn',batch_id:legacyBatchId}))}});
+      assert.equal(response.status(),201); legacy.push((await response.json()).item);
+    }
+    assert.equal((await batchAdmin.request.post(base+'/api/materials/review',{headers:{'X-Requested-With':'material-intake'},data:{id:legacy[0].id,sha256:legacy[0].sha256,expected_revision:legacy[0].revision,operation_id:randomUUID(),action:'approve',note:'legacy reception without analysis'}})).status(),200);
+    const legacyApproved=JSON.parse(readFileSync(join(directory,'intake',legacy[0].id,'record.json'),'utf8'));
+    assert.equal(legacyApproved.status,'approved'); assert.ok(!legacyApproved.analysis_requested_at);
+    await batchAdmin.goto(base+'/task-reviews.html?id='+legacy[0].id);
+    await batchAdmin.locator('[data-action="start_analysis"]').waitFor();
+    assert.equal(await batchAdmin.locator('[data-batch-action]').count(),0,'an already approved legacy member retains its single-source analysis action');
+    assert.equal(await batchAdmin.locator('[data-action="start_analysis"]').isDisabled(),true,'approved legacy originals wait for the research receipt before analysis');
+    assert.equal((await anonymous.request.post(base+'/api/materials/review',{headers:{'X-Requested-With':'material-intake'},data:{id:legacy[0].id,sha256:legacy[0].sha256,expected_revision:legacyApproved.revision,operation_id:randomUUID(),action:'start_analysis',note:''}})).status(),401,'legacy analysis still requires the designated owner');
+    await batchAdmin.goto(base+'/task-reviews.html?id='+legacy[1].id);
+    await batchAdmin.locator('[data-action="approve_and_analyze"]').waitFor();
+    assert.equal(await batchAdmin.locator('[data-batch-action]').count(),0,'an approved but not analyzed sibling cannot trap the remaining legacy submission in joint approval');
+    assert.equal(await batchAdmin.locator('[data-action="approve_and_analyze"]').isDisabled(),false);
+    assert.equal((await anonymous.request.post(base+'/api/intake-worker/ack',{headers:workerHeaders,data:{id:legacy[0].id,sha256:legacy[0].sha256}})).status(),200,'single legacy analysis keeps the original research-receipt prerequisite');
+    await batchAdmin.goto(base+'/task-reviews.html?id='+legacy[0].id);
+    await batchAdmin.locator('[data-action="start_analysis"]').waitFor();
+    assert.equal(await batchAdmin.locator('[data-action="start_analysis"]').isDisabled(),false,'archived legacy originals can start their own analysis');
+    const legacyStartResponse=batchAdmin.waitForResponse(response=>new URL(response.url()).pathname==='/api/materials/review');
+    await batchAdmin.locator('[data-action="start_analysis"]').click();
+    assert.equal((await legacyStartResponse).status(),200);
+    await batchAdmin.waitForFunction(()=>document.querySelector('#review-detail-content')?.textContent.includes('正在分析'));
+    await batchAdmin.goto(base+'/task-reviews.html?id='+legacy[1].id);
+    await batchAdmin.locator('[data-action="approve_and_analyze"]').waitFor();
+    assert.equal(await batchAdmin.locator('[data-batch-action]').count(),0,'the remaining pending legacy member is not trapped by its previously approved sibling');
+    const legacyApproveResponse=batchAdmin.waitForResponse(response=>new URL(response.url()).pathname==='/api/materials/review');
+    await batchAdmin.locator('[data-action="approve_and_analyze"]').click();
+    assert.equal((await legacyApproveResponse).status(),200);
+    await batchAdmin.waitForFunction(()=>document.querySelector('#review-detail-content')?.textContent.includes('正在分析'));
+    for(const item of legacy) {
+      const record=JSON.parse(readFileSync(join(directory,'intake',item.id,'record.json'),'utf8'));
+      assert.equal(record.sha256,item.sha256); assert.ok(record.analysis_requested_at); assert.ok(!record.review_batch_id);
+    }
+    await batchAdmin.close();
     assert.equal(await anonymous.locator('#new-package').isVisible(),false);
     assert.match(await anonymous.locator('#task-role-note').textContent(),/登录后可见/);
     // Synthetic test bytes are private runtime fixtures, separate from the real
@@ -499,6 +710,6 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.match(await anonymous.locator('#mission-progress-detail').innerText(),/暂定目标 250 · 0%/);
 
     assert.deepEqual(errors,[]);
-    console.log('PASS task dashboard, two views without URL changes, Markdown plans/private feedback downloads, public task privacy, real-byte example downloads, unknowns/evidence/pending states, changed-file rejection, persisted assignment, concurrent-edit protection, own intern delivery and 4 responsive widths');
+    console.log('PASS task dashboard, accumulated picker/drop queue and 20-file bound, lost-response receipt recovery, cross-tab active-upload protection, duplicate-submit guard, seal failure recovery, exact joint approval/prepared replay, compact 6/10-row timelines at 1440/390/320, operator-gate status, sticky filters, private Markdown downloads, task privacy, real-byte examples, concurrent assignments and 4 responsive widths');
   } finally {if(browser)await browser.close();server.kill();lines.close();rmSync(directory,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});

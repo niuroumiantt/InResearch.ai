@@ -32,6 +32,55 @@ def atomic(path, data):
     write_json(path, data)
 
 def receive(stream, size, metadata, user, *, public=False):
+    if not isinstance(metadata, dict):
+        raise ValueError('invalid metadata')
+    if 'batch_total' not in metadata and 'batch_index' not in metadata:
+        if metadata.get('batch_token'): raise ValueError('upload batch bounds required')
+        return _receive(stream,size,metadata,user,public=public)
+    from inresearch.materials import batch_review
+    total, index = metadata.get('batch_total'), metadata.get('batch_index')
+    if (not public or type(total) is not int or not 1 <= total <= 20
+            or type(index) is not int or not 0 <= index < total):
+        raise ValueError('invalid upload batch bounds')
+    path = batch_review.batch_path('upload',metadata.get('batch_id'))
+    with locked(path):
+        fingerprint = {key:str(metadata.get(key,'')).strip()
+                       for key in ('submitter','project_name','package_id')}
+        token=metadata.get('batch_token','')
+        if token and (not isinstance(token,str) or not re.fullmatch(r'[a-f0-9-]{36}',token)):
+            raise ValueError('invalid upload batch token')
+        token_hash=hashlib.sha256(token.encode()).hexdigest() if token else None
+        state = json.loads(path.read_text()) if path.exists() else {
+            'id':metadata['batch_id'],'expected':total,'metadata':fingerprint,
+            'items':[],'sealed':False,'token_hash':token_hash}
+        if state.get('token_hash') != token_hash:
+            raise PermissionError('invalid upload batch credential')
+        if state['expected'] != total or state['metadata'] != fingerprint:
+            raise Conflict('upload batch metadata changed')
+        previous=next((row for row in state['items'] if row['index']==index),None)
+        if previous and token:
+            if not 0 < size <= MAX_BYTES: raise ValueError('invalid upload size')
+            digest=hashlib.sha256();remaining=size
+            while remaining:
+                chunk=stream.read(min(1024*1024,remaining))
+                if not chunk: raise ValueError('上传中断，未接收完整文件')
+                remaining-=len(chunk);digest.update(chunk)
+            record=load(previous['id'])
+            name=str(metadata.get('name','资料.txt')).replace('\\','/').split('/')[-1][:180]
+            if record['sha256'] != digest.hexdigest() or record['size'] != size or record['name'] != name:
+                raise Conflict('upload batch attachment replay changed')
+            return public_view(record),batch_review.receipt_for(token,record['id'])
+        if state['sealed'] or previous:
+            raise Conflict('upload batch sealed or attachment index already received')
+        atomic(path,state)
+        item, receipt = _receive(stream,size,metadata,user,public=True)
+        state['items'].append({'id':item['id'],'sha256':item['sha256'],'index':index})
+        state['items'].sort(key=lambda row:row['index'])
+        atomic(path,state)
+        return public_view(load(item['id'])),receipt
+
+
+def _receive(stream, size, metadata, user, *, public=False):
     if not 0 < size <= MAX_BYTES:
         raise ValueError('单份资料须为 1 字节至 64 MiB')
     submitter = str(metadata.get('submitter', '')).strip()
@@ -81,12 +130,18 @@ def receive(stream, size, metadata, user, *, public=False):
     sync_directory(folder)
     sync_directory(folder.parent)
     receipt = secrets.token_urlsafe(32) if public else None
+    if public and metadata.get('batch_token'):
+        from inresearch.materials import batch_review
+        receipt=batch_review.receipt_for(metadata['batch_token'],key)
     record = dict(id=key, name=name, size=size, sha256=digest.hexdigest(), user=user,
                   topic=str(metadata.get('topic', ''))[:300], source=str(metadata.get('source', ''))[:2000],
                   note=str(metadata.get('note', ''))[:4000],
                   submitter=submitter, project_name=project_name, batch_id=batch_id,
                   continuation_of=continuation_id or None,
                   package_id=str(metadata.get('package_id', ''))[:100],
+                  batch_total=metadata.get('batch_total'), batch_index=metadata.get('batch_index'),
+                  batch_token_hash=(hashlib.sha256(metadata['batch_token'].encode()).hexdigest()
+                                    if metadata.get('batch_token') else None),
                   created=time.time(), status='pending_approval', revision=0,
                   feedback=[], operations=[])
     if receipt:
@@ -97,11 +152,23 @@ def receive(stream, size, metadata, user, *, public=False):
 
 def public_view(record):
     """Never expose receipt verifiers or operation bodies in an API response."""
-    return {k: v for k, v in record.items() if k not in ('receipt_hash', 'operations', 'analysis_reports')}
+    result = {k: v for k, v in record.items() if k not in ('receipt_hash', 'batch_token_hash', 'batch_excluded', 'operations', 'analysis_reports')}
+    from inresearch.materials import batch_review
+    batch = batch_review.upload_view(record)
+    if batch is not None: result['upload_batch'] = batch
+    return result
 
 
 def owner_view(record):
-    return {k: v for k, v in record.items() if k not in ('receipt_hash', 'operations')}
+    result = {k: v for k, v in record.items() if k not in ('receipt_hash', 'batch_token_hash', 'operations')}
+    from inresearch.materials import batch_review
+    batch = batch_review.upload_view(record,owner=True)
+    if batch is not None: result['upload_batch'] = batch
+    if record.get('review_batch_id'):
+        manifest=batch_review.load_review(record['review_batch_id'])
+        if manifest.get('state') == 'prepared':
+            result['review_batch_recovery']=manifest['request']
+    return result
 
 
 def receipt_view(key, receipt):
@@ -145,6 +212,9 @@ def can_approve(actor, role):
 
 
 def require_approved(record):
+    from inresearch.materials import batch_review
+    if not batch_review.review_ready(record):
+        raise PermissionError('联合审批尚未完整提交，不能分析')
     approval = record.get('approval', {})
     if (record.get('status') not in ('approved', 'archived')
             or not approval.get('by') or not approval.get('at')
@@ -183,20 +253,53 @@ def pending():
 
 
 def analysis_pending():
-    """Only archived, owner-approved supported originals can enter automatic review."""
-    result = []
-    for record in records():
+    """Release a batch only when all approved originals are archived; retain replay members."""
+    from inresearch.materials import batch_review
+    all_records = records()
+    by_id = {row['id']:row for row in all_records}
+    result, released = [], set()
+    for record in all_records:
+        if record.get('review_batch_id'):
+            key = record['review_batch_id']
+            if key in released: continue
+            released.add(key)
+            try:
+                manifest = batch_review.load_review(key)
+                members = [by_id[row['id']] for row in manifest['request']['items']]
+                if manifest.get('analysis_complete') or any(row['status'] != 'archived' for row in members):
+                    continue
+                for row in members: require_approved(row)
+            except (KeyError,ValueError,OSError,PermissionError):
+                continue
+            for row in members:
+                item = public_view(row)
+                item['review_batch_members'] = [dict(id=m['id'],sha256=m['sha256']) for m in members]
+                result.append(item)
+            continue
         if (record.get('status') != 'archived' or not record.get('analysis_requested_at')
                 or record.get('analysis_reports')
                 or (record.get('analysis_progress') or {}).get('state') == 'source_error'
                 or not reviewable(record['name'])):
             continue
-        try:
-            require_approved(record)
-        except PermissionError:
-            continue
+        try: require_approved(record)
+        except PermissionError: continue
         result.append(public_view(record))
     return result
+
+
+
+def bounded_analysis_pending(limit=40):
+    """A response may cross the nominal limit once, but never cuts a review batch."""
+    pending=analysis_pending()
+    selected=[];seen=set()
+    for item in pending:
+        if item['id'] in seen: continue
+        if len(selected)>=limit: break
+        batch_id=item.get('review_batch_id')
+        group=([row for row in pending if row.get('review_batch_id')==batch_id]
+               if batch_id else [item])
+        selected.extend(group);seen.update(row['id'] for row in group)
+    return selected
 
 
 def previous_system_task(record):
@@ -280,16 +383,18 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
             'result':('sampled_incomplete' if sampled else 'accepted' if published and not owner_report.get('held')
                       and not owner_report.get('findings') else 'revision_required'),
             'text':employee_task})
-        record['analysis_state'] = 'sampled_incomplete' if sampled else 'completed'
-        total = record.get('analysis_progress', {}).get('total', 0)
-        record['analysis_progress'] = {'state':'sampled_incomplete' if sampled else 'completed', 'completed':total,
+        source_error = owner_report.get('publication',{}).get('state') == 'source_error'
+        state = 'source_error' if source_error else 'sampled_incomplete' if sampled else 'completed'
+        record['analysis_state'] = state
+        total = 0 if source_error else record.get('analysis_progress', {}).get('total', 0)
+        record['analysis_progress'] = {'state':state, 'completed':total,
                                        'total':total, 'at':now}
         record['revision'] = record.get('revision', 0) + 1
         atomic(path, record)
     return owner_view(record)
 
 
-def set_analysis_progress(key, sha, completed, total, state='running'):
+def set_analysis_progress(key, sha, completed, total, state='running', *, error_code=None):
     if (type(completed) is not int or type(total) is not int or not 0 <= completed <= total <= 200
             or state not in ('running', 'blocked', 'source_error')):
         raise ValueError('invalid analysis progress')
@@ -311,6 +416,8 @@ def set_analysis_progress(key, sha, completed, total, state='running'):
             raise ValueError('原件错误须先登记可见的修改任务')
         record['analysis_progress'] = {'state':state, 'completed':completed,
                                        'total':total, 'at':time.time()}
+        if state=='blocked' and error_code=='joint_model_output_invalid_requires_operator':
+            record['analysis_progress']['error_code']=error_code
         atomic(path, record)
     return public_view(record)
 
@@ -334,6 +441,11 @@ def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
     path = record_path(payload.get('id', '')) / 'record.json'
     with locked(path):
         record = json.loads(path.read_text())
+        from inresearch.materials import batch_review
+        if not batch_review.review_ready(record):
+            raise Conflict('联合审批待恢复，请重试原批次操作')
+        if record.get('review_batch_id') and action == 'assign_package':
+            raise Conflict('联合审批已封存工作包；请完成本轮或重新提交')
         for previous in record.get('operations', []):
             if previous['id'] == operation:
                 if previous['request'] != payload or previous['by'] != actor:
@@ -343,6 +455,14 @@ def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
             raise Conflict('文件版本或状态已变化，请刷新后重试')
         now = time.time()
         before = record['status']
+        if record.get('batch_total') and action in ('approve','approve_and_analyze','start_analysis'):
+            upload=batch_review.upload_view(record,owner=True)
+            if not upload or not upload['sealed']:
+                raise Conflict('请先恢复并封存本次上传批次')
+            siblings=[load(key) for key in upload['member_ids'] if key != record['id']]
+            if action in ('approve_and_analyze','start_analysis') and any(row['status'] != 'rejected' for row in siblings):
+                raise Conflict('同批多附件请使用整批确认并关联审阅')
+            record['batch_excluded']=[{'id':row['id'],'sha256':row['sha256'],'status':row['status']} for row in siblings]
         if action in ('approve', 'approve_and_analyze', 'reject'):
             if before not in ('pending_approval', 'queued') or record.get('approval'):
                 raise Conflict('该文件已处理；新版文件须重新上传批准')

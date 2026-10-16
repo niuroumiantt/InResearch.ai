@@ -102,9 +102,11 @@
         <label>提交到 <select name="package_id" id="upload-package" required><option value="">选择工作包</option></select></label>
         <label>姓名 <input name="submitter" maxlength="120" autocomplete="name" required placeholder="必填"></label>
         <label class="upload-topic">材料主题 <input name="project_name" maxlength="180" required placeholder="例如：园区地址与已投运分期补证"></label>
-        <label class="compact-file-picker">附件 <span id="upload-file-label">选择附件 · 可多选</span><input name="file" type="file" multiple required></label>
+        <label class="compact-file-picker">附件 <span id="upload-file-label">添加附件 · 可多次选择</span><input name="file" type="file" multiple aria-describedby="upload-files-help"></label>
       </div>
+      <div id="upload-drop-zone" class="upload-drop-zone"><p id="upload-files-help">可继续选择其他目录的文件，或拖入这里；附件会累加。</p><div class="upload-pending-heading"><span id="upload-pending-count">尚未添加附件</span><button id="upload-clear-files" type="button" hidden>清空</button></div><ol id="upload-pending-files" class="upload-pending-files" aria-label="待提交附件"></ol></div>
       <div class="task-upload-actions"><button id="upload-submit" type="submit" class="primary-button">提交并请审阅</button><span>单份最多 64 MiB · 最多 20 份</span></div>
+      <div id="upload-batch-status" role="status" aria-live="polite"></div>
       <p id="upload-message" role="status" aria-live="polite"></p>
     </form></div>
   <section id="package-workspace" class="mission-section package-workspace" aria-labelledby="workspace-title">

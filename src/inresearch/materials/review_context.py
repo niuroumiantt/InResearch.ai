@@ -82,14 +82,14 @@ def assigned_task(record, task_state, mission, index, task_records, source_state
     }
 
 
-def current(root, record, *, runtime=None):
+def current(root, record, *, runtime=None, task_records=None):
     state = research_tasks.read(root)
     mission = research_tasks.plan(root)['mission']
     if runtime is None:
         runtime = source_publication.state(root)
     registered = source_publication.projects(root, runtime=runtime)['records']
     index = site_index(registered)
-    task = assigned_task(record, state, mission, index, inbox.records(),
+    task = assigned_task(record, state, mission, index, inbox.records() if task_records is None else task_records,
                          source_publication.digest(runtime))
     return task, index[:500]
 
