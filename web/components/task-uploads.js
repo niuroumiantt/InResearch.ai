@@ -89,7 +89,7 @@
       $('upload-message').innerHTML = `${saved.length} 份附件已收到，等待负责人确认。${saved.map(row => `<br>${esc(row.name)} · 编号 <code>${esc(row.id)}</code> · 回执码 <code class="upload-receipt-code">${esc(row.receipt)}</code>`).join('')}${failed.length ? `<br>${esc(failed.length+' 份未确认收到，请只重选这些文件提交：'+failed.join('；'))}` : ''}`;
       form.elements.file.value = '';
       $('upload-file-label').textContent = '选择附件 · 可多选';
-      if (saved.length) window.dispatchEvent(new CustomEvent('research-task-view-requested',{detail:{view:'my-submissions'}}));
+      if (saved.length) window.dispatchEvent(new CustomEvent('research-task-view-requested',{detail:{view:'submission-progress'}}));
       await refreshOwn(); await refreshOwnerShortcut();
     } catch (error) { $('upload-message').textContent = error.message; }
     finally { $('upload-submit').disabled = false; }
@@ -119,8 +119,7 @@
     $('upload-file-label').textContent = files.length ? (files.length === 1 ? files[0].name : `已选 ${files.length} 份附件`) : '选择附件 · 可多选';
   });
   const activateView = view => {
-    if (view === 'upload') refreshOwnerShortcut();
-    if (view === 'my-submissions') refreshOwn();
+    if (view === 'submission-progress') { refreshOwnerShortcut(); refreshOwn(); }
   };
   window.addEventListener('research-task-view',event=>activateView(event.detail?.view));
   $('upload-refresh').addEventListener('click',refreshOwn);

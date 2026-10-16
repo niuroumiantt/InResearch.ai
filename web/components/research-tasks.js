@@ -8,12 +8,12 @@
   const form = $('package-form');
   const viewForHash = hash => {
     const id = decodeURIComponent(String(hash || '').replace(/^#/,''));
-    if (id === 'upload' || id === 'my-submissions' || id === 'worked-example') return id;
+    if (id === 'upload' || id === 'my-submissions' || id === 'submission-progress') return 'submission-progress';
     if (id === 'research-methods' || id === 'research-context' || id === 'work-packages') return 'task-guide';
     return 'package-workspace';
   };
   const showTaskView = (view, updateHash = true) => {
-    const allowed = new Set(['package-workspace','upload','my-submissions','worked-example','task-guide']);
+    const allowed = new Set(['package-workspace','submission-progress','task-guide']);
     if (!allowed.has(view)) view = 'package-workspace';
     document.querySelectorAll('[data-task-panel]').forEach(panel => {
       panel.hidden = panel.dataset.taskPanel !== view;
@@ -27,7 +27,6 @@
     document.body.dataset.activeTaskView = view;
     if (updateHash) history.replaceState(null,'','#' + (view === 'task-guide' ? 'research-methods' : view));
     window.dispatchEvent(new CustomEvent('research-task-view',{detail:{view}}));
-    if (view === 'worked-example') loadExamples();
   };
   document.querySelectorAll('[data-task-view]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskView)));
   document.querySelectorAll('[data-task-view-request]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskViewRequest)));
@@ -142,7 +141,7 @@
   }
 
   $('package-upload-action').addEventListener('click',()=>{
-    showTaskView('upload');
+    showTaskView('submission-progress');
     $('upload-package').focus({preventScroll:true});
   });
   $('package-refresh').addEventListener('click',load);
@@ -296,4 +295,5 @@
   $('package-filter').addEventListener('change',()=> {if(state)render();});
   showTaskView(viewForHash(location.hash),false);
   load();
+  loadExamples();
 })();
