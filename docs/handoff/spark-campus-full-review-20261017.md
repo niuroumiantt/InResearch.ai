@@ -6,13 +6,27 @@
 
 现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.32。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
 
-## 当前继续点：正式intake用户命名空间身份核验（2026-10-17）
+## 当前继续点：首园区真实上线，v6已继续整批（2026-10-17）
 
-当前分支`codex/campus-userns-binding`基于main `3fe1b3b`；PR957的23项CI已通过并合并，网站与Spark已同步部署。proof v2在SSH环境对完整7窗输入实际计量8059 tokens通过，正式timer首次仍以`campus_token_runner_unverified`受阻。不能把SSH通过当作systemd正式运行通过；仍是7/7成功阅读窗口、0最终综合产物、0服务器完成包／0正式发布回执。
+PR958通过23项CI和完整2900项单元测试，合并提交`e408d3585c4f48c56f870c565b2b658b3298caf1`已同步部署网站与Spark，网站镜像与健康状态已核。当前`codex/campus-pilot-handoff`只补本次交接，规范版本仍为2026.10.16.32；下方命名空间修复、计量和早期阻塞记录均保留为阶段历史。6个已合并远程分支已按精确SHA租约清理，未合并分支及本地资料全部保留。
+
+正式首包UCLOUD-WLCB已由qwen3.8:27b完成7个原生窗口与整园区综合，服务器报告`138a0f3e-2415-5c5f-a568-f8e7e096ec6f`确认197格完整覆盖，其中81格归属数据、116格共享表头／上下文；全表覆盖分母只累计81/10272，不把重复上下文计入。服务器实际达到`pilot_completed`，新增园区`cn-upload-5a24b8da1ca14d5f472b`及1条名称普通来源，8条候选held。持久来源台账、`/api/industry?site=cn-upload-5a24b8da1ca14d5f472b`和任务累计1园区／1来源均核实；浏览器已核[园区档案](https://inresearch.ai/project.html?site=cn-upload-5a24b8da1ca14d5f472b)与名录显示1个未定位、0个已定位。该档案仍为unverified基础登记，坐标为空；这是实际入库上线，尚未地图点亮，不是C3采用或容量／运行状态核实。
+
+首次交付返回HTTP504，但服务器已实际发布并保存完整报告和来源回执。Spark本地ACK尚缺，不能用网站成功冒充本地已确认，也不能伪造ACK或为重取ACK再次生成已完成首包；原504与正常300秒退避保留，后续由正常运行及实际回执继续核对。私有`campus-pilot-current.json`是首包完成时快照，不代表后续余包已经完成。
+
+31条原模型意见已逐条与同SHA完整包核对，人工反馈仅校正重复索取、表头误判、跨窗未见与真实缺口；原件、原始报告及候选历史未改。正常反馈API以`revision_required`保存为revision6，仍处于`pilot_completed`；反馈原文不是注入后续模型的新任务。随后同一attempt `9c1503ab-4c07-4197-848c-e59cb3af898e`经正常`continue_full_analysis`取得revision7，phase=full、state=running，完成1/117包，v6余116包开放；无需重读已完成首包或再向用户索要逐批批准。v6全部完成后按dahai、全国园区库、v5顺序各自首包验收再继续，四份合计507包当前只完成1包。
+
+原始正式回执已只读导出，10个文件SHA全验、未读包明确pending：`/Users/m5/.local/share/inresearch.ai/material-batches/campus-20261017/正式回执-首园区-20261017/`；网站容器原导出为`/runtime/data/.campus-admin-operations/exports/pilot-20261017-0357/`。逐条人工复核保存在`/Users/m5/.local/state/inresearch.ai/campus-full-review-20261017/pilot-31-findings-reconciled.json`；可执行补证单为`/Users/m5/.local/share/inresearch.ai/material-batches/campus-20261017/首园区具体补证指令.txt`，校正说明为同目录`首园区反馈校正.txt`。这些原始31条意见和原始next-actions不能未经复核直接当成爬取指令。UCLOUD的节能审查、环评／地块坐标、分期／楼栋及运营披露线索只适用于这个已绑定园区，不能套用到其余园区。
+
+本次证据索引在私有state的`pilot-completed/`及`namespace-binding/`，工作快照另见`/private/tmp/campus-pilot-current.json`、`campus-userns-merge.json`、`campus-userns-spark-deploy.json`、`campus-userns-website-deploy.txt`、`campus-v6-continue-receipt.json`、`campus-pilot-feedback-receipt.json`、`campus-pilot-formal-export-result.json`。继续只按实际服务器包／格回执和普通来源投影报告进度；后续模型语义、其他园区的来源真假、完整全表与地图定位仍各自核验。
+
+## 正式intake用户命名空间身份核验（已部署历史，2026-10-17）
+
+该阶段分支`codex/campus-userns-binding`基于main `3fe1b3b`；PR957的23项CI已通过并合并，网站与Spark已同步部署。proof v2在SSH环境对完整7窗输入实际计量8059 tokens通过，正式timer首次仍以`campus_token_runner_unverified`受阻。不能把SSH通过当作systemd正式运行通过；仍是7/7成功阅读窗口、0最终综合产物、0服务器完成包／0正式发布回执。
 
 实际同单元诊断先遇GPU等待，随后捕获精确失败：`_runner_identity`第162行预期本机ollama UID996，runner四种UID却显示65534。私有`/private/tmp/campus-timer-trace-latest.json`保留具体进程／模型／配置及失败位置；`/private/tmp/campus-userns-readonly-result.json`显示调用方UID1001只有1001→1001、长度1的映射，系统overflowuid为65534。root system manager报告`ollama.service`的User/Group=ollama、MainPID2158、ControlGroup=/system.slice/ollama.service；目标runner是其直属子进程且同精确cgroup。临时trace已撤回、原ExecStart恢复，原件、7窗与原attempt均未改；诊断不算综合或发布。
 
-本次.32只补充分词服务身份：保留直接UID校验；对严格单UID自映射下的不可表示宿主UID，结合实际overflow、固定root服务配置、非委派cgroup、直属MainPID、父子命令／启动时钟／映射作完整重复核验，proof v2记录方法。不得直接接受65534、关闭PrivateTmp、升权或改动模型与预算。原阅读recipe、32768／4096、GPU门槛及分词／生成生命周期分离保持；相关110项夹具已通过（复验见文末）；完整CI、部署、正式同单元综合及网站回执仍须按实际结果补记，当前不称已跑通。
+本次.32只补充分词服务身份：保留直接UID校验；对严格单UID自映射下的不可表示宿主UID，结合实际overflow、固定root服务配置、非委派cgroup、直属MainPID、父子命令／启动时钟／映射作完整重复核验，proof v2记录方法。不得直接接受65534、关闭PrivateTmp、升权或改动模型与预算。原阅读recipe、32768／4096、GPU门槛及分词／生成生命周期分离保持；该阶段110项夹具已通过（复验见文末），当时完整CI、部署、正式同单元综合及网站回执尚待验收；本次真实完成结果见上方当前继续点。
 
 ## 分词实例与生成模型分离（已部署历史，2026-10-17）
 
