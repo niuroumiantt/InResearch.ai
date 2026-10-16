@@ -19,8 +19,8 @@ from inresearch.materials import inbox, native_review_contract as contract, revi
 from inresearch.paths import project_root
 
 
-def campus_workbook(*, duplicate=False):
-    layout = contract.LAYOUTS['mainland-register-v6']
+def campus_workbook(*, duplicate=False, layout_id='mainland-register-v6'):
+    layout = contract.LAYOUTS[layout_id]
     additions = {
         '1-地点与身份': {'A2':'P-001','B2':'测试园区甲','D2':'河北省','E2':'张家口市',
                       'G2':'河北省张家口市','T2':'S-001','A3':'P-002','B3':'测试园区乙',
@@ -145,6 +145,33 @@ class FullNativeReviewTests(unittest.TestCase):
         raw=self.path.read_bytes(); manifest=contract.build_manifest(Workbook(self.path),hashlib.sha256(raw).hexdigest())
         self.assertNotIn('P-001',[row['campus_key'] for row in manifest['packets'] if row['kind']=='campus'])
         self.assertEqual(sum(len(row['owned_locators']) for row in manifest['packets']),manifest['total_nonblank_cells'])
+
+    def test_v5_historical_layout_covers_all_cells_without_new_site_identity(self):
+        raw=campus_workbook(layout_id='mainland-register-v5')
+        self.path.write_bytes(raw);book=Workbook(self.path)
+        sha=hashlib.sha256(raw).hexdigest()
+        manifest=contract.build_manifest(book,sha)
+        self.assertEqual(manifest['layout_id'],'mainland-register-v5')
+        self.assertEqual(set(contract.LAYOUTS['mainland-register-v6']['sheets']) -
+                         set(sheet['name'] for sheet in book.sheets),
+                         {'12-对象关系与计数资格','13-观察明细（证据链）','14-修改记录','15-进度说明'})
+        campuses=[packet for packet in manifest['packets'] if packet['kind']=='campus']
+        self.assertEqual(len(campuses),2)
+        self.assertTrue(all(not packet['identity_eligible'] for packet in campuses))
+        expected={(index,address) for index,sheet in enumerate(book.sheets,1)
+                  for address,cell in sheet['cells'].items()
+                  if cell['value'] not in (None,'') or cell['formula'] is not None}
+        actual={(cell['sheet_index'],cell['cell']) for packet in manifest['packets'] for cell in packet['cells']}
+        owned=[locator for packet in manifest['packets'] for locator in packet['owned_locators']]
+        self.assertEqual(actual,expected)
+        self.assertEqual(len(owned),len(set(owned)))
+        self.assertEqual(len(owned),len(expected))
+        header=next(sheet for sheet in book.sheets if sheet['name']=='7-时间运行与证据')['cells']['G1']
+        self.assertEqual(header['value'],'信息有效期')
+        header['value']=contract.LAYOUTS['mainland-register-v6']['sheets']['7-时间运行与证据']['headers']['G1']
+        self.assertNotEqual(header['value'],'信息有效期','historical override must not mutate v6')
+        with self.assertRaisesRegex(ValueError,'layout_unknown_or_ambiguous'):
+            contract.build_manifest(book,sha)
 
     def test_basic_identity_gate_keeps_child_or_ambiguous_objects_out(self):
         self.assertTrue(self.campus['identity_eligible'])

@@ -582,6 +582,6 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 显式操作通过原指定负责人 `/api/materials/review` 完成：启动字段为 `id/sha256/expected_revision/operation_id/action=start_full_analysis/layout_id/reason/pilot_package_id`；首包网站回执核实后的继续字段为 `id/sha256/expected_revision/operation_id/action=continue_full_analysis/attempt_id/reason`。两次操作使用各自唯一 UUID 并取服务器最新 revision；精确重放保留原请求，不直接编辑线上 JSON 或清空 analysis_reports。新尝试生成独立 full-review 目录，已持久化请求／响应与回执保留；GPU等待不妨碍纯缓存提交恢复，不消耗本轮新模型调用名额。Ollama真实传输失败按有限预算退避，阻塞尝试不独占其他待审材料；默认任务优先沿原路径执行。
 
-综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，超上下文预算明确blocked，不缩减输入来宣称完成。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、dahai与全国园区库；v5只保留历史对照，不能套用v6布局启动。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
+综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，超上下文预算明确blocked，不缩减输入来宣称完成。窗口受约束解码使用实际原生值／定位枚举，P0/P1/P2及单格地点不得改写；系统提示与schema摘要纳入冻结配方，探针旧无效响应和成功窗口保留，规则改变不能混用。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、v5历史版、dahai与全国园区库；v5必须选择独立严格布局，不能套用v6，不授新园区身份资格。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
 
 原生文本全覆盖不包括图片、外链下载或公式执行，不等于来源陈述真实性、C3 正式采用或模型参数适用。缺口应明确到园区、字段、原件定位、需继续爬取的来源类型及验收条件；不把旧抽样中的“无可发布候选”当作全表结论。运行记录留私有数据目录，源码交接只记安全摘要。本节更新时仍为开发未部署，真实模型试点、网站回执和全表完成由当次交接追加。

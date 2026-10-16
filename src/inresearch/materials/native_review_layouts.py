@@ -1,7 +1,8 @@
-"""Reviewed column identities for the three supplied native campus workbooks.
+"""Reviewed column identities for supplied native campus workbooks and v5 history.
 
 Only schema and header text are stored here; no research records or originals.
 """
+import copy
 
 LAYOUTS = {'mainland-register-v6': {'main': '1-地点与身份',
                           'sheets': {'0-说明与口径': {'role': 'unassigned'},
@@ -639,3 +640,10 @@ LAYOUTS = {'mainland-register-v6': {'main': '1-地点与身份',
                                    '说明': {'role': 'unassigned',
                                           'header_row': 1,
                                           'headers': {'A1': '项目', 'B1': '内容'}}}}}
+
+# The approved historical register differs by these exact sheets and one header.
+# It has no object-relationship adjudication table and grants no new-site identity.
+LAYOUTS['mainland-register-v5'] = copy.deepcopy(LAYOUTS['mainland-register-v6'])
+for _sheet in ('12-对象关系与计数资格', '13-观察明细（证据链）', '14-修改记录', '15-进度说明'):
+    del LAYOUTS['mainland-register-v5']['sheets'][_sheet]
+LAYOUTS['mainland-register-v5']['sheets']['7-时间运行与证据']['headers']['G1'] = '信息有效期'

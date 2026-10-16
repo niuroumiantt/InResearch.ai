@@ -93,6 +93,8 @@ class FullReviewWorkerTests(unittest.TestCase):
         self.assertEqual(len(payload['review_windows']), 3)
         self.assertTrue(all(call['identity_context'] == self.cells[:1] for call in client.calls[:-1]))
         self.assertEqual(client.calls[-1]['stage'], 'whole_campus_adjudication')
+        self.assertEqual(client.calls[0]['source_context']['sha256'], self.sha)
+        self.assertEqual(client.calls[-1]['source_context'], client.calls[0]['source_context'])
 
     def test_successful_calls_and_final_payload_replay_without_inference(self):
         client = FakeClient()
@@ -228,6 +230,28 @@ class FullReviewWorkerTests(unittest.TestCase):
         status = json.loads(next(folder.rglob('status.json')).read_text())
         self.assertTrue(status['operator_required'])
         self.assertEqual(status['reason'], 'campus_delivery_http_400')
+
+    def test_decoder_restricts_priorities_and_single_native_location(self):
+        self.packet['identity_cells'] = [native('B7', '园区甲'), native('D7', '内蒙古自治区'),
+                                         native('E7', '乌兰察布市')]
+        part = worker.chunks(self.packet, self.task, [], FakeClient().profile)[0]
+        schema = worker.reading_schema(part)
+        props = schema['properties']['candidates']['items']['properties']
+        self.assertEqual(props['location']['enum'], ['内蒙古自治区'])
+        self.assertEqual(props['location_locator']['enum'], [native('D7', '')['locator']])
+        self.assertEqual(schema['properties']['findings']['items']['properties']['priority']['enum'], ['P0','P1','P2'])
+        self.assertNotIn('内蒙古自治区乌兰察布市', props['location']['enum'])
+
+    def test_prompt_or_decoder_change_cannot_mix_successful_windows(self):
+        client = FakeClient(); worker.proposal(self.item, self.original, self.folder, client)
+        with patch.object(review_worker, 'SYSTEM', review_worker.SYSTEM+'新规则'):
+            with self.assertRaisesRegex(ValueError, 'recipe_changed'):
+                worker.proposal(self.item, self.original, self.folder, client)
+        original = worker.reading_schema
+        with patch.object(worker, 'reading_schema', side_effect=lambda part: {**original(part), 'description':'new'}):
+            with self.assertRaisesRegex(ValueError, 'recipe_changed'):
+                worker.proposal(self.item, self.original, self.folder, client)
+        self.assertEqual(len(client.calls), 1)
 
     def test_continuing_job_never_falls_back_to_old_sampled_path(self):
         item = {**self.item, 'full_analysis': {**self.item['full_analysis'], 'state': 'continuing'}}

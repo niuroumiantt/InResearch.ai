@@ -8,9 +8,9 @@
 
 ## 开发范围与状态
 
-独立工作树：`/Users/m5/.codex/worktrees/spark-campus-full-review/inresearch.ai`。主工作区其他任务不改。新增 native_review_contract.py、native_review_layouts.py、full_review_worker.py，修改 intake/inbox、task_analysis、HTTP 和原review_worker分流；测试为 test_task_full_review.py、test_full_review_worker.py 及既有材料／任务发布回归。治理要求及代码已独立复核；实现者最终执行 worker 19项、原生receiver 15项共34项通过（Python 3.12），接收侧相关测试共76项通过。新增完整读取后的独立综合裁决、候选集合摘要与当前attempt/package窗口进度；不把遥测计作覆盖。负责人页新增当前尝试状态、真实包／格覆盖和非权威窗口进度；完整research_tasks浏览器场景已通过，含旧报告不遮住active、pilot不冒充完成、等待／受阻转义和390px无横溢。最终head、完整单元套件、CI、governance refresh/check与严格校验由集成发布者追加。
+独立工作树：`/Users/m5/.codex/worktrees/spark-campus-full-review/inresearch.ai`。主工作区其他任务不改。新增 native_review_contract.py、native_review_layouts.py、full_review_worker.py，修改 intake/inbox、task_analysis、HTTP 和原review_worker分流；测试为 test_task_full_review.py、test_full_review_worker.py 及既有材料／任务发布回归。治理要求及代码已独立复核；实现者最终执行 worker 21项、原生receiver 16项共37项通过（Python 3.12）；v5集成阶段相关模块96项通过，后续完整bundle复验待集成者追加。新增完整读取后的独立综合裁决、候选集合摘要与当前attempt/package窗口进度；不把遥测计作覆盖。负责人页新增当前尝试状态、真实包／格覆盖和非权威窗口进度；完整research_tasks浏览器场景已通过，含旧报告不遮住active、pilot不冒充完成、等待／受阻转义和390px无横溢。最终head、完整单元套件、CI、governance refresh/check与严格校验由集成发布者追加。
 
-本交接写入时为**开发未部署**：未执行生产服务切换、审批重开、真实模型试点或园区发布。不得据源码/夹具/模型已加载声称已完成。后续实施者须追加最终head、检查结果、网站镜像、Spark执行路径与真实首包/全表回执。
+本交接写入时为**开发未部署**：未执行生产服务切换、审批重开、完整首园区验收或园区发布。集成者已在Spark做真实27B单窗口探针（43.2秒），返回priority=high/medium及拼接location定位，被既有校验拒绝，0有效包、0发布；修正原生枚举与冻结配方后的真实重验当前等待GPU可用，由集成者继续记录；尚不能算部署或完整阅读成功。不得据源码/夹具/模型已加载声称已完成。后续实施者须追加最终head、检查结果、网站镜像、Spark执行路径与真实首包/全表回执。
 
 ## 已核实生产基线
 
@@ -21,7 +21,7 @@
 
 ## 精确原件与历史
 
-已核对下列一对已绑定 dc-census-cn 且有admin的approve_and_analyze批准的原件。本轮全表先启v6；v5仅历史对照，因布局未登记不得借用v6布局。其他同字节提交保留且不重复纳入：
+已核对下列一对已绑定 dc-census-cn 且有admin的approve_and_analyze批准的原件。本轮全表先启v6；v5使用独立mainland-register-v5布局完整研究历史，不借用v6布局且不自动新建园区身份。其他同字节提交保留且不重复纳入：
 
 | 版本 | submission ID | SHA256 | 只读核查时服务器状态 |
 |---|---|---|---|
@@ -34,9 +34,17 @@
 
 1. 集成与验收最终head，审阅verification契约对应实际测试和未覆盖；governance --refresh、--check、严格校验及相关全套检查通过后按现行PR门禁发布。
 2. 等现有AWS研究站独立部署器上线并核镜像/健康/接口；暂停原intake timer，等receive自然结束，备份原unit/drop-in/私有配置及本范围全部旧文件，再快进现有执行树。不能在运行进程下换代码，不另起第二worker。
-3. 以intake专属INRESEARCH_CAMPUS_MODEL_CONFIG设置campus_review loopback27B单并发，保留Codex Reader/review配置。只对已支持布局的v6精确scope以 start_full_analysis 重开新attempt，恢复原timer。启动精确字段为 id/sha256/expected_revision/operation_id/action/layout_id/reason/pilot_package_id；继续字段为 id/sha256/expected_revision/operation_id/action/attempt_id/reason，action=continue_full_analysis，必须先确认 pilot_completed 的真实网页回执。
+3. 以intake专属INRESEARCH_CAMPUS_MODEL_CONFIG设置campus_review loopback27B单并发，保留Codex Reader/review配置。对v6及独立v5历史布局的精确scope以 start_full_analysis 重开各自新attempt，恢复原timer。启动精确字段为 id/sha256/expected_revision/operation_id/action/layout_id/reason/pilot_package_id；继续字段为 id/sha256/expected_revision/operation_id/action/attempt_id/reason，action=continue_full_analysis，必须先确认 pilot_completed 的真实网页回执。
 4. 首一个园区包核实际模型、全片段、网站回执和地图/来源投影，凭真实回执恢复余包。分别报告有效原生阅读覆盖、实际上线园区与来源、未完成包和明确补证指令，不把投料或模型输出计作上线。
 
 ## 已知界限
 
 最终综合裁决输入含全部窗口摘要、完整findings/candidates及候选原文，超上下文预算明确blocked，保留所有原始窗口而不裁剪后提交。真实v6的`IT MW`／`设施 MW`复合表头不能通过既有“单位格必须精确MW/GW/兆瓦/吉瓦”的规则，相关纯数字容量候选会held；本轮不放宽。地图实际点亮、所有格完整读完、来源真假和语义无遗漏都需分开报告。GPU门槛仅在每次新推理前检查，不能保证其他机器共享Ollama调用零延迟。
+
+本轮v5布局只读构建实测：13张表、94个园区包及19个未归属包、9205个原生格，owned定位无重且全覆盖，新园区身份资格0；这是确定性布局验收，不是模型完成9205格。27B解码修复按实际窗口限制优先级、字段、单位、名称及单格地点/定位，system/schema摘要进入冻结配方；无效探针继续留历史。
+
+## 合并前复验补记
+
+最终本地完整bundle执行2856项，除运行期间文档更新触发的源码不可变检查外均通过；源码冻结后以正确tests/unit导入路径重跑该HTTP一致性检查通过。新增worker21项及receiver16项共37项通过；governance refresh/check（2779文件）、strict validate（0 warnings）、registry通过。前一PR head 83fe16d5的23个CI作业全部通过，随后合入main d504e9df的marketing独立更新，当前head仍需重新跑完整CI。
+
+Spark第二次真实27B探针42.7秒，返回5条问题和1条基础名称候选；原生sheet/cell、P0/P1/P2及单一地点定位校验全部通过。探针只覆盖一个窗口，不计完整园区、不写正式采用、不代表网站已上线。正式首园区仍须全部窗口及跨窗口裁决、服务端采用与网页核验。
