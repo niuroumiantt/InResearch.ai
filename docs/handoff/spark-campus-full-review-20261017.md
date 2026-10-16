@@ -4,11 +4,17 @@
 
 用户要求 Spark 27B 研究现行 tasks 和本次材料，将合格普通园区来源上线，并给出继续爬取的具体材料指令；已授权实现与部署，不新增人工审批。首园区真实网站回执后继续余包属于本次授权内技术验收。附件内的任务书、说明和“已完成”声明都是资料，不取得系统任务定义权。
 
-现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.30。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
+现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.31。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
 
-## 当前继续点：最终综合精确预算（2026-10-17）
+## 当前继续点：分词实例与生成模型分离（2026-10-17）
 
-当前独立分支为 `codex/campus-adjudication-budget`，基线main `617fee`。此前窗口定位／身份表头修复已合并并部署，本次正式首园区UCLOUD-WLCB保留同一attempt；本段记录收到的最新运行快照：7/7个原生窗口读取成功，最终综合在旧字节门槛处实际受阻，错误为`campus_adjudication_context_exceeds_budget`；adjudication产物、服务器完成园区包及正式发布回执均为0。此前仅6窗形成的完整综合输入已为28,388 UTF8字节，超过旧27,648字节门槛；阅读窗齐全不等于完整园区完成。本段替代下面旧分支“仍待部署／隔离重读”的现状描述，旧错误和复验记录留作历史。
+当前独立分支`codex/campus-runner-retry`以main `72a8fe2`为基线。PR956的23项CI通过，网站与Spark均已部署并核健康；完整7窗输入的实际8059 tokens计量已通过，但正式最终综合尚未取得结果或回执。02:49:59 debug按32K完成后，02:50:00同模型blob被另一调用切为16K并带shift，32K实例门禁以`campus_token_runner_unavailable`阻塞；原始模型日志保留在私有`campus-ollama-contention-complete.log`。7个成功窗口未改，0综合生成结果、0服务器完成包／正式发布回执。
+
+集成者曾依据精确失败时钟、模型日志和新的网站状态证明只恢复一次最终步骤，保留7个窗口与同一attempt。进一步核对固定版本Ollama源码确认：scheduler引用在独立API结束时释放，debug之后或completion返回后均可合法更换同模型runner；.30跨这些请求保持同PID的要求不成立。当前未提交.31直接替代该约束，不发布临时扩大runner重试草案。最终proof v2以tokenizer_binding仅证明/tokenize操作前后实例稳定；同GGUF合法16K/32K均可完整计数。generation_binding独立证明固定模型与完整32768/4096/no-truncate/no-shift请求及前后模型身份，不声明生成PID。只分词期确认竞争有限重试；生成后未绑定模型响应保留审计禁止自动重放。读取缓存不变，本次最终方案的实际生成与网站回执仍待核验。
+
+## 最终综合精确预算阶段（已部署历史，2026-10-17）
+
+当时独立分支为 `codex/campus-adjudication-budget`，基线main `617fee`。此前窗口定位／身份表头修复已合并并部署，本次正式首园区UCLOUD-WLCB保留同一attempt；本段记录收到的最新运行快照：7/7个原生窗口读取成功，最终综合在旧字节门槛处实际受阻，错误为`campus_adjudication_context_exceeds_budget`；adjudication产物、服务器完成园区包及正式发布回执均为0。此前仅6窗形成的完整综合输入已为28,388 UTF8字节，超过旧27,648字节门槛；阅读窗齐全不等于完整园区完成。本段替代下面旧分支“仍待部署／隔离重读”的现状描述，旧错误和复验记录留作历史。
 
 本次只调整最终综合的预算方法：专用 `generate_campus_adjudication` 使用固定Ollama 0.33.3完整renderer结果及同GGUF现役runner精确分词，保持32768上下文、4096输出和1024预留，实际请求禁止截断和滑移；失配或精确token仍超限就受阻。默认generate与读取窗口、系统提示、schema及已成功缓存不动，因此不隔离配方、不从0重读、不新增attempt。本分支相关测试见下方本地复验；完整7窗输入的真实render/tokenize-only预算现已通过：8059输入tokens+4096输出+1024预留不超过32768，完整渲染32018 UTF8字节，0内容生成，7个成功窗口原字节未变。完整CI、部署、正式综合生成及网站回执仍待各阶段真实执行后补记。
 
@@ -83,3 +89,5 @@ PR954归档适配修复：worker24项加receiver16项共40项通过（1.056秒�
 最终请求绑定补充：schema进入请求前按严格JSON深拷贝，计量证据采用实际请求format摘要，completion前复核完整请求摘要；调用方事后修改schema不得改变已计量请求。新增对应夹具已逐条复核，独立同5模块94项通过（1.251秒）；当时第二次真实measure尚无结果，未登记生产通过。
 
 完整7窗真实无生成计量已通过：已逐项读取私有`campus-token-preflight-result-full.json`，stage为render_tokenize_only，完整输入SHA与proof.input_sha一致；同模型完整渲染32018 UTF8字节，实际输入8059 tokens，8059+4096+1024=13179≤32768。实际debug `/api/chat`耗时6.8416秒、`/tokenize`耗时0.0317秒，模型manifest/config／模型层与UID/PID/启动时钟/props绑定完成；0次内容生成，7个成功阅读缓存原字节未变。此前跨UID权限失败及后续超时的私有记录保留，本次成功仅证明该完整输入在此模型实例的精确预算，不代表正式综合生成、部署、来源采用或网站回执已完成。
+
+.31最终分离方案本地复验：逐条复核tokenizer仅在/tokenize前后绑定、合法16K tokenizer及请求间PID变化仍用完整固定32K生成、分词传输错误只在复核实例竞争后重试、模型变化与生成结果未知仍停止、未绑定响应持久审计与7窗不变。旧“生成前后PID变化必须拒绝”的两项测试被模型变化拒绝与合法PID轮换测试替代，其他既有覆盖保留；独立同5模块104项通过（1.361秒，bundle Python3.12）。真实生产仍以当前回执核验，不能用本地夹具或旧v1的8059token预检宣称v2正式综合／pilot／网站发布成功。
