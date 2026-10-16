@@ -46,6 +46,8 @@ def geography(row):
         # Byte/receiver audit and local locators stay in the private source record.
         result['coordinate_source'] = {k: row['coordinate_source'].get(k) for k in
             ('precision', 'coordinate_system', 'method', 'url', 'basis')}
+        if row['coordinate_source'].get('precision') == 'city':
+            result['coordinate_source']['feature_code'] = row['coordinate_source'].get('feature_code')
     return result
 
 
@@ -92,6 +94,16 @@ COORDINATE_SOURCE_KEYS = frozenset(('precision', 'coordinate_system', 'method', 
                                    'url', 'locator', 'basis'))
 
 
+def check_wgs84_point(value):
+    """Validate finite map coordinates without assigning spatial precision."""
+    if (not isinstance(value, str) or len(value) > 100 or not re.fullmatch(
+            r'\s*[+-]?\d+(?:\.\d+)?\s*,\s*[+-]?\d+(?:\.\d+)?\s*', value)):
+        raise ValueError('initial_coordinates_lat_lon_required')
+    lat, lon = (float(v) for v in value.split(','))
+    if not (math.isfinite(lat) and math.isfinite(lon) and -90 <= lat <= 90 and -180 <= lon <= 180):
+        raise ValueError('initial_coordinates_out_of_range')
+
+
 def check_initial_coordinates(identity):
     """Optional source-located WGS84 point, never an inferred city centroid."""
     if not isinstance(identity, dict):
@@ -102,12 +114,7 @@ def check_initial_coordinates(identity):
     if len(present) != 2:
         raise ValueError('coordinates_and_source_required_together')
     value, source = identity['coordinates'], identity['coordinate_source']
-    if (not isinstance(value, str) or len(value) > 100 or not re.fullmatch(
-            r'\s*[+-]?\d+(?:\.\d+)?\s*,\s*[+-]?\d+(?:\.\d+)?\s*', value)):
-        raise ValueError('initial_coordinates_lat_lon_required')
-    lat, lon = (float(v) for v in value.split(','))
-    if not (math.isfinite(lat) and math.isfinite(lon) and -90 <= lat <= 90 and -180 <= lon <= 180):
-        raise ValueError('initial_coordinates_out_of_range')
+    check_wgs84_point(value)
     if (not isinstance(source, dict) or set(source) != COORDINATE_SOURCE_KEYS
             or source.get('precision') not in ('address', 'site', 'building')
             or source.get('coordinate_system') != 'WGS84'

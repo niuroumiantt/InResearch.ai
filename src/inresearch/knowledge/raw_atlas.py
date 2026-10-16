@@ -132,7 +132,9 @@ def enrichment(event):
 def build(root, feed, leads, *, received_at=None, available=False, truncated=False, now=None):
     root=Path(root)
     site_path=root/'data/projects.json';company_path=root/'data/companies.json'
-    sites={r['site_id']:current(r) for r in json.loads(site_path.read_text())['records']} if site_path.exists() else {}
+    from inresearch.delivery import source_publication
+    site_rows = source_publication.projects(root, source_publication.site_state(root))['records'] if site_path.exists() else []
+    sites={r['site_id']:current(r) for r in site_rows}
     companies=json.loads(company_path.read_text())['records'] if company_path.exists() else []; company_ids={r['company_id'] for r in companies}
     from inresearch.materials.daily_events import COUNTRIES
     company_terms=_company_terms(companies)
@@ -174,7 +176,7 @@ def build(root, feed, leads, *, received_at=None, available=False, truncated=Fal
                   origin=row.get('origin') or 'news_feed')
         if site:
             item.update(coordinates=project(site)['coordinates'], location=site.get('location'),region=site.get('region'))
-            if item['coordinates']: item['location_precision']='site'
+            if item['coordinates']: item['location_precision']=(site.get('coordinate_source') or {}).get('precision', 'site')
             if site.get('country') and not mentions: item['country_mentions']=countries([{'code':site['country']}])
         if not item['coordinates'] and len(item['country_mentions'])==1:
             code=item['country_mentions'][0]['code'];item['coordinates']=points.get(code)

@@ -1,5 +1,13 @@
 # Spark 持续 reader 运行手册
 
+## 城市级点亮：双原件追加与回执（.36）
+
+仅对已上线、唯一身份且目前无坐标的园区使用；城市／地级区域来源已明确，地址仍可未知。先在完整包边界核当前队列与源状态，保留全部成功阅读。正常操作为 `python3 manage.py source-publish inspect` 取得state_sha256，将其填入私有payload的expected_state_sha，再执行 `python3 manage.py source-publish locate-city --input /私有目录/payload.json --geography /私有目录/CN.zip`。原件ZIP、payload、回执和审计进入持久私有资料／状态目录，不进Git，不依赖/tmp作为唯一副本。
+
+payload固定version=1、geography_sha256、expected_state_sha及sites数组；每项为site_id、submission_id、source_sha256、sheet（原表名而非序号）、name_cell、province_cell、city_cell、geoname_id（字符串）、geonames_line（1起整数）。v6/v5主表`1-地点与身份`为B/D/E；dahai主表`园区主表`为B/G/H；全国库主表`园区主表`为F/C/D。格位必须同原行且布局表头完整匹配。接收端核批准原件、已登记名称观测和GeoNames省／城市闭包；不得用GeoNames单文件代替园区归属证据，不能传lat/lon覆盖。PPLC/PPLA/PPLA2或精确全名ADM2可用，其余类别保持待补。
+
+CAS失效先重新读取实际状态，核本批是否已有回执；同内容摘要不含CAS，原件复验后幂等重放不重复增加。当前已有city或精确点不得换点，异常整批失败且旧状态不变。完成后分别查持久city_location回执、API的coordinates及geography.coordinate_source、地图／浮窗／档案城市级标签和GeoNames链接；同城园区仍各有ID。报告已定位园区数与城市／地级区域数，不能说城市参考坐标就是园区实址或C3。精度更高的新来源须走相应显式核验，不由本入口覆盖。
+
 > CURRENT · 2026-10-07（首版 2026-09-13）。规则归属与替代关系见 framework/CURRENT.md。
 
 本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。

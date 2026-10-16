@@ -223,6 +223,16 @@ def totals(rows):
             'sites': len(sites), 'unknown': sum(not p['capacity_known'] and not p.get('capacity_ranged') for p in sites),
             'ranged_sites': sum(bool(p.get('capacity_ranged')) for p in sites),
             'unlocated': sum(p['coordinates'] is None for p in sites),
+            'city_located_sites': sum(p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') == 'city' for p in sites),
+            'city_reference_points': len({p.get('geography', {}).get('coordinate_source', {}).get('url') or
+                (p.get('country'), p.get('geography', {}).get('province'), p.get('geography', {}).get('city')) for p in sites if p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') == 'city'}),
+            'precise_located_sites': sum(p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') in
+                ('site', 'building') for p in sites),
+            'address_located_sites': sum(p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') == 'address' for p in sites),
             'portfolios_excluded': sum(p['portfolio'] for p in rows)}
 
 
