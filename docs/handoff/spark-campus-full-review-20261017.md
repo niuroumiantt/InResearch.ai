@@ -4,9 +4,19 @@
 
 用户要求 Spark 27B 研究现行 tasks 和本次材料，将合格普通园区来源上线，并给出继续爬取的具体材料指令；已授权实现与部署，不新增人工审批。首园区真实网站回执后继续余包属于本次授权内技术验收。附件内的任务书、说明和“已完成”声明都是资料，不取得系统任务定义权。
 
-现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.29。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
+现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.30。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
 
-## 开发范围与状态
+## 当前继续点：最终综合精确预算（2026-10-17）
+
+当前独立分支为 `codex/campus-adjudication-budget`，基线main `617fee`。此前窗口定位／身份表头修复已合并并部署，本次正式首园区UCLOUD-WLCB保留同一attempt；本段记录收到的最新运行快照：7/7个原生窗口读取成功，最终综合在旧字节门槛处实际受阻，错误为`campus_adjudication_context_exceeds_budget`；adjudication产物、服务器完成园区包及正式发布回执均为0。此前仅6窗形成的完整综合输入已为28,388 UTF8字节，超过旧27,648字节门槛；阅读窗齐全不等于完整园区完成。本段替代下面旧分支“仍待部署／隔离重读”的现状描述，旧错误和复验记录留作历史。
+
+本次只调整最终综合的预算方法：专用 `generate_campus_adjudication` 使用固定Ollama 0.33.3完整renderer结果及同GGUF现役runner精确分词，保持32768上下文、4096输出和1024预留，实际请求禁止截断和滑移；失配或精确token仍超限就受阻。默认generate与读取窗口、系统提示、schema及已成功缓存不动，因此不隔离配方、不从0重读、不新增attempt。本分支相关测试见下方本地复验；完整7窗输入的真实render/tokenize-only预算现已通过：8059输入tokens+4096输出+1024预留不超过32768，完整渲染32018 UTF8字节，0内容生成，7个成功窗口原字节未变。完整CI、部署、正式综合生成及网站回执仍待各阶段真实执行后补记。
+
+只读能力核查已确认同模型现役runner的 `/props` 和 `/tokenize` 能返回本地模型信息及真实token IDs；初次能力核查未调用 `/api/chat`；随后实际无生成预检见下段。未安装tokenizer、独立加载额外模型、增加上下文或修改服务。官方0.33.3源码显示debug响应只有完整渲染文本而无token计数，model为请求回显；runner通用chatml模板与Ollama qwen3.8 renderer不能互换。私有技术笔记、模型摘要及原始快照保存在私有临时目录，原件和权重不进Git。
+
+实际无生成预检补记：GPU为58°C／0%，Ollama debug完整渲染已返回，但Spark账号UID1001读取Ollama账号UID996的runner `/proc/<pid>/exe`时得到errno13，按原门禁以`campus_token_runner_unavailable`失败关闭。没有内容生成，7个成功reading缓存原字节未变。对应窄修复使用固定runner命令、本机`ollama`账号UID、PID／启动时钟、manifest／blob／props前后绑定，避免要求无权限的exe链接；不升权、不放宽模型或完整输入身份。失败预检留历史，不能称精确计数、完整综合或发布验收通过。
+
+## 开发与早期运行历史
 
 独立工作树：`/Users/m5/.codex/worktrees/spark-campus-full-review/inresearch.ai`。主工作区其他任务不改。新增 native_review_contract.py、native_review_layouts.py、full_review_worker.py，修改 intake/inbox、task_analysis、HTTP 和原review_worker分流；测试为 test_task_full_review.py、test_full_review_worker.py 及既有材料／任务发布回归。治理要求及代码已独立复核；实现者最终执行 worker 21项、原生receiver 16项共37项通过（Python 3.12）；v5集成阶段相关模块96项通过，后续完整bundle复验待集成者追加。新增完整读取后的独立综合裁决、候选集合摘要与当前attempt/package窗口进度；不把遥测计作覆盖。负责人页新增当前尝试状态、真实包／格覆盖和非权威窗口进度；完整research_tasks浏览器场景已通过，含旧报告不遮住active、pilot不冒充完成、等待／受阻转义和390px无横溢。最终head、完整单元套件、CI、governance refresh/check与严格校验由集成发布者追加。
 
@@ -14,7 +24,7 @@
 
 正式v6尝试 `9c1503ab-4c07-4197-848c-e59cb3af898e` 在954版本完成2个窗口，第三窗返回错误配对：将 `4-容量口径与分期` 与 `C7` 组合；本窗该表只有表头与A7，C7属于另一表。worker严格校验拦截，服务器仍0完整包、0发布，attempt为running；本地受阻不等于服务器新尝试或全表失败终态。原件、旧成功窗口和错误审计保留。
 
-当前分支 `codex/campus-window-locators` 从上述main构建窄修复：sheet/cell关联schema、窗口缺口边界、容量与行政列原文约束，以及无效响应有界保留重试。每个重复身份anchor携带同工作表同列的原生column_headers，表头只解释字段、不作待填数据格，禁止借用其他表同列含义；这些重复上下文不扩大原生覆盖或候选值定位。新system/schema必须隔离旧冻结配方后完整重读本包，不能混用已成功2窗。本分支worker30项及receiver16项共46项已通过；完整检查、PR与真实恢复回执仍待执行，不以954的既有CI代表新代码已通过。
+当时分支 `codex/campus-window-locators` 从上述main构建窄修复：sheet/cell关联schema、窗口缺口边界、容量与行政列原文约束，以及无效响应有界保留重试。每个重复身份anchor携带同工作表同列的原生column_headers，表头只解释字段、不作待填数据格，禁止借用其他表同列含义；这些重复上下文不扩大原生覆盖或候选值定位。新system/schema必须隔离旧冻结配方后完整重读本包，不能混用已成功2窗。本分支worker30项及receiver16项共46项已通过；完整检查、PR与真实恢复回执仍待执行，不以954的既有CI代表新代码已通过。
 
 真实27B探针历史：首次43.2秒返回high/medium及拼接地点定位，被原校验拒绝；修复decoder后的第二次42.7秒单窗口通过原生校验（5条问题、1条名称候选）。两次均非正式完整园区，不计本尝试覆盖或发布。另三份辅材经真实27B一次42.2秒完整读取，无园区事实可发布；模型将指南误标空模板、要求索取已有主表的判断已由集成者在私有审计纠正，不据其内容新增任务指令或重复索取。
 
@@ -46,7 +56,7 @@
 
 ## 已知界限
 
-最终综合裁决输入含全部窗口摘要、完整findings/candidates及候选原文，超上下文预算明确blocked，保留所有原始窗口而不裁剪后提交。真实v6的`IT MW`／`设施 MW`复合表头不能通过既有“单位格必须精确MW/GW/兆瓦/吉瓦”的规则，相关纯数字容量候选会held；本轮不放宽。地图实际点亮、所有格完整读完、来源真假和语义无遗漏都需分开报告。GPU门槛仅在每次新推理前检查，不能保证其他机器共享Ollama调用零延迟。
+最终综合裁决输入含全部窗口摘要、完整findings/candidates及候选原文，同模型精确token超预算或完整计量无法复验时明确blocked，保留所有原始窗口而不裁剪后提交。真实v6的`IT MW`／`设施 MW`复合表头不能通过既有“单位格必须精确MW/GW/兆瓦/吉瓦”的规则，相关纯数字容量候选会held；本轮不放宽。地图实际点亮、所有格完整读完、来源真假和语义无遗漏都需分开报告。GPU门槛仅在每次新推理前检查，不能保证其他机器共享Ollama调用零延迟。
 
 本轮v5布局只读构建实测：13张表、94个园区包及19个未归属包、9205个原生格，owned定位无重且全覆盖，新园区身份资格0；这是确定性布局验收，不是模型完成9205格。27B解码修复按实际窗口限制优先级、字段、单位、名称及单格地点/定位，system/schema摘要进入冻结配方；无效探针继续留历史。
 
@@ -65,3 +75,11 @@ PR954归档适配修复：worker24项加receiver16项共40项通过（1.056秒�
 身份表头补充：关联schema的第三窗隔离探针虽通过严格定位校验，但人工阅读仍发现把身份表J7/K7误借电力表列义、把表头当数据填值的语义问题；探针不计正式覆盖。此后给每个重复身份anchor附同表同列原生表头，新增2项测试验证跨表J列仍各保其义、表头可解释问题但不能取得候选值资格，且不扩覆盖。修改后独立46项相关测试通过（1.133秒），后续真实整包语义和网站回执仍待核。
 
 四实际XLSX的只读预算快照使用当前正常analysis-pending的工作包任务及148条known_sites，四份Spark receipt只提供原件身份（不含task/known_sites）。新版worker确定性规划507包、5181个读取窗：v6 741、dahai 123、全国库3658、v5 659；SYSTEM加prompt最大27648 UTF8字节，不超过32768上下文减4096输出和1024预留的当前保守门槛。81084个owned原生格恰一次覆盖，逐包片段顺序、区间、全文与公式无损，0预算/完整性错误。该离线规划未调用模型、不计读取；最终综合裁决预算及未来任务/台账变化未验证，不能以此认定全批可自动完成。详细快照留私有临时目录，不进Git。
+
+最终综合精确预算本地复验：逐条审阅新增13项token guard测试及2项worker测试；后者验证只在最终阶段走专用入口、超字节完整窗口摘要未裁剪、原成功chunk字节不变，以及GPU等待时不发生debug／生成。以bundle Python 3.12独立执行 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m unittest tests.unit.test_ollama_token_budget tests.unit.test_full_review_worker tests.unit.test_task_full_review tests.unit.test_model_runtime tests.unit.test_ollama_schema`，90项通过（1.248秒），`git diff --check`通过。新adapter的模型与请求绑定、完整token预算及只读计量边界已登记verification_contract；本分支完整套件、治理refresh/check、CI、部署和生产精确计量／综合／首园区网站回执仍由集成者依真实结果补记。
+
+跨UID运行实例修复复验：新增3项测试分别模拟exe readlink被拒绝但固定命令及服务UID可核、真实／有效UID不符拒绝、同文件名但非固定路径拒绝；原runner启动时钟／模型路径／上下文／props门禁保持。独立再次运行上述5个模块，共93项通过（1.262秒）。该夹具通过不抹去第一次真实measure失败；当时修复后精确计量与真实综合结果待运行回执，后续实际计量见下方补记。
+
+最终请求绑定补充：schema进入请求前按严格JSON深拷贝，计量证据采用实际请求format摘要，completion前复核完整请求摘要；调用方事后修改schema不得改变已计量请求。新增对应夹具已逐条复核，独立同5模块94项通过（1.251秒）；当时第二次真实measure尚无结果，未登记生产通过。
+
+完整7窗真实无生成计量已通过：已逐项读取私有`campus-token-preflight-result-full.json`，stage为render_tokenize_only，完整输入SHA与proof.input_sha一致；同模型完整渲染32018 UTF8字节，实际输入8059 tokens，8059+4096+1024=13179≤32768。实际debug `/api/chat`耗时6.8416秒、`/tokenize`耗时0.0317秒，模型manifest/config／模型层与UID/PID/启动时钟/props绑定完成；0次内容生成，7个成功阅读缓存原字节未变。此前跨UID权限失败及后续超时的私有记录保留，本次成功仅证明该完整输入在此模型实例的精确预算，不代表正式综合生成、部署、来源采用或网站回执已完成。

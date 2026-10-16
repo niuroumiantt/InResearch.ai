@@ -27,6 +27,9 @@ class FakeClient:
         self.calls = []
         self.truncate = truncate
 
+    def generate_campus_adjudication(self, system, user, **kwargs):
+        return self.generate(system, user, **kwargs)
+
     def generate(self, system, user, **kwargs):
         self.calls.append(json.loads(user))
         if self.truncate:
@@ -149,6 +152,53 @@ class FullReviewWorkerTests(unittest.TestCase):
             self.assertIn('不要求把市区或地址填入省份列', call['instructions'])
             self.assertIn('禁止借用其他表的同列名', call['instructions'])
             self.assertIn('不得要求把数值或其他数据填入表头单元格', call['instructions'])
+
+    def test_only_final_uses_token_guard_and_reuses_unchanged_successful_windows(self):
+        class LongSummaryClient(FakeClient):
+            def __init__(self):
+                super().__init__()
+                self.final_calls = 0
+            def generate(self, system, user, **kwargs):
+                result = super().generate(system, user, **kwargs)
+                if self.calls[-1].get('stage') != 'whole_campus_adjudication':
+                    result['summary'] = '完整原文摘要' * 2500
+                return result
+            def generate_campus_adjudication(self, system, user, **kwargs):
+                self.final_calls += 1
+                self.final_input = user
+                if kwargs.get('before_completion'):
+                    kwargs['before_completion']()
+                return self.generate(system, user, **kwargs)
+        client = LongSummaryClient()
+        for _ in range(3):
+            self.assertIsNone(worker.proposal(self.item, self.original, self.folder, client))
+        self.assertEqual(client.final_calls, 0)
+        files = {path: path.read_bytes() for path in self.folder.rglob('chunk-*.json')}
+        gates = []
+        result = worker.proposal(self.item, self.original, self.folder, client,
+                                 before_generate=lambda: gates.append('ready'))
+        self.assertGreater(len((review_worker.SYSTEM+client.final_input).encode()), 27648)
+        self.assertEqual(len(gates), 2)
+        self.assertEqual(client.final_calls, 1)
+        self.assertEqual(len(client.calls), 4)
+        self.assertEqual(len(result['review_windows']), 3)
+        self.assertEqual(files, {path: path.read_bytes() for path in files})
+        self.assertEqual(json.loads(client.final_input)['window_summaries'],
+                         ['完整原文摘要' * 2500] * 3)
+
+    def test_busy_gpu_before_final_prevents_render_or_inference(self):
+        client = FakeClient()
+        for _ in range(3):
+            worker.proposal(self.item, self.original, self.folder, client)
+        files = {path: path.read_bytes() for path in self.folder.rglob('chunk-*.json')}
+        def unavailable():
+            raise worker.YieldWork('campus_waiting_for_gpu')
+        with self.assertRaises(worker.YieldWork):
+            worker.proposal(self.item, self.original, self.folder, client,
+                            before_generate=unavailable)
+        self.assertEqual(len(client.calls), 3)
+        self.assertEqual(files, {path: path.read_bytes() for path in files})
+        self.assertFalse(list(self.folder.rglob('adjudication.json')))
 
     def test_successful_calls_and_final_payload_replay_without_inference(self):
         client = FakeClient()
