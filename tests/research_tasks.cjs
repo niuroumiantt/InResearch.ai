@@ -23,6 +23,9 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});
     const anonymousContext = await browser.newContext();
     const anonymous = await anonymousContext.newPage();
+    const publicPageRequests=[], anonymousErrors=[];
+    anonymous.on('request',request=>publicPageRequests.push(new URL(request.url()).pathname));
+    anonymous.on('pageerror',error=>anonymousErrors.push(error.message));
     assert.equal((await anonymous.request.get(base+'/api/research-tasks')).status(),200);
     assert.equal((await anonymous.request.post(base+'/api/research-tasks',{data:{}})).status(),401);
     await anonymous.goto(base+'/tasks.html');
@@ -74,9 +77,9 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.waitForFunction(published=>document.querySelector('#mission-progress-value')?.textContent===`${new Intl.NumberFormat('zh-CN').format(published)} 个园区已入库`,initialTasks.site_progress.published_sites);
     assert.equal(await anonymous.locator('[data-package-dashboard="'+fixturePackage.id+'"] [data-package-published-sites]').innerText(),String(initialTasks.package_progress[fixturePackage.id].published_sites));
     await anonymous.locator('#work-packages > summary').click();
-    assert.equal(await anonymous.locator('#download-template-home').count(),1);
-    assert.equal(await anonymous.locator('#submission-progress #task-upload-form').count(),1,'submission form and personal feedback share one progress view');
-    assert.equal(await anonymous.locator('#submission-progress #upload-own-list').count(),1,'personal receipt timeline remains alongside the submission form');
+    assert.equal(await anonymous.locator('#download-template-home, #download-brief, #download-template, #download-package-plan, [data-download-event-plan]').count(),0,'retired task/template/plan downloads are absent');
+    assert.equal(await anonymous.locator('#submission-progress #task-upload-form').count(),1,'submission remains beside the shared current work package');
+    assert.equal(await anonymous.locator('#upload-own-list, #upload-receipt-form, #my-submissions-title').count(),0,'personal feedback and receipt recovery UI are removed');
     assert.equal(await anonymous.locator('#package-workspace').isHidden(),true);
     await anonymous.locator('[data-task-view="submission-progress"]').click();
     assert.equal(anonymous.url(),taskUrl,'switching the main task tab preserves the URL and hash');
@@ -162,9 +165,9 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.locator('#upload-submit').click();
     await anonymous.waitForFunction(()=>/1 份附件已收到/.test(document.querySelector('#upload-message')?.textContent || ''));
     assert.match(await anonymous.locator('#upload-message').innerText(),/1 份附件已收到/);
-    await anonymous.locator('#upload-own-list .upload-card').waitFor();
+    await anonymous.waitForFunction(()=>!document.querySelector('#upload-submit').disabled);
+    assert.ok(!(await anonymous.locator('#upload-message').innerText()).includes('回执码'));
     assert.equal(await anonymous.locator('#upload-pending-files li').count(),0,'successful files leave the pending queue');
-    assert.equal(await anonymous.locator('#upload-own-list .upload-card').evaluate(el=>el.open),false,'personal timeline defaults to one collapsed row');
     const publicRecord = JSON.parse(readFileSync(join(directory,'intake',readdirSync(join(directory,'intake')).find(id=>/^[a-f0-9]{32}$/.test(id)),'record.json'),'utf8'));
     assert.equal(publicRecord.status,'pending_approval');
     assert.equal(publicRecord.user,'anonymous');
@@ -233,18 +236,12 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(activeAfter.analysis_requested_at,activeBefore.analysis_requested_at);
     assert.equal(activeAfter.sha256,activeBefore.sha256);
     assert.match(await admin.locator('#review-detail-content').innerText(),/中国存量园区/);
-    await anonymous.locator('#upload-refresh').click();
-    await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('1 条'));
-    assert.equal(await anonymous.locator('#upload-own-list .upload-feedback').getAttribute('open'),null);
-    await anonymous.locator('#upload-own-list .upload-card>summary').click();
-    await anonymous.locator('#upload-own-list .upload-feedback summary').click();
-    assert.match(await anonymous.locator('#upload-own-list .upload-feedback').innerText(),/北京时间.*补齐来源与工作表定位/s);
-    const [feedbackDownload]=await Promise.all([anonymous.waitForEvent('download'),anonymous.locator('#upload-own-list [data-download-feedback]').click()]);
-    assert.match(feedbackDownload.suggestedFilename(),/\.md$/);
-    const feedbackText=readFileSync(await feedbackDownload.path(),'utf8');
-    assert.ok(feedbackText.includes('补齐来源与工作表定位'),'receipt holders can download the original private feedback text');
-    assert.ok(feedbackText.includes(publicRecord.name));
-    assert.ok(!feedbackText.includes('\\n'),'feedback download uses real Markdown newlines');
+    const retainedFeedback=(await (await anonymous.request.post(base+'/api/task-uploads/receipt',{data:receiptRow})).json()).item.feedback;
+    assert.ok(retainedFeedback.some(row=>row.text==='补齐来源与工作表定位'),'historical private feedback remains available under its original receipt boundary');
+    assert.equal(await anonymous.locator('[data-download-feedback]').count(),0);
+    await anonymous.locator('#package-refresh').click();
+    await anonymous.waitForFunction(()=>document.querySelector('#package-timeline')?.textContent.includes('已出负责人反馈'));
+    assert.match(await anonymous.locator('.package-event').filter({hasText:'访客员工'}).textContent(),/已出负责人反馈/);
     const sampleScope={mode:'sampled_native_cells',total_sheets:1,total_nonblank_rows:41,total_nonblank_cells:328,
       excerpted_rows:4,excerpted_cells:32,prefix_only_cells:1,not_excerpted_cells:296,
       not_fully_seen_cells:297,excerpt_character_limit:90};
@@ -268,52 +265,51 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await admin.waitForFunction(()=>document.querySelector('#review-detail-content')?.textContent.includes('抽样反馈已出 · 全表审核未完成'));
     assert.match(await admin.locator('#review-detail-content').innerText(),/328.*32.*297.*0 条上线/s);
     assert.equal(await admin.locator('#review-detail-content .review-report').getAttribute('open'),null);
-    const xlsxReceipt=(await xlsxResponse.json()).receipt;
-    await anonymous.evaluate(row=>{
-      const key='inresearch-task-upload-receipts-v1';
-      localStorage.setItem(key,JSON.stringify([row,...JSON.parse(localStorage.getItem(key)||'[]')]));
-    },{id:xlsx.id,receipt:xlsxReceipt});
-    await anonymous.locator('#upload-refresh').click();
-    await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('仅抽样反馈，全表待审'));
-    assert.match(await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator(':scope>summary').innerText(),/抽样反馈 · 全表待审/);
-    await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator(':scope>summary').click();
-    assert.match(await anonymous.locator('#upload-own-list').innerText(),/32\/328.*297.*0 条上线/s);
-    assert.equal(await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator('.upload-feedback').getAttribute('open'),null);
     await anonymous.locator('[data-task-view="submission-progress"]').click();
     await anonymous.locator('#package-refresh').click();
-    await anonymous.waitForFunction(()=>document.querySelector('#package-timeline')?.textContent.includes('另一位访客'));
-    assert.match(await anonymous.locator('#package-timeline').innerText(),/另一位访客.*Excel 表格.*抽样反馈/s);
+    await anonymous.waitForFunction(()=>document.querySelector('#package-timeline')?.textContent.includes('抽样反馈 · 全表待审'));
+    assert.equal(await anonymous.locator('#package-history').evaluate(el=>el.open),false,'historical feedback is folded away from the current execution anchor');
+    assert.match(await anonymous.locator('#package-timeline').textContent(),/另一位访客.*Excel 表格.*抽样反馈/s);
     assert.ok(!(await anonymous.locator('#package-active-panel').textContent()).includes('抽样反馈；研究端继续审核未覆盖单元格。'));
     assert.ok(!(await anonymous.locator('#package-active-panel').textContent()).includes(xlsx.sha256));
     const currentTasks=await (await anonymous.request.get(base+'/api/research-tasks')).json();
     const currentPackage=currentTasks.packages.find(p=>p.id==='dc-census-cn');
     const currentProgress=currentTasks.package_progress[currentPackage.id];
-    const [planDownload]=await Promise.all([anonymous.waitForEvent('download'),anonymous.locator('#download-package-plan').click()]);
-    assert.match(planDownload.suggestedFilename(),/\.md$/);
-    const planText=readFileSync(await planDownload.path(),'utf8');
-    assert.ok(planText.includes(currentPackage.title));
-    assert.ok(planText.includes(currentProgress.current_task.scope));
-    assert.ok(planText.includes(currentProgress.current_task.next_action));
-    assert.ok(!planText.includes(sampledRecord.feedback[0].text),'a public current plan does not expose receipt-only worker feedback');
-    assert.ok(!planText.includes(xlsx.sha256));
-    assert.ok(!planText.includes('\\n'),'current task download uses real Markdown newlines');
+    assert.equal(await anonymous.locator('#package-current-next').innerText(),'下一步：'+currentProgress.current_task.next_action);
+    assert.ok((await anonymous.locator('#package-progress-note').innerText()).includes(`${currentProgress.current_task.completed.feedback_rounds} 轮反馈已形成`));
+    assert.ok((await anonymous.locator('#package-current-feedback').innerText()).includes(currentProgress.current_task.feedback_summary));
+    assert.ok(!(await anonymous.locator('#package-current-feedback').innerText()).includes(sampledRecord.feedback[0].text),'the shared feedback never exposes private worker text');
+    await anonymous.locator('#package-history>summary').click();
     const sampledEvent=anonymous.locator('#package-timeline .package-event').filter({hasText:'另一位访客'});
-    assert.equal(await sampledEvent.evaluate(el=>el.open),false,'team next-step details remain collapsed until requested');
+    assert.equal(await sampledEvent.evaluate(el=>el.open),false);
     await sampledEvent.locator('summary').click();
-    const [eventPlanDownload]=await Promise.all([anonymous.waitForEvent('download'),sampledEvent.locator('[data-download-event-plan]').click()]);
-    assert.match(eventPlanDownload.suggestedFilename(),/\.md$/);
-    const eventPlanText=readFileSync(await eventPlanDownload.path(),'utf8');
-    const publicEvent=currentProgress.events.find(event=>event.submitter==='另一位访客');
-    assert.ok(eventPlanText.includes(publicEvent.next_action));
-    assert.ok(eventPlanText.includes(publicEvent.feedback));
-    assert.ok(!eventPlanText.includes(sampledRecord.feedback[0].text));
-    assert.ok(!eventPlanText.includes(xlsx.sha256));
+    assert.match(await sampledEvent.innerText(),/历史记录，仅供追溯/);
+    assert.equal(await sampledEvent.locator('button,a[download]').count(),0,'historical advice has no execution or download action');
+    assert.equal(await anonymous.locator('#package-current-next').innerText(),'下一步：'+currentProgress.current_task.next_action);
+    await anonymous.locator('#package-history>summary').click();
+    const sharedFixture=structuredClone(currentTasks), sharedProgress=sharedFixture.package_progress[currentPackage.id];
+    sharedProgress.current_task={...sharedProgress.current_task,version:99,feedback_summary:'现行共同反馈：已完成身份核对，下一轮只补新增地点证据。',next_action:'只执行本工作包最新的地点补证要求。',remaining:['仍缺可回查地点来源。']};
+    sharedProgress.events.push({received_at:1,reviewed_at:2,submitter:'旧反馈测试',material:'文本资料',outcome:'reviewed',published_statements:0,feedback:'旧共同反馈已被后续版本替代。',next_action:'OLD-NEXT-ACTION-DO-NOT-EXECUTE',feedback_state:'superseded',is_current_feedback:false});
+    await anonymous.route('**/api/research-tasks',route=>route.fulfill({json:sharedFixture}));
+    await anonymous.locator('#package-refresh').click();
+    await anonymous.waitForFunction(()=>document.querySelector('#package-current-next')?.textContent.includes('只执行本工作包最新'));
+    assert.equal(await anonymous.locator('#package-current-next').innerText(),'下一步：'+sharedProgress.current_task.next_action);
+    assert.ok((await anonymous.locator('#package-current-feedback').innerText()).includes(sharedProgress.current_task.feedback_summary));
+    assert.equal(await anonymous.locator('#package-history').evaluate(el=>el.open),false);
+    assert.ok(!(await anonymous.locator('#package-active-panel').innerText()).includes('OLD-NEXT-ACTION-DO-NOT-EXECUTE'),'superseded advice is not presented as a current action');
+    await anonymous.locator('#package-history>summary').click();
+    const retiredEvent=anonymous.locator('.package-event').filter({hasText:'旧反馈测试'});
+    await retiredEvent.locator('summary').click();
+    assert.ok(!(await retiredEvent.innerText()).includes('OLD-NEXT-ACTION-DO-NOT-EXECUTE'),'old next actions are never rendered, even inside history');
+    assert.ok((await retiredEvent.innerText()).includes('旧共同反馈已被后续版本替代。'),'historical results remain available for tracing');
+    assert.equal(await retiredEvent.locator('button,a[download]').count(),0);
+    assert.equal(await anonymous.locator('#package-current-next').innerText(),'下一步：'+sharedProgress.current_task.next_action);
+    await anonymous.locator('#package-history>summary').click();
+    await anonymous.unroute('**/api/research-tasks');
+    await anonymous.locator('#package-refresh').click();
+    await anonymous.waitForFunction(expected=>document.querySelector('#package-current-next')?.textContent==='下一步：'+expected,currentProgress.current_task.next_action);
     await anonymous.locator('[data-task-view="task-home"]').click();
     assert.equal(await anonymous.locator('[data-package-dashboard="dc-census-cn"] [data-package-published-sites]').innerText(),String(currentProgress.published_sites));
-    await anonymous.evaluate(id=>{
-      const key='inresearch-task-upload-receipts-v1';
-      localStorage.setItem(key,JSON.stringify(JSON.parse(localStorage.getItem(key)||'[]').filter(row=>row.id!==id)));
-    },xlsx.id);
     await admin.close();
     await anonymous.locator('[data-task-view="submission-progress"]').click();
     await anonymous.locator('#task-upload-form [name="submitter"]').fill('访客员工');
@@ -326,6 +322,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const secondUploadHold=new Promise(resolve=>{releaseSecondUpload=resolve;});
     await anonymous.route('**/api/task-uploads',async route=>{
       const metadata=JSON.parse(decodeURIComponent(route.request().headers()['x-material-metadata']));
+      assert.ok(!('continuation_id' in metadata) && !('continuation_receipt' in metadata),'new uploads use the current shared task without selecting personal prior feedback');
       if(metadata.batch_index===0 && !lostUploadResponse){
         lostUploadResponse=true;
         const response=await route.fetch(); assert.equal(response.status(),201);
@@ -351,9 +348,8 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.unroute('**/api/task-uploads');
     assert.equal(lostUploadResponse,true);
     assert.equal(await anonymous.locator('#upload-pending-files li').count(),0,'status recovery removes a received attachment after its upload response was lost');
-    await anonymous.waitForFunction(()=>document.querySelectorAll('#upload-own-list .upload-card').length === 3);
-    assert.equal(await anonymous.locator('#upload-own-list .upload-person-group').count(),1);
-    assert.equal(await anonymous.locator('#upload-own-list .upload-card').count(),3);
+    assert.equal(await anonymous.locator('#upload-own-list, [data-download-feedback], .upload-receipt-code').count(),0);
+    assert.equal(JSON.parse(await anonymous.evaluate(()=>localStorage.getItem('inresearch-task-upload-receipts-v1'))).length,3,'receipts remain stored privately without being displayed');
     const batchRecords=readdirSync(join(directory,'intake')).filter(id=>/^[a-f0-9]{32}$/.test(id)).map(id=>JSON.parse(readFileSync(join(directory,'intake',id,'record.json'),'utf8'))).filter(r=>['source.txt','notes.txt'].includes(r.name));
     assert.equal(batchRecords.length,2);
     assert.equal(new Set(batchRecords.map(row=>row.batch_id)).size,1,'rapid duplicate submit events create only one upload batch');
@@ -439,24 +435,25 @@ else: raise AssertionError('approval was not interrupted')
     await batchAdmin.locator('[data-batch-action="approve_and_analyze"]').click();
     assert.deepEqual((await recoveryRequest).postDataJSON(),recoveryPayload,'the recovery button replays the original exact operation and members');
     await batchAdmin.waitForFunction(()=>document.querySelector('#review-message')?.textContent.includes('本批 10 份已确认'));
-    await anonymous.locator('#upload-refresh').click();
     await anonymous.locator('#package-refresh').click();
     await anonymous.waitForFunction(()=>document.querySelectorAll('#package-timeline .package-event').length>=10);
+    await anonymous.locator('#package-history>summary').click();
     for(const width of [1440,390,320]) {
       await anonymous.setViewportSize({width,height:1000});
-      const density=await anonymous.evaluate(ids=>{
-        const own=ids.map(id=>document.querySelector(`.upload-card[data-submission-id="${id}"]`));
+      const density=await anonymous.evaluate(()=>{
         const team=[...document.querySelectorAll('#package-timeline .package-event')].slice(0,10);
         return {overflow:document.documentElement.scrollWidth>innerWidth+1,
-          own:own.map(el=>({open:el.open,height:el.getBoundingClientRect().height,summary:el.querySelector(':scope>summary').getBoundingClientRect().height})),
           team:team.map(el=>({open:el.open,height:el.getBoundingClientRect().height})),
           ranges:[6,10].map(count=>team[count-1].getBoundingClientRect().bottom-team[0].getBoundingClientRect().top)};
-      },denseIds);
+      });
       assert.equal(density.overflow,false,'compact timelines fit '+width);
-      assert.ok(density.own.every(row=>!row.open && row.height<=44 && row.summary<=43),'personal records stay one-line rows at '+width);
       assert.ok(density.team.every(row=>!row.open && row.height<=44),'public records stay one-line rows at '+width);
       assert.ok(density.ranges[0]<=6*44 && density.ranges[1]<=10*44,'six and ten public records remain compact at '+width);
       if(process.env.UI_QA_DIR) {await anonymous.evaluate(()=>scrollTo(0,0));await anonymous.screenshot({path:join(process.env.UI_QA_DIR,'task-timeline-density-'+width+'.png'),fullPage:true});}
+    }
+    await anonymous.locator('#package-history>summary').click();
+    if(process.env.UI_QA_DIR) {
+      for(const width of [1440,390]) {await anonymous.setViewportSize({width,height:1000});await anonymous.evaluate(()=>scrollTo(0,0));await anonymous.screenshot({path:join(process.env.UI_QA_DIR,'task-current-feedback-'+width+'.png'),fullPage:true});}
     }
     await anonymous.setViewportSize({width:1440,height:1000});
     await batchAdmin.locator('[data-filter="all"]').click();
@@ -465,16 +462,6 @@ else: raise AssertionError('approval was not interrupted')
     await batchAdmin.locator('#review-queue-list').evaluate(el=>{el.scrollTop=el.scrollHeight;});
     assert.ok(Math.abs((await batchAdmin.locator('#review-filters').boundingBox()).y-filterY)<1,'list scrolling keeps search and filters stationary');
     assert.equal(await batchAdmin.locator('#review-search').isVisible(),true);
-    const operatorPath=join(directory,'intake',denseIds[0],'record.json');
-    const operatorRecord=JSON.parse(readFileSync(operatorPath,'utf8'));
-    operatorRecord.analysis_progress={state:'blocked',error_code:'joint_model_output_invalid_requires_operator',completed:0,total:1,at:Date.now()/1000};
-    operatorRecord.revision++; writeFileSync(operatorPath,JSON.stringify(operatorRecord));
-    await anonymous.locator('#upload-refresh').click();
-    await anonymous.waitForFunction(id=>document.querySelector(`.upload-card[data-submission-id="${id}"]>summary`)?.textContent.includes('定位校验受阻，需人工复核'),denseIds[0]);
-    const operatorCard=anonymous.locator('.upload-card[data-submission-id="'+denseIds[0]+'"]');
-    await operatorCard.locator(':scope>summary').click();
-    assert.ok(!(await operatorCard.innerText()).includes('研究端会重试'),'a model localization gate never promises an automatic retry');
-
     // Old upload batches have no batch_total/seal; prior approvals remain independent.
     const legacyBatchId=randomUUID(), legacy=[];
     for(const name of ['legacy-approved.txt','legacy-pending.txt']) {
@@ -602,34 +589,7 @@ else: raise AssertionError('approval was not interrupted')
     assert.notEqual(await page.locator('[name="note"]').inputValue(),'尚未保存的旧表单备注');
     await page.locator('#close-package').click();
 
-    const [briefDownload] = await Promise.all([page.waitForEvent('download'),page.locator('#download-brief').click()]);
-    const brief = readFileSync(await briefDownload.path(),'utf8');
-    assert.ok(brief.includes('\n\n## 工作包'), 'task brief uses real newlines');
-    assert.ok(!brief.includes('\\n'), 'task brief has no escaped newline sequences');
-    assert.match(brief,/task-intern/);
-    assert.match(brief,/对象与空间范围/);assert.match(brief,/不表示永久穷尽/);assert.match(brief,/通用模型变量/);
-    await page.locator('#research-methods > summary').click();
-    const [templateDownload] = await Promise.all([page.waitForEvent('download'),page.locator('#download-template-home').click()]);
-    const template = JSON.parse(readFileSync(await templateDownload.path(),'utf8'));
-    assert.equal(template.contract,'fetchdata-handoff/1');
-    assert.ok(template.files['observations.jsonl']);
-    assert.ok('run_id' in template.files['run-report.json']);
-    assert.ok('attempted_sources' in template.files['run-report.json'].counts);
-    assert.equal(typeof template.files['observations.jsonl'][0].scope,'string');
-    // Fill the downloaded schema with synthetic bytes and run the existing
-    // offline validator; template nulls never masquerade as a real delivery.
-    const bundle = join(directory,'synthetic-download-check'), now = new Date().toISOString();
-    const bytes = Buffer.from('{"synthetic":true,"it_mw":60}\n');
-    const sha = require('node:crypto').createHash('sha256').update(bytes).digest('hex');
-    mkdirSync(join(bundle,'originals'),{recursive:true});writeFileSync(join(bundle,'originals',sha+'.json'),bytes);
-    const manifest = template.files['manifest.json'];Object.assign(manifest,{provider_id:'fetchreports',delivery_id:'synthetic-task-template',collector_revision:'0'.repeat(40),generated_at:now,synthetic:true});
-    Object.assign(manifest.items[0],{source_id:'synthetic',source_item_id:'synthetic-v1',title:'SYNTHETIC never adopt',publisher:'Synthetic',url:'https://example.invalid/synthetic.json',retrieved_at:now,sha256:sha,path:'originals/'+sha+'.json',content_type:'application/json',access_scope:'public',completeness:'complete'});
-    const observation = template.files['observations.jsonl'][0];Object.assign(observation,{observation_id:'synthetic-task-mw',metric:'site.it_mw',value:{type:'number',number:60,raw:'60 MW'},unit:'MW',scope:'Synthetic site whole-site IT capacity; not real data',evidence:{locator:'/it_mw',quote:'"it_mw":60',context:'Synthetic fixture, never research evidence'}});observation.object.name='Synthetic site';
-    const report = template.files['run-report.json'];Object.assign(report,{run_id:manifest.delivery_id,team:manifest.provider_id,collector_revision:manifest.collector_revision,started_at:now,finished_at:now,duration_seconds:0,bytes_downloaded:bytes.length});for(const key of Object.keys(report.counts))report.counts[key]=0;Object.assign(report.counts,{scheduled_sources:1,attempted_sources:1,successful_sources:1,new_originals:1,candidates:1,unresolved_candidates:1});
-    for(const [name,data] of [['manifest.json',JSON.stringify(manifest)],['SHA256SUMS',sha+'  originals/'+sha+'.json\n'],['observations.jsonl',JSON.stringify(observation)+'\n'],['errors.jsonl',''],['run-report.json',JSON.stringify(report)]])writeFileSync(join(bundle,name),data);
-    const validation = JSON.parse(execFileSync(process.env.PYTHON || 'python3',['scripts/validate_collector_handoff.py',bundle],{cwd:root,encoding:'utf8',env:environment}));
-    assert.equal(validation.offline_valid,true);
-
+    assert.equal(await page.locator('#download-brief, #download-template-home, #download-template').count(),0,'internal readers cannot restore retired task downloads');
     await page.locator('#new-package').click();
     for(const [name,value] of Object.entries({title:'测试城市定位补充',region:'欧洲',scope:'测试工作包范围',sources:'运营商地点目录'}))await page.locator('#package-dialog [name="'+name+'"]').fill(value);
     await page.locator('#save-package').click();
@@ -645,7 +605,7 @@ else: raise AssertionError('approval was not interrupted')
       assert.ok(await page.locator('#mission-dashboard').isVisible(),'homepage dashboard at width '+width);
       assert.ok(await page.locator('#data-angles').isVisible(),'homepage relationship diagram at width '+width);
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'homepage responsive width '+width);
-      assert.ok(await page.locator('#download-template').isVisible());
+      assert.equal(await page.locator('#download-template').count(),0);
       await page.locator('[data-task-view="submission-progress"]').click();
       assert.equal(page.url(),responsiveUrl);
       assert.ok(await page.locator('#task-upload-form').isVisible(),'submission form at width '+width);
@@ -710,6 +670,11 @@ else: raise AssertionError('approval was not interrupted')
     assert.match(await anonymous.locator('#mission-progress-detail').innerText(),/暂定目标 250 · 0%/);
 
     assert.deepEqual(errors,[]);
-    console.log('PASS task dashboard, accumulated picker/drop queue and 20-file bound, lost-response receipt recovery, cross-tab active-upload protection, duplicate-submit guard, seal failure recovery, exact joint approval/prepared replay, compact 6/10-row timelines at 1440/390/320, operator-gate status, sticky filters, private Markdown downloads, task privacy, real-byte examples, concurrent assignments and 4 responsive widths');
+    assert.deepEqual(anonymousErrors,[]);
+    assert.ok(!publicPageRequests.includes('/api/task-uploads/receipt'),'the public page never fetches individual historical receipt feedback');
+    const secrets=JSON.parse(await anonymous.evaluate(()=>localStorage.getItem('inresearch-task-upload-receipts-v1')||'[]'));
+    const publicText=await anonymous.locator('body').innerText();
+    assert.ok(secrets.every(row=>!publicText.includes(row.receipt)),'stored recovery credentials are never displayed');
+    console.log('PASS task dashboard, accumulated picker/drop queue and 20-file bound, lost-response receipt recovery, cross-tab active-upload protection, duplicate-submit guard, seal failure recovery, exact joint approval/prepared replay, shared current feedback, history-only compact 6/10-row records at 1440/390/320, retired downloads/personal UI absent, sticky filters, task privacy, real-byte examples, concurrent assignments and 4 responsive widths');
   } finally {if(browser)await browser.close();server.kill();lines.close();rmSync(directory,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});

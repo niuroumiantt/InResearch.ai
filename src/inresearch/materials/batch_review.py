@@ -340,12 +340,8 @@ def complete_staged(root, payload):
         normalized=_without_batch_publications(root,runtime,payloads,checkpoint)
         if source_publication.digest(normalized) != checkpoint['source_sha256']:
             raise inbox.Conflict('analysis_site_context_changed_retry_with_current_task')
-        task_records=inbox.records()
         ids={row['id']:row['analysis_id'] for row in payloads}
-        for record in task_records:
-            if record['id'] in ids:
-                record['analysis_reports']=[row for row in record.get('analysis_reports',[])
-                                            if row['id'] != ids[record['id']]]
+        task_records=review_context.before_batch_results(inbox.records(),ids)
         for row in payloads:
             task,_=review_context.current(root,inbox.load(row['id']),runtime=normalized,task_records=task_records)
             if review_context.provenance(task) != checkpoint['contexts'][row['id']]:

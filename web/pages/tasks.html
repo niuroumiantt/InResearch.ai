@@ -21,7 +21,6 @@
   <div class="mission-topline"><span>团队任务中心 / 当前任务：全球数据中心园区普查</span><span>公开接力 · 原件须经负责人确认</span></div>
   <header class="mission-hero">
     <div><p class="mission-eyebrow"><span class="priority">P1</span> 全球数据中心园区普查</p><h1 id="mission-title">完成全球园区信息的爬取</h1><p class="mission-intro">找到全球真实数据中心园区，持续补齐地点、建设与运营主体、水、电和容量信息。</p></div>
-    <div class="mission-actions"><button id="download-template-home" type="button">下载待填模板 ↓</button><button id="download-brief" type="button">下载任务书 .md ↓</button></div>
   </header>
   <nav class="mission-nav" role="tablist" aria-label="任务工作台"><button id="task-home-tab" type="button" role="tab" data-task-view="task-home" aria-controls="task-home" aria-selected="true">任务首页</button><button id="submission-progress-tab" type="button" role="tab" data-task-view="submission-progress" aria-controls="submission-progress" aria-selected="false">提交与进展</button></nav>
   <section id="task-home" class="task-panel" data-task-panel="task-home" role="tabpanel" aria-labelledby="task-home-tab">
@@ -78,7 +77,7 @@
     <p class="small muted">这些是已核对的来源入口，不代表内容已逐篇阅读或登记。地点页可能只有城市精度；行业报告总量、国家电耗和具体园区数据保持各自口径。书籍保留书名、作者、版次、ISBN 与具体页码。</p>
   </section>
   <section id="delivery" class="mission-section" aria-labelledby="delivery-title">
-    <div class="section-heading"><div><p class="mission-eyebrow">04 / DELIVERY</p><h2 id="delivery-title">原件是底座，结构化候选让入库更快</h2></div><button type="button" id="download-template">下载交付模板 ↓</button></div>
+    <div class="section-heading"><div><p class="mission-eyebrow">04 / DELIVERY</p><h2 id="delivery-title">原件是底座，结构化候选让入库更快</h2></div></div>
     <div class="delivery-recommendation"><strong>优先交：原生 PDF / HTML / XLSX / CSV / API 原响应 + 来源清单和 SHA + observations.jsonl。</strong><p>原生表格保留行列、表头和脚注，原生 PDF 保留可检索文字。扫描 PDF 原件仍要交；团队如已做 OCR，按页另交文本或 JSON，注明工具/模型版本、漏页和未读图片。OCR JSON 是派生副本，不能替代原件。网站默认正文阅读，不自动启动 OCR。</p></div>
     <figure class="delivery-flow" aria-labelledby="delivery-flow-title"><figcaption id="delivery-flow-title">从材料到地图：先交能回到原文的一条信息</figcaption><ol class="flow-stages"><li><strong>原件 + 清单</strong><span>原生文件 / SHA / 出处</span><small>↳ 可选：文本 / OCR 派生副本</small></li><li><strong>按对象 / 指标拆候选</strong><span>observations.jsonl</span><small>原值、口径、时间、定位、引句</small></li><li><strong>接收 + 身份映射</strong><span>核原件字节与唯一园区</span><small>由研究端接收并映射，留回执</small></li><li><strong>普通来源登记 → 地图</strong><span>基础登记待查 · 缺项后补</span><small>有实际位置才显示地图点</small></li></ol><div class="flow-branch"><span aria-hidden="true">↳</span><strong>研究用途分支</strong><span>C3 逐项采用 → 正式结论 / 答案 / 模型支持</span></div><p class="small muted">这是交付与后续处理路径。四队生产接收仍需联调；验包、映射和登记各有实际执行与回执，不表示已经自动接通。</p></figure>
     <div class="delivery-grid"><div><h3>一包材料，六个入口</h3><pre aria-label="交付包目录">delivery-&lt;team&gt;-&lt;UTC&gt;-&lt;batch&gt;/
@@ -96,7 +95,7 @@
   </section>
   <section id="submission-progress" class="mission-section submission-progress task-panel" data-task-panel="submission-progress" role="tabpanel" aria-labelledby="submission-progress-tab" hidden>
     <div id="upload-owner-shortcut" class="upload-owner-shortcut" hidden><div><strong>管理员作业审批</strong><p id="upload-owner-shortcut-count">正在读取待确认文件…</p></div><a class="primary-button" href="/task-reviews.html">进入审批工作台 →</a></div>
-    <div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">提交与反馈 · 同一时间线</p><h2 id="upload-title">提交资料，查看反馈与下一步</h2></div><p>负责人确认后自动审阅；保存每份回执码。</p></div>
+    <div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">按工作包共同推进</p><h2 id="upload-title">提交资料，查看反馈与下一步</h2></div><p>负责人确认后统一审阅，反馈与下一步以本工作包现行为准。</p></div>
     <div class="submission-progress-layout"><form id="task-upload-form" class="task-upload-form compact-upload-form">
       <div class="compact-upload-grid">
         <label>提交到 <select name="package_id" id="upload-package" required><option value="">选择工作包</option></select></label>
@@ -113,13 +112,11 @@
     <div class="section-heading"><div><p class="mission-eyebrow">当前分栏</p><h2 id="workspace-title">分栏进展与时间线</h2></div><span class="section-note">六个工作包 · 手机端左右滑动</span></div>
     <div id="package-tabs" class="package-tabs" role="tablist" aria-label="园区普查工作包"></div>
     <div id="package-active-panel" class="package-active-panel" role="tabpanel" tabindex="0" aria-live="polite">
-      <div class="package-current"><div><p class="mission-eyebrow" id="package-current-meta">正在读取工作包…</p><h3 id="package-current-title">当前共同任务</h3><p id="package-current-scope"></p><p id="package-current-next" class="package-next-action"></p><button type="button" id="download-package-plan">下载当前计划 .md ↓</button></div><div class="package-current-progress"><strong id="package-published-sites">—</strong><span>已审核上线的去重园区</span><p id="package-progress-note">各包暂定目标待初步盘点。</p><button type="button" id="package-upload-action" class="primary-button">提交到这个工作包 ↗</button></div></div>
-      <div class="package-timeline-heading"><h3>提交与反馈时间线</h3><span>按提交时间倒序 · 入库成果、反馈与下一步</span><button type="button" id="package-refresh">刷新进展</button></div>
-      <p class="small muted">仅列负责人已确认的材料；提交人姓名由提交者自填。逐项修改意见和原件仍凭本人回执或管理员权限查看。</p>
-      <div id="package-timeline" class="package-timeline"></div>
+      <div class="package-timeline-heading"><h3>共同现行反馈与下一步</h3><button type="button" id="package-refresh">刷新进展</button></div>
+      <div class="package-current"><div><p class="mission-eyebrow" id="package-current-meta">正在读取工作包…</p><h3 id="package-current-title">当前共同任务</h3><p id="package-current-scope"></p><p id="package-current-feedback" class="package-current-feedback"></p><p id="package-current-next" class="package-next-action"></p><ul id="package-current-remaining" class="package-current-remaining" hidden></ul></div><div class="package-current-progress"><strong id="package-published-sites">—</strong><span>已审核上线的去重园区</span><p id="package-progress-note">各包暂定目标待初步盘点。</p><button type="button" id="package-upload-action" class="primary-button">提交到这个工作包 ↗</button></div></div>
+      <details id="package-history" class="package-history"><summary>历史提交与反馈 <span id="package-history-count"></span></summary><p class="small muted">历史记录仅供追溯，执行以上方共同现行反馈与下一步为准；原件和完整审核记录保持原权限。</p><div id="package-timeline" class="package-timeline"></div></details>
     </div>
   </section>
-  <section class="task-upload-records submission-timeline" aria-labelledby="my-submissions-title"><div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">我的材料时间线</p><h3 id="my-submissions-title">收到、确认、审阅与下一步</h3></div><button type="button" id="upload-refresh">刷新状态</button></div><p class="small muted">仅显示本浏览器持有回执的材料；每项按最新状态展示。换设备可凭回执码找回。</p><div id="upload-own-list"></div><details class="upload-receipt-recovery"><summary>凭回执码找回另一台设备上的记录</summary><form id="upload-receipt-form" class="task-receipt-form"><label>文件编号 <input name="id" maxlength="32" placeholder="32位编号"></label><label>回执码 <input name="receipt" maxlength="128" placeholder="上传成功时生成"></label><button type="submit">添加回执</button></form><p id="receipt-message" role="status" aria-live="polite"></p></details></section>
   </section>
   <footer class="mission-footer"><span>采集到一条就交一条 · 缺项后补 · 原件和历史始终保留</span><a href="/doc.html?f=framework/03_bom_and_collaboration.md">现行园区信息清单 →</a></footer>
 </main>

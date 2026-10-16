@@ -159,13 +159,18 @@ class BatchReviewTests(unittest.TestCase):
         inbox.acknowledge(b['id'],b['sha256']);self.assertEqual(len(inbox.analysis_pending()),2)
         with self.assertRaises(inbox.Conflict):batch_review.approve({**request,'note':'changed'},'owner','admin')
 
-    def test_joint_prompt_one_call_shared_task_and_separate_prior_tasks(self):
+    def test_joint_prompt_one_current_anchor_and_no_personal_history(self):
         a=self.upload('表格来源\\n待补链接'.encode());b=self.upload('说明版本\\n支持表格'.encode(),index=1)
         items=self.approve([a,b]);result=self.model_output(items)
+        for item in items:
+            item['assigned_task']={**item['assigned_task'],
+                'previous_system_task':{'task':'PRIVATE OLD '+item['id']},'continuity':'verified_receipt'}
         result['relationships']=[{'source_id':a['id'],'source_locator':'line:1',
             'target_id':b['id'],'target_locator':'line:1','kind':'support','description':'说明补充原始来源'}]
         payloads,client=self.propose(items,result=result)
         self.assertEqual(client.calls,1);self.assertIn('task',client.prompt)
+        self.assertNotIn('PRIVATE OLD',json.dumps(client.prompt))
+        self.assertNotIn('previous_system_task',json.dumps(client.prompt))
         self.assertNotIn('assigned_task',client.prompt['files'][0])
         self.assertEqual(len(payloads),2)
         results=batch_review.complete_staged(self.root,self.stage(payloads))
@@ -213,6 +218,7 @@ class BatchReviewTests(unittest.TestCase):
         self.assertEqual(len(source_publication.projects(self.root)['records']),2)
         self.assertEqual([row['report'] for row in replay],[row['report'] for row in results])
         self.assertTrue(all(len(inbox.load(item['id'])['analysis_reports'])==1 for item in items))
+        self.assertTrue(all(len(inbox.load(item['id'])['feedback'])==1 for item in items))
 
     def test_partial_report_write_recovers_without_new_inference(self):
         items=self.xlsx_items();payloads,client=self.propose(items,candidates=True);commit=self.stage(payloads)
@@ -230,6 +236,7 @@ class BatchReviewTests(unittest.TestCase):
         self.assertEqual(client.calls,1);self.assertEqual(len(results),2)
         self.assertEqual(len(source_publication.projects(self.root)['records']),2)
         self.assertTrue(all(len(inbox.load(item['id'])['analysis_reports'])==1 for item in items))
+        self.assertTrue(all(len(inbox.load(item['id'])['feedback'])==1 for item in items))
 
     def test_partial_commit_rejects_external_state_change(self):
         items=self.xlsx_items();payloads,_=self.propose(items,candidates=True);commit=self.stage(payloads)
@@ -254,6 +261,13 @@ class BatchReviewTests(unittest.TestCase):
         self.assertEqual(inbox.load(a['id'])['analysis_progress']['state'],'source_error')
         self.assertEqual(inbox.load(b['id'])['analysis_state'],'completed')
         self.assertEqual(inbox.analysis_pending(),[])
+        from inresearch.workflow import research_tasks
+        package=next(row for row in research_tasks.read(self.root)['packages'] if row['id']=='dc-census-cn')
+        shared=research_tasks.package_workflow(package,inbox.records())
+        self.assertEqual(shared['current_task']['completed']['feedback_rounds'],1)
+        self.assertEqual(shared['current_task']['completed']['reviewed_rounds'],1)
+        self.assertIsNotNone(shared['current_task']['feedback_at'])
+        self.assertIn('未读内容',shared['current_task']['feedback_summary'])
 
     def test_all_bad_workbooks_skip_model(self):
         a=self.upload(b'broken',name='broken.xlsx');b=self.upload(b'broken2',name='broken2.xlsx',index=1)
@@ -432,6 +446,7 @@ class BatchReviewTests(unittest.TestCase):
             self.assertEqual(review_worker._run_batch(items,self.archive,request),2)
         self.assertEqual(client.calls,1)
         self.assertTrue(all(len(inbox.load(item['id'])['analysis_reports'])==1 for item in items))
+        self.assertTrue(all(len(inbox.load(item['id'])['feedback'])==1 for item in items))
 
 
     def test_one_joint_correction_then_operator_terminal_and_changed_task_new_attempt(self):
