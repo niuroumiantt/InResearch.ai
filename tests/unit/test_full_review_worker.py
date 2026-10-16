@@ -35,9 +35,11 @@ class FakeClient:
         if self.truncate:
             self.truncate = False
             raise models.InferenceError('model_output_truncated')
-        output = ({'accept_candidates': list(range(len(self.calls[-1]['candidates'])))}
-                  if self.calls[-1].get('stage') == 'whole_campus_adjudication' else {'candidates': []})
-        return {'summary': '已读本次全部原生片段。', 'findings': [], **output,
+        output = ({'accept_candidates': list(range(len(self.calls[-1]['candidates']))),
+                   'reviewed_finding_ids': list(range(len(self.calls[-1]['findings']))), 'new_findings': []}
+                  if self.calls[-1].get('stage') == 'whole_campus_adjudication'
+                  else {'candidates': [], 'findings': []})
+        return {'summary': '已读本次全部原生片段。', **output,
                 '_model': {**self.profile.identity, 'requested': 'qwen3.8:27b',
                            'actual': 'qwen3.8:27b',
                            'prompt_sha256': hashlib.sha256(system.encode()).hexdigest(),
@@ -378,7 +380,8 @@ class FullReviewWorkerTests(unittest.TestCase):
         client = FakeClient()
         def decide(system, user, **kwargs):
             self.assertEqual(json.loads(user)['window_summaries'], ['前窗候选', '后窗发现冲突'])
-            return {'summary': '冲突未解，保留补证任务', 'findings': [], 'accept_candidates': [],
+            return {'summary': '冲突未解，保留补证任务', 'reviewed_finding_ids': [],
+                    'new_findings': [], 'accept_candidates': [],
                     '_model': {**client.profile.identity, 'actual': 'qwen3.8:27b',
                                'input_sha256': hashlib.sha256(user.encode()).hexdigest()}}
         client.generate = decide
@@ -390,6 +393,176 @@ class FullReviewWorkerTests(unittest.TestCase):
         self.assertEqual(worker.adjudicate(self.packet, self.task, [],
             [{'summary': '前窗候选'}, {'summary': '后窗发现冲突'}], [],
             [{'locator': self.cells[0]['locator']}], client, self.folder, None), result)
+
+    def test_final_delta_keeps_all_evidence_and_original_findings_without_rereading(self):
+        self.cells = [native(f'A{n}', '材料'+str(n)) for n in range(1, 226)]
+        self.packet['cells'] = self.cells
+        self.packet['identity_cells'] = self.cells[:1]
+        prior = [{'sheet': '园区', 'cell': 'A1', 'priority': 'P1',
+                  'issue': str(index)+'原问题全文不得改写。'*12,
+                  'action': '查找指定园区原始批复及对应字段。'*10,
+                  'acceptance': '保留原文、字段口径和来源定位。'*10} for index in range(31)]
+        candidates = [{'locator': self.cells[0]['locator'], 'name_locator': self.cells[0]['locator'],
+                       'location_locator': self.cells[0]['locator'], 'unit_locator': '',
+                       'field': 'notes', 'value': '候选原文'+str(index)} for index in range(7)]
+        new = {'sheet': '园区', 'cell': 'A2', 'priority': 'P0',
+               'issue': '跨窗口发现两个不同园区身份引用冲突。',
+               'action': '查找园区甲与园区乙的官方项目批复，逐项核对项目名、地点及分期。',
+               'acceptance': '两项目各自的原文和定位齐全，明确哪些候选属于本园区。'}
+        class DeltaClient(FakeClient):
+            def generate(self, system, user, **kwargs):
+                result = super().generate(system, user, **kwargs)
+                if self.calls[-1].get('stage') == 'whole_campus_adjudication':
+                    result['reviewed_finding_ids'].reverse()
+                    result['new_findings'] = [new]
+                    result['accept_candidates'] = [0]
+                    self.final_schema = kwargs['json_schema']
+                else:
+                    result['findings'] = prior
+                    result['candidates'] = candidates
+                return result
+        client = DeltaClient()
+        for _ in range(8):
+            self.assertIsNone(worker.proposal(self.item, self.original, self.folder, client))
+        retained = {path: path.read_bytes() for path in self.folder.rglob('*.json')}
+        self.assertEqual(len(list(self.folder.rglob('chunk-*.json'))), 8)
+        payload = worker.proposal(self.item, self.original, self.folder, client)
+        self.assertEqual(len(client.calls), 9)
+        self.assertEqual(retained, {path: path.read_bytes() for path in retained})
+        request = client.calls[-1]
+        self.assertEqual(request['findings'], prior)
+        self.assertEqual(request['candidates'], candidates)
+        self.assertEqual(request['candidate_native_cells'], self.cells[:1])
+        self.assertEqual(request['task'], worker.review_context.execution_task(self.task))
+        self.assertEqual(request['known_sites'], [])
+        self.assertEqual(request['source_context'], client.calls[0]['source_context'])
+        self.assertEqual(request['window_summaries'], ['已读本次全部原生片段。']*8)
+        self.assertEqual(request['final_recipe_version'], worker.FINAL_RECIPE_VERSION)
+        self.assertEqual(worker.encoded(payload['findings'][:-1]), worker.encoded(prior))
+        self.assertEqual(payload['findings'][-1], new)
+        self.assertEqual(payload['candidates'], candidates[:1])
+        self.assertNotIn('maxItems', client.final_schema['properties']['new_findings'])
+        self.assertEqual(client.final_schema['properties']['reviewed_finding_ids']['minItems'], 31)
+        self.assertEqual(client.profile.context, 32768)
+        self.assertEqual(client.profile.max_output_tokens, 4096)
+        saved = json.loads(next(self.folder.rglob('adjudication.json')).read_text())
+        self.assertNotIn('findings', saved['result'])
+        recipe = saved['final_recipe']
+        self.assertEqual(saved['final_recipe_sha256'], worker.digest(recipe))
+        self.assertEqual(recipe['request_sha256'], worker.digest(request))
+        self.assertEqual(recipe['schema_sha256'], worker.digest(client.final_schema))
+        self.assertEqual(recipe['system_sha256'], hashlib.sha256(review_worker.SYSTEM.encode()).hexdigest())
+        self.assertEqual(recipe['findings_sha256'], worker.digest(prior))
+        self.assertEqual(recipe['candidates_sha256'], worker.digest(candidates))
+        results = [json.loads(raw)['result'] for path, raw in sorted(retained.items())
+                   if path.name.startswith('chunk-')]
+        self.assertEqual(recipe['reading_inventory_sha256'], worker.digest(results))
+
+    def test_final_delta_requires_complete_unique_finding_references(self):
+        findings = [{'sheet': '园区', 'cell': 'A1', 'priority': 'P1',
+                     'issue': str(index), 'action': '查原文', 'acceptance': '逐项保留'} for index in range(2)]
+        for index, references in enumerate(([0], [0, 0], [0, 2], [False, 1], '0,1', [0, 1, 2])):
+            folder = self.folder/str(index); folder.mkdir()
+            client = FakeClient(); original = client.generate
+            def incomplete(system, user, **kwargs):
+                result = original(system, user, **kwargs)
+                result['reviewed_finding_ids'] = references
+                return result
+            client.generate = incomplete
+            with self.subTest(references=references), self.assertRaisesRegex(
+                    ValueError, 'adjudication_findings_incomplete'):
+                worker.adjudicate(self.packet, self.task, [], [{'summary': '已完整读'}],
+                                  findings, [], client, folder, None)
+            self.assertFalse((folder/'proposal.json').exists())
+
+    def test_final_delta_rejects_legacy_shape_long_summary_and_invalid_new_findings(self):
+        variants = [({'findings': []}, 'delta_shape_invalid'),
+                    ({'summary': '结论'*301}, 'delta_shape_invalid'),
+                    ({'summary': ' '}, 'delta_shape_invalid'),
+                    ({'new_findings': [{'sheet': '园区', 'cell': 'Z99', 'priority': 'P0',
+                        'issue': '问题', 'action': '查资料', 'acceptance': '定位齐全'}]}, 'outside_read_cells'),
+                    ({'new_findings': [{'sheet': '园区', 'cell': 'A1', 'priority': 'P0',
+                        'issue': '问题', 'action': '', 'acceptance': '定位齐全'}]}, 'outside_read_cells')]
+        for index, (change, code) in enumerate(variants):
+            folder = self.folder/str(index); folder.mkdir()
+            client = FakeClient(); original = client.generate
+            def invalid(system, user, **kwargs):
+                return {**original(system, user, **kwargs), **change}
+            client.generate = invalid
+            with self.subTest(code=code), self.assertRaisesRegex(ValueError, code):
+                worker.adjudicate(self.packet, self.task, [], [{'summary': '已完整读'}],
+                                  [], [], client, folder, None)
+
+    def test_final_recipe_rejects_old_or_changed_schema_system_and_reading_inventory(self):
+        client = FakeClient(); results = [{'summary': '全部窗口', 'marker': '原阅读记录'}]
+        worker.adjudicate(self.packet, self.task, [], results, [], [], client, self.folder, None)
+        path = self.folder/'adjudication.json'; original = path.read_bytes()
+        saved = json.loads(original)
+        client.generate = lambda *a, **k: self.fail('changed final checkpoint must not generate')
+        old = {key: value for key, value in saved.items()
+               if key not in ('final_recipe', 'final_recipe_sha256')}
+        path.write_text(json.dumps(old))
+        with self.assertRaisesRegex(ValueError, 'adjudication_checkpoint_changed'):
+            worker.adjudicate(self.packet, self.task, [], results, [], [], client, self.folder, None)
+        path.write_bytes(original)
+        with patch.object(worker, 'FINAL_SUMMARY_LIMIT', 599):
+            with self.assertRaisesRegex(ValueError, 'adjudication_checkpoint_changed'):
+                worker.adjudicate(self.packet, self.task, [], results, [], [], client, self.folder, None)
+        with patch.object(review_worker, 'SYSTEM', review_worker.SYSTEM+'新规则'):
+            with self.assertRaisesRegex(ValueError, 'adjudication_checkpoint_changed'):
+                worker.adjudicate(self.packet, self.task, [], results, [], [], client, self.folder, None)
+        # Identical prompt summaries still cannot substitute a different reading inventory.
+        with self.assertRaisesRegex(ValueError, 'adjudication_checkpoint_changed'):
+            worker.adjudicate(self.packet, self.task, [],
+                [{'summary': '全部窗口', 'marker': '已被改写'}], [], [], client, self.folder, None)
+        changed = json.loads(original); changed['final_recipe_sha256'] = '0'*64
+        path.write_text(json.dumps(changed))
+        with self.assertRaisesRegex(ValueError, 'adjudication_checkpoint_changed'):
+            worker.adjudicate(self.packet, self.task, [], results, [], [], client, self.folder, None)
+        # A real returned response from the previous final contract is still an
+        # audit barrier. A new recipe never automatically removes or replays it.
+        rejected = self.folder/'unverified-adjudication.json'
+        old_raw = b'{"request":{"legacy":true},"completion":{"response":"old truncated output"}}'
+        rejected.write_bytes(old_raw)
+        with self.assertRaisesRegex(models.InferenceError, 'unverified_completion'):
+            worker.adjudicate(self.packet, self.task, [], results, [], [], client, self.folder, None)
+        self.assertEqual(rejected.read_bytes(), old_raw)
+
+    def test_final_delta_truncation_stays_audited_and_cannot_replay_after_status_loss(self):
+        from inresearch.adapters.ollama_token_budget import CompletionUnverified
+        archive = self.folder/'archive'; folder = archive/self.item['id']
+        folder.mkdir(parents=True); (folder/'original').write_bytes(self.original.read_bytes())
+        client = FakeClient()
+        for _ in range(3): worker.proposal(self.item, folder/'original', folder, client)
+        retained = {path: path.read_bytes() for path in folder.rglob('chunk-*.json')}
+        response = {'model': 'qwen3.8:27b', 'done': True, 'done_reason': 'length',
+                    'eval_count': 4096, 'message': {'content': '{"new_findings":[{"issue":"未完'}}
+        def truncated(system, user, **kwargs):
+            body = {'messages': [{'role': 'system', 'content': system}, {'role': 'user', 'content': user}],
+                    'format': kwargs['json_schema']}
+            raise CompletionUnverified(models.InferenceError('model_output_truncated'),
+                                      body, {'request_sha256': worker.digest(body)}, response)
+        with patch.object(worker, 'client', return_value=client), \
+                patch.object(client, 'generate_campus_adjudication', side_effect=truncated) as final, \
+                patch.object(worker, 'resource_ready', return_value=(True, '')):
+            self.assertEqual(worker.run_item(self.item, archive, lambda *a: io.BytesIO(b'{"ok":true}')), (0, True))
+            status = next(folder.rglob('status.json'))
+            self.assertEqual(json.loads(status.read_text())['reason'], 'model_output_truncated')
+            self.assertTrue(json.loads(status.read_text())['operator_required'])
+            audit = next(folder.rglob('unverified-adjudication.json'))
+            raw = audit.read_bytes(); saved = json.loads(raw)
+            self.assertEqual(saved['completion']['response'], response)
+            self.assertEqual(saved['final_recipe_sha256'], worker.digest(saved['final_recipe']))
+            self.assertEqual(saved['final_recipe']['version'], worker.FINAL_RECIPE_VERSION)
+            status.unlink()
+            self.assertEqual(worker.run_item(self.item, archive,
+                lambda *a: io.BytesIO(b'{"ok":true}')), (0, False))
+            self.assertEqual(final.call_count, 1)
+            self.assertEqual(audit.read_bytes(), raw)
+        self.assertEqual(retained, {path: path.read_bytes() for path in retained})
+        self.assertFalse(list(folder.rglob('adjudication.json')))
+        self.assertFalse(list(folder.rglob('proposal.json')))
+        self.assertFalse(list(folder.rglob('receipts/*.json')))
 
     def test_rejected_delivery_blocks_only_this_attempt_and_keeps_cache(self):
         folder = self.folder/self.item['id']; folder.mkdir()
