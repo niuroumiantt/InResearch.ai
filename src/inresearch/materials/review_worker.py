@@ -797,8 +797,12 @@ def _run_batch(items, archive, request):
 def run(archive, request):
     with request('analysis-pending') as response:
         items=json.load(response)['items']
+    items.sort(key=lambda row: bool(row.get('full_analysis')))
     completed=0
     handled_batches=set()
+    # Full campus work shares this process and lock, but gets at most one new
+    # model call per timer round. Other queued jobs retain their existing path.
+    full_worked=False
     for queued in items:
         # A may publish while B waits in the same worker run. Fetch B's task and
         # live register after A completes, instead of reusing the initial list.
@@ -807,6 +811,12 @@ def run(archive, request):
         item=next((row for row in current if row['id']==queued['id']),None)
         if item is None:continue
         require_approved(item)
+        if item.get('full_analysis', {}).get('state') in ('running', 'continuing'):
+            if not full_worked:
+                from inresearch.materials import full_review_worker
+                count, full_worked = full_review_worker.run_item(item, archive, request)
+                completed += count
+            continue
         if item.get('review_batch_id'):
             batch_id=item['review_batch_id']
             if batch_id in handled_batches: continue

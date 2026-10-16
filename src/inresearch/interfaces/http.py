@@ -966,9 +966,12 @@ class Handler(SimpleHTTPRequestHandler):
                 if not 0 < size <= 4096:
                     raise ValueError('invalid size')
                 payload = json.loads(self.rfile.read(size))
-                item = material_intake.set_analysis_progress(payload['id'], payload['sha256'],
-                    payload['completed'], payload['total'], payload.get('state','running'),
-                    error_code=payload.get('error_code'))
+                if 'attempt_id' in payload:
+                    item = material_intake.set_full_analysis_progress(payload)
+                else:
+                    item = material_intake.set_analysis_progress(payload['id'], payload['sha256'],
+                        payload['completed'], payload['total'], payload.get('state','running'),
+                        error_code=payload.get('error_code'))
                 return self._json(200, {'ok': True, 'item': item})
             except (ValueError, KeyError, OSError, TypeError, PermissionError) as error:
                 return self._json(400, {'ok': False, 'error': str(error)[:200]})
@@ -1003,7 +1006,7 @@ class Handler(SimpleHTTPRequestHandler):
                     if not 0 < size <= 128 * 1024:
                         raise ValueError('invalid size')
                     payload = json.loads(self.rfile.read(size))
-                    if isinstance(payload, dict) and payload.get('action') == 'assign_package':
+                    if isinstance(payload, dict) and payload.get('action') in ('assign_package', 'start_full_analysis', 'continue_full_analysis'):
                         # Analysis commits hold this lock while checking the current
                         # task and publishing. Binding changes must use the same order.
                         with locked(research_tasks.ledger_path(ROOT)):

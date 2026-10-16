@@ -265,6 +265,45 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await admin.waitForFunction(()=>document.querySelector('#review-detail-content')?.textContent.includes('抽样反馈已出 · 全表审核未完成'));
     assert.match(await admin.locator('#review-detail-content').innerText(),/328.*32.*297.*0 条上线/s);
     assert.equal(await admin.locator('#review-detail-content .review-report').getAttribute('open'),null);
+    // Browser-only full-review states keep the old sample report but expose the
+    // current attempt, durable package receipts and non-authoritative windows.
+    const fullFixture=structuredClone(sampledRecord);
+    fullFixture.full_analysis={attempt_id:randomUUID(),state:'running',phase:'pilot',
+      package_ids:['pilot','remaining','unassigned'],completed_package_ids:[],covered_cells:0,total_nonblank_cells:328};
+    fullFixture.analysis_scope={mode:'full_native_campus'};
+    fullFixture.analysis_progress={state:'reading',window_completed:2,window_total:7};
+    await admin.route('**/api/materials',route=>route.fulfill({json:{can_approve:true,items:[fullFixture]}}));
+    await admin.goto(base+'/task-reviews.html?id='+xlsx.id);
+    await admin.locator('.review-full-progress').waitFor();
+    assert.equal(await admin.locator('#review-count-working').innerText(),'1','old reports cannot mark an active full attempt done');
+    assert.equal(await admin.locator('#review-count-done').innerText(),'0');
+    assert.match(await admin.locator('.review-full-progress').innerText(),/完整包回执：0\/3.*已验收原生单元格：0\/328.*窗口：2\/7/s);
+    assert.equal(await admin.locator('.review-report').count(),1,'historical sampled report remains intact');
+    assert.equal(await admin.locator('[data-action="start_analysis"], [data-action="start_full_analysis"], [data-action="continue_full_analysis"]').count(),0,'full attempts are operated by the existing operations process');
+    for(const [state,expected] of [['waiting','等待研究资源可用'],['blocked','审阅暂时受阻']]){
+      fullFixture.analysis_progress.state=state;fullFixture.analysis_progress.reason='test <blocked> status';
+      await admin.locator('#review-refresh').click();
+      await admin.waitForFunction(text=>document.querySelector('.review-full-progress')?.textContent.includes(text),expected);
+      assert.match(await admin.locator('.review-full-progress').innerText(),/test <blocked> status/);
+      assert.equal(await admin.locator('.review-full-progress blocked').count(),0,'worker reason is escaped text');
+    }
+    await admin.setViewportSize({width:390,height:844});
+    assert.equal(await admin.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'full review progress fits mobile width');
+    await admin.setViewportSize({width:1440,height:1000});
+    fullFixture.full_analysis.state='pilot_completed';
+    fullFixture.full_analysis.completed_package_ids=['pilot'];fullFixture.full_analysis.covered_cells=81;
+    await admin.locator('#review-refresh').click();
+    await admin.waitForFunction(()=>document.querySelector('.review-full-progress')?.textContent.includes('余包尚未放行'));
+    assert.match(await admin.locator('.review-full-progress').innerText(),/完整包回执：1\/3.*81\/328/s);
+    assert.equal(await admin.locator('#review-count-working').innerText(),'1','completed pilot is not a completed workbook');
+    fullFixture.full_analysis.state='completed';fullFixture.full_analysis.completed_package_ids=['pilot','remaining','unassigned'];fullFixture.full_analysis.covered_cells=328;
+    await admin.goto(base+'/task-reviews.html?id='+xlsx.id);
+    await admin.waitForFunction(()=>document.querySelector('.review-full-progress')?.textContent.includes('全部园区及未归属包'));
+    assert.equal(await admin.locator('#review-count-done').innerText(),'1');
+    assert.match(await admin.locator('.review-full-progress').innerText(),/完整审阅不等于所有条目已上线或达到 C3/);
+    await admin.unroute('**/api/materials');
+    await admin.goto(base+'/task-reviews.html?id='+xlsx.id);
+    await admin.locator('.review-sampled').waitFor();
     await anonymous.locator('[data-task-view="submission-progress"]').click();
     await anonymous.locator('#package-refresh').click();
     await anonymous.waitForFunction(()=>document.querySelector('#package-timeline')?.textContent.includes('抽样反馈 · 全表待审'));

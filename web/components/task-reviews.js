@@ -12,6 +12,7 @@
   const state = item => {
     if (item.status === 'rejected') return 'rejected';
     if (item.review_batch_recovery) return 'pending';
+    if (item.full_analysis) return item.full_analysis.state === 'completed' ? 'done' : 'working';
     if ((item.analysis_reports || []).length) return 'done';
     if (item.analysis_progress?.state === 'source_error') return 'done';
     if (item.analysis_requested_at) return 'working';
@@ -19,7 +20,8 @@
     return 'other';
   };
   const stateText = {pending:'待确认',working:'分析中',done:'已有反馈',rejected:'已退回',other:'已接收'};
-  const stateLabel = item => recoveryFor(item) ? '确认未完成' : item.analysis_progress?.error_code === 'joint_model_output_invalid_requires_operator' ? '需人工复核' : item.analysis_progress?.state === 'source_error' ? '需修正原件' : item.analysis_scope?.mode === 'sampled_native_cells' ? '抽样反馈 · 全表待审' : stateText[state(item)];
+  const fullStateLabel = item => item.full_analysis.state === 'completed' ? '全表原生文本已审' : item.full_analysis.state === 'pilot_completed' ? '试点已审 · 待网站核验' : item.analysis_progress?.state === 'blocked' ? '完整审阅受阻' : item.analysis_progress?.state === 'waiting' ? '完整审阅等待中' : '完整审阅中';
+  const stateLabel = item => recoveryFor(item) ? '确认未完成' : item.full_analysis ? fullStateLabel(item) : item.analysis_progress?.error_code === 'joint_model_output_invalid_requires_operator' ? '需人工复核' : item.analysis_progress?.state === 'source_error' ? '需修正原件' : item.analysis_scope?.mode === 'sampled_native_cells' ? '抽样反馈 · 全表待审' : stateText[state(item)];
   let items = [], selected = '', filter = 'pending', initialized = false, packageNames = new Map(), packageRows = [];
   const taskGroup = item => {
     if (item.package_id) return {key:`package:${item.package_id}`, title:packageNames.get(item.package_id) || item.package_id, kind:'系统工作包', linked:true};
@@ -75,9 +77,25 @@
     return `<details class="review-feedback"><summary>员工可见的反馈与修改任务书 · ${rows.length} 条</summary>${rows.length ? rows.map(row => `<article><small>${esc(time(row.at))} · ${esc(results[row.result] || row.result)}</small><p>${esc(row.text)}</p></article>`).join('') : '<p>尚无反馈。</p>'}</details>`;
   }
 
+  function fullProgressHtml(item) {
+    const attempt = item.full_analysis, progress = item.analysis_progress || {};
+    const completed = attempt.completed_package_ids?.length ?? 0, total = attempt.package_ids?.length ?? '?';
+    const isComplete = attempt.state === 'completed', isPilot = attempt.state === 'pilot_completed';
+    const message = isComplete ? '本轮全部园区及未归属包均已形成完整原生文本审阅回执。来源真假、外链原件、图片与图表仍须独立核验。'
+      : isPilot ? '首个园区包已完成审阅；正在核对实际网站回执，余包尚未放行。'
+      : progress.state === 'blocked' ? '审阅暂时受阻；已保存的窗口结果保留，等待研究端核对原因。'
+      : progress.state === 'waiting' ? '等待研究资源可用，已完成的窗口结果保留。'
+      : ['reading','running','continuing'].includes(progress.state || attempt.state) ? '正在逐窗阅读完整原件并综合核对同一园区；只有完整包通过校验后才形成回执。'
+      : '当前审阅状态尚未确认，请刷新或由研究端核对。';
+    const window = !isComplete && !isPilot && Number.isInteger(progress.window_total)
+      ? `<p>当前园区包窗口：${esc(progress.window_completed ?? 0)}/${esc(progress.window_total)}；窗口完成不等于该包已验收。</p>` : '';
+    return `<section class="review-progress review-full-progress" role="status"><h3>${esc(fullStateLabel(item))}</h3><p>${esc(message)}</p><p>完整包回执：${esc(completed)}/${esc(total)}（含未归属内容）；已验收原生单元格：${esc(attempt.covered_cells ?? 0)}/${esc(attempt.total_nonblank_cells ?? '?')}。</p>${window}${progress.reason && !isComplete && !isPilot ? `<p class="review-metadata">研究端状态：${esc(progress.reason)}</p>` : ''}<p class="review-metadata">旧抽样报告保留在下方历史中；完整审阅不等于所有条目已上线或达到 C3。</p></section>`;
+  }
+
   function actionsHtml(item) {
     const status = state(item);
     if (recoveryFor(item)) return '<section class="review-decision"><h3>本批确认尚未完成</h3><p>原操作已保存，继续完成同一份清单即可开始联合审阅。</p><button type="button" class="review-primary" data-batch-action="approve_and_analyze">恢复本批确认</button></section>';
+    if (item.full_analysis) return fullProgressHtml(item);
     if (item.analysis_progress?.error_code === 'joint_model_output_invalid_requires_operator') return '<section class="review-rejected"><h3>定位校验受阻 · 需人工复核</h3><p>联合结果经一次纠正仍未通过原件定位校验，已保存结果并停止自动模型调用。请核对原件定位，修订材料后重新提交。</p></section>';
     if (status === 'pending' && hasBatch(item)) {
       const rows = analysisRows(item), excluded = batchRows(item).length - rows.length, expected = item.upload_batch?.expected || item.batch_total || rows.length;
@@ -100,7 +118,7 @@
   }
 
   function packageAssignmentHtml(item) {
-    if (item.status === 'rejected' || (item.analysis_reports || []).length || item.analysis_progress?.state === 'source_error') return '';
+    if (item.status === 'rejected' || item.full_analysis || (item.analysis_reports || []).length || item.analysis_progress?.state === 'source_error') return '';
     if (!packageRows.length) return '<section class="review-decision"><h3>系统工作包</h3><p>暂时无法读取当前工作包，请刷新后再绑定。</p></section>';
     const options = packageRows.map(row => `<option value="${esc(row.id)}"${row.id === item.package_id ? ' selected' : ''}>${esc(row.title)} · ${esc(row.region)} · ${esc(row.id)}</option>`).join('');
     const form = `<section class="review-decision"><h3>系统工作包</h3><p>核对原件后指定工作包。${item.analysis_requested_at ? '改绑后须按最新任务与台账重审。' : ''}</p><form class="owner-package"><label>对应工作包<select name="package_id" required><option value=""${packageNames.has(item.package_id) ? '' : ' selected'}>请选择当前系统工作包</option>${options}</select></label><button type="submit">${item.package_id ? '保存工作包绑定' : '绑定工作包'}</button></form></section>`;

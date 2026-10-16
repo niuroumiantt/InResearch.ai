@@ -259,6 +259,13 @@ def analysis_pending():
     by_id = {row['id']:row for row in all_records}
     result, released = [], set()
     for record in all_records:
+        full = record.get('full_analysis') or {}
+        if full.get('state') in ('running', 'continuing'):
+            if record.get('status') != 'archived': continue
+            try: require_approved(record)
+            except PermissionError: continue
+            result.append(public_view(record))
+            continue
         if record.get('review_batch_id'):
             key = record['review_batch_id']
             if key in released: continue
@@ -349,7 +356,10 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
     if not isinstance(analysis_id, str) or not re.fullmatch(r'[a-f0-9-]{36}', analysis_id):
         raise ValueError('analysis_id required')
     uuid.UUID(analysis_id)
-    if (not isinstance(owner_report, dict) or len(json.dumps(owner_report, ensure_ascii=False)) > 100000
+    report_limit = (900000 if isinstance(owner_report, dict) and
+                    isinstance(owner_report.get('review_scope'), dict) and
+                    owner_report['review_scope'].get('mode') == 'full_native_campus' else 100000)
+    if (not isinstance(owner_report, dict) or len(json.dumps(owner_report, ensure_ascii=False)) > report_limit
             or not isinstance(employee_task, str) or not employee_task.strip()
             or len(employee_task) > 20000):
         raise ValueError('analysis report or employee task invalid')
@@ -371,6 +381,29 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
         scope = owner_report.get('review_scope')
         scope = scope if isinstance(scope, dict) else {}
         sampled = scope.get('mode') == 'sampled_native_cells'
+        full = scope.get('mode') == 'full_native_campus'
+        if full:
+            attempt = record.get('full_analysis') or {}
+            package_id = scope.get('package_id')
+            if (attempt.get('attempt_id') != scope.get('attempt_id')
+                    or attempt.get('state') not in ('running', 'continuing')
+                    or package_id not in attempt.get('package_ids', [])
+                    or package_id in attempt.get('completed_package_ids', [])
+                    or scope.get('manifest_sha256') != attempt.get('manifest_sha256')):
+                raise Conflict('full analysis attempt changed')
+            attempt['completed_package_ids'].append(package_id)
+            done = len(attempt['completed_package_ids']) == len(attempt['package_ids'])
+            attempt['state'] = ('completed' if done else 'pilot_completed'
+                                if attempt.get('phase') == 'pilot' else 'continuing')
+            attempt['covered_cells'] = sum(attempt['package_cell_counts'][key]
+                                           for key in attempt['completed_package_ids'])
+            if done and attempt['covered_cells'] != attempt['total_nonblank_cells']:
+                raise ValueError('full analysis coverage incomplete')
+            record['analysis_scope'] = {'mode': 'full_native_campus',
+                'attempt_id': attempt['attempt_id'], 'total_packages': len(attempt['package_ids']),
+                'completed_packages': len(attempt['completed_package_ids']),
+                'total_nonblank_cells': attempt['total_nonblank_cells'],
+                'covered_cells': attempt['covered_cells'], 'state': attempt['state']}
         if sampled:
             if published:
                 raise ValueError('sampled analysis cannot publish')
@@ -384,10 +417,12 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
                       and not owner_report.get('findings') else 'revision_required'),
             'text':employee_task})
         source_error = owner_report.get('publication',{}).get('state') == 'source_error'
-        state = 'source_error' if source_error else 'sampled_incomplete' if sampled else 'completed'
+        state = (record['full_analysis']['state'] if full else
+                 'source_error' if source_error else 'sampled_incomplete' if sampled else 'completed')
         record['analysis_state'] = state
-        total = 0 if source_error else record.get('analysis_progress', {}).get('total', 0)
-        record['analysis_progress'] = {'state':state, 'completed':total,
+        total = len(record['full_analysis']['package_ids']) if full else 0 if source_error else record.get('analysis_progress', {}).get('total', 0)
+        completed = len(record['full_analysis']['completed_package_ids']) if full else total
+        record['analysis_progress'] = {'state':state, 'completed':completed,
                                        'total':total, 'at':now}
         record['revision'] = record.get('revision', 0) + 1
         atomic(path, record)
@@ -405,6 +440,8 @@ def set_analysis_progress(key, sha, completed, total, state='running', *, error_
         if (record['sha256'] != sha or not record.get('analysis_requested_at')
                 or record['status'] != 'archived'):
             raise PermissionError('analysis not requested for this source')
+        if record.get('full_analysis'):
+            raise PermissionError('full analysis progress requires current attempt and package')
         if record.get('analysis_reports'):
             return public_view(record)
         if ((record.get('analysis_progress') or {}).get('state') == 'source_error'
@@ -418,6 +455,39 @@ def set_analysis_progress(key, sha, completed, total, state='running', *, error_
                                        'total':total, 'at':time.time()}
         if state=='blocked' and error_code=='joint_model_output_invalid_requires_operator':
             record['analysis_progress']['error_code']=error_code
+        atomic(path, record)
+    return public_view(record)
+
+
+def set_full_analysis_progress(payload):
+    """Window telemetry never grants package completion or changes review state."""
+    required = {'id','sha256','attempt_id','package_id','window_completed','window_total','state'}
+    if not isinstance(payload, dict) or not required <= set(payload) <= required | {'reason'}:
+        raise ValueError('full analysis progress fields invalid')
+    completed, total = payload['window_completed'], payload['window_total']
+    reason = payload.get('reason', '')
+    if (type(completed) is not int or type(total) is not int
+            or not 0 <= completed <= total <= 2000
+            or payload['state'] not in ('reading','waiting','blocked')
+            or not isinstance(reason, str) or len(reason) > 500):
+        raise ValueError('full analysis window progress invalid')
+    path = record_path(payload['id']) / 'record.json'
+    with locked(path):
+        record = json.loads(path.read_text())
+        require_approved(record)
+        attempt = record.get('full_analysis') or {}
+        if (record['sha256'] != payload['sha256'] or record['status'] != 'archived'
+                or attempt.get('attempt_id') != payload['attempt_id']
+                or attempt.get('state') not in ('running','continuing')
+                or payload['package_id'] not in attempt.get('available_package_ids', [])
+                or payload['package_id'] in attempt.get('completed_package_ids', [])):
+            raise PermissionError('active released full analysis package required')
+        record['analysis_progress'] = {
+            'state':payload['state'], 'attempt_id':attempt['attempt_id'],
+            'completed':len(attempt['completed_package_ids']), 'total':len(attempt['package_ids']),
+            'covered_cells':attempt['covered_cells'], 'total_nonblank_cells':attempt['total_nonblank_cells'],
+            'package_id':payload['package_id'], 'window_completed':completed, 'window_total':total,
+            'reason':reason, 'at':time.time()}
         atomic(path, record)
     return public_view(record)
 
@@ -507,6 +577,77 @@ def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
             if before != 'archived' or record.get('analysis_requested_at'):
                 raise Conflict('分析已启动，或研究端尚未接收')
             record['analysis_requested_at'] = now
+        elif action == 'start_full_analysis':
+            require_approved(record)
+            if set(payload) != {'id','sha256','expected_revision','operation_id','action','layout_id','reason','pilot_package_id'}:
+                raise ValueError('full analysis request fields invalid')
+            if before != 'archived' or Path(record['name']).suffix.lower() != '.xlsx':
+                raise ValueError('approved archived native workbook required')
+            if not isinstance(payload['reason'], str) or not 5 <= len(payload['reason'].strip()) <= 2000:
+                raise ValueError('explicit full analysis reason required')
+            previous = record.get('full_analysis') or {}
+            if previous.get('state') in ('running', 'continuing'):
+                raise Conflict('full analysis attempt already active')
+            reported_ids = {entry['id'] for entry in record.get('analysis_reports', [])}
+            if any(candidate.stem not in reported_ids for candidate in (path.parent / 'analysis-outbox').glob('*.json')):
+                raise Conflict('recover existing analysis publication before full review')
+            if record.get('analysis_requested_at') and not record.get('analysis_reports') and not previous:
+                raise Conflict('existing analysis must finish before full review')
+            if record.get('review_batch_id'):
+                batch = batch_review.load_review(record['review_batch_id'])
+                if not batch.get('analysis_complete'):
+                    raise Conflict('joint analysis must finish before full review')
+            content = path.parent / 'content'
+            if content.stat().st_size != record['size'] or hashlib.sha256(content.read_bytes()).hexdigest() != record['sha256']:
+                raise ValueError('原件内容已变化，不能重审')
+            from inresearch.materials import native_review_contract
+            from inresearch.adapters.xlsx_document import Workbook
+            import tempfile
+            with tempfile.TemporaryDirectory(prefix='inresearch-full-review-') as folder:
+                native = Path(folder) / 'source.xlsx'
+                shutil.copyfile(content, native)
+                manifest = native_review_contract.build_manifest(Workbook(native), record['sha256'], payload['layout_id'])
+            pilot = next((row for row in manifest['packets'] if row['package_id'] == payload['pilot_package_id']), None)
+            if not pilot or pilot['kind'] != 'campus':
+                raise ValueError('full analysis pilot must be a native campus package')
+            if previous:
+                record.setdefault('full_analysis_history', []).append(previous)
+            record['full_analysis'] = {'attempt_id': operation, 'layout_id': manifest['layout_id'],
+                'manifest_sha256': manifest['manifest_sha256'],
+                'package_ids': [row['package_id'] for row in manifest['packets']],
+                'package_cell_counts': {row['package_id']: len(row['owned_locators']) for row in manifest['packets']},
+                'completed_package_ids': [], 'total_nonblank_cells': manifest['total_nonblank_cells'],
+                'covered_cells': 0, 'state': 'running', 'started_at': now, 'by': actor,
+                'reason': payload['reason'].strip(), 'source_sha256': record['sha256'],
+                'phase':'pilot','pilot_package_id':pilot['package_id'],
+                'available_package_ids':[pilot['package_id']]}
+            record['analysis_requested_at'] = now
+            record['analysis_state'] = 'running'
+            record['analysis_scope'] = {'mode':'full_native_campus','attempt_id':operation,
+                'total_packages':len(manifest['packets']),'completed_packages':0,
+                'total_nonblank_cells':manifest['total_nonblank_cells'],'covered_cells':0,'state':'running'}
+            record['analysis_progress'] = {'state':'running','completed':0,'total':len(manifest['packets']),'at':now}
+        elif action == 'continue_full_analysis':
+            require_approved(record)
+            if set(payload) != {'id','sha256','expected_revision','operation_id','action','attempt_id','reason'}:
+                raise ValueError('full analysis continuation fields invalid')
+            attempt = record.get('full_analysis') or {}
+            if (attempt.get('attempt_id') != payload['attempt_id'] or attempt.get('phase') != 'pilot'
+                    or attempt.get('state') != 'pilot_completed'
+                    or attempt.get('pilot_package_id') not in attempt.get('completed_package_ids', [])):
+                raise Conflict('completed pilot attempt required')
+            if not isinstance(payload['reason'], str) or not 5 <= len(payload['reason'].strip()) <= 2000:
+                raise ValueError('pilot verification reason required')
+            content = path.parent / 'content'
+            if content.stat().st_size != record['size'] or hashlib.sha256(content.read_bytes()).hexdigest() != record['sha256']:
+                raise ValueError('原件内容已变化，不能继续研究')
+            attempt.update(phase='full', state='running', continued_at=now, continued_by=actor,
+                           continuation_reason=payload['reason'].strip(),
+                           available_package_ids=[key for key in attempt['package_ids']
+                                                  if key not in attempt['completed_package_ids']])
+            record['analysis_state'] = 'running'
+            record['analysis_scope']['state'] = 'running'
+            record['analysis_progress']['state'] = 'running'
         elif action == 'feedback':
             require_approved(record)
             text, result = payload.get('text'), payload.get('result')
