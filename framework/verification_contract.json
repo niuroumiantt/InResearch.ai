@@ -933,7 +933,7 @@
     "reports/verify_queue.md": "55fe29c77fb39a118e00fb341aa69cee8cb4bcfd6eca9184f1990517242470d5",
     "scripts/filings_gateway.py": "77ad3abe21dd9a06749a387bb37d1fc1c4b51ecb58c859d78da29af7cf8e250c",
     "docs/guides/fetchdata/fetchfilings-outbox.md": "94d5dcfe35233c1685e518a64b8bafa5728e4b44f7d4e0ae3758ca2d79cd3f02",
-    "docs/handoff/fetchfilings-outbox.md": "0738b2ad0d4eafeacb1e9ac9aacb704b6f17d6abde0c7ff64fd9a6c14036d439"
+    "docs/handoff/fetchfilings-outbox.md": "fcbceffd825cd21493ff9c93dc41c3c81d6940a242b056d5f43ae156228bdee5"
   },
   "policies": [
     {
@@ -2683,7 +2683,7 @@
         "Scheduled tomorrow delivery, complete original-source recovery for legacy variants, full semantic reading/C3, and automatic formal project/GW adoption are not established by these unit tests. Actual deployed delivery receipts are separate evidence.",
         "本批协议全文、资金实缴、实际送电/许可、具体园区及独立测试尚未全部验证；原文具名审阅与线上逐项验收另存事件证据目录。",
         "AWS→Spark TCP22网络准入、专用身份及新队列真实交付/ACK丢失/恢复未由本地测试证明；不启用定时或其它队队列。",
-        "fetchfilings本轮新队列真实交付/重复/ACK丢失/恢复与固定运行检出身份仍需独立实机回执；本地测试不证明生产接通，不启用定时或扩源。"
+        "fetchfilings本轮单源新队列实机验收见私有fetchfilings-outbox-20261016/result.html；本地/CI测试本身不证明生产。已有ACK恢复不冒充生产未收重试；长期无人值守、硬件断电、其它来源/队及自动采用未验。"
       ]
     },
     {
