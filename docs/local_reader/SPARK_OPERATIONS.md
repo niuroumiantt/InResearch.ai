@@ -584,9 +584,11 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，仅最终阶段通过 `generate_campus_adjudication` 按同模型实际token判断：32768上下文减4096输出和1024预留；精确token超限或计量身份无法复验时明确blocked，不缩减输入来宣称完成。默认调用与阅读窗口仍守原字节预算。窗口受约束解码使用实际原生值／定位枚举，P0/P1/P2及单格地点不得改写；系统提示与schema摘要纳入冻结配方，探针旧无效响应和成功窗口保留，规则改变不能混用。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、v5历史版、dahai与全国园区库；v5必须选择独立严格布局，不能套用v6，不授新园区身份资格。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
 
-最终综合预算复验使用现役Ollama 0.33.3的完整debug渲染，再交同模型blob的现役runner `/tokenize`；不能用API响应的model回显或runner通用chatml模板替代模型与完整模板绑定。先过GPU门槛；核manifest/config内容摘要、模型层digest/size与文件属性、唯一runner的固定命令、本机`ollama`账号UID、PID／启动时钟／端口和props，分词前后及实际调用时身份不一致则受阻。分词显式 `add_special:false`、`parse_special:true`，实际综合与debug请求都保持 `truncate:false`／`shift:false`、同32K上下文及4096输出。私有回执保留与完整输入／渲染／schema绑定的摘要、模型／实例及计数证据，不能声称每包重算了整个权重blob哈希。跨UID的`/proc/<pid>/exe`可能被系统拒绝，采用固定命令与本机服务UID及其余完整绑定，不提升Spark账号权限；UID缺失、错误或变化同样受阻。Ollama版本或renderer改变须重新核准，不退回估算放行。该调试操作可能触发模型调度，但不生成内容；不另起模型实例、不修改其他任务服务，不增加本轮生成名额。
+最终综合预算复验使用现役Ollama 0.33.3的完整debug渲染和同GGUF tokenizer。按.31分别核两段身份：`tokenizer_binding`只在 `/tokenize` 前后绑定固定命令、ollama服务UID、PID／启动时钟、端口、同模型路径与props；合法16K或32K tokenizer可对完整文本计数，实际observed context不证明生成上下文。共同 `model_binding`固定manifest/config实际摘要、模型层digest/size及文件属性，不声称每包重算整个权重哈希。生成是独立API请求，前后同模型绑定与完整请求一致即可，实际body仍32768／4096、`think:false`／`truncate:false`／`shift:false`；不核跨请求同PID或要求idle runner一直保持32K。成功结果的 `generation_binding`只记录模型与请求／响应摘要、actual_model及前后模型核验；无生成measure不带此字段。调试前和生成前仍核GPU，不升权、不另起模型服务。
 
 只更换最终预算门禁时保留当前attempt、全部成功阅读窗口和冻结配方，继续下一未完成步骤，不执行下面针对阅读system/schema变化的从0恢复。若已经有受阻状态，按精确attempt保存其原状态和错误后再恢复；不得删除窗口、伪改完成数或把精确分词通过当成综合／发布成功。部署和实际完整综合输入的精确预算仍须各自验收。
+
+仅生成提交前且模型binding仍一致的分词实例缺失或 `/tokenize` 内确认轮换可标为 `campus_token_runner_contention`，前两次各退避300秒、第三次operator；每次重新渲染和分词，不复用旧实例证明、不重读成功窗口。分词HTTP失败须再次核实实例确已变化，未知网络故障、版本／权重／输入／预算错误仍停止。请求间合法PID变化以及同GGUF合法16K tokenizer不构成竞争失败；不得把原runner错误码一概改成暂态。生成提交后结果未知或模型绑定失败不能自动再次生成；已返回未绑定响应保存在 `unverified-adjudication.json`，该审计存在时status丢失也阻止重放。升级不自动清除已有operator或重置次数，仍须针对精确失败保留状态并核最新网站回执。
 
 实际归档文件名为无扩展名`original`；全表worker先核SHA，再临时复制为`source.xlsx`解析，测试须使用同样归档路径且核原件不变。规划前失败同样上报当前已开放包0/0受阻状态；不得把遥测当作有效窗口。中文结果直传按实际HTTP JSON字节预算，超限使用既有分片。已持久化`operator_required`不会因升级自动恢复：排除根因后，仅对已授权精确attempt保留原受阻状态及审计，再恢复其本地执行；不删除原件、成功窗口、旧报告或服务器尝试，不重复启动同一正在进行的全表尝试。
 

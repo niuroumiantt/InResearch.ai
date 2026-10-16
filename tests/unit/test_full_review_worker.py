@@ -567,6 +567,119 @@ class FullReviewWorkerTests(unittest.TestCase):
                 self.assertEqual(saved['operator_required'], index == 2)
                 saved['retry_after'] = 0; status.write_text(json.dumps(saved))
 
+    def test_final_runner_contention_has_three_attempt_limit_and_preserves_seven_windows(self):
+        self.cells[:] = [native(f'A{n}', '材料'+str(n)) for n in range(1, 194)]
+        archive = self.folder/'archive'; folder = archive/self.item['id']
+        folder.mkdir(parents=True); (folder/'original').write_bytes(self.original.read_bytes())
+        client = FakeClient()
+        for _ in range(7):
+            self.assertIsNone(worker.proposal(self.item, folder/'original', folder, client))
+        self.assertEqual(len(client.calls), 7)
+        retained = {path: path.read_bytes() for path in folder.rglob('*.json')}
+        self.assertEqual(sum(path.name.startswith('chunk-') for path in retained), 7)
+        status = folder/'full-review'/self.item['full_analysis']['attempt_id']/'status.json'
+        def request(*args):
+            return io.BytesIO(b'{"ok":true}')
+        with patch.object(worker, 'client', return_value=client), \
+                patch.object(client, 'generate_campus_adjudication',
+                             side_effect=models.InferenceError('campus_token_runner_contention')) as final, \
+                patch.object(worker, 'resource_ready', return_value=(True, '')):
+            for index in range(3):
+                now = 1000+301*index
+                with patch.object(worker.time, 'time', return_value=now):
+                    self.assertEqual(worker.run_item(self.item, archive, request), (0, True))
+                saved = json.loads(status.read_text())
+                self.assertEqual(saved['consecutive_failures'], index+1)
+                self.assertEqual(saved['retry_after'], now+300)
+                self.assertEqual(saved['operator_required'], index == 2)
+                self.assertEqual(final.call_count, index+1)
+                with patch.object(worker.time, 'time', return_value=now+1):
+                    self.assertEqual(worker.run_item(self.item, archive, request), (0, False))
+                self.assertEqual(final.call_count, index+1)
+                if index == 0:
+                    with patch.object(worker.time, 'time', return_value=1301), \
+                            patch.object(worker, 'resource_ready', return_value=(False, 'campus_waiting_for_gpu')):
+                        self.assertEqual(worker.run_item(self.item, archive, request), (0, False))
+                    waiting = json.loads(status.read_text())
+                    self.assertEqual(waiting['consecutive_failures'], 1)
+                    self.assertEqual(waiting['retry_after'], saved['retry_after'])
+                    self.assertFalse(waiting['operator_required'])
+                    self.assertEqual(waiting['state'], 'waiting')
+                    self.assertEqual(final.call_count, 1)
+            with patch.object(worker.time, 'time', return_value=2000):
+                self.assertEqual(worker.run_item(self.item, archive, request), (0, False))
+            self.assertEqual(final.call_count, 3)
+        self.assertEqual(len(client.calls), 7)
+        self.assertEqual(retained, {path: path.read_bytes() for path in retained})
+        self.assertFalse(list(folder.rglob('adjudication.json')))
+        self.assertFalse(list(folder.rglob('proposal.json')))
+        self.assertFalse(list(folder.rglob('receipts/*.json')))
+
+    def test_only_scoped_precompletion_contention_is_retryable(self):
+        archive = self.folder/'archive'; folder = archive/self.item['id']
+        folder.mkdir(parents=True); (folder/'original').write_bytes(self.original.read_bytes())
+        status = folder/'full-review'/self.item['full_analysis']['attempt_id']/'status.json'
+        codes = ('campus_token_runner_unavailable', 'campus_token_runtime_changed',
+                 'campus_token_model_binding_changed',
+                 'campus_token_ollama_version_unverified',
+                 'campus_token_blob_unverified', 'campus_token_runner_unverified',
+                 'campus_adjudication_token_budget_exceeded', 'campus_token_runtime_unverified')
+        for code in codes:
+            with self.subTest(code=code):
+                if status.exists():
+                    status.unlink()
+                with patch.object(worker, 'proposal', side_effect=models.InferenceError(code)) as proposal:
+                    self.assertEqual(worker.run_item(self.item, archive,
+                        lambda *a: io.BytesIO(b'{"ok":true}')), (0, False))
+                    saved = json.loads(status.read_text())
+                    self.assertEqual(saved['reason'], code)
+                    self.assertTrue(saved['operator_required'])
+                    with patch.object(worker.time, 'time', return_value=saved['retry_after']+1):
+                        worker.run_item(self.item, archive, None)
+                    self.assertEqual(proposal.call_count, 1)
+
+    def test_unverified_final_response_is_retained_and_never_auto_replayed(self):
+        from inresearch.adapters.ollama_token_budget import CompletionUnverified
+        archive = self.folder/'archive'; folder = archive/self.item['id']
+        folder.mkdir(parents=True); (folder/'original').write_bytes(self.original.read_bytes())
+        client = FakeClient()
+        for _ in range(3):
+            worker.proposal(self.item, folder/'original', folder, client)
+        retained = {path: path.read_bytes() for path in folder.rglob('chunk-*.json')}
+        raw_response = {'model': 'qwen3.8:27b', 'done': True, 'done_reason': 'stop',
+                        'message': {'content': '{"summary":"不可采用的原文𠮷", "accept_candidates":[]}'}}
+        evidence = None
+        def unverified(system, user, **kwargs):
+            nonlocal evidence
+            body = {'model': 'qwen3.8:27b', 'messages': [{'role': 'system', 'content': system},
+                    {'role': 'user', 'content': user}], 'format': kwargs['json_schema']}
+            error = CompletionUnverified(models.InferenceError('campus_token_model_binding_changed'),
+                                         body, {'request_sha256': worker.digest(body)}, raw_response)
+            evidence = error.completion_evidence
+            raise error
+        status = folder/'full-review'/self.item['full_analysis']['attempt_id']/'status.json'
+        with patch.object(worker, 'client', return_value=client), \
+                patch.object(client, 'generate_campus_adjudication', side_effect=unverified) as final, \
+                patch.object(worker, 'resource_ready', return_value=(True, '')):
+            self.assertEqual(worker.run_item(self.item, archive,
+                lambda *a: io.BytesIO(b'{"ok":true}')), (0, True))
+            self.assertTrue(json.loads(status.read_text())['operator_required'])
+            audit = next(folder.rglob('unverified-adjudication.json'))
+            raw = audit.read_bytes(); saved = json.loads(raw)
+            self.assertEqual(saved['completion'], evidence)
+            self.assertEqual(saved['completion']['response'], raw_response)
+            self.assertEqual(saved['completion_sha256'], worker.digest(evidence))
+            self.assertEqual(saved['input_sha256'], worker.digest(saved['request']))
+            status.unlink()  # Losing advisory status cannot replay an uncertain completion.
+            self.assertEqual(worker.run_item(self.item, archive,
+                lambda *a: io.BytesIO(b'{"ok":true}')), (0, False))
+            self.assertEqual(final.call_count, 1)
+            self.assertEqual(audit.read_bytes(), raw)
+        self.assertEqual(retained, {path: path.read_bytes() for path in retained})
+        self.assertFalse(list(folder.rglob('adjudication.json')))
+        self.assertFalse(list(folder.rglob('proposal.json')))
+        self.assertFalse(list(folder.rglob('receipts/*.json')))
+
     def test_prepared_delivery_does_not_require_idle_gpu(self):
         archive = self.folder/'archive'; folder = archive/self.item['id']
         folder.mkdir(parents=True); (folder/'original').write_bytes(self.original.read_bytes())

@@ -144,27 +144,136 @@ class TokenBudgetTests(unittest.TestCase):
                     self.generate()
                 self.assertEqual(self.actual_calls(),[])
 
-    def test_model_or_runner_change_before_completion_stops_generation(self):
-        for target, changed in (("_model_identity", {"manifest_sha256":"changed"}),
-                                ("_runner_identity", {**self.runner,"starttime":"other"})):
-            def changed_after_gate():
-                replacement=patch.object(budget,target,return_value=changed)
-                replacement.start(); self.addCleanup(replacement.stop)
-            with self.subTest(target=target):
-                # Keep each subtest's patch scoped: the next starts from the bound identities.
-                with patch.object(budget,"_model_identity",return_value=self.model), \
-                        patch.object(budget,"_runner_identity",return_value=self.runner):
-                    with self.assertRaisesRegex(models.InferenceError,"runtime_changed"):
-                        self.generate(before_completion=changed_after_gate)
-                    self.assertEqual(self.actual_calls(),[])
+    def test_model_change_before_completion_stops_generation(self):
+        def changed_after_gate():
+            replacement = patch.object(budget, "_model_identity", return_value={"manifest_sha256": "changed"})
+            replacement.start(); self.addCleanup(replacement.stop)
+        with self.assertRaisesRegex(models.InferenceError, "model_binding_changed"):
+            self.generate(before_completion=changed_after_gate)
+        self.assertEqual(self.actual_calls(), [])
 
-    def test_runtime_change_after_completion_is_not_accepted(self):
-        with patch.object(budget,"_runner_identity",
-                          side_effect=[self.runner,self.runner,self.runner,
-                                       {**self.runner,"pid":999}]):
-            with self.assertRaisesRegex(models.InferenceError,"runtime_changed"):
+    def test_same_model_pid_or_context_rotation_outside_tokenize_allows_fixed_32k_generation(self):
+        tokenizer = {**self.runner, "context": 16384}
+        events = []
+        def rotated_before_completion():
+            events.append("another valid same-GGUF runner is now loaded")
+        call = self.call
+        def completed_after_another_rotation(url, body=None, timeout=20):
+            response = call(url, body, timeout)
+            if url.endswith("/api/chat") and not body.get("_debug_render_only"):
+                events.append("the queued caller replaces the runner after completion")
+            return response
+        with patch.object(budget, "_runner_identity", side_effect=[tokenizer, tokenizer,
+                AssertionError("generation must not claim a cross-request PID lease")]) as identity, \
+                patch.object(budget, "_call", side_effect=completed_after_another_rotation):
+            result = self.generate(before_completion=rotated_before_completion)
+        self.assertEqual(identity.call_count, 2)
+        self.assertEqual(len(events), 2)
+        proof = result["_model"]["token_budget"]
+        self.assertEqual(proof["version"], "ollama-campus-token-v2")
+        self.assertEqual(proof["tokenizer_binding"]["context"], 16384)
+        self.assertNotIn("runner_binding", proof)
+        generation = proof["generation_binding"]
+        self.assertNotIn("pid", generation)
+        self.assertEqual(generation["model_binding_sha256"], budget.digest(proof["model_binding"]))
+        self.assertTrue(generation["model_verified_before_and_after"])
+        actual = self.actual_calls()[0]
+        self.assertEqual(actual["options"]["num_ctx"], 32768)
+        self.assertEqual(actual["options"]["num_predict"], 4096)
+        self.assertFalse(actual["truncate"]); self.assertFalse(actual["shift"])
+        self.assertEqual({key:value for key,value in self.calls[0][1].items()
+                          if key != "_debug_render_only"}, actual)
+
+    def test_precompletion_runner_contention_remeasures_before_retry(self):
+        for observed in ([models.InferenceError("campus_token_runner_unavailable")],
+                         [self.runner, models.InferenceError("campus_token_runner_unavailable")],
+                         [self.runner, {**self.runner, "pid": 999}],
+                         [self.runner, {**self.runner, "props_sha256": "other", "context": 16384}]):
+            with self.subTest(observed=observed):
+                self.calls.clear()
+                with patch.object(budget, "_runner_identity", side_effect=observed):
+                    with self.assertRaisesRegex(models.InferenceError, "campus_token_runner_contention"):
+                        self.generate()
+                self.assertEqual(self.actual_calls(), [])
+                self.assertEqual(self.client._slots._value, 1)
+                self.tokens = [2]*1100
+                result = self.generate()
+                self.assertEqual(result["_model"]["token_budget"]["input_tokens"], 1100)
+                self.assertEqual(len(self.actual_calls()), 1)
+                self.assertEqual(sum(bool(body.get("_debug_render_only"))
+                                     for _, body in self.calls), 2)
+                self.assertEqual(self.calls[-2][0].rsplit("/", 1)[-1], "tokenize")
+
+    def test_tokenize_transport_error_is_retryable_only_with_confirmed_runner_change(self):
+        call = self.call
+        def interrupted(url, body=None, timeout=20):
+            response = call(url, body, timeout)
+            if url.endswith("/tokenize"):
+                raise ConnectionResetError("runner closed during tokenization")
+            return response
+        for after, reason in ((self.runner, "campus_token_runtime_unverified"),
+                ({**self.runner, "pid": 999}, "campus_token_runner_contention"),
+                (models.InferenceError("campus_token_runner_unavailable"), "campus_token_runner_contention")):
+            with self.subTest(reason=reason, after=after):
+                self.calls.clear()
+                with patch.object(budget, "_call", side_effect=interrupted), \
+                        patch.object(budget, "_runner_identity", side_effect=[self.runner, after]):
+                    with self.assertRaisesRegex(models.InferenceError, reason):
+                        self.generate()
+                self.assertEqual(self.actual_calls(), [])
+                self.assertEqual(sum(url.endswith("/tokenize") for url, _ in self.calls), 1)
+
+    def test_model_binding_and_other_precompletion_failures_are_not_contention(self):
+        with patch.object(budget, "_model_identity", side_effect=[self.model, {"changed": True}]):
+            with self.assertRaisesRegex(models.InferenceError, "campus_token_model_binding_changed"):
                 self.generate()
-        self.assertEqual(len(self.actual_calls()),1)
+        for code in ("campus_token_ollama_version_unverified", "campus_token_blob_unverified",
+                     "campus_token_runner_unverified", "campus_adjudication_token_budget_exceeded"):
+            with self.subTest(code=code), patch.object(budget, "_prepare", side_effect=models.InferenceError(code)):
+                with self.assertRaises(models.InferenceError) as error:
+                    self.generate()
+                self.assertEqual(error.exception.code, code)
+        self.assertEqual(self.actual_calls(), [])
+
+    def test_model_change_after_completion_retains_unaccepted_response(self):
+        for observed, reason in (({**self.model, "manifest_sha256": "other"}, "campus_token_model_binding_changed"),
+                ({**self.model, "renderer": "other"}, "campus_token_model_binding_changed"),
+                ({**self.model, "model_file": {"path": "/changed.gguf"}}, "campus_token_model_binding_changed"),
+                (models.InferenceError("campus_token_ollama_version_unverified"), "campus_token_ollama_version_unverified"),
+                (OSError("metadata unavailable"), "campus_token_runtime_unverified")):
+            with self.subTest(reason=reason, observed=observed):
+                self.calls.clear()
+                with patch.object(budget, "_model_identity", side_effect=[self.model]*4+[observed]):
+                    with self.assertRaises(budget.CompletionUnverified) as error:
+                        self.generate()
+                self.assertEqual(error.exception.code, reason)
+                evidence = error.exception.completion_evidence
+                self.assertEqual(evidence["phase"], "completion_returned_unverified")
+                self.assertEqual(evidence["response"], self.reply)
+                self.assertEqual(evidence["response_sha256"], budget.digest(self.reply))
+                self.assertEqual(evidence["request"], self.actual_calls()[0])
+                self.assertEqual(evidence["request_sha256"], evidence["token_budget"]["request_sha256"])
+                self.assertNotIn("generation_binding", evidence["token_budget"])
+                self.assertEqual(len(self.actual_calls()), 1)
+
+    def test_model_change_during_runner_failure_is_permanent(self):
+        with patch.object(budget, "_model_identity", side_effect=[self.model, self.model, {"changed": True}]), \
+                patch.object(budget, "_runner_identity", side_effect=models.InferenceError("campus_token_runner_unavailable")):
+            with self.assertRaisesRegex(models.InferenceError, "campus_token_model_binding_changed"):
+                self.generate()
+        self.assertEqual(self.actual_calls(), [])
+
+    def test_completion_transport_outcome_unknown_is_not_runner_contention(self):
+        call = self.call
+        def uncertain(url, body=None, timeout=20):
+            response = call(url, body, timeout)
+            if url.endswith("/api/chat") and not body.get("_debug_render_only"):
+                raise TimeoutError("completion response not received")
+            return response
+        with patch.object(budget, "_call", side_effect=uncertain):
+            with self.assertRaisesRegex(models.InferenceError, "campus_token_runtime_unverified"):
+                self.generate()
+        self.assertEqual(len(self.actual_calls()), 1)
 
     def test_truncated_incomplete_remote_or_wrong_model_output_is_rejected(self):
         for change, reason in [({"done_reason":"length"},"model_output_truncated"),
@@ -219,7 +328,7 @@ class TokenRuntimeBindingTests(unittest.TestCase):
             second=budget._model_identity("http://127.0.0.1:11434")
             self.assertNotEqual(first,second)
             with patch.object(budget,"_runner_identity",return_value={}):
-                with self.assertRaisesRegex(models.InferenceError,"runtime_changed"):
+                with self.assertRaisesRegex(models.InferenceError,"model_binding_changed"):
                     budget._unchanged("http://127.0.0.1:11434",first,{})
 
     def test_wrong_version_tag_config_or_manifest_fails_closed(self):
@@ -295,6 +404,31 @@ class TokenRuntimeBindingTests(unittest.TestCase):
                     with self.assertRaisesRegex(models.InferenceError,"runner_unverified"):
                         budget._runner_identity(model)
                     call.assert_not_called()
+
+    def test_16k_tokenizer_still_requires_exact_uid_host_model_and_props(self):
+        proc, process, model, props = self.runner_fixture()
+        raw = (process/"cmdline").read_bytes().replace(b"32768", b"16384")
+        (process/"cmdline").write_bytes(raw)
+        props["default_generation_settings"]["n_ctx"] = 16384
+        with patch.object(budget, "PROC", proc), \
+                patch.object(budget.pwd, "getpwnam", return_value=SimpleNamespace(pw_uid=996)), \
+                patch.object(budget, "_call", return_value=props):
+            self.assertEqual(budget._runner_identity(model)["context"], 16384)
+            (process/"status").write_text("Uid:\t1001\t1001\t1001\t1001\n")
+            with self.assertRaisesRegex(models.InferenceError, "campus_token_runner_unverified"):
+                budget._runner_identity(model)
+            (process/"status").write_text("Uid:\t996\t996\t996\t996\n")
+            (process/"cmdline").write_bytes(raw.replace(b"127.0.0.1", b"0.0.0.0"))
+            with self.assertRaisesRegex(models.InferenceError, "campus_token_runner_unverified"):
+                budget._runner_identity(model)
+            (process/"cmdline").write_bytes(raw)
+            props["model_path"] = "/different.gguf"
+            with self.assertRaisesRegex(models.InferenceError, "campus_token_runner_unverified"):
+                budget._runner_identity(model)
+            props["model_path"] = model["model_file"]["path"]
+            props["default_generation_settings"]["n_ctx"] = 32768
+            with self.assertRaisesRegex(models.InferenceError, "campus_token_runner_unverified"):
+                budget._runner_identity(model)
 
     def test_same_basename_at_another_path_is_not_the_ollama_runner(self):
         proc,process,model,props=self.runner_fixture()

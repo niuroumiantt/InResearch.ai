@@ -446,6 +446,9 @@ def adjudicate(packet, task, known, results, findings, candidates, model_client,
         'accept_candidates': {'type': 'array', 'items': {'type': 'integer'}}},
         'required': ['summary', 'findings', 'accept_candidates']}
     path = folder/'adjudication.json'
+    rejected = folder/'unverified-adjudication.json'
+    if rejected.exists():
+        raise models.InferenceError('campus_adjudication_unverified_completion')
     if path.exists():
         saved = json.loads(path.read_text())
         if (saved['input_sha256'] != digest(request) or saved['request'] != request
@@ -455,8 +458,15 @@ def adjudicate(packet, task, known, results, findings, candidates, model_client,
     else:
         if before_generate:
             before_generate()
-        result = model_client.generate_campus_adjudication(
-            review_worker.SYSTEM, prompt, json_schema=schema, before_completion=before_generate)
+        try:
+            result = model_client.generate_campus_adjudication(
+                review_worker.SYSTEM, prompt, json_schema=schema, before_completion=before_generate)
+        except models.InferenceError as error:
+            evidence = getattr(error, 'completion_evidence', None)
+            if evidence is not None:
+                atomic(rejected, {'request': request, 'input_sha256': digest(request),
+                                  'completion': evidence, 'completion_sha256': digest(evidence)})
+            raise
         atomic(path, {'request': request, 'input_sha256': digest(request),
                       'result': result, 'result_sha256': digest(result)})
     indexes = result.get('accept_candidates')
@@ -559,7 +569,7 @@ def run_item(item, archive, request):
     except (models.InferenceError, ValueError) as error:
         code = error.code if isinstance(error, models.InferenceError) else str(error)[:160]
         failures = previous.get('consecutive_failures', 0)+1
-        transient = ((isinstance(error, models.InferenceError) and code == 'model_failure' and failures < 3)
+        transient = ((isinstance(error, models.InferenceError) and code in ('model_failure', 'campus_token_runner_contention') and failures < 3)
                      or isinstance(error, RejectedWindow) and error.retryable)
         report(state='blocked', reason=code)
         atomic(status, {'state': 'blocked', 'reason': code, 'at': time.time(),

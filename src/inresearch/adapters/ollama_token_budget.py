@@ -36,6 +36,16 @@ def digest(value):
     return hashlib.sha256(encoded(value)).hexdigest()
 
 
+class CompletionUnverified(InferenceError):
+    """Retain a returned completion that failed its post-generation checks."""
+    def __init__(self, error, body, proof, response):
+        code = error.code if isinstance(error, InferenceError) else "campus_token_runtime_unverified"
+        super().__init__(code)
+        self.completion_evidence = {"phase": "completion_returned_unverified", "reason": code,
+            "request": body, "request_sha256": digest(body), "token_budget": proof,
+            "response": response, "response_sha256": digest(response)}
+
+
 class _NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
@@ -151,29 +161,50 @@ def _runner_identity(model):
             if len(uid_rows) != 1 or any(int(value) != expected_uid for value in uid_rows[0]):
                 raise InferenceError("campus_token_runner_unverified")
             port = int(option("--port"))
+            context = int(option("-c"))
             if (option("--host") != "127.0.0.1" or not 1 <= port <= 65535
-                    or int(option("-c")) != CONTEXT or int(option("-np")) != 1):
+                    or context <= 0 or int(option("-np")) != 1):
                 raise InferenceError("campus_token_runner_unverified")
             start = (process/"stat").read_text().rsplit(")", 1)[1].split()[19]
             matching.append({"pid": int(process.name), "starttime": start, "port": port,
-                             "uid": expected_uid, "account": "ollama",
+                             "uid": expected_uid, "account": "ollama", "context": context,
                              "cmdline_sha256": hashlib.sha256(raw).hexdigest()})
         except (OSError, UnicodeDecodeError):
             continue
-    if len(matching) != 1:
+    if not matching:
         raise InferenceError("campus_token_runner_unavailable")
+    if len(matching) != 1:
+        raise InferenceError("campus_token_runner_unverified")
     identity = matching[0]
     props = _call("http://127.0.0.1:"+str(identity["port"])+"/props")
     if (props.get("model_path") != model["model_file"]["path"]
-            or props.get("default_generation_settings", {}).get("n_ctx") != CONTEXT
+            or props.get("default_generation_settings", {}).get("n_ctx") != identity["context"]
             or props.get("total_slots") != 1 or props.get("is_sleeping")):
         raise InferenceError("campus_token_runner_unverified")
-    return {**identity, "props_sha256": digest(props), "context": CONTEXT,
+    # This is a vocabulary/tokenizer binding, not a generation KV context.
+    # A legitimate 16K instance of the same GGUF tokenizes the same full text.
+    return {**identity, "props_sha256": digest(props),
             "model_path": props["model_path"]}
 
 
+def _bound_runner(base, model):
+    try:
+        return _runner_identity(model)
+    except InferenceError as error:
+        if error.code == "campus_token_runner_unavailable":
+            # A competing runner is retryable only while model identity still
+            # matches the original binding, including file metadata.
+            if _model_identity(base) != model:
+                raise InferenceError("campus_token_model_binding_changed") from None
+        raise
+
+
 def _unchanged(base, model, runner):
-    if _model_identity(base) != model or _runner_identity(model) != runner:
+    if _model_identity(base) != model:
+        raise InferenceError("campus_token_model_binding_changed")
+    if _bound_runner(base, model) != runner:
+        if _model_identity(base) != model:
+            raise InferenceError("campus_token_model_binding_changed")
         raise InferenceError("campus_token_runtime_changed")
 
 
@@ -222,18 +253,25 @@ def _prepare(client, system, user, json_schema):
     model = _model_identity(base)
     rendered = _render(base, body, client.profile.timeout)
     if _model_identity(base) != model:
-        raise InferenceError("campus_token_runtime_changed")
-    runner = _runner_identity(model)
-    tokens = _call("http://127.0.0.1:"+str(runner["port"])+"/tokenize",
-        {"content": rendered, "add_special": False, "parse_special": True,
-         "with_pieces": False}).get("tokens")
+        raise InferenceError("campus_token_model_binding_changed")
+    runner = _bound_runner(base, model)
+    try:
+        tokens = _call("http://127.0.0.1:"+str(runner["port"])+"/tokenize",
+            {"content": rendered, "add_special": False, "parse_special": True,
+             "with_pieces": False}).get("tokens")
+    except OSError:
+        # Direct /tokenize has no scheduler lease. Retry only if a fresh
+        # binding check proves this instance disappeared/changed; an ordinary
+        # transport failure against the same instance remains permanent.
+        _unchanged(base, model, runner)
+        raise
     if (not isinstance(tokens, list) or not tokens
             or any(type(token) is not int or token < 0 for token in tokens)):
         raise InferenceError("campus_token_count_unverified")
     _unchanged(base, model, runner)
     if len(tokens)+OUTPUT+RESERVE > CONTEXT:
         raise InferenceError("campus_adjudication_token_budget_exceeded")
-    proof = {"version": "ollama-campus-token-v1", "request_sha256": digest(body),
+    proof = {"version": "ollama-campus-token-v2", "request_sha256": digest(body),
              "schema_sha256": digest(body["format"]),
              "system_sha256": hashlib.sha256(system.encode()).hexdigest(),
              "input_sha256": hashlib.sha256(user.encode()).hexdigest(),
@@ -242,13 +280,14 @@ def _prepare(client, system, user, json_schema):
              "token_ids_sha256": digest(tokens), "context": CONTEXT,
              "max_output_tokens": OUTPUT, "reserve_tokens": RESERVE,
              "truncate": False, "shift": False, "think": False,
-             "model_binding": model, "runner_binding": runner}
+             "model_binding": model, "tokenizer_binding": runner}
     return body, proof
 
 
 def revalidate(client, proof):
-    """Read-only identity check; never accepts a proof as generation authority."""
-    _unchanged(client.profile.url, proof["model_binding"], proof["runner_binding"])
+    """Recheck the generation model, without claiming a cross-request PID lease."""
+    if _model_identity(client.profile.url) != proof["model_binding"]:
+        raise InferenceError("campus_token_model_binding_changed")
 
 
 def measure(client, system, user, *, json_schema):
@@ -267,28 +306,43 @@ def generate(client, system, user, *, json_schema, before_completion=None):
     """Produce its own request-bound proof; callers cannot supply token counts."""
     try:
         with client._slots:
-            body, proof = _prepare(client, system, user, json_schema)
-            if before_completion:
-                before_completion()
-            revalidate(client, proof)
-            if digest(body) != proof["request_sha256"]:
-                raise InferenceError("campus_token_request_changed")
+            # The tokenizer instance must be stable only during /tokenize.
+            # Ollama may legitimately replace it before/after /api/chat, whose
+            # fixed request schedules its own 32K runner for the same model.
+            try:
+                body, proof = _prepare(client, system, user, json_schema)
+                if before_completion:
+                    before_completion()
+                revalidate(client, proof)
+                if digest(body) != proof["request_sha256"]:
+                    raise InferenceError("campus_token_request_changed")
+            except InferenceError as error:
+                if error.code in ("campus_token_runner_unavailable", "campus_token_runtime_changed"):
+                    raise InferenceError("campus_token_runner_contention") from None
+                raise
             response = _call(client.profile.url+"/api/chat", body, client.profile.timeout)
-            revalidate(client, proof)
-            client._verify_model(response.get("model"))
-            if response.get("done_reason") == "length":
-                raise InferenceError("model_output_truncated")
-            if (response.get("model") != MODEL or response.get("remote_host")
-                    or response.get("remote_model") or response.get("done") is not True
-                    or response.get("done_reason") != "stop" or response.get("_debug_info")):
-                raise InferenceError("model_output_incomplete")
-            message = response["message"]
-            if message.get("thinking") or message.get("tool_calls") or message.get("images"):
-                raise InferenceError("model_output_incomplete")
-            result = client._provenance(json_object(message.get("content")),
-                                        response["model"], system, user)
-            result["_model"]["token_budget"] = proof
-            return result
+            try:
+                revalidate(client, proof)
+                client._verify_model(response.get("model"))
+                if response.get("done_reason") == "length":
+                    raise InferenceError("model_output_truncated")
+                if (response.get("model") != MODEL or response.get("remote_host")
+                        or response.get("remote_model") or response.get("done") is not True
+                        or response.get("done_reason") != "stop" or response.get("_debug_info")):
+                    raise InferenceError("model_output_incomplete")
+                message = response["message"]
+                if message.get("thinking") or message.get("tool_calls") or message.get("images"):
+                    raise InferenceError("model_output_incomplete")
+                result = client._provenance(json_object(message.get("content")),
+                                            response["model"], system, user)
+                result["_model"]["token_budget"] = {**proof, "generation_binding": {
+                    "model_binding_sha256": digest(proof["model_binding"]),
+                    "request_sha256": proof["request_sha256"], "actual_model": response["model"],
+                    "model_verified_before_and_after": True, "response_sha256": digest(response)}}
+                return result
+            except (InferenceError, OSError, ValueError, KeyError, IndexError, TypeError, AttributeError) as error:
+                # This evidence is audit-only, never an accepted adjudication.
+                raise CompletionUnverified(error, body, proof, response) from None
     except InferenceError:
         raise
     except (OSError, ValueError, KeyError, IndexError, TypeError, AttributeError):
