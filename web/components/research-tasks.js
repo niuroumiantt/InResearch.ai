@@ -173,23 +173,34 @@
     $('package-current-meta').textContent = currentRead ? `当前共同任务 v${task.version} · ${task.updated_at ? '更新于 '+packageTime(task.updated_at) : '尚无完成审阅的材料'}` : `上次读取于 ${packageTime(readAt)} · 任务 v${task.version} · 未确认当前有效`;
     $('package-current-title').textContent = current.title;
     $('package-current-scope').textContent = task.scope || current.scope;
-    $('package-current-feedback').textContent = `${currentRead ? '共同反馈' : '上次读取的共同反馈'}：${task.feedback_summary || '尚无已完成审阅，按当前工作包范围提交材料。'}`;
+    const format = value => new Intl.NumberFormat('zh-CN').format(value ?? 0);
+    const publishedSites = progress.published_sites ?? task.completed?.published_sites ?? 0;
+    const publishedStatements = task.completed?.published_statements ?? progress.published_statements ?? 0;
+    const feedbackRounds = task.completed?.feedback_rounds ?? task.completed?.reviewed_rounds;
+    $('package-current-progress-summary').textContent = `${currentRead ? '共同进展' : '上次读取的共同进展'}：${current.title}已成功入库 ${format(publishedSites)} 个去重园区，${format(publishedStatements)} 条来源已上线${feedbackRounds == null ? '' : `，${format(feedbackRounds)} 轮团队反馈已形成`}。`;
+    const latestReceived = (progress.events || [])[0];
+    $('package-current-received').textContent = latestReceived?.received_at
+      ? `最新收到：${latestReceived.submitter}（自填）提交的${latestReceived.material} · ${packageTime(latestReceived.received_at)}`
+      : '最新收到：尚无负责人确认的材料。';
+    $('package-current-feedback').textContent = `${currentRead ? '最新审阅' : '上次读取的审阅'}：${task.feedback_summary || '尚无已完成审阅，按当前工作包范围提交材料。'}`;
     $('package-current-next').hidden = !currentRead;
     $('package-history-guidance').textContent = currentRead ? '历史记录仅供追溯，执行以上方共同现行反馈与下一步为准；原件和完整审核记录保持原权限。' : '历史记录仅供追溯；最新共同反馈尚未确认，请成功刷新后再查看执行要求。';
     $('package-current-next').textContent = `${currentRead ? '下一步' : '上次读取的下一步（未确认当前有效）'}：${task.next_action}`;
     const remaining = Array.isArray(task.remaining) ? task.remaining.filter(row=>typeof row === 'string' && row !== task.next_action) : [];
     $('package-current-remaining').hidden = !currentRead || !remaining.length;
     $('package-current-remaining').innerHTML = remaining.map(row=>`<li>${esc(row)}</li>`).join('');
-    $('package-published-sites').textContent = new Intl.NumberFormat('zh-CN').format(progress.published_sites ?? 0);
-    const feedbackRounds = task.completed?.feedback_rounds ?? task.completed?.reviewed_rounds;
-    $('package-progress-note').textContent = `暂定目标待初步盘点 · ${task.completed?.published_statements ?? progress.published_statements ?? 0} 条来源陈述已上线 · ${feedbackRounds == null ? `${progress.reviewed_files ?? 0} 份材料已审阅` : `${feedbackRounds} 轮反馈已形成`}`;
+    $('package-published-sites').textContent = format(publishedSites);
+    $('package-progress-note').textContent = `已上线来源 ${format(publishedStatements)} 条 · ${feedbackRounds == null ? `${format(progress.reviewed_files)} 份材料已审阅` : `${format(feedbackRounds)} 轮团队反馈`}`;
     const events = progress.events || [];
     $('package-history-count').textContent = `· ${events.length} 条`;
     $('package-timeline').innerHTML = events.length ? events.map(event=>{
       const status = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
         event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'manual_feedback' ? '已出负责人反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
         event.outcome === 'source_error' ? '原件需修订' : '已确认，待分析';
-      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p class="package-history-note">历史记录，仅供追溯；${currentRead ? '当前执行要求见上方共同反馈。' : '最新执行要求尚未确认，请成功刷新后再查看。'}</p><p>${esc(event.submitter)}（自填） · 提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</p><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}${event.feedback_at && event.feedback_at !== event.reviewed_at ? ` · 处理反馈：${esc(packageTime(event.feedback_at))}` : ''}</p><p class="package-event-feedback">当时团队反馈：${esc(event.feedback)}</p></div></details></article>`;
+      const repliedAt = event.reviewed_at || event.feedback_at;
+      const reply = repliedAt ? `${event.reviewed_at ? '审阅并回复' : '处理反馈'}：${packageTime(repliedAt)}` : '审阅并回复：尚未完成';
+      const packageState = current.status === 'delivered' ? '当前工作包已交付' : '当前工作包未完成，请继续';
+      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p>提交：${esc(packageTime(event.received_at))} · ${esc(reply)}</p><p>系统接受并上线：${esc(event.published_statements ?? 0)} 条 · ${esc(packageState)}</p></div></details></article>`;
     }).join('') : `<p class="package-empty">${currentRead ? '这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。' : '上次读取时，这个工作包尚无已确认的团队接力记录。'}</p>`;
     window.activeResearchPackageId = current.id;
     window.dispatchEvent(new CustomEvent('research-package-selected',{detail:{packageId:current.id}}));
