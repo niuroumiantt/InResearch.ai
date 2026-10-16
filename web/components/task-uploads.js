@@ -21,13 +21,23 @@
   const scope = item => item.analysis_scope?.mode === 'sampled_native_cells' ? `<p class="upload-sampled" role="status">仅 ${esc(item.analysis_scope.excerpted_cells)}/${esc(item.analysis_scope.total_nonblank_cells)} 个非空单元格片段交给模型，${esc(item.analysis_scope.not_fully_seen_cells)} 个未完整审阅；本次 0 条上线不代表全表无合格条目。请展开下方反馈查看下一步。</p>` : '';
   function ownCard(item) {
     const decision = item.decision;
-    return `<article class="upload-card"><div class="upload-card-head"><strong>${esc(item.name)}</strong><span class="upload-status">${esc(labels[item.status] || item.status)}</span></div><p class="small muted">上传于 ${esc(time(item.created))}</p>${decision ? `<p class="small">${esc(decision.action === 'reject' ? '退回' : '已确认')}：${esc(time(decision.at))}${decision.note ? ` · ${esc(decision.note)}` : ''}</p>` : ''}${progress(item)}${scope(item)}${feedback(item)}<details class="upload-file-meta"><summary>文件编号与校验信息</summary><p class="small muted">文件编号 ${esc(item.id)}<br>SHA256 ${esc(item.sha256)}</p></details></article>`;
+    return `<article class="upload-card"><div class="upload-card-head"><strong>${esc(item.name)}</strong><span class="upload-status">${esc(labels[item.status] || item.status)}</span></div><p class="small muted">上传于 ${esc(time(item.created))}</p>${decision ? `<p class="small">${esc(decision.action === 'reject' ? '退回' : '已确认')}：${esc(time(decision.at))}${decision.note ? ` · ${esc(decision.note)}` : ''}</p>` : ''}${progress(item)}${scope(item)}${feedback(item)}${item.feedback?.length ? `<button type="button" class="feedback-download" data-download-feedback="${esc(item.id)}">下载反馈与下一步 .md ↓</button>` : ''}<details class="upload-file-meta"><summary>文件编号与校验信息</summary><p class="small muted">文件编号 ${esc(item.id)}<br>SHA256 ${esc(item.sha256)}</p></details></article>`;
   }
   async function readReceipt(row) {
     const response = await fetch('/api/task-uploads/receipt', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(row),cache:'no-store'});
     if (!response.ok) throw Error('回执无效或状态暂不可用');
     return (await response.json()).item;
   }
+  $('upload-own-list').addEventListener('click', event => {
+    const button = event.target.closest('[data-download-feedback]');
+    const item = button && knownItems.find(row => row.id === button.dataset.downloadFeedback);
+    if (!item?.feedback?.length) return;
+    const text = [`# ${item.project_name || '材料'} · 反馈与下一步`, '', `原件：${item.name}`, `提交人：${item.submitter || '未留姓名'}（自填）`, `提交时间：${time(item.created)}`, '', ...item.feedback.map(row => [`## ${time(row.at)} · ${results[row.result] || row.result}`, '', row.text, ''].join('\n')), '本文件保留回执中的原反馈。继续提交前，请对照该工作包的最新共同计划。', ''].join('\n');
+    const url = URL.createObjectURL(new Blob([text],{type:'text/markdown;charset=utf-8'}));
+    const link = document.createElement('a');
+    link.href = url; link.download = `${item.id}-反馈与下一步.md`;
+    document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url),1000);
+  });
   async function refreshOwn() {
     const rows = receipts();
     if (!rows.length) { knownItems = []; $('upload-own-list').innerHTML = '<p class="small muted">当前浏览器还没有提交回执。</p>'; return; }

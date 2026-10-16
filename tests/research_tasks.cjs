@@ -25,19 +25,85 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal((await anonymous.request.get(base+'/api/research-tasks')).status(),200);
     assert.equal((await anonymous.request.post(base+'/api/research-tasks',{data:{}})).status(),401);
     await anonymous.goto(base+'/tasks.html');
-    await anonymous.locator('#package-tabs [role="tab"]').nth(5).waitFor();
+    await anonymous.locator('#package-dashboard [data-package-dashboard]').nth(5).waitFor();
     const initialApiLoads = await anonymous.evaluate(()=>performance.getEntriesByType('resource').map(entry=>new URL(entry.name).pathname));
     assert.equal(initialApiLoads.filter(path=>path==='/api/research-tasks').length,1,'initial page shares one task request');
     assert.equal(initialApiLoads.filter(path=>path==='/api/research-task-examples').length,1,'fixed real example loads with the project overview');
-    assert.equal(await anonymous.locator('#mission-title').innerText(),'先固定园区 ID，再逐轮补齐资料。');
+    assert.equal(await anonymous.locator('#mission-title').innerText(),'完成全球园区信息的爬取');
+    const taskUrl=anonymous.url();
+    assert.deepEqual(await anonymous.locator('.mission-nav [data-task-view]').allTextContents(),['任务首页','提交与进展']);
+    assert.equal(await anonymous.locator('[data-task-view="task-guide"]').count(),0,'there is no separate guide tab');
+    assert.equal(await anonymous.locator('#task-home').isVisible(),true);
+    assert.equal(await anonymous.locator('#mission-dashboard').isVisible(),true);
+    assert.equal(await anonymous.locator('#worked-example').isVisible(),true);
+    assert.equal(await anonymous.locator('#data-angles').isVisible(),true,'the relationship diagram is shown directly on the homepage');
+    assert.equal(await anonymous.evaluate(()=>Boolean(document.querySelector('#mission-dashboard').compareDocumentPosition(document.querySelector('#worked-example')) & Node.DOCUMENT_POSITION_FOLLOWING)),true,'dashboard is followed by the fixed real example');
+    assert.equal(await anonymous.evaluate(()=>Boolean(document.querySelector('#worked-example').compareDocumentPosition(document.querySelector('#data-angles')) & Node.DOCUMENT_POSITION_FOLLOWING)),true,'the relationship diagram follows the real example');
+    const initialTasks=await (await anonymous.request.get(base+'/api/research-tasks')).json();
+    assert.equal(await anonymous.locator('#package-dashboard [data-package-dashboard]').count(),initialTasks.packages.length);
+    for(const p of initialTasks.packages){
+      const card=anonymous.locator('[data-package-dashboard="'+p.id+'"]');
+      assert.ok((await card.innerText()).includes(p.title));
+      assert.equal(await card.locator('[data-package-published-sites]').innerText(),String(initialTasks.package_progress[p.id].published_sites));
+    }
+    await anonymous.locator('[data-task-view="task-home"]').focus();
+    for(const [key,view] of [['ArrowRight','submission-progress'],['ArrowLeft','task-home'],['End','submission-progress'],['Home','task-home'],['ArrowLeft','submission-progress'],['ArrowRight','task-home']]){
+      await anonymous.keyboard.press(key);
+      assert.equal(await anonymous.locator('[data-task-view="'+view+'"]').getAttribute('aria-selected'),'true','main tab keyboard activation: '+key);
+      assert.equal(await anonymous.evaluate(()=>document.activeElement?.dataset.taskView),view,'main tab keyboard focus: '+key);
+      assert.equal(await anonymous.locator('#'+view).isVisible(),true);
+      assert.equal(anonymous.url(),taskUrl,'main tab keyboard navigation preserves URL: '+key);
+    }
+    // Browser-only synthetic counts prove the dashboard renders supplied totals
+    // independently; no fixture is written to the ledger or production data.
+    const dashboardFixture=structuredClone(initialTasks);
+    dashboardFixture.site_progress.published_sites=8123;
+    const fixturePackage=dashboardFixture.packages[0];
+    dashboardFixture.package_progress[fixturePackage.id].published_sites=456;
+    dashboardFixture.package_progress[dashboardFixture.packages[1].id].published_sites=456;
+    await anonymous.route('**/api/research-tasks',route=>route.fulfill({json:dashboardFixture}));
+    await anonymous.locator('#work-packages > summary').click();
+    await anonymous.locator('#refresh-tasks').click();
+    await anonymous.waitForFunction(()=>document.querySelector('#mission-progress-value')?.textContent==='8,123 个园区已入库');
+    assert.equal(await anonymous.locator('#mission-progress-value').innerText(),'8,123 个园区已入库');
+    assert.equal(await anonymous.locator('[data-package-dashboard="'+fixturePackage.id+'"] [data-package-published-sites]').innerText(),'456');
+    assert.equal(await anonymous.locator('#mission-site-progress').isHidden(),true,'unknown target has no invented completion percentage');
+    await anonymous.unroute('**/api/research-tasks');
+    await anonymous.locator('#refresh-tasks').click();
+    await anonymous.waitForFunction(published=>document.querySelector('#mission-progress-value')?.textContent===`${new Intl.NumberFormat('zh-CN').format(published)} 个园区已入库`,initialTasks.site_progress.published_sites);
+    assert.equal(await anonymous.locator('[data-package-dashboard="'+fixturePackage.id+'"] [data-package-published-sites]').innerText(),String(initialTasks.package_progress[fixturePackage.id].published_sites));
+    await anonymous.locator('#work-packages > summary').click();
     assert.equal(await anonymous.locator('#download-template-home').count(),1);
-    assert.equal(await anonymous.evaluate(()=>Boolean(document.querySelector('#worked-example').compareDocumentPosition(document.querySelector('.mission-nav')) & Node.DOCUMENT_POSITION_FOLLOWING)),true,'real example stays above the workbench tabs');
     assert.equal(await anonymous.locator('#submission-progress #task-upload-form').count(),1,'submission form and personal feedback share one progress view');
     assert.equal(await anonymous.locator('#submission-progress #upload-own-list').count(),1,'personal receipt timeline remains alongside the submission form');
+    assert.equal(await anonymous.locator('#package-workspace').isHidden(),true);
+    await anonymous.locator('[data-task-view="submission-progress"]').click();
+    assert.equal(anonymous.url(),taskUrl,'switching the main task tab preserves the URL and hash');
+    assert.equal(await anonymous.locator('#task-home').isHidden(),true);
+    assert.equal(await anonymous.locator('#submission-progress').isVisible(),true);
+    assert.equal(await anonymous.locator('#package-workspace').isVisible(),true);
+    assert.equal(await anonymous.evaluate(()=>Boolean(document.querySelector('#task-upload-form').compareDocumentPosition(document.querySelector('#package-workspace')) & Node.DOCUMENT_POSITION_FOLLOWING)),true,'team progress appears below the submission form');
     assert.equal(await anonymous.locator('#upload-package').inputValue(),'dc-census-cn');
+    const packageIds=initialTasks.packages.map(p=>p.id), cnIndex=packageIds.indexOf('dc-census-cn');
+    await anonymous.locator('#package-tabs [data-package-tab="dc-census-cn"]').focus();
+    for(const [key,index] of [['ArrowRight',(cnIndex+1)%packageIds.length],['ArrowLeft',cnIndex],['End',packageIds.length-1],['Home',0],['ArrowLeft',packageIds.length-1],['ArrowRight',0]]){
+      await anonymous.keyboard.press(key);
+      const packageId=packageIds[index];
+      assert.equal(await anonymous.locator('#package-tabs [data-package-tab="'+packageId+'"]').getAttribute('aria-selected'),'true','region tab keyboard activation: '+key);
+      assert.equal(await anonymous.evaluate(()=>document.activeElement?.dataset.packageTab),packageId,'region tab keyboard focus: '+key);
+      assert.equal(await anonymous.locator('#upload-package').inputValue(),packageId,'region keyboard selection updates submission package');
+      assert.equal(anonymous.url(),taskUrl,'region tab keyboard navigation preserves URL: '+key);
+    }
     await anonymous.locator('#package-tabs [data-package-tab="dc-census-na"]').click();
+    assert.equal(anonymous.url(),taskUrl,'changing the active region preserves the URL and hash');
     assert.equal(await anonymous.locator('#upload-package').inputValue(),'dc-census-na');
     await anonymous.locator('#package-tabs [data-package-tab="dc-census-cn"]').click();
+    await anonymous.locator('#upload-package').selectOption('dc-census-na');
+    assert.equal(await anonymous.locator('#package-tabs [data-package-tab="dc-census-na"]').getAttribute('aria-selected'),'true','the submission selector keeps the team timeline on the selected work package');
+    assert.equal(anonymous.url(),taskUrl);
+    await anonymous.locator('#upload-package').selectOption('dc-census-cn');
+    await anonymous.locator('[data-task-view="task-home"]').click();
+    assert.equal(anonymous.url(),taskUrl);
     if(process.env.UI_TASKS_SCREENSHOT_PREFIX){
       await anonymous.evaluate(()=>scrollTo(0,0));
       await anonymous.setViewportSize({width:1440,height:1000});
@@ -47,7 +113,8 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
       await anonymous.setViewportSize({width:1440,height:1000});
     }
     assert.equal(await anonymous.locator('#submission-progress').isHidden(),true);
-    await anonymous.locator('#package-upload-action').click();
+    await anonymous.locator('[data-task-view="submission-progress"]').click();
+    assert.equal(anonymous.url(),taskUrl);
     assert.equal(await anonymous.locator('#submission-progress').isVisible(),true);
     assert.equal(await anonymous.locator('[data-task-view="submission-progress"]').getAttribute('aria-selected'),'true');
     if(process.env.UI_QA_DIR){
@@ -146,6 +213,12 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await anonymous.locator('#upload-own-list .upload-feedback').getAttribute('open'),null);
     await anonymous.locator('#upload-own-list .upload-feedback summary').click();
     assert.match(await anonymous.locator('#upload-own-list .upload-feedback').innerText(),/北京时间.*补齐来源与工作表定位/s);
+    const [feedbackDownload]=await Promise.all([anonymous.waitForEvent('download'),anonymous.locator('#upload-own-list [data-download-feedback]').click()]);
+    assert.match(feedbackDownload.suggestedFilename(),/\.md$/);
+    const feedbackText=readFileSync(await feedbackDownload.path(),'utf8');
+    assert.ok(feedbackText.includes('补齐来源与工作表定位'),'receipt holders can download the original private feedback text');
+    assert.ok(feedbackText.includes(publicRecord.name));
+    assert.ok(!feedbackText.includes('\\n'),'feedback download uses real Markdown newlines');
     const sampleScope={mode:'sampled_native_cells',total_sheets:1,total_nonblank_rows:41,total_nonblank_cells:328,
       excerpted_rows:4,excerpted_cells:32,prefix_only_cells:1,not_excerpted_cells:296,
       not_fully_seen_cells:297,excerpt_character_limit:90};
@@ -178,12 +251,37 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.waitForFunction(()=>document.querySelector('#upload-own-list')?.textContent.includes('仅抽样反馈，全表待审'));
     assert.match(await anonymous.locator('#upload-own-list').innerText(),/32\/328.*297.*0 条上线/s);
     assert.equal(await anonymous.locator('#upload-own-list .upload-card').filter({hasText:'synthetic-workbook.xlsx'}).locator('.upload-feedback').getAttribute('open'),null);
-    await anonymous.locator('[data-task-view="package-workspace"]').click();
+    await anonymous.locator('[data-task-view="submission-progress"]').click();
     await anonymous.locator('#package-refresh').click();
     await anonymous.waitForFunction(()=>document.querySelector('#package-timeline')?.textContent.includes('另一位访客'));
     assert.match(await anonymous.locator('#package-timeline').innerText(),/另一位访客.*Excel 表格.*抽样反馈/s);
     assert.ok(!(await anonymous.locator('#package-active-panel').textContent()).includes('抽样反馈；研究端继续审核未覆盖单元格。'));
     assert.ok(!(await anonymous.locator('#package-active-panel').textContent()).includes(xlsx.sha256));
+    const currentTasks=await (await anonymous.request.get(base+'/api/research-tasks')).json();
+    const currentPackage=currentTasks.packages.find(p=>p.id==='dc-census-cn');
+    const currentProgress=currentTasks.package_progress[currentPackage.id];
+    const [planDownload]=await Promise.all([anonymous.waitForEvent('download'),anonymous.locator('#download-package-plan').click()]);
+    assert.match(planDownload.suggestedFilename(),/\.md$/);
+    const planText=readFileSync(await planDownload.path(),'utf8');
+    assert.ok(planText.includes(currentPackage.title));
+    assert.ok(planText.includes(currentProgress.current_task.scope));
+    assert.ok(planText.includes(currentProgress.current_task.next_action));
+    assert.ok(!planText.includes(sampledRecord.feedback[0].text),'a public current plan does not expose receipt-only worker feedback');
+    assert.ok(!planText.includes(xlsx.sha256));
+    assert.ok(!planText.includes('\\n'),'current task download uses real Markdown newlines');
+    const sampledEvent=anonymous.locator('#package-timeline .package-event').filter({hasText:'另一位访客'});
+    assert.equal(await sampledEvent.evaluate(el=>el.open),false,'team next-step details remain collapsed until requested');
+    await sampledEvent.locator('summary').click();
+    const [eventPlanDownload]=await Promise.all([anonymous.waitForEvent('download'),sampledEvent.locator('[data-download-event-plan]').click()]);
+    assert.match(eventPlanDownload.suggestedFilename(),/\.md$/);
+    const eventPlanText=readFileSync(await eventPlanDownload.path(),'utf8');
+    const publicEvent=currentProgress.events.find(event=>event.submitter==='另一位访客');
+    assert.ok(eventPlanText.includes(publicEvent.next_action));
+    assert.ok(eventPlanText.includes(publicEvent.feedback));
+    assert.ok(!eventPlanText.includes(sampledRecord.feedback[0].text));
+    assert.ok(!eventPlanText.includes(xlsx.sha256));
+    await anonymous.locator('[data-task-view="task-home"]').click();
+    assert.equal(await anonymous.locator('[data-package-dashboard="dc-census-cn"] [data-package-published-sites]').innerText(),String(currentProgress.published_sites));
     await anonymous.evaluate(id=>{
       const key='inresearch-task-upload-receipts-v1';
       localStorage.setItem(key,JSON.stringify(JSON.parse(localStorage.getItem(key)||'[]').filter(row=>row.id!==id)));
@@ -213,6 +311,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const sampleArtifacts=[['original','SYNTHETIC PUBLIC ORIGINAL\n','public'],['validation','{"offline_valid":true,"synthetic":true}\n','public'],['internal','SYNTHETIC PRIVATE OPERATOR NOTE\n','private']].map(([id,content,access_scope])=>{const bytes=Buffer.from(content);writeFileSync(join(sampleDirectory,id+'.txt'),bytes);return{id,path:id+'.txt',filename:id+'.txt',sha256:createHash('sha256').update(bytes).digest('hex'),size:bytes.length,access_scope};});
     const sample={version:1,id:sampleId,name:'合成浏览器样例 · 不是真实研究数据',site_id:'synthetic-example',status:'测试字节，不可用于研究采用',processed_at:'2026-10-12T12:00:00+08:00',execution:{machine:'private-sample-host',model:'private-sample-model',actor:'private-sample-operator',reading_scope:'仅相关段落，未全文阅读'},sources:[{id:'source-1',title:'合成原件',url:'https://example.invalid/source',artifact_id:'original',locator:'第1节 · 原文定位'}],facts:[{id:'name',label:'园区原名',value:'合成站点',unit:null,source_ids:['source-1'],locator:'第1节'}],unknowns:[{id:'electricity',label:'年度电耗',reason:'原件未披露，保持未知',next_action:'寻找运行年度报告，不填0'}],stages:[{id:'originals',title:'原件取得',state:'complete',result:'已保存合成测试字节',artifact_ids:['original']},{id:'validate',title:'离线验包',state:'complete',result:'合成测试报告',artifact_ids:['validation']},{id:'receive',title:'实际接收',state:'pending',result:'未执行，不可计为已接收',artifact_ids:['internal']},{id:'map',title:'网站与地图回执',state:'pending',result:'未执行，不可计为已点亮',artifact_ids:[]}],artifacts:sampleArtifacts,links:{project:'/project.html?site=synthetic-example',map:'/industry.html?site=synthetic-example'}};
     writeFileSync(join(sampleDirectory,'example.json'),JSON.stringify(sample));
+    await anonymous.locator('[data-task-view="task-home"]').click();
     await anonymous.locator('#refresh-examples').click();
     await anonymous.locator('[data-example="'+sampleId+'"]').waitFor();
     assert.ok(!(await anonymous.locator('#example-content').innerText()).includes('private-sample-'));
@@ -234,7 +333,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const errors = [];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'/tasks.html');
     assert.equal((await page.request.get(base+'/api/materials/content/'+publicRecord.id)).status(),404);
-    await page.locator('[data-task-view="task-guide"]').click();
+    await page.locator('[data-task-view="task-home"]').click();
     await page.locator('#work-packages > summary').click();
     await page.locator('#package-rows tr').nth(5).waitFor();
     await page.locator('[data-example="'+sampleId+'"]').waitFor();
@@ -244,14 +343,15 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await page.locator('[data-check-id]').count(),58);
     assert.equal(await page.locator('.arch-question').count(),4);
     assert.equal(await page.locator('[data-provider]').count(),6);
-    await page.locator('[data-task-view="task-guide"]').click();
+    await page.locator('[data-task-view="task-home"]').click();
     assert.equal(await page.locator('#research-context').evaluate(el => el.open),false);
     await page.locator('#research-context > summary').click();
     assert.match(await page.locator('#research-lines').innerText(),/通用数据中心研究/);
-    assert.match(await page.locator('#mission-progress-value').innerText(),/0 个园区已点亮/);
-    assert.match(await page.locator('#mission-progress-detail').innerText(),/园区目标待初步盘点/);
-    assert.match(await page.locator('#mission-target-basis').innerText(),/园区数量分母由初步盘点后设定/);
+    assert.match(await page.locator('#mission-progress-value').innerText(),/0 个园区已入库/);
+    assert.match(await page.locator('#mission-progress-detail').innerText(),/目标总量待盘点.*持续采集与补齐/);
     assert.equal(await page.locator('#mission-target-form').isVisible(),false);
+    await page.locator('.dashboard-details > summary').click();
+    assert.match(await page.locator('#mission-target-basis').innerText(),/园区数量分母由初步盘点后设定/);
     assert.equal(await page.locator('#mission-existing-register').evaluate(el => el.open),false);
     await page.locator('#mission-existing-register > summary').click();
     assert.match(await page.locator('#register-stats').innerText(),/参与统计项目记录/);
@@ -266,7 +366,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await page.locator('#save-package').click();
     await page.locator('#package-dialog').waitFor({state:'hidden'});
     await page.reload();
-    await page.locator('[data-task-view="task-guide"]').click();
+    await page.locator('[data-task-view="task-home"]').click();
     await page.locator('#work-packages > summary').click();
     await page.locator('#package-rows tr').nth(5).waitFor();
     assert.match(await page.locator('[data-package="dc-census-na"]').innerText(),/task-intern.*m4/s);
@@ -329,8 +429,19 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await page.locator('#package-filter').selectOption('');
     for(const width of [1440,760,390,320]){
       await page.setViewportSize({width,height:1000});
-      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'responsive width '+width);
+      await page.locator('[data-task-view="task-home"]').click();
+      const responsiveUrl=page.url();
+      assert.ok(await page.locator('#mission-dashboard').isVisible(),'homepage dashboard at width '+width);
+      assert.ok(await page.locator('#data-angles').isVisible(),'homepage relationship diagram at width '+width);
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'homepage responsive width '+width);
       assert.ok(await page.locator('#download-template').isVisible());
+      await page.locator('[data-task-view="submission-progress"]').click();
+      assert.equal(page.url(),responsiveUrl);
+      assert.ok(await page.locator('#task-upload-form').isVisible(),'submission form at width '+width);
+      assert.ok(await page.locator('#package-workspace').isVisible(),'team timeline at width '+width);
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'submission responsive width '+width);
+      await page.locator('[data-task-view="task-home"]').click();
+      assert.equal(page.url(),responsiveUrl);
     }
     await page.setViewportSize({width:1440,height:1000});
     if(process.env.UI_TASKS_SCREENSHOT_PREFIX){
@@ -345,7 +456,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const intern = await browser.newPage();
     await intern.context().addCookies([{name:'hub_session',value:config.cookies['task-intern'].split('=')[1],url:base}]);
     await intern.goto(base+'/tasks.html');
-    await intern.locator('[data-task-view="task-guide"]').click();
+    await intern.locator('[data-task-view="task-home"]').click();
     await intern.locator('#work-packages > summary').click();
     await intern.locator('[data-edit="dc-census-na"]').waitFor();
     assert.equal(await intern.locator('#new-package').isVisible(),false);
@@ -369,9 +480,10 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const owner = await browser.newPage();
     await owner.context().addCookies([{name:'hub_session',value:config.cookies['task-admin'].slice(config.cookies['task-admin'].indexOf('=')+1),url:base}]);
     await owner.goto(base+'/tasks.html');
-    await owner.locator('[data-task-view="task-guide"]').click();
+    await owner.locator('[data-task-view="task-home"]').click();
     await owner.locator('#work-packages > summary').click();
     await owner.locator('#package-rows tr').nth(5).waitFor();
+    await owner.locator('.dashboard-details > summary').click();
     assert.equal(await owner.locator('#mission-target-form').isVisible(),true);
     await owner.locator('#mission-target-form [name="target_site_count"]').fill('250');
     await owner.locator('#mission-target-form [name="target_site_basis"]').fill('初步盘点去重的运营商园区清单');
@@ -387,6 +499,6 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.match(await anonymous.locator('#mission-progress-detail').innerText(),/暂定目标 250 · 0%/);
 
     assert.deepEqual(errors,[]);
-    console.log('PASS public task privacy, real-byte example downloads, unknowns/evidence/pending states, changed-file rejection, persisted assignment, concurrent-edit protection, own intern delivery and 4 responsive widths');
+    console.log('PASS task dashboard, two views without URL changes, Markdown plans/private feedback downloads, public task privacy, real-byte example downloads, unknowns/evidence/pending states, changed-file rejection, persisted assignment, concurrent-edit protection, own intern delivery and 4 responsive widths');
   } finally {if(browser)await browser.close();server.kill();lines.close();rmSync(directory,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);process.exitCode=1;});

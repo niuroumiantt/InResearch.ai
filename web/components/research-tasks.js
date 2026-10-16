@@ -9,12 +9,12 @@
   const viewForHash = hash => {
     const id = decodeURIComponent(String(hash || '').replace(/^#/,''));
     if (id === 'upload' || id === 'my-submissions' || id === 'submission-progress') return 'submission-progress';
-    if (id === 'research-methods' || id === 'research-context' || id === 'work-packages') return 'task-guide';
-    return 'package-workspace';
+    if (id.startsWith('package-')) return 'submission-progress';
+    return 'task-home';
   };
-  const showTaskView = (view, updateHash = true) => {
-    const allowed = new Set(['package-workspace','submission-progress','task-guide']);
-    if (!allowed.has(view)) view = 'package-workspace';
+  const showTaskView = view => {
+    const allowed = new Set(['task-home','submission-progress']);
+    if (!allowed.has(view)) view = 'task-home';
     document.querySelectorAll('[data-task-panel]').forEach(panel => {
       panel.hidden = panel.dataset.taskPanel !== view;
     });
@@ -25,13 +25,22 @@
     });
     window.activeResearchTaskView = view;
     document.body.dataset.activeTaskView = view;
-    if (updateHash) history.replaceState(null,'','#' + (view === 'task-guide' ? 'research-methods' : view));
     window.dispatchEvent(new CustomEvent('research-task-view',{detail:{view}}));
   };
   document.querySelectorAll('[data-task-view]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskView)));
+  function moveTab(event, buttons) {
+    const index = buttons.indexOf(event.target);
+    if (index < 0 || !['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 :
+      (index + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+    buttons[next].click(); buttons[next].focus({preventScroll:true});
+  }
+  document.querySelector('.mission-nav').addEventListener('keydown', event =>
+    moveTab(event, [...document.querySelectorAll('[data-task-view]')]));
   document.querySelectorAll('[data-task-view-request]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskViewRequest)));
   window.addEventListener('research-task-view-requested',event=>showTaskView(event.detail?.view));
-  window.addEventListener('hashchange',()=>showTaskView(viewForHash(location.hash),false));
+  window.addEventListener('hashchange',()=>showTaskView(viewForHash(location.hash)));
   let state = null, pending = null, editing = null, editingRevision = null, selectedPackageId = null;
   const canEdit = item => state && (state.can_create || (state.role === 'intern' && String(item.assignee || '').split(/[,，、;；\n]+/).map(name => name.trim()).includes(state.actor)));
   const value = name => form.elements.namedItem(name);
@@ -51,6 +60,8 @@
     } catch (error) {
       $('tasks-status').textContent = error.message;
       $('register-stats').textContent = '台账读取失败，请刷新重试。';
+      $('mission-progress-value').textContent = '暂不可用';
+      $('package-dashboard').textContent = error.message;
     }
   }
 
@@ -75,8 +86,8 @@
     $('mission-site-progress').setAttribute('aria-label', target
       ? `模型审阅后已上线 ${published} 个去重园区，暂定目标 ${target} 个`
       : `模型审阅后已上线 ${published} 个去重园区；园区目标待初步研究后设定`);
-    $('mission-progress-value').textContent = `${formatCount(published)} 个园区已点亮`;
-    $('mission-progress-detail').textContent = target ? `暂定目标 ${formatCount(target)} · ${Math.round(published / target * 100)}%` : '园区目标待初步盘点';
+    $('mission-progress-value').textContent = `${formatCount(published)} 个园区已入库`;
+    $('mission-progress-detail').textContent = target ? `暂定目标 ${formatCount(target)} · ${Math.round(published / target * 100)}%` : '目标总量待盘点 · 持续采集与补齐';
     $('mission-progress-basis').textContent = state.site_progress?.basis || '按实际发布回执计数；同园区多字段只计一次。';
     $('mission-work-package-count').textContent = formatCount(total);
     $('mission-reviewed-reports').textContent = formatCount(state.site_progress?.reviewed_reports ?? 0);
@@ -99,7 +110,21 @@
     const items = state.packages.filter(p => !filter || p.status === filter);
     $('package-rows').innerHTML = items.map(p => `<tr data-package="${esc(p.id)}"><td data-label="工作包"><strong class="package-name">${esc(p.title)}</strong><span class="package-region">${esc(p.region)}</span><p class="package-scope">${esc(p.scope)}</p><details><summary>${state.public_view?'来源方向':'来源方向与备注'}</summary><p>${esc(p.sources)}</p>${p.note?`<p>${esc(p.note)}</p>`:''}</details></td><td data-label="参与成员">${esc(state.public_view?'登录后可见':p.assignee || '待分配')}</td><td data-label="机器 / 模型">${state.public_view?'<span class="muted">登录后可见</span>':`${esc(p.machine || '待确认')}<br><span class="muted">${esc(p.model || '模型未登记')}</span>`}</td><td data-label="截止日">${esc(state.public_view?'登录后可见':p.due || '待安排')}</td><td data-label="协调状态"><span class="package-status ${esc(p.status)}">${esc(statuses[p.status] || p.status)}</span></td><td data-label="交付 / 操作">${state.public_view?'<a href="/login">登录协作 →</a>':p.delivery_pointer?`<details><summary>交付指针</summary><p class="delivery-pointer">${esc(p.delivery_pointer)}</p></details>`:'<span class="muted">尚无交付指针</span>'}${canEdit(p)?`<button type="button" data-edit="${esc(p.id)}">${state.can_create?'分配 / 更新':'更新我的进度'}</button>`:''}</td></tr>`).join('') || '<tr><td colspan="6">这个状态下暂无工作包。</td></tr>';
     $('package-rows').querySelectorAll('[data-edit]').forEach(button=>button.addEventListener('click',()=>openPackage(button.dataset.edit)));
+    renderDashboard();
     renderPackageWorkspace();
+  }
+
+  function renderDashboard() {
+    const format = n => new Intl.NumberFormat('zh-CN').format(n);
+    $('package-dashboard').innerHTML = state.packages.map(p => {
+      const progress = state.package_progress?.[p.id] || {};
+      return `<button type="button" class="package-dashboard-card" data-package-dashboard="${esc(p.id)}"><span class="dashboard-package-title">${esc(p.title)}</span><span class="dashboard-package-count"><strong data-package-published-sites>${format(progress.published_sites ?? 0)}</strong> 个园区已入库</span><span class="dashboard-package-meta">${format(progress.reviewed_files ?? 0)} 份已审 · ${format(progress.published_statements ?? 0)} 条来源记录</span><span class="dashboard-package-link">查看提交与进展 →</span></button>`;
+    }).join('');
+    $('package-dashboard').querySelectorAll('[data-package-dashboard]').forEach(button => button.addEventListener('click', () => {
+      selectedPackageId = button.dataset.packageDashboard;
+      renderPackageWorkspace();
+      showTaskView('submission-progress');
+    }));
   }
 
   const packageTime = value => value ? new Date(value * 1000).toLocaleString('zh-CN',
@@ -121,7 +146,6 @@
     tabs.querySelectorAll('[data-package-tab]').forEach(button=>button.addEventListener('click',()=>{
       selectedPackageId = button.dataset.packageTab;
       try { localStorage.setItem('inresearch-active-package-v1',selectedPackageId); } catch { /* Optional preference. */ }
-      history.replaceState(null,'','#package-'+selectedPackageId);
       renderPackageWorkspace();
     }));
     const progress = state.package_progress?.[current.id] || {};
@@ -133,11 +157,11 @@
     $('package-published-sites').textContent = new Intl.NumberFormat('zh-CN').format(progress.published_sites ?? 0);
     $('package-progress-note').textContent = `暂定目标待初步盘点 · ${progress.published_statements ?? 0} 条来源陈述已上线 · ${progress.reviewed_files ?? 0} 份材料已审阅`;
     const events = progress.events || [];
-    $('package-timeline').innerHTML = events.length ? events.map(event=>{
+    $('package-timeline').innerHTML = events.length ? events.map((event,index)=>{
       const status = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
         event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
         event.outcome === 'source_error' ? '原件需修订' : '已确认，待分析';
-      return `<details class="package-event"><summary><time>${esc(packageTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填）</strong><span>提交 ${esc(event.material)}</span><em>${esc(status)}</em></summary><div class="package-event-body"><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p><p>团队反馈：${esc(event.feedback)}</p>${event.next_action ? `<p>下一步：${esc(event.next_action)}</p>` : ''}</div></details>`;
+      return `<article class="package-timeline-entry"><details class="package-event"><summary><time>${esc(packageTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填）</strong><span>提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</span><em>${esc(status)} · 下一步 ▾</em></summary><div class="package-event-body"><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p>${event.next_action ? `<p>下一步：${esc(event.next_action)}</p><button type="button" data-download-event-plan="${index}">下载这轮计划 .md ↓</button>` : '<p>负责人确认后形成反馈与下一步计划。</p>'}</div></details><p class="package-event-feedback">团队反馈：${esc(event.feedback)}</p></article>`;
     }).join('') : '<p class="package-empty">这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。</p>';
     window.activeResearchPackageId = current.id;
     window.dispatchEvent(new CustomEvent('research-package-selected',{detail:{packageId:current.id}}));
@@ -147,11 +171,21 @@
     showTaskView('submission-progress');
     $('upload-package').focus({preventScroll:true});
   });
+  $('package-tabs').addEventListener('keydown', event => {
+    const before = [...$('package-tabs').querySelectorAll('[data-package-tab]')];
+    const index = before.indexOf(event.target);
+    if (index < 0 || !['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? before.length - 1 :
+      (index + (event.key === 'ArrowRight' ? 1 : -1) + before.length) % before.length;
+    const id = before[next].dataset.packageTab;
+    before[next].click();
+    [...$('package-tabs').querySelectorAll('[data-package-tab]')].find(button => button.dataset.packageTab === id)?.focus({preventScroll:true});
+  });
   $('package-refresh').addEventListener('click',load);
   window.addEventListener('research-package-requested',event=>{
     if (!state?.packages.some(p=>p.id === event.detail?.packageId)) return;
     selectedPackageId = event.detail.packageId;
-    history.replaceState(null,'','#package-'+selectedPackageId);
     renderPackageWorkspace();
   });
 
@@ -218,6 +252,23 @@
     const link = document.createElement('a'); link.href = url; link.download = name;
     document.body.append(link); link.click(); link.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
+
+  const activePackage = () => state?.packages.find(p => p.id === selectedPackageId);
+  $('download-package-plan').addEventListener('click', () => {
+    const p = activePackage(), progress = state?.package_progress?.[selectedPackageId];
+    if (!p || !progress?.current_task) return;
+    const task = progress.current_task;
+    const text = [`# ${p.title} · 当前计划`, '', `任务版本：v${task.version}`, `更新时间：${packageTime(task.updated_at)}`, '', '## 工作范围', '', task.scope, '', '## 当前成果', '', `已入库 ${progress.published_sites} 个去重园区，${progress.published_statements} 条来源记录；${progress.reviewed_files} 份材料已审阅。`, '', '## 下一步', '', task.next_action, '', '## 交付', '', '按当前范围补齐园区、字段原值与单位、时点和可回查来源；未知留空，保留原件。', '', '提交与进展：https://inresearch.ai/tasks.html', ''].join('\n');
+    download(`${p.id}-当前计划-v${task.version}.md`,text,'text/markdown;charset=utf-8');
+  });
+  $('package-timeline').addEventListener('click', event => {
+    const button = event.target.closest('[data-download-event-plan]');
+    if (!button) return;
+    const p = activePackage(), row = state?.package_progress?.[selectedPackageId]?.events?.[Number(button.dataset.downloadEventPlan)];
+    if (!p || !row?.next_action) return;
+    const text = [`# ${p.title} · 本轮反馈与下一步`, '', `提交时间：${packageTime(row.received_at)}`, `审阅时间：${packageTime(row.reviewed_at)}`, `提交人：${row.submitter}（自填）`, `材料类型：${row.material}`, '', '## 本轮交付', '', `入库来源记录：${row.published_statements ?? 0} 条`, row.feedback, '', '## 下一步计划', '', row.next_action, '', '本文件是本轮团队公开摘要；执行前请查看该工作包的最新计划，逐项修改要求凭本人回执下载。', ''].join('\n');
+    download(`${p.id}-本轮计划-${row.received_at || '未记录'}.md`,text,'text/markdown;charset=utf-8');
+  });
 
   $('download-brief').addEventListener('click',()=> {
     if (!state) { $('tasks-status').textContent = '请先刷新并成功读取服务端任务台账，再下载任务书。'; return; }
@@ -301,7 +352,7 @@
   });
   $('refresh-tasks').addEventListener('click',load);
   $('package-filter').addEventListener('change',()=> {if(state)render();});
-  showTaskView(viewForHash(location.hash),false);
+  showTaskView(viewForHash(location.hash));
   load();
   loadExamples();
 })();
