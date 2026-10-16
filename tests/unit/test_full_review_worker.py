@@ -46,7 +46,7 @@ class FullReviewWorkerTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.folder = Path(self.temp.name)
-        self.original = self.folder/'source.xlsx'
+        self.original = self.folder/'original'
         self.original.write_bytes(workbook_bytes())
         self.sha = hashlib.sha256(self.original.read_bytes()).hexdigest()
         self.task = {'task_revision': 1, 'mission_goal': '完整核对园区身份及来源',
@@ -80,6 +80,52 @@ class FullReviewWorkerTests(unittest.TestCase):
         for part in parts:
             self.assertEqual(part['value'], text[part['start']:part['end']])
             self.assertEqual(part['value_sha256'], hashlib.sha256(part['value'].encode()).hexdigest())
+
+    def test_extensionless_archive_original_remains_unchanged(self):
+        before = self.original.read_bytes()
+        client = FakeClient()
+        self.assertIsNone(worker.proposal(self.item, self.original, self.folder, client))
+        self.assertEqual(len(client.calls), 1)
+        self.assertEqual(self.original.name, 'original')
+        self.assertEqual(self.original.read_bytes(), before)
+        self.assertFalse((self.folder/'source.xlsx').exists())
+
+    def test_source_failure_before_planning_reports_blocked_without_coverage(self):
+        folder = self.folder/self.item['id']
+        folder.mkdir()
+        (folder/'original').write_bytes(self.original.read_bytes()+b'changed')
+        reports = []
+        def request(route, payload):
+            reports.append((route, payload))
+            return io.BytesIO(b'{"ok":true}')
+        with patch.object(worker, 'client') as client:
+            self.assertEqual(worker.run_item(self.item, self.folder, request), (0, False))
+        client.assert_not_called()
+        self.assertEqual(len(reports), 1)
+        route, payload = reports[0]
+        self.assertEqual(route, 'analysis-progress')
+        self.assertEqual(payload['package_id'], 'a'*64)
+        self.assertEqual((payload['window_completed'], payload['window_total']), (0, 0))
+        self.assertEqual(payload['state'], 'blocked')
+        self.assertEqual(payload['reason'], 'campus_source_sha_changed')
+        self.assertEqual(self.item['full_analysis']['completed_package_ids'], [])
+
+    def test_chinese_payload_uses_actual_wire_size_for_multipart(self):
+        payload = {'id':self.item['id'], 'sha256':self.sha,
+                   'analysis_id':'4'*36, 'summary':'园'*1600}
+        self.assertLess(len(worker.encoded(payload)), 6000)
+        self.assertGreater(len(json.dumps(payload).encode()), 8192)
+        sent = []
+        def request(route, body):
+            sent.append((route, body))
+            self.assertLessEqual(len(json.dumps(body).encode()), 6000)
+            return io.BytesIO(b'{"ok":true}')
+        self.assertEqual(worker.deliver(payload, request), {'ok':True})
+        self.assertNotIn('analysis', [route for route, body in sent])
+        self.assertEqual(sent[-1][0], 'analysis-commit')
+        sent.clear()
+        worker.deliver({**payload, 'summary':'small'}, request)
+        self.assertEqual([route for route, body in sent], ['analysis'])
 
     def test_every_cell_reaches_model_and_no_payload_before_completion(self):
         client = FakeClient()
@@ -226,7 +272,7 @@ class FullReviewWorkerTests(unittest.TestCase):
                           io.BytesIO(b'{"error":"native_review_scope_mismatch"}'))
         with patch.object(worker, 'proposal', return_value=payload), \
                 patch.object(worker, 'deliver', side_effect=error):
-            self.assertEqual(worker.run_item(self.item, self.folder, lambda *a: None), (0, False))
+            self.assertEqual(worker.run_item(self.item, self.folder, lambda *a: io.BytesIO(b'{"ok":true}')), (0, False))
         status = json.loads(next(folder.rglob('status.json')).read_text())
         self.assertTrue(status['operator_required'])
         self.assertEqual(status['reason'], 'campus_delivery_http_400')
@@ -280,7 +326,7 @@ class FullReviewWorkerTests(unittest.TestCase):
         status = folder/'full-review'/self.item['full_analysis']['attempt_id']/'status.json'
         with patch.object(worker, 'proposal', side_effect=models.InferenceError('model_failure')):
             for index in range(3):
-                self.assertEqual(worker.run_item(self.item, archive, None), (0, False))
+                self.assertEqual(worker.run_item(self.item, archive, lambda *a: io.BytesIO(b'{"ok":true}')), (0, False))
                 saved = json.loads(status.read_text())
                 self.assertEqual(saved['operator_required'], index == 2)
                 saved['retry_after'] = 0; status.write_text(json.dumps(saved))

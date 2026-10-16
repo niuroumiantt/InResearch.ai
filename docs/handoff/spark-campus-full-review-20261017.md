@@ -10,9 +10,13 @@
 
 独立工作树：`/Users/m5/.codex/worktrees/spark-campus-full-review/inresearch.ai`。主工作区其他任务不改。新增 native_review_contract.py、native_review_layouts.py、full_review_worker.py，修改 intake/inbox、task_analysis、HTTP 和原review_worker分流；测试为 test_task_full_review.py、test_full_review_worker.py 及既有材料／任务发布回归。治理要求及代码已独立复核；实现者最终执行 worker 21项、原生receiver 16项共37项通过（Python 3.12）；v5集成阶段相关模块96项通过，后续完整bundle复验待集成者追加。新增完整读取后的独立综合裁决、候选集合摘要与当前attempt/package窗口进度；不把遥测计作覆盖。负责人页新增当前尝试状态、真实包／格覆盖和非权威窗口进度；完整research_tasks浏览器场景已通过，含旧报告不遮住active、pilot不冒充完成、等待／受阻转义和390px无横溢。最终head、完整单元套件、CI、governance refresh/check与严格校验由集成发布者追加。
 
-本交接写入时为**开发未部署**：未执行生产服务切换、审批重开、完整首园区验收或园区发布。集成者已在Spark做真实27B单窗口探针（43.2秒），返回priority=high/medium及拼接location定位，被既有校验拒绝，0有效包、0发布；修正原生枚举与冻结配方后的真实重验当前等待GPU可用，由集成者继续记录；尚不能算部署或完整阅读成功。不得据源码/夹具/模型已加载声称已完成。后续实施者须追加最终head、检查结果、网站镜像、Spark执行路径与真实首包/全表回执。
+截至本次修复登记，初版PR950已合并，网站和Spark实际intake执行树均部署到`43e17ef8dde0fa766c3931b18cf126e63d3094e4`，集成者已核网站healthy；Reader PID `2847498`与research-review PID `2847499`在部署前后未变。正式v6尝试`9c1503ab-4c07-4197-848c-e59cb3af898e`读取前被`native_xlsx_source_required`阻塞：归档实际路径为无扩展名`original`，而原生Workbook要求.xlsx。本尝试0正式模型窗口、0完整园区、0发布；原件、旧报告及受阻审计保留，尚未恢复。初版失败发生在进度包初始化前，网页可能仍显示审阅中，Spark私有状态已受阻。
 
-## 已核实生产基线
+当前修复尚待PR发布：保持SHA核验和严格原生适配器，仅临时复制解析；同时补规划前0/0受阻遥测及中文实际HTTP编码大小判断。测试改为真实无扩展名归档路径，新增原件不变、早期失败不推理且不授覆盖、中文超网关预算走分片三项。修复上线和精确恢复须另记，不以本地通过替代真实首包回执。
+
+真实27B探针历史：首次43.2秒返回high/medium及拼接地点定位，被原校验拒绝；修复decoder后的第二次42.7秒单窗口通过原生校验（5条问题、1条名称候选）。两次均非正式完整园区，不计本尝试覆盖或发布。另三份辅材经真实27B一次42.2秒完整读取，无园区事实可发布；模型将指南误标空模板、要求索取已有主表的判断已由集成者在私有审计纠正，不据其内容新增任务指令或重复索取。
+
+## 升级前已核实生产基线（历史快照）
 
 - AWS 正式源码 `/srv/sources/inresearch.ai` 与研究站镜像为 `01c415b000c629edf55b79091308a91f27321229`，源码干净，镜像 ID `sha256:ed72c1945a931f68b5982fccf2500f36afd9685bc0f090c4afa1a56ee0217429`，healthy；inresearch-only-deploy.timer active，applied/status一致，pin不存在。
 - Spark intake 实际执行 `/home/spark/.worktrees/inresearch.ai/task-upload-review/manage.py receive`，工作树干净 HEAD `2fb09e2309031f801caf9d77bf82a66695930b68`，是上述主线祖先。覆盖配置为 `~/.config/systemd/user/inresearch-material-intake.service.d/90-task-upload-review-20261015.conf`，生效超时3小时；timer为退出后60秒再运行，原服务单持队列锁。
@@ -32,10 +36,10 @@
 
 ## 后续执行
 
-1. 集成与验收最终head，审阅verification契约对应实际测试和未覆盖；governance --refresh、--check、严格校验及相关全套检查通过后按现行PR门禁发布。
-2. 等现有AWS研究站独立部署器上线并核镜像/健康/接口；暂停原intake timer，等receive自然结束，备份原unit/drop-in/私有配置及本范围全部旧文件，再快进现有执行树。不能在运行进程下换代码，不另起第二worker。
-3. 以intake专属INRESEARCH_CAMPUS_MODEL_CONFIG设置campus_review loopback27B单并发，保留Codex Reader/review配置。对v6及独立v5历史布局的精确scope以 start_full_analysis 重开各自新attempt，恢复原timer。启动精确字段为 id/sha256/expected_revision/operation_id/action/layout_id/reason/pilot_package_id；继续字段为 id/sha256/expected_revision/operation_id/action/attempt_id/reason，action=continue_full_analysis，必须先确认 pilot_completed 的真实网页回执。
-4. 首一个园区包核实际模型、全片段、网站回执和地图/来源投影，凭真实回执恢复余包。分别报告有效原生阅读覆盖、实际上线园区与来源、未完成包和明确补证指令，不把投料或模型输出计作上线。
+1. 完成当前三处窄修复的最终head治理、严格校验及相关完整检查，按现行PR门禁发布；本次延续注册版本.29，不另建审核协议。
+2. 核网站部署版本和健康，暂停同一intake timer并等当前receive自然结束，保存原状态及私有备份，只快进实际intake执行树；不修改运行中的主源码或重启Reader/review/relay/Ollama。
+3. 核上述精确v6尝试、原件SHA、当前任务及本地受阻状态，留存原错误审计后恢复同一attempt。`operator_required`不会随代码升级自动消失；不能清空旧报告、成功窗口或直接重开正在运行的服务器尝试。恢复后需核0/0受阻遥测、真实模型窗口和完整首园区回执。其他原件尚未启动者仍以各自最新revision和严格布局显式start_full_analysis，不借用此试点覆盖。
+4. 首园区全部窗口及最终裁决完成后核实际网站回执和地图／来源投影，达到pilot_completed才按同attempt执行continue_full_analysis。分别报告有效原生阅读覆盖、实际上线园区与来源、未完成包和明确补证指令，不把投料、探针或辅材读完计作园区上线。
 
 ## 已知界限
 
@@ -49,4 +53,6 @@
 
 Spark第二次真实27B探针42.7秒，返回5条问题和1条基础名称候选；原生sheet/cell、P0/P1/P2及单一地点定位校验全部通过。探针只覆盖一个窗口，不计完整园区、不写正式采用、不代表网站已上线。正式首园区仍须全部窗口及跨窗口裁决、服务端采用与网页核验。
 
-合入最新main 9f4bcb7（PR951规范边界）后，冻结文件的完整2856项单元测试全部通过，耗时92.335秒；新增现金时点断言同时覆盖。治理版本仍.29、2779文件，双方规范保留。真实部署与首园区回执仍由集成者后续记录。
+合入最新main 9f4bcb7（PR951规范边界）后，冻结文件的完整2856项单元测试全部通过，耗时92.335秒；新增现金时点断言同时覆盖。治理版本仍.29、2779文件，双方规范保留。其后初版部署和首次正式试点受阻见上方现状；完整首园区回执仍未取得。
+
+本轮三处窄修复最终由集成者运行worker24项加receiver16项，共40项通过（1.056秒）。governance refresh/check为2026.10.16.29、2779个路径；REGISTER未变，diff --check通过。修复源码与测试已独立复核，完整套件、最终CI、修复部署及该受阻尝试恢复仍待集成者记录。

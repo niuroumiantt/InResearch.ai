@@ -11,7 +11,9 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
+import tempfile
 import time
 from urllib.error import HTTPError
 
@@ -217,8 +219,14 @@ def proposal(item, original, folder, model_client=None, before_generate=None, pr
     if hashlib.sha256(original.read_bytes()).hexdigest() != item['sha256']:
         raise ValueError('campus_source_sha_changed')
     attempt = item['full_analysis']
-    book = Workbook(original)
-    manifest = contract.build_manifest(book, item['sha256'], attempt['layout_id'])
+    # Intake archives immutable bytes under `original`, without an extension.
+    # Retain the native parser's .xlsx guard by giving a temporary copy its
+    # declared format, just as the ordinary review worker and receiver do.
+    with tempfile.TemporaryDirectory(prefix='inresearch-full-review-') as temp:
+        native = Path(temp)/'source.xlsx'
+        shutil.copyfile(original, native)
+        book = Workbook(native)
+        manifest = contract.build_manifest(book, item['sha256'], attempt['layout_id'])
     if manifest['manifest_sha256'] != attempt['manifest_sha256']:
         raise ValueError('campus_manifest_changed')
     completed = set(attempt.get('completed_package_ids', []))
@@ -410,7 +418,9 @@ def adjudicate(packet, task, known, results, findings, candidates, model_client,
 
 def deliver(payload, request):
     raw = json.dumps(payload, ensure_ascii=False, separators=(',', ':')).encode()
-    if len(raw) <= 6000:
+    # receive.request serializes the outer payload with JSON's default ASCII
+    # escaping. Chinese text must be budgeted using those actual wire bytes.
+    if len(json.dumps(payload).encode()) <= 6000:
         with request('analysis', payload) as response:
             return json.load(response)
     pieces = [raw[start:start+3000] for start in range(0, len(raw), 3000)]
@@ -437,7 +447,14 @@ def run_item(item, archive, request):
     if previous.get('retry_after', 0) > time.time() or previous.get('operator_required'):
         return 0, False
     consumed = False
-    current = {}
+    available = set(attempt.get('available_package_ids', attempt['package_ids']))
+    completed = set(attempt.get('completed_package_ids', []))
+    package_id = next((key for key in attempt['package_ids']
+                       if key in available and key not in completed), None)
+    # Even source/configuration failures before chunk planning must be visible
+    # on the website. Zero/zero is telemetry only, never a coverage receipt.
+    current = ({'package_id': package_id, 'window_completed': 0, 'window_total': 0}
+               if package_id else {})
     def report(package_id=None, completed=None, total=None, state='reading', reason=''):
         if package_id:
             current.update(package_id=package_id, window_completed=completed, window_total=total)
