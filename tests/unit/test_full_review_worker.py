@@ -137,10 +137,18 @@ class FullReviewWorkerTests(unittest.TestCase):
         observed = [f['locator'] for call in client.calls for f in call.get('native_fragments', [])]
         self.assertEqual(observed, [c['locator'] for c in self.cells])
         self.assertEqual(len(payload['review_windows']), 3)
-        self.assertTrue(all(call['identity_context'] == self.cells[:1] for call in client.calls[:-1]))
+        self.assertTrue(all([{k:v for k,v in cell.items() if k != 'column_headers'}
+                             for cell in call['identity_context']] == self.cells[:1]
+                            for call in client.calls[:-1]))
         self.assertEqual(client.calls[-1]['stage'], 'whole_campus_adjudication')
         self.assertEqual(client.calls[0]['source_context']['sha256'], self.sha)
         self.assertEqual(client.calls[-1]['source_context'], client.calls[0]['source_context'])
+        for call in client.calls:
+            self.assertIn('本窗未提供某字段不等于整个园区缺失', call['instructions'])
+            self.assertIn('不得要求用机架数量', call['instructions'])
+            self.assertIn('不要求把市区或地址填入省份列', call['instructions'])
+            self.assertIn('禁止借用其他表的同列名', call['instructions'])
+            self.assertIn('不得要求把数值或其他数据填入表头单元格', call['instructions'])
 
     def test_successful_calls_and_final_payload_replay_without_inference(self):
         client = FakeClient()
@@ -204,6 +212,26 @@ class FullReviewWorkerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'candidate_outside'):
             worker.validate_result(result, part, 'campus')
 
+    def test_unadvanced_cache_tampering_is_not_a_retryable_model_rejection(self):
+        client = FakeClient(); atomic = worker.atomic
+        def crash_before_advance(path, value):
+            if path.name == 'progress.json' and value.get('next') == 1:
+                raise OSError('simulated cursor write failure')
+            return atomic(path, value)
+        with patch.object(worker, 'atomic', side_effect=crash_before_advance):
+            with self.assertRaisesRegex(OSError, 'cursor write failure'):
+                worker.proposal(self.item, self.original, self.folder, client)
+        path = next(self.folder.rglob('chunk-00000.json'))
+        saved = json.loads(path.read_text())
+        saved['result']['summary'] = 'changed outside model'
+        path.write_text(json.dumps(saved))
+        with self.assertRaisesRegex(ValueError, 'campus_chunk_input_changed') as error:
+            worker.proposal(self.item, self.original, self.folder, client)
+        self.assertNotIsInstance(error.exception, worker.RejectedWindow)
+        self.assertEqual(len(client.calls), 1)
+        self.assertFalse(list(self.folder.rglob('response-*.json')))
+        self.assertEqual(json.loads(next(self.folder.rglob('progress.json')).read_text())['next'], 0)
+
     def test_pilot_release_does_not_read_other_packets(self):
         client = FakeClient()
         self.item['full_analysis']['available_package_ids'] = []
@@ -234,6 +262,55 @@ class FullReviewWorkerTests(unittest.TestCase):
         self.assertGreater(len(parts), 1)
         self.assertTrue(all(f['column_headers'] == self.packet['header_cells']
                             for f in parts[1]['native_fragments']))
+
+    def test_identity_context_uses_own_sheet_headers_in_every_window(self):
+        def cell(sheet, number, address, value):
+            return {**native(address, value), 'sheet': sheet,
+                    'locator': f'xlsx:sheet:{number}:cell:{address}:context:{address}:{address}'}
+        identity = cell('1-地点与身份', 1, 'J7', '未见公开披露')
+        identity_header = cell(identity['sheet'], 1, 'J1', '坐标精度')
+        power_header = cell('3-电源输配与接入', 2, 'J1', '未获项与原因')
+        self.packet['identity_cells'] = [identity]
+        self.packet['header_cells'] = [identity_header, power_header]
+        self.packet['cells'] = [identity]+[
+            cell(power_header['sheet'], 2, f'J{n}', '电力原文') for n in range(2, 69)]
+        parts = worker.chunks(self.packet, self.task, [], FakeClient().profile)
+        self.assertGreater(len(parts), 1)
+        expected = {key: identity_header[key] for key in ('sheet', 'cell', 'locator', 'value')}
+        for part in parts:
+            self.assertEqual(part['identity_context'][0]['column_headers'], [expected])
+            for fragment in part['native_fragments']:
+                if fragment['sheet'] == power_header['sheet']:
+                    self.assertEqual(fragment['column_headers'], [power_header])
+        observed = [fragment['locator'] for part in parts for fragment in part['native_fragments']]
+        self.assertEqual(observed, [row['locator'] for row in self.packet['cells']])
+        self.assertEqual(len(observed), len(set(observed)))
+        self.assertNotIn('column_headers', identity)
+        self.assertNotIn(identity_header['locator'], observed)
+
+    def test_identity_headers_are_visible_but_cannot_supply_candidate_values(self):
+        name, location, detail = native('B7', '园区甲'), native('D7', '内蒙古自治区'), native('J7', '未见公开披露')
+        header = native('J1', '坐标精度')
+        self.packet['identity_cells'] = [name, location, detail]
+        self.packet['header_cells'] = [header]
+        self.packet['cells'] = [native('G8', '实际备注')]
+        part = worker.chunks(self.packet, self.task, [], FakeClient().profile)[0]
+        self.assertEqual([f['locator'] for f in part['native_fragments']], [native('G8', '')['locator']])
+        schema = worker.reading_schema(part)
+        props = schema['properties']['candidates']['items']['properties']
+        self.assertNotIn(header['locator'], props['locator']['enum'])
+        self.assertNotIn(header['locator'], props['name_locator']['enum'])
+        branches = schema['properties']['findings']['items']['oneOf']
+        self.assertTrue(any(branch['properties']['sheet']['const'] == header['sheet']
+                            and header['cell'] in branch['properties']['cell']['enum'] for branch in branches))
+        result = FakeClient().generate('规则', '{}')
+        result['findings'] = [{'sheet': header['sheet'], 'cell': header['cell'], 'priority': 'P1',
+                              'issue': '定位含义待核', 'action': '核对坐标精度来源', 'acceptance': '保留原表头'}]
+        worker.validate_result(result, part, 'campus')
+        result['candidates'] = [{'name_locator': name['locator'], 'location_locator': location['locator'],
+                                 'locator': header['locator'], 'unit_locator': ''}]
+        with self.assertRaisesRegex(ValueError, 'candidate_outside_complete_cells'):
+            worker.validate_result(result, part, 'campus')
 
     def test_repeated_header_can_supply_unit_but_not_candidate_value(self):
         cell, header = native('A2', '10'), native('A1', 'MW')
@@ -285,8 +362,117 @@ class FullReviewWorkerTests(unittest.TestCase):
         props = schema['properties']['candidates']['items']['properties']
         self.assertEqual(props['location']['enum'], ['内蒙古自治区'])
         self.assertEqual(props['location_locator']['enum'], [native('D7', '')['locator']])
-        self.assertEqual(schema['properties']['findings']['items']['properties']['priority']['enum'], ['P0','P1','P2'])
+        self.assertTrue(all(branch['properties']['priority']['enum'] == ['P0','P1','P2']
+                            for branch in schema['properties']['findings']['items']['oneOf']))
         self.assertNotIn('内蒙古自治区乌兰察布市', props['location']['enum'])
+
+    def test_finding_decoder_binds_sheet_to_its_actual_cells(self):
+        identity = {**native('C7', '内蒙古自治区'), 'sheet': '1-地点与身份'}
+        capacity = {**native('A7', '园区甲'), 'sheet': '4-容量口径与分期'}
+        headers = [{**native(f'{letter}1', '表头'), 'sheet': capacity['sheet']}
+                   for letter in 'ABCDEFGHIJKLM']
+        part = {'native_fragments': [{**worker.fragments([capacity])[0], 'column_headers': headers}],
+                'identity_context': [identity]}
+        schema = worker.finding_schema([identity, capacity]+headers)
+        self.assertEqual(set(schema['items']), {'oneOf'})
+        branches = schema['items']['oneOf']
+        def accepted(sheet, cell):
+            return any(branch['properties']['sheet']['const'] == sheet
+                       and cell in branch['properties']['cell']['enum'] for branch in branches)
+        self.assertTrue(accepted(identity['sheet'], 'C7'))
+        self.assertTrue(accepted(capacity['sheet'], 'A7'))
+        self.assertTrue(accepted(capacity['sheet'], 'C1'))
+        self.assertFalse(accepted(capacity['sheet'], 'C7'))
+        result = FakeClient().generate('规则', '{}')
+        result['findings'] = [{'sheet': capacity['sheet'], 'cell': 'C7', 'priority': 'P0',
+                               'issue': '本窗缺少容量', 'action': '查原始披露', 'acceptance': '核对原值'}]
+        with self.assertRaisesRegex(ValueError, 'finding_outside_read_cells'):
+            worker.validate_result(result, part, 'campus')
+        result['findings'][0]['cell'] = 'A7'
+        worker.validate_result(result, part, 'campus')
+        # The same linked schema is used for each reading call, including
+        # repeated headers, and for final adjudication.
+        self.assertEqual(worker.reading_schema({**part, 'packet_kind': 'unassigned',
+                            'campus_name': '', 'known_sites': []})['properties']['findings'], schema)
+
+    def test_rejected_window_retries_without_reusing_failure_or_rereading_success(self):
+        client = FakeClient()
+        generate = client.generate
+        def once_invalid(*args, **kwargs):
+            result = generate(*args, **kwargs)
+            if len(client.calls) == 2:
+                result['findings'] = [{'sheet': '园区', 'cell': 'Z99', 'priority': 'P0',
+                                      'issue': '未见定位', 'action': '核对', 'acceptance': '原文'}]
+            return result
+        client.generate = once_invalid
+        worker.proposal(self.item, self.original, self.folder, client)
+        first = next(self.folder.rglob('chunk-00000.json'))
+        before = first.read_bytes()
+        with self.assertRaises(worker.RejectedWindow) as error:
+            worker.proposal(self.item, self.original, self.folder, client)
+        self.assertTrue(error.exception.retryable)
+        rejected = next(self.folder.rglob('response-01.json'))
+        rejected_before = rejected.read_bytes()
+        saved = json.loads(rejected_before)
+        self.assertEqual(saved['result']['findings'][0]['cell'], 'Z99')
+        self.assertEqual(saved['result_sha256'], worker.digest(saved['result']))
+        self.assertFalse(list(self.folder.rglob('chunk-00001.json')))
+        self.assertEqual(json.loads(next(self.folder.rglob('progress.json')).read_text())['next'], 1)
+        payload = None
+        for _ in range(3):
+            payload = worker.proposal(self.item, self.original, self.folder, client)
+        self.assertIsNotNone(payload)
+        self.assertEqual(client.calls[1], client.calls[2])
+        self.assertEqual(first.read_bytes(), before)
+        self.assertEqual(len(client.calls), 5)
+        self.assertEqual(len(payload['review_windows']), 3)
+        self.assertEqual(payload['findings'], [])
+        self.assertEqual(rejected.read_bytes(), rejected_before)
+
+    def test_rejected_window_budget_survives_status_reset_and_preserves_all_responses(self):
+        archive = self.folder/'archive'; folder = archive/self.item['id']
+        folder.mkdir(parents=True); (folder/'original').write_bytes(self.original.read_bytes())
+        client = FakeClient(); generate = client.generate
+        def always_invalid(*args, **kwargs):
+            result = generate(*args, **kwargs)
+            result['findings'] = [{'sheet': '园区', 'cell': 'Z99', 'priority': 'P0',
+                                  'issue': '未见定位', 'action': '核对', 'acceptance': '原文'}]
+            return result
+        client.generate = always_invalid
+        status = folder/'full-review'/self.item['full_analysis']['attempt_id']/'status.json'
+        reports = []
+        def request(route, body):
+            reports.append(body)
+            return io.BytesIO(b'{"ok":true}')
+        with patch.object(worker, 'client', return_value=client), \
+                patch.object(worker, 'resource_ready', return_value=(True, '')):
+            for index in range(3):
+                with patch.object(worker.time, 'time', return_value=1000+301*index):
+                    self.assertEqual(worker.run_item(self.item, archive, request), (0, True))
+                saved = json.loads(status.read_text())
+                self.assertEqual(saved['operator_required'], index == 2)
+                self.assertEqual(reports[-1]['window_completed'], 0)
+                self.assertEqual(len(client.calls), index+1)
+                if index == 0:
+                    with patch.object(worker.time, 'time', return_value=1301), \
+                            patch.object(worker, 'resource_ready', return_value=(False, 'campus_waiting_for_gpu')):
+                        self.assertEqual(worker.run_item(self.item, archive, request), (0, False))
+                    self.assertEqual(len(client.calls), 1)
+                    self.assertEqual(json.loads(status.read_text())['state'], 'waiting')
+            retained = {path: path.read_bytes() for path in folder.rglob('response-*.json')}
+            self.assertEqual(len(retained), 3)
+            self.assertEqual(len(list(folder.rglob('rejection-*.json'))), 3)
+            self.assertEqual(len(client.calls), 3)
+            # Simulate loss of advisory status: durable rejected responses still
+            # prevent an unbounded fourth call for this frozen window.
+            status.unlink()
+            self.assertEqual(worker.run_item(self.item, archive, request), (0, False))
+        self.assertEqual(len(client.calls), 3)
+        self.assertTrue(json.loads(status.read_text())['operator_required'])
+        self.assertEqual(json.loads(status.read_text())['reason'], 'campus_window_rejections_exhausted')
+        self.assertFalse(list(folder.rglob('proposal.json')))
+        self.assertFalse(list(folder.rglob('chunk-00000.json')))
+        self.assertTrue(all(path.read_bytes() == raw for path, raw in retained.items()))
 
     def test_prompt_or_decoder_change_cannot_mix_successful_windows(self):
         client = FakeClient(); worker.proposal(self.item, self.original, self.folder, client)
