@@ -417,7 +417,7 @@ def snapshot(root, params=None):
                             and (not params.get('province') or p['geography']['province'] == params['province'])})}
     if overview:
         row_keys=('site_id','name','country','region','location','developer','tenant','status','stage_label',
-                  'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_ranged','capacity_ranges','quantity_fields','capacity_estimated','capacity_assessment','total_mw','coordinates')
+                  'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_ranged','capacity_ranges','quantity_fields','capacity_estimated','capacity_assessment','total_mw','coordinates','geography')
         rows=[{key:row[key] for key in row_keys if key in row} | {
                'verification_status':'adopted_fields' if row.get('adoption') else 'registered'} for row in rows]
         for row in rows:
@@ -432,7 +432,8 @@ def snapshot(root, params=None):
         companies=[{key:c.get(key) for key in company_keys} for c in companies]
         leaders=[{key:c.get(key) for key in (*company_keys,'totals')} for c in leaders]
         audit={key:audit[key] for key in ('operating','construction','planning','estimated','estimated_sites','sites','known','unknown','ranged_sites','unlocated',
-               'portfolios_excluded','duplicates_excluded','oldest_verified','latest_verified')}
+               'portfolios_excluded','duplicates_excluded','oldest_verified','latest_verified',
+               'city_located_sites','city_reference_points','precise_located_sites','address_located_sites')}
     return {'overview':overview,'schema_version': 1, 'generated_at': date.today().isoformat(), 'filters': params,
             'coverage': {'label': '已追踪项目 · 非全球普查', 'oldest_verified': dates[0] if dates else None,
                          'latest_verified': dates[-1] if dates else None},

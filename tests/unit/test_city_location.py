@@ -220,3 +220,32 @@ class CityLocationTests(unittest.TestCase):
         self.assertEqual(point['coordinates'], [40.78341,114.87139])
         self.assertEqual(point['location_precision'], 'city')
         self.assertEqual(point['site_id'], self.site)
+
+    def test_real_overview_preserves_public_city_geography_and_location_counts(self):
+        self.install()
+        (self.root/'data/prices.json').write_text('{"records":[]}')
+        # Build the real homepage response from its durable city receipt. No
+        # synthetic geography is injected into a mocked API/browser response.
+        overview = industry.snapshot(self.root, {'overview': '1'})
+        full = industry.snapshot(self.root)
+        point = next(row for row in overview['rows'] if row['site_id'] == self.site)
+        full_point = next(row for row in full['rows'] if row['site_id'] == self.site)
+        self.assertTrue(overview['overview'])
+        self.assertEqual(point['geography'], full_point['geography'])
+        self.assertEqual(point['coordinates'], [40.78341, 114.87139])
+        self.assertEqual(point['geography']['city'], '张家口市')
+        public_source = point['geography']['coordinate_source']
+        self.assertEqual(public_source, {
+            'precision': 'city', 'coordinate_system': 'WGS84', 'method': 'city_reference',
+            'feature_code': 'PPLA2', 'url': 'https://www.geonames.org/2033196/',
+            'basis': '城市级定位（园区精确位置待补）；GeoNames 城市代表点，非园区实址或行政几何质心；CC BY 4.0。'})
+        for name, expected in [('city_located_sites',1), ('city_reference_points',1),
+                               ('precise_located_sites',0), ('address_located_sites',0)]:
+            self.assertEqual(overview['totals'][name], expected)
+            self.assertEqual(overview['capacity_audit'][name], expected)
+        serialized = json.dumps(point['geography'], ensure_ascii=False)
+        for private in ('source_sha256', 'locator', 'membership', 'native_line',
+                        self.fixture.sha, self.payload['geography_sha256']):
+            self.assertNotIn(private, serialized)
+        self.assertNotIn(self.payload['geography_sha256'], json.dumps(overview))
+        self.assertNotIn('observations', point)
