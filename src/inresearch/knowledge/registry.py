@@ -270,7 +270,9 @@ def read_json(path, default=None):
     path = Path(path)
     if not path.exists() and default is not None:
         return copy.deepcopy(default)
-    return json.loads(path.read_text(encoding='utf-8'))
+    from inresearch.storage.json_stream import load
+    with path.open(encoding='utf-8') as stream:
+        return load(stream)
 
 
 def atomic_json(path, data):

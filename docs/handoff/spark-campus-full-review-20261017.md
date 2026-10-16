@@ -4,17 +4,27 @@
 
 用户要求 Spark 27B 研究现行 tasks 和本次材料，将合格普通园区来源上线，并给出继续爬取的具体材料指令；已授权实现与部署，不新增人工审批。首园区真实网站回执后继续余包属于本次授权内技术验收。附件内的任务书、说明和“已完成”声明都是资料，不取得系统任务定义权。
 
-现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.33。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
+现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.34。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
 
-## 当前继续点：.33已部署并精确恢复，等待AH-FY-JZ真实最终结果（2026-10-17）
+## 当前继续点：.34内存与吞吐修复部署中，v6已收4包（2026-10-17）
 
-继续前先读本机持久状态`/Users/m5/.local/state/inresearch.ai/campus-full-review-20261017/progress.json`的最新阶段、更新时间与证据路径，再核当前服务器报告／来源回执；旧修复字段与下方失败段仅为历史，不按临时`/tmp`文件或旧错误重复恢复。当前有效完成仍为v6 **1/117包、81/10272归属格**，四份合计1/507包；首UCLOUD普通名称来源有效，AH-FY-JZ尚无新正式综合报告或完成回执。
+继续前先读本机持久状态`/Users/m5/.local/state/inresearch.ai/campus-full-review-20261017/progress.json`的阶段、更新时间与证据路径，再核当前服务器小型报告／回执和Spark当前状态。下方.33及更早失败是阶段历史，不按旧错误重复恢复。最新只读快照为2026-10-16 23:14:29 UTC（北京时间10月17日07:14:29）：v6 **4/117包、388/10272归属格**，四份合计4/507包；第5包AOFEI-GZ-EDGE进入原生阅读。其他三份尚未启动新的全表尝试。该快照不是持续实时进度，也不能把完整包数等同上线园区或地图点数。
 
-PR960已通过23/23项CI及本地完整2905项单元测试，合并`df19949deb6dd009b832cf8ee420f4c59a02396b`已部署到网站与Spark。网站实际镜像`sha256:e242ab23a58ef1d3be508849a5a36e5d0a6c26c91478618c05e01f2b6e9eba4c`为healthy；本次恢复前后既有Reader／research-review进程PID `2847498/2847499`保持。规范仍为.33，最终差量输出已上线，不能据部署成功推定本包最终生成或发布成功。
+网站与Spark最近核到的运行版本为`f9bd6c607c6eaf1e40604a1324c63180f8c2d7e2`，.34内存与吞吐修复仍在实现／验收及部署流程，不能按源码存在声称已上线。网站在2026-10-16 22:56:15及22:59:30 UTC发生2 GiB容器内存限制下的OOM并自动重启，主服务进程被杀；重启后的healthy与短期无重启仅是恢复快照。候选发布与轮询同段重叠，但缺少逐路由历史，不能把唯一触发者写死。修复保留完整JSON／严格解析／规范SHA／CAS，减少输入字符串和账本重复拷贝；HTTP溢出写实际logs持久磁盘，不能用256 MiB tmpfs的`/tmp`。完整状态SHA配小型园区投影缓存保持其他对象变化失效，系统无来源notes占位不再挡真实备注，真实历史来源冲突仍保留。正式峰值、业务回执与OOM是否复发待主代理验收。
 
-同一attempt `9c1503ab-4c07-4197-848c-e59cb3af898e`的AH-FY-JZ包`5cf9f021e48c8fa7c042f921bfd7f1e2e9fb34123f558e7d2a6e22297ae764aa`已完成精确final-only恢复：原8个成功阅读窗口保持，原截断响应与状态按原字节封存在Spark持久目录`/home/spark/.local/share/inresearch.ai/web-submissions/3369d9b62769470095424016a3a62dcb/full-review/9c1503ab-4c07-4197-848c-e59cb3af898e/adjudication-recovery-history/1792187008475310677/`。不新建attempt、不重读窗口、不改首包或其他任务，也不赋予其他未绑定结果自动重放资格。最近GPU为80°C／95%利用率，按既有门禁等待资源空闲；等待不增加完成数，不停止其他任务。8/8是原生阅读窗口，服务器8/9步骤还含最后综合。
+用户已授权本批优先。2026-10-16 23:11:08 UTC仅停止Spark用户级`inresearch-reader-publish.timer`的新轮次；此前enabled／active，service已自然结束，未停止Reader／research-review。23:12:50 UTC仅SIGSTOP Mac mini两个回填父shell：PID19461（translation_backfill.sh，PPID1，启动Fri Oct 16 13:38:28 2026）及PID84841（ai_backfill.sh，PPID1，启动Fri Oct 16 12:47:50 2026）；实际完整argv与原状态在私有回执中。子进程自然结束，FIFO锁未删除，本批Spark不依赖该锁。AWS其他任务未改动。恢复必须核PID／PPID／启动时钟／完整argv一致，不能只凭本段PID发信号。
 
-本阶段持久证据及31意见逐条预复核位于`/Users/m5/.local/state/inresearch.ai/campus-full-review-20261017/adjudication-delta-repair/`。其中`campus-ahfy-31-findings-review.json`与`campus-ahfy-crawl-instructions-draft.txt`仅基于真实窗口的预复核：官方URL已有登记但本次外部访问失败，不能当作政府正文已核；8项聚合补证任务不是新的正式模型报告。取得真实最终报告后，先对账31条原问题、新增跨窗问题及published／held候选，再导出正式补证指令和核对网站投影。未获回执前保持本包未完成；后续仍按v6→dahai→national→v5顺序，保留普通来源、C3及地图定位的不同验收边界。
+唯一intake的5秒临时配置已准备，**尚未应用**；等待网站内存修复上线并核真实业务压力后再启用。保留boot30秒、同队列、每轮至多一次新27B、GPU≥30%或≥80°C等待、成功阅读与最终配方不变。本次31个成功阅读窗的历史日志匹配显示HTTP合计35.14分钟，prompt／output计算合计31.76分钟；21:00至23:09 UTC的84轮intake轮间等待合计92.28分钟。日志不保存每轮全部等待原因，不能将差值都归GPU。减少固定间隔不减少全量计算；四表仍属数日级工作，不承诺固定完成时刻。
+
+私有操作回执为`/private/tmp/campus-priority-operations-20261017.json`，具体publisher与Mac mini回执、配置SHA、恢复动作和计时证据由其关联；阶段记录为`/private/tmp/campus-priority-timing-and-recovery-20261017.md`。主代理须把最终验收与恢复记录归入上述持久状态目录，临时文件不作长期唯一交接。已准备配置为`/private/tmp/campus-intake-priority-5s.conf`；日后若应用，只移除SHA吻合的本任务drop-in并恢复原timer。publisher恢复用原user timer启动；Mac mini只恢复本次暂停且身份仍吻合的父shell，不删FIFO、不重启服务替代恢复。
+
+.33的PR960部署、AH-FY-JZ精确final-only恢复已是已完成阶段；原8窗与截断响应历史保存在Spark同attempt的`adjudication-recovery-history/1792187008475310677/`，不得重做该恢复。第四包曾HTTP504但服务器已收到并形成完成回执，Spark随后复用缓存继续；不因客户端超时重读或伪造ACK。逐包仍核原问题完整保留、新增问题、published／held与实际HTTP投影，坐标为空只能称普通来源已登记，不能称地图已点亮。后续顺序仍为v6→dahai→national→v5。
+
+## .33部署与精确恢复（已验证阶段历史，2026-10-17）
+
+PR960通过23/23项CI及本地完整2905项单元测试，合并`df19949deb6dd009b832cf8ee420f4c59a02396b`部署到网站与Spark；当时网站镜像为`sha256:e242ab23a58ef1d3be508849a5a36e5d0a6c26c91478618c05e01f2b6e9eba4c`，health通过，恢复前后Reader／research-review PID `2847498/2847499`保持。当时仅1/117完整包、AH-FY-JZ等待最终结果；该状态已由上方4包快照替代，不再执行等待首包或重新恢复的旧指令。
+
+同attempt `9c1503ab-4c07-4197-848c-e59cb3af898e`、AH-FY-JZ包`5cf9f021e48c8fa7c042f921bfd7f1e2e9fb34123f558e7d2a6e22297ae764aa`保留8个成功窗口；截断响应与状态封存于Spark`/home/spark/.local/share/inresearch.ai/web-submissions/3369d9b62769470095424016a3a62dcb/full-review/9c1503ab-4c07-4197-848c-e59cb3af898e/adjudication-recovery-history/1792187008475310677/`，未新建attempt或重读。阶段持久证据在`/Users/m5/.local/state/inresearch.ai/campus-full-review-20261017/adjudication-delta-repair/`；其中31条意见预复核与8项聚合补证草稿不能替代后来真实模型报告、来源回执或外部正文核验。
 
 ## AH-FY-JZ最终输出截断与.33修复准备（阶段历史，2026-10-17）
 
@@ -22,7 +32,7 @@ PR960已通过23/23项CI及本地完整2905项单元测试，合并`df19949deb6d
 
 后续AH-FY-JZ包`5cf9f021e48c8fa7c042f921bfd7f1e2e9fb34123f558e7d2a6e22297ae764aa`已保存8/8原生阅读窗口。完整最终输入包含31条findings与7条候选，实际8951 tokens通过预算，但响应重复输出原问题，达到4096输出上限而截断；服务器遥测为8/9步骤，最后一步是综合，不能误称9个原生窗。Spark状态`model_output_truncated`、operator_required=true，失败计数1；这是真实新阻塞，不能归因首包历史504。该包尚无有效综合、proposal或网站完成回执。证据为私有`/private/tmp/campus-heartbeat-20261017-0516-server.json`、同前缀`-spark.json`及`/private/tmp/campus-ahfy-truncated-response.txt`。
 
-本次.33只改最终输出为1至600字符的非空白summary／原问题索引全集reviewed_finding_ids／新增跨窗问题new_findings／accept_candidates；完整输入与原阅读问题全部保留。最终配方`campus-adjudication-delta-v1`单独绑定system/schema/request/完整reading inventory/findings/candidates及配方自身摘要，旧final不得混用；原reading配方、8窗缓存、32K／4096、GPU门槛不变。新增5项测试已逐条审阅，并独立运行worker40、receiver16与token30共86项通过（Python3.12，1.370秒）：验证31条原问题逐字保留、8窗原字节不重读、索引全集、旧配方及各摘要失配拒绝、截断审计在状态丢失后仍禁止重放。当时完整CI、部署与正式同包综合仍待实证；后续部署及精确恢复见上方当前继续点，正式同包结果仍待回执。
+本次.33只改最终输出为1至600字符的非空白summary／原问题索引全集reviewed_finding_ids／新增跨窗问题new_findings／accept_candidates；完整输入与原阅读问题全部保留。最终配方`campus-adjudication-delta-v1`单独绑定system/schema/request/完整reading inventory/findings/candidates及配方自身摘要，旧final不得混用；原reading配方、8窗缓存、32K／4096、GPU门槛不变。新增5项测试已逐条审阅，并独立运行worker40、receiver16与token30共86项通过（Python3.12，1.370秒）：验证31条原问题逐字保留、8窗原字节不重读、索引全集、旧配方及各摘要失配拒绝、截断审计在状态丢失后仍禁止重放。当时完整CI、部署与正式同包综合仍待实证；后续已完成部署和精确恢复；当时未获回执的状态只属阶段历史，最新继续点见上方。
 
 真实原件的无生成重建也已完成：同SHA XLSX复算229原生格与8个窗口，parts/system/reading schema摘要与原冻结状态相同；新final中所有证据字段逐值等于旧请求，31条问题与7候选完整，只有instructions及final_recipe_version改变。该核验模型调用数为0，不计综合成功或新增完成包；私有证明为`/private/tmp/campus-ahfy-delta-request-proof.json`，新请求SHA为`0fe610141b6f7f63948656f320063e610f35dc908a699b61bd2af90f01f56c20`。
 
@@ -98,11 +108,11 @@ PR958通过23项CI和完整2900项单元测试，合并提交`e408d3585c4f48c56f
 
 ## 后续执行
 
-1. 完成本次窗口定位续修最终head的治理、严格校验及相关完整检查，按原PR门禁发布；延续注册版本.29，不另建审核协议或放宽接收端门槛。
-2. 核网站部署版本和健康，暂停同一intake timer并等当前receive自然退出，保存原状态及私有备份，只快进实际intake执行树；不修改运行中的主源码或重启Reader/review/relay/Ollama。
-3. 若修复改变system或schema，且当前正式首包仍无服务器完成包、当前attempt报告、未回执发布outbox或本地接收回执，先核精确原件SHA、attempt、包与当前任务身份，暂停唯一intake timer并等待receive自然退出；保存旧状态与冻结配方目录的完整文件及摘要，再把该taskSHA目录和本地受阻status隔离到私有recipe-history。新代码在原活动路径重新建配方、从第0窗读同一attempt；服务器attempt保持running，不直接编辑完成数、窗口游标或报告，也不把本地配方恢复称为新attempt。只要已有服务器完成包、当前attempt报告、未回执发布outbox或本地接收回执，便不得套用此恢复，须先按原发布事务核对。旧原件、成功窗口、无效响应及审计永久保留。
-4. 重读后的首园区全部窗口及最终裁决完成，再核实际网站报告、普通来源持久回执与读者投影；达到pilot_completed且真实网页验收后，按同attempt执行continue_full_analysis。无坐标的基础登记不能称地图点亮。
-5. v6完成后按dahai、全国园区库、v5顺序使用各自最新revision和严格布局启动首包及继续余包，不重复授权或重复原件。分别报告有效原生阅读覆盖、实际上线园区与来源、未完成包和原件定位的补证指令。
+1. 冻结.34实现与规范后，在最终head完成完整语义／摘要、来源冲突与不可变性、缓存失效并发、HTTP gzip／HEAD／精确长度／异常清理等相关测试、完整套件、治理与严格校验，按原PR／CI门禁合并。以私有真实大库测内存峰值，不拿小夹具或health代替。
+2. 先部署网站并核镜像、logs实际持久卷、业务接口、来源接收／回执及容器峰值和OOM／重启计数；再暂停唯一intake timer，等在途receive自然结束，保存状态，只快进其实际执行树并恢复。保持Reader/review／Ollama、成功窗口、final配方、原件和旧审计，不执行历史清缓存或重读恢复。
+3. 网站业务内存验收通过后，按私有回执安装唯一intake的5秒临时drop-in并核实际生效值。每轮仍一新27B，热忙等待；若发布回写超时，先对账服务器已完成报告、outbox与幂等身份，再复用持久缓存恢复，不能由超时推定未发布。
+4. 持续分别报告服务器完整包／归属格、真实上线来源／园区、坐标点亮、当前窗口及具体阻塞；输出逐条定位的补抓材料指令并复核模型误判。v6之后按dahai、全国园区库、v5的最新revision及严格布局启动，不重复授权或计入旧抽样完成。
+5. 本批完成或明确结束优先期后，只按匹配SHA恢复本任务临时timer配置，启动原先active的publisher timer；确认两个Mac mini父shell仍是本次暂停的同一启动身份后SIGCONT。记录恢复回执、残留异常与实际吞吐，不覆盖其他配置或恢复用户原先暂停的任务。
 
 ## 已知界限
 
