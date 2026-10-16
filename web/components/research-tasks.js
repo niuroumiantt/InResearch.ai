@@ -129,6 +129,8 @@
 
   const packageTime = value => value ? new Date(value * 1000).toLocaleString('zh-CN',
     {timeZone:'Asia/Shanghai',hour12:false}) + '（北京时间）' : '尚无已完成审阅';
+  const packageShortTime = value => value ? new Date(value * 1000).toLocaleString('zh-CN',
+    {timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}) : '时间未记录';
 
   function renderPackageWorkspace() {
     const packages = state.packages;
@@ -161,7 +163,7 @@
       const status = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
         event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
         event.outcome === 'source_error' ? '原件需修订' : '已确认，待分析';
-      return `<article class="package-timeline-entry"><details class="package-event"><summary><time>${esc(packageTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填）</strong><span>提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</span><em>${esc(status)} · 下一步 ▾</em></summary><div class="package-event-body"><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p>${event.next_action ? `<p>下一步：${esc(event.next_action)}</p><button type="button" data-download-event-plan="${index}">下载这轮计划 .md ↓</button>` : '<p>负责人确认后形成反馈与下一步计划。</p>'}</div></details><p class="package-event-feedback">团队反馈：${esc(event.feedback)}</p></article>`;
+      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p>${esc(event.submitter)}（自填） · 提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</p><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p><p class="package-event-feedback">团队反馈：${esc(event.feedback)}</p>${event.next_action ? `<p>下一步：${esc(event.next_action)}</p><button type="button" data-download-event-plan="${index}">下载这轮计划 .md ↓</button>` : '<p>负责人确认后形成反馈与下一步计划。</p>'}</div></details></article>`;
     }).join('') : '<p class="package-empty">这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。</p>';
     window.activeResearchPackageId = current.id;
     window.dispatchEvent(new CustomEvent('research-package-selected',{detail:{packageId:current.id}}));

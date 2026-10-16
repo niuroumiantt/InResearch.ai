@@ -356,7 +356,7 @@ class Handler(SimpleHTTPRequestHandler):
                 site_index = _review_site_index(registered)
                 task_records = material_intake.records()
                 items = []
-                for item in material_intake.analysis_pending()[:10]:
+                for item in material_intake.bounded_analysis_pending():
                     item['assigned_task'] = review_context.assigned_task(
                         item, task_state, mission, site_index, task_records,
                         source_publication.digest(source_state))
@@ -827,7 +827,7 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
-        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt'):
+        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt', '/api/task-uploads/batch', '/api/task-uploads/batch-status'):
             return self._post()
         # Machine receivers authenticate independently below. A customer cookie
         # never turns those endpoints into customer write capabilities.
@@ -841,9 +841,19 @@ class Handler(SimpleHTTPRequestHandler):
         return self._post()
 
     def _post(self):
-        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt'):
+        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt', '/api/task-uploads/batch', '/api/task-uploads/batch-status'):
             try:
                 size = int(self.headers.get('Content-Length', 0))
+                if self.path.endswith('/batch-status'):
+                    if not 0 < size <= 4096: raise ValueError('invalid batch status request')
+                    from inresearch.materials import batch_review
+                    result=batch_review.recover_upload(json.loads(self.rfile.read(size)))
+                    return self._json(200,{'ok':True,**result})
+                if self.path.endswith('/batch'):
+                    if not 0 < size <= 16384: raise ValueError('invalid batch seal request')
+                    from inresearch.materials import batch_review
+                    batch = batch_review.seal(json.loads(self.rfile.read(size)))
+                    return self._json(200, {'ok':True,'batch':batch})
                 if self.path.endswith('/receipt'):
                     if not 0 < size <= 4096:
                         raise ValueError('invalid receipt request')
@@ -914,6 +924,20 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(409, {'ok': False, 'error': str(error)[:200]})
             except (ValueError, KeyError, OSError, TypeError, ArithmeticError) as error:
                 return self._json(400, {'ok': False, 'error': str(error)[:200]})
+        if self.path == '/api/intake-worker/analysis-batch-commit':
+            if not self.intake_worker(): return
+            try:
+                size=int(self.headers.get('Content-Length',0))
+                if not 0 < size <= 16384: raise ValueError('invalid batch commit size')
+                from inresearch.materials import batch_review
+                results=batch_review.complete_staged(ROOT,json.loads(self.rfile.read(size)))
+                return self._json(200,{'ok':True,'results':results})
+            except PermissionError as error:
+                return self._json(403,{'ok':False,'error':str(error)[:200]})
+            except material_intake.Conflict as error:
+                return self._json(409,{'ok':False,'error':str(error)[:200]})
+            except (ValueError,KeyError,OSError,TypeError,ArithmeticError) as error:
+                return self._json(400,{'ok':False,'error':str(error)[:200]})
         if self.path in ('/api/intake-worker/analysis-part', '/api/intake-worker/analysis-commit'):
             if not self.intake_worker():
                 return
@@ -943,7 +967,8 @@ class Handler(SimpleHTTPRequestHandler):
                     raise ValueError('invalid size')
                 payload = json.loads(self.rfile.read(size))
                 item = material_intake.set_analysis_progress(payload['id'], payload['sha256'],
-                    payload['completed'], payload['total'], payload.get('state','running'))
+                    payload['completed'], payload['total'], payload.get('state','running'),
+                    error_code=payload.get('error_code'))
                 return self._json(200, {'ok': True, 'item': item})
             except (ValueError, KeyError, OSError, TypeError, PermissionError) as error:
                 return self._json(400, {'ok': False, 'error': str(error)[:200]})
@@ -955,7 +980,7 @@ class Handler(SimpleHTTPRequestHandler):
                 receiver=lambda root, payload: product_catalog.receive(root, payload, company))
         if self.path == '/api/pilot-progress/nvidia':
             return self.api_nvidia_pilot_progress()
-        if self.path in ('/api/materials', '/api/materials/review'):
+        if self.path in ('/api/materials', '/api/materials/review', '/api/materials/review-batch'):
             user = self._gate()
             if user is None:
                 return
@@ -966,6 +991,14 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(403, {'ok': False, 'error': 'invalid request'})
             try:
                 size = int(self.headers.get('Content-Length', 0))
+                if self.path == '/api/materials/review-batch':
+                    if not 0 < size <= 16384: raise ValueError('invalid batch approval size')
+                    from inresearch.materials import batch_review
+                    with locked(research_tasks.ledger_path(ROOT)):
+                        valid_ids={row['id'] for row in research_tasks.read(ROOT)['packages']}
+                        result = batch_review.approve(json.loads(self.rfile.read(size)),actor,role,
+                                                      valid_package_ids=valid_ids)
+                    return self._json(200, {'ok':True,**result})
                 if self.path == '/api/materials/review':
                     if not 0 < size <= 128 * 1024:
                         raise ValueError('invalid size')
