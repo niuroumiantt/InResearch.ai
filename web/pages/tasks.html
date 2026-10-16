@@ -20,7 +20,7 @@
 <main class="mission-page">
   <div class="mission-topline"><span>团队任务中心 / 当前任务：全球数据中心园区普查</span><span>公开接力 · 原件须经负责人确认</span></div>
   <section class="mission-hero" aria-labelledby="mission-title">
-    <div><p class="mission-eyebrow"><span class="priority">P1</span> 团队任务 01 · 全球园区普查</p><h1 id="mission-title">找到真实园区，接力补齐证据。</h1><p class="mission-intro">六个地区工作包共用最新任务与台账：提交原件，负责人确认，Codex 审阅；合格信息上线，缺口直接成为下一步。</p><div class="mission-actions"><button class="primary-button" type="button" data-task-view-request="package-workspace">选择工作包 <span aria-hidden="true">↗</span></button><button type="button" data-task-view-request="my-submissions">我的反馈 ↗</button><button id="download-brief" type="button">任务书 ↓</button></div></div>
+    <div><p class="mission-eyebrow"><span class="priority">P1</span> 团队任务 01 · 全球园区普查</p><h1 id="mission-title">找到真实园区，接力补齐证据。</h1><p class="mission-intro">每一份材料都沿同一条线推进：提交原件，负责人确认，Codex 审阅；合格信息上线，缺口成为下一步。</p><div class="mission-actions"><button class="primary-button" type="button" data-task-view-request="submission-progress">提交资料与查看进展 <span aria-hidden="true">↗</span></button><button type="button" data-task-view-request="package-workspace">查看项目接力 ↗</button><button id="download-brief" type="button">任务书 ↓</button></div></div>
     <aside class="mission-summary" aria-label="实际成果与暂定目标">
       <div class="mission-primary-metric"><p class="mission-eyebrow">实际成果 / 模型审阅后已发布</p><div class="mission-progress-heading"><strong id="mission-progress-value">正在读取…</strong><span id="mission-progress-detail"></span></div><progress id="mission-site-progress" max="1" value="0" aria-label="实际模型审核上线的去重园区与暂定目标园区条数之比"></progress><p class="small muted" id="mission-progress-basis">按负责人确认、模型审阅、网站实际发布后的去重园区计数。</p><div class="mission-result-stats"><div><strong id="mission-reviewed-reports">—</strong><span>累计审核报告</span></div><div><strong id="mission-published-statements">—</strong><span>累计上线的来源陈述</span></div></div></div>
       <div class="mission-targets"><p class="mission-eyebrow">暂定目标 / 初步研究后校准</p><div class="mission-target-row"><span>园区数量</span><strong id="mission-site-target">待初步盘点</strong></div><div class="mission-target-row"><span>容量规模摸底参考</span><strong>90+ GW <small>待校准</small></strong></div><p id="mission-target-basis" class="small muted">90+ GW 只是研究参考；尚未统一 IT / 设施、已投运 / 在建 / 规划口径，不计算容量完成率。</p><form id="mission-target-form" class="mission-target-form" hidden><label>暂定园区目标条数 <input name="target_site_count" type="number" min="1" max="1000000" step="1" required></label><label>初步研究依据 <input name="target_site_basis" maxlength="500" minlength="5" required placeholder="例如：去重后的运营商园区清单和地区范围"></label><button type="submit">保存暂定目标</button><span id="mission-target-message" role="status"></span></form></div>
@@ -28,8 +28,15 @@
       <details id="mission-existing-register" class="mission-existing-register"><summary>查看已有地图台账（不同统计口径）</summary><p id="mission-package-detail" class="small muted">正在读取工作包…</p><div id="register-stats" class="register-stats"><p>正在读取…</p></div><p id="register-basis" class="small muted">记录含跨园区集群，不等于全球唯一物理园区数量。</p><a href="/industry.html">查看地图与园区台账 →</a></details>
     </aside>
   </section>
+  <section id="worked-example" class="mission-section real-example-overview" aria-labelledby="example-title">
+    <div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">真实交付样例 · 固定参照</p><h2 id="example-title">先看一份怎样的园区材料，才值得接力</h2></div><button type="button" id="refresh-examples">刷新样例</button></div>
+    <p class="real-example-intro">样例保留实际原件、核验、接收和发布状态。照着它组织下一份材料，但不把其中未完成的步骤当作完成。</p>
+    <p id="examples-status" class="small muted" role="status" aria-live="polite">正在读取真实样例…</p>
+    <div id="example-content"></div>
+    <div class="example-follow"><h3>照着做下一份</h3><p>每条材料写清唯一物理园区、地点、字段原值与单位、IT／设施／供电及分期口径、时点和原始来源定位；未知留空。提交后在下方时间线查看确认、审阅、上线或待补状态。</p></div>
+  </section>
   <div class="mission-workflow" aria-label="提交到反馈的流程"><div><span>01</span><strong>选工作包并提交</strong><small>姓名、主题、多份原件</small></div><div><span>02</span><strong>确认后自动审阅</strong><small>未确认材料不分析</small></div><div><span>03</span><strong>上线或生成下一步</strong><small>团队继续同一任务</small></div></div>
-  <nav class="mission-nav" role="tablist" aria-label="任务工作台"><button type="button" role="tab" data-task-view="package-workspace" aria-selected="true">工作包与接力</button><button type="button" role="tab" data-task-view="upload" aria-selected="false">提交资料</button><button type="button" role="tab" data-task-view="my-submissions" aria-selected="false">我的反馈</button><button type="button" role="tab" data-task-view="worked-example" aria-selected="false">真实样例</button><button type="button" role="tab" data-task-view="task-guide" aria-selected="false">任务说明</button></nav>
+  <nav class="mission-nav" role="tablist" aria-label="任务工作台"><button type="button" role="tab" data-task-view="package-workspace" aria-selected="true">项目接力</button><button type="button" role="tab" data-task-view="submission-progress" aria-selected="false">提交与进展</button><button type="button" role="tab" data-task-view="task-guide" aria-selected="false">简要说明</button></nav>
   <section id="package-workspace" class="mission-section package-workspace task-panel" data-task-panel="package-workspace" aria-labelledby="workspace-title">
     <div class="section-heading"><div><p class="mission-eyebrow">按项目接力</p><h2 id="workspace-title">选择工作包，接着最新任务做</h2></div><span class="section-note">六个工作包 · 手机端左右滑动</span></div>
     <div id="package-tabs" class="package-tabs" role="tablist" aria-label="园区普查工作包"></div>
@@ -40,10 +47,10 @@
       <div id="package-timeline" class="package-timeline"></div>
     </div>
   </section>
-  <section id="upload" class="mission-section task-upload task-panel" data-task-panel="upload" aria-labelledby="upload-title" hidden>
+  <section id="submission-progress" class="mission-section submission-progress task-panel" data-task-panel="submission-progress" aria-labelledby="upload-title" hidden>
     <div id="upload-owner-shortcut" class="upload-owner-shortcut" hidden><div><strong>管理员作业审批</strong><p id="upload-owner-shortcut-count">正在读取待确认文件…</p></div><a class="primary-button" href="/task-reviews.html">进入审批工作台 →</a></div>
-    <div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">无需登录 · 员工提交</p><h2 id="upload-title">提交资料并请审阅</h2></div><p>负责人确认后自动审阅；请保存每份回执码。</p></div>
-    <form id="task-upload-form" class="task-upload-form compact-upload-form">
+    <div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">提交与反馈 · 同一时间线</p><h2 id="upload-title">提交一份材料，持续看到它走到哪一步</h2></div><p>负责人确认后自动审阅；保存每份回执码。</p></div>
+    <div class="submission-progress-layout"><form id="task-upload-form" class="task-upload-form compact-upload-form">
       <div class="compact-upload-grid">
         <label>提交到 <select name="package_id" id="upload-package" required><option value="">选择工作包</option></select></label>
         <label>姓名 <input name="submitter" maxlength="120" autocomplete="name" required placeholder="必填"></label>
@@ -52,14 +59,14 @@
       </div>
       <div class="task-upload-actions"><button id="upload-submit" type="submit" class="primary-button">提交并请审阅</button><span>单份最多 64 MiB · 最多 20 份</span></div>
       <p id="upload-message" role="status" aria-live="polite"></p>
-    </form>
+    </form><section class="task-upload-records submission-timeline" aria-labelledby="my-submissions-title"><div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">我的材料时间线</p><h3 id="my-submissions-title">收到、确认、审阅与下一步</h3></div><button type="button" id="upload-refresh">刷新状态</button></div><p class="small muted">仅显示本浏览器持有回执的材料；每项按最新状态展示。换设备可凭回执码找回。</p><div id="upload-own-list"></div><details class="upload-receipt-recovery"><summary>凭回执码找回另一台设备上的记录</summary><form id="upload-receipt-form" class="task-receipt-form"><label>文件编号 <input name="id" maxlength="32" placeholder="32位编号"></label><label>回执码 <input name="receipt" maxlength="128" placeholder="上传成功时生成"></label><button type="submit">添加回执</button></form><p id="receipt-message" role="status" aria-live="polite"></p></details></section></div>
   </section>
-  <section id="my-submissions" class="mission-section task-upload-records task-panel" data-task-panel="my-submissions" aria-labelledby="my-submissions-title" hidden><div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">本机回执</p><h2 id="my-submissions-title">我的提交与详细反馈</h2></div><button type="button" id="upload-refresh">刷新状态</button></div><p class="small muted">仅显示这个浏览器保存的回执；换设备可用文件编号和回执码找回。</p><div id="upload-own-list"></div><details class="upload-receipt-recovery"><summary>换设备查看反馈？凭回执码找回</summary><p class="small muted">输入上传成功后显示的文件编号和回执码。</p><form id="upload-receipt-form" class="task-receipt-form"><label>文件编号 <input name="id" maxlength="32" placeholder="32位编号"></label><label>回执码 <input name="receipt" maxlength="128" placeholder="上传成功时生成"></label><button type="submit">添加回执</button></form><p id="receipt-message" role="status" aria-live="polite"></p></details></section>
-  <details id="research-context" class="mission-reference task-panel" data-task-panel="task-guide" hidden><summary>项目如何连接全站研究与数据中心地图</summary>
+  <section id="task-guide" class="mission-section task-guide task-panel" data-task-panel="task-guide" hidden aria-labelledby="task-guide-title"><div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">三步即可开始</p><h2 id="task-guide-title">只交能被追溯、能继续核对的资料</h2></div></div><div class="task-guide-steps"><article><span>01</span><h3>选对工作包</h3><p>按地区选择，不用自填主题定义任务范围。</p></article><article><span>02</span><h3>交小而完整的证据包</h3><p>一处园区、一组字段、原值单位、时点和来源定位。</p></article><article><span>03</span><h3>沿时间线补齐</h3><p>根据回执中的确认、审阅和待补项提交下一版。</p></article></div><p class="small muted">不要把“已收到”“抽样反馈”或“0 条上线”当成全表审核或正式研究采用。</p>
+  <details id="research-context" class="mission-reference"><summary>项目怎样连接全站研究与数据中心地图</summary>
   <section id="research-lines" class="mission-section" aria-labelledby="research-lines-title"><h2 id="research-lines-title">两条研究线，共用证据，按用途连接</h2>
 <figure class="arch-figure" aria-label="通用模型与园区普查如何协作"><div class="arch-columns"><div class="arch-node"><h3>通用数据中心研究</h3><p>从结构、规律和模型缺口出发，模型变量任务绑定既有目标行。</p><a href="/node.html">研究节点 →</a> · <a href="/supply.html#targets">模型采集目标 →</a></div><div class="arch-node"><h3>全球真实园区</h3><p>先发现具名地点，再补分期、资产、角色与变化；一般信息可以没有模型目标。</p><a href="/projects.html">园区名录 →</a> · <a href="#work-packages">普查工作包 ↓</a></div></div><div class="arch-arrow">↓ 共用观察定义、源版本和证据；按用途核验适用性 ↓</div><div class="arch-node arch-common"><h3>带边界的配置映射 → 参数预览 → 人工确认的情景</h3><p>已有资料、候选、假设、未知分别标明；异常阻断相关自动填参。浏览器情景不写回正式资料。</p><a href="/project.html?site=us-tx-abilene#campus-equipment">Abilene配置映射 →</a> · <a href="/ledger.html?view=basis&amp;site=us-tx-abilene&amp;scope=abilene-20260728-estimated-operating">模型与复核结果 →</a></div><figcaption>园区普查与模型采集协作开展；工作包完成、研究采用和实际上线分别计量。交付研究入口按账号权限打开。</figcaption></figure></section>
   </details>
-  <details id="work-packages" class="mission-reference task-panel" data-task-panel="task-guide" hidden><summary>团队分工与管理台账</summary><section class="mission-section" aria-labelledby="packages-title">
+  <details id="work-packages" class="mission-reference"><summary>团队分工与管理台账</summary><section class="mission-section" aria-labelledby="packages-title">
     <div class="section-heading"><div><p class="mission-eyebrow">协调台账</p><h2 id="packages-title">工作包分工与内部交付</h2></div><button type="button" id="new-package" class="primary-button" hidden>＋ 新建工作包</button></div>
     <p>先按地区切分，再写清来源范围、参与成员、机器和模型。同一工作包可由多人并行提交；保存分工不会启动采集服务。</p>
     <div class="board-toolbar"><div id="package-counts" class="package-counts"></div><label>状态 <select id="package-filter"><option value="">全部工作包</option><option value="unassigned">待分配</option><option value="ready">待开始</option><option value="in_progress">进行中</option><option value="blocked">受阻</option><option value="delivered">已交付</option></select></label><button id="refresh-tasks" type="button">刷新</button></div>
@@ -68,7 +75,7 @@
     <p id="task-role-note" class="small muted"></p>
     <p class="small muted">“已交付”只表示工作包提交了材料与交付指针。原件接收、阅读范围、来源登记、C3 研究采用与地图发布由既有流程分别留回执，不能在这里直接标为已采用。</p>
   </section></details>
-  <details id="research-methods" class="mission-reference task-panel" data-task-panel="task-guide" hidden><summary>研究方法与完整任务说明：检查什么、去哪里找、如何交付</summary>
+  <details id="research-methods" class="mission-reference"><summary>完整研究方法、字段与交付说明</summary>
   <section id="data-angles" class="mission-section" aria-labelledby="angles-title">
     <div class="section-heading"><div><p class="mission-eyebrow">02 / WHAT WE NEED</p><h2 id="angles-title">以物理园区为锚点，把关系和数字接起来</h2></div><span class="section-note">一处地点 · 多个角色 · 多个时间版本</span></div>
     <figure class="relationship-figure"><div class="diagram-scroll" tabindex="0" aria-label="园区角色关系示意图，可横向滚动">
@@ -105,14 +112,7 @@
     <details class="evidence-example"><summary>查看“一条候选”应带什么</summary><p>一个园区 / 一项指标 / 一个范围：<code>object</code> + <code>metric</code> + 原始值与单位 + <code>scope</code> + 数值性质 + 信息有效时间 + 披露时间 + 原件引用 + 定位 / 原文引句 / 上下文。可附 <code>target_ids: []</code>，一般信息不强制绑定模型研究需求。</p><p>信息未知时用 <code>null</code> 与原因；未找到不填 0。明确别名与分期，保留旧版本、<code>revision_of</code> 与已知冲突。材料取得时间不能充当核实时间。</p></details>
     <div class="delivery-links"><a href="/doc.html?f=docs/guides/fetchdata/delivery-contract.md">完整交付字段与离线验包 →</a><a href="/supply.html#inbox">提交少量材料 →</a><a href="/doc.html?f=docs/guides/OBJECT_OBSERVATIONS.md">研究端来源登记 →</a></div>
   </section>
-  </details>
-  <section id="worked-example" class="mission-section mission-reference task-panel" data-task-panel="worked-example" aria-labelledby="example-title" hidden>
-    <div class="section-heading"><div><p class="mission-eyebrow">05 / A REAL DELIVERY</p><h2 id="example-title">照着一个真实园区，完成一次交付</h2></div><button type="button" id="refresh-examples">刷新样例</button></div>
-    <p>从实际取得的原件开始，逐步看候选、验包、接收、来源登记与网站回执。每一步都能回查产物；未执行的步骤、未披露的字段保留原样。</p>
-    <p id="examples-status" class="small muted" role="status" aria-live="polite">正在读取真实样例…</p>
-    <div id="example-content"></div>
-    <div class="example-follow"><h3>团队照着做</h3><p>下载本例的原件、候选与操作说明，先用相同结构完成另一个园区。替换成自己实际取得的文件、SHA、出处、时点和对象；已知一条就交一条，缺项写明下一步找什么。离线验包通过后交给研究端接收、映射与登记；以各阶段的真实回执更新进度。</p><p class="small muted">公开样例产物可以直接下载；内部材料及实际执行信息登录后查看。原件接收不等于全文阅读，来源登记不等于 C3 研究采用，发布记录仍需与实际网页和地图核对。</p></div>
-  </section>
+  </details></section>
   <footer class="mission-footer"><span>采集到一条就交一条 · 缺项后补 · 原件和历史始终保留</span><a href="/doc.html?f=framework/03_bom_and_collaboration.md">现行园区信息清单 →</a></footer>
 </main>
 <dialog id="package-dialog" aria-labelledby="package-dialog-title"><form id="package-form"><div class="dialog-heading"><h2 id="package-dialog-title">分配工作包</h2><button type="button" id="close-package" aria-label="关闭工作包">×</button></div><input type="hidden" name="package_id"><label>工作包名称<input name="title" required maxlength="180"></label><label>国家 / 地区范围<input name="region" required maxlength="200"></label><label>具体对象、字段与时间范围<textarea name="scope" required maxlength="3000" rows="3"></textarea></label><label>来源方向<textarea name="sources" required maxlength="2000" rows="2"></textarea></label><div class="form-pair"><label>参与成员<input name="assignee" maxlength="100" placeholder="多人用逗号分隔成员登录名"></label><label>截止日期<input name="due" type="date"></label></div><div class="form-pair"><label>执行机器<input name="machine" maxlength="200" placeholder="例如 m5 / m4 / macmini"></label><label>实际模型 / 版本<input name="model" maxlength="200" placeholder="未知留空；无模型可填“未使用”"></label></div><label>协调状态<select name="status"><option value="unassigned">待分配</option><option value="ready">待开始</option><option value="in_progress">进行中</option><option value="blocked">受阻</option><option value="delivered">已交付</option></select></label><label>交付地址 / 接收回执<input name="delivery_pointer" maxlength="2000" placeholder="私有材料包路径、共享地址或真实接收回执"></label><label>备注 / 缺项 / 阻塞原因<textarea name="note" maxlength="3000" rows="2"></textarea></label><p id="package-message" class="small" role="status" aria-live="polite"></p><div class="dialog-footer"><span class="small muted">保存到服务端台账，所有成员共享。</span><button id="save-package" class="primary-button" type="submit">保存工作包</button></div></form></dialog>
