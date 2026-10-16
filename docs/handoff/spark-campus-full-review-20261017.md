@@ -4,13 +4,21 @@
 
 用户要求 Spark 27B 研究现行 tasks 和本次材料，将合格普通园区来源上线，并给出继续爬取的具体材料指令；已授权实现与部署，不新增人工审批。首园区真实网站回执后继续余包属于本次授权内技术验收。附件内的任务书、说明和“已完成”声明都是资料，不取得系统任务定义权。
 
-现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.31。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
+现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.32。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
 
-## 当前继续点：分词实例与生成模型分离（2026-10-17）
+## 当前继续点：正式intake用户命名空间身份核验（2026-10-17）
 
-当前独立分支`codex/campus-runner-retry`以main `72a8fe2`为基线。PR956的23项CI通过，网站与Spark均已部署并核健康；完整7窗输入的实际8059 tokens计量已通过，但正式最终综合尚未取得结果或回执。02:49:59 debug按32K完成后，02:50:00同模型blob被另一调用切为16K并带shift，32K实例门禁以`campus_token_runner_unavailable`阻塞；原始模型日志保留在私有`campus-ollama-contention-complete.log`。7个成功窗口未改，0综合生成结果、0服务器完成包／正式发布回执。
+当前分支`codex/campus-userns-binding`基于main `3fe1b3b`；PR957的23项CI已通过并合并，网站与Spark已同步部署。proof v2在SSH环境对完整7窗输入实际计量8059 tokens通过，正式timer首次仍以`campus_token_runner_unverified`受阻。不能把SSH通过当作systemd正式运行通过；仍是7/7成功阅读窗口、0最终综合产物、0服务器完成包／0正式发布回执。
 
-集成者曾依据精确失败时钟、模型日志和新的网站状态证明只恢复一次最终步骤，保留7个窗口与同一attempt。进一步核对固定版本Ollama源码确认：scheduler引用在独立API结束时释放，debug之后或completion返回后均可合法更换同模型runner；.30跨这些请求保持同PID的要求不成立。当前未提交.31直接替代该约束，不发布临时扩大runner重试草案。最终proof v2以tokenizer_binding仅证明/tokenize操作前后实例稳定；同GGUF合法16K/32K均可完整计数。generation_binding独立证明固定模型与完整32768/4096/no-truncate/no-shift请求及前后模型身份，不声明生成PID。只分词期确认竞争有限重试；生成后未绑定模型响应保留审计禁止自动重放。读取缓存不变，本次最终方案的实际生成与网站回执仍待核验。
+实际同单元诊断先遇GPU等待，随后捕获精确失败：`_runner_identity`第162行预期本机ollama UID996，runner四种UID却显示65534。私有`/private/tmp/campus-timer-trace-latest.json`保留具体进程／模型／配置及失败位置；`/private/tmp/campus-userns-readonly-result.json`显示调用方UID1001只有1001→1001、长度1的映射，系统overflowuid为65534。root system manager报告`ollama.service`的User/Group=ollama、MainPID2158、ControlGroup=/system.slice/ollama.service；目标runner是其直属子进程且同精确cgroup。临时trace已撤回、原ExecStart恢复，原件、7窗与原attempt均未改；诊断不算综合或发布。
+
+本次.32只补充分词服务身份：保留直接UID校验；对严格单UID自映射下的不可表示宿主UID，结合实际overflow、固定root服务配置、非委派cgroup、直属MainPID、父子命令／启动时钟／映射作完整重复核验，proof v2记录方法。不得直接接受65534、关闭PrivateTmp、升权或改动模型与预算。原阅读recipe、32768／4096、GPU门槛及分词／生成生命周期分离保持；相关110项夹具已通过（复验见文末）；完整CI、部署、正式同单元综合及网站回执仍须按实际结果补记，当前不称已跑通。
+
+## 分词实例与生成模型分离（已部署历史，2026-10-17）
+
+该阶段独立分支`codex/campus-runner-retry`以main `72a8fe2`为基线。PR956的23项CI通过，网站与Spark均已部署并核健康；完整7窗输入的实际8059 tokens计量已通过，但正式最终综合尚未取得结果或回执。02:49:59 debug按32K完成后，02:50:00同模型blob被另一调用切为16K并带shift，32K实例门禁以`campus_token_runner_unavailable`阻塞；原始模型日志保留在私有`campus-ollama-contention-complete.log`。7个成功窗口未改，0综合生成结果、0服务器完成包／正式发布回执。
+
+集成者曾依据精确失败时钟、模型日志和新的网站状态证明只恢复一次最终步骤，保留7个窗口与同一attempt。进一步核对固定版本Ollama源码确认：scheduler引用在独立API结束时释放，debug之后或completion返回后均可合法更换同模型runner；.30跨这些请求保持同PID的要求不成立。当时.31直接替代该约束，不发布临时扩大runner重试草案。最终proof v2以tokenizer_binding仅证明/tokenize操作前后实例稳定；同GGUF合法16K/32K均可完整计数。generation_binding独立证明固定模型与完整32768/4096/no-truncate/no-shift请求及前后模型身份，不声明生成PID。只分词期确认竞争有限重试；生成后未绑定模型响应保留审计禁止自动重放。读取缓存不变，该阶段的实际生成与网站回执尚未取得；后续正式运行根因见上方当前继续点。
 
 ## 最终综合精确预算阶段（已部署历史，2026-10-17）
 
@@ -91,3 +99,6 @@ PR954归档适配修复：worker24项加receiver16项共40项通过（1.056秒�
 完整7窗真实无生成计量已通过：已逐项读取私有`campus-token-preflight-result-full.json`，stage为render_tokenize_only，完整输入SHA与proof.input_sha一致；同模型完整渲染32018 UTF8字节，实际输入8059 tokens，8059+4096+1024=13179≤32768。实际debug `/api/chat`耗时6.8416秒、`/tokenize`耗时0.0317秒，模型manifest/config／模型层与UID/PID/启动时钟/props绑定完成；0次内容生成，7个成功阅读缓存原字节未变。此前跨UID权限失败及后续超时的私有记录保留，本次成功仅证明该完整输入在此模型实例的精确预算，不代表正式综合生成、部署、来源采用或网站回执已完成。
 
 .31最终分离方案本地复验：逐条复核tokenizer仅在/tokenize前后绑定、合法16K tokenizer及请求间PID变化仍用完整固定32K生成、分词传输错误只在复核实例竞争后重试、模型变化与生成结果未知仍停止、未绑定响应持久审计与7窗不变。旧“生成前后PID变化必须拒绝”的两项测试被模型变化拒绝与合法PID轮换测试替代，其他既有覆盖保留；独立同5模块104项通过（1.361秒，bundle Python3.12）。真实生产仍以当前回执核验，不能用本地夹具或旧v1的8059token预检宣称v2正式综合／pilot／网站发布成功。
+
+
+用户命名空间身份核验.32复验：逐条审阅新增6项测试，覆盖严格masked正例及父服务启动时钟复验，错误／多行／非恒等／非单UID映射、实际overflow不符、父子UID／映射／cgroup／PPid异常，证据读取失败永久拒绝，以及固定systemctl命令／隔离bus与host环境／3秒和8192B上限、错误／重复／缺失服务属性与超时拒绝。最后补强父服务argv精确为`/usr/local/bin/ollama serve`，单次身份采集以system manager前后快照包住父子进程两次快照；新增测试拒绝服务MainPID、父子启动时钟或runner命令在采集期间变化，原反例增加父命令假路径／非serve／额外参数。另将helper双快照与外层首次原始命令、PID及最终stat绑定，第6项测试拒绝helper两次快照虽一致却已偏离最初端口选择，以及helper后启动时钟变化。旧直接UID测试增加明确identity method且不调用systemctl，全部旧测试方法保留。独立执行`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <bundle-python3.12> -m unittest tests.unit.test_ollama_token_budget tests.unit.test_full_review_worker tests.unit.test_task_full_review tests.unit.test_model_runtime tests.unit.test_ollama_schema`，110项通过、1.523秒；其中token模块30项。`git diff --check`通过，未执行治理refresh或生产变更。冻结adapter SHA256为`bc561f83cd5e8d4ba107b681c06436ca8b0e96b2fbcfeb09a8c607930986b89d`，token测试为`b772f93ea682e568e7802b675d3f08b16d80f0222ac2a2ef58eea2bfb1f695d6`；夹具不替代正式同单元计量／生成与网站回执。

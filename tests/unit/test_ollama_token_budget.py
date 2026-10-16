@@ -1,5 +1,6 @@
 """No-inference tests for the final-only, bound local tokenizer guard."""
 import copy
+from contextlib import contextmanager
 from dataclasses import replace
 import hashlib
 import io
@@ -386,8 +387,12 @@ class TokenRuntimeBindingTests(unittest.TestCase):
         with patch.object(budget,"PROC",proc), \
                 patch.object(budget.pwd,"getpwnam",return_value=SimpleNamespace(pw_uid=996)) as account, \
                 patch.object(budget,"_call",return_value=props), \
-                patch("os.readlink",side_effect=PermissionError(13,"cross-UID")) as readlink:
+                patch("os.readlink",side_effect=PermissionError(13,"cross-UID")) as readlink, \
+                patch.object(budget, "_system_ollama_service") as service:
             result=budget._runner_identity(model)
+        service.assert_not_called()
+        self.assertEqual(result["uid_binding"],
+                         {"method": "direct_process_uid", "observed_uids": [996]*4})
         account.assert_called_once_with("ollama")
         readlink.assert_not_called()
         self.assertEqual((result["uid"],result["account"],result["pid"]),(996,"ollama",654))
@@ -440,6 +445,226 @@ class TokenRuntimeBindingTests(unittest.TestCase):
             with self.assertRaisesRegex(models.InferenceError,"runner_unavailable"):
                 budget._runner_identity(model)
             call.assert_not_called()
+
+    def masked_runner_fixture(self):
+        proc, process, model, props = self.runner_fixture()
+        (proc/"self").mkdir(); (proc/"self/uid_map").write_text("1001 1001 1\n")
+        (proc/"sys/kernel").mkdir(parents=True)
+        (proc/"sys/kernel/overflowuid").write_text("65534\n")
+        parent = proc/"2158"; parent.mkdir()
+        for item, ppid, start in ((process, 2158, "900"), (parent, 1, "200")):
+            (item/"status").write_text("PPid:\t"+str(ppid)+"\nUid:\t65534\t65534\t65534\t65534\n")
+            (item/"stat").write_text(item.name+" (process) "+
+                " ".join(["S", str(ppid)]+["0"]*17+[start]))
+            (item/"cgroup").write_text("0::/system.slice/ollama.service\n")
+            # Reading the initial namespace from the private user namespace does
+            # not reveal host IDs; do not pretend this is the usual host uid_map.
+            (item/"uid_map").write_text("0 4294967295 4294967295\n")
+        (parent/"cmdline").write_bytes(b"/usr/local/bin/ollama\0serve\0")
+        service = {"Id": "ollama.service", "LoadState": "loaded", "ActiveState": "active",
+            "SubState": "running", "User": "ollama", "Group": "ollama", "MainPID": "2158",
+            "ControlGroup": "/system.slice/ollama.service", "Delegate": "no",
+            "DynamicUser": "no", "PrivateUsers": "no"}
+        return proc, process, parent, model, props, service
+
+    @contextmanager
+    def masked_runtime(self, proc, props, service):
+        with patch.object(budget, "PROC", proc), \
+                patch.object(budget.pwd, "getpwnam", return_value=SimpleNamespace(pw_uid=996)), \
+                patch.object(budget.os, "getuid", return_value=1001), \
+                patch.object(budget, "_call", return_value=props), \
+                patch.object(budget, "_system_ollama_service", return_value=service):
+            yield
+
+    def test_masked_namespace_uid_requires_fixed_system_service_parent(self):
+        proc, process, parent, model, props, service = self.masked_runner_fixture()
+        with self.masked_runtime(proc, props, service):
+            first = budget._runner_identity(model)
+            binding = first["uid_binding"]
+            self.assertEqual(binding["method"], "system_service_parent_in_user_namespace")
+            self.assertEqual(binding["observed_uids"], [65534]*4)
+            self.assertEqual(binding["self_uid_map"], [(1001, 1001, 1)])
+            self.assertEqual(binding["service"]["MainPID"], "2158")
+            self.assertEqual(binding["runner_process"]["ppid"], 2158)
+            self.assertEqual(binding["service_process"]["starttime"], "200")
+            with patch.object(budget, "_model_identity", return_value=model):
+                budget._unchanged("http://127.0.0.1:11434", model, first)
+                # A reused service PID cannot silently retain the tokenizer proof.
+                original = (parent/"stat").read_text()
+                (parent/"stat").write_text(original.removesuffix("200")+"201")
+                with self.assertRaisesRegex(models.InferenceError, "runtime_changed"):
+                    budget._unchanged("http://127.0.0.1:11434", model, first)
+
+    def test_masked_uid_mapping_and_process_mismatches_fail_closed(self):
+        proc, process, parent, model, props, service = self.masked_runner_fixture()
+        mutations = [(proc/"self/uid_map", ""),
+            (proc/"self/uid_map", "0 0 1\n1001 1001 1\n"),
+            (proc/"self/uid_map", "1001 1001 2\n"),
+            (proc/"self/uid_map", "1001 996 1\n"),
+            (proc/"sys/kernel/overflowuid", "1001"),
+            (proc/"sys/kernel/overflowuid", "12345"),
+            (process/"uid_map", "0 0 4294967295\n"),
+            (parent/"uid_map", "0 0 4294967295\n"),
+            (process/"status", "PPid: 2158\nUid: 65534 65534 1001 65534\n"),
+            (parent/"status", "PPid: 1\nUid: 65534 65534 1001 65534\n"),
+            (process/"status", "PPid: 1234\nUid: 65534 65534 65534 65534\n"),
+            (parent/"status", "PPid: 1234\nUid: 65534 65534 65534 65534\n"),
+            (process/"cgroup", "0::/system.slice/ollama.service.evil\n"),
+            (parent/"cgroup", "0::/user.slice/ollama.service\n"),
+            (parent/"cmdline", ""),
+            (parent/"cmdline", "/tmp/ollama\0serve\0"),
+            (parent/"cmdline", "/usr/local/bin/ollama\0run\0"),
+            (parent/"cmdline", "/usr/local/bin/ollama\0serve\0--other\0")]
+        with self.masked_runtime(proc, props, service):
+            for path, changed in mutations:
+                original = path.read_bytes()
+                with self.subTest(path=str(path.relative_to(proc)), changed=changed):
+                    try:
+                        path.write_text(changed)
+                        with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                            budget._runner_identity(model)
+                    finally:
+                        path.write_bytes(original)
+            # Even a consistent forged status/stat PPid is not the manager MainPID.
+            for item, ppid in ((process, 1234), (parent, 1234)):
+                files = {name: (item/name).read_text() for name in ("status", "stat")}
+                try:
+                    prior = "2158" if item == process else "1"
+                    (item/"status").write_text(files["status"].replace("PPid:\t"+prior,
+                                                                       "PPid:\t"+str(ppid)))
+                    fields = files["stat"].rsplit(")", 1)
+                    parts = fields[1].split(); parts[1] = str(ppid)
+                    (item/"stat").write_text(fields[0]+") "+" ".join(parts))
+                    with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                        budget._runner_identity(model)
+                finally:
+                    for name, value in files.items(): (item/name).write_text(value)
+
+    def test_masked_service_and_process_snapshots_must_stay_identical(self):
+        proc, process, parent, model, props, service = self.masked_runner_fixture()
+        with self.masked_runtime(proc, props, service):
+            with patch.object(budget, "_system_ollama_service",
+                              side_effect=[service, {**service, "MainPID": "2159"}]) as query:
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._runner_identity(model)
+                self.assertEqual(query.call_count, 2)
+            original_text = Path.read_text
+            for target in (parent/"stat", process/"stat"):
+                reads = []
+                def changing_stat(path, *args, **kwargs):
+                    value = original_text(path, *args, **kwargs)
+                    if path == target:
+                        reads.append(value)
+                        if len(reads) == 2:
+                            return value.rsplit(" ", 1)[0]+" 901"
+                    return value
+                with self.subTest(stat=str(target)), patch.object(Path, "read_text", changing_stat):
+                    with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                        budget._runner_identity(model)
+                    self.assertEqual(len(reads), 2)
+            # The first read selects this runner; the next two bind it. A command
+            # changing between those snapshots cannot retain the original port.
+            original_bytes = Path.read_bytes
+            reads = []
+            def changing_command(path):
+                value = original_bytes(path)
+                if path == process/"cmdline":
+                    reads.append(value)
+                    if len(reads) == 3:
+                        return value.replace(b"12345", b"12346")
+                return value
+            with patch.object(Path, "read_bytes", changing_command):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._runner_identity(model)
+                self.assertEqual(len(reads), 3)
+
+    def test_masked_initial_runner_selection_must_match_bound_snapshot(self):
+        proc, process, parent, model, props, service = self.masked_runner_fixture()
+        with self.masked_runtime(proc, props, service):
+            original_bytes = Path.read_bytes
+            reads = []
+            def changed_after_selection(path):
+                value = original_bytes(path)
+                if path == process/"cmdline":
+                    reads.append(value)
+                    if len(reads) >= 2:
+                        # Both helper snapshots agree, but are newer than the
+                        # command that selected the model and tokenizer port.
+                        return value.replace(b"12345", b"12346")
+                return value
+            with patch.object(Path, "read_bytes", changed_after_selection):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._runner_identity(model)
+                self.assertEqual(len(reads), 3)
+            original_text = Path.read_text
+            reads = []
+            def changed_after_snapshots(path, *args, **kwargs):
+                value = original_text(path, *args, **kwargs)
+                if path == process/"stat":
+                    reads.append(value)
+                    if len(reads) == 3:
+                        return value.rsplit(" ", 1)[0]+" 901"
+                return value
+            with patch.object(Path, "read_text", changed_after_snapshots):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._runner_identity(model)
+                self.assertEqual(len(reads), 3)
+
+    def test_masked_identity_read_errors_remain_permanent(self):
+        proc, process, parent, model, props, service = self.masked_runner_fixture()
+        original = Path.read_text
+        def denied(path, *args, **kwargs):
+            if path == proc/"self/uid_map":
+                raise PermissionError("private namespace evidence unavailable")
+            return original(path, *args, **kwargs)
+        with self.masked_runtime(proc, props, service):
+            with patch.object(Path, "read_text", denied):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._runner_identity(model)
+            with patch.object(budget, "_system_ollama_service",
+                              side_effect=models.InferenceError("campus_token_runner_unverified")):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._runner_identity(model)
+
+    def test_system_service_query_is_fixed_bounded_and_fails_closed(self):
+        *_, service = self.masked_runner_fixture()
+        output = "\n".join(key+"="+value for key, value in service.items()).encode()+b"\n"
+        calls = []
+        def run(argv, **kwargs):
+            calls.append((argv, kwargs))
+            kwargs["stdout"].write(output)
+            return SimpleNamespace(returncode=0)
+        with patch.dict(budget.os.environ, {"DBUS_SYSTEM_BUS_ADDRESS": "unix:path=/evil",
+                                          "SYSTEMD_HOST": "evil"}), \
+                patch.object(budget.subprocess, "run", side_effect=run):
+            self.assertEqual(budget._system_ollama_service(), service)
+        argv, options = calls[0]
+        self.assertEqual(argv[:6], ["/usr/bin/systemctl", "--system", "--no-pager",
+                                    "--no-ask-password", "show", "ollama.service"])
+        self.assertNotIn("DBUS_SYSTEM_BUS_ADDRESS", options["env"])
+        self.assertNotIn("SYSTEMD_HOST", options["env"])
+        self.assertEqual(options["timeout"], 3)
+        bad = [(key, value) for key, value in (
+            ("User", "root"), ("Group", "spark"), ("Id", "other.service"),
+            ("LoadState", "not-found"), ("ActiveState", "inactive"), ("SubState", "exited"),
+            ("MainPID", "0"), ("MainPID", "bad"), ("ControlGroup", "/user.slice/ollama.service"),
+            ("Delegate", "yes"), ("DynamicUser", "yes"), ("PrivateUsers", "yes"))]
+        valid = output
+        for key, value in bad:
+            changed = {**service, key: value}
+            output = "\n".join(k+"="+v for k, v in changed.items()).encode()+b"\n"
+            with self.subTest(property=key), patch.object(budget.subprocess, "run", side_effect=run):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._system_ollama_service()
+        for output in (valid+b"User=ollama\n", valid.replace(b"User=ollama\n", b""), b"x"*8193):
+            with patch.object(budget.subprocess, "run", side_effect=run):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._system_ollama_service()
+        for failure in (PermissionError("system bus denied"),
+                        budget.subprocess.TimeoutExpired("systemctl", 3)):
+            with patch.object(budget.subprocess, "run", side_effect=failure):
+                with self.assertRaisesRegex(models.InferenceError, "runner_unverified"):
+                    budget._system_ollama_service()
 
     def test_transport_disables_proxies_redirects_and_caps_responses(self):
         class Response(io.BytesIO):
