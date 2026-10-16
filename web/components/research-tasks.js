@@ -155,15 +155,21 @@
     $('package-current-meta').textContent = `当前共同任务 v${task.version} · ${task.updated_at ? '更新于 '+packageTime(task.updated_at) : '尚无完成审阅的材料'}`;
     $('package-current-title').textContent = current.title;
     $('package-current-scope').textContent = task.scope || current.scope;
+    $('package-current-feedback').textContent = `共同反馈：${task.feedback_summary || '尚无已完成审阅，按当前工作包范围提交材料。'}`;
     $('package-current-next').textContent = `下一步：${task.next_action}`;
+    const remaining = Array.isArray(task.remaining) ? task.remaining.filter(row=>typeof row === 'string' && row !== task.next_action) : [];
+    $('package-current-remaining').hidden = !remaining.length;
+    $('package-current-remaining').innerHTML = remaining.map(row=>`<li>${esc(row)}</li>`).join('');
     $('package-published-sites').textContent = new Intl.NumberFormat('zh-CN').format(progress.published_sites ?? 0);
-    $('package-progress-note').textContent = `暂定目标待初步盘点 · ${progress.published_statements ?? 0} 条来源陈述已上线 · ${progress.reviewed_files ?? 0} 份材料已审阅`;
+    const feedbackRounds = task.completed?.feedback_rounds ?? task.completed?.reviewed_rounds;
+    $('package-progress-note').textContent = `暂定目标待初步盘点 · ${task.completed?.published_statements ?? progress.published_statements ?? 0} 条来源陈述已上线 · ${feedbackRounds == null ? `${progress.reviewed_files ?? 0} 份材料已审阅` : `${feedbackRounds} 轮反馈已形成`}`;
     const events = progress.events || [];
-    $('package-timeline').innerHTML = events.length ? events.map((event,index)=>{
+    $('package-history-count').textContent = `· ${events.length} 条`;
+    $('package-timeline').innerHTML = events.length ? events.map(event=>{
       const status = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
-        event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
+        event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'manual_feedback' ? '已出负责人反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
         event.outcome === 'source_error' ? '原件需修订' : '已确认，待分析';
-      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p>${esc(event.submitter)}（自填） · 提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</p><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p><p class="package-event-feedback">团队反馈：${esc(event.feedback)}</p>${event.next_action ? `<p>下一步：${esc(event.next_action)}</p><button type="button" data-download-event-plan="${index}">下载这轮计划 .md ↓</button>` : '<p>负责人确认后形成反馈与下一步计划。</p>'}</div></details></article>`;
+      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p class="package-history-note">历史记录，仅供追溯；当前执行要求见上方共同反馈。</p><p>${esc(event.submitter)}（自填） · 提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</p><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p><p class="package-event-feedback">当时团队反馈：${esc(event.feedback)}</p></div></details></article>`;
     }).join('') : '<p class="package-empty">这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。</p>';
     window.activeResearchPackageId = current.id;
     window.dispatchEvent(new CustomEvent('research-package-selected',{detail:{packageId:current.id}}));
@@ -248,55 +254,6 @@
     } catch (error) { $('package-message').textContent = error.message; }
     finally { $('save-package').disabled = false; }
   });
-
-  function download(name, data, type) {
-    const url = URL.createObjectURL(new Blob([data],{type}));
-    const link = document.createElement('a'); link.href = url; link.download = name;
-    document.body.append(link); link.click(); link.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
-  }
-
-  const activePackage = () => state?.packages.find(p => p.id === selectedPackageId);
-  $('download-package-plan').addEventListener('click', () => {
-    const p = activePackage(), progress = state?.package_progress?.[selectedPackageId];
-    if (!p || !progress?.current_task) return;
-    const task = progress.current_task;
-    const text = [`# ${p.title} · 当前计划`, '', `任务版本：v${task.version}`, `更新时间：${packageTime(task.updated_at)}`, '', '## 工作范围', '', task.scope, '', '## 当前成果', '', `已入库 ${progress.published_sites} 个去重园区，${progress.published_statements} 条来源记录；${progress.reviewed_files} 份材料已审阅。`, '', '## 下一步', '', task.next_action, '', '## 交付', '', '按当前范围补齐园区、字段原值与单位、时点和可回查来源；未知留空，保留原件。', '', '提交与进展：https://inresearch.ai/tasks.html', ''].join('\n');
-    download(`${p.id}-当前计划-v${task.version}.md`,text,'text/markdown;charset=utf-8');
-  });
-  $('package-timeline').addEventListener('click', event => {
-    const button = event.target.closest('[data-download-event-plan]');
-    if (!button) return;
-    const p = activePackage(), row = state?.package_progress?.[selectedPackageId]?.events?.[Number(button.dataset.downloadEventPlan)];
-    if (!p || !row?.next_action) return;
-    const text = [`# ${p.title} · 本轮反馈与下一步`, '', `提交时间：${packageTime(row.received_at)}`, `审阅时间：${packageTime(row.reviewed_at)}`, `提交人：${row.submitter}（自填）`, `材料类型：${row.material}`, '', '## 本轮交付', '', `入库来源记录：${row.published_statements ?? 0} 条`, row.feedback, '', '## 下一步计划', '', row.next_action, '', '本文件是本轮团队公开摘要；执行前请查看该工作包的最新计划，逐项修改要求凭本人回执下载。', ''].join('\n');
-    download(`${p.id}-本轮计划-${row.received_at || '未记录'}.md`,text,'text/markdown;charset=utf-8');
-  });
-
-  $('download-brief').addEventListener('click',()=> {
-    if (!state) { $('tasks-status').textContent = '请先刷新并成功读取服务端任务台账，再下载任务书。'; return; }
-    const brief = `# ${state.mission.title}\n\n研究方向：两条研究线，共用证据，按用途连接。通用模型变量绑定既有目标行；园区普查允许先发现登记，按用途建立证据映射。\n优先级：P1\n任务建立：2026-10-12\n\n${state.mission.goal}\n\n${state.mission.scale_note}\n\n## 工作包（服务端台账版本 ${state.revision}）\n\n` + state.packages.map(p=>`### ${p.title}\n\n- ID：${p.id}\n- 范围：${p.region}；${p.scope}\n- 来源：${p.sources}\n- 参与成员：${state.public_view ? '登录后可见' : p.assignee || '待分配'}\n- 机器 / 模型：${state.public_view ? '登录后可见' : p.machine || '待确认'} / ${state.public_view ? '登录后可见' : p.model || '未登记'}\n- 截止日：${state.public_view ? '登录后可见' : p.due || '待安排'}\n- 状态：${statuses[p.status]}\n- 交付指针：${state.public_view ? '登录后可见' : p.delivery_pointer || '尚无'}\n- 备注：${state.public_view ? '登录后可见' : p.note || '无'}\n`).join('\n') + `\n## 每条资料怎么交\n\n保留原生 PDF/HTML/Office/CSV/API 原响应，不改字节。交 manifest.json、SHA256SUMS、originals/、observations.jsonl、errors.jsonl、run-report.json。OCR/文本/JSON 作为 derived/ 增补，带 derived_from_sha256、页码、实际工具与版本、漏页及未读图片。\n\n共用检查清单（版本 ${$('observation-coverage').dataset.version}）：${Array.from(document.querySelectorAll('[data-angle]')).map(el=>el.dataset.angle+'：'+el.textContent.trim()).join('；')}。视图允许交叉扩展，当前数量不表示永久穷尽；未检查、不适用及已查未取得分别说明。\n\n每条候选一个对象、指标和证据范围，保留原值/单位、口径、有效与披露时间、原文引句、页/表/行列和上下文。IT、设施、接电、发电、合同 MW 分开；年度电耗 MWh 另记。缺项保持 null，已知一条即可交，不把全园区与分期重复相加。\n\n候选交换契约：fetchdata-handoff/1。一般信息 target_ids 可为空；研究端映射后按唯一身份和原件追加来源登记，标记基础登记待查。正式结论/答案/模型输入按 C3。采集、原件接收、阅读、登记及实际上线分别留回执；工作包已交付不表示已采用。\n\n完整字段与离线验包：https://inresearch.ai/doc.html?f=docs/guides/fetchdata/delivery-contract.md\n`;
-    download('全球数据中心普查-任务书.md',brief,'text/markdown;charset=utf-8');
-  });
-
-  const downloadTemplate = () => {
-    const unknownTime = {value:null,precision:'unknown',basis:null};
-    const template = {
-      template_only:true, contract:'fetchdata-handoff/1',
-      instructions:['这是待填模板，不是有效交付包。按 files 键名拆成文件，填入真实值后离线验包。','原件另存 originals/<真实SHA256>.<ext>；SHA256SUMS 每行 SHA256 + 两个空格 + 相对路径。','observations.jsonl 每行一个 JSON；下列示意中的 null 与待填项需按真实原文填写。','使用实际队伍 provider_id，不得冒充 fetchspec；现有接收 API 不直接兼容本交换包。','未知时间不造日期；restricted 原文、私有路径、凭据不可公开；模型输出不可冒充原文。'],
-      files:{
-        'manifest.json':{contract:'fetchdata-handoff/1',provider_id:'待填实际队伍',delivery_id:'待填唯一批号',collector_revision:'待填实际40位Git提交',generated_at:null,items:[{item_id:'source-1',source_id:'待填来源机构/系列',source_item_id:'待填来源原生身份',url:null,title:'待填原文标题',publisher:null,retrieved_at:null,sha256:'待填原件SHA256',path:'originals/<sha256>.<ext>',content_type:null,access_scope:'unknown',completeness:'unknown',version_of:null}]},
-        'SHA256SUMS':'<真实SHA256>  originals/<真实SHA256>.<ext>\n',
-        'observations.jsonl':[{observation_id:'待填本队唯一ID',source_item_id:'source-1',object:{type:'site',match_status:'unresolved',canonical_id:null,name:'待填原文园区名',identifiers:{country:null,province:null,city:null,address:null,coordinates:null}},metric:'待填稳定指标名',value:{type:'number',number:null,raw:'待填原文值'},unit:null,scope:'待填园区/分期/楼栋边界；容量口径IT/设施/接电/发电/合同；统计期间与条件',kind:'reported',effective_time:unknownTime,published_time:{...unknownTime},evidence:{locator:'待填物理页/表/行列/JSON Pointer',quote:'待填逐字原文',context:'待填表头/脚注/限定条件'},target_ids:[],revision_of:null,conflicts_with:[]}],
-        'errors.jsonl':[],
-        'run-report.json':{template_only:true,run_id:'待填唯一批号',team:'待填实际队伍',started_at:null,finished_at:null,host:null,collector_revision:'待填实际40位Git提交',model:null,duration_seconds:null,bytes_downloaded:null,counts:{scheduled_sources:null,attempted_sources:null,successful_sources:null,unchanged_sources:null,failed_sources:null,blocked_sources:null,unattempted_sources:null,new_originals:null,duplicate_originals:null,candidates:null,matched_candidates:null,unresolved_candidates:null,conflicts:null,received:null,reviewed:null,adopted:null,published:null},note:'未知计数不能填伪造的0；只填写本次实际执行计数，尚未接通的接收/采用不要报告成功'},
-        'derived/README.txt':'可选派生文本/OCR/JSON；逐件记录 derived_from_sha256、页号、工具/模型及版本、未读范围、漏页和人工校对情况。原件不改字节。\n'
-      },
-      contract_url:'https://inresearch.ai/doc.html?f=docs/guides/fetchdata/delivery-contract.md'
-    };
-    download('数据中心资料交付-待填模板.json',JSON.stringify(template,null,2)+'\n','application/json;charset=utf-8');
-  };
-  $('download-template').addEventListener('click',downloadTemplate);
-  $('download-template-home').addEventListener('click',downloadTemplate);
 
   $('new-package').addEventListener('click',()=>openPackage());
   $('close-package').addEventListener('click',()=>$('package-dialog').close());

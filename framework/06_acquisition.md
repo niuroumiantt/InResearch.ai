@@ -303,7 +303,7 @@ inews 的研究 feed 提供事件卡、原件指针与来源 URL，不交换编�
 
 全站资料提交入口是采集页的「收件箱」标签（`supply.html#inbox`，原 materials.html 并入），接收粘贴文字、截图和多种文件，每份最多 64 MiB。私有持久队列逻辑路径为 data/.material-intake，由 storage.layout 解析；主机路径 /srv/inresearch.ai/data/.material-intake、容器路径 /runtime/data/.material-intake；不进 Git、不提供静态下载。完整接收后登记 SHA256、来源、话题、备注和提交者。原文及备注是研究输入，不授予操作权限。
 
-2026-10-15 补充：`tasks.html` 匿名上传仍先进入私有收件根；指定负责人批准原件 SHA 后 Spark 才可接收。仅新的 `approve_and_analyze` 或针对已归档文件的 `start_analysis` 动作授权模型分析和合格普通来源自动发布，旧审批不追溯生效。Spark 接收 unit 调用仓库 `manage.py receive` 并读取既有 `reader.env` 本机模型配置；本机模型分批核原生 XLSX，断点保留每批候选。网站逐项复验同 SHA 原件及具体单元格，缺少明确单位、地点、身份或与现有非空值冲突的候选留作线索，不写正式库。自动发布只走已有持久普通来源发布器，不改变 C3 研究采用、项目修订或模型参数。完成后后台保存发布与未发布报告，员工回执下方保存默认折叠的逐格修改任务书。新版本仍重新上传并确认。采集页既有内部上传维持原批准门槛。
+2026-10-15 补充：`tasks.html` 匿名上传仍先进入私有收件根；指定负责人批准原件 SHA 后 Spark 才可接收。仅新的 `approve_and_analyze` 或针对已归档文件的 `start_analysis` 动作授权模型分析和合格普通来源自动发布，旧审批不追溯生效。Spark 接收 unit 调用仓库 `manage.py receive` 并读取既有 `reader.env` 本机模型配置；本机模型分批核原生 XLSX，断点保留每批候选。网站逐项复验同 SHA 原件及具体单元格，缺少明确单位、地点、身份或与现有非空值冲突的候选留作线索，不写正式库。自动发布只走已有持久普通来源发布器，不改变 C3 研究采用、项目修订或模型参数。完成后后台保存发布与未发布报告，逐格修改记录保留在私有后台，任务页只投影共同现行反馈和下一步；个人旧修改任务不作为新审阅依据。新版本仍重新上传并确认。采集页既有内部上传维持原批准门槛。
 
 Spark 每分钟以 reader 专用凭据经 HTTPS 仅拉取已批准文件，下载前再次核批准身份、记录 SHA、实际字节数和哈希，永久保存至 ~/.local/share/inresearch.ai/web-submissions/<submission_id>/original，元数据保存为 receipt.json，再将原名副本投递 raw-materials/web-<submission_id>/。回执仅表示 Spark 已归档，不等于已阅读或正式采用；Office 和压缩包能力仍按阅读标准。离线时保留网站队列，不自动删除。大批量仍按 Spark 手册直传，以上副本不代替独立备份。
 

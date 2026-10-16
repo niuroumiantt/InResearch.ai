@@ -563,7 +563,7 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 ## 员工作业的同批联合审阅（2026-10-16）
 
-网页上传的实际成功成员凭各份回执封存，负责人一次确认精确清单及每份SHA／版本后，既有 `inresearch-material-intake.service` 接收原件并调用同一私有Codex CLI。联合请求共用任务和台账、逐份带定位及覆盖范围；持久联合proposal在回写中断后复用，不能重跑模型或重复发布。单份历史断点与原件保留，不能按姓名或主题自动扩大批次。
+网页上传的实际成功成员凭各份回执封存，负责人一次确认精确清单及每份SHA／版本后，既有 `inresearch-material-intake.service` 接收原件并调用同一私有Codex CLI。联合请求共用当前任务和台账、最新有效共同反馈、逐份带定位及覆盖范围；旧个人修改任务及回执链不进入执行上下文，历史记录和安全鉴权继续保留。持久联合proposal在回写中断后复用，不能重跑模型或重复发布。单份历史断点与原件保留，不能按姓名或主题自动扩大批次。
 
 升级网站后，先核新镜像、health和相关静态资源，再升级Spark的同一接收用例：暂停原intake timer，等待当前receive自然结束，保存状态和实际运行审计，用已验证增量Git bundle在干净源码上快进到合并版本，核SHA后恢复原timer。不另起第二worker，不为此重启Reader或模型relay。若原receive在途，不在其运行中切换Python源码。
 
