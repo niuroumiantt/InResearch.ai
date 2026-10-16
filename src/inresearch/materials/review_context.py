@@ -13,7 +13,8 @@ def site_index(records):
               'capacity_facility_mw', 'capacity_planned_it_mw')
     result = []
     for row in records:
-        if not row.get('site_id') or not row.get('name'):
+        if (not row.get('site_id') or not row.get('name') or row.get('duplicate_of')
+                or row.get('identity_scope') in ('cluster','portfolio')):
             continue
         current = site_timeline.current(row)
         selected = current.get('tracking', {}).get('fields', {})
@@ -63,7 +64,8 @@ def assigned_task(record, task_state, mission, index, task_records, source_state
     index_sha = hashlib.sha256(json.dumps(index, ensure_ascii=False,
         sort_keys=True, separators=(',', ':')).encode()).hexdigest()
     shared_task = (research_tasks.package_workflow(
-        package, task_records, task_edits=research_tasks.package_task_edits(task_state, package_id))['current_task']
+        package, task_records, {row['site_id'] for row in index}, task_edits=research_tasks.package_task_edits(task_state, package_id),
+        task_scope_revision=research_tasks.package_scope_revision(task_state,package_id))['current_task']
                    if package else None)
     return {
         'task_revision': task_state['revision'],
@@ -75,27 +77,45 @@ def assigned_task(record, task_state, mission, index, task_records, source_state
         'package': ({key: package.get(key) for key in
                      ('id', 'title', 'region', 'scope', 'sources')} if package else None),
         'shared_progress': shared_progress(task_records, package_id),
-        'shared_next_task': shared_task,
-        'previous_system_task': inbox.previous_system_task(record),
-        'continuity': ('verified_receipt' if record.get('continuation_of')
-                       else 'new_or_unlinked'),
+        'current_task': shared_task,
+        'execution_policy': 'live_work_package_feedback_v2',
     }
 
 
-def current(root, record, *, runtime=None):
+def current(root, record, *, runtime=None, task_records=None):
     state = research_tasks.read(root)
     mission = research_tasks.plan(root)['mission']
     if runtime is None:
         runtime = source_publication.state(root)
     registered = source_publication.projects(root, runtime=runtime)['records']
     index = site_index(registered)
-    task = assigned_task(record, state, mission, index, inbox.records(),
+    task = assigned_task(record, state, mission, index, inbox.records() if task_records is None else task_records,
                          source_publication.digest(runtime))
     return task, index[:500]
 
 
+def execution_task(task):
+    """Old receipt-linked task prose is evidence history, never live instructions."""
+    return {key:value for key,value in task.items() if key not in ('previous_system_task','continuity')}
+
+
 def provenance(task):
     return {'revision': task['task_revision'],
-            'sha256': hashlib.sha256(json.dumps(task, ensure_ascii=False, sort_keys=True,
+            'sha256': hashlib.sha256(json.dumps(execution_task(task), ensure_ascii=False, sort_keys=True,
                                                separators=(',', ':')).encode()).hexdigest(),
-            'previous_submission_id': (task.get('previous_system_task') or {}).get('submission_id')}
+            'previous_submission_id': None}
+
+
+def before_batch_results(records, analysis_ids):
+    """Pure comparison view of the pre-batch context; never write or mutate stored history.
+
+    Both immutable report and matching receipt feedback remain in the authoritative
+    inbox. Only this freshly constructed task snapshot omits this attempt's own
+    additions, allowing the existing CAS to distinguish external changes.
+    """
+    return [{**record,
+             'analysis_reports':[entry for entry in record.get('analysis_reports',[])
+                                 if entry.get('id') != analysis_ids.get(record['id'])],
+             'feedback':[entry for entry in record.get('feedback',[])
+                         if entry.get('id') != analysis_ids.get(record['id'])]}
+            if record['id'] in analysis_ids else dict(record) for record in records]

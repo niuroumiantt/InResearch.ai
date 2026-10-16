@@ -73,3 +73,24 @@ class IndustryCacheTests(unittest.TestCase):
                 path.write_text(json.dumps({'changed': name}))
                 industry.cached_snapshot(self.root)
             self.assertEqual(builder.call_count, 7)
+
+    def test_task_progress_uses_site_projection_and_omits_public_updates(self):
+        raw = {'records': [{'site_id': 'site-a'}, {'site_id': 'site-alias'}]}
+        projected = [
+            {'site_id': 'site-a', 'portfolio': False, 'duplicate_of': None,
+             'verified_date': '2026-10-01'},
+            {'site_id': 'site-alias', 'portfolio': False, 'duplicate_of': 'site-a',
+             'verified_date': '2026-10-02'},
+        ]
+        audit = {'sites': 1, 'operating': 10}
+        with patch('inresearch.delivery.source_publication.site_state',
+                   return_value={'version': 1, 'sites': {'site-a': {}}}) as site_state, \
+             patch('inresearch.delivery.source_publication.projects', return_value=raw) as projects, \
+             patch.object(industry, 'project', side_effect=projected), \
+             patch.object(industry, 'capacity_audit', return_value=audit), \
+             patch.object(industry, 'public_updates', side_effect=AssertionError('unrelated ledger read')):
+            result = industry.task_progress_snapshot(self.root)
+        site_state.assert_called_once_with(self.root)
+        self.assertEqual(projects.call_args.kwargs['runtime']['sites'], {'site-a': {}})
+        self.assertEqual(result['rows'], [{'site_id': 'site-a', 'portfolio': False}])
+        self.assertEqual(result['capacity_audit'], audit)
