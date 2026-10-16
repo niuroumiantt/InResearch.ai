@@ -42,15 +42,29 @@
   window.addEventListener('research-task-view-requested',event=>showTaskView(event.detail?.view));
   window.addEventListener('hashchange',()=>showTaskView(viewForHash(location.hash)));
   let state = null, pending = null, editing = null, editingRevision = null, selectedPackageId = null;
+  let readState = 'loading', readAt = null, loadSequence = 0;
+  function setReadState(kind, message = '') {
+    readState = kind;
+    $('package-active-panel').dataset.readState = kind;
+    $('package-current-heading').textContent = kind === 'current' ? '共同现行反馈与下一步' : state ? '上次读取的共同反馈' : '共同反馈与下一步';
+    const note = $('package-read-status');
+    note.hidden = kind === 'current';
+    note.textContent = kind === 'current' ? '' : kind === 'loading' ? state ? '正在刷新；上次数据暂不作执行依据。' : '正在读取最新共同反馈…' : state ? '刷新失败；上次数据未确认有效，请重试后再执行。' : message || '读取失败，请稍后重试。';
+  }
   const canEdit = item => state && (state.can_create || (state.role === 'intern' && String(item.assignee || '').split(/[,，、;；\n]+/).map(name => name.trim()).includes(state.actor)));
   const value = name => form.elements.namedItem(name);
 
   async function load() {
+    const sequence = ++loadSequence;
+    setReadState('loading');
+    if (state) renderPackageWorkspace();
     $('tasks-status').textContent = '正在读取任务台账…';
     try {
       const response = await fetch('/api/research-tasks', {cache:'no-store'});
       if (!response.ok) throw Error(response.status === 401 ? '请登录后查看任务' : '任务台账暂不可用，请刷新重试');
-      state = await response.json();
+      const latest = await response.json();
+      if (sequence !== loadSequence) return;
+      state = latest; readAt = Date.now() / 1000; setReadState('current');
       window.researchTasksState = state;
       window.dispatchEvent(new CustomEvent('research-tasks-loaded',{detail:state}));
       $('new-package').hidden = !state.can_create;
@@ -58,6 +72,9 @@
       render(); renderRegister();
       $('tasks-status').textContent = `服务端台账 · 版本 ${state.revision} · ${state.packages.length} 个工作包。${state.public_view?'公开只读视图；登录后可查看实际分工并协作。':'机器与模型按实际执行填写，未分配不默认运行。'}`;
     } catch (error) {
+      if (sequence !== loadSequence) return;
+      setReadState('error',error.message);
+      if (state) renderPackageWorkspace();
       $('tasks-status').textContent = error.message;
       $('register-stats').textContent = '台账读取失败，请刷新重试。';
       $('mission-progress-value').textContent = '暂不可用';
@@ -152,13 +169,16 @@
     }));
     const progress = state.package_progress?.[current.id] || {};
     const task = progress.current_task || {version:1,scope:current.scope,next_action:'按当前工作包范围，先找具名园区及可回查来源。'};
-    $('package-current-meta').textContent = `当前共同任务 v${task.version} · ${task.updated_at ? '更新于 '+packageTime(task.updated_at) : '尚无完成审阅的材料'}`;
+    const currentRead = readState === 'current';
+    $('package-current-meta').textContent = currentRead ? `当前共同任务 v${task.version} · ${task.updated_at ? '更新于 '+packageTime(task.updated_at) : '尚无完成审阅的材料'}` : `上次读取于 ${packageTime(readAt)} · 任务 v${task.version} · 未确认当前有效`;
     $('package-current-title').textContent = current.title;
     $('package-current-scope').textContent = task.scope || current.scope;
-    $('package-current-feedback').textContent = `共同反馈：${task.feedback_summary || '尚无已完成审阅，按当前工作包范围提交材料。'}`;
-    $('package-current-next').textContent = `下一步：${task.next_action}`;
+    $('package-current-feedback').textContent = `${currentRead ? '共同反馈' : '上次读取的共同反馈'}：${task.feedback_summary || '尚无已完成审阅，按当前工作包范围提交材料。'}`;
+    $('package-current-next').hidden = !currentRead;
+    $('package-history-guidance').textContent = currentRead ? '历史记录仅供追溯，执行以上方共同现行反馈与下一步为准；原件和完整审核记录保持原权限。' : '历史记录仅供追溯；最新共同反馈尚未确认，请成功刷新后再查看执行要求。';
+    $('package-current-next').textContent = `${currentRead ? '下一步' : '上次读取的下一步（未确认当前有效）'}：${task.next_action}`;
     const remaining = Array.isArray(task.remaining) ? task.remaining.filter(row=>typeof row === 'string' && row !== task.next_action) : [];
-    $('package-current-remaining').hidden = !remaining.length;
+    $('package-current-remaining').hidden = !currentRead || !remaining.length;
     $('package-current-remaining').innerHTML = remaining.map(row=>`<li>${esc(row)}</li>`).join('');
     $('package-published-sites').textContent = new Intl.NumberFormat('zh-CN').format(progress.published_sites ?? 0);
     const feedbackRounds = task.completed?.feedback_rounds ?? task.completed?.reviewed_rounds;
@@ -169,8 +189,8 @@
       const status = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
         event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'manual_feedback' ? '已出负责人反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
         event.outcome === 'source_error' ? '原件需修订' : '已确认，待分析';
-      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p class="package-history-note">历史记录，仅供追溯；当前执行要求见上方共同反馈。</p><p>${esc(event.submitter)}（自填） · 提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</p><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}</p><p class="package-event-feedback">当时团队反馈：${esc(event.feedback)}</p></div></details></article>`;
-    }).join('') : '<p class="package-empty">这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。</p>';
+      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p class="package-history-note">历史记录，仅供追溯；${currentRead ? '当前执行要求见上方共同反馈。' : '最新执行要求尚未确认，请成功刷新后再查看。'}</p><p>${esc(event.submitter)}（自填） · 提交 ${esc(event.material)} · 入库来源 ${esc(event.published_statements ?? 0)} 条</p><p>收到：${esc(packageTime(event.received_at))}${event.reviewed_at ? ` · 审阅完成：${esc(packageTime(event.reviewed_at))}` : ''}${event.feedback_at && event.feedback_at !== event.reviewed_at ? ` · 处理反馈：${esc(packageTime(event.feedback_at))}` : ''}</p><p class="package-event-feedback">当时团队反馈：${esc(event.feedback)}</p></div></details></article>`;
+    }).join('') : `<p class="package-empty">${currentRead ? '这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。' : '上次读取时，这个工作包尚无已确认的团队接力记录。'}</p>`;
     window.activeResearchPackageId = current.id;
     window.dispatchEvent(new CustomEvent('research-package-selected',{detail:{packageId:current.id}}));
   }

@@ -112,6 +112,16 @@ def _review_round(entry, record):
     return 'report:'+record.get('id','')+':'+str(entry.get('id') or entry.get('at') or '')
 
 
+
+def _has_content_review(report):
+    """A source-format error is feedback, not a completed model review.
+
+    Sampled reports still count as bounded reviews; their explicit scope keeps
+    the source's unread content separate from whole-document completion.
+    """
+    return isinstance(report,dict) and (report.get('publication') or {}).get('state')!='source_error'
+
+
 def _round_summary(rows, manual=None):
     """Public, server-authored instructions contain no raw private model or owner text."""
     if manual is not None:
@@ -249,7 +259,7 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
           'feedback_at':latest_at if latest and not scope_changed else None,
           'feedback_summary':summary,'scope_revision':task_scope_revision,
           'completed':{'published_sites':len(sites),'published_statements':len(statements),
-                       'reviewed_rounds':sum(any((entry['report'].get('publication') or {}).get('state')!='source_error'
+                       'reviewed_rounds':sum(any(_has_content_review(entry['report'])
                                                 for _,entry in group['rows']) for group in complete.values()),
                        'feedback_rounds':len(complete)},
           'remaining':remaining}
@@ -275,7 +285,7 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
         report=last_report['report'] if last_report else {}
         is_current=bool(key and key==current_key and key in complete)
         events.append({'_record_id':record.get('id',''),'received_at':received,
-            'reviewed_at':last_report.get('at') if last_report else None,
+            'reviewed_at':last_report.get('at') if last_report and _has_content_review(report) else None,
             'feedback_at':own[0] if own else None,
             'last_activity_at':own[0] if own else (record.get('approval') or {}).get('at') or received,
             'submitter':re.sub(r'[\x00-\x1f\x7f]+',' ',str(record.get('submitter') or '未留姓名')).strip()[:120],
@@ -286,7 +296,7 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
     events.sort(key=lambda row:(row['received_at'] or 0,row['_record_id']),reverse=True)
     for event in events: del event['_record_id']
     return {'published_sites':len(sites),'published_statements':len(statements),
-            'reviewed_files':sum(any((entry.get('report',{}).get('publication') or {}).get('state')!='source_error'
+            'reviewed_files':sum(any(_has_content_review(entry.get('report'))
                                       for entry in record.get('analysis_reports',[])) for record in approved),
             'confirmed_files':len(events),'target':None,'current_task':task,'events':events[:50]}
 
@@ -332,7 +342,7 @@ def snapshot(root, actor='', role='reader'):
                               'target_basis': state.get('target_site_basis', ''),
                               'target_set_at': state.get('target_site_set_at', ''),
                               'published_sites': len(published_sites),
-                              'reviewed_reports': len(reports),
+                              'reviewed_reports': sum(_has_content_review(entry['report']) for entry in reports),
                               'published_statements': len(published_statements),
                               'basis': '负责人确认后模型审阅、发布，且当前园区台账仍可见的去重园区；同园区多字段只计一次'},
             'actor': actor if role != 'reader' else '', 'role': role,

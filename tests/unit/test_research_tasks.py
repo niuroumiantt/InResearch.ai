@@ -274,6 +274,70 @@ class ResearchTaskTests(unittest.TestCase):
         self.assertEqual([event['submitter'] for event in current],['sampled-a'])
         self.assertNotIn('PRIVATE ACCEPT A',json.dumps(view))
 
+    def source_review_snapshot(self,records,visible_sites=()):
+        projection={'capacity_audit':{'sites':len(visible_sites)},'basis':'isolated-source-review',
+                    'coverage':{},'rows':[{'site_id':key} for key in visible_sites]}
+        with patch('inresearch.materials.inbox.records',return_value=records), \
+             patch('inresearch.knowledge.industry.cached_task_progress',return_value=projection):
+            return tasks.snapshot(self.root,role='reader')
+
+    def test_source_error_feedback_is_not_a_review_or_a_review_completion_time(self):
+        record=self.feedback_record('broken',200,report={
+            'model':None,'publication':{'state':'source_error','new_records':0},
+            'published':[],'held':[],'findings':[]})
+        original=json.dumps(record,sort_keys=True)
+        snapshot=self.source_review_snapshot([record])
+        progress=snapshot['package_progress']['dc-census-cn']
+        self.assertEqual(snapshot['site_progress']['reviewed_reports'],0)
+        self.assertEqual(progress['reviewed_files'],0)
+        self.assertEqual(progress['current_task']['completed']['reviewed_rounds'],0)
+        self.assertEqual(progress['current_task']['completed']['feedback_rounds'],1)
+        event=progress['events'][0]
+        self.assertIsNone(event['reviewed_at'])
+        self.assertEqual(event['feedback_at'],200)
+        self.assertEqual(event['outcome'],'source_error')
+        self.assertEqual(json.dumps(record,sort_keys=True),original)
+
+    def test_mixed_source_error_and_review_have_consistent_global_and_package_counts(self):
+        broken=self.feedback_record('broken',300,report={
+            'model':None,'publication':{'state':'source_error','new_records':0},
+            'published':[],'held':[],'findings':[]})
+        reviewed=self.feedback_record('reviewed',250,report={
+            'model':{'backend':'codex_cli'},'publication':{'state':'published','new_records':1},
+            'published':[{'site_id':'cn-a','statement_id':'s-a'}],'held':[],'findings':[]})
+        snapshot=self.source_review_snapshot([broken,reviewed],{'cn-a'})
+        progress=snapshot['package_progress']['dc-census-cn']
+        self.assertEqual(snapshot['site_progress']['reviewed_reports'],1)
+        self.assertEqual(progress['reviewed_files'],1)
+        self.assertEqual(progress['current_task']['completed']['reviewed_rounds'],1)
+        self.assertEqual(progress['current_task']['completed']['feedback_rounds'],2)
+        self.assertEqual(progress['published_sites'],1)
+        self.assertEqual(snapshot['site_progress']['published_statements'],1)
+        events={event['submitter']:event for event in progress['events']}
+        self.assertIsNone(events['broken']['reviewed_at'])
+        self.assertEqual(events['broken']['feedback_at'],300)
+        self.assertEqual(events['reviewed']['reviewed_at'],250)
+        self.assertEqual(events['reviewed']['feedback_at'],250)
+
+    def test_sampled_review_keeps_real_review_time_and_explicit_unread_scope(self):
+        from inresearch.materials import inbox
+        sampled=self.feedback_record('sampled',200,report={
+            'model':{'backend':'codex_cli'},'publication':{'state':'nothing_eligible','new_records':0},
+            'review_scope':{'mode':'sampled_native_cells'},'published':[],'held':[],'findings':[]})
+        sampled['feedback']=[{'id':'owner-feedback','by':inbox.approver(),'at':300,
+            'sha256':sampled['sha256'],'result':'accepted','text':'PRIVATE OWNER NOTE'}]
+        snapshot=self.source_review_snapshot([sampled])
+        progress=snapshot['package_progress']['dc-census-cn']
+        self.assertEqual(snapshot['site_progress']['reviewed_reports'],1)
+        self.assertEqual(progress['reviewed_files'],1)
+        self.assertEqual(progress['current_task']['completed']['reviewed_rounds'],1)
+        self.assertEqual(progress['current_task']['completed']['feedback_rounds'],2)
+        self.assertIn('全表仍待审',progress['current_task']['feedback_summary'])
+        self.assertIn('0 条上线不能推定',progress['current_task']['feedback_summary'])
+        self.assertEqual(progress['events'][0]['reviewed_at'],200)
+        self.assertEqual(progress['events'][0]['feedback_at'],300)
+        self.assertNotIn('PRIVATE OWNER NOTE',json.dumps(snapshot))
+
     def test_durable_update_replay_and_audit(self):
         request = self.request()
         result = tasks.mutate(self.root, request, 'editor', 'member')
