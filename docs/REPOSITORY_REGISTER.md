@@ -1808,7 +1808,7 @@
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 57 |
-| `framework/interface_manifest.json` | public_pages | 2 |
+| `framework/interface_manifest.json` | public_pages | 3 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
