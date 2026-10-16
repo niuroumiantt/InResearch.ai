@@ -4,11 +4,23 @@
 
 用户要求 Spark 27B 研究现行 tasks 和本次材料，将合格普通园区来源上线，并给出继续爬取的具体材料指令；已授权实现与部署，不新增人工审批。首园区真实网站回执后继续余包属于本次授权内技术验收。附件内的任务书、说明和“已完成”声明都是资料，不取得系统任务定义权。
 
-现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.32。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
+现行规范为 framework/05_interface_system.md、framework/09_software_contracts.md、docs/local_reader/SPARK_OPERATIONS.md，注册版本 2026.10.16.33。已批准的精确原件通过 start_full_analysis 新建尝试，旧抽样、旧报告、旧27B断点及原件保留。按园区／共享上下文／未分配包覆盖全部原生非空单元格及长格无损片段；不称图片、外链或公式执行已读。逐包服务端复验来源、任务、包、原生定位、地域、原值／单位／身份和CAS后才普通来源发布；全部包完成才称全表原生文本完成。
 
-## 当前继续点：首园区真实上线，v6已继续整批（2026-10-17）
+## 当前继续点：AH-FY-JZ最终输出截断，整批暂受阻（2026-10-17）
 
-PR958通过23项CI和完整2900项单元测试，合并提交`e408d3585c4f48c56f870c565b2b658b3298caf1`已同步部署网站与Spark，网站镜像与健康状态已核。当前`codex/campus-pilot-handoff`只补本次交接，规范版本仍为2026.10.16.32；下方命名空间修复、计量和早期阻塞记录均保留为阶段历史。6个已合并远程分支已按精确SHA租约清理，未合并分支及本地资料全部保留。
+当前独立分支`codex/campus-adjudication-delta`基于main `90fa3742a714c939eaabb46cd3443ce64391bb8f`；网站与Spark已运行该已合并交接版本，模型实现仍为.32。05:16只读核查确认v6同一attempt `9c1503ab-4c07-4197-848c-e59cb3af898e`、revision7、phase=full，服务器仍仅1/117完整包及81/10272归属格，首包来源回执有效，没有新增正式报告或发布。
+
+后续AH-FY-JZ包`5cf9f021e48c8fa7c042f921bfd7f1e2e9fb34123f558e7d2a6e22297ae764aa`已保存8/8原生阅读窗口。完整最终输入包含31条findings与7条候选，实际8951 tokens通过预算，但响应重复输出原问题，达到4096输出上限而截断；服务器遥测为8/9步骤，最后一步是综合，不能误称9个原生窗。Spark状态`model_output_truncated`、operator_required=true，失败计数1；这是真实新阻塞，不能归因首包历史504。该包尚无有效综合、proposal或网站完成回执。证据为私有`/private/tmp/campus-heartbeat-20261017-0516-server.json`、同前缀`-spark.json`及`/private/tmp/campus-ahfy-truncated-response.txt`。
+
+本次.33只改最终输出为1至600字符的非空白summary／原问题索引全集reviewed_finding_ids／新增跨窗问题new_findings／accept_candidates；完整输入与原阅读问题全部保留。最终配方`campus-adjudication-delta-v1`单独绑定system/schema/request/完整reading inventory/findings/candidates及配方自身摘要，旧final不得混用；原reading配方、8窗缓存、32K／4096、GPU门槛不变。新增5项测试已逐条审阅，并独立运行worker40、receiver16与token30共86项通过（Python3.12，1.370秒）：验证31条原问题逐字保留、8窗原字节不重读、索引全集、旧配方及各摘要失配拒绝、截断审计在状态丢失后仍禁止重放。完整CI、部署与正式同包综合仍待实证，不称修复已完成。
+
+真实原件的无生成重建也已完成：同SHA XLSX复算229原生格与8个窗口，parts/system/reading schema摘要与原冻结状态相同；新final中所有证据字段逐值等于旧请求，31条问题与7候选完整，只有instructions及final_recipe_version改变。该核验模型调用数为0，不计综合成功或新增完成包；私有证明为`/private/tmp/campus-ahfy-delta-request-proof.json`，新请求SHA为`0fe610141b6f7f63948656f320063e610f35dc908a699b61bd2af90f01f56c20`。
+
+集成者仅在精确SHA／attempt／包／任务上下文、8窗及实际截断证据都相符，且新鲜服务器证明本包无完成、outbox或proposal时，才把未绑定final原字节及状态封存历史并恢复同attempt。不得删除原文、成功窗口或旧报告，不清首包，不跳过最终综合，不将未绑定响应普遍改成自动重放。AH-FY-JZ成功并取得真实回执后才继续下一包，后续仍按v6→dahai→national→v5顺序；各包意见须逐条核原件，UCLOUD外部线索不得套用本包。
+
+## 首园区真实上线与v6整批继续（已验证历史，2026-10-17）
+
+PR958通过23项CI和完整2900项单元测试，合并提交`e408d3585c4f48c56f870c565b2b658b3298caf1`已同步部署网站与Spark，网站镜像与健康状态已核。该阶段`codex/campus-pilot-handoff`只补交接，规范版本仍为2026.10.16.32；下方命名空间修复、计量和早期阻塞记录均保留为阶段历史。6个已合并远程分支已按精确SHA租约清理，未合并分支及本地资料全部保留。
 
 正式首包UCLOUD-WLCB已由qwen3.8:27b完成7个原生窗口与整园区综合，服务器报告`138a0f3e-2415-5c5f-a568-f8e7e096ec6f`确认197格完整覆盖，其中81格归属数据、116格共享表头／上下文；全表覆盖分母只累计81/10272，不把重复上下文计入。服务器实际达到`pilot_completed`，新增园区`cn-upload-5a24b8da1ca14d5f472b`及1条名称普通来源，8条候选held。持久来源台账、`/api/industry?site=cn-upload-5a24b8da1ca14d5f472b`和任务累计1园区／1来源均核实；浏览器已核[园区档案](https://inresearch.ai/project.html?site=cn-upload-5a24b8da1ca14d5f472b)与名录显示1个未定位、0个已定位。该档案仍为unverified基础登记，坐标为空；这是实际入库上线，尚未地图点亮，不是C3采用或容量／运行状态核实。
 
