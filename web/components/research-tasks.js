@@ -75,16 +75,19 @@
     $('mission-site-progress').setAttribute('aria-label', target
       ? `模型审阅后已上线 ${published} 个去重园区，暂定目标 ${target} 个`
       : `模型审阅后已上线 ${published} 个去重园区；园区目标待初步研究后设定`);
-    $('mission-progress-value').textContent = `${formatCount(published)} 个园区已上线`;
-    $('mission-progress-detail').textContent = target ? `暂定目标 ${formatCount(target)} · ${Math.round(published / target * 100)}%` : '暂定目标待初步盘点';
+    $('mission-progress-value').textContent = `${formatCount(published)} 个园区已点亮`;
+    $('mission-progress-detail').textContent = target ? `暂定目标 ${formatCount(target)} · ${Math.round(published / target * 100)}%` : '园区目标待初步盘点';
     $('mission-progress-basis').textContent = state.site_progress?.basis || '按实际发布回执计数；同园区多字段只计一次。';
+    $('mission-work-package-count').textContent = formatCount(total);
     $('mission-reviewed-reports').textContent = formatCount(state.site_progress?.reviewed_reports ?? 0);
     $('mission-published-statements').textContent = formatCount(state.site_progress?.published_statements ?? 0);
-    $('mission-site-target').textContent = target ? `${formatCount(target)} 个园区` : '待初步盘点';
+    $('mission-site-target').textContent = target ? `${formatCount(target)} 个园区` : '先建 ID／地点底图';
     const basis = state.site_progress?.target_basis;
     const setAt = state.site_progress?.target_set_at;
     const date = setAt ? new Date(setAt).toLocaleDateString('zh-CN',{timeZone:'Asia/Shanghai'}) : '';
-    $('mission-target-basis').textContent = `${target ? `园区暂定目标依据：${basis || '未登记'}${date ? ` · ${date} 设定` : ''}。` : ''}90+ GW 仅是待校准摸底参考；容量须区分 IT / 设施及已投运 / 在建 / 规划，当前不计算容量完成率。`;
+    $('mission-target-basis').textContent = target
+      ? `园区暂定目标依据：${basis || '未登记'}${date ? ` · ${date} 设定` : ''}。容量和水电按同一园区 ID 分轮补齐。`
+      : '当前先固定可回查的物理园区 ID 与地点；园区数量分母由初步盘点后设定。';
     $('mission-package-detail').textContent = `工作包 ${delivered}/${total} 已交付 · ${count('in_progress')} 进行中 · ${count('blocked')} 受阻（仅协作状态）`;
     $('mission-target-form').hidden = state.role !== 'admin';
     if (state.role === 'admin') {
@@ -222,7 +225,7 @@
     download('全球数据中心普查-任务书.md',brief,'text/markdown;charset=utf-8');
   });
 
-  $('download-template').addEventListener('click',()=> {
+  const downloadTemplate = () => {
     const unknownTime = {value:null,precision:'unknown',basis:null};
     const template = {
       template_only:true, contract:'fetchdata-handoff/1',
@@ -238,7 +241,9 @@
       contract_url:'https://inresearch.ai/doc.html?f=docs/guides/fetchdata/delivery-contract.md'
     };
     download('数据中心资料交付-待填模板.json',JSON.stringify(template,null,2)+'\n','application/json;charset=utf-8');
-  });
+  };
+  $('download-template').addEventListener('click',downloadTemplate);
+  $('download-template-home').addEventListener('click',downloadTemplate);
 
   $('new-package').addEventListener('click',()=>openPackage());
   $('close-package').addEventListener('click',()=>$('package-dialog').close());
@@ -252,13 +257,16 @@
     const artifacts = Object.fromEntries(sample.artifacts.map(a=>[a.id,a]));
     const used = new Set(sample.stages.flatMap(stage=>stage.artifact_ids));
     const facts = sample.facts.map(f=>`<div><dt>${esc(f.label)}</dt><dd>${esc(f.value===null?'未知':f.value)}${f.unit?` <small>${esc(f.unit)}</small>`:''}<div class="example-fact-sources">${f.source_ids.map(id=>`<a href="#example-${esc(sample.id)}-source-${esc(id)}">来源 ${esc(id)} ↗</a>`).join(' ')}${f.locator?`<span>${esc(f.locator)}</span>`:''}</div></dd></div>`).join('');
+    const identityFacts = sample.facts.filter(f=>['address','operator','developer','opening'].includes(f.id));
+    const summaryFacts = (identityFacts.length ? identityFacts : sample.facts).slice(0,4).map(f=>`<div><dt>${esc(f.label)}</dt><dd>${esc(f.value===null?'未知':f.value)}${f.unit?` <small>${esc(f.unit)}</small>`:''}</dd></div>`).join('');
     const execution = sample.execution || {};
     const stages = sample.stages.map((stage,index)=>{
       const missing = stage.artifact_ids.some(id=>!artifacts[id]?.available);
       return `<details class="example-stage" data-stage="${esc(stage.id)}" ${index===0?'open':''}><summary><span class="example-stage-number">${String(index+1).padStart(2,'0')}</span><strong>${esc(stage.title)}</strong><span class="example-stage-state ${esc(stage.state)}">${esc(stageLabels[stage.state])}</span></summary><div class="example-stage-body"><p>${esc(stage.result)}</p>${missing?'<p class="example-warning">本步有产物缺失或摘要不符，当前无法复验，请联系负责人恢复原产物。</p>':''}<ul class="example-artifacts">${stage.artifact_ids.map(id=>artifactRow(artifacts[id])).join('')}</ul>${!stage.artifact_ids.length?'<p class="small muted">本步没有可供当前访问者下载的产物；执行状态按实际记录保留。</p>':''}</div></details>`;
     }).join('');
     const extra = sample.artifacts.filter(a=>!used.has(a.id));
-    return `<article class="worked-example-card" data-example="${esc(sample.id)}"><header class="example-heading"><div><p class="mission-eyebrow">真实园区 · ${esc(sample.id)}</p><h3>${esc(sample.name)}</h3><p>${esc(sample.status)} · 处理记录 ${esc(sample.processed_at || '时间未登记')}</p></div><div class="example-links">${sample.links.project?`<a href="${esc(sample.links.project)}">查看园区档案${authenticated?'':'（登录）'} →</a>`:''}${sample.links.map?`<a href="${esc(sample.links.map)}">在地图定位${authenticated?'':'（登录）'} →</a>`:''}</div></header><dl class="example-facts">${facts}</dl><div class="example-execution"><strong>本次实际执行</strong><span>${authenticated?`机器 ${esc(execution.machine || '未登记')} · 模型 ${esc(execution.model || '未使用或未登记')} · 操作者 ${esc(execution.actor || '未登记')}`:'登录后查看实际机器、模型与操作者。'}</span><span>阅读范围：${esc(execution.reading_scope || '未登记，不据此认定全文阅读')}</span></div><div class="example-stages">${stages}</div>${extra.length?`<details class="example-stage"><summary><strong>其他交付产物</strong></summary><ul class="example-artifacts example-stage-body">${extra.map(artifactRow).join('')}</ul></details>`:''}<div class="example-unknowns"><h4>本例仍然不知道什么</h4>${sample.unknowns.length?sample.unknowns.map(row=>`<article><strong>${esc(row.label)}</strong><p>${esc(row.reason)}</p><small>下一步：${esc(row.next_action)}</small></article>`).join(''):'<p class="small muted">未登记缺项清单，不据此声称信息完整。</p>'}</div><details class="example-source-list"><summary>原文出处与证据定位 · ${sample.sources.length} 项</summary>${sample.sources.map(s=>`<article id="example-${esc(sample.id)}-source-${esc(s.id)}"><strong>${esc(s.id)} · ${esc(s.title)}</strong>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">访问原始出处 ↗</a>`:''}<p>${esc(s.locator || '定位未登记')}</p>${s.artifact_id?`<ul class="example-artifacts">${artifactRow(artifacts[s.artifact_id])}</ul>`:''}</article>`).join('')}</details></article>`;
+    const stageSummary = sample.stages.map(stage=>`<li class="${esc(stage.state)}"><strong>${esc(stage.title)}</strong><span>${esc(stageLabels[stage.state])}</span></li>`).join('');
+    return `<article class="worked-example-card" data-example="${esc(sample.id)}"><header class="example-heading"><div><p class="mission-eyebrow">真实园区 · ${esc(sample.id)}</p><h3>${esc(sample.name)}</h3><p>${esc(sample.status)} · 处理记录 ${esc(sample.processed_at || '时间未登记')}</p></div><div class="example-links">${sample.links.project?`<a href="${esc(sample.links.project)}">查看园区档案${authenticated?'':'（登录）'} →</a>`:''}${sample.links.map?`<a href="${esc(sample.links.map)}">在地图定位${authenticated?'':'（登录）'} →</a>`:''}</div></header><div class="example-summary-grid"><div><p class="example-summary-label">这次先固定</p><dl class="example-key-facts">${summaryFacts}</dl></div><aside class="example-template-note"><strong>照着交一包</strong><p>一处物理园区、地点、分期或主体，以及能回到原文的定位。</p><ul><li>原件不改字节</li><li>未知明确留空</li><li>上传后按回执继续补项</li></ul></aside></div><div class="example-stage-summary"><strong>真实进度</strong><ol>${stageSummary}</ol></div><details class="example-full-record"><summary>查看完整真实样例：原件、过程、未知项与来源</summary><div class="example-full-record-body"><dl class="example-facts">${facts}</dl><div class="example-execution"><strong>本次实际执行</strong><span>${authenticated?`机器 ${esc(execution.machine || '未登记')} · 模型 ${esc(execution.model || '未使用或未登记')} · 操作者 ${esc(execution.actor || '未登记')}`:'登录后查看实际机器、模型与操作者。'}</span><span>阅读范围：${esc(execution.reading_scope || '未登记，不据此认定全文阅读')}</span></div><div class="example-stages">${stages}</div>${extra.length?`<details class="example-stage"><summary><strong>其他交付产物</strong></summary><ul class="example-artifacts example-stage-body">${extra.map(artifactRow).join('')}</ul></details>`:''}<div class="example-unknowns"><h4>本例仍然不知道什么</h4>${sample.unknowns.length?sample.unknowns.map(row=>`<article><strong>${esc(row.label)}</strong><p>${esc(row.reason)}</p><small>下一步：${esc(row.next_action)}</small></article>`).join(''):'<p class="small muted">未登记缺项清单，不据此声称信息完整。</p>'}</div><details class="example-source-list"><summary>原文出处与证据定位 · ${sample.sources.length} 项</summary>${sample.sources.map(s=>`<article id="example-${esc(sample.id)}-source-${esc(s.id)}"><strong>${esc(s.id)} · ${esc(s.title)}</strong>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">访问原始出处 ↗</a>`:''}<p>${esc(s.locator || '定位未登记')}</p>${s.artifact_id?`<ul class="example-artifacts">${artifactRow(artifacts[s.artifact_id])}</ul>`:''}</article>`).join('')}</details></div></details></article>`;
   }
   let examplesLoaded = false;
   async function loadExamples(force = false) {

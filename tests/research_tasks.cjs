@@ -29,6 +29,8 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const initialApiLoads = await anonymous.evaluate(()=>performance.getEntriesByType('resource').map(entry=>new URL(entry.name).pathname));
     assert.equal(initialApiLoads.filter(path=>path==='/api/research-tasks').length,1,'initial page shares one task request');
     assert.equal(initialApiLoads.filter(path=>path==='/api/research-task-examples').length,1,'fixed real example loads with the project overview');
+    assert.equal(await anonymous.locator('#mission-title').innerText(),'先固定园区 ID，再逐轮补齐资料。');
+    assert.equal(await anonymous.locator('#download-template-home').count(),1);
     assert.equal(await anonymous.evaluate(()=>Boolean(document.querySelector('#worked-example').compareDocumentPosition(document.querySelector('.mission-nav')) & Node.DOCUMENT_POSITION_FOLLOWING)),true,'real example stays above the workbench tabs');
     assert.equal(await anonymous.locator('#submission-progress #task-upload-form').count(),1,'submission form and personal feedback share one progress view');
     assert.equal(await anonymous.locator('#submission-progress #upload-own-list').count(),1,'personal receipt timeline remains alongside the submission form');
@@ -214,6 +216,9 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await anonymous.locator('#refresh-examples').click();
     await anonymous.locator('[data-example="'+sampleId+'"]').waitFor();
     assert.ok(!(await anonymous.locator('#example-content').innerText()).includes('private-sample-'));
+    assert.equal(await anonymous.locator('[data-example="'+sampleId+'"] .example-key-facts').count(),1);
+    assert.equal(await anonymous.locator('[data-example="'+sampleId+'"] .example-full-record').evaluate(el=>el.open),false);
+    await anonymous.locator('[data-example="'+sampleId+'"] .example-full-record > summary').click();
     assert.equal(await anonymous.locator('[data-stage="receive"] [data-artifact="internal"]').count(),0);
     assert.match(await anonymous.locator('[data-stage="map"] summary').innerText(),/尚未完成/);
     assert.equal((await anonymous.request.get(base+'/api/research-task-examples/'+sampleId+'/files/internal')).status(),401);
@@ -233,6 +238,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await page.locator('#work-packages > summary').click();
     await page.locator('#package-rows tr').nth(5).waitFor();
     await page.locator('[data-example="'+sampleId+'"]').waitFor();
+    await page.locator('[data-example="'+sampleId+'"] .example-full-record > summary').click();
     assert.match(await page.locator('.example-execution').innerText(),/private-sample-host/);
     assert.equal(await page.locator('.angle-grid article').count(),12);
     assert.equal(await page.locator('[data-check-id]').count(),58);
@@ -242,9 +248,9 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await page.locator('#research-context').evaluate(el => el.open),false);
     await page.locator('#research-context > summary').click();
     assert.match(await page.locator('#research-lines').innerText(),/通用数据中心研究/);
-    assert.match(await page.locator('#mission-progress-value').innerText(),/0 个园区已上线/);
-    assert.match(await page.locator('#mission-progress-detail').innerText(),/暂定目标待初步盘点/);
-    assert.match(await page.locator('#mission-target-basis').innerText(),/90\+ GW.*不计算容量完成率/);
+    assert.match(await page.locator('#mission-progress-value').innerText(),/0 个园区已点亮/);
+    assert.match(await page.locator('#mission-progress-detail').innerText(),/园区目标待初步盘点/);
+    assert.match(await page.locator('#mission-target-basis').innerText(),/园区数量分母由初步盘点后设定/);
     assert.equal(await page.locator('#mission-target-form').isVisible(),false);
     assert.equal(await page.locator('#mission-existing-register').evaluate(el => el.open),false);
     await page.locator('#mission-existing-register > summary').click();
@@ -292,7 +298,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.match(brief,/task-intern/);
     assert.match(brief,/对象与空间范围/);assert.match(brief,/不表示永久穷尽/);assert.match(brief,/通用模型变量/);
     await page.locator('#research-methods > summary').click();
-    const [templateDownload] = await Promise.all([page.waitForEvent('download'),page.locator('#download-template').click()]);
+    const [templateDownload] = await Promise.all([page.waitForEvent('download'),page.locator('#download-template-home').click()]);
     const template = JSON.parse(readFileSync(await templateDownload.path(),'utf8'));
     assert.equal(template.contract,'fetchdata-handoff/1');
     assert.ok(template.files['observations.jsonl']);
@@ -355,6 +361,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal((await intern.request.get(base+'/api/research-task-examples/'+sampleId+'/files/internal')).status(),200);
     writeFileSync(join(sampleDirectory,'original.txt'),'CHANGED SYNTHETIC ORIGINAL');
     await anonymous.locator('#refresh-examples').click();
+    await anonymous.locator('[data-example="'+sampleId+'"] .example-full-record > summary').click();
     await anonymous.locator('[data-stage="originals"] .example-warning').waitFor();
     assert.equal((await anonymous.request.get(base+'/api/research-task-examples/'+sampleId+'/files/original')).status(),409);
     assert.equal(await anonymous.locator('[data-stage="originals"] a[download]').count(),0);
