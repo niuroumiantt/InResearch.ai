@@ -576,9 +576,21 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 1. 先核网站和 Spark 的实际执行源码、原件 SHA、服务器最新 revision 与批准记录。网页材料接收使用唯一既有 intake service/timer，不能把 Reader 源码或静态 unit 当成实际路径；以 systemd 生效 ExecStart、drop-in、进程和 SHA 为准。
 2. 网站源码按原发布门禁合并并经现有部署器上线，核镜像、健康及新增全表接口；再暂停原 intake timer 以阻止新轮次，等当前 receive 自然结束。保存 unit/drop-in、私有配置、精确原件与全部旧分析产物的哈希和备份，在干净执行工作树快进到已验收版本；不在运行中的 Python 进程下替换源码，不重启 Reader、research-review、relay 或 Ollama。
-3. intake 专属模型配置选择 `campus_review` → Ollama `qwen3.8:27b`、本机 loopback、单并发；不改共享 reader.env 的 Codex 角色。每轮最多新增一次全表模型调用，窗口读完后的综合裁决占独立下一轮；GPU 利用率≥30%或温度≥80°C只等待本任务；检测失败不得猜测机器空闲。现有 Reader 的温度开关不自动保护这条材料审核路径，必须核新 worker 的实际门槛。
+3. intake 专属模型配置选择 `campus_review` → Ollama `qwen3.8:27b`、本机 loopback、单并发；不改共享 reader.env 的 Codex 角色。每轮最多新增一次全表模型调用，窗口读完后的综合裁决占独立下一轮；GPU 利用率≥30%或温度≥80°C仍等待本任务；检测失败不得猜测机器空闲。竞争任务默认不变，只有用户明确授权的批次优先期可按下节暂缓其新轮次，不能跳过GPU门槛。现有 Reader 的温度开关不自动保护这条材料审核路径，必须核新 worker 的实际门槛。
 4. 对精确 submission ID/SHA/revision 执行 `start_full_analysis`，保存新尝试身份和旧抽样／报告／断点；同 SHA 的其他提交不重复纳入。先运行一个确定性园区包，核实际模型、全原生片段覆盖、网站普通来源发布与返回回执；真实回执复验后恢复该尝试余包，恢复不重新批准原件，也不能跳过回执门槛。
 5. 逐包核原件、现行任务与台账、包／单元格／长格片段、候选地域／原值／单位／唯一园区及 CAS。网站提交冲突时保留原模型输出和历史，按最新任务处理；原件错误和未读包不计完成。统计有效包／格覆盖、真实上线条数／园区数、待补清单分别报告，全部包完成才报告全表原生文本已审。
+
+### 本批优先期、内存验收与恢复（2026-10-17，.34）
+
+用户已明确本批优先并允许暂停其他任务；此授权替代本批原“只延后自己、不调整竞争任务”的默认运行安排，不扩展为任意停服。优先暂停调度器的新领取／新轮次，保存机器、unit或PID、父PID、启动时钟、实际命令、原active／enabled／暂停状态及本次变更回执；在途模型请求和子进程自然完成，不杀模型或Reader/review，不删除锁和原件。每项暂停须有相同身份的恢复动作；不要把同PID或旧unit名当成仍是原任务。
+
+本次已授权的具体范围为Spark用户级`inresearch-reader-publish.timer`与Mac mini两个inews回填父shell。publisher只停timer，不stop／restart在途service；若原active则结束优先期后恢复timer。回填父shell只在PID／PPID／启动时钟／argv全部吻合且原未暂停时SIGSTOP，不停止子进程；仅对本次暂停且身份仍吻合的进程SIGCONT。它们持有的FIFO锁保留，先核本批Spark归档锁不依赖该FIFO。其他AWS任务目前未变更；若需进一步暂缓，先核具体调度器、在途请求与锁依赖，不直接停止共用网站或模型服务。实际执行与恢复身份以私有运维回执为准。
+
+先部署并验收网站内存修复，再启用本批临时快速调度。核网站真实镜像与源码、logs挂载是持久磁盘、完整大库解析／来源发布／任务pending及实际HTTP的语义和内存峰值；`/tmp`若为tmpfs不得用作大型JSON溢出目录。发布回写HTTP超时先查服务器持久报告／outbox及原幂等身份，服务器已接收时复用缓存取得ACK，不重做模型、不清断点。恢复publisher之前还须核其大候选提交与网站内存边界，不能因health恢复立即制造同一压力。
+
+快速调度只在唯一`inresearch-material-intake.timer`设置临时drop-in：重置原单调计时配置后保留`OnBootSec=30s`，将`OnUnitInactiveSec`由60s改5s、`AccuracySec=1s`。应用前保存原timer／drop-in及状态，暂停timer并等现有receive自然结束；只reload和恢复同一timer，不另开worker／队列或改原共享模型角色。每轮最多一次新27B调用，综合仍占独立轮次；GPU利用率≥30%或温度≥80°C仍等待。降低轮间等待不授予更多并发，不改变原生覆盖、提示／schema、成功窗口、来源发布门槛或输出预算；真实模型计算、网站请求与温控耗时另计，不能许诺固定完成时间。
+
+本批完成或明确结束优先期时，按私有回执逐项恢复：只移除本任务路径且SHA吻合的临时drop-in，daemon-reload后恢复原timer状态；恢复原已active的publisher timer；对身份仍吻合且本次确实暂停的父shell发SIGCONT。已有其他修改、重启或状态不符时停在该项核查，不覆盖新配置、不误唤醒用户原先暂停的任务。记录恢复后状态及残留异常；成功窗口、模型审计、发布回执和锁均保留。
 
 显式操作通过原指定负责人 `/api/materials/review` 完成：启动字段为 `id/sha256/expected_revision/operation_id/action=start_full_analysis/layout_id/reason/pilot_package_id`；首包网站回执核实后的继续字段为 `id/sha256/expected_revision/operation_id/action=continue_full_analysis/attempt_id/reason`。两次操作使用各自唯一 UUID 并取服务器最新 revision；精确重放保留原请求，不直接编辑线上 JSON 或清空 analysis_reports。新尝试生成独立 full-review 目录，已持久化请求／响应与回执保留；GPU等待不妨碍纯缓存提交恢复，不消耗本轮新模型调用名额。Ollama真实传输失败按有限预算退避，阻塞尝试不独占其他待审材料；默认任务优先沿原路径执行。
 

@@ -52,6 +52,14 @@ class TaskAnalysisTests(unittest.TestCase):
                 'field':'capacity_planned_it_mw','value':value,'unit':'MW',
                 'unit_locator':'','locator':locator('C1')}
 
+    def notes_candidate(self, value, site_id=''):
+        candidate = self.candidate(site_id=site_id)
+        candidate.update(field='notes', value=value,
+                         locator='xlsx:sheet:1:cell:D1:context:A1:D1')
+        candidate.pop('unit')
+        candidate.pop('unit_locator')
+        return candidate
+
     def payload(self, candidates, item=None):
         item = item or self.item
         if item['id'] not in self.provenance:
@@ -212,6 +220,68 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertEqual(conflict['report']['held'][0]['existing']['source_sha256'],fresh['sha256'])
         self.assertEqual(conflict['report']['held'][0]['incoming']['source_sha256'],changed['sha256'])
         self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),2)
+
+    def test_unbacked_notes_placeholder_accepts_original_text_and_replays(self):
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            first = task_analysis.complete(self.root,self.payload([self.candidate()]))
+        site_id = first['report']['published'][0]['site_id']
+
+        raw = '来源陈述：供电设施信息待核。'
+        body = workbook_bytes(sheet=SHEET.replace('待核实',raw))
+        item, _ = inbox.receive(io.BytesIO(body),len(body),
+            {'name':'补充说明.xlsx','submitter':'员工乙','project_name':'中国园区普查',
+             'package_id':'dc-census-cn'},'anonymous',public=True)
+        inbox.mutate({'id':item['id'],'sha256':item['sha256'],'expected_revision':0,
+            'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(item['id'],item['sha256'])
+        payload = self.payload([self.notes_candidate(raw,site_id)],item)
+
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            published = task_analysis.complete(self.root,payload)
+        self.assertEqual(published['report']['held'],[])
+        self.assertEqual(published['report']['published'][0]['field'],'notes')
+        self.assertEqual(published['report']['published'][0]['value'],raw)
+        self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),2)
+
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            replay = task_analysis.complete(self.root,payload)
+        self.assertEqual(replay['report'],published['report'])
+        self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),2)
+
+    def test_source_backed_notes_conflict_remains_held(self):
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        original = '已有来源陈述。'
+        first_body = workbook_bytes(sheet=SHEET.replace('待核实',original))
+        first_item, _ = inbox.receive(io.BytesIO(first_body),len(first_body),
+            {'name':'已有说明.xlsx','submitter':'员工甲','project_name':'中国园区普查',
+             'package_id':'dc-census-cn'},'anonymous',public=True)
+        inbox.mutate({'id':first_item['id'],'sha256':first_item['sha256'],'expected_revision':0,
+            'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(first_item['id'],first_item['sha256'])
+        first_payload = self.payload([self.notes_candidate(original)],first_item)
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            first = task_analysis.complete(self.root,first_payload)
+        site_id = first['report']['published'][0]['site_id']
+
+        incoming = '新的不同来源陈述。'
+        body = workbook_bytes(sheet=SHEET.replace('待核实',incoming))
+        item, _ = inbox.receive(io.BytesIO(body),len(body),
+            {'name':'冲突说明.xlsx','submitter':'员工乙','project_name':'中国园区普查',
+             'package_id':'dc-census-cn'},'anonymous',public=True)
+        inbox.mutate({'id':item['id'],'sha256':item['sha256'],'expected_revision':0,
+            'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(item['id'],item['sha256'])
+        conflict = task_analysis.complete(self.root,
+            self.payload([self.notes_candidate(incoming,site_id)],item))
+
+        self.assertEqual(conflict['report']['published'],[])
+        self.assertEqual(conflict['report']['held'][0]['classification'],'conflict')
+        self.assertEqual(conflict['report']['held'][0]['existing']['value'],original)
+        self.assertEqual(conflict['report']['held'][0]['incoming']['value'],incoming)
+        self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),1)
 
     def test_codex_report_arrives_in_bounded_parts_without_weakening_publication_gate(self):
         inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')

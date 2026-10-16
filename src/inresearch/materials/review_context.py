@@ -86,11 +86,13 @@ def current(root, record, *, runtime=None, task_records=None):
     state = research_tasks.read(root)
     mission = research_tasks.plan(root)['mission']
     if runtime is None:
-        runtime = source_publication.state(root)
+        runtime, source_state_sha256 = source_publication.site_context(root)
+    else:
+        source_state_sha256 = source_publication.digest(runtime)
     registered = source_publication.projects(root, runtime=runtime)['records']
     index = site_index(registered)
     task = assigned_task(record, state, mission, index, inbox.records() if task_records is None else task_records,
-                         source_publication.digest(runtime))
+                         source_state_sha256)
     return task, index[:500]
 
 

@@ -46,6 +46,7 @@ import sqlite3
 import subprocess as subprocess
 import sys
 import threading
+import tempfile
 import time
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as BaseThreadingHTTPServer
@@ -99,6 +100,18 @@ def log_run(task, output):
 AUTH_ON = False   # main() 按绑定地址决定；127.0.0.1 本地用法永远不要求登录
 
 
+
+class _HttpJsonDirectory:
+    """Resolve private disk storage only when a response exceeds its RAM spool."""
+    def __init__(self, root):
+        self.root = root
+
+    def __fspath__(self):
+        folder = workspace_path('logs', self.root)
+        folder.mkdir(parents=True, exist_ok=True)
+        return os.fspath(folder)
+
+
 class Handler(SimpleHTTPRequestHandler):
     # MIME 由代码决定，不依赖运行镜像的系统 mime 表（slim 镜像没有 .woff2）。
     extensions_map = {**SimpleHTTPRequestHandler.extensions_map, '.woff2': 'font/woff2'}
@@ -150,23 +163,37 @@ class Handler(SimpleHTTPRequestHandler):
             self.close_connection = True
 
     def _json(self, code, obj, compressed=False):
-        body = json.dumps(obj, ensure_ascii=False, separators=(',', ':')).encode()
-        gzip_ok = any(part.split(';')[0].strip() == 'gzip' and
-                      not any(re.fullmatch(r'q\s*=\s*0(?:\.0*)?', p.strip()) for p in part.split(';')[1:])
+        gzip_ok = any(part.split(';')[0].strip().casefold() == 'gzip' and
+                      not any(re.fullmatch(r'q\s*=\s*0(?:\.0*)?', p.strip().casefold()) for p in part.split(';')[1:])
                       for part in self.headers.get('Accept-Encoding', '').split(','))
-        if compressed and gzip_ok:
-            import gzip
-            body = gzip.compress(body, compresslevel=5, mtime=0)
-        self.send_response(code)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
-        self._compressible_response = compressed
-        if compressed:
-            if gzip_ok:
+        from inresearch.storage.files import iter_json_bytes
+        # Large research views must not allocate a full Unicode serialization,
+        # encoded copy and compressed copy together. Spill beyond 1 MiB to the
+        # existing private disk mount, never the container's memory-backed /tmp.
+        with tempfile.SpooledTemporaryFile(max_size=1024*1024, mode='w+b',
+                                           dir=_HttpJsonDirectory(ROOT), prefix='.http-json-') as body:
+            if compressed and gzip_ok:
+                import gzip
+                with gzip.GzipFile(filename='', mode='wb', fileobj=body,
+                                   compresslevel=5, mtime=0) as writer:
+                    for block in iter_json_bytes(obj):
+                        writer.write(block)
+            else:
+                for block in iter_json_bytes(obj):
+                    body.write(block)
+            size = body.tell()
+            body.seek(0)
+            # Finish encoding before headers so failures cannot look like a
+            # successful partial JSON response. HEAD has the same exact length.
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self._compressible_response = compressed
+            if compressed and gzip_ok:
                 self.send_header('Content-Encoding', 'gzip')
-        self.send_header("Content-Length", str(len(body)))
-        self.end_headers()
-        if self.command != 'HEAD':
-            self.wfile.write(body)
+            self.send_header("Content-Length", str(size))
+            self.end_headers()
+            if self.command != 'HEAD':
+                shutil.copyfileobj(body, self.wfile, length=65536)
 
     def _html(self, code, html, extra_headers=()):
         body = html.encode()
@@ -351,7 +378,7 @@ class Handler(SimpleHTTPRequestHandler):
             if self.path == '/api/intake-worker/analysis-pending':
                 task_state = research_tasks.read(ROOT)
                 mission = research_tasks.plan(ROOT)['mission']
-                source_state = source_publication.state(ROOT)
+                source_state, source_state_sha = source_publication.site_context(ROOT)
                 registered = source_publication.projects(ROOT, runtime=source_state)['records']
                 site_index = _review_site_index(registered)
                 task_records = material_intake.records()
@@ -359,7 +386,7 @@ class Handler(SimpleHTTPRequestHandler):
                 for item in material_intake.bounded_analysis_pending():
                     item['assigned_task'] = review_context.assigned_task(
                         item, task_state, mission, site_index, task_records,
-                        source_publication.digest(source_state))
+                        source_state_sha)
                     item['known_sites'] = site_index[:500]
                     items.append(item)
                 return self._json(200, {'items': items})
