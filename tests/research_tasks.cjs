@@ -276,14 +276,18 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const currentPackage=currentTasks.packages.find(p=>p.id==='dc-census-cn');
     const currentProgress=currentTasks.package_progress[currentPackage.id];
     assert.equal(await anonymous.locator('#package-current-next').innerText(),'下一步：'+currentProgress.current_task.next_action);
-    assert.ok((await anonymous.locator('#package-progress-note').innerText()).includes(`${currentProgress.current_task.completed.feedback_rounds} 轮反馈已形成`));
+    assert.ok((await anonymous.locator('#package-progress-note').innerText()).includes(`${currentProgress.current_task.completed.feedback_rounds} 轮团队反馈`));
+    assert.match(await anonymous.locator('#package-current-progress-summary').innerText(),/共同进展：.*已成功入库.*个去重园区.*条来源已上线/);
+    assert.match(await anonymous.locator('#package-current-received').innerText(),/最新收到：.*Excel 表格/);
     assert.ok((await anonymous.locator('#package-current-feedback').innerText()).includes(currentProgress.current_task.feedback_summary));
     assert.ok(!(await anonymous.locator('#package-current-feedback').innerText()).includes(sampledRecord.feedback[0].text),'the shared feedback never exposes private worker text');
     await anonymous.locator('#package-history>summary').click();
     const sampledEvent=anonymous.locator('#package-timeline .package-event').filter({hasText:'另一位访客'});
     assert.equal(await sampledEvent.evaluate(el=>el.open),false);
     await sampledEvent.locator('summary').click();
-    assert.match(await sampledEvent.innerText(),/历史记录，仅供追溯/);
+    assert.match(await sampledEvent.innerText(),/提交：.*审阅并回复：/s);
+    assert.match(await sampledEvent.innerText(),/系统接受并上线：0 条.*当前工作包未完成，请继续/s);
+    assert.ok(!(await sampledEvent.innerText()).includes('仅抽样评价'),'the historical row does not repeat superseded review prose');
     assert.equal(await sampledEvent.locator('button,a[download]').count(),0,'historical advice has no execution or download action');
     assert.equal(await anonymous.locator('#package-current-next').innerText(),'下一步：'+currentProgress.current_task.next_action);
     await anonymous.locator('#package-history>summary').click();
@@ -302,7 +306,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const retiredEvent=anonymous.locator('.package-event').filter({hasText:'旧反馈测试'});
     await retiredEvent.locator('summary').click();
     assert.ok(!(await retiredEvent.innerText()).includes('OLD-NEXT-ACTION-DO-NOT-EXECUTE'),'old next actions are never rendered, even inside history');
-    assert.ok((await retiredEvent.innerText()).includes('旧共同反馈已被后续版本替代。'),'historical results remain available for tracing');
+    assert.ok(!(await retiredEvent.innerText()).includes('旧共同反馈已被后续版本替代。'),'historical rows retain only timestamps, accepted results, and task state');
     assert.equal(await retiredEvent.locator('button,a[download]').count(),0);
     assert.equal(await anonymous.locator('#package-current-next').innerText(),'下一步：'+sharedProgress.current_task.next_action);
     await anonymous.locator('#package-history>summary').click();
@@ -318,7 +322,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await anonymous.locator('#package-read-status').isVisible(),true);
     assert.equal(await anonymous.locator('#package-current-next').isHidden(),true);
     assert.equal(await anonymous.locator('#package-current-remaining').isHidden(),true);
-    assert.match(await anonymous.locator('#package-current-feedback').innerText(),/^上次读取的共同反馈：/);
+    assert.match(await anonymous.locator('#package-current-feedback').innerText(),/^上次读取的审阅：/);
     releaseFailedRefresh();
     await anonymous.waitForFunction(()=>document.querySelector('#package-active-panel').dataset.readState==='error');
     assert.match(await anonymous.locator('#package-read-status').innerText(),/刷新失败.*未确认有效/);
