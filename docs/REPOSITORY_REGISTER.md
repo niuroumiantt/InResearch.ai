@@ -6,11 +6,11 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2787。
+在册文件：2790。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 401 |
+| 静态资源 | 404 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -4220,9 +4220,12 @@
 | `web/assets/bom-classification/overview-v1.svg` | 静态资源 |
 | `web/assets/brand/inresearch-ai/icon-orange.svg` | 静态资源 |
 | `web/assets/brand/inresearch-ai/wordmark-primary.svg` | 静态资源 |
+| `web/assets/brand/inresearch-ai/wordmark-reverse.svg` | 静态资源 |
 | `web/assets/datacenter-news.css` | 运行代码 |
 | `web/assets/fonts/LICENSE-Inter.txt` | 静态资源 |
 | `web/assets/fonts/LICENSE-NotoSansSC.txt` | 静态资源 |
+| `web/assets/fonts/SourceSerif4-Regular.ttf` | 静态资源 |
+| `web/assets/fonts/SourceSerif4-Semibold.ttf` | 静态资源 |
 | `web/assets/fonts/fonts.css` | 运行代码 |
 | `web/assets/fonts/inter-variable-italic.woff2` | 静态资源 |
 | `web/assets/fonts/inter-variable.woff2` | 静态资源 |

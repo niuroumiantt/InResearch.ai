@@ -1,43 +1,49 @@
-/* inresearch.ai 共享外观 · 2026-09-22
-   一套视觉(线条式: 直角内容块、细深色外框、胶囊操作), 浅色/深色两种明暗。
-   令牌只在这里定义, 页面消费 --ui-*; 旧别名 (--bg/--card/--rg-*) 只作兼容, 不再各自定义色板。
-   字体来自 /assets/fonts/fonts.css (infra 字体包: Inter + Noto Sans SC), 这里只引用 --font-sans / --font-mono。 */
+/* inresearch.ai 共享外观 · 2026-10-17
+   Brand system: warm paper / blue-black, signature orange, rectangular content
+   frames, capsule controls, and the FangSong + Source Serif 4 type pairing.
+   Tokens live here so every page consumes the same visual language. */
 html[data-ui-skin]{
-  --ui-font:var(--font-sans,"Inter","Noto Sans SC",system-ui,sans-serif);
+  --font-sans:"Source Serif 4","FangSong","STFangsong","仿宋",serif;
+  --ui-font:var(--font-sans);
+  --ui-font-cjk:"FangSong","STFangsong","仿宋","Source Serif 4",serif;
   --ui-mono:var(--font-mono,ui-monospace,Menlo,monospace);
-  --ui-bg:#faf9f6; --ui-surface:#fffefa; --ui-soft:#f1f0ec; --ui-hover:#f5f4ef;
-  --ui-ink:#242421; --ui-body:#454540; --ui-secondary:#696963; --ui-muted:#75756f;
-  --ui-frame:#686862; --ui-control:#777770; --ui-line:#e3e2dc; --ui-map-line:#cecfc7;
-  --ui-accent:#242421; --ui-on-accent:#fffefa; --ui-focus:#57574e;
-  --ui-selected:#eeede7; --ui-selected-ink:#242421; --ui-link:#383833;
+  --ui-bg:#f6f5f2; --ui-surface:#fffdfa; --ui-soft:#ece9e3; --ui-hover:#f0ece7;
+  --ui-ink:#0b0c0c; --ui-body:#2e3433; --ui-secondary:#59605e; --ui-muted:#717773;
+  --ui-frame:#7b817c; --ui-control:#6c736e; --ui-line:#d9d6d0; --ui-map-line:#c5c9c5;
+  --ui-accent:#fd340a; --ui-on-accent:#0b0c0c; --ui-focus:#fd340a;
+  --ui-selected:#ffe6de; --ui-selected-ink:#8d210a; --ui-link:#a92b0b;
   --ui-radius:0px; --ui-input-radius:2px; --ui-control-radius:999px; --ui-tag-radius:999px;
   --ui-heading-size:28px; --ui-heading-weight:600; --ui-title-size:16px; --ui-title-weight:550;
   --ui-title-leading:1.55; --ui-tracking:-.035em; --ui-row-space:17px; --ui-section-space:24px;
   --ui-panel-gap:18px; --ui-panel-padding:22px; --ui-shadow:none;
-  --ui-blue-bg:#eaf0fa; --ui-info-ink:#405879; --ui-green-bg:#edf2df; --ui-success-ink:#4d6133;
-  --ui-yellow-bg:#faf0d9; --ui-warning-ink:#78602f;
-  --ui-green:#257342; --ui-yellow:#94611b; --ui-red:#b93839; --ui-purple:#7651a7; --ui-red-bg:#faeaea; --ui-on-status:#fff;
+  --ui-blue-bg:#e7eef0; --ui-info-ink:#3b5d6b; --ui-green-bg:#e8f0e9; --ui-success-ink:#35633e;
+  --ui-yellow-bg:#fbefd8; --ui-warning-ink:#76551d;
+  --ui-green:#307747; --ui-yellow:#a36a17; --ui-red:#ba3321; --ui-purple:#7651a7; --ui-red-bg:#fae6e1; --ui-on-status:#fff;
   --ui-scene:var(--ui-bg); --ui-bar-height:53px;
   color-scheme:light;
 }
 html[data-ui-theme="dark"]{
-  --ui-bg:#1b1c19; --ui-surface:#23241f; --ui-soft:#2c2d27; --ui-hover:#30312a;
-  --ui-ink:#f0f0e8; --ui-body:#d6d7ce; --ui-secondary:#bbbdb0; --ui-muted:#adafa1;
-  --ui-frame:#929388; --ui-control:#a0a194; --ui-line:#3d3f35; --ui-map-line:#55584a;
-  --ui-accent:#eeeee4; --ui-on-accent:#24251e; --ui-focus:#dbdec9;
-  --ui-selected:#36382e; --ui-selected-ink:#eceee0; --ui-link:#e1e2d5;
-  --ui-blue-bg:#29394f; --ui-info-ink:#c0d5f7; --ui-green-bg:#293b30; --ui-success-ink:#b8d9ae;
-  --ui-yellow-bg:#413724; --ui-warning-ink:#ebd298;
-  --ui-green:#8cd5a2; --ui-yellow:#e5bd78; --ui-red:#ffa3a3; --ui-purple:#c8a4ef; --ui-red-bg:#442529; --ui-on-status:#15181e;
+  --ui-bg:#101820; --ui-surface:#15232b; --ui-soft:#20313a; --ui-hover:#263b45;
+  --ui-ink:#f6f5f2; --ui-body:#e0e2dc; --ui-secondary:#bcc4c3; --ui-muted:#9ca7a7;
+  --ui-frame:#64737b; --ui-control:#8e9b9d; --ui-line:#3b4d56; --ui-map-line:#52656e;
+  --ui-accent:#fd340a; --ui-on-accent:#101820; --ui-focus:#ff9679;
+  --ui-selected:#2d414b; --ui-selected-ink:#fff4ef; --ui-link:#ff9b80;
+  --ui-blue-bg:#203c4e; --ui-info-ink:#c4deee; --ui-green-bg:#234136; --ui-success-ink:#b8dec2;
+  --ui-yellow-bg:#493920; --ui-warning-ink:#f3d18a;
+  --ui-green:#8bd1a2; --ui-yellow:#efc56f; --ui-red:#ff9a83; --ui-purple:#c8a4ef; --ui-red-bg:#522d2a; --ui-on-status:#101820;
   color-scheme:dark;
 }
 html[data-ui-skin]{--bg:var(--ui-bg);--card:var(--ui-surface);--page:var(--ui-surface);--text:var(--ui-ink);--ink:var(--ui-ink);--muted:var(--ui-muted);--line:var(--ui-line);--accent:var(--ui-accent);--green:var(--ui-green);--yellow:var(--ui-yellow);--red:var(--ui-red);--purple:var(--ui-purple);--gray:var(--ui-muted);--green-bg:var(--ui-green-bg);--yellow-bg:var(--ui-yellow-bg);--red-bg:var(--ui-red-bg);--blue-bg:var(--ui-blue-bg);--gray-bg:var(--ui-soft);--p1bar:var(--ui-muted);--map-land:var(--ui-soft);--map-line:var(--ui-map-line);--caution-bg:var(--ui-yellow-bg);--caution-line:var(--ui-yellow);--slab-top:var(--ui-surface);--slab-front:var(--ui-soft);--slab-right:var(--ui-selected);--slab-line:var(--ui-line);--box-top:var(--ui-surface);--box-front:var(--ui-soft);--box-right:var(--ui-selected);--box-line:var(--ui-line);--axis:var(--ui-muted);--rg-bg:var(--ui-bg);--rg-panel:var(--ui-surface);--rg-panel2:var(--ui-soft);--rg-line:var(--ui-line);--rg-text:var(--ui-ink);--rg-muted:var(--ui-muted);--rg-blue:var(--ui-accent);--rg-green:var(--ui-green);--rg-gold:var(--ui-yellow);scroll-padding-top:calc(var(--ui-bar-height) + 66px)}
 html[data-ui-skin]{--bg:var(--ui-bg);--card:var(--ui-surface);--page:var(--ui-surface);--text:var(--ui-ink);--ink:var(--ui-ink);--muted:var(--ui-muted);--line:var(--ui-line);--accent:var(--ui-accent);--green:var(--ui-green);--yellow:var(--ui-yellow);--red:var(--ui-red);--purple:var(--ui-purple);--gray:var(--ui-muted);--green-bg:var(--ui-green-bg);--yellow-bg:var(--ui-yellow-bg);--red-bg:var(--ui-red-bg);--blue-bg:var(--ui-blue-bg);--gray-bg:var(--ui-soft);--p1bar:var(--ui-muted);--map-land:var(--ui-soft);--map-line:var(--ui-map-line);--caution-bg:var(--ui-yellow-bg);--caution-line:var(--ui-yellow);--slab-top:var(--ui-surface);--slab-front:var(--ui-soft);--slab-right:var(--ui-selected);--slab-line:var(--ui-line);--box-top:var(--ui-surface);--box-front:var(--ui-soft);--box-right:var(--ui-selected);--box-line:var(--ui-line);--axis:var(--ui-muted);--rg-bg:var(--ui-bg);--rg-panel:var(--ui-surface);--rg-panel2:var(--ui-soft);--rg-line:var(--ui-line);--rg-text:var(--ui-ink);--rg-muted:var(--ui-muted);--rg-blue:var(--ui-accent);--rg-green:var(--ui-green);--rg-gold:var(--ui-yellow);scroll-padding-top:calc(var(--ui-bar-height) + 66px)}
 html[data-ui-skin] body{background:var(--ui-bg);color:var(--ui-body);font-family:var(--ui-font);font-size:14px;-webkit-font-smoothing:antialiased;padding-top:calc(var(--ui-bar-height) + var(--ui-page-inset,0px));margin-top:0}
-/* The source image stays untouched; the full wordmark is presentation-only. */
+html[data-ui-skin] :is(h1,h2,h3,h4,h5,h6,button,input,select,textarea){font-family:var(--ui-font-cjk)}
+html[data-ui-skin] :is(h1,h2,h3,h4,h5,h6){font-variant-numeric:lining-nums}
+html[data-ui-skin] a{color:var(--ui-link);text-underline-offset:3px}
+/* Source artwork stays untouched; only the standalone signature icon is added
+   as a small presentation-only provenance mark. */
 html[data-ui-skin] .ui-branded-image{position:relative;display:inline-block;max-width:100%;line-height:0;vertical-align:top;isolation:isolate}
 html[data-ui-skin] .ui-branded-image>img:not(.ui-brand-watermark),html[data-ui-skin] .ui-branded-image>canvas{display:block;max-width:100%}
-html[data-ui-skin] .ui-brand-watermark{position:absolute;z-index:2;right:clamp(6px,1.3vw,18px);bottom:clamp(6px,1.3vw,18px);width:clamp(64px,18%,180px);height:auto;max-width:none;opacity:.88;pointer-events:none;user-select:none;filter:drop-shadow(0 1px 1px #0005)}
+html[data-ui-skin] .ui-brand-watermark{position:absolute;z-index:2;right:clamp(6px,1.3vw,18px);bottom:clamp(6px,1.3vw,18px);width:clamp(18px,4.8%,48px);height:auto;max-width:none;opacity:.92;pointer-events:none;user-select:none;filter:drop-shadow(0 1px 1px #0005)}
 html[data-ui-skin] .ui-branded-image[data-image-watermark] .ui-brand-watermark{object-fit:contain}
 html[data-ui-skin] :is(button,input,select,textarea){font-family:var(--ui-font)}
 html[data-ui-skin] :is(h1,h2,h3){font-family:var(--ui-font);font-weight:var(--ui-heading-weight);color:var(--ui-ink)}
@@ -93,6 +99,7 @@ html[data-ui-skin] .ui-icon{stroke-width:1.2;stroke-linejoin:miter;stroke-lineca
 html[data-ui-skin] #ui-skinbar{position:fixed;top:0;left:0;right:0;z-index:1000;box-sizing:border-box;display:flex;align-items:center;gap:16px;flex-wrap:nowrap;min-height:53px;margin:0;padding:9px 20px;background:var(--ui-surface);color:var(--ui-ink);border:0;border-bottom:1px solid var(--ui-line);border-radius:0;box-shadow:none;font:13px/1.35 var(--ui-font);width:auto;text-align:left}
 html[data-ui-skin] #ui-skinbar *{box-sizing:border-box}
 html[data-ui-skin] #ui-skinbar .ui-home{display:inline-flex;flex:none;align-items:center;gap:8px;color:var(--ui-ink);font:600 14px/1.3 var(--ui-font);margin:0;text-decoration:none}
+html[data-ui-skin] #ui-skinbar .ui-brand-logo{display:block;width:min(150px,34vw);height:auto;max-height:31px;object-fit:contain;object-position:left center}
 /* Native horizontal scrollbars must not add a third phone-header row. Scrolling remains enabled. */
 .ui-navigation{display:flex;flex:1;align-items:center;gap:4px;min-width:0;overflow:auto;scrollbar-width:none}
 .ui-navigation::-webkit-scrollbar{display:none}
