@@ -1,4 +1,5 @@
 import copy
+from datetime import datetime, timedelta, timezone
 import unittest
 
 from inresearch.knowledge.object_observations import current
@@ -33,3 +34,15 @@ class CurrentOrderingTests(unittest.TestCase):
         self.assertEqual([g['current'][0]['id'] for g in result],
                          [f'{i}-new' for i in range(1200)])
         self.assertTrue(all(len(g['conflicts']) == 2 for g in result))
+
+    def test_large_single_metric_history_selects_latest_without_pairwise_scan(self):
+        rows = []
+        for i in range(5000):
+            row = self.row(f'row-{i}', i)
+            stamp = (datetime(2026, 10, 1, tzinfo=timezone.utc) + timedelta(seconds=i)).isoformat()
+            row['recorded_at'] = stamp
+            row['source']['published_at'] = stamp
+            rows.append(row)
+        result = current({'records': rows}, '2026-10-12')
+        self.assertEqual(result[0]['current'][0]['id'], 'row-4999')
+        self.assertEqual(result[0]['conflicts'], [])
