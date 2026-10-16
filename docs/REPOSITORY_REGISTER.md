@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.16.28。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.16.29。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2755。
+在册文件：2761。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 403 |
+| 运行代码 | 406 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 265 |
-| 测试 | 249 |
+| 配套说明 | 266 |
+| 测试 | 251 |
 
 ## 在册记录集合
 
@@ -2780,6 +2780,7 @@
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/source-projection-throughput-20261012.md](handoff/source-projection-throughput-20261012.md) | 配套说明 |
 | [docs/handoff/source-statement-intake-20261012.md](handoff/source-statement-intake-20261012.md) | 配套说明 |
+| [docs/handoff/spark-campus-full-review-20261017.md](handoff/spark-campus-full-review-20261017.md) | 配套说明 |
 | [docs/handoff/stock-archived-gpu-20261012.md](handoff/stock-archived-gpu-20261012.md) | 配套说明 |
 | [docs/handoff/stock-cdu-controls-20261012.md](handoff/stock-cdu-controls-20261012.md) | 配套说明 |
 | [docs/handoff/stock-compute-caches-20261012.md](handoff/stock-compute-caches-20261012.md) | 配套说明 |
@@ -3867,12 +3868,15 @@
 | `src/inresearch/materials/daily_sources.py` | 运行代码 |
 | `src/inresearch/materials/demand_bindings.py` | 运行代码 |
 | `src/inresearch/materials/fetchspec_receive.py` | 运行代码 |
+| `src/inresearch/materials/full_review_worker.py` | 运行代码 |
 | `src/inresearch/materials/inbox.py` | 运行代码 |
 | `src/inresearch/materials/inventory.py` | 运行代码 |
 | `src/inresearch/materials/library.py` | 运行代码 |
 | `src/inresearch/materials/mapping.py` | 运行代码 |
 | `src/inresearch/materials/model_assets.py` | 运行代码 |
 | `src/inresearch/materials/naming.py` | 运行代码 |
+| `src/inresearch/materials/native_review_contract.py` | 运行代码 |
+| `src/inresearch/materials/native_review_layouts.py` | 运行代码 |
 | `src/inresearch/materials/organize.py` | 运行代码 |
 | `src/inresearch/materials/paths.py` | 运行代码 |
 | `src/inresearch/materials/preflight.py` | 运行代码 |
@@ -4072,6 +4076,7 @@
 | `tests/unit/test_fetchspec_backflow.py` | 测试 |
 | `tests/unit/test_fetchspec_receive.py` | 测试 |
 | `tests/unit/test_file_moves.py` | 测试 |
+| `tests/unit/test_full_review_worker.py` | 测试 |
 | `tests/unit/test_gap_ocr.py` | 测试 |
 | `tests/unit/test_geographic_analysis.py` | 测试 |
 | `tests/unit/test_governance.py` | 测试 |
@@ -4191,6 +4196,7 @@
 | `tests/unit/test_targeted_research.py` | 测试 |
 | `tests/unit/test_task_analysis.py` | 测试 |
 | `tests/unit/test_task_batch_review.py` | 测试 |
+| `tests/unit/test_task_full_review.py` | 测试 |
 | `tests/unit/test_task_review_races.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
 | `tests/unit/test_tco_targets.py` | 测试 |
