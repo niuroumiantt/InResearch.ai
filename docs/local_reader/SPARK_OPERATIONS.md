@@ -582,7 +582,11 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 显式操作通过原指定负责人 `/api/materials/review` 完成：启动字段为 `id/sha256/expected_revision/operation_id/action=start_full_analysis/layout_id/reason/pilot_package_id`；首包网站回执核实后的继续字段为 `id/sha256/expected_revision/operation_id/action=continue_full_analysis/attempt_id/reason`。两次操作使用各自唯一 UUID 并取服务器最新 revision；精确重放保留原请求，不直接编辑线上 JSON 或清空 analysis_reports。新尝试生成独立 full-review 目录，已持久化请求／响应与回执保留；GPU等待不妨碍纯缓存提交恢复，不消耗本轮新模型调用名额。Ollama真实传输失败按有限预算退避，阻塞尝试不独占其他待审材料；默认任务优先沿原路径执行。
 
-综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，超上下文预算明确blocked，不缩减输入来宣称完成。窗口受约束解码使用实际原生值／定位枚举，P0/P1/P2及单格地点不得改写；系统提示与schema摘要纳入冻结配方，探针旧无效响应和成功窗口保留，规则改变不能混用。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、v5历史版、dahai与全国园区库；v5必须选择独立严格布局，不能套用v6，不授新园区身份资格。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
+综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，仅最终阶段通过 `generate_campus_adjudication` 按同模型实际token判断：32768上下文减4096输出和1024预留；精确token超限或计量身份无法复验时明确blocked，不缩减输入来宣称完成。默认调用与阅读窗口仍守原字节预算。窗口受约束解码使用实际原生值／定位枚举，P0/P1/P2及单格地点不得改写；系统提示与schema摘要纳入冻结配方，探针旧无效响应和成功窗口保留，规则改变不能混用。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、v5历史版、dahai与全国园区库；v5必须选择独立严格布局，不能套用v6，不授新园区身份资格。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
+
+最终综合预算复验使用现役Ollama 0.33.3的完整debug渲染，再交同模型blob的现役runner `/tokenize`；不能用API响应的model回显或runner通用chatml模板替代模型与完整模板绑定。先过GPU门槛；核manifest/config内容摘要、模型层digest/size与文件属性、唯一runner的固定命令、本机`ollama`账号UID、PID／启动时钟／端口和props，分词前后及实际调用时身份不一致则受阻。分词显式 `add_special:false`、`parse_special:true`，实际综合与debug请求都保持 `truncate:false`／`shift:false`、同32K上下文及4096输出。私有回执保留与完整输入／渲染／schema绑定的摘要、模型／实例及计数证据，不能声称每包重算了整个权重blob哈希。跨UID的`/proc/<pid>/exe`可能被系统拒绝，采用固定命令与本机服务UID及其余完整绑定，不提升Spark账号权限；UID缺失、错误或变化同样受阻。Ollama版本或renderer改变须重新核准，不退回估算放行。该调试操作可能触发模型调度，但不生成内容；不另起模型实例、不修改其他任务服务，不增加本轮生成名额。
+
+只更换最终预算门禁时保留当前attempt、全部成功阅读窗口和冻结配方，继续下一未完成步骤，不执行下面针对阅读system/schema变化的从0恢复。若已经有受阻状态，按精确attempt保存其原状态和错误后再恢复；不得删除窗口、伪改完成数或把精确分词通过当成综合／发布成功。部署和实际完整综合输入的精确预算仍须各自验收。
 
 实际归档文件名为无扩展名`original`；全表worker先核SHA，再临时复制为`source.xlsx`解析，测试须使用同样归档路径且核原件不变。规划前失败同样上报当前已开放包0/0受阻状态；不得把遥测当作有效窗口。中文结果直传按实际HTTP JSON字节预算，超限使用既有分片。已持久化`operator_required`不会因升级自动恢复：排除根因后，仅对已授权精确attempt保留原受阻状态及审计，再恢复其本地执行；不删除原件、成功窗口、旧报告或服务器尝试，不重复启动同一正在进行的全表尝试。
 
