@@ -297,3 +297,32 @@ class PackedOutputSplitTests(unittest.TestCase):
                 plan = json.loads(next(folder.rglob('plan.json')).read_text())
                 self.assertEqual(len(plan['splits']), 0 if changed else 1)
                 self.assertEqual(list(folder.rglob('chunk-*.json')), [])
+
+    def test_macos_bound_length_splits_without_replay_and_rejects_wrong_parent(self):
+        from inresearch.adapters import ollama_macos as mac
+        self.large_packet()
+        client, run, audit, plan = self.retained_failure()
+        saved=json.loads((audit/'unverified.json').read_text())
+        evidence=saved['completion'];proof=evidence['token_budget']
+        proof['model_binding']={'runtime':mac.RUNTIME,'ollama_version':'0.40.5',
+            'manifest_sha256':mac.MANIFEST_SHA,'renderer':'qwen3.8','parser':'qwen3.5',
+            'layers_identity_sha256':'a'*64,'show_sha256':'b'*64,'executable':{'path':mac.EXECUTABLE}}
+        proof['tokenizer_binding']={'runtime':mac.RUNTIME,'manifest_sha256':mac.MANIFEST_SHA,
+            'context':262144,'port':54321,
+            'process':{'pid':42,'ppid':7,'uid':501,'started':'fixed',
+                'command':mac.EXECUTABLE+' runner --model qwen3.8:27b --port 54321'},
+            'parent':{'pid':7,'uid':501,'started':'fixed','command':mac.EXECUTABLE+' serve'}}
+        def save():
+            packed.atomic(audit/'dispatch.json',{k:evidence[k] for k in ('request','request_sha256','token_budget')})
+            packed.atomic(audit/'unverified.json',{'completion':evidence,'completion_sha256':packed.digest(evidence)})
+            packed.atomic(audit/'output-split-policy.json',packed._output_policy(evidence,run,0,0))
+        save();old=(audit/'unverified.json').read_bytes()
+        part=plan['parts'][0]
+        preview=packed.output_split_preview(run,0,0,part,review_worker.SYSTEM,worker.reading_schema(part))
+        self.assertEqual([len(x['native_fragments']) for x in preview['children']],[32,32])
+        with patch.object(client,'generate_campus_reading',side_effect=AssertionError('replayed')):
+            worker.proposal(self.item,self.original,self.folder,client)
+        self.assertEqual((audit/'unverified.json').read_bytes(),old)
+        proof['tokenizer_binding']['parent']['command']='wrong serve';save()
+        with self.assertRaises(ValueError):
+            packed.output_split_preview(run,0,0,part,review_worker.SYSTEM,worker.reading_schema(part))
