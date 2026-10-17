@@ -17,6 +17,7 @@ import urllib.error
 import urllib.request
 
 from inresearch.adapters.models import InferenceError, MAX_RESPONSE, json_object
+from inresearch.adapters import ollama_macos
 
 VERSION = "0.33.3"
 MODEL = "qwen3.8:27b"
@@ -102,6 +103,8 @@ def _small_blob(descriptor):
 
 
 def _model_identity(base):
+    if ollama_macos.enabled():
+        return ollama_macos.model_identity(base)
     if _call(base+"/api/version").get("version") != VERSION:
         raise InferenceError("campus_token_ollama_version_unverified")
     manifest_path = MODEL_ROOT/"manifests/registry.ollama.ai/library/qwen3.8/27b"
@@ -302,6 +305,8 @@ def _runner_identity(model):
 
 
 def _bound_runner(base, model):
+    if model.get("runtime") == ollama_macos.RUNTIME:
+        return ollama_macos.runner_identity(model)
     try:
         return _runner_identity(model)
     except InferenceError as error:
@@ -374,7 +379,7 @@ def _prepare(client, system, user, json_schema, *, reading=False):
         raise InferenceError("campus_token_model_binding_changed")
     runner = _bound_runner(base, model)
     try:
-        tokens = _call("http://127.0.0.1:"+str(runner["port"])+"/tokenize",
+        tokens = ollama_macos.tokenize(runner, rendered) if ollama_macos.enabled() else _call("http://127.0.0.1:"+str(runner["port"])+"/tokenize",
             {"content": rendered, "add_special": False, "parse_special": True,
              "with_pieces": False}).get("tokens")
     except OSError:
@@ -448,6 +453,9 @@ def generate(client, system, user, *, json_schema, before_completion=None):
             try:
                 revalidate(client, proof)
                 client._verify_model(response.get("model"))
+                if proof["model_binding"].get("runtime") == ollama_macos.RUNTIME:
+                    if response.get("prompt_eval_count") != proof["input_tokens"]:
+                        raise InferenceError("campus_token_render_incomplete")
                 if response.get("done_reason") == "length":
                     raise InferenceError("model_output_truncated")
                 if (response.get("model") != MODEL or response.get("remote_host")
@@ -506,6 +514,9 @@ def generate_reading(client, system, user, *, json_schema,
             try:
                 revalidate(client, proof)
                 client._verify_model(response.get("model"))
+                if proof["model_binding"].get("runtime") == ollama_macos.RUNTIME:
+                    if response.get("prompt_eval_count") != proof["input_tokens"]:
+                        raise InferenceError("campus_token_render_incomplete")
                 if response.get("done_reason") == "length":
                     raise InferenceError("model_output_truncated")
                 if (response.get("model") != MODEL or response.get("remote_host")

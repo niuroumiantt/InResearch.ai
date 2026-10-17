@@ -67,6 +67,9 @@ def client():
 
 def resource_ready():
     """Yield this job on a busy/hot GPU; never stop or reconfigure other clients."""
+    from inresearch.adapters import ollama_macos
+    if ollama_macos.enabled():
+        return ollama_macos.resource_ready()
     try:
         result = subprocess.run(['nvidia-smi', '--query-gpu=temperature.gpu,utilization.gpu',
                                  '--format=csv,noheader,nounits'], capture_output=True,

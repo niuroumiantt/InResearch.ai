@@ -644,3 +644,12 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 保留原失败dispatch/unverified路径和字节；全部身份／表头／任务／来源上下文原值复制，原片段顺序和flatten全集必须相同。每条split保留原输入与审计身份，由初始计划逐条重放复验。只拆当前尚未成功窗，不能移动已生成后继或改成功前缀；新子窗使用新输入摘要的审计路径。plan先原子保存，progress随后记录新总数；中断后从已验证plan恢复总数，游标不前进。拆分轮不再生成，仍遵守单轮一次内容调用及GPU门槛。截断partial从不进入有效问题、候选或完成覆盖。
 
 旧派发没有上述许可，升级和删除status都不能自动拆分或重放。现有CM-CQ-ST3失败恢复须在正式源码合并／双端部署后，停唯一timer并等本轮自然结束、取得原有archive锁；fresh核精确submission/source/attempt/package/task及无本包网站报告/outbox/proposal，保存旧status与两成功窗完整摘要。只对已确认完整length回包生成具名、精确作用域的一次恢复许可，通过正式split验证器转为完整子窗；原失败、成功窗和其它包不得改写。未知结果不能用同一入口恢复。实际子窗和完整包网站回执须另验，不能把许可或拆分预检算作恢复成功。
+
+
+### M5 本机并行阅读
+
+2026-10-17 M5 原生 MLX 园区适配：仅显式 macos-mlx-0.40.5 配置启用本机 Ollama 0.40.5／qwen3.8:27b mxfp8；固定 manifest、非权重内容摘要、全权重文件身份、本用户父子进程及 loopback 监听绑定，不借用 Spark 的 GGUF 身份。完整官方渲染文本经该 MLX runner 的原生分词接口计量，仍以32768／4096／1024预算、不截断、不移窗、单请求执行；生成回包输入token数必须一致，原持久dispatch/returned/response验证保持。M5按系统热状态和Apple GPU繁忙门禁等待；未知回包继续受阻，不因跨机自动重放。兼容实现与夹具不证明真实dahai全包完成或上线，须另验完整回包与正式接收。
+
+只有独立材料范围才可交给M5；原正式来源接收器及其CAS仍是唯一发布路径。保持旧机器审计原位，不把复制的Spark窗口标为M5产物。真实未知派发必须先核无在途进程、服务器无结果并保存精确一次恢复回执；新模型或新任务版本不继承旧窗口的覆盖。M5请求显式设置 `INRESEARCH_CAMPUS_RUNTIME=macos-mlx-0.40.5`，campus_review仍为loopback11434、单并发27B；原Spark无需此设置，热忙等待不以禁用门禁替代。
+
+两机接收范围使用 `INRESEARCH_INTAKE_ALLOW` 或 `INRESEARCH_INTAKE_EXCLUDE` 的非空JSON对象（submission ID→批准原件SHA），两者不可同时设置；ID匹配但SHA改变必须受阻。M5只允许dahai，Spark排除同一dahai；普通来源仍由既有服务器锁内CAS接收，不新增发布队列。正式开放前必须核验两侧范围，pilot停点和continue依旧有效。

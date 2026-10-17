@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.17.9",
+  "version": "2026.10.17.10",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -632,8 +632,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 374856,
-      "sha256": "55803994efdc475f13add2293d8a6d4ea3ecc0a4f81d8165eb82d6eec8f695b5",
+      "bytes": 375623,
+      "sha256": "ec4aaa78d30ae8ad2ef13a12539aff3b07a5a68b44987e2863f4d2155dce2898",
       "collections": []
     },
     {
@@ -14355,8 +14355,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 114471,
-      "sha256": "ab9bee6ab82a1d216e832923b0fd4dbc53f3ecb3c64dca053feccf9f6031895a",
+      "bytes": 116144,
+      "sha256": "561a80489c0fc0c433ff42c5e84cd5362e092ac22fde7d41d2e40e0c91c5c692",
       "collections": []
     },
     {
@@ -19403,8 +19403,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 142561,
-      "sha256": "c1e47229e02ef5abec36bc8f8bca3ef361c5d1a642cb0ab17869f7676a46ecde",
+      "bytes": 143321,
+      "sha256": "2c49979e3ee5776fcd4b049c513f81e48b6a18f1deec0e6c88d75688d5fa3379",
       "collections": []
     },
     {
@@ -19452,8 +19452,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 50299,
-      "sha256": "90a41833c4d2504a586e1fa4af9e05d46263a975e090101b8fb2469dfb21cca4",
+      "bytes": 51022,
+      "sha256": "a7bcffb698fafce9f390760e2a3824f02fb818a230a9ab129f894a0f11a5e0ce",
       "collections": []
     },
     {
@@ -19479,8 +19479,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 330990,
-      "sha256": "31ee11cad62f8b2b6b584847015e785384bc6ad220746720d59a3f418e99da31",
+      "bytes": 330804,
+      "sha256": "d44b4628e1da50817ecc81a4f3e592db3a31e68b0a5b18a15d5491e74eab1762",
       "collections": [
         {
           "name": "policies",
@@ -19909,8 +19909,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 860276,
-      "sha256": "cd9b9cc47ee8e585f4b099b824ae911753f62ec6ccf93e641b55c6f7751e56cb",
+      "bytes": 862435,
+      "sha256": "ffc764894b0dc62d7bd4dcfcdd5a91fb29d67d89ad324489f492c9c24c2eaa30",
       "collections": [
         {
           "name": "policies",
@@ -22710,10 +22710,17 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/adapters/ollama_macos.py",
+      "role": "implementation",
+      "bytes": 7134,
+      "sha256": "9c71b2272533b328c6020ad0a3ac14edc0db4eb3793a8add94ca35c9d704d506",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/adapters/ollama_token_budget.py",
       "role": "implementation",
-      "bytes": 29096,
-      "sha256": "21215b2d4ee127e715eadb9b722bd04c04e461d83deeb80513f495037b34e107",
+      "bytes": 29884,
+      "sha256": "953bc6dcf285a77474708d181972879d7588e9955a4f745b12822879e1188d37",
       "collections": []
     },
     {
@@ -23314,8 +23321,8 @@
     {
       "path": "src/inresearch/materials/full_review_worker.py",
       "role": "implementation",
-      "bytes": 38784,
-      "sha256": "5f6c85fde903cce4b27f6841b0acfb7c742552daddfa986a16b533f1e854c8a8",
+      "bytes": 38909,
+      "sha256": "af80d82611b21b73e5260c39f1a3d57e9209a77c45e448449ab56e331676ced9",
       "collections": []
     },
     {
@@ -23454,8 +23461,8 @@
     {
       "path": "src/inresearch/materials/review_worker.py",
       "role": "implementation",
-      "bytes": 54665,
-      "sha256": "d44366883da1d180522ee2ddecce64576e9cb9f7437674c7e19aff5c65f85fbc",
+      "bytes": 55653,
+      "sha256": "09f74f40f56f6aaca8fda224d0646709036540d10bdd2326664c20421bf2a11b",
       "collections": []
     },
     {
@@ -25150,6 +25157,13 @@
       "role": "test",
       "bytes": 8776,
       "sha256": "6a0fc026fdd22ddc3b303e51b67fea8d4b7a8ee9ba9fdb4e130572076541863e",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_ollama_macos.py",
+      "role": "test",
+      "bytes": 5435,
+      "sha256": "b266d9ad8e5f3180a67c0c84eb361f3128ca46a93488f779df52ba59be76301a",
       "collections": []
     },
     {
@@ -29884,13 +29898,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 446,
-    "implementation": 418,
+    "implementation": 419,
     "normative": 15,
     "project_config": 780,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 31,
     "supporting_document": 275,
-    "test": 261
+    "test": 262
   }
 }

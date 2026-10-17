@@ -794,6 +794,25 @@ def _run_batch(items, archive, request):
         atomic(archive/row['item']['id']/'analysis-result.json',row['report'])
     return len(result['results'])
 
+def campus_assignment(item):
+    """Explicit disjoint submission/SHA ownership; no implicit cross-host takeover."""
+    allow = os.environ.get('INRESEARCH_INTAKE_ALLOW')
+    exclude = os.environ.get('INRESEARCH_INTAKE_EXCLUDE')
+    if allow and exclude:
+        raise ValueError('intake_assignment_ambiguous')
+    raw = allow or exclude
+    if not raw:
+        return True
+    selected = json.loads(raw)
+    if (not isinstance(selected, dict) or not selected or
+            any(not re.fullmatch('[a-f0-9]{32}', str(k)) or
+                not re.fullmatch('[a-f0-9]{64}', str(v)) for k, v in selected.items())):
+        raise ValueError('intake_assignment_invalid')
+    if item['id'] in selected and item['sha256'] != selected[item['id']]:
+        raise ValueError('intake_assignment_source_changed')
+    return item['id'] in selected if allow else item['id'] not in selected
+
+
 def run(archive, request):
     with request('analysis-pending') as response:
         items=json.load(response)['items']
@@ -804,12 +823,15 @@ def run(archive, request):
     # model call per timer round. Other queued jobs retain their existing path.
     full_worked=False
     for queued in items:
+        if not campus_assignment(queued):
+            continue
         # A may publish while B waits in the same worker run. Fetch B's task and
         # live register after A completes, instead of reusing the initial list.
         with request('analysis-pending') as response:
             current=json.load(response)['items']
         item=next((row for row in current if row['id']==queued['id']),None)
         if item is None:continue
+        if not campus_assignment(item):continue
         require_approved(item)
         if item.get('full_analysis', {}).get('state') in ('running', 'continuing'):
             if not full_worked:
