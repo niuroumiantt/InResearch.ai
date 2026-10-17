@@ -9,6 +9,7 @@ import shutil
 import tempfile
 import unittest
 import uuid
+from datetime import datetime, timezone
 from unittest.mock import patch
 
 from inresearch.adapters import models
@@ -17,6 +18,7 @@ from inresearch.interfaces import http
 from inresearch.knowledge import site_timeline
 from inresearch.materials import inbox, review_context, review_worker, task_analysis
 from inresearch.paths import project_root
+from inresearch.workflow import source_statements
 from tests.unit.test_xlsx_document import workbook_bytes
 
 
@@ -59,6 +61,32 @@ class TaskAnalysisTests(unittest.TestCase):
         candidate.pop('unit')
         candidate.pop('unit_locator')
         return candidate
+
+    def _seed_exact_source_observation(self, candidate=None):
+        """Seed the same approved source tuple task_analysis will receive."""
+        candidate = candidate or self.candidate()
+        native = Path(self.temp.name)/'seed-source.xlsx'
+        shutil.copyfile(inbox.record_path(self.item['id'])/'content',native)
+        book = task_analysis.Workbook(native)
+        site_id, identity = task_analysis._identity(book, candidate, {})
+        value = task_analysis._candidate_value(book, candidate)
+        record = inbox.worker_record(self.item['id'])
+        created = datetime.fromtimestamp(record['created'], timezone.utc).isoformat()
+        approved = datetime.fromtimestamp(record['approval']['at'], timezone.utc).isoformat()
+        archive = {'kind':'approved_task_upload','submission_id':self.item['id'],
+                   'sha256':self.item['sha256'],'received_at':created,'approved_at':approved}
+        statement = {'version':1,'site_id':site_id,
+            'fields':{candidate['field']:value,'name':identity['name']},
+            'source':{'sha256':self.item['sha256'],'published_at':None,
+                      'locator':candidate['locator']},
+            'effective_at':None,'kind':'reported','scope':'whole_site',
+            'basis':'先行普通来源登记；原件定位保留',
+            'registered_by':'approved-task-analysis','identity':identity}
+        receipt = source_statements.apply(self.root, Path(self.temp.name)/'source-data', statement,
+            resolve=lambda sha:(inbox.record_path(self.item['id'])/'content',None,created,archive))
+        row = source_publication.projects(self.root)['records'][0]
+        observation = next(obs for obs in row['observations'] if obs['id']==receipt['statement_id'])
+        return site_id, receipt['statement_id'], observation
 
     def payload(self, candidates, item=None):
         item = item or self.item
@@ -220,6 +248,87 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertEqual(conflict['report']['held'][0]['existing']['source_sha256'],fresh['sha256'])
         self.assertEqual(conflict['report']['held'][0]['incoming']['source_sha256'],changed['sha256'])
         self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),2)
+
+    def test_exact_same_source_replay_reuses_prior_statement_without_apply(self):
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        site_id, statement_id, prior = self._seed_exact_source_observation()
+        before = source_publication.projects(self.root)
+
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected), \
+                patch.object(task_analysis.source_statements,'apply',side_effect=AssertionError('must not apply replay')):
+            result = task_analysis.complete(self.root,self.payload([self.candidate()]))
+
+        published = result['report']['published'][0]
+        self.assertEqual(published['registration_kind'],'replay')
+        self.assertEqual(published['statement_id'],statement_id)
+        self.assertEqual(published['model_checked_at'],prior['recorded_at'])
+        self.assertEqual(source_publication.projects(self.root),before)
+
+    def test_document_refs_cannot_be_cross_matched_to_claim_exact_replay(self):
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        site_id, _, prior = self._seed_exact_source_observation()
+        split_ref_observation = json.loads(json.dumps(prior))
+        original = split_ref_observation['adoption']['document_refs'][0]
+        split_ref_observation['adoption']['document_refs'] = [
+            {'source_sha256':original['source_sha256'],'source_url':original['source_url'],
+             'archive':{'submission_id':'different-submission'},'locator':'different-locator'},
+            {'source_sha256':'f'*64,'source_url':original['source_url'],
+             'archive':{'submission_id':self.item['id'],'sha256':'f'*64,
+                        'received_at':'2020-01-01T00:00:00+00:00',
+                        'approved_at':'2020-01-01T00:00:01+00:00'},
+             'locator':self.candidate()['locator']}]
+        self.assertIsNone(task_analysis._exact_source_replay(
+            [split_ref_observation],field='capacity_planned_it_mw',
+            value=prior['fields']['capacity_planned_it_mw'],source_sha256=self.item['sha256'],
+            locator=self.candidate()['locator'],submission_id=self.item['id']))
+        payload = self.payload([self.candidate(site_id=site_id)])
+        row = source_publication.projects(self.root)['records'][0]
+        row['observations'] = [split_ref_observation]
+        (self.root/'data/projects.json').write_text(json.dumps({'records':[row]},ensure_ascii=False))
+        before = source_publication.projects(self.root)
+        projected = {'quantity_fields':{'capacity_planned_it_mw':prior['fields']['capacity_planned_it_mw']},
+                     'tracking':{'fields':{'capacity_planned_it_mw':{'observation_id':prior['id']}}}}
+
+        with patch.object(task_analysis.site_timeline,'current',return_value=projected), \
+                patch.object(task_analysis.review_context,'current',return_value=(None,{})), \
+                patch.object(task_analysis.review_context,'provenance',return_value=payload['task_provenance']):
+            result = task_analysis.complete(self.root,payload)
+
+        self.assertEqual(result['report']['published'],[])
+        self.assertEqual(result['report']['held'][0]['classification'],'duplicate')
+        self.assertEqual(source_publication.projects(self.root),before)
+
+    def test_exact_historical_replay_still_holds_when_current_value_conflicts(self):
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        site_id, _, prior = self._seed_exact_source_observation()
+        native = Path(self.temp.name)/'conflicting-source.xlsx'
+        native.write_bytes(b'approved different source bytes')
+        different_sha = hashlib.sha256(native.read_bytes()).hexdigest()
+        archive = {'kind':'approved_task_upload','submission_id':'f'*32,'sha256':different_sha,
+                   'received_at':'2021-01-01T00:00:00+00:00','approved_at':'2021-01-01T00:00:01+00:00'}
+        statement = {'version':1,'site_id':site_id,
+            'fields':{'capacity_planned_it_mw':{'value':11,'unit':'MW',
+                      'basis':'原生 Excel 单元格明示，基础登记待查'},'name':'测试园区甲'},
+            'source':{'sha256':different_sha,'published_at':None,
+                      'locator':'xlsx:sheet:1:cell:C1:context:A1:D1'},
+            'effective_at':'2026-10-17','kind':'reported','scope':'whole_site',
+            'basis':'独立后续来源','registered_by':'approved-task-analysis'}
+        source_statements.apply(self.root,Path(self.temp.name)/'conflict-data',statement,
+            resolve=lambda sha:(native,None,'2021-01-01T00:00:00+00:00',archive))
+        before = source_publication.projects(self.root)
+        current = site_timeline.current(before['records'][0]).get('quantity_fields', {}).get(
+            'capacity_planned_it_mw', site_timeline.current(before['records'][0]).get('capacity_planned_it_mw'))
+        self.assertNotEqual(current,prior['fields']['capacity_planned_it_mw'])
+
+        result = task_analysis.complete(self.root,self.payload([self.candidate()]))
+
+        self.assertEqual(result['report']['published'],[])
+        self.assertEqual(result['report']['held'][0]['classification'],'conflict')
+        self.assertEqual(source_publication.projects(self.root),before)
+        self.assertTrue(prior['recorded_at'])
 
     def test_unbacked_notes_placeholder_accepts_original_text_and_replays(self):
         inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')

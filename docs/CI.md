@@ -2,6 +2,16 @@
 
 现行源：本文件。2026-10-10 替代每个 PR 与 main push 无条件执行完整浏览器及存储回归的配置。完整测试的场景、断言、密度和单项期限不缩减；只改变本次需要运行的范围。
 
+## 执行位置与身份门禁（2026.10.17.4）
+
+本仓`niuroumiantt/InResearch.ai`的同仓非fork PR、main push、workflow_dispatch和schedule使用repo级专属`spark-ci-inresearch-1`，标签为`self-hosted`、`Linux`、`ARM64`、`spark-ci`。fork PR、缺失／不一致head仓库和未知事件路由到`ubuntu-latest`；不新增pull_request_target。仓库仍私有，不为省CI费用改为公开。
+
+`validate.yml`的scope、validate、browser、browser-core、storage-container与`verify-data-center-publication.yml`的verify全部采用同一分流。每个self-hosted作业的第一步在checkout前以本作业只读`github.token`运行`python3 /usr/local/lib/ci-prefetch.py --authorize-only`。系统脚本及repo绑定由infra镜像提供，不从待检源码执行；失败不得忽略、继续或回退为未授权检出。授权器复核真实仓库／事件身份，返回后沿用原actions/checkout与各自ref、凭据及fetch选项；不调用完整prefetch，不提高256 MiB预取限额。scope继续使用精确base/head与必要时的base提交fetch，不用有界预取替代完整Git树。
+
+单个专用runner只同时处理一个job，infra限定2 CPU、6 GiB内存及6 GiB内存加swap，无GPU、宿主Docker socket或研究数据挂载。存储测试使用已有隔离容器方案；Node22、Python3.12、固定Playwright／Chromium及ARM64依赖由实际完整检查核验。原六个runner、Ollama、Reader与园区唯一intake不由此工作流修改。完整矩阵当前实际为19个分片，全部场景、单场景和作业超时、依赖缓存、存储／缓存／单元回归、汇总门禁及检查名称保持；单runner排队不是失败或可跳过检查的理由。
+
+这里只替代可信CI执行位置。`validate`、`browser (core)`仍由GitHub Actions报告，不能用手工状态、另一仓库回填、跳过或改名伪造通过。root-owned授权器不可由检出文件替换，但workflow本身属于可审核源码，这一步不构成对任意恶意workflow的不可绕过沙箱；仓库私有性、可信提交人及fork隔离仍是前提。当前账户无法启用私有main保护，尚不等于既有发布规则已满足；本轮不升级Pro、不合并或部署候选，先核专用runner实际注册与最终head的全部真实CI。未来发布仍分别核验保护、审核、网站及Spark回执。
+
 ## 分流
 
 `scripts/ci_scope.py` 对精确 base/head Git 树的完整差异分类，不使用有文件数截断的 PR 文件列表。PR 使用事件 base 与 GitHub 合并测试提交，main push 使用 before/after；比较失败、缺失基线、空差异、删除、改名、符号链接或未知路径均跑全套。
@@ -16,7 +26,7 @@
 | `data/research_knowledge.json` 仅追加有界研究资料 | 基础检查、固定研究/来源/审核/发布链路/HTTP 单元回归，单个 `browser (research)` 作业内执行既有 research_delivery 与 research_summary；不跑视觉资产、3D、装配、园区及存储容器 |
 | `data/projects.json` 仅向既有站点追加 v2 观测 | 基础检查、固定研究回归及站点时间/数量/原件采用/项目 HTTP 回归，`browser (research)` 与 `browser (industry)`；不跑无关 3D、装配、园区矩阵及存储容器 |
 | `data/object_observations.json` 仅追加有界对象观测 | 基础检查、固定研究/来源/对象采用/Fetchspec/HTTP回归，research 与 industry 浏览器；保留全部旧对象及记录，可添加完整且被新观测引用的唯一对象；无关3D与存储容器不运行 |
-| 程序、页面结构、权限、schema、非追加研究数据、依赖、测试、CI、现行规则及未知改动 | 原完整单元回归、17 个浏览器分片、资产契约、verify、indicators 和 storage-container |
+| 程序、页面结构、权限、schema、非追加研究数据、依赖、测试、CI、现行规则及未知改动 | 原完整单元回归、19 个浏览器分片、资产契约、verify、indicators 和 storage-container |
 
 混合提交取所有影响的并集，任一全套条件覆盖轻量条件。规则入口和登记的操作指南不当成普通文案。派生清单仍须经治理检查验证；current_state 仅版本/日期变化、verification_contract 仅版本/审阅时间与本次实际修改文件的既有摘要变化可以随内容提交走轻量路线，规则和验收要求语义变化必须全套。图片是否很小不作为免检依据；资产登记或其它规范一起变化时按其实际范围处理。
 
