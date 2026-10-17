@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.17.5",
+  "version": "2026.10.17.6",
   "reviewed_at": "2026-10-17",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -27,7 +27,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
     "framework/09_software_contracts.md": "9b327e7461edd940986e92ee0204246820449f7d6bd26ccc9d0c974719120f9a",
-    "framework/CURRENT.md": "65006e2c5c0da4cd7b5593530150c126f02e480b7f151973ee0472372d272736",
+    "framework/CURRENT.md": "8c6a0120d04711e0c2a441ce3fb49ec2297b132631e59216764f98ffa5951fb0",
     "framework/data_contract.json": "4c27cb06b82c5bba4d71d89eddb75c4d1dea98bb78d0c33591f3e6bec0cfd633",
     "framework/interface_manifest.json": "e14461706cc49a19d8dd44bbaa641b1e975dd630b88d9c3d8f924801d5d7d7dd",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -54,7 +54,7 @@
     "tests/container_storage.py": "c52fb64846cb6e1bf92cfe0b80cf609e4da70873436ef46c8d964629df3c46d7",
     "tests/datacenter_cost.cjs": "492513468149d9e7ee56cb81600aa752b41584c2da5c5f0c5807b9bbcae43e37",
     "tests/datacenter_economics.cjs": "1ab0b5d8b8476a12a104587634c1903a21130cdc25071e1b259dff1fe5068f0c",
-    "tests/datacenter_news.cjs": "825afdf65f4a8fe1faa62d22be9cc14d1e0e350e00ac141a5b5390d7f8263de5",
+    "tests/datacenter_news.cjs": "832e4edba2d94df82b82af9104095b815ccd935e233339e3790cb1737de955bc",
     "tests/datacenter_tco.cjs": "7500402fb8ca4162824a936dcce6e8bb8c54a473b9311c1984dcb67b9f20c910",
     "tests/industry.cjs": "6c00415140fe9b124d8c327829896325c751e4ec6ec68a60e2e8a2bf63e2d198",
     "tests/model_assets.cjs": "143b6f43ed694100d8d321c21942155c7df01fec4f0234d65c5d68d2e31b02f5",
@@ -156,7 +156,7 @@
     "tests/unit/test_project_review.py": "9bb404a09f40adb766c198e298a805a0f2504b30500f4dbbcf7c49267a1a9bd1",
     "tests/unit/test_material_retention.py": "ab976fc068dda7d885cba4eb0a74e8397c4f09b8eedf529ac0cbbe8459e6fee1",
     "web/components/industry.js": "091bec00f2cd9a17755d5ba64fd0049f4125b9e42de1825a1577fa087f83d281",
-    "web/components/datacenter-news.js": "b7a0030e55eedbd472214957841fd692e9db6722924a041d2457dcc7382269a9",
+    "web/components/datacenter-news.js": "58e022a1294565a299f0d90028d17a430d59cce08a95235e55a4d4fcebc24456",
     "web/pages/index.html": "d448cfb171eab5526246a9f298311e2aa4bd80bac4e68c454282a4a853dd2c31",
     "tests/dashboard.cjs": "e69ac49df0b7f4bc48d398c836197bb2de36c96f8facc69b7ab95c7e029136bf",
     "tests/unit/test_fetchspec_backflow.py": "104a8e40d04c6039e2293d5e7db9260dd8958c31404ada79277cda33b7a8a2ba",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "a66068c55216951e8c1838271447baf0b531584f4d8f8b75173f85f93b630223",
+    "framework/current_state.json": "92a9e00305eb108f881c738576981c0768686ef8179ce8a1eff39d2a1ee382e5",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "ce19f7138e9727e6e55c45789df874befa93365db3fa399f1d5f270a9b07db6f",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "1e38f39a6e891f25b08924ac92a58f083857a3f754e29992616c760d5c4d1836",
     "src/inresearch/adapters/html_document.py": "ece18751831c38a47683873898d0b8e476bba0dc04b33378da888ee64f08864e",
-    "docs/DECISIONS.md": "77da15c8791ac84ae97295b0f75dd989567074fb229a6b5ae55fd146af2cfcda",
+    "docs/DECISIONS.md": "e0349e0ce0ba1092177a215651ddc0302e6e672b6519631c4ae301c140f13a56",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -268,7 +268,7 @@
     "src/inresearch/materials/source_provenance.py": "40c263a85fc22dc126f7ccac5bdd388a040740dce46b1fa76e3fa1ae29e5bdb2",
     "src/inresearch/workflow/research_sources.py": "178b2d6481e3481a95751d84334e4393ab8eb8959b860d35d524cf62845a4cb7",
     "tests/unit/test_research_sources.py": "6ef21a1f1555c9a0374749a5b34780c20737af2d4f2c6f1e316f6a22db15bae9",
-    "docs/local_reader/EDITORIAL_DELIVERY.md": "e0eae25c38918bdd934cb2d173e5576935b73375d07581840a8c761e6ec243e5",
+    "docs/local_reader/EDITORIAL_DELIVERY.md": "a5c7ffe9a8c4229e261a31eb1430966962d604b53982eeebfcad351edb46d5d2",
     "src/inresearch/adapters/editorial_sync.py": "f83b68b3d553f221a15f201171d92e54cc06642b8bda11d7a9565ae5fecfc9f4",
     "deploy/spark-reader/inresearch-editorial.service": "ea2da560f225d7ee824a418543d490b29addbfa9dc7a5128345ca6b90a413106",
     "deploy/spark-reader/inresearch-editorial.timer": "8905022423e3690969919f705240b464174df4c5bba45ec98353bde31664208e",
@@ -914,7 +914,7 @@
     "tests/unit/test_collector_production_lookup.py": "9a149a10756599235e6e5feb675ed92945351447b2ca4fc02aebf2354e384c0a",
     "docs/guides/fetchdata/fetchstat-outbox.md": "cd87a1efdf771865cc7a8532c40ab309d0363f9f02e1ab8ad124fae87af58b6f",
     "docs/handoff/fetchstat-outbox.md": "17d3d5c1253a4d89e5b696559ae0ef23a1ecadf917b441b3c3a88a8540f99f86",
-    "docs/REPOSITORY_REGISTER.md": "76d61606664e0a44aad3c7bbf42ac008b5e63945ce895d30033d34260ee3a938",
+    "docs/REPOSITORY_REGISTER.md": "0cfb39d00bb2922464ad16a6bed659aaa695b76a7c9c0f3e124f224c3cfea1a7",
     "src/inresearch/workflow/daily_publications.py": "0fc6644a312585d79fc50674b6e2c50b5007e1b269f64571791d9d76a4141713",
     "tests/unit/test_daily_publications.py": "e8fecc3917a76b1089f74b7f18e9808fd0ca5fb18b62b64342858c53f3af2d0b",
     "data/dashboard.json": "c75ec7463f1ee56b3b6a02d5a355372b6f20a96ed5470cc4318834adab68b461",
@@ -4782,19 +4782,19 @@
       "output_limit_split_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。"
     },
     {
+      "policy": "daily-publication-20261014",
+      "scope": "confirmed-authored-news",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "checked_requirement": "Exact SHA confirmation and approved public URL; atomic, idempotent pin rotation retains history and ignores stale promotions. No research adoption. Summary is not a news event. Browser fixture verifies that the news section renders only the single pinned highlighted daily while the publication ledger retains history, and that untranslated raw-atlas English titles do not masquerade as title_zh in the public headline list.",
       "tests": [
         "tests/unit/test_daily_publications.py::DailyPublicationsTests.test_confirmed_publications_rotate_only_after_success_and_keep_history",
         "tests/unit/test_daily_publications.py::DailyPublicationsTests.test_no_arbitrary_urls_or_private_metadata",
         "tests/unit/test_daily_publications.py::DailyPublicationsTests.test_summary_is_not_an_eleventh_news_event",
         "tests/datacenter_news.cjs"
       ],
-      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
       "not_verified": [
         "Source tests do not prove deployment, a named public article, source adoption or WeChat paste."
-      ],
-      "checked_requirement": "Exact SHA confirmation and approved public URL; atomic, idempotent pin rotation retains history and ignores stale promotions. No research adoption. Summary is not a news event. Browser fixture verifies a single pinned highlighted daily and an intact historical link in the news section.",
-      "policy": "daily-publication-20261014",
-      "scope": "confirmed-authored-news"
+      ]
     }
   ]
 }

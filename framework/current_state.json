@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.17.5",
+  "version": "2026.10.17.6",
   "effective_at": "2026-10-17",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -5194,7 +5194,14 @@
       "change_reason": "；2026-10-17 任务权限入口与处理中提示：任务栏常驻按服务器权限显示“管理与权限”或“作业审批”，系统账号与项目所有者授权分别判断。个人提交及工作包顶部显著显示待审批、等待、正在审阅、受阻和原件需修正；当前全表尝试优先于历史抽样／局部报告，未完成不伪作完成。工作包仅聚合已批准材料，完整计数不受50条历史显示上限影响，不公开私有原因或定位。可见任务视图每30秒刷新；读取失败不把旧状态当新状态，原件、审批、发布与C3边界保持。；2026-10-17 intern 工作台修正：intern 登录成功及已登录访问登录页时直接进入 `/tasks.html`，无显式页签时打开“我的工作”；intern 角色不具备作业审批权限，即使私有账号文件残留旧审批工作包授权也由服务端拒绝并隐藏审批入口。处理受阻提示统一为“部分材料受阻，等待管理员处理”，使用绿色背景和边框突出；审批协作者与项目所有者的既有权限不变。；精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
     },
     {
+      "id": "daily-publication-20261014",
+      "topic": "daily-publication",
+      "scope": "confirmed-authored-news",
       "status": "current",
+      "effective_at": "2026-10-14",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "supersedes": [],
+      "reason": "Owner-confirmed daily links, audited pin rotation and history retention; the public news section renders only the current pinned daily and excludes untranslated raw English leads; research adoption remains independent.",
       "implementations": [
         "src/inresearch/workflow/daily_publications.py",
         "src/inresearch/knowledge/registry.py",
@@ -5203,14 +5210,7 @@
         "src/inresearch/materials/daily_events.py",
         "tests/unit/test_daily_publications.py"
       ],
-      "implementation_revision": "2026.10.14.124",
-      "scope": "confirmed-authored-news",
-      "effective_at": "2026-10-14",
-      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
-      "topic": "daily-publication",
-      "supersedes": [],
-      "reason": "Owner-confirmed daily links, audited pin rotation and history retention; research adoption remains independent.",
-      "id": "daily-publication-20261014"
+      "implementation_revision": "2026.10.17.125"
     }
   ],
   "entrypoints": [
