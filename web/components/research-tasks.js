@@ -357,6 +357,6 @@
   load();
   loadExamples();
   setInterval(() => {
-    if (!document.hidden && readState !== 'loading' && ['task-home','submission-progress'].includes(window.activeResearchTaskView)) load();
+    if (!document.hidden && readState !== 'loading' && window.activeResearchTaskView === 'submission-progress') load();
   }, 30000);
 })();
