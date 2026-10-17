@@ -1,16 +1,16 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.2。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.4。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2804。
+在册文件：2807。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 408 |
+| 静态资源 | 409 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
 | 配套说明 | 267 |
-| 测试 | 259 |
+| 测试 | 261 |
 
 ## 在册记录集合
 
@@ -1794,13 +1794,13 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 60 |
-| `framework/current_state.json` | entrypoints | 4 |
-| `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
-| `framework/current_state.json` | operational_guides | 17 |
-| `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/current_state.json` | compat_retirements | 7 |
+| `framework/current_state.json` | entrypoints | 4 |
+| `framework/current_state.json` | operational_guides | 17 |
+| `framework/current_state.json` | policies | 60 |
+| `framework/current_state.json` | retired_entrypoints | 3 |
+| `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/dashboard_rules.json` | honesty | 5 |
 | `framework/data_contract.json` | source_grades | 6 |
 | `framework/data_contract.json` | project_statuses | 9 |
@@ -4042,6 +4042,7 @@
 | `tests/unit/test_catalog_migration.py` | 测试 |
 | `tests/unit/test_catalog_ownership.py` | 测试 |
 | `tests/unit/test_catalog_supplement.py` | 测试 |
+| `tests/unit/test_ci_runner_routing.py` | 测试 |
 | `tests/unit/test_ci_scope.py` | 测试 |
 | `tests/unit/test_city_location.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
@@ -4138,6 +4139,7 @@
 | `tests/unit/test_ollama_token_budget.py` | 测试 |
 | `tests/unit/test_operations.py` | 测试 |
 | `tests/unit/test_optional_mapping_ids.py` | 测试 |
+| `tests/unit/test_packed_output_split.py` | 测试 |
 | `tests/unit/test_packed_reading.py` | 测试 |
 | `tests/unit/test_panel_source_assets.py` | 测试 |
 | `tests/unit/test_pdf_native_text.py` | 测试 |
@@ -4272,6 +4274,7 @@
 | `web/assets/marketing/circle-light.png` | 静态资源 |
 | `web/assets/marketing/dot-dark.png` | 静态资源 |
 | `web/assets/marketing/hero-gradient.png` | 静态资源 |
+| `web/assets/marketing/i-light.svg` | 静态资源 |
 | `web/assets/marketing/icons-comms.png` | 静态资源 |
 | `web/assets/marketing/icons-compute.png` | 静态资源 |
 | `web/assets/marketing/icons-core.png` | 静态资源 |
