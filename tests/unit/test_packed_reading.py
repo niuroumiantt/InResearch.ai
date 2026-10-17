@@ -16,13 +16,18 @@ from tests.unit.test_full_review_worker import FakeClient, native
 def receipt(system, part, schema, tokens=1000):
     body = {'model': 'qwen3.8:27b', 'messages': [{'role': 'system', 'content': system},
         {'role': 'user', 'content': packed.encoded(part).decode()}],
-        'format': copy.deepcopy(schema), 'options': {'num_ctx': 32768, 'num_predict': 4096},
+        'format': copy.deepcopy(schema), 'options': {'num_ctx': 32768, 'num_predict': 4096, 'temperature': 0},
         'truncate': False, 'shift': False, 'think': False, 'stream': False}
     proof = {'version': 'ollama-campus-token-v2', 'stage': packed.STAGE, 'reading_recipe': packed.VERSION,
         'truncate': False, 'shift': False, 'think': False, 'request_sha256': packed.digest(body), 'schema_sha256': packed.digest(schema),
         'system_sha256': hashlib.sha256(system.encode()).hexdigest(), 'input_sha256': packed.digest(part),
         'context': 32768, 'max_output_tokens': 4096, 'reserve_tokens': 1024, 'input_tokens': tokens,
-        'model_binding': {'manifest': 'fixture'}, 'tokenizer_binding': {'pid': 123}}
+        'rendered_sha256': 'a'*64, 'token_ids_sha256': 'b'*64, 'rendered_utf8_bytes': 10000,
+        'model_binding': {'ollama_version': budget.VERSION, 'manifest_sha256': budget.MANIFEST_SHA,
+                          'model_layer_sha256': budget.MODEL_SHA, 'renderer': 'qwen3.8', 'parser': 'qwen3.5',
+                          'model_file': {'path': str(budget.MODEL_ROOT/'blobs'/('sha256-'+budget.MODEL_SHA))}},
+        'tokenizer_binding': {'pid': 123, 'context': 32768,
+                              'model_path': str(budget.MODEL_ROOT/'blobs'/('sha256-'+budget.MODEL_SHA))}}
     return body, proof
 
 
@@ -58,6 +63,8 @@ class PackedClient(FakeClient):
                                                           if k != '_model'}).decode()}}
         if self.outcome == 'truncated':
             response['done_reason'] = 'length'
+            response.update(eval_count=4096, prompt_eval_count=proof['input_tokens'])
+            response['message']['role'] = 'assistant'
             response['message']['content'] = '{"summary":"incomplete'
             raise budget.CompletionUnverified(models.InferenceError('model_output_truncated'),
                                               body, proof, response)
@@ -219,9 +226,12 @@ class PackedReadingTests(unittest.TestCase):
             with self.subTest(outcome=outcome):
                 folder = self.folder/outcome
                 client = PackedClient(outcome=outcome)
-                with self.assertRaises(models.InferenceError):
+                # Simulate the already-deployed receipt format, before explicit
+                # output-split permission existed. Upgrading must not unlock it.
+                with patch.object(packed, 'split_output_limit', return_value=False), self.assertRaises(models.InferenceError):
                     worker.proposal(self.item, self.original, folder, client)
                 audit = next((folder/'full-review').rglob('dispatch.json'))
+                (audit.parent/'output-split-policy.json').unlink()
                 before = audit.read_bytes()
                 for _ in range(2):
                     with self.assertRaisesRegex(models.InferenceError, 'campus_reading_completion_outcome_unverified'):
@@ -293,8 +303,10 @@ class PackedReadingTests(unittest.TestCase):
         client = PackedClient(outcome='truncated')
         with patch.object(worker, 'client', return_value=client), \
                 patch.object(worker, 'resource_ready', return_value=(True, '')):
-            self.assertEqual(worker.run_item(self.item, archive, lambda *a, **k: io.BytesIO(b'{"ok":true}')), (0, True))
+            with patch.object(packed, 'split_output_limit', return_value=False):
+                self.assertEqual(worker.run_item(self.item, archive, lambda *a, **k: io.BytesIO(b'{"ok":true}')), (0, True))
             status = folder/'full-review'/self.item['full_analysis']['attempt_id']/'status.json'
+            next(folder.rglob('output-split-policy.json')).unlink()
             self.assertTrue(json.loads(status.read_text())['operator_required'])
             self.assertEqual(json.loads(status.read_text())['reason'], 'model_output_truncated')
             status.unlink()

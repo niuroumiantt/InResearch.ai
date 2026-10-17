@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.17.1",
+  "version": "2026.10.17.3",
   "reviewed_at": "2026-10-17",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "3c443db34298207b096dc60ac2644e22d116405534846aa1a343f93c822c1a17",
+    "docs/local_reader/SPARK_OPERATIONS.md": "369c56c72b6e10e022f6e60f75455ab2a1888ba7aa275f84a1afbaf6211a07e1",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "f18a20b771a4f981752f012653634fc4783e9c06de2c3e432bd71e1ca22aba35",
@@ -22,12 +22,12 @@
     "framework/02_knowledge_format.md": "e62d2145139460d0e6d71e8ea0f1d5438d76cf4f9714bba8a280312d9e4a66df",
     "framework/03_bom_and_collaboration.md": "89c65384f1a92b4765f54c66b3e62bce4b145aa486f2d1dfbcc799de1f1867d0",
     "framework/04_reading_scoring_standard.md": "8320c8c8ba076f3d9a735d02cc7414af9542aa41c77f11ea8d2ffb7636e65a93",
-    "framework/05_interface_system.md": "9c272a0f870d97dfb24e7759cc713730cf758ca64b4c8d41f573445d98191222",
+    "framework/05_interface_system.md": "b841c149b3f14a7f16c0a05f3e068e0680806328000414d467bf3cf56cd93a4a",
     "framework/06_acquisition.md": "18599c78167d884546b2cccd2101f230f858831329df4d767363e381230ceea0",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
-    "framework/09_software_contracts.md": "9e1ad04be248afca52afc628aa42e846d4c611999aeef142842564c059104969",
-    "framework/CURRENT.md": "5beeb75721a0531838bae4dce83dd751148afb75e34093a5e0e1c7cce1697392",
+    "framework/09_software_contracts.md": "98550b3836a08e2041a84e8c39c32d282f0f41bcae07be1bc7b9f696bc805903",
+    "framework/CURRENT.md": "25c6106eeadceea6e44a9fd58e8c8fbb8230100e482d0cf506234b705b830922",
     "framework/data_contract.json": "4c27cb06b82c5bba4d71d89eddb75c4d1dea98bb78d0c33591f3e6bec0cfd633",
     "framework/interface_manifest.json": "5af5b8f02134e370aab91c0232d54248a32c956a1cc0a1e883b0b8f5837f537c",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "9b3e8caa40f2c8cf894fde7fd58be7be2c8324233412a5faa1b7af46c69be329",
+    "framework/current_state.json": "97390513df724e53ebd69ef3dd543ea2a8b7435ca179e842b3e13d9358b5d152",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "ce19f7138e9727e6e55c45789df874befa93365db3fa399f1d5f270a9b07db6f",
@@ -189,8 +189,8 @@
     "src/inresearch/delivery/reader_export.py": "8930587dd3f89e91587ae450c5de725298b84866b746617a0ac308cd610324de",
     "tests/unit/test_research_progress.py": "4921949079387e1c79e704221db6aea87245bcbd22a9c84fc7de70f76621fb6e",
     "tests/unit/test_research_publication_merge.py": "c55d779f4bc268141a0263756236bf693d37a716a9bfc3d1934ae22bd58349b7",
-    "src/inresearch/interfaces/http.py": "1725ca48be9ce03a4654821b8071fe3622446c43dcdb2b968732bda60f61378a",
-    "web/routes.json": "af06af1c0e7f8067020dcae3046adcad7361dfb3b7342702f849d6f9cb0fd95a",
+    "src/inresearch/interfaces/http.py": "a3c6cdf393e81c5d1f055f22115c7473e0ccc6edffa5be9567b9507727ea71a9",
+    "web/routes.json": "4c0958fb497a54abc2cf761791da3c6e4e9a2dad5ccbac97a1a4fb8c4f5c7496",
     "web/components/site-shell.js": "688b8c9f07f8b907f4e0befd8ff8c928bc285a866fb7fe2053d1249e8368c5a2",
     "web/components/company-home.js": "f2f136f326bcb7d48a25d4767b6e6b09329c90783dc108d1de8ea71abe15a402",
     "web/components/company-overview.js": "561b11ff9f66cd4f12b586efe540b707776b7d86a4f0be2ab52b087fa367d745",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "1e38f39a6e891f25b08924ac92a58f083857a3f754e29992616c760d5c4d1836",
     "src/inresearch/adapters/html_document.py": "ece18751831c38a47683873898d0b8e476bba0dc04b33378da888ee64f08864e",
-    "docs/DECISIONS.md": "4c567c4758125d8af027b5b23d48d5cdde96593231ba13c7ba481d240a592c9c",
+    "docs/DECISIONS.md": "b6ed2554e21f57c32cacfc52b0f5b3f1a36e3a62605509c0198297dbed764e37",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -914,7 +914,7 @@
     "tests/unit/test_collector_production_lookup.py": "9a149a10756599235e6e5feb675ed92945351447b2ca4fc02aebf2354e384c0a",
     "docs/guides/fetchdata/fetchstat-outbox.md": "cd87a1efdf771865cc7a8532c40ab309d0363f9f02e1ab8ad124fae87af58b6f",
     "docs/handoff/fetchstat-outbox.md": "17d3d5c1253a4d89e5b696559ae0ef23a1ecadf917b441b3c3a88a8540f99f86",
-    "docs/REPOSITORY_REGISTER.md": "866498142cf6334e4bb97ae2e5c5dc7e84301940899d0dcdbc0061e3fd306a13",
+    "docs/REPOSITORY_REGISTER.md": "fdaf3e9e256dc52f62c2cb58535376e036fbbc3dfc3a23d2595cef8102b8567c",
     "src/inresearch/workflow/daily_publications.py": "0fc6644a312585d79fc50674b6e2c50b5007e1b269f64571791d9d76a4141713",
     "tests/unit/test_daily_publications.py": "e8fecc3917a76b1089f74b7f18e9808fd0ca5fb18b62b64342858c53f3af2d0b",
     "data/dashboard.json": "c75ec7463f1ee56b3b6a02d5a355372b6f20a96ed5470cc4318834adab68b461",
@@ -937,18 +937,18 @@
     "tests/unit/test_task_batch_review.py": "adf662511d870ccc0835e4cf09a62587b08a665f0dcd4462178e5d048390a8dc",
     "src/inresearch/materials/batch_review.py": "28d332b8560896ce974a819d79e9d99674b68e4e8825c6d161d87f319a29610a",
     "tests/unit/test_full_review_worker.py": "4f03da9a9f7a7ab96c29d923fd37d6ce0e40356294c64faa0f38cbba2eb38eea",
-    "docs/handoff/spark-campus-full-review-20261017.md": "4ccf39bfb68540e0d178b8cb1ebc6b918103b0ddb542c1be75a6982f79ec38df",
+    "docs/handoff/spark-campus-full-review-20261017.md": "e8e59cf31657f54cf1ae55a4505127960e2997c8a088c904d5ce97d65aba998a",
     "src/inresearch/materials/native_review_contract.py": "6a68b939eb156211104aba8b2e6ee46c9232906639bfe3fdb92ce83af566a911",
     "src/inresearch/materials/native_review_layouts.py": "4a6eef1b999c0afe0904bf4ce8df0c5a56cb5ac4541d91422af23dede910bf86",
-    "src/inresearch/materials/full_review_worker.py": "a3cac2af3057e4e382716b28b9887ee2e07f27a6d013fee04319b7cd52f0f07e",
+    "src/inresearch/materials/full_review_worker.py": "5f6c85fde903cce4b27f6841b0acfb7c742552daddfa986a16b533f1e854c8a8",
     "tests/unit/test_task_full_review.py": "b8e580355a4f7f43d22f35d84105bf0d2b7059546ccfad11022773d051119377",
     "src/inresearch/adapters/ollama_token_budget.py": "21215b2d4ee127e715eadb9b722bd04c04e461d83deeb80513f495037b34e107",
     "tests/unit/test_ollama_token_budget.py": "b772f93ea682e568e7802b675d3f08b16d80f0222ac2a2ef58eea2bfb1f695d6",
     "src/inresearch/storage/json_stream.py": "d91d34f1372c02c82369f0b553277eabaf071932fa14dcb573dae702a9e7093e",
     "tests/unit/test_json_stream.py": "e7e0d8124e1d50bbf590dd8ba67d7feb3a41fb45bc58b7a4da5e890f90d25811",
     "tests/unit/test_http_json_memory.py": "7843c2997c091d199ef95a80fcd7ab5257ab424779ebd3f518c1983cc2cbe7cb",
-    "src/inresearch/materials/packed_reading.py": "be69e1bbe51e6469d5b1a849ca0373c5cc01498ad8580e85664b7e68469e71a5",
-    "tests/unit/test_packed_reading.py": "bf9e9b32812c48c1aa090027047aa985f76395417ff74357e505995405e66669",
+    "src/inresearch/materials/packed_reading.py": "2270c3c8c90eed2141f581d41312ea436480e71db485c4319f141ef0d6bcca62",
+    "tests/unit/test_packed_reading.py": "c2e7e985ab163ffe01616bbca6d99fe839e04233e8eec857904f17f70be554ce",
     "tests/unit/test_campus_reading_budget.py": "4cd9011b65f7b042154e0b638eee54db2886c7ef9306b9012ff5dca3fb311e01",
     "web/assets/brand/inresearch-ai/wordmark-reverse.svg": "0614d13dd01d974f0abc706dd7a145b3ca3d35b7ee6e12cc60e77d61d880cbc4",
     "web/assets/fonts/fonts.css": "af1f611433fdc52702590e630054be527e90bda1c0401186e23dda124434ef5e",
@@ -965,7 +965,8 @@
     "web/components/auth-form.js": "cfea56c894863b0632aa0fa939f6aef53d3de3bd67d2c196705fc90acd35c0f0",
     "web/pages/admin/project-access.html": "1810cd28b22735ae0ef98bb65c01bef306679d9b8be3ab567b85a76c105bc3b4",
     "web/themes/project-access.css": "3b2b3099fab8577b632162e9b5e80e4614b1e1f2c7997e672dbdbbfd19e825c0",
-    "web/assets/ops-forms.js": "ff445a49ab5ba9649d64d55c9fed4cf36ac921840aa3c4190da4a5d5828d6117"
+    "web/assets/ops-forms.js": "ff445a49ab5ba9649d64d55c9fed4cf36ac921840aa3c4190da4a5d5828d6117",
+    "tests/unit/test_packed_output_split.py": "88c995066f27dd9724c907af1db6badcb354b63db299375cb9252a28eecb13fb"
   },
   "policies": [
     {
@@ -1856,7 +1857,18 @@
         "tests/unit/test_city_location.py::CityLocationTests.test_city_address_and_precise_counts_are_distinct",
         "tests/unit/test_city_location.py::CityLocationTests.test_linked_news_inherits_city_precision_from_small_runtime_projection",
         "tests/industry.cjs",
-        "tests/unit/test_city_location.py::CityLocationTests.test_real_overview_preserves_public_city_geography_and_location_counts"
+        "tests/unit/test_city_location.py::CityLocationTests.test_real_overview_preserves_public_city_geography_and_location_counts",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_known_third_window_limit_keeps_successes_and_reassembles_32_32",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_consumes_one_generation_slot_and_gpu_wait_does_not_dispatch_children",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_recovery_before_or_after_plan_commit_makes_no_duplicate_generation",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_old_operator_failure_requires_exact_scoped_permission_even_after_status_loss",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_invalid_or_unknown_completion_evidence_cannot_authorize_split",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_receipt_request_model_and_hash_tampering_fail_closed",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_single_fragment_output_limit_remains_blocked_without_replay",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_predispatch_policy_binds_all_proof_fields_and_request_scope",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_rejects_changed_cursor_current_chunk_and_started_suffix",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_output_and_input_splits_replay_exact_chain_and_detect_tampering",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_real_adapter_truncation_is_bound_after_model_revalidation"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
@@ -1896,10 +1908,12 @@
         "历史.32用户命名空间补充：PR957/3fe1b3b已23项CI通过并双端部署，v2对完整7窗输入在SSH环境实际计量8059 tokens通过；正式intake同单元trace却在_runner_identity捕获expected UID996与四个65534不符，单UID1001自映射及root manager服务/父子/cgroup快照解释其身份遮蔽。临时trace已撤回且原ExecStart恢复，7窗未改，0综合产物/0完成包/0发布回执。新命名空间分支夹具不证明正式systemd环境生成已成功、任意user namespace或非固定服务兼容；本次完整CI、部署、正式综合、来源采用及网站投影另核，不以SSH计量替代正式执行。 后续PR958已实际部署且首园区通过最终综合及网站核验；后续包的完成与语义仍须独立核对。",
         "2026-10-17最终增量输出：PR958已23项CI/2900unit并双端部署，PR959交接已同步90fa；首UCLOUD包实际1名称发布、8held、197格含81归属/116上下文，31意见已人工校正且v6正常继续。05:16 AH-FY-JZ已8/8原生阅读、31问题7候选、8951输入tokens通过预算，但最终输出4096截断，服务器仍1/117完整包、81/10272归属格，本包无完整报告。索引全集只证明结构确认，不证明模型逐条理解、遗漏为零或新增问题语义正确；新增5方法经逐条审阅，独立worker40/receiver16/token30共86项通过；实际同SHA原件已无生成复算229格/8窗，原阅读配方一致且新旧final全部证据字段逐值相等、31问题7候选完整，仅最终指令和版本改变；此0调用预检与夹具均不证明真实模型完整理解或输出不再截断，真实恢复/部署/综合与网站采用仍须独立实证，不能以旧首包或输入计量成功替代。",
         "生产业务并发下RSS/容器峰值、OOM及重启不复发仍须按真实大库观察；全GPU吞吐另行实测。",
-        "2026-10-17 .35草案：64片段规划与合成token／故障夹具不证明四份真实材料逐窗实际token预算、4096输出足够、语义无遗漏或生产吞吐提速；本阶段未调用真实模型、未部署。旧快照约2718个候选窗需真实分词可能再二分，不能作为已核计划／覆盖。新输出截断保留审计并operator_required，未实现安全输出后二分。",
-        "2026-10-17 .36：16项城市接收／原件／四布局／CAS／重放／精度与小型投影回归、既有来源和行业回归共104项实际通过；industry完整浏览器两次通过，含同城多园区、同坐标不同城市、精度统计、链接转义及1440／390布局。夹具不证明原件所述归属事实正确、GeoNames边界／时效完整或真实城市点已部署；现役source_state CAS和实际生产地图／档案／重放回执另验。城市点不是园区实址、C3或坐标精度提高；旧阅读与尚未完成包不得按本次地点登记算已读。"
+        "历史2026-10-17 .35草案：64片段规划与合成token／故障夹具不证明四份真实材料逐窗实际token预算、4096输出足够、语义无遗漏或生产吞吐提速；本阶段未调用真实模型、未部署。旧快照约2718个候选窗需真实分词可能再二分，不能作为已核计划／覆盖。新输出截断保留审计并operator_required，未实现安全输出后二分。",
+        "2026-10-17 .36：16项城市接收／原件／四布局／CAS／重放／精度与小型投影回归、既有来源和行业回归共104项实际通过；industry完整浏览器两次通过，含同城多园区、同坐标不同城市、精度统计、链接转义及1440／390布局。夹具不证明原件所述归属事实正确、GeoNames边界／时效完整或真实城市点已部署；现役source_state CAS和实际生产地图／档案／重放回执另验。城市点不是园区实址、C3或坐标精度提高；旧阅读与尚未完成包不得按本次地点登记算已读。",
+        "2026.10.17.3：合成故障、二分守恒及真实私有失败回包离线复验不证明生产已恢复、子窗一定不再截断、语义无遗漏或全表已完成；旧operator仍需精确作用域运维。GitHub完整CI、双端部署、真实新子窗／综合／正式报告与网站回执各自另验。32K／4096和原任务／来源／system／schema生成规则不因拆分放宽。"
       ],
-      "packed_native_reading_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。只有生成前真实预算证明可二分，单片超限停止，分拆链完整复验。dispatch先持久，完整成功响应与游标分离恢复；未知派发／截断／未绑定响应留审计并禁止删除status后重放。语义无效完整响应仍限三份；每轮至多一次内容生成，GPU前后门槛与原final／服务器覆盖／发布保持。"
+      "packed_native_reading_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。",
+      "output_limit_split_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。"
     },
     {
       "policy": "change_management-20260906",
@@ -3994,7 +4008,18 @@
         "tests/unit/test_packed_reading.py::PackedReadingTests.test_existing_response_without_returned_journal_stays_byte_identical",
         "tests/unit/test_packed_reading.py::PackedReadingTests.test_returned_journal_must_agree_with_existing_response_and_unverified_state",
         "tests/unit/test_packed_reading.py::PackedReadingTests.test_returned_journal_precedes_consumer_checks_and_recovers_without_new_call",
-        "tests/unit/test_packed_reading.py::PackedReadingTests.test_returned_journal_tampering_cannot_promote_or_replay_even_with_new_hashes"
+        "tests/unit/test_packed_reading.py::PackedReadingTests.test_returned_journal_tampering_cannot_promote_or_replay_even_with_new_hashes",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_known_third_window_limit_keeps_successes_and_reassembles_32_32",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_consumes_one_generation_slot_and_gpu_wait_does_not_dispatch_children",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_recovery_before_or_after_plan_commit_makes_no_duplicate_generation",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_old_operator_failure_requires_exact_scoped_permission_even_after_status_loss",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_invalid_or_unknown_completion_evidence_cannot_authorize_split",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_receipt_request_model_and_hash_tampering_fail_closed",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_single_fragment_output_limit_remains_blocked_without_replay",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_predispatch_policy_binds_all_proof_fields_and_request_scope",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_rejects_changed_cursor_current_chunk_and_started_suffix",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_output_and_input_splits_replay_exact_chain_and_detect_tampering",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_real_adapter_truncation_is_bound_after_model_revalidation"
       ],
       "not_verified": [
         "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",
@@ -4036,12 +4061,14 @@
         "历史.32用户命名空间补充：PR957/3fe1b3b已23项CI通过并双端部署，v2对完整7窗输入在SSH环境实际计量8059 tokens通过；正式intake同单元trace却在_runner_identity捕获expected UID996与四个65534不符，单UID1001自映射及root manager服务/父子/cgroup快照解释其身份遮蔽。临时trace已撤回且原ExecStart恢复，7窗未改，0综合产物/0完成包/0发布回执。新命名空间分支夹具不证明正式systemd环境生成已成功、任意user namespace或非固定服务兼容；本次完整CI、部署、正式综合、来源采用及网站投影另核，不以SSH计量替代正式执行。 后续PR958已实际部署且首园区通过最终综合及网站核验；后续包的完成与语义仍须独立核对。",
         "2026-10-17最终增量输出：PR958已23项CI/2900unit并双端部署，PR959交接已同步90fa；首UCLOUD包实际1名称发布、8held、197格含81归属/116上下文，31意见已人工校正且v6正常继续。05:16 AH-FY-JZ已8/8原生阅读、31问题7候选、8951输入tokens通过预算，但最终输出4096截断，服务器仍1/117完整包、81/10272归属格，本包无完整报告。索引全集只证明结构确认，不证明模型逐条理解、遗漏为零或新增问题语义正确；新增5方法经逐条审阅，独立worker40/receiver16/token30共86项通过；实际同SHA原件已无生成复算229格/8窗，原阅读配方一致且新旧final全部证据字段逐值相等、31问题7候选完整，仅最终指令和版本改变；此0调用预检与夹具均不证明真实模型完整理解或输出不再截断，真实恢复/部署/综合与网站采用仍须独立实证，不能以旧首包或输入计量成功替代。",
         "生产规模/并发下峰值RSS、OOM与重启是否不再发生尚未证明；全GPU吞吐未验证。流解析仍构建完整对象树，单个超长值仍占内存。",
-        "2026-10-17 .35草案：64片段规划与合成token／故障夹具不证明四份真实材料逐窗实际token预算、4096输出足够、语义无遗漏或生产吞吐提速；本阶段未调用真实模型、未部署。旧快照约2718个候选窗需真实分词可能再二分，不能作为已核计划／覆盖。新输出截断保留审计并operator_required，未实现安全输出后二分。",
+        "历史2026-10-17 .35草案：64片段规划与合成token／故障夹具不证明四份真实材料逐窗实际token预算、4096输出足够、语义无遗漏或生产吞吐提速；本阶段未调用真实模型、未部署。旧快照约2718个候选窗需真实分词可能再二分，不能作为已核计划／覆盖。新输出截断保留审计并operator_required，未实现安全输出后二分。",
         "2026-10-17 .36：16项城市接收／原件／四布局／CAS／重放／精度与小型投影回归、既有来源和行业回归共104项实际通过；industry完整浏览器两次通过，含同城多园区、同坐标不同城市、精度统计、链接转义及1440／390布局。夹具不证明原件所述归属事实正确、GeoNames边界／时效完整或真实城市点已部署；现役source_state CAS和实际生产地图／档案／重放回执另验。城市点不是园区实址、C3或坐标精度提高；旧阅读与尚未完成包不得按本次地点登记算已读。",
-        "2026-10-17 .37：UID tuple/list真实边界回归和回包持久化夹具不能恢复生产已丢失正文，也不能证明语义无遗漏或整批完成；精确BOCOM运维重取、部署版本、真实回包和完整包网站回执仍须分别核验。HTTP200日志只证明旧请求完成，不计有效窗口。53园区城市点与8包已完成为运行快照，后续实时结果以私有progress和原回执为准。"
+        "2026-10-17 .37：UID tuple/list真实边界回归和回包持久化夹具不能恢复生产已丢失正文，也不能证明语义无遗漏或整批完成；精确BOCOM运维重取、部署版本、真实回包和完整包网站回执仍须分别核验。HTTP200日志只证明旧请求完成，不计有效窗口。53园区城市点与8包已完成为运行快照，后续实时结果以私有progress和原回执为准。",
+        "2026.10.17.3：合成故障、二分守恒及真实私有失败回包离线复验不证明生产已恢复、子窗一定不再截断、语义无遗漏或全表已完成；旧operator仍需精确作用域运维。GitHub完整CI、双端部署、真实新子窗／综合／正式报告与网站回执各自另验。32K／4096和原任务／来源／system／schema生成规则不因拆分放宽。"
       ],
-      "packed_native_reading_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。只有生成前真实预算证明可二分，单片超限停止，分拆链完整复验。dispatch先持久，完整成功响应与游标分离恢复；未知派发／截断／未绑定响应留审计并禁止删除status后重放。语义无效完整响应仍限三份；每轮至多一次内容生成，GPU前后门槛与原final／服务器覆盖／发布保持。",
-      "reading_receipt_requirement": "2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。"
+      "packed_native_reading_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。",
+      "reading_receipt_requirement": "2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。",
+      "output_limit_split_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。"
     },
     {
       "policy": "visual-atlas-20261008",
@@ -4651,7 +4678,18 @@
         "tests/unit/test_project_access.py::ProjectAccessTests.test_owner_api_and_stale_grants",
         "tests/project_access.cjs",
         "tests/unit/test_project_access.py::ProjectAccessTests.test_batch_with_unauthorized_item_has_no_partial_approval",
-        "tests/unit/test_project_access.py::ProjectAccessTests.test_existing_legacy_session_gets_stable_identity_before_upload"
+        "tests/unit/test_project_access.py::ProjectAccessTests.test_existing_legacy_session_gets_stable_identity_before_upload",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_known_third_window_limit_keeps_successes_and_reassembles_32_32",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_consumes_one_generation_slot_and_gpu_wait_does_not_dispatch_children",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_recovery_before_or_after_plan_commit_makes_no_duplicate_generation",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_old_operator_failure_requires_exact_scoped_permission_even_after_status_loss",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_invalid_or_unknown_completion_evidence_cannot_authorize_split",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_receipt_request_model_and_hash_tampering_fail_closed",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_single_fragment_output_limit_remains_blocked_without_replay",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_predispatch_policy_binds_all_proof_fields_and_request_scope",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_split_rejects_changed_cursor_current_chunk_and_started_suffix",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_output_and_input_splits_replay_exact_chain_and_detect_tampering",
+        "tests/unit/test_packed_output_split.py::PackedOutputSplitTests.test_real_adapter_truncation_is_bound_after_model_revalidation"
       ],
       "not_verified": [
         "合成单元测试和本地浏览器场景不证明真实员工工作簿已由 Codex 按报告标示范围审核、生产持久发布成功或公网园区详情可见；需分别保存服务、模型、发布器、网站实际回执；真实超限附件的终态员工反馈也须公网验收。审批工作台的合成桌面／手机场景不替代真实管理员账号、公网页面和真实文件状态验收。",
@@ -4672,13 +4710,15 @@
         "历史.32用户命名空间补充：PR957/3fe1b3b已23项CI通过并双端部署，v2对完整7窗输入在SSH环境实际计量8059 tokens通过；正式intake同单元trace却在_runner_identity捕获expected UID996与四个65534不符，单UID1001自映射及root manager服务/父子/cgroup快照解释其身份遮蔽。临时trace已撤回且原ExecStart恢复，7窗未改，0综合产物/0完成包/0发布回执。新命名空间分支夹具不证明正式systemd环境生成已成功、任意user namespace或非固定服务兼容；本次完整CI、部署、正式综合、来源采用及网站投影另核，不以SSH计量替代正式执行。 后续PR958已实际部署且首园区通过最终综合及网站核验；后续包的完成与语义仍须独立核对。",
         "2026-10-17最终增量输出：PR958已23项CI/2900unit并双端部署，PR959交接已同步90fa；首UCLOUD包实际1名称发布、8held、197格含81归属/116上下文，31意见已人工校正且v6正常继续。05:16 AH-FY-JZ已8/8原生阅读、31问题7候选、8951输入tokens通过预算，但最终输出4096截断，服务器仍1/117完整包、81/10272归属格，本包无完整报告。索引全集只证明结构确认，不证明模型逐条理解、遗漏为零或新增问题语义正确；新增5方法经逐条审阅，独立worker40/receiver16/token30共86项通过；实际同SHA原件已无生成复算229格/8窗，原阅读配方一致且新旧final全部证据字段逐值相等、31问题7候选完整，仅最终指令和版本改变；此0调用预检与夹具均不证明真实模型完整理解或输出不再截断，真实恢复/部署/综合与网站采用仍须独立实证，不能以旧首包或输入计量成功替代。",
         "回归测试不等于生产OOM已修复；大报告并发RSS、OOM/重启和全GPU任务吞吐仍待真实生产观测。",
-        "2026-10-17 .35草案：64片段规划与合成token／故障夹具不证明四份真实材料逐窗实际token预算、4096输出足够、语义无遗漏或生产吞吐提速；本阶段未调用真实模型、未部署。旧快照约2718个候选窗需真实分词可能再二分，不能作为已核计划／覆盖。新输出截断保留审计并operator_required，未实现安全输出后二分。",
+        "历史2026-10-17 .35草案：64片段规划与合成token／故障夹具不证明四份真实材料逐窗实际token预算、4096输出足够、语义无遗漏或生产吞吐提速；本阶段未调用真实模型、未部署。旧快照约2718个候选窗需真实分词可能再二分，不能作为已核计划／覆盖。新输出截断保留审计并operator_required，未实现安全输出后二分。",
         "2026-10-17 .37：UID tuple/list真实边界回归和回包持久化夹具不能恢复生产已丢失正文，也不能证明语义无遗漏或整批完成；精确BOCOM运维重取、部署版本、真实回包和完整包网站回执仍须分别核验。HTTP200日志只证明旧请求完成，不计有效窗口。53园区城市点与8包已完成为运行快照，后续实时结果以私有progress和原回执为准。",
-        "项目协作者隔离测试不证明生产账号已创建／授权、真实通知送达或旧匿名原件身份已核实；不会按同名迁移，其他项目尚未接入。网站访问不等于GitHub源码私有化；真实网站版本与账号操作另验。"
+        "项目协作者隔离测试不证明生产账号已创建／授权、真实通知送达或旧匿名原件身份已核实；不会按同名迁移，其他项目尚未接入。网站访问不等于GitHub源码私有化；真实网站版本与账号操作另验。",
+        "2026.10.17.3：合成故障、二分守恒及真实私有失败回包离线复验不证明生产已恢复、子窗一定不再截断、语义无遗漏或全表已完成；旧operator仍需精确作用域运维。GitHub完整CI、双端部署、真实新子窗／综合／正式报告与网站回执各自另验。32K／4096和原任务／来源／system／schema生成规则不因拆分放宽。"
       ],
       "full_native_review_requirement": "2026-10-17显式全表复审替代：只有已批准且精确点名ID/SHA/revision的start_full_analysis新尝试走独立campus_review、本机loopback Ollama qwen3.8:27b、单并发；旧抽样/报告/原件/尝试保留，默认Codex与其他队列不改。确定性园区、共享上下文及未分配包覆盖全部原生非空单元格，长值无损片段保持定位/完整值摘要；原文包、任务、模型和断点身份冻结。服务器从原件重新计算覆盖、地域、原值/单位/对象与来源CAS，逐包幂等发布并保存回执；未分配及失败包未完不得全表完成。先真实一园区回执再恢复余包，技术门槛不新增人工审批；GPU≥30%或温度≥80°C及状态读取失败只延后本任务。图片、外链与公式执行不属于原生文本覆盖，普通来源不晋级C3或模型参数。 全部窗口之后独立整园区综合裁决读取所有窗口摘要、完整缺口/候选及候选原文，候选仅可按原索引筛选，最终请求/实际27B/候选集合摘要复验，超预算受阻不裁剪。窗口进度绑定当前attempt及已开放package且不授完成数；旧样本/普通进度不能替代全表。重复表头保留单位上下文但不能充当候选值，公式原文保留不执行；仅真实新推理耗本轮单调用槽，缓存回传不被GPU门槛阻断，传输model_failure按有限预算退避。 v5历史原件使用单独登记的mainland-register-v5严格布局，按13张表及“信息有效期”表头核对，完整覆盖原生内容；因无对象身份裁定表，不自动新建园区，已有园区仍守当前身份、原值与冲突门槛。27B受约束解码按本窗口实际可见原生单元格限定P0/P1/P2、字段、单位、名称、地点与定位枚举；地点值与定位须原样选同一个单格选项，不能拼接省市区或多个定位。枚举不能替代网站原值和身份复验。窗口配方同时冻结系统提示与解码schema摘要，规则变更不得混用已成功窗口；最终综合问题也限定原生定位及P0/P1/P2。 无扩展名归档original经批准SHA核验后只临时复制为source.xlsx解析，原件字节不变且不放宽适配器；规划前失败向当前已开放未完成包回传0/0受阻遥测，不推理、不授覆盖；直传门槛按receive实际JSON HTTP编码计算，中文转义后超预算走既有分片，分片外层亦守6000字节预算。 窗口定位续修：findings schema以每张工作表为一个闭合oneOf分支，sheet为const、cell枚举仅含该表实际可见定位，读取及最终综合均保持关联。提示明确本窗未见不等于整包缺失，不由机柜或假设功率推导MW，不要求将市区/地址填入省份列；这些提示不代替实际语义核查。同一冻结窗口的语义无效请求和响应原字节移入rejected-responses并另存错误及摘要；前两份各退避300秒重试本窗，第三份停止自动开销，持久响应计数不因status丢失或GPU等待重置。已成功窗口不重读不改写，失败不推进游标；未推进缓存的输入/请求/结果摘要同样核对，篡改不能作为可重试模型错误。system/schema改变必须隔离旧配方后重读，现有成功窗口不可混入新配方。无服务器完成包/当前attempt报告/未回执outbox/本地回执时，受控封存精确taskSHA目录及状态后可从0读取同一running attempt，不编辑服务器完成数或宣称新尝试。 身份上下文续修：每个重复anchor携带同表同列的原生表头sheet/cell/locator/value；读取schema与严校验的可见表头集合同时取自原生片段和identity_context，表头不进入候选值完整格集合，不新增覆盖。提示禁止跨表借列和要求在表头填值；夹具验证每个窗口、同列异表、原packet不改写、表头可解释问题而不能取得候选值资格。 最终综合预算与.31绑定分离：generate_campus_adjudication及.35未开始包专用generate_campus_reading使用固定Ollama0.33.3完整renderer和同GGUF实际token数组，32768上下文／4096输出／1024预留、think:false、truncate:false、shift:false保持；默认generate及legacy读取窗口的字节门槛、冻结配方和成功缓存不改。替代.30跨独立请求保持同PID／32K runner的限制：proof v2共同model_binding核manifest/config实际摘要、模型层digest/size与文件属性；tokenizer_binding仅在完整/tokenize操作前后核固定命令、ollama四种UID、PID/启动时钟、loopback端口、同模型、单槽及命令/props上下文一致，合法16K/32K实例均可完整分词，不证明生成上下文。不读取跨UID exe链接或升权。独立generation前后只核相同模型绑定和完整请求摘要，合法PID变化不拒绝；成功后generation_binding只记录模型绑定/请求/响应摘要、actual_model和前后模型核验，不宣称同PID生成，measure无此字段。schema严格JSON复制、proof取实际body.format摘要，调用方修改不得改变已计量请求。长完整输入仍被默认byte guard拒绝而final按真实tokens验证，27648/27649边界包含输出和预留；错误profile/stage、生成型debug、缺完整system/user、非整数tokens、权重/版本/模板/输入变化及token超限均拒绝。只有生成提交前、模型身份未变且分词实例消失或/tokenize期间轮换可产生runner_contention；分词传输错误须复核实例竞争，未知故障不放行。前两次300秒退避、第三次operator，GPU等待保留计数与7窗原字节；每次重新渲染分词。生成后模型不符或传输结果未知不自动重试，已返回未绑定请求/响应/proof写unverified-adjudication.json，status丢失也阻止重放，不形成adjudication/proposal/receipt。没有网络代理/重定向或超限响应放行，模型层标识不冒充每包全权重重哈希。 最终增量响应.33仅替代原问题重复输出：完整窗口摘要/findings/candidates/候选原文及来源/任务/身份上下文保持输入，响应summary须1..600字符且非空白，reviewed_finding_ids必须精确覆盖全部原问题0起始索引且唯一、可乱序但禁bool，new_findings只新增完整跨窗问题、accept_candidates只选原候选索引。原reading问题原文字段逐字保留，新增问题经过原生定位/P0/P1/P2校验后追加；new_findings无maxItems裁切，既有报告接收上限保持；不得裁剪、重写或丢弃原问题。final_recipe.version为campus-adjudication-delta-v1，绑定system_sha256/schema_sha256/request_sha256/reading_inventory_sha256/findings_sha256/candidates_sha256，reading inventory为按序完整窗口结果，外层final_recipe_sha256也须一致；成功adjudication与未绑定completion都带身份，恢复复算且旧/缺失配方拒绝；最终指令/schema变化不改reading配方或重读成功窗。原32K/4096/1024及模型/完整模板/分词/GPU门槛不变，新增问题确实超输出上限仍blocked，不分页。delta形状/summary失败为campus_adjudication_delta_shape_invalid，原问题索引不全为campus_adjudication_findings_incomplete；旧final配方不匹配、unverified completion与截断继续原拒绝路径，状态文件丢失也不能重放。仅本次精确AH-FY-JZ作用域经当前服务器无完成/outbox/proposal、实际截断及完整reading证据复核后由运维封存旧final原字节和状态并恢复同attempt；未知结果或未核实失败不自动重放，不变更首包/原件/阅读游标。已prepared的proposal/outbox继续既有幂等交付，不因final升级重审；delta只适用于尚未prepared的最终步骤。",
-      "packed_native_reading_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。只有生成前真实预算证明可二分，单片超限停止，分拆链完整复验。dispatch先持久，完整成功响应与游标分离恢复；未知派发／截断／未绑定响应留审计并禁止删除status后重放。语义无效完整响应仍限三份；每轮至多一次内容生成，GPU前后门槛与原final／服务器覆盖／发布保持。",
-      "reading_receipt_requirement": "2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。"
+      "packed_native_reading_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。",
+      "reading_receipt_requirement": "2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。",
+      "output_limit_split_requirement": "仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。"
     },
     {
       "policy": "daily-publication-20261014",
