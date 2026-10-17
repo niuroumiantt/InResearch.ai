@@ -5,12 +5,16 @@ import io
 import json
 from pathlib import Path
 import unittest
+import uuid
+from xml.sax.saxutils import escape
 from unittest.mock import patch
 from zipfile import ZipFile
 
 from inresearch.delivery import city_location, source_publication as publication
 from inresearch.knowledge import industry
 from inresearch.materials import inbox, task_analysis
+from inresearch.storage.files import write_json_streaming
+from inresearch.storage.layout import workspace_path
 from tests.unit import test_task_full_review as fixtures
 
 
@@ -43,6 +47,49 @@ class CityLocationTests(unittest.TestCase):
 
     def install(self, payload=None):
         return city_location.install(self.root, payload or self.payload, self.geography)
+
+    def approved_source(self, count=1, prefix='批量测试园区', formula_last=False):
+        # Full registered layout, actual received bytes and normal owner approval.
+        raw = fixtures.campus_workbook(); stream = io.BytesIO()
+        index = list(city_location.native_review_contract.LAYOUTS['mainland-register-v6']['sheets']).index('1-地点与身份') + 1
+        with ZipFile(io.BytesIO(raw)) as source, ZipFile(stream, 'w') as target:
+            for info in source.infolist():
+                data = source.read(info.filename)
+                if info.filename == f'xl/worksheets/sheet{index}.xml':
+                    rows = ''.join('<row r="'+str(row)+'">'+''.join(
+                        f'<c r="{column}{row}" t="inlineStr"><is><t>{escape(value)}</t></is></c>'
+                        for column, value in [('B', prefix+str(row)), ('D', '河北省'), ('E', '张家口市')])+'</row>'
+                        for row in range(10, 10+count))
+                    if formula_last:
+                        cell = f'<c r="E{9+count}" t="inlineStr"><is><t>张家口市</t></is></c>'
+                        rows = rows.replace(cell, f'<c r="E{9+count}" t="str"><f>"张家口市"</f><v>张家口市</v></c>')
+                    data = data.replace(b'</sheetData>', rows.encode()+b'</sheetData>')
+                target.writestr(info.filename, data)
+        raw = stream.getvalue()
+        item, _ = inbox.receive(io.BytesIO(raw), len(raw), {'name':'城市批次.xlsx',
+            'submitter':'员工', 'project_name':'城市批次原件', 'package_id':'dc-census-cn'}, 'anonymous', public=True)
+        inbox.mutate({'id':item['id'], 'sha256':item['sha256'], 'expected_revision':0,
+            'operation_id':str(uuid.uuid4()), 'action':'approve_and_analyze'}, 'owner', 'admin')
+        inbox.acknowledge(item['id'], item['sha256'])
+        return [{**self.payload['sites'][0], 'site_id':f"batch-{item['id']}-{row}",
+            'submission_id':item['id'], 'source_sha256':item['sha256'],
+            'name_cell':f'B{row}', 'province_cell':f'D{row}', 'city_cell':f'E{row}'} for row in range(10,10+count)]
+
+    def seed_registered_batch(self, items):
+        # Establish a controlled, already-published test ledger. The city call
+        # below still runs real inbox, workbook, projection, lock, CAS and write.
+        state = publication.state(self.root); template = state['sites'][self.site]
+        for item in items:
+            proof = city_location._membership(item); name = proof['cells']['name']['value']
+            entry = copy.deepcopy(template); baseline = entry['baseline']
+            baseline.update(site_id=item['site_id'], name=name)
+            baseline['identity_registration'].update(site_id=item['site_id'], name=name, native_name=name)
+            observation = entry['observations'][0]
+            observation['fields']['name'] = name
+            observation['adoption']['document_refs'][0]['source_sha256'] = item['source_sha256']
+            state['sites'][item['site_id']] = entry
+        write_json_streaming(workspace_path(publication.PATH, self.root), state)
+        return {**self.payload, 'expected_state_sha':publication.digest(state), 'sites':items}
 
     def test_dual_originals_add_city_projection_without_identity_or_history_rewrite(self):
         old = publication.projects(self.root)['records'][0]
@@ -147,15 +194,114 @@ class CityLocationTests(unittest.TestCase):
             self.assertEqual(self.install()['new_locations'], 1)
 
     def test_changed_original_before_commit_aborts_atomic_pointer(self):
-        before = publication.state(self.root); original = city_location._membership
-        calls = []
-        def changed(item):
-            result = original(item); calls.append(1)
-            if len(calls) == 2: result['cells']['city']['value'] = '不同城市'
+        before = publication.state(self.root); original = publication.projects
+        path = workspace_path(publication.PATH, self.root); original_bytes = path.read_bytes()
+        def changed(*args, **kwargs):
+            result = original(*args, **kwargs)
+            (inbox.record_path(self.fixture.item['id'])/'content').write_bytes(b'changed before commit')
             return result
-        with patch.object(city_location, '_membership', side_effect=changed):
-            with self.assertRaisesRegex(ValueError, 'membership_source_changed'): self.install()
+        with patch.object(publication, 'projects', side_effect=changed):
+            with self.assertRaisesRegex(ValueError, '原件内容已变化'): self.install()
         self.assertEqual(publication.state(self.root), before)
+        self.assertEqual(path.read_bytes(), original_bytes)
+
+    def test_131_locations_parse_each_approved_source_once_per_validation_phase(self):
+        items = self.approved_source(131)
+        payload = self.seed_registered_batch(items); frozen_payload = copy.deepcopy(payload)
+        before = publication.state(self.root)
+        with patch.object(city_location, 'Workbook', wraps=city_location.Workbook) as books, \
+                patch.object(inbox, 'worker_record', wraps=inbox.worker_record) as approved, \
+                patch.object(city_location.native_review_contract, 'detect_layout', wraps=city_location.native_review_contract.detect_layout) as layouts:
+            receipt = self.install(payload)
+            self.assertEqual((books.call_count, approved.call_count, layouts.call_count), (2,2,2))
+        self.assertEqual(receipt['new_locations'], 131)
+        after = publication.state(self.root)
+        for item in items:
+            stored = after['sites'][item['site_id']]
+            self.assertEqual(stored['observations'], before['sites'][item['site_id']]['observations'])
+            self.assertEqual(stored['baseline'], before['sites'][item['site_id']]['baseline'])
+            self.assertEqual(stored['city_location']['membership']['cells']['city'], {'cell':item['city_cell'], 'value':'张家口市'})
+        self.assertEqual(payload, frozen_payload)
+        path = workspace_path(publication.PATH, self.root); original_bytes = path.read_bytes()
+        # A later call must reapprove/reparse; the old receipt remains byte exact.
+        with patch.object(city_location, 'Workbook', wraps=city_location.Workbook) as books:
+            replay = self.install({**payload, 'expected_state_sha':publication.digest(after)})
+            self.assertEqual(books.call_count, 1)
+        self.assertEqual(replay['state'], 'already_published')
+        self.assertEqual(replay['batch_id'], receipt['batch_id'])
+        self.assertEqual(path.read_bytes(), original_bytes)
+
+    def test_batch_sources_are_isolated_by_submission_and_sha_and_keep_input_order(self):
+        first = self.approved_source(2, '甲批园区'); second = self.approved_source(2, '乙批园区')
+        items = [first[1], second[0], first[0], second[1]]
+        with patch.object(city_location, 'Workbook', wraps=city_location.Workbook) as books:
+            proofs = city_location._memberships(items)
+        self.assertEqual(books.call_count, 2)
+        self.assertEqual([p['cells']['name']['value'] for p in proofs], ['甲批园区11','乙批园区10','甲批园区10','乙批园区11'])
+        proofs[0]['cells']['city']['value'] = 'tampered local proof'
+        self.assertEqual(proofs[2]['cells']['city']['value'], '张家口市')
+        with patch.object(city_location, 'Workbook', wraps=city_location.Workbook) as books:
+            again = city_location._memberships(items)
+        self.assertEqual(books.call_count, 2)
+        self.assertEqual(again[0]['cells']['city']['value'], '张家口市')
+        wrong = {**first[1], 'source_sha256':second[0]['source_sha256']}
+        with self.assertRaisesRegex(ValueError, 'source_changed'):
+            city_location._memberships([first[0], wrong])
+
+    def test_same_bytes_in_an_unapproved_submission_cannot_reuse_another_approval(self):
+        raw = (inbox.record_path(self.fixture.item['id'])/'content').read_bytes()
+        other, _ = inbox.receive(io.BytesIO(raw), len(raw), {'name':'同字节.xlsx',
+            'submitter':'员工', 'project_name':'待批准副本', 'package_id':'dc-census-cn'}, 'anonymous', public=True)
+        self.assertEqual(other['sha256'], self.fixture.sha)
+        item = {**self.payload['sites'][0], 'submission_id':other['id']}
+        with self.assertRaisesRegex(PermissionError, '负责人批准'):
+            city_location._memberships([self.payload['sites'][0], item])
+
+    def test_approval_revoked_before_commit_is_rechecked_without_partial_write(self):
+        original = publication.projects; path = workspace_path(publication.PATH, self.root)
+        before = path.read_bytes()
+        def revoke(*args, **kwargs):
+            result = original(*args, **kwargs)
+            record = inbox.load(self.fixture.item['id']); record['approval'] = {}
+            inbox.atomic(inbox.record_path(self.fixture.item['id'])/'record.json', record)
+            return result
+        with patch.object(publication, 'projects', side_effect=revoke):
+            with self.assertRaisesRegex(PermissionError, '负责人批准'): self.install()
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_mixed_sources_revalidate_both_and_never_accept_cross_source_names(self):
+        first = self.approved_source(2, '甲批园区'); second = self.approved_source(2, '乙批园区')
+        payload = self.seed_registered_batch([first[1], second[0], first[0], second[1]])
+        before = workspace_path(publication.PATH, self.root).read_bytes()
+        wrong = copy.deepcopy(payload)
+        wrong['sites'][0].update(submission_id=second[0]['submission_id'], source_sha256=second[0]['source_sha256'])
+        with self.assertRaisesRegex(ValueError, 'name_binding_mismatch'): self.install(wrong)
+        self.assertEqual(workspace_path(publication.PATH, self.root).read_bytes(), before)
+        with patch.object(city_location, 'Workbook', wraps=city_location.Workbook) as books:
+            self.assertEqual(self.install(payload)['new_locations'], 4)
+            self.assertEqual(books.call_count, 4)
+
+    def test_formula_in_a_later_shared_identity_cell_is_still_rejected(self):
+        items = self.approved_source(2, formula_last=True)
+        before = workspace_path(publication.PATH, self.root).read_bytes()
+        with self.assertRaisesRegex(ValueError, 'literal_required'):
+            self.install({**self.payload, 'sites':items})
+        self.assertEqual(workspace_path(publication.PATH, self.root).read_bytes(), before)
+
+    def test_replay_revalidates_approval_and_does_not_reuse_prior_parse(self):
+        self.install(); path = workspace_path(publication.PATH, self.root); before = path.read_bytes()
+        record = inbox.load(self.fixture.item['id']); record['approval'] = {}
+        inbox.atomic(inbox.record_path(self.fixture.item['id'])/'record.json', record)
+        with self.assertRaisesRegex(PermissionError, '负责人批准'): self.install()
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_late_bad_locator_in_shared_source_rejects_whole_batch(self):
+        items = self.approved_source(3); payload = self.seed_registered_batch(items)
+        before = workspace_path(publication.PATH, self.root).read_bytes()
+        for field, value in [('city_cell','G12'), ('province_cell','D11'), ('sheet','4-容量口径与分期')]:
+            invalid = copy.deepcopy(payload); invalid['sites'][-1][field] = value
+            with self.subTest(field=field), self.assertRaises(ValueError): self.install(invalid)
+            self.assertEqual(workspace_path(publication.PATH, self.root).read_bytes(), before)
 
     def test_adm2_requires_exact_native_city_name_and_keeps_administrative_scope(self):
         self.lines[1] = geoline(kind='A', feature='ADM2'); self.write_geography()

@@ -2,6 +2,8 @@
 
 2026-10-17 城市级接收契约（.36）：`delivery.city_location`复用现有source_publication的单锁、全状态规范SHA和原子持久指针，独立`locate-city`具名操作不创建园区／研究观测或模型调用。输入version=1、expected_state_sha、geography_sha256及最多500项sites；每项固定site_id、submission_id、source_sha256、sheet原生表名、name_cell、province_cell、city_cell、geoname_id字符串、geonames_line整数。地理原件仅经显式CLI路径读取，ZIP逐行解码CN.txt，完整SHA流式核验，不驻留整份文本；原件主表按已登记layout和列映射复算，不解释材料内指令。合法点及两源原文审计由接收端生成，调用方坐标／额外字段拒绝。
 
+2026-10-17 城市批量解析范围（.38）：一次install内按精确`(submission_id, source_sha256)`分组，仅在同一校验阶段共享完整工作簿解析。初验和持有发布锁后的写前复验分别重新调用批准／完整原件SHA校验、精确副本SHA与布局解析；不得跨阶段或跨调用保留解析缓存，也不能仅按SHA绕过不同提交的批准。逐点原生列、同一行名称／省／市、非公式原文及地理双源闭包分别校验，返回证明相互独立、维持输入顺序。一次只持有一组完整工作簿；写前重新生成全部证明并逐值相等才提交。任一源或批准变化、错名、异列或公式均整批拒绝；原payload／回执摘要、完整CAS、精确重放和旧观测保持。
+
 发布前和精确重放均复验批准来源及GeoNames字节；新批强制完整状态CAS，任一条错误整批不写。回执摘要不含执行CAS，换fresh CAS重放同内容仍返回already_published且new_locations=0；已有不同city或精确坐标不能追加换点。city_location留在runtime sites内，projects只投影未知位置，ordinary bundle不将派生坐标导成首次身份；后续普通来源追加继续保留city审计。地图/public geography只公开精度、基准、方法、feature_code、允许的URL与basis，原件SHA／格位／完整原行保持私有。`raw_atlas`关联园区时继承真实定位精度，不能把城市参考点重新标成site。修改此账本会改变完整来源状态与任务上下文，运维应在已完成包边界发布并核回执，不能借此重置已开始包或成功阅读。
 
 2026-10-11 对象通道扩展：workflow.stock_objects 以显式 JSON Pointer 确定性提取候选；workflow.object_review 核原件、接收来源、定位与对象封印，准备和实际具名C3采用分开。正式写入只追加 data/object_observations.json，一次锁内CAS/原子提交；不覆盖现有公司档案、产品候选、价格基线和模型参数。knowledge.object_observations 统一身份、区间、有效时间、冲突与所有者修订；严格校验检查账本。research_publication.json 声明公开字段，public_records 是首页与登录后分页 API 的同一服务端出口，仅统计允许公开的记录；不得直接序列化内部账本。API 支持对象/类型/公司筛选、最多100条分页，拒绝未知/重复参数。会员扩展须校验独立付费权益，不复用内部member角色，未实现时不授予访问。Fetchspec源采集/打包/接收允许无目标发现，声明模型目标仍核原合同；保持单一发布队列。

@@ -12,6 +12,8 @@
 
 payload固定version=1、geography_sha256、expected_state_sha及sites数组；每项为site_id、submission_id、source_sha256、sheet（原表名而非序号）、name_cell、province_cell、city_cell、geoname_id（字符串）、geonames_line（1起整数）。v6/v5主表`1-地点与身份`为B/D/E；dahai主表`园区主表`为B/G/H；全国库主表`园区主表`为F/C/D。格位必须同原行且布局表头完整匹配。接收端核批准原件、已登记名称观测和GeoNames省／城市闭包；不得用GeoNames单文件代替园区归属证据，不能传lat/lon覆盖。PPLC/PPLA/PPLA2或精确全名ADM2可用，其余类别保持待补。
 
+批量解析优化（.38）不增加新的操作入口或批准步骤。同源多点在初验与锁内写前复验各完整解析一次，仍逐点核原文；不同提交即使字节相同也各自验批准。缓存仅限当前阶段，重放也重新读原件。不要为追求速度跳过第二阶段、替换为仅检查文件时间或直接改账本；在途旧CLI自然完成，版本部署与实际耗时另取回执，不以本地131点计数宣称生产提速。
+
 CAS失效先重新读取实际状态，核本批是否已有回执；同内容摘要不含CAS，原件复验后幂等重放不重复增加。当前已有city或精确点不得换点，异常整批失败且旧状态不变。完成后分别查持久city_location回执、API的coordinates及geography.coordinate_source、地图／浮窗／档案城市级标签和GeoNames链接；同城园区仍各有ID。报告已定位园区数与城市／地级区域数，不能说城市参考坐标就是园区实址或C3。精度更高的新来源须走相应显式核验，不由本入口覆盖。
 
 > CURRENT · 2026-10-07（首版 2026-09-13）。规则归属与替代关系见 framework/CURRENT.md。
