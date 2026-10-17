@@ -1,10 +1,19 @@
-/* Anonymous uploads; receipts remain private recovery credentials. */
+/* Account-bound uploads reuse the existing receipt-sealed batch workflow. */
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const key = 'inresearch-task-upload-receipts-v1';
-  const pendingBatchKey = 'inresearch-task-upload-pending-batches-v1';
+  let key = 'inresearch-task-upload-receipts-v1';
+  let pendingBatchKey = 'inresearch-task-upload-pending-batches-v1';
+  let identityReady = false;
+  window.addEventListener('project-work-loaded',event=>{
+    const identity = event.detail;
+    identityReady = Boolean(identity.member);
+    key = 'inresearch-task-upload-receipts-v2:' + identity.user_id;
+    pendingBatchKey = 'inresearch-task-upload-pending-batches-v2:' + identity.user_id;
+    if (identityReady && !uploading) finishBatches();
+    if (window.researchTasksState) loadPackages(window.researchTasksState);
+  });
   const size = value => value >= 1048576 ? `${(value / 1048576).toFixed(1)} MiB` : `${Math.ceil(value / 1024)} KiB`;
   const receipts = () => { try { const rows = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(rows) ? rows.slice(0,100) : []; } catch { return []; } };
   const save = rows => localStorage.setItem(key, JSON.stringify(rows.slice(0,100)));
@@ -88,6 +97,10 @@
   dropZone.addEventListener('drop',event=>addFiles([...event.dataTransfer.files]));
   function loadPackages(data) {
     if (!Array.isArray(data?.packages)) return;
+    if (window.projectWorkState) {
+      const ids = new Set(window.projectWorkState.packages.filter(p=>p.can_submit).map(p=>p.id));
+      data = {...data, packages:data.packages.filter(p=>ids.has(p.id))};
+    }
     const select = $('upload-package'), before = select.value;
     select.innerHTML = '<option value="">选择工作包</option>' + data.packages.map(p => `<option value="${esc(p.id)}">${esc(p.title)} · ${esc(p.region)}</option>`).join('');
     selectedPackageId = window.activeResearchPackageId || selectedPackageId || before;
@@ -103,6 +116,7 @@
     event.preventDefault();
     const form = event.currentTarget;
     if (uploading) return;
+    if (!identityReady) { $('upload-message').textContent = '请登录并取得项目提交权限。'; return; }
     uploading = true; $('upload-submit').disabled = true; form.elements.file.disabled = true; renderPendingFiles();
     const saved = [], failed = [];
     try {
@@ -135,6 +149,7 @@
       const remaining = failed.filter(row=>!received.some(item=>item.batch_index === row.index));
       $('upload-message').innerHTML = `<span data-upload-result="${received.length}">${received.length} 份附件已收到${received.length ? batchFinished ? '，等待负责人按批次确认；后续请查看本工作包的共同现行反馈。' : '，批次提交尚未完成，请恢复提交状态。' : '。'}</span>${remaining.length ? `<p>${esc(remaining.length+' 份尚未确认收到，已保留在待提交列表：'+remaining.map(row=>row.text).join('；'))}</p>` : ''}`;
       pendingFiles = pendingFiles.filter(row=>!saved.some(savedRow=>savedRow.queueId === row.id));
+      if (saved.length) window.dispatchEvent(new CustomEvent('project-work-refresh'));
       if (saved.length) window.dispatchEvent(new CustomEvent('research-task-view-requested',{detail:{view:'submission-progress'}}));
       await refreshOwnerShortcut();
     } catch (error) { $('upload-message').textContent = error.message; }
@@ -149,14 +164,14 @@
       $('upload-owner-shortcut').hidden = false;
       const pending = data.items.filter(item => ['pending_approval','queued'].includes(item.status) || item.status === 'archived' && /\.(xlsx|txt|md|csv|tsv|json|html?|pdf|docx)$/i.test(item.name) && !item.analysis_requested_at).length;
       $('upload-owner-shortcut-count').textContent = pending ? `${pending} 份文件待确认。审批与上线报告已移到独立工作台。` : '审批与上线报告已移到独立工作台。';
-    } catch { /* Anonymous uploading remains usable when the owner inbox is unavailable. */ }
+    } catch { /* The authorized submission flow remains usable when the review queue is unavailable. */ }
   }
   $('task-upload-form').elements.file.addEventListener('change',event=>{
     addFiles([...event.target.files]);
     event.target.value = '';
   });
   const activateView = view => {
-    if (view === 'submission-progress') { refreshOwnerShortcut(); if (!uploading) finishBatches(); }
+    if (view === 'submission-progress' && identityReady) { refreshOwnerShortcut(); if (!uploading) finishBatches(); }
   };
   window.addEventListener('research-task-view',event=>activateView(event.detail?.view));
   activateView(window.activeResearchTaskView || '');

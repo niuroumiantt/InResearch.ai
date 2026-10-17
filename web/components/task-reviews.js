@@ -93,6 +93,7 @@
   }
 
   function actionsHtml(item) {
+    if (item.can_approve === false) return '<p>自己的提交由其他获授权审批人确认。</p>';
     const status = state(item);
     if (recoveryFor(item)) return '<section class="review-decision"><h3>本批确认尚未完成</h3><p>原操作已保存，继续完成同一份清单即可开始联合审阅。</p><button type="button" class="review-primary" data-batch-action="approve_and_analyze">恢复本批确认</button></section>';
     if (item.full_analysis) return fullProgressHtml(item);
@@ -118,6 +119,7 @@
   }
 
   function packageAssignmentHtml(item) {
+    if (item.can_manage_analysis === false) return '';
     if (item.status === 'rejected' || item.full_analysis || (item.analysis_reports || []).length || item.analysis_progress?.state === 'source_error') return '';
     if (!packageRows.length) return '<section class="review-decision"><h3>系统工作包</h3><p>暂时无法读取当前工作包，请刷新后再绑定。</p></section>';
     const options = packageRows.map(row => `<option value="${esc(row.id)}"${row.id === item.package_id ? ' selected' : ''}>${esc(row.title)} · ${esc(row.region)} · ${esc(row.id)}</option>`).join('');

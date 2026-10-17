@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>完成全球园区信息的爬取 · inresearch.ai</title>
 <script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
-<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/research-tasks.css"><link rel="stylesheet" href="/assets/task-uploads.css"><!-- RESEARCH_ARCHITECTURE_STYLE -->
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/research-tasks.css"><link rel="stylesheet" href="/assets/task-uploads.css"><link rel="stylesheet" href="/assets/project-access.css"><!-- RESEARCH_ARCHITECTURE_STYLE -->
 <style>
 .arch-figure{margin:22px 0;padding:20px;border:1px solid var(--ui-line);background:var(--ui-soft);color:var(--ui-ink);box-sizing:border-box}
 .arch-figure *{box-sizing:border-box}.arch-figure figcaption{font-size:12px;color:var(--ui-muted);margin-top:14px;line-height:1.7}
@@ -18,11 +18,18 @@
 </head>
 <body><inresearch-shell data-section="acquisition"></inresearch-shell>
 <main class="mission-page">
-  <div class="mission-topline"><span>团队任务中心 / 当前任务：全球数据中心园区普查</span><span>公开接力 · 原件须经负责人确认</span></div>
+  <div class="mission-topline"><span>团队任务中心 / 当前任务：全球数据中心园区普查</span><span>登录参与 · 原件须经授权审批人确认</span></div>
   <header class="mission-hero">
     <div><p class="mission-eyebrow"><span class="priority">P1</span> 全球数据中心园区普查</p><h1 id="mission-title">完成全球园区信息的爬取</h1><p class="mission-intro">找到全球真实数据中心园区，持续补齐地点、建设与运营主体、水、电和容量信息。</p></div>
   </header>
-  <nav class="mission-nav" role="tablist" aria-label="任务工作台"><button id="task-home-tab" type="button" role="tab" data-task-view="task-home" aria-controls="task-home" aria-selected="true">任务首页</button><button id="submission-progress-tab" type="button" role="tab" data-task-view="submission-progress" aria-controls="submission-progress" aria-selected="false">提交与进展</button></nav>
+  <nav class="mission-nav" role="tablist" aria-label="任务工作台"><button id="my-work-tab" type="button" role="tab" data-task-view="my-work" aria-controls="my-work" aria-selected="false" hidden>我的工作</button><button id="task-home-tab" type="button" role="tab" data-task-view="task-home" aria-controls="task-home" aria-selected="true">任务首页</button><button id="submission-progress-tab" type="button" role="tab" data-task-view="submission-progress" aria-controls="submission-progress" aria-selected="false">提交与进展</button></nav>
+  <section id="my-work" class="task-panel mission-section" data-task-panel="my-work" role="tabpanel" aria-labelledby="my-work-tab" hidden>
+    <div class="section-heading"><div><p class="mission-eyebrow" id="my-identity"></p><h2>我的工作</h2></div><button type="button" id="my-refresh">刷新</button></div>
+    <p id="my-status" role="status" aria-live="polite"></p>
+    <nav class="project-links" aria-label="项目工作入口"><button type="button" data-task-view-request="submission-progress">提交资料</button><a id="my-review-link" href="/task-reviews.html" hidden>待我审批 →</a><a id="my-access-link" href="/admin/project-access.html" hidden>成员与授权 →</a><a id="my-front-link" href="/projects.html" hidden>园区前台 →</a></nav>
+    <h3>我负责的工作包</h3><div id="my-packages" class="project-work-list"></div>
+    <h3>我的提交</h3><p class="small muted">处理结果与实际上线分别显示；下一步以工作包的共同现行反馈为准。</p><div id="my-submissions" class="project-work-list"></div>
+  </section>
   <section id="task-home" class="task-panel" data-task-panel="task-home" role="tabpanel" aria-labelledby="task-home-tab">
   <section id="mission-dashboard" class="mission-section" aria-labelledby="dashboard-title">
     <div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">TEAM DASHBOARD</p><h2 id="dashboard-title">全团队进展</h2></div><button type="button" data-task-view-request="submission-progress" class="primary-button">提交资料与查看进展 ↗</button></div>
@@ -96,10 +103,10 @@
   <section id="submission-progress" class="mission-section submission-progress task-panel" data-task-panel="submission-progress" role="tabpanel" aria-labelledby="submission-progress-tab" hidden>
     <div id="upload-owner-shortcut" class="upload-owner-shortcut" hidden><div><strong>管理员作业审批</strong><p id="upload-owner-shortcut-count">正在读取待确认文件…</p></div><a class="primary-button" href="/task-reviews.html">进入审批工作台 →</a></div>
     <div class="section-heading compact-panel-heading"><div><p class="mission-eyebrow">按工作包共同推进</p><h2 id="upload-title">提交资料，查看反馈与下一步</h2></div><p>负责人确认后统一审阅，反馈与下一步以本工作包现行为准。</p></div>
-    <div class="submission-progress-layout"><form id="task-upload-form" class="task-upload-form compact-upload-form">
+    <div class="submission-progress-layout"><p id="project-login-note" role="status">正在确认登录与项目权限…</p><form hidden id="task-upload-form" class="task-upload-form compact-upload-form">
       <div class="compact-upload-grid">
         <label>提交到 <select name="package_id" id="upload-package" required><option value="">选择工作包</option></select></label>
-        <label>姓名 <input name="submitter" maxlength="120" autocomplete="name" required placeholder="必填"></label>
+        <label>姓名 <input name="submitter" readonly maxlength="120" autocomplete="name" required placeholder="必填"></label>
         <label class="upload-topic">材料主题 <input name="project_name" maxlength="180" required placeholder="例如：园区地址与已投运分期补证"></label>
         <label class="compact-file-picker">附件 <span id="upload-file-label">添加附件 · 可多次选择</span><input name="file" type="file" multiple aria-describedby="upload-files-help"></label>
       </div>
@@ -119,7 +126,7 @@
     </div>
   </section>
   </section>
-  <footer class="mission-footer"><span>采集到一条就交一条 · 缺项后补 · 原件和历史始终保留</span><a href="/doc.html?f=framework/03_bom_and_collaboration.md">现行园区信息清单 →</a></footer>
+  <footer class="mission-footer"><span>采集到一条就交一条 · 缺项后补 · 原件和历史始终保留</span><a href="/tasks.html#data-angles">现行园区信息清单 →</a></footer>
 </main>
 <dialog id="package-dialog" aria-labelledby="package-dialog-title"><form id="package-form"><div class="dialog-heading"><h2 id="package-dialog-title">分配工作包</h2><button type="button" id="close-package" aria-label="关闭工作包">×</button></div><input type="hidden" name="package_id"><label>工作包名称<input name="title" required maxlength="180"></label><label>国家 / 地区范围<input name="region" required maxlength="200"></label><label>具体对象、字段与时间范围<textarea name="scope" required maxlength="3000" rows="3"></textarea></label><label>来源方向<textarea name="sources" required maxlength="2000" rows="2"></textarea></label><div class="form-pair"><label>参与成员<input name="assignee" maxlength="100" placeholder="多人用逗号分隔成员登录名"></label><label>截止日期<input name="due" type="date"></label></div><div class="form-pair"><label>执行机器<input name="machine" maxlength="200" placeholder="例如 m5 / m4 / macmini"></label><label>实际模型 / 版本<input name="model" maxlength="200" placeholder="未知留空；无模型可填“未使用”"></label></div><label>协调状态<select name="status"><option value="unassigned">待分配</option><option value="ready">待开始</option><option value="in_progress">进行中</option><option value="blocked">受阻</option><option value="delivered">已交付</option></select></label><label>交付地址 / 接收回执<input name="delivery_pointer" maxlength="2000" placeholder="私有材料包路径、共享地址或真实接收回执"></label><label>备注 / 缺项 / 阻塞原因<textarea name="note" maxlength="3000" rows="2"></textarea></label><p id="package-message" class="small" role="status" aria-live="polite"></p><div class="dialog-footer"><span class="small muted">保存到服务端台账，所有成员共享。</span><button id="save-package" class="primary-button" type="submit">保存工作包</button></div></form></dialog>
-<script src="/assets/research-tasks.js"></script><script src="/assets/task-uploads.js"></script></body></html>
+<script src="/assets/research-tasks.js"></script><script src="/assets/task-uploads.js"></script><script src="/assets/project-work.js"></script></body></html>

@@ -84,6 +84,23 @@ def resolve(root, page):
 
 def navigation(root, role, user, page='/'):
     doc = manifest(root)
+    if role == 'collaborator':
+        from inresearch.interfaces import project_access
+        value = {'member':project_access.member(user, root),
+                 'frontend':bool(project_access.grant(user, root).get('frontend')),
+                 'can_approve':project_access.can_review(user, root=root)}
+        children = [{'id':'tasks','label':'我的工作与团队进展','href':'/tasks.html'}]
+        if value['can_approve']:
+            children.append({'id':'reviews','label':'待我审批','href':'/task-reviews.html'})
+        delivery = [{'id':'campuses','label':'全球园区','href':'/projects.html','children':[]}] if value['frontend'] else []
+        backstage = [{'id':'production','label':'项目工作','href':'/tasks.html','children':children}] if value['member'] else []
+        requested_page = _one(parse_qs(urlsplit(page).query), 'page', '/') if urlsplit(page).path == '/api/navigation' else page
+        return {'ok':True, 'version':doc['version'], 'identity':{'kind':'collaborator','name':user,'role':role},
+                'navigation':{'delivery':delivery,'backstage':backstage},
+                'active':resolve(root, requested_page),
+                'public_navigation':doc['public_navigation'], 'delivery_pages':[],
+                'footer':{'groups':[],'legal':[],'updates':[],'runtime':None},
+                'search':{'enabled':False,'scopes':[],'default_scope':None}}
     # HTTP supplies a query in /api/navigation?page=...; standalone callers can
     # pass the page itself. Hash is useful for resolving existing in-page tools.
     if urlsplit(page).path == '/api/navigation':

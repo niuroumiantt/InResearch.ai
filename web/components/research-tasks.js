@@ -13,7 +13,7 @@
     return 'task-home';
   };
   const showTaskView = view => {
-    const allowed = new Set(['task-home','submission-progress']);
+    const allowed = new Set(['my-work','task-home','submission-progress']);
     if (!allowed.has(view)) view = 'task-home';
     document.querySelectorAll('[data-task-panel]').forEach(panel => {
       panel.hidden = panel.dataset.taskPanel !== view;
@@ -37,7 +37,7 @@
     buttons[next].click(); buttons[next].focus({preventScroll:true});
   }
   document.querySelector('.mission-nav').addEventListener('keydown', event =>
-    moveTab(event, [...document.querySelectorAll('[data-task-view]')]));
+    moveTab(event, [...document.querySelectorAll('[data-task-view]')].filter(button=>!button.hidden)));
   document.querySelectorAll('[data-task-view-request]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskViewRequest)));
   window.addEventListener('research-task-view-requested',event=>showTaskView(event.detail?.view));
   window.addEventListener('hashchange',()=>showTaskView(viewForHash(location.hash)));
@@ -51,7 +51,7 @@
     note.hidden = kind === 'current';
     note.textContent = kind === 'current' ? '' : kind === 'loading' ? state ? '正在刷新；上次数据暂不作执行依据。' : '正在读取最新共同反馈…' : state ? '刷新失败；上次数据未确认有效，请重试后再执行。' : message || '读取失败，请稍后重试。';
   }
-  const canEdit = item => state && (state.can_create || (state.role === 'intern' && String(item.assignee || '').split(/[,，、;；\n]+/).map(name => name.trim()).includes(state.actor)));
+  const canEdit = item => state && (item.can_update || state.can_create || (state.role === 'intern' && String(item.assignee || '').split(/[,，、;；\n]+/).map(name => name.trim()).includes(state.actor)));
   const value = name => form.elements.namedItem(name);
 
   async function load() {
@@ -68,7 +68,7 @@
       window.researchTasksState = state;
       window.dispatchEvent(new CustomEvent('research-tasks-loaded',{detail:state}));
       $('new-package').hidden = !state.can_create;
-      $('task-role-note').textContent = state.can_create ? '内部成员可以新增、分配和更新工作包；多人协作可用逗号分隔成员登录名，各成员可更新自己的状态、交付与备注。' : state.role === 'intern' ? '实习生成员可查看全部分工；只可更新包含自己登录名的工作包状态、交付与备注。范围、参与成员、机器与模型由内部成员维护。' : '任务方向、协调状态和公开样例可直接查看；实际参与成员、机器、模型、备注和交付指针登录后可见。';
+      $('task-role-note').textContent = state.can_create ? '内部成员可以新增、分配和更新工作包；多人协作可用逗号分隔成员登录名，各成员可更新自己的状态、交付与备注。' : state.role === 'intern' ? '实习生成员可查看全部分工；只可更新包含自己登录名的工作包状态、交付与备注。范围、参与成员、机器与模型由内部成员维护。' : state.role === 'collaborator' ? '可查看本项目的分工与共同进展；个人提交进度在“我的工作”中更新，任务安排由负责人维护。' : '任务方向、协调状态和公开样例可直接查看；实际参与成员、机器、模型、备注和交付指针登录后可见。';
       render(); renderRegister();
       $('tasks-status').textContent = `服务端台账 · 版本 ${state.revision} · ${state.packages.length} 个工作包。${state.public_view?'公开只读视图；登录后可查看实际分工并协作。':'机器与模型按实际执行填写，未分配不默认运行。'}`;
     } catch (error) {
@@ -180,7 +180,7 @@
     $('package-current-progress-summary').textContent = `${currentRead ? '共同进展' : '上次读取的共同进展'}：${current.title}已成功入库 ${format(publishedSites)} 个去重园区，${format(publishedStatements)} 条来源已上线${feedbackRounds == null ? '' : `，${format(feedbackRounds)} 轮团队反馈已形成`}。`;
     const latestReceived = (progress.events || [])[0];
     $('package-current-received').textContent = latestReceived?.received_at
-      ? `最新收到：${latestReceived.submitter}（自填）提交的${latestReceived.material} · ${packageTime(latestReceived.received_at)}`
+      ? `最新收到：${latestReceived.submitter}（${latestReceived.submitter_verified ? '账号' : '自填'}）提交的${latestReceived.material} · ${packageTime(latestReceived.received_at)}`
       : '最新收到：尚无负责人确认的材料。';
     $('package-current-feedback').textContent = `${currentRead ? '最新审阅' : '上次读取的审阅'}：${task.feedback_summary || '尚无已完成审阅，按当前工作包范围提交材料。'}`;
     $('package-current-next').hidden = !currentRead;
@@ -200,7 +200,7 @@
       const repliedAt = event.reviewed_at || event.feedback_at;
       const reply = repliedAt ? `${event.reviewed_at ? '审阅并回复' : '处理反馈'}：${packageTime(repliedAt)}` : '审阅并回复：尚未完成';
       const packageState = current.status === 'delivered' ? '当前工作包已交付' : '当前工作包未完成，请继续';
-      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（自填） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p>提交：${esc(packageTime(event.received_at))} · ${esc(reply)}</p><p>系统接受并上线：${esc(event.published_statements ?? 0)} 条 · ${esc(packageState)}</p></div></details></article>`;
+      return `<article class="package-timeline-entry"><details class="package-event"><summary><time title="${esc(packageTime(event.received_at))}">${esc(packageShortTime(event.received_at))}</time><strong>${esc(event.submitter)}（${event.submitter_verified ? '账号' : '自填'}） · ${esc(event.material)}</strong><em>${esc(status)}</em></summary><div class="package-event-body"><p>提交：${esc(packageTime(event.received_at))} · ${esc(reply)}</p><p>系统接受并上线：${esc(event.published_statements ?? 0)} 条 · ${esc(packageState)}</p></div></details></article>`;
     }).join('') : `<p class="package-empty">${currentRead ? '这个工作包尚无已确认的团队接力记录。可按上方当前任务提交第一批原件。' : '上次读取时，这个工作包尚无已确认的团队接力记录。'}</p>`;
     window.activeResearchPackageId = current.id;
     window.dispatchEvent(new CustomEvent('research-package-selected',{detail:{packageId:current.id}}));
@@ -253,7 +253,7 @@
     value('package_id').value = id || '';
     fields.forEach(key=> {
       value(key).value = editing?.[key] || (key === 'status' ? 'unassigned' : '');
-      value(key).disabled = state.role === 'intern' && !['status','delivery_pointer','note'].includes(key);
+      value(key).disabled = (state.role === 'intern' && !['status','delivery_pointer','note'].includes(key));
     });
     $('package-dialog-title').textContent = editing ? editing.title : '新建工作包';
     $('package-message').textContent = '';
