@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.16.37。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2794。
+在册文件：2802。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 411 |
+| 运行代码 | 416 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 266 |
-| 测试 | 257 |
+| 配套说明 | 267 |
+| 测试 | 259 |
 
 ## 在册记录集合
 
@@ -1807,7 +1807,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 57 |
+| `framework/interface_manifest.json` | static_pages | 58 |
 | `framework/interface_manifest.json` | public_pages | 3 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
@@ -1825,7 +1825,7 @@
 | `framework/site_implementation.json` | milestones | 8 |
 | `framework/site_implementation.json` | releases | 0 |
 | `framework/site_navigation.json` | public_navigation | 2 |
-| `framework/site_navigation.json` | page_rules | 28 |
+| `framework/site_navigation.json` | page_rules | 29 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 26 |
@@ -2756,6 +2756,7 @@
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/private-research-tasks-20261012.md](handoff/private-research-tasks-20261012.md) | 配套说明 |
 | [docs/handoff/project-audit-20261010.md](handoff/project-audit-20261010.md) | 配套说明 |
+| [docs/handoff/project-collaborator-access-20261017.md](handoff/project-collaborator-access-20261017.md) | 配套说明 |
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/public-actions-recovery-20261009.md](handoff/public-actions-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/publication-block-recovery-20261009.md](handoff/publication-block-recovery-20261009.md) | 配套说明 |
@@ -3818,6 +3819,7 @@
 | `src/inresearch/interfaces/http.py` | 运行代码 |
 | `src/inresearch/interfaces/material_flow.py` | 运行代码 |
 | `src/inresearch/interfaces/pages.py` | 运行代码 |
+| `src/inresearch/interfaces/project_access.py` | 运行代码 |
 | `src/inresearch/interfaces/public.py` | 运行代码 |
 | `src/inresearch/interfaces/reader.py` | 运行代码 |
 | `src/inresearch/interfaces/repository_pages.py` | 运行代码 |
@@ -3994,6 +3996,7 @@
 | `tests/panel_sources.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
+| `tests/project_access.cjs` | 测试 |
 | `tests/rack_assembly.cjs` | 测试 |
 | `tests/rack_atlas.cjs` | 测试 |
 | `tests/rack_exploded.cjs` | 测试 |
@@ -4144,6 +4147,7 @@
 | `tests/unit/test_product_catalog_companies.py` | 测试 |
 | `tests/unit/test_product_coverage.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
+| `tests/unit/test_project_access.py` | 测试 |
 | `tests/unit/test_project_review.py` | 测试 |
 | `tests/unit/test_project_review_reader.py` | 测试 |
 | `tests/unit/test_public_reader.py` | 测试 |
@@ -4665,6 +4669,8 @@
 | `web/components/part-inspector.js` | 运行代码 |
 | `web/components/pilot.js` | 运行代码 |
 | `web/components/product-catalog.js` | 运行代码 |
+| `web/components/project-access.js` | 运行代码 |
+| `web/components/project-work.js` | 运行代码 |
 | `web/components/rack-assembly.js` | 运行代码 |
 | `web/components/rack-exploded-generator.js` | 运行代码 |
 | `web/components/rack-exploded-view.js` | 运行代码 |
@@ -4705,6 +4711,7 @@
 | `web/pages/admin/oarepo.html` | 运行代码 |
 | `web/pages/admin/openapirepo.html` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
+| `web/pages/admin/project-access.html` | 运行代码 |
 | `web/pages/admin/repo-content/checks.json` | 项目配置 |
 | `web/pages/admin/repo-content/fetchspec.html` | 运行代码 |
 | `web/pages/admin/repo-content/infra-daily.json` | 项目配置 |
@@ -4766,6 +4773,7 @@
 | `web/themes/company.css` | 运行代码 |
 | `web/themes/industry.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
+| `web/themes/project-access.css` | 运行代码 |
 | `web/themes/research-tasks.css` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |

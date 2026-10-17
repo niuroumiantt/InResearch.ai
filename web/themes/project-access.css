@@ -1,0 +1,15 @@
+.project-access-page{max-width:1000px;margin:36px auto;padding:0 20px 60px;color:var(--ui-ink)}
+.project-access-page h1{font-size:28px}.project-access-page p{line-height:1.7}
+.project-access-form,.project-create{border:1px solid var(--ui-line);padding:20px;margin:22px 0;background:var(--ui-surface)}
+.project-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}
+.project-fields label{display:flex;flex-direction:column;gap:8px}.project-access-form input,.project-access-form select,.project-create input{max-width:100%;box-sizing:border-box}
+.project-access-page input[type=text],.project-access-page input[type=date],.project-access-page select{width:100%;padding:9px;border:1px solid var(--ui-line);background:var(--ui-surface);color:var(--ui-ink)}
+.project-access-page button,.project-links button,.project-work-row button{padding:8px 14px;border:1px solid var(--ui-line);background:var(--ui-surface);color:var(--ui-ink);border-radius:24px;cursor:pointer}
+.project-access-page fieldset{border:1px solid var(--ui-line);padding:16px;margin:18px 0}.project-access-page legend{padding:0 8px}
+.project-grant-row{display:grid;grid-template-columns:minmax(0,1fr) 100px 100px;gap:12px;padding:12px 0;border-bottom:1px solid var(--ui-line)}
+.project-grant-row label{display:flex;gap:6px;align-items:center}.project-grant-row input{min-height:20px;min-width:20px}
+.project-links,.project-row-actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:14px 0}.project-links a,.project-row-actions a{text-decoration:underline}
+.project-work-row{display:flex;align-items:start;justify-content:space-between;gap:20px;border-bottom:1px solid var(--ui-line);padding:18px 0;overflow-wrap:anywhere}
+.project-work-row>div{min-width:0}.project-work-row p{margin:8px 0}.project-feedback{white-space:pre-wrap}
+.project-access-page [role=status]{white-space:pre-wrap;overflow-wrap:anywhere}.project-create label{display:block;margin-bottom:12px}
+@media(max-width:600px){.project-fields{grid-template-columns:1fr}.project-grant-row{grid-template-columns:minmax(0,1fr) 72px 72px;gap:6px}.project-work-row{flex-direction:column;gap:8px}.project-access-page{padding:0 14px 36px}.project-access-form{padding:14px}.project-access-page input{font-size:16px}}

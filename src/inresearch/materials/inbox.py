@@ -31,12 +31,12 @@ def atomic(path, data):
     from inresearch.storage.files import write_json
     write_json(path, data)
 
-def receive(stream, size, metadata, user, *, public=False):
+def receive(stream, size, metadata, user, *, public=False, identity=None):
     if not isinstance(metadata, dict):
         raise ValueError('invalid metadata')
     if 'batch_total' not in metadata and 'batch_index' not in metadata:
         if metadata.get('batch_token'): raise ValueError('upload batch bounds required')
-        return _receive(stream,size,metadata,user,public=public)
+        return _receive(stream,size,metadata,user,public=public,identity=identity)
     from inresearch.materials import batch_review
     total, index = metadata.get('batch_total'), metadata.get('batch_index')
     if (not public or type(total) is not int or not 1 <= total <= 20
@@ -52,7 +52,9 @@ def receive(stream, size, metadata, user, *, public=False):
         token_hash=hashlib.sha256(token.encode()).hexdigest() if token else None
         state = json.loads(path.read_text()) if path.exists() else {
             'id':metadata['batch_id'],'expected':total,'metadata':fingerprint,
-            'items':[],'sealed':False,'token_hash':token_hash}
+            'items':[],'sealed':False,'token_hash':token_hash, 'identity':identity}
+        if state.get('identity') != identity:
+            raise PermissionError('upload batch belongs to another account')
         if state.get('token_hash') != token_hash:
             raise PermissionError('invalid upload batch credential')
         if state['expected'] != total or state['metadata'] != fingerprint:
@@ -73,14 +75,14 @@ def receive(stream, size, metadata, user, *, public=False):
         if state['sealed'] or previous:
             raise Conflict('upload batch sealed or attachment index already received')
         atomic(path,state)
-        item, receipt = _receive(stream,size,metadata,user,public=True)
+        item, receipt = _receive(stream,size,metadata,user,public=True,identity=identity)
         state['items'].append({'id':item['id'],'sha256':item['sha256'],'index':index})
         state['items'].sort(key=lambda row:row['index'])
         atomic(path,state)
         return public_view(load(item['id'])),receipt
 
 
-def _receive(stream, size, metadata, user, *, public=False):
+def _receive(stream, size, metadata, user, *, public=False, identity=None):
     if not 0 < size <= MAX_BYTES:
         raise ValueError('单份资料须为 1 字节至 64 MiB')
     submitter = str(metadata.get('submitter', '')).strip()
@@ -95,6 +97,8 @@ def _receive(stream, size, metadata, user, *, public=False):
         if not public or not continuation_id or not continuation_receipt:
             raise ValueError('连续提交须提供上一份有效回执')
         previous = receipt_view(continuation_id, continuation_receipt)
+        if identity and (previous.get('owner_id') != identity['owner_id'] or previous.get('project_id') != identity['project_id']):
+            raise PermissionError('上一份提交不属于当前账号和项目')
         if (previous.get('submitter', '').strip() != submitter
                 or previous.get('project_name', '').strip() != project_name):
             raise ValueError('连续提交须与上一份的姓名和项目一致')
@@ -144,6 +148,8 @@ def _receive(stream, size, metadata, user, *, public=False):
                                     if metadata.get('batch_token') else None),
                   created=time.time(), status='pending_approval', revision=0,
                   feedback=[], operations=[])
+    if identity:
+        record.update(owner_id=identity['owner_id'], project_id=identity['project_id'])
     if receipt:
         record['receipt_hash'] = hashlib.sha256(receipt.encode()).hexdigest()
     atomic(folder / 'record.json', record)
@@ -207,8 +213,18 @@ def approver():
                           os.environ.get('HUB_ADMIN_USERNAME', 'admin')).strip()
 
 
-def can_approve(actor, role):
-    return role == 'admin' and bool(actor) and actor == approver()
+def can_approve(actor, role, record=None):
+    from inresearch.interfaces import project_access
+    # Preserve the deployment owner for old records and CLI/worker fixtures.
+    if role == 'admin' and bool(actor) and actor == approver():
+        return record is None or not project_access.owns(actor, record)
+    return project_access.can_review(actor, record)
+
+
+def can_read(actor, role, record):
+    from inresearch.interfaces import project_access
+    return can_approve(actor, role, record) or project_access.readable(actor, role, record)
+
 
 
 def require_approved(record):
@@ -340,11 +356,17 @@ def previous_system_task(record):
 
 def snapshot(actor, role):
     owner = can_approve(actor, role)
-    items = [r for r in records() if owner or (not r.get('receipt_hash') and r['user'] == actor)]
-    # Audit request bodies are internal; employees see decisions and feedback only.
-    return {'items': [(owner_view(r) if owner else public_view(r)) for r in items[:200]],
-            'can_approve': owner, 'can_upload': role in ('admin', 'member', 'intern'),
-            'approver': approver() if owner else None}
+    items = [r for r in records() if can_read(actor, role, r)]
+    result = []
+    for record in items[:200]:
+        review = can_approve(actor, role, record)
+        item = owner_view(record) if review else public_view(record)
+        item['can_approve'] = review
+        item['can_manage_analysis'] = role == 'admin' and actor == approver()
+        result.append(item)
+    return {'items': result, 'can_approve': owner,
+            'can_upload': role in ('admin', 'member', 'intern', 'collaborator'),
+            'approver': approver() if role == 'admin' and actor == approver() else None}
 
 
 def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
@@ -511,6 +533,11 @@ def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
     path = record_path(payload.get('id', '')) / 'record.json'
     with locked(path):
         record = json.loads(path.read_text())
+        if not worker:
+            if not can_approve(actor, role, record):
+                raise PermissionError('无权审批此工作包，或不能审批自己的提交')
+            if (role != 'admin' or actor != approver()) and action not in ('approve', 'approve_and_analyze', 'reject', 'start_analysis'):
+                raise PermissionError('此操作需要项目所有者权限')
         from inresearch.materials import batch_review
         if not batch_review.review_ready(record):
             raise Conflict('联合审批待恢复，请重试原批次操作')

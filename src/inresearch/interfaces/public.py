@@ -31,7 +31,7 @@ INTERN_RESEARCH_API = ('/api/industry', '/api/observations', '/api/whoami', '/ap
 # Login, homepage and task resources are individually declared, never all /assets/.
 READER_PAGES = ('/', '/index.html', '/tasks.html', '/marketing.html')
 READER_API = ('/api/whoami', '/api/research-tasks', '/api/research-task-examples')
-READER_ASSETS = ('/assets/theme-state.js', '/assets/site-skin.js', '/assets/site-skin.css',
+READER_ASSETS = ('/assets/project-work.js', '/assets/project-access.css', '/assets/theme-state.js', '/assets/site-skin.js', '/assets/site-skin.css',
                  '/assets/brand/inresearch-ai/icon-orange.svg', '/assets/brand/inresearch-ai/wordmark-primary.svg',
                  '/assets/brand/inresearch-ai/wordmark-reverse.svg',
                  '/assets/auth-form.js', '/assets/auth.css', '/assets/industry.js',

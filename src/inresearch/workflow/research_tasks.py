@@ -289,7 +289,7 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
             'feedback_at':own[0] if own else None,
             'last_activity_at':own[0] if own else (record.get('approval') or {}).get('at') or received,
             'submitter':re.sub(r'[\x00-\x1f\x7f]+',' ',str(record.get('submitter') or '未留姓名')).strip()[:120],
-            'material':kind,'outcome':outcome,'feedback':feedback,'next_action':'',
+            'submitter_verified':bool(record.get('owner_id')),'material':kind,'outcome':outcome,'feedback':feedback,'next_action':'',
             'published_statements':len(report.get('published',[])),'held':len(report.get('held',[])),
             'findings':len(report.get('findings',[])),'is_current_feedback':is_current,
             'feedback_state':'current' if is_current else 'superseded' if own and key in complete else 'history'})
@@ -302,6 +302,9 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
 
 
 def snapshot(root, actor='', role='reader'):
+    from inresearch.interfaces import project_access
+    if role == 'collaborator' and not project_access.member(actor, root):
+        role = 'reader'
     state = read(root)
     # Use exactly the map's existing projection and deduplication rules. These are
     # observed database totals, not a claim about worldwide coverage or live ACK.
@@ -336,6 +339,11 @@ def snapshot(root, actor='', role='reader'):
         projection['target_site_set_at'] = state.get('target_site_set_at', '')
         projection['packages'] = [{k: p.get(k) for k in ('id', 'title', 'region', 'scope', 'sources', 'status')}
                                   for p in state['packages']]
+    if role == 'collaborator':
+        projection['packages'] = [{k:v for k,v in p.items() if k not in ('machine', 'model', 'delivery_pointer', 'note')}
+                                  for p in state['packages']]
+        for p in projection['packages']:
+            p['can_update'] = False
     return {**projection, 'mission': plan(root)['mission'],
             'package_progress':package_progress,
             'site_progress': {'target': state.get('target_site_count'),
