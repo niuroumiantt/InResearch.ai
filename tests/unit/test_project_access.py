@@ -215,6 +215,23 @@ class ProjectAccessTests(unittest.TestCase):
         self.assertIsNone(auth.session_user(auth.make_cookie('fresh')))
         self.assertIsNone(auth.session_user(cookie))
 
+    def test_intern_login_opens_personal_work_and_never_inherits_approval(self):
+        auth.add_user('isaac', 'intern-password', 'intern')
+        mission, _ = access.catalog()
+        users = auth.load_users()
+        users['isaac']['projects'] = {mission['id']:{'enabled':True, 'expires_at':None,
+            'frontend':True, 'submit_packages':['dc-census-cn'],
+            'approve_packages':['dc-census-cn']}}
+        auth.save_users(users)
+        status, result = self.req('/api/login', data={'username':'isaac','password':'intern-password'})
+        self.assertEqual(status, 200, result)
+        self.assertEqual(result['next'], '/tasks.html')
+        work = self.req('/api/project-work', 'isaac')[1]
+        self.assertTrue(work['member'])
+        self.assertFalse(work['can_approve'])
+        self.assertFalse(access.can_review('isaac'))
+        self.assertEqual(self.req('/task-reviews.html', 'isaac')[0], 403)
+
     def test_collaborator_cannot_modify_team_assignments_or_feedback(self):
         _,result=self.upload();item=result['item']
         self.assertEqual(self.req('/api/research-tasks','alice',{'action':'update'})[0],403)

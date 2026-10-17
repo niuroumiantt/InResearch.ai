@@ -68,6 +68,10 @@ def owns(actor, record):
 def can_review(actor, record=None, root=None):
     if not actor:
         return False
+    # Interns submit assigned work but never approve it. Ignore stale project
+    # grants so the server boundary matches the role, not only the current UI.
+    if auth.user_role(actor) == 'intern':
+        return False
     value = grant(actor, root)
     if record is None:
         return is_owner(actor) or bool(value.get('approve_packages'))

@@ -8,7 +8,7 @@
   const phase = item => item.processing_state === 'completed' && item.analysis_scope?.mode === 'full_native_campus' ? '全表原生文本已审阅' : ({
     rejected:'已退回 · 请补充', source_error:'原件需修正 · 尚未审阅',
     pending_approval:'已提交 · 等待审批', waiting:'已确认 · 等待处理，反馈稍后更新',
-    running:'正在审阅 · 反馈稍后更新', blocked:'处理受阻 · 等待负责人处理',
+    running:'正在审阅 · 反馈稍后更新', blocked:'处理受阻 · 等待管理员处理',
     sampled_incomplete:'已有抽样反馈 · 全文待审', completed:'已有处理反馈'
   })[item.processing_state] || '状态待刷新';
   function management(data = {}) {
@@ -48,7 +48,7 @@
       const notice = $('my-processing');
       notice.hidden = !pending.length;
       notice.dataset.state = pending.some(item=>['blocked','source_error'].includes(item.processing_state)) ? 'blocked' : 'running';
-      notice.innerHTML = `<strong>${notice.dataset.state === 'blocked' ? '部分提交需要处理，请查看下方状态' : '提交已收到，处理反馈稍后更新'}</strong><p>${pending.length} 份提交待处理或需修正。${pending.some(item=>item.processing_state === 'source_error') ? '原件需修正的提交，请按反馈补充新版；进行中的材料无需重复提交。' : '已收到的材料无需重复提交，你可以继续整理其他资料。'}</p><small>本页每 30 秒自动刷新；具体阶段见每份提交。</small>`;
+      notice.innerHTML = `<strong>${notice.dataset.state === 'blocked' ? '部分材料受阻，等待管理员处理' : '提交已收到，处理反馈稍后更新'}</strong><p>${pending.length} 份提交待处理或需修正。${pending.some(item=>item.processing_state === 'source_error') ? '原件需修正的提交，请按反馈补充新版；进行中的材料无需重复提交。' : '已收到的材料无需重复提交，你可以继续整理其他资料。'}</p><small>本页每 30 秒自动刷新；具体阶段见每份提交。</small>`;
       const labels = Object.fromEntries(data.packages.map(p=>[p.id,p.title]));
       $('my-submissions').innerHTML = data.items.length ? data.items.map(item=>`<article class="project-work-row"><div><strong>${esc(item.name)}</strong><p>${esc(labels[item.package_id] || '工作包')} · ${esc(phase(item))} · 已返回上线回执 ${item.published_sources || 0} 条</p><small>提交于 ${esc(time(item.created))}（北京时间）</small>${item.decision?.action === 'reject' ? `<p>${esc(item.decision.note)}</p>` : ''}${item.feedback?.length ? `<details><summary>本次提交的处理反馈（历史记录）</summary><p class="project-feedback">${esc(item.feedback[0].text)}</p></details>` : ''}</div><div class="project-row-actions"><a href="/api/materials/content/${encodeURIComponent(item.id)}">下载原件</a><button type="button" data-open-package="${esc(item.package_id)}">查看现行下一步 →</button></div></article>`).join('') : '<p>尚无绑定此账号的提交。旧匿名材料不会按同名自动归入。</p>';
       const form = $('task-upload-form');
