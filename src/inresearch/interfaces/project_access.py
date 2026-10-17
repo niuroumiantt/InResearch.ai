@@ -179,6 +179,10 @@ def workbench(actor, root=None):
     from inresearch.materials import inbox
     mission, packages = catalog(root)
     user = auth.load_users().get(actor, {})
+    # Existing signed-in users may still have a pre-migration cookie. Upgrade
+    # identity before exposing per-account recovery storage keys, without logout.
+    if user and not user.get('id'):
+        user['id'] = auth.ensure_identity(actor)
     access = member(actor, root)
     mine = []
     if access:

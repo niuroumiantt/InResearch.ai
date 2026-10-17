@@ -1,6 +1,8 @@
 """Real HTTP authorization tests over isolated accounts, originals and grants."""
 from http.client import HTTPConnection
 import io
+import base64
+import time
 import json
 import os
 from pathlib import Path
@@ -76,6 +78,20 @@ class ProjectAccessTests(unittest.TestCase):
         return self.req('/api/materials/review',actor,{
             'id':item['id'],'sha256':item['sha256'],'expected_revision':item['revision'],
             'operation_id':str(uuid.uuid4()),'action':action,**extra},headers={'X-Requested-With':'material-intake'})
+
+    def test_existing_legacy_session_gets_stable_identity_before_upload(self):
+        users=auth.load_users()
+        users['alice'].pop('id');users['alice'].pop('session_version')
+        auth.save_users(users)
+        payload=f"alice:{int(time.time())+600}"
+        token=base64.urlsafe_b64encode(f"{payload}:{auth._sign(payload)}".encode()).decode()
+        cookie='hub_session='+token
+        self.assertEqual(auth.session_user(cookie),'alice')
+        status,work=self.req('/api/project-work',cookie)
+        self.assertEqual(status,200);self.assertTrue(work['user_id'])
+        self.assertEqual(auth.session_user(cookie),'alice')
+        self.assertEqual(self.req('/api/project-work',cookie)[1]['user_id'],work['user_id'])
+        self.assertEqual(self.upload(cookie)[1]['item']['owner_id'],work['user_id'])
 
     def test_new_upload_requires_login_and_server_assigns_identity(self):
         self.assertEqual(self.upload(None)[0],401)
@@ -181,6 +197,9 @@ class ProjectAccessTests(unittest.TestCase):
                 self.assertEqual(self.req(path,'alice',method=method)[0],403,(path,method))
         self.assertEqual(self.req('/projects.html','alice')[0],200)
         self.assertFalse(self.req('/api/research-task-examples','alice')[1]['authenticated'])
+        self.assertEqual(self.req('/api/navigation?page=/tasks.html','alice')[1]['active']['area'],'backstage')
+        self.assertEqual(self.req('/api/navigation?page=/projects.html','alice')[1]['active']['area'],'delivery')
+        self.assertEqual(self.req('/api/navigation?page=/admin/project-access.html','owner')[1]['active']['section'],'production')
         self.assertEqual(self.req('/task-reviews.html','alice')[0],403)
         self.assertEqual(self.req('/task-reviews.html','reviewer')[0],200)
         self.assertEqual(self.req('/api/materials','alice',b'bad',headers={'X-Requested-With':'material-intake'})[0],403)

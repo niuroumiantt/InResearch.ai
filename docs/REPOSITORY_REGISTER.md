@@ -1825,7 +1825,7 @@
 | `framework/site_implementation.json` | milestones | 8 |
 | `framework/site_implementation.json` | releases | 0 |
 | `framework/site_navigation.json` | public_navigation | 2 |
-| `framework/site_navigation.json` | page_rules | 28 |
+| `framework/site_navigation.json` | page_rules | 29 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 26 |

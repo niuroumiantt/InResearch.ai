@@ -8,7 +8,7 @@
   let identityReady = false;
   window.addEventListener('project-work-loaded',event=>{
     const identity = event.detail;
-    identityReady = Boolean(identity.member);
+    identityReady = Boolean(identity.member && identity.user_id);
     key = 'inresearch-task-upload-receipts-v2:' + identity.user_id;
     pendingBatchKey = 'inresearch-task-upload-pending-batches-v2:' + identity.user_id;
     if (identityReady && !uploading) finishBatches();

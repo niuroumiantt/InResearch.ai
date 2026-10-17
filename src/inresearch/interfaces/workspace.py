@@ -95,9 +95,12 @@ def navigation(root, role, user, page='/'):
         delivery = [{'id':'campuses','label':'全球园区','href':'/projects.html','children':[]}] if value['frontend'] else []
         backstage = [{'id':'production','label':'项目工作','href':'/tasks.html','children':children}] if value['member'] else []
         requested_page = _one(parse_qs(urlsplit(page).query), 'page', '/') if urlsplit(page).path == '/api/navigation' else page
+        active = resolve(root, requested_page)
+        if urlsplit(requested_page).path == '/tasks.html':
+            active = {'area':'backstage','section':'production','view':'tasks'}
         return {'ok':True, 'version':doc['version'], 'identity':{'kind':'collaborator','name':user,'role':role},
                 'navigation':{'delivery':delivery,'backstage':backstage},
-                'active':resolve(root, requested_page),
+                'active':active,
                 'public_navigation':doc['public_navigation'], 'delivery_pages':[],
                 'footer':{'groups':[],'legal':[],'updates':[],'runtime':None},
                 'search':{'enabled':False,'scopes':[],'default_scope':None}}
