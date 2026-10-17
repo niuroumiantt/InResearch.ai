@@ -64,7 +64,7 @@ class IndustryTests(unittest.TestCase):
         portfolio = industry.project({'site_id': 'portfolio-all', 'status': 'L8', 'capacity_it_mw': 800})
         self.assertFalse(unknown['capacity_known'])
         self.assertEqual(industry.totals([unknown, portfolio]), {'operating': 0, 'construction': 0, 'planning': 0,
-                         'inactive_sites': 0, 'estimated': {'operating': 0, 'construction': 0, 'planning': 0}, 'estimated_sites': 0, 'sites': 1, 'unknown': 1, 'ranged_sites': 0, 'unlocated': 1, 'portfolios_excluded': 1})
+                         'inactive_sites': 0, 'estimated': {'operating': 0, 'construction': 0, 'planning': 0}, 'estimated_sites': 0, 'sites': 1, 'unknown': 1, 'ranged_sites': 0, 'unlocated': 1, 'city_located_sites': 0, 'city_reference_points': 0, 'precise_located_sites': 0, 'address_located_sites': 0, 'portfolios_excluded': 1})
         for invalid in (float('nan'), float('inf'), -10, True):
             self.assertFalse(industry.project({'site_id': 'x', 'status': 'L6', 'capacity_it_mw': invalid})['capacity_known'])
 

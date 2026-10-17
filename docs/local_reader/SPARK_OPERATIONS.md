@@ -1,5 +1,13 @@
 # Spark 持续 reader 运行手册
 
+## 城市级点亮：双原件追加与回执（.36）
+
+仅对已上线、唯一身份且目前无坐标的园区使用；城市／地级区域来源已明确，地址仍可未知。先在完整包边界核当前队列与源状态，保留全部成功阅读。正常操作为 `python3 manage.py source-publish inspect` 取得state_sha256，将其填入私有payload的expected_state_sha，再执行 `python3 manage.py source-publish locate-city --input /私有目录/payload.json --geography /私有目录/CN.zip`。原件ZIP、payload、回执和审计进入持久私有资料／状态目录，不进Git，不依赖/tmp作为唯一副本。
+
+payload固定version=1、geography_sha256、expected_state_sha及sites数组；每项为site_id、submission_id、source_sha256、sheet（原表名而非序号）、name_cell、province_cell、city_cell、geoname_id（字符串）、geonames_line（1起整数）。v6/v5主表`1-地点与身份`为B/D/E；dahai主表`园区主表`为B/G/H；全国库主表`园区主表`为F/C/D。格位必须同原行且布局表头完整匹配。接收端核批准原件、已登记名称观测和GeoNames省／城市闭包；不得用GeoNames单文件代替园区归属证据，不能传lat/lon覆盖。PPLC/PPLA/PPLA2或精确全名ADM2可用，其余类别保持待补。
+
+CAS失效先重新读取实际状态，核本批是否已有回执；同内容摘要不含CAS，原件复验后幂等重放不重复增加。当前已有city或精确点不得换点，异常整批失败且旧状态不变。完成后分别查持久city_location回执、API的coordinates及geography.coordinate_source、地图／浮窗／档案城市级标签和GeoNames链接；同城园区仍各有ID。报告已定位园区数与城市／地级区域数，不能说城市参考坐标就是园区实址或C3。精度更高的新来源须走相应显式核验，不由本入口覆盖。
+
 > CURRENT · 2026-10-07（首版 2026-09-13）。规则归属与替代关系见 framework/CURRENT.md。
 
 本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
@@ -594,7 +602,11 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 显式操作通过原指定负责人 `/api/materials/review` 完成：启动字段为 `id/sha256/expected_revision/operation_id/action=start_full_analysis/layout_id/reason/pilot_package_id`；首包网站回执核实后的继续字段为 `id/sha256/expected_revision/operation_id/action=continue_full_analysis/attempt_id/reason`。两次操作使用各自唯一 UUID 并取服务器最新 revision；精确重放保留原请求，不直接编辑线上 JSON 或清空 analysis_reports。新尝试生成独立 full-review 目录，已持久化请求／响应与回执保留；GPU等待不妨碍纯缓存提交恢复，不消耗本轮新模型调用名额。Ollama真实传输失败按有限预算退避，阻塞尝试不独占其他待审材料；默认任务优先沿原路径执行。
 
-综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，仅最终阶段通过 `generate_campus_adjudication` 按同模型实际token判断：32768上下文减4096输出和1024预留；精确token超限或计量身份无法复验时明确blocked，不缩减输入来宣称完成。默认调用与阅读窗口仍守原字节预算。窗口受约束解码使用实际原生值／定位枚举，P0/P1/P2及单格地点不得改写；系统提示与schema摘要纳入冻结配方，探针旧无效响应和成功窗口保留，阅读规则改变不能混用。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、v5历史版、dahai与全国园区库；v5必须选择独立严格布局，不能套用v6，不授新园区身份资格。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
+综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，最终阶段通过 `generate_campus_adjudication` 按同模型实际token判断：32768上下文减4096输出和1024预留；精确token超限或计量身份无法复验时明确blocked，不缩减输入来宣称完成。默认调用与legacy阅读窗口仍守原字节预算；仅从未开始包按下述.35专用阅读配方执行。窗口受约束解码使用实际原生值／定位枚举，P0/P1/P2及单格地点不得改写；系统提示与schema摘要纳入冻结配方，探针旧无效响应和成功窗口保留，阅读规则改变不能混用。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、v5历史版、dahai与全国园区库；v5必须选择独立严格布局，不能套用v6，不授新园区身份资格。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
+
+未开始包专用阅读（.35）：部署时不迁移或删除任何成功窗口。先在attempt/package下检查所有task-SHA目录；存在plan.json、progress.json、chunk-*、proposal.json或综合／派发审计即沿legacy，不能因当前任务SHA不同而改配方。全新包才冻结`reading-recipe.json`和64片段计划；每窗实际渲染／同模型分词通过后才生成，原完整片段及顺序、身份／表头／任务上下文均保留。仅真实input token预算超限且尚未派发，才自动按片段中点二分并保存input-budget-checks凭证，单片超限停止；不得用平均字节比或另一个tokenizer放行。GPU检查在debug前及completion前执行，唯一timer每轮仍至多一次新内容生成。
+
+新包的`reading-audits/chunk-*/<input_sha>/attempt-*/dispatch.json`在HTTP派发前保存完整请求和proof；response.json保存成功原响应／已验证结果，未推进游标可直接复用它。dispatch已存在而无可验证成功响应，或存在unverified.json，均要求运维；输出截断同样停止，不设输出后二分或通用自动重放。不要删除status、dispatch或旧失败响应解锁。语义无效而完整的响应按原三次预算保留在rejected-responses，成功窗不重读。新配方的最终综合仍走原delta与精确token合同，已有prepared proposal/outbox继续原幂等交付。离线64片段数是候选规划，未经实际分词及完整报告不能宣称全量预算通过、语义合格或耗时缩短。
 
 最终响应按.33使用增量格式：1至600字符且非空白的summary、reviewed_finding_ids将原问题0起始索引各列一次（可乱序、拒绝布尔值）、仅新跨窗问题的完整new_findings、accept_candidates原候选索引。全部原findings与其他证据仍完整输入；提交时原问题逐字保留，再追加新增问题，不能因改格式丢失缺口。最终recipe版本为`campus-adjudication-delta-v1`，独立记录system/schema/request/完整reading inventory/findings/candidates摘要及外层配方摘要，成功和未绑定响应均保存；旧final配方不兼容即停，不借此重读或覆盖成功阅读缓存。原32768／4096／1024及GPU、模型／tokenizer绑定保持；输出仍截断就blocked，不分页或截短真实新问题。
 

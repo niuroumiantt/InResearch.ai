@@ -925,7 +925,7 @@
     },
     "coordinate_source": {
       "$ref": "#/$defs/coordinate_source",
-      "description": "首次物理园区的WGS84定位来源与精度；地址地理编码不冒充楼体中心，字节定位与接收审计保持私有"
+      "description": "WGS84定位来源与精度；city仅为有双重来源审计的城市代表点，非园区实址；字节定位与接收审计保持私有"
     },
     "identity_registration": {
       "type": "object",
@@ -1186,7 +1186,8 @@
           "enum": [
             "address",
             "site",
-            "building"
+            "building",
+            "city"
           ]
         },
         "coordinate_system": {
@@ -1197,7 +1198,8 @@
           "enum": [
             "address_geocode",
             "source_map",
-            "reported_coordinates"
+            "reported_coordinates",
+            "city_reference"
           ]
         },
         "source_sha256": {
@@ -1218,6 +1220,14 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 4000
+        },
+        "feature_code": {
+          "enum": [
+            "PPLC",
+            "PPLA",
+            "PPLA2",
+            "ADM2"
+          ]
         }
       },
       "additionalProperties": false,
@@ -1234,6 +1244,41 @@
             "properties": {
               "precision": {
                 "const": "address"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "precision": {
+                "const": "city"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "method": {
+                "const": "city_reference"
+              }
+            },
+            "required": [
+              "feature_code"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "method": {
+                "const": "city_reference"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "precision": {
+                "const": "city"
               }
             }
           }
