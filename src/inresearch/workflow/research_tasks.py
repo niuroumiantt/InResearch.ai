@@ -181,6 +181,31 @@ def _round_summary(rows, manual=None):
     return summary,action,'reviewed'
 
 
+def processing_state(record):
+    """Current processing only; an old report cannot finish a newer full review."""
+    if record.get('status') == 'rejected':
+        return 'rejected'
+    if record.get('status') in ('pending_approval', 'queued'):
+        return 'pending_approval'
+    progress = (record.get('analysis_progress') or {}).get('state')
+    scope = record.get('analysis_scope') or {}
+    if progress in ('blocked', 'source_error'):
+        return progress
+    if scope.get('mode') == 'full_native_campus':
+        if scope.get('state') == 'completed':
+            return 'completed'
+        return 'waiting' if progress == 'waiting' or scope.get('state') == 'pilot_completed' else 'running'
+    if progress in ('running', 'reading'):
+        return 'running'
+    if progress == 'waiting':
+        return 'waiting'
+    if scope.get('mode') == 'sampled_native_cells':
+        return 'sampled_incomplete'
+    if record.get('analysis_state') == 'completed' or record.get('analysis_reports'):
+        return 'completed'
+    return 'waiting'
+
+
 def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_scope_revision=0):
     """One live execution anchor per work package; old evidence stays historical."""
     from inresearch.materials import inbox
@@ -264,7 +289,11 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
                        'feedback_rounds':len(complete)},
           'remaining':remaining}
     events=[]
+    processing = {key:0 for key in ('waiting', 'running', 'blocked', 'source_error')}
     for record in approved:
+        phase = processing_state(record)
+        if phase in processing:
+            processing[phase] += 1
         reports=[row for row in record.get('analysis_reports',[]) if isinstance(row,dict) and isinstance(row.get('report'),dict)]
         last_report=max(reports,key=lambda row:row.get('at') or 0,default=None)
         own=max(file_history.get(record['id'],[]),default=None)
@@ -289,7 +318,8 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
             'feedback_at':own[0] if own else None,
             'last_activity_at':own[0] if own else (record.get('approval') or {}).get('at') or received,
             'submitter':re.sub(r'[\x00-\x1f\x7f]+',' ',str(record.get('submitter') or '未留姓名')).strip()[:120],
-            'submitter_verified':bool(record.get('owner_id')),'material':kind,'outcome':outcome,'feedback':feedback,'next_action':'',
+            'submitter_verified':bool(record.get('owner_id')),'material':kind,'outcome':outcome,
+            'processing_state':phase,'feedback':feedback,'next_action':'',
             'published_statements':len(report.get('published',[])),'held':len(report.get('held',[])),
             'findings':len(report.get('findings',[])),'is_current_feedback':is_current,
             'feedback_state':'current' if is_current else 'superseded' if own and key in complete else 'history'})
@@ -298,7 +328,7 @@ def package_workflow(package, records, visible_sites=(), task_edits=(), *, task_
     return {'published_sites':len(sites),'published_statements':len(statements),
             'reviewed_files':sum(any(_has_content_review(entry.get('report'))
                                       for entry in record.get('analysis_reports',[])) for record in approved),
-            'confirmed_files':len(events),'target':None,'current_task':task,'events':events[:50]}
+            'confirmed_files':len(events),'target':None,'current_task':task,'processing':processing,'events':events[:50]}
 
 
 def snapshot(root, actor='', role='reader'):

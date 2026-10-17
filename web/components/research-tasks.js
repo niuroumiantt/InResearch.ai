@@ -13,8 +13,8 @@
     return 'task-home';
   };
   const showTaskView = view => {
-    const allowed = new Set(['my-work','task-home','submission-progress']);
-    if (!allowed.has(view)) view = 'task-home';
+    const allowed = new Set(['my-work','task-home','submission-progress','task-management']);
+    if (!allowed.has(view) || (view === 'task-management' && $('task-management-tab').hidden)) view = 'task-home';
     document.querySelectorAll('[data-task-panel]').forEach(panel => {
       panel.hidden = panel.dataset.taskPanel !== view;
     });
@@ -170,6 +170,15 @@
     const progress = state.package_progress?.[current.id] || {};
     const task = progress.current_task || {version:1,scope:current.scope,next_action:'按当前工作包范围，先找具名园区及可回查来源。'};
     const currentRead = readState === 'current';
+    const processing = progress.processing || {};
+    const active = (processing.running || 0) + (processing.waiting || 0);
+    const blocked = processing.blocked || 0, sourceErrors = processing.source_error || 0;
+    const notice = $('package-processing');
+    notice.hidden = !currentRead || !(active || blocked || sourceErrors || current.status === 'in_progress');
+    notice.dataset.state = blocked || sourceErrors ? 'blocked' : 'running';
+    const heading = blocked ? '部分材料处理受阻，等待负责人处理' : sourceErrors ? '有原件需要修正，请查看处理反馈' : active ? '正在处理，反馈稍后更新' : '工作进行中，资料整理好后可随时提交';
+    const details = [[processing.running,'份正在审阅'],[processing.waiting,'份等待处理'],[blocked,'份处理受阻'],[sourceErrors,'份原件需修正']].filter(([n])=>n).map(([n,label])=>`${n} ${label}`).join(' · ');
+    notice.innerHTML = `<strong>${esc(heading)}</strong><p>${esc(details || '继续补齐当前工作包的园区与来源。')}${active ? '。已收到的材料无需重复提交；你可以继续整理其他资料。' : ''}</p><small>本页每 30 秒自动刷新 · 最近读取 ${esc(packageTime(readAt))}</small>`;
     $('package-current-meta').textContent = currentRead ? `当前共同任务 v${task.version} · ${task.updated_at ? '更新于 '+packageTime(task.updated_at) : '尚无完成审阅的材料'}` : `上次读取于 ${packageTime(readAt)} · 任务 v${task.version} · 未确认当前有效`;
     $('package-current-title').textContent = current.title;
     $('package-current-scope').textContent = task.scope || current.scope;
@@ -194,9 +203,11 @@
     const events = progress.events || [];
     $('package-history-count').textContent = `· ${events.length} 条`;
     $('package-timeline').innerHTML = events.length ? events.map(event=>{
-      const status = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
+      const historyStatus = event.outcome === 'sampled_incomplete' ? '抽样反馈 · 全表待审' :
         event.outcome === 'reviewed' ? '已出审核反馈' : event.outcome === 'manual_feedback' ? '已出负责人反馈' : event.outcome === 'blocked' ? '分析暂时受阻' :
         event.outcome === 'source_error' ? '原件需修订' : '已确认，待分析';
+      const liveStatus = ({running:'正在审阅 · 反馈稍后更新',waiting:'等待处理 · 反馈稍后更新',blocked:'处理受阻',source_error:'原件需修订'})[event.processing_state];
+      const status = liveStatus ? liveStatus + (event.reviewed_at || event.feedback_at ? ' · 历史：'+historyStatus : '') : historyStatus;
       const repliedAt = event.reviewed_at || event.feedback_at;
       const reply = repliedAt ? `${event.reviewed_at ? '审阅并回复' : '处理反馈'}：${packageTime(repliedAt)}` : '审阅并回复：尚未完成';
       const packageState = current.status === 'delivered' ? '当前工作包已交付' : '当前工作包未完成，请继续';
@@ -345,4 +356,7 @@
   showTaskView(viewForHash(location.hash));
   load();
   loadExamples();
+  setInterval(() => {
+    if (!document.hidden && readState !== 'loading' && ['task-home','submission-progress'].includes(window.activeResearchTaskView)) load();
+  }, 30000);
 })();

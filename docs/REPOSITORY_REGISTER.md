@@ -1,16 +1,16 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.2。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.3。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2804。
+在册文件：2806。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 408 |
+| 静态资源 | 409 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 267 |
+| 配套说明 | 268 |
 | 测试 | 259 |
 
 ## 在册记录集合
@@ -2795,6 +2795,7 @@
 | [docs/handoff/stock-sn5600-20261012.md](handoff/stock-sn5600-20261012.md) | 配套说明 |
 | [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
+| [docs/handoff/task-access-progress-20261017.md](handoff/task-access-progress-20261017.md) | 配套说明 |
 | [docs/handoff/task-batch-review-20261016.md](handoff/task-batch-review-20261016.md) | 配套说明 |
 | [docs/handoff/task-current-feedback-20261016.md](handoff/task-current-feedback-20261016.md) | 配套说明 |
 | [docs/handoff/task-project-workbench-20261016.md](handoff/task-project-workbench-20261016.md) | 配套说明 |
@@ -4272,6 +4273,7 @@
 | `web/assets/marketing/circle-light.png` | 静态资源 |
 | `web/assets/marketing/dot-dark.png` | 静态资源 |
 | `web/assets/marketing/hero-gradient.png` | 静态资源 |
+| `web/assets/marketing/i-light.svg` | 静态资源 |
 | `web/assets/marketing/icons-comms.png` | 静态资源 |
 | `web/assets/marketing/icons-compute.png` | 静态资源 |
 | `web/assets/marketing/icons-core.png` | 静态资源 |

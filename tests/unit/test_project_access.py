@@ -239,6 +239,14 @@ class ProjectAccessTests(unittest.TestCase):
 
     def test_owner_api_and_stale_grants(self):
         self.assertEqual(self.req('/api/project-access','owner')[0],200)
+        for actor,expected in [('owner',(True,True,True)),('alice',(False,False,False)),('reviewer',(False,False,True))]:
+            status,view=self.req('/api/project-work',actor)
+            self.assertEqual(status,200)
+            self.assertEqual((view['can_admin'],view['can_manage'],view['can_approve']),expected)
+        auth.add_user('other-admin','admin-password','admin')
+        status,view=self.req('/api/project-work','other-admin')
+        self.assertEqual((view['can_admin'],view['can_manage'],view['can_approve']),(True,False,False))
+        self.assertEqual(self.req('/api/project-access','other-admin')[0],403)
         self.assertEqual(self.req('/api/project-access','alice',{'action':'create','username':'evil'},headers={'X-Requested-With':'project-access'})[0],403)
         self.assertEqual(self.req('/api/project-access','owner',{'action':'create','username':'charlie'},headers={'X-Requested-With':'project-access'})[0],200)
         self.assertFalse(access.member('charlie'))

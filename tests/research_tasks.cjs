@@ -371,6 +371,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await uploader.locator('#package-current-next').isHidden(),true);
     assert.equal(await uploader.locator('#package-current-remaining').isHidden(),true);
     assert.match(await uploader.locator('#package-current-feedback').innerText(),/^上次读取的审阅：/);
+    assert.equal(await uploader.locator('#package-processing').isHidden(),true,'failed refresh never labels stale processing as current');
     releaseFailedRefresh();
     await uploader.waitForFunction(()=>document.querySelector('#package-active-panel').dataset.readState==='error');
     assert.match(await uploader.locator('#package-read-status').innerText(),/刷新失败.*未确认有效/);
