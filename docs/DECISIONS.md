@@ -6,6 +6,10 @@
 
 # 决策记录
 
+## 2026-10-17：M5本机完整阅读适配
+
+2026-10-17 M5 原生 MLX 园区适配：仅显式 macos-mlx-0.40.5 配置启用本机 Ollama 0.40.5／qwen3.8:27b mxfp8；固定 manifest、非权重内容摘要、全权重文件身份、本用户父子进程及 loopback 监听绑定，不借用 Spark 的 GGUF 身份。完整官方渲染文本经该 MLX runner 的原生分词接口计量，仍以32768／4096／1024预算、不截断、不移窗、单请求执行；生成回包输入token数必须一致，原持久dispatch/returned/response验证保持。M5按系统热状态和Apple GPU繁忙门禁等待；未知回包继续受阻，不因跨机自动重放。兼容实现与夹具不证明真实dahai全包完成或上线，须另验完整回包与正式接收。
+
 ## 2026-10-17：全站品牌与首页加载整改
 
 2026-10-17 全站品牌收口与首页加载排查：采用既有 v0.2 字标、仿宋／Source Serif 4／IBM Plex Mono 与品牌令牌，marketing 纳入共享外观；旧字体预载退出，开放字体使用带许可的轻量 WOFF2，本机仿宋依赖与回退显式说明。首页只返回地图有关的公司目录，身份／容量／来源及完整登录接口保持。公网当前 CDN 仅缓存 WOFF2，其余请求回源；本地源码与测试不证明已部署或全设备字体一致。
@@ -2152,3 +2156,5 @@ TA22/23真实5be58335/.61与精确9079镜像healthy，独立public-v3/public-v1�
 The owner explicitly adopted ordinary information without factual verification, stable unique IDs with ongoing source history, and data releases outside code PRs. source-publish adds a private persistent ledger, atomic batch receipts and shared website/API projection. Company/product/statistic/quote intake no longer requires C3 or model targets. Research conclusions keep their existing authority boundaries. First implementation and UI repairs use full CI; later ordinary data imports use structural checks plus live receipts. Counts require production verification.
 
 2026-10-12 production follow-up: The first data-only release installed 148 ordinary records in 0.265 seconds. Export was carrying reviewed site baselines alongside ordinary additions; existing baselines were omitted before successful atomic import, without modifying their records. The exporter now omits these automatically; a regression verifies retention. Company pages share the ordinary source timeline. Actual data visibility and replay receipts remain separate from code checks.
+
+M5完整已知length回包也可走原无损拆分：只接纳派发前许可、完整回包、4096输出、精确输入token及MLX模型／父子进程／监听身份共同绑定；历史失败字节和成功窗口保持，不将截断正文采用，未知dispatch仍不重发。
