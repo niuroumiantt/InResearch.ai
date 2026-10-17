@@ -9,7 +9,7 @@ const {chromium}=require('playwright');
  await page.goto((process.env.UI_BASE_URL||'http://127.0.0.1:8882')+'/'+file);
  await page.getByRole('link',{name:'数据中心开业',exact:true}).waitFor();
  assert.equal(await page.locator('.dc-news-list a').count(),16);
- assert.equal(await page.locator('.dc-news-daily').count(),2);assert.equal(await page.locator('.dc-news-daily-pinned').count(),1);assert.equal(await page.locator('.dc-news-daily-highlight').count(),1);assert.equal(await page.locator('.dc-news-daily-pinned a').textContent(),'Confirmed current daily');assert.equal(await page.getByRole('link',{name:'Previous daily retained',exact:true}).getAttribute('href'),'https://inews.today/c/100');
+ assert.equal(await page.locator('.dc-news-daily').count(),1);assert.equal(await page.locator('.dc-news-daily-pinned').count(),1);assert.equal(await page.locator('.dc-news-daily-highlight').count(),1);assert.equal(await page.locator('.dc-news-daily-pinned a').textContent(),'Confirmed current daily');assert.equal(await page.getByRole('link',{name:'Previous daily retained',exact:true}).count(),0);
  assert.ok(await page.locator('.dc-news-list').evaluate(el=>el.scrollHeight>el.clientHeight));
  assert.equal(await page.locator('.dc-news details').count(),0);assert.equal(await page.locator('.dc-news-list small').first().textContent(),'example.com');assert.equal(await page.getByText('Datacenter opens',{exact:true}).count(),0);
  assert.deepEqual(await page.locator('.dc-news-day').allTextContents(),['2026-09-06','2026-09-05']);
@@ -36,6 +36,7 @@ const {chromium}=require('playwright');
   ...Array.from({length:15},(_,i)=>({title_zh:'更多数据中心新闻 '+i,url:'https://example.com/more/'+i}))
  ]},raw_atlas:{records:[
   {id:'daily-news',origin:'daily_html',title:'日报的项目标题',url:'https://example.com/daily',capacity_text:'500 MW',coordinates:[105,30],location_precision:'country'},
+  {id:'raw-english',origin:'news_feed',title:'Untranslated raw research lead',url:'https://example.com/raw-english'},
   {id:'research-copy',origin:'research_publication',title:'不混入新闻的研究副本',url:'https://example.com/research'}
  ]}}}));
  await home.goto((process.env.UI_BASE_URL||'http://127.0.0.1:8882')+'/');
@@ -52,6 +53,7 @@ const {chromium}=require('playwright');
  assert.equal(await home.locator('.dc-news-headline').count(),20);assert.equal(await home.locator('.dc-news-original').count(),20);
  assert.equal(await home.locator('.dc-news time,.dc-news small,.dc-news-day,.dc-news-timezone,.dc-news-mark,.dc-news-capacity,.dc-news-locate').count(),0);
  assert.equal(await home.getByRole('link',{name:'危险脚本链接',exact:true}).count(),0);assert.equal(await home.getByRole('link',{name:'含有凭据的链接',exact:true}).count(),0);
+ assert.equal(await home.getByRole('link',{name:'Untranslated raw research lead',exact:true}).count(),0);
  assert.equal(await home.getByRole('link',{name:'不混入新闻的研究副本',exact:true}).count(),0);
  assert.ok(await home.locator('.dc-news-list').evaluate(el=>el.scrollHeight>el.clientHeight),'compact headlines scroll within the map-height panel');
  assert.equal(navigationRequests,1,'the shared shell gets identity and menu from the one authorized projection');assert.equal(identityRequests,0,'headlines do not request a separate identity');assert.equal(markRequests,0,'headlines do not request member marks');
@@ -79,17 +81,17 @@ const {chromium}=require('playwright');
  await race.waitForFunction(()=>window.newsRequests.length===1);
  if(!file)assert.equal(await race.locator('.dc-news-meta').innerText(),'正在读取新闻…');
  await race.evaluate(()=>window.refreshNews());
- await race.evaluate(value=>window.deliverNews(1,value),news('new'));
- await race.getByRole('link',{name:'new',exact:true}).waitFor();
- await race.evaluate(value=>window.deliverNews(0,value),news('old'));
+ await race.evaluate(value=>window.deliverNews(1,value),news('新消息'));
+ await race.getByRole('link',{name:'新消息',exact:true}).waitFor();
+ await race.evaluate(value=>window.deliverNews(0,value),news('旧消息'));
  await race.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));
- assert.equal(await race.getByRole('link',{name:'old',exact:true}).count(),0);
+ assert.equal(await race.getByRole('link',{name:'旧消息',exact:true}).count(),0);
  await race.evaluate(()=>{window.refreshNews();window.newsRequests[2].reject(new Error('offline'));});
  await race.getByText(file?'新闻暂时无法同步，请稍后重试。':'近期报道暂不可用，请稍后重试。',{exact:true}).waitFor();
- assert.equal(await race.getByRole('link',{name:'new',exact:true}).count(),1);
+ assert.equal(await race.getByRole('link',{name:'新消息',exact:true}).count(),1);
  if(!file){const status=await race.locator('.dc-news-meta').boundingBox(),headlines=await race.locator('.dc-news-list').boundingBox();assert.ok(status.y+status.height<=headlines.y+1,'failure status does not overlap retained headlines');}
- await race.evaluate(value=>{window.refreshNews();window.deliverNews(3,value);},news('recovered'));
- await race.getByRole('link',{name:'recovered',exact:true}).waitFor();
+ await race.evaluate(value=>{window.refreshNews();window.deliverNews(3,value);},news('恢复消息'));
+ await race.getByRole('link',{name:'恢复消息',exact:true}).waitFor();
  assert.equal(await race.locator('.dc-news-meta').isHidden(),true);
  for(const [reader,message] of [
    [{status:'not_connected'},'尚未连接阅读服务'],
@@ -99,7 +101,7 @@ const {chromium}=require('playwright');
    await race.getByText(file?message:'暂无可显示的近期报道，项目与研究资料仍可浏览。',{exact:true}).waitFor();
    assert.equal(await race.locator('.dc-news a').count(),0);
  }
- await race.evaluate(value=>{window.refreshNews();window.deliverNews(window.newsRequests.length-1,value);},news('stale',{reader:{status:'idle',stale:true}}));
+ await race.evaluate(value=>{window.refreshNews();window.deliverNews(window.newsRequests.length-1,value);},news('延迟消息',{reader:{status:'idle',stale:true}}));
  await race.getByText('更新延迟',{exact:true}).waitFor();
  if(!file){
   await race.evaluate(()=>{window.refreshNews();window.deliverNews(window.newsRequests.length-1,{feed:null,reader:{status:'idle'},raw_atlas:{records:[{id:'raw-only',origin:'daily_html',title:'仅日报的标题',url:'https://example.test/raw-only'}]}});});
