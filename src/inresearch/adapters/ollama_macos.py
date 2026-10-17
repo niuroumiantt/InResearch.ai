@@ -136,3 +136,28 @@ def resource_ready():
         return True, ''
     except (OSError, ValueError, subprocess.SubprocessError):
         return False, 'campus_gpu_status_unavailable'
+
+
+def receipt_binding_valid(model, tokenizer):
+    """Offline binding shape for a fully journaled length response, on either host."""
+    if not isinstance(model, dict) or not isinstance(tokenizer, dict):
+        return False
+    process, parent = tokenizer.get('process', {}), tokenizer.get('parent', {})
+    port = tokenizer.get('port')
+    return (model.get('runtime') == tokenizer.get('runtime') == RUNTIME
+            and model.get('ollama_version') == '0.40.5'
+            and model.get('manifest_sha256') == tokenizer.get('manifest_sha256') == MANIFEST_SHA
+            and model.get('renderer') == 'qwen3.8' and model.get('parser') == 'qwen3.5'
+            and bool(re.fullmatch('[a-f0-9]{64}', str(model.get('layers_identity_sha256', ''))))
+            and bool(re.fullmatch('[a-f0-9]{64}', str(model.get('show_sha256', ''))))
+            and isinstance(model.get('executable'), dict)
+            and model['executable'].get('path') == EXECUTABLE
+            and tokenizer.get('context') == 262144 and type(port) is int and 1024 < port < 65536
+            and isinstance(process, dict) and isinstance(parent, dict)
+            and type(process.get('pid')) is int and process['pid'] > 0
+            and type(parent.get('pid')) is int and parent['pid'] > 0
+            and process.get('ppid') == parent['pid']
+            and type(process.get('uid')) is int and process['uid'] == parent.get('uid')
+            and bool(process.get('started')) and bool(parent.get('started'))
+            and process.get('command') == EXECUTABLE+' runner --model qwen3.8:27b --port '+str(port)
+            and parent.get('command') == EXECUTABLE+' serve')

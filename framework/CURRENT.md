@@ -226,3 +226,5 @@
 2026-10-12: Data export never resubmits reviewed legacy site baselines. Company pages display their source timeline; ordinary derived public fields are explicitly registered.
 
 2026-10-13：地图和任务进度共享按源码、运行登记文件版本及日期失效的有界内存投影，同版本并发只计算一次；失败和计算中数据变化不缓存。权限、字段投影与容量口径保持，部署与公网回执分别验收。
+
+M5完整已知length回包也可走原无损拆分：只接纳派发前许可、完整回包、4096输出、精确输入token及MLX模型／父子进程／监听身份共同绑定；历史失败字节和成功窗口保持，不将截断正文采用，未知dispatch仍不重发。

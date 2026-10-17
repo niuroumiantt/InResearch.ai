@@ -136,19 +136,23 @@ def output_split_preview(folder, index, failures, part, system, schema, *, requi
     tokenizer = proof['tokenizer_binding']
     body = evidence['request']
     model_path = str(budget.MODEL_ROOT/'blobs'/('sha256-'+budget.MODEL_SHA))
+    from inresearch.adapters import ollama_macos
+    native_macos = ollama_macos.receipt_binding_valid(model, tokenizer)
+    linux_binding = (isinstance(model, dict) and isinstance(tokenizer, dict)
+            and not model.get('runtime')
+            and model.get('ollama_version') == budget.VERSION
+            and model.get('manifest_sha256') == budget.MANIFEST_SHA
+            and model.get('model_layer_sha256') == budget.MODEL_SHA
+            and model.get('renderer') == 'qwen3.8' and model.get('parser') == 'qwen3.5'
+            and isinstance(model.get('model_file'), dict)
+            and model.get('model_file', {}).get('path') == model_path
+            and tokenizer.get('model_path') == model_path
+            and tokenizer.get('context') in (16384, 32768))
     if (set(body) != {'model', 'messages', 'format', 'options', 'stream', 'think', 'truncate', 'shift'}
             or not {'num_ctx', 'num_predict', 'temperature'} <= set(body['options'])
             or set(body['options']) - {'num_ctx', 'num_predict', 'temperature', 'repeat_penalty', 'repeat_last_n'}
             or body['options']['temperature'] != 0
-            or not isinstance(model, dict) or not isinstance(tokenizer, dict)
-            or model.get('ollama_version') != budget.VERSION
-            or model.get('manifest_sha256') != budget.MANIFEST_SHA
-            or model.get('model_layer_sha256') != budget.MODEL_SHA
-            or model.get('renderer') != 'qwen3.8' or model.get('parser') != 'qwen3.5'
-            or not isinstance(model.get('model_file'), dict)
-            or model.get('model_file', {}).get('path') != model_path
-            or tokenizer.get('model_path') != model_path
-            or tokenizer.get('context') not in (16384, 32768)
+            or not (native_macos or linux_binding)
             or not all(isinstance(proof.get(key), str) and len(proof[key]) == 64
                        and all(c in '0123456789abcdef' for c in proof[key])
                        for key in ('rendered_sha256', 'token_ids_sha256'))

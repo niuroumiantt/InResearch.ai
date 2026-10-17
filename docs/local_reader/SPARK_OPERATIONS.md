@@ -653,3 +653,5 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 只有独立材料范围才可交给M5；原正式来源接收器及其CAS仍是唯一发布路径。保持旧机器审计原位，不把复制的Spark窗口标为M5产物。真实未知派发必须先核无在途进程、服务器无结果并保存精确一次恢复回执；新模型或新任务版本不继承旧窗口的覆盖。M5请求显式设置 `INRESEARCH_CAMPUS_RUNTIME=macos-mlx-0.40.5`，campus_review仍为loopback11434、单并发27B；原Spark无需此设置，热忙等待不以禁用门禁替代。
 
 两机接收范围使用 `INRESEARCH_INTAKE_ALLOW` 或 `INRESEARCH_INTAKE_EXCLUDE` 的非空JSON对象（submission ID→批准原件SHA），两者不可同时设置；ID匹配但SHA改变必须受阻。M5只允许dahai，Spark排除同一dahai；普通来源仍由既有服务器锁内CAS接收，不新增发布队列。正式开放前必须核验两侧范围，pilot停点和continue依旧有效。
+
+M5完整已知length回包也可走原无损拆分：只接纳派发前许可、完整回包、4096输出、精确输入token及MLX模型／父子进程／监听身份共同绑定；历史失败字节和成功窗口保持，不将截断正文采用，未知dispatch仍不重发。
