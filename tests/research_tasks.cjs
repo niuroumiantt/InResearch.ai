@@ -136,8 +136,34 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await uploader.context().addCookies([{name:'hub_session',value:config.cookies['task-member'].slice(config.cookies['task-member'].indexOf('=')+1),url:base}]);
     await uploader.goto(base+'/tasks.html');
     await uploader.locator('#my-work-tab').waitFor();
+    await uploader.locator('#my-work').waitFor();
     await uploader.locator('[data-task-view="submission-progress"]').click();
     assert.equal(await uploader.locator('#upload-submit').isVisible(),true);
+    // A late identity response may choose the initial tab, never replace a user choice.
+    for (const view of ['task-home','submission-progress']) {
+      const delayed = await uploaderContext.newPage();
+      let releaseIdentity;
+      const identityGate = new Promise(resolve => { releaseIdentity = resolve; });
+      await delayed.route('**/api/project-work', async route => {
+        const response = await route.fetch();
+        await identityGate;
+        await route.fulfill({response});
+      });
+      try {
+        await delayed.goto(base+'/tasks.html');
+        await delayed.locator('[data-task-view="task-home"]').click();
+        if (view === 'submission-progress') await delayed.keyboard.press('ArrowRight');
+        assert.equal(await delayed.locator('#'+view).isVisible(),true);
+        releaseIdentity();
+        await delayed.waitForFunction(() => Boolean(window.projectWorkState));
+        assert.equal(await delayed.locator('[data-task-view="'+view+'"]').getAttribute('aria-selected'),'true','late identity preserves the selected tab');
+        assert.equal(await delayed.locator('#'+view).isVisible(),true);
+        assert.equal(delayed.url(),base+'/tasks.html');
+      } finally {
+        releaseIdentity();
+        await delayed.close();
+      }
+    }
     const picker = uploader.locator('#task-upload-form [name="file"]');
     await picker.setInputFiles({name:'first-directory.txt',mimeType:'text/plain',buffer:Buffer.from('first selection')});
     await picker.setInputFiles({name:'second-directory.txt',mimeType:'text/plain',buffer:Buffer.from('second selection')});

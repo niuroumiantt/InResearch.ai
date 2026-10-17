@@ -12,7 +12,10 @@
     if (id.startsWith('package-')) return 'submission-progress';
     return 'task-home';
   };
-  const showTaskView = view => {
+  let taskViewChosen = false;
+  const showTaskView = (view, {defaultOnly = false} = {}) => {
+    if (defaultOnly && taskViewChosen) return;
+    if (!defaultOnly) taskViewChosen = true;
     const allowed = new Set(['my-work','task-home','submission-progress','task-management']);
     if (!allowed.has(view) || (view === 'task-management' && $('task-management-tab').hidden)) view = 'task-home';
     document.querySelectorAll('[data-task-panel]').forEach(panel => {
@@ -39,7 +42,7 @@
   document.querySelector('.mission-nav').addEventListener('keydown', event =>
     moveTab(event, [...document.querySelectorAll('[data-task-view]')].filter(button=>!button.hidden)));
   document.querySelectorAll('[data-task-view-request]').forEach(button => button.addEventListener('click',()=>showTaskView(button.dataset.taskViewRequest)));
-  window.addEventListener('research-task-view-requested',event=>showTaskView(event.detail?.view));
+  window.addEventListener('research-task-view-requested',event=>showTaskView(event.detail?.view,{defaultOnly:event.detail?.defaultOnly === true}));
   window.addEventListener('hashchange',()=>showTaskView(viewForHash(location.hash)));
   let state = null, pending = null, editing = null, editingRevision = null, selectedPackageId = null;
   let readState = 'loading', readAt = null, loadSequence = 0;
@@ -353,7 +356,7 @@
   });
   $('refresh-tasks').addEventListener('click',load);
   $('package-filter').addEventListener('change',()=> {if(state)render();});
-  showTaskView(viewForHash(location.hash));
+  showTaskView(viewForHash(location.hash),{defaultOnly:true});
   load();
   loadExamples();
   setInterval(() => {
