@@ -96,10 +96,21 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     assert.equal(await alice.locator('[name=submitter]').inputValue(),'林同学');
     await alice.locator('[name=project_name]').fill('合成测试园区资料');
     await alice.locator('[name=file]').setInputFiles({name:'project-test.txt',mimeType:'text/plain',buffer:Buffer.from('Synthetic source for scoped approval UI')});
+    let releaseUpload;
+    const uploadGate=new Promise(resolve=>{releaseUpload=resolve;});
+    await alice.route('**/api/task-uploads',async route=>{
+      const response=await route.fetch();
+      await uploadGate;
+      await route.fulfill({response});
+    });
     const uploadResponse=alice.waitForResponse(r=>r.url().endsWith('/api/task-uploads') && r.status()===201);
     await alice.locator('#upload-submit').click();
-    const uploaded=await (await uploadResponse).json();
     await alice.locator('[data-task-view=my-work]').click();
+    releaseUpload();
+    const uploaded=await (await uploadResponse).json();
+    await alice.waitForFunction(()=>!document.querySelector('#upload-submit').disabled);
+    assert.equal(await alice.evaluate(()=>window.activeResearchTaskView),'my-work','late upload completion preserves the chosen tab');
+    await alice.unroute('**/api/task-uploads');
     await alice.locator('#my-refresh').click();
     await alice.locator('#my-submissions').filter({hasText:'project-test.txt'}).waitFor();
     assert.match(await alice.locator('#my-submissions').innerText(),/等待审批/);

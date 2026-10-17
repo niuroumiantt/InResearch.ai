@@ -150,7 +150,7 @@
       $('upload-message').innerHTML = `<span data-upload-result="${received.length}">${received.length} 份附件已收到${received.length ? batchFinished ? '，等待负责人按批次确认；后续请查看本工作包的共同现行反馈。' : '，批次提交尚未完成，请恢复提交状态。' : '。'}</span>${remaining.length ? `<p>${esc(remaining.length+' 份尚未确认收到，已保留在待提交列表：'+remaining.map(row=>row.text).join('；'))}</p>` : ''}`;
       pendingFiles = pendingFiles.filter(row=>!saved.some(savedRow=>savedRow.queueId === row.id));
       if (saved.length) window.dispatchEvent(new CustomEvent('project-work-refresh'));
-      if (saved.length) window.dispatchEvent(new CustomEvent('research-task-view-requested',{detail:{view:'submission-progress'}}));
+      // Completion refreshes data; a user may have left the submission tab.
       await refreshOwnerShortcut();
     } catch (error) { $('upload-message').textContent = error.message; }
     finally { uploading = false; $('upload-submit').disabled = false; form.elements.file.disabled = false; renderPendingFiles(); }
