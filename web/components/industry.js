@@ -86,7 +86,8 @@ function cityLocationSource(p){
  return `${esc(source.basis||'城市参考点，非园区实址')} · ${href?`<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">GeoNames</a>`:'GeoNames（来源链接待补）'}`;
 }
 function cityLocationNotice(p){
- return isCityLocation(p)?`<p class="city-location">${cityLocationLabel}<br>${cityLocationSource(p)}</p>`:'';
+ const place=[p.geography?.province,p.geography?.city].filter(Boolean).map(esc).join(' · ');
+ return isCityLocation(p)?`<p class="city-location">${place?place+'<br>':''}${cityLocationLabel}<br>${cityLocationSource(p)}</p>`:'';
 }
 function participantRoles(p){
  return (p.participants||[]).map(r=>`<div><span class="basis">${esc(r.label)}：</span>${r.company_ids.map(companyLink).join('、')}</div>`).join('')||'角色待核实';
@@ -432,6 +433,7 @@ function highlightCompany(id){highlightedCompany=highlightedCompany===id?'':id;h
 document.addEventListener('pointerdown',e=>{if(!pinned&&!popup.contains(e.target)&&!e.target.closest('[data-id],[data-raw-id]'))closePopup();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(tooltip&&!tooltip.hidden){e.preventDefault();hideTooltip();}if(!popup.hidden){e.preventDefault();closePopup(true);}}});
 window.addEventListener('resize',()=>{hideTooltip();positionPopup();});
+if(window.ResizeObserver)new ResizeObserver(positionPopup).observe(svg);
 function renderCompanies(){
  const ids=[...new Set(['amazon','microsoft','alphabet-google','meta','oracle','bytedance','alibaba',...data.leaders.map(c=>c.company_id)])].filter(id=>data.companies.some(c=>c.company_id===id)).slice(0,isHome?7:10);
  $('company-chips').innerHTML=`<button type="button" data-company="" aria-pressed="${!(isHome?highlightedCompany:params.get('c'))}">${isHome?'清除高亮':'全部'}</button>`+ids.map(id=>`<button type="button" data-company="${esc(id)}" aria-pressed="${(isHome?highlightedCompany:params.get('c'))===id}">${esc(id==='amazon'?'Amazon / AWS':id==='bytedance'?'ByteDance / TikTok':id==='alibaba'?'Alibaba / 阿里云':name(id))}</button>`).join('');

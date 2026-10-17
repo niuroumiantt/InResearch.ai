@@ -143,6 +143,7 @@ const {mkdirSync}=require('node:fs');
   assert.ok((await page.locator('#market-band').innerText()).includes('约 95'));
   assert.ok((await page.locator('#market-band').innerText()).includes('2025 估算'));
   await page.locator('#world-map .news-ring').first().waitFor();
+  assert.equal(await page.locator('#world-map .news-ring').first().evaluate(el=>getComputedStyle(el).strokeDasharray),'4px, 3px','news rings retain the longer dashes described by the legend');
   assert.equal(await page.locator('#pipeline-summary, #trends-section').count(),0);
   assert.equal(await page.locator('[data-news-count]').count(),0,'headline panel has no snapshot counters');
   assert.equal(await page.locator('.dc-news-list article').count(),3);
@@ -429,12 +430,12 @@ const {mkdirSync}=require('node:fs');
 
   // City reference points preserve site identities and capacities without posing as parcel locations.
   const cityTemplate=baseline.rows.find(p=>p.capacity_known&&p.coordinates&&!p.portfolio&&!p.duplicate_of);
-  const cityRow=(id,name)=>({...structuredClone(cityTemplate),site_id:id,name,adoption:null,observations:[],
-   coordinates:[39.9,116.4],geography:{...structuredClone(cityTemplate.geography),province:'夹具省',city:'夹具市',
+  const cityRow=(id,name)=>({...structuredClone(cityTemplate),site_id:id,name,country:'CN',location:'夹具省',adoption:null,observations:[],
+   coordinates:[39.9,116.4],geography:{...structuredClone(cityTemplate.geography),province:'夹具省',city:'夹具市',regional_address:'夹具市',
     coordinate_source:{precision:'city',coordinate_system:'WGS84',method:'city_reference',url:'https://www.geonames.org/1816670/',basis:'城市代表点，非园区实址；GeoNames，CC BY 4.0 <待核>'}}});
   const cityA=cityRow('fixture-city-a','城市参考园区甲'),cityB=cityRow('fixture-city-b','城市参考园区乙');
   const differentCity=cityRow('fixture-other-city','另一城市同坐标园区');
-  differentCity.geography.city='另一城市';differentCity.geography.coordinate_source.url='https://www.geonames.org/1809858/';
+  differentCity.geography.city='另一城市';differentCity.geography.regional_address='另一城市';differentCity.geography.coordinate_source.url='https://www.geonames.org/1809858/';
   const precisePoint={...structuredClone(cityTemplate),site_id:'fixture-precise',name:'精确定位园区',geography:{...structuredClone(cityTemplate.geography),coordinate_source:{precision:'site'}}};
   const legacyPoint={...structuredClone(cityTemplate),site_id:'fixture-legacy-location',name:'精度未知旧坐标园区',geography:{...structuredClone(cityTemplate.geography),coordinate_source:null}};
   const unlocatedPoint={...structuredClone(cityTemplate),site_id:'fixture-unlocated',name:'未定位园区',coordinates:null};
@@ -455,9 +456,11 @@ const {mkdirSync}=require('node:fs');
   assert.equal(await pointFor(cityB.site_id).getAttribute('transform'),cityAnchor,'same-city references have no invented coordinate jitter');
   assert.equal(await pointFor(differentCity.site_id).getAttribute('transform'),cityAnchor,'different cities with coincident floats still retain their identities');
   assert.equal(await pointFor(cityA.site_id).locator('.city-reference-ring').getAttribute('stroke-dasharray'),'2 2');
+  assert.equal(await pointFor(cityA.site_id).locator('.city-reference-ring').getAttribute('stroke'),'var(--ui-muted)');
   assert.equal(await pointFor(cityA.site_id).locator('circle:not(.city-reference-ring)').getAttribute('r'),String(Math.max(2.5,Math.sqrt(cityA.total_mw)*.28)),'city precision never changes the capacity marker area');
   await pointFor(cityA.site_id).press('Enter');
   assert.match(await page.locator('#map-popup').innerText(),/城市级定位（园区精确位置待补）[\s\S]*城市代表点，非园区实址[\s\S]*CC BY 4.0/);
+  assert.match(await page.locator('#map-popup .city-location').innerText(),/^夹具省 · 夹具市\n城市级定位（园区精确位置待补）/,'city popup includes the city even when the baseline location only names the province');
   assert.equal(await page.locator('#map-popup a[href="https://www.geonames.org/1816670/"]').innerText(),'GeoNames');
   assert.equal(await page.locator('#map-popup a[href="https://www.geonames.org/1816670/"]').getAttribute('rel'),'noopener noreferrer');
   assert.deepEqual(await page.locator('#map-popup .city-location-sites a').evaluateAll(links=>links.map(a=>new URL(a.href).searchParams.get('site')).sort()),[cityA.site_id,cityB.site_id],'popup exposes all and only sites at the same city reference');
@@ -469,16 +472,25 @@ const {mkdirSync}=require('node:fs');
   assert.equal(await pointFor(precisePoint.site_id).locator('.city-reference-ring').count(),0);
   await page.goto(base+'/');await pointFor(cityA.site_id).waitFor();await pointFor(cityA.site_id).focus();
   assert.match(await page.locator('#map-tooltip').innerText(),/城市级定位（园区精确位置待补）/,'homepage hover/focus also identifies coarse precision');
+  const assertCityLegends=async()=>{
+   assert.equal(await page.locator('.map-legend span').filter({hasText:/^黄色长虚线圈：相关报道$/}).count(),1);
+   assert.equal(await page.locator('.map-legend span').filter({hasText:/^灰色短虚线圈：城市／地级区域参考点$/}).count(),1);
+   assert.equal(await page.locator('.map-legend span').filter({hasText:/^虚线圈：相关报道$/}).count(),0,'generic dashed-ring wording cannot mislabel city references as news');
+  };
+  await assertCityLegends();
   for(const [width,height] of [[1440,900],[390,844]]){
    await page.setViewportSize({width,height});await pointFor(cityA.site_id).press('Enter');
+   await page.waitForFunction(()=>{const popup=document.querySelector('#map-popup').getBoundingClientRect(),frame=document.querySelector('.map-frame').getBoundingClientRect();return popup.x>=frame.x&&popup.right<=frame.right+1;},null,{timeout:2000});
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'city popup does not overflow at '+width);
    const box=await page.locator('#map-popup').boundingBox(),frame=await page.locator('.map-frame').boundingBox();
    assert.ok(box.x>=frame.x&&box.x+box.width<=frame.x+frame.width+1,'city popup stays inside the map at '+width+' '+JSON.stringify({box,frame}));
    if(process.env.UI_QA_DIR)await page.screenshot({path:process.env.UI_QA_DIR+'/city-reference-'+width+'.png'});
    await page.keyboard.press('Escape');
   }
+  await page.goto(base+'/industry.html?c=meta');await page.locator('.map-legend').waitFor();await assertCityLegends();
   await page.goto(base+'/project.html?site='+cityA.site_id);await page.locator('#campus-overview').waitFor();
   assert.match(await page.locator('#campus-overview').innerText(),/39.9, 116.4（城市参考点）[\s\S]*城市级定位（园区精确位置待补）/);
+  assert.match(await page.locator('#campus-overview').innerText(),/中国 · 夹具省 · 夹具市/,'detail shows the city through the actual backend regional_address projection');
   assert.doesNotMatch(await page.locator('#campus-overview').innerText(),/（登记坐标）/);
   assert.equal(await page.locator('#campus-overview a[href="https://www.geonames.org/1816670/"]').count(),1);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'city detail fits mobile width');
