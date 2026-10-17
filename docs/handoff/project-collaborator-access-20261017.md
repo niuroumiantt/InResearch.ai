@@ -17,15 +17,21 @@
 - 本地完整单元回归 3,004 项通过，导航修正后的相关 32 项也通过；已验证实际上传、单份／批次审批、撤权／到期／改密、跨账号原件／回执、320/390/1440 明暗；治理、严格数据、registry、verify、indicators 和资产检查。最终精确提交的全量 CI 及生产回执另以 PR／运行状态为准，本文不代替上线证明。
 - 独立工作树：`~/.codex/worktrees/project-collaborator-access/inresearch.ai`，分支 `codex/project-collaborator-access`。没有改主工作区的未提交内容，没有重启 Spark 或重排研究队列。
 
-## 当前外部阻塞
+## 当前状态（2026-10-17 10:26 北京时间）
 
-- PR： https://github.com/niuroumiantt/InResearch.ai/pull/969 。GitHub Actions run 38989819309 在运行步骤前被账号预算拦住，原提示为“The job was not started because an Actions budget is preventing further use.”。未绕过 CI，未合并／部署本功能。
-- 仓库当前已为 PRIVATE（他人修改，本任务未更改）；GitHub 对当前套餐返回私有仓库分支保护不可用。仍执行仓库约定的全量检查门槛，不能据此跳过。
-- 只读核对：网站健康且运行 389a12ea；Spark 9f4bcb70，现有 Reader／研究审核服务运行中。本任务没有重启或替换 Spark。
+- 用户此前选择保留 PR 暂不上线，随后明确告知已合并并要求继续。PR [#969](https://github.com/niuroumiantt/InResearch.ai/pull/969) 已于 02:14:39Z 合并为 `07624b45fbcb9241f249f5a95211cc918a98e2d3`；本任务没有执行该合并。合并不代表已经部署。
+- 网站仍实际运行 `d9a9039cf43a18623174667d33fa5d64c1e77456`，镜像 `sha256:0c30173250aa7871c33f03ba6f1c47821c8ba47b856dae0a0efe367845ad7bef`，健康、无本轮容器重启；公网 tasks 页面尚无新工作台组件。所有者账号存在且为 admin，尚无 collaborator 账号。
+- `inresearch-only-deploy.timer` 于 02:02Z 被正在执行的园区任务暂停，以保护城市数据发布及随后性能修复的部署窗口。实际暂停回执在 AWS `/home/ubuntu/.local/state/inresearch.ai/campus-deploy-pauses/campus-city131-autodeploy-timer-pause-20261017/pause-receipt.json`。保留其暂停状态，不与该任务并行换容器或重启 Spark。
+- Spark 常驻 checkout 为 `9f4bcb70`；Reader／research-review 服务运行中，material-intake 暂停属于园区任务的现行调度；editorial 最近一次因 HTTP 读取超时失败。不能将常驻 checkout 当作全部工作进程的代码版本，也不能将服务运行当作业务全量成功。本任务没有修改其源码或服务。
+- 合并后 HTTP 的 PPT MIME、两条下载路由及登记文件摘要存在治理漂移。逐项复核并实际下载两份 PPT，MIME 与全部原字节一致。园区任务的 [PR #971](https://github.com/niuroumiantt/InResearch.ai/pull/971) 候选 `91ac1e2cbb62992a6057a0e33e4833f7b6b292c4` 已包含 #969 及登记修正；在本任务独立工作树核对通过，无另写产品修复。
+- 该共同候选的完整单元测试 **3,012 项通过（139.467 秒）**，治理 2026.10.17.2／2,804 文件、严格数据 0 warnings 和 registry 通过；候选上的真实独立登录、授权撤销、个人工作台、上传及审批浏览器场景通过。此前在合并版本上导航／身份外观回归、真实 Docker 只读根与 A→B→A 数据保留、构建缓存与秘密隔离也通过。容器测试未在新的 city cache 候选上重复，不冒充全部 CI。
+- Actions 仍因预算限制零步骤失败，合并提交 run `38994151351` 的 scope annotation 再次确认同一预算原因；完整远端 CI 尚未通过。本轮没有调整预算、仓库权限或保护，没有创建员工、写入生产提交或审阅记录。
+- 已向用户请求明确授权给“启动 Spark 27B 研究任务”发送一次共同部署协调消息；截至本记录尚未收到回复，因此尚未发送。未创建自动轮询或后续计划。
+- 本轮原始验收日志和状态：`~/.local/state/inresearch.ai/project-access-release-20261017/`。工作树分支现为 `codex/project-access-release-receipt`，以共同候选为基线保存本次交接；主工作区未改。
 
 ## 后续入口
 
-1. 完成最终 head 的 `validate`、全浏览器及 storage-container；按现行流程合并，核对主站实际版本／健康。不得绕过失败检查。
+1. 先核对园区任务的发布窗口、#971 和 Actions 的最新状态。收到明确跨会话协调授权后再发消息；共同发布由一个所有者执行。不要直接恢复其暂停 timer 或并行换容器。上线后核对包含 #969 的实际镜像、公网新组件、真实所有者登录和权限边界；此项尚未完成。
 2. 所有者进入成员与授权，逐人创建账号、设置范围，把初始密码单独交本人。姓名、账号与审批范围由所有者决定；代码发布不等于已授权员工。
 3. 新项目须先登记真实项目目录；旧匿名材料归属迁移须单独核验，不能仅凭姓名自动归入。
 
