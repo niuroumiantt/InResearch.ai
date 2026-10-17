@@ -517,10 +517,12 @@ def generate_reading(client, system, user, *, json_schema,
                     raise InferenceError("model_output_incomplete")
                 result = client._provenance(json_object(message.get("content")),
                                             response["model"], system, user)
-                result["_model"]["token_budget"] = {**proof, "generation_binding": {
+                # Process identity includes tuples (UIDs/maps/stat fields). Return
+                # the same JSON representation as the durable completion receipt.
+                result["_model"]["token_budget"] = json.loads(encoded({**proof, "generation_binding": {
                     "model_binding_sha256": digest(proof["model_binding"]),
                     "request_sha256": proof["request_sha256"], "actual_model": response["model"],
-                    "model_verified_before_and_after": True, "response_sha256": digest(response)}}
+                    "model_verified_before_and_after": True, "response_sha256": digest(response)}}))
                 evidence = json.loads(encoded({"request": body,
                     "request_sha256": digest(body), "token_budget": proof,
                     "response": response, "response_sha256": digest(response)}))

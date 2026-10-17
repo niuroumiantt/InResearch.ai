@@ -101,23 +101,42 @@ def _audit_path(folder, index, failures, part):
     return folder/'reading-audits'/f'chunk-{index:05d}'/digest(part)/f'attempt-{failures+1:02d}'
 
 
+def _verified_return(saved, dispatch, system, part, schema):
+    if (not isinstance(saved, dict)
+            or set(saved) != {'result', 'result_sha256', 'completion', 'completion_sha256'}
+            or saved['result_sha256'] != digest(saved['result'])
+            or saved['completion_sha256'] != digest(saved['completion'])):
+        raise ValueError('campus_reading_audit_changed')
+    evidence = saved['completion']
+    _bound_evidence(evidence, system, part, schema)
+    _bound_result(saved['result'], evidence)
+    if not dispatch.exists() or json.loads(dispatch.read_text()) != {
+            key: evidence[key] for key in ('request', 'request_sha256', 'token_budget')}:
+        raise ValueError('campus_reading_audit_changed')
+    return saved['result']
+
+
 def generate(client, system, part, schema, folder, index, failures, before_completion):
-    """Reuse an exact returned response; never replay a dispatched unknown result."""
+    """Verify a durable return before promotion; never replay an unknown dispatch."""
     audit = _audit_path(folder, index, failures, part)
     dispatch = audit/'dispatch.json'
     response_path = audit/'response.json'
+    returned_path = audit/'returned.json'
     if response_path.exists():
         saved = json.loads(response_path.read_text())
-        if (saved.get('result_sha256') != digest(saved.get('result'))
-                or saved.get('completion_sha256') != digest(saved.get('completion'))):
+        result = _verified_return(saved, dispatch, system, part, schema)
+        # Receipts predating the return journal remain valid and byte-identical.
+        # A journal that does exist must still agree with the accepted response.
+        if returned_path.exists() and json.loads(returned_path.read_text()) != saved:
             raise ValueError('campus_reading_audit_changed')
-        evidence = saved['completion']
-        _bound_evidence(evidence, system, part, schema)
-        _bound_result(saved['result'], evidence)
-        if not dispatch.exists() or json.loads(dispatch.read_text()) != {
-                key: evidence[key] for key in ('request', 'request_sha256', 'token_budget')}:
-            raise ValueError('campus_reading_audit_changed')
-        return saved['result']
+        return result
+    if returned_path.exists():
+        if (audit/'unverified.json').exists():
+            raise models.InferenceError('campus_reading_completion_outcome_unverified')
+        saved = json.loads(returned_path.read_text())
+        result = _verified_return(saved, dispatch, system, part, schema)
+        atomic(response_path, saved)
+        return result
     if dispatch.exists() or (audit/'unverified.json').exists():
         raise models.InferenceError('campus_reading_completion_outcome_unverified')
 
@@ -139,13 +158,16 @@ def generate(client, system, part, schema, folder, index, failures, before_compl
             atomic(audit/'unverified.json', {'completion': completion,
                                            'completion_sha256': digest(completion)})
         raise
-    _bound_evidence(evidence, system, part, schema)
-    _bound_result(result, evidence)
-    if not dispatch.exists() or json.loads(dispatch.read_text()) != {
-            key: evidence[key] for key in ('request', 'request_sha256', 'token_budget')}:
-        raise ValueError('campus_reading_dispatch_missing')
-    atomic(response_path, {'result': result, 'result_sha256': digest(result),
+    # Persist the complete adapter return before any consumer binding checks.
+    # The intake lock serializes these write-once journals. Failed validation
+    # cannot erase the returned body or turn a later cycle into a new dispatch.
+    if returned_path.exists():
+        raise ValueError('campus_reading_audit_changed')
+    atomic(returned_path, {'result': result, 'result_sha256': digest(result),
                           'completion': evidence, 'completion_sha256': digest(evidence)})
+    saved = json.loads(returned_path.read_text())
+    result = _verified_return(saved, dispatch, system, part, schema)
+    atomic(response_path, saved)
     return result
 
 
