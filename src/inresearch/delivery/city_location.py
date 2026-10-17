@@ -77,7 +77,8 @@ def _geography(path, sha, items):
     return selected, provinces
 
 
-def _membership(item):
+def _membership_source(item):
+    """Load one approved original; callers keep it within one validation phase."""
     record = inbox.worker_record(item['submission_id'])
     if record['sha256'] != item['source_sha256']:
         raise ValueError('city_membership_source_changed')
@@ -90,6 +91,10 @@ def _membership(item):
             raise ValueError('city_membership_source_changed')
         book = Workbook(target)
     layout_id = native_review_contract.detect_layout(book)
+    return book, layout_id
+
+
+def _membership_from_source(item, book, layout_id):
     layout = native_review_contract.LAYOUTS[layout_id]
     if item['sheet'] != layout['main']:
         raise ValueError('city_membership_main_sheet_required')
@@ -110,6 +115,28 @@ def _membership(item):
             'layout_id': layout_id, 'sheet': item['sheet'],
             'cells': {key: {'cell': address, 'value': value} for key, address, value in
                       zip(('name', 'province', 'city'), addresses, values)}}
+
+
+def _memberships(items):
+    """Share parsing per exact submission/SHA, never across validation phases.
+
+    Process one original at a time. Only small, independent membership proofs
+    survive the group; complete workbooks are not retained for the batch.
+    """
+    groups = {}
+    for index, item in enumerate(items):
+        groups.setdefault((item['submission_id'], item['source_sha256']), []).append(index)
+    result = [None] * len(items)
+    for indexes in groups.values():
+        book, layout_id = _membership_source(items[indexes[0]])
+        for index in indexes:
+            result[index] = _membership_from_source(items[index], book, layout_id)
+        del book
+    return result
+
+
+def _membership(item):
+    return _memberships([item])[0]
 
 
 def _point(item, membership, selected, provinces, sha):
@@ -161,7 +188,9 @@ def install(root, payload, geography_path):
             raise ValueError('unique_city_location_identity_required')
         seen.add(item['site_id'])
     selected, provinces = _geography(geography_path, payload['geography_sha256'], items)
-    prepared = [_point(item, _membership(item), selected, provinces, payload['geography_sha256']) for item in items]
+    memberships = _memberships(items)
+    prepared = [_point(item, membership, selected, provinces, payload['geography_sha256'])
+                for item, membership in zip(items, memberships)]
     # Context CAS is execution bookkeeping, not the identity of the append.
     key = publication.digest({'kind': 'city_location', 'version': 1, 'sites': prepared})
     path = workspace_path(publication.PATH, root)
@@ -200,8 +229,10 @@ def install(root, payload, geography_path):
         updated['receipts'][key] = receipt
         # Recheck originals immediately before publishing the durable pointer.
         if _sha(geography_path) != payload['geography_sha256']: raise ValueError('city_geography_bytes_changed')
-        for item, point in zip(items, prepared):
-            if _membership(item) != point['membership']: raise ValueError('city_membership_source_changed')
+        # Build fresh proofs from approved originals inside the publication lock.
+        # The initial phase's parsed sources must never satisfy this recheck.
+        verified = _memberships(items)
+        if verified != memberships: raise ValueError('city_membership_source_changed')
         write_json_streaming(path, updated)
     return receipt
 
