@@ -435,6 +435,9 @@ class Handler(SimpleHTTPRequestHandler):
                         item, task_state, mission, site_index, task_records,
                         source_state_sha)
                     item['known_sites'] = site_index[:500]
+                    if item.get('full_analysis'):
+                        item['campus_context'] = review_context.campus_descriptor(
+                            item, task_state, mission, registered, task_records)
                     items.append(item)
                 return self._json(200, {'items': items})
             try:

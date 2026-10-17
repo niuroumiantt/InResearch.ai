@@ -275,3 +275,6 @@ JSON HTTP响应逐块编码，超过1 MiB的缓冲溢出到既有私有logs持�
 2026-10-17 已知阅读输出截断的完整拆分（2026.10.17.3）：仅原生packed阅读具有派发前输出拆分许可、精确dispatch及完整HTTP回包，且请求／原part／system／schema／token proof／响应摘要一致、实际27B明确done=true／length／4096输出时，按原序二分失败窗的完整片段。保持所有上下文、32K／4096预算、旧失败原字节及已成功窗口；拆分本轮不再生成、子窗全部有效才计覆盖。未知结果、模型绑定失败、单片仍超限继续受阻。旧operator与无许可历史失败不会因升级或删除status自动恢复，须精确作用域审计后受控恢复；最终综合及发布门槛保持。
 
 仅全新attempt/package选择campus-packed-reading-v1；跨task-SHA任一旧计划／游标／窗口／提案即legacy，标记绑定原件／manifest／包身份。64片段保持全部原文、顺序、身份／header上下文；专用reading完整同模型精确token＋4096＋1024≤32768，禁止截断滑移。生成前真实输入预算证明仍可二分；新增独立输出拆分许可仅绑定同一派发前的request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域，且dispatch、完整unverified、completion/response SHA、phase/reason、实际27B/done/length/4096全部一致，拒绝remote/debug/thinking/tool/images与未知结果。仅对当前未成功窗按原顺序二分完整片段，不改完整上下文／system或schema生成规则；子窗按自身完整原格重新生成定位枚举并独立绑定schema摘要；旧失败审计和成功前缀原字节不动，分拆链从initial完整重放验证。无许可历史失败不能自动放行，operator需精确审计后恢复；单片超限仍blocked。拆分当轮不再推理，plan已写而progress未写可零调用恢复总数，原游标保持；partial不成为findings／覆盖。完整成功response及returned恢复、语义无效三份上限、GPU门槛、每轮至多一次内容生成和原final／服务器发布保持。
+
+
+2026-10-17 独立园区并行上下文：新包按完整原生包匹配全量身份索引，绑定全部匹配记录摘要、共同任务正文及负责人显式反馈；无关园区自动报告、全库CAS摘要与仪表盘计数不再进入模型任务SHA。同园区事实／别名／新匹配、共同任务或人工反馈变化仍拒绝旧结果。服务端从批准原件重建包与依赖，正式发布仍串行持锁并使用最新全状态CAS；CAS竞争只重送完整缓存，不重复推理。旧已开始包保留原上下文／窗口，不改写成功回包；新包冻结独立上下文策略。机器按精确ID/SHA互斥分工，每机单请求，阅读可并行，发布只有原接收器。合成验收不证明生产双机并发已通过。
