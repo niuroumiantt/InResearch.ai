@@ -114,7 +114,9 @@ class _HttpJsonDirectory:
 
 class Handler(SimpleHTTPRequestHandler):
     # MIME 由代码决定，不依赖运行镜像的系统 mime 表（slim 镜像没有 .woff2）。
-    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, '.woff2': 'font/woff2'}
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map,
+                      '.woff2': 'font/woff2',
+                      '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'}
 
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)

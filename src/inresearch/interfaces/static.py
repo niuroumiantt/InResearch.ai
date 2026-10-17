@@ -29,7 +29,7 @@ def source_path(url_path, root=None):
                 or parts[-1].lower() == 'users.json' or url_path.lower() == '/data/research_runtime.json'
                 or parts[:2] == ('data', 'raw')):
             return root / '.not-served'
-        if Path(parts[-1]).suffix.lower() not in {'.json', '.md', '.csv', '.txt', '.pdf', '.html', '.png', '.jpg', '.svg'}:
+        if Path(parts[-1]).suffix.lower() not in {'.json', '.md', '.csv', '.txt', '.pdf', '.html', '.png', '.jpg', '.svg', '.pptx'}:
             return root / '.not-served'
         relative = '/'.join(parts)
     try:
