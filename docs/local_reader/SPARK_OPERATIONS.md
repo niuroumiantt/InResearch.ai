@@ -614,7 +614,7 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 未开始包专用阅读（.35）：部署时不迁移或删除任何成功窗口。先在attempt/package下检查所有task-SHA目录；存在plan.json、progress.json、chunk-*、proposal.json或综合／派发审计即沿legacy，不能因当前任务SHA不同而改配方。全新包才冻结`reading-recipe.json`和64片段计划；每窗实际渲染／同模型分词通过后才生成，原完整片段及顺序、身份／表头／任务上下文均保留。仅真实input token预算超限且尚未派发，才自动按片段中点二分并保存input-budget-checks凭证，单片超限停止；不得用平均字节比或另一个tokenizer放行。GPU检查在debug前及completion前执行，唯一timer每轮仍至多一次新内容生成。
 
-新包的`reading-audits/chunk-*/<input_sha>/attempt-*/dispatch.json`在HTTP派发前保存完整请求和proof；response.json保存成功原响应／已验证结果，未推进游标可直接复用它。dispatch已存在而无可验证成功响应，或存在unverified.json，均要求运维；输出截断同样停止，不设输出后二分或通用自动重放。不要删除status、dispatch或旧失败响应解锁。语义无效而完整的响应按原三次预算保留在rejected-responses，成功窗不重读。新配方的最终综合仍走原delta与精确token合同，已有prepared proposal/outbox继续原幂等交付。离线64片段数是候选规划，未经实际分词及完整报告不能宣称全量预算通过、语义合格或耗时缩短。
+新包的`reading-audits/chunk-*/<input_sha>/attempt-*/dispatch.json`在HTTP派发前保存完整请求和proof；response.json保存成功原响应／已验证结果，未推进游标可直接复用它。dispatch已存在而无可验证回包继续要求运维；unverified默认不能重放。仅按下述2026.10.17.3已知输出上限规则允许完整拆分，不能把任意失败当作许可。不要删除status、dispatch或旧失败响应解锁。语义无效而完整的响应按原三次预算保留在rejected-responses，成功窗不重读。新配方的最终综合仍走原delta与精确token合同，已有prepared proposal/outbox继续原幂等交付。离线64片段数是候选规划，未经实际分词及完整报告不能宣称全量预算通过、语义合格或耗时缩短。
 
 最终响应按.33使用增量格式：1至600字符且非空白的summary、reviewed_finding_ids将原问题0起始索引各列一次（可乱序、拒绝布尔值）、仅新跨窗问题的完整new_findings、accept_candidates原候选索引。全部原findings与其他证据仍完整输入；提交时原问题逐字保留，再追加新增问题，不能因改格式丢失缺口。最终recipe版本为`campus-adjudication-delta-v1`，独立记录system/schema/request/完整reading inventory/findings/candidates摘要及外层配方摘要，成功和未绑定响应均保存；旧final配方不兼容即停，不借此重读或覆盖成功阅读缓存。原32768／4096／1024及GPU、模型／tokenizer绑定保持；输出仍截断就blocked，不分页或截短真实新问题。
 
@@ -635,3 +635,12 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 若修复改变system或schema，且当前正式首包仍无服务器完成包、当前attempt报告、未回执发布outbox或本地接收回执，先核精确原件SHA、attempt、包与当前任务身份，暂停唯一intake timer并等待receive自然退出；保存旧状态与冻结配方目录的完整文件及摘要，再把该taskSHA目录和本地受阻status隔离到私有recipe-history。新代码在原活动路径重新建配方、从第0窗读同一attempt；服务器attempt保持running，不直接编辑完成数、窗口游标或报告，也不把本地配方恢复称为新attempt。只要已有服务器完成包、当前attempt报告、未回执发布outbox或本地接收回执，便不得套用此恢复，须先按原发布事务核对。旧原件、成功窗口、无效响应及审计永久保留。
 
 原生文本全覆盖不包括图片、外链下载或公式执行，不等于来源陈述真实性、C3 正式采用或模型参数适用。缺口应明确到园区、字段、原件定位、需继续爬取的来源类型及验收条件；不把旧抽样中的“无可发布候选”当作全表结论。运行记录留私有数据目录，源码交接只记安全摘要。真实部署版本、试点受阻或成功、网站回执和全表完成分别由当次交接记录，不能由源码或夹具推定。
+
+
+## 原生阅读已知输出上限的完整拆分（2026.10.17.3）
+
+新派发在dispatch之前持久化独立输出拆分许可，绑定精确request/input/system/schema、完整token proof摘要及attempt/package/task/窗口/重试作用域；许可不改变阅读提示、模型、schema生成规则或已成功配方；子窗定位枚举按其实际完整原格重新生成并独立绑定摘要。只有原dispatch与完整unverified回包的摘要、请求、token proof、实际模型qwen3.8:27b及done=true、done_reason=length、整型eval_count=4096共同一致时，才能把当前失败窗的原生片段按中点无损二分。remote/debug/thinking/tool/images、未知HTTP结果、模型绑定失败及其它unverified均不适用；不足两个片段继续blocked，不扩大32K上下文或4096输出预算。
+
+保留原失败dispatch/unverified路径和字节；全部身份／表头／任务／来源上下文原值复制，原片段顺序和flatten全集必须相同。每条split保留原输入与审计身份，由初始计划逐条重放复验。只拆当前尚未成功窗，不能移动已生成后继或改成功前缀；新子窗使用新输入摘要的审计路径。plan先原子保存，progress随后记录新总数；中断后从已验证plan恢复总数，游标不前进。拆分轮不再生成，仍遵守单轮一次内容调用及GPU门槛。截断partial从不进入有效问题、候选或完成覆盖。
+
+旧派发没有上述许可，升级和删除status都不能自动拆分或重放。现有CM-CQ-ST3失败恢复须在正式源码合并／双端部署后，停唯一timer并等本轮自然结束、取得原有archive锁；fresh核精确submission/source/attempt/package/task及无本包网站报告/outbox/proposal，保存旧status与两成功窗完整摘要。只对已确认完整length回包生成具名、精确作用域的一次恢复许可，通过正式split验证器转为完整子窗；原失败、成功窗和其它包不得改写。未知结果不能用同一入口恢复。实际子窗和完整包网站回执须另验，不能把许可或拆分预检算作恢复成功。

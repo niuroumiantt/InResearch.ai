@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.4。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.8。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2815。
+在册文件：2824。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 446 |
-| 运行代码 | 416 |
+| 运行代码 | 418 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 270 |
-| 测试 | 259 |
+| 配套说明 | 275 |
+| 测试 | 261 |
 
 ## 在册记录集合
 
@@ -35,7 +35,7 @@
 | `data/brief.json` | sec | 16 |
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 257 |
-| `data/company_disclosures.json` | records | 1 |
+| `data/company_disclosures.json` | records | 2 |
 | `data/contracts.json` | records | 8 |
 | `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
@@ -1809,7 +1809,7 @@
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 59 |
-| `framework/interface_manifest.json` | public_pages | 3 |
+| `framework/interface_manifest.json` | public_pages | 5 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -2674,6 +2674,7 @@
 | [docs/guides/fetchdata/fetchfilings-production.md](guides/fetchdata/fetchfilings-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-market-prices.md](guides/fetchdata/fetchquotes-market-prices.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-production.md](guides/fetchdata/fetchquotes-production.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchreports-outbox.md](guides/fetchdata/fetchreports-outbox.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-production.md](guides/fetchdata/fetchreports-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-research-publications.md](guides/fetchdata/fetchreports-research-publications.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-outbox.md](guides/fetchdata/fetchstat-outbox.md) | 配套说明 |
@@ -2717,6 +2718,7 @@
 | [docs/handoff/fetchfilings-outbox.md](handoff/fetchfilings-outbox.md) | 配套说明 |
 | [docs/handoff/fetchfilings-production.md](handoff/fetchfilings-production.md) | 配套说明 |
 | [docs/handoff/fetchquotes-production.md](handoff/fetchquotes-production.md) | 配套说明 |
+| [docs/handoff/fetchreports-outbox.md](handoff/fetchreports-outbox.md) | 配套说明 |
 | [docs/handoff/fetchreports-production.md](handoff/fetchreports-production.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/fetchstat-outbox.md](handoff/fetchstat-outbox.md) | 配套说明 |
@@ -2754,6 +2756,9 @@
 | [docs/handoff/pdf-native-text-20261007.md](handoff/pdf-native-text-20261007.md) | 配套说明 |
 | [docs/handoff/pr-412-conflict-fix-20261009.md](handoff/pr-412-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/pr-417-conflict-fix-20261009.md](handoff/pr-417-conflict-fix-20261009.md) | 配套说明 |
+| [docs/handoff/pr-conflicts-20261017.md](handoff/pr-conflicts-20261017.md) | 配套说明 |
+| [docs/handoff/pr939-conflict-ci-20261017.md](handoff/pr939-conflict-ci-20261017.md) | 配套说明 |
+| [docs/handoff/pr973-conflict-ci-20261017.md](handoff/pr973-conflict-ci-20261017.md) | 配套说明 |
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/private-research-tasks-20261012.md](handoff/private-research-tasks-20261012.md) | 配套说明 |
 | [docs/handoff/project-audit-20261010.md](handoff/project-audit-20261010.md) | 配套说明 |
@@ -3757,6 +3762,7 @@
 | `scripts/filings_gateway.py` | 运行代码 |
 | `scripts/publish_repository_pages.py` | 运行代码 |
 | `scripts/receive_collector_local.py` | 运行代码 |
+| `scripts/reports_gateway.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |
@@ -4046,6 +4052,7 @@
 | `tests/unit/test_catalog_migration.py` | 测试 |
 | `tests/unit/test_catalog_ownership.py` | 测试 |
 | `tests/unit/test_catalog_supplement.py` | 测试 |
+| `tests/unit/test_ci_runner_routing.py` | 测试 |
 | `tests/unit/test_ci_scope.py` | 测试 |
 | `tests/unit/test_city_location.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
@@ -4142,6 +4149,7 @@
 | `tests/unit/test_ollama_token_budget.py` | 测试 |
 | `tests/unit/test_operations.py` | 测试 |
 | `tests/unit/test_optional_mapping_ids.py` | 测试 |
+| `tests/unit/test_packed_output_split.py` | 测试 |
 | `tests/unit/test_packed_reading.py` | 测试 |
 | `tests/unit/test_panel_source_assets.py` | 测试 |
 | `tests/unit/test_pdf_native_text.py` | 测试 |
@@ -4746,6 +4754,7 @@
 | `web/pages/compute-atlas.html` | 运行代码 |
 | `web/pages/compute-catalog.html` | 运行代码 |
 | `web/pages/control-atlas.html` | 运行代码 |
+| `web/pages/coreweave.html` | 运行代码 |
 | `web/pages/cross-scale-atlas.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
 | `web/pages/facility-atlas.html` | 运行代码 |

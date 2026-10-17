@@ -609,6 +609,25 @@ class CustomerHTTPTests(unittest.TestCase):
                      '/assets/repository-status.js', '/assets/material-flow.js'):
             self.assertEqual(self.request('GET', path)[0], 403, path)
 
+    def test_shared_brand_assets_deliver_exact_bytes_without_granting_asset_directories(self):
+        paths = ('/assets/fonts/source-serif-regular.woff2', '/assets/fonts/source-serif-semibold.woff2',
+                 '/assets/fonts/ibm-plex-mono.woff2', '/assets/marketing/wordmark-light.svg',
+                 '/assets/marketing/wordmark-dark.svg')
+        for path in paths:
+            with self.subTest(path=path):
+                status, headers, body = self.request('GET', path)
+                self.assertEqual(status, 200)
+                self.assertEqual(body, (ROOT / 'web' / path.lstrip('/')).read_bytes())
+                head_status, head_headers, head_body = self.request('HEAD', path)
+                self.assertEqual((head_status, head_body), (200, b''))
+                self.assertEqual(head_headers['Content-Length'], str(len(body)))
+                self.assertEqual(self.request('POST', path, {})[0], 403)
+        for path in ('/assets/fonts/unregistered.woff2', '/assets/marketing/private-receipt.svg',
+                     '/assets/ops-dashboard.js', '/data/research_knowledge.json'):
+            for method in ('GET', 'HEAD'):
+                with self.subTest(path=path, method=method):
+                    self.assertEqual(self.request(method, path)[0], 403)
+
     def test_customer_company_index_drops_internal_fields_for_get_and_head(self):
         with patch.object(serve.source_publication, 'companies', return_value={'records': [{
                 'company_id': 'example', 'name': '示例公司', 'profile': '公开公司简介',

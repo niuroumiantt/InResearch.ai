@@ -6,7 +6,7 @@
 
 ## 独立身份与固定版本
 
-两队共用有上限的字节传输及只读完成ACK核验，但每个专用公钥固定一个命令、一个provider、一个协议。fetchfilings仅允许fetchfilings-gateway-v1 / fetchfilings-ssh-gateway/1，入口scripts/filings_gateway.py；即使请求改成fetchstat也拒绝。原stat入口、协议、队列与旧ACK不变，reports/quotes不启用生产队列。
+两队共用有上限的字节传输及只读完成ACK核验，但每个专用公钥固定一个命令、一个provider、一个协议。fetchfilings仅允许fetchfilings-gateway-v1 / fetchfilings-ssh-gateway/1，入口scripts/filings_gateway.py；即使请求改成fetchstat也拒绝。原stat入口、协议、队列与旧ACK不变，reports按独立指南接通；本指南不操作reports，quotes生产队列未启用。
 
 AWS只留本队专用私钥；Spark公钥限定AWS精确Tailscale IP、restrict、100秒timeout与固定脚本。主机ed25519公钥由既有可信连接核对，不关闭host-key校验。只走已批准的AWS→Spark TCP22，不增加公网监听或广泛shell权限。
 

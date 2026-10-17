@@ -332,7 +332,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _login_ok(self, username):
         account = auth.load_users().get(username, {})
-        destination = '/account' if account.get('must_change_password') else '/tasks.html' if account.get('role') == 'collaborator' else '/'
+        destination = self._login_destination(account)
         body = json.dumps({"ok": True, "user": username, "next":destination}, ensure_ascii=False).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json; charset=utf-8")
@@ -340,6 +340,12 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Set-Cookie", auth.make_cookie(username))
         self.end_headers()
         self.wfile.write(body)
+
+    @staticmethod
+    def _login_destination(account):
+        if account.get('must_change_password'):
+            return '/account'
+        return '/tasks.html' if account.get('role') in ('intern', 'collaborator') else '/'
 
     def _intern_allowed(self, path):
         query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
@@ -529,7 +535,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self._redirect('/product-catalog.html?' + urlencode(query, doseq=True))
         if self._norm_path() == "/login":
             if user:                       # 已登录还访问登录页 → 回首页
-                return self._redirect("/")
+                return self._redirect(self._login_destination(auth.load_users().get(user, {})))
             return self._html(200, pages.LOGIN_PAGE)
         if self._norm_path() in ('/api/navigation', '/api/workspace', '/api/site-search'):
             from inresearch.interfaces import workspace
