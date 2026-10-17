@@ -228,6 +228,8 @@ class PackedReadingTests(unittest.TestCase):
                         worker.proposal(self.item, self.original, folder, client)
                 self.assertEqual(len(client.dispatches), 1)
                 self.assertEqual(audit.read_bytes(), before)
+                self.assertFalse((audit.parent/'returned.json').exists())
+                self.assertFalse((audit.parent/'response.json').exists())
                 if outcome == 'truncated':
                     unverified = audit.parent/'unverified.json'
                     saved = json.loads(unverified.read_text())
@@ -307,4 +309,124 @@ class PackedReadingTests(unittest.TestCase):
         marker.write_text(json.dumps(value))
         with self.assertRaisesRegex(ValueError, 'campus_reading_recipe_changed'):
             self.call(client)
+        self.assertEqual(len(client.dispatches), 1)
+
+    def test_returned_journal_precedes_consumer_checks_and_recovers_without_new_call(self):
+        client = PackedClient()
+        def interrupted(result, evidence):
+            returned_path = next(self.run_folder().rglob('returned.json'))
+            saved = json.loads(returned_path.read_text())
+            self.assertEqual(saved['result'], result)
+            self.assertEqual(saved['completion'], evidence)
+            self.assertEqual(saved['result_sha256'], packed.digest(result))
+            self.assertEqual(saved['completion_sha256'], packed.digest(evidence))
+            self.assertEqual(list(self.run_folder().rglob('response.json')), [])
+            raise OSError('interrupted consumer validation')
+        with patch.object(packed, '_bound_result', side_effect=interrupted), self.assertRaises(OSError):
+            self.call(client)
+        returned_path = next(self.run_folder().rglob('returned.json'))
+        before = returned_path.read_bytes()
+        with patch.object(client, 'generate_campus_reading', side_effect=AssertionError('new generation')):
+            self.call(client)
+        self.assertEqual(returned_path.read_bytes(), before)
+        self.assertEqual(len(client.dispatches), 1)
+        self.assertEqual(len(client.measurements), 1)
+        self.assertEqual(json.loads((self.run_folder()/'progress.json').read_text())['next'], 1)
+
+    def test_bad_adapter_return_is_saved_before_binding_rejection_and_never_replayed(self):
+        client = PackedClient()
+        adapter = client.generate_campus_reading
+        def invalid(*args, **kwargs):
+            result, evidence = adapter(*args, **kwargs)
+            result['_model']['token_budget']['tokenizer_binding'] = {'changed_after_generation': True}
+            return result, evidence
+        with patch.object(client, 'generate_campus_reading', side_effect=invalid), \
+                self.assertRaisesRegex(ValueError, 'campus_reading_audit_changed'):
+            self.call(client)
+        returned_path = next(self.run_folder().rglob('returned.json'))
+        saved = json.loads(returned_path.read_text())
+        self.assertEqual(saved['result']['_model']['token_budget']['tokenizer_binding'],
+                         {'changed_after_generation': True})
+        self.assertEqual(saved['completion']['response']['done_reason'], 'stop')
+        self.assertEqual(saved['completion_sha256'], packed.digest(saved['completion']))
+        before = returned_path.read_bytes()
+        for _ in range(2):
+            with self.assertRaisesRegex(ValueError, 'campus_reading_audit_changed'):
+                self.call(client)
+        self.assertEqual(returned_path.read_bytes(), before)
+        self.assertEqual(len(client.dispatches), 1)
+        self.assertEqual(list(self.run_folder().rglob('response.json')), [])
+        self.assertEqual(list(self.run_folder().glob('chunk-*.json')), [])
+
+    def test_returned_journal_tampering_cannot_promote_or_replay_even_with_new_hashes(self):
+        for mutation in ('result_hash', 'bound_result', 'bound_request', 'dispatch'):
+            with self.subTest(mutation=mutation):
+                folder = self.folder/mutation
+                client = PackedClient()
+                with patch.object(packed, '_bound_result', side_effect=OSError('interrupted')), \
+                        self.assertRaises(OSError):
+                    worker.proposal(self.item, self.original, folder, client)
+                returned_path = next(folder.rglob('returned.json'))
+                saved = json.loads(returned_path.read_text())
+                if mutation == 'result_hash':
+                    saved['result_sha256'] = '0'*64
+                elif mutation == 'bound_result':
+                    saved['result']['_model']['input_sha256'] = '0'*64
+                    saved['result_sha256'] = packed.digest(saved['result'])
+                elif mutation == 'bound_request':
+                    saved['completion']['request']['messages'][1]['content'] = 'replaced input'
+                    saved['completion_sha256'] = packed.digest(saved['completion'])
+                else:
+                    dispatch = returned_path.parent/'dispatch.json'
+                    value = json.loads(dispatch.read_text())
+                    value['token_budget']['tokenizer_binding']['pid'] = 987
+                    dispatch.write_text(json.dumps(value))
+                returned_path.write_text(json.dumps(saved))
+                before = {p: p.read_bytes() for p in returned_path.parent.iterdir()}
+                with patch.object(client, 'generate_campus_reading', side_effect=AssertionError('new generation')), \
+                        self.assertRaisesRegex(ValueError, 'campus_reading_audit_changed'):
+                    worker.proposal(self.item, self.original, folder, client)
+                self.assertEqual(before, {p: p.read_bytes() for p in before})
+                self.assertFalse((returned_path.parent/'response.json').exists())
+                self.assertEqual(len(client.dispatches), 1)
+
+    def test_existing_response_without_returned_journal_stays_byte_identical(self):
+        client = PackedClient()
+        self.call(client)
+        folder = self.run_folder()
+        returned_path = next(folder.rglob('returned.json'))
+        returned_path.unlink()  # Receipt written by the previously deployed helper.
+        response_path = returned_path.parent/'response.json'
+        before = response_path.read_bytes()
+        plan = json.loads((folder/'plan.json').read_text())
+        part = plan['parts'][0]
+        result = json.loads(response_path.read_text())['result']
+        packed.verify_cached(result, review_worker.SYSTEM, part, worker.reading_schema(part), folder, 0, 0)
+        self.assertEqual(response_path.read_bytes(), before)
+        self.assertFalse(returned_path.exists())
+        self.assertEqual(len(client.dispatches), 1)
+
+    def test_returned_journal_must_agree_with_existing_response_and_unverified_state(self):
+        client = PackedClient()
+        self.call(client)
+        folder = self.run_folder()
+        returned_path = next(folder.rglob('returned.json'))
+        response_path = returned_path.parent/'response.json'
+        response = response_path.read_bytes()
+        original = returned_path.read_bytes()
+        saved = json.loads(original)
+        saved['result']['summary'] = 'different return'
+        saved['result_sha256'] = packed.digest(saved['result'])
+        returned_path.write_text(json.dumps(saved))
+        part = json.loads((folder/'plan.json').read_text())['parts'][0]
+        with self.assertRaisesRegex(ValueError, 'campus_reading_audit_changed'):
+            packed.generate(None, review_worker.SYSTEM, part, worker.reading_schema(part), folder, 0, 0, None)
+        self.assertEqual(response_path.read_bytes(), response)
+        returned_path.write_bytes(original)
+        response_path.unlink()
+        (returned_path.parent/'unverified.json').write_text('{}')
+        with self.assertRaisesRegex(models.InferenceError, 'campus_reading_completion_outcome_unverified'):
+            packed.generate(None, review_worker.SYSTEM, part, worker.reading_schema(part), folder, 0, 0, None)
+        self.assertFalse(response_path.exists())
+        self.assertEqual(returned_path.read_bytes(), original)
         self.assertEqual(len(client.dispatches), 1)

@@ -1,5 +1,11 @@
 # Spark 持续 reader 运行手册
 
+## 阅读回包与精确运维恢复（.37）
+
+新reading回包先保存returned.json（完整result/completion及各自SHA），再验全部冻结请求、实际模型、token预算、原dispatch与响应；通过后才写response.json及推进游标。进程中断后有效returned可零调用恢复；损坏或不匹配文件保持原样并operator_required。旧response不改写；仅有dispatch而无返回正文仍不自动重放。UID映射从内存tuple规范化为JSON list仅解决等值表达差异，不豁免任何证据字段。
+
+本次BOCOM-PJ2首窗的旧实现已完成HTTP200生成，但在保存正文前触发该类型假冲突，正文不可恢复。只允许本次精确submission/SHA/attempt/package/taskSHA/window/requestSHA范围的一次运维重取：先停止唯一timer的新轮次并等service自然退出；核模型与部署修复版本、完整原件、旧dispatch及状态SHA，核服务器该包无报告／proposal／outbox／发布回执，核其他8包全部成果不变。将整份旧请求及状态、日志、任务计划和哈希清单持久封存至私有恢复历史；仅隔离该窗无正文的旧派发审计并恢复其本地operator状态，保留原计划／配方／游标0及所有其他成功文件。保存带明确丢失原因和一次性操作ID的恢复回执，复验原文件均在历史路径、服务器覆盖未变，再恢复原timer。没有真实新回包、完整包和网站回执就不计完成。本例不授权其他未知派发的通用重放，也不新建attempt、改覆盖数或重读前8包。
+
 ## 城市级点亮：双原件追加与回执（.36）
 
 仅对已上线、唯一身份且目前无坐标的园区使用；城市／地级区域来源已明确，地址仍可未知。先在完整包边界核当前队列与源状态，保留全部成功阅读。正常操作为 `python3 manage.py source-publish inspect` 取得state_sha256，将其填入私有payload的expected_state_sha，再执行 `python3 manage.py source-publish locate-city --input /私有目录/payload.json --geography /私有目录/CN.zip`。原件ZIP、payload、回执和审计进入持久私有资料／状态目录，不进Git，不依赖/tmp作为唯一副本。
