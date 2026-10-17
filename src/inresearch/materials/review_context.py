@@ -121,3 +121,62 @@ def before_batch_results(records, analysis_ids):
              'feedback':[entry for entry in record.get('feedback',[])
                          if entry.get('id') != analysis_ids.get(record['id'])]}
             if record['id'] in analysis_ids else dict(record) for record in records]
+
+
+CAMPUS_CONTEXT_POLICY = 'independent-campus-context-v1'
+
+
+def campus_descriptor(record, task_state, mission, registered, task_records):
+    """Server-owned dependencies, separate from the shared progress dashboard.
+
+    Include every identity (also duplicates/parents) in the matching inventory.
+    Bind complete records, not only the small fields shown in model prompts.
+    Manual owner feedback remains a common dependency until explicitly scoped.
+    """
+    from inresearch.materials.native_review_contract import digest
+    package_id = record.get('package_id')
+    package = next((r for r in task_state['packages'] if r['id'] == package_id), None)
+    feedback = []
+    for row in task_records:
+        if row.get('package_id') != package_id:
+            continue
+        report_ids = {r.get('id') for r in row.get('analysis_reports', [])}
+        for entry in row.get('feedback', []):
+            if entry.get('id') not in report_ids and entry.get('by') == inbox.approver():
+                feedback.append({'submission_id': row['id'], 'feedback': entry})
+    identities = []
+    for row in registered:
+        if not row.get('site_id'):
+            continue
+        projection = site_index([{**row, 'duplicate_of': None, 'identity_scope': 'site'}])
+        if not projection:
+            continue
+        identities.append({**projection[0], 'aliases': row.get('aliases') or [],
+                           'record_sha256': digest(row)})
+    return {'policy': CAMPUS_CONTEXT_POLICY,
+            'task_revision': research_tasks.package_scope_revision(task_state, package_id),
+            'mission_title': mission['title'], 'mission_goal': mission['goal'],
+            'package': ({k: package.get(k) for k in ('id','title','region','scope','sources')}
+                        if package else None),
+            'owner_feedback': sorted(feedback, key=lambda r: (r['submission_id'], digest(r['feedback']))),
+            'identities': sorted(identities, key=lambda r: r['site_id'])}
+
+
+def campus_task(descriptor, packet):
+    """Recompute the same complete native-packet dependencies on both ends."""
+    from inresearch.materials.review_worker import matching_sites
+    from inresearch.materials.native_review_contract import digest
+    if descriptor.get('policy') != CAMPUS_CONTEXT_POLICY:
+        raise ValueError('campus_context_policy_unknown')
+    identities = descriptor['identities']
+    # No 500-row input cap or 25-match dependency cap: newly added matching
+    # identities and aliases must invalidate an in-flight result too.
+    matches = matching_sites(identities, (c['value'] for c in packet['cells']),
+                             limit=len(identities))
+    task = {k: v for k, v in descriptor.items() if k != 'identities'}
+    task.update(execution_policy=CAMPUS_CONTEXT_POLICY,
+                package_id=packet['package_id'],
+                identity_dependencies=[{'site_id': r['site_id'], 'sha256': r['record_sha256']}
+                                       for r in matches])
+    task['identity_dependencies_sha256'] = digest(task['identity_dependencies'])
+    return task, [{k:v for k,v in r.items() if k != 'record_sha256'} for r in matches[:25]]

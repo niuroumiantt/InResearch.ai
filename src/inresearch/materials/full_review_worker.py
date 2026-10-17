@@ -275,6 +275,23 @@ def proposal(item, original, folder, model_client=None, before_generate=None, pr
     if packet is None:
         return None
     task = review_worker.review_task(item)
+    known = review_worker.matching_sites(item.get('known_sites') or [],
+                                        (c['value'] for c in packet['cells']))
+    package_folder = folder/'full-review'/attempt['attempt_id']/packet['package_id']
+    context_marker = package_folder/'execution-context.json'
+    # Existing windows stay on their original task policy. Never relabel or
+    # copy their successes into a new prompt/context namespace.
+    if context_marker.exists():
+        mode = json.loads(context_marker.read_text())['policy']
+    elif item.get('campus_context') and not any(package_folder.glob('*/*.json')):
+        mode = review_context.CAMPUS_CONTEXT_POLICY
+        atomic(context_marker, {'policy': mode})
+    else:
+        mode = 'legacy'
+    if mode == review_context.CAMPUS_CONTEXT_POLICY:
+        task, known = review_context.campus_task(item['campus_context'], packet)
+    elif mode != 'legacy':
+        raise ValueError('campus_context_policy_unknown')
     task_sha = review_context.provenance(task)['sha256']
     run_folder = folder/'full-review'/attempt['attempt_id']/packet['package_id']/task_sha
     run_folder.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -282,8 +299,6 @@ def proposal(item, original, folder, model_client=None, before_generate=None, pr
     if prepared.exists():
         return json.loads(prepared.read_text())
     model_client = model_client or client()
-    known = review_worker.matching_sites(item.get('known_sites') or [],
-                                        (c['value'] for c in packet['cells']))
     source_context = {'filename': item['name'], 'sha256': item['sha256'],
                       'layout_id': attempt['layout_id'],
                       'purpose': '历史对照，不按版本日期覆盖现有事实' if attempt['layout_id'] == 'mainland-register-v5'

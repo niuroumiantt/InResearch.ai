@@ -484,7 +484,8 @@ def _complete_with_task_lock(root, payload, *, expected_task=None, expected_sour
         raise inbox.Conflict('analysis_site_context_changed_retry_with_current_task')
     current_task, _ = review_context.current(root, record, runtime=runtime_state)
     expected_task = expected_task or review_context.provenance(current_task)
-    if payload.get('task_provenance') != expected_task:
+    legacy_context_matches = payload.get('task_provenance') == expected_task
+    if not full and not legacy_context_matches:
         raise inbox.Conflict('analysis_task_context_changed_retry_with_current_task')
     expected_source_sha = source_publication.digest(runtime_state)
     source_path = inbox.record_path(key) / 'content'
@@ -495,6 +496,20 @@ def _complete_with_task_lock(root, payload, *, expected_task=None, expected_sour
         sampled_scope = None
         if full:
             from inresearch.materials.native_review_contract import validate_scope
+            if not legacy_context_matches:
+                from inresearch.materials.native_review_contract import build_manifest
+                state = research_tasks.read(root)
+                manifest = build_manifest(book, sha, record['full_analysis']['layout_id'])
+                packet = next((p for p in manifest['packets']
+                              if p['package_id'] == payload['review_scope'].get('package_id')), None)
+                if packet is None:
+                    raise ValueError('native_review_package_unknown')
+                descriptor = review_context.campus_descriptor(
+                    record, state, research_tasks.plan(root)['mission'],
+                    source_publication.projects(root, runtime=runtime_state)['records'], inbox.records())
+                scoped_task, _ = review_context.campus_task(descriptor, packet)
+                if payload.get('task_provenance') != review_context.provenance(scoped_task):
+                    raise inbox.Conflict('analysis_task_context_changed_retry_with_current_task')
             sampled_scope = validate_scope(book, inbox.load(key), payload)
         elif (sum(len(sheet['cells']) for sheet in book.sheets) > 300
                 or 'batch_review' in payload and isinstance(payload.get('review_scope'),dict)
