@@ -477,6 +477,8 @@ def _complete_with_task_lock(root, payload, *, expected_task=None, expected_sour
     recovered = _recover_published_outbox(root, payload, input_sha256)
     if recovered is not None:
         return recovered
+    if full and not record.get('full_analysis'):
+        raise ValueError('explicit_full_review_attempt_required')
     if record.get('full_analysis') and not full:
         raise inbox.Conflict('explicit_full_review_attempt_required')
     runtime_state = source_publication.state(root)
