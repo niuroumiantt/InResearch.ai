@@ -32,6 +32,8 @@ INTERN_RESEARCH_API = ('/api/industry', '/api/observations', '/api/whoami', '/ap
 READER_PAGES = ('/', '/index.html', '/tasks.html', '/marketing.html')
 READER_API = ('/api/whoami', '/api/research-tasks', '/api/research-task-examples')
 READER_ASSETS = ('/assets/theme-state.js', '/assets/site-skin.js', '/assets/site-skin.css',
+                 '/assets/brand/inresearch-ai/icon-orange.svg', '/assets/brand/inresearch-ai/wordmark-primary.svg',
+                 '/assets/brand/inresearch-ai/wordmark-reverse.svg',
                  '/assets/auth-form.js', '/assets/auth.css', '/assets/industry.js',
                  '/assets/industry.css', '/assets/datacenter-news.js', '/assets/datacenter-news.css',
                  '/assets/world.geo.json', '/assets/world-detail.geo.json',
