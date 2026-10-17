@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import patch
 
 from inresearch.adapters import models, ollama_token_budget as budget
+from inresearch.materials import packed_reading as packed
 
 
 class ReadingBudgetTests(unittest.TestCase):
@@ -288,3 +289,61 @@ class ReadingBudgetTests(unittest.TestCase):
             self.generate(before_dispatch=lambda *a: dispatches.append(a))
         self.assertFalse(hasattr(error.exception, 'budget_evidence'))
         self.assertEqual(len(dispatches), 1); self.assertEqual(len(self.actual_calls()), 1)
+
+    def test_real_adapter_to_packed_normalizes_nested_uid_tuples_before_consumer_checks(self):
+        self.runner['uid_binding'] = {'method': 'system_service_parent_in_user_namespace',
+            'uids': (65534, 65534, 65534, 65534),
+            'self_uid_map': [(1001, 1001, 1)],
+            'runner_process': {'uids': (65534, 65534, 65534, 65534),
+                               'uid_map': [(0, 0, 4294967295)]},
+            'service_process': {'uids': (65534, 65534, 65534, 65534),
+                                'uid_map': [(0, 0, 4294967295)]}}
+        self.model['model_file']['stat'] = (1, 2, 3, 4)
+        adapter = self.client.generate_campus_reading
+        captured = []
+        def actual_adapter(*args, **kwargs):
+            result, evidence = adapter(*args, **kwargs)
+            token_budget = result['_model']['token_budget']
+            self.assertEqual(token_budget, json.loads(budget.encoded(token_budget)))
+            self.assertEqual(token_budget['tokenizer_binding'], evidence['token_budget']['tokenizer_binding'])
+            self.assertEqual(token_budget['model_binding'], evidence['token_budget']['model_binding'])
+            captured.append((copy.deepcopy(result), copy.deepcopy(evidence)))
+            return result, evidence
+        with tempfile.TemporaryDirectory() as directory, \
+                patch.object(self.client, 'generate_campus_reading', side_effect=actual_adapter):
+            folder = Path(directory)
+            result = packed.generate(self.client, self.system, self.part, self.schema, folder, 0, 0, None)
+            audit = packed._audit_path(folder, 0, 0, self.part)
+            returned = json.loads((audit/'returned.json').read_text())
+            self.assertEqual(returned['result'], captured[0][0])
+            self.assertEqual(returned['completion'], captured[0][1])
+            self.assertEqual(returned['result_sha256'], packed.digest(result))
+            self.assertEqual((audit/'response.json').read_bytes(), (audit/'returned.json').read_bytes())
+            snapshots = {p: p.read_bytes() for p in audit.iterdir()}
+            self.assertEqual(packed.generate(None, self.system, self.part, self.schema, folder, 0, 0, None), result)
+            self.assertEqual(snapshots, {p: p.read_bytes() for p in snapshots})
+        self.assertEqual(len(self.actual_calls()), 1)
+        self.assertIsInstance(self.runner['uid_binding']['uids'], tuple)
+
+    def test_real_adapter_returned_journal_recovers_without_render_tokenize_or_completion(self):
+        self.runner['uid_binding'] = {'uids': (996, 996, 996, 996),
+                                      'nested': {'uid_map': [(0, 0, 4294967295)]}}
+        atomic = packed.atomic
+        def fail_response(path, value):
+            if path.name == 'response.json':
+                raise OSError('interrupted before response promotion')
+            return atomic(path, value)
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            with patch.object(packed, 'atomic', side_effect=fail_response), self.assertRaises(OSError):
+                packed.generate(self.client, self.system, self.part, self.schema, folder, 0, 0, None)
+            audit = packed._audit_path(folder, 0, 0, self.part)
+            before = (audit/'returned.json').read_bytes()
+            calls = copy.deepcopy(self.calls)
+            with patch.object(budget, '_call', side_effect=AssertionError('repeated model operation')):
+                result = packed.generate(None, self.system, self.part, self.schema, folder, 0, 0, None)
+            self.assertEqual(result['answer'], 42)
+            self.assertEqual(before, (audit/'returned.json').read_bytes())
+            self.assertEqual(json.loads((audit/'response.json').read_text())['result'], result)
+            self.assertEqual(self.calls, calls)
+        self.assertEqual(len(self.actual_calls()), 1)
