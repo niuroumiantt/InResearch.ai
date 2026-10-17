@@ -13,7 +13,7 @@ const {selectCases} = require('./browser_suites.cjs');
 const environment = {...process.env, INRESEARCH_INTAKE_ROOT: directory, INRESEARCH_MARKET_ENABLED: '0', INRESEARCH_MATERIAL_APPROVER: 'browser-admin'};
 const server = spawn(process.env.PYTHON || 'python3', ['-u', '-c',
   "import sys,os,json,secrets; from pathlib import Path; sys.path.insert(0,'src'); from inresearch.interfaces import http as serve,auth; directory=Path(os.environ['INRESEARCH_INTAKE_ROOT']); auth.USERS_FILE=directory/'browser-users.json'; auth.SECRET_FILE=directory/'.browser-secret'; auth.add_user('browser-admin',secrets.token_urlsafe(32),'admin'); auth.add_user('browser-customer',secrets.token_urlsafe(32),'customer'); s=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler); print(json.dumps({'port':s.server_port,'admin_cookie':auth.make_cookie('browser-admin').split(';')[0],'customer_cookie':auth.make_cookie('browser-customer').split(';')[0]}),flush=True); s.serve_forever()"],
-  {cwd:root, env:environment, stdio:['ignore','pipe','inherit']});
+  {cwd:root, env:{...environment, INRESEARCH_MATERIAL_APPROVER:'browser-admin'}, stdio:['ignore','pipe','inherit']});
 const lines = createInterface({input:server.stdout});
 const ready = new Promise((resolve, reject) => {
   lines.once('line', line => {

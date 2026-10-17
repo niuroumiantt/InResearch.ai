@@ -14,37 +14,10 @@ let detailGeo=null;
 const adminTiles=new Map(),detailLoads=new Map(),detailFailures=new Set();
 let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false, mapSignature='';
 const keys=['c','region','stage','relation','scope','role','site','country','province','city','address','q'];
-let fontCacheQueued=false,fontCacheStarted=false;
-function useCachedFonts(){
- const link=$('home-fonts');
- if(!isReader||!link||fontCacheStarted)return;
- if(!link.sheet){
-  link.addEventListener('load',useCachedFonts,{once:true});
-  link.addEventListener('error',()=>{link.dataset.fonts='fallback';},{once:true});
-  return;
- }
- fontCacheStarted=true;
- // Match the operations page: inactive shared CSS supplies descriptors only.
- // Cold cache misses never download font files or compete with public data.
- Promise.all(Array.from(link.sheet.cssRules).filter(r=>r.type===CSSRule.FONT_FACE_RULE).map(async rule=>{
-  try{
-   const source=rule.style.getPropertyValue('src').match(/url\(["']?(\.\/[a-z0-9-]+\.woff2)["']?\)/i);
-   if(!source)return false;
-   const response=await fetch(new URL(source[1],link.href),{cache:'only-if-cached',mode:'same-origin'});
-   if(!response.ok)return false;
-   const face=new FontFace(rule.style.getPropertyValue('font-family').replace(/^["']|["']$/g,''),await response.arrayBuffer(),{
-    weight:rule.style.getPropertyValue('font-weight'),style:rule.style.getPropertyValue('font-style'),
-    unicodeRange:rule.style.getPropertyValue('unicode-range')||'U+0-10FFFF',display:'swap'
-   });
-   await face.load();document.fonts.add(face);return true;
-  }catch(e){return false;}
- })).then(results=>{link.dataset.fonts=results.some(Boolean)?'cached':'fallback';if(isHome)resizeUpdates();});
-}
-function queueCachedFonts(){
- if(!isReader||fontCacheQueued||!data||(isHome&&(!geo||!news&&!newsFailed)))return;
- fontCacheQueued=true;
- // Reader content is already rendered; font reuse remains optional work.
- if(window.requestIdleCallback)requestIdleCallback(useCachedFonts);else setTimeout(useCachedFonts,0);
+let brandFontResizeQueued=false;
+function queueBrandFontResize(){
+ if(brandFontResizeQueued)return;brandFontResizeQueued=true;
+ if(isHome){document.fonts.ready.then(resizeUpdates);document.fonts.addEventListener('loadingdone',resizeUpdates);}
 }
 function url(page, changes={}) {const q=new URLSearchParams(params);for(const [k,v] of Object.entries(changes))v?q.set(k,v):q.delete(k);return page+(q.size?'?'+q:'');}
 function name(id){const c=data?.companies.find(c=>c.company_id===id);return c?.name_cn||c?.name||id;}
@@ -190,7 +163,7 @@ $('filters')?.addEventListener('change',e=>select({[e.target.name]:e.target.valu
 if($('stage-filter'))$('stage-filter').onchange=e=>select({stage:e.target.value});
 if($('lead-state'))$('lead-state').onchange=renderPipeline;
 window.addEventListener('inresearch:news-data',e=>{news=e.detail;newsFailed=false;renderPipeline();renderDaily();renderMap();});
-window.addEventListener('inresearch:news-state',e=>{newsFailed=e.detail.status==='failed';renderPipeline();renderDaily();queueCachedFonts();});
+window.addEventListener('inresearch:news-state',e=>{newsFailed=e.detail.status==='failed';renderPipeline();renderDaily();queueBrandFontResize();});
 window.addEventListener('inresearch:locate-news',e=>{const row=rawRecords().find(r=>r.id===e.detail.id);if(!validCoordinates(row?.coordinates))return;selectedSite='raw:'+row.id;pinned=false;view=[0,0,1000,490];setView();renderPopup();highlightMap();svg.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
 if($('news-selection'))$('news-selection').onchange=e=>{document.querySelector('[data-datacenter-news]').dataset.newsSelection=e.target.value;window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...selection(),redraw:true}}));};
 function filters(){
@@ -262,7 +235,7 @@ function renderResearch(){
  for(const b of $('research-countries').querySelectorAll('button'))b.onclick=()=>{const group=countryGroups().find(g=>g.key===b.dataset.researchCountry);if(group)window.dispatchEvent(new CustomEvent('inresearch:locate-news',{detail:{id:group.items[0].id}}));};
 }
 function renderDaily(){
- if(isHome)queueCachedFonts();
+ if(isHome)queueBrandFontResize();
 }
 function renderMap(){
  if(!geo)return;
@@ -306,7 +279,7 @@ function renderMap(){
   }
   el.onclick=()=>{hideTooltip();hovering=false;clearTimeout(hoverTimer);activate();};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();hideTooltip();hovering=false;clearTimeout(hoverTimer);activate();}};
  }
- highlightMap();renderPopup();queueCachedFonts();
+ highlightMap();renderPopup();queueBrandFontResize();
 }
 function renderLand(){
  const source=detailGeo||geo;if(!source)return;
@@ -557,7 +530,7 @@ function timelineItem(item){
  return `<li><time>${esc(item.effective_at||'观测时间未明确')}${item.valid_until?' 至 '+esc(item.valid_until):''}</time><div><span class="badge">${esc(observationKinds[item.kind]||item.kind)}</span>${item.registration_status==='unverified'?'<span class="badge">基础登记待查</span>':''}${item.scope&&item.scope!=='whole_site'?`<span class="badge">分期 ${esc(item.scope.slice(6))}</span>`:''}${item.revision?`<span class="badge">${item.revision.action==='withdraw'?'来源观测已撤回':'来源观测已修订'}</span>`:''}<p>${observationValues(item).join('<br>')}</p><p>${esc(item.basis)}</p>${item.assumptions?.length?`<p class="basis">${item.assumptions.map(esc).join('；')}</p>`:''}${(item.source_reading||[]).filter(r=>r.mode==='targeted').map(r=>`<p class="basis">局部证据已核验 · 选取 ${esc(r.pages_read)}／${esc(r.pages_total)} 页 · 未作全文阅读</p>`).join('')}${published.length?`<span class="basis">来源发表 ${published.map(esc).join('、')}</span> `:''}${(item.sources||[]).map(s=>sourceLink(s.url,'来源 ↗')).join(' · ')}</div></li>`;
 }
 function objectObservationRows(rows){
- const labels={Capacity:'容量',Interface:'接口／吞吐',Density:'容量',Technology:'存储技术','Module Version':'外形／模块版本','Product Name':'产品系列','Bus Width':'总线宽度','CAS Latency':'CAS延迟','Operating Temp':'工作温度',Speed:'频率',industrial_electricity_price_ytd:'工业电价（年初至当月）',manufacturer_catalogue_model:'厂商目录型号',cooling_capacity:'制冷量',height:'高度',width:'宽度',depth:'深度',power_rating:'额定功率',operating_temperature:'工作温度',input_voltage:'输入电压',output_voltage:'输出电压',weight:'重量',efficiency:'效率',rack_count:'机柜数',rack_units:'机架高度',rated_current:'额定电流',outlet_configuration:'插座配置',airflow:'风量'};
+ const labels={Capacity:'容量',Interface:'接口／吞吐',Density:'容量',Technology:'存储技术','Module Version':'外形／模块版本','Product Name':'产品系列','Bus Width':'总线宽度','CAS Latency':'CAS延迟','Operating Temp':'工作温度',Speed:'频率',industrial_electricity_price_ytd:'工业电价（年初至当月）',manufacturer_catalogue_model:'厂商目录型号',reported_activity:'动态',reported_project_location:'项目位置',reported_role:'主体角色',cooling_capacity:'制冷量',height:'高度',width:'宽度',depth:'深度',power_rating:'额定功率',operating_temperature:'工作温度',input_voltage:'输入电压',output_voltage:'输出电压',weight:'重量',efficiency:'效率',rack_count:'机柜数',rack_units:'机架高度',rated_current:'额定电流',outlet_configuration:'插座配置',airflow:'风量'};
  return rows.map(r=>`<li><time>${esc(r.effective_at||'信息时间未明确')}</time><div><strong>${esc(labels[r.metric]||labels[r.metric.split('.').pop()]||r.metric)}</strong> · ${esc(typeof r.value==='object'?r.value.value_range.join('–'):r.value)} ${esc(r.unit==='native'?'':r.unit)}${r.conflict?'<span class="badge">同口径分歧待核</span>':''}${r.revision?'<span class="badge">历史修订</span>':''}<p>${r.period_start||r.period_end?'统计期间：'+esc(r.period_start||'未知')+'—'+esc(r.period_end||'未知')+' · ':''}${r.registration_status==='unverified'?'基础登记待查':'核实：'+esc((r.reviewed_at||'').slice(0,10))}${r.source.published_at?' · 披露：'+esc(r.source.published_at):''}</p><details class="observation-note"><summary>口径与条件</summary><p>${esc(r.basis)}</p><p>${Object.entries(r.scope).map(([k,v])=>esc(k)+': '+esc(v)).join(' · ')}</p></details>${r.source.url?sourceLink(r.source.url,'原始来源 ↗'):'<span class="basis">归档资料 · 未提供公开原文链接</span>'}</div></li>`).join('');
 }
 function renderObjectUpdates(){
@@ -599,7 +572,7 @@ function renderUpdates(){
   const sourceHref=safe(item.source?.url);
   if(item.source?.url&&!sourceHref)continue;
   const date=updateDate(item.recorded_at),key=item.metric.split('.').pop();
-  const metric=({Capacity:'容量',Interface:'接口',Density:'容量',Technology:'技术',Speed:'频率',cooling_capacity:'制冷量',power_rating:'额定功率',industrial_electricity_price_ytd:'工业电价',manufacturer_catalogue_model:'目录型号'})[key]||key.replace(/_/g,' ');
+  const metric=({Capacity:'容量',Interface:'接口',Density:'容量',Technology:'技术',Speed:'频率',reported_activity:'动态',reported_project_location:'项目位置',reported_role:'主体角色',cooling_capacity:'制冷量',power_rating:'额定功率',industrial_electricity_price_ytd:'工业电价',manufacturer_catalogue_model:'目录型号'})[key]||key.replace(/_/g,' ');
   const value=typeof item.value==='object'?item.value.value_range.join('–'):item.value;
   const qualifiers=[item.registration_status==='unverified'?'基础登记待查':null,({estimated:'估算',calculated:'推导',forecast:'预测'})[item.kind],item.conflict?'同口径分歧':null,item.revision?(item.revision.action==='withdraw'?'已撤回':'修订'):null].filter(Boolean);
   const label=`${item.object.name} · ${qualifiers.length?qualifiers.join(' · ')+' · ':''}${metric} ${value}${item.unit==='native'?'':' '+item.unit}`;
@@ -681,7 +654,7 @@ function render(){
  if(isRegions)$('page-description').textContent='按同一统计边界比较已登记地点；缺失地理、容量与来源范围明确显示。';
  renderCampusViews();
  document.title=$('page-title').textContent+' · inresearch.ai';
- window.industryFilter=selection();window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:selection()}));queueCachedFonts();
+ window.industryFilter=selection();window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:selection()}));queueBrandFontResize();
 }
 let loading=false;
 async function load({quiet=false}={}){

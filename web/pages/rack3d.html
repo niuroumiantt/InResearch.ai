@@ -10,7 +10,7 @@
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 var(--ui-font); overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.6 var(--ui-font); overflow: hidden; }
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: var(--ui-surface);
     backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); display: flex; align-items: center;
@@ -24,41 +24,41 @@
     border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 16px; width: 300px;
     box-shadow: 0 12px 40px rgba(0,0,0,.45); }
   .hud h1 { font-size: 15px; margin-bottom: 2px; }
-  .hud .m { color: var(--muted); font-size: 11.5px; }
+  .hud .m { color: var(--muted); font-size: 14px; }
   .hud input[type=range] { width: 100%; margin-top: 10px; accent-color: var(--accent); }
-  .hud .stage { font-size: 11.5px; color: var(--accent); min-height: 18px; margin-top: 2px; }
+  .hud .stage { font-size: 14px; color: var(--accent); min-height: 18px; margin-top: 2px; }
   .hud button { margin-top: 8px; width: 100%; padding: 7px; border: none; border-radius: var(--ui-radius);
     background: var(--accent); color: var(--ui-on-accent); font: inherit; font-weight: 700; cursor: pointer; }
   .hud .ghost { background: transparent; border: 1px solid var(--line); color: var(--text); font-weight: 500; }
   #tip3d { position: fixed; pointer-events: none; z-index: 40; background: var(--ui-surface);
-    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 6px 10px; font-size: 12px; display: none; }
+    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 6px 10px; font-size: 14px; display: none; }
   #dossier { position: fixed; right: 18px; top: 62px; bottom: 18px; width: 340px; z-index: 20;
     background: var(--ui-surface); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 18px;
     overflow-y: auto; display: none; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
   #dossier h2 { font-size: 16px; margin-bottom: 2px; }
-  #dossier .meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
-  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: var(--ui-radius); color: #fff; }
+  #dossier .meta { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .badge { display: inline-block; font-size: 14px; font-weight: 600; padding: 1px 9px; border-radius: var(--ui-radius); color: #fff; }
   .sec { margin-top: 12px; }
-  .sec h3 { font-size: 11.5px; color: var(--muted); font-weight: 500; margin-bottom: 5px; }
+  .sec h3 { font-size: 14px; color: var(--muted); font-weight: 500; margin-bottom: 5px; }
   .chip { display: inline-block; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 2px 10px;
-    font-size: 11.5px; margin: 0 4px 6px 0; color: var(--text); }
+    font-size: 14px; margin: 0 4px 6px 0; color: var(--text); }
   .chip:hover { border-color: var(--accent); color: var(--accent); }
-  .kv { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--line); font-size: 12px; }
+  .kv { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
   .kv:last-child { border-bottom: none; }
   .close { float: right; cursor: pointer; color: var(--muted); font-size: 16px; }
   .insp { margin: 8px 0 4px; border: 1px solid var(--line); border-radius: var(--ui-radius); overflow: hidden; background: var(--ui-surface); }
   .insp canvas { display: block; width: 100%; height: 190px; cursor: grab; touch-action: none; }
   .rack-overview-dossier .insp canvas { height: 300px; }
-  .rack-exploded-legend { display:block; font-size:11.5px; line-height:1.65; white-space:normal; font-weight:400; }
-  .insp .ihint { font-size: 10.5px; color: var(--muted); text-align: center; padding: 3px 0 5px; }
+  .rack-exploded-legend { display:block; font-size:14px; line-height:1.65; white-space:normal; font-weight:400; }
+  .insp .ihint { font-size: 14px; color: var(--muted); text-align: center; padding: 3px 0 5px; }
   .spark-wrap { margin-top: 6px; }
-  .spark-wrap .sname { font-size: 10.5px; color: var(--muted); display: flex; justify-content: space-between; }
+  .spark-wrap .sname { font-size: 14px; color: var(--muted); display: flex; justify-content: space-between; }
   .spark-wrap .sname b { color: var(--text); }
   /* 钻取链：按骨架（bom.json 的系统与链路）生成 */
   .drill { position: fixed; top: calc(var(--ui-bar-height) + 56px); left: 50%; transform: translateX(-50%); z-index: 25;
     display: flex; align-items: center; gap: 2px; background: var(--ui-surface);
     border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 4px 6px;
-    backdrop-filter: blur(8px); box-shadow: 0 6px 22px rgba(0,0,0,.4); font-size: 12px; }
+    backdrop-filter: blur(8px); box-shadow: 0 6px 22px rgba(0,0,0,.4); font-size: 14px; }
   .drill a, .drill span { padding: 3px 11px; border-radius: var(--ui-radius); color: var(--muted);
     text-decoration: none; white-space: nowrap; }
   .drill a:hover { background: rgba(96,165,250,.15); color: var(--accent); }
@@ -74,17 +74,17 @@
   #dossier .sec .kv { gap: 12px; overflow-wrap: anywhere; }
   @media (max-width: 700px) {
     .topbar { height: 46px; padding: 0 10px; gap: 0; }
-    .topbar b { font-size: 12px; margin-right: 6px; }
-    .topbar .tab { font-size: 11px; padding: 12px 9px; }
+    .topbar b { font-size: 14px; margin-right: 6px; }
+    .topbar .tab { font-size: 14px; padding: 12px 9px; }
     .hud { left: 10px; right: 10px; bottom: 10px; width: auto; padding: 10px 12px; max-height: 37dvh; }
-    .hud h1 { font-size: 13px; }
+    .hud h1 { font-size: 14px; }
     #dossier { left: 10px; right: 10px; top: 55px; bottom: 10px; width: auto; padding: 14px; z-index: 28; }
     .insp canvas { height: 160px; }
   }
 
 .chip-desktop-legend{display:none}@media(min-width:701px){.chip-desktop-legend{display:block}}
 </style>
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="stylesheet" href="/assets/fonts/fonts.css" media="not all"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <inresearch-shell data-section="bom"></inresearch-shell>

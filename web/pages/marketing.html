@@ -1,69 +1,70 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="inresearch.ai 品牌、UI、Logo、图标与 MarComm 使用规范。">
-  <title>inresearch.ai · Marketing Standards</title>
+  <title>品牌与界面规范 · inresearch.ai</title>
+  <script src="/assets/theme-state.js"></script>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css" media="not all">
+  <link rel="stylesheet" href="/assets/site-skin.css">
+  <script defer src="/assets/site-skin.js"></script>
   <style>
-    @font-face{font-family:SourceSerif;src:url('/assets/marketing/SourceSerif4-Regular.ttf')}@font-face{font-family:SourceSerif;src:url('/assets/marketing/SourceSerif4-Semibold.ttf');font-weight:600}
-    :root{--paper:#f6f5f2;--ink:#0b0c0c;--muted:#59605e;--orange:#fd340a;--blue:#101820;--line:#d9d6d0;--card:#fffdfa}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:SourceSerif,FangSong,'STFangsong',serif;line-height:1.65}
-    a{color:inherit;text-underline-offset:4px}.wrap{max-width:1180px;margin:auto;padding:0 28px}.topbar{display:flex;align-items:center;justify-content:space-between;padding:26px 0 18px;border-bottom:1px solid var(--line)}.topbar img{width:250px;height:auto}.topbar nav{display:flex;gap:20px;font-size:15px;color:var(--muted)}.topbar nav a{text-decoration:none}.topbar nav a:hover{color:var(--orange)}
-    .hero{position:relative;overflow:hidden;min-height:610px;padding:88px 0 72px}.hero:after{content:"";position:absolute;right:-110px;top:0;width:520px;height:150px;background:url('/assets/marketing/hero-gradient.png') center/cover no-repeat;z-index:0}.hero>*{position:relative;z-index:1}.eyebrow{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 22px}.hero h1{font-family:FangSong,'STFangsong',serif;font-size:clamp(48px,8vw,92px);font-weight:400;line-height:1.06;max-width:830px;margin:0 0 28px}.hero h1 em{color:var(--orange);font-style:normal}.hero p{max-width:720px;font-size:21px;color:var(--muted);margin:0 0 30px}.hero .anchor{display:inline-block;width:34px;height:5px;background:var(--orange);margin:0 0 25px}.hero-actions{display:flex;gap:14px;flex-wrap:wrap}.button{display:inline-block;padding:11px 18px;border:1px solid var(--ink);border-radius:2px;text-decoration:none;font-size:15px}.button.primary{background:var(--orange);border-color:var(--orange);color:#fff}.button:hover{transform:translateY(-1px)}
-    section{padding:74px 0;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px}.section-head h2{font-family:FangSong,'STFangsong',serif;font-size:42px;font-weight:400;margin:0}.section-head p{max-width:500px;color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--line);padding:24px;min-height:190px}.card h3{margin:0 0 10px;font-size:24px;font-weight:600}.card p{margin:0;color:var(--muted)}.num{font-size:28px;color:var(--orange);margin-bottom:20px}.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}.panel{background:var(--card);border:1px solid var(--line);padding:26px}.panel h3{font-size:26px;margin:0 0 16px;font-weight:600}.panel p{color:var(--muted)}.panel ul{margin:10px 0 0;padding-left:22px;color:var(--muted)}
-    .logo-showcase{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px}.logo-card{border:1px solid var(--line);background:var(--card);padding:20px}.logo-card.dark{background:var(--blue);color:var(--paper)}.logo-card img{display:block;max-width:100%;height:100px;object-fit:contain;object-position:left center;margin:14px 0}.logo-card.dark img{background:var(--blue)}.logo-card h3{margin:0;font-size:20px}.logo-card small{color:var(--muted)}.logo-card.dark small{color:#b6b6af}
-    .type-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line)}.type-table th,.type-table td{text-align:left;padding:15px 16px;border-bottom:1px solid var(--line);vertical-align:top}.type-table th{font-weight:600}.type-table td:nth-child(2){color:var(--orange)}
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gallery figure{margin:0;background:var(--card);border:1px solid var(--line)}.gallery img{display:block;width:100%;height:180px;object-fit:cover}.gallery figcaption{padding:12px 14px;color:var(--muted);font-size:14px}
-    .download-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.download-list a{display:flex;justify-content:space-between;gap:15px;padding:15px 17px;background:var(--card);border:1px solid var(--line);text-decoration:none}.download-list a span:last-child{color:var(--orange)}
-    footer{padding:42px 0 62px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:18px;border-top:1px solid var(--line)}
-    @media(max-width:800px){.topbar{align-items:flex-start;gap:14px;flex-direction:column}.topbar nav{flex-wrap:wrap}.grid,.logo-showcase,.gallery,.split,.download-list{grid-template-columns:1fr}.hero{min-height:560px;padding-top:62px}.hero h1{font-size:54px}.hero:after{right:-220px;opacity:.7}.section-head{display:block}.section-head p{margin-top:12px}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ui-bg);color:var(--ui-ink);font-family:var(--ui-font);line-height:1.65}
+    a{color:inherit;text-underline-offset:4px}.wrap{max-width:1180px;margin:auto;padding:0 28px}.topbar{display:flex;align-items:center;justify-content:space-between;padding:26px 0 18px;border-bottom:1px solid var(--ui-line)}.topbar img{width:250px;height:auto}.topbar nav{display:flex;gap:20px;font-size:15px;color:var(--ui-muted)}.topbar nav a{text-decoration:none}.topbar nav a:hover{color:var(--ui-link)}
+    .hero{position:relative;overflow:hidden;min-height:610px;padding:88px 0 72px}.hero:after{content:"";position:absolute;right:-110px;top:0;width:520px;height:150px;background:url('/assets/marketing/hero-gradient.png') center/cover no-repeat;z-index:0}.hero>*{position:relative;z-index:1}.eyebrow{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--ui-muted);margin:0 0 22px}.hero h1{font-family:var(--ui-font);font-size:clamp(40px,6vw,68px);font-weight:400;line-height:1.2;max-width:830px;margin:0 0 28px}.hero h1 em{color:var(--ui-link);font-style:normal}.hero p{max-width:720px;font-size:21px;color:var(--ui-muted);margin:0 0 30px}.hero .anchor{display:inline-block;width:34px;height:5px;background:var(--ui-accent);margin:0 0 25px}.hero-actions{display:flex;gap:14px;flex-wrap:wrap}.button{display:inline-block;padding:11px 18px;border:1px solid var(--ui-ink);border-radius:2px;text-decoration:none;font-size:15px}.button.primary{background:var(--ui-accent);border-color:var(--ui-accent);color:var(--ui-on-accent)}.button:hover{transform:translateY(-1px)}
+    main.wrap>section{padding:74px 0;border-top:1px solid var(--ui-line)}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px}.section-head h2{font-family:var(--ui-font);font-size:42px;font-weight:400;margin:0}.section-head p{max-width:500px;color:var(--ui-muted);margin:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--ui-surface);border:1px solid var(--ui-line);padding:24px;min-height:190px}.card h3{margin:0 0 10px;font-size:24px;font-weight:600}.card p{margin:0;color:var(--ui-muted)}.num{font-size:28px;color:var(--ui-link);margin-bottom:20px}.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}.panel{background:var(--ui-surface);border:1px solid var(--ui-line);padding:26px}.panel h3{font-size:26px;margin:0 0 16px;font-weight:600}.panel p{color:var(--ui-muted)}.panel ul{margin:10px 0 0;padding-left:22px;color:var(--ui-muted)}
+    .logo-showcase{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px}.logo-card{border:1px solid var(--ui-line);background:var(--ui-surface);padding:20px}.logo-card.dark{background:var(--ui-soft);color:var(--ui-ink)}.logo-card img{display:block;max-width:100%;height:100px;object-fit:contain;object-position:left center;margin:14px 0}.logo-card.dark img{background:var(--ui-soft)}.logo-card h3{margin:0;font-size:20px}.logo-card small{color:var(--ui-muted)}.logo-card.dark small{color:#b6b6af}
+    .type-table{width:100%;border-collapse:collapse;background:var(--ui-surface);border:1px solid var(--ui-line)}.type-table th,.type-table td{text-align:left;padding:15px 16px;border-bottom:1px solid var(--ui-line);vertical-align:top}.type-table th{font-weight:600}.type-table td:nth-child(2){color:var(--ui-link)}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gallery figure{margin:0;background:var(--ui-surface);border:1px solid var(--ui-line)}.gallery img{display:block;width:100%;height:180px;object-fit:contain}.gallery figcaption{padding:12px 14px;color:var(--ui-muted);font-size:14px}
+    .download-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.download-list a{display:flex;justify-content:space-between;gap:15px;padding:15px 17px;background:var(--ui-surface);border:1px solid var(--ui-line);text-decoration:none}.download-list a span:last-child{color:var(--ui-link)}
+    footer{padding:42px 0 62px;color:var(--ui-muted);font-size:14px;display:flex;justify-content:space-between;gap:18px;border-top:1px solid var(--ui-line)}
+    .marketing-nav{display:flex;flex-wrap:wrap;gap:16px;padding:20px 0}.marketing-nav a{min-height:44px;display:inline-flex;align-items:center}.marketing-page section{scroll-margin-top:calc(var(--ui-bar-height) + 24px)}.marketing-page img{max-width:100%}.marketing-page .type-table{font-size:16px}.marketing-page .card,.marketing-page .panel,.marketing-page .logo-card{border-radius:var(--ui-radius)}
+    @media(max-width:800px){.topbar{align-items:flex-start;gap:14px;flex-direction:column}.topbar nav{flex-wrap:wrap}.grid,.logo-showcase,.gallery,.split,.download-list{grid-template-columns:1fr}.hero{min-height:560px;padding-top:62px}.hero h1{font-size:clamp(32px,9vw,44px)}.hero:after{display:none}.section-head{display:block}.section-head p{margin-top:12px}}
   </style>
 </head>
-<body>
+<body class="marketing-page">
+  <inresearch-shell data-section="guide"></inresearch-shell>
   <div class="wrap">
-    <header class="topbar">
-      <a href="/marketing.html" aria-label="inresearch.ai marketing standards"><img src="/assets/marketing/wordmark-light.png" alt="inresearch.ai"></a>
-      <nav><a href="#brand">Brand</a><a href="#type">Typography</a><a href="#ui">UI</a><a href="#marcomm">MarComm</a><a href="#ppt">PPT</a><a href="#downloads">Downloads</a></nav>
-    </header>
-    <main>
+    <nav class="marketing-nav" aria-label="本页目录"><a href="#brand">品牌标识</a><a href="#type">字体与文字</a><a href="#ui">界面与图标</a><a href="#marcomm">传播材料</a><a href="#ppt">演示模板</a><a href="#downloads">下载</a></nav>
+    <main data-no-watermark="true">
       <section class="hero" style="border-top:0">
-        <p class="eyebrow">Marketing standards · v0.2</p>
+        <p class="eyebrow">品牌与界面规范 · v0.2</p>
         <span class="anchor"></span>
-        <h1>研究、洞察，<em>连接</em>更好的世界。</h1>
+        <h1>研究、洞察，<br><em>连接</em>更好的世界。</h1>
         <p>这是 inresearch.ai 的公开品牌使用页。所有 Logo、字体、UI、图标与传播材料都应遵循同一套清晰、克制、可复用的规则。</p>
         <div class="hero-actions"><a class="button primary" href="#downloads">下载最终材料包</a><a class="button" href="#brand">查看 Logo 规则</a></div>
       </section>
 
       <section id="brand">
-        <div class="section-head"><h2>01 / Brand</h2><p>一个完整字标、两个独立图标、三种形状。所有版本都保持透明底和统一月牙曲线。</p></div>
+        <div class="section-head"><h2>01 / 品牌标识</h2><p>一个完整字标、两个独立图标、三种形状。所有版本都保持透明底和统一月牙曲线。</p></div>
         <div class="logo-showcase">
-          <article class="logo-card"><div class="num">01</div><h3>完整字标</h3><img src="/assets/marketing/wordmark-light.png" alt="浅底完整字标"><small>官网页头、报告署名、正式材料</small></article>
-          <article class="logo-card"><div class="num">02</div><h3>圆形品牌标</h3><img src="/assets/marketing/circle-light.png" alt="浅底圆形品牌标"><small>头像、favicon、紧凑入口</small></article>
-          <article class="logo-card dark"><div class="num">03</div><h3>月牙圆点 / 独立 i</h3><img src="/assets/marketing/i-light.svg" alt="深底独立 i 标识"><small>导航识别、启动页、章节标记</small></article>
+          <article class="logo-card"><div class="num">01</div><h3>完整字标</h3><img width="1848" height="306" loading="lazy" decoding="async" src="/assets/marketing/wordmark-light.png" alt="浅底完整字标"><small>官网页头、报告署名、正式材料</small></article>
+          <article class="logo-card"><div class="num">02</div><h3>圆形品牌标</h3><img width="256" height="256" loading="lazy" decoding="async" src="/assets/marketing/circle-light.png" alt="浅底圆形品牌标"><small>头像、favicon、紧凑入口</small></article>
+          <article class="logo-card"><div class="num">03</div><h3>独立 i 标识</h3><img loading="lazy" decoding="async" src="/assets/marketing/i-light.svg" alt="独立 i 品牌标识"><small>导航识别、启动页、章节标记</small></article>
         </div>
-        <div class="split" style="margin-top:18px"><div class="panel"><h3>浅底使用</h3><p>暖白底优先使用彩色透明字标。不要给 Logo 加白色矩形底板，不要重新打字替换字标。</p><ul><li>品牌橙：#FD340A</li><li>墨黑：#0B0C0C</li><li>暖白：#F6F5F2</li></ul></div><div class="panel" style="background:var(--blue);color:var(--paper)"><h3>深色与蓝黑底</h3><p style="color:#b6b6af">使用反白透明版本，in 与 .ai 保持品牌橙，research 使用暖白。月牙保留透明负形。</p><ul style="color:#b6b6af"><li>蓝黑：#101820</li><li>研究文字：#F6F5F2</li><li>保持安全区与原比例</li></ul></div></div>
+        <div class="split" style="margin-top:18px"><div class="panel"><h3>浅底使用</h3><p>暖白底优先使用彩色透明字标。不要给 Logo 加白色矩形底板，不要重新打字替换字标。</p><ul><li>品牌橙：#FD340A</li><li>墨黑：#0B0C0C</li><li>暖白：#F6F5F2</li></ul></div><div class="panel" style="background:var(--ui-soft);color:var(--ui-ink)"><h3>深色与蓝黑底</h3><p style="color:var(--ui-muted)">使用反白透明版本，in 与 .ai 保持品牌橙，research 使用暖白。月牙保留透明负形。</p><ul style="color:var(--ui-muted)"><li>蓝黑：#101820</li><li>研究文字：#F6F5F2</li><li>保持安全区与原比例</li></ul></div></div>
       </section>
 
       <section id="type">
-        <div class="section-head"><h2>02 / Typography</h2><p>中文和中文全角标点使用仿宋；英文、数字和 ASCII 标点使用 Source Serif 4。</p></div>
-        <table class="type-table"><thead><tr><th>内容</th><th>字体</th><th>执行要求</th></tr></thead><tbody><tr><td>中文、中文全角标点</td><td>FangSong / 仿宋</td><td>Regular 为正文基准；标题可用真实字重，不使用伪粗体。</td></tr><tr><td>英文、数字、ASCII 标点</td><td>Source Serif 4</td><td>正文 Regular；英文标题与重要数字可用 Semibold。</td></tr><tr><td>代码、ID、日志</td><td>IBM Plex Mono</td><td>保持固定字符宽度，便于技术信息对齐。</td></tr><tr><td>混排空间</td><td>按语境切换</td><td>中文语境标点跟随仿宋；英文语境标点跟随 Source Serif 4。</td></tr></tbody></table>
+        <div class="section-head"><h2>02 / 字体与文字</h2><p>中文和中文全角标点使用仿宋；英文、数字和 ASCII 标点使用 Source Serif 4。</p></div>
+        <div class="type-scroll" style="overflow-x:auto"><table class="type-table"><thead><tr><th>内容</th><th>字体</th><th>执行要求</th></tr></thead><tbody><tr><td>中文、中文全角标点</td><td>FangSong / 仿宋</td><td>标题、正文和控件均使用 Regular 400，不使用伪粗体或伪斜体。</td></tr><tr><td>英文、数字、ASCII 标点</td><td>Source Serif 4</td><td>正文 Regular；英文标题与重要数字可用 Semibold。</td></tr><tr><td>代码、ID、日志</td><td>IBM Plex Mono</td><td>保持固定字符宽度，便于技术信息对齐。</td></tr><tr><td>混排空间</td><td>按语境切换</td><td>中文语境标点跟随仿宋；英文语境标点跟随 Source Serif 4。</td></tr></tbody></table></div>
       </section>
 
       <section id="ui">
-        <div class="section-head"><h2>03 / UI & Icons</h2><p>UI 以清晰层级、低噪声边界和研究工作流为核心；功能图标保持统一线性语义。</p></div>
-        <div class="gallery"><figure><img src="/assets/marketing/ui-foundation.png" alt="UI design foundations"><figcaption>设计基础 / tokens / 字体与颜色</figcaption></figure><figure><img src="/assets/marketing/ui-components.png" alt="UI components and states"><figcaption>组件、状态与交互反馈</figcaption></figure><figure><img src="/assets/marketing/ui-workbench-dark.png" alt="Dark research workspace"><figcaption>深色工作台 / 蓝黑背景适配</figcaption></figure></div>
-        <div class="gallery" style="margin-top:14px"><figure><img src="/assets/marketing/icons-core.png" alt="Core icon set"><figcaption>核心 40：导航、研究与产品基础动作</figcaption></figure><figure><img src="/assets/marketing/icons-compute.png" alt="Infrastructure icons"><figcaption>扩展：算力设施、网络与系统</figcaption></figure><figure><img src="/assets/marketing/icons-comms.png" alt="Marketing operation icons"><figcaption>扩展：传播、运营与协作</figcaption></figure></div>
+        <div class="section-head"><h2>03 / 界面与图标</h2><p>UI 以清晰层级、低噪声边界和研究工作流为核心；功能图标保持统一线性语义。</p></div>
+        <div class="gallery"><figure><img width="1440" height="1080" loading="lazy" decoding="async" src="/assets/marketing/ui-foundation.png" alt="UI design foundations"><figcaption>设计基础 / tokens / 字体与颜色</figcaption></figure><figure><img width="1440" height="1120" loading="lazy" decoding="async" src="/assets/marketing/ui-components.png" alt="UI components and states"><figcaption>组件、状态与交互反馈</figcaption></figure><figure><img width="1440" height="1024" loading="lazy" decoding="async" src="/assets/marketing/ui-workbench-dark.png" alt="Dark research workspace"><figcaption>深色工作台 / 蓝黑背景适配</figcaption></figure></div>
+        <div class="gallery" style="margin-top:14px"><figure><img width="1400" height="960" loading="lazy" decoding="async" src="/assets/marketing/icons-core.png" alt="Core icon set"><figcaption>核心 40：导航、研究与产品基础动作</figcaption></figure><figure><img width="1400" height="520" loading="lazy" decoding="async" src="/assets/marketing/icons-compute.png" alt="Infrastructure icons"><figcaption>扩展：算力设施、网络与系统</figcaption></figure><figure><img width="1400" height="520" loading="lazy" decoding="async" src="/assets/marketing/icons-comms.png" alt="Marketing operation icons"><figcaption>扩展：传播、运营与协作</figcaption></figure></div>
       </section>
 
       <section id="marcomm">
-        <div class="section-head"><h2>04 / MarComm</h2><p>对外材料要保持同一品牌语气：清晰、可信、留白充分，所有业务数据和联系人字段发布前必须替换并核对。</p></div>
+        <div class="section-head"><h2>04 / 传播材料</h2><p>对外材料要保持同一品牌语气：清晰、可信、留白充分，所有业务数据和联系人字段发布前必须替换并核对。</p></div>
         <div class="split"><div class="panel"><h3>常用材料</h3><ul><li>正式信纸与公司介绍</li><li>邮件签名：浅色 / 深色</li><li>社媒方图、横图、竖图</li><li>网页横幅与品牌图形</li></ul></div><div class="panel"><h3>发布前检查</h3><ul><li>Logo 使用正确版本与背景对比度</li><li>中文、英文、数字字体分工正确</li><li>事实、日期、来源和授权已核对</li><li>导出 PDF / SVG 时保留清晰路径</li></ul></div></div>
-        <img src="/assets/marketing/marcomm-overview.png" alt="MarComm materials overview" style="width:100%;margin-top:22px;border:1px solid var(--line)">
+        <img width="1800" height="1320" loading="lazy" decoding="async" src="/assets/marketing/marcomm-overview.png" alt="MarComm materials overview" style="width:100%;margin-top:22px;border:1px solid var(--ui-line)">
       </section>
 
       <section id="ppt">
-        <div class="section-head"><h2>05 / PPT System</h2><p>品牌 PPT 不是一套装饰模板，而是一套可复用的研究、判断与行动表达系统。</p></div>
+        <div class="section-head"><h2>05 / 演示模板</h2><p>演示模板用于组织研究结论、证据与行动，按内容选择版式。</p></div>
         <div class="split">
           <div class="panel"><h3>写作规则</h3><ul>
             <li>一页只承担一个清晰结论，标题直接命名主题。</li>
@@ -89,11 +90,10 @@
       </section>
 
       <section id="downloads">
-        <div class="section-head"><h2>06 / Download</h2><p>品牌、UI、MarComm 与 PPT 资产统一从这里获取；正式发布前请核对版本、授权和文件完整性。</p></div>
+        <div class="section-head"><h2>06 / 下载</h2><p>品牌、UI、MarComm 与 PPT 资产统一从这里获取；正式发布前请核对版本、授权和文件完整性。</p></div>
         <div class="download-list"><a href="/assets/marketing/brand-kit-final.zip" download><span>最终品牌与 MarComm 套件（ZIP）</span><span>下载 →</span></a><a href="/assets/marketing/logo-manual.pdf"><span>Logo 设计与使用手册（PDF）</span><span>打开 →</span></a><a href="/assets/marketing/ui-manual.pdf"><span>品牌与 UI 设计提案（PDF）</span><span>打开 →</span></a><a href="/assets/marketing/typography-manual.pdf"><span>中英文、数字与标点规范（PDF）</span><span>打开 →</span></a></div>
       </section>
     </main>
-    <footer><span>inresearch.ai · Marketing standards</span><span>品牌问题与资产申请：请使用公司内部流程。</span></footer>
   </div>
 </body>
 </html>

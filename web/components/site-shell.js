@@ -2,15 +2,25 @@
 (() => {
   'use strict';
   const root = document.documentElement;
+  // Non-blocking stylesheet: render/data bootstrap never waits for font bytes.
+  function enableBrandFonts() {
+  const fontLink = document.querySelector('link[href="/assets/fonts/fonts.css"]');
+  if (fontLink) {
+    const enableFonts = () => { fontLink.media = 'all'; fontLink.dataset.fonts = 'brand'; };
+    if (fontLink.sheet) requestAnimationFrame(enableFonts);
+    else fontLink.addEventListener('load', enableFonts, {once:true});
+    fontLink.addEventListener('error', () => {fontLink.dataset.fonts='unavailable';}, {once:true});
+  }
+  }
   const {getState, setPreference} = window.InresearchUI;
 
   // Brand every image shown in the site without altering the source artwork or
   // downloaded originals. The observer also covers atlas images mounted later.
-  // marketing.html is the canonical public brand specification. Keep the
+  // framework/05_interface_system.md is the execution standard. Keep the
   // shared shell on the same supplied wordmark assets instead of maintaining
   // a second, visually divergent logo family under /assets/brand.
-  const LOGO_LIGHT_SRC = '/assets/marketing/wordmark-light.png';
-  const LOGO_DARK_SRC = '/assets/marketing/brand/wordmark-dark.png';
+  const LOGO_LIGHT_SRC = '/assets/marketing/wordmark-light.svg';
+  const LOGO_DARK_SRC = '/assets/marketing/wordmark-dark.svg';
   // Images use the standalone signature icon as a quiet provenance mark. The
   // full wordmark remains reserved for the site header and formal materials.
   const WATERMARK_SRC = '/assets/marketing/circle-light.png';
@@ -171,6 +181,8 @@
     const scene = !!document.querySelector('canvas#c'); if (scene) footer.classList.add('ui-scene-footer');
     const frame = scene ? el('details', 'ui-footer-disclosure') : el('div'); if (scene) frame.append(el('summary', '', '网站信息'));
     const content = el('div', 'ui-footer-content'), intro = el('div', 'ui-footer-brand'); intro.append(el('strong', '', 'inresearch.ai'));
+    // Do not probe local fonts: on macOS this can synchronously request an OS font download.
+    intro.append(el('span', 'ui-font-status', '中文使用本机仿宋；未安装时使用系统衬线字体。'));
     if (data.identity.kind !== 'anonymous') intro.append(el('p', '', '数据中心研究、企业与产品、技术图册。')); content.append(intro);
     const footerData = data.identity.kind === 'anonymous' ? {groups:[{label:'',links:[...(data.public_navigation || [{label:'首页',href:'/'},{label:'任务',href:'/tasks.html'}]),{label:'登录',href:'/login'}]}],legal:[]} : (data.footer || {});
     const groups = el('div', 'ui-footer-groups');
@@ -188,10 +200,11 @@
     frame.append(content); footer.append(frame); document.body.append(footer);
   }
   function mount() {
+    enableBrandFonts();
     const host = document.querySelector('inresearch-shell'); if (!host || document.getElementById('ui-skinbar')) return;
     const bar = el('header'); bar.id = 'ui-skinbar'; bar.dataset.identity = 'anonymous'; bar.setAttribute('aria-label', '全站页眉');
     const toolbar = el('div', 'ui-toolbar'), brand = el('a', 'ui-home'); brand.href = '/index.html'; brand.setAttribute('aria-label', 'inresearch.ai 首页');
-    const logo = el('img', 'ui-brand-logo'); logo.src = WATERMARK_SRC; logo.alt = 'inresearch.ai'; logo.width = 150; logo.height = 29; logo.dataset.noWatermark = 'true'; brand.append(logo); toolbar.append(brand);
+    const logo = el('img', 'ui-brand-logo'); logo.src = getState().resolved === 'dark' ? LOGO_DARK_SRC : LOGO_LIGHT_SRC; logo.alt = 'inresearch.ai'; logo.width = 150; logo.height = 29; logo.dataset.noWatermark = 'true'; brand.append(logo); toolbar.append(brand);
     const tools = el('div', 'ui-appearance-controls'), identityHost = el('div', 'ui-account-host'); identityHost.append(account({kind:'anonymous'}));
     const note = el('span'); note.id = 'ui-save-status'; note.setAttribute('role', 'status'); tools.append(appearance(), identityHost, note); toolbar.append(tools); bar.append(toolbar); host.append(bar);
     const publicItems = [{id:'home',label:'地图首页',href:'/'},{id:'tasks',label:'任务',href:'/tasks.html'}], initialActive = {area:'public',section:location.pathname === '/tasks.html' ? 'tasks' : 'home'};
