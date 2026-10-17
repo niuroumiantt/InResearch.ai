@@ -17,6 +17,7 @@ const icons=[
 ];
 function reports(rows,type){$('financial-reports').innerHTML=rows.filter(r=>r.kind===type).slice(0,5).map(r=>`<a class="report-row" href="${esc(safe(r.url))}" target="_blank" rel="noopener"><span><strong>${esc(r.period)}</strong><small>截至 ${esc(r.period_end)} · ${esc(r.form)}</small></span><span>官方原文 ↗</span></a>`).join('')||'<p class="window-empty">尚未登记此类报告。可从投资者关系网站查看。</p>';}
 function render(data){const c=data.company;document.title=(c.name_cn||c.name)+' · 企业窗口';$('catalog-title').textContent=c.name;$('company-listing').textContent=[c.legal_name||c.name,c.ticker||'上市代码未登记'].join(' / ');$('company-profile').textContent=c.profile||'公司简介尚待补充。可访问官方网站了解其业务。';
+$('dossier-link').hidden=cid!=='coreweave';
 $('actor-switch').innerHTML=data.companies.map(v=>`<option value="${esc(v.id)}" ${v.id===cid?'selected':''}>${esc(v.name)}</option>`).join('');
 $('actor-switch').onchange=e=>{location.href='/product-catalog.html?'+new URLSearchParams({c:e.target.value});};
 $('company-links').innerHTML=[external(c.website&&(/^https?:/.test(c.website)?c.website:'https://'+c.website),'官方网站'),c.ir_url?external(c.ir_url,'投资者关系'):null].filter(Boolean).join('');

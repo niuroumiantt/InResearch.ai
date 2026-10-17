@@ -29,7 +29,7 @@ INTERN_RESEARCH_DATA = ('/data/dashboard.json', '/data/dashboard_rules.json', '/
 INTERN_RESEARCH_API = ('/api/industry', '/api/observations', '/api/whoami', '/api/report', '/api/news', '/api/company-window', '/api/company-quote', '/api/targets/backflow', '/api/model-assets',
               *('/api/product-catalog/' + company for company in COMPANIES))
 # Login, homepage and task resources are individually declared, never all /assets/.
-READER_PAGES = ('/', '/index.html', '/tasks.html', '/marketing.html')
+READER_PAGES = ('/', '/index.html', '/tasks.html', '/marketing.html', '/coreweave.html')
 READER_API = ('/api/whoami', '/api/research-tasks', '/api/research-task-examples')
 READER_ASSETS = ('/assets/project-work.js', '/assets/project-access.css', '/assets/theme-state.js', '/assets/site-skin.js', '/assets/site-skin.css',
                  '/assets/brand/inresearch-ai/icon-orange.svg', '/assets/brand/inresearch-ai/wordmark-primary.svg',
