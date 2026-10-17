@@ -68,6 +68,10 @@ def owns(actor, record):
 def can_review(actor, record=None, root=None):
     if not actor:
         return False
+    # Interns submit assigned work but never approve it. Ignore stale project
+    # grants so the server boundary matches the role, not only the current UI.
+    if auth.user_role(actor) == 'intern':
+        return False
     value = grant(actor, root)
     if record is None:
         return is_owner(actor) or bool(value.get('approve_packages'))
@@ -177,6 +181,7 @@ def update(payload, actor, root=None):
 
 def workbench(actor, root=None):
     from inresearch.materials import inbox
+    from inresearch.workflow.research_tasks import processing_state
     mission, packages = catalog(root)
     user = auth.load_users().get(actor, {})
     # Existing signed-in users may still have a pre-migration cookie. Upgrade
@@ -190,6 +195,7 @@ def workbench(actor, root=None):
             if not owns(actor, row) or row.get('project_id') != mission['id']:
                 continue
             item = {k:row.get(k) for k in ('id','name','package_id','created','status','analysis_state','analysis_scope','analysis_progress','decision')}
+            item['processing_state'] = processing_state(row)
             # Historical feedback is context only; current next action is the shared package task.
             item['feedback'] = row.get('feedback', [])[-1:]
             item['published_sources'] = len({p['statement_id'] for report in row.get('analysis_reports', [])
@@ -198,6 +204,7 @@ def workbench(actor, root=None):
     mine.sort(key=lambda r:r['created'], reverse=True)
     return {'ok':True, 'user':actor, 'display_name':user.get('display_name', actor), 'user_id':user.get('id'),
             'project':mission, 'member':access, 'can_manage':is_owner(actor), 'can_approve':can_review(actor),
+            'can_admin':auth.user_role(actor) == 'admin',
             'frontend':bool(grant(actor, root).get('frontend')) or auth.user_role(actor) in ('admin','member','intern'),
             'expires_at':grant(actor, root).get('expires_at'),
             'packages':[{'id':p['id'], 'title':p['title'], 'status':p['status'],

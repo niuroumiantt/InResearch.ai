@@ -29,7 +29,7 @@ concurrency:
 jobs:
   verify:
     if: github.ref == 'refs/heads/main'
-    runs-on: ${{ fromJSON(github.repository == 'niuroumiantt/InResearch.ai' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && toJSON(github.event.pull_request.head.repo.fork) == 'false')) && '["self-hosted","Linux","ARM64","spark-ci"]' || '["ubuntu-latest"]') }}
+    runs-on: ${{ fromJSON(github.repository == 'niuroumiantt/InResearch.ai' && toJSON(github.event.repository.private) == 'true' && vars.SPARK_CI_ENABLED == 'true' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && toJSON(github.event.pull_request.head.repo.fork) == 'false')) && '["self-hosted","Linux","ARM64","spark-ci"]' || '["ubuntu-latest"]') }}
     timeout-minutes: 11
     steps:
       - name: Authorize the dedicated Spark repository before checkout

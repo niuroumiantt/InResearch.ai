@@ -26,7 +26,7 @@ InResearch 保留文章与日报的研究素材接收、来源核验、全文阅
 - 修改共享页面、档案组件或图册入口时，合并前运行受影响的浏览器场景；修改文案时同步核对语义断言，保留物理模型、权限、身份与下载验收。新增历史 HTML 必须同提交登记 `framework/interface_manifest.json`，运行 `PYTHONPATH=src python3 -m unittest tests.unit.test_interface_system`。
 - 全套浏览器的重型图册与封装按 `docs/CI.md` 独立分片，保留所有场景恰好一次覆盖；资料批不靠缩减断言提速。
 - main 的 GitHub 必过检查为 `validate`、`browser (core)`，管理员也受约束，不新增人工 approve。按 `docs/CI.md` 的影响范围选择检查；`browser (core)` 始终汇总本次应跑作业，未选择的可选作业才可跳过。经完整 JSON 比较证明的仅追加研究资料、既有站点 v2 观测或四类对象观测按该规范跑研究相关检查；站点及对象追加必须运行 industry 浏览器，基线地理补录、旧观测修改与显式修订仍全套；修改旧研究记录、正式答案、规则、共享代码、数据结构、依赖与无法判定的改动跑全套；检查失败不得以跳过检查合并来推动其它任务。
-- 可信同仓CI按 `docs/CI.md` 使用repo级专用Spark runner；fork/未知事件仍走hosted，所有self-hosted作业先执行系统身份门禁再checkout，保留完整19分片和原检查名称／超时。runner资源与注册归infra，不使用研究GPU或修改其任务；真实CI成功与实际main保护、合并和部署分别核验，不以本次路由变更放宽发布要求。
+- CI按 `docs/CI.md` 在公开仓库使用hosted；仅私有且完成infra登记并显式启用的可信同仓事件可使用专用Spark runner，fork/未知事件仍走hosted，所有self-hosted作业先执行系统身份门禁再checkout，保留完整19分片和原检查名称／超时。runner资源与注册归infra，不使用研究GPU或修改其任务；真实CI成功与实际main保护、合并和部署分别核验，不以本次路由变更放宽发布要求。
 - 合并前在最终 head 完成治理检查、严格校验和相关测试；共享基线 CI 失败先修主因，不让资料 PR 反复重试相同失败。不以读取很快、PR 已关闭或已合并代替实际上线；上下文失效的旧 PR 重新审核，不能计入采用。
 - 研究发布可按 `docs/local_reader/SPARK_OPERATIONS.md` 的显式 `protected_merge` 策略，保留当前 head 全部 CI 和现行上下文核验，在受保护且可合并的 main 上避免无关基线变化造成重复验收；保护不明、冲突或失败保持原恢复路径。
 - 每阶段按“有效资料阅读完成、正式采用上线、未完成 PR 数量与最老等待时间”报告吞吐；合并且网站回执核实后清理对应远程分支，保留原件、本地审计和未合并分支。

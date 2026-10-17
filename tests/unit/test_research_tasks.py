@@ -116,6 +116,31 @@ class ResearchTaskTests(unittest.TestCase):
         self.assertEqual([(event['submitter'],event['received_at']) for event in ordered],
                          [('乙',150),('甲',100)])
 
+    def test_processing_counts_cover_all_files_and_keep_partial_feedback(self):
+        package=next(p for p in tasks.plan(self.root)['packages'] if p['id']=='dc-census-cn')
+        old=self.feedback_record('older-report',200)
+        running={**old,'analysis_scope':{'mode':'full_native_campus','state':'continuing'},
+                 'analysis_progress':{'state':'reading','reason':'PRIVATE WORKER ERROR'}}
+        waiting={**old,'id':'waiting','analysis_scope':{'mode':'full_native_campus','state':'pilot_completed'}}
+        blocked={**running,'id':'blocked','analysis_progress':{'state':'blocked','reason':'PRIVATE'}}
+        source_error={**old,'id':'bad-source','analysis_progress':{'state':'source_error'}}
+        completed={**running,'id':'done','analysis_scope':{'mode':'full_native_campus','state':'completed'},
+                   'analysis_progress':{'state':'completed'}}
+        pending={**old,'id':'pending','status':'pending_approval','approval':None}
+        with patch('inresearch.materials.inbox.approver',return_value='owner'):
+            view=tasks.package_workflow(package,[running,waiting,blocked,source_error,completed,pending])
+            self.assertEqual(view['processing'],{'running':1,'waiting':1,'blocked':1,'source_error':1})
+            self.assertEqual(view['events'][0]['reviewed_at'],200)
+            self.assertNotIn('PRIVATE',json.dumps(view))
+            # Summary counts do not inherit the history's 50-entry display cap.
+            many=[{**running,'id':str(i)} for i in range(55)]
+            view=tasks.package_workflow(package,many)
+            self.assertEqual(view['processing']['running'],55)
+            self.assertEqual(len(view['events']),50)
+        self.assertEqual(tasks.processing_state(pending),'pending_approval')
+        self.assertEqual(tasks.processing_state({**running,'status':'rejected'}),'rejected')
+        self.assertEqual(tasks.processing_state({**old,'analysis_scope':{'mode':'sampled_native_cells'}}),'sampled_incomplete')
+
     def test_shared_task_version_advances_for_scope_or_completed_review(self):
         package=next(p for p in tasks.plan(self.root)['packages'] if p['id']=='dc-census-cn')
         base=tasks.read(self.root)

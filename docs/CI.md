@@ -2,15 +2,15 @@
 
 现行源：本文件。2026-10-10 替代每个 PR 与 main push 无条件执行完整浏览器及存储回归的配置。完整测试的场景、断言、密度和单项期限不缩减；只改变本次需要运行的范围。
 
-## 执行位置与身份门禁（2026.10.17.4）
+## 执行位置与身份门禁（2026.10.17.5）
 
-本仓`niuroumiantt/InResearch.ai`的同仓非fork PR、main push、workflow_dispatch和schedule使用repo级专属`spark-ci-inresearch-1`，标签为`self-hosted`、`Linux`、`ARM64`、`spark-ci`。fork PR、缺失／不一致head仓库和未知事件路由到`ubuntu-latest`；不新增pull_request_target。仓库仍私有，不为省CI费用改为公开。
+本仓 `niuroumiantt/InResearch.ai` 当前为公开仓库，全部 CI 使用 `ubuntu-latest`。公开、缺失或非布尔仓库可见性均不能路由到持久 Spark runner。未来仅当仓库为私有、infra 已登记专属仓库身份和 runner、仓库变量 `SPARK_CI_ENABLED=true` 显式启用时，同仓非 fork PR、main push、workflow_dispatch 和 schedule 才使用 `self-hosted`、`Linux`、`ARM64`、`spark-ci`。fork、缺失或不一致 head、未知事件仍走 hosted，不新增 pull_request_target，不改变仓库可见性。
 
-`validate.yml`的scope、validate、browser、browser-core、storage-container与`verify-data-center-publication.yml`的verify全部采用同一分流。每个self-hosted作业的第一步在checkout前以本作业只读`github.token`运行`python3 /usr/local/lib/ci-prefetch.py --authorize-only`。系统脚本及repo绑定由infra镜像提供，不从待检源码执行；失败不得忽略、继续或回退为未授权检出。授权器复核真实仓库／事件身份，返回后沿用原actions/checkout与各自ref、凭据及fetch选项；不调用完整prefetch，不提高256 MiB预取限额。scope继续使用精确base/head与必要时的base提交fetch，不用有界预取替代完整Git树。
+`validate.yml` 五个作业与 `verify-data-center-publication.yml` 的 verify 使用同一分流。每个 self-hosted 作业仍在 checkout 前用本作业只读 `github.token` 执行系统 `python3 /usr/local/lib/ci-prefetch.py --authorize-only`。系统脚本、根所有的绑定及私有仓库门禁保持；失败不得忽略、继续或回退为未授权检出。登记、私有性和显式开关缺一不可；工作流本身不替代系统身份校验或恶意 workflow 隔离。
 
-单个专用runner只同时处理一个job，infra限定2 CPU、6 GiB内存及6 GiB内存加swap，无GPU、宿主Docker socket或研究数据挂载。存储测试使用已有隔离容器方案；Node22、Python3.12、固定Playwright／Chromium及ARM64依赖由实际完整检查核验。原六个runner、Ollama、Reader与园区唯一intake不由此工作流修改。完整矩阵当前实际为19个分片，全部场景、单场景和作业超时、依赖缓存、存储／缓存／单元回归、汇总门禁及检查名称保持；单runner排队不是失败或可跳过检查的理由。
+保留原 checkout、完整 base/head 差异、Node22、Python3.12、依赖缓存、19 个浏览器分片、存储／缓存／单元回归、所有场景和超时，以及 `validate`、`browser (core)` 两个必过检查。不得用手工状态、跳过或另一仓库的结果代替本 PR 最终 head 的真实 CI。
 
-这里只替代可信CI执行位置。`validate`、`browser (core)`仍由GitHub Actions报告，不能用手工状态、另一仓库回填、跳过或改名伪造通过。root-owned授权器不可由检出文件替换，但workflow本身属于可审核源码，这一步不构成对任意恶意workflow的不可绕过沙箱；仓库私有性、可信提交人及fork隔离仍是前提。当前账户无法启用私有main保护，尚不等于既有发布规则已满足；本轮不升级Pro、不合并或部署候选，先核专用runner实际注册与最终head的全部真实CI。未来发布仍分别核验保护、审核、网站及Spark回执。
+2026-10-17 PR973 原 scope 在系统授权阶段报 `private_repository_only`；这是公开仓库与私有 runner 策略不匹配。公开仓库改走 hosted，不放宽 infra 门禁，也不启动暂停的 Spark runner、Reader、intake 或研究服务。此前“完整 Spark CI 已可执行”的候选假设由本节替代；实际执行位置与成功以每次 GitHub Actions 回执为准。
 
 ## 分流
 

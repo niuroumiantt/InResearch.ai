@@ -1,110 +1,7 @@
 {
-  "known_retired_patterns": [
-    "数据在变[，,、 ]*框架不变",
-    "唯一允许跨模块引用",
-    "唯一跨模块引用",
-    "每个事实只归属一个模块",
-    "15[ -]*模块[ ]*MECE",
-    "L4\\s*以下[^\\n<]{0,20}(?:必乘|须乘|必须乘以)",
-    "高级别覆盖低级别",
-    "算力除以\\s*2",
-    "带宽除以\\s*2",
-    "精读／据实生成</b>可直接引用",
-    "pull --rebase --autostash",
-    "五视角是同一知识底座",
-    "五视角研究",
-    "研究工作台需要",
-    "分层对象目录",
-    "总览 → 研究 → 资料 → 任务",
-    "总览→研究→资料",
-    "五层目标清单",
-    "监测仪表盘（",
-    "三色仪表盘",
-    "盲区仪表盘",
-    "团队看板 →",
-    "产品资料采集看板",
-    "九个研究角度",
-    "每个产品有一个主生态",
-    "八个产品生态",
-    "工单 = 声明 − 现状",
-    "工单 = 模块声明 − 仓库现状"
-  ],
-  "compat_retirements": [
-    {
-      "kept_for": "M4 深读分包与任务板仍按 legacy_module 分组读取工单投影（reports/workorders.json）",
-      "retire_when": "分包与任务板改读目标行 ID 后删除模块与 CLI 命令 workorders，并从 storage_contract 去掉 reports/workorders.*",
-      "retire_after": "2026-10-31",
-      "path": "src/inresearch/workflow/workorders.py"
-    },
-    {
-      "kept_for": "同上：工单投影的 Git 种子",
-      "retire_when": "随 workorders.py 一起退役",
-      "retire_after": "2026-10-31",
-      "path": "reports/workorders.json"
-    },
-    {
-      "kept_for": "3D 档案面板（bom3d / rack3d）仍用旧工作台代码取关系图",
-      "retire_when": "档案面板改用 part-dossier.js + /api/research-summary 后删除，research.css 同批",
-      "retire_after": "2026-10-31",
-      "path": "web/components/research-graph.js"
-    },
-    {
-      "kept_for": "同上",
-      "retire_when": "同上",
-      "retire_after": "2026-10-31",
-      "path": "web/components/object-network.js"
-    },
-    {
-      "kept_for": "同上",
-      "retire_when": "同上",
-      "retire_after": "2026-10-31",
-      "path": "web/assets/research.css"
-    },
-    {
-      "kept_for": "模型选型对比台，本地工具，interface_manifest 已列 excluded_pages",
-      "retire_when": "场景套件不再依赖其路由时删除",
-      "retire_after": "2026-12-31",
-      "path": "web/pages/compare.html"
-    },
-    {
-      "kept_for": "旧模块 M01–M15 作为部件与权利的兼容属性，供分包与成果末章专题目录分组",
-      "retire_when": "问题表、分包、成果专题目录全部改按 node 分组后，从 bom.json / site_rights.json / dashboard 去掉该属性",
-      "path": "framework/bom.json",
-      "attribute": "legacy_module",
-      "retire_after": "2026-12-31"
-    }
-  ],
-  "decisions_retired_scan_since": "2026-09-28",
-  "entrypoints": [
-    "AGENTS.md",
-    "CLAUDE.md",
-    "docs/DECISIONS.md",
-    "docs/PROJECT_PANORAMA.md"
-  ],
-  "version": "2026.10.17.4",
-  "compat_retirements_note": "兼容层退役日历（2026-09-29）：每个仍在仓库里的兼容实现登记为什么留着、什么条件下退役、最迟哪天复审。governance --check 在 retire_after 过后报错，逼一次决定（退役，或写 DECISIONS 延期并改日期）；路径已不存在也报错，提醒删掉登记。日期是 2026-09-29 检查报告的建议值。",
-  "updated": "2026-10-17",
-  "scope": "tracked project source and records; external/runtime materials excluded",
-  "operational_guides": [
-    "AGENTS.md",
-    "CLAUDE.md",
-    "docs/inbox/submissions/README.md",
-    "docs/local_reader/RUN_TO_COMPLETION.md",
-    "docs/local_reader/PROJECT_BRIEF.md",
-    "docs/local_reader/ACQUISITION_OPERATIONS.md",
-    "docs/local_reader/M4_PREFLIGHT.md",
-    "docs/local_setup/README.md",
-    "docs/local_setup/ADD_3D_MODEL.md",
-    "docs/local_setup/REPOSITORY_PAGES.md",
-    "docs/local_reader/EDITORIAL_DELIVERY.md",
-    "docs/guides/OBJECT_OBSERVATIONS.md",
-    "docs/guides/fetchdata/fetchstat-production.md",
-    "docs/guides/fetchdata/fetchfilings-production.md",
-    "docs/guides/fetchdata/fetchreports-production.md",
-    "docs/guides/fetchdata/fetchquotes-production.md",
-    "docs/guides/fetchdata/local-operations.md"
-  ],
+  "version": "2026.10.17.5",
   "effective_at": "2026-10-17",
+  "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
       "source": "docs/archive/2026-09-06/docs__PROJECT_PANORAMA.md",
@@ -3975,9 +3872,9 @@
       "effective_at": "2026-10-10",
       "topic": "continuous-integration",
       "supersedes": [],
-      "reason": "替代站点项目JSON一律全套：仅既有身份追加v2观测、完整旧值/类型/顺序守恒，固定研究及站点回归、research+industry浏览器；原资料追加路线保留，未知/修订/规则全套。；2026-10-11用户授权吞吐优化：四类对象观测完整JSON追加证明、对象/Fetchspec固定回归与industry必跑，旧值/身份/修订/程序规则仍full；大型资产独立Docker缓存，不降低来源/C3/实际部署验收。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。；2026-10-12按实测将technical_atlas/chip_package拆独立分片，保留全case一次覆盖和时限门禁；有限首页窗口外历史由站点档案验证。；v3来源登记完整JSON纯追加证明，无C3前提，固定source-statements回归和industry/research仍必过。；2026.10.17.4替代可信事件固定hosted执行位置，保留全部检查和fork hosted隔离，系统authorize-only不扩预取，真实ARM64 CI及保护另验。",
+      "reason": "替代站点项目JSON一律全套：仅既有身份追加v2观测、完整旧值/类型/顺序守恒，固定研究及站点回归、research+industry浏览器；原资料追加路线保留，未知/修订/规则全套。；2026-10-11用户授权吞吐优化：四类对象观测完整JSON追加证明、对象/Fetchspec固定回归与industry必跑，旧值/身份/修订/程序规则仍full；大型资产独立Docker缓存，不降低来源/C3/实际部署验收。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。；2026-10-12按实测将technical_atlas/chip_package拆独立分片，保留全case一次覆盖和时限门禁；有限首页窗口外历史由站点档案验证。；v3来源登记完整JSON纯追加证明，无C3前提，固定source-statements回归和industry/research仍必过。；2026.10.17.4替代可信事件固定hosted执行位置，保留全部检查和fork hosted隔离，系统authorize-only不扩预取，真实ARM64 CI及保护另验。；2026.10.17.5：公开仓库及可见性未知使用GitHub hosted；仅私有仓库且infra登记和SPARK_CI_ENABLED显式启用后才允许可信事件路由Spark，系统门禁保持，暂停服务不恢复。",
       "id": "ci-impact-20261010",
-      "change_reason": "用户授权将可信同仓全部CI迁移repo级专用Spark，fork保留hosted；checkout前系统授权、完整19分片/超时/原检查名/存储和单元回归保持，不修改研究服务或放宽合并部署保护。"
+      "change_reason": "2026.10.17.5：公开仓库及可见性未知使用GitHub hosted；仅私有仓库且infra登记和SPARK_CI_ENABLED显式启用后才允许可信事件路由Spark，系统门禁保持，暂停服务不恢复。"
     },
     {
       "status": "superseded",
@@ -4802,7 +4699,12 @@
       "change_reason": "替代原多页公开访问范围；补充项目协调入口。"
     },
     {
+      "id": "interface-public-tasks-20261012",
+      "topic": "interface",
       "status": "current",
+      "source": "framework/05_interface_system.md",
+      "scope": "project",
+      "effective_at": "2026-10-17",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -5109,16 +5011,11 @@
         "tests/unit/test_project_access.py",
         "tests/project_access.cjs"
       ],
-      "implementation_revision": "2026.10.17.4",
-      "scope": "project",
-      "source": "framework/05_interface_system.md",
-      "effective_at": "2026-10-17",
-      "topic": "interface",
       "supersedes": [
         "interface-private-tasks-20261012"
       ],
-      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。；.123替代独立容量误述，13候选关系／10原件核对／83标签与源码、回执同步；原事实、异常和版本保留。；.124年度用电核对与零售代理收费替代旧电量费表述，禁止叠加需量；不改变通用模型或正式园区事实。；.125当前页资本成本数值关系补清，通用分项与分期来源保持候选，融资/申报不充实支；三异常和旧版本保留。；.126分主体收入回报核对，首两栋租约仅候选，合同/会计/现金期间不混用，四栋模型不自动填参。；.127原四财表未读状态由同版原图核对替代，局部借款/股本/余额对应，实收及三处1美元差/费用范围差仍待核，无自动填参。；2026-10-14：任务页匿名原件上传、指定负责人逐份批准、回执持有人查看折叠的带时间反馈；未批材料禁止研究端领取。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。",
-      "id": "interface-public-tasks-20261012",
+      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。；.123替代独立容量误述，13候选关系／10原件核对／83标签与源码、回执同步；原事实、异常和版本保留。；.124年度用电核对与零售代理收费替代旧电量费表述，禁止叠加需量；不改变通用模型或正式园区事实。；.125当前页资本成本数值关系补清，通用分项与分期来源保持候选，融资/申报不充实支；三异常和旧版本保留。；.126分主体收入回报核对，首两栋租约仅候选，合同/会计/现金期间不混用，四栋模型不自动填参。；.127原四财表未读状态由同版原图核对替代，局部借款/股本/余额对应，实收及三处1美元差/费用范围差仍待核，无自动填参。；2026-10-14：任务页匿名原件上传、指定负责人逐份批准、回执持有人查看折叠的带时间反馈；未批材料禁止研究端领取。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。；2026-10-17 intern 工作台修正：intern 登录成功及已登录访问登录页时直接进入 `/tasks.html`，无显式页签时打开“我的工作”；intern 角色不具备作业审批权限，即使私有账号文件残留旧审批工作包授权也由服务端拒绝并隐藏审批入口。处理受阻提示统一为“部分材料受阻，等待管理员处理”，使用绿色背景和边框突出；审批协作者与项目所有者的既有权限不变。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。",
+      "implementation_revision": "2026.10.17.4",
       "implementation_paths": [
         "docs/handoff/global-campuses.md",
         "tests/global_campuses.cjs",
@@ -5145,7 +5042,7 @@
         "tests/unit/test_task_analysis.py",
         "tests/unit/test_source_publication.py"
       ],
-      "change_reason": "精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
+      "change_reason": "；2026-10-17 任务权限入口与处理中提示：任务栏常驻按服务器权限显示“管理与权限”或“作业审批”，系统账号与项目所有者授权分别判断。个人提交及工作包顶部显著显示待审批、等待、正在审阅、受阻和原件需修正；当前全表尝试优先于历史抽样／局部报告，未完成不伪作完成。工作包仅聚合已批准材料，完整计数不受50条历史显示上限影响，不公开私有原因或定位。可见任务视图每30秒刷新；读取失败不把旧状态当新状态，原件、审批、发布与C3边界保持。；2026-10-17 intern 工作台修正：intern 登录成功及已登录访问登录页时直接进入 `/tasks.html`，无显式页签时打开“我的工作”；intern 角色不具备作业审批权限，即使私有账号文件残留旧审批工作包授权也由服务端拒绝并隐藏审批入口。处理受阻提示统一为“部分材料受阻，等待管理员处理”，使用绿色背景和边框突出；审批协作者与项目所有者的既有权限不变。；精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
     },
     {
       "status": "current",
@@ -5225,7 +5122,12 @@
       "change_reason": "沿现有问题ID和因子完善财务取证与利用率口径，不改对象骨架或正式证据；问题内容版本与排期生成互不覆盖。"
     },
     {
+      "id": "task-upload-auto-analysis-20261015",
+      "topic": "task-upload-auto-analysis",
       "status": "current",
+      "scope": "project",
+      "effective_at": "2026-10-17",
+      "source": "framework/05_interface_system.md",
       "implementations": [
         "src/inresearch/materials/inbox.py",
         "src/inresearch/materials/receive.py",
@@ -5287,14 +5189,9 @@
         "tests/unit/test_packed_output_split.py"
       ],
       "implementation_revision": "2026.10.17.4",
-      "scope": "project",
-      "effective_at": "2026-10-17",
-      "source": "framework/05_interface_system.md",
-      "topic": "task-upload-auto-analysis",
       "supersedes": [],
-      "reason": "用户明确要求负责人确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工可执行任务书。员工附件、说明和自填项目名仅是待核原材料；审核须对照系统当时最新任务与要求，仅在旧回执经服务端验证明确关联后对照上一轮系统修改任务；同名不得构成身份或自动串接他人上下文。同一工作包可按登录名列表分给A/B/C，成员均可更新同一任务；后交材料按工作包当前版本、已上线数据库和同任务先前可复验成果审阅。独立新来源或带核查依据的新原件版本所含同值可追加来源陈述和本轮模型核对时间；一个月后同值复核须提交可复验的新原件或记录，外部事实核验日期未知时不得借用模型核对或上传时间。同一原件同一字段无独立新证据的重交才标重复；异值保留两侧来源标冲突，由正式发布规则裁定而不自动覆盖，下一步优先未完成缺口。旧审批不追溯授权，正式研究采用及模型参数保持原边界。匿名任务页姓名和自定义项目名必填，姓名仅辅助查找而非审批或工作包权限、同次最多20份附件逐份回执并以封存清单联合确认审阅；管理员独立审批工作台的服务端权限不变。用户授权确认后的附件经私有中继使用 Codex CLI，CLI请求身份与实际未回传身份分列。大型XLSX全表结构计数和明确抽样分开，抽样不产生发布候选；可提取正文的其他格式只形成反馈，未有来源绑定复验前不自动发布。v6 原Spark断点保留为历史，不与Codex结果混算；大报告私有分片回传不放宽WAF。任务首页以实际经模型审阅并网站发布、当前台账可见且排除跨园区组合的去重园区数对暂定目标计量；管理员设目标须登记初研依据和时间，目标未知留空且无百分比。审阅报告数及已发布来源陈述数另计。90+GW只作待校准探索目标，容量状态及口径未可比前不计算完成率；.12 收紧发布提交时安全门：未绑定现行工作包仅反馈；新园区仅大陆工作包且原件明示省级地点，已有园区按工作包区域核对；服务端提交时在锁内复验含完整来源发布状态摘要的当前任务／上下文哈希，来源发布状态比较交换，过期候选撤回重审；持久 outbox 恢复已发布未回写报告；畸形或超限原件终态需修订反馈，不阻塞后续文件。；.13 负责人可在报告生成前把旧提交绑定现行工作包，已启动分析改绑必须按最新任务重审；原件、审批不变，已有报告、错误终态和待恢复发布事务禁止改绑。；.14 大型XLSX抽样仅从实际摘录定位给出逐格发现，网站从批准原件复算抽样范围并禁止抽样候选；报告、管理员和员工回执显式记录覆盖计数与全表待审，下一步按现行任务分包补证并继续审核未覆盖内容。；.15 同原件重交回归复用精确相同的XLSX原件字节，避免ZIP打包时间戳导致夹具SHA漂移；正式重复／新来源准入规则不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。；2026-10-17 已知阅读输出截断的完整拆分（2026.10.17.3）：仅原生packed阅读具有派发前输出拆分许可、精确dispatch及完整HTTP回包，且请求／原part／system／schema／token proof／响应摘要一致、实际27B明确done=true／length／4096输出时，按原序二分失败窗的完整片段。保持所有上下文、32K／4096预算、旧失败原字节及已成功窗口；拆分本轮不再生成、子窗全部有效才计覆盖。未知结果、模型绑定失败、单片仍超限继续受阻。旧operator与无许可历史失败不会因升级或删除status自动恢复，须精确作用域审计后受控恢复；最终综合及发布门槛保持。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。",
-      "id": "task-upload-auto-analysis-20261015",
-      "change_reason": "精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
+      "reason": "用户明确要求负责人确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工可执行任务书。员工附件、说明和自填项目名仅是待核原材料；审核须对照系统当时最新任务与要求，仅在旧回执经服务端验证明确关联后对照上一轮系统修改任务；同名不得构成身份或自动串接他人上下文。同一工作包可按登录名列表分给A/B/C，成员均可更新同一任务；后交材料按工作包当前版本、已上线数据库和同任务先前可复验成果审阅。独立新来源或带核查依据的新原件版本所含同值可追加来源陈述和本轮模型核对时间；一个月后同值复核须提交可复验的新原件或记录，外部事实核验日期未知时不得借用模型核对或上传时间。同一原件同一字段无独立新证据的重交才标重复；异值保留两侧来源标冲突，由正式发布规则裁定而不自动覆盖，下一步优先未完成缺口。旧审批不追溯授权，正式研究采用及模型参数保持原边界。匿名任务页姓名和自定义项目名必填，姓名仅辅助查找而非审批或工作包权限、同次最多20份附件逐份回执并以封存清单联合确认审阅；管理员独立审批工作台的服务端权限不变。用户授权确认后的附件经私有中继使用 Codex CLI，CLI请求身份与实际未回传身份分列。大型XLSX全表结构计数和明确抽样分开，抽样不产生发布候选；可提取正文的其他格式只形成反馈，未有来源绑定复验前不自动发布。v6 原Spark断点保留为历史，不与Codex结果混算；大报告私有分片回传不放宽WAF。任务首页以实际经模型审阅并网站发布、当前台账可见且排除跨园区组合的去重园区数对暂定目标计量；管理员设目标须登记初研依据和时间，目标未知留空且无百分比。审阅报告数及已发布来源陈述数另计。90+GW只作待校准探索目标，容量状态及口径未可比前不计算完成率；.12 收紧发布提交时安全门：未绑定现行工作包仅反馈；新园区仅大陆工作包且原件明示省级地点，已有园区按工作包区域核对；服务端提交时在锁内复验含完整来源发布状态摘要的当前任务／上下文哈希，来源发布状态比较交换，过期候选撤回重审；持久 outbox 恢复已发布未回写报告；畸形或超限原件终态需修订反馈，不阻塞后续文件。；.13 负责人可在报告生成前把旧提交绑定现行工作包，已启动分析改绑必须按最新任务重审；原件、审批不变，已有报告、错误终态和待恢复发布事务禁止改绑。；.14 大型XLSX抽样仅从实际摘录定位给出逐格发现，网站从批准原件复算抽样范围并禁止抽样候选；报告、管理员和员工回执显式记录覆盖计数与全表待审，下一步按现行任务分包补证并继续审核未覆盖内容。；.15 同原件重交回归复用精确相同的XLSX原件字节，避免ZIP打包时间戳导致夹具SHA漂移；正式重复／新来源准入规则不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。；2026-10-17 intern 工作台修正：intern 登录成功及已登录访问登录页时直接进入 `/tasks.html`，无显式页签时打开“我的工作”；intern 角色不具备作业审批权限，即使私有账号文件残留旧审批工作包授权也由服务端拒绝并隐藏审批入口。处理受阻提示统一为“部分材料受阻，等待管理员处理”，使用绿色背景和边框突出；审批协作者与项目所有者的既有权限不变。；2026-10-17 已知阅读输出截断的完整拆分（2026.10.17.3）：仅原生packed阅读具有派发前输出拆分许可、精确dispatch及完整HTTP回包，且请求／原part／system／schema／token proof／响应摘要一致、实际27B明确done=true／length／4096输出时，按原序二分失败窗的完整片段。保持所有上下文、32K／4096预算、旧失败原字节及已成功窗口；拆分本轮不再生成、子窗全部有效才计覆盖。未知结果、模型绑定失败、单片仍超限继续受阻。旧operator与无许可历史失败不会因升级或删除status自动恢复，须精确作用域审计后受控恢复；最终综合及发布门槛保持。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。",
+      "change_reason": "；2026-10-17 任务权限入口与处理中提示：任务栏常驻按服务器权限显示“管理与权限”或“作业审批”，系统账号与项目所有者授权分别判断。个人提交及工作包顶部显著显示待审批、等待、正在审阅、受阻和原件需修正；当前全表尝试优先于历史抽样／局部报告，未完成不伪作完成。工作包仅聚合已批准材料，完整计数不受50条历史显示上限影响，不公开私有原因或定位。可见任务视图每30秒刷新；读取失败不把旧状态当新状态，原件、审批、发布与C3边界保持。；2026-10-17 intern 工作台修正：intern 登录成功及已登录访问登录页时直接进入 `/tasks.html`，无显式页签时打开“我的工作”；intern 角色不具备作业审批权限，即使私有账号文件残留旧审批工作包授权也由服务端拒绝并隐藏审批入口。处理受阻提示统一为“部分材料受阻，等待管理员处理”，使用绿色背景和边框突出；审批协作者与项目所有者的既有权限不变。；精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
     },
     {
       "status": "current",
@@ -5316,12 +5213,115 @@
       "id": "daily-publication-20261014"
     }
   ],
+  "entrypoints": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/DECISIONS.md",
+    "docs/PROJECT_PANORAMA.md"
+  ],
   "retired_entrypoints": [
     "docs/local_reader/KICKOFF_PROMPT.md",
     "docs/local_reader/CONTINUOUS_READER_DESIGN.md",
     "docs/local_setup/setup.sh"
   ],
+  "known_retired_patterns": [
+    "数据在变[，,、 ]*框架不变",
+    "唯一允许跨模块引用",
+    "唯一跨模块引用",
+    "每个事实只归属一个模块",
+    "15[ -]*模块[ ]*MECE",
+    "L4\\s*以下[^\\n<]{0,20}(?:必乘|须乘|必须乘以)",
+    "高级别覆盖低级别",
+    "算力除以\\s*2",
+    "带宽除以\\s*2",
+    "精读／据实生成</b>可直接引用",
+    "pull --rebase --autostash",
+    "五视角是同一知识底座",
+    "五视角研究",
+    "研究工作台需要",
+    "分层对象目录",
+    "总览 → 研究 → 资料 → 任务",
+    "总览→研究→资料",
+    "五层目标清单",
+    "监测仪表盘（",
+    "三色仪表盘",
+    "盲区仪表盘",
+    "团队看板 →",
+    "产品资料采集看板",
+    "九个研究角度",
+    "每个产品有一个主生态",
+    "八个产品生态",
+    "工单 = 声明 − 现状",
+    "工单 = 模块声明 − 仓库现状"
+  ],
+  "operational_guides": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/inbox/submissions/README.md",
+    "docs/local_reader/RUN_TO_COMPLETION.md",
+    "docs/local_reader/PROJECT_BRIEF.md",
+    "docs/local_reader/ACQUISITION_OPERATIONS.md",
+    "docs/local_reader/M4_PREFLIGHT.md",
+    "docs/local_setup/README.md",
+    "docs/local_setup/ADD_3D_MODEL.md",
+    "docs/local_setup/REPOSITORY_PAGES.md",
+    "docs/local_reader/EDITORIAL_DELIVERY.md",
+    "docs/guides/OBJECT_OBSERVATIONS.md",
+    "docs/guides/fetchdata/fetchstat-production.md",
+    "docs/guides/fetchdata/fetchfilings-production.md",
+    "docs/guides/fetchdata/fetchreports-production.md",
+    "docs/guides/fetchdata/fetchquotes-production.md",
+    "docs/guides/fetchdata/local-operations.md"
+  ],
+  "decisions_retired_scan_since": "2026-09-28",
   "retired_scan_snapshots": [
     "docs/guides/model-governance-2026-09-27.html"
-  ]
+  ],
+  "compat_retirements_note": "兼容层退役日历（2026-09-29）：每个仍在仓库里的兼容实现登记为什么留着、什么条件下退役、最迟哪天复审。governance --check 在 retire_after 过后报错，逼一次决定（退役，或写 DECISIONS 延期并改日期）；路径已不存在也报错，提醒删掉登记。日期是 2026-09-29 检查报告的建议值。",
+  "compat_retirements": [
+    {
+      "kept_for": "M4 深读分包与任务板仍按 legacy_module 分组读取工单投影（reports/workorders.json）",
+      "retire_when": "分包与任务板改读目标行 ID 后删除模块与 CLI 命令 workorders，并从 storage_contract 去掉 reports/workorders.*",
+      "retire_after": "2026-10-31",
+      "path": "src/inresearch/workflow/workorders.py"
+    },
+    {
+      "kept_for": "同上：工单投影的 Git 种子",
+      "retire_when": "随 workorders.py 一起退役",
+      "retire_after": "2026-10-31",
+      "path": "reports/workorders.json"
+    },
+    {
+      "kept_for": "3D 档案面板（bom3d / rack3d）仍用旧工作台代码取关系图",
+      "retire_when": "档案面板改用 part-dossier.js + /api/research-summary 后删除，research.css 同批",
+      "retire_after": "2026-10-31",
+      "path": "web/components/research-graph.js"
+    },
+    {
+      "kept_for": "同上",
+      "retire_when": "同上",
+      "retire_after": "2026-10-31",
+      "path": "web/components/object-network.js"
+    },
+    {
+      "kept_for": "同上",
+      "retire_when": "同上",
+      "retire_after": "2026-10-31",
+      "path": "web/assets/research.css"
+    },
+    {
+      "kept_for": "模型选型对比台，本地工具，interface_manifest 已列 excluded_pages",
+      "retire_when": "场景套件不再依赖其路由时删除",
+      "retire_after": "2026-12-31",
+      "path": "web/pages/compare.html"
+    },
+    {
+      "kept_for": "旧模块 M01–M15 作为部件与权利的兼容属性，供分包与成果末章专题目录分组",
+      "retire_when": "问题表、分包、成果专题目录全部改按 node 分组后，从 bom.json / site_rights.json / dashboard 去掉该属性",
+      "path": "framework/bom.json",
+      "attribute": "legacy_module",
+      "retire_after": "2026-12-31"
+    }
+  ],
+  "updated": "2026-10-17"
 }

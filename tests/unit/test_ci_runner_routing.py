@@ -136,11 +136,13 @@ class CIRunnerRoutingTests(unittest.TestCase):
         cls.jobs = {**{'validate/' + k: v for k, v in workflow_jobs(cls.validate).items()},
                     **{'publication/' + k: v for k, v in workflow_jobs(cls.publication).items()}}
 
-    def route_all(self, github, expected):
+    def route_all(self, github, expected, enabled="true"):
+        github = copy.deepcopy(github)
+        github.setdefault("event", {}).setdefault("repository", {"private": True})
         for name, job in self.jobs.items():
             with self.subTest(job=name, event=github):
                 line = re.search(r'^    runs-on: (.+)$', job, re.M).group(1)
-                self.assertEqual(WorkflowExpression(line, {'github': github}).labels(), expected)
+                self.assertEqual(WorkflowExpression(line, {'github': github, 'vars': {'SPARK_CI_ENABLED': enabled}}).labels(), expected)
 
     def test_every_existing_job_has_the_same_complete_routing(self):
         self.assertEqual(set(self.jobs), {'validate/scope', 'validate/validate', 'validate/browser',
@@ -182,6 +184,20 @@ class CIRunnerRoutingTests(unittest.TestCase):
         # A string containing 'false' is not the boolean false either.
         self.route_all({'repository': REPOSITORY, 'event_name': 'pull_request',
                         'event': {'pull_request': {'head': {'repo': {'full_name': REPOSITORY, 'fork': 'false'}}}}}, HOSTED)
+
+    def test_public_missing_or_mistyped_visibility_stays_hosted_for_every_event(self):
+        for private in (False, None, "true", 1):
+            for event in ('push', 'workflow_dispatch', 'schedule', 'pull_request'):
+                github = {'repository': REPOSITORY, 'event_name': event,
+                          'event': {'repository': {'private': private},
+                                    'pull_request': {'head': {'repo': {'full_name': REPOSITORY, 'fork': False}}}}}
+                self.route_all(github, HOSTED)
+        self.route_all({'repository': REPOSITORY, 'event_name': 'push',
+                        'event': {'repository': {}}}, HOSTED)
+
+    def test_private_repository_requires_explicit_registered_runner_opt_in(self):
+        for enabled in ('', None, 'false'):
+            self.route_all({'repository': REPOSITORY, 'event_name': 'push'}, HOSTED, enabled)
 
     def test_authorization_precedes_every_checkout_and_uses_only_job_token(self):
         for name, job in self.jobs.items():
