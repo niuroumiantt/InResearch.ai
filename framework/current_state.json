@@ -1,24 +1,122 @@
 {
-  "version": "2026.10.17.2",
-  "effective_at": "2026-10-17",
-  "scope": "tracked project source and records; external/runtime materials excluded",
-  "policies": [
+  "known_retired_patterns": [
+    "数据在变[，,、 ]*框架不变",
+    "唯一允许跨模块引用",
+    "唯一跨模块引用",
+    "每个事实只归属一个模块",
+    "15[ -]*模块[ ]*MECE",
+    "L4\\s*以下[^\\n<]{0,20}(?:必乘|须乘|必须乘以)",
+    "高级别覆盖低级别",
+    "算力除以\\s*2",
+    "带宽除以\\s*2",
+    "精读／据实生成</b>可直接引用",
+    "pull --rebase --autostash",
+    "五视角是同一知识底座",
+    "五视角研究",
+    "研究工作台需要",
+    "分层对象目录",
+    "总览 → 研究 → 资料 → 任务",
+    "总览→研究→资料",
+    "五层目标清单",
+    "监测仪表盘（",
+    "三色仪表盘",
+    "盲区仪表盘",
+    "团队看板 →",
+    "产品资料采集看板",
+    "九个研究角度",
+    "每个产品有一个主生态",
+    "八个产品生态",
+    "工单 = 声明 − 现状",
+    "工单 = 模块声明 − 仓库现状"
+  ],
+  "compat_retirements": [
     {
-      "id": "architecture-legacy",
-      "topic": "architecture",
-      "status": "superseded",
-      "source": "docs/archive/2026-09-06/docs__PROJECT_PANORAMA.md",
-      "scope": "project",
-      "superseded_by": "architecture-20260906",
-      "supersedes": []
+      "kept_for": "M4 深读分包与任务板仍按 legacy_module 分组读取工单投影（reports/workorders.json）",
+      "retire_when": "分包与任务板改读目标行 ID 后删除模块与 CLI 命令 workorders，并从 storage_contract 去掉 reports/workorders.*",
+      "retire_after": "2026-10-31",
+      "path": "src/inresearch/workflow/workorders.py"
     },
     {
-      "id": "architecture-20260906",
-      "topic": "architecture",
+      "kept_for": "同上：工单投影的 Git 种子",
+      "retire_when": "随 workorders.py 一起退役",
+      "retire_after": "2026-10-31",
+      "path": "reports/workorders.json"
+    },
+    {
+      "kept_for": "3D 档案面板（bom3d / rack3d）仍用旧工作台代码取关系图",
+      "retire_when": "档案面板改用 part-dossier.js + /api/research-summary 后删除，research.css 同批",
+      "retire_after": "2026-10-31",
+      "path": "web/components/research-graph.js"
+    },
+    {
+      "kept_for": "同上",
+      "retire_when": "同上",
+      "retire_after": "2026-10-31",
+      "path": "web/components/object-network.js"
+    },
+    {
+      "kept_for": "同上",
+      "retire_when": "同上",
+      "retire_after": "2026-10-31",
+      "path": "web/assets/research.css"
+    },
+    {
+      "kept_for": "模型选型对比台，本地工具，interface_manifest 已列 excluded_pages",
+      "retire_when": "场景套件不再依赖其路由时删除",
+      "retire_after": "2026-12-31",
+      "path": "web/pages/compare.html"
+    },
+    {
+      "kept_for": "旧模块 M01–M15 作为部件与权利的兼容属性，供分包与成果末章专题目录分组",
+      "retire_when": "问题表、分包、成果专题目录全部改按 node 分组后，从 bom.json / site_rights.json / dashboard 去掉该属性",
+      "path": "framework/bom.json",
+      "attribute": "legacy_module",
+      "retire_after": "2026-12-31"
+    }
+  ],
+  "decisions_retired_scan_since": "2026-09-28",
+  "entrypoints": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/DECISIONS.md",
+    "docs/PROJECT_PANORAMA.md"
+  ],
+  "version": "2026.10.17.4",
+  "compat_retirements_note": "兼容层退役日历（2026-09-29）：每个仍在仓库里的兼容实现登记为什么留着、什么条件下退役、最迟哪天复审。governance --check 在 retire_after 过后报错，逼一次决定（退役，或写 DECISIONS 延期并改日期）；路径已不存在也报错，提醒删掉登记。日期是 2026-09-29 检查报告的建议值。",
+  "updated": "2026-10-17",
+  "scope": "tracked project source and records; external/runtime materials excluded",
+  "operational_guides": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/inbox/submissions/README.md",
+    "docs/local_reader/RUN_TO_COMPLETION.md",
+    "docs/local_reader/PROJECT_BRIEF.md",
+    "docs/local_reader/ACQUISITION_OPERATIONS.md",
+    "docs/local_reader/M4_PREFLIGHT.md",
+    "docs/local_setup/README.md",
+    "docs/local_setup/ADD_3D_MODEL.md",
+    "docs/local_setup/REPOSITORY_PAGES.md",
+    "docs/local_reader/EDITORIAL_DELIVERY.md",
+    "docs/guides/OBJECT_OBSERVATIONS.md",
+    "docs/guides/fetchdata/fetchstat-production.md",
+    "docs/guides/fetchdata/fetchfilings-production.md",
+    "docs/guides/fetchdata/fetchreports-production.md",
+    "docs/guides/fetchdata/fetchquotes-production.md",
+    "docs/guides/fetchdata/local-operations.md"
+  ],
+  "effective_at": "2026-10-17",
+  "policies": [
+    {
+      "source": "docs/archive/2026-09-06/docs__PROJECT_PANORAMA.md",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-09-13",
-      "source": "docs/archive/2026-09-28/framework__00_overview.md",
+      "topic": "architecture",
+      "superseded_by": "architecture-20260906",
+      "supersedes": [],
+      "id": "architecture-legacy",
+      "scope": "project"
+    },
+    {
+      "status": "superseded",
       "implementations": [
         "framework/research_graph.json",
         "framework/research_questions.json",
@@ -33,19 +131,19 @@
         "src/inresearch/materials/records.py",
         "src/inresearch/storage/moves.py"
       ],
+      "superseded_by": "architecture-20260928",
+      "scope": "project",
+      "effective_at": "2026-09-13",
+      "source": "docs/archive/2026-09-28/framework__00_overview.md",
+      "topic": "architecture",
       "supersedes": [
         "architecture-legacy"
       ],
       "reason": "保持五视角架构；明确研究定义、原文、采用、任务交付、推理与操作界面的第一层边界，替代 README 中模块唯一主体与上游无接口的旧说明。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。",
-      "superseded_by": "architecture-20260928"
+      "id": "architecture-20260906"
     },
     {
-      "id": "architecture-20260928",
-      "topic": "architecture",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-09-28",
-      "source": "docs/archive/2026-10-02/framework__00_overview.md",
       "implementations": [
         "framework/bom.json",
         "framework/site_rights.json",
@@ -72,29 +170,29 @@
         "src/inresearch/knowledge/graph.py",
         "tests/unit/test_graph.py"
       ],
+      "implementation_revision": "2026.09.28.2",
+      "superseded_by": "architecture-20261002",
+      "scope": "project",
+      "effective_at": "2026-09-28",
+      "source": "docs/archive/2026-10-02/framework__00_overview.md",
+      "topic": "architecture",
       "supersedes": [
         "architecture-20260906"
       ],
       "reason": "2026-09-28 用户采用唯一逻辑：一棵树（五个系统、IT 四子系统、系统内链路、61 部件、六条站点权利）、三级账（唯一统一经济模型）、四问四段、五类变量、六队、一个模板；五视角 P/F/V/D/R、15 模块作维护单元、按尺度分组的浏览目录退役。依据 docs/reviews/2026-09-28/alignment/AUDIT.md 与 docs/reviews/2026-09-28/site/PROPOSAL.md；实施按提案第 9 节八步推进，本条登记于第 0 步。",
-      "implementation_revision": "2026.09.28.2",
-      "superseded_by": "architecture-20261002"
+      "id": "architecture-20260928"
     },
     {
-      "id": "data-legacy",
-      "topic": "data",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/framework__01_data_standards.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "data",
       "superseded_by": "data-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "data-legacy",
+      "scope": "project"
     },
     {
-      "id": "data-20260906",
-      "topic": "data",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-09-13",
-      "source": "framework/01_data_standards.md",
       "implementations": [
         "framework/data_contract.json",
         "src/inresearch/knowledge/data_rules.py",
@@ -168,29 +266,29 @@
         "src/inresearch/delivery/city_location.py",
         "tests/unit/test_city_location.py"
       ],
+      "implementation_revision": "2026.10.16.34",
+      "scope": "project",
+      "effective_at": "2026-09-13",
+      "source": "framework/01_data_standards.md",
+      "topic": "data",
       "supersedes": [
         "data-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。；2026-10-11补充正式/raw两层；多角度完成度与具名采用分开，报道可展示但不自动汇总或按字段数晋级。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。；2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。",
-      "implementation_revision": "2026.10.17.2",
-      "change_reason": "2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。；2026-10-11补充正式/raw两层；多角度完成度与具名采用分开，报道可展示但不自动汇总或按字段数晋级。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。",
+      "id": "data-20260906",
+      "change_reason": "2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。 保留数据/来源历史、C3/身份/单位/CAS和发布语义；未据此宣称生产OOM已消除或全GPU吞吐已完成。"
     },
     {
-      "id": "knowledge-legacy",
-      "topic": "knowledge",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/framework__02_knowledge_format.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "knowledge",
       "superseded_by": "knowledge-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "knowledge-legacy",
+      "scope": "project"
     },
     {
-      "id": "knowledge-20260906",
-      "topic": "knowledge",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-09-13",
-      "source": "framework/02_knowledge_format.md",
       "implementations": [
         "src/inresearch/knowledge/registry.py",
         "src/inresearch/delivery/export.py",
@@ -212,29 +310,29 @@
         "tests/unit/test_json_stream.py",
         "tests/unit/test_source_publication.py"
       ],
+      "implementation_revision": "2026.10.16.34",
+      "scope": "project",
+      "effective_at": "2026-09-13",
+      "source": "framework/02_knowledge_format.md",
+      "topic": "knowledge",
       "supersedes": [
         "knowledge-legacy"
       ],
       "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。",
-      "implementation_revision": "2026.10.16.34",
+      "id": "knowledge-20260906",
       "change_reason": "2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。 保留数据/来源历史、C3/身份/单位/CAS和发布语义；未据此宣称生产OOM已消除或全GPU吞吐已完成。"
     },
     {
-      "id": "products-legacy",
-      "topic": "products",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/docs__local_setup__PRODUCT_LIBRARY.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "products",
       "superseded_by": "products-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "products-legacy",
+      "scope": "project"
     },
     {
-      "id": "products-20260906",
-      "topic": "products",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-10",
-      "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "src/inresearch/knowledge/registry.py",
         "web/pages/admin/product/index.html",
@@ -280,29 +378,29 @@
         "docs/handoff/observation-coverage.md",
         "docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json"
       ],
+      "implementation_revision": "2026.10.13.121",
+      "scope": "project",
+      "effective_at": "2026-10-10",
+      "source": "framework/03_bom_and_collaboration.md",
+      "topic": "products",
       "supersedes": [
         "products-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-28 一个骨架：第一层按系统、系统内按链路、尺度是属性；骨架的三个补充（建设阶段、部件级运行行、登记表两列）登记为现行。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。；第二批：独立模组、证据支持的芯片关系、增量保留生产目录，服务器和内存存储不混入计算芯片。；2026-10-07按物理园区的十二角度信息清单和有方向的多角色关系登记，未知留位；不新增对象类型。",
-      "implementation_revision": "2026.10.13.121",
+      "id": "products-20260906",
       "change_reason": "用户要求不拘数字重审架构；替代数字总纲、五类正交独占和四问倒序，保留旧接口投影；可扩展观察、问题模板、来源队研究侧交付与Abilene附件局部核验；暂不上线"
     },
     {
-      "id": "reading-legacy",
-      "topic": "reading",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/docs__local_reader__PROJECT_BRIEF.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "reading",
       "superseded_by": "reading-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "reading-legacy",
+      "scope": "project"
     },
     {
-      "id": "reading-20260906",
-      "topic": "reading",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-09-06",
-      "source": "docs/archive/2026-09-12/framework__04_reading_scoring_standard.md",
       "implementations": [
         "src/inresearch/workflow/reader.py",
         "src/inresearch/workflow/reading_queue.py",
@@ -310,42 +408,42 @@
         "docs/local_reader/PROJECT_BRIEF.md",
         "docs/local_reader/RUN_TO_COMPLETION.md"
       ],
+      "superseded_by": "reading-20260912",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "docs/archive/2026-09-12/framework__04_reading_scoring_standard.md",
+      "topic": "reading",
       "supersedes": [
         "reading-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。",
-      "superseded_by": "reading-20260912"
+      "id": "reading-20260906"
     },
     {
-      "id": "reading-m4-triage-20260909",
-      "topic": "reading",
       "status": "superseded",
-      "scope": "m4-triage",
-      "effective_at": "2026-09-09",
-      "source": "docs/archive/2026-09-12/docs__M4_TRIAGE_TASK.md",
       "implementations": [
         "src/inresearch/materials/inventory.py"
       ],
+      "superseded_by": "reading-m4-triage-20260912",
+      "scope": "m4-triage",
+      "effective_at": "2026-09-09",
+      "source": "docs/archive/2026-09-12/docs__M4_TRIAGE_TASK.md",
+      "topic": "reading",
       "supersedes": [],
       "reason": "用户 2026-09-09 采用 M4 本机资料分类与命名任务。仅在 m4-triage 范围内替代 04 阅读标准 §5（新增 score 10-0 主分，importance 由其换算）与 §6（M4 本机原件随评分改名移动，以操作日志和 SHA-256 保证可逆）；Spark 的 project 范围阅读规则与 originals 不可变不受影响。当前只实现全量清单一步，改名移动尚未实现。",
-      "superseded_by": "reading-m4-triage-20260912"
+      "id": "reading-m4-triage-20260909"
     },
     {
-      "id": "operations-legacy",
-      "topic": "operations",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/docs__local_setup__README.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "operations",
       "superseded_by": "operations-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "operations-legacy",
+      "scope": "project"
     },
     {
-      "id": "operations-20260906",
-      "topic": "operations",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-17",
-      "source": "docs/local_reader/SPARK_OPERATIONS.md",
       "implementations": [
         "docs/local_setup/sync.sh",
         "src/inresearch/delivery/publish.py",
@@ -444,31 +542,32 @@
         "tests/unit/test_city_location.py",
         "tests/unit/test_industry.py",
         "web/components/industry.js",
-        "tests/industry.cjs"
+        "tests/industry.cjs",
+        "tests/unit/test_packed_output_split.py"
       ],
+      "implementation_revision": "2026.10.17.3",
+      "scope": "project",
+      "effective_at": "2026-10-17",
+      "source": "docs/local_reader/SPARK_OPERATIONS.md",
+      "topic": "operations",
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/420秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09公开仓库恢复复审：按精确审核SHA查询全部分页check runs，拒绝PR上一版汇总、异SHA结果和新head未注册/运行中检查，防止推送后过早合并。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；.118：用户要求恢复剩余失败任务，仅triage结构化输出失败增加具名CAS重执行；原校验/次数/成功缓存保持，read与synthesize范围不扩。；2026-10-13补充：有界stdout终止事件及stderr首尾超时诊断，认证/未知分类与安全计量；授权relay凭据轮换排空、原子私有换钥、无推理认证和自然工作验收；生产增量清单/ACK/HTTPS与暂停汇报边界分别核实。；2026-10-13生产验收补充：manifest显式请求并有界解码gzip响应，身份/单流/截断与原预算检查，保留未压缩兼容；CDN gzip POST拒绝与origin慢链路另计，不提高限制或替代实际ACK。；origin压缩大清单仍超诊断期限，显式私有manifest可信同路径HTTPS读入口与原delta写入口分别配置，保留认证、同receiver核验、CAS和原预算。；初筛classification.year仅指原文明确披露的单一年份；未知留unknown，资料涉及的年份区间进入后续陈述，不猜出版年。生成schema与提示词对齐原单年校验，Codex本地结构校验执行pattern；原ID、原件、次数、成功缓存和候选/C3边界保持。；初筛年份生成schema采用模型服务可编译的普通分支与锚点，移除不受支持的前瞻；本地对锚定pattern执行完整字符串匹配，仍拒绝年份区间、完整日期与尾换行。原出版年语义、ID、原件、次数、成功缓存和C3边界不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。；2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。",
-      "implementation_revision": "2026.10.17.2",
-      "change_reason": "2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/420秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09公开仓库恢复复审：按精确审核SHA查询全部分页check runs，拒绝PR上一版汇总、异SHA结果和新head未注册/运行中检查，防止推送后过早合并。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；.118：用户要求恢复剩余失败任务，仅triage结构化输出失败增加具名CAS重执行；原校验/次数/成功缓存保持，read与synthesize范围不扩。；2026-10-13补充：有界stdout终止事件及stderr首尾超时诊断，认证/未知分类与安全计量；授权relay凭据轮换排空、原子私有换钥、无推理认证和自然工作验收；生产增量清单/ACK/HTTPS与暂停汇报边界分别核实。；2026-10-13生产验收补充：manifest显式请求并有界解码gzip响应，身份/单流/截断与原预算检查，保留未压缩兼容；CDN gzip POST拒绝与origin慢链路另计，不提高限制或替代实际ACK。；origin压缩大清单仍超诊断期限，显式私有manifest可信同路径HTTPS读入口与原delta写入口分别配置，保留认证、同receiver核验、CAS和原预算。；初筛classification.year仅指原文明确披露的单一年份；未知留unknown，资料涉及的年份区间进入后续陈述，不猜出版年。生成schema与提示词对齐原单年校验，Codex本地结构校验执行pattern；原ID、原件、次数、成功缓存和候选/C3边界保持。；初筛年份生成schema采用模型服务可编译的普通分支与锚点，移除不受支持的前瞻；本地对锚定pattern执行完整字符串匹配，仍拒绝年份区间、完整日期与尾换行。原出版年语义、ID、原件、次数、成功缓存和C3边界不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。；2026-10-17 已知阅读输出截断的完整拆分（2026.10.17.3）：仅原生packed阅读具有派发前输出拆分许可、精确dispatch及完整HTTP回包，且请求／原part／system／schema／token proof／响应摘要一致、实际27B明确done=true／length／4096输出时，按原序二分失败窗的完整片段。保持所有上下文、32K／4096预算、旧失败原字节及已成功窗口；拆分本轮不再生成、子窗全部有效才计覆盖。未知结果、模型绑定失败、单片仍超限继续受阻。旧operator与无许可历史失败不会因升级或删除status自动恢复，须精确作用域审计后受控恢复；最终综合及发布门槛保持。",
+      "id": "operations-20260906",
+      "change_reason": "2026-10-17 已知阅读输出截断的完整拆分（2026.10.17.3）：仅原生packed阅读具有派发前输出拆分许可、精确dispatch及完整HTTP回包，且请求／原part／system／schema／token proof／响应摘要一致、实际27B明确done=true／length／4096输出时，按原序二分失败窗的完整片段。保持所有上下文、32K／4096预算、旧失败原字节及已成功窗口；拆分本轮不再生成、子窗全部有效才计覆盖。未知结果、模型绑定失败、单片仍超限继续受阻。旧operator与无许可历史失败不会因升级或删除status自动恢复，须精确作用域审计后受控恢复；最终综合及发布门槛保持。"
     },
     {
-      "id": "change_management-legacy",
-      "topic": "change_management",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/docs__DECISIONS.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "change_management",
       "superseded_by": "change_management-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "change_management-legacy",
+      "scope": "project"
     },
     {
-      "id": "change_management-20260906",
-      "topic": "change_management",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-17",
-      "source": "framework/CURRENT.md",
       "implementations": [
         "AGENTS.md",
         "CLAUDE.md",
@@ -483,29 +582,29 @@
         "tests/unit/test_storage_layout.py",
         "tests/container_storage.py"
       ],
+      "implementation_revision": "2026.10.16.29",
+      "scope": "project",
+      "effective_at": "2026-10-17",
+      "source": "framework/CURRENT.md",
+      "topic": "change_management",
       "supersedes": [
         "change_management-legacy"
       ],
       "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.",
-      "implementation_revision": "2026.10.16.29",
+      "id": "change_management-20260906",
       "change_reason": "2026-10-17：用户授权对已批准的精确园区材料范围启动 Spark 27B 全表原生文本审阅并发布合格普通来源。显式 start_full_analysis 新建尝试，保留旧抽样、报告和断点；沿用唯一 intake，以独立 campus_review 角色连接本机 Ollama、单并发，不切换 Codex Reader/research-review。按确定性园区包及未分配包覆盖全部原生单元格，长格无损分片；逐包复验原件、现行任务、定位、地域、原值与 CAS 后才发布，全部包完成才称全表已审。GPU 利用率达到30%或温度达到80°C只延后本任务；先取得一个园区包的真实网站回执，再继续余包，此技术验收不新增人工审批。图片、外链及来源真假不因原生文本完整而视为已核。"
     },
     {
-      "id": "interface-legacy",
-      "topic": "interface",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/UI_BEFORE_SKINS.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "interface",
       "superseded_by": "interface-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "interface-legacy",
+      "scope": "project"
     },
     {
-      "id": "interface-20260906",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-02/framework__05_interface_system.md",
-      "scope": "project",
-      "effective_at": "2026-09-22",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -587,30 +686,30 @@
         "web/components/tasks-board.js",
         "web/assets/materials.js"
       ],
+      "implementation_revision": "2026.09.28.5",
+      "superseded_by": "interface-20261002",
+      "scope": "project",
+      "source": "docs/archive/2026-10-02/framework__05_interface_system.md",
+      "effective_at": "2026-09-22",
+      "topic": "interface",
       "supersedes": [
         "interface-legacy"
       ],
       "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。；2026-09-14 数据中心成本研究新增独立交互页，网页与 Excel 基准对齐，明确全项目/设施账户、假设边界、重算和窄屏验收。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-09-22 收敛为一套视觉加明暗（去掉 Attio/folk 切换与顶栏切换器，令牌改由本仓库拥有，不再内嵌 infra CRM 块）；全站改用 infra 字体包 Inter + Noto Sans SC，页面与 3D 画布不再自带系统字体栈；共享外观统一表单控件；旧偏好中的 skin 字段忽略。；2026-09-28 目录改为四问的全局视图（数据中心 / 账本 / 爆炸图 / 采集 / 成果 / 管理），节点页矩阵五系统 + IT 四子系统 + 站点权利，公开只读角色 reader，三个已删模型的参考实现从实现清单移除。",
-      "implementation_revision": "2026.09.28.5",
-      "superseded_by": "interface-20261002",
+      "id": "interface-20260906",
       "change_reason": "；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。"
     },
     {
-      "id": "acquisition-legacy",
-      "topic": "acquisition",
-      "status": "superseded",
       "source": "docs/archive/2026-09-06/ACQUISITION_LEGACY.md",
-      "scope": "project",
+      "status": "superseded",
+      "topic": "acquisition",
       "superseded_by": "acquisition-20260906",
-      "supersedes": []
+      "supersedes": [],
+      "id": "acquisition-legacy",
+      "scope": "project"
     },
     {
-      "id": "acquisition-20260906",
-      "topic": "acquisition",
       "status": "superseded",
-      "source": "docs/archive/2026-10-02/framework__06_acquisition.md",
-      "scope": "project",
-      "effective_at": "2026-09-28",
       "implementations": [
         "web/assets/datacenter-news.css",
         "web/components/datacenter-news.js",
@@ -681,20 +780,20 @@
         "docs/guides/model-governance-2026-09-27.html",
         "docs/guides/model-governance-2026-09-27.pdf"
       ],
+      "implementation_revision": "2026.09.28.40",
+      "superseded_by": "acquisition-20261002",
+      "scope": "project",
+      "source": "docs/archive/2026-10-02/framework__06_acquisition.md",
+      "effective_at": "2026-09-28",
+      "topic": "acquisition",
       "supersedes": [
         "acquisition-legacy"
       ],
       "reason": "新闻使用 Reader 的有界投影；供应执行、资料接收与 NVIDIA 产品库按用户确定的职责保存状态。2026-09-27 NVIDIA 采用产品优先：M5 本地发现/阅读，结构化候选发布 AWS，Spark 本轮不参与；页面按官方分类证据映射为五大浏览组。产品地图将明确型号关联父系列/平台，保留来源与参数版本。增量先对账官方英文与中文 XML sitemap，仅筛已审阅的产品路径，条件请求避免重复下载；产品路径新增入队、lastmod 变化重查。NVIDIA 中文站 www.nvidia.cn 使用根路径并纳入，路径匹配的中英页归并身份但各留快照。官方跳转仅放行核实过的 NVIDIA developer/networking 文档子域及具体页面，并分别遵守 robots.txt。产品 sitemap URL 抓取进度独立于广泛辅助页面队列计量。官方 sitemap 不完整不判缺失；即使完整，URL 未出现也只待复核不自动下架。网站 XML sitemap 是更新索引，不是产品总表；网站另生成公司产品 sitemap，线上分开导出产品清单、产品地图与原生规格 CSV。Networking Docs 的 ConnectX、BlueField、Spectrum 硬件型号归入网络产品族，DOCA 等软件仍优先归入软件。产品/来源/规格处理状态分别计量；公开页面明确清点未完与未知项；404 旧页、主机策略阻止与可重试失败分开显示，不能混成抓取失败。具体命名产品的规格覆盖率与全部目录实体的有表数量分开计量；官网未发布型号规格或型号专属规格来源不可用时记厂商缺口，不冒充抓取失败也不猜测补值。；2026-09-28 用户采用六队三仓库：inresearch 本身不爬取，内置 SEC/GPU 采集器退役并移交 fetchdata（fetchfilings、fetchquotes）；供应契约 providers 改为六队并登记来源归属；新建五类变量目标清单 framework/tco_targets.json 作为唯一任务来源；inews 拆采集线与编辑线，给 inresearch 的采集默认不翻译、挑选在先翻译在后，事件 feed 附加字段在 news_sync 校验透传。；2026-09-28 配合节点树改版：产品目录首屏改为轻量索引、单产品规格按需读取并在浏览器返回时恢复未完成请求；供应中心从生成目标清单只读投影 Fetchspec 目标，NVIDIA 目录显示相关 target/part 数量，目标、候选规格与正式研究采用继续分离。；2026-09-28 目标行状态四态与 Git 内登记载体采用。",
-      "implementation_revision": "2026.09.28.40",
-      "superseded_by": "acquisition-20261002"
+      "id": "acquisition-20260906"
     },
     {
-      "id": "product-ecosystems-20260906",
-      "topic": "product-ecosystems",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-09-06",
-      "source": "docs/archive/2026-09-28/framework__07_product_ecosystems.md",
       "implementations": [
         "framework/research_graph.json",
         "framework/research_questions.json",
@@ -708,17 +807,17 @@
         "web/components/object-network.js",
         "src/inresearch/workflow/reader.py"
       ],
+      "superseded_by": "product-ecosystems-20260928",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "docs/archive/2026-09-28/framework__07_product_ecosystems.md",
+      "topic": "product-ecosystems",
       "supersedes": [],
       "reason": "产品悬停展示显式关联厂商、点击进入独立页面；HDD 清除迁移文案；保留图谱导航与旧 ID 后台兼容。",
-      "superseded_by": "product-ecosystems-20260928"
+      "id": "product-ecosystems-20260906"
     },
     {
-      "id": "product-ecosystems-20260928",
-      "topic": "product-ecosystems",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-10",
-      "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "framework/bom.json",
         "data/products.json",
@@ -752,20 +851,20 @@
         "docs/handoff/observation-coverage.md",
         "docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json"
       ],
+      "implementation_revision": "2026.10.13.121",
+      "scope": "project",
+      "effective_at": "2026-10-10",
+      "source": "framework/03_bom_and_collaboration.md",
+      "topic": "product-ecosystems",
       "supersedes": [
         "product-ecosystems-20260906"
       ],
       "reason": "八生态入口、主生态与九主题退役：产品目录按骨架部件进入（部件 → 厂商产品线 → 型号），生态不再是任何视图的第一层；本主题的现行正文并入 03「一个骨架」与「骨架的三个补充」。旧实现文件在页面改写完成前保留于实现清单，随迁移各步移除。；2026-10-07按物理园区的十二角度信息清单和有方向的多角色关系登记，未知留位；不新增对象类型。",
-      "implementation_revision": "2026.10.13.121",
+      "id": "product-ecosystems-20260928",
       "change_reason": "用户要求不拘数字重审架构；替代数字总纲、五类正交独占和四问倒序，保留旧接口投影；可扩展观察、问题模板、来源队研究侧交付与Abilene附件局部核验；暂不上线"
     },
     {
-      "id": "reading-20260912",
-      "topic": "reading",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-09-13",
-      "source": "docs/archive/2026-10-06/framework__04_reading_scoring_standard.md",
       "implementations": [
         "web/pages/doc.html",
         "docs/local_reader/PROJECT_BRIEF.md",
@@ -790,20 +889,20 @@
         "tests/unit/test_dropped_claims.py",
         "tests/unit/test_placeholder_output.py"
       ],
+      "implementation_revision": "2026.09.27.3",
+      "superseded_by": "reading-20261006",
+      "scope": "project",
+      "effective_at": "2026-09-13",
+      "source": "docs/archive/2026-10-06/framework__04_reading_scoring_standard.md",
+      "topic": "reading",
       "supersedes": [
         "reading-20260906"
       ],
       "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按分数分层阅读深度：有效优先级 ≥7 或点名全文深读，1–6 摘要深度（summarized），0 分与衍生物回流 park 停放，替代“所有独立文章都全文深读”。；2026-09-27 M5 NVIDIA 实测发现 Claude CLI 传输正常但部分证据引文不匹配原文；强化逐字引文提示，无法核实的主张须舍弃，完整报告仍受原文校验门槛约束；继续排查发现 CLI 偶发 Markdown 代码围栏，Reader 改用阶段 JSON Schema 结构化输出并对不匹配引文仅作一次定向纠正重试，硬性逐字校验不变。；Reader 支持按完整 doc ID 生成限定候选快照，必须每个所选文档 coverage 完整；未知/未完成项拒绝，且不改全局 mapping-proposals。；2026-09-27 用户采用：纠正一次后引文仍不符时只剔除该主张并留档（dropped_claims，报告计数与警告），不再整块阻断。；2026-09-28 摘要与要点拒收占位文字（model_output_placeholder），受影响报告经 reread 重读。",
-      "implementation_revision": "2026.09.27.3",
-      "superseded_by": "reading-20261006"
+      "id": "reading-20260912"
     },
     {
-      "id": "reading-m4-triage-20260912",
-      "topic": "reading",
       "status": "current",
-      "scope": "m4-triage",
-      "effective_at": "2026-09-13",
-      "source": "docs/M4_TRIAGE_TASK.md",
       "implementations": [
         "src/inresearch/adapters/ocr_worker.py",
         "src/inresearch/materials/inventory.py",
@@ -845,19 +944,19 @@
         "src/inresearch/workflow/research_sources.py",
         "tests/unit/test_research_sources.py"
       ],
+      "implementation_revision": "2026.10.09.15",
+      "scope": "m4-triage",
+      "effective_at": "2026-09-13",
+      "source": "docs/M4_TRIAGE_TASK.md",
+      "topic": "reading",
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
       "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。；2026-09-27 ocr-worker 只上传页结果，不再在 Spark 上 retry；OCR 阻塞文档由运行中的 reader 自动重新排队。；2026-09-27 ocr-worker 失败时上传已完成页并写明失败页，重跑跳过 Spark 上同一内容已有的页。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。",
-      "implementation_revision": "2026.10.09.15"
+      "id": "reading-m4-triage-20260912"
     },
     {
-      "id": "model-execution-20260912",
-      "topic": "model_execution",
-      "scope": "project",
       "status": "superseded",
-      "effective_at": "2026-09-13",
-      "source": "docs/archive/2026-10-06/codex-reader/08_model_execution.md",
       "implementations": [
         "src/inresearch/adapters/models.py",
         "deploy/models.json",
@@ -883,20 +982,18 @@
         "src/inresearch/adapters/gap_ocr.py",
         "tests/unit/test_gap_ocr.py"
       ],
+      "implementation_revision": "2026.09.27.1",
+      "superseded_by": "model-codex-batch-20261006",
+      "scope": "project",
+      "effective_at": "2026-09-13",
+      "source": "docs/archive/2026-10-06/codex-reader/08_model_execution.md",
+      "topic": "model_execution",
       "supersedes": [],
       "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。；2026-09-27 Claude CLI 的 model_cli_failed / model_cli_timeout 改走普通重试，认证、未安装、身份不符仍阻塞。；2026-09-27 reader schema 的 object_ids/question_ids 改为非必填，避免 Claude CLI 因省略空数组而内部重试失败。；2026-09-27 引文二次不符改为剔除该主张并留档，不整块阻断。；2026-09-28 用户采用：缺页由 M4 Claude CLI 看图补读（gap_ocr 角色，双读一致才采用），Claude CLI 获得 vision_json。；2026-09-28 gap_ocr 前两次不一致时第三次读，任意两次一致即采用，否则留存各次原文与数字差异。",
-      "implementation_revision": "2026.09.27.1",
-      "superseded_by": "model-codex-batch-20261006"
+      "id": "model-execution-20260912"
     },
     {
-      "id": "software-contracts-20260913",
-      "topic": "software-contracts",
       "status": "current",
-      "scope": "project",
-      "source": "framework/09_software_contracts.md",
-      "effective_at": "2026-10-17",
-      "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；定向参数观测/计算以当前定义SHA冻结任务、六项定量检查和逐条独立复核追加来源支持，不认证模型输入。最终checkout重验原侧车需求及完整契约；独立第二调用绑定全样本包，历史审计/已采用重放保持。快照交接复用主线#697唯一准备槽实现。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-14：任务原件先审批后研究接收，按文件SHA授权，匿名回执只查自身反馈。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。；2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -1066,33 +1163,36 @@
         "data/schema/project.schema.json",
         "tests/unit/test_city_location.py",
         "tests/unit/test_industry.py",
-        "tests/industry.cjs"
+        "tests/industry.cjs",
+        "tests/unit/test_packed_output_split.py"
       ],
-      "implementation_revision": "2026.10.17.2",
-      "change_reason": "2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。"
+      "implementation_revision": "2026.10.17.4",
+      "scope": "project",
+      "source": "framework/09_software_contracts.md",
+      "effective_at": "2026-10-17",
+      "topic": "software-contracts",
+      "supersedes": [],
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；定向参数观测/计算以当前定义SHA冻结任务、六项定量检查和逐条独立复核追加来源支持，不认证模型输入。最终checkout重验原侧车需求及完整契约；独立第二调用绑定全样本包，历史审计/已采用重放保持。快照交接复用主线#697唯一准备槽实现。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-14：任务原件先审批后研究接收，按文件SHA授权，匿名回执只查自身反馈。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。；2026-10-17 已知阅读输出截断的完整拆分（2026.10.17.3）：仅原生packed阅读具有派发前输出拆分许可、精确dispatch及完整HTTP回包，且请求／原part／system／schema／token proof／响应摘要一致、实际27B明确done=true／length／4096输出时，按原序二分失败窗的完整片段。保持所有上下文、32K／4096预算、旧失败原字节及已成功窗口；拆分本轮不再生成、子窗全部有效才计覆盖。未知结果、模型绑定失败、单片仍超限继续受阻。旧operator与无许可历史失败不会因升级或删除status自动恢复，须精确作用域审计后受控恢复；最终综合及发布门槛保持。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。",
+      "id": "software-contracts-20260913",
+      "change_reason": "精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
     },
     {
-      "id": "geluoke-longform-20261001",
-      "topic": "geluoke-longform",
       "status": "superseded",
-      "scope": "editorial-delivery",
-      "effective_at": "2026-10-01",
-      "source": "docs/archive/2026-10-08/docs__geluoke__专题写作规则-v2.2.md",
-      "supersedes": [],
-      "reason": "用户要求压缩对话并更新长文规则。v2.2替代原文件v2.1，补充精简专题、模板总览图、事实边界、手机HTML边距和新会话交接。v2.1此前未单列政策，旧正文由Git历史保留；不改变研究数据或线上运行规则。",
       "implementations": [
         "docs/handoff/2026-10-01-geluoke-longform.md"
       ],
       "implementation_revision": "2.2",
-      "superseded_by": "geluoke-longform-20261008"
+      "superseded_by": "geluoke-longform-20261008",
+      "scope": "editorial-delivery",
+      "effective_at": "2026-10-01",
+      "source": "docs/archive/2026-10-08/docs__geluoke__专题写作规则-v2.2.md",
+      "topic": "geluoke-longform",
+      "supersedes": [],
+      "reason": "用户要求压缩对话并更新长文规则。v2.2替代原文件v2.1，补充精简专题、模板总览图、事实边界、手机HTML边距和新会话交接。v2.1此前未单列政策，旧正文由Git历史保留；不改变研究数据或线上运行规则。",
+      "id": "geluoke-longform-20261001"
     },
     {
-      "id": "architecture-20261002",
-      "topic": "architecture",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-10-10",
-      "source": "docs/archive/2026-10-14/framework__00_before_object_evidence.md",
       "implementations": [
         "framework/bom.json",
         "framework/site_rights.json",
@@ -1144,26 +1244,26 @@
         "docs/handoff/observation-coverage.md",
         "docs/reviews/2026-10-13/observation-coverage/abilene-recheck-receipt.json"
       ],
+      "implementation_revision": "2026.10.13.121",
+      "superseded_by": "architecture-object-evidence-20261014",
+      "scope": "project",
+      "effective_at": "2026-10-10",
+      "source": "docs/archive/2026-10-14/framework__00_before_object_evidence.md",
+      "topic": "architecture",
       "supersedes": [
         "architecture-20260928"
       ],
       "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-11 Abilene定向原件发现设施/IT口径无支持，用户要求持续更新，421/422保留为带明确质量/时点缺口的历史参考估算，行业展示及汇总分列估算份额，旧记录保留；不自动用4月设施估算替代。",
-      "implementation_revision": "2026.10.13.121",
-      "change_reason": "用户要求不拘数字重审架构；替代数字总纲、五类正交独占和四问倒序，保留旧接口投影；可扩展观察、问题模板、来源队研究侧交付与Abilene附件局部核验；暂不上线",
+      "id": "architecture-20261002",
       "implementation_paths": [
         "docs/handoff/global-campuses.md",
         "tests/global_campuses.cjs",
         "tests/unit/test_geographic_analysis.py"
       ],
-      "superseded_by": "architecture-object-evidence-20261014"
+      "change_reason": "用户要求不拘数字重审架构；替代数字总纲、五类正交独占和四问倒序，保留旧接口投影；可扩展观察、问题模板、来源队研究侧交付与Abilene附件局部核验；暂不上线"
     },
     {
-      "id": "interface-20261002",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-06/before_dispatch__framework__05_interface_system.md",
-      "scope": "project",
-      "effective_at": "2026-10-02",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -1264,21 +1364,21 @@
         "tests/unit/test_repository_pages.py",
         "docs/local_setup/REPOSITORY_PAGES.md"
       ],
+      "implementation_revision": "2026.10.06.1",
+      "superseded_by": "interface-dispatch-20261006",
+      "scope": "project",
+      "source": "docs/archive/2026-10-06/before_dispatch__framework__05_interface_system.md",
+      "effective_at": "2026-10-02",
+      "topic": "interface",
       "supersedes": [
         "interface-20260906"
       ],
       "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。；2026-10-02 上线验收修正跨厂商目录共用超时：逐请求30秒、数据请求高优先级，单厂失败隔离，重试仍取消旧轮。；第二批：独立模组、证据支持的芯片关系、增量保留生产目录，服务器和内存存储不混入计算芯片。；2026-10-03 首页排版替代：大数字直连完整地图，导航标题紧凑；筛选、主体与样本下移，两类首页机会区块删除但数据与其他页面保留。新闻计数限真实快照当前可展示条目，缺失显示 —；首页地图点/主体直达详情，三档桌面与手机浏览器验收。本轮不部署。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-03：按用户要求替代仓库架构分散入口，集中研究站管理员目录；来源快照与运行统计分开，原图与旧链接受服务端认证保护。；2026-10-06 在既有新闻/项目与供应页显示匹配进展，内部报告引文不公开，骨架不自动修改。",
-      "implementation_revision": "2026.10.06.1",
-      "superseded_by": "interface-dispatch-20261006",
+      "id": "interface-20261002",
       "change_reason": "；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。"
     },
     {
-      "id": "acquisition-20261002",
-      "topic": "acquisition",
       "status": "superseded",
-      "source": "docs/archive/2026-10-06/framework__06_acquisition.md",
-      "scope": "project",
-      "effective_at": "2026-10-02",
       "implementations": [
         "web/assets/datacenter-news.css",
         "web/components/datacenter-news.js",
@@ -1363,20 +1463,20 @@
         "src/inresearch/interfaces/public.py",
         "docs/handoff/compute-catalog-20261002.md"
       ],
+      "implementation_revision": "2026.10.03.1",
+      "superseded_by": "acquisition-20261006",
+      "scope": "project",
+      "source": "docs/archive/2026-10-06/framework__06_acquisition.md",
+      "effective_at": "2026-10-02",
+      "topic": "acquisition",
       "supersedes": [
         "acquisition-20260906"
       ],
       "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 用户授权四家规格目录扩展：Intel、AMD、Supermicro、SK hynix，统一注册、分库和官方来源校验，未交付不表示已有产品。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。；第二批：独立模组、证据支持的芯片关系、增量保留生产目录，服务器和内存存储不混入计算芯片。",
-      "implementation_revision": "2026.10.03.1",
-      "superseded_by": "acquisition-20261006"
+      "id": "acquisition-20261002"
     },
     {
-      "id": "acquisition-20261006",
-      "topic": "acquisition",
       "status": "superseded",
-      "source": "docs/archive/2026-10-06/framework__06_acquisition_before_daily_delivery.md",
-      "scope": "project",
-      "effective_at": "2026-10-06",
       "implementations": [
         "web/assets/datacenter-news.css",
         "web/components/datacenter-news.js",
@@ -1465,20 +1565,20 @@
         "tests/unit/test_research_match.py",
         "src/inresearch/materials/daily_events.py"
       ],
+      "implementation_revision": "2026.10.06.1",
+      "superseded_by": "acquisition-daily-20261006",
+      "scope": "project",
+      "source": "docs/archive/2026-10-06/framework__06_acquisition_before_daily_delivery.md",
+      "effective_at": "2026-10-06",
+      "topic": "acquisition",
       "supersedes": [
         "acquisition-20261002"
       ],
       "reason": "用户要求日报与基建容量/水电审批关联、报告按既有需求匹配并反馈骨架缺口；增加保守身份候选、容量口径、历史回放和内部页码索引，替代未接入的全文交换设想，不改变骨架与 C3。；用户补充要求逐事件登记正文、身份与变化，并核对 Spark 长期归档与按目录检索。",
-      "implementation_revision": "2026.10.06.1",
-      "superseded_by": "acquisition-daily-20261006"
+      "id": "acquisition-20261006"
     },
     {
-      "id": "reading-20261006",
-      "topic": "reading",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-10-06",
-      "source": "docs/archive/2026-10-06/before_dispatch__framework__04_reading_scoring_standard.md",
       "implementations": [
         "web/pages/doc.html",
         "docs/local_reader/PROJECT_BRIEF.md",
@@ -1505,20 +1605,20 @@
         "src/inresearch/workflow/research_match.py",
         "tests/unit/test_reader_demands.py"
       ],
+      "implementation_revision": "2026.10.06.1",
+      "superseded_by": "reading-dispatch-20261006",
+      "scope": "project",
+      "effective_at": "2026-10-06",
+      "source": "docs/archive/2026-10-06/before_dispatch__framework__04_reading_scoring_standard.md",
+      "topic": "reading",
       "supersedes": [
         "reading-20260912"
       ],
       "reason": "用户要求 Spark 的分类、优先级、派工与阅读上下文服务于现行三级账、四问、五类变量与六队；新阅读冻结现行需求与配方，旧版本兼容保留，匹配不授予采用。保留既有分层深度、原件、质量与 C3 规则。",
-      "implementation_revision": "2026.10.06.1",
-      "superseded_by": "reading-dispatch-20261006"
+      "id": "reading-20261006"
     },
     {
-      "id": "acquisition-daily-20261006",
-      "topic": "acquisition",
       "status": "superseded",
-      "source": "docs/archive/2026-10-06/before_dispatch__framework__06_acquisition.md",
-      "scope": "project",
-      "effective_at": "2026-10-06",
       "implementations": [
         "web/assets/datacenter-news.css",
         "web/components/datacenter-news.js",
@@ -1611,20 +1711,20 @@
         "src/inresearch/materials/daily_research.py",
         "tests/unit/test_daily_bundle.py"
       ],
+      "implementation_revision": "2026.10.06.2",
+      "superseded_by": "acquisition-dispatch-20261006",
+      "scope": "project",
+      "source": "docs/archive/2026-10-06/before_dispatch__framework__06_acquisition.md",
+      "effective_at": "2026-10-06",
+      "topic": "acquisition",
       "supersedes": [
         "acquisition-20261006"
       ],
       "reason": "User adopted two HTML outputs, demand-first daily research delivery with exact original/source identities, private evidence sidecars and separate candidate/adoption progress.",
-      "implementation_revision": "2026.10.06.2",
-      "superseded_by": "acquisition-dispatch-20261006"
+      "id": "acquisition-daily-20261006"
     },
     {
-      "id": "reading-dispatch-20261006",
-      "topic": "reading",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-10-06",
-      "source": "docs/archive/2026-10-06/codex-reader/04_reading_scoring_standard.md",
       "implementations": [
         "web/pages/doc.html",
         "docs/local_reader/PROJECT_BRIEF.md",
@@ -1653,20 +1753,20 @@
         "src/inresearch/workflow/daily_dispatch.py",
         "tests/unit/test_daily_dispatch.py"
       ],
+      "implementation_revision": "2026.10.06.3",
+      "superseded_by": "reading-codex-batch-20261006",
+      "scope": "project",
+      "effective_at": "2026-10-06",
+      "source": "docs/archive/2026-10-06/codex-reader/04_reading_scoring_standard.md",
+      "topic": "reading",
       "supersedes": [
         "reading-20261006"
       ],
       "reason": "独立事件交付与短日报/收尾服务份额，保留旧积压、完整覆盖、冻结配方、claim floor 与温度保护。",
-      "implementation_revision": "2026.10.06.3",
-      "superseded_by": "reading-codex-batch-20261006"
+      "id": "reading-dispatch-20261006"
     },
     {
-      "id": "acquisition-dispatch-20261006",
-      "topic": "acquisition",
       "status": "current",
-      "source": "framework/06_acquisition.md",
-      "scope": "project",
-      "effective_at": "2026-10-06",
       "implementations": [
         "web/assets/datacenter-news.css",
         "web/components/datacenter-news.js",
@@ -1849,20 +1949,20 @@
         "docs/guides/fetchdata/fetchfilings-outbox.md",
         "docs/handoff/fetchfilings-outbox.md"
       ],
+      "implementation_revision": "2026.10.16.26",
+      "scope": "project",
+      "source": "framework/06_acquisition.md",
+      "effective_at": "2026-10-06",
+      "topic": "acquisition",
       "supersedes": [
         "acquisition-daily-20261006"
       ],
       "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-11四队员工任务包：一个fetchdata内核、四队独立运行；原件原格式/JSONL候选/离线验包与生产接收分开；旧全信息目标前置限制移除，模型派工约束保持，未宣称四队接通。；用户明确以四个独立仓库替代单fetchdata四目录；真实首包和重放通过，生产接收及需求完成不推断。；2026-10-14单fetchdata四模块替代四repo公共内核重复维护；旧ID/版本/交付保留，本地沙箱验证不等生产接通。；2026-10-14fetchstat只接登记源的受控生产候选归档，ACK/失败恢复另验，其他队不启用。；fetchstat已验单源受控接收，连接范围/覆盖/采用及调度分别说明。；fetchfilings仅登记来源接收准备，真实生产ACK待验。；fetchfilings已验单源受控接收，连接范围/覆盖/采用及调度分别说明。；2026-10-14：任务原件先审批后研究接收，按文件SHA授权，匿名回执只查自身反馈。；fetchreports登记LBNL发布页单源，真实接收待验。；fetchreports仅LBNL发布页方法摘要已验候选接收，PDF未读。；fetchquotes仅准备Lambda公开报价单源受控接收，真实ACK待验。；fetchquotes仅Lambda公开标价已验受控候选接收，非成交、未知保持。",
-      "implementation_revision": "2026.10.16.26",
+      "id": "acquisition-dispatch-20261006",
       "change_reason": "2026-10-16：以工作包现行范围、当前数据库、已完成成果及最新有效反馈作为所有人的共同执行锚点；后续反馈替代旧轮次的执行效力，范围变更使旧反馈退为历史。移除任务页模板、任务书、当前／本轮计划下载及个人回执时间线／跨设备找回界面；后台保留原件、反馈历史与安全回执用于鉴权和批次恢复。单份及联合审核均不再纳入个人旧修改任务，公开投影只含服务器生成的安全摘要；同批联合审核、覆盖边界、发布复验及C3规则保持。"
     },
     {
-      "id": "interface-dispatch-20261006",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-06/codex-reader/05_interface_system.md",
-      "scope": "project",
-      "effective_at": "2026-10-06",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -1965,21 +2065,21 @@
         "src/inresearch/workflow/daily_dispatch.py",
         "tests/unit/test_daily_dispatch.py"
       ],
+      "implementation_revision": "2026.10.06.3",
+      "superseded_by": "interface-reader-batch-20261006",
+      "scope": "project",
+      "source": "docs/archive/2026-10-06/codex-reader/05_interface_system.md",
+      "effective_at": "2026-10-06",
+      "topic": "interface",
       "supersedes": [
         "interface-20261002"
       ],
       "reason": "交付通道、并行补证任务、责任环节与实际接收时间取代仅展示等待状态；公开日报线索与内部正文分开，正式容量不由动态推断。",
-      "implementation_revision": "2026.10.06.3",
-      "superseded_by": "interface-reader-batch-20261006",
+      "id": "interface-dispatch-20261006",
       "change_reason": "；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。"
     },
     {
-      "id": "model-codex-batch-20261006",
-      "topic": "model_execution",
-      "scope": "project",
       "status": "current",
-      "effective_at": "2026-10-06",
-      "source": "framework/08_model_execution.md",
       "implementations": [
         "src/inresearch/adapters/models.py",
         "deploy/models.json",
@@ -2017,20 +2117,20 @@
         "deploy/spark-reader/inresearch-reader-publish.service",
         "deploy/spark-reader/inresearch-reader-publish.timer"
       ],
+      "implementation_revision": "2026.10.09.42",
+      "scope": "project",
+      "effective_at": "2026-10-06",
+      "source": "framework/08_model_execution.md",
+      "topic": "model_execution",
       "supersedes": [
         "model-execution-20260912"
       ],
       "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；用户授权修复：CLI 失败分类/脱敏诊断、显式高分辨率视觉补读及逐 OCR 页检查点让槽，保留核验标准与失败证据。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。; bounded read_batch uses the frozen reader role and per-chunk provenance; concurrency benchmark coordinates client and relay without changing models.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。",
-      "implementation_revision": "2026.10.09.42",
+      "id": "model-codex-batch-20261006",
       "change_reason": "；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。"
     },
     {
-      "id": "reading-codex-batch-20261006",
-      "topic": "reading",
       "status": "superseded",
-      "scope": "project",
-      "effective_at": "2026-10-06",
-      "source": "docs/archive/2026-10-07/framework__04_before_native_text.md",
       "implementations": [
         "web/pages/doc.html",
         "docs/local_reader/PROJECT_BRIEF.md",
@@ -2063,20 +2163,20 @@
         "tests/unit/test_codex_batch_reader.py",
         "tests/unit/test_codex_failure_ocr_rescue.py"
       ],
+      "implementation_revision": "2026.10.06.5",
+      "superseded_by": "reading-native-text-20261007",
+      "scope": "project",
+      "effective_at": "2026-10-06",
+      "source": "docs/archive/2026-10-07/framework__04_before_native_text.md",
+      "topic": "reading",
       "supersedes": [
         "reading-dispatch-20261006"
       ],
       "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；用户授权修复：CLI 失败分类/脱敏诊断、显式高分辨率视觉补读及逐 OCR 页检查点让槽，保留核验标准与失败证据。",
-      "implementation_revision": "2026.10.06.5",
-      "superseded_by": "reading-native-text-20261007"
+      "id": "reading-codex-batch-20261006"
     },
     {
-      "id": "interface-reader-batch-20261006",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-08/framework__05_interface_system__before_reader_company.md",
-      "scope": "project",
-      "effective_at": "2026-10-06",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -2227,21 +2327,21 @@
         "tests/unit/test_research_review.py",
         "web/assets/ops-forms.js"
       ],
+      "implementation_revision": "2026.10.08.4",
+      "superseded_by": "interface-reader-company-20261008",
+      "scope": "project",
+      "source": "docs/archive/2026-10-08/framework__05_interface_system__before_reader_company.md",
+      "effective_at": "2026-10-06",
+      "topic": "interface",
       "supersedes": [
         "interface-dispatch-20261006"
       ],
       "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；阅读恢复时同时披露候选中的未读页，防止缺页计成已核验。；用户要求简单看懂交付与进展：首屏改为已交付/正在处理/缺口，技术记录折叠，以既有快照候选显示内容。；2026-10-07按日报日期展示实际事件、机检、正式采用事件/园区数及落点与缺口；全批阅读单独计量。；主体供电协议与州级有限对照，园区十二角度已有/待查，不据地域推断产权或供电关系。；2026-10-07用户明确要求单链接和图表重点，统一公司档案/产品规格入口，旧门禁保留，按目录原数据绘图和页内对比。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；企业窗口从接收库当前批次投影数量与型号入口；无原厂分类不误报未交付，业务按官方产品路径关联，规格与CSV同ID筛选，原件归档和网站接收分别验收。；历史档案显式增补保持当前资料，文档索引保留未关联来源，首页计数与分页原文分开。；2026-10-07用户要求真正子分类与紧凑规格；官方路径与明确原表字段只读分层、分类不自动选型号，原表桌面双列展开，筛选/CSV一致。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。",
-      "implementation_revision": "2026.10.08.4",
-      "change_reason": "2026-10-07 company → category → model; captured paths and explicit unique raw fields; readable compact specifications without replacing source evidence.；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。",
-      "superseded_by": "interface-reader-company-20261008"
+      "id": "interface-reader-batch-20261006",
+      "change_reason": "2026-10-07 company → category → model; captured paths and explicit unique raw fields; readable compact specifications without replacing source evidence.；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。"
     },
     {
-      "id": "reading-native-text-20261007",
-      "topic": "reading",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-07",
-      "source": "framework/04_reading_scoring_standard.md",
       "implementations": [
         "web/pages/doc.html",
         "docs/local_reader/PROJECT_BRIEF.md",
@@ -2312,20 +2412,20 @@
         "src/inresearch/workflow/targeted_research.py",
         "tests/unit/test_targeted_research.py"
       ],
+      "implementation_revision": "2026.10.11.94",
+      "scope": "project",
+      "effective_at": "2026-10-07",
+      "source": "framework/04_reading_scoring_standard.md",
+      "topic": "reading",
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
       "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；定向参数观测/计算以当前定义SHA冻结任务、六项定量检查和逐条独立复核追加来源支持，不认证模型输入。最终checkout重验原侧车需求及完整契约；独立第二调用绑定全样本包，历史审计/已采用重放保持。快照交接复用主线#697唯一准备槽实现。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。",
-      "implementation_revision": "2026.10.11.94",
+      "id": "reading-native-text-20261007",
       "change_reason": "用户明确采用：园区信息先按唯一物理对象审核入库，研究用途另关联；存量和日报均可无研究目标追加，保留原件/C3/历史/冲突，首页区分补录与有效时间。"
     },
     {
-      "id": "interface-reader-company-20261008",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-08/framework__05_interface_system__before_repository_daily.md",
-      "scope": "project",
-      "effective_at": "2026-10-08",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -2488,21 +2588,21 @@
         "framework/visual_atlas.json",
         "framework/visual_atlas_migration.json"
       ],
+      "implementation_revision": "2026.10.08.10",
+      "superseded_by": "interface-repository-daily-20261008",
+      "scope": "project",
+      "source": "docs/archive/2026-10-08/framework__05_interface_system__before_repository_daily.md",
+      "effective_at": "2026-10-08",
+      "topic": "interface",
       "supersedes": [
         "interface-reader-batch-20261006"
       ],
       "reason": "用户采用客户交付前台与内部后台/dashboard的默认场景；企业专栏先实现独立公司后台、管理员读者预览、单一型号浏览与必要来源/配置边界；原研究数据与其他界面规范继续适用。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08技术图制作采用白底技术图册；新图/重制图按10规范，旧3D背景/材质实现按队列迁移，控件明暗/语义与镜头所有权保持。",
-      "implementation_revision": "2026.10.08.10",
-      "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data.；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。",
-      "superseded_by": "interface-repository-daily-20261008"
+      "id": "interface-reader-company-20261008",
+      "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data.；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。"
     },
     {
-      "id": "visual-atlas-20261008",
-      "topic": "technical-illustration",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-10",
-      "source": "framework/10_visual_atlas.md",
       "implementations": [
         "framework/visual_atlas.json",
         "framework/visual_atlas_migration.json",
@@ -3404,18 +3504,18 @@
         "docs/design/technical-atlas/TA-35/publication-independent-review-v1.json",
         "web/assets/bom-classification/overview-v1-preview.jpg"
       ],
+      "implementation_revision": "2026.10.10.73",
+      "scope": "project",
+      "effective_at": "2026-10-10",
+      "source": "framework/10_visual_atlas.md",
+      "topic": "technical-illustration",
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.10.73",
+      "id": "visual-atlas-20261008",
       "change_reason": "TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当时四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。；现行BOM五类与分类海报规则同时保留：TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，按当时四必过及最终head全部检查（现行 CI 范围与门禁见 docs/CI.md），不触Spark/研究。；2026-10-10现行分类按03/05新树；历史图册制作源BOM原字节归档，原SHA和审阅记录保留，继续核现行类别与几何。；2026-10-10用户以日报海报明确要求BOM整图：真实场景底图与独立完整分类文字层、PNG/SVG下载及手机原尺寸放大；此单张深蓝说明带单独适用，原暖白图册与迁移计量保持。；公网初验总图PNG加载偏慢，改用同尺寸JPEG轻量预览，高清下载保持；下载验收实际点击并核全字节SHA，既有整项期限保留。"
     },
     {
-      "id": "interface-repository-daily-20261008",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-11/framework__05_interface_system__before_global_daily.md",
-      "scope": "project",
-      "effective_at": "2026-10-10",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -3620,42 +3720,38 @@
         ".github/workflows/verify-data-center-publication.yml",
         "tests/unit/test_data_center_publication.py"
       ],
+      "implementation_revision": "2026.10.11.80",
+      "superseded_by": "interface-global-daily-20261011",
+      "scope": "project",
+      "source": "docs/archive/2026-10-11/framework__05_interface_system__before_global_daily.md",
+      "effective_at": "2026-10-10",
+      "topic": "interface",
       "supersedes": [
         "interface-reader-company-20261008"
       ],
       "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/系统cron原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。；继承已合并TA-02收尾：公开可选产品登记未知不阻塞、导出文字/DPR及已部署回执；图册实际发布保留。；完整CI继承图册双密度矩阵，分项运行保持全部断言和原限额。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；首次跨Mac/Linux发布发现AppleDouble元数据，显式关闭BSD tar附带文件，17载体完整性/内容摘要验证不变。；截断的匹配窗口不再隐藏已收到的完整阅读交付，候选权限及私有路径边界保留。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。",
-      "implementation_revision": "2026.10.11.80",
-      "change_reason": "2026-10-11 用户授权 R1/R2：在稳定父目标下细化17项参数需求和来源责任，审核支持/线索用途，服务端执行范围/问题/派工校验；缺口只读派生，容量未知与情景边界明确，原件哈希和研究采用不伪造。；2026-10-11用户授权研究直接网站更新：在成果目录内追加容量专题及168条筛选台账，精确公开5HTML/2JSON、共享字体外观与真实权限/浏览器验收，独立于Reader接收和正式事实采用。；新增只读main发布HTTP/SHA回执作业，固定生产域名与8分钟期限，不触碰服务器或扩大凭据。",
-      "superseded_by": "interface-global-daily-20261011"
+      "id": "interface-repository-daily-20261008",
+      "change_reason": "2026-10-11 用户授权 R1/R2：在稳定父目标下细化17项参数需求和来源责任，审核支持/线索用途，服务端执行范围/问题/派工校验；缺口只读派生，容量未知与情景边界明确，原件哈希和研究采用不伪造。；2026-10-11用户授权研究直接网站更新：在成果目录内追加容量专题及168条筛选台账，精确公开5HTML/2JSON、共享字体外观与真实权限/浏览器验收，独立于Reader接收和正式事实采用。；新增只读main发布HTTP/SHA回执作业，固定生产域名与8分钟期限，不触碰服务器或扩大凭据。"
     },
     {
-      "id": "geluoke-longform-20261008",
-      "topic": "geluoke-longform",
-      "scope": "editorial-delivery",
       "status": "superseded",
-      "effective_at": "2026-10-08",
-      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.3.md",
-      "supersedes": [
-        "geluoke-longform-20261001"
-      ],
-      "reason": "用户采用行业作者口吻、明确判断、减少机械流程标题与冗余免责声明；普通专栏复用已有材料、统一核稿与定向查证。v2.2保留历史。",
       "implementations": [
         "docs/handoff/history-foundation-writing-20261008.md"
       ],
       "implementation_revision": "2.3",
-      "superseded_by": "geluoke-longform-20261009"
+      "superseded_by": "geluoke-longform-20261009",
+      "scope": "editorial-delivery",
+      "effective_at": "2026-10-08",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.3.md",
+      "topic": "geluoke-longform",
+      "supersedes": [
+        "geluoke-longform-20261001"
+      ],
+      "reason": "用户采用行业作者口吻、明确判断、减少机械流程标题与冗余免责声明；普通专栏复用已有材料、统一核稿与定向查证。v2.2保留历史。",
+      "id": "geluoke-longform-20261008"
     },
     {
-      "id": "geluoke-longform-20261009",
-      "topic": "geluoke-longform",
-      "scope": "editorial-delivery",
       "status": "superseded",
-      "effective_at": "2026-10-09",
-      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md",
-      "supersedes": [
-        "geluoke-longform-20261008"
-      ],
-      "reason": "用户明确要求每篇长文交付微信公众号HTML及inresearch.ai研究文字素材；图片按微信当前要求、按现行问题与目标取材，保留原文溯源与未覆盖项，格式校验不等于正式采用。",
       "implementations": [
         "docs/handoff/us-datacenter-power-20261009.md",
         "docs/research/2026-10-09/us-datacenter-power/README.md",
@@ -3664,19 +3760,19 @@
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/audit.py"
       ],
       "implementation_revision": "2.4",
-      "superseded_by": "geluoke-longform-20261009-visual"
+      "superseded_by": "geluoke-longform-20261009-visual",
+      "scope": "editorial-delivery",
+      "effective_at": "2026-10-09",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md",
+      "topic": "geluoke-longform",
+      "supersedes": [
+        "geluoke-longform-20261008"
+      ],
+      "reason": "用户明确要求每篇长文交付微信公众号HTML及inresearch.ai研究文字素材；图片按微信当前要求、按现行问题与目标取材，保留原文溯源与未覆盖项，格式校验不等于正式采用。",
+      "id": "geluoke-longform-20261009"
     },
     {
-      "id": "geluoke-longform-20261009-visual",
-      "topic": "geluoke-longform",
-      "scope": "editorial-delivery",
       "status": "superseded",
-      "effective_at": "2026-10-09",
-      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md",
-      "supersedes": [
-        "geluoke-longform-20261009"
-      ],
-      "reason": "用户明确指定五张工程场景图为以后正文配图标准，纠正数量少和文字卡片为主；核对inews既有A主B辅实现，并同步本项目唯一规则、话题目录、写稿输入与本篇十二幅正文图。",
       "implementations": [
         "docs/handoff/us-datacenter-power-20261009.md",
         "docs/research/2026-10-09/us-datacenter-power/README.md",
@@ -3690,19 +3786,19 @@
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/validate.cjs"
       ],
       "implementation_revision": "2.5",
-      "superseded_by": "geluoke-longform-20261009-match"
+      "superseded_by": "geluoke-longform-20261009-match",
+      "scope": "editorial-delivery",
+      "effective_at": "2026-10-09",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md",
+      "topic": "geluoke-longform",
+      "supersedes": [
+        "geluoke-longform-20261009"
+      ],
+      "reason": "用户明确指定五张工程场景图为以后正文配图标准，纠正数量少和文字卡片为主；核对inews既有A主B辅实现，并同步本项目唯一规则、话题目录、写稿输入与本篇十二幅正文图。",
+      "id": "geluoke-longform-20261009-visual"
     },
     {
-      "id": "geluoke-longform-20261009-match",
-      "topic": "geluoke-longform",
-      "scope": "editorial-delivery",
       "status": "superseded",
-      "effective_at": "2026-10-09",
-      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md",
-      "supersedes": [
-        "geluoke-longform-20261009-visual"
-      ],
-      "reason": "用户纠正图文不对应：第一章三大互联必须用美国本土电力地图；所有配图先解释紧邻段落，重要信息直接入图。替代v2.5把工程画风当作通用标准的表述，重组全文和14幅解释图。",
       "implementations": [
         "docs/handoff/us-datacenter-power-20261009.md",
         "docs/research/2026-10-09/us-datacenter-power/README.md",
@@ -3723,20 +3819,20 @@
         "docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md"
       ],
       "implementation_revision": "2.6",
-      "change_reason": "2026-10-09续做执行记录：图9总题客户范围纠正；真实来源接收、载体身份与Reader注册/完整阅读/C3分开计量；写作规则v2.6和研究候选不变，保留并行TA08/研究恢复。",
-      "superseded_by": "geluoke-longform-20261009-editor"
+      "superseded_by": "geluoke-longform-20261009-editor",
+      "scope": "editorial-delivery",
+      "effective_at": "2026-10-09",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md",
+      "topic": "geluoke-longform",
+      "supersedes": [
+        "geluoke-longform-20261009-visual"
+      ],
+      "reason": "用户纠正图文不对应：第一章三大互联必须用美国本土电力地图；所有配图先解释紧邻段落，重要信息直接入图。替代v2.5把工程画风当作通用标准的表述，重组全文和14幅解释图。",
+      "id": "geluoke-longform-20261009-match",
+      "change_reason": "2026-10-09续做执行记录：图9总题客户范围纠正；真实来源接收、载体身份与Reader注册/完整阅读/C3分开计量；写作规则v2.6和研究候选不变，保留并行TA08/研究恢复。"
     },
     {
-      "id": "geluoke-longform-20261009-editor",
-      "topic": "geluoke-longform",
-      "scope": "editorial-delivery",
       "status": "superseded",
-      "effective_at": "2026-10-09",
-      "source": "docs/archive/2026-10-11/editorial-ownership-retired.md",
-      "supersedes": [
-        "geluoke-longform-20261009-match"
-      ],
-      "reason": "保留写作规则v2.7与完整原研究；本次只更正交接/INTAKE current：18:59原23正文封存16/1running/6queued（PDF非视觉），19:12独立HTTPS/ACK30（Alphabet18+LBNL5+EIA7）与main30、原50显式7分开；外部507真实语义/公网/原a4既有ACK绑定已补齐，已发表包currentcontext=false不作新采用许可。502/503真实闭包、501失效revalidate/close与旧attempt保留；515实际merge/Spark安全FF源码但驻留重载及四批恢复执行前被自动审批拒绝（0服务/queue动作），不伪称恢复。C03原PDF精确58缺口保留，DOE/LBL新同源两HTML永久acquisition接收匹配与来源metadata实核，Reader/C3均0、不改scope准入；具名root口径复核非C3、不虚构A。保留TA14实际PR517/.40与14/35/补充4/4。仅docs与治理，不修改产品实现、formal研究、原件、候选、scope、模型或运行队列；用户不查等CI授权保持。",
       "implementations": [
         "docs/handoff/us-datacenter-power-20261009.md",
         "docs/research/2026-10-09/us-datacenter-power/README.md",
@@ -3813,18 +3909,20 @@
         "docs/reviews/2026-10-09/research-publication/ta14-final-deployment-healthy.json"
       ],
       "implementation_revision": "2.8",
-      "change_reason": "2026-10-10用户日报实际删改补充：讲清楚就停，删外挂式分析，保留具体解释、必要条件和有依据的作者观点；日报唯一规范回链inews.today，采用今日小结。只改写作规范，不改研究框架、已发表稿或运行数据。",
-      "superseded_by": "geluoke-longform-20261011-inews-owned"
+      "superseded_by": "geluoke-longform-20261011-inews-owned",
+      "scope": "editorial-delivery",
+      "effective_at": "2026-10-09",
+      "source": "docs/archive/2026-10-11/editorial-ownership-retired.md",
+      "topic": "geluoke-longform",
+      "supersedes": [
+        "geluoke-longform-20261009-match"
+      ],
+      "reason": "保留写作规则v2.7与完整原研究；本次只更正交接/INTAKE current：18:59原23正文封存16/1running/6queued（PDF非视觉），19:12独立HTTPS/ACK30（Alphabet18+LBNL5+EIA7）与main30、原50显式7分开；外部507真实语义/公网/原a4既有ACK绑定已补齐，已发表包currentcontext=false不作新采用许可。502/503真实闭包、501失效revalidate/close与旧attempt保留；515实际merge/Spark安全FF源码但驻留重载及四批恢复执行前被自动审批拒绝（0服务/queue动作），不伪称恢复。C03原PDF精确58缺口保留，DOE/LBL新同源两HTML永久acquisition接收匹配与来源metadata实核，Reader/C3均0、不改scope准入；具名root口径复核非C3、不虚构A。保留TA14实际PR517/.40与14/35/补充4/4。仅docs与治理，不修改产品实现、formal研究、原件、候选、scope、模型或运行队列；用户不查等CI授权保持。",
+      "id": "geluoke-longform-20261009-editor",
+      "change_reason": "2026-10-10用户日报实际删改补充：讲清楚就停，删外挂式分析，保留具体解释、必要条件和有依据的作者观点；日报唯一规范回链inews.today，采用今日小结。只改写作规范，不改研究框架、已发表稿或运行数据。"
     },
     {
-      "id": "editorial-intake-20261009",
-      "topic": "editorial-intake",
-      "scope": "editorial-research-input",
       "status": "superseded",
-      "effective_at": "2026-10-09",
-      "source": "docs/archive/2026-10-11/editorial-delivery-before-user-priority.md",
-      "supersedes": [],
-      "reason": "User authorized automatic delivery of finished longforms and published datacenter columns; authored analysis remains separate from primary evidence.；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。",
       "implementations": [
         "src/inresearch/adapters/editorial_sync.py",
         "src/inresearch/interfaces/cli.py",
@@ -3840,17 +3938,17 @@
         "tests/unit/test_reader_scope_capacity.py"
       ],
       "implementation_revision": "2026-10-09",
-      "superseded_by": "editorial-intake-20261011-user-priority"
+      "superseded_by": "editorial-intake-20261011-user-priority",
+      "scope": "editorial-research-input",
+      "effective_at": "2026-10-09",
+      "source": "docs/archive/2026-10-11/editorial-delivery-before-user-priority.md",
+      "topic": "editorial-intake",
+      "supersedes": [],
+      "reason": "User authorized automatic delivery of finished longforms and published datacenter columns; authored analysis remains separate from primary evidence.；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。",
+      "id": "editorial-intake-20261009"
     },
     {
-      "id": "ci-impact-20261010",
-      "topic": "continuous-integration",
       "status": "current",
-      "scope": "project",
-      "source": "docs/CI.md",
-      "effective_at": "2026-10-10",
-      "supersedes": [],
-      "reason": "替代站点项目JSON一律全套：仅既有身份追加v2观测、完整旧值/类型/顺序守恒，固定研究及站点回归、research+industry浏览器；原资料追加路线保留，未知/修订/规则全套。；2026-10-11用户授权吞吐优化：四类对象观测完整JSON追加证明、对象/Fetchspec固定回归与industry必跑，旧值/身份/修订/程序规则仍full；大型资产独立Docker缓存，不降低来源/C3/实际部署验收。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。；2026-10-12按实测将technical_atlas/chip_package拆独立分片，保留全case一次覆盖和时限门禁；有限首页窗口外历史由站点档案验证。；v3来源登记完整JSON纯追加证明，无C3前提，固定source-statements回归和industry/research仍必过。",
       "implementations": [
         ".github/workflows/validate.yml",
         "scripts/ci_scope.py",
@@ -3867,22 +3965,22 @@
         "deploy/Dockerfile",
         "tests/container_cache.py",
         "src/inresearch/adapters/html_document.py",
-        "src/inresearch/workflow/object_review.py"
+        "src/inresearch/workflow/object_review.py",
+        ".github/workflows/verify-data-center-publication.yml",
+        "tests/unit/test_ci_runner_routing.py"
       ],
-      "implementation_revision": "2026.10.12.108",
-      "change_reason": "按用户反馈分列可筛地点、缺失留空、保留原始描述与角色、可点击证据备注；纯追加站点观测按完整JSON比对运行研究和industry验收，修改基线/旧值/规则仍全套。"
+      "implementation_revision": "2026.10.17.4",
+      "scope": "project",
+      "source": "docs/CI.md",
+      "effective_at": "2026-10-10",
+      "topic": "continuous-integration",
+      "supersedes": [],
+      "reason": "替代站点项目JSON一律全套：仅既有身份追加v2观测、完整旧值/类型/顺序守恒，固定研究及站点回归、research+industry浏览器；原资料追加路线保留，未知/修订/规则全套。；2026-10-11用户授权吞吐优化：四类对象观测完整JSON追加证明、对象/Fetchspec固定回归与industry必跑，旧值/身份/修订/程序规则仍full；大型资产独立Docker缓存，不降低来源/C3/实际部署验收。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。；2026-10-12按实测将technical_atlas/chip_package拆独立分片，保留全case一次覆盖和时限门禁；有限首页窗口外历史由站点档案验证。；v3来源登记完整JSON纯追加证明，无C3前提，固定source-statements回归和industry/research仍必过。；2026.10.17.4替代可信事件固定hosted执行位置，保留全部检查和fork hosted隔离，系统authorize-only不扩预取，真实ARM64 CI及保护另验。",
+      "id": "ci-impact-20261010",
+      "change_reason": "用户授权将可信同仓全部CI迁移repo级专用Spark，fork保留hosted；checkout前系统授权、完整19分片/超时/原检查名/存储和单元回归保持，不修改研究服务或放宽合并部署保护。"
     },
     {
-      "id": "editorial-intake-20261011-user-priority",
-      "topic": "editorial-intake",
-      "scope": "editorial-research-input",
       "status": "superseded",
-      "effective_at": "2026-10-11",
-      "source": "docs/archive/2026-10-11/editorial-ownership-retired.md",
-      "supersedes": [
-        "editorial-intake-20261009"
-      ],
-      "reason": "用户决定研究排队、插队或直接上线；点名来源优先审核，并将优先级延伸到新发表任务发现，保留原队列所有者、来源身份与全部验收。",
       "implementations": [
         "src/inresearch/adapters/editorial_sync.py",
         "src/inresearch/interfaces/cli.py",
@@ -3902,15 +4000,19 @@
         "docs/local_reader/SPARK_OPERATIONS.md"
       ],
       "implementation_revision": "2026-10-11",
-      "superseded_by": "editorial-intake-20261011-consumer-only"
+      "superseded_by": "editorial-intake-20261011-consumer-only",
+      "scope": "editorial-research-input",
+      "effective_at": "2026-10-11",
+      "source": "docs/archive/2026-10-11/editorial-ownership-retired.md",
+      "topic": "editorial-intake",
+      "supersedes": [
+        "editorial-intake-20261009"
+      ],
+      "reason": "用户决定研究排队、插队或直接上线；点名来源优先审核，并将优先级延伸到新发表任务发现，保留原队列所有者、来源身份与全部验收。",
+      "id": "editorial-intake-20261011-user-priority"
     },
     {
-      "id": "interface-global-daily-20261011",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md",
-      "scope": "project",
-      "effective_at": "2026-10-11",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -4127,25 +4229,21 @@
         "src/inresearch/materials/fetchspec_receive.py",
         "tests/unit/test_object_review.py"
       ],
+      "implementation_revision": "2026.10.11.96",
+      "superseded_by": "interface-homepage-headlines-20261011",
+      "scope": "project",
+      "source": "docs/archive/2026-10-11/framework__05_interface_system__before_homepage_headlines.md",
+      "effective_at": "2026-10-11",
+      "topic": "interface",
       "supersedes": [
         "interface-repository-daily-20261008"
       ],
       "reason": "用户要求首页整体图景和每日变化，替代隐藏新闻机会汇总及容量观察仅明细可见的限制；正式研究/raw两层、168条公开专题提取可见、重点公司、报道口径与地理粒度、轻量投影和新闻独立展示。正式C3和原件边界保持；生产部署与全球覆盖另验。；2026-10-11公网项目页实测字体切片47.276秒，扩展首页缓存复用例外至同一行业入口的项目、市场、列表和公司视图；其它页面字体规则及全部限期保持。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。",
-      "implementation_revision": "2026.10.11.96",
-      "change_reason": "唯一对象的公司/产品/统计/报价逐条采用，目标可空，独立时间、区间和修订；公开页面/API统一字段，未来会员与内部权限分离，正常新增不逐批确认。",
-      "superseded_by": "interface-homepage-headlines-20261011"
+      "id": "interface-global-daily-20261011",
+      "change_reason": "唯一对象的公司/产品/统计/报价逐条采用，目标可空，独立时间、区间和修订；公开页面/API统一字段，未来会员与内部权限分离，正常新增不逐批确认。"
     },
     {
-      "id": "geluoke-longform-20261011-inews-owned",
-      "topic": "geluoke-longform",
-      "scope": "editorial-delivery",
       "status": "current",
-      "effective_at": "2026-10-11",
-      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
-      "supersedes": [
-        "geluoke-longform-20261009-editor"
-      ],
-      "reason": "用户将文章写作、配图、制作、发布、生产封装和发送统一归inews.today。本仓库退役独立写作规则及43个生产脚本；保留历史文章/图片/来源/回执、研究接收和研究UI技术图册。生产worker须实际切到inews源码后才合并删除，不用URL、源码或测试冒充运行迁移。",
       "implementations": [
         "AGENTS.md",
         "CLAUDE.md",
@@ -4156,19 +4254,19 @@
         "tests/unit/test_editorial_ownership.py"
       ],
       "implementation_revision": "2026.10.11.92",
+      "scope": "editorial-delivery",
+      "effective_at": "2026-10-11",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "topic": "geluoke-longform",
+      "supersedes": [
+        "geluoke-longform-20261009-editor"
+      ],
+      "reason": "用户将文章写作、配图、制作、发布、生产封装和发送统一归inews.today。本仓库退役独立写作规则及43个生产脚本；保留历史文章/图片/来源/回执、研究接收和研究UI技术图册。生产worker须实际切到inews源码后才合并删除，不用URL、源码或测试冒充运行迁移。",
+      "id": "geluoke-longform-20261011-inews-owned",
       "change_reason": "2026-10-11 15:09北京时间真实M5发送worker已切到inews76962303，队列/旧回执字节保留、真实watch退出0且无新发送；Spark接收任务未改。限定发送/安装16测试通过，不以inews空步骤失败CI宣称整仓通过；本仓最终head完整CI与新研究采用另验。"
     },
     {
-      "id": "editorial-intake-20261011-consumer-only",
-      "topic": "editorial-intake",
-      "scope": "editorial-research-input",
       "status": "current",
-      "effective_at": "2026-10-11",
-      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
-      "supersedes": [
-        "editorial-intake-20261011-user-priority"
-      ],
-      "reason": "替代混合生产/接收职责：本仓只消费公开专栏feed、已完成文章包和微信日报研究包，不校验生产端版式。保留作者分析身份、SHA/URL/路径校验、重放/旧版/阅读范围与用户优先级；接收、全文阅读、C3及实际网站采用分别验收。",
       "implementations": [
         "src/inresearch/adapters/editorial_sync.py",
         "src/inresearch/interfaces/cli.py",
@@ -4190,15 +4288,19 @@
         "tests/unit/test_editorial_ownership.py"
       ],
       "implementation_revision": "2026.10.11.92",
+      "scope": "editorial-research-input",
+      "effective_at": "2026-10-11",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "topic": "editorial-intake",
+      "supersedes": [
+        "editorial-intake-20261011-user-priority"
+      ],
+      "reason": "替代混合生产/接收职责：本仓只消费公开专栏feed、已完成文章包和微信日报研究包，不校验生产端版式。保留作者分析身份、SHA/URL/路径校验、重放/旧版/阅读范围与用户优先级；接收、全文阅读、C3及实际网站采用分别验收。",
+      "id": "editorial-intake-20261011-consumer-only",
       "change_reason": "2026-10-11 15:09北京时间真实M5发送worker已切到inews76962303，队列/旧回执字节保留、真实watch退出0且无新发送；Spark接收任务未改。限定发送/安装16测试通过，不以inews空步骤失败CI宣称整仓通过；本仓最终head完整CI与新研究采用另验。"
     },
     {
-      "id": "interface-homepage-headlines-20261011",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-12/framework__05_interface_system__before_private_tasks.md",
-      "scope": "project",
-      "effective_at": "2026-10-11",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -4432,21 +4534,21 @@
         "web/assets/maps/map-admin1-10.geo.json",
         "web/assets/maps/map-admin1-11.geo.json"
       ],
+      "implementation_revision": "2026.10.12.104",
+      "superseded_by": "interface-private-tasks-20261012",
+      "scope": "project",
+      "source": "docs/archive/2026-10-12/framework__05_interface_system__before_private_tasks.md",
+      "effective_at": "2026-10-11",
+      "topic": "interface",
       "supersedes": [
         "interface-global-daily-20261011"
       ],
       "reason": "用户明确替代同日长首页：保留全球规模带；研究信息与项目动态合为真实正式补充时间的单行标题播报；科技感世界地图与等高的inews新闻标题栏，保留原文链接；七家主体高亮移至地图底部，其余首页资料/样本统计/筛选/玩家区块退出，其他行业页与详情保持。未精选新闻使用既有标题搜索，不假称逐条故事已公开；信息有效时间不冒充更新时间，未知不补造。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。",
-      "implementation_revision": "2026.10.12.104",
-      "change_reason": "已采用范围替代；用户查看上线效果后明确恢复地图原有配色和设计：取消深蓝/青色渐变、点阵与发光，复用原始底图/边界/状态点；地理投影与容量保持。桌面等高、移动端/键盘/减少动态、来源安全与公开边界同步验收，生产部署另核回执。 首页index与完整行业模板industry.html分源登记，四个行业子页原功能和公开权限保持；routes与interface_manifest同步。 用户同PR续令：首页hover/focus改即时简约单行tip并移除原生SVG title，点击/Enter保留完整详情浮窗；非首页交互保持，替代原首页hover大框条款。 用户追加放大地图精细矢量与州/省界；同源按需加载固定Natural Earth版本，保持旧地理样本锚点、原配色与现有布局/交互，失败可恢复。 .100公网精细资源传输超时，.102按最大缩放约一像素精度减重，国界独立、州省界按视野分块补充复用，30秒有界等待并保留失败重试。",
-      "superseded_by": "interface-private-tasks-20261012"
+      "id": "interface-homepage-headlines-20261011",
+      "change_reason": "已采用范围替代；用户查看上线效果后明确恢复地图原有配色和设计：取消深蓝/青色渐变、点阵与发光，复用原始底图/边界/状态点；地理投影与容量保持。桌面等高、移动端/键盘/减少动态、来源安全与公开边界同步验收，生产部署另核回执。 首页index与完整行业模板industry.html分源登记，四个行业子页原功能和公开权限保持；routes与interface_manifest同步。 用户同PR续令：首页hover/focus改即时简约单行tip并移除原生SVG title，点击/Enter保留完整详情浮窗；非首页交互保持，替代原首页hover大框条款。 用户追加放大地图精细矢量与州/省界；同源按需加载固定Natural Earth版本，保持旧地理样本锚点、原配色与现有布局/交互，失败可恢复。 .100公网精细资源传输超时，.102按最大缩放约一像素精度减重，国界独立、州省界按视野分块补充复用，30秒有界等待并保留失败重试。"
     },
     {
-      "id": "interface-private-tasks-20261012",
-      "topic": "interface",
       "status": "superseded",
-      "source": "docs/archive/2026-10-12/framework__05_interface_system__before_public_tasks.md",
-      "scope": "project",
-      "effective_at": "2026-10-12",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -4686,21 +4788,21 @@
         "framework/research_task_plan.json",
         "tests/research_tasks.cjs"
       ],
+      "implementation_revision": "2026-10-12",
+      "superseded_by": "interface-public-tasks-20261012",
+      "scope": "project",
+      "source": "docs/archive/2026-10-12/framework__05_interface_system__before_public_tasks.md",
+      "effective_at": "2026-10-12",
+      "topic": "interface",
       "supersedes": [
         "interface-homepage-headlines-20261011"
       ],
       "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。",
-      "implementation_revision": "2026-10-12",
-      "change_reason": "替代原多页公开访问范围；补充项目协调入口。",
-      "superseded_by": "interface-public-tasks-20261012"
+      "id": "interface-private-tasks-20261012",
+      "change_reason": "替代原多页公开访问范围；补充项目协调入口。"
     },
     {
-      "id": "interface-public-tasks-20261012",
-      "topic": "interface",
       "status": "current",
-      "source": "framework/05_interface_system.md",
-      "scope": "project",
-      "effective_at": "2026-10-17",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -5007,11 +5109,16 @@
         "tests/unit/test_project_access.py",
         "tests/project_access.cjs"
       ],
+      "implementation_revision": "2026.10.17.4",
+      "scope": "project",
+      "source": "framework/05_interface_system.md",
+      "effective_at": "2026-10-17",
+      "topic": "interface",
       "supersedes": [
         "interface-private-tasks-20261012"
       ],
-      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。；.123替代独立容量误述，13候选关系／10原件核对／83标签与源码、回执同步；原事实、异常和版本保留。；.124年度用电核对与零售代理收费替代旧电量费表述，禁止叠加需量；不改变通用模型或正式园区事实。；.125当前页资本成本数值关系补清，通用分项与分期来源保持候选，融资/申报不充实支；三异常和旧版本保留。；.126分主体收入回报核对，首两栋租约仅候选，合同/会计/现金期间不混用，四栋模型不自动填参。；.127原四财表未读状态由同版原图核对替代，局部借款/股本/余额对应，实收及三处1美元差/费用范围差仍待核，无自动填参。；2026-10-14：任务页匿名原件上传、指定负责人逐份批准、回执持有人查看折叠的带时间反馈；未批材料禁止研究端领取。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。",
-      "implementation_revision": "2026.10.17.1",
+      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。；.123替代独立容量误述，13候选关系／10原件核对／83标签与源码、回执同步；原事实、异常和版本保留。；.124年度用电核对与零售代理收费替代旧电量费表述，禁止叠加需量；不改变通用模型或正式园区事实。；.125当前页资本成本数值关系补清，通用分项与分期来源保持候选，融资/申报不充实支；三异常和旧版本保留。；.126分主体收入回报核对，首两栋租约仅候选，合同/会计/现金期间不混用，四栋模型不自动填参。；.127原四财表未读状态由同版原图核对替代，局部借款/股本/余额对应，实收及三处1美元差/费用范围差仍待核，无自动填参。；2026-10-14：任务页匿名原件上传、指定负责人逐份批准、回执持有人查看折叠的带时间反馈；未批材料禁止研究端领取。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。",
+      "id": "interface-public-tasks-20261012",
       "implementation_paths": [
         "docs/handoff/global-campuses.md",
         "tests/global_campuses.cjs",
@@ -5037,15 +5144,11 @@
         "tests/unit/test_http_json_memory.py",
         "tests/unit/test_task_analysis.py",
         "tests/unit/test_source_publication.py"
-      ]
+      ],
+      "change_reason": "精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
     },
     {
-      "id": "architecture-object-evidence-20261014",
-      "topic": "architecture",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-14",
-      "source": "framework/00_overview.md",
       "implementations": [
         "framework/bom.json",
         "framework/site_rights.json",
@@ -5104,25 +5207,25 @@
         "web/pages/guide.html",
         "data/site_model_bridges.json"
       ],
+      "implementation_revision": "2026.10.16.19",
+      "scope": "project",
+      "effective_at": "2026-10-14",
+      "source": "framework/00_overview.md",
+      "topic": "architecture",
       "supersedes": [
         "architecture-20261002"
       ],
       "reason": "用户要求研究框架不拘数字：保留类型骨架与经济三账，重写问题模板，五类仅兼容检索，覆盖视图可扩展，来源按机制分工；通用模型为主体、真实园区检验适用，Abilene仅贯通样例。；fetchstat已验单源受控接收，连接范围/覆盖/采用及调度分别说明。；fetchfilings已验单源受控接收，连接范围/覆盖/采用及调度分别说明。；fetchreports仅LBNL发布页方法摘要已验候选接收，PDF未读。；fetchquotes仅Lambda公开标价已验受控候选接收，非成交、未知保持。",
-      "implementation_revision": "2026.10.16.19",
-      "change_reason": "沿现有问题ID和因子完善财务取证与利用率口径，不改对象骨架或正式证据；问题内容版本与排期生成互不覆盖。",
+      "id": "architecture-object-evidence-20261014",
       "implementation_paths": [
         "docs/handoff/global-campuses.md",
         "tests/global_campuses.cjs",
         "tests/unit/test_geographic_analysis.py"
-      ]
+      ],
+      "change_reason": "沿现有问题ID和因子完善财务取证与利用率口径，不改对象骨架或正式证据；问题内容版本与排期生成互不覆盖。"
     },
     {
-      "id": "task-upload-auto-analysis-20261015",
-      "topic": "task-upload-auto-analysis",
       "status": "current",
-      "scope": "project",
-      "effective_at": "2026-10-17",
-      "source": "framework/05_interface_system.md",
       "implementations": [
         "src/inresearch/materials/inbox.py",
         "src/inresearch/materials/receive.py",
@@ -5180,21 +5283,21 @@
         "tests/unit/test_project_access.py",
         "tests/project_access.cjs",
         "tests/browser_suites.cjs",
-        "web/assets/ops-forms.js"
+        "web/assets/ops-forms.js",
+        "tests/unit/test_packed_output_split.py"
       ],
-      "implementation_revision": "2026.10.17.1",
+      "implementation_revision": "2026.10.17.4",
+      "scope": "project",
+      "effective_at": "2026-10-17",
+      "source": "framework/05_interface_system.md",
+      "topic": "task-upload-auto-analysis",
       "supersedes": [],
-      "reason": "用户明确要求负责人确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工可执行任务书。员工附件、说明和自填项目名仅是待核原材料；审核须对照系统当时最新任务与要求，仅在旧回执经服务端验证明确关联后对照上一轮系统修改任务；同名不得构成身份或自动串接他人上下文。同一工作包可按登录名列表分给A/B/C，成员均可更新同一任务；后交材料按工作包当前版本、已上线数据库和同任务先前可复验成果审阅。独立新来源或带核查依据的新原件版本所含同值可追加来源陈述和本轮模型核对时间；一个月后同值复核须提交可复验的新原件或记录，外部事实核验日期未知时不得借用模型核对或上传时间。同一原件同一字段无独立新证据的重交才标重复；异值保留两侧来源标冲突，由正式发布规则裁定而不自动覆盖，下一步优先未完成缺口。旧审批不追溯授权，正式研究采用及模型参数保持原边界。匿名任务页姓名和自定义项目名必填，姓名仅辅助查找而非审批或工作包权限、同次最多20份附件逐份回执并以封存清单联合确认审阅；管理员独立审批工作台的服务端权限不变。用户授权确认后的附件经私有中继使用 Codex CLI，CLI请求身份与实际未回传身份分列。大型XLSX全表结构计数和明确抽样分开，抽样不产生发布候选；可提取正文的其他格式只形成反馈，未有来源绑定复验前不自动发布。v6 原Spark断点保留为历史，不与Codex结果混算；大报告私有分片回传不放宽WAF。任务首页以实际经模型审阅并网站发布、当前台账可见且排除跨园区组合的去重园区数对暂定目标计量；管理员设目标须登记初研依据和时间，目标未知留空且无百分比。审阅报告数及已发布来源陈述数另计。90+GW只作待校准探索目标，容量状态及口径未可比前不计算完成率；.12 收紧发布提交时安全门：未绑定现行工作包仅反馈；新园区仅大陆工作包且原件明示省级地点，已有园区按工作包区域核对；服务端提交时在锁内复验含完整来源发布状态摘要的当前任务／上下文哈希，来源发布状态比较交换，过期候选撤回重审；持久 outbox 恢复已发布未回写报告；畸形或超限原件终态需修订反馈，不阻塞后续文件。；.13 负责人可在报告生成前把旧提交绑定现行工作包，已启动分析改绑必须按最新任务重审；原件、审批不变，已有报告、错误终态和待恢复发布事务禁止改绑。；.14 大型XLSX抽样仅从实际摘录定位给出逐格发现，网站从批准原件复算抽样范围并禁止抽样候选；报告、管理员和员工回执显式记录覆盖计数与全表待审，下一步按现行任务分包补证并继续审核未覆盖内容。；.15 同原件重交回归复用精确相同的XLSX原件字节，避免ZIP打包时间戳导致夹具SHA漂移；正式重复／新来源准入规则不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。"
+      "reason": "用户明确要求负责人确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工可执行任务书。员工附件、说明和自填项目名仅是待核原材料；审核须对照系统当时最新任务与要求，仅在旧回执经服务端验证明确关联后对照上一轮系统修改任务；同名不得构成身份或自动串接他人上下文。同一工作包可按登录名列表分给A/B/C，成员均可更新同一任务；后交材料按工作包当前版本、已上线数据库和同任务先前可复验成果审阅。独立新来源或带核查依据的新原件版本所含同值可追加来源陈述和本轮模型核对时间；一个月后同值复核须提交可复验的新原件或记录，外部事实核验日期未知时不得借用模型核对或上传时间。同一原件同一字段无独立新证据的重交才标重复；异值保留两侧来源标冲突，由正式发布规则裁定而不自动覆盖，下一步优先未完成缺口。旧审批不追溯授权，正式研究采用及模型参数保持原边界。匿名任务页姓名和自定义项目名必填，姓名仅辅助查找而非审批或工作包权限、同次最多20份附件逐份回执并以封存清单联合确认审阅；管理员独立审批工作台的服务端权限不变。用户授权确认后的附件经私有中继使用 Codex CLI，CLI请求身份与实际未回传身份分列。大型XLSX全表结构计数和明确抽样分开，抽样不产生发布候选；可提取正文的其他格式只形成反馈，未有来源绑定复验前不自动发布。v6 原Spark断点保留为历史，不与Codex结果混算；大报告私有分片回传不放宽WAF。任务首页以实际经模型审阅并网站发布、当前台账可见且排除跨园区组合的去重园区数对暂定目标计量；管理员设目标须登记初研依据和时间，目标未知留空且无百分比。审阅报告数及已发布来源陈述数另计。90+GW只作待校准探索目标，容量状态及口径未可比前不计算完成率；.12 收紧发布提交时安全门：未绑定现行工作包仅反馈；新园区仅大陆工作包且原件明示省级地点，已有园区按工作包区域核对；服务端提交时在锁内复验含完整来源发布状态摘要的当前任务／上下文哈希，来源发布状态比较交换，过期候选撤回重审；持久 outbox 恢复已发布未回写报告；畸形或超限原件终态需修订反馈，不阻塞后续文件。；.13 负责人可在报告生成前把旧提交绑定现行工作包，已启动分析改绑必须按最新任务重审；原件、审批不变，已有报告、错误终态和待恢复发布事务禁止改绑。；.14 大型XLSX抽样仅从实际摘录定位给出逐格发现，网站从批准原件复算抽样范围并禁止抽样候选；报告、管理员和员工回执显式记录覆盖计数与全表待审，下一步按现行任务分包补证并继续审核未覆盖内容。；.15 同原件重交回归复用精确相同的XLSX原件字节，避免ZIP打包时间戳导致夹具SHA漂移；正式重复／新来源准入规则不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。；2026-10-17 已知阅读输出截断的完整拆分（2026.10.17.3）：仅原生packed阅读具有派发前输出拆分许可、精确dispatch及完整HTTP回包，且请求／原part／system／schema／token proof／响应摘要一致、实际27B明确done=true／length／4096输出时，按原序二分失败窗的完整片段。保持所有上下文、32K／4096预算、旧失败原字节及已成功窗口；拆分本轮不再生成、子窗全部有效才计覆盖。未知结果、模型绑定失败、单片仍超限继续受阻。旧operator与无许可历史失败不会因升级或删除status自动恢复，须精确作用域审计后受控恢复；最终综合及发布门槛保持。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。",
+      "id": "task-upload-auto-analysis-20261015",
+      "change_reason": "精确同源重放直接复用旧statement ID与时间，单document_ref完整匹配SHA/定位/submission及同字段值；跨引用拼接和当前值冲突继续拒绝，旧重复历史不改。"
     },
     {
-      "id": "daily-publication-20261014",
-      "topic": "daily-publication",
-      "scope": "confirmed-authored-news",
       "status": "current",
-      "effective_at": "2026-10-14",
-      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
-      "supersedes": [],
-      "reason": "Owner-confirmed daily links, audited pin rotation and history retention; research adoption remains independent.",
       "implementations": [
         "src/inresearch/workflow/daily_publications.py",
         "src/inresearch/knowledge/registry.py",
@@ -5203,118 +5306,22 @@
         "src/inresearch/materials/daily_events.py",
         "tests/unit/test_daily_publications.py"
       ],
-      "implementation_revision": "2026.10.14.124"
+      "implementation_revision": "2026.10.14.124",
+      "scope": "confirmed-authored-news",
+      "effective_at": "2026-10-14",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "topic": "daily-publication",
+      "supersedes": [],
+      "reason": "Owner-confirmed daily links, audited pin rotation and history retention; research adoption remains independent.",
+      "id": "daily-publication-20261014"
     }
-  ],
-  "entrypoints": [
-    "AGENTS.md",
-    "CLAUDE.md",
-    "docs/DECISIONS.md",
-    "docs/PROJECT_PANORAMA.md"
   ],
   "retired_entrypoints": [
     "docs/local_reader/KICKOFF_PROMPT.md",
     "docs/local_reader/CONTINUOUS_READER_DESIGN.md",
     "docs/local_setup/setup.sh"
   ],
-  "known_retired_patterns": [
-    "数据在变[，,、 ]*框架不变",
-    "唯一允许跨模块引用",
-    "唯一跨模块引用",
-    "每个事实只归属一个模块",
-    "15[ -]*模块[ ]*MECE",
-    "L4\\s*以下[^\\n<]{0,20}(?:必乘|须乘|必须乘以)",
-    "高级别覆盖低级别",
-    "算力除以\\s*2",
-    "带宽除以\\s*2",
-    "精读／据实生成</b>可直接引用",
-    "pull --rebase --autostash",
-    "五视角是同一知识底座",
-    "五视角研究",
-    "研究工作台需要",
-    "分层对象目录",
-    "总览 → 研究 → 资料 → 任务",
-    "总览→研究→资料",
-    "五层目标清单",
-    "监测仪表盘（",
-    "三色仪表盘",
-    "盲区仪表盘",
-    "团队看板 →",
-    "产品资料采集看板",
-    "九个研究角度",
-    "每个产品有一个主生态",
-    "八个产品生态",
-    "工单 = 声明 − 现状",
-    "工单 = 模块声明 − 仓库现状"
-  ],
-  "operational_guides": [
-    "AGENTS.md",
-    "CLAUDE.md",
-    "docs/inbox/submissions/README.md",
-    "docs/local_reader/RUN_TO_COMPLETION.md",
-    "docs/local_reader/PROJECT_BRIEF.md",
-    "docs/local_reader/ACQUISITION_OPERATIONS.md",
-    "docs/local_reader/M4_PREFLIGHT.md",
-    "docs/local_setup/README.md",
-    "docs/local_setup/ADD_3D_MODEL.md",
-    "docs/local_setup/REPOSITORY_PAGES.md",
-    "docs/local_reader/EDITORIAL_DELIVERY.md",
-    "docs/guides/OBJECT_OBSERVATIONS.md",
-    "docs/guides/fetchdata/fetchstat-production.md",
-    "docs/guides/fetchdata/fetchfilings-production.md",
-    "docs/guides/fetchdata/fetchreports-production.md",
-    "docs/guides/fetchdata/fetchquotes-production.md",
-    "docs/guides/fetchdata/local-operations.md"
-  ],
-  "decisions_retired_scan_since": "2026-09-28",
   "retired_scan_snapshots": [
     "docs/guides/model-governance-2026-09-27.html"
-  ],
-  "compat_retirements_note": "兼容层退役日历（2026-09-29）：每个仍在仓库里的兼容实现登记为什么留着、什么条件下退役、最迟哪天复审。governance --check 在 retire_after 过后报错，逼一次决定（退役，或写 DECISIONS 延期并改日期）；路径已不存在也报错，提醒删掉登记。日期是 2026-09-29 检查报告的建议值。",
-  "compat_retirements": [
-    {
-      "path": "src/inresearch/workflow/workorders.py",
-      "kept_for": "M4 深读分包与任务板仍按 legacy_module 分组读取工单投影（reports/workorders.json）",
-      "retire_when": "分包与任务板改读目标行 ID 后删除模块与 CLI 命令 workorders，并从 storage_contract 去掉 reports/workorders.*",
-      "retire_after": "2026-10-31"
-    },
-    {
-      "path": "reports/workorders.json",
-      "kept_for": "同上：工单投影的 Git 种子",
-      "retire_when": "随 workorders.py 一起退役",
-      "retire_after": "2026-10-31"
-    },
-    {
-      "path": "web/components/research-graph.js",
-      "kept_for": "3D 档案面板（bom3d / rack3d）仍用旧工作台代码取关系图",
-      "retire_when": "档案面板改用 part-dossier.js + /api/research-summary 后删除，research.css 同批",
-      "retire_after": "2026-10-31"
-    },
-    {
-      "path": "web/components/object-network.js",
-      "kept_for": "同上",
-      "retire_when": "同上",
-      "retire_after": "2026-10-31"
-    },
-    {
-      "path": "web/assets/research.css",
-      "kept_for": "同上",
-      "retire_when": "同上",
-      "retire_after": "2026-10-31"
-    },
-    {
-      "path": "web/pages/compare.html",
-      "kept_for": "模型选型对比台，本地工具，interface_manifest 已列 excluded_pages",
-      "retire_when": "场景套件不再依赖其路由时删除",
-      "retire_after": "2026-12-31"
-    },
-    {
-      "path": "framework/bom.json",
-      "attribute": "legacy_module",
-      "kept_for": "旧模块 M01–M15 作为部件与权利的兼容属性，供分包与成果末章专题目录分组",
-      "retire_when": "问题表、分包、成果专题目录全部改按 node 分组后，从 bom.json / site_rights.json / dashboard 去掉该属性",
-      "retire_after": "2026-12-31"
-    }
-  ],
-  "updated": "2026-10-17"
+  ]
 }
