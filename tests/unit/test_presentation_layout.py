@@ -178,6 +178,13 @@ class LayoutHTTPTests(unittest.TestCase):
         with patch.object(endpoint.time, 'monotonic', return_value=1301):
             self.assertTrue(endpoint.rate_allowed('test'))
 
+    def test_cloudfront_host_rewrite_allows_only_the_exact_public_origin(self):
+        status, _, body = self.request(fixture(), {'Host': 'origin.inresearch.ai', 'Origin': 'https://inresearch.ai', 'Sec-Fetch-Site': 'same-origin'})
+        self.assertEqual(status, 200, body[:200])
+        for origin in ('https://evil.test', 'https://inresearch.ai.evil.test', 'http://inresearch.ai'):
+            self.assertEqual(self.request(b'x', {'Host': 'origin.inresearch.ai', 'Origin': origin})[0], 403)
+        self.assertEqual(self.request(b'x', {'Host': 'another-origin.test', 'Origin': 'https://inresearch.ai'})[0], 403)
+
     def test_customer_can_open_the_tool_and_its_exact_public_assets_only(self):
         import re
         page = (ROOT / 'web/pages/marketing.html').read_text()

@@ -16,6 +16,11 @@ from inresearch.interfaces import auth
 SLOT = threading.BoundedSemaphore(1)
 RATE_LOCK = threading.Lock()
 REQUESTS = OrderedDict()
+# infra/docs/cloudfront.md: AllViewerExceptHostHeader sends the public Origin
+# unchanged but replaces Host with this dedicated origin name. Never trust an
+# arbitrary forwarded-host header or allow an origin suffix/wildcard.
+CDN_HOST = 'origin.inresearch.ai'
+PUBLIC_ORIGINS = frozenset(('https://inresearch.ai', 'https://www.inresearch.ai'))
 
 
 def rate_allowed(ip):
@@ -42,10 +47,12 @@ def post(handler, root):
         parsed_origin = urlsplit(origin) if origin else None
     except ValueError:
         return handler._json(403, {'ok': False, 'error': '请求来源无效。'})
+    host = handler.headers.get('Host')
+    same_origin = not origin or (parsed_origin.scheme in ('http', 'https') and parsed_origin.netloc == host)
+    cdn_origin = host == CDN_HOST and origin in PUBLIC_ORIGINS
     if (handler.headers.get('X-Requested-With') != 'presentation-layout'
             or handler.headers.get('Sec-Fetch-Site') == 'cross-site'
-            or (origin and (parsed_origin.scheme not in ('http', 'https')
-                           or parsed_origin.netloc != handler.headers.get('Host')))):
+            or not (same_origin or cdn_origin)):
         return handler._json(403, {'ok': False, 'error': '请从本站排版窗口提交文件。'})
     if handler.headers.get('Transfer-Encoding') or len(handler.headers.get_all('Content-Length', [])) != 1:
         return handler._json(400, {'ok': False, 'error': '请求长度无效。'})

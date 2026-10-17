@@ -22,7 +22,7 @@
     "framework/02_knowledge_format.md": "e62d2145139460d0e6d71e8ea0f1d5438d76cf4f9714bba8a280312d9e4a66df",
     "framework/03_bom_and_collaboration.md": "89c65384f1a92b4765f54c66b3e62bce4b145aa486f2d1dfbcc799de1f1867d0",
     "framework/04_reading_scoring_standard.md": "8320c8c8ba076f3d9a735d02cc7414af9542aa41c77f11ea8d2ffb7636e65a93",
-    "framework/05_interface_system.md": "74d4cf6679e12495d03845971c1a2edf2b39fa69288fc8167603dad00273551c",
+    "framework/05_interface_system.md": "d54c004fc5bd3223e5480134db6b3db68531d6fc24f5bb0055227d94febfafd1",
     "framework/06_acquisition.md": "ac80671a424f69485a9d970ca80a14119daff076654dccbcd6ea9c9f706cebee",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
@@ -972,8 +972,8 @@
     "docs/guides/fetchdata/fetchreports-outbox.md": "0c613d231be24a89acdf222f789178c9c16dd21eed26d91adbb3ab80d344b54e",
     "web/pages/marketing.html": "55a2df27f42c88b5787933655b9cce0a86b448fadd529e2010ac2e992e9335ae",
     "src/inresearch/delivery/presentation_layout.py": "65ea825674feb7930b8c3c34c5e218ebd75f78131a91b393e74ed8072bd870d1",
-    "src/inresearch/interfaces/presentation_layout.py": "33cba28f2506f03e72e32543c3e7d6035b666fec47153eecc0452d1070202a20",
-    "tests/unit/test_presentation_layout.py": "34b62b9e8acebeccfa9fd0bcb5ead915edd6eff7af2251e7fd53cc2af709241b",
+    "src/inresearch/interfaces/presentation_layout.py": "65d59ee81d69275b8959cd5e271905e12b616e998d1fff5cb4247167b48dc87f",
+    "tests/unit/test_presentation_layout.py": "cfe0183bf11295ce23e1e477a4fbda1e15a5ee27e03ae67d52b4884f1ee614d3",
     "tests/presentation_layout_browser.cjs": "09a0f7817b0d33fd8b9d447f23587f725ccff529821897fd138cfe345ad83751"
   },
   "policies": [
@@ -2476,7 +2476,8 @@
         "tests/unit/test_presentation_layout.py::LayoutHTTPTests.test_anonymous_and_customer_receive_private_download_without_storage",
         "tests/unit/test_presentation_layout.py::LayoutHTTPTests.test_rejects_cross_origin_invalid_and_busy_without_leaking_content",
         "tests/unit/test_presentation_layout.py::LayoutHTTPTests.test_rate_limit_and_expiry",
-        "tests/unit/test_presentation_layout.py::LayoutHTTPTests.test_customer_can_open_the_tool_and_its_exact_public_assets_only"
+        "tests/unit/test_presentation_layout.py::LayoutHTTPTests.test_customer_can_open_the_tool_and_its_exact_public_assets_only",
+        "tests/unit/test_presentation_layout.py::LayoutHTTPTests.test_cloudfront_host_rewrite_allows_only_the_exact_public_origin"
       ],
       "not_verified": [
         "交互场景 HDR/面板纹理及页面退出已共享；离线 bake、比较台环境和下钻加载仍分别保留，全部 GPU/触摸设备与帧率未验。",
