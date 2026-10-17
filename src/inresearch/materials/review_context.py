@@ -158,7 +158,7 @@ def campus_descriptor(record, task_state, mission, registered, task_records):
             'mission_title': mission['title'], 'mission_goal': mission['goal'],
             'package': ({k: package.get(k) for k in ('id','title','region','scope','sources')}
                         if package else None),
-            'owner_feedback': sorted(feedback, key=lambda r: (r['submission_id'], digest(r['feedback']))),
+            'owner_feedback': sorted(feedback, key=lambda r: (r['feedback'].get('at') or 0, r['submission_id'], digest(r['feedback']))),
             'identities': sorted(identities, key=lambda r: r['site_id'])}
 
 

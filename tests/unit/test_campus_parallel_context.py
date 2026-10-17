@@ -53,6 +53,10 @@ class ParallelContextTests(unittest.TestCase):
         before=self.task()
         self.assertNotEqual(before,self.task(records=[{'id':'r','package_id':'p',
             'feedback':[{'id':'manual','by':'owner','text':'更正研究要求'}]}]))
+        ordered=self.task(records=[{'id':'r','package_id':'p','feedback':[
+            {'id':'later','by':'owner','at':20,'text':'最新要求'},
+            {'id':'earlier','by':'owner','at':10,'text':'旧要求'}]}])
+        self.assertEqual([r['feedback']['at'] for r in ordered['owner_feedback']],[10,20])
         self.state['packages'][0]['scope']='新边界'
         self.assertNotEqual(before,self.task())
 
@@ -87,6 +91,19 @@ class ParallelReceiverTests(fixture.FullNativeReviewTests):
         self.assertEqual(received['report']['task_provenance'],concurrent['task_provenance'])
         replay=task_analysis.complete(self.root,concurrent)
         self.assertEqual(received['report'],replay['report'])
+
+    def test_full_scope_without_explicit_attempt_is_rejected(self):
+        payload=self.payload_without_attempt()
+        with self.assertRaisesRegex(ValueError,'explicit_full_review_attempt_required'):
+            task_analysis.complete(self.root,payload)
+
+    def payload_without_attempt(self):
+        task,_=context.current(self.root,inbox.load(self.item['id']))
+        return {'id':self.item['id'],'sha256':self.sha,
+                'analysis_id':'11111111-1111-4111-8111-111111111111',
+                'summary':'未授权尝试','findings':[],'candidates':[],
+                'model':dict(fixture.MODEL),'task_provenance':context.provenance(task),
+                'review_scope':{'mode':'full_native_campus'}}
 
     def test_relevant_new_identity_rejects_precomputed_result(self):
         self.start()

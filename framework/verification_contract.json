@@ -896,8 +896,8 @@
     "docs/handoff/fetchquotes-production.md": "50e2808183053e9a1ad0fe8ea487aecb9720f5f905aa077e0c1040e4e7849ca1",
     "src/inresearch/materials/receive.py": "23f34e2d15af518ceaeb6bae31b599a0aa65905c2109b74c7bdbe2b7bd024061",
     "src/inresearch/materials/review_worker.py": "09f74f40f56f6aaca8fda224d0646709036540d10bdd2326664c20421bf2a11b",
-    "src/inresearch/materials/review_context.py": "24c70f133a670139563440756265cae474665983f5ba42ef1ac0b52e3b371189",
-    "src/inresearch/materials/task_analysis.py": "c7b59b2080d087ccbc96ef8eee225ca10ea4ce86522eedbbf26b62b8f0bfc950",
+    "src/inresearch/materials/review_context.py": "e9f0210c6966983a89de12147cc536101da515e019d4a498bc9128d76cebad37",
+    "src/inresearch/materials/task_analysis.py": "1b511ff5291aa8070f8185f60c0b2cf13e63bdd4500d0e3f94b1126586c542cc",
     "tests/unit/test_task_analysis.py": "40dade2bd273927d7820553dc90e177f6d1fe8bb11efdbb353592cce67600d2e",
     "tests/unit/test_task_review_races.py": "0ff0bc4f5ed179ca1e13d120c2aa18db3de39c3fddb055543b94b38857ce9b86",
     "deploy/spark-reader/inresearch-material-intake.service": "5ac271f71c6b9a91bc0b28370bf6e10d6c01f98719e2413a1e041fa6a764c06a",
@@ -977,7 +977,7 @@
     "tests/presentation_layout_browser.cjs": "09a0f7817b0d33fd8b9d447f23587f725ccff529821897fd138cfe345ad83751",
     "src/inresearch/adapters/ollama_macos.py": "9c39282eeb3cde16a04df3264dc6ecd3f3d72b6c6454efd8c3f51ba450d0ae89",
     "tests/unit/test_ollama_macos.py": "b266d9ad8e5f3180a67c0c84eb361f3128ca46a93488f779df52ba59be76301a",
-    "tests/unit/test_campus_parallel_context.py": "260af9d238a973c00aac393cf05175ebb4b3a53a9374ef3d5c710181eb7b1b9b"
+    "tests/unit/test_campus_parallel_context.py": "5dc38f4e09f9bcd3380ac9995b718bc0d3ccad1704d5614fa25c7896fa6896b0"
   },
   "policies": [
     {
@@ -4800,7 +4800,8 @@
         "tests/unit/test_campus_parallel_context.py::ParallelReceiverTests.test_precomputed_other_campus_survives_real_publication_and_progress",
         "tests/unit/test_campus_parallel_context.py::ParallelReceiverTests.test_relevant_new_identity_rejects_precomputed_result",
         "tests/unit/test_campus_parallel_context.py::ParallelWorkerTests.test_resume_reuses_success_after_unrelated_shared_progress_changes",
-        "tests/unit/test_campus_parallel_context.py::ParallelWorkerTests.test_started_legacy_package_keeps_old_context_and_success"
+        "tests/unit/test_campus_parallel_context.py::ParallelWorkerTests.test_started_legacy_package_keeps_old_context_and_success",
+        "tests/unit/test_campus_parallel_context.py::ParallelReceiverTests.test_full_scope_without_explicit_attempt_is_rejected"
       ],
       "not_verified": [
         "合成单元测试和本地浏览器场景不证明真实员工工作簿已由 Codex 按报告标示范围审核、生产持久发布成功或公网园区详情可见；需分别保存服务、模型、发布器、网站实际回执；真实超限附件的终态员工反馈也须公网验收。审批工作台的合成桌面／手机场景不替代真实管理员账号、公网页面和真实文件状态验收。",
