@@ -4271,6 +4271,8 @@
 | `web/assets/marketing/icons-comms.png` | 静态资源 |
 | `web/assets/marketing/icons-compute.png` | 静态资源 |
 | `web/assets/marketing/icons-core.png` | 静态资源 |
+| `web/assets/marketing/inresearch_ai_品牌PPT模板_通用可复制_v0.2.pptx` | 静态资源 |
+| `web/assets/marketing/inresearch_ai_品牌PPT母版_通用设计_v0.2.pptx` | 静态资源 |
 | `web/assets/marketing/logo-manual.pdf` | 静态资源 |
 | `web/assets/marketing/marcomm-overview.png` | 静态资源 |
 | `web/assets/marketing/typography-manual.pdf` | 静态资源 |
