@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.2。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2808。
+在册文件：2814。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 417 |
+| 运行代码 | 418 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 269 |
-| 测试 | 259 |
+| 配套说明 | 272 |
+| 测试 | 261 |
 
 ## 在册记录集合
 
@@ -35,7 +35,7 @@
 | `data/brief.json` | sec | 16 |
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 257 |
-| `data/company_disclosures.json` | records | 1 |
+| `data/company_disclosures.json` | records | 2 |
 | `data/contracts.json` | records | 8 |
 | `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
@@ -1794,13 +1794,13 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | entrypoints | 4 |
-| `framework/current_state.json` | known_retired_patterns | 28 |
 | `framework/current_state.json` | policies | 60 |
+| `framework/current_state.json` | entrypoints | 4 |
+| `framework/current_state.json` | retired_entrypoints | 3 |
+| `framework/current_state.json` | known_retired_patterns | 28 |
+| `framework/current_state.json` | operational_guides | 17 |
 | `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/current_state.json` | compat_retirements | 7 |
-| `framework/current_state.json` | retired_entrypoints | 3 |
-| `framework/current_state.json` | operational_guides | 17 |
 | `framework/dashboard_rules.json` | honesty | 5 |
 | `framework/data_contract.json` | source_grades | 6 |
 | `framework/data_contract.json` | project_statuses | 9 |
@@ -1808,7 +1808,7 @@
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 58 |
-| `framework/interface_manifest.json` | public_pages | 3 |
+| `framework/interface_manifest.json` | public_pages | 5 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -2755,6 +2755,8 @@
 | [docs/handoff/pdf-native-text-20261007.md](handoff/pdf-native-text-20261007.md) | 配套说明 |
 | [docs/handoff/pr-412-conflict-fix-20261009.md](handoff/pr-412-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/pr-417-conflict-fix-20261009.md](handoff/pr-417-conflict-fix-20261009.md) | 配套说明 |
+| [docs/handoff/pr939-conflict-ci-20261017.md](handoff/pr939-conflict-ci-20261017.md) | 配套说明 |
+| [docs/handoff/pr973-conflict-ci-20261017.md](handoff/pr973-conflict-ci-20261017.md) | 配套说明 |
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/private-research-tasks-20261012.md](handoff/private-research-tasks-20261012.md) | 配套说明 |
 | [docs/handoff/project-audit-20261010.md](handoff/project-audit-20261010.md) | 配套说明 |
@@ -2797,6 +2799,7 @@
 | [docs/handoff/stock-sn5600-20261012.md](handoff/stock-sn5600-20261012.md) | 配套说明 |
 | [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
+| [docs/handoff/task-access-progress-20261017.md](handoff/task-access-progress-20261017.md) | 配套说明 |
 | [docs/handoff/task-batch-review-20261016.md](handoff/task-batch-review-20261016.md) | 配套说明 |
 | [docs/handoff/task-current-feedback-20261016.md](handoff/task-current-feedback-20261016.md) | 配套说明 |
 | [docs/handoff/task-project-workbench-20261016.md](handoff/task-project-workbench-20261016.md) | 配套说明 |
@@ -4045,6 +4048,7 @@
 | `tests/unit/test_catalog_migration.py` | 测试 |
 | `tests/unit/test_catalog_ownership.py` | 测试 |
 | `tests/unit/test_catalog_supplement.py` | 测试 |
+| `tests/unit/test_ci_runner_routing.py` | 测试 |
 | `tests/unit/test_ci_scope.py` | 测试 |
 | `tests/unit/test_city_location.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
@@ -4141,6 +4145,7 @@
 | `tests/unit/test_ollama_token_budget.py` | 测试 |
 | `tests/unit/test_operations.py` | 测试 |
 | `tests/unit/test_optional_mapping_ids.py` | 测试 |
+| `tests/unit/test_packed_output_split.py` | 测试 |
 | `tests/unit/test_packed_reading.py` | 测试 |
 | `tests/unit/test_panel_source_assets.py` | 测试 |
 | `tests/unit/test_pdf_native_text.py` | 测试 |
@@ -4738,6 +4743,7 @@
 | `web/pages/compute-atlas.html` | 运行代码 |
 | `web/pages/compute-catalog.html` | 运行代码 |
 | `web/pages/control-atlas.html` | 运行代码 |
+| `web/pages/coreweave.html` | 运行代码 |
 | `web/pages/cross-scale-atlas.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
 | `web/pages/facility-atlas.html` | 运行代码 |

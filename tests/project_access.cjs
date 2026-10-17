@@ -9,7 +9,7 @@ const {chromium} = require('playwright');
 const {setAppearance} = require('./ui_helpers.cjs');
 const directory = mkdtempSync(join(tmpdir(),'inresearch-project-access-'));
 const env = {...process.env,INRESEARCH_RUNTIME_ROOT:join(directory,'runtime'),INRESEARCH_INTAKE_ROOT:join(directory,'intake'),INRESEARCH_MATERIAL_APPROVER:'owner',HUB_AUTH:'on',INRESEARCH_MARKET_ENABLED:'0',PYTHONDONTWRITEBYTECODE:'1'};
-const server = spawn(process.env.PYTHON || 'python3',['-u','-c',"import sys,json,secrets;sys.path.insert(0,'src');from inresearch.storage.layout import initialize_runtime;initialize_runtime();from inresearch.interfaces import http,auth;http.AUTH_ON=True;auth.add_user('owner',secrets.token_urlsafe(32),'admin');s=http.ThreadingHTTPServer(('127.0.0.1',0),http.Handler);print(json.dumps({'port':s.server_port,'cookie':auth.make_cookie('owner').split(';')[0]}),flush=True);s.serve_forever()"],{cwd:resolve(__dirname,'..'),env,stdio:['ignore','pipe','inherit']});
+const server = spawn(process.env.PYTHON || 'python3',['-u','-c',"import sys,json,secrets;sys.path.insert(0,'src');from inresearch.storage.layout import initialize_runtime;initialize_runtime();from inresearch.interfaces import http,auth;http.AUTH_ON=True;auth.add_user('owner',secrets.token_urlsafe(32),'admin');auth.add_user('isaac','isaac-test-password','intern');s=http.ThreadingHTTPServer(('127.0.0.1',0),http.Handler);print(json.dumps({'port':s.server_port,'cookie':auth.make_cookie('owner').split(';')[0]}),flush=True);s.serve_forever()"],{cwd:resolve(__dirname,'..'),env,stdio:['ignore','pipe','inherit']});
 const lines = createInterface({input:server.stdout});
 const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolve(JSON.parse(line));}catch(e){reject(e);}});server.once('error',reject);server.once('exit',code=>reject(Error('test server exited '+code)));});
 (async()=>{
@@ -20,7 +20,21 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const owner=await browser.newPage(),errors=[];
     owner.on('pageerror',error=>errors.push(error.message));
     await owner.context().addCookies([{name:'hub_session',value:config.cookie.slice(config.cookie.indexOf('=')+1),url:base}]);
-    await owner.goto(base+'/admin/project-access.html');
+    await owner.goto(base+'/tasks.html#submission-progress');
+    await owner.locator('#task-management-tab').waitFor();
+    assert.equal(await owner.locator('#submission-progress').isVisible(),true);
+    await owner.locator('#task-management-tab').click();
+    assert.equal(await owner.locator('#manage-members-link').isVisible(),true);
+    assert.equal(await owner.locator('#manage-reviews-link').isVisible(),true);
+    assert.equal(await owner.locator('#manage-accounts-link').isVisible(),true);
+    for(const width of [1440,320]) {
+      await owner.setViewportSize({width,height:900});await owner.evaluate(()=>scrollTo(0,0));
+      assert.ok(await owner.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'admin tab has no page overflow');
+      if(process.env.UI_QA_DIR) {mkdirSync(process.env.UI_QA_DIR,{recursive:true});await owner.screenshot({path:join(process.env.UI_QA_DIR,`project-management-${width}.png`),fullPage:true});}
+    }
+    await owner.setViewportSize({width:1440,height:900});
+    await owner.locator('#manage-members-link').click();
+    await owner.waitForURL(base+'/admin/project-access.html');
     async function create(name,approve) {
       await owner.locator('#project-create [name=username]').fill(name);
       const response=owner.waitForResponse(r=>r.url().endsWith('/api/project-access') && r.request().method()==='POST');
@@ -40,7 +54,7 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     const initial=await create('alice',false);
     const reviewInitial=await create('reviewer',true);
     async function login(name,password,first=false) {
-      const page=await browser.newPage();page.on('pageerror',error=>errors.push(error.message));
+      const page=await browser.newPage();await page.clock.install();page.on('pageerror',error=>errors.push(error.message));
       await page.goto(base+'/login');
       await page.locator('[name=username]').fill(name);await page.locator('[name=password]').fill(password);
       await page.locator('[data-auth-form] button').click();
@@ -60,7 +74,13 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
       const Cookie=(await page.context().cookies()).map(c=>c.name+'='+c.value).join('; ');
       return page.request.get(base+path,{headers:{Cookie}});
     }
-    const alice=await login('alice',initial,true),reviewer=await login('reviewer',reviewInitial,true);
+    const alice=await login('alice',initial,true),reviewer=await login('reviewer',reviewInitial,true),intern=await login('isaac','isaac-test-password');
+    assert.equal(intern.url(),base+'/tasks.html');
+    assert.equal(await intern.evaluate(()=>window.activeResearchTaskView),'my-work');
+    assert.equal(await intern.locator('#task-management-tab').isHidden(),true);
+    assert.equal(await intern.locator('#my-review-link').isHidden(),true);
+    assert.equal(await alice.locator('#task-management-tab').isHidden(),true);
+    assert.equal(await reviewer.locator('#task-management-tab').innerText(),'作业审批');
     assert.equal(await alice.locator('#my-review-link').isHidden(),true);
     assert.equal(await alice.locator('#my-access-link').isHidden(),true);
     assert.equal(await alice.locator('#my-front-link').isVisible(),true);
@@ -90,7 +110,35 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await reviewer.locator('[data-action=approve_and_analyze]').click();
     await reviewer.waitForFunction(()=>document.querySelector('#review-detail-content')?.textContent.includes('正在分析'));
     await alice.locator('#my-refresh').click();
-    await alice.waitForFunction(()=>document.querySelector('#my-submissions')?.textContent.includes('等待接收'));
+    await alice.waitForFunction(()=>document.querySelector('#my-submissions')?.textContent.includes('等待处理'));
+    assert.equal(await alice.locator('#my-processing').isVisible(),true);
+    assert.match(await alice.locator('#my-processing').innerText(),/处理反馈稍后更新/);
+    await alice.locator('[data-task-view=submission-progress]').click();
+    await alice.locator('#package-refresh').click();
+    await alice.locator('#package-processing').waitFor();
+    assert.match(await alice.locator('#package-processing').innerText(),/正在处理，反馈稍后更新/);
+    assert.match(await alice.locator('#package-processing').innerText(),/1 份等待处理/);
+    if(process.env.UI_QA_DIR) {
+      mkdirSync(process.env.UI_QA_DIR,{recursive:true});
+      await alice.locator('#package-active-panel').screenshot({path:join(process.env.UI_QA_DIR,'project-processing.png')});
+    }
+    await alice.locator('[data-task-view=my-work]').click();
+    // A current full review stays active even with old feedback; timers refresh the visible view.
+    const workFixture=await (await get(alice,'/api/project-work')).json();
+    workFixture.items[0].processing_state='running';
+    workFixture.items[0].analysis_scope={mode:'full_native_campus',state:'continuing'};
+    workFixture.items[0].feedback=[{text:'合成的历史抽样反馈'}];
+    await alice.route('**/api/project-work',route=>route.fulfill({json:workFixture}));
+    await alice.clock.fastForward(30001);
+    await alice.waitForFunction(()=>document.querySelector('#my-submissions')?.textContent.includes('正在审阅'));
+    workFixture.items[0].processing_state='blocked';
+    await alice.clock.fastForward(30001);
+    await alice.waitForFunction(()=>document.querySelector('#my-submissions')?.textContent.includes('处理受阻'));
+    assert.equal(await alice.locator('#my-processing').getAttribute('data-state'),'blocked');
+    assert.match(await alice.locator('#my-processing').innerText(),/等待管理员处理/);
+    assert.equal(await alice.locator('#my-processing').evaluate(node=>getComputedStyle(node).backgroundColor),'rgb(232, 240, 233)');
+    await alice.unroute('**/api/project-work');await alice.locator('#my-refresh').click();
+    await alice.waitForFunction(()=>document.querySelector('#my-submissions')?.textContent.includes('等待处理'));
     assert.equal((await get(alice,'/task-reviews.html')).status(),403);
     assert.equal((await get(alice,'/api/materials/content/'+uploaded.item.id)).status(),200);
     const front=await get(alice,'/api/industry?overview=1');assert.equal(front.status(),200);

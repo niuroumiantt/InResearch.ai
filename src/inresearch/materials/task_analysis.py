@@ -307,6 +307,21 @@ def _prior_source(row, selected, value):
             'source_url': ref.get('source_url') if str(ref.get('source_url') or '').startswith(('https://','http://')) else None}
 
 
+def _exact_source_replay(observations, *, field, value, source_sha256, locator, submission_id):
+    """Find the prior statement only when one document ref proves the full tuple."""
+    for observation in observations:
+        if (observation.get('schema_version') != 3
+                or observation.get('fields', {}).get(field) != value):
+            continue
+        for ref in (observation.get('adoption') or {}).get('document_refs', []):
+            archive = ref.get('archive') or {}
+            if (ref.get('source_sha256') == source_sha256
+                    and ref.get('locator') == locator
+                    and archive.get('submission_id') == submission_id):
+                return observation
+    return None
+
+
 def _is_unbacked_notes_placeholder(row, field, value, selected):
     """Treat the publisher's initial notes label as empty until a source states it."""
     if field != 'notes' or value != '基础登记待查':
@@ -533,6 +548,7 @@ def _complete_with_task_lock(root, payload, *, expected_task=None, expected_sour
                 current_doc = json.loads((work/'data/projects.json').read_text())
                 current_row = next((r for r in current_doc['records'] if r['site_id'] == site_id), None)
                 registration_kind = 'new'
+                replay_observation = None
                 if current_row:
                     current = site_timeline.current(current_row)
                     old = current.get('quantity_fields', {}).get(field, current.get(field))
@@ -546,14 +562,13 @@ def _complete_with_task_lock(root, payload, *, expected_task=None, expected_sour
                                    and any(ref.get('source_sha256') == sha
                                            for ref in r.get('adoption', {}).get('document_refs', []))]
                     if same_source:
-                        replay = any(r.get('fields', {}).get(field) == value
-                                     and any(ref.get('locator') == locator
-                                             and (ref.get('archive') or {}).get('submission_id') == key
-                                             for ref in r.get('adoption', {}).get('document_refs', []))
-                                     for r in same_source)
-                        if not replay:
+                        replay_observation = _exact_source_replay(
+                            same_source, field=field, value=value, source_sha256=sha,
+                            locator=locator, submission_id=key)
+                        if replay_observation is None:
                             classification = 'duplicate'
                             raise ValueError('同一原件已登记该字段，且没有新的核验依据；请提交新的来源版本或有据可查的复核记录')
+                        registration_kind = 'replay'
                     if (old not in (None, '', [], {})
                             and not _is_unbacked_notes_placeholder(current_row, field, old, selected)):
                         if old == value:
@@ -570,15 +585,20 @@ def _complete_with_task_lock(root, payload, *, expected_task=None, expected_sour
                     'basis':'员工 Excel 原生单元格；基础登记待查',
                     'registered_by':'approved-task-analysis'}
                 if identity is not None: statement['identity'] = identity
-                receipt = source_statements.apply(work, Path(td), statement, resolve=resolve)
+                if replay_observation is not None:
+                    receipt = {'statement_id':replay_observation['id']}
+                    latest_obs = replay_observation
+                else:
+                    receipt = source_statements.apply(work, Path(td), statement, resolve=resolve)
+                    latest = json.loads((work/'data/projects.json').read_text())
+                    latest_row = next(r for r in latest['records'] if r['site_id'] == site_id)
+                    latest_obs = next(r for r in latest_row['observations'] if r['id'] == receipt['statement_id'])
                 installed.append({'site_id':site_id,'statement_id':receipt['statement_id'],
                                   'field':field,'locator':locator,'value':value,
                                   'registration_kind':registration_kind})
-                latest = json.loads((work/'data/projects.json').read_text())
-                latest_row = next(r for r in latest['records'] if r['site_id'] == site_id)
-                latest_obs = next(r for r in latest_row['observations'] if r['id'] == receipt['statement_id'])
                 installed[-1]['model_checked_at'] = latest_obs['recorded_at']
-                existing = {r['site_id']:r for r in latest['records']}
+                if replay_observation is None:
+                    existing = {r['site_id']:r for r in latest['records']}
             except (ValueError, TypeError, KeyError, InvalidOperation, IndexError) as exc:
                 rejected = {'locator':str(locator or '')[:120],
                             'field':str(candidate.get('field',''))[:60] if isinstance(candidate,dict) else '',

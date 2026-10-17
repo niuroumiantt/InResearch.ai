@@ -215,6 +215,23 @@ class ProjectAccessTests(unittest.TestCase):
         self.assertIsNone(auth.session_user(auth.make_cookie('fresh')))
         self.assertIsNone(auth.session_user(cookie))
 
+    def test_intern_login_opens_personal_work_and_never_inherits_approval(self):
+        auth.add_user('isaac', 'intern-password', 'intern')
+        mission, _ = access.catalog()
+        users = auth.load_users()
+        users['isaac']['projects'] = {mission['id']:{'enabled':True, 'expires_at':None,
+            'frontend':True, 'submit_packages':['dc-census-cn'],
+            'approve_packages':['dc-census-cn']}}
+        auth.save_users(users)
+        status, result = self.req('/api/login', data={'username':'isaac','password':'intern-password'})
+        self.assertEqual(status, 200, result)
+        self.assertEqual(result['next'], '/tasks.html')
+        work = self.req('/api/project-work', 'isaac')[1]
+        self.assertTrue(work['member'])
+        self.assertFalse(work['can_approve'])
+        self.assertFalse(access.can_review('isaac'))
+        self.assertEqual(self.req('/task-reviews.html', 'isaac')[0], 403)
+
     def test_collaborator_cannot_modify_team_assignments_or_feedback(self):
         _,result=self.upload();item=result['item']
         self.assertEqual(self.req('/api/research-tasks','alice',{'action':'update'})[0],403)
@@ -239,6 +256,14 @@ class ProjectAccessTests(unittest.TestCase):
 
     def test_owner_api_and_stale_grants(self):
         self.assertEqual(self.req('/api/project-access','owner')[0],200)
+        for actor,expected in [('owner',(True,True,True)),('alice',(False,False,False)),('reviewer',(False,False,True))]:
+            status,view=self.req('/api/project-work',actor)
+            self.assertEqual(status,200)
+            self.assertEqual((view['can_admin'],view['can_manage'],view['can_approve']),expected)
+        auth.add_user('other-admin','admin-password','admin')
+        status,view=self.req('/api/project-work','other-admin')
+        self.assertEqual((view['can_admin'],view['can_manage'],view['can_approve']),(True,False,False))
+        self.assertEqual(self.req('/api/project-access','other-admin')[0],403)
         self.assertEqual(self.req('/api/project-access','alice',{'action':'create','username':'evil'},headers={'X-Requested-With':'project-access'})[0],403)
         self.assertEqual(self.req('/api/project-access','owner',{'action':'create','username':'charlie'},headers={'X-Requested-With':'project-access'})[0],200)
         self.assertFalse(access.member('charlie'))
