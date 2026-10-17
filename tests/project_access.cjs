@@ -9,7 +9,7 @@ const {chromium} = require('playwright');
 const {setAppearance} = require('./ui_helpers.cjs');
 const directory = mkdtempSync(join(tmpdir(),'inresearch-project-access-'));
 const env = {...process.env,INRESEARCH_RUNTIME_ROOT:join(directory,'runtime'),INRESEARCH_INTAKE_ROOT:join(directory,'intake'),INRESEARCH_MATERIAL_APPROVER:'owner',HUB_AUTH:'on',INRESEARCH_MARKET_ENABLED:'0',PYTHONDONTWRITEBYTECODE:'1'};
-const server = spawn(process.env.PYTHON || 'python3',['-u','-c',"import sys,json,secrets;sys.path.insert(0,'src');from inresearch.storage.layout import initialize_runtime;initialize_runtime();from inresearch.interfaces import http,auth;http.AUTH_ON=True;auth.add_user('owner',secrets.token_urlsafe(32),'admin');s=http.ThreadingHTTPServer(('127.0.0.1',0),http.Handler);print(json.dumps({'port':s.server_port,'cookie':auth.make_cookie('owner').split(';')[0]}),flush=True);s.serve_forever()"],{cwd:resolve(__dirname,'..'),env,stdio:['ignore','pipe','inherit']});
+const server = spawn(process.env.PYTHON || 'python3',['-u','-c',"import sys,json,secrets;sys.path.insert(0,'src');from inresearch.storage.layout import initialize_runtime;initialize_runtime();from inresearch.interfaces import http,auth;http.AUTH_ON=True;auth.add_user('owner',secrets.token_urlsafe(32),'admin');auth.add_user('isaac','isaac-test-password','intern');s=http.ThreadingHTTPServer(('127.0.0.1',0),http.Handler);print(json.dumps({'port':s.server_port,'cookie':auth.make_cookie('owner').split(';')[0]}),flush=True);s.serve_forever()"],{cwd:resolve(__dirname,'..'),env,stdio:['ignore','pipe','inherit']});
 const lines = createInterface({input:server.stdout});
 const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolve(JSON.parse(line));}catch(e){reject(e);}});server.once('error',reject);server.once('exit',code=>reject(Error('test server exited '+code)));});
 (async()=>{
@@ -74,7 +74,11 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
       const Cookie=(await page.context().cookies()).map(c=>c.name+'='+c.value).join('; ');
       return page.request.get(base+path,{headers:{Cookie}});
     }
-    const alice=await login('alice',initial,true),reviewer=await login('reviewer',reviewInitial,true);
+    const alice=await login('alice',initial,true),reviewer=await login('reviewer',reviewInitial,true),intern=await login('isaac','isaac-test-password');
+    assert.equal(intern.url(),base+'/tasks.html');
+    assert.equal(await intern.evaluate(()=>window.activeResearchTaskView),'my-work');
+    assert.equal(await intern.locator('#task-management-tab').isHidden(),true);
+    assert.equal(await intern.locator('#my-review-link').isHidden(),true);
     assert.equal(await alice.locator('#task-management-tab').isHidden(),true);
     assert.equal(await reviewer.locator('#task-management-tab').innerText(),'作业审批');
     assert.equal(await alice.locator('#my-review-link').isHidden(),true);
@@ -131,6 +135,8 @@ const ready = new Promise((resolve,reject)=>{lines.once('line',line=>{try{resolv
     await alice.clock.fastForward(30001);
     await alice.waitForFunction(()=>document.querySelector('#my-submissions')?.textContent.includes('处理受阻'));
     assert.equal(await alice.locator('#my-processing').getAttribute('data-state'),'blocked');
+    assert.match(await alice.locator('#my-processing').innerText(),/等待管理员处理/);
+    assert.equal(await alice.locator('#my-processing').evaluate(node=>getComputedStyle(node).backgroundColor),'rgb(232, 240, 233)');
     await alice.unroute('**/api/project-work');await alice.locator('#my-refresh').click();
     await alice.waitForFunction(()=>document.querySelector('#my-submissions')?.textContent.includes('等待处理'));
     assert.equal((await get(alice,'/task-reviews.html')).status(),403);
