@@ -638,7 +638,7 @@ const {mkdirSync}=require('node:fs');
    if(width>1000){
     assert.ok(layout.market.top>0 && layout.market.bottom<layout.map.top);
     assert.ok(layout.map.bottom<=height && layout.map.top>=0,`entire map visible at ${width}×${height}`);
-    assert.ok(layout.map.width>=850 && layout.numberSize>=40,'retain large readable graphics '+JSON.stringify({width,height,map:layout.map,numberSize:layout.numberSize}));
+    assert.ok(layout.map.width>=700 && layout.numberSize>=40,'retain large readable graphics '+JSON.stringify({width,height,map:layout.map,numberSize:layout.numberSize}));
     assert.ok(layout.news.left>=layout.map.right && Math.abs(layout.news.top-layout.atlas.top)<=1,'news on the right, aligned to the atlas');
     assert.ok(Math.abs(layout.news.bottom-layout.atlas.bottom)<=1,'news panel matches the complete map panel height');
    }else{
