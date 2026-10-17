@@ -10,6 +10,7 @@ from inresearch.paths import project_root
 from inresearch.storage.layout import initialize_runtime, workspace_path
 from inresearch.storage.files import CommitUncertain, locked
 from inresearch.interfaces.static import source_path
+from inresearch.interfaces import project_access
 from inresearch.interfaces import pages
 from inresearch.interfaces import repository_pages
 import hashlib
@@ -234,9 +235,42 @@ class Handler(SimpleHTTPRequestHandler):
         if any(p.startswith('.') for p in low.split('/') if p) or low.endswith('/users.json') or low == '/data/research_runtime.json':
             self._json(404, {"ok": False, "error": "not found"})
             return None
+        session = auth.session_user(self.headers.get('Cookie'))
+        if session and auth.load_users().get(session, {}).get('must_change_password'):
+            permitted = ('/account', '/api/passwd', '/logout', '/login', '/api/whoami', '/api/navigation')
+            if self._norm_path() not in permitted and not self._norm_path().startswith('/assets/'):
+                if self._norm_path().startswith('/api/'):
+                    self._json(403, {'ok':False, 'error':'首次登录请先修改初始密码'})
+                else:
+                    self._redirect('/account')
+                return None
+        if self._norm_path() == '/admin/project-access.html':
+            if not session:
+                self._redirect('/login')
+                return None
+            if not project_access.is_owner(session):
+                self._html(403, pages.FORBIDDEN_PAGE)
+                return None
+            return session
+        if self._norm_path() == '/task-reviews.html':
+            if not session:
+                self._redirect('/login')
+                return None
+            if not material_intake.can_approve(session, auth.user_role(session)):
+                self._html(403, pages.FORBIDDEN_PAGE)
+                return None
+            return session
+        if session and auth.user_role(session) == 'collaborator':
+            if project_access.allowed(session, self._norm_path(), urlsplit(self.path).query, self.command):
+                return session
+            if self._norm_path().startswith('/api/'):
+                self._json(403, {'ok':False, 'error':'此内容或操作未获项目授权'})
+            else:
+                self._html(403, pages.FORBIDDEN_PAGE)
+            return None
         # Infrastructure diagrams contain private host/network information.
         # These pages require a real admin session even in local development.
-        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() in ('/admin/company.html', '/task-reviews.html'):
+        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() in ('/admin/company.html',):
             user = auth.session_user(self.headers.get('Cookie'))
             if not user:
                 self._redirect('/login')
@@ -297,7 +331,9 @@ class Handler(SimpleHTTPRequestHandler):
         return self._json(401, {"ok": False, "error": "用户名或密码不对"})
 
     def _login_ok(self, username):
-        body = json.dumps({"ok": True, "user": username}, ensure_ascii=False).encode()
+        account = auth.load_users().get(username, {})
+        destination = '/account' if account.get('must_change_password') else '/tasks.html' if account.get('role') == 'collaborator' else '/'
+        body = json.dumps({"ok": True, "user": username, "next":destination}, ensure_ascii=False).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
@@ -318,7 +354,10 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _role(self, user):
         """本地模式（不要求登录）视同 admin；要求登录而未登录的是公开只读 reader。"""
-        return auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
+        role = auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
+        if role == 'collaborator' and self._norm_path() in ('/api/industry', '/api/observations', '/api/news', '/data/companies.json'):
+            return 'customer'
+        return role
 
     def do_HEAD(self):
         customer = auth.session_user(self.headers.get('Cookie'))
@@ -326,7 +365,7 @@ class Handler(SimpleHTTPRequestHandler):
                 self._norm_path().startswith('/api/') or self._norm_path() in public.CUSTOMER_PROJECTED_DATA):
             return self._get()
         # Dynamic public mechanisms must implement the same HEAD gate as GET.
-        if (self._norm_path() in ('/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/materials', '/api/research-task-examples', *public.HOME_DATA_API)
+        if (self._norm_path() in ('/api/project-work', '/api/project-access', '/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/materials', '/api/research-task-examples', *public.HOME_DATA_API)
                 or self._norm_path().startswith('/api/materials/content/')
                 or self._norm_path().startswith('/api/intake-worker/')
                 or self._norm_path().startswith('/api/research-task-examples/')
@@ -416,16 +455,25 @@ class Handler(SimpleHTTPRequestHandler):
         user = self._gate()
         if user is None:
             return
+        if self._norm_path() in ('/api/project-work', '/api/project-access'):
+            session = auth.session_user(self.headers.get('Cookie'))
+            if not session:
+                return self._json(401, {'ok':False, 'error':'请先登录'})
+            if self._norm_path() == '/api/project-access':
+                if not project_access.is_owner(session):
+                    return self._json(403, {'ok':False, 'error':'仅项目所有者可管理授权'})
+                return self._json(200, project_access.settings(ROOT))
+            return self._json(200, project_access.workbench(session, ROOT))
         if self._norm_path() == '/api/materials' or self._norm_path().startswith('/api/materials/content/'):
             role, actor = self._role(user), user or material_intake.approver()
-            if role not in ('admin', 'member', 'intern'):
+            if role not in ('admin', 'member', 'intern', 'collaborator'):
                 return self._json(403, {'ok': False, 'error': '请使用内部团队账号'})
             try:
                 if self._norm_path() == '/api/materials':
                     return self._json(200, material_intake.snapshot(actor, role))
                 key = self._norm_path().removeprefix('/api/materials/content/')
                 record = material_intake.load(key)
-                if not material_intake.can_approve(actor, role) and (record.get('receipt_hash') or record['user'] != actor):
+                if not material_intake.can_read(actor, role, record):
                     return self._json(404, {'ok': False, 'error': 'not found'})
                 path = material_intake.record_path(key) / 'content'
                 self.send_response(200)
@@ -823,7 +871,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'ok': False, 'error': '任务跟踪暂不可用，请稍后重试'})
         if self._norm_path() == '/api/research-task-examples':
             try:
-                return self._json(200, research_task_examples.snapshot(ROOT, authenticated=self._role(user) not in ('reader', 'customer')))
+                return self._json(200, research_task_examples.snapshot(ROOT, authenticated=self._role(user) not in ('reader', 'customer', 'collaborator')))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '真实样例包暂不可用，请刷新或联系负责人修复'})
         if self._norm_path().startswith('/api/research-task-examples/'):
@@ -831,7 +879,7 @@ class Handler(SimpleHTTPRequestHandler):
             if not match or urlsplit(self.path).query:
                 return self._json(404, {'ok': False, 'error': '样例产物不存在'})
             try:
-                artifact = research_task_examples.download(ROOT, *match.groups(), authenticated=self._role(user) not in ('reader', 'customer'))
+                artifact = research_task_examples.download(ROOT, *match.groups(), authenticated=self._role(user) not in ('reader', 'customer', 'collaborator'))
             except research_task_examples.PrivateArtifact:
                 return self._json(401, {'ok': False, 'error': '此样例产物登录后可下载'})
             except research_task_examples.NotInstalled:
@@ -855,6 +903,25 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'ok': False, 'error': '任务暂不可用，请稍后重试'})
         return super().do_GET()
 
+    def _check_upload_owner(self, payload, actor):
+        from inresearch.materials import batch_review
+        path = batch_review.batch_path('upload', payload.get('batch_id'))
+        if not path.exists():
+            if not actor:
+                raise PermissionError('请登录后恢复提交')
+            return
+        state = json.loads(path.read_text())
+        identity = state.get('identity')
+        if identity:
+            if not actor or not project_access.owns(actor, identity) or not project_access.member(actor):
+                raise PermissionError('批次不属于当前账号或项目授权已失效')
+
+    def _task_receipt(self, payload, actor):
+        record = material_intake.load(payload.get('id', ''))
+        if record.get('owner_id') and (not actor or not project_access.owns(actor, record) or not project_access.member(actor)):
+            raise PermissionError('回执不属于当前账号或项目授权已失效')
+        return material_intake.receipt_view(payload.get('id', ''), payload.get('receipt', ''))
+
     def do_POST(self):
         if self.path in ('/api/task-uploads', '/api/task-uploads/receipt', '/api/task-uploads/batch', '/api/task-uploads/batch-status'):
             return self._post()
@@ -871,23 +938,33 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _post(self):
         if self.path in ('/api/task-uploads', '/api/task-uploads/receipt', '/api/task-uploads/batch', '/api/task-uploads/batch-status'):
+            session = auth.session_user(self.headers.get('Cookie'))
+            if self.path == '/api/task-uploads':
+                if not session:
+                    return self._json(401, {'ok':False, 'error':'请登录后提交资料'})
+                if self._gate() is None:
+                    return
             try:
                 size = int(self.headers.get('Content-Length', 0))
                 if self.path.endswith('/batch-status'):
                     if not 0 < size <= 4096: raise ValueError('invalid batch status request')
                     from inresearch.materials import batch_review
-                    result=batch_review.recover_upload(json.loads(self.rfile.read(size)))
+                    payload = json.loads(self.rfile.read(size))
+                    self._check_upload_owner(payload, session)
+                    result=batch_review.recover_upload(payload)
                     return self._json(200,{'ok':True,**result})
                 if self.path.endswith('/batch'):
                     if not 0 < size <= 16384: raise ValueError('invalid batch seal request')
                     from inresearch.materials import batch_review
-                    batch = batch_review.seal(json.loads(self.rfile.read(size)))
+                    payload = json.loads(self.rfile.read(size))
+                    self._check_upload_owner(payload, session)
+                    batch = batch_review.seal(payload)
                     return self._json(200, {'ok':True,'batch':batch})
                 if self.path.endswith('/receipt'):
                     if not 0 < size <= 4096:
                         raise ValueError('invalid receipt request')
                     payload = json.loads(self.rfile.read(size))
-                    item = material_intake.receipt_view(payload['id'], payload['receipt'])
+                    item = self._task_receipt(payload, session)
                     return self._json(200, {'ok': True, 'item': item})
                 if self.headers.get('X-Requested-With') != 'task-upload':
                     return self._json(403, {'ok': False, 'error': 'invalid request'})
@@ -903,7 +980,13 @@ class Handler(SimpleHTTPRequestHandler):
                 packages = research_tasks.read(ROOT)['packages']
                 if not any(p['id'] == package_id for p in packages):
                     raise ValueError('工作包不存在，请刷新后选择')
-                item, receipt = material_intake.receive(self.rfile, size, metadata, 'anonymous', public=True)
+                if not project_access.can_submit(session, package_id, ROOT):
+                    raise PermissionError('未获此工作包提交权限')
+                account = auth.load_users()[session]
+                metadata['submitter'] = account.get('display_name', session)
+                mission, _ = project_access.catalog(ROOT)
+                identity = {'owner_id':auth.ensure_identity(session), 'project_id':mission['id']}
+                item, receipt = material_intake.receive(self.rfile, size, metadata, session, public=True, identity=identity)
                 return self._json(201, {'ok': True, 'item': item, 'receipt': receipt})
             except PermissionError:
                 return self._json(404, {'ok': False, 'error': '回执无效'})
@@ -1012,12 +1095,33 @@ class Handler(SimpleHTTPRequestHandler):
                 receiver=lambda root, payload: product_catalog.receive(root, payload, company))
         if self.path == '/api/pilot-progress/nvidia':
             return self.api_nvidia_pilot_progress()
+        if self.path == '/api/project-access':
+            session = auth.session_user(self.headers.get('Cookie'))
+            if not session or not project_access.is_owner(session) or self.headers.get('X-Requested-With') != 'project-access':
+                return self._json(403, {'ok':False, 'error':'仅项目所有者可管理授权'})
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 16384:
+                    raise ValueError('请求过大')
+                payload = json.loads(self.rfile.read(size))
+                if not isinstance(payload, dict):
+                    raise ValueError('请求须为对象')
+                if payload.get('action') == 'create':
+                    if set(payload) != {'action', 'username'}:
+                        raise ValueError('新账号字段无效')
+                    ok, message, password = auth.add_user(payload['username'], role='collaborator')
+                    return self._json(200 if ok else 400, {'ok':ok, 'error':None if ok else message, 'password':password})
+                return self._json(200, project_access.update(payload, session, ROOT))
+            except PermissionError as exc:
+                return self._json(403, {'ok':False, 'error':str(exc)})
+            except (ValueError, TypeError, KeyError) as exc:
+                return self._json(400, {'ok':False, 'error':str(exc)})
         if self.path in ('/api/materials', '/api/materials/review', '/api/materials/review-batch'):
             user = self._gate()
             if user is None:
                 return
             role, actor = self._role(user), user or material_intake.approver()
-            if role not in ('admin', 'member', 'intern'):
+            if role not in ('admin', 'member', 'intern', 'collaborator'):
                 return self._json(403, {'ok': False, 'error': '请使用内部团队账号'})
             if self.headers.get('X-Requested-With') != 'material-intake':
                 return self._json(403, {'ok': False, 'error': 'invalid request'})
@@ -1045,6 +1149,8 @@ class Handler(SimpleHTTPRequestHandler):
                     else:
                         item = material_intake.mutate(payload, actor, role)
                     return self._json(200, {'ok': True, 'item': item})
+                if role == 'collaborator':
+                    raise PermissionError('请从项目工作台提交资料')
                 metadata = json.loads(unquote(self.headers.get('X-Material-Metadata', '{}')))
                 if not isinstance(metadata, dict):
                     raise ValueError('invalid metadata')
@@ -1224,7 +1330,7 @@ class Handler(SimpleHTTPRequestHandler):
             auth.record_fail(auth.client_ip(self))   # 猜旧密码与猜登录同罪，计入限速
             return self._json(401, {"ok": False, "error": "当前密码不对"})
         log_run("auth", f"改密成功 {user} @ {auth.client_ip(self)}")
-        return self._json(200, {"ok": True})
+        return self._login_ok(user)
 
     def api_users(self, payload, by=""):
         """管理后台的用户管理（仅 admin，路由层已拦）。

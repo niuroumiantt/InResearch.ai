@@ -140,6 +140,8 @@ def approve(payload, actor, role, *, valid_package_ids=None):
             target = inbox.record_path(row['id'])/'record.json'
             locks.enter_context(locked(target))
             record = json.loads(target.read_text())
+            if not inbox.can_approve(actor, role, record):
+                raise PermissionError('批次包含无审批权限或自己提交的原件')
             own = record.get('review_batch_id') == payload['operation_id']
             if (record['sha256'] != row['sha256']
                     or not own and (record.get('revision',0) != row['expected_revision']

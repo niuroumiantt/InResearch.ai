@@ -20,7 +20,8 @@ document.addEventListener('submit', async event => {
     const response = await fetch(form.action, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
     const result = await response.json();
     if (!response.ok || !result.ok) throw Error(result.error || '提交失败，请重试');
-    if (new URL(form.action).pathname === '/api/login') location.assign('/');
+    if (new URL(form.action).pathname === '/api/login') location.assign(result.next || '/');
+    else if (result.next === '/tasks.html') location.assign(result.next);
     else { message.className = 'msg ok'; message.textContent = '已修改。下次登录用新密码。'; form.reset(); }
   } catch (error) {
     message.textContent = error instanceof TypeError ? '连接中断，请重试' : error.message;
