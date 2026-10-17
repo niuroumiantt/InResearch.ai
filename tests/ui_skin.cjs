@@ -39,6 +39,7 @@ const BG = {light:'rgb(246, 245, 242)', dark:'rgb(16, 24, 32)'};
    if(file==='index.html'){await page.locator('.ui-account-menu > summary').waitFor();assert.equal(await page.locator('.ui-navigation-delivery [data-nav-section]').count(),7);assert.equal(await page.locator('.ui-navigation-backstage [data-nav-section]').count(),6);assert.equal(await page.locator('.ui-account-panel .ui-management-link').count(),0,'account menu contains account actions only');}
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') {await page.locator('#catalog-title').waitFor();assert.match(page.url(),/product-catalog.html/);}
+   if(file==='marketing.html') await require('./presentation_layout_browser.cjs')(page);
    if(file==='report.html') {await page.locator('#cover').waitFor();assert.equal(await page.locator('section.chapter').count(),4);}
    if(file==='ops.html'){await page.locator('#tasks .task-btn').first().waitFor();await page.locator('#freshness-drawer > summary').click();await page.locator('#freshness tr').nth(1).waitFor({state:'attached'});assert.ok(await page.locator('#freshness tr').count()>=6,'generated-artifact freshness table');assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#tasks .task-btn').count()>0);assert.equal(await page.locator('#modules, #projects, #funnel, #indicators').count(),0,'funnel, monitoring, modules and project blocks retired');}
    // Ledger boot canonicalizes its view hash after fetching the model.

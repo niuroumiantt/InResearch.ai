@@ -929,6 +929,9 @@ class Handler(SimpleHTTPRequestHandler):
         return material_intake.receipt_view(payload.get('id', ''), payload.get('receipt', ''))
 
     def do_POST(self):
+        if self.path in public.STATELESS_UTILITY_API:
+            from inresearch.interfaces.presentation_layout import post
+            return post(self, ROOT)
         if self.path in ('/api/task-uploads', '/api/task-uploads/receipt', '/api/task-uploads/batch', '/api/task-uploads/batch-status'):
             return self._post()
         # Machine receivers authenticate independently below. A customer cookie

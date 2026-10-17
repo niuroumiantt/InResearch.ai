@@ -97,7 +97,7 @@ def readable(actor, role, record):
 def allowed(actor, path, query='', method='GET'):
     """Collaborators never inherit the broad member or admin route grants."""
     if method == 'POST':
-        return path in ('/api/passwd', '/api/logout', '/api/task-uploads',
+        return path in (*public.STATELESS_UTILITY_API, '/api/passwd', '/api/logout', '/api/task-uploads',
                         '/api/task-uploads/receipt', '/api/task-uploads/batch',
                         '/api/task-uploads/batch-status',
                         '/api/materials/review', '/api/materials/review-batch')
