@@ -49,6 +49,7 @@ if (host) {
     return box;
   }
   let latestData=null;
+  const hasChinese=text=>/[一-鿿㐀-䶿]/u.test(String(text||''));
   function inewsLink(item,url){
     if(['inews.today','www.inews.today'].includes(url.hostname.toLowerCase()))return url.href;
     // feed.id is the research ledger's ID, not an inews article ID. Only
@@ -70,7 +71,8 @@ if (host) {
     if(isHome)for(const row of raw){
       const key=canonical(row.url);if(!key)continue;
       const previous=byURL.get(key);
-      byURL.set(key,{...previous,title_zh:previous?.title_zh||row.title,url:row.url,published_at:previous?.published_at||row.published_at,
+      const titleZh=hasChinese(previous?.title_zh)?previous.title_zh:hasChinese(row.title)?row.title:null;
+      byURL.set(key,{...previous,title_zh:titleZh,url:row.url,published_at:previous?.published_at||row.published_at,
         object_ids:previous?.object_ids||(row.company_ids||[]).map(id=>'actor:'+id),raw:row});
     }
     return [...byURL.values()].sort((a,b)=>timestamp(b)-timestamp(a));
@@ -78,8 +80,10 @@ if (host) {
   function render(data){
     const dailyRows=[];
     if(!['company','region','site','scope','role','relation','country','province','city','address','q'].some(k=>industryFilter[k])){
-      for(const item of data.daily_publications||[]){
-        if(!/^https:\/\/(www\.)?inews\.today\/c\/[1-9][0-9]*$/.test(item.url||'')||typeof item.title!=='string')continue;
+      const item=(data.daily_publications||[])
+        .filter(item=>item.pinned===true)
+        .sort((a,b)=>String(b.report_date||'').localeCompare(String(a.report_date||'')))[0];
+      if(item&&/^https:\/\/(www\.)?inews\.today\/c\/[1-9][0-9]*$/.test(item.url||'')&&typeof item.title==='string'){
         const row=document.createElement('article');row.className=item.pinned?'dc-news-daily dc-news-daily-pinned':'dc-news-daily';
         const link=document.createElement('a');link.href=item.url;link.textContent=item.title;link.target='_blank';link.rel='noopener noreferrer';
         if(item.highlight===true)link.className='dc-news-daily-highlight';
@@ -113,7 +117,7 @@ if (host) {
           ||(data.pipeline?.records||[]).some(p=>p.site_id&&(industryFilter.site?p.site_id===industryFilter.site:industryFilter.siteIds?.includes(p.site_id))&&(p.events||[]).some(e=>e.url===item.url));
         if(!matched)continue;
       }
-      if(typeof item.title_zh!=='string'||!item.title_zh.trim())continue;
+      if(typeof item.title_zh!=='string'||!item.title_zh.trim()||!hasChinese(item.title_zh))continue;
       let url;try{url=new URL(item.url);}catch{continue;}if(!['http:','https:'].includes(url.protocol)||url.username||url.password)continue;
       if(headlines){rows.push(headlineRow(item,url));continue;}
       const stamp=timestamp(item),date=stamp?new Date(stamp):null,day=date?dateFormat.format(date):item.raw?.report_date?'日报 '+item.raw.report_date+' · 原文时间待补充':'时间待补充';
