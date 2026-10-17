@@ -45,7 +45,8 @@ READER_AUTH = ('/login',)
 # A health probe discloses no runtime files or research content.
 READER_PROBE = ('/healthz', '/robots.txt')
 HOME_DATA_API = ('/api/industry', '/api/news')
-CUSTOMER_WRITES = ('/api/login', '/api/passwd', '/api/feedback')
+STATELESS_UTILITY_API = ('/api/presentation-layout',)
+CUSTOMER_WRITES = ('/api/login', '/api/passwd', '/api/feedback', *STATELESS_UTILITY_API)
 CUSTOMER_PROJECTED_API = ('/api/navigation', '/api/site-search',
                           '/api/whoami', '/api/observations', '/api/research-tasks',
                           '/api/research-task-examples', '/api/report')

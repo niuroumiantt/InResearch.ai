@@ -19,6 +19,7 @@
     .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gallery figure{margin:0;background:var(--ui-surface);border:1px solid var(--ui-line)}.gallery img{display:block;width:100%;height:180px;object-fit:contain}.gallery figcaption{padding:12px 14px;color:var(--ui-muted);font-size:14px}
     .download-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.download-list a{display:flex;justify-content:space-between;gap:15px;padding:15px 17px;background:var(--ui-surface);border:1px solid var(--ui-line);text-decoration:none}.download-list a span:last-child{color:var(--ui-link)}
     footer{padding:42px 0 62px;color:var(--ui-muted);font-size:14px;display:flex;justify-content:space-between;gap:18px;border-top:1px solid var(--ui-line)}
+    #format-ppt{padding:64px 0;border-top:1px solid var(--ui-line)}.ppt-form{display:grid;gap:18px;max-width:760px;padding:28px;border:1px solid var(--ui-line);background:var(--ui-surface);border-radius:var(--ui-radius)}.ppt-form label{display:grid;gap:8px}.ppt-form input,.ppt-form select,.ppt-form button{font:inherit;max-width:100%;min-height:44px}.ppt-form input[type=file]{padding:16px;border:1px dashed var(--ui-muted);width:100%}.ppt-form select{padding:10px;background:var(--ui-bg);color:var(--ui-ink);border:1px solid var(--ui-line)}.ppt-form button{justify-self:start;cursor:pointer}.ppt-form button:disabled{opacity:.55;cursor:wait}.ppt-form small,.ppt-limits{color:var(--ui-muted)}.ppt-result{margin:0;overflow-wrap:anywhere}.ppt-result[data-error=true]{color:var(--ui-link)}.ppt-download[hidden]{display:none}.ppt-download{justify-self:start}.ppt-limits{max-width:850px}.ppt-form :focus-visible{outline:3px solid var(--ui-accent);outline-offset:3px}
     .marketing-nav{display:flex;flex-wrap:wrap;gap:16px;padding:20px 0}.marketing-nav a{min-height:44px;display:inline-flex;align-items:center}.marketing-page section{scroll-margin-top:calc(var(--ui-bar-height) + 24px)}.marketing-page img{max-width:100%}.marketing-page .type-table{font-size:16px}.marketing-page .card,.marketing-page .panel,.marketing-page .logo-card{border-radius:var(--ui-radius)}
     @media(max-width:800px){.topbar{align-items:flex-start;gap:14px;flex-direction:column}.topbar nav{flex-wrap:wrap}.grid,.logo-showcase,.gallery,.split,.download-list{grid-template-columns:1fr}.hero{min-height:560px;padding-top:62px}.hero h1{font-size:clamp(32px,9vw,44px)}.hero:after{display:none}.section-head{display:block}.section-head p{margin-top:12px}}
   </style>
@@ -26,7 +27,7 @@
 <body class="marketing-page">
   <inresearch-shell data-section="guide"></inresearch-shell>
   <div class="wrap">
-    <nav class="marketing-nav" aria-label="本页目录"><a href="#brand">品牌标识</a><a href="#type">字体与文字</a><a href="#ui">界面与图标</a><a href="#marcomm">传播材料</a><a href="#ppt">演示模板</a><a href="#downloads">下载</a></nav>
+    <nav class="marketing-nav" aria-label="本页目录"><a href="#brand">品牌标识</a><a href="#type">字体与文字</a><a href="#ui">界面与图标</a><a href="#marcomm">传播材料</a><a href="#ppt">演示模板</a><a href="#downloads">下载</a><a href="#format-ppt">PPT 排版</a></nav>
     <main data-no-watermark="true">
       <section class="hero" style="border-top:0">
         <p class="eyebrow">品牌与界面规范 · v0.2</p>
@@ -93,7 +94,69 @@
         <div class="section-head"><h2>06 / 下载</h2><p>品牌、UI、MarComm 与 PPT 资产统一从这里获取；正式发布前请核对版本、授权和文件完整性。</p></div>
         <div class="download-list"><a href="/assets/marketing/brand-kit-final.zip" download><span>最终品牌与 MarComm 套件（ZIP）</span><span>下载 →</span></a><a href="/assets/marketing/logo-manual.pdf"><span>Logo 设计与使用手册（PDF）</span><span>打开 →</span></a><a href="/assets/marketing/ui-manual.pdf"><span>品牌与 UI 设计提案（PDF）</span><span>打开 →</span></a><a href="/assets/marketing/typography-manual.pdf"><span>中英文、数字与标点规范（PDF）</span><span>打开 →</span></a></div>
       </section>
+      <section id="format-ppt" aria-labelledby="format-ppt-title">
+        <div class="section-head"><h2 id="format-ppt-title">07 / PPT 品牌排版</h2><p>上传写好的演示稿，统一中英文字体，为常规文字页整理标题、边距、橙色短线与正文栏。原文保持不变。</p></div>
+        <form id="ppt-layout-form" class="ppt-form">
+          <label for="ppt-file">选择 PPTX 文件<input id="ppt-file" type="file" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation" required aria-describedby="ppt-file-help"></label>
+          <small id="ppt-file-help">每份最多 20 MB、100 页。旧版 .ppt 请先另存为 .pptx；暂不接受 PDF。</small>
+          <label for="ppt-mode">处理方式<select id="ppt-mode"><option value="layout">品牌排版：字体 + 常规文字页布局</option><option value="fonts">仅统一字体：保留原版式</option></select></label>
+          <button class="button primary" type="submit" id="ppt-submit">开始整理</button>
+          <p id="ppt-result" class="ppt-result" role="status" aria-live="polite"></p>
+          <a id="ppt-download" class="button ppt-download" download="inresearch-formatted.zip" hidden>下载 PPTX 与逐页说明（ZIP）</a>
+          <small>无需登录。文件仅用于本次排版，不保存到网站资料库，不用于训练，不调用模型。</small>
+        </form>
+        <div class="ppt-limits"><p>常规页需有一个原生标题占位符和 1–3 个普通文本框。复杂页面保留原版式；图表、表格与 SmartArt 内部样式保持。文字、数字、页数、图片、图表数据、备注和附件不改写，也不新增署名或页码。</p><p>请在打开文件的电脑上合法安装仿宋、Source Serif 4（含 Semibold）及 IBM Plex Mono。字体改变可能影响断行，下载后请逐页复核；本工具不提供 PDF 导出或人工设计验收。</p></div>
+        <noscript><p>请启用 JavaScript 后使用上传排版功能。</p></noscript>
+      </section>
     </main>
   </div>
+  <script>
+  (() => {
+    const form = document.getElementById('ppt-layout-form');
+    const fileInput = document.getElementById('ppt-file');
+    const mode = document.getElementById('ppt-mode');
+    const submit = document.getElementById('ppt-submit');
+    const result = document.getElementById('ppt-result');
+    const download = document.getElementById('ppt-download');
+    let objectUrl;
+    function clearDownload() {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      objectUrl = null; download.hidden = true; download.removeAttribute('href');
+    }
+    fileInput.addEventListener('change', () => {clearDownload(); result.textContent = '';});
+    mode.addEventListener('change', () => {clearDownload(); result.textContent = '';});
+    window.addEventListener('pagehide', clearDownload);
+    form.addEventListener('submit', async event => {
+      event.preventDefault(); clearDownload(); result.dataset.error = 'false';
+      const file = fileInput.files[0];
+      if (!file || !/\.pptx$/i.test(file.name) || file.size === 0 || file.size > 20 * 1024 * 1024) {
+        result.dataset.error = 'true'; result.textContent = '请选择不超过 20 MB 的有效 .pptx 文件。'; return;
+      }
+      submit.disabled = true; fileInput.disabled = true; mode.disabled = true;
+      result.textContent = '正在上传、整理并核对内容，请稍候…';
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 90000);
+      try {
+        const response = await fetch('/api/presentation-layout', {method: 'POST', credentials: 'same-origin', signal: controller.signal,
+          headers: {'Content-Type': 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'X-Requested-With': 'presentation-layout', 'X-Layout-Mode': mode.value}, body: file});
+        if (!response.ok) {
+          let message = '处理失败，请稍后重试。';
+          try {message = (await response.json()).error || message;} catch (_) {}
+          throw new Error(message);
+        }
+        if (!(response.headers.get('Content-Type') || '').startsWith('application/zip')) throw new Error('服务返回的文件格式异常，请稍后重试。');
+        objectUrl = URL.createObjectURL(await response.blob());
+        download.href = objectUrl; download.hidden = false;
+        const count = name => Number(response.headers.get('X-Layout-' + name) || 0);
+        result.textContent = `内容校验通过：共 ${count('Slides')} 页，${count('reflowed')} 页重新排版，${count('fonts-only')} 页仅统一文本框字体，${count('preserved')} 页保持原样。请下载并按逐页说明复核。`;
+      } catch (error) {
+        clearDownload(); result.dataset.error = 'true';
+        result.textContent = error.name === 'AbortError' ? '上传或处理超时，请检查网络或拆分文件后重试。' : error.message;
+      } finally {
+        clearTimeout(timeout); submit.disabled = false; fileInput.disabled = false; mode.disabled = false;
+      }
+    });
+  })();
+  </script>
 </body>
 </html>

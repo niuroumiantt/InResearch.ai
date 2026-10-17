@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.9。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.10。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2824。
+在册文件：2829。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 446 |
-| 运行代码 | 418 |
+| 运行代码 | 420 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 275 |
-| 测试 | 261 |
+| 配套说明 | 276 |
+| 测试 | 263 |
 
 ## 在册记录集合
 
@@ -2754,6 +2754,7 @@
 | [docs/handoff/ops-dashboard-20261007.md](handoff/ops-dashboard-20261007.md) | 配套说明 |
 | [docs/handoff/ops-loading-fix-20261008.md](handoff/ops-loading-fix-20261008.md) | 配套说明 |
 | [docs/handoff/pdf-native-text-20261007.md](handoff/pdf-native-text-20261007.md) | 配套说明 |
+| [docs/handoff/ppt-brand-layout-20261017.md](handoff/ppt-brand-layout-20261017.md) | 配套说明 |
 | [docs/handoff/pr-412-conflict-fix-20261009.md](handoff/pr-412-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/pr-417-conflict-fix-20261009.md](handoff/pr-417-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/pr-conflicts-20261017.md](handoff/pr-conflicts-20261017.md) | 配套说明 |
@@ -3807,6 +3808,7 @@
 | `src/inresearch/delivery/city_location.py` | 运行代码 |
 | `src/inresearch/delivery/export.py` | 运行代码 |
 | `src/inresearch/delivery/material_measurements.py` | 运行代码 |
+| `src/inresearch/delivery/presentation_layout.py` | 运行代码 |
 | `src/inresearch/delivery/project_capacity_map.py` | 运行代码 |
 | `src/inresearch/delivery/publish.py` | 运行代码 |
 | `src/inresearch/delivery/publish_pilot_progress.py` | 运行代码 |
@@ -3829,6 +3831,7 @@
 | `src/inresearch/interfaces/http.py` | 运行代码 |
 | `src/inresearch/interfaces/material_flow.py` | 运行代码 |
 | `src/inresearch/interfaces/pages.py` | 运行代码 |
+| `src/inresearch/interfaces/presentation_layout.py` | 运行代码 |
 | `src/inresearch/interfaces/project_access.py` | 运行代码 |
 | `src/inresearch/interfaces/public.py` | 运行代码 |
 | `src/inresearch/interfaces/reader.py` | 运行代码 |
@@ -4005,6 +4008,7 @@
 | `tests/ops_dashboard.cjs` | 测试 |
 | `tests/panel_sources.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
+| `tests/presentation_layout_browser.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
 | `tests/project_access.cjs` | 测试 |
 | `tests/rack_assembly.cjs` | 测试 |
@@ -4155,6 +4159,7 @@
 | `tests/unit/test_pdf_native_text.py` | 测试 |
 | `tests/unit/test_pilot_progress.py` | 测试 |
 | `tests/unit/test_placeholder_output.py` | 测试 |
+| `tests/unit/test_presentation_layout.py` | 测试 |
 | `tests/unit/test_product_catalog.py` | 测试 |
 | `tests/unit/test_product_catalog_companies.py` | 测试 |
 | `tests/unit/test_product_coverage.py` | 测试 |

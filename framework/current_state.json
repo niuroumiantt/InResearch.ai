@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.17.9",
+  "version": "2026.10.17.10",
   "effective_at": "2026-10-17",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -5016,13 +5016,17 @@
         "web/pages/marketing.html",
         "web/assets/marketing/wordmark-light.svg",
         "web/assets/marketing/wordmark-dark.svg",
-        "web/assets/marketing/i-light.svg"
+        "web/assets/marketing/i-light.svg",
+        "src/inresearch/delivery/presentation_layout.py",
+        "src/inresearch/interfaces/presentation_layout.py",
+        "tests/unit/test_presentation_layout.py",
+        "tests/presentation_layout_browser.cjs"
       ],
       "supersedes": [
         "interface-private-tasks-20261012"
       ],
       "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。；.123替代独立容量误述，13候选关系／10原件核对／83标签与源码、回执同步；原事实、异常和版本保留。；.124年度用电核对与零售代理收费替代旧电量费表述，禁止叠加需量；不改变通用模型或正式园区事实。；.125当前页资本成本数值关系补清，通用分项与分期来源保持候选，融资/申报不充实支；三异常和旧版本保留。；.126分主体收入回报核对，首两栋租约仅候选，合同/会计/现金期间不混用，四栋模型不自动填参。；.127原四财表未读状态由同版原图核对替代，局部借款/股本/余额对应，实收及三处1美元差/费用范围差仍待核，无自动填参。；2026-10-14：任务页匿名原件上传、指定负责人逐份批准、回执持有人查看折叠的带时间反馈；未批材料禁止研究端领取。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。；2026-10-17 intern 工作台修正：intern 登录成功及已登录访问登录页时直接进入 `/tasks.html`，无显式页签时打开“我的工作”；intern 角色不具备作业审批权限，即使私有账号文件残留旧审批工作包授权也由服务端拒绝并隐藏审批入口。处理受阻提示统一为“部分材料受阻，等待管理员处理”，使用绿色背景和边框突出；审批协作者与项目所有者的既有权限不变。；2026.10.17.4修正精确同源replay仍调用apply生成新陈述的实现缺陷，保持原件/身份/当前冲突/CAS门槛及全部旧记录。；2026-10-17 全站品牌收口与首页加载排查：采用既有 v0.2 字标、仿宋／Source Serif 4／IBM Plex Mono 与品牌令牌，marketing 纳入共享外观；旧字体预载退出，开放字体使用带许可的轻量 WOFF2，本机仿宋依赖与回退显式说明。首页只返回地图有关的公司目录，身份／容量／来源及完整登录接口保持。公网当前 CDN 仅缓存 WOFF2，其余请求回源；本地源码与测试不证明已部署或全设备字体一致。；2026-10-17 客户共享品牌资源闭包：客户可通过 GET/HEAD 读取三款当前 WOFF2 字体及明暗 SVG 字标，实际字节与在册源文件一致；仅在 site_navigation 的客户 assets 清单增加五个精确路径，不开放字体或营销整个目录。写请求、未登记资源及私有研究资料继续拒绝。",
-      "implementation_revision": "2026.10.17.8",
+      "implementation_revision": "2026.10.17.10",
       "implementation_paths": [
         "docs/handoff/global-campuses.md",
         "tests/global_campuses.cjs",
@@ -5049,7 +5053,7 @@
         "tests/unit/test_task_analysis.py",
         "tests/unit/test_source_publication.py"
       ],
-      "change_reason": "2026-10-17 客户共享品牌资源闭包：客户可通过 GET/HEAD 读取三款当前 WOFF2 字体及明暗 SVG 字标，实际字节与在册源文件一致；仅在 site_navigation 的客户 assets 清单增加五个精确路径，不开放字体或营销整个目录。写请求、未登记资源及私有研究资料继续拒绝。"
+      "change_reason": "2026-10-17 客户共享品牌资源闭包：客户可通过 GET/HEAD 读取三款当前 WOFF2 字体及明暗 SVG 字标，实际字节与在册源文件一致；仅在 site_navigation 的客户 assets 清单增加五个精确路径，不开放字体或营销整个目录。写请求、未登记资源及私有研究资料继续拒绝。；2026-10-17 新增 PPTX 品牌排版：marketing 页底部提供无模型、无持久存储的公开上传工具；逐字符字体分工及有界常规文字页布局，复杂页面保留几何。内容／资源回读校验、独立进程与请求上限、逐页说明；PPTX 需合法安装字体并人工复核，未提供 PDF、任意页面自动设计或实际上线证明。"
     },
     {
       "id": "architecture-object-evidence-20261014",
