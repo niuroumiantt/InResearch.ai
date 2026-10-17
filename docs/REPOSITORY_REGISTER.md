@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.6。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2810。
+在册文件：2814。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,13 +16,13 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 417 |
+| 运行代码 | 418 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 269 |
+| 配套说明 | 272 |
 | 测试 | 261 |
 
 ## 在册记录集合
@@ -2673,6 +2673,7 @@
 | [docs/guides/fetchdata/fetchfilings-production.md](guides/fetchdata/fetchfilings-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-market-prices.md](guides/fetchdata/fetchquotes-market-prices.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-production.md](guides/fetchdata/fetchquotes-production.md) | 配套说明 |
+| [docs/guides/fetchdata/fetchreports-outbox.md](guides/fetchdata/fetchreports-outbox.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-production.md](guides/fetchdata/fetchreports-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-research-publications.md](guides/fetchdata/fetchreports-research-publications.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-outbox.md](guides/fetchdata/fetchstat-outbox.md) | 配套说明 |
@@ -2716,6 +2717,7 @@
 | [docs/handoff/fetchfilings-outbox.md](handoff/fetchfilings-outbox.md) | 配套说明 |
 | [docs/handoff/fetchfilings-production.md](handoff/fetchfilings-production.md) | 配套说明 |
 | [docs/handoff/fetchquotes-production.md](handoff/fetchquotes-production.md) | 配套说明 |
+| [docs/handoff/fetchreports-outbox.md](handoff/fetchreports-outbox.md) | 配套说明 |
 | [docs/handoff/fetchreports-production.md](handoff/fetchreports-production.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/fetchstat-outbox.md](handoff/fetchstat-outbox.md) | 配套说明 |
@@ -2753,6 +2755,7 @@
 | [docs/handoff/pdf-native-text-20261007.md](handoff/pdf-native-text-20261007.md) | 配套说明 |
 | [docs/handoff/pr-412-conflict-fix-20261009.md](handoff/pr-412-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/pr-417-conflict-fix-20261009.md](handoff/pr-417-conflict-fix-20261009.md) | 配套说明 |
+| [docs/handoff/pr939-conflict-ci-20261017.md](handoff/pr939-conflict-ci-20261017.md) | 配套说明 |
 | [docs/handoff/pr973-conflict-ci-20261017.md](handoff/pr973-conflict-ci-20261017.md) | 配套说明 |
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/private-research-tasks-20261012.md](handoff/private-research-tasks-20261012.md) | 配套说明 |
@@ -3755,6 +3758,7 @@
 | `scripts/filings_gateway.py` | 运行代码 |
 | `scripts/publish_repository_pages.py` | 运行代码 |
 | `scripts/receive_collector_local.py` | 运行代码 |
+| `scripts/reports_gateway.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |

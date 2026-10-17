@@ -14,7 +14,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 from inresearch.materials import collector_production as production
 
 PROTOCOL='fetchstat-ssh-gateway/1'
-PROVIDERS={'fetchstat':PROTOCOL,'fetchfilings':'fetchfilings-ssh-gateway/1'}
+PROVIDERS={'fetchstat':PROTOCOL,'fetchfilings':'fetchfilings-ssh-gateway/1','fetchreports':'fetchreports-ssh-gateway/1'}
 MAX_INPUT=114*1024*1024
 DATA=Path.home()/'.local/share/inresearch.ai'
 ROOT=Path(__file__).resolve().parents[1]
