@@ -1,0 +1,174 @@
+{
+  "date": "2026-10-17",
+  "method": "One measurement per public URL from m5 using curl with compression; separate connections, not browser waterfall or a regional median. TLS is cumulative time_appconnect, not TLS-only duration. Offline comparison re-encodes the same public homepage snapshot with identical JSON/gzip settings.",
+  "public_http": [
+    {
+      "path": "/",
+      "code": 200,
+      "dns": 0.154609,
+      "tls": 0.952412,
+      "ttfb": 1.875366,
+      "total": 1.875626,
+      "wire": 1973,
+      "body": 4226,
+      "headers": [
+        "cache-control: no-cache",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/assets/theme-state.js",
+      "code": 200,
+      "dns": 0.1576,
+      "tls": 1.485367,
+      "ttfb": 1.726775,
+      "total": 1.727012,
+      "wire": 952,
+      "body": 1914,
+      "headers": [
+        "cache-control: no-cache",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/assets/site-skin.css",
+      "code": 200,
+      "dns": 0.156293,
+      "tls": 0.478182,
+      "ttfb": 0.998109,
+      "total": 1.033967,
+      "wire": 9529,
+      "body": 41822,
+      "headers": [
+        "cache-control: no-cache",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/assets/industry.js?v=20261011-headlines",
+      "code": 200,
+      "dns": 0.002449,
+      "tls": 1.525978,
+      "ttfb": 1.768273,
+      "total": 2.075201,
+      "wire": 33753,
+      "body": 92298,
+      "headers": [
+        "cache-control: no-cache",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/assets/world.geo.json",
+      "code": 200,
+      "dns": 0.001835,
+      "tls": 0.323184,
+      "ttfb": 0.746343,
+      "total": 1.839857,
+      "wire": 104856,
+      "body": 256950,
+      "headers": [
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/api/industry?overview=1",
+      "code": 200,
+      "dns": 0.00222,
+      "tls": 0.323549,
+      "ttfb": 0.947697,
+      "total": 1.716364,
+      "wire": 150182,
+      "body": 976548,
+      "headers": [
+        "cache-control: private, no-store",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/api/news?overview=1",
+      "code": 200,
+      "dns": 0.001995,
+      "tls": 0.485025,
+      "ttfb": 0.880725,
+      "total": 1.73543,
+      "wire": 137921,
+      "body": 538287,
+      "headers": [
+        "cache-control: private, no-store",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/api/navigation?page=%2F",
+      "code": 200,
+      "dns": 0.002412,
+      "tls": 0.525279,
+      "ttfb": 0.755563,
+      "total": 0.758342,
+      "wire": 307,
+      "body": 463,
+      "headers": [
+        "cache-control: private, no-store",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    },
+    {
+      "path": "/marketing.html",
+      "code": 200,
+      "dns": 0.002255,
+      "tls": 0.325448,
+      "ttfb": 0.566154,
+      "total": 0.57175,
+      "wire": 5502,
+      "body": 14066,
+      "headers": [
+        "cache-control: no-cache",
+        "content-encoding: gzip",
+        "x-cache: Miss from cloudfront",
+        "x-amz-cf-pop: LAX54-P13"
+      ]
+    }
+  ],
+  "origin_warm_seconds": {
+    "home": 0.025,
+    "industry_overview": [
+      0.312,
+      0.115
+    ],
+    "news_overview": 0.042
+  },
+  "offline_homepage_projection": {
+    "companies_before": 3105,
+    "companies_after": 51,
+    "json_before": 976548,
+    "json_after": 601647,
+    "gzip_before": 146107,
+    "gzip_after": 56472,
+    "other_fields_equal": true
+  },
+  "deployment_verified": false,
+  "cloudfront": {
+    "default": "CachingDisabled",
+    "cache_enabled_path": "/assets/fonts/*.woff2",
+    "edge_observed": "LAX54-P13",
+    "config_source": "infra/docs/cloudfront.md",
+    "changed": false
+  }
+}

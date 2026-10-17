@@ -416,6 +416,13 @@ def snapshot(root, params=None):
                             and (not params.get('country') or p['country'] == params['country'])
                             and (not params.get('province') or p['geography']['province'] == params['province'])})}
     if overview:
+        # The homepage needs names for map participants and its seven shortcuts,
+        # not the entire source-publication company directory. Keep the full
+        # directory on signed-in drilldowns and retain all map identities.
+        map_companies = {cid for row in rows for role in ('developer', 'tenant') for cid in row[role]}
+        map_companies.update(('amazon', 'microsoft', 'alphabet-google', 'meta',
+                              'oracle', 'bytedance', 'alibaba'))
+        companies = [company for company in companies if company['company_id'] in map_companies]
         row_keys=('site_id','name','country','region','location','developer','tenant','status','stage_label',
                   'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_ranged','capacity_ranges','quantity_fields','capacity_estimated','capacity_assessment','total_mw','coordinates','geography')
         rows=[{key:row[key] for key in row_keys if key in row} | {

@@ -4,12 +4,12 @@ import json
 
 STYLE = '''<style>
 .arch-figure{margin:22px 0;padding:20px;border:1px solid var(--ui-line);background:var(--ui-soft);color:var(--ui-ink);box-sizing:border-box}
-.arch-figure *{box-sizing:border-box}.arch-figure figcaption{font-size:12px;color:var(--ui-muted);margin-top:14px;line-height:1.7}
+.arch-figure *{box-sizing:border-box}.arch-figure figcaption{font-size:14px;color:var(--ui-muted);margin-top:14px;line-height:1.7}
 .arch-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.arch-node{padding:16px;border:1px solid var(--ui-line);background:var(--ui-surface);min-width:0;overflow-wrap:anywhere}
 .arch-node h3,.arch-node h4{margin:0 0 7px;font-size:16px;line-height:1.5}.arch-node p{margin:5px 0;line-height:1.7}.arch-node small{color:var(--ui-muted)}
-.arch-arrow{text-align:center;padding:10px;font-size:13px;color:var(--ui-muted)}.arch-common{border-left:3px solid var(--ui-ink)}
+.arch-arrow{text-align:center;padding:10px;font-size:14px;color:var(--ui-muted)}.arch-common{border-left:3px solid var(--ui-ink)}
 .arch-chain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.arch-number{display:block;font-size:27px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.4}
-.arch-tag{display:inline-block;border:1px solid var(--ui-line);padding:2px 7px;margin-bottom:9px;font-size:11px}.arch-limit{border-left:3px solid var(--ui-ink);padding-left:14px;line-height:1.8}
+.arch-tag{display:inline-block;border:1px solid var(--ui-line);padding:2px 7px;margin-bottom:9px;font-size:14px}.arch-limit{border-left:3px solid var(--ui-ink);padding-left:14px;line-height:1.8}
 .arch-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.arch-tools p{margin:5px 0}.arch-tools h3{margin-top:0}.arch-provider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .arch-question{padding:12px 0;border-top:1px solid var(--ui-line)}.arch-question summary{cursor:pointer;font-weight:600}.arch-figure a{text-decoration:underline}
 @media(max-width:700px){.arch-columns,.arch-chain,.arch-tools,.arch-provider-grid{grid-template-columns:1fr}.arch-figure{padding:14px;margin:18px 0}.arch-node{padding:13px}.arch-number{font-size:24px}}

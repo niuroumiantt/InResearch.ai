@@ -35,6 +35,27 @@ def native_capacity_observation(ident, **fields):
 
 
 class IndustryTests(unittest.TestCase):
+    def test_homepage_directory_contains_map_participants_without_unrelated_companies(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root/'data').mkdir()
+            (root/'data/companies.json').write_text(json.dumps({'records': [
+                {'company_id': cid, 'name': cid, 'roles': []}
+                for cid in ('builder', 'tenant', 'unrelated', 'amazon')]}))
+            (root/'data/prices.json').write_text('{"records": []}')
+            (root/'data/projects.json').write_text(json.dumps({'records': [{
+                'site_id': 'campus', 'name': 'Campus', 'country': 'US',
+                'region': 'north-america', 'status': 'L8', 'capacity_it_mw': 30,
+                'developer': ['builder'], 'tenant': ['tenant']}]}))
+            full = industry.snapshot(root)
+            home = industry.snapshot(root, {'overview': '1'})
+            self.assertEqual({c['company_id'] for c in home['companies']}, {'builder', 'tenant', 'amazon'})
+            self.assertIn('unrelated', {c['company_id'] for c in full['companies']})
+            self.assertEqual(home['totals'], full['totals'])
+            self.assertEqual(home['tracking'], full['tracking'])
+            self.assertEqual(home['research_updates'], full['research_updates'])
+            self.assertEqual(home['rows'][0]['capacity'], full['rows'][0]['capacity'])
+
     def test_recently_added_history_is_visible_without_changing_effective_time(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -1,28 +1,28 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.7。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.9。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2814。
+在册文件：2824。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 409 |
+| 静态资源 | 415 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 445 |
+| 历史快照 | 446 |
 | 运行代码 | 418 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 272 |
+| 配套说明 | 275 |
 | 测试 | 261 |
 
 ## 在册记录集合
@@ -1791,6 +1791,7 @@
 | `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | old_unread_superseded | 4 |
 | `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | remaining_unread | 3 |
 | `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | artifacts | 14 |
+| `docs/reviews/2026-10-17/site-brand-performance/measurements.json` | public_http | 9 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -1807,7 +1808,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 58 |
+| `framework/interface_manifest.json` | static_pages | 59 |
 | `framework/interface_manifest.json` | public_pages | 5 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
@@ -2755,6 +2756,7 @@
 | [docs/handoff/pdf-native-text-20261007.md](handoff/pdf-native-text-20261007.md) | 配套说明 |
 | [docs/handoff/pr-412-conflict-fix-20261009.md](handoff/pr-412-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/pr-417-conflict-fix-20261009.md](handoff/pr-417-conflict-fix-20261009.md) | 配套说明 |
+| [docs/handoff/pr-conflicts-20261017.md](handoff/pr-conflicts-20261017.md) | 配套说明 |
 | [docs/handoff/pr939-conflict-ci-20261017.md](handoff/pr939-conflict-ci-20261017.md) | 配套说明 |
 | [docs/handoff/pr973-conflict-ci-20261017.md](handoff/pr973-conflict-ci-20261017.md) | 配套说明 |
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
@@ -2782,6 +2784,7 @@
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
 | [docs/handoff/runtime-source-publication-20261012.md](handoff/runtime-source-publication-20261012.md) | 配套说明 |
 | [docs/handoff/sg3-production-and-map-cache-20261013.md](handoff/sg3-production-and-map-cache-20261013.md) | 配套说明 |
+| [docs/handoff/site-brand-performance-20261017.md](handoff/site-brand-performance-20261017.md) | 配套说明 |
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/source-projection-throughput-20261012.md](handoff/source-projection-throughput-20261012.md) | 配套说明 |
 | [docs/handoff/source-statement-intake-20261012.md](handoff/source-statement-intake-20261012.md) | 配套说明 |
@@ -3411,6 +3414,7 @@
 | `docs/reviews/2026-10-14/abilene-income/receipt.json` | 历史快照 |
 | `docs/reviews/2026-10-14/abilene-model-preview/receipt.json` | 历史快照 |
 | `docs/reviews/2026-10-14/abilene-sec-tables/receipt.json` | 历史快照 |
+| `docs/reviews/2026-10-17/site-brand-performance/measurements.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -4236,11 +4240,14 @@
 | `web/assets/brand/inresearch-ai/wordmark-primary.svg` | 静态资源 |
 | `web/assets/brand/inresearch-ai/wordmark-reverse.svg` | 静态资源 |
 | `web/assets/datacenter-news.css` | 运行代码 |
+| `web/assets/fonts/IBMPlexMono-LICENSE.txt` | 静态资源 |
 | `web/assets/fonts/LICENSE-Inter.txt` | 静态资源 |
 | `web/assets/fonts/LICENSE-NotoSansSC.txt` | 静态资源 |
+| [web/assets/fonts/SourceSerif4-LICENSE.md](../web/assets/fonts/SourceSerif4-LICENSE.md) | 配套说明 |
 | `web/assets/fonts/SourceSerif4-Regular.ttf` | 静态资源 |
 | `web/assets/fonts/SourceSerif4-Semibold.ttf` | 静态资源 |
 | `web/assets/fonts/fonts.css` | 运行代码 |
+| `web/assets/fonts/ibm-plex-mono.woff2` | 静态资源 |
 | `web/assets/fonts/inter-variable-italic.woff2` | 静态资源 |
 | `web/assets/fonts/inter-variable.woff2` | 静态资源 |
 | `web/assets/fonts/manifest.json` | 静态资源 |
@@ -4254,6 +4261,8 @@
 | `web/assets/fonts/noto-sans-sc-7.woff2` | 静态资源 |
 | `web/assets/fonts/noto-sans-sc-8.woff2` | 静态资源 |
 | `web/assets/fonts/noto-sans-sc-9.woff2` | 静态资源 |
+| `web/assets/fonts/source-serif-regular.woff2` | 静态资源 |
+| `web/assets/fonts/source-serif-semibold.woff2` | 静态资源 |
 | [web/assets/hdri/README.md](../web/assets/hdri/README.md) | 配套说明 |
 | `web/assets/hdri/lab.exr` | 静态资源 |
 | `web/assets/hdri/studio.exr` | 静态资源 |
@@ -4293,7 +4302,9 @@
 | `web/assets/marketing/ui-foundation.png` | 静态资源 |
 | `web/assets/marketing/ui-manual.pdf` | 静态资源 |
 | `web/assets/marketing/ui-workbench-dark.png` | 静态资源 |
+| `web/assets/marketing/wordmark-dark.svg` | 静态资源 |
 | `web/assets/marketing/wordmark-light.png` | 静态资源 |
+| `web/assets/marketing/wordmark-light.svg` | 静态资源 |
 | `web/assets/material-flow.css` | 运行代码 |
 | `web/assets/material-flow.js` | 运行代码 |
 | `web/assets/materials.js` | 运行代码 |

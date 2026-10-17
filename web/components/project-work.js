@@ -56,7 +56,7 @@
       form.elements.submitter.value = data.display_name;
       $('project-login-note').textContent = packages.length ? `以 ${data.display_name} 的账号提交，姓名自动记录。` : '当前没有可提交的工作包，请联系负责人授权。';
       window.dispatchEvent(new CustomEvent('project-work-loaded',{detail:data}));
-      if (initial && !location.hash) window.dispatchEvent(new CustomEvent('research-task-view-requested',{detail:{view:'my-work'}}));
+      if (initial && !location.hash) window.dispatchEvent(new CustomEvent('research-task-view-requested',{detail:{view:'my-work',defaultOnly:true}}));
       initial = false;
     } catch (error) {
       if (current !== request) return;

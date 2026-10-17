@@ -19,10 +19,10 @@ if(qaDir) require('node:fs').mkdirSync(qaDir,{recursive:true});
       await page.goto(base+'/'); await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
       assert.equal(await page.locator('#ui-skinbar').getAttribute('data-identity'),data.identity.kind);
       assert.equal(await page.locator('#ui-site-footer').count(),1,'one shared footer');
-      assert.equal(await page.locator('.ui-home img').getAttribute('src'),'/assets/marketing/wordmark-light.png');
+      assert.equal(await page.locator('.ui-home img').getAttribute('src'),'/assets/marketing/wordmark-light.svg');
       assert.equal(await page.locator('.ui-home .ui-brand-watermark').count(),0,'logo never receives a second watermark');
       await setAppearance(page,'dark');
-      assert.equal(await page.locator('.ui-home img').getAttribute('src'),'/assets/marketing/brand/wordmark-dark.png','dark mode uses the marketing reverse wordmark');
+      assert.equal(await page.locator('.ui-home img').getAttribute('src'),'/assets/marketing/wordmark-dark.svg','dark mode uses the marketing reverse wordmark');
       await setAppearance(page,'light');
       if(qaDir) await page.screenshot({path:qaDir+'/navigation-'+role+'-desktop.png'});
       if(role==='reader') {

@@ -12,7 +12,7 @@
   html[data-embedded="1"] body { padding-top: 0 !important; }
   /* 视觉规范统一由 assets/site-skin.css 提供。 */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font: 13px/1.55 var(--ui-font); padding-bottom: 60px; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.55 var(--ui-font); padding-bottom: 60px; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
   .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
@@ -21,41 +21,41 @@
   .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
   .wrap { max-width: 1100px; margin: 18px auto 0; padding: 0 16px; }
   h1 { font-size: 20px; margin-bottom: 4px; }
-  .lead { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; max-width: 80ch; }
+  .lead { color: var(--muted); font-size: 14px; margin-bottom: 14px; max-width: 80ch; }
   .kpis { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 10px 0 14px; }
-  .kpis div { font-size: 12px; color: var(--muted); }
+  .kpis div { font-size: 14px; color: var(--muted); }
   .kpis b { display: block; font-size: 20px; color: var(--text); font-weight: 600; }
   .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
-  .filters input, .filters select { background: var(--card); color: var(--text); border: 1px solid var(--line); padding: 5px 9px; font-size: 12.5px; }
+  .filters input, .filters select { background: var(--card); color: var(--text); border: 1px solid var(--line); padding: 5px 9px; font-size: 14px; }
   .filters input { flex: 1; min-width: 200px; }
-  #exactFilter { font-size: 12px; margin-bottom: 6px; }
+  #exactFilter { font-size: 14px; margin-bottom: 6px; }
   #exactFilter a { margin-left: 8px; }
-  #resultCount { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  #resultCount { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
   section.seg { margin-bottom: 18px; }
   section.seg > h2 { font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--line); display: flex; gap: 10px; align-items: baseline; }
-  section.seg > h2 span { font-size: 11.5px; color: var(--muted); font-weight: normal; }
+  section.seg > h2 span { font-size: 14px; color: var(--muted); font-weight: normal; }
   .line { display: grid; grid-template-columns: 160px 1fr auto; gap: 4px 14px; padding: 9px 0; border-bottom: 1px dashed var(--line); align-items: start; }
-  .line .who b { font-size: 13px; }
+  .line .who b { font-size: 14px; }
   .line .who a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
-  .line .who small { display: block; color: var(--muted); font-size: 11.5px; }
-  .prio { font-size: 10.5px; padding: 0 5px; margin-left: 4px; border: 1px solid var(--line); color: var(--muted); vertical-align: 1px; }
+  .line .who small { display: block; color: var(--muted); font-size: 14px; }
+  .prio { font-size: 14px; padding: 0 5px; margin-left: 4px; border: 1px solid var(--line); color: var(--muted); vertical-align: 1px; }
   .prio.P0 { border-color: var(--ink); color: var(--text); font-weight: 600; }
   .tags { display: flex; flex-wrap: wrap; gap: 5px; }
-  .tag { display: inline-block; font-size: 12px; padding: 1px 8px; border: 1px solid var(--line); background: var(--card); color: var(--muted); }
+  .tag { display: inline-block; font-size: 14px; padding: 1px 8px; border: 1px solid var(--line); background: var(--card); color: var(--muted); }
   a.tag.ok { background: var(--green-bg); border-color: transparent; color: var(--green); }
   a.tag.thin { background: var(--yellow-bg); border-color: transparent; color: var(--yellow); }
   a.tag.miss { border-style: dashed; color: var(--red); }
-  .go { font-size: 12px; white-space: nowrap; text-align: right; }
+  .go { font-size: 14px; white-space: nowrap; text-align: right; }
   .go span { color: var(--muted); }
-  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; color: var(--muted); margin-bottom: 14px; }
-  .legend .tag { font-size: 11px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+  .legend .tag { font-size: 14px; }
   .err { background: var(--red-bg); color: var(--red); padding: 14px 18px; margin: 20px 0; }
   @media (max-width: 720px) {
     .line { grid-template-columns: 1fr; }
     .go { text-align: left; }
   }
 </style>
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="stylesheet" href="/assets/fonts/fonts.css" media="not all"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <inresearch-shell data-section="bom"></inresearch-shell>

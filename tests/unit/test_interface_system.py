@@ -70,7 +70,7 @@ class InterfaceContractTests(unittest.TestCase):
         shell=(ROOT/'web/components/site-shell.js').read_text()
         self.assertNotIn('data-ui-choice',shell)
         self.assertNotIn('ui-skin-choices',shell)
-        self.assertIn("/assets/marketing/wordmark-light.png", shell)
+        self.assertIn("/assets/marketing/wordmark-light.svg", shell)
         self.assertIn('mountImageBranding', shell)
         self.assertIn('.ui-branded-image', skin)
         # 字体包必须与自己的 manifest 一致 (infra scripts/sync_fonts.py --check 的本地版)
@@ -84,7 +84,31 @@ class InterfaceContractTests(unittest.TestCase):
             self.assertEqual(routes.get('/assets/fonts/'+name),'web/assets/fonts/'+name,name)
         self.assertNotIn('/assets/InterVariable.woff2',routes)
         css=(fonts/'fonts.css').read_text()
-        self.assertIn('--font-sans:',css);self.assertIn('"Noto Sans SC"',css)
+        self.assertIn('--font-sans:',css);self.assertIn('"FangSong"',css);self.assertNotIn('"Noto Sans SC"',css)
+
+    def test_brand_fonts_and_marketing_share_the_shell(self):
+        css=(ROOT/'web/assets/fonts/fonts.css').read_text()
+        self.assertLess(len(css.encode()), 3000)
+        self.assertIn('font-display:swap', css)
+        self.assertIn('U+2000-2013,U+2020-2025,U+2027-2E7F', css)
+        self.assertNotIn('src:local(', css)
+        self.assertIn('source-serif-regular.woff2', css)
+        self.assertNotIn('noto-sans-sc-', css)
+        marketing=(ROOT/'web/pages/marketing.html').read_text()
+        self.assertIn('<inresearch-shell data-section="guide"', marketing)
+        self.assertIn('/assets/marketing/i-light.svg', marketing)
+        self.assertNotIn('@font-face', marketing)
+        self.assertNotIn(':root', marketing)
+        self.assertIn('loading="lazy"', marketing)
+        shell=(ROOT/'web/components/site-shell.js').read_text()
+        self.assertIn('LOGO_DARK_SRC : LOGO_LIGHT_SRC', shell)
+        self.assertNotIn('logo.src = WATERMARK_SRC', shell)
+        self.assertIn('未安装时使用系统衬线字体', shell)
+        self.assertNotIn('new FontFace', shell)
+        manifest=json.loads((ROOT/'framework/interface_manifest.json').read_text())
+        for source in set(manifest['page_sources'].values()) | set(manifest['template_fragments']):
+            html=(ROOT/source).read_text()
+            self.assertNotRegex(html, r'rel="preload"[^>]*noto-sans-sc')
 
     def test_pages_declare_a_directory_section(self):
         from inresearch.interfaces import public

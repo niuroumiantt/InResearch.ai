@@ -46,20 +46,18 @@ const BG = {light:'rgb(246, 245, 242)', dark:'rgb(16, 24, 32)'};
    const settledUrl=page.url();
    // Shared fonts: Source Serif 4 drives Latin, numbers and ASCII punctuation;
    // FangSong remains the CJK fallback required by the brand system.
-   const cacheFontId=file==='ops.html'?'ops-fonts':['index.html','industry.html','projects.html','project.html','market.html','regions.html'].includes(file)?'home-fonts':null;
-   if(cacheFontId)await page.waitForFunction(id=>['cached','fallback'].includes(document.getElementById(id).dataset.fonts),cacheFontId);
+   await page.waitForFunction(()=>document.querySelector('link[href="/assets/fonts/fonts.css"]').dataset.fonts==='brand');
    const fonts=await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').map(f=>f.family)});
-   if(cacheFontId)assert.ok(fonts.every(f=>['Source Serif 4','Inter','Noto Sans SC'].includes(f)),file+' reuses cached brand fonts or system fallback');
-   else assert.ok(fonts.includes('Source Serif 4'),file+' bundled brand fonts loaded: '+fonts.join(','));
-   assert.match((await measure()).font,/^"Source Serif 4", FangSong/,file+' body font stack');
+   assert.ok(fonts.includes('Source Serif 4'),file+' bundled brand fonts loaded: '+fonts.join(','));
+   assert.match((await measure()).font,/^"Source Serif 4", FangSong, STFangsong/,file+' body font stack');
    for (const mode of ['light','dark']) {
      await setAppearance(page, mode);
      const state=await measure(); assert.equal(state.theme,mode);assert.equal(state.bar,1);
      const url=page.url();assert.equal(url,settledUrl);
      const radius=await page.evaluate(()=>getComputedStyle(document.querySelector('.board,.rg-node,.hud,.card,.kpi')||document.documentElement).borderRadius);
-     if (['index.html','research.html','bom3d.html','rack3d.html'].includes(file)) assert.equal(radius,'0px',file+' panel geometry');
+     if (['index.html','research.html','bom3d.html','rack3d.html'].includes(file)) assert.ok(['0px','4px'].includes(radius),file+' brand panels / technical geometry');
      assert.equal(state.bg,BG[mode]);
-     if(dir && ['index.html','research.html','admin/product/index.html','doc.html','bom3d.html','rack3d.html'].includes(file) && mode==='light'){
+     if(dir && ['index.html','research.html','admin/product/index.html','doc.html','bom3d.html','rack3d.html','marketing.html'].includes(file) && mode==='light'){
        await page.waitForTimeout(file.includes('3d')?2200:200);
        await page.screenshot({path:path.join(dir,file.replaceAll('/','-')+'-'+mode+'.png')});
      }
