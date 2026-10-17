@@ -6,11 +6,11 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2792。
+在册文件：2794。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 404 |
+| 静态资源 | 406 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -4269,6 +4269,8 @@
 | `web/assets/marketing/icons-comms.png` | 静态资源 |
 | `web/assets/marketing/icons-compute.png` | 静态资源 |
 | `web/assets/marketing/icons-core.png` | 静态资源 |
+| `web/assets/marketing/inresearch_ai_品牌PPT模板_通用可复制_v0.2.pptx` | 静态资源 |
+| `web/assets/marketing/inresearch_ai_品牌PPT母版_通用设计_v0.2.pptx` | 静态资源 |
 | `web/assets/marketing/logo-manual.pdf` | 静态资源 |
 | `web/assets/marketing/marcomm-overview.png` | 静态资源 |
 | `web/assets/marketing/typography-manual.pdf` | 静态资源 |
