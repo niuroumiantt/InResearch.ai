@@ -223,6 +223,16 @@ def totals(rows):
             'sites': len(sites), 'unknown': sum(not p['capacity_known'] and not p.get('capacity_ranged') for p in sites),
             'ranged_sites': sum(bool(p.get('capacity_ranged')) for p in sites),
             'unlocated': sum(p['coordinates'] is None for p in sites),
+            'city_located_sites': sum(p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') == 'city' for p in sites),
+            'city_reference_points': len({p.get('geography', {}).get('coordinate_source', {}).get('url') or
+                (p.get('country'), p.get('geography', {}).get('province'), p.get('geography', {}).get('city')) for p in sites if p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') == 'city'}),
+            'precise_located_sites': sum(p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') in
+                ('site', 'building') for p in sites),
+            'address_located_sites': sum(p['coordinates'] is not None and
+                p.get('geography', {}).get('coordinate_source', {}).get('precision') == 'address' for p in sites),
             'portfolios_excluded': sum(p['portfolio'] for p in rows)}
 
 
@@ -407,7 +417,7 @@ def snapshot(root, params=None):
                             and (not params.get('province') or p['geography']['province'] == params['province'])})}
     if overview:
         row_keys=('site_id','name','country','region','location','developer','tenant','status','stage_label',
-                  'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_ranged','capacity_ranges','quantity_fields','capacity_estimated','capacity_assessment','total_mw','coordinates')
+                  'verified_date','portfolio','duplicate_of','adoption','ai_tagged','lifecycle','capacity','capacity_known','capacity_ranged','capacity_ranges','quantity_fields','capacity_estimated','capacity_assessment','total_mw','coordinates','geography')
         rows=[{key:row[key] for key in row_keys if key in row} | {
                'verification_status':'adopted_fields' if row.get('adoption') else 'registered'} for row in rows]
         for row in rows:
@@ -422,7 +432,8 @@ def snapshot(root, params=None):
         companies=[{key:c.get(key) for key in company_keys} for c in companies]
         leaders=[{key:c.get(key) for key in (*company_keys,'totals')} for c in leaders]
         audit={key:audit[key] for key in ('operating','construction','planning','estimated','estimated_sites','sites','known','unknown','ranged_sites','unlocated',
-               'portfolios_excluded','duplicates_excluded','oldest_verified','latest_verified')}
+               'portfolios_excluded','duplicates_excluded','oldest_verified','latest_verified',
+               'city_located_sites','city_reference_points','precise_located_sites','address_located_sites')}
     return {'overview':overview,'schema_version': 1, 'generated_at': date.today().isoformat(), 'filters': params,
             'coverage': {'label': '已追踪项目 · 非全球普查', 'oldest_verified': dates[0] if dates else None,
                          'latest_verified': dates[-1] if dates else None},

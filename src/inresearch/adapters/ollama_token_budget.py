@@ -1,4 +1,4 @@
-"""Exact local Ollama token budget for whole-campus adjudication only.
+"""Exact local Ollama token budget for explicit native-campus stages.
 
 The ordinary model adapter keeps its conservative byte guard. This narrow path
 uses Ollama 0.33.3's real renderer and the already loaded, bound GGUF tokenizer;
@@ -37,6 +37,14 @@ def encoded(value):
 
 def digest(value):
     return hashlib.sha256(encoded(value)).hexdigest()
+
+
+class ReadingBudgetExceeded(InferenceError):
+    """A fully bound, measured reading input overflow before any completion."""
+    def __init__(self, body, proof):
+        super().__init__("campus_reading_token_budget_exceeded")
+        self.budget_evidence = json.loads(encoded({"request": body,
+            "request_sha256": digest(body), "token_budget": proof}))
 
 
 class CompletionUnverified(InferenceError):
@@ -314,7 +322,7 @@ def _unchanged(base, model, runner):
         raise InferenceError("campus_token_runtime_changed")
 
 
-def _body(profile, system, user, schema):
+def _body(profile, system, user, schema, *, reading=False):
     if (profile.backend != "ollama" or profile.model != MODEL
             or profile.request_model not in ("", MODEL)
             or profile.url not in ("http://127.0.0.1:11434", "http://localhost:11434")
@@ -323,8 +331,12 @@ def _body(profile, system, user, schema):
             or "text_json" not in profile.capabilities):
         raise InferenceError("campus_token_profile_unverified")
     if (not isinstance(system, str) or not system or not isinstance(user, str)
-            or not user or json_object(user).get("stage") != "whole_campus_adjudication"
-            or not isinstance(schema, dict) or schema.get("type") != "object"):
+            or not user or not isinstance(schema, dict) or schema.get("type") != "object"):
+        raise InferenceError("campus_token_scope_required")
+    scope = json_object(user)
+    stage = "native_campus_reading" if reading else "whole_campus_adjudication"
+    if (scope.get("stage") != stage or reading
+            and scope.get("reading_recipe") != "campus-packed-reading-v1"):
         raise InferenceError("campus_token_scope_required")
     options = {"num_ctx": CONTEXT, "num_predict": OUTPUT, "temperature": 0}
     if profile.repeat_penalty is not None:
@@ -353,8 +365,8 @@ def _render(base, body, timeout):
     return rendered
 
 
-def _prepare(client, system, user, json_schema):
-    body = _body(client.profile, system, user, json_schema)
+def _prepare(client, system, user, json_schema, *, reading=False):
+    body = _body(client.profile, system, user, json_schema, reading=reading)
     base = client.profile.url
     model = _model_identity(base)
     rendered = _render(base, body, client.profile.timeout)
@@ -375,8 +387,6 @@ def _prepare(client, system, user, json_schema):
             or any(type(token) is not int or token < 0 for token in tokens)):
         raise InferenceError("campus_token_count_unverified")
     _unchanged(base, model, runner)
-    if len(tokens)+OUTPUT+RESERVE > CONTEXT:
-        raise InferenceError("campus_adjudication_token_budget_exceeded")
     proof = {"version": "ollama-campus-token-v2", "request_sha256": digest(body),
              "schema_sha256": digest(body["format"]),
              "system_sha256": hashlib.sha256(system.encode()).hexdigest(),
@@ -387,6 +397,14 @@ def _prepare(client, system, user, json_schema):
              "max_output_tokens": OUTPUT, "reserve_tokens": RESERVE,
              "truncate": False, "shift": False, "think": False,
              "model_binding": model, "tokenizer_binding": runner}
+    if reading:
+        proof.update(stage="native_campus_reading", reading_recipe="campus-packed-reading-v1")
+    if len(tokens)+OUTPUT+RESERVE > CONTEXT:
+        if reading:
+            # Only this measured, fully bound pre-generation condition may
+            # authorize a lossless split. Other errors carry no budget proof.
+            raise ReadingBudgetExceeded(body, proof)
+        raise InferenceError("campus_adjudication_token_budget_exceeded")
     return body, proof
 
 
@@ -448,6 +466,66 @@ def generate(client, system, user, *, json_schema, before_completion=None):
                 return result
             except (InferenceError, OSError, ValueError, KeyError, IndexError, TypeError, AttributeError) as error:
                 # This evidence is audit-only, never an accepted adjudication.
+                raise CompletionUnverified(error, body, proof, response) from None
+    except InferenceError:
+        raise
+    except (OSError, ValueError, KeyError, IndexError, TypeError, AttributeError):
+        raise InferenceError("campus_token_runtime_unverified") from None
+
+
+def generate_reading(client, system, user, *, json_schema,
+                     before_completion=None, before_dispatch=None):
+    """Measure then durably dispatch one frozen native window, never truncate.
+
+    Resource checks run before renderer scheduling and again before completion.
+    The caller journals the bound request in before_dispatch; an uncertain HTTP
+    outcome therefore cannot be silently regenerated by a later receive cycle.
+    """
+    try:
+        with client._slots:
+            try:
+                if before_completion:
+                    before_completion()
+                body, proof = _prepare(client, system, user, json_schema, reading=True)
+                if before_completion:
+                    before_completion()
+                revalidate(client, proof)
+                if digest(body) != proof["request_sha256"]:
+                    raise InferenceError("campus_token_request_changed")
+            except InferenceError as error:
+                if error.code in ("campus_token_runner_unavailable", "campus_token_runtime_changed"):
+                    raise InferenceError("campus_token_runner_contention") from None
+                raise
+            if before_dispatch:
+                # Copies keep the journal callback from changing measured input
+                # or making a caller-supplied proof authoritative.
+                before_dispatch(json.loads(encoded(body)), json.loads(encoded(proof)))
+            if digest(body) != proof["request_sha256"]:
+                raise InferenceError("campus_token_request_changed")
+            response = _call(client.profile.url+"/api/chat", body, client.profile.timeout)
+            try:
+                revalidate(client, proof)
+                client._verify_model(response.get("model"))
+                if response.get("done_reason") == "length":
+                    raise InferenceError("model_output_truncated")
+                if (response.get("model") != MODEL or response.get("remote_host")
+                        or response.get("remote_model") or response.get("done") is not True
+                        or response.get("done_reason") != "stop" or response.get("_debug_info")):
+                    raise InferenceError("model_output_incomplete")
+                message = response["message"]
+                if message.get("thinking") or message.get("tool_calls") or message.get("images"):
+                    raise InferenceError("model_output_incomplete")
+                result = client._provenance(json_object(message.get("content")),
+                                            response["model"], system, user)
+                result["_model"]["token_budget"] = {**proof, "generation_binding": {
+                    "model_binding_sha256": digest(proof["model_binding"]),
+                    "request_sha256": proof["request_sha256"], "actual_model": response["model"],
+                    "model_verified_before_and_after": True, "response_sha256": digest(response)}}
+                evidence = json.loads(encoded({"request": body,
+                    "request_sha256": digest(body), "token_budget": proof,
+                    "response": response, "response_sha256": digest(response)}))
+                return result, evidence
+            except (InferenceError, OSError, ValueError, KeyError, IndexError, TypeError, AttributeError) as error:
                 raise CompletionUnverified(error, body, proof, response) from None
     except InferenceError:
         raise

@@ -15,7 +15,7 @@ import time
 import threading
 
 from inresearch.storage import json_stream
-from inresearch.storage.files import iter_json_bytes, locked, write_json_streaming
+from inresearch.storage.files import iter_json_bytes, locked, write_json, write_json_streaming
 from inresearch.storage.layout import workspace_path
 
 PATH = 'data/raw/source-publication/registry.json'
@@ -182,7 +182,7 @@ def _merge_rows(old, new):
     return result
 
 
-def _projects(root, runtime):
+def _projects(root, runtime, *, include_city=True):
     from inresearch.knowledge import site_register
     doc = strict_json((Path(root)/'data/projects.json').read_text())
     by_id = {r['site_id']: r for r in doc['records']}
@@ -199,6 +199,9 @@ def _projects(root, runtime):
         if baseline is not None:
             site_register.check_initial_identity(baseline['identity_registration'], row)
         row['observations'] = _merge_rows(row.get('observations', []), addition['observations'])
+        if include_city and addition.get('city_location'):
+            from inresearch.delivery import city_location
+            city_location.project(row, addition['city_location'])
     return doc
 
 
@@ -255,7 +258,9 @@ def bundle(root):
     """Export only ordinary registrations; verified research cannot bypass its queue."""
     from inresearch.knowledge import object_observations as ledger
     sites = []
-    for row in projects(root)['records']:
+    # City supplements have their own dual-source receipt, never masquerade as
+    # original identity fields in the ordinary registration export.
+    for row in _projects(root, state(root), include_city=False)['records']:
         additions = [v for v in row.get('observations', []) if v.get('schema_version') == 3]
         if additions:
             sites.append({'site_id': row['site_id'],
@@ -406,17 +411,26 @@ def install(root, payload, *, expected_state_sha=None):
 def main(argv=None):
     from inresearch.paths import project_root
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=('export','install'))
+    parser.add_argument('action', choices=('export','install','inspect','locate-city'))
     parser.add_argument('--root',type=Path,default=project_root())
     parser.add_argument('--input',type=Path)
     parser.add_argument('--output',type=Path)
+    parser.add_argument('--geography',type=Path)
     args = parser.parse_args(argv)
     if args.action == 'export':
         result = bundle(args.root)
+    elif args.action == 'inspect':
+        result = {'state_sha256': digest(state(args.root))}
     else:
         text = args.input.read_text() if args.input else sys.stdin.read(64*1024*1024+1)
         if len(text.encode()) > 64*1024*1024: raise ValueError('publication_too_large')
-        result = install(args.root, strict_json(text))
+        payload = strict_json(text)
+        if args.action == 'locate-city':
+            if args.geography is None: parser.error('locate-city requires --geography')
+            from inresearch.delivery import city_location
+            result = city_location.install(args.root, payload, args.geography)
+        else:
+            result = install(args.root, payload)
     if args.output: write_json(args.output, result)
     else: print(json.dumps(result,ensure_ascii=False,allow_nan=False))
     return 0

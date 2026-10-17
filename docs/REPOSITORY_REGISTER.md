@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.16.34。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.16.36。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2787。
+在册文件：2792。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 409 |
+| 运行代码 | 411 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
 | 配套说明 | 266 |
-| 测试 | 254 |
+| 测试 | 257 |
 
 ## 在册记录集合
 
@@ -3793,6 +3793,7 @@
 | `src/inresearch/delivery/__init__.py` | 运行代码 |
 | `src/inresearch/delivery/acquisition_status.py` | 运行代码 |
 | `src/inresearch/delivery/backup.py` | 运行代码 |
+| `src/inresearch/delivery/city_location.py` | 运行代码 |
 | `src/inresearch/delivery/export.py` | 运行代码 |
 | `src/inresearch/delivery/material_measurements.py` | 运行代码 |
 | `src/inresearch/delivery/project_capacity_map.py` | 运行代码 |
@@ -3879,6 +3880,7 @@
 | `src/inresearch/materials/native_review_contract.py` | 运行代码 |
 | `src/inresearch/materials/native_review_layouts.py` | 运行代码 |
 | `src/inresearch/materials/organize.py` | 运行代码 |
+| `src/inresearch/materials/packed_reading.py` | 运行代码 |
 | `src/inresearch/materials/paths.py` | 运行代码 |
 | `src/inresearch/materials/preflight.py` | 运行代码 |
 | `src/inresearch/materials/reader_contracts.py` | 运行代码 |
@@ -4030,6 +4032,7 @@
 | `tests/unit/test_campus_atlas_assets.py` | 测试 |
 | `tests/unit/test_campus_exploded_assets.py` | 测试 |
 | `tests/unit/test_campus_plan_assets.py` | 测试 |
+| `tests/unit/test_campus_reading_budget.py` | 测试 |
 | `tests/unit/test_capacity_consumers.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_browse.py` | 测试 |
@@ -4037,6 +4040,7 @@
 | `tests/unit/test_catalog_ownership.py` | 测试 |
 | `tests/unit/test_catalog_supplement.py` | 测试 |
 | `tests/unit/test_ci_scope.py` | 测试 |
+| `tests/unit/test_city_location.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
@@ -4131,6 +4135,7 @@
 | `tests/unit/test_ollama_token_budget.py` | 测试 |
 | `tests/unit/test_operations.py` | 测试 |
 | `tests/unit/test_optional_mapping_ids.py` | 测试 |
+| `tests/unit/test_packed_reading.py` | 测试 |
 | `tests/unit/test_panel_source_assets.py` | 测试 |
 | `tests/unit/test_pdf_native_text.py` | 测试 |
 | `tests/unit/test_pilot_progress.py` | 测试 |

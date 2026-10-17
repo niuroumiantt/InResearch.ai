@@ -66,6 +66,11 @@ class FullReviewWorkerTests(unittest.TestCase):
                      'full_analysis': {'attempt_id': '3'*36, 'layout_id': 'fixture',
                         'manifest_sha256': 'b'*64, 'package_ids': ['a'*64],
                         'available_package_ids': ['a'*64], 'completed_package_ids': []}}
+        # This suite keeps exercising already-started legacy packages. Packed
+        # selection and untouched packages have their own integration suite.
+        self.legacy_recipe = patch.object(worker.packed_reading, 'select_recipe',
+                                          return_value=worker.packed_reading.LEGACY)
+        self.legacy_recipe.start(); self.addCleanup(self.legacy_recipe.stop)
         approved = patch.object(worker, 'require_approved')
         approved.start(); self.addCleanup(approved.stop)
         manifest = patch.object(worker.contract, 'build_manifest', return_value=self.manifest)
