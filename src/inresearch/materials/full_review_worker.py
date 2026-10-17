@@ -319,7 +319,10 @@ def proposal(item, original, folder, model_client=None, before_generate=None, pr
     if not 0 <= state['next'] <= len(parts):
         raise ValueError('campus_checkpoint_invalid')
     index = state['next']
-    if not state_path.exists():
+    if not state_path.exists() or state.get('total') != len(parts):
+        # plan.json is the atomic partition commit. A process may stop before
+        # updating this advisory total; next and all accepted chunks stay put.
+        state['total'] = len(parts)
         atomic(state_path, state)
     if progress:
         progress(packet['package_id'], index, len(parts)+1)
@@ -353,10 +356,16 @@ def proposal(item, original, folder, model_client=None, before_generate=None, pr
                                                    json_schema=reading_schema(parts[index]))
             except models.InferenceError as error:
                 if packed:
+                    split_state = None
                     if packed_reading.split_budget(error, plan, parts, index, run_folder,
                             review_worker.SYSTEM, reading_schema):
+                        split_state = 'split_input_budget'
+                    elif packed_reading.split_output_limit(error, plan, parts, index, run_folder,
+                            failures, review_worker.SYSTEM, reading_schema):
+                        split_state = 'split_output_limit'
+                    if split_state:
                         atomic(plan_path, plan)
-                        state.update(total=len(plan['parts']), state='split_input_budget')
+                        state.update(total=len(plan['parts']), state=split_state)
                         atomic(state_path, state)
                         return None
                     raise

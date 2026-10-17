@@ -2,6 +2,16 @@
 
 现行源：本文件。2026-10-10 替代每个 PR 与 main push 无条件执行完整浏览器及存储回归的配置。完整测试的场景、断言、密度和单项期限不缩减；只改变本次需要运行的范围。
 
+## 执行位置与身份门禁（2026.10.17.5）
+
+本仓 `niuroumiantt/InResearch.ai` 当前为公开仓库，全部 CI 使用 `ubuntu-latest`。公开、缺失或非布尔仓库可见性均不能路由到持久 Spark runner。未来仅当仓库为私有、infra 已登记专属仓库身份和 runner、仓库变量 `SPARK_CI_ENABLED=true` 显式启用时，同仓非 fork PR、main push、workflow_dispatch 和 schedule 才使用 `self-hosted`、`Linux`、`ARM64`、`spark-ci`。fork、缺失或不一致 head、未知事件仍走 hosted，不新增 pull_request_target，不改变仓库可见性。
+
+`validate.yml` 五个作业与 `verify-data-center-publication.yml` 的 verify 使用同一分流。每个 self-hosted 作业仍在 checkout 前用本作业只读 `github.token` 执行系统 `python3 /usr/local/lib/ci-prefetch.py --authorize-only`。系统脚本、根所有的绑定及私有仓库门禁保持；失败不得忽略、继续或回退为未授权检出。登记、私有性和显式开关缺一不可；工作流本身不替代系统身份校验或恶意 workflow 隔离。
+
+保留原 checkout、完整 base/head 差异、Node22、Python3.12、依赖缓存、19 个浏览器分片、存储／缓存／单元回归、所有场景和超时，以及 `validate`、`browser (core)` 两个必过检查。不得用手工状态、跳过或另一仓库的结果代替本 PR 最终 head 的真实 CI。
+
+2026-10-17 PR973 原 scope 在系统授权阶段报 `private_repository_only`；这是公开仓库与私有 runner 策略不匹配。公开仓库改走 hosted，不放宽 infra 门禁，也不启动暂停的 Spark runner、Reader、intake 或研究服务。此前“完整 Spark CI 已可执行”的候选假设由本节替代；实际执行位置与成功以每次 GitHub Actions 回执为准。
+
 ## 分流
 
 `scripts/ci_scope.py` 对精确 base/head Git 树的完整差异分类，不使用有文件数截断的 PR 文件列表。PR 使用事件 base 与 GitHub 合并测试提交，main push 使用 before/after；比较失败、缺失基线、空差异、删除、改名、符号链接或未知路径均跑全套。
@@ -16,7 +26,7 @@
 | `data/research_knowledge.json` 仅追加有界研究资料 | 基础检查、固定研究/来源/审核/发布链路/HTTP 单元回归，单个 `browser (research)` 作业内执行既有 research_delivery 与 research_summary；不跑视觉资产、3D、装配、园区及存储容器 |
 | `data/projects.json` 仅向既有站点追加 v2 观测 | 基础检查、固定研究回归及站点时间/数量/原件采用/项目 HTTP 回归，`browser (research)` 与 `browser (industry)`；不跑无关 3D、装配、园区矩阵及存储容器 |
 | `data/object_observations.json` 仅追加有界对象观测 | 基础检查、固定研究/来源/对象采用/Fetchspec/HTTP回归，research 与 industry 浏览器；保留全部旧对象及记录，可添加完整且被新观测引用的唯一对象；无关3D与存储容器不运行 |
-| 程序、页面结构、权限、schema、非追加研究数据、依赖、测试、CI、现行规则及未知改动 | 原完整单元回归、17 个浏览器分片、资产契约、verify、indicators 和 storage-container |
+| 程序、页面结构、权限、schema、非追加研究数据、依赖、测试、CI、现行规则及未知改动 | 原完整单元回归、19 个浏览器分片、资产契约、verify、indicators 和 storage-container |
 
 混合提交取所有影响的并集，任一全套条件覆盖轻量条件。规则入口和登记的操作指南不当成普通文案。派生清单仍须经治理检查验证；current_state 仅版本/日期变化、verification_contract 仅版本/审阅时间与本次实际修改文件的既有摘要变化可以随内容提交走轻量路线，规则和验收要求语义变化必须全套。图片是否很小不作为免检依据；资产登记或其它规范一起变化时按其实际范围处理。
 

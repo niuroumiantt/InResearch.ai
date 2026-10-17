@@ -2,7 +2,8 @@
 
 The intake process lock serializes recipe choice and all writes. A dispatch is
 journaled before its HTTP request; a lost outcome is never an invitation to
-regenerate. Only a measured *input* overflow may split a not-yet-generated part.
+regenerate. A measured input overflow or a fully bound, explicitly permitted
+output-limit receipt may split only the unfinished part, retaining all audits.
 """
 import hashlib
 import json
@@ -13,6 +14,7 @@ from inresearch.materials.inbox import atomic
 VERSION = 'campus-packed-reading-v1'
 STAGE = 'native_campus_reading'
 LEGACY = 'legacy-byte-reading'
+OUTPUT_SPLIT = 'campus-reading-output-split-v1'
 
 
 def encoded(value):
@@ -49,7 +51,8 @@ def _bound_evidence(evidence, system, part, schema, *, over_budget=False):
     if not isinstance(evidence, dict):
         raise ValueError('campus_reading_audit_changed')
     body, proof = evidence.get('request'), evidence.get('token_budget')
-    if not isinstance(body, dict) or not isinstance(proof, dict):
+    if (not isinstance(body, dict) or not isinstance(proof, dict)
+            or not isinstance(body.get('options'), dict)):
         raise ValueError('campus_reading_audit_changed')
     request_sha = digest(body)
     if (evidence.get('request_sha256') != request_sha or proof.get('request_sha256') != request_sha
@@ -101,6 +104,92 @@ def _audit_path(folder, index, failures, part):
     return folder/'reading-audits'/f'chunk-{index:05d}'/digest(part)/f'attempt-{failures+1:02d}'
 
 
+def _output_policy(evidence, folder, index, failures):
+    proof = evidence['token_budget']
+    return {'version': OUTPUT_SPLIT, 'request_sha256': evidence['request_sha256'],
+            'token_budget_sha256': digest(proof),
+            'attempt_id': folder.parent.parent.name, 'package_id': folder.parent.name,
+            'task_sha256': folder.name, 'window_index': index, 'response_attempt': failures+1,
+            **{key: proof[key] for key in ('input_sha256', 'system_sha256', 'schema_sha256')}}
+
+
+def output_split_preview(folder, index, failures, part, system, schema, *, require_policy=True):
+    """Read-only exact receipt check; old blocked audits need explicit operator approval.
+
+    The adapter emits this precise reason only after its post-completion model
+    revalidation. No partial JSON is parsed or accepted as a reading result.
+    """
+    audit = _audit_path(folder, index, failures, part)
+    dispatch_path, unverified_path = audit/'dispatch.json', audit/'unverified.json'
+    if (not dispatch_path.is_file() or not unverified_path.is_file()
+            or any((audit/name).exists() for name in ('returned.json', 'response.json'))):
+        raise ValueError('campus_reading_output_limit_unverified')
+    raw_dispatch, raw_unverified = dispatch_path.read_bytes(), unverified_path.read_bytes()
+    dispatch, saved = json.loads(raw_dispatch), json.loads(raw_unverified)
+    if (not isinstance(saved, dict) or set(saved) != {'completion', 'completion_sha256'}
+            or saved['completion_sha256'] != digest(saved['completion'])):
+        raise ValueError('campus_reading_output_limit_unverified')
+    evidence = saved['completion']
+    proof = _bound_evidence(evidence, system, part, schema)
+    from inresearch.adapters import ollama_token_budget as budget
+    model = proof['model_binding']
+    tokenizer = proof['tokenizer_binding']
+    body = evidence['request']
+    model_path = str(budget.MODEL_ROOT/'blobs'/('sha256-'+budget.MODEL_SHA))
+    if (set(body) != {'model', 'messages', 'format', 'options', 'stream', 'think', 'truncate', 'shift'}
+            or not {'num_ctx', 'num_predict', 'temperature'} <= set(body['options'])
+            or set(body['options']) - {'num_ctx', 'num_predict', 'temperature', 'repeat_penalty', 'repeat_last_n'}
+            or body['options']['temperature'] != 0
+            or not isinstance(model, dict) or not isinstance(tokenizer, dict)
+            or model.get('ollama_version') != budget.VERSION
+            or model.get('manifest_sha256') != budget.MANIFEST_SHA
+            or model.get('model_layer_sha256') != budget.MODEL_SHA
+            or model.get('renderer') != 'qwen3.8' or model.get('parser') != 'qwen3.5'
+            or not isinstance(model.get('model_file'), dict)
+            or model.get('model_file', {}).get('path') != model_path
+            or tokenizer.get('model_path') != model_path
+            or tokenizer.get('context') not in (16384, 32768)
+            or not all(isinstance(proof.get(key), str) and len(proof[key]) == 64
+                       and all(c in '0123456789abcdef' for c in proof[key])
+                       for key in ('rendered_sha256', 'token_ids_sha256'))
+            or type(proof.get('rendered_utf8_bytes')) is not int or proof['rendered_utf8_bytes'] <= 0):
+        raise ValueError('campus_reading_output_limit_unverified')
+    response = evidence.get('response')
+    if (set(evidence) != {'phase', 'reason', 'request', 'request_sha256', 'token_budget',
+                         'response', 'response_sha256'}
+            or evidence['phase'] != 'completion_returned_unverified'
+            or evidence['reason'] != 'model_output_truncated'
+            or dispatch != {key: evidence[key] for key in ('request', 'request_sha256', 'token_budget')}
+            or not isinstance(response, dict) or evidence['response_sha256'] != digest(response)
+            or response.get('model') != 'qwen3.8:27b' or response.get('done') is not True
+            or response.get('done_reason') != 'length'
+            or type(response.get('eval_count')) is not int or response['eval_count'] != 4096
+            or type(response.get('prompt_eval_count')) is not int
+            or response['prompt_eval_count'] != proof['input_tokens']
+            or any(response.get(key) for key in ('remote_host', 'remote_model', '_debug_info', 'error'))):
+        raise ValueError('campus_reading_output_limit_unverified')
+    message = response.get('message')
+    if (not isinstance(message, dict) or message.get('role') != 'assistant'
+            or not isinstance(message.get('content'), str) or not message['content']
+            or any(message.get(key) for key in ('thinking', 'tool_calls', 'images'))):
+        raise ValueError('campus_reading_output_limit_unverified')
+    policy = _output_policy(evidence, folder, index, failures)
+    policy_path = audit/'output-split-policy.json'
+    if require_policy and (not policy_path.is_file() or json.loads(policy_path.read_text()) != policy):
+        raise ValueError('campus_reading_output_split_not_authorized')
+    if len(part['native_fragments']) < 2:
+        raise models.InferenceError('campus_reading_output_limit_unsplittable')
+    children = _split(part)
+    row = {'kind': OUTPUT_SPLIT, 'index': index, 'attempt': failures+1,
+           'input_sha256': digest(part), 'error': evidence['reason'],
+           'dispatch_sha256': hashlib.sha256(raw_dispatch).hexdigest(),
+           'unverified_sha256': hashlib.sha256(raw_unverified).hexdigest(),
+           'completion_sha256': saved['completion_sha256'],
+           'response_sha256': evidence['response_sha256'], 'policy_sha256': digest(policy),
+           'child_input_sha256': [digest(child) for child in children]}
+    return {'policy': policy, 'split': row, 'children': children}
+
+
 def _verified_return(saved, dispatch, system, part, schema):
     if (not isinstance(saved, dict)
             or set(saved) != {'result', 'result_sha256', 'completion', 'completion_sha256'}
@@ -137,6 +226,10 @@ def generate(client, system, part, schema, folder, index, failures, before_compl
         result = _verified_return(saved, dispatch, system, part, schema)
         atomic(response_path, saved)
         return result
+    if (audit/'unverified.json').exists() and (audit/'output-split-policy.json').exists():
+        output_split_preview(folder, index, failures, part, system, schema)
+        # A crash before plan commit may recover the split, never resend this input.
+        raise models.InferenceError('model_output_truncated')
     if dispatch.exists() or (audit/'unverified.json').exists():
         raise models.InferenceError('campus_reading_completion_outcome_unverified')
 
@@ -147,6 +240,12 @@ def generate(client, system, part, schema, folder, index, failures, before_compl
         # Persist before dispatch so process death/timeout cannot silently replay.
         if dispatch.exists():
             raise ValueError('campus_reading_dispatch_already_exists')
+        policy_path = audit/'output-split-policy.json'
+        policy = _output_policy(evidence, folder, index, failures)
+        if policy_path.exists() and json.loads(policy_path.read_text()) != policy:
+            raise ValueError('campus_reading_output_split_not_authorized')
+        if not policy_path.exists():
+            atomic(policy_path, policy)
         atomic(dispatch, evidence)
 
     try:
@@ -209,6 +308,31 @@ def split_budget(error, plan, parts, index, folder, system, schema_for):
     return True
 
 
+def split_output_limit(error, plan, parts, index, folder, failures, system, schema_for):
+    """Commit only a known truncated parent's lossless split, not its partial output."""
+    if error.code != 'model_output_truncated':
+        return False
+    state_path = folder/'progress.json'
+    state = json.loads(state_path.read_text()) if state_path.is_file() else {}
+    if type(state.get('next')) is not int or state['next'] != index:
+        raise ValueError('campus_reading_split_cursor_changed')
+    # No index that will move may already contain results, dispatches or failures.
+    # In normal serial execution the suffix has never started; fail closed if not.
+    if (folder/f'chunk-{index:05d}.json').exists():
+        raise ValueError('campus_reading_split_started_suffix')
+    for path in folder.glob('chunk-*.json'):
+        if int(path.stem.split('-')[-1]) > index:
+            raise ValueError('campus_reading_split_started_suffix')
+    for base in ('reading-audits', 'rejected-responses'):
+        for path in (folder/base).glob('chunk-*'):
+            if int(path.name.split('-')[-1]) > index and any(p.is_file() for p in path.rglob('*')):
+                raise ValueError('campus_reading_split_started_suffix')
+    preview = output_split_preview(folder, index, failures, parts[index], system, schema_for(parts[index]))
+    plan['splits'].append(preview['split'])
+    plan['parts'] = parts[:index]+preview['children']+parts[index+1:]
+    return True
+
+
 def validate_plan(plan, initial_parts, folder, system, schema_for):
     """Replay every measured binary split; repartitioning cannot rewrite history."""
     parts = list(initial_parts)
@@ -217,6 +341,15 @@ def validate_plan(plan, initial_parts, folder, system, schema_for):
         if type(index) is not int or not 0 <= index < len(parts):
             raise ValueError('campus_reading_split_changed')
         part = parts[index]
+        if row.get('kind') == OUTPUT_SPLIT:
+            attempt = row.get('attempt')
+            if type(attempt) is not int or not 1 <= attempt <= 3:
+                raise ValueError('campus_reading_split_changed')
+            preview = output_split_preview(folder, index, attempt-1, part, system, schema_for(part))
+            if row != preview['split']:
+                raise ValueError('campus_reading_split_changed')
+            parts[index:index+1] = preview['children']
+            continue
         if (row.get('error') != 'campus_reading_token_budget_exceeded'
                 or row.get('input_sha256') != digest(part) or len(part['native_fragments']) < 2):
             raise ValueError('campus_reading_split_changed')
