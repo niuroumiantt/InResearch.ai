@@ -6,11 +6,14 @@
 
   // Brand every image shown in the site without altering the source artwork or
   // downloaded originals. The observer also covers atlas images mounted later.
-  const LOGO_LIGHT_SRC = '/assets/brand/inresearch-ai/wordmark-primary.svg';
-  const LOGO_DARK_SRC = '/assets/brand/inresearch-ai/wordmark-reverse.svg';
+  // marketing.html is the canonical public brand specification. Keep the
+  // shared shell on the same supplied wordmark assets instead of maintaining
+  // a second, visually divergent logo family under /assets/brand.
+  const LOGO_LIGHT_SRC = '/assets/marketing/wordmark-light.png';
+  const LOGO_DARK_SRC = '/assets/marketing/brand/wordmark-dark.png';
   // Images use the standalone signature icon as a quiet provenance mark. The
   // full wordmark remains reserved for the site header and formal materials.
-  const WATERMARK_SRC = '/assets/brand/inresearch-ai/icon-orange.svg';
+  const WATERMARK_SRC = '/assets/marketing/circle-light.png';
   const WATERMARK_EXCLUDE = new Set(['ui-brand-watermark', 'ui-icon', 'favicon']);
   function shouldBrandImage(node) {
     if (!(node instanceof Element) || !['IMG', 'CANVAS'].includes(node.tagName)) return false;
