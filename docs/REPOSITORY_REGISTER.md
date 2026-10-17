@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2806。
+在册文件：2807。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 416 |
+| 运行代码 | 417 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
@@ -35,7 +35,7 @@
 | `data/brief.json` | sec | 16 |
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 257 |
-| `data/company_disclosures.json` | records | 1 |
+| `data/company_disclosures.json` | records | 2 |
 | `data/contracts.json` | records | 8 |
 | `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
@@ -1808,7 +1808,7 @@
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 58 |
-| `framework/interface_manifest.json` | public_pages | 3 |
+| `framework/interface_manifest.json` | public_pages | 5 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -4736,6 +4736,7 @@
 | `web/pages/compute-atlas.html` | 运行代码 |
 | `web/pages/compute-catalog.html` | 运行代码 |
 | `web/pages/control-atlas.html` | 运行代码 |
+| `web/pages/coreweave.html` | 运行代码 |
 | `web/pages/cross-scale-atlas.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
 | `web/pages/facility-atlas.html` | 运行代码 |
