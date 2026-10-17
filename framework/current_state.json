@@ -1,6 +1,6 @@
 {
-  "version": "2026.10.16.22",
-  "effective_at": "2026-10-16",
+  "version": "2026.10.17.2",
+  "effective_at": "2026-10-17",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -160,14 +160,20 @@
         "src/inresearch/adapters/xlsx_document.py",
         "tests/unit/test_xlsx_document.py",
         "src/inresearch/workflow/source_statements.py",
-        "tests/unit/test_source_statements.py"
+        "tests/unit/test_source_statements.py",
+        "src/inresearch/storage/json_stream.py",
+        "src/inresearch/delivery/source_publication.py",
+        "tests/unit/test_json_stream.py",
+        "tests/unit/test_source_publication.py",
+        "src/inresearch/delivery/city_location.py",
+        "tests/unit/test_city_location.py"
       ],
       "supersedes": [
         "data-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。；2026-10-11补充正式/raw两层；多角度完成度与具名采用分开，报道可展示但不自动汇总或按字段数晋级。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。",
-      "implementation_revision": "2026.10.14.124",
-      "change_reason": "Ordinary typed source reclassification preserves value, identity, source and information clocks; append-only identity quarantine/release cannot hide reviewed research. Original policy and C3 boundaries retained."
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。；2026-10-11补充正式/raw两层；多角度完成度与具名采用分开，报道可展示但不自动汇总或按字段数晋级。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-12归档来源更新：真实导入来源取代强制网页URL门槛，路径摘要冻结、无链接公开详情及归档纯追加CI；不扩大原件分发。；首次物理园区逐条来源审核登记、缺失后补，不以前置模型用途阻断；新园区严格纯追加CI，旧值/修订/代码规则仍full。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。；2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。",
+      "implementation_revision": "2026.10.17.2",
+      "change_reason": "2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。"
     },
     {
       "id": "knowledge-legacy",
@@ -199,14 +205,19 @@
         "src/inresearch/knowledge/material_baseline.py",
         "tests/unit/test_material_baseline.py",
         "src/inresearch/workflow/research_review.py",
-        "tests/unit/test_object_mapping_review.py"
+        "tests/unit/test_object_mapping_review.py",
+        "src/inresearch/storage/json_stream.py",
+        "src/inresearch/delivery/source_publication.py",
+        "src/inresearch/materials/review_context.py",
+        "tests/unit/test_json_stream.py",
+        "tests/unit/test_source_publication.py"
       ],
       "supersedes": [
         "knowledge-legacy"
       ],
-      "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。",
-      "implementation_revision": "2026.10.09.36",
-      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。"
+      "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。",
+      "implementation_revision": "2026.10.16.34",
+      "change_reason": "2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。 保留数据/来源历史、C3/身份/单位/CAS和发布语义；未据此宣称生产OOM已消除或全GPU吞吐已完成。"
     },
     {
       "id": "products-legacy",
@@ -333,7 +344,7 @@
       "topic": "operations",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-13",
+      "effective_at": "2026-10-17",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
       "implementations": [
         "docs/local_setup/sync.sh",
@@ -405,14 +416,42 @@
         "src/inresearch/delivery/snapshot_delta.py",
         "tests/unit/test_snapshot_delta.py",
         "src/inresearch/adapters/codex_inference.py",
-        "tests/unit/test_codex_failure_ocr_rescue.py"
+        "tests/unit/test_codex_failure_ocr_rescue.py",
+        "src/inresearch/materials/native_review_contract.py",
+        "src/inresearch/materials/full_review_worker.py",
+        "tests/unit/test_task_full_review.py",
+        "tests/unit/test_full_review_worker.py",
+        "docs/handoff/spark-campus-full-review-20261017.md",
+        "src/inresearch/materials/native_review_layouts.py",
+        "src/inresearch/adapters/models.py",
+        "src/inresearch/adapters/ollama_token_budget.py",
+        "tests/unit/test_ollama_token_budget.py",
+        "src/inresearch/storage/json_stream.py",
+        "src/inresearch/delivery/source_publication.py",
+        "src/inresearch/materials/review_context.py",
+        "src/inresearch/interfaces/http.py",
+        "tests/unit/test_json_stream.py",
+        "tests/unit/test_source_publication.py",
+        "tests/unit/test_http_json_memory.py",
+        "src/inresearch/materials/packed_reading.py",
+        "tests/unit/test_packed_reading.py",
+        "tests/unit/test_campus_reading_budget.py",
+        "src/inresearch/delivery/city_location.py",
+        "src/inresearch/knowledge/site_register.py",
+        "src/inresearch/knowledge/industry.py",
+        "src/inresearch/knowledge/raw_atlas.py",
+        "data/schema/project.schema.json",
+        "tests/unit/test_city_location.py",
+        "tests/unit/test_industry.py",
+        "web/components/industry.js",
+        "tests/industry.cjs"
       ],
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/420秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09公开仓库恢复复审：按精确审核SHA查询全部分页check runs，拒绝PR上一版汇总、异SHA结果和新head未注册/运行中检查，防止推送后过早合并。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；.118：用户要求恢复剩余失败任务，仅triage结构化输出失败增加具名CAS重执行；原校验/次数/成功缓存保持，read与synthesize范围不扩。；2026-10-13补充：有界stdout终止事件及stderr首尾超时诊断，认证/未知分类与安全计量；授权relay凭据轮换排空、原子私有换钥、无推理认证和自然工作验收；生产增量清单/ACK/HTTPS与暂停汇报边界分别核实。；2026-10-13生产验收补充：manifest显式请求并有界解码gzip响应，身份/单流/截断与原预算检查，保留未压缩兼容；CDN gzip POST拒绝与origin慢链路另计，不提高限制或替代实际ACK。；origin压缩大清单仍超诊断期限，显式私有manifest可信同路径HTTPS读入口与原delta写入口分别配置，保留认证、同receiver核验、CAS和原预算。；初筛classification.year仅指原文明确披露的单一年份；未知留unknown，资料涉及的年份区间进入后续陈述，不猜出版年。生成schema与提示词对齐原单年校验，Codex本地结构校验执行pattern；原ID、原件、次数、成功缓存和候选/C3边界保持。；初筛年份生成schema采用模型服务可编译的普通分支与锚点，移除不受支持的前瞻；本地对锚定pattern执行完整字符串匹配，仍拒绝年份区间、完整日期与尾换行。原出版年语义、ID、原件、次数、成功缓存和C3边界不变。",
-      "implementation_revision": "2026.10.13.123",
-      "change_reason": "在线CAS恢复扩展到triage/synthesize明确模型超时，按阶段复验成功缓存、原件和配方，保留次数和现有Reader；未新建采用。；接收端支持已部署后可显式强制有界小POST，避开已实测的大POST/CDN403，认证及预算不放宽。"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/420秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09公开仓库恢复复审：按精确审核SHA查询全部分页check runs，拒绝PR上一版汇总、异SHA结果和新head未注册/运行中检查，防止推送后过早合并。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；.118：用户要求恢复剩余失败任务，仅triage结构化输出失败增加具名CAS重执行；原校验/次数/成功缓存保持，read与synthesize范围不扩。；2026-10-13补充：有界stdout终止事件及stderr首尾超时诊断，认证/未知分类与安全计量；授权relay凭据轮换排空、原子私有换钥、无推理认证和自然工作验收；生产增量清单/ACK/HTTPS与暂停汇报边界分别核实。；2026-10-13生产验收补充：manifest显式请求并有界解码gzip响应，身份/单流/截断与原预算检查，保留未压缩兼容；CDN gzip POST拒绝与origin慢链路另计，不提高限制或替代实际ACK。；origin压缩大清单仍超诊断期限，显式私有manifest可信同路径HTTPS读入口与原delta写入口分别配置，保留认证、同receiver核验、CAS和原预算。；初筛classification.year仅指原文明确披露的单一年份；未知留unknown，资料涉及的年份区间进入后续陈述，不猜出版年。生成schema与提示词对齐原单年校验，Codex本地结构校验执行pattern；原ID、原件、次数、成功缓存和候选/C3边界保持。；初筛年份生成schema采用模型服务可编译的普通分支与锚点，移除不受支持的前瞻；本地对锚定pattern执行完整字符串匹配，仍拒绝年份区间、完整日期与尾换行。原出版年语义、ID、原件、次数、成功缓存和C3边界不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。；2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。",
+      "implementation_revision": "2026.10.17.2",
+      "change_reason": "2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。"
     },
     {
       "id": "change_management-legacy",
@@ -428,7 +467,7 @@
       "topic": "change_management",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-13",
+      "effective_at": "2026-10-17",
       "source": "framework/CURRENT.md",
       "implementations": [
         "AGENTS.md",
@@ -448,8 +487,8 @@
         "change_management-legacy"
       ],
       "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.",
-      "implementation_revision": "2026.10.11.90",
-      "change_reason": "独立有效/披露/首次接收、审核/写入时间；原生区间、精度比较、分期隔离和历史修订，旧基线保留；封存Reader与当前需求复用；首页面向读者，网站仅回传本批完整支持闭包。实际样例/部署分别验收，不冒充六队已接通。"
+      "implementation_revision": "2026.10.16.29",
+      "change_reason": "2026-10-17：用户授权对已批准的精确园区材料范围启动 Spark 27B 全表原生文本审阅并发布合格普通来源。显式 start_full_analysis 新建尝试，保留旧抽样、报告和断点；沿用唯一 intake，以独立 campus_review 角色连接本机 Ollama、单并发，不切换 Codex Reader/research-review。按确定性园区包及未分配包覆盖全部原生单元格，长格无损分片；逐包复验原件、现行任务、定位、地域、原值与 CAS 后才发布，全部包完成才称全表已审。GPU 利用率达到30%或温度达到80°C只延后本任务；先取得一个园区包的真实网站回执，再继续余包，此技术验收不新增人工审批。图片、外链及来源真假不因原生文本完整而视为已核。"
     },
     {
       "id": "interface-legacy",
@@ -855,9 +894,9 @@
       "status": "current",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "effective_at": "2026-09-21",
+      "effective_at": "2026-10-17",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；定向参数观测/计算以当前定义SHA冻结任务、六项定量检查和逐条独立复核追加来源支持，不认证模型输入。最终checkout重验原侧车需求及完整契约；独立第二调用绑定全样本包，历史审计/已采用重放保持。快照交接复用主线#697唯一准备槽实现。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-14：任务原件先审批后研究接收，按文件SHA授权，匿名回执只查自身反馈。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。；2026-10-09显式local固定检查回执/精确同源420秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；定向参数观测/计算以当前定义SHA冻结任务、六项定量检查和逐条独立复核追加来源支持，不认证模型输入。最终checkout重验原侧车需求及完整契约；独立第二调用绑定全样本包，历史审计/已采用重放保持。快照交接复用主线#697唯一准备槽实现。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-14：任务原件先审批后研究接收，按文件SHA授权，匿名回执只查自身反馈。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。；2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -998,10 +1037,39 @@
         "framework/research_task_plan.json",
         "web/pages/tasks.html",
         "src/inresearch/workflow/research_task_examples.py",
-        "tests/unit/test_research_task_examples.py"
+        "tests/unit/test_research_task_examples.py",
+        "src/inresearch/materials/batch_review.py",
+        "tests/unit/test_task_batch_review.py",
+        "src/inresearch/materials/native_review_contract.py",
+        "src/inresearch/materials/full_review_worker.py",
+        "tests/unit/test_task_full_review.py",
+        "tests/unit/test_full_review_worker.py",
+        "docs/handoff/spark-campus-full-review-20261017.md",
+        "src/inresearch/materials/native_review_layouts.py",
+        "src/inresearch/adapters/models.py",
+        "src/inresearch/adapters/ollama_token_budget.py",
+        "tests/unit/test_ollama_token_budget.py",
+        "src/inresearch/storage/json_stream.py",
+        "src/inresearch/delivery/source_publication.py",
+        "src/inresearch/materials/review_context.py",
+        "src/inresearch/materials/task_analysis.py",
+        "tests/unit/test_json_stream.py",
+        "tests/unit/test_source_publication.py",
+        "tests/unit/test_http_json_memory.py",
+        "tests/unit/test_task_analysis.py",
+        "src/inresearch/materials/packed_reading.py",
+        "tests/unit/test_packed_reading.py",
+        "tests/unit/test_campus_reading_budget.py",
+        "src/inresearch/delivery/city_location.py",
+        "src/inresearch/knowledge/industry.py",
+        "src/inresearch/knowledge/raw_atlas.py",
+        "data/schema/project.schema.json",
+        "tests/unit/test_city_location.py",
+        "tests/unit/test_industry.py",
+        "tests/industry.cjs"
       ],
-      "implementation_revision": "2026.10.14.134",
-      "change_reason": "Real operating-site example: source-bound initial coordinates and validated company participant identities; public task projection and explicit public artifacts; no C3 prerequisite for ordinary source registration."
+      "implementation_revision": "2026.10.17.2",
+      "change_reason": "2026-10-17 2026.10.17.2：城市批量定位按精确提交＋原件SHA在每个独立校验阶段共享一次完整解析，写前重新核批准和完整SHA；保留逐点原文／双源、全状态CAS、幂等回执、旧身份及阅读配方，不设跨阶段或全局缓存。"
     },
     {
       "id": "geluoke-longform-20261001",
@@ -1779,17 +1847,14 @@
         "docs/handoff/collector-outbox-local.md",
         "scripts/filings_gateway.py",
         "docs/guides/fetchdata/fetchfilings-outbox.md",
-        "docs/handoff/fetchfilings-outbox.md",
-        "scripts/reports_gateway.py",
-        "docs/guides/fetchdata/fetchreports-outbox.md",
-        "docs/handoff/fetchreports-outbox.md"
+        "docs/handoff/fetchfilings-outbox.md"
       ],
       "supersedes": [
         "acquisition-daily-20261006"
       ],
       "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-10项目审查：控制室来源生成与运行计量分开；Reader/editorial范围一致及facts CLI参数先验；供料对象映射和包/feed职责修正，详见项目审查。；R3定向原件复审：来源侧车绑定当前参数定义SHA、审核问题及完整范围；先defer归档再显式入Reader，源/清单/元数据一致性核验，冻结任务上下文并传递新候选/C3包，保持未连接队及不自动采用。；日周月规划复用既有review worker/SQLite持久周期、触发和字段任务，去重/失败隔离/有界原件核验；未接通映射、采集、站点C3和项目发布保持阻塞，不计执行或采用。；用户采用逐条信息独立于全文完成，物理园区分角色/规划投运/字段时间及可选水电表达；不宣称171/17缺口已解决。；2026-10-11四队员工任务包：一个fetchdata内核、四队独立运行；原件原格式/JSONL候选/离线验包与生产接收分开；旧全信息目标前置限制移除，模型派工约束保持，未宣称四队接通。；用户明确以四个独立仓库替代单fetchdata四目录；真实首包和重放通过，生产接收及需求完成不推断。；2026-10-14单fetchdata四模块替代四repo公共内核重复维护；旧ID/版本/交付保留，本地沙箱验证不等生产接通。；2026-10-14fetchstat只接登记源的受控生产候选归档，ACK/失败恢复另验，其他队不启用。；fetchstat已验单源受控接收，连接范围/覆盖/采用及调度分别说明。；fetchfilings仅登记来源接收准备，真实生产ACK待验。；fetchfilings已验单源受控接收，连接范围/覆盖/采用及调度分别说明。；2026-10-14：任务原件先审批后研究接收，按文件SHA授权，匿名回执只查自身反馈。；fetchreports登记LBNL发布页单源，真实接收待验。；fetchreports仅LBNL发布页方法摘要已验候选接收，PDF未读。；fetchquotes仅准备Lambda公开报价单源受控接收，真实ACK待验。；fetchquotes仅Lambda公开标价已验受控候选接收，非成交、未知保持。",
-      "implementation_revision": "2026.10.16.22",
-      "change_reason": "用户授权fetchreports既有LBNL发布页摘要单源的AWS持久队列与Spark只读完成ACK对账；三队独立固定入口/协议/密钥/版本，四个旧HTML版本及ID/信封/交付历史保持；真实交付/重复/ACK丢失/恢复另验，不定时、不扩源、不入Reader、不采用或填参，PDF正文/表图/附件未读保持。"
+      "implementation_revision": "2026.10.16.26",
+      "change_reason": "2026-10-16：以工作包现行范围、当前数据库、已完成成果及最新有效反馈作为所有人的共同执行锚点；后续反馈替代旧轮次的执行效力，范围变更使旧反馈退为历史。移除任务页模板、任务书、当前／本轮计划下载及个人回执时间线／跨设备找回界面；后台保留原件、反馈历史与安全回执用于鉴权和批次恢复。单份及联合审核均不再纳入个人旧修改任务，公开投影只含服务器生成的安全摘要；同批联合审核、覆盖边界、发布复验及C3规则保持。"
     },
     {
       "id": "interface-dispatch-20261006",
@@ -4635,7 +4700,7 @@
       "status": "current",
       "source": "framework/05_interface_system.md",
       "scope": "project",
-      "effective_at": "2026-10-14",
+      "effective_at": "2026-10-17",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -4917,14 +4982,36 @@
         "web/themes/task-uploads.css",
         "src/inresearch/materials/inbox.py",
         "src/inresearch/materials/receive.py",
-        "tests/unit/test_material_intake.py"
+        "tests/unit/test_material_intake.py",
+        "src/inresearch/materials/native_review_contract.py",
+        "src/inresearch/materials/full_review_worker.py",
+        "tests/unit/test_task_full_review.py",
+        "tests/unit/test_full_review_worker.py",
+        "docs/handoff/spark-campus-full-review-20261017.md",
+        "src/inresearch/materials/native_review_layouts.py",
+        "web/components/task-reviews.js",
+        "src/inresearch/materials/task_analysis.py",
+        "src/inresearch/delivery/source_publication.py",
+        "src/inresearch/materials/review_context.py",
+        "tests/unit/test_http_json_memory.py",
+        "tests/unit/test_task_analysis.py",
+        "tests/unit/test_source_publication.py",
+        "src/inresearch/delivery/city_location.py",
+        "tests/unit/test_city_location.py",
+        "src/inresearch/interfaces/project_access.py",
+        "src/inresearch/materials/batch_review.py",
+        "web/pages/admin/project-access.html",
+        "web/components/project-access.js",
+        "web/components/project-work.js",
+        "web/themes/project-access.css",
+        "tests/unit/test_project_access.py",
+        "tests/project_access.cjs"
       ],
       "supersedes": [
         "interface-private-tasks-20261012"
       ],
-      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。；.123替代独立容量误述，13候选关系／10原件核对／83标签与源码、回执同步；原事实、异常和版本保留。；.124年度用电核对与零售代理收费替代旧电量费表述，禁止叠加需量；不改变通用模型或正式园区事实。；.125当前页资本成本数值关系补清，通用分项与分期来源保持候选，融资/申报不充实支；三异常和旧版本保留。；.126分主体收入回报核对，首两栋租约仅候选，合同/会计/现金期间不混用，四栋模型不自动填参。；.127原四财表未读状态由同版原图核对替代，局部借款/股本/余额对应，实收及三处1美元差/费用范围差仍待核，无自动填参。；2026-10-14：任务页匿名原件上传、指定负责人逐份批准、回执持有人查看折叠的带时间反馈；未批材料禁止研究端领取。",
-      "implementation_revision": "2026.10.16.19",
-      "change_reason": "修正经济模型审批实际时间、折旧／更新／贷款期限混用及税前未融资与税后回报口径；沿现有问题与因子细化六队财务采集合同、比例分母及新闻逐目标匹配，不扩大生产来源或调度。",
+      "reason": "用户明确仅首页公开，服务端收束页面/完整API/研究资源匿名权限；新增全球存量普查协作页面，持久化工作包并图示字段、来源和原件交付。普通来源登记遵循01，不恢复全文/C3前置。；2026-10-14本地园区模型预览替代此前未实现状态；不改变事实或全站权限。；.123替代独立容量误述，13候选关系／10原件核对／83标签与源码、回执同步；原事实、异常和版本保留。；.124年度用电核对与零售代理收费替代旧电量费表述，禁止叠加需量；不改变通用模型或正式园区事实。；.125当前页资本成本数值关系补清，通用分项与分期来源保持候选，融资/申报不充实支；三异常和旧版本保留。；.126分主体收入回报核对，首两栋租约仅候选，合同/会计/现金期间不混用，四栋模型不自动填参。；.127原四财表未读状态由同版原图核对替代，局部借款/股本/余额对应，实收及三处1美元差/费用范围差仍待核，无自动填参。；2026-10-14：任务页匿名原件上传、指定负责人逐份批准、回执持有人查看折叠的带时间反馈；未批材料禁止研究端领取。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；2026-10-17 .36用户允许城市／地级行政区参考点：仅既有无坐标园区，批准原件同一主表名称／省／市与GeoNames SHA／原行／ADM1省闭合分别留证，CAS不可变追加；city精度、ADM2范围、原址未知、精确位置不覆盖和独立城市／园区计数明确，不授予C3。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。",
+      "implementation_revision": "2026.10.17.1",
       "implementation_paths": [
         "docs/handoff/global-campuses.md",
         "tests/global_campuses.cjs",
@@ -4942,7 +5029,14 @@
         "tests/browser_suites.cjs",
         "docs/reviews/2026-10-14/abilene-cost/receipt.json",
         "docs/reviews/2026-10-14/abilene-income/receipt.json",
-        "docs/reviews/2026-10-14/abilene-sec-tables/receipt.json"
+        "docs/reviews/2026-10-14/abilene-sec-tables/receipt.json",
+        "src/inresearch/interfaces/http.py",
+        "src/inresearch/materials/task_analysis.py",
+        "src/inresearch/delivery/source_publication.py",
+        "src/inresearch/materials/review_context.py",
+        "tests/unit/test_http_json_memory.py",
+        "tests/unit/test_task_analysis.py",
+        "tests/unit/test_source_publication.py"
       ]
     },
     {
@@ -5027,7 +5121,7 @@
       "topic": "task-upload-auto-analysis",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-10-15",
+      "effective_at": "2026-10-17",
       "source": "framework/05_interface_system.md",
       "implementations": [
         "src/inresearch/materials/inbox.py",
@@ -5057,12 +5151,40 @@
         "tests/unit/test_research_tasks.py",
         "tests/unit/test_industry_cache.py",
         "tests/unit/test_source_publication.py",
-        "tests/research_tasks.cjs"
+        "tests/research_tasks.cjs",
+        "src/inresearch/materials/batch_review.py",
+        "tests/unit/test_task_batch_review.py",
+        "docs/handoff/task-current-feedback-20261016.md",
+        "src/inresearch/materials/native_review_contract.py",
+        "src/inresearch/materials/full_review_worker.py",
+        "tests/unit/test_task_full_review.py",
+        "tests/unit/test_full_review_worker.py",
+        "docs/handoff/spark-campus-full-review-20261017.md",
+        "src/inresearch/materials/native_review_layouts.py",
+        "src/inresearch/adapters/models.py",
+        "src/inresearch/adapters/ollama_token_budget.py",
+        "tests/unit/test_ollama_token_budget.py",
+        "tests/unit/test_http_json_memory.py",
+        "src/inresearch/materials/packed_reading.py",
+        "tests/unit/test_packed_reading.py",
+        "tests/unit/test_campus_reading_budget.py",
+        "src/inresearch/interfaces/project_access.py",
+        "src/inresearch/interfaces/auth.py",
+        "src/inresearch/interfaces/public.py",
+        "src/inresearch/interfaces/workspace.py",
+        "web/pages/admin/project-access.html",
+        "web/components/project-access.js",
+        "web/components/project-work.js",
+        "web/components/auth-form.js",
+        "web/themes/project-access.css",
+        "tests/unit/test_project_access.py",
+        "tests/project_access.cjs",
+        "tests/browser_suites.cjs",
+        "web/assets/ops-forms.js"
       ],
-      "implementation_revision": "2026.10.16.21",
-      "change_reason": "园区普查任务页按现有六包接力；只公开负责人已确认材料的收件／审阅时间、自填称呼、格式与服务器生成的团队摘要。各包成果与共同任务版本独立显示，匿名上传须选系统工作包；原件、回执及个人逐格反馈仍保持私有。设施、水、电、IT、运维仅保留为后续研究方向，不新增任务。；公网真实v5/v6验收发现旧版审阅稍晚会抢占新版首位，团队接力改按原件收件时间倒序，单项审核时间另显；不改变批准、抽样或发布状态。；任务页收束为项目摘要加原位切换的单页工作台；首屏任务投影只请求一次，样例、管理员待审入口和本人回执按页签延迟读取。匿名表单删除重复的来源与说明输入，仅保留系统工作包、姓名、材料主题和多附件；原审批、审阅、发布和权限门槛保持。；任务首页进度改用与地图相同园区历史、去重和容量规则的轻量投影，只严格解析持久来源台账开头的园区部分，不再为进度条读取公司／产品／统计等无关来源陈述；完整行业接口和来源审核保持原路径。",
+      "implementation_revision": "2026.10.17.1",
       "supersedes": [],
-      "reason": "用户明确要求负责人确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工可执行任务书。员工附件、说明和自填项目名仅是待核原材料；审核须对照系统当时最新任务与要求，仅在旧回执经服务端验证明确关联后对照上一轮系统修改任务；同名不得构成身份或自动串接他人上下文。同一工作包可按登录名列表分给A/B/C，成员均可更新同一任务；后交材料按工作包当前版本、已上线数据库和同任务先前可复验成果审阅。独立新来源或带核查依据的新原件版本所含同值可追加来源陈述和本轮模型核对时间；一个月后同值复核须提交可复验的新原件或记录，外部事实核验日期未知时不得借用模型核对或上传时间。同一原件同一字段无独立新证据的重交才标重复；异值保留两侧来源标冲突，由正式发布规则裁定而不自动覆盖，下一步优先未完成缺口。旧审批不追溯授权，正式研究采用及模型参数保持原边界。匿名任务页姓名和自定义项目名必填，姓名仅辅助查找而非审批或工作包权限、同次最多20份附件逐份回执；管理员独立审批工作台的服务端权限不变。用户授权确认后的附件经私有中继使用 Codex CLI，CLI请求身份与实际未回传身份分列。大型XLSX全表结构计数和明确抽样分开，抽样不产生发布候选；可提取正文的其他格式只形成反馈，未有来源绑定复验前不自动发布。v6 原Spark断点保留为历史，不与Codex结果混算；大报告私有分片回传不放宽WAF。任务首页以实际经模型审阅并网站发布、当前台账可见且排除跨园区组合的去重园区数对暂定目标计量；管理员设目标须登记初研依据和时间，目标未知留空且无百分比。审阅报告数及已发布来源陈述数另计。90+GW只作待校准探索目标，容量状态及口径未可比前不计算完成率；.12 收紧发布提交时安全门：未绑定现行工作包仅反馈；新园区仅大陆工作包且原件明示省级地点，已有园区按工作包区域核对；服务端提交时在锁内复验含完整来源发布状态摘要的当前任务／上下文哈希，来源发布状态比较交换，过期候选撤回重审；持久 outbox 恢复已发布未回写报告；畸形或超限原件终态需修订反馈，不阻塞后续文件。；.13 负责人可在报告生成前把旧提交绑定现行工作包，已启动分析改绑必须按最新任务重审；原件、审批不变，已有报告、错误终态和待恢复发布事务禁止改绑。；.14 大型XLSX抽样仅从实际摘录定位给出逐格发现，网站从批准原件复算抽样范围并禁止抽样候选；报告、管理员和员工回执显式记录覆盖计数与全表待审，下一步按现行任务分包补证并继续审核未覆盖内容。；.15 同原件重交回归复用精确相同的XLSX原件字节，避免ZIP打包时间戳导致夹具SHA漂移；正式重复／新来源准入规则不变。"
+      "reason": "用户明确要求负责人确认分析后，合格普通来源逐条自动上线并给负责人实际上线报告；待补部分形成员工可执行任务书。员工附件、说明和自填项目名仅是待核原材料；审核须对照系统当时最新任务与要求，仅在旧回执经服务端验证明确关联后对照上一轮系统修改任务；同名不得构成身份或自动串接他人上下文。同一工作包可按登录名列表分给A/B/C，成员均可更新同一任务；后交材料按工作包当前版本、已上线数据库和同任务先前可复验成果审阅。独立新来源或带核查依据的新原件版本所含同值可追加来源陈述和本轮模型核对时间；一个月后同值复核须提交可复验的新原件或记录，外部事实核验日期未知时不得借用模型核对或上传时间。同一原件同一字段无独立新证据的重交才标重复；异值保留两侧来源标冲突，由正式发布规则裁定而不自动覆盖，下一步优先未完成缺口。旧审批不追溯授权，正式研究采用及模型参数保持原边界。匿名任务页姓名和自定义项目名必填，姓名仅辅助查找而非审批或工作包权限、同次最多20份附件逐份回执并以封存清单联合确认审阅；管理员独立审批工作台的服务端权限不变。用户授权确认后的附件经私有中继使用 Codex CLI，CLI请求身份与实际未回传身份分列。大型XLSX全表结构计数和明确抽样分开，抽样不产生发布候选；可提取正文的其他格式只形成反馈，未有来源绑定复验前不自动发布。v6 原Spark断点保留为历史，不与Codex结果混算；大报告私有分片回传不放宽WAF。任务首页以实际经模型审阅并网站发布、当前台账可见且排除跨园区组合的去重园区数对暂定目标计量；管理员设目标须登记初研依据和时间，目标未知留空且无百分比。审阅报告数及已发布来源陈述数另计。90+GW只作待校准探索目标，容量状态及口径未可比前不计算完成率；.12 收紧发布提交时安全门：未绑定现行工作包仅反馈；新园区仅大陆工作包且原件明示省级地点，已有园区按工作包区域核对；服务端提交时在锁内复验含完整来源发布状态摘要的当前任务／上下文哈希，来源发布状态比较交换，过期候选撤回重审；持久 outbox 恢复已发布未回写报告；畸形或超限原件终态需修订反馈，不阻塞后续文件。；.13 负责人可在报告生成前把旧提交绑定现行工作包，已启动分析改绑必须按最新任务重审；原件、审批不变，已有报告、错误终态和待恢复发布事务禁止改绑。；.14 大型XLSX抽样仅从实际摘录定位给出逐格发现，网站从批准原件复算抽样范围并禁止抽样候选；报告、管理员和员工回执显式记录覆盖计数与全表待审，下一步按现行任务分包补证并继续审核未覆盖内容。；.15 同原件重交回归复用精确相同的XLSX原件字节，避免ZIP打包时间戳导致夹具SHA漂移；正式重复／新来源准入规则不变。；.30仅园区最终综合改用同模型完整渲染与精确token预算，默认字节门槛和阅读冻结缓存保持；计量失败或超限不截断、不扩大上下文，不改变采用资格。；.31明确替代.30跨独立请求同PID限制：tokenizer实例只约束分词操作，generation独立绑定同模型及固定完整32K请求；合法PID/分词上下文轮换不拒绝，仅已确认分词竞争有限重试，模型变化及未绑定completion继续阻塞。；.32补充正式intake用户命名空间下的UID遮蔽核验：原直接UID路径保留，严格单UID映射与固定root管理的ollama服务／直属父子／非委派cgroup共同证明服务归属，不直接允许overflow UID，不改模型、预算、沙箱或阅读缓存。；.33仅替代最终综合重复输出原问题：完整证据输入和原findings逐字保留，索引全集确认后仅追加新增跨窗问题；final独立版本及摘要防旧缓存混用，原reading成功窗口保持，真实输出截断仍受阻，精确失败人工隔离不授通用重放。；2026-10-17 .34：分块完整JSON解析与规范摘要/原子写入保持完整语义和SHA/CAS；园区上下文缓存小型投影及完整状态SHA并按文件身份失效；HTTP大型响应仅在实际溢出时用私有logs磁盘缓冲；精确无来源notes占位例外不覆盖有来源旧值冲突。；.35仅从未开始的attempt/package使用64片段及同模型精确token阅读预算，既有任何任务目录产物保留legacy；生成前有据二分，完整请求／响应与派发审计防未知重放，输出截断停止，原覆盖／采用和成功缓存不变。; 2026-10-17 .37：专用reading的UID映射元数据先规范JSON再返回，类型等值归一不放宽审计；完整result/completion先写一次returned journal，再验SHA、原dispatch、完整请求／模型／预算和响应。有效journal中断恢复零新生成，坏回包／篡改原样留存受阻，旧response字节不变，未知dispatch无正文仍不自动重放。本次已证实丢失的BOCOM首窗仅按精确运维回执隔离一次重取，覆盖不伪增。; 2026-10-17 项目协作者第一版：新增独立collaborator账号、首次改密、稳定身份和可撤销会话；部署所有者逐人设置项目／园区前台访问、期限及提交／审批工作包。新增提交必须登录并绑定账号，批次恢复同账号校验；单份／联合审批逐件限域且新提交禁自批。个人工作与团队共用现行任务和原审阅链，旧匿名回执、原件与在途处理保留。源码与隔离验收不代表实际员工已授权或生产已部署。"
     },
     {
       "id": "daily-publication-20261014",
@@ -5194,5 +5316,5 @@
       "retire_after": "2026-12-31"
     }
   ],
-  "updated": "2026-10-16"
+  "updated": "2026-10-17"
 }

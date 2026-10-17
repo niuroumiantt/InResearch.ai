@@ -10,6 +10,7 @@ from inresearch.paths import project_root
 from inresearch.storage.layout import initialize_runtime, workspace_path
 from inresearch.storage.files import CommitUncertain, locked
 from inresearch.interfaces.static import source_path
+from inresearch.interfaces import project_access
 from inresearch.interfaces import pages
 from inresearch.interfaces import repository_pages
 import hashlib
@@ -46,6 +47,7 @@ import sqlite3
 import subprocess as subprocess
 import sys
 import threading
+import tempfile
 import time
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as BaseThreadingHTTPServer
@@ -99,9 +101,23 @@ def log_run(task, output):
 AUTH_ON = False   # main() 按绑定地址决定；127.0.0.1 本地用法永远不要求登录
 
 
+
+class _HttpJsonDirectory:
+    """Resolve private disk storage only when a response exceeds its RAM spool."""
+    def __init__(self, root):
+        self.root = root
+
+    def __fspath__(self):
+        folder = workspace_path('logs', self.root)
+        folder.mkdir(parents=True, exist_ok=True)
+        return os.fspath(folder)
+
+
 class Handler(SimpleHTTPRequestHandler):
     # MIME 由代码决定，不依赖运行镜像的系统 mime 表（slim 镜像没有 .woff2）。
-    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, '.woff2': 'font/woff2'}
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map,
+                      '.woff2': 'font/woff2',
+                      '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'}
 
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)
@@ -150,23 +166,37 @@ class Handler(SimpleHTTPRequestHandler):
             self.close_connection = True
 
     def _json(self, code, obj, compressed=False):
-        body = json.dumps(obj, ensure_ascii=False, separators=(',', ':')).encode()
-        gzip_ok = any(part.split(';')[0].strip() == 'gzip' and
-                      not any(re.fullmatch(r'q\s*=\s*0(?:\.0*)?', p.strip()) for p in part.split(';')[1:])
+        gzip_ok = any(part.split(';')[0].strip().casefold() == 'gzip' and
+                      not any(re.fullmatch(r'q\s*=\s*0(?:\.0*)?', p.strip().casefold()) for p in part.split(';')[1:])
                       for part in self.headers.get('Accept-Encoding', '').split(','))
-        if compressed and gzip_ok:
-            import gzip
-            body = gzip.compress(body, compresslevel=5, mtime=0)
-        self.send_response(code)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
-        self._compressible_response = compressed
-        if compressed:
-            if gzip_ok:
+        from inresearch.storage.files import iter_json_bytes
+        # Large research views must not allocate a full Unicode serialization,
+        # encoded copy and compressed copy together. Spill beyond 1 MiB to the
+        # existing private disk mount, never the container's memory-backed /tmp.
+        with tempfile.SpooledTemporaryFile(max_size=1024*1024, mode='w+b',
+                                           dir=_HttpJsonDirectory(ROOT), prefix='.http-json-') as body:
+            if compressed and gzip_ok:
+                import gzip
+                with gzip.GzipFile(filename='', mode='wb', fileobj=body,
+                                   compresslevel=5, mtime=0) as writer:
+                    for block in iter_json_bytes(obj):
+                        writer.write(block)
+            else:
+                for block in iter_json_bytes(obj):
+                    body.write(block)
+            size = body.tell()
+            body.seek(0)
+            # Finish encoding before headers so failures cannot look like a
+            # successful partial JSON response. HEAD has the same exact length.
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self._compressible_response = compressed
+            if compressed and gzip_ok:
                 self.send_header('Content-Encoding', 'gzip')
-        self.send_header("Content-Length", str(len(body)))
-        self.end_headers()
-        if self.command != 'HEAD':
-            self.wfile.write(body)
+            self.send_header("Content-Length", str(size))
+            self.end_headers()
+            if self.command != 'HEAD':
+                shutil.copyfileobj(body, self.wfile, length=65536)
 
     def _html(self, code, html, extra_headers=()):
         body = html.encode()
@@ -205,9 +235,42 @@ class Handler(SimpleHTTPRequestHandler):
         if any(p.startswith('.') for p in low.split('/') if p) or low.endswith('/users.json') or low == '/data/research_runtime.json':
             self._json(404, {"ok": False, "error": "not found"})
             return None
+        session = auth.session_user(self.headers.get('Cookie'))
+        if session and auth.load_users().get(session, {}).get('must_change_password'):
+            permitted = ('/account', '/api/passwd', '/logout', '/login', '/api/whoami', '/api/navigation')
+            if self._norm_path() not in permitted and not self._norm_path().startswith('/assets/'):
+                if self._norm_path().startswith('/api/'):
+                    self._json(403, {'ok':False, 'error':'首次登录请先修改初始密码'})
+                else:
+                    self._redirect('/account')
+                return None
+        if self._norm_path() == '/admin/project-access.html':
+            if not session:
+                self._redirect('/login')
+                return None
+            if not project_access.is_owner(session):
+                self._html(403, pages.FORBIDDEN_PAGE)
+                return None
+            return session
+        if self._norm_path() == '/task-reviews.html':
+            if not session:
+                self._redirect('/login')
+                return None
+            if not material_intake.can_approve(session, auth.user_role(session)):
+                self._html(403, pages.FORBIDDEN_PAGE)
+                return None
+            return session
+        if session and auth.user_role(session) == 'collaborator':
+            if project_access.allowed(session, self._norm_path(), urlsplit(self.path).query, self.command):
+                return session
+            if self._norm_path().startswith('/api/'):
+                self._json(403, {'ok':False, 'error':'此内容或操作未获项目授权'})
+            else:
+                self._html(403, pages.FORBIDDEN_PAGE)
+            return None
         # Infrastructure diagrams contain private host/network information.
         # These pages require a real admin session even in local development.
-        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() in ('/admin/company.html', '/task-reviews.html'):
+        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() in ('/admin/company.html',):
             user = auth.session_user(self.headers.get('Cookie'))
             if not user:
                 self._redirect('/login')
@@ -268,7 +331,9 @@ class Handler(SimpleHTTPRequestHandler):
         return self._json(401, {"ok": False, "error": "用户名或密码不对"})
 
     def _login_ok(self, username):
-        body = json.dumps({"ok": True, "user": username}, ensure_ascii=False).encode()
+        account = auth.load_users().get(username, {})
+        destination = '/account' if account.get('must_change_password') else '/tasks.html' if account.get('role') == 'collaborator' else '/'
+        body = json.dumps({"ok": True, "user": username, "next":destination}, ensure_ascii=False).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
@@ -289,7 +354,10 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _role(self, user):
         """本地模式（不要求登录）视同 admin；要求登录而未登录的是公开只读 reader。"""
-        return auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
+        role = auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
+        if role == 'collaborator' and self._norm_path() in ('/api/industry', '/api/observations', '/api/news', '/data/companies.json'):
+            return 'customer'
+        return role
 
     def do_HEAD(self):
         customer = auth.session_user(self.headers.get('Cookie'))
@@ -297,7 +365,7 @@ class Handler(SimpleHTTPRequestHandler):
                 self._norm_path().startswith('/api/') or self._norm_path() in public.CUSTOMER_PROJECTED_DATA):
             return self._get()
         # Dynamic public mechanisms must implement the same HEAD gate as GET.
-        if (self._norm_path() in ('/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/materials', '/api/research-task-examples', *public.HOME_DATA_API)
+        if (self._norm_path() in ('/api/project-work', '/api/project-access', '/healthz', '/api/whoami', '/login', '/api/research-tasks', '/api/materials', '/api/research-task-examples', *public.HOME_DATA_API)
                 or self._norm_path().startswith('/api/materials/content/')
                 or self._norm_path().startswith('/api/intake-worker/')
                 or self._norm_path().startswith('/api/research-task-examples/')
@@ -351,15 +419,15 @@ class Handler(SimpleHTTPRequestHandler):
             if self.path == '/api/intake-worker/analysis-pending':
                 task_state = research_tasks.read(ROOT)
                 mission = research_tasks.plan(ROOT)['mission']
-                source_state = source_publication.state(ROOT)
+                source_state, source_state_sha = source_publication.site_context(ROOT)
                 registered = source_publication.projects(ROOT, runtime=source_state)['records']
                 site_index = _review_site_index(registered)
                 task_records = material_intake.records()
                 items = []
-                for item in material_intake.analysis_pending()[:10]:
+                for item in material_intake.bounded_analysis_pending():
                     item['assigned_task'] = review_context.assigned_task(
                         item, task_state, mission, site_index, task_records,
-                        source_publication.digest(source_state))
+                        source_state_sha)
                     item['known_sites'] = site_index[:500]
                     items.append(item)
                 return self._json(200, {'items': items})
@@ -387,16 +455,25 @@ class Handler(SimpleHTTPRequestHandler):
         user = self._gate()
         if user is None:
             return
+        if self._norm_path() in ('/api/project-work', '/api/project-access'):
+            session = auth.session_user(self.headers.get('Cookie'))
+            if not session:
+                return self._json(401, {'ok':False, 'error':'请先登录'})
+            if self._norm_path() == '/api/project-access':
+                if not project_access.is_owner(session):
+                    return self._json(403, {'ok':False, 'error':'仅项目所有者可管理授权'})
+                return self._json(200, project_access.settings(ROOT))
+            return self._json(200, project_access.workbench(session, ROOT))
         if self._norm_path() == '/api/materials' or self._norm_path().startswith('/api/materials/content/'):
             role, actor = self._role(user), user or material_intake.approver()
-            if role not in ('admin', 'member', 'intern'):
+            if role not in ('admin', 'member', 'intern', 'collaborator'):
                 return self._json(403, {'ok': False, 'error': '请使用内部团队账号'})
             try:
                 if self._norm_path() == '/api/materials':
                     return self._json(200, material_intake.snapshot(actor, role))
                 key = self._norm_path().removeprefix('/api/materials/content/')
                 record = material_intake.load(key)
-                if not material_intake.can_approve(actor, role) and (record.get('receipt_hash') or record['user'] != actor):
+                if not material_intake.can_read(actor, role, record):
                     return self._json(404, {'ok': False, 'error': 'not found'})
                 path = material_intake.record_path(key) / 'content'
                 self.send_response(200)
@@ -794,7 +871,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'ok': False, 'error': '任务跟踪暂不可用，请稍后重试'})
         if self._norm_path() == '/api/research-task-examples':
             try:
-                return self._json(200, research_task_examples.snapshot(ROOT, authenticated=self._role(user) not in ('reader', 'customer')))
+                return self._json(200, research_task_examples.snapshot(ROOT, authenticated=self._role(user) not in ('reader', 'customer', 'collaborator')))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '真实样例包暂不可用，请刷新或联系负责人修复'})
         if self._norm_path().startswith('/api/research-task-examples/'):
@@ -802,7 +879,7 @@ class Handler(SimpleHTTPRequestHandler):
             if not match or urlsplit(self.path).query:
                 return self._json(404, {'ok': False, 'error': '样例产物不存在'})
             try:
-                artifact = research_task_examples.download(ROOT, *match.groups(), authenticated=self._role(user) not in ('reader', 'customer'))
+                artifact = research_task_examples.download(ROOT, *match.groups(), authenticated=self._role(user) not in ('reader', 'customer', 'collaborator'))
             except research_task_examples.PrivateArtifact:
                 return self._json(401, {'ok': False, 'error': '此样例产物登录后可下载'})
             except research_task_examples.NotInstalled:
@@ -826,8 +903,27 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'ok': False, 'error': '任务暂不可用，请稍后重试'})
         return super().do_GET()
 
+    def _check_upload_owner(self, payload, actor):
+        from inresearch.materials import batch_review
+        path = batch_review.batch_path('upload', payload.get('batch_id'))
+        if not path.exists():
+            if not actor:
+                raise PermissionError('请登录后恢复提交')
+            return
+        state = json.loads(path.read_text())
+        identity = state.get('identity')
+        if identity:
+            if not actor or not project_access.owns(actor, identity) or not project_access.member(actor):
+                raise PermissionError('批次不属于当前账号或项目授权已失效')
+
+    def _task_receipt(self, payload, actor):
+        record = material_intake.load(payload.get('id', ''))
+        if record.get('owner_id') and (not actor or not project_access.owns(actor, record) or not project_access.member(actor)):
+            raise PermissionError('回执不属于当前账号或项目授权已失效')
+        return material_intake.receipt_view(payload.get('id', ''), payload.get('receipt', ''))
+
     def do_POST(self):
-        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt'):
+        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt', '/api/task-uploads/batch', '/api/task-uploads/batch-status'):
             return self._post()
         # Machine receivers authenticate independently below. A customer cookie
         # never turns those endpoints into customer write capabilities.
@@ -841,14 +937,34 @@ class Handler(SimpleHTTPRequestHandler):
         return self._post()
 
     def _post(self):
-        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt'):
+        if self.path in ('/api/task-uploads', '/api/task-uploads/receipt', '/api/task-uploads/batch', '/api/task-uploads/batch-status'):
+            session = auth.session_user(self.headers.get('Cookie'))
+            if self.path == '/api/task-uploads':
+                if not session:
+                    return self._json(401, {'ok':False, 'error':'请登录后提交资料'})
+                if self._gate() is None:
+                    return
             try:
                 size = int(self.headers.get('Content-Length', 0))
+                if self.path.endswith('/batch-status'):
+                    if not 0 < size <= 4096: raise ValueError('invalid batch status request')
+                    from inresearch.materials import batch_review
+                    payload = json.loads(self.rfile.read(size))
+                    self._check_upload_owner(payload, session)
+                    result=batch_review.recover_upload(payload)
+                    return self._json(200,{'ok':True,**result})
+                if self.path.endswith('/batch'):
+                    if not 0 < size <= 16384: raise ValueError('invalid batch seal request')
+                    from inresearch.materials import batch_review
+                    payload = json.loads(self.rfile.read(size))
+                    self._check_upload_owner(payload, session)
+                    batch = batch_review.seal(payload)
+                    return self._json(200, {'ok':True,'batch':batch})
                 if self.path.endswith('/receipt'):
                     if not 0 < size <= 4096:
                         raise ValueError('invalid receipt request')
                     payload = json.loads(self.rfile.read(size))
-                    item = material_intake.receipt_view(payload['id'], payload['receipt'])
+                    item = self._task_receipt(payload, session)
                     return self._json(200, {'ok': True, 'item': item})
                 if self.headers.get('X-Requested-With') != 'task-upload':
                     return self._json(403, {'ok': False, 'error': 'invalid request'})
@@ -864,7 +980,13 @@ class Handler(SimpleHTTPRequestHandler):
                 packages = research_tasks.read(ROOT)['packages']
                 if not any(p['id'] == package_id for p in packages):
                     raise ValueError('工作包不存在，请刷新后选择')
-                item, receipt = material_intake.receive(self.rfile, size, metadata, 'anonymous', public=True)
+                if not project_access.can_submit(session, package_id, ROOT):
+                    raise PermissionError('未获此工作包提交权限')
+                account = auth.load_users()[session]
+                metadata['submitter'] = account.get('display_name', session)
+                mission, _ = project_access.catalog(ROOT)
+                identity = {'owner_id':auth.ensure_identity(session), 'project_id':mission['id']}
+                item, receipt = material_intake.receive(self.rfile, size, metadata, session, public=True, identity=identity)
                 return self._json(201, {'ok': True, 'item': item, 'receipt': receipt})
             except PermissionError:
                 return self._json(404, {'ok': False, 'error': '回执无效'})
@@ -914,6 +1036,20 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(409, {'ok': False, 'error': str(error)[:200]})
             except (ValueError, KeyError, OSError, TypeError, ArithmeticError) as error:
                 return self._json(400, {'ok': False, 'error': str(error)[:200]})
+        if self.path == '/api/intake-worker/analysis-batch-commit':
+            if not self.intake_worker(): return
+            try:
+                size=int(self.headers.get('Content-Length',0))
+                if not 0 < size <= 16384: raise ValueError('invalid batch commit size')
+                from inresearch.materials import batch_review
+                results=batch_review.complete_staged(ROOT,json.loads(self.rfile.read(size)))
+                return self._json(200,{'ok':True,'results':results})
+            except PermissionError as error:
+                return self._json(403,{'ok':False,'error':str(error)[:200]})
+            except material_intake.Conflict as error:
+                return self._json(409,{'ok':False,'error':str(error)[:200]})
+            except (ValueError,KeyError,OSError,TypeError,ArithmeticError) as error:
+                return self._json(400,{'ok':False,'error':str(error)[:200]})
         if self.path in ('/api/intake-worker/analysis-part', '/api/intake-worker/analysis-commit'):
             if not self.intake_worker():
                 return
@@ -942,8 +1078,12 @@ class Handler(SimpleHTTPRequestHandler):
                 if not 0 < size <= 4096:
                     raise ValueError('invalid size')
                 payload = json.loads(self.rfile.read(size))
-                item = material_intake.set_analysis_progress(payload['id'], payload['sha256'],
-                    payload['completed'], payload['total'], payload.get('state','running'))
+                if 'attempt_id' in payload:
+                    item = material_intake.set_full_analysis_progress(payload)
+                else:
+                    item = material_intake.set_analysis_progress(payload['id'], payload['sha256'],
+                        payload['completed'], payload['total'], payload.get('state','running'),
+                        error_code=payload.get('error_code'))
                 return self._json(200, {'ok': True, 'item': item})
             except (ValueError, KeyError, OSError, TypeError, PermissionError) as error:
                 return self._json(400, {'ok': False, 'error': str(error)[:200]})
@@ -955,22 +1095,51 @@ class Handler(SimpleHTTPRequestHandler):
                 receiver=lambda root, payload: product_catalog.receive(root, payload, company))
         if self.path == '/api/pilot-progress/nvidia':
             return self.api_nvidia_pilot_progress()
-        if self.path in ('/api/materials', '/api/materials/review'):
+        if self.path == '/api/project-access':
+            session = auth.session_user(self.headers.get('Cookie'))
+            if not session or not project_access.is_owner(session) or self.headers.get('X-Requested-With') != 'project-access':
+                return self._json(403, {'ok':False, 'error':'仅项目所有者可管理授权'})
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size <= 16384:
+                    raise ValueError('请求过大')
+                payload = json.loads(self.rfile.read(size))
+                if not isinstance(payload, dict):
+                    raise ValueError('请求须为对象')
+                if payload.get('action') == 'create':
+                    if set(payload) != {'action', 'username'}:
+                        raise ValueError('新账号字段无效')
+                    ok, message, password = auth.add_user(payload['username'], role='collaborator')
+                    return self._json(200 if ok else 400, {'ok':ok, 'error':None if ok else message, 'password':password})
+                return self._json(200, project_access.update(payload, session, ROOT))
+            except PermissionError as exc:
+                return self._json(403, {'ok':False, 'error':str(exc)})
+            except (ValueError, TypeError, KeyError) as exc:
+                return self._json(400, {'ok':False, 'error':str(exc)})
+        if self.path in ('/api/materials', '/api/materials/review', '/api/materials/review-batch'):
             user = self._gate()
             if user is None:
                 return
             role, actor = self._role(user), user or material_intake.approver()
-            if role not in ('admin', 'member', 'intern'):
+            if role not in ('admin', 'member', 'intern', 'collaborator'):
                 return self._json(403, {'ok': False, 'error': '请使用内部团队账号'})
             if self.headers.get('X-Requested-With') != 'material-intake':
                 return self._json(403, {'ok': False, 'error': 'invalid request'})
             try:
                 size = int(self.headers.get('Content-Length', 0))
+                if self.path == '/api/materials/review-batch':
+                    if not 0 < size <= 16384: raise ValueError('invalid batch approval size')
+                    from inresearch.materials import batch_review
+                    with locked(research_tasks.ledger_path(ROOT)):
+                        valid_ids={row['id'] for row in research_tasks.read(ROOT)['packages']}
+                        result = batch_review.approve(json.loads(self.rfile.read(size)),actor,role,
+                                                      valid_package_ids=valid_ids)
+                    return self._json(200, {'ok':True,**result})
                 if self.path == '/api/materials/review':
                     if not 0 < size <= 128 * 1024:
                         raise ValueError('invalid size')
                     payload = json.loads(self.rfile.read(size))
-                    if isinstance(payload, dict) and payload.get('action') == 'assign_package':
+                    if isinstance(payload, dict) and payload.get('action') in ('assign_package', 'start_full_analysis', 'continue_full_analysis'):
                         # Analysis commits hold this lock while checking the current
                         # task and publishing. Binding changes must use the same order.
                         with locked(research_tasks.ledger_path(ROOT)):
@@ -980,6 +1149,8 @@ class Handler(SimpleHTTPRequestHandler):
                     else:
                         item = material_intake.mutate(payload, actor, role)
                     return self._json(200, {'ok': True, 'item': item})
+                if role == 'collaborator':
+                    raise PermissionError('请从项目工作台提交资料')
                 metadata = json.loads(unquote(self.headers.get('X-Material-Metadata', '{}')))
                 if not isinstance(metadata, dict):
                     raise ValueError('invalid metadata')
@@ -1159,7 +1330,7 @@ class Handler(SimpleHTTPRequestHandler):
             auth.record_fail(auth.client_ip(self))   # 猜旧密码与猜登录同罪，计入限速
             return self._json(401, {"ok": False, "error": "当前密码不对"})
         log_run("auth", f"改密成功 {user} @ {auth.client_ip(self)}")
-        return self._json(200, {"ok": True})
+        return self._login_ok(user)
 
     def api_users(self, payload, by=""):
         """管理后台的用户管理（仅 admin，路由层已拦）。

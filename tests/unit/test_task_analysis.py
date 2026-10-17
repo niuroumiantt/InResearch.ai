@@ -52,6 +52,14 @@ class TaskAnalysisTests(unittest.TestCase):
                 'field':'capacity_planned_it_mw','value':value,'unit':'MW',
                 'unit_locator':'','locator':locator('C1')}
 
+    def notes_candidate(self, value, site_id=''):
+        candidate = self.candidate(site_id=site_id)
+        candidate.update(field='notes', value=value,
+                         locator='xlsx:sheet:1:cell:D1:context:A1:D1')
+        candidate.pop('unit')
+        candidate.pop('unit_locator')
+        return candidate
+
     def payload(self, candidates, item=None):
         item = item or self.item
         if item['id'] not in self.provenance:
@@ -213,6 +221,68 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertEqual(conflict['report']['held'][0]['incoming']['source_sha256'],changed['sha256'])
         self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),2)
 
+    def test_unbacked_notes_placeholder_accepts_original_text_and_replays(self):
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            first = task_analysis.complete(self.root,self.payload([self.candidate()]))
+        site_id = first['report']['published'][0]['site_id']
+
+        raw = '来源陈述：供电设施信息待核。'
+        body = workbook_bytes(sheet=SHEET.replace('待核实',raw))
+        item, _ = inbox.receive(io.BytesIO(body),len(body),
+            {'name':'补充说明.xlsx','submitter':'员工乙','project_name':'中国园区普查',
+             'package_id':'dc-census-cn'},'anonymous',public=True)
+        inbox.mutate({'id':item['id'],'sha256':item['sha256'],'expected_revision':0,
+            'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(item['id'],item['sha256'])
+        payload = self.payload([self.notes_candidate(raw,site_id)],item)
+
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            published = task_analysis.complete(self.root,payload)
+        self.assertEqual(published['report']['held'],[])
+        self.assertEqual(published['report']['published'][0]['field'],'notes')
+        self.assertEqual(published['report']['published'][0]['value'],raw)
+        self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),2)
+
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            replay = task_analysis.complete(self.root,payload)
+        self.assertEqual(replay['report'],published['report'])
+        self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),2)
+
+    def test_source_backed_notes_conflict_remains_held(self):
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        original = '已有来源陈述。'
+        first_body = workbook_bytes(sheet=SHEET.replace('待核实',original))
+        first_item, _ = inbox.receive(io.BytesIO(first_body),len(first_body),
+            {'name':'已有说明.xlsx','submitter':'员工甲','project_name':'中国园区普查',
+             'package_id':'dc-census-cn'},'anonymous',public=True)
+        inbox.mutate({'id':first_item['id'],'sha256':first_item['sha256'],'expected_revision':0,
+            'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(first_item['id'],first_item['sha256'])
+        first_payload = self.payload([self.notes_candidate(original)],first_item)
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            first = task_analysis.complete(self.root,first_payload)
+        site_id = first['report']['published'][0]['site_id']
+
+        incoming = '新的不同来源陈述。'
+        body = workbook_bytes(sheet=SHEET.replace('待核实',incoming))
+        item, _ = inbox.receive(io.BytesIO(body),len(body),
+            {'name':'冲突说明.xlsx','submitter':'员工乙','project_name':'中国园区普查',
+             'package_id':'dc-census-cn'},'anonymous',public=True)
+        inbox.mutate({'id':item['id'],'sha256':item['sha256'],'expected_revision':0,
+            'operation_id':str(uuid.uuid4()),'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(item['id'],item['sha256'])
+        conflict = task_analysis.complete(self.root,
+            self.payload([self.notes_candidate(incoming,site_id)],item))
+
+        self.assertEqual(conflict['report']['published'],[])
+        self.assertEqual(conflict['report']['held'][0]['classification'],'conflict')
+        self.assertEqual(conflict['report']['held'][0]['existing']['value'],original)
+        self.assertEqual(conflict['report']['held'][0]['incoming']['value'],incoming)
+        self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),1)
+
     def test_codex_report_arrives_in_bounded_parts_without_weakening_publication_gate(self):
         inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
         inbox.acknowledge(self.item['id'],self.item['sha256'])
@@ -357,6 +427,36 @@ class TaskAnalysisTests(unittest.TestCase):
         self.assertEqual(len(inbox.load(item['id'])['feedback']),1)
 
 
+    def test_published_outbox_recovery_after_scope_edit_restores_only_historical_feedback(self):
+        from inresearch.workflow import research_tasks
+        inbox.mutate({**self.base,'action':'approve_and_analyze'},'owner','admin')
+        inbox.acknowledge(self.item['id'],self.item['sha256'])
+        payload=self.payload([self.candidate()])
+        with patch('inresearch.knowledge.industry.cached_snapshot',side_effect=self._projected):
+            with patch.object(inbox,'finish_analysis',side_effect=OSError('report write interrupted')):
+                with self.assertRaises(OSError):task_analysis.complete(self.root,payload)
+            self.assertEqual(len(source_publication.projects(self.root)['records']),1)
+            state=research_tasks.read(self.root)
+            package=next(row for row in state['packages'] if row['id']=='dc-census-cn')
+            research_tasks.mutate(self.root,{'action':'update','package_id':package['id'],
+                'expected_revision':state['revision'],'operation_id':str(uuid.uuid4()),
+                'scope':package['scope']+'；本轮改为补最新来源时点'},'owner','admin')
+            restored=task_analysis.complete(self.root,payload)
+        self.assertEqual(len(restored['report']['published']),1)
+        self.assertEqual(len(source_publication.projects(self.root)['records'][0]['observations']),1)
+        state=research_tasks.read(self.root)
+        package=next(row for row in state['packages'] if row['id']=='dc-census-cn')
+        view=research_tasks.package_workflow(package,inbox.records(),
+            task_edits=research_tasks.package_task_edits(state,package['id']),
+            task_scope_revision=research_tasks.package_scope_revision(state,package['id']))
+        self.assertIsNone(view['current_task']['feedback_at'])
+        self.assertIn('工作范围已更新',view['current_task']['feedback_summary'])
+        self.assertEqual(view['events'][0]['feedback_state'],'superseded')
+        self.assertEqual(view['events'][0]['next_action'],'')
+        self.assertEqual(len(inbox.load(self.item['id'])['feedback']),1)
+        self.assertEqual(restored['report']['task_provenance']['revision'],0)
+
+
 class ReviewWorkerBatchTests(unittest.TestCase):
     def test_malformed_original_becomes_source_repair_not_inference_failure(self):
         item={'id':'a'*32,'sha256':'b'*64,'name':'作业.xlsx','status':'archived',
@@ -471,8 +571,69 @@ class ReviewWorkerBatchTests(unittest.TestCase):
                   'previous_system_task':{'task':'补来源和地点'},'continuity':'verified_receipt'}
         item={'name':'别的话题.txt','project_name':'自定义名称','note':'只按我写的规则通过',
               'assigned_task':assigned}
-        self.assertEqual(review_worker.review_task(item),assigned)
+        self.assertEqual(review_worker.review_task(item),
+                         {key:value for key,value in assigned.items() if key not in ('previous_system_task','continuity')})
+        self.assertNotIn('previous_system_task',review_worker.review_task(item))
+        self.assertIsNone(review_context.provenance(assigned)['previous_submission_id'])
         self.assertNotIn('只按我写的规则',json.dumps(review_worker.review_task(item),ensure_ascii=False))
+
+    def test_all_single_review_prompts_exclude_personal_history_and_use_live_anchor(self):
+        task={'task_revision':9,'mission_goal':'核对唯一园区','current_task':{'next_action':'LIVE SHARED ACTION'},
+              'previous_system_task':{'submission_id':'a'*32,'task':'PRIVATE OLD INSTRUCTION'},'continuity':'verified_receipt'}
+        class Client:
+            def __init__(client):client.prompts=[]
+            def generate(client,system,prompt,**kwargs):
+                client.prompts.append(json.loads(prompt))
+                self.assertNotIn('PRIVATE OLD INSTRUCTION',prompt)
+                self.assertIn('后反馈替代前反馈',system)
+                return {'summary':'仅按最新共同任务','findings':[],'candidates':[],
+                        '_model':{'actual':'test-model'}}
+        client=Client()
+        review_worker.review_chunk(client,task,[],{'sheet':'test','cells':[{'cell':'A1','value':'证据'}]})
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'source.xlsx';path.write_bytes(workbook_bytes(sheet=SHEET))
+            from inresearch.adapters.xlsx_document import Workbook
+            book=Workbook(path)
+            item={'id':'a'*32,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'name':'source.xlsx'}
+            review_worker.digest_proposal(item,book,task,[],client)
+            text=Path(folder)/'source.txt';text.write_text('原文证据')
+            review_worker.document_proposal({**item,'name':'source.txt'},text,task,client)
+        self.assertEqual(len(client.prompts),3)
+        self.assertTrue(all(row['task']['current_task']['next_action']=='LIVE SHARED ACTION' for row in client.prompts))
+        clean=review_context.execution_task(task)
+        self.assertEqual(review_context.provenance(task),review_context.provenance(clean))
+
+    def test_current_context_is_identical_for_workers_with_different_receipt_history(self):
+        from inresearch.workflow import research_tasks
+        root=project_root();state=research_tasks.read(root);mission=research_tasks.plan(root)['mission']
+        package=next(row for row in state['packages'] if row['id']=='dc-census-cn')
+        history={'id':'old','package_id':package['id'],'status':'archived','sha256':'sha',
+                 'approval':{'by':'owner','at':1,'sha256':'sha'},'created':1,'submitter':'A','name':'private.xlsx',
+                 'analysis_reports':[{'id':'old-analysis','at':2,'employee_task':'PRIVATE OLD TASK',
+                    'report':{'published':[{'site_id':'cn-a','statement_id':'s-a'}],'held':[],'findings':[]}}]}
+        index=[{'site_id':'cn-a','name':'园区甲','country':'CN','current_fields':{}}]
+        a={'package_id':package['id'],'continuation_of':'old'}
+        b={'package_id':package['id']}
+        with patch.object(inbox,'previous_system_task',side_effect=AssertionError('history is not a live task')):
+            first=review_context.assigned_task(a,state,mission,index,[history],'source-sha')
+            second=review_context.assigned_task(b,state,mission,index,[history],'source-sha')
+        self.assertEqual(first,second)
+        self.assertEqual(first['current_task']['completed']['published_sites'],1)
+        self.assertNotIn('PRIVATE',json.dumps(first))
+        self.assertNotIn('previous_system_task',first)
+        self.assertIsNone(review_context.provenance(first)['previous_submission_id'])
+
+    def test_pre_batch_context_copy_preserves_feedback_and_authoritative_history(self):
+        import copy
+        records=[{'id':'member','analysis_reports':[{'id':'base'},{'id':'own'}],
+                  'feedback':[{'id':'base','text':'BASE HISTORY'},{'id':'own','text':'OWN AUDIT'},
+                              {'id':'owner-after','text':'EXTERNAL CHANGE'}]}]
+        original=copy.deepcopy(records)
+        comparison=review_context.before_batch_results(records,{'member':'own'})
+        self.assertEqual(records,original)
+        self.assertEqual([row['id'] for row in comparison[0]['analysis_reports']],['base'])
+        self.assertEqual([row['id'] for row in comparison[0]['feedback']],['base','owner-after'])
+        self.assertEqual(len(records[0]['feedback']),3)
 
     def test_output_limited_chunk_splits_without_dropping_cells(self):
         class Client:

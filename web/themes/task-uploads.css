@@ -1,50 +1,14 @@
-.task-upload { scroll-margin-top: 5rem; }
-.task-upload-form, .task-upload-records { border: 1px solid var(--ui-line); background: var(--ui-surface); padding: clamp(18px, 3vw, 28px); margin: 20px 0; }
-.task-upload-form { display: grid; gap: 16px; }
-.task-upload-form label, .task-receipt-form label { display: grid; gap: 7px; font-weight: 600; font-size: 13px; }
-.task-upload-form input, .task-upload-form select, .task-upload-form textarea, .task-receipt-form input { box-sizing: border-box; width: 100%; padding: 11px; border: 1px solid var(--ui-line); background: var(--ui-surface); color: var(--ui-ink); font: inherit; }
-.task-upload-form input[type=file] { min-height: 58px; padding: 14px; border-style: dashed; }
-.task-upload-pair, .task-receipt-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.task-receipt-form button { grid-column: 1 / -1; justify-self: start; }
-.task-upload-actions, .task-upload-records .section-heading, .upload-card-head, .upload-owner-shortcut { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
-.task-upload-actions span { font-size: 12px; color: var(--ui-muted); }
-.upload-owner-shortcut { padding: 20px 24px; margin: 0 0 27px; background: var(--ui-soft); border-left: 3px solid var(--ui-ink); }
-.upload-owner-shortcut strong { font-size: 16px; }
-.upload-owner-shortcut p { margin: 4px 0 0; font-size: 12px; color: var(--ui-muted); }
-.upload-owner-shortcut .primary-button { text-decoration: none; }
-.task-upload-records h3 { margin: 0; font-size: 18px; }
-.task-upload-records > summary { cursor: pointer; font-size: 15px; font-weight: 600; list-style: none; }
-.task-upload-records > summary::before { content: '＋'; display: inline-block; width: 25px; color: var(--ui-muted); }
-.task-upload-records[open] > summary::before { content: '−'; }
-.task-upload-records > .section-heading { margin-top: 18px; }
-.upload-person-group { border-top: 2px solid var(--ui-line); margin-top: 20px; }
-.upload-person-group h4 { margin: 18px 0 4px; font-size: 19px; }
-.upload-project-name { margin: 13px 0 0; font-weight: 600; }
-.upload-card { border-top: 1px solid var(--ui-line); padding: 19px 0; overflow-wrap: anywhere; }
-.upload-card-head { align-items: flex-start; }
-.upload-card-head strong { font-size: 15px; min-width: 0; flex: 1; }
-.upload-status { display: inline-block; padding: 4px 8px; background: var(--ui-soft); color: var(--ui-ink); font-size: 11px; white-space: nowrap; }
-.upload-card > p { margin: 7px 0; }
-.upload-card > .upload-sampled { margin: 12px 0; padding: 11px 13px; border-left: 4px solid #9a6b26; background: #f7f0e1; color: #463719; font-size: 12px; }
-html[data-ui-theme=dark] .upload-card > .upload-sampled { background: #3d3424; color: #e9d6ac; }
-.upload-feedback, .upload-file-meta, .upload-receipt-recovery { margin-top: 13px; border: 1px solid var(--ui-line); padding: 0 13px; }
-.upload-feedback summary, .upload-file-meta summary, .upload-receipt-recovery summary { cursor: pointer; font-weight: 600; padding: 11px 0; }
-.upload-feedback article { border-top: 1px solid var(--ui-line); padding: 12px 0; white-space: pre-wrap; }
-.upload-feedback article p { margin: 4px 0; }
-.upload-file-meta p { overflow-wrap: anywhere; }
-.upload-receipt-recovery { margin-top: 16px; }
-.upload-receipt-recovery[open] { padding-bottom: 16px; }
-.upload-receipt-code { overflow-wrap: anywhere; }
-@media (max-width: 700px) {
-  .task-upload-pair, .task-receipt-form { grid-template-columns: 1fr; }
-  .upload-owner-shortcut { align-items: stretch; }
-  .upload-owner-shortcut .primary-button { width: 100%; }
-  .task-upload-form input, .task-upload-form select, .task-upload-form textarea, .task-receipt-form input { font-size: 16px; }
-}
-
-/* One-line submission bar for the project workspace. */
-.task-upload-form.compact-upload-form{margin:12px 0 0;padding:14px;border:1px solid var(--ui-line);gap:10px}.compact-upload-grid{display:grid;grid-template-columns:minmax(185px,1.05fr) minmax(105px,.55fr) minmax(230px,1.35fr) minmax(190px,1fr);gap:10px;align-items:end}.compact-upload-form label{gap:4px;font-size:11px;color:var(--ui-muted)}.compact-upload-form input,.compact-upload-form select{height:38px;padding:7px 9px;font-size:12px;color:var(--ui-ink)}.compact-file-picker{position:relative}.compact-file-picker>span{display:flex;align-items:center;height:38px;padding:7px 10px;border:1px solid #b69145;background:#f6edda;color:#4f3c19;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}.compact-file-picker input[type=file]{position:absolute;inset:auto 0 0;width:100%;height:38px;min-height:0;padding:0;opacity:0;cursor:pointer}.compact-upload-form .task-upload-actions{justify-content:flex-start;gap:10px}.compact-upload-form .task-upload-actions span{font-size:10px}.compact-upload-form #upload-message{margin:0;font-size:11px;line-height:1.6}.task-upload-records.task-panel{margin:0;padding:20px 0;border:0;background:transparent}.task-upload-records.task-panel>.section-heading{margin-top:0}.upload-owner-shortcut{padding:10px 14px;margin:0 0 12px}.upload-owner-shortcut strong{font-size:13px}.upload-owner-shortcut p{font-size:10px}.upload-owner-shortcut .primary-button{padding:7px 10px}.upload-receipt-recovery{margin-top:12px}.upload-person-group{margin-top:12px}.upload-person-group h4{margin:12px 0 2px;font-size:16px}.upload-card{padding:12px 0}
+.task-upload-form{display:grid;gap:10px;border:1px solid var(--ui-line);background:var(--ui-surface);padding:14px;margin:12px 0 0;min-width:0}
+.task-upload-form label{display:grid;gap:4px;font-weight:600;font-size:11px;color:var(--ui-muted)}
+.task-upload-form input,.task-upload-form select,.task-upload-form textarea{box-sizing:border-box;width:100%;height:38px;padding:7px 9px;border:1px solid var(--ui-line);background:var(--ui-surface);color:var(--ui-ink);font:inherit;font-size:12px}
+.compact-upload-grid{display:grid;grid-template-columns:minmax(185px,1.05fr) minmax(105px,.55fr) minmax(230px,1.35fr) minmax(190px,1fr);gap:10px;align-items:end}
+.compact-file-picker{position:relative}.compact-file-picker>span{display:flex;align-items:center;height:38px;padding:7px 10px;border:1px solid #b69145;background:#f6edda;color:#4f3c19;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}.compact-file-picker input[type=file]{position:absolute;inset:auto 0 0;width:100%;height:38px;min-height:0;padding:0;opacity:0;cursor:pointer}
+.task-upload-actions,.upload-owner-shortcut{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:wrap}.task-upload-actions span{font-size:10px;color:var(--ui-muted)}
+.task-upload-form #upload-message,.task-upload-form #upload-batch-status{margin:0;font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+.upload-owner-shortcut{justify-content:space-between;padding:10px 14px;margin:0 0 12px;background:var(--ui-soft);border-left:3px solid var(--ui-ink)}.upload-owner-shortcut strong{font-size:13px}.upload-owner-shortcut p{margin:4px 0 0;font-size:10px;color:var(--ui-muted)}.upload-owner-shortcut .primary-button{padding:7px 10px;text-decoration:none}
+.submission-progress{min-height:0}.submission-progress-layout{display:block;margin-top:16px}.submission-progress .task-upload-form{margin:0}.submission-progress .package-workspace{padding-top:25px}
+.upload-drop-zone{border:1px dashed var(--ui-line);padding:9px 11px;min-width:0}.upload-drop-zone.is-dragging{border-color:var(--ui-ink);background:var(--ui-soft)}.upload-drop-zone>p{margin:0 0 6px;font-size:11px;color:var(--ui-muted)}.upload-pending-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px}.mission-page .upload-pending-heading button,.mission-page .upload-pending-files button{padding:3px 8px;font-size:11px;flex:none}.upload-pending-files{margin:5px 0 0;padding:0;list-style:none}.upload-pending-files:empty{display:none}.upload-pending-files li{display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid var(--ui-line);font-size:12px;min-width:0}.upload-pending-files li>span{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.upload-pending-files small{color:var(--ui-muted);white-space:nowrap}
 html[data-ui-theme=dark] .compact-file-picker>span{background:#51452e;color:#e6d1a5;border-color:#806d46}
 @media(max-width:1000px){.compact-upload-grid{grid-template-columns:1fr .65fr 1.25fr}.compact-file-picker{grid-column:1/-1}}
-@media(max-width:700px){.task-upload-form.compact-upload-form{padding:12px}.compact-upload-grid{grid-template-columns:1fr 1fr}.upload-topic,.compact-file-picker{grid-column:1/-1}.compact-upload-form input,.compact-upload-form select{font-size:16px}.compact-panel-heading{flex-wrap:wrap}.task-upload-records.task-panel{padding-top:16px}}
+@media(max-width:700px){.task-upload-form{padding:12px}.compact-upload-grid{grid-template-columns:1fr 1fr}.upload-topic,.compact-file-picker{grid-column:1/-1}.task-upload-form input,.task-upload-form select{font-size:16px}.compact-panel-heading{flex-wrap:wrap}.submission-progress-layout{margin-top:12px}.upload-owner-shortcut{align-items:stretch}.upload-owner-shortcut .primary-button{width:100%}}
 @media(max-width:430px){.compact-upload-grid{grid-template-columns:1fr}.upload-topic,.compact-file-picker{grid-column:auto}}

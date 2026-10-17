@@ -19,8 +19,11 @@ if(qaDir) require('node:fs').mkdirSync(qaDir,{recursive:true});
       await page.goto(base+'/'); await page.locator('#ui-skinbar[data-navigation-ready=true]').waitFor();
       assert.equal(await page.locator('#ui-skinbar').getAttribute('data-identity'),data.identity.kind);
       assert.equal(await page.locator('#ui-site-footer').count(),1,'one shared footer');
-      assert.equal(await page.locator('.ui-home img').getAttribute('src'),'/assets/brand/inresearch-ai/wordmark-primary.svg');
+      assert.equal(await page.locator('.ui-home img').getAttribute('src'),'/assets/marketing/wordmark-light.png');
       assert.equal(await page.locator('.ui-home .ui-brand-watermark').count(),0,'logo never receives a second watermark');
+      await setAppearance(page,'dark');
+      assert.equal(await page.locator('.ui-home img').getAttribute('src'),'/assets/marketing/brand/wordmark-dark.png','dark mode uses the marketing reverse wordmark');
+      await setAppearance(page,'light');
       if(qaDir) await page.screenshot({path:qaDir+'/navigation-'+role+'-desktop.png'});
       if(role==='reader') {
         assert.deepEqual(await page.locator('.ui-navigation-public a').allTextContents(),manifest.public_navigation.map(item=>item.label));
@@ -107,9 +110,9 @@ if(qaDir) require('node:fs').mkdirSync(qaDir,{recursive:true});
         assert.equal(await page.locator('.ui-mobile-menu').evaluate(node=>node.open),false,'secondary click follows the registered page and closes menu');
         await page.setViewportSize({width:1440,height:1000});
       }
-      await page.evaluate(()=>{const image=document.createElement('img');image.id='navigation-brand-fixture';image.src='/assets/brand/inresearch-ai/wordmark-primary.svg';image.width=300;image.height=60;document.querySelector('main').append(image);});
+      await page.evaluate(()=>{const image=document.createElement('img');image.id='navigation-brand-fixture';image.src='/assets/marketing/wordmark-light.png';image.width=300;image.height=60;document.querySelector('main').append(image);});
       await page.locator('#navigation-brand-fixture[data-brand-watermarked=true]').waitFor({state:'attached'});
-      assert.equal(await page.locator('#navigation-brand-fixture').getAttribute('src'),'/assets/brand/inresearch-ai/wordmark-primary.svg','presentation branding never rewrites image source');
+      assert.equal(await page.locator('#navigation-brand-fixture').getAttribute('src'),'/assets/marketing/wordmark-light.png','presentation branding never rewrites image source');
       assert.equal(await page.locator('.ui-branded-image:has(#navigation-brand-fixture) .ui-brand-watermark').count(),1);
       assert.deepEqual(errors,[]); await context.close();
       console.log('PASS shared navigation '+role+' desktop/mobile/footer/theme/brand');

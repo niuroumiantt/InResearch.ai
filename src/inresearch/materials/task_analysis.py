@@ -87,7 +87,7 @@ def stage_part(payload):
         staged.unlink(missing_ok=True)
 
 
-def complete_staged(root, payload):
+def read_staged(payload):
     if not isinstance(payload, dict) or set(payload) != {'id','sha256','analysis_id','total','payload_sha256'}:
         raise ValueError('analysis commit required')
     key, sha, analysis_id = payload['id'], payload['sha256'], payload['analysis_id']
@@ -110,7 +110,11 @@ def complete_staged(root, payload):
     result = json.loads(raw)
     if any(result.get(k) != payload[k] for k in ('id','sha256','analysis_id')):
         raise ValueError('analysis commit identity mismatch')
-    return complete(root, result)
+    return result
+
+
+def complete_staged(root, payload):
+    return complete(root, read_staged(payload))
 
 
 def _native(book, locator):
@@ -244,6 +248,11 @@ def _employee_task(record, summary, findings, held, published, review_scope=None
             '把可核对的内容分成较小的主题材料包。每条列明唯一物理园区名称与省市地点、'
             '字段原值及单位、IT／设施／供电及分期口径、披露或核验时点、来源链接或原件定位。'
             '保留本次原始工作簿与 SHA，不把它重传当作全表已审核；研究端仍须依据最新任务和台账继续审核未覆盖单元格。')
+    if review_scope and review_scope.get('mode') == 'full_native_campus':
+        lines.append(f"完整原生审阅范围：本轮园区包 {review_scope['campus_key']}，"
+                     f"共 {review_scope['cell_count']} 格（含完整关联原件与表头上下文），"
+                     '长单元格已按无损片段覆盖；本包完成不表示整个工作簿完成。'
+                     '其余园区和未归属内容仍按本轮全量清单继续，旧抽样反馈保留为历史。')
     details = []
     for row in held:
         if row.get('classification') == 'duplicate':
@@ -298,6 +307,18 @@ def _prior_source(row, selected, value):
             'source_url': ref.get('source_url') if str(ref.get('source_url') or '').startswith(('https://','http://')) else None}
 
 
+def _is_unbacked_notes_placeholder(row, field, value, selected):
+    """Treat the publisher's initial notes label as empty until a source states it."""
+    if field != 'notes' or value != '基础登记待查':
+        return False
+    if isinstance(selected, dict) and selected.get('observation_id'):
+        return False
+    # A historical source observation makes even a placeholder-looking value
+    # an actual statement. Only the synthetic baseline label has no field entry.
+    return not any(field in (entry.get('fields') or {})
+                   for entry in row.get('observations', []))
+
+
 def _analysis_outbox(key, analysis_id):
     return inbox.record_path(key) / 'analysis-outbox' / (analysis_id + '.json')
 
@@ -328,7 +349,7 @@ def _recover_published_outbox(root, payload, input_sha256):
     return {'report': report, 'item': result}
 
 
-def complete_document(root, payload, record):
+def complete_document(root, payload, record, expected_task=None):
     """Document review produces source-linked tasks, never an automatic fact."""
     key, sha = payload['id'], payload['sha256']
     if (record['sha256'] != sha or not record.get('analysis_requested_at')
@@ -349,7 +370,7 @@ def complete_document(root, payload, record):
             raise inbox.Conflict('analysis replay changed')
         return {'report':prior['report'], 'item':inbox.owner_view(inbox.load(key))}
     current_task, _ = review_context.current(root, record)
-    if payload.get('task_provenance') != review_context.provenance(current_task):
+    if payload.get('task_provenance') != (expected_task or review_context.provenance(current_task)):
         raise inbox.Conflict('analysis_task_context_changed_retry_with_current_task')
     findings=[]
     for row in payload['findings']:
@@ -377,22 +398,28 @@ def complete_document(root, payload, record):
             'published':[],'held':[],'findings':findings,
             'source_sha256':sha,'input_sha256':input_sha256,
             'task_provenance':payload.get('task_provenance'),
-            'review_scope':'sampled_extracted_text_no_automatic_publication'}
+            'review_scope':'sampled_extracted_text_no_automatic_publication',
+            **({'batch_review':payload['batch_review']} if 'batch_review' in payload else {})}
     result=inbox.finish_analysis(key,sha,payload['analysis_id'],report,task)
     return {'report':report,'item':result}
 
 
 def complete(root, payload):
     """Serialize task changes while checking and publishing a reviewed proposal."""
+    full = (isinstance(payload, dict) and isinstance(payload.get('review_scope'), dict)
+            and payload['review_scope'].get('mode') == 'full_native_campus')
+    if isinstance(payload,dict) and ('batch_review' in payload
+            or inbox.load(payload.get('id','')).get('review_batch_id')) and not full:
+        raise ValueError('joint_analysis_requires_batch_commit')
     with locked(research_tasks.ledger_path(root)):
         return _complete_with_task_lock(root, payload)
 
 
-def _complete_with_task_lock(root, payload):
+def _complete_with_task_lock(root, payload, *, expected_task=None, expected_source_sha=None):
     """Install eligible rows, verify the reader projection, then append reports."""
     required={'id','sha256','analysis_id','summary','findings','candidates','model'}
     if (not isinstance(payload,dict) or not required <= set(payload)
-            or set(payload)-required-{'task_provenance','review_scope'}
+            or set(payload)-required-{'task_provenance','review_scope','batch_review','review_windows','campus_adjudication'}
             or 'task_provenance' in payload and not _task_provenance(payload['task_provenance'])):
         raise ValueError('analysis_payload_required')
     key, sha = payload['id'], payload['sha256']
@@ -404,10 +431,15 @@ def _complete_with_task_lock(root, payload):
     except ValueError as exc:
         raise ValueError('analysis_id_required') from exc
     record = inbox.worker_record(key)
+    full = (isinstance(payload.get('review_scope'), dict)
+            and payload['review_scope'].get('mode') == 'full_native_campus')
+    if ({'review_windows','campus_adjudication'} & set(payload) and not full
+            or full and 'batch_review' in payload):
+        raise ValueError('native_review_windows_scope_required')
     if Path(record['name']).suffix.lower() != '.xlsx':
         if 'review_scope' in payload:
             raise ValueError('unexpected_review_scope')
-        return complete_document(root, payload, record)
+        return complete_document(root, payload, record, expected_task=expected_task)
     if (record['sha256'] != sha or not record.get('analysis_requested_at')
             or record['status'] != 'archived' or Path(record['name']).suffix.lower() != '.xlsx'):
         raise ValueError('approved_xlsx_required')
@@ -430,9 +462,13 @@ def _complete_with_task_lock(root, payload):
     recovered = _recover_published_outbox(root, payload, input_sha256)
     if recovered is not None:
         return recovered
+    if record.get('full_analysis') and not full:
+        raise inbox.Conflict('explicit_full_review_attempt_required')
     runtime_state = source_publication.state(root)
+    if expected_source_sha is not None and source_publication.digest(runtime_state) != expected_source_sha:
+        raise inbox.Conflict('analysis_site_context_changed_retry_with_current_task')
     current_task, _ = review_context.current(root, record, runtime=runtime_state)
-    expected_task = review_context.provenance(current_task)
+    expected_task = expected_task or review_context.provenance(current_task)
     if payload.get('task_provenance') != expected_task:
         raise inbox.Conflict('analysis_task_context_changed_retry_with_current_task')
     expected_source_sha = source_publication.digest(runtime_state)
@@ -442,9 +478,20 @@ def _complete_with_task_lock(root, payload):
         shutil.copyfile(source_path, native)
         book = Workbook(native)
         sampled_scope = None
-        if sum(len(sheet['cells']) for sheet in book.sheets) > 300:
+        if full:
+            from inresearch.materials.native_review_contract import validate_scope
+            sampled_scope = validate_scope(book, inbox.load(key), payload)
+        elif (sum(len(sheet['cells']) for sheet in book.sheets) > 300
+                or 'batch_review' in payload and isinstance(payload.get('review_scope'),dict)
+                    and payload['review_scope'].get('mode') == 'sampled_native_cells'):
             from inresearch.materials.review_worker import digest_book, digest_scope
-            sampled_scope = digest_scope(book, digest_book(book))
+            budget = (payload.get('review_scope') or {}).get('excerpt_budget',35000)
+            if type(budget) is not int or not 600 <= budget <= 35000:
+                raise ValueError('sampled_excerpt_budget_invalid')
+            if budget != 35000 and 'batch_review' not in payload:
+                raise ValueError('joint_analysis_requires_batch_commit')
+            sampled_scope = digest_scope(book, digest_book(book,budget=budget,compact='batch_review' in payload))
+            if 'batch_review' in payload: sampled_scope['excerpt_budget'] = budget
             if payload.get('review_scope') != sampled_scope or payload['candidates']:
                 raise ValueError('sampled_review_scope_required_no_publication')
             allowed = {(sheet, cell) for sheet, cell in sampled_scope['reviewed_locators']}
@@ -477,6 +524,8 @@ def _complete_with_task_lock(root, payload):
                 if not isinstance(candidate, dict) or locator in seen:
                     raise ValueError('重复或无效的候选单元格')
                 seen.add(locator)
+                if full and not sampled_scope['identity_eligible'] and not candidate.get('site_id'):
+                    raise ValueError('未获明确独立园区身份：'+sampled_scope['identity_reason'])
                 _require_package_geography(root, record, candidate, existing)
                 site_id, identity = _identity(book, candidate, existing)
                 field = candidate['field']
@@ -505,7 +554,8 @@ def _complete_with_task_lock(root, payload):
                         if not replay:
                             classification = 'duplicate'
                             raise ValueError('同一原件已登记该字段，且没有新的核验依据；请提交新的来源版本或有据可查的复核记录')
-                    if old not in (None, '', [], {}):
+                    if (old not in (None, '', [], {})
+                            and not _is_unbacked_notes_placeholder(current_row, field, old, selected)):
                         if old == value:
                             registration_kind = 'reconfirmation' if not same_source else 'replay'
                         else:
@@ -568,7 +618,10 @@ def _complete_with_task_lock(root, payload):
                       'publication':None,'published':installed,'held':held,
                       'findings':findings,'source_sha256':sha,'input_sha256':input_sha256,
                       'task_provenance':payload.get('task_provenance'),
-                      **({'review_scope':sampled_scope} if sampled_scope else {})}
+                      **({'review_scope':sampled_scope} if sampled_scope else {}),
+                      **({'review_windows':payload['review_windows'],
+                          'campus_adjudication':payload['campus_adjudication']} if full else {}),
+                      **({'batch_review':payload['batch_review']} if 'batch_review' in payload else {})}
             write_json(_analysis_outbox(key, payload['analysis_id']),
                        {'input_sha256':input_sha256,'publication_batch':batch,
                         'published':installed,'report':report,'employee_task':task})
@@ -590,6 +643,9 @@ def _complete_with_task_lock(root, payload):
                   'publication':publication,'published':installed,'held':held,
                   'findings':findings,'source_sha256':sha,'input_sha256':input_sha256,
                   'task_provenance':payload.get('task_provenance'),
-                  **({'review_scope':sampled_scope} if sampled_scope else {})}
+                  **({'review_scope':sampled_scope} if sampled_scope else {}),
+                  **({'review_windows':payload['review_windows'],
+                      'campus_adjudication':payload['campus_adjudication']} if full else {}),
+                      **({'batch_review':payload['batch_review']} if 'batch_review' in payload else {})}
         result = inbox.finish_analysis(key, sha, payload['analysis_id'], report, task)
         return {'report':report,'item':result}

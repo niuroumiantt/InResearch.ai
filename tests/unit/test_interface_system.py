@@ -70,7 +70,7 @@ class InterfaceContractTests(unittest.TestCase):
         shell=(ROOT/'web/components/site-shell.js').read_text()
         self.assertNotIn('data-ui-choice',shell)
         self.assertNotIn('ui-skin-choices',shell)
-        self.assertIn("/assets/brand/inresearch-ai/wordmark-primary.svg", shell)
+        self.assertIn("/assets/marketing/wordmark-light.png", shell)
         self.assertIn('mountImageBranding', shell)
         self.assertIn('.ui-branded-image', skin)
         # 字体包必须与自己的 manifest 一致 (infra scripts/sync_fonts.py --check 的本地版)
@@ -122,6 +122,8 @@ class InterfaceContractTests(unittest.TestCase):
         self.assertEqual(routes['/data/datacenter_model.json'], 'data/datacenter_model.json')
         self.assertEqual(routes['/assets/brand/inresearch-ai/icon-orange.svg'], 'web/assets/brand/inresearch-ai/icon-orange.svg')
         self.assertEqual(routes['/assets/brand/inresearch-ai/wordmark-primary.svg'], 'web/assets/brand/inresearch-ai/wordmark-primary.svg')
+        self.assertEqual(routes['/assets/marketing/wordmark-light.png'], 'web/assets/marketing/wordmark-light.png')
+        self.assertEqual(routes['/assets/marketing/brand/wordmark-dark.png'], 'web/assets/marketing/brand/wordmark-dark.png')
 
     def test_public_read_only_boundary(self):
         with patch.object(serve,'AUTH_ON',True), patch.object(auth,'session_user',return_value=None):

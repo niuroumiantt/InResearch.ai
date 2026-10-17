@@ -17,7 +17,7 @@ async function loadUsers(){
   tb.innerHTML=d.users.map(u=>`<tr>
     <td><b>${u.name}</b>${u.name===ME.user?' <span style="color:var(--muted);font-size:11px">(我)</span>':''}</td>
     <td><select onchange="setRole('${u.name}',this.value,this)" style="padding:3px 6px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
-      ${["intern","customer","member","admin"].map(r=>`<option value="${r}"${r===u.role?" selected":""}>${r==="customer"?"customer · 客户交付区只读":r}</option>`).join("")}
+      ${["collaborator","intern","customer","member","admin"].map(r=>`<option value="${r}"${r===u.role?" selected":""}>${r==="customer"?"customer · 客户交付区只读":r==="collaborator"?"collaborator · 项目协作者":r}</option>`).join("")}
     </select></td>
     <td style="color:var(--muted)">${u.created}</td>
     <td style="text-align:right;white-space:nowrap">

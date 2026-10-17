@@ -7,9 +7,10 @@
 - **密码**：PBKDF2-HMAC-SHA256，200,000 轮，每用户独立盐。存 `data/users.json`
   ——**该文件不进 git**（.gitignore 已排除），只存在于服务器挂载卷；里面是哈希不是明文，
   但哈希也不该公开。加用户用 `src/inresearch/interfaces/users.py`（见该文件）。
-- **会话**：HMAC-SHA256 签名的 cookie（`用户名:过期时间:签名`），密钥首次运行自动生成到
+- **会话**：HMAC-SHA256 签名的 cookie（`用户名:过期时间:账号版本:签名`），密钥首次运行自动生成到
   `data/.hub_secret`（同样不进 git）。无服务端会话表——重启不踢人，签名自足验证。
-  有效期 7 天；改密码不会使已发会话失效（要踢人就删用户或换 `.hub_secret`）。
+  有效期 7 天；会话绑定账号版本，改密、停用、改角色或修改项目授权即令旧会话失效。
+  旧签名会话只在账号尚未发生版本变更时兼容。
 - **限速**：同一 IP 在 5 分钟内失败 5 次即拒绝 5 分钟。IP 取 X-Forwarded-For **末项**
   ——首项是客户端可以随便填的，末项才是最近一跳可信反代（Caddy）看到的真实来源。
   表有上界防内存耗尽。
@@ -42,6 +43,7 @@ import hmac
 import json
 import os as os
 import secrets
+import uuid
 import time
 from http.cookies import SimpleCookie
 from inresearch.storage.jsonl import atomic_write
@@ -102,7 +104,7 @@ def hash_password(password: str, salt_hex: str) -> str:
 
 def verify_password(username: str, password: str) -> bool:
     u = load_users().get(username)
-    if not u:
+    if not u or u.get("disabled"):
         # 用户不存在也走一遍哈希，抹平时间差（避免用枚举响应时长探测用户名）
         hash_password(password, "00" * 16)
         return False
@@ -136,7 +138,10 @@ def _sign(payload: str) -> str:
 
 def make_cookie(username: str) -> str:
     exp = int(time.time()) + SESSION_TTL
-    payload = f"{username}:{exp}"
+    user = load_users().get(username, {})
+    if user and not user.get("id"):
+        ensure_identity(username)
+    payload = f"{username}:{exp}:{user.get('session_version', 0)}"
     token = base64.urlsafe_b64encode(f"{payload}:{_sign(payload)}".encode()).decode()
     return (f"{COOKIE_NAME}={token}; Path=/; Max-Age={SESSION_TTL}; "
             f"HttpOnly; Secure; SameSite=Lax")
@@ -160,15 +165,25 @@ def session_user(cookie_header: str | None) -> str | None:
         return None
     try:
         payload_sig = base64.urlsafe_b64decode(m.value.encode()).decode()
-        username, exp_s, sig = payload_sig.rsplit(":", 2)
+        parts = payload_sig.split(":")
+        if len(parts) == 4:
+            username, exp_s, version_s, sig = parts
+            version = int(version_s)
+        elif len(parts) == 3:
+            username, exp_s, sig = parts
+            version = 0
+        else:
+            return None
+        signed = ":".join(parts[:-1])
         exp = int(exp_s)
     except Exception:
         return None
     if time.time() > exp:
         return None
-    if not hmac.compare_digest(_sign(f"{username}:{exp}"), sig):
+    if not hmac.compare_digest(_sign(signed), sig):
         return None
-    if username not in load_users():      # 删用户即踢人
+    user = load_users().get(username)
+    if not user or user.get("disabled") or user.get("session_version", 0) != version:
         return None
     return username
 
@@ -184,12 +199,25 @@ def set_password(username: str, new_password: str, *, current_password: str | No
             hash_password(current_password, users[username]['salt']), users[username]['hash']):
         return False
     salt = _s.token_bytes(16).hex()
-    users[username].update(salt=salt, hash=hash_password(new_password, salt))
+    users[username].update(salt=salt, hash=hash_password(new_password, salt),
+                           must_change_password=False, session_version=users[username].get("session_version", 0)+1)
     save_users(users)
     return True
 
 
-ROLES = ("admin", "member", "intern", "customer")
+@user_write
+def ensure_identity(username):
+    users = load_users()
+    user = users.get(username)
+    if not user:
+        raise ValueError('unknown user')
+    if not user.get('id'):
+        user['id'] = uuid.uuid4().hex
+        save_users(users)
+    return user['id']
+
+
+ROLES = ("admin", "member", "intern", "customer", "collaborator")
 # customer is a product reader, never an internal member. HTTP grants are
 # explicitly projected from site_navigation.json; account roles confer no
 # access to private research records or operational writes.
@@ -242,7 +270,8 @@ def add_user(name: str, password: str | None = None, role: str | None = None):
         return False, f"角色须为 {'/'.join(ROLES)}", None
     salt = _s.token_bytes(16).hex()
     users[name] = {"salt": salt, "hash": hash_password(pw, salt),
-                   "role": r, "created": _d.today().isoformat()}
+                   "role": r, "created": _d.today().isoformat(), "id":uuid.uuid4().hex,
+                   "must_change_password":r == "collaborator", "session_version":secrets.randbits(128)}
     save_users(users)
     return True, f"已添加 {name}（角色：{r}）", pw
 
@@ -271,6 +300,7 @@ def set_role(name: str, role: str):
     if users[name].get("role") == "admin" and role != "admin" and admins == [name]:
         return False, "这是最后一个 admin，降级会让系统没有管理员——先给别人升 admin"
     users[name]["role"] = role
+    users[name]["session_version"] = users[name].get("session_version", 0)+1
     save_users(users)
     return True, f"{name} → {role}（即时生效）"
 
@@ -286,6 +316,8 @@ def rename_user(old: str, new: str):
     err = _validate_name(new)
     if err:
         return False, err
+    users[old].setdefault("id", uuid.uuid4().hex)
+    users[old]["session_version"] = users[old].get("session_version", 0)+1
     users[new] = users.pop(old)
     save_users(users)
     return True, f"{old} → {new}（旧名会话已失效，需用新名重新登录）"
@@ -338,7 +370,8 @@ def apply_declared_admin(environ=None):
     if user is None:
         salt = secrets.token_bytes(16).hex()
         users[name] = {"salt": salt, "hash": hash_password(password, salt),
-                       "role": "admin", "created": _d.today().isoformat()}
+                       "role": "admin", "created": _d.today().isoformat(),
+                       "id":uuid.uuid4().hex, "session_version":secrets.randbits(128)}
         save_users(users)
         return "created"
     changed = []
@@ -351,6 +384,7 @@ def apply_declared_admin(environ=None):
         changed.append("password")
     if not changed:
         return "unchanged"
+    user["session_version"] = user.get("session_version", 0)+1
     save_users(users)
     return "+".join(changed)
 

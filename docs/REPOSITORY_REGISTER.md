@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.16.22。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.17.2。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2754。
+在册文件：2804。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 384 |
+| 静态资源 | 408 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 445 |
-| 运行代码 | 403 |
+| 运行代码 | 416 |
 | 现行规范 | 15 |
 | 项目配置 | 780 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 31 |
-| 配套说明 | 265 |
-| 测试 | 248 |
+| 配套说明 | 267 |
+| 测试 | 259 |
 
 ## 在册记录集合
 
@@ -1807,8 +1807,8 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 57 |
-| `framework/interface_manifest.json` | public_pages | 2 |
+| `framework/interface_manifest.json` | static_pages | 58 |
+| `framework/interface_manifest.json` | public_pages | 3 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -1825,7 +1825,7 @@
 | `framework/site_implementation.json` | milestones | 8 |
 | `framework/site_implementation.json` | releases | 0 |
 | `framework/site_navigation.json` | public_navigation | 2 |
-| `framework/site_navigation.json` | page_rules | 28 |
+| `framework/site_navigation.json` | page_rules | 29 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 26 |
@@ -2673,7 +2673,6 @@
 | [docs/guides/fetchdata/fetchfilings-production.md](guides/fetchdata/fetchfilings-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-market-prices.md](guides/fetchdata/fetchquotes-market-prices.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchquotes-production.md](guides/fetchdata/fetchquotes-production.md) | 配套说明 |
-| [docs/guides/fetchdata/fetchreports-outbox.md](guides/fetchdata/fetchreports-outbox.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-production.md](guides/fetchdata/fetchreports-production.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchreports-research-publications.md](guides/fetchdata/fetchreports-research-publications.md) | 配套说明 |
 | [docs/guides/fetchdata/fetchstat-outbox.md](guides/fetchdata/fetchstat-outbox.md) | 配套说明 |
@@ -2717,7 +2716,6 @@
 | [docs/handoff/fetchfilings-outbox.md](handoff/fetchfilings-outbox.md) | 配套说明 |
 | [docs/handoff/fetchfilings-production.md](handoff/fetchfilings-production.md) | 配套说明 |
 | [docs/handoff/fetchquotes-production.md](handoff/fetchquotes-production.md) | 配套说明 |
-| [docs/handoff/fetchreports-outbox.md](handoff/fetchreports-outbox.md) | 配套说明 |
 | [docs/handoff/fetchreports-production.md](handoff/fetchreports-production.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/fetchstat-outbox.md](handoff/fetchstat-outbox.md) | 配套说明 |
@@ -2758,6 +2756,7 @@
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/private-research-tasks-20261012.md](handoff/private-research-tasks-20261012.md) | 配套说明 |
 | [docs/handoff/project-audit-20261010.md](handoff/project-audit-20261010.md) | 配套说明 |
+| [docs/handoff/project-collaborator-access-20261017.md](handoff/project-collaborator-access-20261017.md) | 配套说明 |
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/public-actions-recovery-20261009.md](handoff/public-actions-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/publication-block-recovery-20261009.md](handoff/publication-block-recovery-20261009.md) | 配套说明 |
@@ -2782,6 +2781,7 @@
 | [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/source-projection-throughput-20261012.md](handoff/source-projection-throughput-20261012.md) | 配套说明 |
 | [docs/handoff/source-statement-intake-20261012.md](handoff/source-statement-intake-20261012.md) | 配套说明 |
+| [docs/handoff/spark-campus-full-review-20261017.md](handoff/spark-campus-full-review-20261017.md) | 配套说明 |
 | [docs/handoff/stock-archived-gpu-20261012.md](handoff/stock-archived-gpu-20261012.md) | 配套说明 |
 | [docs/handoff/stock-cdu-controls-20261012.md](handoff/stock-cdu-controls-20261012.md) | 配套说明 |
 | [docs/handoff/stock-compute-caches-20261012.md](handoff/stock-compute-caches-20261012.md) | 配套说明 |
@@ -2795,6 +2795,8 @@
 | [docs/handoff/stock-sn5600-20261012.md](handoff/stock-sn5600-20261012.md) | 配套说明 |
 | [docs/handoff/stock-throughput-20261011.md](handoff/stock-throughput-20261011.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
+| [docs/handoff/task-batch-review-20261016.md](handoff/task-batch-review-20261016.md) | 配套说明 |
+| [docs/handoff/task-current-feedback-20261016.md](handoff/task-current-feedback-20261016.md) | 配套说明 |
 | [docs/handoff/task-project-workbench-20261016.md](handoff/task-project-workbench-20261016.md) | 配套说明 |
 | [docs/handoff/task-upload-approval.md](handoff/task-upload-approval.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
@@ -3751,7 +3753,6 @@
 | `scripts/filings_gateway.py` | 运行代码 |
 | `scripts/publish_repository_pages.py` | 运行代码 |
 | `scripts/receive_collector_local.py` | 运行代码 |
-| `scripts/reports_gateway.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
 | `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/repository_research_dashboard.py` | 运行代码 |
@@ -3785,6 +3786,7 @@
 | `src/inresearch/adapters/office_grid.py` | 运行代码 |
 | `src/inresearch/adapters/office_ooxml.py` | 运行代码 |
 | `src/inresearch/adapters/office_ppt.py` | 运行代码 |
+| `src/inresearch/adapters/ollama_token_budget.py` | 运行代码 |
 | `src/inresearch/adapters/pdf_text.py` | 运行代码 |
 | `src/inresearch/adapters/reader_model.py` | 运行代码 |
 | `src/inresearch/adapters/thermal.py` | 运行代码 |
@@ -3792,6 +3794,7 @@
 | `src/inresearch/delivery/__init__.py` | 运行代码 |
 | `src/inresearch/delivery/acquisition_status.py` | 运行代码 |
 | `src/inresearch/delivery/backup.py` | 运行代码 |
+| `src/inresearch/delivery/city_location.py` | 运行代码 |
 | `src/inresearch/delivery/export.py` | 运行代码 |
 | `src/inresearch/delivery/material_measurements.py` | 运行代码 |
 | `src/inresearch/delivery/project_capacity_map.py` | 运行代码 |
@@ -3816,6 +3819,7 @@
 | `src/inresearch/interfaces/http.py` | 运行代码 |
 | `src/inresearch/interfaces/material_flow.py` | 运行代码 |
 | `src/inresearch/interfaces/pages.py` | 运行代码 |
+| `src/inresearch/interfaces/project_access.py` | 运行代码 |
 | `src/inresearch/interfaces/public.py` | 运行代码 |
 | `src/inresearch/interfaces/reader.py` | 运行代码 |
 | `src/inresearch/interfaces/repository_pages.py` | 运行代码 |
@@ -3859,6 +3863,7 @@
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
 | `src/inresearch/materials/__init__.py` | 运行代码 |
 | `src/inresearch/materials/artifacts.py` | 运行代码 |
+| `src/inresearch/materials/batch_review.py` | 运行代码 |
 | `src/inresearch/materials/collector_production.py` | 运行代码 |
 | `src/inresearch/materials/collector_receive.py` | 运行代码 |
 | `src/inresearch/materials/daily_bundle.py` | 运行代码 |
@@ -3867,13 +3872,17 @@
 | `src/inresearch/materials/daily_sources.py` | 运行代码 |
 | `src/inresearch/materials/demand_bindings.py` | 运行代码 |
 | `src/inresearch/materials/fetchspec_receive.py` | 运行代码 |
+| `src/inresearch/materials/full_review_worker.py` | 运行代码 |
 | `src/inresearch/materials/inbox.py` | 运行代码 |
 | `src/inresearch/materials/inventory.py` | 运行代码 |
 | `src/inresearch/materials/library.py` | 运行代码 |
 | `src/inresearch/materials/mapping.py` | 运行代码 |
 | `src/inresearch/materials/model_assets.py` | 运行代码 |
 | `src/inresearch/materials/naming.py` | 运行代码 |
+| `src/inresearch/materials/native_review_contract.py` | 运行代码 |
+| `src/inresearch/materials/native_review_layouts.py` | 运行代码 |
 | `src/inresearch/materials/organize.py` | 运行代码 |
+| `src/inresearch/materials/packed_reading.py` | 运行代码 |
 | `src/inresearch/materials/paths.py` | 运行代码 |
 | `src/inresearch/materials/preflight.py` | 运行代码 |
 | `src/inresearch/materials/reader_contracts.py` | 运行代码 |
@@ -3892,6 +3901,7 @@
 | `src/inresearch/storage/__init__.py` | 运行代码 |
 | `src/inresearch/storage/catalog.py` | 运行代码 |
 | `src/inresearch/storage/files.py` | 运行代码 |
+| `src/inresearch/storage/json_stream.py` | 运行代码 |
 | `src/inresearch/storage/jsonl.py` | 运行代码 |
 | `src/inresearch/storage/layout.py` | 运行代码 |
 | `src/inresearch/storage/moves.py` | 运行代码 |
@@ -3986,6 +3996,7 @@
 | `tests/panel_sources.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
+| `tests/project_access.cjs` | 测试 |
 | `tests/rack_assembly.cjs` | 测试 |
 | `tests/rack_atlas.cjs` | 测试 |
 | `tests/rack_exploded.cjs` | 测试 |
@@ -4024,6 +4035,7 @@
 | `tests/unit/test_campus_atlas_assets.py` | 测试 |
 | `tests/unit/test_campus_exploded_assets.py` | 测试 |
 | `tests/unit/test_campus_plan_assets.py` | 测试 |
+| `tests/unit/test_campus_reading_budget.py` | 测试 |
 | `tests/unit/test_capacity_consumers.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_browse.py` | 测试 |
@@ -4031,6 +4043,7 @@
 | `tests/unit/test_catalog_ownership.py` | 测试 |
 | `tests/unit/test_catalog_supplement.py` | 测试 |
 | `tests/unit/test_ci_scope.py` | 测试 |
+| `tests/unit/test_city_location.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
@@ -4072,12 +4085,14 @@
 | `tests/unit/test_fetchspec_backflow.py` | 测试 |
 | `tests/unit/test_fetchspec_receive.py` | 测试 |
 | `tests/unit/test_file_moves.py` | 测试 |
+| `tests/unit/test_full_review_worker.py` | 测试 |
 | `tests/unit/test_gap_ocr.py` | 测试 |
 | `tests/unit/test_geographic_analysis.py` | 测试 |
 | `tests/unit/test_governance.py` | 测试 |
 | `tests/unit/test_graph.py` | 测试 |
 | `tests/unit/test_homepage_raw_atlas.py` | 测试 |
 | `tests/unit/test_html_document.py` | 测试 |
+| `tests/unit/test_http_json_memory.py` | 测试 |
 | `tests/unit/test_http_workflow.py` | 测试 |
 | `tests/unit/test_industry.py` | 测试 |
 | `tests/unit/test_industry_cache.py` | 测试 |
@@ -4085,6 +4100,7 @@
 | `tests/unit/test_intake.py` | 测试 |
 | `tests/unit/test_interface_system.py` | 测试 |
 | `tests/unit/test_it_domain_assets.py` | 测试 |
+| `tests/unit/test_json_stream.py` | 测试 |
 | `tests/unit/test_m4_ocr_gaps.py` | 测试 |
 | `tests/unit/test_m4_office_text.py` | 测试 |
 | `tests/unit/test_m4_offload_requeue.py` | 测试 |
@@ -4119,8 +4135,10 @@
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
 | `tests/unit/test_ollama_schema.py` | 测试 |
+| `tests/unit/test_ollama_token_budget.py` | 测试 |
 | `tests/unit/test_operations.py` | 测试 |
 | `tests/unit/test_optional_mapping_ids.py` | 测试 |
+| `tests/unit/test_packed_reading.py` | 测试 |
 | `tests/unit/test_panel_source_assets.py` | 测试 |
 | `tests/unit/test_pdf_native_text.py` | 测试 |
 | `tests/unit/test_pilot_progress.py` | 测试 |
@@ -4129,6 +4147,7 @@
 | `tests/unit/test_product_catalog_companies.py` | 测试 |
 | `tests/unit/test_product_coverage.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
+| `tests/unit/test_project_access.py` | 测试 |
 | `tests/unit/test_project_review.py` | 测试 |
 | `tests/unit/test_project_review_reader.py` | 测试 |
 | `tests/unit/test_public_reader.py` | 测试 |
@@ -4190,6 +4209,8 @@
 | `tests/unit/test_target_dispatch.py` | 测试 |
 | `tests/unit/test_targeted_research.py` | 测试 |
 | `tests/unit/test_task_analysis.py` | 测试 |
+| `tests/unit/test_task_batch_review.py` | 测试 |
+| `tests/unit/test_task_full_review.py` | 测试 |
 | `tests/unit/test_task_review_races.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
 | `tests/unit/test_tco_targets.py` | 测试 |
@@ -4205,9 +4226,12 @@
 | `web/assets/bom-classification/overview-v1.svg` | 静态资源 |
 | `web/assets/brand/inresearch-ai/icon-orange.svg` | 静态资源 |
 | `web/assets/brand/inresearch-ai/wordmark-primary.svg` | 静态资源 |
+| `web/assets/brand/inresearch-ai/wordmark-reverse.svg` | 静态资源 |
 | `web/assets/datacenter-news.css` | 运行代码 |
 | `web/assets/fonts/LICENSE-Inter.txt` | 静态资源 |
 | `web/assets/fonts/LICENSE-NotoSansSC.txt` | 静态资源 |
+| `web/assets/fonts/SourceSerif4-Regular.ttf` | 静态资源 |
+| `web/assets/fonts/SourceSerif4-Semibold.ttf` | 静态资源 |
 | `web/assets/fonts/fonts.css` | 运行代码 |
 | `web/assets/fonts/inter-variable-italic.woff2` | 静态资源 |
 | `web/assets/fonts/inter-variable.woff2` | 静态资源 |
@@ -4240,6 +4264,27 @@
 | `web/assets/maps/map-admin1-8.geo.json` | 静态资源 |
 | `web/assets/maps/map-admin1-9.geo.json` | 静态资源 |
 | `web/assets/maps/world-detail.geo.json` | 静态资源 |
+| `web/assets/marketing/SourceSerif4-Regular.ttf` | 静态资源 |
+| `web/assets/marketing/SourceSerif4-Semibold.ttf` | 静态资源 |
+| `web/assets/marketing/brand-kit-final.zip` | 静态资源 |
+| `web/assets/marketing/brand/wordmark-dark.png` | 静态资源 |
+| `web/assets/marketing/brand/wordmark-mono-white.png` | 静态资源 |
+| `web/assets/marketing/circle-light.png` | 静态资源 |
+| `web/assets/marketing/dot-dark.png` | 静态资源 |
+| `web/assets/marketing/hero-gradient.png` | 静态资源 |
+| `web/assets/marketing/icons-comms.png` | 静态资源 |
+| `web/assets/marketing/icons-compute.png` | 静态资源 |
+| `web/assets/marketing/icons-core.png` | 静态资源 |
+| `web/assets/marketing/inresearch_ai_品牌PPT模板_通用可复制_v0.2.pptx` | 静态资源 |
+| `web/assets/marketing/inresearch_ai_品牌PPT母版_通用设计_v0.2.pptx` | 静态资源 |
+| `web/assets/marketing/logo-manual.pdf` | 静态资源 |
+| `web/assets/marketing/marcomm-overview.png` | 静态资源 |
+| `web/assets/marketing/typography-manual.pdf` | 静态资源 |
+| `web/assets/marketing/ui-components.png` | 静态资源 |
+| `web/assets/marketing/ui-foundation.png` | 静态资源 |
+| `web/assets/marketing/ui-manual.pdf` | 静态资源 |
+| `web/assets/marketing/ui-workbench-dark.png` | 静态资源 |
+| `web/assets/marketing/wordmark-light.png` | 静态资源 |
 | `web/assets/material-flow.css` | 运行代码 |
 | `web/assets/material-flow.js` | 运行代码 |
 | `web/assets/materials.js` | 运行代码 |
@@ -4624,6 +4669,8 @@
 | `web/components/part-inspector.js` | 运行代码 |
 | `web/components/pilot.js` | 运行代码 |
 | `web/components/product-catalog.js` | 运行代码 |
+| `web/components/project-access.js` | 运行代码 |
+| `web/components/project-work.js` | 运行代码 |
 | `web/components/rack-assembly.js` | 运行代码 |
 | `web/components/rack-exploded-generator.js` | 运行代码 |
 | `web/components/rack-exploded-view.js` | 运行代码 |
@@ -4664,6 +4711,7 @@
 | `web/pages/admin/oarepo.html` | 运行代码 |
 | `web/pages/admin/openapirepo.html` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
+| `web/pages/admin/project-access.html` | 运行代码 |
 | `web/pages/admin/repo-content/checks.json` | 项目配置 |
 | `web/pages/admin/repo-content/fetchspec.html` | 运行代码 |
 | `web/pages/admin/repo-content/infra-daily.json` | 项目配置 |
@@ -4693,6 +4741,7 @@
 | `web/pages/index.html` | 运行代码 |
 | `web/pages/industry.html` | 运行代码 |
 | `web/pages/ledger.html` | 运行代码 |
+| `web/pages/marketing.html` | 运行代码 |
 | `web/pages/memory-atlas.html` | 运行代码 |
 | `web/pages/network-atlas.html` | 运行代码 |
 | `web/pages/node.html` | 运行代码 |
@@ -4724,6 +4773,7 @@
 | `web/themes/company.css` | 运行代码 |
 | `web/themes/industry.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
+| `web/themes/project-access.css` | 运行代码 |
 | `web/themes/research-tasks.css` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |

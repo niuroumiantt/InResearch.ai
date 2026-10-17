@@ -1,5 +1,21 @@
 # Spark 持续 reader 运行手册
 
+## 阅读回包与精确运维恢复（.37）
+
+新reading回包先保存returned.json（完整result/completion及各自SHA），再验全部冻结请求、实际模型、token预算、原dispatch与响应；通过后才写response.json及推进游标。进程中断后有效returned可零调用恢复；损坏或不匹配文件保持原样并operator_required。旧response不改写；仅有dispatch而无返回正文仍不自动重放。UID映射从内存tuple规范化为JSON list仅解决等值表达差异，不豁免任何证据字段。
+
+本次BOCOM-PJ2首窗的旧实现已完成HTTP200生成，但在保存正文前触发该类型假冲突，正文不可恢复。只允许本次精确submission/SHA/attempt/package/taskSHA/window/requestSHA范围的一次运维重取：先停止唯一timer的新轮次并等service自然退出；核模型与部署修复版本、完整原件、旧dispatch及状态SHA，核服务器该包无报告／proposal／outbox／发布回执，核其他8包全部成果不变。将整份旧请求及状态、日志、任务计划和哈希清单持久封存至私有恢复历史；仅隔离该窗无正文的旧派发审计并恢复其本地operator状态，保留原计划／配方／游标0及所有其他成功文件。保存带明确丢失原因和一次性操作ID的恢复回执，复验原文件均在历史路径、服务器覆盖未变，再恢复原timer。没有真实新回包、完整包和网站回执就不计完成。本例不授权其他未知派发的通用重放，也不新建attempt、改覆盖数或重读前8包。
+
+## 城市级点亮：双原件追加与回执（.36）
+
+仅对已上线、唯一身份且目前无坐标的园区使用；城市／地级区域来源已明确，地址仍可未知。先在完整包边界核当前队列与源状态，保留全部成功阅读。正常操作为 `python3 manage.py source-publish inspect` 取得state_sha256，将其填入私有payload的expected_state_sha，再执行 `python3 manage.py source-publish locate-city --input /私有目录/payload.json --geography /私有目录/CN.zip`。原件ZIP、payload、回执和审计进入持久私有资料／状态目录，不进Git，不依赖/tmp作为唯一副本。
+
+payload固定version=1、geography_sha256、expected_state_sha及sites数组；每项为site_id、submission_id、source_sha256、sheet（原表名而非序号）、name_cell、province_cell、city_cell、geoname_id（字符串）、geonames_line（1起整数）。v6/v5主表`1-地点与身份`为B/D/E；dahai主表`园区主表`为B/G/H；全国库主表`园区主表`为F/C/D。格位必须同原行且布局表头完整匹配。接收端核批准原件、已登记名称观测和GeoNames省／城市闭包；不得用GeoNames单文件代替园区归属证据，不能传lat/lon覆盖。PPLC/PPLA/PPLA2或精确全名ADM2可用，其余类别保持待补。
+
+批量解析优化（2026.10.17.2）不增加新的操作入口或批准步骤。同源多点在初验与锁内写前复验各完整解析一次，仍逐点核原文；不同提交即使字节相同也各自验批准。缓存仅限当前阶段，重放也重新读原件。不要为追求速度跳过第二阶段、替换为仅检查文件时间或直接改账本；在途旧CLI自然完成，版本部署与实际耗时另取回执，不以本地131点计数宣称生产提速。
+
+CAS失效先重新读取实际状态，核本批是否已有回执；同内容摘要不含CAS，原件复验后幂等重放不重复增加。当前已有city或精确点不得换点，异常整批失败且旧状态不变。完成后分别查持久city_location回执、API的coordinates及geography.coordinate_source、地图／浮窗／档案城市级标签和GeoNames链接；同城园区仍各有ID。报告已定位园区数与城市／地级区域数，不能说城市参考坐标就是园区实址或C3。精度更高的新来源须走相应显式核验，不由本入口覆盖。
+
 > CURRENT · 2026-10-07（首版 2026-09-13）。规则归属与替代关系见 framework/CURRENT.md。
 
 本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
@@ -559,3 +575,63 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 ### 2026-10-13：年份schema的服务端兼容性
 
 初筛年份生成schema采用模型服务可编译的普通分支与锚点，移除不受支持的前瞻；本地对锚定pattern执行完整字符串匹配，仍拒绝年份区间、完整日期与尾换行。原出版年语义、ID、原件、次数、成功缓存和C3边界不变。 真实最小schema请求已成功；本地测试不代替服务端编译。旧不兼容schema曾返回invalid_json_schema并被CLI网络分类误归暂态，不能把这类重试计作阅读。新部署、加载与逐任务完成仍另验。
+
+
+## 员工作业的同批联合审阅（2026-10-16）
+
+网页上传的实际成功成员凭各份回执封存，负责人一次确认精确清单及每份SHA／版本后，既有 `inresearch-material-intake.service` 接收原件；默认联合抽样调用同一私有Codex CLI，显式全表尝试按下节使用独立 campus_review 角色。联合请求共用当前任务和台账、最新有效共同反馈、逐份带定位及覆盖范围；旧个人修改任务及回执链不进入执行上下文，历史记录和安全鉴权继续保留。持久联合proposal在回写中断后复用，不能重跑模型或重复发布。单份历史断点与原件保留，不能按姓名或主题自动扩大批次。
+
+升级网站后，先核新镜像、health和相关静态资源，再升级Spark的同一接收用例：暂停原intake timer，等待当前receive自然结束，保存状态和实际运行审计，用已验证增量Git bundle在干净源码上快进到合并版本，核SHA后恢复原timer。不另起第二worker，不为此重启Reader或模型relay。若原receive在途，不在其运行中切换Python源码。
+
+验收分别核网页累加／移除、实际封存成员、负责人整批确认、一次联合模型调用、双侧文件定位、逐件回执及中断恢复。测试夹具不证明真实员工原件已完成全表审核或事实发布；真实批次报告须显示实际覆盖与未读范围，普通来源上线仍需原件值／单位／身份／时钟及最新上下文复验。源码升级不追溯重写既有分析报告。
+
+
+## 园区材料 27B 全表尝试（2026-10-17）
+
+全表尝试的现行语义与权限见 [05 界面规范](../../framework/05_interface_system.md) 和 [09 软件契约](../../framework/09_software_contracts.md)。本轮用户已授权实现、上线合格普通来源和继续余包，不新增人工审批；技术试点仍必须取得真实网站回执后才恢复余包。未在精确范围中的提交及旧抽样报告不自动重开。
+
+1. 先核网站和 Spark 的实际执行源码、原件 SHA、服务器最新 revision 与批准记录。网页材料接收使用唯一既有 intake service/timer，不能把 Reader 源码或静态 unit 当成实际路径；以 systemd 生效 ExecStart、drop-in、进程和 SHA 为准。
+2. 网站源码按原发布门禁合并并经现有部署器上线，核镜像、健康及新增全表接口；再暂停原 intake timer 以阻止新轮次，等当前 receive 自然结束。保存 unit/drop-in、私有配置、精确原件与全部旧分析产物的哈希和备份，在干净执行工作树快进到已验收版本；不在运行中的 Python 进程下替换源码，不重启 Reader、research-review、relay 或 Ollama。
+3. intake 专属模型配置选择 `campus_review` → Ollama `qwen3.8:27b`、本机 loopback、单并发；不改共享 reader.env 的 Codex 角色。每轮最多新增一次全表模型调用，窗口读完后的综合裁决占独立下一轮；GPU 利用率≥30%或温度≥80°C仍等待本任务；检测失败不得猜测机器空闲。竞争任务默认不变，只有用户明确授权的批次优先期可按下节暂缓其新轮次，不能跳过GPU门槛。现有 Reader 的温度开关不自动保护这条材料审核路径，必须核新 worker 的实际门槛。
+4. 对精确 submission ID/SHA/revision 执行 `start_full_analysis`，保存新尝试身份和旧抽样／报告／断点；同 SHA 的其他提交不重复纳入。先运行一个确定性园区包，核实际模型、全原生片段覆盖、网站普通来源发布与返回回执；真实回执复验后恢复该尝试余包，恢复不重新批准原件，也不能跳过回执门槛。
+5. 逐包核原件、现行任务与台账、包／单元格／长格片段、候选地域／原值／单位／唯一园区及 CAS。网站提交冲突时保留原模型输出和历史，按最新任务处理；原件错误和未读包不计完成。统计有效包／格覆盖、真实上线条数／园区数、待补清单分别报告，全部包完成才报告全表原生文本已审。
+
+### 本批优先期、内存验收与恢复（2026-10-17，.34）
+
+用户已明确本批优先并允许暂停其他任务；此授权替代本批原“只延后自己、不调整竞争任务”的默认运行安排，不扩展为任意停服。优先暂停调度器的新领取／新轮次，保存机器、unit或PID、父PID、启动时钟、实际命令、原active／enabled／暂停状态及本次变更回执；在途模型请求和子进程自然完成，不杀模型或Reader/review，不删除锁和原件。每项暂停须有相同身份的恢复动作；不要把同PID或旧unit名当成仍是原任务。
+
+本次已授权的具体范围为Spark用户级`inresearch-reader-publish.timer`与Mac mini两个inews回填父shell。publisher只停timer，不stop／restart在途service；若原active则结束优先期后恢复timer。回填父shell只在PID／PPID／启动时钟／argv全部吻合且原未暂停时SIGSTOP，不停止子进程；仅对本次暂停且身份仍吻合的进程SIGCONT。它们持有的FIFO锁保留，先核本批Spark归档锁不依赖该FIFO。其他AWS任务目前未变更；若需进一步暂缓，先核具体调度器、在途请求与锁依赖，不直接停止共用网站或模型服务。实际执行与恢复身份以私有运维回执为准。
+
+先部署并验收网站内存修复，再启用本批临时快速调度。核网站真实镜像与源码、logs挂载是持久磁盘、完整大库解析／来源发布／任务pending及实际HTTP的语义和内存峰值；`/tmp`若为tmpfs不得用作大型JSON溢出目录。发布回写HTTP超时先查服务器持久报告／outbox及原幂等身份，服务器已接收时复用缓存取得ACK，不重做模型、不清断点。恢复publisher之前还须核其大候选提交与网站内存边界，不能因health恢复立即制造同一压力。
+
+快速调度只在唯一`inresearch-material-intake.timer`设置临时drop-in：重置原单调计时配置后保留`OnBootSec=30s`，将`OnUnitInactiveSec`由60s改5s、`AccuracySec=1s`。应用前保存原timer／drop-in及状态，暂停timer并等现有receive自然结束；只reload和恢复同一timer，不另开worker／队列或改原共享模型角色。每轮最多一次新27B调用，综合仍占独立轮次；GPU利用率≥30%或温度≥80°C仍等待。降低轮间等待不授予更多并发，不改变原生覆盖、提示／schema、成功窗口、来源发布门槛或输出预算；真实模型计算、网站请求与温控耗时另计，不能许诺固定完成时间。
+
+本批完成或明确结束优先期时，按私有回执逐项恢复：只移除本任务路径且SHA吻合的临时drop-in，daemon-reload后恢复原timer状态；恢复原已active的publisher timer；对身份仍吻合且本次确实暂停的父shell发SIGCONT。已有其他修改、重启或状态不符时停在该项核查，不覆盖新配置、不误唤醒用户原先暂停的任务。记录恢复后状态及残留异常；成功窗口、模型审计、发布回执和锁均保留。
+
+显式操作通过原指定负责人 `/api/materials/review` 完成：启动字段为 `id/sha256/expected_revision/operation_id/action=start_full_analysis/layout_id/reason/pilot_package_id`；首包网站回执核实后的继续字段为 `id/sha256/expected_revision/operation_id/action=continue_full_analysis/attempt_id/reason`。两次操作使用各自唯一 UUID 并取服务器最新 revision；精确重放保留原请求，不直接编辑线上 JSON 或清空 analysis_reports。新尝试生成独立 full-review 目录，已持久化请求／响应与回执保留；GPU等待不妨碍纯缓存提交恢复，不消耗本轮新模型调用名额。Ollama真实传输失败按有限预算退避，阻塞尝试不独占其他待审材料；默认任务优先沿原路径执行。
+
+综合裁决读取所有窗口摘要、完整findings/candidates和候选原生单元格，最终阶段通过 `generate_campus_adjudication` 按同模型实际token判断：32768上下文减4096输出和1024预留；精确token超限或计量身份无法复验时明确blocked，不缩减输入来宣称完成。默认调用与legacy阅读窗口仍守原字节预算；仅从未开始包按下述.35专用阅读配方执行。窗口受约束解码使用实际原生值／定位枚举，P0/P1/P2及单格地点不得改写；系统提示与schema摘要纳入冻结配方，探针旧无效响应和成功窗口保留，阅读规则改变不能混用。机器窗口进度绑定attempt/package；窗口进度上报失败可重试，不能冒充网站包完成回执。当前布局白名单为v6、v5历史版、dahai与全国园区库；v5必须选择独立严格布局，不能套用v6，不授新园区身份资格。容量单位沿既有精确原文规则：`IT MW`等复合表头暂不当作独立`MW`单位格，相关数字候选保守留待补证。
+
+未开始包专用阅读（.35）：部署时不迁移或删除任何成功窗口。先在attempt/package下检查所有task-SHA目录；存在plan.json、progress.json、chunk-*、proposal.json或综合／派发审计即沿legacy，不能因当前任务SHA不同而改配方。全新包才冻结`reading-recipe.json`和64片段计划；每窗实际渲染／同模型分词通过后才生成，原完整片段及顺序、身份／表头／任务上下文均保留。仅真实input token预算超限且尚未派发，才自动按片段中点二分并保存input-budget-checks凭证，单片超限停止；不得用平均字节比或另一个tokenizer放行。GPU检查在debug前及completion前执行，唯一timer每轮仍至多一次新内容生成。
+
+新包的`reading-audits/chunk-*/<input_sha>/attempt-*/dispatch.json`在HTTP派发前保存完整请求和proof；response.json保存成功原响应／已验证结果，未推进游标可直接复用它。dispatch已存在而无可验证成功响应，或存在unverified.json，均要求运维；输出截断同样停止，不设输出后二分或通用自动重放。不要删除status、dispatch或旧失败响应解锁。语义无效而完整的响应按原三次预算保留在rejected-responses，成功窗不重读。新配方的最终综合仍走原delta与精确token合同，已有prepared proposal/outbox继续原幂等交付。离线64片段数是候选规划，未经实际分词及完整报告不能宣称全量预算通过、语义合格或耗时缩短。
+
+最终响应按.33使用增量格式：1至600字符且非空白的summary、reviewed_finding_ids将原问题0起始索引各列一次（可乱序、拒绝布尔值）、仅新跨窗问题的完整new_findings、accept_candidates原候选索引。全部原findings与其他证据仍完整输入；提交时原问题逐字保留，再追加新增问题，不能因改格式丢失缺口。最终recipe版本为`campus-adjudication-delta-v1`，独立记录system/schema/request/完整reading inventory/findings/candidates摘要及外层配方摘要，成功和未绑定响应均保存；旧final配方不兼容即停，不借此重读或覆盖成功阅读缓存。原32768／4096／1024及GPU、模型／tokenizer绑定保持；输出仍截断就blocked，不分页或截短真实新问题。
+
+本次AH-FY-JZ截断只允许运维按精确原件SHA／attempt／包／taskSHA恢复：先取得当前网站证明本包无完成报告、无待回写outbox或proposal，核对完整8窗、31条原问题、7候选及实际4096截断响应；保存原状态与完整请求／响应／proof及逐文件SHA。仅将该失败final审计原字节隔离到私有历史，保持原件、首包、reading配方／8窗和同一服务器attempt，随后才恢复最终步骤。存在已完成本包、已准备proposal或待恢复发布事务时不得套用；已生成proposal／outbox继续原幂等交付恢复，不因final升级自动重审或重复发布，新的delta只适用于尚未形成prepared的最终步骤。传输结果未知或未核实的失败不得从此取得重放资格。此操作不是通用自动重试、不是新attempt，也不能清除历史来重置开销。
+
+最终综合预算复验使用现役Ollama 0.33.3的完整debug渲染和同GGUF tokenizer。按.31分别核两段身份：`tokenizer_binding`只在 `/tokenize` 前后绑定固定命令、已复验的ollama服务身份、PID／启动时钟、端口、同模型路径与props；合法16K或32K tokenizer可对完整文本计数，实际observed context不证明生成上下文。共同 `model_binding`固定manifest/config实际摘要、模型层digest/size及文件属性，不声称每包重算整个权重哈希。生成是独立API请求，前后同模型绑定与完整请求一致即可，实际body仍32768／4096、`think:false`／`truncate:false`／`shift:false`；不核跨请求同PID或要求idle runner一直保持32K。成功结果的 `generation_binding`只记录模型与请求／响应摘要、actual_model及前后模型核验；无生成measure不带此字段。调试前和生成前仍核GPU，不升权、不另起模型服务。
+
+正式intake与SSH可能处于不同用户命名空间。按.32核验时先保留直接宿主UID分支；只有本进程UID映射是当前UID→同UID的唯一一行、长度1，且ollama UID无法表示，才允许对实际overflow UID作服务归属复验。固定root system manager须证明`ollama.service`的User/Group=ollama、loaded/active/running、非Delegate／DynamicUser／PrivateUsers；目标runner须为其MainPID直属子进程，父子同属精确服务cgroup，父服务argv固定为`/usr/local/bin/ollama serve`；一次采集以内外两次system manager快照包住父子进程的两次快照，命令摘要、启动时钟及UID映射均须相同，并把runner快照与最初模型／端口选择命令、PID及最终stat相绑定，分词前后再次复验。缺证明或变化仍受阻，不能以“都是65534”、同名命令或同模型路径替代身份。proof记录直接或命名空间映射核验方法；不关闭PrivateTmp、不修改服务隔离、不升权。正式同单元实际计量、综合生成与网站回执另验，SSH计量只证明当时SSH环境。
+
+只更换最终预算门禁时保留当前attempt、全部成功阅读窗口和冻结配方，继续下一未完成步骤，不执行下面针对阅读system/schema变化的从0恢复。若已经有受阻状态，按精确attempt保存其原状态和错误后再恢复；不得删除窗口、伪改完成数或把精确分词通过当成综合／发布成功。部署和实际完整综合输入的精确预算仍须各自验收。
+
+仅生成提交前且模型binding仍一致的分词实例缺失或 `/tokenize` 内确认轮换可标为 `campus_token_runner_contention`，前两次各退避300秒、第三次operator；每次重新渲染和分词，不复用旧实例证明、不重读成功窗口。分词HTTP失败须再次核实实例确已变化，未知网络故障、版本／权重／输入／预算错误仍停止。请求间合法PID变化以及同GGUF合法16K tokenizer不构成竞争失败；不得把原runner错误码一概改成暂态。生成提交后结果未知或模型绑定失败不能自动再次生成；已返回未绑定响应保存在 `unverified-adjudication.json`，该审计存在时status丢失也阻止重放。升级不自动清除已有operator或重置次数，仍须针对精确失败保留状态并核最新网站回执。
+
+实际归档文件名为无扩展名`original`；全表worker先核SHA，再临时复制为`source.xlsx`解析，测试须使用同样归档路径且核原件不变。规划前失败同样上报当前已开放包0/0受阻状态；不得把遥测当作有效窗口。中文结果直传按实际HTTP JSON字节预算，超限使用既有分片。已持久化`operator_required`不会因升级自动恢复：排除根因后，仅对已授权精确attempt保留原受阻状态及审计，再恢复其本地执行；不删除原件、成功窗口、旧报告或服务器尝试，不重复启动同一正在进行的全表尝试。
+
+窗口定位修复采用sheet/cell关联schema，禁止跨表拼接。缺口提示须区分本窗未见与整包缺失，机柜数与单柜功率不推导MW，省市区字段按原列含义保留。每个重复身份anchor携带同工作表同列的原生column_headers，表头只解释字段、不作待填数据格，禁止借用其他表同列含义；这些重复上下文不扩大原生覆盖或候选值定位。语义无效结果保持私有请求、原响应和错误，同一冻结窗口最多保留3份无效响应，前两次各退避300秒后只重试该窗口，第三次停止该尝试的自动开销并要求运维核查；清除遥测status也不能重置原响应计数。
+
+若修复改变system或schema，且当前正式首包仍无服务器完成包、当前attempt报告、未回执发布outbox或本地接收回执，先核精确原件SHA、attempt、包与当前任务身份，暂停唯一intake timer并等待receive自然退出；保存旧状态与冻结配方目录的完整文件及摘要，再把该taskSHA目录和本地受阻status隔离到私有recipe-history。新代码在原活动路径重新建配方、从第0窗读同一attempt；服务器attempt保持running，不直接编辑完成数、窗口游标或报告，也不把本地配方恢复称为新attempt。只要已有服务器完成包、当前attempt报告、未回执发布outbox或本地接收回执，便不得套用此恢复，须先按原发布事务核对。旧原件、成功窗口、无效响应及审计永久保留。
+
+原生文本全覆盖不包括图片、外链下载或公式执行，不等于来源陈述真实性、C3 正式采用或模型参数适用。缺口应明确到园区、字段、原件定位、需继续爬取的来源类型及验收条件；不把旧抽样中的“无可发布候选”当作全表结论。运行记录留私有数据目录，源码交接只记安全摘要。真实部署版本、试点受阻或成功、网站回执和全表完成分别由当次交接记录，不能由源码或夹具推定。

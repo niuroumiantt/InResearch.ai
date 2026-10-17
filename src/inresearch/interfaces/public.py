@@ -29,16 +29,18 @@ INTERN_RESEARCH_DATA = ('/data/dashboard.json', '/data/dashboard_rules.json', '/
 INTERN_RESEARCH_API = ('/api/industry', '/api/observations', '/api/whoami', '/api/report', '/api/news', '/api/company-window', '/api/company-quote', '/api/targets/backflow', '/api/model-assets',
               *('/api/product-catalog/' + company for company in COMPANIES))
 # Login, homepage and task resources are individually declared, never all /assets/.
-READER_PAGES = ('/', '/index.html', '/tasks.html')
+READER_PAGES = ('/', '/index.html', '/tasks.html', '/marketing.html')
 READER_API = ('/api/whoami', '/api/research-tasks', '/api/research-task-examples')
-READER_ASSETS = ('/assets/theme-state.js', '/assets/site-skin.js', '/assets/site-skin.css',
+READER_ASSETS = ('/assets/project-work.js', '/assets/project-access.css', '/assets/theme-state.js', '/assets/site-skin.js', '/assets/site-skin.css',
+                 '/assets/brand/inresearch-ai/icon-orange.svg', '/assets/brand/inresearch-ai/wordmark-primary.svg',
+                 '/assets/brand/inresearch-ai/wordmark-reverse.svg',
                  '/assets/auth-form.js', '/assets/auth.css', '/assets/industry.js',
                  '/assets/industry.css', '/assets/datacenter-news.js', '/assets/datacenter-news.css',
                  '/assets/world.geo.json', '/assets/world-detail.geo.json',
                  '/assets/research-tasks.js', '/assets/research-tasks.css',
                  '/assets/task-uploads.js', '/assets/task-uploads.css',
                  *('/assets/map-admin1-' + str(i) + '.geo.json' for i in range(12)))
-READER_PREFIXES = ('/assets/fonts/',)
+READER_PREFIXES = ('/assets/fonts/', '/assets/marketing/')
 READER_AUTH = ('/login',)
 # A health probe discloses no runtime files or research content.
 READER_PROBE = ('/healthz', '/robots.txt')

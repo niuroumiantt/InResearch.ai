@@ -239,6 +239,11 @@ class CalibrationTests(unittest.TestCase):
         self.assertEqual(ec.compute(a, self.spec)['paid_hours_basis'], 'billed_coverage_not_mfu')
         self.assertIn('not_measured', ec.ledgers(a, self.spec)['model']['token_basis'])
         self.assertIn('working_capital', life['excluded_cashflows'])
+        construction = [row for row in life['years'] if row['phase'] == 'construction']
+        operation = [row for row in life['years'] if row['phase'] == 'operation']
+        self.assertEqual(len(construction), a['construction_years'])
+        self.assertTrue(all(row['capex_facility'] == life['facility_capex'] / a['construction_years'] for row in construction))
+        self.assertEqual(operation[0]['capex_it'], life['it_capex'])
         self.assertNotEqual(ec.compute(altered, self.spec)['nopat'], ec.compute(a, self.spec)['nopat'])
 
     def test_browser_engine_matches_the_python_reference(self):

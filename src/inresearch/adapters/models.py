@@ -176,6 +176,19 @@ class JsonModelClient:
         self.profile = profile
         self._slots = threading.BoundedSemaphore(profile.max_parallel)
 
+    def generate_campus_adjudication(self, system, user, *, json_schema, before_completion=None):
+        """Exact-token exception owned only by the complete campus final stage."""
+        from inresearch.adapters.ollama_token_budget import generate
+        return generate(self, system, user, json_schema=json_schema,
+                        before_completion=before_completion)
+
+    def generate_campus_reading(self, system, user, *, json_schema,
+                                before_completion=None, before_dispatch=None):
+        """Exact-token reading owned by the frozen packed native-campus recipe."""
+        from inresearch.adapters.ollama_token_budget import generate_reading
+        return generate_reading(self, system, user, json_schema=json_schema,
+            before_completion=before_completion, before_dispatch=before_dispatch)
+
     def generate(self, system, user, *, image_path=None, think=None, json_schema=None):
         p = self.profile
         capability = "vision_json" if image_path is not None else "text_json"

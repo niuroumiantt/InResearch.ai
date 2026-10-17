@@ -31,7 +31,58 @@ def atomic(path, data):
     from inresearch.storage.files import write_json
     write_json(path, data)
 
-def receive(stream, size, metadata, user, *, public=False):
+def receive(stream, size, metadata, user, *, public=False, identity=None):
+    if not isinstance(metadata, dict):
+        raise ValueError('invalid metadata')
+    if 'batch_total' not in metadata and 'batch_index' not in metadata:
+        if metadata.get('batch_token'): raise ValueError('upload batch bounds required')
+        return _receive(stream,size,metadata,user,public=public,identity=identity)
+    from inresearch.materials import batch_review
+    total, index = metadata.get('batch_total'), metadata.get('batch_index')
+    if (not public or type(total) is not int or not 1 <= total <= 20
+            or type(index) is not int or not 0 <= index < total):
+        raise ValueError('invalid upload batch bounds')
+    path = batch_review.batch_path('upload',metadata.get('batch_id'))
+    with locked(path):
+        fingerprint = {key:str(metadata.get(key,'')).strip()
+                       for key in ('submitter','project_name','package_id')}
+        token=metadata.get('batch_token','')
+        if token and (not isinstance(token,str) or not re.fullmatch(r'[a-f0-9-]{36}',token)):
+            raise ValueError('invalid upload batch token')
+        token_hash=hashlib.sha256(token.encode()).hexdigest() if token else None
+        state = json.loads(path.read_text()) if path.exists() else {
+            'id':metadata['batch_id'],'expected':total,'metadata':fingerprint,
+            'items':[],'sealed':False,'token_hash':token_hash, 'identity':identity}
+        if state.get('identity') != identity:
+            raise PermissionError('upload batch belongs to another account')
+        if state.get('token_hash') != token_hash:
+            raise PermissionError('invalid upload batch credential')
+        if state['expected'] != total or state['metadata'] != fingerprint:
+            raise Conflict('upload batch metadata changed')
+        previous=next((row for row in state['items'] if row['index']==index),None)
+        if previous and token:
+            if not 0 < size <= MAX_BYTES: raise ValueError('invalid upload size')
+            digest=hashlib.sha256();remaining=size
+            while remaining:
+                chunk=stream.read(min(1024*1024,remaining))
+                if not chunk: raise ValueError('上传中断，未接收完整文件')
+                remaining-=len(chunk);digest.update(chunk)
+            record=load(previous['id'])
+            name=str(metadata.get('name','资料.txt')).replace('\\','/').split('/')[-1][:180]
+            if record['sha256'] != digest.hexdigest() or record['size'] != size or record['name'] != name:
+                raise Conflict('upload batch attachment replay changed')
+            return public_view(record),batch_review.receipt_for(token,record['id'])
+        if state['sealed'] or previous:
+            raise Conflict('upload batch sealed or attachment index already received')
+        atomic(path,state)
+        item, receipt = _receive(stream,size,metadata,user,public=True,identity=identity)
+        state['items'].append({'id':item['id'],'sha256':item['sha256'],'index':index})
+        state['items'].sort(key=lambda row:row['index'])
+        atomic(path,state)
+        return public_view(load(item['id'])),receipt
+
+
+def _receive(stream, size, metadata, user, *, public=False, identity=None):
     if not 0 < size <= MAX_BYTES:
         raise ValueError('单份资料须为 1 字节至 64 MiB')
     submitter = str(metadata.get('submitter', '')).strip()
@@ -46,6 +97,8 @@ def receive(stream, size, metadata, user, *, public=False):
         if not public or not continuation_id or not continuation_receipt:
             raise ValueError('连续提交须提供上一份有效回执')
         previous = receipt_view(continuation_id, continuation_receipt)
+        if identity and (previous.get('owner_id') != identity['owner_id'] or previous.get('project_id') != identity['project_id']):
+            raise PermissionError('上一份提交不属于当前账号和项目')
         if (previous.get('submitter', '').strip() != submitter
                 or previous.get('project_name', '').strip() != project_name):
             raise ValueError('连续提交须与上一份的姓名和项目一致')
@@ -81,14 +134,22 @@ def receive(stream, size, metadata, user, *, public=False):
     sync_directory(folder)
     sync_directory(folder.parent)
     receipt = secrets.token_urlsafe(32) if public else None
+    if public and metadata.get('batch_token'):
+        from inresearch.materials import batch_review
+        receipt=batch_review.receipt_for(metadata['batch_token'],key)
     record = dict(id=key, name=name, size=size, sha256=digest.hexdigest(), user=user,
                   topic=str(metadata.get('topic', ''))[:300], source=str(metadata.get('source', ''))[:2000],
                   note=str(metadata.get('note', ''))[:4000],
                   submitter=submitter, project_name=project_name, batch_id=batch_id,
                   continuation_of=continuation_id or None,
                   package_id=str(metadata.get('package_id', ''))[:100],
+                  batch_total=metadata.get('batch_total'), batch_index=metadata.get('batch_index'),
+                  batch_token_hash=(hashlib.sha256(metadata['batch_token'].encode()).hexdigest()
+                                    if metadata.get('batch_token') else None),
                   created=time.time(), status='pending_approval', revision=0,
                   feedback=[], operations=[])
+    if identity:
+        record.update(owner_id=identity['owner_id'], project_id=identity['project_id'])
     if receipt:
         record['receipt_hash'] = hashlib.sha256(receipt.encode()).hexdigest()
     atomic(folder / 'record.json', record)
@@ -97,11 +158,23 @@ def receive(stream, size, metadata, user, *, public=False):
 
 def public_view(record):
     """Never expose receipt verifiers or operation bodies in an API response."""
-    return {k: v for k, v in record.items() if k not in ('receipt_hash', 'operations', 'analysis_reports')}
+    result = {k: v for k, v in record.items() if k not in ('receipt_hash', 'batch_token_hash', 'batch_excluded', 'operations', 'analysis_reports')}
+    from inresearch.materials import batch_review
+    batch = batch_review.upload_view(record)
+    if batch is not None: result['upload_batch'] = batch
+    return result
 
 
 def owner_view(record):
-    return {k: v for k, v in record.items() if k not in ('receipt_hash', 'operations')}
+    result = {k: v for k, v in record.items() if k not in ('receipt_hash', 'batch_token_hash', 'operations')}
+    from inresearch.materials import batch_review
+    batch = batch_review.upload_view(record,owner=True)
+    if batch is not None: result['upload_batch'] = batch
+    if record.get('review_batch_id'):
+        manifest=batch_review.load_review(record['review_batch_id'])
+        if manifest.get('state') == 'prepared':
+            result['review_batch_recovery']=manifest['request']
+    return result
 
 
 def receipt_view(key, receipt):
@@ -140,11 +213,24 @@ def approver():
                           os.environ.get('HUB_ADMIN_USERNAME', 'admin')).strip()
 
 
-def can_approve(actor, role):
-    return role == 'admin' and bool(actor) and actor == approver()
+def can_approve(actor, role, record=None):
+    from inresearch.interfaces import project_access
+    # Preserve the deployment owner for old records and CLI/worker fixtures.
+    if role == 'admin' and bool(actor) and actor == approver():
+        return record is None or not project_access.owns(actor, record)
+    return project_access.can_review(actor, record)
+
+
+def can_read(actor, role, record):
+    from inresearch.interfaces import project_access
+    return can_approve(actor, role, record) or project_access.readable(actor, role, record)
+
 
 
 def require_approved(record):
+    from inresearch.materials import batch_review
+    if not batch_review.review_ready(record):
+        raise PermissionError('联合审批尚未完整提交，不能分析')
     approval = record.get('approval', {})
     if (record.get('status') not in ('approved', 'archived')
             or not approval.get('by') or not approval.get('at')
@@ -183,20 +269,60 @@ def pending():
 
 
 def analysis_pending():
-    """Only archived, owner-approved supported originals can enter automatic review."""
-    result = []
-    for record in records():
+    """Release a batch only when all approved originals are archived; retain replay members."""
+    from inresearch.materials import batch_review
+    all_records = records()
+    by_id = {row['id']:row for row in all_records}
+    result, released = [], set()
+    for record in all_records:
+        full = record.get('full_analysis') or {}
+        if full.get('state') in ('running', 'continuing'):
+            if record.get('status') != 'archived': continue
+            try: require_approved(record)
+            except PermissionError: continue
+            result.append(public_view(record))
+            continue
+        if record.get('review_batch_id'):
+            key = record['review_batch_id']
+            if key in released: continue
+            released.add(key)
+            try:
+                manifest = batch_review.load_review(key)
+                members = [by_id[row['id']] for row in manifest['request']['items']]
+                if manifest.get('analysis_complete') or any(row['status'] != 'archived' for row in members):
+                    continue
+                for row in members: require_approved(row)
+            except (KeyError,ValueError,OSError,PermissionError):
+                continue
+            for row in members:
+                item = public_view(row)
+                item['review_batch_members'] = [dict(id=m['id'],sha256=m['sha256']) for m in members]
+                result.append(item)
+            continue
         if (record.get('status') != 'archived' or not record.get('analysis_requested_at')
                 or record.get('analysis_reports')
                 or (record.get('analysis_progress') or {}).get('state') == 'source_error'
                 or not reviewable(record['name'])):
             continue
-        try:
-            require_approved(record)
-        except PermissionError:
-            continue
+        try: require_approved(record)
+        except PermissionError: continue
         result.append(public_view(record))
     return result
+
+
+
+def bounded_analysis_pending(limit=40):
+    """A response may cross the nominal limit once, but never cuts a review batch."""
+    pending=analysis_pending()
+    selected=[];seen=set()
+    for item in pending:
+        if item['id'] in seen: continue
+        if len(selected)>=limit: break
+        batch_id=item.get('review_batch_id')
+        group=([row for row in pending if row.get('review_batch_id')==batch_id]
+               if batch_id else [item])
+        selected.extend(group);seen.update(row['id'] for row in group)
+    return selected
 
 
 def previous_system_task(record):
@@ -230,11 +356,17 @@ def previous_system_task(record):
 
 def snapshot(actor, role):
     owner = can_approve(actor, role)
-    items = [r for r in records() if owner or (not r.get('receipt_hash') and r['user'] == actor)]
-    # Audit request bodies are internal; employees see decisions and feedback only.
-    return {'items': [(owner_view(r) if owner else public_view(r)) for r in items[:200]],
-            'can_approve': owner, 'can_upload': role in ('admin', 'member', 'intern'),
-            'approver': approver() if owner else None}
+    items = [r for r in records() if can_read(actor, role, r)]
+    result = []
+    for record in items[:200]:
+        review = can_approve(actor, role, record)
+        item = owner_view(record) if review else public_view(record)
+        item['can_approve'] = review
+        item['can_manage_analysis'] = role == 'admin' and actor == approver()
+        result.append(item)
+    return {'items': result, 'can_approve': owner,
+            'can_upload': role in ('admin', 'member', 'intern', 'collaborator'),
+            'approver': approver() if role == 'admin' and actor == approver() else None}
 
 
 def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
@@ -246,7 +378,10 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
     if not isinstance(analysis_id, str) or not re.fullmatch(r'[a-f0-9-]{36}', analysis_id):
         raise ValueError('analysis_id required')
     uuid.UUID(analysis_id)
-    if (not isinstance(owner_report, dict) or len(json.dumps(owner_report, ensure_ascii=False)) > 100000
+    report_limit = (900000 if isinstance(owner_report, dict) and
+                    isinstance(owner_report.get('review_scope'), dict) and
+                    owner_report['review_scope'].get('mode') == 'full_native_campus' else 100000)
+    if (not isinstance(owner_report, dict) or len(json.dumps(owner_report, ensure_ascii=False)) > report_limit
             or not isinstance(employee_task, str) or not employee_task.strip()
             or len(employee_task) > 20000):
         raise ValueError('analysis report or employee task invalid')
@@ -268,6 +403,29 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
         scope = owner_report.get('review_scope')
         scope = scope if isinstance(scope, dict) else {}
         sampled = scope.get('mode') == 'sampled_native_cells'
+        full = scope.get('mode') == 'full_native_campus'
+        if full:
+            attempt = record.get('full_analysis') or {}
+            package_id = scope.get('package_id')
+            if (attempt.get('attempt_id') != scope.get('attempt_id')
+                    or attempt.get('state') not in ('running', 'continuing')
+                    or package_id not in attempt.get('package_ids', [])
+                    or package_id in attempt.get('completed_package_ids', [])
+                    or scope.get('manifest_sha256') != attempt.get('manifest_sha256')):
+                raise Conflict('full analysis attempt changed')
+            attempt['completed_package_ids'].append(package_id)
+            done = len(attempt['completed_package_ids']) == len(attempt['package_ids'])
+            attempt['state'] = ('completed' if done else 'pilot_completed'
+                                if attempt.get('phase') == 'pilot' else 'continuing')
+            attempt['covered_cells'] = sum(attempt['package_cell_counts'][key]
+                                           for key in attempt['completed_package_ids'])
+            if done and attempt['covered_cells'] != attempt['total_nonblank_cells']:
+                raise ValueError('full analysis coverage incomplete')
+            record['analysis_scope'] = {'mode': 'full_native_campus',
+                'attempt_id': attempt['attempt_id'], 'total_packages': len(attempt['package_ids']),
+                'completed_packages': len(attempt['completed_package_ids']),
+                'total_nonblank_cells': attempt['total_nonblank_cells'],
+                'covered_cells': attempt['covered_cells'], 'state': attempt['state']}
         if sampled:
             if published:
                 raise ValueError('sampled analysis cannot publish')
@@ -280,16 +438,20 @@ def finish_analysis(key, sha, analysis_id, owner_report, employee_task):
             'result':('sampled_incomplete' if sampled else 'accepted' if published and not owner_report.get('held')
                       and not owner_report.get('findings') else 'revision_required'),
             'text':employee_task})
-        record['analysis_state'] = 'sampled_incomplete' if sampled else 'completed'
-        total = record.get('analysis_progress', {}).get('total', 0)
-        record['analysis_progress'] = {'state':'sampled_incomplete' if sampled else 'completed', 'completed':total,
+        source_error = owner_report.get('publication',{}).get('state') == 'source_error'
+        state = (record['full_analysis']['state'] if full else
+                 'source_error' if source_error else 'sampled_incomplete' if sampled else 'completed')
+        record['analysis_state'] = state
+        total = len(record['full_analysis']['package_ids']) if full else 0 if source_error else record.get('analysis_progress', {}).get('total', 0)
+        completed = len(record['full_analysis']['completed_package_ids']) if full else total
+        record['analysis_progress'] = {'state':state, 'completed':completed,
                                        'total':total, 'at':now}
         record['revision'] = record.get('revision', 0) + 1
         atomic(path, record)
     return owner_view(record)
 
 
-def set_analysis_progress(key, sha, completed, total, state='running'):
+def set_analysis_progress(key, sha, completed, total, state='running', *, error_code=None):
     if (type(completed) is not int or type(total) is not int or not 0 <= completed <= total <= 200
             or state not in ('running', 'blocked', 'source_error')):
         raise ValueError('invalid analysis progress')
@@ -300,6 +462,8 @@ def set_analysis_progress(key, sha, completed, total, state='running'):
         if (record['sha256'] != sha or not record.get('analysis_requested_at')
                 or record['status'] != 'archived'):
             raise PermissionError('analysis not requested for this source')
+        if record.get('full_analysis'):
+            raise PermissionError('full analysis progress requires current attempt and package')
         if record.get('analysis_reports'):
             return public_view(record)
         if ((record.get('analysis_progress') or {}).get('state') == 'source_error'
@@ -311,6 +475,41 @@ def set_analysis_progress(key, sha, completed, total, state='running'):
             raise ValueError('原件错误须先登记可见的修改任务')
         record['analysis_progress'] = {'state':state, 'completed':completed,
                                        'total':total, 'at':time.time()}
+        if state=='blocked' and error_code=='joint_model_output_invalid_requires_operator':
+            record['analysis_progress']['error_code']=error_code
+        atomic(path, record)
+    return public_view(record)
+
+
+def set_full_analysis_progress(payload):
+    """Window telemetry never grants package completion or changes review state."""
+    required = {'id','sha256','attempt_id','package_id','window_completed','window_total','state'}
+    if not isinstance(payload, dict) or not required <= set(payload) <= required | {'reason'}:
+        raise ValueError('full analysis progress fields invalid')
+    completed, total = payload['window_completed'], payload['window_total']
+    reason = payload.get('reason', '')
+    if (type(completed) is not int or type(total) is not int
+            or not 0 <= completed <= total <= 2000
+            or payload['state'] not in ('reading','waiting','blocked')
+            or not isinstance(reason, str) or len(reason) > 500):
+        raise ValueError('full analysis window progress invalid')
+    path = record_path(payload['id']) / 'record.json'
+    with locked(path):
+        record = json.loads(path.read_text())
+        require_approved(record)
+        attempt = record.get('full_analysis') or {}
+        if (record['sha256'] != payload['sha256'] or record['status'] != 'archived'
+                or attempt.get('attempt_id') != payload['attempt_id']
+                or attempt.get('state') not in ('running','continuing')
+                or payload['package_id'] not in attempt.get('available_package_ids', [])
+                or payload['package_id'] in attempt.get('completed_package_ids', [])):
+            raise PermissionError('active released full analysis package required')
+        record['analysis_progress'] = {
+            'state':payload['state'], 'attempt_id':attempt['attempt_id'],
+            'completed':len(attempt['completed_package_ids']), 'total':len(attempt['package_ids']),
+            'covered_cells':attempt['covered_cells'], 'total_nonblank_cells':attempt['total_nonblank_cells'],
+            'package_id':payload['package_id'], 'window_completed':completed, 'window_total':total,
+            'reason':reason, 'at':time.time()}
         atomic(path, record)
     return public_view(record)
 
@@ -334,6 +533,16 @@ def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
     path = record_path(payload.get('id', '')) / 'record.json'
     with locked(path):
         record = json.loads(path.read_text())
+        if not worker:
+            if not can_approve(actor, role, record):
+                raise PermissionError('无权审批此工作包，或不能审批自己的提交')
+            if (role != 'admin' or actor != approver()) and action not in ('approve', 'approve_and_analyze', 'reject', 'start_analysis'):
+                raise PermissionError('此操作需要项目所有者权限')
+        from inresearch.materials import batch_review
+        if not batch_review.review_ready(record):
+            raise Conflict('联合审批待恢复，请重试原批次操作')
+        if record.get('review_batch_id') and action == 'assign_package':
+            raise Conflict('联合审批已封存工作包；请完成本轮或重新提交')
         for previous in record.get('operations', []):
             if previous['id'] == operation:
                 if previous['request'] != payload or previous['by'] != actor:
@@ -343,6 +552,14 @@ def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
             raise Conflict('文件版本或状态已变化，请刷新后重试')
         now = time.time()
         before = record['status']
+        if record.get('batch_total') and action in ('approve','approve_and_analyze','start_analysis'):
+            upload=batch_review.upload_view(record,owner=True)
+            if not upload or not upload['sealed']:
+                raise Conflict('请先恢复并封存本次上传批次')
+            siblings=[load(key) for key in upload['member_ids'] if key != record['id']]
+            if action in ('approve_and_analyze','start_analysis') and any(row['status'] != 'rejected' for row in siblings):
+                raise Conflict('同批多附件请使用整批确认并关联审阅')
+            record['batch_excluded']=[{'id':row['id'],'sha256':row['sha256'],'status':row['status']} for row in siblings]
         if action in ('approve', 'approve_and_analyze', 'reject'):
             if before not in ('pending_approval', 'queued') or record.get('approval'):
                 raise Conflict('该文件已处理；新版文件须重新上传批准')
@@ -387,6 +604,77 @@ def mutate(payload, actor, role, *, worker=False, valid_package_ids=None):
             if before != 'archived' or record.get('analysis_requested_at'):
                 raise Conflict('分析已启动，或研究端尚未接收')
             record['analysis_requested_at'] = now
+        elif action == 'start_full_analysis':
+            require_approved(record)
+            if set(payload) != {'id','sha256','expected_revision','operation_id','action','layout_id','reason','pilot_package_id'}:
+                raise ValueError('full analysis request fields invalid')
+            if before != 'archived' or Path(record['name']).suffix.lower() != '.xlsx':
+                raise ValueError('approved archived native workbook required')
+            if not isinstance(payload['reason'], str) or not 5 <= len(payload['reason'].strip()) <= 2000:
+                raise ValueError('explicit full analysis reason required')
+            previous = record.get('full_analysis') or {}
+            if previous.get('state') in ('running', 'continuing'):
+                raise Conflict('full analysis attempt already active')
+            reported_ids = {entry['id'] for entry in record.get('analysis_reports', [])}
+            if any(candidate.stem not in reported_ids for candidate in (path.parent / 'analysis-outbox').glob('*.json')):
+                raise Conflict('recover existing analysis publication before full review')
+            if record.get('analysis_requested_at') and not record.get('analysis_reports') and not previous:
+                raise Conflict('existing analysis must finish before full review')
+            if record.get('review_batch_id'):
+                batch = batch_review.load_review(record['review_batch_id'])
+                if not batch.get('analysis_complete'):
+                    raise Conflict('joint analysis must finish before full review')
+            content = path.parent / 'content'
+            if content.stat().st_size != record['size'] or hashlib.sha256(content.read_bytes()).hexdigest() != record['sha256']:
+                raise ValueError('原件内容已变化，不能重审')
+            from inresearch.materials import native_review_contract
+            from inresearch.adapters.xlsx_document import Workbook
+            import tempfile
+            with tempfile.TemporaryDirectory(prefix='inresearch-full-review-') as folder:
+                native = Path(folder) / 'source.xlsx'
+                shutil.copyfile(content, native)
+                manifest = native_review_contract.build_manifest(Workbook(native), record['sha256'], payload['layout_id'])
+            pilot = next((row for row in manifest['packets'] if row['package_id'] == payload['pilot_package_id']), None)
+            if not pilot or pilot['kind'] != 'campus':
+                raise ValueError('full analysis pilot must be a native campus package')
+            if previous:
+                record.setdefault('full_analysis_history', []).append(previous)
+            record['full_analysis'] = {'attempt_id': operation, 'layout_id': manifest['layout_id'],
+                'manifest_sha256': manifest['manifest_sha256'],
+                'package_ids': [row['package_id'] for row in manifest['packets']],
+                'package_cell_counts': {row['package_id']: len(row['owned_locators']) for row in manifest['packets']},
+                'completed_package_ids': [], 'total_nonblank_cells': manifest['total_nonblank_cells'],
+                'covered_cells': 0, 'state': 'running', 'started_at': now, 'by': actor,
+                'reason': payload['reason'].strip(), 'source_sha256': record['sha256'],
+                'phase':'pilot','pilot_package_id':pilot['package_id'],
+                'available_package_ids':[pilot['package_id']]}
+            record['analysis_requested_at'] = now
+            record['analysis_state'] = 'running'
+            record['analysis_scope'] = {'mode':'full_native_campus','attempt_id':operation,
+                'total_packages':len(manifest['packets']),'completed_packages':0,
+                'total_nonblank_cells':manifest['total_nonblank_cells'],'covered_cells':0,'state':'running'}
+            record['analysis_progress'] = {'state':'running','completed':0,'total':len(manifest['packets']),'at':now}
+        elif action == 'continue_full_analysis':
+            require_approved(record)
+            if set(payload) != {'id','sha256','expected_revision','operation_id','action','attempt_id','reason'}:
+                raise ValueError('full analysis continuation fields invalid')
+            attempt = record.get('full_analysis') or {}
+            if (attempt.get('attempt_id') != payload['attempt_id'] or attempt.get('phase') != 'pilot'
+                    or attempt.get('state') != 'pilot_completed'
+                    or attempt.get('pilot_package_id') not in attempt.get('completed_package_ids', [])):
+                raise Conflict('completed pilot attempt required')
+            if not isinstance(payload['reason'], str) or not 5 <= len(payload['reason'].strip()) <= 2000:
+                raise ValueError('pilot verification reason required')
+            content = path.parent / 'content'
+            if content.stat().st_size != record['size'] or hashlib.sha256(content.read_bytes()).hexdigest() != record['sha256']:
+                raise ValueError('原件内容已变化，不能继续研究')
+            attempt.update(phase='full', state='running', continued_at=now, continued_by=actor,
+                           continuation_reason=payload['reason'].strip(),
+                           available_package_ids=[key for key in attempt['package_ids']
+                                                  if key not in attempt['completed_package_ids']])
+            record['analysis_state'] = 'running'
+            record['analysis_scope']['state'] = 'running'
+            record['analysis_progress']['state'] = 'running'
         elif action == 'feedback':
             require_approved(record)
             text, result = payload.get('text'), payload.get('result')

@@ -129,6 +129,215 @@ class ResearchTaskTests(unittest.TestCase):
         self.assertEqual(len(edits),1)
         self.assertEqual(tasks.package_workflow(package,[],task_edits=edits)['current_task']['version'],2)
 
+    def feedback_record(self, key, at, *, created=100, report=None, feedback=None):
+        report=report or {'published':[],'held':[],'findings':[]}
+        return {'id':key,'package_id':'dc-census-cn','status':'archived','sha256':key+'-sha',
+                'approval':{'by':'owner','at':50,'sha256':key+'-sha'},'created':created,
+                'submitter':key,'name':'private-name.xlsx','feedback':feedback or [],
+                'analysis_reports':[{'id':key+'-analysis','at':at,'report':report,'employee_task':'PRIVATE OLD TASK'}]}
+
+    def test_latest_package_feedback_supersedes_older_workers_without_dropping_evidence(self):
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        old=self.feedback_record('worker-a',200,created=150,
+            report={'published':[{'site_id':'cn-a','statement_id':'s-a'}],'held':[],'findings':[]})
+        latest=self.feedback_record('worker-b',300,created=100,
+            report={'published':[],'held':[{'classification':'conflict','reason':'PRIVATE OLD REASON'}],'findings':[]})
+        original=json.dumps([old,latest],sort_keys=True)
+        view=tasks.package_workflow(package,[old,latest],{'cn-a'})
+        self.assertEqual(view['current_task']['feedback_at'],300)
+        self.assertIn('冲突 1 条',view['current_task']['feedback_summary'])
+        self.assertIn('先核对冲突双方',view['current_task']['next_action'])
+        self.assertEqual(view['current_task']['completed']['published_sites'],1)
+        self.assertEqual(view['current_task']['completed']['reviewed_rounds'],2)
+        self.assertEqual([event['submitter'] for event in view['events']],['worker-a','worker-b'])
+        self.assertEqual([event['feedback_state'] for event in view['events']],['superseded','current'])
+        self.assertEqual(view['events'][0]['next_action'],'')
+        self.assertNotIn('PRIVATE',json.dumps(view))
+        self.assertEqual(json.dumps([old,latest],sort_keys=True),original)
+        # An old receipt is evidence; it does not prove that a site is still live.
+        refreshed=tasks.package_workflow(package,[old,latest],set())
+        self.assertEqual(refreshed['current_task']['completed']['published_sites'],0)
+        self.assertEqual(refreshed['current_task']['completed']['published_statements'],1)
+
+    def test_valid_latest_owner_feedback_is_shared_and_raw_private_text_stays_private(self):
+        from inresearch.materials import inbox
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        record=self.feedback_record('worker-a',200,
+            report={'published':[],'held':[{'classification':'conflict'}],'findings':[]})
+        record['feedback']=[{'id':'owner-current','by':inbox.approver(),'at':300,
+                             'sha256':record['sha256'],'result':'accepted','text':'PRIVATE CURRENT OWNER TEXT'},
+                            {'id':'forged','by':'other-admin','at':500,'sha256':record['sha256'],
+                             'result':'blocked','text':'FORGED'},
+                            {'id':'changed-source','by':inbox.approver(),'at':600,'sha256':'wrong',
+                             'result':'blocked','text':'WRONG SHA'}]
+        view=tasks.package_workflow(package,[record])
+        self.assertEqual(view['current_task']['feedback_at'],300)
+        self.assertIn('验收通过',view['current_task']['feedback_summary'])
+        self.assertNotIn('冲突双方',view['current_task']['next_action'])
+        self.assertEqual(view['current_task']['completed']['feedback_rounds'],2)
+        self.assertEqual(view['current_task']['completed']['reviewed_rounds'],1)
+        for text in ('PRIVATE','FORGED','WRONG SHA'):
+            self.assertNotIn(text,json.dumps(view))
+        self.assertEqual(len(record['feedback']),3)
+
+    def test_scope_revision_retires_all_previous_feedback_execution_actions(self):
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        record=self.feedback_record('worker-a',200,
+            report={'published':[],'held':[{'classification':'conflict'}],'findings':[]})
+        view=tasks.package_workflow(package,[record],task_edits=[300])
+        self.assertIsNone(view['current_task']['feedback_at'])
+        self.assertIn('工作范围已更新',view['current_task']['feedback_summary'])
+        self.assertNotIn('冲突双方',view['current_task']['next_action'])
+        self.assertEqual(view['events'][0]['feedback_state'],'superseded')
+        self.assertEqual(view['events'][0]['next_action'],'')
+
+    def test_joint_feedback_becomes_one_current_round_only_after_all_members_report(self):
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        joint={'id':'joint-review','members':[{'id':'worker-a'},{'id':'worker-b'}]}
+        report={'batch_review':joint,'task_provenance':{'sha256':'same-task'},
+                'published':[{'site_id':'cn-a','statement_id':'s-a'}],'held':[],'findings':[]}
+        a=self.feedback_record('worker-a',200,report=report)
+        b=self.feedback_record('worker-b',210,report={**report,'published':[]})
+        pending={**b,'analysis_reports':[]}
+        incomplete=tasks.package_workflow(package,[a,pending],{'cn-a'})
+        self.assertIsNone(incomplete['current_task']['feedback_at'])
+        self.assertEqual(incomplete['current_task']['completed']['reviewed_rounds'],0)
+        self.assertEqual(incomplete['events'][0]['next_action'],'')
+        complete=tasks.package_workflow(package,[a,b],{'cn-a'})
+        self.assertEqual(complete['current_task']['version'],2)
+        self.assertEqual(complete['current_task']['feedback_at'],210)
+        self.assertEqual(complete['current_task']['completed']['reviewed_rounds'],1)
+        self.assertTrue(all(event['is_current_feedback'] for event in complete['events']))
+
+    def test_owner_feedback_cannot_turn_sampled_or_unread_sources_into_full_review(self):
+        from inresearch.materials import inbox
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        for mode in ('sampled','source_error'):
+            report={'published':[],'held':[],'findings':[],
+                    **({'review_scope':{'mode':'sampled_native_cells'}} if mode=='sampled' else
+                       {'publication':{'state':'source_error'}})}
+            record=self.feedback_record('worker-a',200,report=report)
+            record['feedback']=[{'id':'owner-current','by':inbox.approver(),'at':300,
+                'sha256':record['sha256'],'result':'accepted','text':'PRIVATE OWNER TASK'}]
+            view=tasks.package_workflow(package,[record])
+            self.assertEqual(view['current_task']['feedback_at'],300)
+            self.assertIn('全表仍待审' if mode=='sampled' else '仍未完成内容审阅',view['current_task']['feedback_summary'])
+            self.assertTrue(all(isinstance(row,str) for row in view['current_task']['remaining']))
+            if mode=='source_error':
+                self.assertEqual(view['current_task']['completed']['reviewed_rounds'],0)
+                self.assertEqual(view['reviewed_files'],0)
+
+    def test_analysis_feedback_mirror_does_not_create_an_extra_execution_round(self):
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        record=self.feedback_record('worker-a',200)
+        record['feedback']=[{'id':'worker-a-analysis','by':'analysis-worker','at':201,
+                            'sha256':record['sha256'],'result':'revision_required','text':'PRIVATE MIRROR TASK'}]
+        view=tasks.package_workflow(package,[record])
+        self.assertEqual(view['current_task']['version'],2)
+        self.assertEqual(view['current_task']['feedback_at'],200)
+        self.assertEqual(view['current_task']['completed']['feedback_rounds'],1)
+
+    def test_zero_publication_feedback_does_not_claim_eligible_sources_were_registered(self):
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        record=self.feedback_record('worker-a',200)
+        task=tasks.package_workflow(package,[record])['current_task']
+        self.assertIn('本轮未新增来源登记',task['next_action'])
+        self.assertNotIn('合格来源已登记',task['next_action'])
+
+    def test_late_recovery_of_old_scope_feedback_cannot_replace_valid_current_feedback(self):
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        old=self.feedback_record('old-scope',400,report={'task_provenance':{'revision':0},
+            'published':[],'held':[{'classification':'conflict'}],'findings':[]})
+        valid=self.feedback_record('new-scope',350,report={'task_provenance':{'revision':1},
+            'published':[],'held':[],'findings':[]})
+        view=tasks.package_workflow(package,[old,valid],task_edits=[300],task_scope_revision=1)
+        self.assertEqual(view['current_task']['feedback_at'],350)
+        self.assertNotIn('冲突双方',view['current_task']['next_action'])
+        self.assertEqual(view['events'][0]['feedback_state'],'superseded')
+        self.assertEqual(view['events'][0]['next_action'],'')
+
+    def test_manual_feedback_keeps_its_source_coverage_despite_newer_unrelated_review(self):
+        from inresearch.materials import inbox
+        package=next(row for row in tasks.plan(self.root)['packages'] if row['id']=='dc-census-cn')
+        sampled=self.feedback_record('sampled-a',200,report={
+            'review_scope':{'mode':'sampled_native_cells'},'published':[],'held':[],'findings':[]})
+        sampled['feedback']=[{'id':'accept-a','by':inbox.approver(),'at':300,
+            'sha256':sampled['sha256'],'result':'accepted','text':'PRIVATE ACCEPT A'}]
+        unrelated=self.feedback_record('complete-b',250,report={
+            'published':[{'site_id':'cn-b','statement_id':'s-b'}],'held':[],'findings':[]})
+        view=tasks.package_workflow(package,[sampled,unrelated],{'cn-b'})
+        self.assertEqual(view['current_task']['feedback_at'],300)
+        self.assertIn('全表仍待审',view['current_task']['feedback_summary'])
+        self.assertIn('0 条上线不能推定',view['current_task']['feedback_summary'])
+        self.assertEqual(view['current_task']['completed']['published_sites'],1)
+        current=[event for event in view['events'] if event['is_current_feedback']]
+        self.assertEqual([event['submitter'] for event in current],['sampled-a'])
+        self.assertNotIn('PRIVATE ACCEPT A',json.dumps(view))
+
+    def source_review_snapshot(self,records,visible_sites=()):
+        projection={'capacity_audit':{'sites':len(visible_sites)},'basis':'isolated-source-review',
+                    'coverage':{},'rows':[{'site_id':key} for key in visible_sites]}
+        with patch('inresearch.materials.inbox.records',return_value=records), \
+             patch('inresearch.knowledge.industry.cached_task_progress',return_value=projection):
+            return tasks.snapshot(self.root,role='reader')
+
+    def test_source_error_feedback_is_not_a_review_or_a_review_completion_time(self):
+        record=self.feedback_record('broken',200,report={
+            'model':None,'publication':{'state':'source_error','new_records':0},
+            'published':[],'held':[],'findings':[]})
+        original=json.dumps(record,sort_keys=True)
+        snapshot=self.source_review_snapshot([record])
+        progress=snapshot['package_progress']['dc-census-cn']
+        self.assertEqual(snapshot['site_progress']['reviewed_reports'],0)
+        self.assertEqual(progress['reviewed_files'],0)
+        self.assertEqual(progress['current_task']['completed']['reviewed_rounds'],0)
+        self.assertEqual(progress['current_task']['completed']['feedback_rounds'],1)
+        event=progress['events'][0]
+        self.assertIsNone(event['reviewed_at'])
+        self.assertEqual(event['feedback_at'],200)
+        self.assertEqual(event['outcome'],'source_error')
+        self.assertEqual(json.dumps(record,sort_keys=True),original)
+
+    def test_mixed_source_error_and_review_have_consistent_global_and_package_counts(self):
+        broken=self.feedback_record('broken',300,report={
+            'model':None,'publication':{'state':'source_error','new_records':0},
+            'published':[],'held':[],'findings':[]})
+        reviewed=self.feedback_record('reviewed',250,report={
+            'model':{'backend':'codex_cli'},'publication':{'state':'published','new_records':1},
+            'published':[{'site_id':'cn-a','statement_id':'s-a'}],'held':[],'findings':[]})
+        snapshot=self.source_review_snapshot([broken,reviewed],{'cn-a'})
+        progress=snapshot['package_progress']['dc-census-cn']
+        self.assertEqual(snapshot['site_progress']['reviewed_reports'],1)
+        self.assertEqual(progress['reviewed_files'],1)
+        self.assertEqual(progress['current_task']['completed']['reviewed_rounds'],1)
+        self.assertEqual(progress['current_task']['completed']['feedback_rounds'],2)
+        self.assertEqual(progress['published_sites'],1)
+        self.assertEqual(snapshot['site_progress']['published_statements'],1)
+        events={event['submitter']:event for event in progress['events']}
+        self.assertIsNone(events['broken']['reviewed_at'])
+        self.assertEqual(events['broken']['feedback_at'],300)
+        self.assertEqual(events['reviewed']['reviewed_at'],250)
+        self.assertEqual(events['reviewed']['feedback_at'],250)
+
+    def test_sampled_review_keeps_real_review_time_and_explicit_unread_scope(self):
+        from inresearch.materials import inbox
+        sampled=self.feedback_record('sampled',200,report={
+            'model':{'backend':'codex_cli'},'publication':{'state':'nothing_eligible','new_records':0},
+            'review_scope':{'mode':'sampled_native_cells'},'published':[],'held':[],'findings':[]})
+        sampled['feedback']=[{'id':'owner-feedback','by':inbox.approver(),'at':300,
+            'sha256':sampled['sha256'],'result':'accepted','text':'PRIVATE OWNER NOTE'}]
+        snapshot=self.source_review_snapshot([sampled])
+        progress=snapshot['package_progress']['dc-census-cn']
+        self.assertEqual(snapshot['site_progress']['reviewed_reports'],1)
+        self.assertEqual(progress['reviewed_files'],1)
+        self.assertEqual(progress['current_task']['completed']['reviewed_rounds'],1)
+        self.assertEqual(progress['current_task']['completed']['feedback_rounds'],2)
+        self.assertIn('全表仍待审',progress['current_task']['feedback_summary'])
+        self.assertIn('0 条上线不能推定',progress['current_task']['feedback_summary'])
+        self.assertEqual(progress['events'][0]['reviewed_at'],200)
+        self.assertEqual(progress['events'][0]['feedback_at'],300)
+        self.assertNotIn('PRIVATE OWNER NOTE',json.dumps(snapshot))
+
     def test_durable_update_replay_and_audit(self):
         request = self.request()
         result = tasks.mutate(self.root, request, 'editor', 'member')
